@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-18T12:14:17+0100
+%% Last-Updated: 2024-01-18T13:05:47+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -861,6 +861,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %%% Custom macros end @@@
 
 \usepackage{siunitx}
+\sisetup{input-digits = 0123456789\piup}
+
 \usepackage{multimedia}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1158,9 +1160,9 @@ For the most part of the rest of these notes, we won't need to deal with differe
 
 It is necessary to have a way to distinguish physical events and processes and locate them in spacetime. This is done through a \emph{coordinate system}. A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning, such as the proper time elapsed for a specific clock, or the distance from some event, but they don't need to.
 
-A coordinate system also solves the problems coming from proper-time discrepancies. We can assign to every physical event a \emph{coordinate time}, which is the same for all observers and decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \href{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}{Universal Coordinated Time (UTC)}\footnote{\url{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}}. The clock on your phone, and on devices that get synchronized via internet, shows UTC -- not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
+A coordinate system also solves the problems coming from proper-time discrepancies. We can assign to every physical event a \emph{coordinate time}, which is the same for all observers and decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \href{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}{Universal Coordinated Time (UTC)}\footnote{\url{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
 
-It is always important to specify how the coordinate system you're using is defined. This specification is of course silently understood among people who have decided on a coordinate system beforehand. We shall often denotes the four coordinates of a coordinate system by
+We shall often denotes the four coordinates of a coordinate system by
 \begin{equation*}
   (t, x, y, z)
 \end{equation*}
@@ -1168,6 +1170,15 @@ where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial p
 \begin{equation*}
   \yr \defd (x,y,z) \ .
 \end{equation*}
+
+It is always important to specify how the coordinate system you're using is defined.
+The definition of the coordinates $(x,y,z)$ is typically different from problem to problem. We shall typically use coordinates that form $\frac{\pu}{2}\,\unit{rad} \equiv \ang{90}$ angles with one another; but their directions and their origin -- that is, where they have value $x=y=z=\qty{0}{m}$ -- always depend on the problem, so make sure you always specify them.
+
+Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write for example $(t,x)$ as our coordinates.
+
+\subsection{\enquote{Stuff}}
+\label{sec:stuff}
+
 
 
 
