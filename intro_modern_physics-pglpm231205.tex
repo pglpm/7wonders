@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-18T13:05:47+0100
+%% Last-Updated: 2024-01-18T22:20:22+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -861,9 +861,45 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %%% Custom macros end @@@
 
 \usepackage{siunitx}
-\sisetup{input-digits = 0123456789\piup}
+%\sisetup{input-digits = 0123456789\piup}
 
-\usepackage{multimedia}
+%\usepackage{multimedia}
+\usepackage[breakable]{tcolorbox}
+\usepackage[no-files]{xsim}
+\DeclareExerciseEnvironmentTemplate{tcolorbox}
+{%
+\tcolorbox[
+breakable ,
+boxrule=0mm ,
+colback = yellow!10!white ,
+colframe = white ,
+colbacktitle = yellow ,
+coltitle = black ,
+title =
+\textbf{\small\GetExerciseName~\GetExerciseProperty{counter}}%
+\GetExercisePropertyT{subtitle}{ \textit{\PropertyValue}}%
+\IfInsideSolutionF{%
+\GetExercisePropertyT{points}{ % notice the space
+(%
+\printgoal{\PropertyValue}
+\IfExerciseGoalSingularTF{points}
+{\XSIMtranslate{point}}
+{\XSIMtranslate{points}}%
+)%
+}%
+}%
+]%
+\small}
+{\endtcolorbox}
+\DeclareExerciseType{myexercise}{
+exercise-env = myexercise ,
+solution-env = answer ,
+exercise-name = Problem ,
+solution-name = Answer ,
+exercise-template = tcolorbox ,
+solution-template = tcolorbox
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -993,7 +1029,7 @@ Many things can be said and have been said about science and physics. Rather tha
 \end{center}
 
 
-\subsection{Several possible languages}
+\subsection{Several possible formalisms or \enquote{languages}}
 \label{sec:languages}
 
 % \setlength{\intextsep}{0ex}% with wrapfigure
@@ -1004,11 +1040,11 @@ Many things can be said and have been said about science and physics. Rather tha
 Example of two different languages expressing the same physical phenomenon%
 }
 \end{wrapfigure}
-Welcome back! The only thing about physics that I need to say here is that physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages} (don't take this expression too literally, or as one in common use; I'm just using it for the present discussion). One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other points of view. These languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among languages, because some ideas may be easier to express, or some results easier to find, in one language than another. No matter which physics language you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other subjects are like this too).
+Welcome back! The only thing about physics that I need to say here is that physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms. These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other subjects are like this too).
 
-In these notes I'm choosing one particular language: the one that for me is the most easily \emph{visualizable}; because I believe that visualization can be beneficial in learning new things. Or maybe I'm choosing it just because I like it best. I encourage you to explore how the physics you've learned is expressed in other physics languages; maybe you'll like another physics language better.
+In these notes I'm choosing one particular formalism: the one that for me is the most easily \emph{visualizable}; because I believe that visualization can be beneficial in learning new things. Or maybe I'm choosing it just because I like it best. I encourage you to explore how the physics you've learned is expressed in other physics formalisms; maybe you'll like another physics formalism better.
 
-The language we'll be using might be called \enquote{field theory}. Roughly speaking it takes as starting point the ideas of space and time, or better spacetime, in which there are different kinds of \enquote{stuff}. It expresses the regularity and patterns that we observe in physical phenomena as \enquote{budgets} about the different kinds of stuff, and of relations between these kinds. Please don't take the description just given too literally; it's just meant to give you a very vague idea of the field-theoretical viewpoint.
+The formalism we'll be using might be called \enquote{field theory}. Roughly speaking it takes as starting point the ideas of space and time, or better spacetime, in which there are different kinds of \enquote{stuff}. It expresses the regularity and patterns that we observe in physical phenomena as \enquote{budgets} about the different kinds of stuff, and of relations between these kinds. Please don't take the description just given too literally; it's just meant to give you a very vague idea of the field-theoretical viewpoint.
 
 \medskip
 
@@ -1176,8 +1212,17 @@ The definition of the coordinates $(x,y,z)$ is typically different from problem 
 
 Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write for example $(t,x)$ as our coordinates.
 
+\begin{myexercise}
+test
+\end{myexercise}
+
+
+
 \subsection{\enquote{Stuff}}
 \label{sec:stuff}
+
+In the physics formalism that we're using, ***
+
 
 
 
