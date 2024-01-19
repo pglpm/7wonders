@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-18T22:20:22+0100
+%% Last-Updated: 2024-01-19T21:36:41+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -357,6 +357,7 @@ british%
 \definecolor{red}{RGB}{238,102,119}
 \definecolor{redpurple}{RGB}{170,51,119}
 \definecolor{grey}{RGB}{187,187,187}
+\definecolor{midgrey}{RGB}{119,119,119}
 % Tol (2012) colour-blind-, print-, screen-friendly colours; Munsell terminology
 % \definecolor{lbpurple}{RGB}{51,34,136}
 % \definecolor{lblue}{RGB}{136,204,238}
@@ -642,15 +643,16 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %\footmarkstyle{\textsuperscript{[#1]}~}
 
 \selectlanguage{british}\frenchspacing
+\usepackage{fontawesome5}
 
 \definecolor{notecolour}{RGB}{68,170,153}
 %\newcommand*{\puzzle}{\maltese}
-\newcommand*{\puzzle}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{225}}}
-\newcommand*{\wrench}{{\fontencoding{U}\fontfamily{fontawesomethree}\selectfont\symbol{114}}}
-\newcommand*{\pencil}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{210}}}
-\newcommand{\mynotew}[1]{{\footnotesize\color{notecolour}\wrench\ #1}}
-\newcommand{\mynotep}[1]{{\footnotesize\color{notecolour}\pencil\ #1}}
-\newcommand{\mynotez}[1]{{\footnotesize\color{notecolour}\puzzle\ #1}}
+% \newcommand*{\puzzle}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{225}}}
+% \newcommand*{\wrench}{{\fontencoding{U}\fontfamily{fontawesomethree}\selectfont\symbol{114}}}
+% \newcommand*{\pencil}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{210}}}
+\newcommand{\mynotew}[1]{{\footnotesize\color{midgrey}\faIcon{tools}\ #1}}
+% \newcommand{\mynotep}[1]{{\footnotesize\color{notecolour}\pencil\ #1}}
+% \newcommand{\mynotez}[1]{{\footnotesize\color{notecolour}\puzzle\ #1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Paper's details
@@ -865,40 +867,12 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 %\usepackage{multimedia}
 \usepackage[breakable]{tcolorbox}
-\usepackage[no-files]{xsim}
-\DeclareExerciseEnvironmentTemplate{tcolorbox}
-{%
-\tcolorbox[
-breakable ,
-boxrule=0mm ,
-colback = yellow!10!white ,
-colframe = white ,
-colbacktitle = yellow ,
-coltitle = black ,
-title =
-\textbf{\small\GetExerciseName~\GetExerciseProperty{counter}}%
-\GetExercisePropertyT{subtitle}{ \textit{\PropertyValue}}%
-\IfInsideSolutionF{%
-\GetExercisePropertyT{points}{ % notice the space
-(%
-\printgoal{\PropertyValue}
-\IfExerciseGoalSingularTF{points}
-{\XSIMtranslate{point}}
-{\XSIMtranslate{points}}%
-)%
-}%
-}%
-]%
-\small}
-{\endtcolorbox}
-\DeclareExerciseType{myexercise}{
-exercise-env = myexercise ,
-solution-env = answer ,
-exercise-name = Problem ,
-solution-name = Answer ,
-exercise-template = tcolorbox ,
-solution-template = tcolorbox
-}
+
+\newtcolorbox[auto counter]{exercise}{colback=yellow!10!white, colframe=yellow, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter}
+
+\newtcolorbox{warning}{colback=red!10!white, colframe=red, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{exclamation-circle}\enspace Careful}
+
+\newtcolorbox{critique}{colback=blue!10!white, colframe=blue, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{microscope}\enspace Critique}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1210,18 +1184,18 @@ where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial p
 It is always important to specify how the coordinate system you're using is defined.
 The definition of the coordinates $(x,y,z)$ is typically different from problem to problem. We shall typically use coordinates that form $\frac{\pu}{2}\,\unit{rad} \equiv \ang{90}$ angles with one another; but their directions and their origin -- that is, where they have value $x=y=z=\qty{0}{m}$ -- always depend on the problem, so make sure you always specify them.
 
-Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write for example $(t,x)$ as our coordinates.
+Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write, for instance, $(t,x)$ as our coordinates.
 
-\begin{myexercise}
-test
-\end{myexercise}
+\begin{exercise}
+\mynotew{On relation between coord time and proper time for satellite}
+\end{exercise}
 
 
 
 \subsection{\enquote{Stuff}}
 \label{sec:stuff}
 
-In the physics formalism that we're using, ***
+In the physics formalism that we're using, we consider the presence of \enquote{stuff} at each spacetime point.
 
 
 
@@ -1519,6 +1493,43 @@ I therefore think that it is due time to replace the old ideas and notions still
 But the discomfort of this transition is not so great, after all. Many important notions from relativistic physics can be introduced in classical physics in a simple and natural way. Most maths and symbols remain practically the same, but we can attach to them more correct meanings.
 
 These lecture notes are an attempt at making such a transition.
+
+---------------------------------------------------
+
+\usepackage[no-files]{xsim}
+\DeclareExerciseEnvironmentTemplate{tcolorbox}
+{%
+\tcolorbox[
+breakable ,
+boxrule=0mm ,
+colback = yellow!10!white ,
+colframe = white ,
+colbacktitle = yellow ,
+coltitle = black ,
+title =
+\textbf{\small\GetExerciseName~\GetExerciseProperty{counter}}%
+\GetExercisePropertyT{subtitle}{ \textit{\PropertyValue}}%
+\IfInsideSolutionF{%
+\GetExercisePropertyT{points}{ % notice the space
+(%
+\printgoal{\PropertyValue}
+\IfExerciseGoalSingularTF{points}
+{\XSIMtranslate{point}}
+{\XSIMtranslate{points}}%
+)%
+}%
+}%
+]%
+\small}
+{\endtcolorbox}
+\DeclareExerciseType{myexercise}{
+exercise-env = myexercise ,
+solution-env = answer ,
+exercise-name = \faIcon{wrench} Exercise ,
+solution-name = Answer ,
+exercise-template = tcolorbox ,
+solution-template = tcolorbox
+}
 
 
 %%% Local Variables: 
