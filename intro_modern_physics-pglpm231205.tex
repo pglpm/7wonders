@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-21T08:03:35+0100
+%% Last-Updated: 2024-01-21T17:30:00+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -23,7 +23,7 @@ british%
 \newcommand*{\pdftitle}{\propertitle}
 \newcommand*{\headtitle}{21st-century physics (ING175)}
 \newcommand*{\pdfauthor}{P.G.L.  Porta Mana}
-\newcommand*{\headauthor}{Luca}
+\newcommand*{\headauthor}{\nameref}
 \newcommand*{\reporthead}{\iftrue\else Open Science Framework \href{https://doi.org/10.31219/osf.io/***}{\textsc{doi}:10.31219/osf.io/***}\fi}% Report number
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -563,9 +563,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \copypagestyle{manaart}{plain}
 \makeheadrule{manaart}{\headwidth}{0.5\normalrulethickness}
 \makeoddhead{manaart}{%
-{\footnotesize%\sffamily%
-\scshape\headauthor}}{}{{\footnotesize\sffamily%
-\headtitle}}
+{\footnotesize%
+\sffamily\leftmark}}{}{{\footnotesize\sffamily\itshape%
+\rightmark}}
 \makeoddfoot{manaart}{}{\thepage}{}
 \newcommand*\autanet{\includegraphics[height=\heightof{M}]{autanet.pdf}}
 \definecolor{mygray}{gray}{0.333}
@@ -593,6 +593,24 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % \headtitle}
 % \makeoddfoot{manaart}{}{\thepage}{}
 
+% \makepsmarks{headings}{%
+% \createmark{section}{both}{shownumber}{}{. }
+% %\createmark{subsection}{both}{shownumber}{}{. \ }
+% % \createplainmark{toc}{both}{\contentsname}
+% % \createplainmark{lof}{both}{\listfigurename}
+% % \createplainmark{lot}{both}{\listtablename}
+% \createplainmark{bib}{both}{\bibname}
+% % \createplainmark{index}{both}{\indexname}
+% % \createplainmark{glossary}{both}{\glossaryname}
+% }
+% \nouppercaseheads
+% \makeheadrule{headings}{\headwidth}{0.5\normalrulethickness}
+% \makeoddfoot{headings}{}{\thepage}{}
+\makepsmarks{manaart}{%
+\createmark{section}{left}{shownumber}{}{. }
+\createmark{subsection}{right}{shownumber}{}{. }
+}
+\nouppercaseheads
 \pagestyle{manaart}
 
 \setlength{\droptitle}{-3.9\onelineskip}
@@ -1192,21 +1210,10 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 
 
 
-\subsection{Seven primitive quantities and their budgets}
+\subsection{Seven primitive quantities}
 \label{sec:stuff}
 
-In the physics formalism that we're using there are about seven more quantities that we take as primitive. Our description of all physical phenomena around and within us is based on these quantities.
-
-Remember that primitive quantities cannot be defined: we can only try to have an intuitive understanding of them, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. They have two basic properties in common: of each, we can ask
-\begin{itemize}
-\item \emph{How much of this quantity is in a particular (3D) region of space?}
-\item \emph{How much of this quantity flows through a particular (2D) surface during a particular coordinate time?}
-\end{itemize}
-% \mynotew{densities and fluxes?}
-
-Owing to these two properties, each quantity can be considered as some kind of \enquote{stuff} that can be present at each spacetime point. But don't take the word \enquote*{stuff} too literally: I don't mean concrete objects like a ball, or substances like water. The seven primitive quantities are also called \emph{fields} because they depend on space and time.
-
-These seven primitive quantities are:
+In the physics formalism that we're using there are about seven more quantities that we take as primitive:
 \begin{center}\bfseries
 \textcolor{green}{matter}
 \\ \textcolor{redpurple}{electric charge}
@@ -1217,27 +1224,130 @@ These seven primitive quantities are:
 \\ \textcolor{midgrey}{entropy}
 \end{center}
 
+Remember that primitive quantities cannot be defined: we can only try to have an intuitive understanding of them, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But they all have two basic properties in common: of each, we can ask -- or rather, measure:
+\begin{itemize}
+\item \textbf{How much of this quantity is in a particular (3D) region of space at a particular time?}
+\item \textbf{How much of this quantity flows through a particular (2D) surface during a particular time lapse?}
+\end{itemize}
+% \mynotew{densities and fluxes?}
+The result of each of these measurement is a number, which in general can be positive or negative. This number depends only on the chosen region, surfaces, and times.
+
+Owing to these two properties, each of these seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water. The seven primitive quantities are also called \emph{fields} because they depend on space and time.
+
 For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. We shall discuss density and flux more in detail for each quantity later. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
-Another fundamental aspect common to these seven quantities is that each satisfies a relation expressing a balance, trade-off, or \enquote{budget}.
-
-The physical meaning and mathematical characterization of these seven quantities and their balances can be slightly different, depending on the physical theory and scale. Yet these seven quantities and their balances are common to all our main physical theories, even approximate: from Newtonian mechanics to general relativity and quantum theory. And they are used at all scales, from subatomic to cosmological.
+What's remarkable about these seven quantities is that they are common to all our main physical theories, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
 
 \smallskip
 
 Other auxiliary quantities, besides these, also appear in some physical theories. Important examples are temperature and metric. Most of these auxiliary quantities don't have the \enquote{stuff-like} properties of the main seven quantities; for instance, we cannot ask \enquote{how much temperature is in a particular region?}.  We shall discuss and use some auxiliary quantities later.
 
+\newpage
+\section{Physical laws}
+\label{sec:laws}
+
+\subsection{Two kinds of laws}
+\label{sec:two_kinds}
+
+
+
+In the previous chapter we introduced the quantities in term of which we describe physical phenomena. How do we describe the patterns, regularities, and diversities that we observe in these phenomena? This is the role of physical laws. Different physics formalisms or languages express these laws in different way, even if the actual physical phenomenon is exactly the same.
+
+In the formalism we're using we distinguish between two kinds of physical laws:
+\begin{itemize}
+\item \textbf{Universal balances}
+\item \textbf{Constitutive relations}
+\end{itemize}
+
+The universal balances apply to \emph{all} physical phenomena, without exceptions. They represent the basic constant patterns that we observe everywhere. They are called \enquote{balances} because they express a sort of trade-off or \enquote{budget}.
+
+Constitutive relations, also called \enquote*{closure equations} in some fields, are relations that, as the name says, are  instead \href{https://www.merriam-webster.com/dictionary/constitutive}{\emph{constitutive}}\footnote{\url{https://www.merriam-webster.com/dictionary/constitutive}} of specific phenomena, and of specific theories. That is, each such relation only applies to particular phenomena and in particular theories.
+
+Constitutive relations express the diversity that we observe around us, for example the different behaviour of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and general relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
+
+\subsection{Balance and conservation laws}
+\label{sec:balances}
+
+Balance laws are intuitively and visually easy to grasp. The archetype is as follows:
+
+Consider a 2D closed surface at a particular (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting as ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
+
+\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\includegraphics[width=\linewidth]{balance_plot.pdf}
+% \\[\jot]%
+% {\color{green}\enquote{\emph{%
+% }}\sourceatright{\cites{}}}
+\end{wrapfigure}
+Starting from that particular time, imagine the closed surface moving and deforming, changing shape and size, through time, until a later particular time $t_{2}$. At this time we shall have a closed surface that is typically different from the initial one, and at a different position. The deformation through time can be arbitrary: we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
+
+Now consider any one of the seven primitive quantities of \sect\,\ref{sec:stuff}, except magnetic flux. Remember the two questions or measurements that we could make on such quantity: \emph{how much in this region?} and \emph{how much through this surface during this time?}. We therefore make the following measurements:
+\begin{itemize}
+\item $C_{1}$: Total amount of quantity contained within the surface at time $t_{1}$; this amount can be positive, negative, or zero.
+\item $F$: Total amount of quantity flowing \emph{inwards} through the moving surface between times $t_{1}$ and $t_{2}$; this amount can also be positive, negative, or zero.
+\item $C_{2}$: Total amount of quantity contained within the surface at time $t_{2}$; this amount can as well be positive, negative, or zero.
+\end{itemize}
+% The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
+
+\smallskip
+
+A quantity is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds:
+\begin{equation}
+  \label{eq:conserved}
+  C_{1} - C_{2} + F = 0 \ .
+\end{equation}
+This equality can be interpreted in several equivalent ways. For example:
+\begin{itemize}
+\item If we find a larger amount of the quantity within the surface at $t_{2}$ than the one at $t_{1}$, then the difference must have flown in through the surface in between those times ($C_{2}-C_{1} = F$).
+\item If a total positive amount of the quantity is flowing in through the surface between times $t_{1}$ and $t_{2}$, then the amount of quantity within the surface at $t_{2}$ must be larger than the one at $t_{1}$ by this amount ($C_{1}+F = C_{2}$).
+\end{itemize}
+You can think of other similar interpretations. Keep in mind that all three quantities can be positive, negative, or zero. So if the total amount of quantity flown in through the surface is negative, $F<0$, then we must also have $C_{2} < C_{1}$.
+
+Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to another definition:
+
+\smallskip
+
+A quantity is said to be only \textbf{balanced}, or to satisfy a \textbf{balance law}, if the following equality holds:
+\begin{equation}
+  \label{eq:conserved}
+  C_{1} - C_{2} + F = S
+\end{equation}
+where $S$ is the amount of quantity created within the sequence of surfaces between the times $t_{1}$ and $t_{2}$. Note that $S$ can be negative, in which case we could that the quantity has been destroyed.
+
+\smallskip
+
+A balance law is somehow more trivial than a conservation law: if we measure that $C_{1} - C_{2} + F$ is not zero, we can always say that some quantity must have been created or destroyed between the two times, so the quantity can always be said to satisfy a balance. But it is not trivial if we have some specific physical law that tells us in advance how the amount created or destroyed, $S$, can be calculated.
+
+A conservation law can be seen as a special case of a balance law, one for which $S=0$. It is a special and non-trivial case, because if we find that $C_{1} - C_{2} + F$ is not zero, then we simply can\emph{not} say that the quantity is \emph{conserved}: it is only balanced.
+
 \medskip
 
-Let's have an overview of the seven primitive quantities.
+In the case of magnetic flux, the idea of a balance or conservation law is analogous, but is formulated with one less spatial dimension: we consider a closed 1D curve at $t_{1}$, one at $t_{2}$, and a sequence in between these times. The magnetic flux turns out to be a quantity for which it's possible to ask how much is \enquote{linked} to a closed curved, and how much is crossing a closed curve. One way to understand this is to imagine magnetic flux as a bundle of tubes or lines that are either closed or extend to infinity. It is a very fascinating quantity, and one may wonder if other quantities exist which satisfy similar balances even with one less dimension. But we shall not pursue magnetic flux or similar topics in these notes.
 
-\subsection{Matter}
+
+\newpage
+
+\section{The Seven Wonders of the World}
+\label{sec:seven_wonders}
+% https://education.nationalgeographic.org/resource/seven-wonders-ancient-worl
+% https://www.britannica.com/topic/Seven-Wonders-of-the-World
+
+The seven primitive quantities introduced in \sect\,\ref{sec:stuff} satisfy seven balance laws. These seven balance laws are amazing, because they are known, so far, to be satisfied by \emph{all} phenomena and in all our main physical theories, approximate or not: from subatomic scales to cosmological scales, from Newtonian mechanics to general relativity and quantum theory. No exceptions are known. These balances are truly the \enquote{Seven Wonders of the World}\footnote{Compare with the traditional seven wonders: \url{https://www.britannica.com/topic/Seven-Wonders-of-the-World}, \url{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}.}.
+
+So, once you learn these balances, you can apply them no matter what you work with: construction of bridges, control of chemical reactions, operation of GPS navigation and satellites, monitoring of nuclear power plants, sending robots to Mars, or collisions of subatomic particles.
+
+More precisely: matter, electric charge, magnetic flux always satisfy strict conservation laws. Energy, momentum, rotational momentum, entropy satisfy balance laws, which become conservation laws only in special circumstances, but not always.
+
+\smallskip
+
+\newpage
+\section{Matter}
 \label{sec:matter}
 
 Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \href{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}}\footnote{\url{https://doi.org/10.1351/goldbook.C01039}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is important to clearly distinguish matter from \emph{mass}: mass can be considered a property of matter, but the two are different: for example, the mass of some amount of matter may change, even if the amount of matter stays the same.
 
 There are different kinds of matter, each of which satisfies a balance relation. The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \href{https://doi.org/10.1351/goldbook.C01022}{chemical elements}\footnote{\url{https://doi.org/10.1351/goldbook.C01022}}, and each satisfies its own balance. These balances are the basis of \href{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}\footnote{\url{https://doi.org/10.1351/goldbook.S06026}}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
+
 
 
 \subsection{Electric charge and magnetic flux}
@@ -1336,14 +1446,6 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 
-
-\newpage
-
-\section{The Seven Wonders of the world}
-\label{sec:seven_wonders}
-
-
-% https://education.nationalgeographic.org/resource/seven-wonders-ancient-worl
 
 \newpage
 
