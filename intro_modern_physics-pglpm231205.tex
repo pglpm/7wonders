@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-23T06:25:00+0100
+%% Last-Updated: 2024-01-23T08:49:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1079,7 +1079,22 @@ A \emph{primitive quantity} is one that we do not define in terms of other quant
 
 Often we have a choice about which quantities should be primitive and which should be derived. For instance, \emph{energy} can be defined, in a somewhat complicated way, in terms of quantities like \emph{work} and \emph{heat}, which would then need to be taken as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it; this second choice turns out to be more convenient to develop the physical theory. It often happens that a quantity is very convenient to build a theory if used as primitive, but difficult to understand intuitively; and vice versa that a quantity is very intuitive, but leads to a complicated theory.
 
-Among quantities which we'll take as primitive are \emph{time}, \emph{space}, \emph{energy}, \emph{matter}, \emph{momentum}, and several others.
+Among quantities which we'll take as primitive are \emph{time}, \emph{space}, \emph{matter}, \emph{energy}, \emph{momentum}, and several others.
+
+\subsection{Physical dimensions and units}
+\label{sec:units}
+
+\emph{Measurement} is the process by which we determine the value of a physical quantity. Measurements can be extremely complex, and can extremely different even if they are about the same quantity. Consider the ways we can measure the mass of a football, compared to the ways we can measure the mass of the Sun.
+
+To each quantity we associate a \emph{physical dimension}. The term \enquote*{dimension} here has nothing to do with physical extension, as in \enquote{the dimensions of this box}; so be careful not to confuse the two. Usually it's clear which one is meant from the context. Physical dimensions help us avoid making operations that don't make sense with some quantities. For example, it doesn't make sense to sum up the volume of a body of water with its temperature; and indeed the volume has dimension $\mathsf{length^{3}}$, whereas temperature has dimension $\mathsf{temperature}$, and quantities with different dimensions cannot be added up.
+
+With each physical dimension we can associate a measurement \emph{unit}, which expresses a basic standard for comparing the measurement results of similar quantities. For example, we could use the \emph{minute} or the \emph{second} as units to measure $\mathsf{time}$.
+
+One can choose a basic set of physical dimensions from which to define all others, and for these a set of standard units. Here we shall follow the \href{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}\footnote{\url{https://www.nist.gov/pml/special-publication-811}}.
+
+\smallskip
+
+The topics of measurement and physical dimensions, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves. I shall assume that you already know their basics notions and that you read about the SI.
 
 
 
@@ -1162,6 +1177,10 @@ If human beings still exist in some decades or centuries, with space travel they
 
 For the most part of the rest of these notes, we won't need to deal with differences in proper time. But I recommend that you keep present how time really works, and that these small time discrepancies exist and occur all the time along your \emph{worldline}.
 
+\smallskip
+
+Time has physical dimension of $\mathsf{time}$, symbol $\textsf{T}$, and we shall for the most part measure it using the unit \emph{second}, symbol $\unit{s}$.
+
 
 
 \subsection{Space}
@@ -1170,6 +1189,10 @@ For the most part of the rest of these notes, we won't need to deal with differe
 Together with the notion of time, also the notion of space loses some of its traditional intuition. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid object in their vicinity. For objects that are far away from an observer, the very notion of \enquote{distance} becomes tricky has different and non-equivalent definitions; one must be very careful on which definition is being used.
 
 We shall not delve further into these peculiarities of time and space. Keep simply in mind that phenomena happen in \emph{spacetime}, and that there's no way to attribute a universal time, nor a universal position in space, to a physical event. There is one absolute: whoever locally measures the speed of light, will find the value $c\defd \qty{299792458}{m/s}$. This value is exact by definition, and serves as a way to define a local notion of space and distance.
+
+\smallskip
+
+Space has physical dimension of $\mathsf{length}$, symbol $\textsf{L}$, and we shall for the most part measure it using the unit \emph{metre}, symbol $\unit{m}$.
 
 
 % In Bergen, a distance of 10\,m corresponds to a difference of 0.000\,1\,° in latitude or longitude
@@ -1241,7 +1264,42 @@ What's remarkable about these seven quantities is that they are common to all ou
 
 Other auxiliary quantities, besides these, also appear in some physical theories. Important examples are temperature and metric. Most of these auxiliary quantities don't have the \enquote{stuff-like} properties of the main seven quantities; for instance, we cannot ask \enquote{how much temperature is in a particular region?}.  We shall discuss and use some auxiliary quantities later.
 
-\newpage
+\subsection{Dimensions and units}
+\label{sec:dimensions_units}
+
+The main quantities introduced so far have the following physical dimensions, and we shall often measure them in the following units:
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{lcc}
+    \textbf{Quantity}&\textbf{Dimension}&\textbf{Unit}
+    \\[2\jot]
+    \hline\\
+    Time&\textsf{time}&\emph{second}\;\unit{s}
+    \\[3\jot]
+    Length&\textsf{length}&\emph{metre}\;\unit{m}
+    \\[3\jot]
+    Matter&\textsf{amount of substance}&\emph{mole}\;\unit{mol}
+    \\[3\jot]
+    Electric charge&\textsf{electric charge}&\emph{coulomb}\;\unit{C}
+    \\[3\jot]
+    Magnetic flux&\textsf{magnetic flux}&\emph{weber}\;\unit{Wb}
+    \\[3\jot]
+    Energy&\parbox[t]{10em}{\centering\textsf{energy},\\[\jot] \textsf{mass}}&\parbox[t]{5em}{\centering\emph{joule}\;\unit{J},\\[\jot] \emph{kilogram}\;\unit{kg}}
+    \\[8\jot]
+    Momentum&\parbox[t]{10em}{\centering\textsf{mass$\cdot$length$/$time},\\[\jot] \textsf{energy$\cdot$time$/$length}}&\parbox[t]{5em}{\centering\unit{kg\cdot m/s},\\[\jot] \unit{J\cdot s/m}}
+    \\[8\jot]
+    Rotational momentum&\parbox[t]{10em}{\centering\textsf{mass$\cdot$length$^{2}/$time},\\[\jot] \textsf{energy$\cdot$time}}&\parbox[t]{5em}{\centering\unit{kg\cdot m^2/s},\\[\jot] \unit{J\cdot s}}
+    \\[8\jot]
+    Entropy&\textsf{energy$/$temperature}&\unit{J/K}
+    \\[6\jot]
+    Temperature&\textsf{temperature}&\emph{kelvin}\;\unit{K}
+  \end{tabular}
+\end{table}
+
+
+
+
+\clearpage
 \section{Physical laws}
 \label{sec:laws}
 
