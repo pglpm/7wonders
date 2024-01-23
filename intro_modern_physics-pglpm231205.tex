@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-22T18:52:13+0100
+%% Last-Updated: 2024-01-23T06:25:00+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1179,21 +1179,25 @@ We shall not delve further into these peculiarities of time and space. Keep simp
 \subsection{Coordinate systems}
 \label{sec:coords}
 
-It is necessary to have a way to distinguish physical events and processes and locate them in spacetime. This is done through a \emph{coordinate system}. A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning, such as the proper time elapsed for a specific clock, or the distance from some event, but they don't need to.
+It is necessary to have a way for distinguishing physical events and phenomena and locating them in spacetime. This is achieved through a \emph{coordinate system}. A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning, such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer, but they don't need to.
 
-A coordinate system also solves the problems coming from proper-time and space discrepancies. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \href{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}{Universal Coordinated Time (UTC)}\footnote{\url{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
+A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \href{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}{Universal Coordinated Time (UTC)}\footnote{\url{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
 
 We shall often denotes the four coordinates of a coordinate system by
 \begin{equation*}
   (t, x, y, z)
 \end{equation*}
-where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial position. This triplet of spatial coordinates is often denoted by the vector $\yr$:
+where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial position. The triplet of spatial coordinates is often denoted by the vector $\yr$:
 \begin{equation*}
   \yr \defd (x,y,z) \ .
 \end{equation*}
 
 It is always important to specify how the coordinate system you're using is defined.
-The definition of the coordinates $(x,y,z)$ is typically different from problem to problem. We shall typically use coordinates that form $\frac{\pu}{2}\,\unit{rad} \equiv \ang{90}$ angles with one another; but their directions and their origin -- that is, where they have value $x=y=z=\qty{0}{m}$ -- always depend on the problem, so make sure you always specify them.
+The definition of the spatial coordinates $(x,y,z)$ is typically different from problem to problem. We shall typically use coordinates that form $\frac{\pu}{2}\,\unit{rad} \equiv \ang{90}$ angles with one another; but their directions and their origin -- that is, where they have value $x=y=z=\qty{0}{m}$ -- always depend on the problem, so make sure you always specify them.
+
+Whenever we speak of a \enquote{region of space} or of a \enquote{surface in space}, we mean a region at some specific coordinate time $t$.
+
+\smallskip
 
 Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write, for instance, $(t,x)$ as our coordinates.
 
@@ -1206,7 +1210,7 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 \subsection{Seven primitive quantities}
 \label{sec:stuff}
 
-In the physics formalism that we're using there are about seven more quantities that we take as primitive:
+In the physics formalism that we're using there are about seven more quantities, technically called \emph{fields}, that we take as primitive:
 \begin{center}\bfseries
 \textcolor{green}{matter}
 \\ \textcolor{redpurple}{electric charge}
@@ -1222,12 +1226,14 @@ Remember that primitive quantities cannot be defined: we can only try to have an
 \item \textbf{How much of this quantity is in a particular (3D) region of space at a particular time?}
 \item \textbf{How much of this quantity flows through a particular (2D) surface during a particular time lapse?}
 \end{itemize}
+and we can ask these questions of any region of space and any time lapse.
+
 % \mynotew{densities and fluxes?}
-The result of each of these measurement is a number, which in general can be positive or negative. This number depends only on the chosen region, surfaces, and times.
+The result of each of these measurement is a number, which in general can be positive or negative, or a vector. % This number depends only on the chosen region, surfaces, and times.
 
-Owing to these two properties, each of these seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water. The seven primitive quantities are also called \emph{fields} because they depend on space and time.
+Owing to the two properties above, each of the seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
 
-For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. We shall discuss density and flux more in detail for each quantity later. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
+For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. The density tells us how much quantity there's in a unit of volume. The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
 What's remarkable about these seven quantities is that they are common to all our main physical theories, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
 
@@ -1263,7 +1269,7 @@ Constitutive relations express the diversity that we observe around us, for exam
 
 Balance laws are intuitively and visually easy to grasp. The archetype is as follows:
 
-Consider a 2D closed surface at a particular (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting as ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
+Consider a closed 2D surface at a particular (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
 \begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
 \includegraphics[width=\linewidth]{balance_plot.pdf}
@@ -1273,13 +1279,19 @@ Consider a 2D closed surface at a particular (coordinate) time $t_{1}$, which en
 \end{wrapfigure}
 Starting from that particular time, imagine the closed surface moving and deforming, changing shape and size, through time, until a later particular time $t_{2}$. At this time we shall have a closed surface that is typically different from the initial one, and at a different position. The deformation through time can be arbitrary: we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
 
+The initial and final surfaces and the sequence in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. We can consider for instance an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. We can consider for instance the outer surface of a tennis ball, and follow it as the ball moves.
+
 Now consider any one of the seven primitive quantities of \sect\,\ref{sec:stuff}, except magnetic flux. Remember the two questions or measurements that we could make on such quantity: \emph{how much in this region?} and \emph{how much through this surface during this time?}. We therefore make the following measurements:
 \begin{itemize}
-\item $C_{1}$: Total amount of quantity contained within the surface at time $t_{1}$; this amount can be positive, negative, or zero.
-\item $F$: Total amount of quantity flowing \emph{inwards} through the moving surface between times $t_{1}$ and $t_{2}$; this amount can also be positive, negative, or zero.
-\item $C_{2}$: Total amount of quantity contained within the surface at time $t_{2}$; this amount can as well be positive, negative, or zero.
+\item $C_{1}$: Total amount of quantity contained within the surface at time $t_{1}$.
+  
+\item $F$: Total amount of quantity flowing \emph{inwards} through the moving surface between times $t_{1}$ and $t_{2}$.
+  
+\item $C_{2}$: Total amount of quantity contained within the surface at time $t_{2}$.
 \end{itemize}
 % The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
+For some quantities, each of the amounts above is a number that can be positive, negative, or zero. For other quantities, each of the amounts above is instead a vector that can have any magnitude and direction.
+
 
 \smallskip
 
