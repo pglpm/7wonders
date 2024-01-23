@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-23T08:49:49+0100
+%% Last-Updated: 2024-01-23T11:24:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -892,6 +892,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \newtcolorbox{critique}{colback=blue!10!white, colframe=blue, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{microscope}\enspace Critique}
 
+\newtcolorbox{definition}[1]{colback=green!10!white, colframe=green, boxrule=0mm, breakable, fonttitle=\bfseries\sffamily, title=\hspace{-2.5ex}\faIcon{map-marker-alt}\enspace#1}
+%map-marker-alt
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1308,7 +1311,7 @@ The main quantities introduced so far have the following physical dimensions, an
 
 
 
-In the previous chapter we introduced the quantities in term of which we describe physical phenomena. How do we describe the patterns, regularities, and diversities that we observe in these phenomena? This is the role of physical laws. Different physics formalisms or languages express these laws in different way, even if the actual physical phenomenon is exactly the same.
+In the previous chapter we introduced the main quantities in term of which we describe physical phenomena. How do we describe the patterns, regularities, and diversities that we observe in these phenomena? This is the role of physical laws. Different physics formalisms or languages express these laws in different way, even if the actual physical phenomenon is exactly the same.
 
 In the formalism we're using we distinguish between two kinds of physical laws:
 \begin{itemize}
@@ -1316,9 +1319,9 @@ In the formalism we're using we distinguish between two kinds of physical laws:
 \item \textbf{Constitutive relations}
 \end{itemize}
 
-The universal balances apply to \emph{all} physical phenomena, without exceptions. They represent the basic constant patterns that we observe everywhere. They are called \enquote{balances} because they express a sort of trade-off or \enquote{budget}.
+Universal balances apply to \emph{all} physical phenomena, without exceptions. They represent the basic constant patterns that we observe everywhere. They are called \enquote{balances} because they express a sort of trade-off or \enquote{budget}.
 
-Constitutive relations, also called \enquote*{closure equations} in some fields, are relations that, as the name says, are  instead \href{https://www.merriam-webster.com/dictionary/constitutive}{\emph{constitutive}}\footnote{\url{https://www.merriam-webster.com/dictionary/constitutive}} of specific phenomena, and of specific theories. That is, each such relation only applies to particular phenomena and in particular theories.
+Constitutive relations, also called \emph{closure equations} in some fields, are relations that, as the name says, are  instead \href{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}}\footnote{\url{https://www.merriam-webster.com/dictionary/constitutive}} of specific phenomena and of specific theories. That is, each such relation only applies to particular phenomena and only in particular theories.
 
 Constitutive relations express the diversity that we observe around us, for example the different behaviour of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and general relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
@@ -1327,7 +1330,7 @@ Constitutive relations express the diversity that we observe around us, for exam
 
 Balance laws are intuitively and visually easy to grasp. The archetype is as follows:
 
-Consider a closed 2D surface at a particular (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
+Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
 \begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
 \includegraphics[width=\linewidth]{balance_plot.pdf}
@@ -1335,70 +1338,130 @@ Consider a closed 2D surface at a particular (coordinate) time $t_{1}$, which en
 % {\color{green}\enquote{\emph{%
 % }}\sourceatright{\cites{}}}
 \end{wrapfigure}
-Starting from that particular time, imagine the closed surface moving and deforming, changing shape and size, through time, until a later particular time $t_{2}$. At this time we shall have a closed surface that is typically different from the initial one, and at a different position. The deformation through time can be arbitrary: we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
+Starting from that particular time, imagine the closed surface moving and deforming, changing shape and size but remaining closed -- no holes or cuts -- through time, until a later time $t_{2}$. At this time we shall have a closed surface that can be different from the initial one, and at a different position. We could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
 
-The initial and final surfaces and the sequence in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. We can consider for instance an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. We can consider for instance the outer surface of a tennis ball, and follow it as the ball moves.
+The initial and final surfaces and the sequence in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
 
 Now consider any one of the seven primitive quantities of \sect\,\ref{sec:stuff}, except magnetic flux. Remember the two questions or measurements that we could make on such quantity: \emph{how much in this region?} and \emph{how much through this surface during this time?}. We therefore make the following measurements:
 \begin{itemize}
 \item $C_{1}$: Total amount of quantity contained within the surface at time $t_{1}$.
-  
+
 \item $F$: Total amount of quantity flowing \emph{inwards} through the moving surface between times $t_{1}$ and $t_{2}$.
-  
+
 \item $C_{2}$: Total amount of quantity contained within the surface at time $t_{2}$.
 \end{itemize}
 % The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
-For some quantities, each of the amounts above is a number that can be positive, negative, or zero. For other quantities, each of the amounts above is instead a vector that can have any magnitude and direction.
 
+For all quantities except momentum and rotational momentum, each of the three amounts above is a number, of appropriate physical dimensions, that can be positive, negative, or zero. For instance, for matter we could have $C_{1}=\qty{3.5}{mol}$, and for energy we could have $F=\qty{-600}{J}$. For momentum and rotational momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{C}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
 \smallskip
 
-A quantity is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds:
-\begin{equation}
-  \label{eq:conserved}
-  C_{1} - C_{2} + F = 0 \ .
-\end{equation}
-This equality can be interpreted in several equivalent ways. For example:
+\begin{definition}{Conservation law}
+  A quantity is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds:
+  \begin{equation}
+    \label{eq:conserved}
+    C_{1} - C_{2} + F = 0
+  \end{equation}
+\end{definition}
+
+A conservation law allows us to make several kinds of predictions or deductions. For example:
 \begin{itemize}
-\item If we find a larger amount of the quantity within the surface at $t_{2}$ than the one at $t_{1}$, then the difference must have flown in through the surface in between those times ($C_{2}-C_{1} = F$).
-\item If a total positive amount of the quantity is flowing in through the surface between times $t_{1}$ and $t_{2}$, then the amount of quantity within the surface at $t_{2}$ must be larger than the one at $t_{1}$ by this amount ($C_{1}+F = C_{2}$).
+\item If we know the amount of quantity within the surface at $t_{1}$ and the amount that flew in through the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the surface at $t_{2}$:
+  \begin{equation*}
+    C_{2} = C_{1} + F \ .
+  \end{equation*}
+  
+\item If we know the amount of quantity within the surface at $t_{1}$ and the one at $t_{2}$, then we can deduce the total amount that flew in through the surface between the times $t_{1}$ and $t_{2}$:
+  \begin{equation*}
+    F = C_{2} + C_{1} \ .
+  \end{equation*}
+  
+\item If we know the amount of quantity within the surface at $t_{2}$ and the amount that flew in through the surface between $t_{1}$ and $t_{2}$, then we can deduce the amount within the surface at $t_{1}$:
+  \begin{equation*}
+    C_{1} = C_{2} - F \ .
+  \end{equation*}
 \end{itemize}
-You can think of other similar interpretations. Keep in mind that all three quantities can be positive, negative, or zero. So if the total amount of quantity flown in through the surface is negative, $F<0$, then we must also have $C_{2} < C_{1}$.
+These kinds of predictions and deductions are very powerful if you also consider that the shape and motion of the surface as well as the times $t_{1}, t_{2}$ are completely arbitrary. Keep in mind that all three quantities can, in general, be positive, negative, or zero. For example, if the total amount of quantity flown in through the surface is negative, $F<0$, then we must also have $C_{2} < C_{1}$.
+
+We unconsciously use some conservation laws all the time, in our everyday life. If you seal a glass in a box, and upon dropping the box you hear that the glass shatters, and see that no holes were formed in the box, then you are sure that all the glass pieces now in the box could be glued together to form the original glass in its entirety.
+
+% \begin{itemize}
+% \item If we find a larger amount of the quantity within the surface at $t_{2}$ than the one at $t_{1}$, then the difference must have flown in through the surface in between those times ($C_{2}-C_{1} = F$).
+% \item If a total positive amount of the quantity is flowing in through the surface between times $t_{1}$ and $t_{2}$, then the amount of quantity within the surface at $t_{2}$ must be larger than the one at $t_{1}$ by this amount ($C_{1}+F = C_{2}$).
+% \end{itemize}
+% You can think of other similar interpretations.
+
+%% \mynotew{add more powerful ways by dividing regions, surface, time}
 
 Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to another definition:
 
 \smallskip
 
-A quantity is said to be only \textbf{balanced}, or to satisfy a \textbf{balance law}, if the following equality holds:
-\begin{equation}
-  \label{eq:conserved}
-  C_{1} - C_{2} + F = S
-\end{equation}
-where $S$ is the amount of quantity created within the sequence of surfaces between the times $t_{1}$ and $t_{2}$. Note that $S$ can be negative, in which case we could that the quantity has been destroyed.
+\begin{definition}{Balance law}
+  A quantity is said to be only \textbf{balanced}, or to satisfy a \textbf{balance law} or simply \textbf{balance}, if the following equality holds:
+  \begin{equation}
+    \label{eq:conserved}
+    C_{1} - C_{2} + F = S
+  \end{equation}
+  where $S$ is the amount of quantity created within the sequence of surfaces between the times $t_{1}$ and $t_{2}$.
+\end{definition}
+Note that, if the quantity is represented by a number, then $S$ can also be negative, in which case we say that the quantity has been destroyed.
 
-\smallskip
+A balance law also allows us to make several kinds of predictions or deductions. For example:
+\begin{itemize}
+\item If we know the amount of quantity within the surface at $t_{1}$, the amount that flew in through the surface between $t_{1}$ and $t_{2}$, and the amount that was created within the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the surface at $t_{2}$:
+  \begin{equation*}
+    C_{2} = C_{1} + F + S \ .
+  \end{equation*}
+\end{itemize}
+And similarly as in the other examples for a conservation law. You see that in order to use a balance we need an extra piece of information.
 
-A balance law is somehow more trivial than a conservation law: if we measure that $C_{1} - C_{2} + F$ is not zero, we can always say that some quantity must have been created or destroyed between the two times, so the quantity can always be said to satisfy a balance. But it is not trivial if we have some specific physical law that tells us in advance how the amount created or destroyed, $S$, can be calculated.
+A balance law is somehow more trivial than a conservation law: if we measure that $C_{1} - C_{2} + F$ is not zero, we can always say that some amount of quantity must have been created or destroyed between the two times; so a quantity might always be said to satisfy a balance. But a balance is not trivial if we have some specific physical law that tells us in advance how the amount created or destroyed, $S$, can be calculated.
 
-A conservation law can be seen as a special case of a balance law, one for which $S=0$. It is a special and non-trivial case, because if we find that $C_{1} - C_{2} + F$ is not zero, then we simply can\emph{not} say that the quantity is \emph{conserved}: it is only balanced.
+A conservation law can be seen as a special and powerful case of a balance law, one for which $S=0$ \emph{always}.
+
+\small
+
+Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $t_{1}$, the sequence of 2D surfaces between $t_{1}$ and $t_{2}$, and the 3D region at $t_{2}$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
+
+And from a spacetime perspective, the amount of a quantity $C_{1}$ or $C_{2}$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $F$ also disappear. Their only difference is that one ($C$) points exclusively in the time direction, while the other ($F$) also points partially in a spatial direction.
 
 \medskip
 
-In the case of magnetic flux, the idea of a balance or conservation law is analogous, but is formulated with one less spatial dimension: we consider a closed 1D curve at $t_{1}$, one at $t_{2}$, and a sequence in between these times. The magnetic flux turns out to be a quantity for which it's possible to ask how much is \enquote{linked} to a closed curved, and how much is crossing a closed curve. One way to understand this is to imagine magnetic flux as a bundle of tubes or lines that are either closed or extend to infinity. It is a very fascinating quantity, and one may wonder if other quantities exist which satisfy similar balances even with one less dimension. But we shall not pursue magnetic flux or similar topics in these notes.
+
+In the case of magnetic flux, the idea of a conservation law is analogous, but is formulated with one less spatial dimension: we consider a closed 1D curve at $t_{1}$, one at $t_{2}$, and a sequence in between these times. The magnetic flux turns out to be a quantity for which it's possible to ask how much is \enquote{linked} to a closed curved, and how much is crossing a closed curve. One way to understand this is to imagine magnetic flux as a bundle of tubes or lines that are either closed or extend to infinity. It is a very fascinating quantity, and one may wonder if other quantities exist which satisfy similar balances even with one less dimension. But we shall not pursue magnetic flux or similar topics in these notes.
+
+
+
+\subsection{Calculation of volume and flux integrals}
+\label{sec:calculate_flux_integral}
+
+
 
 
 \newpage
 
 \section{The Seven Wonders of the World}
 \label{sec:seven_wonders}
-% https://education.nationalgeographic.org/resource/seven-wonders-ancient-worl
-% https://www.britannica.com/topic/Seven-Wonders-of-the-World
 
-The seven primitive quantities introduced in \sect\,\ref{sec:stuff} satisfy seven balance laws. These seven balance laws are amazing, because they are known, so far, to be satisfied by \emph{all} phenomena and in all our main physical theories, approximate or not: from subatomic scales to cosmological scales, from Newtonian mechanics to general relativity and quantum theory. No exceptions are known. These balances are truly the \enquote{Seven Wonders of the World}\footnote{Compare with the traditional seven wonders: \url{https://www.britannica.com/topic/Seven-Wonders-of-the-World}, \url{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}.}.
+We already remarked that the seven primitive quantities introduced in \sect\,\ref{sec:stuff} are common to all our main physical theories. Even more remarkable is that each of them obeys a balance law, three even a conservation law:
+\begin{definition}{The seven fundamental balances}
+  \begin{center}
+    \textcolor{green}{Conservation of matter}
+\\ \textcolor{redpurple}{Conservation of electric charge}
+\\ \textcolor{red}{Conservation of magnetic flux}
+\\ \textcolor{bluepurple}{Balance of energy}
+\\ \textcolor{blue}{Balance of momentum}
+\\ \textcolor{yellow}{Balance of rotational momentum}
+\\ \textcolor{midgrey}{Balance of entropy}
+  \end{center}
+These seven balance laws are known, so far, to be satisfied by \emph{all} phenomena and in all our main physical theories, approximate or not: from subatomic scales to cosmological scales, from Newtonian mechanics to general relativity and quantum theory. No exceptions are known.
+\end{definition}
+These balances are truly the \enquote{Seven Wonders of the World}\footnote{Compare with the traditional seven wonders: \url{https://www.britannica.com/topic/Seven-Wonders-of-the-World}, \url{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}.}.
 
-So, once you learn these balances, you can apply them no matter what you work with: construction of bridges, control of chemical reactions, operation of GPS navigation and satellites, monitoring of nuclear power plants, sending robots to Mars, or collisions of subatomic particles.
+Once you learn these balances, you can apply them no matter what you work with: construction of bridges, control of chemical reactions, operation of GPS navigation and satellites, monitoring of nuclear power plants, sending robots to Mars, or collisions of subatomic particles.
 
-More precisely: matter, electric charge, magnetic flux always satisfy strict conservation laws. Energy, momentum, rotational momentum, entropy satisfy balance laws, which become conservation laws only in special circumstances, but not always.
+More precisely: matter, electric charge, magnetic flux always satisfy strict conservation laws. For matter we actually have several conservation laws, one for each kind of matter. Energy, momentum, rotational momentum, entropy satisfy balance laws, which become conservation laws only in special circumstances, but not always.
 
 \smallskip
 
