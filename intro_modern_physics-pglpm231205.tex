@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-23T11:24:04+0100
+%% Last-Updated: 2024-01-23T20:12:56+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -549,6 +549,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %\setbeforesubsecskip{1.25ex plus 1ex minus .2ex }% plus 1ex minus .2ex}
 %\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex}
 \setsubsecindent{0pt}%0ex plus 1ex minus .2ex}
+\setsubsubsecheadstyle{\bfseries\sffamily%
+\raggedright}
 \setparaheadstyle{\bfseries\sffamily%
 \raggedright}
 \setcounter{secnumdepth}{2}
@@ -768,7 +770,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %\DeclareMathOperator{\ent}{ent}%integer less or equal to
 %\DeclareMathOperator{\Ord}{O}%same order as
 %\DeclareMathOperator{\ord}{o}%lower order than
-%\newcommand*{\incr}{\triangle}%finite increment
+% \newcommand*{\incr}{\triangle}%finite increment
+\newcommand*{\incr}{\Delta}%finite increment
 \newcommand*{\defd}{\coloneqq}
 \newcommand*{\defs}{\eqqcolon}
 %\newcommand*{\Land}{\bigwedge}
@@ -878,6 +881,10 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \newcommand*{\dob}{degree of belief}
 \newcommand*{\dobs}{degrees of belief}
 \newcommand*{\yr}{\bm{r}}
+\newcommand*{\yto}{t_{0}}
+\newcommand*{\yxo}{x_{0}}
+\newcommand*{\yyo}{y_{0}}
+\newcommand*{\yzo}{z_{0}}
 %%% Custom macros end @@@
 
 \usepackage{siunitx}
@@ -1267,39 +1274,115 @@ What's remarkable about these seven quantities is that they are common to all ou
 
 Other auxiliary quantities, besides these, also appear in some physical theories. Important examples are temperature and metric. Most of these auxiliary quantities don't have the \enquote{stuff-like} properties of the main seven quantities; for instance, we cannot ask \enquote{how much temperature is in a particular region?}.  We shall discuss and use some auxiliary quantities later.
 
-\subsection{Dimensions and units}
-\label{sec:dimensions_units}
+\medskip
 
-The main quantities introduced so far have the following physical dimensions, and we shall often measure them in the following units:
-\begin{table}[!h]
+The main quantities introduced so far have physical dimensions, and we shall often measure them in the units, of table~\ref{tab:units}.
+\begin{table}[tb]
   \centering
   \begin{tabular}{lcc}
+    \hline\\
     \textbf{Quantity}&\textbf{Dimension}&\textbf{Unit}
     \\[2\jot]
-    \hline\\
     Time&\textsf{time}&\emph{second}\;\unit{s}
-    \\[3\jot]
+    \\[2\jot]
     Length&\textsf{length}&\emph{metre}\;\unit{m}
-    \\[3\jot]
+    \\[2\jot]
     Matter&\textsf{amount of substance}&\emph{mole}\;\unit{mol}
-    \\[3\jot]
+    \\[2\jot]
     Electric charge&\textsf{electric charge}&\emph{coulomb}\;\unit{C}
-    \\[3\jot]
+    \\[2\jot]
     Magnetic flux&\textsf{magnetic flux}&\emph{weber}\;\unit{Wb}
-    \\[3\jot]
+    \\[2\jot]
     Energy&\parbox[t]{10em}{\centering\textsf{energy},\\[\jot] \textsf{mass}}&\parbox[t]{5em}{\centering\emph{joule}\;\unit{J},\\[\jot] \emph{kilogram}\;\unit{kg}}
-    \\[8\jot]
+    \\[7\jot]
     Momentum&\parbox[t]{10em}{\centering\textsf{mass$\cdot$length$/$time},\\[\jot] \textsf{energy$\cdot$time$/$length}}&\parbox[t]{5em}{\centering\unit{kg\cdot m/s},\\[\jot] \unit{J\cdot s/m}}
-    \\[8\jot]
+    \\[7\jot]
     Rotational momentum&\parbox[t]{10em}{\centering\textsf{mass$\cdot$length$^{2}/$time},\\[\jot] \textsf{energy$\cdot$time}}&\parbox[t]{5em}{\centering\unit{kg\cdot m^2/s},\\[\jot] \unit{J\cdot s}}
-    \\[8\jot]
+    \\[7\jot]
     Entropy&\textsf{energy$/$temperature}&\unit{J/K}
-    \\[6\jot]
+    \\[4\jot]
     Temperature&\textsf{temperature}&\emph{kelvin}\;\unit{K}
+    \\[2\jot]
+    \hline
   \end{tabular}
+\caption{Dimensions and units of the main physical quantities}\label{tab:units}
 \end{table}
 
 
+\subsection{Densities and fluxes}
+\label{sec:density_flux}
+
+How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?}. We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple. Let us take the quantity \emph{matter} as an example.
+
+
+\begin{definition}{Density}
+  Take a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. At the instant $\yto$, imagine a very small cuboid centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $x,y,z$ and of lengths $\incr x$, $\incr y$, $\incr z$. Then we have
+  \begin{equation}
+    \label{eq:density_expl}
+    \text{\small amount of quantity in cuboid} = 
+    n(\yto,\yxo,\yyo,\yzo)\, \incr x\, \incr y\, \incr z \ .
+  \end{equation}
+  where $n(\yto,\yxo,\yyo,\yzo)$ is the \textbf{density} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$
+\end{definition}
+As the notation suggests, the density is a function of the coordinates, that is, of time and spatial position. This functional dependence reflect the fact that we can have a larger amount of a quantity concentrated in some regions at some times, than in other regions or at other times.
+
+In order to calculate the total amount of the quantity in an arbitrary 3D region, we simply divide it into very small cuboids similar to the one above. For each cuboid we calculate the respective amount; this amount will generally be different from cuboid to cuboid, because the value of the density $n(t,x,y,z)$ will be different at each cuboid's centre. Then we sum up all these amounts. You probably recognize this procedure as the description of integration. And in fact we can write
+\begin{equation}
+  \label{eq:density_integral}
+  \text{\small total amount of quantity in 3D region} = 
+  \iiint\limits_{\mathclap{\text{3D region}}}n(t,x,y,z)\, \di x\, \di y\, \di z \ .
+\end{equation}
+Clearly we must know the value of the density $n$ at all points within the region, in order to calculate the total amount. Note that if the quantity is absent in some subregion, then $n(\dotso)=0$ there.
+
+\medskip
+
+For the flux of the quantity through a surface we consider three different cases:
+
+\begin{definition}{$x$-Flux}
+  Take again a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. Keeping $\yxo$ fixed, imagine a very small rectangular surface centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $y,z$ and of lengths $\incr y$, $\incr z$. Imagine that this surface exists for a lapse of time $\incr t$ around the time $\yto$. Then we have
+  \begin{equation}
+    \label{eq:xflux_expl}
+    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\incr y\,\incr z$\\ towards positive $x$\\during time lapse }\right\} = 
+    j_{x}(\yto,\yxo,\yyo,\yzo)\, \incr t\, \incr y\, \incr z \ .
+  \end{equation}
+  where $j_{x}(\yto,\yxo,\yyo,\yzo)$ is the \textbf{$x$-flux} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$.
+\end{definition}
+Also the $x$-flux is a function of the coordinates, because the flux could be larger through some surfaces at some times, than through other surfaces at other times. If the quantity is flowing in the negative $x$ direction, then $j_{x}$ will be negative; and clearly if no quantity is flowing through the small rectangle, then $j_{x}=0$.
+
+In an analogous way we define a $y$-flux and a $z$-flux:
+
+\begin{definition}{$y$-Flux}
+  \begin{equation}
+    \label{eq:yflux_expl}
+    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\incr z\,\incr y$\\ towards positive $y$\\during time lapse }\right\} = 
+    j_{y}(\yto,\yxo,\yyo,\yzo)\, \incr t\, \incr z\, \incr y \ .
+  \end{equation}
+\end{definition}
+\begin{definition}{$z$-Flux}
+  \begin{equation}
+    \label{eq:zflux_expl}
+    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\incr x\,\incr y$\\ towards positive $z$\\during time lapse }\right\} = 
+    j_{z}(\yto,\yxo,\yyo,\yzo)\, \incr t\, \incr x\, \incr y \ .
+  \end{equation}
+\end{definition}
+
+The three fluxes can be grouped into the \textbf{flux vector}
+\begin{equation}
+  \label{eq:flux_vector}
+  \bm{j}(t,x,y,z) \defd
+  \bigl(j_{x}(t,x,y,z),\ j_{y}(t,x,y,z),\ j_{z}(t,x,y,z)\bigr)
+\end{equation}
+
+In order to calculate the total amount of the quantity through an arbitrary sequence of 2D surfaces during a time lapse, we simply divide the total time into very brief time lapses, and for each of these we approximate the surface with very small rectangles aligned along the three axes. For each such lapse and rectangle we calculate the respective flux amount, using $j_{x}$, $j_{y}$, or $j_{z}$ depending on the orientation of the rectangle. Then we sum up all these amounts. This is also the description of an integration, which can be written
+\begin{multline}
+  \label{eq:flux_integral}
+  \text{\small total amount of quantity through sequence of surfaces} = {}\\
+  \begin{multlined}[0.9\linewidth]
+    \iiint j_{x}(t,x,y,z)\, \di t\, \di y\, \di z +{}
+    \\\iiint j_{y}(t,x,y,z)\, \di t\, \di z\, \di y +{}
+    \\\iiint j_{z}(t,x,y,z)\, \di t\, \di x\, \di y
+  \end{multlined}
+\end{multline}
 
 
 \clearpage
