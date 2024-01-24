@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-23T20:12:56+0100
+%% Last-Updated: 2024-01-24T08:11:46+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -464,6 +464,8 @@ Open Science Framework \doi{10.31219/osf.io/#1}%
 Open Science Framework \doi{10.17605/osf.io/#1}%
 }
 
+\newcommand*{\myurl}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+
 \usepackage{graphicx}
 
 \usepackage{wrapfig2}
@@ -895,13 +897,14 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \newtcolorbox[auto counter]{exercise}{colback=yellow!10!white, colframe=yellow, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter}
 
-\newtcolorbox{warning}{colback=red!10!white, colframe=red, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{exclamation-circle}\enspace Careful}
+\newtcolorbox{warning}{colback=red!10!white, colframe=red, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{exclamation-circle}}
 
 \newtcolorbox{critique}{colback=blue!10!white, colframe=blue, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{microscope}\enspace Critique}
 
 \newtcolorbox{definition}[1]{colback=green!10!white, colframe=green, boxrule=0mm, breakable, fonttitle=\bfseries\sffamily, title=\hspace{-2.5ex}\faIcon{map-marker-alt}\enspace#1}
 %map-marker-alt
 
+\newtcolorbox{extra}{width=0.9\linewidth, center, colback=midgrey!10!white, colframe=midgrey, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2.5ex}\faIcon{atom}\enspace For the extra curious}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1096,15 +1099,21 @@ Among quantities which we'll take as primitive are \emph{time}, \emph{space}, \e
 
 \emph{Measurement} is the process by which we determine the value of a physical quantity. Measurements can be extremely complex, and can extremely different even if they are about the same quantity. Consider the ways we can measure the mass of a football, compared to the ways we can measure the mass of the Sun.
 
-To each quantity we associate a \emph{physical dimension}. The term \enquote*{dimension} here has nothing to do with physical extension, as in \enquote{the dimensions of this box}; so be careful not to confuse the two. Usually it's clear which one is meant from the context. Physical dimensions help us avoid making operations that don't make sense with some quantities. For example, it doesn't make sense to sum up the volume of a body of water with its temperature; and indeed the volume has dimension $\mathsf{length^{3}}$, whereas temperature has dimension $\mathsf{temperature}$, and quantities with different dimensions cannot be added up.
+To each quantity we associate a \textbf{physical dimension}. The term \enquote*{dimension} here has nothing to do with physical extension, as in \enquote{the dimensions of this box}; be careful not to confuse the two. Usually it's clear which one is meant from the context. Physical dimensions help us avoid making operations that don't make sense with some quantities. For example, it doesn't make sense to sum up the volume of a body of water with its temperature; and indeed the volume has dimension $\mathsf{length^{3}}$, whereas temperature has dimension $\mathsf{temperature}$, and quantities with different dimensions cannot be added up.
 
-With each physical dimension we can associate a measurement \emph{unit}, which expresses a basic standard for comparing the measurement results of similar quantities. For example, we could use the \emph{minute} or the \emph{second} as units to measure $\mathsf{time}$.
+With each physical dimension we can associate a measurement \textbf{unit}, which expresses a basic standard for comparing the measurement results of similar quantities. For example, we could use the \emph{minute} or the \emph{second} as units to measure $\mathsf{time}$.
 
-One can choose a basic set of physical dimensions from which to define all others, and for these a set of standard units. Here we shall follow the \href{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}\footnote{\url{https://www.nist.gov/pml/special-publication-811}}.
+One can choose a basic set of physical dimensions from which to define all others, and for these a set of standard units. Here we shall follow the
+\myurl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}.
+
+The topics of measurement and physical dimensions, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves. I shall assume that you already know their basics notions and that you read about the SI.
 
 \smallskip
 
-The topics of measurement and physical dimensions, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves. I shall assume that you already know their basics notions and that you read about the SI.
+The measurement of some physical quantities consists in just one number with associated physical dimension; we shall call such quantity a \textbf{scalar}. The measurement of other physical quantities consists instead in a triplet of numbers with associated physical dimension; we shall call such quantity a \textbf{vector}.
+\begin{warning}
+  Note that these two terms have very specific and slightly different meanings in different theories, so don't take their definition used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
+\end{warning}
 
 
 
@@ -1214,7 +1223,7 @@ Space has physical dimension of $\mathsf{length}$, symbol $\textsf{L}$, and we s
 
 It is necessary to have a way for distinguishing physical events and phenomena and locating them in spacetime. This is achieved through a \emph{coordinate system}. A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning, such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer, but they don't need to.
 
-A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \href{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}{Universal Coordinated Time (UTC)}\footnote{\url{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0}}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
+A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \myurl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time (UTC)}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
 
 We shall often denotes the four coordinates of a coordinate system by
 \begin{equation*}
@@ -1250,23 +1259,55 @@ In the physics formalism that we're using there are about seven more quantities,
 \\ \textcolor{red}{magnetic flux}
 \\ \textcolor{bluepurple}{energy}
 \\ \textcolor{blue}{momentum}
-\\ \textcolor{yellow}{rotational momentum}
+\\ \textcolor{yellow}{angular momentum}
 \\ \textcolor{midgrey}{entropy}
 \end{center}
+The dimensions, units, and scalar or vector character of these quantities appear in table~\ref{tab:units}.
 
-Remember that primitive quantities cannot be defined: we can only try to have an intuitive understanding of them, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But they all have two basic properties in common: of each, we can ask -- or rather, measure:
+Recall that primitive quantities cannot be defined: we can only try to have an intuitive understanding of them, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But they all have two basic properties in common: of each, we can ask -- or rather, measure:
 \begin{itemize}
 \item \textbf{How much of this quantity is in a particular (3D) region of space at a particular time?}
 \item \textbf{How much of this quantity flows through a particular (2D) surface during a particular time lapse?}
 \end{itemize}
 and we can ask these questions of any region of space and any time lapse.
-
 % \mynotew{densities and fluxes?}
-The result of each of these measurement is a number, which in general can be positive or negative, or a vector. % This number depends only on the chosen region, surfaces, and times.
+The results of the two measurements above are numbers, which in general can be positive or negative, for scalar quantities; or vectors for vector quantities
+% This number depends only on the chosen region, surfaces, and times.
+
+\begin{table}[tb]
+  \centering
+  \begin{tabular}{lll}
+    \hline\\
+    \textbf{Quantity}&\textbf{Dimension}&\textbf{Unit}
+    \\[2\jot]
+    Time&\textsf{time}&\emph{second}\;\unit{s}
+    \\[\jot]
+    Length&\textsf{length}&\emph{metre}\;\unit{m}
+    \\[\jot]
+    Temperature&\textsf{temperature}&\emph{kelvin}\;\unit{K}
+    \\[2\jot]\color{green}
+    Matter&\color{green}\textsf{amount of substance}&\color{green}\emph{mole}\;\unit{mol}
+    \\[\jot]\color{redpurple}
+    Electric charge&\color{redpurple}\textsf{electric charge}&\color{redpurple}\emph{coulomb}\;\unit{C}
+    \\[\jot]\color{red}
+    \textbf{Magnetic flux}&\color{red}\textsf{magnetic flux}&\color{red}\emph{weber}\;\unit{Wb}
+    \\[\jot]\color{bluepurple}
+    Energy&\color{bluepurple}\parbox[t]{10em}{\textsf{energy},\\[0\jot] \textsf{mass}}&\color{bluepurple}\parbox[t]{5em}{\emph{joule}\;\unit{J},\\[0\jot] \emph{kilogram}\;\unit{kg}}
+    \\[5\jot]\color{blue}
+    \textbf{Momentum}&\color{blue}\parbox[t]{10em}{\textsf{mass$\cdot$length$/$time},\\[0\jot] \textsf{energy$\cdot$time$/$length}}&\color{blue}\parbox[t]{5em}{\unit{kg\cdot m/s},\\[0\jot] \unit{J\cdot s/m}}
+    \\[5\jot]\color{yellow}
+    \textbf{Angular momentum}&\color{yellow}\parbox[t]{10em}{\textsf{mass$\cdot$length$^{2}/$time},\\[0\jot] \textsf{energy$\cdot$time}}&\color{yellow}\parbox[t]{5em}{\unit{kg\cdot m^2/s},\\[0\jot] \unit{J\cdot s}}
+    \\[5\jot]\color{midgrey}
+    Entropy&\color{midgrey}\textsf{energy$/$temperature}&\color{midgrey}\unit{J/K}
+    \\[2\jot]
+    \hline
+  \end{tabular}
+  \caption{Dimensions and units of the main physical quantities used in these notes. Quantities in \textbf{boldface} are vectors, the others are scalars}\label{tab:units}
+\end{table}
 
 Owing to the two properties above, each of the seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
 
-For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. The density tells us how much quantity there's in a unit of volume. The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
+% For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. The density tells us how much quantity there's in a unit of volume. The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
 What's remarkable about these seven quantities is that they are common to all our main physical theories, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
 
@@ -1276,43 +1317,13 @@ Other auxiliary quantities, besides these, also appear in some physical theories
 
 \medskip
 
-The main quantities introduced so far have physical dimensions, and we shall often measure them in the units, of table~\ref{tab:units}.
-\begin{table}[tb]
-  \centering
-  \begin{tabular}{lcc}
-    \hline\\
-    \textbf{Quantity}&\textbf{Dimension}&\textbf{Unit}
-    \\[2\jot]
-    Time&\textsf{time}&\emph{second}\;\unit{s}
-    \\[2\jot]
-    Length&\textsf{length}&\emph{metre}\;\unit{m}
-    \\[2\jot]
-    Matter&\textsf{amount of substance}&\emph{mole}\;\unit{mol}
-    \\[2\jot]
-    Electric charge&\textsf{electric charge}&\emph{coulomb}\;\unit{C}
-    \\[2\jot]
-    Magnetic flux&\textsf{magnetic flux}&\emph{weber}\;\unit{Wb}
-    \\[2\jot]
-    Energy&\parbox[t]{10em}{\centering\textsf{energy},\\[\jot] \textsf{mass}}&\parbox[t]{5em}{\centering\emph{joule}\;\unit{J},\\[\jot] \emph{kilogram}\;\unit{kg}}
-    \\[7\jot]
-    Momentum&\parbox[t]{10em}{\centering\textsf{mass$\cdot$length$/$time},\\[\jot] \textsf{energy$\cdot$time$/$length}}&\parbox[t]{5em}{\centering\unit{kg\cdot m/s},\\[\jot] \unit{J\cdot s/m}}
-    \\[7\jot]
-    Rotational momentum&\parbox[t]{10em}{\centering\textsf{mass$\cdot$length$^{2}/$time},\\[\jot] \textsf{energy$\cdot$time}}&\parbox[t]{5em}{\centering\unit{kg\cdot m^2/s},\\[\jot] \unit{J\cdot s}}
-    \\[7\jot]
-    Entropy&\textsf{energy$/$temperature}&\unit{J/K}
-    \\[4\jot]
-    Temperature&\textsf{temperature}&\emph{kelvin}\;\unit{K}
-    \\[2\jot]
-    \hline
-  \end{tabular}
-\caption{Dimensions and units of the main physical quantities}\label{tab:units}
-\end{table}
 
 
 \subsection{Densities and fluxes}
 \label{sec:density_flux}
 
-How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?}. We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple. Let us take the quantity \emph{matter} as an example.
+How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?} We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple.
+%Let us take the quantity \emph{matter} as an example.
 
 
 \begin{definition}{Density}
@@ -1322,22 +1333,24 @@ How do we mathematically represent the seven main quantities? We said that, for 
     \text{\small amount of quantity in cuboid} = 
     n(\yto,\yxo,\yyo,\yzo)\, \incr x\, \incr y\, \incr z \ .
   \end{equation}
-  where $n(\yto,\yxo,\yyo,\yzo)$ is the \textbf{density} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$
+  where $n(\yto,\yxo,\yyo,\yzo)$ is the \textbf{density} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$.
 \end{definition}
-As the notation suggests, the density is a function of the coordinates, that is, of time and spatial position. This functional dependence reflect the fact that we can have a larger amount of a quantity concentrated in some regions at some times, than in other regions or at other times.
+The density tells us how much quantity there's in a unit of volume. As the notation suggests, it is a function of the coordinates, that is, of time and spatial position. This functional dependence reflects the fact that we can have a larger amount of a quantity concentrated in some regions at some times, than in other regions or at other times.
 
-In order to calculate the total amount of the quantity in an arbitrary 3D region, we simply divide it into very small cuboids similar to the one above. For each cuboid we calculate the respective amount; this amount will generally be different from cuboid to cuboid, because the value of the density $n(t,x,y,z)$ will be different at each cuboid's centre. Then we sum up all these amounts. You probably recognize this procedure as the description of integration. And in fact we can write
-\begin{equation}
-  \label{eq:density_integral}
-  \text{\small total amount of quantity in 3D region} = 
-  \iiint\limits_{\mathclap{\text{3D region}}}n(t,x,y,z)\, \di x\, \di y\, \di z \ .
-\end{equation}
+In order to calculate the total amount of the quantity in an arbitrary 3D region, we simply divide it into very small cuboids similar to the one above. For each cuboid we calculate the respective amount; this amount will generally be different from cuboid to cuboid, because the value of the density $n(t,x,y,z)$ will be different at each cuboid's centre. Then we sum up all these amounts.
+\begin{extra}
+  You probably recognize this procedure as the description of integration. Indeed we can write:
+  \begin{equation}
+    \label{eq:density_integral}
+    \text{\small total amount of quantity in 3D region} = 
+    \iiint\limits_{\mathclap{\text{3D region}}}n(t,x,y,z)\, \di x\, \di y\, \di z \ .
+  \end{equation}
+\end{extra}
 Clearly we must know the value of the density $n$ at all points within the region, in order to calculate the total amount. Note that if the quantity is absent in some subregion, then $n(\dotso)=0$ there.
 
 \medskip
 
 For the flux of the quantity through a surface we consider three different cases:
-
 \begin{definition}{$x$-Flux}
   Take again a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. Keeping $\yxo$ fixed, imagine a very small rectangular surface centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $y,z$ and of lengths $\incr y$, $\incr z$. Imagine that this surface exists for a lapse of time $\incr t$ around the time $\yto$. Then we have
   \begin{equation}
@@ -1347,7 +1360,7 @@ For the flux of the quantity through a surface we consider three different cases
   \end{equation}
   where $j_{x}(\yto,\yxo,\yyo,\yzo)$ is the \textbf{$x$-flux} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$.
 \end{definition}
-Also the $x$-flux is a function of the coordinates, because the flux could be larger through some surfaces at some times, than through other surfaces at other times. If the quantity is flowing in the negative $x$ direction, then $j_{x}$ will be negative; and clearly if no quantity is flowing through the small rectangle, then $j_{x}=0$.
+The $x$-flux tells us how much quantity is flowing in a unit of time through a unit of surface parallel to $y,z$. Also the $x$-flux is a function of the coordinates, because the flux could be larger through some surfaces at some times, than through other surfaces at other times. If the quantity is flowing in the negative $x$ direction, then $j_{x}$ will be negative; and clearly if no quantity is flowing through the small rectangle, then $j_{x}=0$.
 
 In an analogous way we define a $y$-flux and a $z$-flux:
 
@@ -1373,17 +1386,29 @@ The three fluxes can be grouped into the \textbf{flux vector}
   \bigl(j_{x}(t,x,y,z),\ j_{y}(t,x,y,z),\ j_{z}(t,x,y,z)\bigr)
 \end{equation}
 
-In order to calculate the total amount of the quantity through an arbitrary sequence of 2D surfaces during a time lapse, we simply divide the total time into very brief time lapses, and for each of these we approximate the surface with very small rectangles aligned along the three axes. For each such lapse and rectangle we calculate the respective flux amount, using $j_{x}$, $j_{y}$, or $j_{z}$ depending on the orientation of the rectangle. Then we sum up all these amounts. This is also the description of an integration, which can be written
-\begin{multline}
-  \label{eq:flux_integral}
-  \text{\small total amount of quantity through sequence of surfaces} = {}\\
-  \begin{multlined}[0.9\linewidth]
-    \iiint j_{x}(t,x,y,z)\, \di t\, \di y\, \di z +{}
-    \\\iiint j_{y}(t,x,y,z)\, \di t\, \di z\, \di y +{}
-    \\\iiint j_{z}(t,x,y,z)\, \di t\, \di x\, \di y
-  \end{multlined}
-\end{multline}
+In order to calculate the total amount of the quantity through an arbitrary sequence of 2D surfaces during a time lapse, we simply divide the total time into very brief time lapses, and for each of these we approximate the surface with very small rectangles aligned along the three axes. For each such lapse and rectangle we calculate the respective flux amount, using $j_{x}$, $j_{y}$, or $j_{z}$ depending on the orientation of the rectangle. Then we sum up all these amounts.
+\begin{extra}
+  This is also the description of an integration, which can be written
+  \begin{multline}
+    \label{eq:flux_integral}
+    \text{\small total amount of quantity through sequence of surfaces} = {}\\
+    \begin{multlined}[b][0.9\linewidth]
+      \iiint j_{x}(t,x,y,z)\, \di t\, \di y\, \di z +{}
+      \\\iiint j_{y}(t,x,y,z)\, \di t\, \di z\, \di y +{}
+      \\\iiint j_{z}(t,x,y,z)\, \di t\, \di x\, \di y
+    \end{multlined}
+  \end{multline}
 
+  We shall not have to calculate density integrals~\eqref{eq:density_integral} and flux integrals~\eqref{eq:flux_integral} in these notes. In concrete physics problems these integrals are often difficult to calculate, and require advanced mathematical techniques and specialized software. But if you'll ever end up working in fields such as computational fluid dynamics, atmospheric or ocean modelling, or numerical relativity, then you shall probably encounter them again.
+\end{extra}
+
+\medskip
+
+The definitions above of density and flux are appropriate if the quantity in question is a scalar. For vector quantities such as momentum and angular momentum, the density is a vector, and each of the three fluxes is a vector as well.
+% For instance, for matter we could have $C_{1}=\qty{3.5}{mol}$, and for energy we could have $F=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{C}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+
+%% ***
+% The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
 \clearpage
 \section{Physical laws}
@@ -1404,7 +1429,7 @@ In the formalism we're using we distinguish between two kinds of physical laws:
 
 Universal balances apply to \emph{all} physical phenomena, without exceptions. They represent the basic constant patterns that we observe everywhere. They are called \enquote{balances} because they express a sort of trade-off or \enquote{budget}.
 
-Constitutive relations, also called \emph{closure equations} in some fields, are relations that, as the name says, are  instead \href{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}}\footnote{\url{https://www.merriam-webster.com/dictionary/constitutive}} of specific phenomena and of specific theories. That is, each such relation only applies to particular phenomena and only in particular theories.
+Constitutive relations, also called \emph{closure equations} in some fields, are relations that, as the name says, are  instead \myurl{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}} of specific phenomena and of specific theories. That is, each such relation only applies to particular phenomena and only in particular theories.
 
 Constitutive relations express the diversity that we observe around us, for example the different behaviour of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and general relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
@@ -1435,7 +1460,7 @@ Now consider any one of the seven primitive quantities of \sect\,\ref{sec:stuff}
 \end{itemize}
 % The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
 
-For all quantities except momentum and rotational momentum, each of the three amounts above is a number, of appropriate physical dimensions, that can be positive, negative, or zero. For instance, for matter we could have $C_{1}=\qty{3.5}{mol}$, and for energy we could have $F=\qty{-600}{J}$. For momentum and rotational momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{C}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+For all quantities except momentum and angular momentum, each of the three amounts above is a number, of appropriate physical dimensions, that can be positive, negative, or zero. For instance, for matter we could have $C_{1}=\qty{3.5}{mol}$, and for energy we could have $F=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{C}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
 \smallskip
 
@@ -1535,7 +1560,7 @@ We already remarked that the seven primitive quantities introduced in \sect\,\re
 \\ \textcolor{red}{Conservation of magnetic flux}
 \\ \textcolor{bluepurple}{Balance of energy}
 \\ \textcolor{blue}{Balance of momentum}
-\\ \textcolor{yellow}{Balance of rotational momentum}
+\\ \textcolor{yellow}{Balance of angular momentum}
 \\ \textcolor{midgrey}{Balance of entropy}
   \end{center}
 These seven balance laws are known, so far, to be satisfied by \emph{all} phenomena and in all our main physical theories, approximate or not: from subatomic scales to cosmological scales, from Newtonian mechanics to general relativity and quantum theory. No exceptions are known.
@@ -1544,7 +1569,7 @@ These balances are truly the \enquote{Seven Wonders of the World}\footnote{Compa
 
 Once you learn these balances, you can apply them no matter what you work with: construction of bridges, control of chemical reactions, operation of GPS navigation and satellites, monitoring of nuclear power plants, sending robots to Mars, or collisions of subatomic particles.
 
-More precisely: matter, electric charge, magnetic flux always satisfy strict conservation laws. For matter we actually have several conservation laws, one for each kind of matter. Energy, momentum, rotational momentum, entropy satisfy balance laws, which become conservation laws only in special circumstances, but not always.
+More precisely: matter, electric charge, magnetic flux always satisfy strict conservation laws. For matter we actually have several conservation laws, one for each kind of matter. Energy, momentum, angular momentum, entropy satisfy balance laws, which become conservation laws only in special circumstances, but not always.
 
 \smallskip
 
@@ -1552,10 +1577,10 @@ More precisely: matter, electric charge, magnetic flux always satisfy strict con
 \section{Matter}
 \label{sec:matter}
 
-Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \href{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}}\footnote{\url{https://doi.org/10.1351/goldbook.C01039}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
+Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \myurl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is important to clearly distinguish matter from \emph{mass}: mass can be considered a property of matter, but the two are different: for example, the mass of some amount of matter may change, even if the amount of matter stays the same.
 
-There are different kinds of matter, each of which satisfies a balance relation. The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \href{https://doi.org/10.1351/goldbook.C01022}{chemical elements}\footnote{\url{https://doi.org/10.1351/goldbook.C01022}}, and each satisfies its own balance. These balances are the basis of \href{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}\footnote{\url{https://doi.org/10.1351/goldbook.S06026}}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
+There are different kinds of matter, each of which satisfies a balance relation. The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \myurl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \myurl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
 
 
@@ -1573,7 +1598,7 @@ There are different kinds of matter, each of which satisfies a balance relation.
 \subsection{Momentum}
 \label{sec:energy}
 
-\subsection{Rotational momentum}
+\subsection{Angular momentum}
 \label{sec:rotmomentum}
 
 \subsection{Entropy}
@@ -1613,8 +1638,8 @@ There are different kinds of matter, each of which satisfies a balance relation.
 % *** Force is momentum current; examples (diSessa)
 % 
 % ** 11
-% *** Rotational momentum
-% *** Balance of rotational momentum
+% *** Angular momentum
+% *** Balance of angular momentum
 % *** Interlude: Conservation of charge and of magnetic flux
 % *** Balance of entropy; "second law"
 % 
