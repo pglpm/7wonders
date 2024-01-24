@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-24T08:32:05+0100
+%% Last-Updated: 2024-01-24T11:10:56+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -887,6 +887,10 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \newcommand*{\yxo}{x_{0}}
 \newcommand*{\yyo}{y_{0}}
 \newcommand*{\yzo}{z_{0}}
+\newcommand*{\Dth}{\tfrac{\incr t}{2}}
+\newcommand*{\Dxh}{\tfrac{\incr x}{2}}
+\newcommand*{\Dyh}{\tfrac{\incr y}{2}}
+\newcommand*{\Dzh}{\tfrac{\incr z}{2}}
 %%% Custom macros end @@@
 
 \usepackage{siunitx}
@@ -1470,7 +1474,7 @@ With these definitions we can introduce two kinds of balance laws.
   A quantity is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds:
   \begin{equation}
     \label{eq:conserved}
-    C_{1} - C_{2} + F = 0
+    C_{2} - C_{1} - F = 0
   \end{equation}
 \end{definition}
 
@@ -1509,7 +1513,7 @@ Our intuitive understanding of a conserved quantity is that it cannot be \enquot
   A quantity is said to be only \textbf{balanced}, or to satisfy a \textbf{balance law} or simply \textbf{balance}, if the following equality holds:
   \begin{equation}
     \label{eq:conserved}
-    C_{1} - C_{2} + F = R
+    C_{2} - C_{1} - F = R
   \end{equation}
   where $R$ is the amount of quantity created within the sequence of surfaces between the times $t_{1}$ and $t_{2}$.
 \end{definition}
@@ -1544,6 +1548,110 @@ A conservation law can be seen as a special and powerful case of a balance law, 
 \subsection{Balance laws expressed with derivatives}
 \label{sec:balance_derivative}
 
+In \sect\,\ref{sec:density_flux} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $C_{1}$, $C_{2}$, $F$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
+
+The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \sect\,\ref{sec:density_flux} to introduce density and flux.
+
+Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservation law~\eqref{eq:conserved} to the following situation:
+\begin{itemize}
+\item[$C_{1}$:] Choose an initial time $t_{1}=t-\Dth$, slightly before $t$, and a cuboid region centred at $(x,y,)$ with sides $\incr x$, $\incr y$, $\incr z$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+  \begin{equation}
+    \label{eq:C1dens}
+    C_{1} = n\bigl(t-\Dth, x,y,z\bigr)\,\incr x\,\incr y\,\incr z \ .
+  \end{equation}
+  
+\item[$C_{2}$:] Choose a final time $t_{2} = t+\Dth$, slightly after $t$, and a cuboid region centred at $(x,y,)$ with sides $\incr x$, $\incr y$, $\incr z$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+  \begin{equation}
+    \label{eq:C1dens}
+    C_{2} = n\bigl(t+\Dth, x,y,z\bigr)\,\incr x\,\incr y\,\incr z \ .
+  \end{equation}
+  
+\item[$F$:] We calculate the flux separately through the six rectangular surfaces bounding the small cuboid region:
+  \begin{itemize}
+  \item[$F_{x}$:] First choose a rectangular surface centred slightly to one side of the point $(x,y,z)$: at $(x-\Dxh, y, z)$, with sides parallel to $y,z$ and lengths $\incr y, \incr z$. We keep this surface constant for the small duration $\incr t$. The $x$-flux through this rectangle, towards positive $x$, during $\incr t$, is according to formula~\eqref{eq:xflux_expl}
+    \begin{equation*}
+      \label{eq:Fxfluxn}
+     F_{x}^{\text{in}} = j_{x}\bigl(t, x-\Dxh, y, z\bigr)\,\incr t\,\incr y\,\incr z \ .
+    \end{equation*}
+    Now choose the rectangular surface parallel to the previous one, but on the other side of the point $(x,y,z)$, centred at $(x+\Dxh, y, z)$. The $x$-flux through this rectangle, towards positive $x$, during $\incr t$, is
+    \begin{equation*}
+      \label{eq:Fxfluxp}
+      F_{x}^{\text{out}} = j_{x}\bigl(t, x+\Dxh, y, z\bigr)\,\incr t\,\incr y\,\incr z \ .
+    \end{equation*}
+    Note that the flux $F_{x}^{\text{in}}$ points to the interior of the 3D region, towards its centre $(x,y,z)$; whereas $F_{x}^{\text{out}}$ points to the exterior, away from the centre. The total flux into the region is therefore given by their difference:
+    \begin{equation}
+      \label{eq:Fxflux}
+      \begin{split}
+        F_{x} &= F_{x}^{\text{in}} - F_{x}^{\text{out}}
+        \\&= \bigl[ j_{x}\bigl(t, x-\Dxh, y, z\bigr) - j_{x}\bigl(t, x+\Dxh, y, z\bigr)\bigr]
+        \,\incr t\,\incr y\,\incr z
+      \end{split}
+    \end{equation}
+  
+  \item[$F_{y}, F_{z}$:] An analogous reasoning can be made to find the total flux through the other four surfaces, two parallel to $z,y$ and two to $x,y$. We find
+    \begin{align}
+      \label{eq:Fyflux}
+      \begin{split}
+        F_{y} &= F_{y}^{\text{in}} - F_{y}^{\text{out}}
+        \\&= \bigl[ j_{y}\bigl(t, x, y-\Dyh, z\bigr) - j_{x}\bigl(t, x, y+\Dyh, z\bigr)\bigr]
+        \,\incr t\,\incr z\,\incr x
+      \end{split}
+      \\[3\jot]
+      \label{eq:Fzflux}
+      \begin{split}
+        F_{z} &= F_{z}^{\text{in}} - F_{z}^{\text{out}}
+        \\&= \bigl[ j_{z}\bigl(t, x, y, z-\Dzh\bigr) - j_{x}\bigl(t, x, y, z+\Dzh\bigr)\bigr]
+        \,\incr t\,\incr x\,\incr y
+      \end{split}
+    \end{align}
+  \end{itemize}
+The total flux into the region during the time interval $\incr t$ is finally the sum of the three above:
+\begin{equation}
+  \label{eq:Fflux}
+  F = F_{x} + F_{y} + F_{z}
+\end{equation}
+\end{itemize}
+
+Up to now we have only chosen arbitrary surfaces, regions, and a time interval. Now let's assume that the corresponding amounts and fluxes satisfy a balance law like~\eqref{eq:conserved}. Putting together the puzzle pieces we find
+\begin{multline*}
+  \label{eq:balance_pieces}
+    \mathcolor{bluepurple}{C_{2}} -\mathcolor{green}{C_{1}} - \mathcolor{red}{F} = 0 \qquad     \Longrightarrow
+    \\[2\jot]
+    \left.\begin{aligned}
+      &\mathcolor{bluepurple}{n\bigl(t+\Dth, x,y,z\bigr)\,\incr x\,\incr y\,\incr z}
+      - \mathcolor{green}{n\bigl(t-\Dth, x,y,z\bigr)\,\incr x\,\incr y\,\incr z}
+      \\[\jot]\quad&\color{red}-\bigl[ j_{x}\bigl(t, x-\Dxh, y, z\bigr) - j_{x}\bigl(t, x+\Dxh, y, z\bigr)\bigr]
+      \,\incr t\,\incr y\,\incr z
+      \\[\jot]\quad&\color{red}-\bigl[ j_{y}\bigl(t, x, y-\Dyh, z\bigr) - j_{x}\bigl(t, x, y+\Dyh, z\bigr)\bigr]
+      \,\incr t\,\incr z\,\incr x
+      \\[\jot]\quad&\color{red}-\bigl[ j_{z}\bigl(t, x, y, z-\Dzh\bigr) - j_{x}\bigl(t, x, y, z+\Dzh\bigr)\bigr]
+      \,\incr t\,\incr x\,\incr y
+    \end{aligned}\enspace\right\}=0
+\end{multline*}
+This expression is quite long, but it should be intuitively understandable if you try to identify the individual summed terms.
+
+Now we take the last, long expression -- which is an equality -- and divide its left and right sides by $\incr t\,\incr x\,\incr y\,\incr z$. Note that many of the \enquote{$\incr$} factors simplify out. We arrive at this:
+\begin{equation*}
+  \label{eq:balance_deriv_incr}
+  \left.\begin{aligned}
+      &\frac{n\bigl(t+\Dth, x,y,z\bigr)
+      -n\bigl(t+\Dth, x,y,z\bigr)}{\incr t}
+      \\[\jot]\quad&+\frac{j_{x}\bigl(t, x+\Dxh, y, z\bigr) - j_{x}\bigl(t, x-\Dxh, y, z\bigr)}{\incr x}
+      \\[\jot]\quad&+\frac{j_{y}\bigl(t, x, y+\Dyh, z\bigr) - j_{y}\bigl(t, x, y-\Dyh, z\bigr)}{\incr y}
+      \\[\jot]\quad&+\frac{j_{z}\bigl(t, x,y,z+\Dzh\bigr) - j_{z}\bigl(t, x,y,z-\Dzh\bigr)}{\incr z}
+    \end{aligned}\enspace\right\}=0 \ .
+\end{equation*}
+Still a long expression; but examine each fraction: we have a difference between a term calculated at some point, and one calculated at some point plus an increment \enquote{${}\incr$}; this difference is then divided by that increment. This is the definition of \emph{partial derivative}, that is, the derivative with respect to one variable, while keeping the other variables fixed. The short symbol for this is \enquote{$\frac{\de\dotso}{\de\dotso}$}, so we can simply write
+\begin{definition}{Conservation law in derivative form}
+  \begin{equation}
+    \label{eq:balance_deriv}
+    \frac{\de n}{\de t}%(t,x,y,z)
+    +\frac{\de j_{x}}{\de x}%(t,x,y,z)
+    +\frac{\de j_{y}}{\de y}%(t,x,y,z)
+    +\frac{\de j_{z}}{\de z}%(t,x,y,z)
+    = 0
+  \end{equation}
+\end{definition}
 
 
 \newpage
