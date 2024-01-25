@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-25T21:42:58+0100
+%% Last-Updated: 2024-01-25T23:53:20+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -465,7 +465,7 @@ Open Science Framework \doi{10.31219/osf.io/#1}%
 Open Science Framework \doi{10.17605/osf.io/#1}%
 }
 
-\newcommand*{\myurl}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+\newcommand*{\furl}[2]{\href{#1}{#2}\footnote{\url{#1}}}
 
 \usepackage{graphicx}
 
@@ -922,18 +922,19 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %\usepackage{multimedia}
 \usepackage[breakable,skins]{tcolorbox}
 
-\newtcolorbox{myframe}{enhanced, colback=white, colframe=midgrey, boxrule=0.5pt, breakable}
+\newtcolorbox{myframe}{enhanced, colback=white, colframe=midgrey, boxrule=0.5pt, breakable, after={\smallskip}}
 
-\newtcolorbox[auto counter, number within=section]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+\newtcolorbox[auto counter, number within=section]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
-\newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
+\newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, %fontupper=\small, fonttitle=\bfseries\small,
+fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
 
-\newtcolorbox{critique}[1][Critique]{enhanced, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
+\newtcolorbox{critique}[1][Critique]{enhanced, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
 
-\newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
+\newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=section]{extra}[1][]{enhanced, width=0.9\linewidth, center, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{atom}\enspace Curiousity~\thetcbcounter,#1}
+\newtcolorbox[auto counter, number within=section]{extra}[1][]{enhanced, width=0.9\linewidth, center, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiousity~\thetcbcounter,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1133,7 +1134,7 @@ To each quantity we associate a \textbf{physical dimension}. The term \enquote*{
 With each physical dimension we can associate a measurement \textbf{unit}, which expresses a basic standard for comparing the measurement results of similar quantities. For example, we could use the \emph{minute} or the \emph{second} as units to measure $\mathsf{time}$.
 
 One can choose a basic set of physical dimensions from which to define all others, and for these a set of standard units. Here we shall follow the
-\myurl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}.
+\furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}.
 
 The topics of measurement and physical dimensions, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves. I shall assume that you already know their basics notions and that you read about the SI.
 
@@ -1252,7 +1253,7 @@ Space has physical dimension of $\mathsf{length}$, symbol $\textsf{L}$, and we s
 
 It is necessary to have a way for distinguishing physical events and phenomena and locating them in spacetime. This is achieved through a \emph{coordinate system}. A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning, such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer, but they don't need to.
 
-A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \myurl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time (UTC)}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
+A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \furl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time (UTC)}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
 
 We shall often denotes the four coordinates of a coordinate system by
 \begin{equation*}
@@ -1314,12 +1315,24 @@ Let us make a first acquaintance with these seven quantities.
 \subsection{Matter}
 \label{sec:intro_matter}
 
-Matter is probably the easiest quantity to grasp intuitively; it's what we ordinarily call \enquote{stuff}. % It is called \myurl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
+Matter is probably the easiest quantity to grasp intuitively; it's what we ordinarily call \enquote{stuff}. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
+It is usually classified into several kinds; the classification depends on the physical phenomena and physical theory one works with, and is related to whether the kinds of matter can be considered separately conserved, as we'll discuss in \sect\,\ref{sec:cons_matter}.
 
-There are different kinds of matter, each of which satisfies a balance relation. The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \myurl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \myurl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
+In everyday phenomena not involving radioactivity\footnote{\url{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}, \url{https://www.britannica.com/science/radioactivity}} or nuclear energy\footnote{\url{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}, \url{https://www.britannica.com/science/nuclear-fission}}, the different kinds of matter approximately correspond to the \furl{https://www.ciaaw.org/radioactive-elements.htm}{non-radioactive chemical elements}. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
+Note that some common everyday devices, such as smoke detectors, do involve radioactivity.
 
-It is important to clearly distinguish matter from \emph{mass}: mass can be considered a property of matter, but the two are different. For example, the mass of some amount of matter may change, even if the amount of matter stays the same.
+In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \emph{baryons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}, \url{https://www.britannica.com/science/baryon}} and \emph{leptons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}, \url{https://www.britannica.com/science/lepton}}.
 
+In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved. This kind of research is still open, but it seems that the total amount of matter, independently of the kinds into which it can be classified, is always conserved.
+
+In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
+
+
+% There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
+
+\begin{warning}[Matter is different from mass]
+  It is important to clearly distinguish matter from \emph{mass}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
+\end{warning}
 
 \subsection{Auxiliary quantities}
 \label{sec:aux_quantities}
@@ -1719,7 +1732,7 @@ Suppose we know all quantities at time $t$; we can then find the density $n$ at 
   n(t+\Dt,x) =
   \Dt\,\biggl[ n(t,x) - \frac{j_{x}(t, x+\Dxh)-j_{x}(t,x-\Dxh)}{\Dx} \biggr]
 \end{equation*}
-which is essentially \myurl{https://mathworld.wolfram.com/EulerForwardMethod.html}{Euler's method}.
+which is essentially \furl{https://mathworld.wolfram.com/EulerForwardMethod.html}{Euler's method}.
 
 This formula can then be used iteratively to find the density $n$ at later times. As a simple simulation set-up, we consider a region of space of interest and divide it into cells of width $\Dx$. We also treat time in steps of $\Dt$. Then the iterative procedure goes as follows:
 \begin{myframe}
@@ -1806,7 +1819,7 @@ In the previous section we saw that a balance law can be used to predict how the
 
 It turns out, however, that there are physical laws which \emph{relate the densities of some quantities to the fluxes of others}. Such relations can potentially allow us to calculate the time evolution without knowing the fluxes in advance. Roughly, the basic idea is as follows: From the density of one quantity, we calculate the fluxes of the second quantity, and use them to predict its density at a later time. Once we know this density, we use it to calculate the new fluxes of the first quantity, and therefore its density at a later time; and so on. This cross-prediction does not fully eliminate the necessity of specifying some future quantities in advance; but the remaining ones that we need to specify are often in our control. Indeed this is how we can predict how a physical system will respond to influences controlled by us.
 
-Physical laws of this kind turn out not to be universal: they depend on, or are \myurl{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}} of, the particular physical phenomenon and the physical theory being used. For this reason they are called \textbf{constitutive relations} or \textbf{constitutive equations}. In some fields they are called \textbf{closure equations}, because they allow us to \enquote{close} the system of balance equations in such a way that it can be used for future predictions without knowing in advance the future value of some quantities.
+Physical laws of this kind turn out not to be universal: they depend on, or are \furl{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}} of, the particular physical phenomenon and the physical theory being used. For this reason they are called \textbf{constitutive relations} or \textbf{constitutive equations}. In some fields they are called \textbf{closure equations}, because they allow us to \enquote{close} the system of balance equations in such a way that it can be used for future predictions without knowing in advance the future value of some quantities.
 
 Constitutive relations express the diversity that we observe around us, for example the different behaviours of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and general relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
@@ -1858,10 +1871,10 @@ More precisely: matter, electric charge, magnetic flux always satisfy strict con
 \section{Matter}
 \label{sec:matter}
 
-Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \myurl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
+Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is important to clearly distinguish matter from \emph{mass}: mass can be considered a property of matter, but the two are different: for example, the mass of some amount of matter may change, even if the amount of matter stays the same.
 
-There are different kinds of matter, each of which satisfies a balance relation. The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \myurl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \myurl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
+There are different kinds of matter, each of which satisfies a balance relation. The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
 
 
