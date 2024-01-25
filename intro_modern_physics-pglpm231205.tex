@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-25T14:56:36+0100
+%% Last-Updated: 2024-01-25T21:42:58+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -469,8 +469,6 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \usepackage{graphicx}
 
-\usepackage{wrapfig2}
-
 %\usepackage{tikz-cd}
 
 \PassOptionsToPackage{hyphens}{url}\usepackage[hypertexnames=false,pdfencoding=unicode,psdextra]{hyperref}
@@ -500,21 +498,37 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ifafour\setstocksize{297mm}{210mm}%{*}% A4
 \else\setstocksize{210mm}{5.5in}%{*}% 210x139.7
+%\else\setstocksize{210mm}{148mm}%{*}% A5
 \fi
 \settrimmedsize{\stockheight}{\stockwidth}{*}
-\setlxvchars[\normalfont] %313.3632pt for a 66-characters line
-\setxlvchars[\normalfont]
+% \newlength{\mylen} % a length
+% \newcommand{\alphabet}{abcdefghijklmnopqrstuvwxyz} % the lowercase alphabet
+% \begingroup % keep font change local
+% % font specification e.g., \Large\sffamily
+% \settowidth{\mylen}{\alphabet}
+% %The length of this alphabet is \the\mylen. % print in document
+% \typeout{The length of the normal alphabet is \the\mylen} % put in log file
+% \endgroup  % end the grouping
+% \setlxvchars[\normalfont] %313.3632pt for a 66-characters line
+% \setxlvchars[\normalfont]
+\setlength{\lxvchars}{28pc}
+% \typeout{lxvchars is \the\lxvchars}
 % \setlength{\trimtop}{0pt}
 % \setlength{\trimedge}{\stockwidth}
 % \addtolength{\trimedge}{-\paperwidth}
-%\settrims{0pt}{0pt}
+% \settrims{0pt}{0pt}
+% % alphabet 133.05988pt, 66 ch/line = 26.1408pc
+% % alphabet 133.05988pt, 69 ch/line = 27.431pc
+% % alphabet 133.05988pt, 70 ch/line = 27.872pc
+% % alphabet 133.05988pt, 71 ch/line = 28.3186pc
 % The length of the normalsize alphabet is 133.05988pt - 10 pt = 26.1408pc
 % The length of the normalsize alphabet is 159.6719pt - 12pt = 30.3586pc
 % Bringhurst gives 32pc as boundary optimal with 69 ch per line
 % The length of the normalsize alphabet is 191.60612pt - 14pt = 35.8634pc
 \ifafour\settypeblocksize{*}{32pc}{1.618} % A4
 %\setulmargins{*}{*}{1.667}%gives 5/3 margins % 2 or 1.667
-\else\settypeblocksize{*}{26pc}{1.618}% nearer to a 66-line newpx and preserves GR
+%\else\settypeblocksize{*}{26pc}{1.618}% nearer to a 66-line newpx and preserves GR
+\else\settypeblocksize{*}{27pc}{1.414}% nearer to a 70-line newpx and preserves sqrt2
 \fi
 \setulmargins{*}{*}{1}%gives equal margins
 \setlrmargins{*}{*}{*}
@@ -667,6 +681,10 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \selectlanguage{british}\frenchspacing
 \usepackage{fontawesome5}
+
+\usepackage{wrapfig2}
+\newlength{\wrapfigwidth}
+\setlength{\wrapfigwidth}{0.33\linewidth}
 
 \definecolor{notecolour}{RGB}{68,170,153}
 %\newcommand*{\puzzle}{\maltese}
@@ -908,9 +926,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \newtcolorbox[auto counter, number within=section]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
-\newtcolorbox{warning}{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{exclamation-circle}}
+\newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
 
-\newtcolorbox{critique}{enhanced, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{microscope}\enspace Critique}
+\newtcolorbox{critique}[1][Critique]{enhanced, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
 
 \newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
@@ -990,7 +1008,7 @@ Until some decades ago, the 18th-century physical notions typically taught in in
 
 % \setlength{\intextsep}{0ex}% with wrapfigure
 % \setlength{\columnsep}{2em}% with wrapfigure
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{The achieved performances of atomic clocks and time
 transfer techniques imply that the definition of time scales
 and the clock comparison procedures must be considered
@@ -1050,7 +1068,7 @@ Many things can be said and have been said about science and physics. Rather tha
 
 % \setlength{\intextsep}{0ex}% with wrapfigure
 % \setlength{\columnsep}{2em}% with wrapfigure
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]{\color{green}%
 Example of two different languages expressing the same physical phenomenon%
@@ -1064,7 +1082,7 @@ The formalism we'll be using might be called \enquote{field theory}. Roughly spe
 
 \medskip
 
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 letters in which it is composed. It is written in the language of
 mathematics}}\sourceatright{\cites{galilei1623}}}
@@ -1077,7 +1095,7 @@ One reason is that numbers allow us to convey information in a concise and preci
 \end{equation*}
 And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
 \end{wrapfigure}
 But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way. All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
@@ -1122,7 +1140,7 @@ The topics of measurement and physical dimensions, which are studied in \emph{me
 \smallskip
 
 The measurement of some physical quantities consists in just one number with associated physical dimension; we shall call such quantity a \textbf{scalar}. The measurement of other physical quantities consists instead in a triplet of numbers with associated physical dimension; we shall call such quantity a \textbf{vector}.
-\begin{warning}
+\begin{warning}[]
   Note that these two terms have very specific and slightly different meanings in different theories, so don't take their definition used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
 \end{warning}
 
@@ -1149,7 +1167,7 @@ The measurement of some physical quantities consists in just one number with ass
 
 
 
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
   {\color{green}\enquote{\emph{%
         In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\sourceatright{\cites{kovalevskyetal2004}}}
 \end{wrapfigure}
@@ -1177,7 +1195,7 @@ But that's an imaginary world. In our world is the more complicated situation de
 
 The time measured by a specific observer is called the \emph{proper time} of that observer. Luckily we know more about how the proper times of separated observers can differ when they meet again. It turns out -- according to our current understanding -- that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and to matter around the universe, and on how much energy is contained in the regions they travel. The general theory of relativity gives us the equations determining any such proper-time differences.
 
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{%
 The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} \num{4}~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
 \end{wrapfigure}
@@ -1187,7 +1205,7 @@ The situation depicted in the experiments above is real. It can be measured, for
   International Atomic Time (TAI) is based on more than 250 atomic clocks distributed worldwide that provide its stability, whereas a small number of primary frequency standards provide its accuracy. Universal Coordinated Time, which is the basis of all legal time scales, is derived from TAI. To allow the construction of TAI and the general dissemination of time, clocks separated by thousands of kilometres must be compared and synchronized. \textelp{} The achieved performances of atomic clocks and time transfer techniques imply that the definition of time scales and the clock comparison procedures must be considered within the framework of general relativity. \sourceatright{(\cites{petitetal2005})}
 %\mbox{}\hfill (\cites{petitetal2005})
 \end{quote}
-% \begin{figure}[h!]\scriptsize\centering% with wrapfigure
+% \begin{figure}[h!]\footnotesize\centering% with wrapfigure
 % \includegraphics[width=0.75\linewidth]{datetime_2x.png}
 % \\%
 % \url{https://xkcd.com/2867}
@@ -1197,7 +1215,7 @@ In most everyday situations for us, who live on or nearby Earth and move at spee
 measured with ordinary clocks or with our internal clocks. Consider a
 person walking \qty{10}{m} away from you and then immediately walking back
 to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize\centering% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize\centering% with wrapfigure
 \includegraphics[width=\linewidth]{net_rotations.png}
 \\%
 \url{https://xkcd.com/2882}
@@ -1291,19 +1309,22 @@ Owing to the two properties above, each of the seven quantities can be considere
 
 What's remarkable about these seven quantities is that they are common to all our main physical theories, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
 
-\smallskip
-
-Other auxiliary quantities, besides these, also appear in some physical theories. Important examples are temperature and metric. Most of these auxiliary quantities don't have the \enquote{stuff-like} properties of the main seven quantities; for instance, we cannot ask \enquote{how much temperature is in a particular region?}.  We shall discuss and use some auxiliary quantities later.
-
 Let us make a first acquaintance with these seven quantities.
 
 \subsection{Matter}
 \label{sec:intro_matter}
 
-Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \myurl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
-It is important to clearly distinguish matter from \emph{mass}: mass can be considered a property of matter, but the two are different. For example, the mass of some amount of matter may change, even if the amount of matter stays the same.
+Matter is probably the easiest quantity to grasp intuitively; it's what we ordinarily call \enquote{stuff}. % It is called \myurl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 
 There are different kinds of matter, each of which satisfies a balance relation. The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \myurl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \myurl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
+
+It is important to clearly distinguish matter from \emph{mass}: mass can be considered a property of matter, but the two are different. For example, the mass of some amount of matter may change, even if the amount of matter stays the same.
+
+
+\subsection{Auxiliary quantities}
+\label{sec:aux_quantities}
+
+Besides the seven principal quantities, other auxiliary quantities appear in some physical theories. Important examples are \textbf{temperature} and \textbf{metric}. Most auxiliary quantities don't have the \enquote{stuff-like} properties of the seven principal quantities. For instance, we cannot ask \enquote{what's the total amount of temperature in this region?}. We shall later discuss and use some auxiliary quantities, especially temperature.
 
 
 
@@ -1362,6 +1383,7 @@ How do we mathematically represent the seven main quantities? We said that, for 
 The density tells us how much quantity there's in a unit of volume. As the notation suggests, it is a function of the coordinates, that is, of time and spatial position. This functional dependence reflects the fact that we can have a larger amount of a quantity concentrated in some regions at some times, than in other regions or at other times.
 
 In order to calculate the total amount of the quantity in an arbitrary 3D region, we simply divide it into very small cuboids similar to the one above. For each cuboid we calculate the respective amount; this amount will generally be different from cuboid to cuboid, because the value of the density $n(t,x,y,z)$ will be different at each cuboid's centre. Then we sum up all these amounts.
+
 \begin{extra}
   You probably recognize this procedure as the description of integration. Indeed we can write:
   \begin{equation}
@@ -1373,6 +1395,11 @@ In order to calculate the total amount of the quantity in an arbitrary 3D region
 Clearly we must know the value of the density $n$ at all points within the region, in order to calculate the total amount. Note that if the quantity is absent in some subregion, then $n(\dotso)=0$ there.
 
 \medskip
+
+
+\begin{warning}[Do not confuse flux with movement]
+  Flux
+\end{warning}
 
 For the flux of the quantity through a surface we consider three different cases:
 \begin{definition}{$x$-Flux}
@@ -1462,7 +1489,7 @@ Balance laws are intuitively and visually easy to grasp. The archetype is as fol
 
 Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{balance_plot.pdf}
 % \\[\jot]%
 % {\color{green}\enquote{\emph{%
@@ -1674,7 +1701,7 @@ Let's make a simple check to see if this formula makes sense, in a simple one-di
 \begin{equation*}
   \frac{\de n}{\de t} + \frac{\de j_{x}}{\de x} = 0 \ .
 \end{equation*}
-\begin{wrapfigure}{r}{0.5\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{0.5\linewidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{ddxflux.pdf}
 \end{wrapfigure}
 Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x} > 0$. This means that the $x$-flux increases as we move from $x$ to $x+\Dx$, as shown in the side figure. The $x$-flux at $x$ is bringing some amount of quantity into the region of interest, the $x$-flux at  $x+\Dx$ is taking a larger amount out of that region. Therefore, during the short time $\Dt$ in which this flux takes place, the total amount of quantity within the region will decrease. But the total amount is given by $n(t)$, which is therefore decreasing with time. This means that its time derivative is negative: $\frac{\de n}{\de t} < 0$. This agrees with balance law above: the sum of the two derivatives must be zero, so if one is positive, the other must be negative.
@@ -1924,7 +1951,7 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 \iffalse
-\begin{wrapfigure}{r}{0.3\linewidth}\scriptsize% with wrapfigure
+\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]%
 {\color{green}\enquote{\emph{%
