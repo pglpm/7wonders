@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-24T22:09:16+0100
+%% Last-Updated: 2024-01-25T09:12:55+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -901,18 +901,20 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %\sisetup{input-digits = 0123456789\piup}
 
 %\usepackage{multimedia}
-\usepackage[breakable]{tcolorbox}
+\usepackage[breakable,skins]{tcolorbox}
 
-\newtcolorbox[auto counter, number within=section]{exercise}[1][]{colback=yellow!10!white, colframe=yellow, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+\newtcolorbox{myframe}{enhanced, colback=white, colframe=midgrey, boxrule=0.5pt, breakable}
 
-\newtcolorbox{warning}{colback=red!10!white, colframe=red, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{exclamation-circle}}
+\newtcolorbox[auto counter, number within=section]{exercise}[1][]{enhanced, colback=yellow!10!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
-\newtcolorbox{critique}{colback=blue!10!white, colframe=blue, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{microscope}\enspace Critique}
+\newtcolorbox{warning}{enhanced, colback=red!10!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{exclamation-circle}}
 
-\newtcolorbox{definition}[1]{colback=green!10!white, colframe=green, boxrule=0mm, breakable, fonttitle=\bfseries\sffamily, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
+\newtcolorbox{critique}{enhanced, colback=blue!10!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{microscope}\enspace Critique}
+
+\newtcolorbox{definition}[1]{enhanced, colback=green!10!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=section]{extra}[1][]{width=0.9\linewidth, center, colback=midgrey!10!white, colframe=midgrey, boxrule=0mm, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{atom}\enspace Curiousity~\thetcbcounter,#1}
+\newtcolorbox[auto counter, number within=section]{extra}[1][]{enhanced, width=0.9\linewidth, center, colback=midgrey!10!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, title=\hspace{-2ex}\faIcon{atom}\enspace Curiousity~\thetcbcounter,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1669,21 +1671,31 @@ Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x
 
 Balance laws identical~\eqref{eq:balance_deriv} are the basis of many important computational and simulation methods in a huge variety of physical applications: simulation of the ocean around an offshore oil platform, of wind in a wind farm and air around an aeroplane's wing, of earthquakes, of electromagnetic-wave propagation, of oscillations in a suspension bridge, of percolation of fluids through terrain, of chemical reactions, of energy transfer\textellipsis The list could go on for pages!
 
-The basic idea for using a balance law for a simulation is easy to understand. Take again the simpler formula without $y,z$ coordinates, and rewrite it remembering the basic meaning of the derivative:
+The basic idea for using a balance law for a simulation is easy to understand. Take again the simpler one-dimensional formula without $y,z$ coordinates, and rewrite it remembering the basic meaning of the derivative:
 \begin{equation*}
   \frac{n(t+\Dt,x)-n(t,x)}{\Dt} + \frac{j_{x}(t, x+\Dx)-j_{x}(t,x)}{\Dx} = 0
 \end{equation*}
-Suppose we know all quantities at time $t$, and we want to find the density $n$ at time $t+\Dt$. We can leave it on the left side and bring all other terms on the right side, multiplying them by $\Dt$:
+Suppose we know all quantities at time $t$; we can then find the density $n$ at time $t+\Dt$. Leave it on the left side and bring all other terms on the right side, multiplying them by $\Dt$:
 \begin{equation*}
   n(t+\Dt,x) =
   \Dt\,\biggl[ n(t,x) - \frac{j_{x}(t, x+\Dx)-j_{x}(t,x)}{\Dx} \biggr]
 \end{equation*}
-This formula can then be used iteratively to find the density $n$ at later and later times:
+which is essentially \myurl{https://mathworld.wolfram.com/EulerForwardMethod.html}{Euler's method}. This formula can then be used iteratively to find the density $n$ at later times. As a simple simulation set-up, we consider a region of space of interest and divide it into cells of width $\Dx$. We also treat time in steps of $\Dt$. Then the iterative procedure goes as follows:
+\begin{myframe}
+  \begin{enumerate}[label=\arabic*.,ref=\arabic*]
+  \item \emph{Initial values:} Assign the value of $n$ at each $x$-cell at the initial time.
+  \item\label{item:timestep} \emph{For-loop in $x$:} for each $x$-cell, calculate the value of $n$ at $t+\Dt$, using the formula above.
+  \item Increase time by $\Dt$.
+  \item Go to~\ref{item:timestep}.
+  \end{enumerate}
+\end{myframe}
+This routine requires that we know the flux at each $x$-cell and at each time. But we shall soon see that some physical laws allow us to calculate the flux of some quantity from the density of another: this will eliminate the necessity of knowing fluxes.
 
+The rudimentary routine above is the basis from which more precise and complex simulation routines are developed.
 
-
-In these notes we shall not use balance laws like~\eqref{eq:balance_deriv} in their full complexity. But this 
-
+\begin{exercise}
+  test
+\end{exercise}
 
 
 \newpage
