@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-25T23:53:20+0100
+%% Last-Updated: 2024-01-26T17:43:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -379,7 +379,7 @@ british%
 \usepackage{microtype}
 
 \usepackage[backend=biber,mcite,%subentry,
-citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,sorting=ny,sortcites=false,natbib=false,maxcitenames=2,maxbibnames=8,minbibnames=8,giveninits=true,uniquename=false,uniquelist=false,maxalphanames=1,block=space,hyperref=true,defernumbers=false,useprefix=true,sortupper=false,language=british,parentracker=false,autocite=footnote]{biblatex}
+citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,sorting=ny,sortcites=false,natbib=false,maxcitenames=2,maxbibnames=8,minbibnames=8,giveninits=true,uniquename=false,uniquelist=false,maxalphanames=1,block=space,hyperref=true,defernumbers=false,useprefix=true,sortupper=false,language=british,parentracker=false,autocite=inline]{biblatex}
 \DeclareSortingTemplate{ny}{\sort{\field{sortname}\field{author}\field{editor}}\sort{\field{year}}}
 \DeclareFieldFormat{postnote}{#1}
 \iffalse\makeatletter%%% replace parenthesis with brackets
@@ -683,8 +683,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \usepackage{fontawesome5}
 
 \usepackage{wrapfig2}
-\newlength{\wrapfigwidth}
-\setlength{\wrapfigwidth}{0.33\linewidth}
+\newlength{\wfwidth}
+\setlength{\wfwidth}{0.33\linewidth}
 
 \definecolor{notecolour}{RGB}{68,170,153}
 %\newcommand*{\puzzle}{\maltese}
@@ -916,7 +916,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \newcommand*{\Dzh}{\tfrac{\incr z}{2}}
 %%% Custom macros end @@@
 
-\usepackage{siunitx}
+\usepackage[quantity-product=\:]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
 %\usepackage{multimedia}
@@ -1009,7 +1009,7 @@ Until some decades ago, the 18th-century physical notions typically taught in in
 
 % \setlength{\intextsep}{0ex}% with wrapfigure
 % \setlength{\columnsep}{2em}% with wrapfigure
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{The achieved performances of atomic clocks and time
 transfer techniques imply that the definition of time scales
 and the clock comparison procedures must be considered
@@ -1069,7 +1069,7 @@ Many things can be said and have been said about science and physics. Rather tha
 
 % \setlength{\intextsep}{0ex}% with wrapfigure
 % \setlength{\columnsep}{2em}% with wrapfigure
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]{\color{green}%
 Example of two different languages expressing the same physical phenomenon%
@@ -1083,7 +1083,7 @@ The formalism we'll be using might be called \enquote{field theory}. Roughly spe
 
 \medskip
 
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 letters in which it is composed. It is written in the language of
 mathematics}}\sourceatright{\cites{galilei1623}}}
@@ -1096,7 +1096,7 @@ One reason is that numbers allow us to convey information in a concise and preci
 \end{equation*}
 And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
 \end{wrapfigure}
 But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way. All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
@@ -1168,7 +1168,7 @@ The measurement of some physical quantities consists in just one number with ass
 
 
 
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
   {\color{green}\enquote{\emph{%
         In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\sourceatright{\cites{kovalevskyetal2004}}}
 \end{wrapfigure}
@@ -1196,7 +1196,7 @@ But that's an imaginary world. In our world is the more complicated situation de
 
 The time measured by a specific observer is called the \emph{proper time} of that observer. Luckily we know more about how the proper times of separated observers can differ when they meet again. It turns out -- according to our current understanding -- that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and to matter around the universe, and on how much energy is contained in the regions they travel. The general theory of relativity gives us the equations determining any such proper-time differences.
 
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{%
 The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} \num{4}~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
 \end{wrapfigure}
@@ -1216,7 +1216,7 @@ In most everyday situations for us, who live on or nearby Earth and move at spee
 measured with ordinary clocks or with our internal clocks. Consider a
 person walking \qty{10}{m} away from you and then immediately walking back
 to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize\centering% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize\centering% with wrapfigure
 \includegraphics[width=\linewidth]{net_rotations.png}
 \\%
 \url{https://xkcd.com/2882}
@@ -1315,24 +1315,111 @@ Let us make a first acquaintance with these seven quantities.
 \subsection{Matter}
 \label{sec:intro_matter}
 
-Matter is probably the easiest quantity to grasp intuitively; it's what we ordinarily call \enquote{stuff}. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
+Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}.
+
+Matter is probably the easiest quantity to grasp intuitively; what we ordinarily call \enquote{stuff} is matter. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is usually classified into several kinds; the classification depends on the physical phenomena and physical theory one works with, and is related to whether the kinds of matter can be considered separately conserved, as we'll discuss in \sect\,\ref{sec:cons_matter}.
 
-In everyday phenomena not involving radioactivity\footnote{\url{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}, \url{https://www.britannica.com/science/radioactivity}} or nuclear energy\footnote{\url{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}, \url{https://www.britannica.com/science/nuclear-fission}}, the different kinds of matter approximately correspond to the \furl{https://www.ciaaw.org/radioactive-elements.htm}{non-radioactive chemical elements}. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
+In everyday phenomena not involving radioactivity\footnote{\url{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}, \url{https://www.britannica.com/science/radioactivity}} or nuclear energy\footnote{\url{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}, \url{https://www.britannica.com/science/nuclear-fission}}, the different kinds of matter approximately correspond to the \furl{https://www.ciaaw.org/radioactive-elements.htm}{non-radioactive chemical elements}: hydrogen, helium, lithium, and so on. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
 Note that some common everyday devices, such as smoke detectors, do involve radioactivity.
 
-In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \emph{baryons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}, \url{https://www.britannica.com/science/baryon}} and \emph{leptons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}, \url{https://www.britannica.com/science/lepton}}.
-
-In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved. This kind of research is still open, but it seems that the total amount of matter, independently of the kinds into which it can be classified, is always conserved.
+In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \emph{baryons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}, \url{https://www.britannica.com/science/baryon}}, such as protons and neutrons; and \emph{leptons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}, \url{https://www.britannica.com/science/lepton}}, such as electrons. In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved, such as electronic-leptons, muonic-leptons, and others. This kind of research is still open, but it seems that the total amount of baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved. Note that we're using the term \enquote*{matter} in a sense that includes anti-matter, such as positrons.
 
 In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
-
 
 % There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
 \begin{warning}[Matter is different from mass]
   It is important to clearly distinguish matter from \emph{mass}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
 \end{warning}
+
+\subsection{Electric charge}
+\label{sec:intro_charge}
+
+Electric charge is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E01923}{\textsf{electric charge}} (equivalent to \textsf{electric current}$\times$\textsf{time}), and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{coulombs} (\unit{C})}.
+
+Electric charge is probably easily grasped today, and doesn't need much comments. In these notes we shall not discuss phenomena involving this quantity.
+
+\subsection{Magnetic flux}
+\label{sec:intro_magneticflux}
+
+Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
+
+
+\begin{wrapfigure}{r}{0.5\linewidth}\footnotesize% with wrapfigure
+%\includegraphics[width=\linewidth]{magnflux1.png}
+\includegraphics[width=\linewidth]{magnflux2.png}
+\\{\color{green}\enquote{\emph{%
+sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}}
+\end{wrapfigure}
+The electromagnetic field is most commonly represented by vectors associated to each point in space. But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}).
+
+Electromagnetism and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
+
+\subsection{Energy}
+\label{sec:intro_energy}
+
+Energy is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E02101}{\textsf{energy}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.J03363}{\emph{joules} (\unit{J})}.
+
+
+The notion of energy is also easily grasped today, and often we speak about it as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will work well in these notes.
+
+The notion of \emph{mass} is also intuitive in our everyday life; we associate it with the difficulty in setting objects into motion, or with their weight.
+% relativity says that there's a strong connection between these two associations.
+From Relativity Theory and experimentally we know that \emph{energy and mass are the same thing}, and in these notes we shall fully take this point of view.
+
+Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass. Here is an example. Consider a common
+\begin{wrapfigure}{r}{\wfwidth}%\footnotesize% with wrapfigure
+\includegraphics[width=\linewidth]{rubberband.png}
+{}
+\end{wrapfigure}
+rubber band, and imagine we have an extremely precise weighing scale.
+We weigh the rubber band, unstretched, and observe a mass of
+\begin{equation*}
+  \qty{0.0005000000000000000}{kg}\ .
+\end{equation*}
+Now we stretch the band a little, increasing its internal energy with \enquote{elastic energy} by, say, \qty{0.3}{J}.
+% Refer later to elastic constant
+% 0.5 * 50 N/m * (0.1 m)^2 \approx 0.3 J
+If we now weigh the rubber band again, while stretched, we observe a mass of approximately
+\begin{equation*}
+  \qty{0.000500000000000003}{kg} \ .
+\end{equation*}
+The extremely small difference of \qty{3e-18}{kg} from the initial mass is exactly the elastic energy that we provided by stretching. Energy has weight; energy is mass.
+
+If we set the unstretched band in motion, so that it acquires a kinetic energy of \qty{0.2}{J}, and we could weigh it while in motion (but without moving the weighing scale), we would observe a mass of approximately
+$$\qty{0.000500000000000002}{kg} \ .$$
+The small difference from the initial mass is the new kinetic energy of the band. Energy has weight; energy is mass.
+
+As another example, a \qty{1000}{W} electric heater which radiates \qty{1000}{J} in one second, is also losing around \qty{0.00000000000001}{kg} of mass every second -- although it's also acquiring the same amount of mass as electromagnetic energy.
+
+The equivalence between energy and mass, in their respective units, is
+\begin{equation*}
+  \begin{gathered}
+    \qty{1}{kg} = \qty{89875517873681764}{J}\quad\text{(exactly)}
+    \\
+    \qty{1}{J} \approx \qty{0.0000000000000000111265}{kg}
+  \end{gathered}
+\end{equation*}
+To grasp these numbers, consider that the mass of the rubber band above, \qty{0.5}{g}, roughly equals the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
+
+\smallskip
+
+From the examples above it is clear that the energy changes that we deal with and use in everyday situations are extremely small changes in mass -- so small that we can't measure them within the precision of ordinary scales. Vice versa, the masses that we ordinarily deal with are huge amounts of energy. If we just spoke only of \enquote*{energy} or only of \enquote*{mass} in all situations, and used only one unit, either joules or kilograms, we would have to work with very impractical numbers. \enquote*{Mass} can be considered a convenient term for \enquote*{energy} when huge amounts of it are involved and concentrated in small regions of space, and ordinary small energy changes can be neglected.
+
+% *** we shall see later in \sect
+
+% electron: 8.2e-14 J
+% 1e4 J intake
+% 1 cal = 4 J
+% 1 kg = 9e16 J
+% U = 50/2*0.1^2 = 0.25 J = 3e-18 kg
+
+\subsection{Momentum}
+\label{sec:intro_momentum}
+
+Momentum is a subtle quantity
+
 
 \subsection{Auxiliary quantities}
 \label{sec:aux_quantities}
@@ -1502,7 +1589,7 @@ Balance laws are intuitively and visually easy to grasp. The archetype is as fol
 
 Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{balance_plot.pdf}
 % \\[\jot]%
 % {\color{green}\enquote{\emph{%
@@ -1964,7 +2051,7 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 \iffalse
-\begin{wrapfigure}{r}{\wrapfigwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]%
 {\color{green}\enquote{\emph{%
