@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-26T17:43:59+0100
+%% Last-Updated: 2024-01-26T22:26:51+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -684,7 +684,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \usepackage{wrapfig2}
 \newlength{\wfwidth}
-\setlength{\wfwidth}{0.33\linewidth}
+\setlength{\wfwidth}{0.34\linewidth}
 
 \definecolor{notecolour}{RGB}{68,170,153}
 %\newcommand*{\puzzle}{\maltese}
@@ -914,6 +914,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \newcommand*{\Dxh}{\tfrac{\incr x}{2}}
 \newcommand*{\Dyh}{\tfrac{\incr y}{2}}
 \newcommand*{\Dzh}{\tfrac{\incr z}{2}}
+\newcommand*{\energym}{energy-mass}
+\newcommand*{\masse}{mass-energy}
 %%% Custom macros end @@@
 
 \usepackage[quantity-product=\:]{siunitx}
@@ -934,7 +936,7 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 \newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=section]{extra}[1][]{enhanced, width=0.9\linewidth, center, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiousity~\thetcbcounter,#1}
+\newtcolorbox[auto counter, number within=section]{extra}[1][]{enhanced, width=0.9\linewidth, center, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1237,7 +1239,12 @@ Time has physical dimension of $\mathsf{time}$, symbol $\textsf{T}$, and we shal
 
 Together with the notion of time, also the notion of space loses some of its traditional intuition. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid object in their vicinity. For objects that are far away from an observer, the very notion of \enquote{distance} becomes tricky has different and non-equivalent definitions; one must be very careful on which definition is being used.
 
-We shall not delve further into these peculiarities of time and space. Keep simply in mind that phenomena happen in \emph{spacetime}, and that there's no way to attribute a universal time, nor a universal position in space, to a physical event. There is one absolute: whoever locally measures the speed of light, will find the value $c\defd \qty{299792458}{m/s}$. This value is exact by definition, and serves as a way to define a local notion of space and distance.
+We shall not delve further into these peculiarities of time and space. Keep simply in mind that phenomena happen in \emph{spacetime}, and that there's no way to attribute a universal time, nor a universal position in space, to a physical event. There is one absolute: whoever locally measures the speed of light, will find the value
+\begin{equation}
+  \label{eq:c}
+  c\defd \qty{299792458}{m/s}
+\end{equation}
+This value is exact by definition, and serves as a way to define a local notion of space and distance.
 
 \smallskip
 
@@ -1359,8 +1366,7 @@ Electromagnetism and this particular visualization of it are very fascinating to
 \subsection{Energy}
 \label{sec:intro_energy}
 
-Energy is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E02101}{\textsf{energy}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.J03363}{\emph{joules} (\unit{J})}.
-
+Energy is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E02101}{\textsf{energy}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.J03363}{\emph{joules} (\unit{J})}. Equivalently we can speak of mass, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03709}{\textsf{mass}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.K03391}{\emph{kilograms} (\unit{kg})}.
 
 The notion of energy is also easily grasped today, and often we speak about it as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will work well in these notes.
 
@@ -1368,11 +1374,16 @@ The notion of \emph{mass} is also intuitive in our everyday life; we associate i
 % relativity says that there's a strong connection between these two associations.
 From Relativity Theory and experimentally we know that \emph{energy and mass are the same thing}, and in these notes we shall fully take this point of view.
 
-Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass. Here is an example. Consider a common
-\begin{wrapfigure}{r}{\wfwidth}%\footnotesize% with wrapfigure
-\includegraphics[width=\linewidth]{rubberband.png}
-{}
+\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\includegraphics[width=\linewidth]{atomicbomb.jpg}
+\\[\jot]%
+{\color{green}\emph{Hydrogen Bomb Test, 1954%
+}\sourceatright{\href{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History}}}
 \end{wrapfigure}
+Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass. The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
+
+
+Here is an example. Consider a common
 rubber band, and imagine we have an extremely precise weighing scale.
 We weigh the rubber band, unstretched, and observe a mass of
 \begin{equation*}
@@ -1386,6 +1397,10 @@ If we now weigh the rubber band again, while stretched, we observe a mass of app
   \qty{0.000500000000000003}{kg} \ .
 \end{equation*}
 The extremely small difference of \qty{3e-18}{kg} from the initial mass is exactly the elastic energy that we provided by stretching. Energy has weight; energy is mass.
+% \begin{wrapfigure}{r}{\wfwidth}%\footnotesize% with wrapfigure
+% \includegraphics[width=\linewidth]{rubberband.png}
+% {}
+% \end{wrapfigure}
 
 If we set the unstretched band in motion, so that it acquires a kinetic energy of \qty{0.2}{J}, and we could weigh it while in motion (but without moving the weighing scale), we would observe a mass of approximately
 $$\qty{0.000500000000000002}{kg} \ .$$
@@ -1393,7 +1408,9 @@ The small difference from the initial mass is the new kinetic energy of the band
 
 As another example, a \qty{1000}{W} electric heater which radiates \qty{1000}{J} in one second, is also losing around \qty{0.00000000000001}{kg} of mass every second -- although it's also acquiring the same amount of mass as electromagnetic energy.
 
-The equivalence between energy and mass, in their respective units, is
+\smallskip
+
+The equivalence between energy and mass is given by the famous formula $E=m c^{2}$, where $c$ is the speed of light, \eqn~\eqref{eq:c}. In their respective units this gives
 \begin{equation*}
   \begin{gathered}
     \qty{1}{kg} = \qty{89875517873681764}{J}\quad\text{(exactly)}
@@ -1401,11 +1418,16 @@ The equivalence between energy and mass, in their respective units, is
     \qty{1}{J} \approx \qty{0.0000000000000000111265}{kg}
   \end{gathered}
 \end{equation*}
-To grasp these numbers, consider that the mass of the rubber band above, \qty{0.5}{g}, roughly equals the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
+To grasp these numbers, consider that the mass of the rubber band above, \qty{0.5}{g}, is comparable to the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
 
 \smallskip
 
-From the examples above it is clear that the energy changes that we deal with and use in everyday situations are extremely small changes in mass -- so small that we can't measure them within the precision of ordinary scales. Vice versa, the masses that we ordinarily deal with are huge amounts of energy. If we just spoke only of \enquote*{energy} or only of \enquote*{mass} in all situations, and used only one unit, either joules or kilograms, we would have to work with very impractical numbers. \enquote*{Mass} can be considered a convenient term for \enquote*{energy} when huge amounts of it are involved and concentrated in small regions of space, and ordinary small energy changes can be neglected.
+From the examples above it is clear that the energy changes that we deal with and use in everyday situations are extremely small changes in mass -- so small that we can't measure them within the precision of ordinary weighing scales. Vice versa, the masses that we ordinarily deal with are huge amounts of energy. If we just spoke only of \enquote*{energy} or only of \enquote*{mass} in all situations, and used only one unit, either joules or kilograms, we would have to work with very impractical numbers. \enquote*{Mass} can be considered a convenient term for \enquote*{energy} when huge amounts of it are involved, concentrated in small regions of space, and ordinary small energy changes can be neglected. In these notes we shall often use the expressions \enquote*{\energym} and \enquote*{\masse} to remember that these two words denote the same thing.
+
+\medskip
+
+Energy-mass is present wherever there is matter, charge, or magnetic flux, and vice versa. Its specific relation with these quantities depends on the coordinate system (\sect\,\ref{sec:coords}) that we choose. It is extremely important to keep in mind this dependence. In the examples above we said that the rubber band in motion had an \masse\ of \qty{0.000500000000000002}{kg}; but if we choose a coordinate system in which the band is not moving, its energy would be \qty{0.000500000000000000}{kg}. Later we shall see how to reckon the energy of matter in a typical Earth-bound coordinate system.
+
 
 % *** we shall see later in \sect
 
@@ -1418,7 +1440,52 @@ From the examples above it is clear that the energy changes that we deal with an
 \subsection{Momentum}
 \label{sec:intro_momentum}
 
-Momentum is a subtle quantity
+Momentum is a \emph{vector} quantity, with SI dimension $\textsf{energy}\times\textsf{time}/\textsf{length}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}/\emph{metres}$ (\unit{J\cdot s/m}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}/\emph{seconds}$ (\unit{kg\cdot m/s}). Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
+
+Momentum is a subtle quantity. Textbooks that focus on Newtonian mechanics say that it is \emph{defined} as the product of the mass of a body times the body's velocity, usually written \enquote{$\bm{p}=m\bm{v}$}; but this is actually only a special and approximate relation, not a definition. First, it is true that where there is matter in motion there is also momentum, but it is only approximately given by the matter's mass$\times$velocity. Second, there is momentum also where there is magnetic flux and charge -- but no matter. For example, if you prepare a sealed glass box completely empty within -- you create a vacumm -- there is still momentum within the box, if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
+
+It is therefore useful if you separate your idea of momentum from the idea of \enquote{bodies moving}, and keep in mind that the latter is just a particular case of momentum. We shall see that there is an important connection between momentum and our intuitive idea of \enquote*{force}; this connection may be useful in getting a better intuition of momentum.
+
+According to Relativity Theory, momentum \emph{is} energy flux (such as heat), and energy flux \emph{is} momentum. If we represent momentum with the symbol $\bm{P}$, and energy flux with the symbol $\bm{Q}$, the equivalence between them is given by
+\begin{equation}
+  \label{eq:momentum_heat}
+  \bm{Q} = \bm{P}c^{2}
+\end{equation}
+Compare this formula with $E=mc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy.
+
+So, in a sunny day, when you close your eyes and feel the Sun's heat on your face, you are actually receiving momentum. And when you kick a ball, you are setting a huge bundle of energy in motion, and that's why the ball has acquired momentum.
+
+\subsection{Angular momentum}
+\label{sec:intro_angmomentum}
+
+\mynotew{To be written}
+
+
+
+\subsection{Entropy}
+\label{sec:intro_entropy}
+
+Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperature}, and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{joules}$/$\emph{kelvins} (\unit{J/K})}. From this definition it would seem that entropy is derived from temperature. However, although \textsf{temperature} is taken as primitive by the SI, the \furl{https://doi.org/10.1351/goldbook.K03374}{definition of temperature} actually depends on a fixed value of \furl{https://doi.org/10.1351/goldbook.B00695}{\emph{Boltzmann's constant}}, which has the dimension of \textsf{entropy}.
+
+\begin{wrapfigure}{r}{\wfwidth}% with wrapfigure
+\includegraphics[width=\linewidth]{entropy_low.png}\\
+\includegraphics[width=\linewidth]{entropy_high.png}
+\\[\jot]\footnotesize%
+{\color{green}Configurations from a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state.%
+\sourceatright{\parencites{styer2000}}}
+\end{wrapfigure}
+Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading. One particularly \emph{bad} intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
+
+In these notes we shall rely on the idea that \emph{entropy expresses a limit on the flux of energy into matter}. Said in simpler but more imprecise words, entropy is a bound on how fast we can heat up a body. We shall develop this idea further later.
+
+One reason why entropy is difficult to grasp intuitively is that it has very different physical and mathematical aspects depending on the spatial scales and physical theory that we use to describe physical phenomena.
+
+In many \enquote{continuum} phenomena, that is, phenomena where the molecular constitution of matter is not visible or not taken into account, entropy is treated as a \enquote{stuff-like} quantity similar to energy or electric charge. But there are difficulties also in this case. For some phenomena, for example involving non-elastic materials such as a simple paper clip, it is possible to introduce several entropies having different values -- and not just because of a change in measuring scale -- all of which can serve their purpose perfectly fine.
+
+In molecular phenomena involving statistical mechanics, on the other hand, entropy is no longer a physical notion, but a \emph{probabilitistic} and \emph{statistical} one, related to guesses and inferences that we make about the physical phenomenon. Yet from many points of view it has roles similar to those of the entropy used in continuum phenomena.
+
+We shall see later that the physical laws for entropy have also a different status with respect to the laws for the other six main quantities: they are, so to speak, \enquote{laws about laws}.
+
 
 
 \subsection{Auxiliary quantities}
