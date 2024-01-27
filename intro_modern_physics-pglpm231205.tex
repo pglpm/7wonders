@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-27T11:37:52+0100
+%% Last-Updated: 2024-01-27T16:36:06+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -14,14 +14,14 @@
 %\newcommand*{\memfontenc}{T1}
 \newcommand*{\memfontpack}{newpx}
 \documentclass[a4paper,12pt,%extrafontsizes,%
-onecolumn,oneside,%french,italian,german,swedish,latin,
+onecolumn,oneside,titlepage,%french,italian,german,swedish,latin,
 british%
 ]{memoir}
 \newcommand*{\firstdraft}{26 May 2023}
 \newcommand*{\firstpublished}{\firstdraft}
 \newcommand*{\updated}{\ifarxiv***\else\today\fi}
-\newcommand*{\propertitle}{Introduction to 21st-century physics}
-\newcommand*{\pdftitle}{\propertitle}
+\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Notes on 21st-century physics}
+\newcommand*{\pdftitle}{The Seven Wonders of the World: Notes on 21st-century physics}
 \newcommand*{\headtitle}{21st-century physics (ING175)}
 \newcommand*{\pdfauthor}{P.G.L.  Porta Mana}
 \newcommand*{\headauthor}{\nameref}
@@ -505,12 +505,21 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % \newlength{\mylen} % a length
 % \newcommand{\alphabet}{abcdefghijklmnopqrstuvwxyz} % the lowercase alphabet
 % \begingroup % keep font change local
-% % font specification e.g., \Large\sffamily
+% \normalfont% font specification e.g., \Large\sffamily
 % \settowidth{\mylen}{\alphabet}
 % %The length of this alphabet is \the\mylen. % print in document
 % \typeout{The length of the normal alphabet is \the\mylen} % put in log file
 % \endgroup  % end the grouping
-\setlxvchars[\normalfont] %313.3632pt for a 66-characters line
+%     66       70
+% 10 {26.1408, 27.872}, 133.05988pt
+% 11 {28.1023, 29.9307}, 145.70042pt
+% 12 {30.3586, 32.2944}, 159.6719pt
+% % alphabet 133.05988pt, 66 ch/line = 26.1408pc
+% % alphabet 133.05988pt, 69 ch/line = 27.431pc
+% % alphabet 133.05988pt, 70 ch/line = 27.872pc
+% % alphabet 133.05988pt, 71 ch/line = 28.3186pc
+%
+%\setlxvchars[\normalfont] %313.3632pt for a 66-characters line
 % \setxlvchars[\normalfont]
 % \setlength{\lxvchars}{28pc}
 % \typeout{lxvchars is \the\lxvchars}
@@ -518,21 +527,19 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % \setlength{\trimedge}{\stockwidth}
 % \addtolength{\trimedge}{-\paperwidth}
 % \settrims{0pt}{0pt}
-% % alphabet 133.05988pt, 66 ch/line = 26.1408pc
-% % alphabet 133.05988pt, 69 ch/line = 27.431pc
-% % alphabet 133.05988pt, 70 ch/line = 27.872pc
-% % alphabet 133.05988pt, 71 ch/line = 28.3186pc
 % The length of the normalsize alphabet is 133.05988pt - 10 pt = 26.1408pc
 % The length of the normalsize alphabet is 159.6719pt - 12pt = 30.3586pc
 % Bringhurst gives 32pc as boundary optimal with 69 ch per line
 % The length of the normalsize alphabet is 191.60612pt - 14pt = 35.8634pc
 %\ifafour\settypeblocksize{*}{32pc}{1.618} % A4
 %\setulmargins{*}{*}{1.667}%gives 5/3 margins % 2 or 1.667
-\settypeblocksize{*}{\lxvchars}{1.618}% nearer to a 66-line newpx and preserves GR
+%\settypeblocksize{*}{\lxvchars}{2}% nearer to a 66-line newpx and preserves GR
+%\settypeblocksize{*}{32pc}{2}% nearer to a 66-line newpx and preserves GR
+\settypeblocksize{*}{32pc}{1.618}% nearer to a 66-line newpx and preserves GR
 %\settypeblocksize{*}{27pc}{1.414}% nearer to a 70-line newpx and preserves sqrt2
 %\fi
 \setulmargins{*}{*}{1}%gives equal margins
-\setlrmargins{*}{*}{3}
+\setlrmargins{*}{*}{4}
 \setheadfoot{\onelineskip}{2.5\onelineskip}
 \setheaderspaces{*}{2\onelineskip}{*}
 \setmarginnotes{\parindent}{0.33\textwidth}{1em}
@@ -551,7 +558,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
    \interlinepenalty \@M
    \normalfont
    \printchaptertitle{\sffamily\appendixpagename}\par}
-  \setcounter{section}{0}%
+  \setcounter{chapter}{0}%
   \gdef\@chapapp{\appendixname}%
   \gdef\thesection{\@Alph\c@section}%
   \anappendixtrue}\makeatother
@@ -559,9 +566,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \chapterstyle{bianchi}
 \setsecnumformat{\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\large\bfseries\sffamily%
-\centering}
-\setsecheadstyle{\bfseries\sffamily%
 \raggedright}
+% \setsecheadstyle{\bfseries\sffamily%
+% \raggedright}
 %\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex}
 %\setaftersecskip{1.3ex plus .2ex }% plus 1ex minus .2ex}
 %\setsubsubsecheadstyle{\bfseries\sffamily\slshape\raggedright}
@@ -642,23 +649,23 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \nouppercaseheads
 \pagestyle{manaart}
 
-\setlength{\droptitle}{-3.9\onelineskip}
-\pretitle{\begin{center}\LARGE\sffamily%
+%\setlength{\droptitle}{-3.9\onelineskip}
+\pretitle{\begin{center}\huge\sffamily%
 \bfseries}
-\posttitle{\bigskip\end{center}}
+\posttitle{\par\end{center}\bigskip}
 
 \makeatletter\newcommand*{\atf}{\includegraphics[totalheight=\heightof{@}]{pglpm_latex/atblack.png}}\makeatother
-\providecommand{\affiliation}[1]{\textsl{\textsf{\footnotesize #1}}}
+% \providecommand{\affiliation}[1]{\textsl{\textsf{\footnotesize #1}}}
 \providecommand{\epost}[1]{\texttt{\footnotesize\textless#1\textgreater}}
 \providecommand{\email}[2]{\href{mailto:#1ZZ@#2 ((remove ZZ))}{#1\protect\atf#2}}
 %\providecommand{\email}[2]{\href{mailto:#1@#2}{#1@#2}}
 
-\preauthor{\vspace{-0.5\baselineskip}\begin{center}
-\normalsize\sffamily%
-\lineskip  0.5em}
+\preauthor{\begin{center}
+\Large\sffamily%
+}
 \postauthor{\par\end{center}}
-\predate{\DTMsetdatestyle{mydate}\begin{center}\footnotesize}
-\postdate{\end{center}\vspace{-\medskipamount}}
+\predate{\DTMsetdatestyle{mydate}\begin{center}\normalfont}
+\postdate{\par\end{center}}
 
 \setfloatadjustment{figure}{\footnotesize}
 \captiondelim{\quad}
@@ -692,9 +699,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \selectlanguage{british}\frenchspacing
 \usepackage{fontawesome5}
 
-\usepackage{wrapfig2}
-\newlength{\wfwidth}
-\setlength{\wfwidth}{0.4\linewidth}
+% \usepackage{wrapfig2}
+% \newlength{\wfwidth}
+% \setlength{\wfwidth}{0.4\linewidth}
 
 \definecolor{notecolour}{RGB}{68,170,153}
 %\newcommand*{\puzzle}{\maltese}
@@ -732,7 +739,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 }
 
 %\date{Draft of \today\ (first drafted \firstdraft)}
-\date{\firstpublished; updated \updated}
+\date{Version of \updated}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Macros @@@
@@ -938,7 +945,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \newtcolorbox[auto counter, number within=section]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
-\newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, %fontupper=\small, fonttitle=\bfseries\small,
+\newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small,
 fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
 
 \newtcolorbox{critique}[1][Critique]{enhanced, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
@@ -953,9 +960,9 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \firmlists
 
-\setlength{\wrapoverhang}{\parindent}
-\setlength{\intextsep}{1ex}% with wrapfigure
-% \setlength{\columnsep}{2em}% with wrapfigure
+% \setlength{\wrapoverhang}{\parindent}
+% \setlength{\intextsep}{1ex}% with wrapfigure
+% % \setlength{\columnsep}{2em}% with wrapfigure
 
 \makepagenote
 \renewcommand*{\notedivision}{\clearpage\section*{URLs for chapter \thechapter}}
@@ -964,30 +971,36 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 % \renewcommand{\prenotetext}{\begingroup\footnotesize}
 % \renewcommand{\postnotetext}{\endgroup}
 \sideparmargin{right}
+
 \begin{document}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
+\begin{titlingpage}
+\calccentering{\unitlength}
+\begin{adjustwidth}{\unitlength}{-\unitlength}
 \maketitle
+\end{adjustwidth}
+\end{titlingpage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Abstract
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\abstractrunin
-\abslabeldelim{}
-\renewcommand*{\abstractname}{}
-\setlength{\absleftindent}{0pt}
-\setlength{\absrightindent}{0pt}
-\setlength{\abstitleskip}{-\absparindent}
-\begin{abstract}\labelsep 0pt%
-  \noindent Lecture notes on introductory mechanics and thermodynamics (ING175)
-% \\\noindent\emph{\footnotesize Note: Dear Reader
-%     \amp\ Peer, this manuscript is being peer-reviewed by you. Thank you.}
-% \par%\\[\jot]
-% \noindent
-% {\footnotesize PACS: ***}\qquad%
-% {\footnotesize MSC: ***}%
-%\qquad{\footnotesize Keywords: ***}
-\end{abstract}
+% \abstractrunin
+% \abslabeldelim{}
+% \renewcommand*{\abstractname}{}
+% \setlength{\absleftindent}{0pt}
+% \setlength{\absrightindent}{0pt}
+% \setlength{\abstitleskip}{-\absparindent}
+% \begin{abstract}\labelsep 0pt%
+%   \noindent Lecture notes on introductory mechanics and thermodynamics (ING175)
+% % \\\noindent\emph{\footnotesize Note: Dear Reader
+% %     \amp\ Peer, this manuscript is being peer-reviewed by you. Thank you.}
+% % \par%\\[\jot]
+% % \noindent
+% % {\footnotesize PACS: ***}\qquad%
+% % {\footnotesize MSC: ***}%
+% %\qquad{\footnotesize Keywords: ***}
+% \end{abstract}
 \selectlanguage{british}\frenchspacing
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -995,7 +1008,7 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \asudedication{\small ***}
 % \vspace{\bigskipamount}
-% \setlength{\epigraphwidth}{.7\columnwidth}
+\setlength{\epigraphwidth}{0.66\linewidth}
 % %\epigraphposition{flushright}
 % \epigraphtextposition{flushright}
 % %\epigraphsourceposition{flushright}
@@ -1012,7 +1025,7 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\setcounter{section}{-1}
+\setcounter{chapter}{-1}
 \chapter{Introduction}
 \label{sec:intro}
 
@@ -1072,7 +1085,7 @@ The present lecture notes are an experiment and attempt to introduce classical m
 % \section{Magic}
 % \label{sec:magic}
 
-If you think about it, many things we ordinarily do every day are just some sort of magic. Think of how you can instantaneously see and speak with a person living on another continent, in real time, using just a small widget in the palm of your hand. Think of how you can instantaneously see where you are on the Earth, using the same widget. Think of how fast you can go to another country, by flying in a huge metal thing. Think of how you can command and interact with a purely fictitious animated world when you play on your computer. The list can go on forever. Other things are luckily less ordinary, but still inspire a lot of awe: think of the devastating power unleashed by something roughly as small as a tennis ball, in an atomic bomb.
+If you think about it, many things we ordinarily do every day are some sort of magic. Think of how you can instantaneously see and speak with a person living on another continent, in real time, using just a small widget in the palm of your hand. Think of how you can instantaneously see where you are on the Earth, using the same widget. Think of how fast you can go to another country, by flying in a huge metal thing. Think of how you can command and interact with a purely fictitious animated world when you play on your computer. The list can go on forever. Other things are luckily less ordinary, but still inspire a lot of awe: think of the devastating power unleashed by something roughly as small as a tennis ball, in an atomic bomb.
 
 We can do these astonishing things thanks to our understanding of how the world works. That's Physics.
 
@@ -1090,15 +1103,14 @@ Many things can be said and have been said about science and physics. Rather tha
 \section{Several possible formalisms or \enquote{languages}}
 \label{sec:languages}
 
-% \setlength{\intextsep}{0ex}% with wrapfigure
-% \setlength{\columnsep}{2em}% with wrapfigure
+Welcome back! The only thing about physics that I need to say here is that physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms.
 \marginpar{\footnotesize% with wrapfigure
-\includegraphics[width=\linewidth]{eg_languages.png}
-\\[\jot]{\color{green}%
-Example of two different formalisms expressing the same physical phenomenon%
+\includegraphics[align=t,width=\linewidth]{eg_languages.png}
+\\[1.5\jot]{\color{green}%
+Example of two different formalisms (one per line) expressing the same physical phenomenon%
 }
 }
-Welcome back! The only thing about physics that I need to say here is that physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms. These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other subjects are like this too).
+These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other subjects are like this too).
 
 In these notes I'm choosing one particular formalism: the one that for me is the most easily \emph{visualizable}; because I believe that visualization can be beneficial in learning new things. Or maybe I'm choosing it just because I like it best. I encourage you to explore how the physics you've learned is expressed in other physics formalisms; maybe you'll like another physics formalism better.
 
@@ -1106,52 +1118,55 @@ The formalism we'll be using might be called \enquote{field theory}. Roughly spe
 
 \medskip
 
-It goes without saying that all these \enquote{physics languages} are to a great extent mathematical.
-
-One reason is that numbers allow us to convey information in a concise and precise way. Imagine you have to tell someone, who doesn't know
 \marginpar{\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 letters in which it is composed. It is written in the language of
 mathematics}}\sourceatright{\cites{galilei1623}}}
 }
+It goes without saying that all these \enquote{physics languages} are to a great extent mathematical.
+
+One reason is that numbers allow us to convey information in a concise and precise way. Imagine you have to tell someone, who doesn't know
 Bergen, where in Bergen you are right now, to within 10\,m. You can do that with a description, \enquote{\textellipsis\ and there's a building called so-and-so which looks like so-and-so\textellipsis}, which would be lengthy and tricky. Or you can just give two numbers: latitude and longitude:
 \begin{equation*}
   \num{60.36940},\ \num{5.3518} \ .
 \end{equation*}
 And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
+But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way.
 \marginpar{\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
 }
-But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way. All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
+All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
 
-I invite you again to read what many good texts say about the relationship between physics and mathematics. No point repeating here what has been said better elsewhere.
+I invite you again to read what many good texts say about the relationship between physics and mathematics. No point repeating here what is said better elsewhere.
 
-\section{Quantities, primitive and derived}
+\section{Quantities: primitive and derived}
 \label{sec:primitives}
 
-One topic, however, must be briefly discussed because it's important in understanding the notes that follow. It's the distinction between \emph{primitive} and \emph{derived} quantities.
+One topic must be briefly discussed because it's important for understanding the notes that follow. It's the distinction between \emph{primitive} and \emph{derived} quantities.
 
-I shall assume that you already know what a \emph{physical quantity} is. Examples are: position, duration, velocity, pressure, energy, temperature.
+I shall assume that you already know what a \textbf{physical quantity} is. Examples are: position, duration, velocity, pressure, energy, temperature.
 
-A \emph{derived quantity} is one that is defined in terms of other quantities. For example, velocity $\bm{v}$ (more precisely: average velocity) is defined as the ratio between a distance $\bm{d}$ (a vector) and a time duration $\bm{t}$:
+A \textbf{derived quantity} is one that is defined in terms of other quantities. For example, velocity $\bm{v}$ (more precisely: average velocity) is defined as the ratio between a distance $\bm{d}$ (a vector) and a time duration $\bm{t}$:
 \begin{equation*}
   \bm{v} \defd \frac{\bm{d}}{t}
 \end{equation*}
-where the symbol \enquote{$\defd$} means \enquote{is defined as} or \enquote{is defined by}. This means that in principle we could avoid using the word \enquote{velocity} and the symbol \enquote{$\bm{v}$} altogether, and instead always speak about distance and duration, using their symbols. It would be extremely inconvenient, but it could be done. The definition of a derived quantity often tells us how that quantity can be measured.
+where the symbol \enquote{$\defd$} means \enquote{is defined as} or \enquote{is defined by}. This means that in principle we could avoid using the word \enquote{velocity} and the symbol \enquote{$\bm{v}$} altogether, and instead always speak about distance and duration, using their symbols. It would lead to very long sentences and formulae and would be extremely inconvenient, but it could be done. The definition of a derived quantity often tells us how that quantity can be measured.
 
 A derived quantity is defined in terms of other quantities, and these may in turn be derived quantities, that is, defined in terms of still other quantities, and so on. But at some point this chain of definitions must come to an end, otherwise we would go around in circles.
 
-A \emph{primitive quantity} is one that we do not define in terms of other quantities. Primitive quantities are the building blocks from which we define all others. That they are not defined in terms of others doesn't mean that we cannot try to explain them. But such explanations must be taken as informal and heuristic. Primitive quantities are often explained through metaphors and by appealing to intuition. You must always be wary of such explanations, because they may fail you spectacularly in some situations.
+A \textbf{primitive quantity} is one that we do not define in terms of other quantities. Primitive quantities are the building blocks from which we define all others. That they are not defined in terms of others doesn't mean that we cannot try to explain them. But such explanations must be taken as informal and heuristic. Primitive quantities are often explained through metaphors and by appealing to intuition. You must always be wary of such explanations, because they may fail you spectacularly in some situations.
 
-Often we have a choice about which quantities should be primitive and which should be derived. For instance, \emph{energy} can be defined, in a somewhat complicated way, in terms of quantities like \emph{work} and \emph{heat}, which would then need to be taken as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it; this second choice turns out to be more convenient to develop the physical theory. It often happens that a quantity is very convenient to build a theory if used as primitive, but difficult to understand intuitively; and vice versa that a quantity is very intuitive, but leads to a complicated theory.
+Often we have a choice about which quantities should be primitive and which should be derived. For instance, \emph{energy} can be defined, in a somewhat complicated way, in terms of quantities like \emph{work} and \emph{heat}, which would then need to be taken as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it. This second choice can be more convenient to develop a physical theory. It often happens that a quantity is very convenient for building a theory, if used as primitive; but difficult to understand intuitively. Vice versa,  a quantity can be very intuitive but lead to a complicated theory.
+Among quantities which we'll take as primitive are:
+\emph{time}, \emph{space} and \emph{length}, \emph{matter}, \emph{energy}, \emph{momentum},
+% , \emph{rotational momentum},
+\emph{entropy}, \emph{temperature}, and several others. All will be discussed soon.
 
-Among quantities which we'll take as primitive are \emph{time}, \emph{space}, \emph{matter}, \emph{energy}, \emph{momentum}, and several others.
-
-\section{Physical dimensions and units}
+ \section{Physical dimensions and units}
 \label{sec:units}
 
-\emph{Measurement} is the process by which we determine the value of a physical quantity. Measurements can be extremely complex, and can extremely different even if they are about the same quantity. Consider the ways we can measure the mass of a football, compared to the ways we can measure the mass of the Sun.
+\textbf{Measurement} is the process by which we determine the value of a physical quantity. Measurements can be extremely complex, and can extremely different even if they are about the same quantity. Consider the ways we can measure the mass of a football, compared to the ways we can measure the mass of the Sun.
 
 To each quantity we associate a \textbf{physical dimension}. The term \enquote*{dimension} here has nothing to do with physical extension, as in \enquote{the dimensions of this box}; be careful not to confuse the two. Usually it's clear which one is meant from the context. Physical dimensions help us avoid making operations that don't make sense with some quantities. For example, it doesn't make sense to sum up the volume of a body of water with its temperature; and indeed the volume has dimension $\mathsf{length^{3}}$, whereas temperature has dimension $\mathsf{temperature}$, and quantities with different dimensions cannot be added up.
 
@@ -1165,8 +1180,8 @@ The topics of measurement and physical dimensions, which are studied in \emph{me
 \smallskip
 
 The measurement of some physical quantities consists in just one number with associated physical dimension; we shall call such quantity a \textbf{scalar}. The measurement of other physical quantities consists instead in a triplet of numbers with associated physical dimension; we shall call such quantity a \textbf{vector}.
-\begin{warning}[]
-  Note that these two terms have very specific and slightly different meanings in different theories, so don't take their definition used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
+\begin{warning}[What's scalar or vector depends on the theory]
+  \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definition used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
 \end{warning}
 
 
@@ -1187,30 +1202,20 @@ The measurement of some physical quantities consists in just one number with ass
 \chapter{Time, space, \enquote{stuff}}
 \label{sec:time_space_stuff}
 
+\epigraph{\emph{If we want to describe the \emph{motion} of a material point, we give the values of its coordinates as a function of time. However, we should keep in mind that for such a mathematical description to have physical meaning, we first have to clarify what is to be understood here by \enquote{time}. We have to bear in mind that all our propositions involving time are always propositions about \emph{simultaneous events}. If, for example, I say that \enquote{the train arrives here at 7 o'clock}, that means, more or less, \enquote{the pointing of the small hand of my clock to~7 and the arrival of the train are simultaneous events}.}}{A. Einstein \cites*{einstein1905c}}
+
 \section{Time}
 \label{sec:time}
 
-\marginpar{\footnotesize% with wrapfigure
-  {\color{green}\enquote{\emph{%
-        In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\sourceatright{\cites{kovalevskyetal2004}}}
-}
-\emph{Time} is a primitive quantity. We understand the notion of time intuitively, even if it's difficult to explain (that's why it's taken as primitive). In 1905, with the theory of relativity, part of our everyday intuition about this notion was seriously shaken. For many years afterwards our old intuition could still be used in practice and in applications. But the new, correct intuition is becoming more and more important in everyday life and technologies. For example, GPS navigation, which we use everyday from leisure activities such as hiking or sightseeing to more critical ones such as aeroplane landing, critically depend on the correct notion and intuition of time. Let's see how our traditional intuition goes astray with a concrete experiment.
+\emph{Time} is a primitive quantity. We understand the notion of time intuitively, even if it's difficult to explain (that's why it's taken as primitive). In 1905, with the theory of relativity, part of our everyday intuition about this notion was seriously shaken. For many years afterwards our old intuition could still be used in practice and in applications. But the new, correct intuition is becoming more and more important in everyday life and technologies. For example, GPS navigation -- which we use everyday from leisure activities such as hiking or sightseeing to more critical ones such as aeroplane landing -- critically depends on the correct notion and intuition of time.
 
-Here's Alice, Bob, and Charlie. They have extremely precise clocks built in exactly the same way. They stay very close to one another and synchronize their clocks. Still keeping close, they go around, maybe on an aeroplane or space ship, and all the time they check their clocks. They notice that their clocks stay perfectly synchronized all the time, no matter where they go and what they do.
+Let's see how our traditional intuition goes astray with a concrete experiment. Here's Alice, Bob, and Charlie. They have extremely precise clocks built in exactly the same way. They stay very close to one another and synchronize their clocks. Still keeping close, they go around, maybe on an aeroplane or space ship, and all the time they check their clocks. They notice that their clocks stay perfectly synchronized all the time, no matter where they go and what they do.
 
 At some point they separate, each one going around independently. One of them might stay in place, another might take a helicopter, and another might go for a trip on Mars and back.
 
 Alice and Bob at some point meet again, and compare their clocks. They see that their clocks aren't synchronized anymore; the difference could be as small as microseconds, or as large as years. In fact, if this time discrepancy is large, they would notice that they themselves have aged differently; so time discrepancy doesn't affect the clocks only. Let's say for concreteness that Alice's clock is ahead of Bob's, or equivalently that Bob's is behind Alice's. Note the following aspects:
 
 First, neither Alice or Bob can say \enquote{my clock was wrong}: neither has noticed anything strange about the \enquote{passage of time}.
-
-\marginpar{
-\footnotesize% with wrapfigure
-  {\color{green}\enquote{\emph{%
-        In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\sourceatright{\cites{kovalevskyetal2004}}}
-}
-
-
 
 Second, they might wonder what's the time on Charlie's clock. But Charlie is at some distance away. They could decide to contact Charlie via radio, say, and ask \enquote{what shows your clock right \emph{now}?}. But they would notice that there's a delay, even if extremely small, in the radio transmission; so it's unclear to what time would Charlie's answer apply. If we say \enquote{let's account for the radio-signal speed}, we see that there's a logical problem: speed is distance divided by time, and here we have a problem in exactly determining what's the \enquote{correct} time! So we would be reasoning in circles. Besides, even neglecting these difficulties, Charlie's answer could reveal a time that completely different from Alice's and from Bob's -- it could be years ahead or behind both of theirs!
 
@@ -1220,16 +1225,15 @@ The experience just described will occur again any time two or more of them meet
 
 Consider for a moment an imaginary world in which these experiments had given a different kind of result. According to Newtonian mechanics, whenever two or more initially synchronized observers like Alice, Bob, Charlie had met, their clocks would have always shown exactly the same time. If one year, 23 days, 8 hours, 9 minutes, and \num{3.04539928324099266302} seconds have passed for you since you last met Alice, you'd see that exactly the same amount of time has passed for her when you two meet again. If you think about it, in this case it would have beeen somewhat natural to think \enquote{right now, the clocks of far-away Alice, Bob, Charlie must show the same time as mine} (even though you have no real experimental way of confirming that).
 
+\marginpar{\footnotesize% with wrapfigure
+  {\color{green}\enquote{\emph{%
+        In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\\{\cites{kovalevskyetal2004}}}
+}
 But that's an imaginary world. In our world is the more complicated situation described initially that holds. Only one conclusion can be drawn from these experimental results: \textbf{Time is not some sort of universal quantity. It is, so to speak, \enquote{local} to a person or clock, or to a group of persons or clocks that stick together.} This also means that \emph{it doesn't make sense} to ask questions like \enquote{what can be the time for far-away Charlie, right now?}. % \emph{Now} only applies to you, or to anything that is in your immediate vicinity.
 
-\smallskip
 
-The time measured by a specific observer is called the \emph{proper time} of that observer. Luckily we know more about how the proper times of separated observers can differ when they meet again. It turns out -- according to our current understanding -- that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and to matter around the universe, and on how much energy is contained in the regions they travel. The general theory of relativity gives us the equations determining any such proper-time differences.
+The time measured by a specific observer is called the \textbf{proper time} of that observer. Luckily we know more about how the proper times of separated observers can differ when they meet again. It turns out -- according to our current understanding -- that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and to matter around the universe, and on how much energy is contained in the regions they travel. The general theory of relativity gives us the equations determining any such proper-time differences.
 
-\marginpar{\footnotesize% with wrapfigure
-{\color{green}\enquote{\emph{%
-The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} \num{4}~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
-}
 The situation depicted in the experiments above is real. It can be measured, for example, comparing initially synchronized clocks that have been put in aeroplanes flying in different directions. Most importantly, it affects everyday relevant technologies such as the Global Positioning System. Formulae from general relativity appear in your phone's GPS software; see for instance \sect~20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. It must also be taken into account in the establishment and synchronization of time in our everyday equipments:
 %\autocites[]{icwg1983_r2022}
 \begin{quote}\footnotesize
@@ -1237,33 +1241,27 @@ The situation depicted in the experiments above is real. It can be measured, for
 %\mbox{}\hfill (\cites{petitetal2005})
 \end{quote}
 % \begin{figure}[h!]\footnotesize\centering% with wrapfigure
-% \includegraphics[width=0.75\linewidth]{datetime_2x.png}
+% \includegraphics[align=t,width=0.75\linewidth]{datetime_2x.png}
 % \\%
 % \url{https://xkcd.com/2867}
 % \end{figure}
 
+\marginpar{\footnotesize% with wrapfigure
+{\color{green}\enquote{\emph{%
+The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} 4~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
+}
 In most everyday situations for us, who live on or nearby Earth and move at speeds much smaller than $c$ with respect to one another, the discrepancies between our proper times are so small that cannot be
 measured with ordinary clocks or with our internal clocks. Consider a
 person walking \qty{10}{m} away from you and then immediately walking back
 to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
 will be \qty{19.999999999999999889}{s}, a difference of \qty{e-16}{s}, which is the error of an atomic clock. %%***add ref
 If human beings still exist in some decades or centuries, with space travel they will probably have to deal more and more with proper-time discrepancies also in everyday life.
-% \marginpar{\footnotesize\centering% with wrapfigure
-% \includegraphics[width=\linewidth]{net_rotations.png}
-% \\%
-% \url{https://xkcd.com/2882}
-% }
-\marginpar{\footnotesize\centering% with wrapfigure
-\includegraphics[width=\linewidth]{net_rotations.png}
-\\%
-\url{https://xkcd.com/2882}
-}
 
 For the most part of the rest of these notes, we won't need to deal with differences in proper time. But I recommend that you keep present how time really works, and that these small time discrepancies exist and occur all the time along your \emph{worldline}.
 
 \smallskip
 
-Time has physical dimension of $\mathsf{time}$, symbol $\textsf{T}$, and we shall for the most part measure it using the unit \emph{second}, symbol $\unit{s}$.
+Time has physical dimension of \textsf{time} and we shall for the most part measure it using the unit \emph{second}, symbol $\unit{s}$.
 
 
 
@@ -1272,7 +1270,9 @@ Time has physical dimension of $\mathsf{time}$, symbol $\textsf{T}$, and we shal
 
 Together with the notion of time, also the notion of space loses some of its traditional intuition. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid object in their vicinity. For objects that are far away from an observer, the very notion of \enquote{distance} becomes tricky has different and non-equivalent definitions; one must be very careful on which definition is being used.
 
-We shall not delve further into these peculiarities of time and space. Keep simply in mind that phenomena happen in \emph{spacetime}, and that there's no way to attribute a universal time, nor a universal position in space, to a physical event. There is one absolute: whoever locally measures the speed of light, will find the value
+\smallskip
+
+We shall not delve further into these peculiarities of time and space. Keep simply in mind that phenomena happen in \textbf{spacetime}, and that there's no way to attribute a universal time, nor a universal position in space, to a physical event. There is one absolute: whoever locally measures the speed of light, will find the value
 \begin{equation}
   \label{eq:c}
   c\defd \qty{299792458}{m/s}
@@ -1281,21 +1281,32 @@ This value is exact by definition, and serves as a way to define a local notion 
 
 \smallskip
 
-Space has physical dimension of $\mathsf{length}$, symbol $\textsf{L}$, and we shall for the most part measure it using the unit \emph{metre}, symbol $\unit{m}$.
+Space has physical dimension of \textsf{length} and we shall for the most part measure it using the unit \emph{metre}, symbol $\unit{m}$.
 
 
 % In Bergen, a distance of 10\,m corresponds to a difference of 0.000\,1\,° in latitude or longitude
 
 
-
-\section{Coordinate systems}
+\section{Coordinate systems and events}
 \label{sec:coords}
 
-It is necessary to have a way for distinguishing physical events and phenomena and locating them in spacetime. This is achieved through a \emph{coordinate system}. A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning, such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer, but they don't need to.
+It is necessary to have a way for distinguishing physical events and phenomena and locating them in spacetime. This is achieved through a \textbf{coordinate system}.
+
+A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning -- such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to.
 
 A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \furl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time (UTC)}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
 
-We shall often denotes the four coordinates of a coordinate system by
+\marginpar{\footnotesize\centering% with wrapfigure
+\includegraphics[align=c,width=\linewidth]{net_rotations.png}
+\\%
+\url{https://xkcd.com/2882}
+}
+Up to now we have often used the word \enquote*{event}, informally taking its meaning for granted. Let's be more precise: we call \textbf{event} or \textbf{spacetime point} an extremely small region of space -- a point -- that only lasts for a very small lapse of time -- an instant. The name \enquote*{event} is used because typically we approximately identify such a point and instant by means of a physical phenomenon of limited spatial extension and short duration, such as the collision of two subatomic particles. The sudden burst of a very small soap bubble can be considered as an event in some circumstances; but something like \enquote{a tennis ball} cannot be considered as an event, mainly because a tennis ball exists for quite a long time, not just for a short instant. From a four-dimensional spacetime point of view, a tennis ball could be characterized as a line: a \textbf{worldline}.
+
+
+\smallskip
+
+We shall often denote the four coordinates of a coordinate system by the letters
 \begin{equation*}
   (t, x, y, z)
 \end{equation*}
@@ -1307,7 +1318,7 @@ where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial p
 It is always important to specify how the coordinate system you're using is defined.
 The definition of the spatial coordinates $(x,y,z)$ is typically different from problem to problem. We shall typically use coordinates that form $\frac{\pu}{2}\,\unit{rad} \equiv \ang{90}$ angles with one another; but their directions and their origin -- that is, where they have value $x=y=z=\qty{0}{m}$ -- always depend on the problem, so make sure you always specify them.
 
-Whenever we speak of a \enquote{region of space} or of a \enquote{surface in space}, we mean a region at some specific coordinate time $t$.
+Whenever we speak of a \enquote{region of space} or of a \enquote{surface in space}, we mean a 3D or 2D region at some specific coordinate time $t$.
 
 \smallskip
 
@@ -1360,21 +1371,45 @@ Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1
 Matter is probably the easiest quantity to grasp intuitively; what we ordinarily call \enquote{stuff} is matter. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is usually classified into several kinds; the classification depends on the physical phenomena and physical theory one works with, and is related to whether the kinds of matter can be considered separately conserved, as we'll discuss in \sect\,\ref{sec:cons_matter}.
 
-In everyday phenomena not involving radioactivity\footnote{\url{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}, \url{https://www.britannica.com/science/radioactivity}} or nuclear energy\footnote{\url{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}, \url{https://www.britannica.com/science/nuclear-fission}}, the different kinds of matter approximately correspond to the \furl{https://www.ciaaw.org/radioactive-elements.htm}{non-radioactive chemical elements}: hydrogen, helium, lithium, and so on. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
+In everyday phenomena not involving \furl{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}{radioactivity}
+% \url{https://www.britannica.com/science/radioactivity}
+or \furl{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}{nuclear energy},
+% \url{https://www.britannica.com/science/nuclear-fission}
+the different kinds of matter approximately correspond to the \furl{https://www.ciaaw.org/radioactive-elements.htm}{non-radioactive chemical elements}: hydrogen, helium, lithium, and so on. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
 Note that some common everyday devices, such as smoke detectors, do involve radioactivity.
 
-In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \emph{baryons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}, \url{https://www.britannica.com/science/baryon}}, such as protons and neutrons; and \emph{leptons}\footnote{\url{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}, \url{https://www.britannica.com/science/lepton}}, such as electrons. In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved, such as electronic-leptons, muonic-leptons, and others. This kind of research is still open, but it seems that the total amount of baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved. Note that we're using the term \enquote*{matter} in a sense that includes anti-matter, such as positrons.
+In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}{\emph{baryons}},
+% \url{https://www.britannica.com/science/baryon}},
+such as protons and neutrons; and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}{\emph{leptons}},
+% \url{https://www.britannica.com/science/lepton}},
+such as electrons. In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved, such as electronic-leptons, muonic-leptons, and others. This kind of research is still open, but it seems that the total amount of baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved. Note that we're using the term \enquote*{matter} in a sense that includes anti-matter, such as positrons.
 
 In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
 
 % There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
-\begin{warning}[Matter is different from mass]
-  It is important to clearly distinguish matter from \emph{mass}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
+\begin{warning}[Matter is different from mass or energy]
+  It is important to clearly distinguish matter from \emph{mass} or \emph{energy}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
 \end{warning}
 
 \section{Electric charge}
 \label{sec:intro_charge}
+
+If we either slide or attempt to slide a body over a surface, the motion is resisted
+by a bonding between the body and the surface. (We discuss this bonding more in
+the next chapter.) The resistance is considered to be a single force
+
+% This figure of 6 m/s is probably an over-estimate for many locations in
+% Britain. For example, figure 4.1 shows daily average windspeeds in Cam-
+% bridge during 2006. The daily average speed reached 6 m/s on only about
+
+
+We will study a single neuron for two reasons. First, many neural network
+models are built out of single neurons, so it is good to understand them in
+detail. And second, a single neuron is itself capable of ‘learning’ – indeed,
+various standard statistical methods can be viewed in terms of single neurons
+– so this model will serve as a first example of
+
 
 Electric charge is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E01923}{\textsf{electric charge}} (equivalent to \textsf{electric current}$\times$\textsf{time}), and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{coulombs} (\unit{C})}.
 
@@ -1387,7 +1422,7 @@ Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.o
 
 
 \marginpar{\footnotesize% with wrapfigure
-%\includegraphics[width=\linewidth]{magnflux1.png}
+%\includegraphics[align=t,width=\linewidth]{magnflux1.png}
 \includegraphics[align=t,width=\linewidth]{magnflux2.png}
 \\{\color{green}\enquote{\emph{%
 sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}}
@@ -1407,6 +1442,12 @@ The notion of \emph{mass} is also intuitive in our everyday life; we associate i
 % relativity says that there's a strong connection between these two associations.
 From Relativity Theory and experimentally we know that \emph{energy and mass are the same thing}, and in these notes we shall fully take this point of view.
 
+\marginpar{\footnotesize% with wrapfigure
+\includegraphics[align=t,width=\linewidth]{atomicbomb.jpg}
+\\[\jot]%
+{\color{green}\emph{Hydrogen Bomb Test, 1954%
+}\\{(\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History})}}
+}
 Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass. The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
 
 
@@ -1423,17 +1464,12 @@ If we now weigh the rubber band again, while stretched, we observe a mass of app
 \begin{equation*}
   \qty{0.000500000000000003}{kg} \ .
 \end{equation*}
-The extremely small difference of \qty{3e-18}{kg} from the initial mass is exactly the elastic energy that we provided by stretching. Energy has weight; energy is mass.
 \marginpar{\footnotesize% with wrapfigure
-\includegraphics[align=t,width=\linewidth]{atomicbomb.jpg}
+\includegraphics[align=t,width=\linewidth]{rubberbands.png}
 \\[\jot]%
-{\color{green}\emph{Hydrogen Bomb Test, 1954%
-}\sourceatright{\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History}}}
+{\color{green}When we stretch a rubber band, its mass increases slightly}
 }
-% \marginpar{%\footnotesize% with wrapfigure
-% \includegraphics[width=\linewidth]{rubberband.png}
-% {}
-% }
+The extremely small difference of \qty{3e-18}{kg} from the initial mass is exactly the elastic energy that we provided by stretching. Energy has weight; energy is mass.
 
 If we set the unstretched band in motion, so that it acquires a kinetic energy of \qty{0.2}{J}, and we could weigh it while in motion (but without moving the weighing scale), we would observe a mass of approximately
 $$\qty{0.000500000000000002}{kg} \ .$$
@@ -1500,21 +1536,14 @@ So, in a sunny day, when you close your eyes and feel the Sun's heat on your fac
 
 Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperature}, and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{joules}$/$\emph{kelvins} (\unit{J/K})}. From this definition it would seem that entropy is derived from temperature. However, although \textsf{temperature} is taken as primitive by the SI, the \furl{https://doi.org/10.1351/goldbook.K03374}{definition of temperature} actually depends on a fixed value of \furl{https://doi.org/10.1351/goldbook.B00695}{\emph{Boltzmann's constant}}, which has the dimension of \textsf{entropy}.
 
-Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading. One particularly \emph{bad} intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
-% \marginpar{% with wrapfigure
-% \includegraphics[width=\linewidth]{entropy_low.png}\\
-% \includegraphics[width=\linewidth]{entropy_high.png}
-% \\[\jot]\footnotesize%
-% {\color{green}Configurations from a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state.%
-% \sourceatright{\parencites{styer2000}}}
-% }
-\sidepar{% with wrapfigure
-\includegraphics[width=\linewidth]{entropy_low.png}\\
-\includegraphics[width=\linewidth]{entropy_high.png}
+\marginpar{% with wrapfigure
+\includegraphics[align=t,width=\linewidth]{entropy_low.png}\\
+\includegraphics[align=t,width=\linewidth]{entropy_high.png}
 \\[\jot]\footnotesize%
 {\color{green}Configurations from a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state.%
 \sourceatright{\parencites{styer2000}}}
 }
+Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading. One particularly \emph{bad} intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
 
 In these notes we shall rely on the idea that \emph{entropy expresses a limit on the flux of energy into matter}. Said in simpler but more imprecise words, entropy is a bound on how fast we can heat up a body. We shall develop this idea further later.
 
@@ -1699,7 +1728,7 @@ Balance laws are intuitively and visually easy to grasp. The archetype is as fol
 Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
 \marginpar{\footnotesize% with wrapfigure
-\includegraphics[width=\linewidth]{balance_plot.pdf}
+\includegraphics[align=t,width=\linewidth]{balance_plot.pdf}
 % \\[\jot]%
 % {\color{green}\enquote{\emph{%
 % }}\sourceatright{\cites{}}}
@@ -1910,9 +1939,9 @@ Let's make a simple check to see if this formula makes sense, in a simple one-di
 \begin{equation*}
   \frac{\de n}{\de t} + \frac{\de j_{x}}{\de x} = 0 \ .
 \end{equation*}
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{0.5\linewidth}\footnotesize% with wrapfigure
-\includegraphics[width=\linewidth]{ddxflux.pdf}
-\end{wrapfigure}
+\marginpar{\footnotesize% with wrapfigure
+\includegraphics[align=t,width=\linewidth]{ddxflux.pdf}
+}
 Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x} > 0$. This means that the $x$-flux increases as we move from $x$ to $x+\Dx$, as shown in the side figure. The $x$-flux at $x$ is bringing some amount of quantity into the region of interest, the $x$-flux at  $x+\Dx$ is taking a larger amount out of that region. Therefore, during the short time $\Dt$ in which this flux takes place, the total amount of quantity within the region will decrease. But the total amount is given by $n(t)$, which is therefore decreasing with time. This means that its time derivative is negative: $\frac{\de n}{\de t} < 0$. This agrees with balance law above: the sum of the two derivatives must be zero, so if one is positive, the other must be negative.
 
 \medskip
@@ -2163,7 +2192,7 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 \iffalse
 \marginpar{\footnotesize% with wrapfigure
-\includegraphics[width=\linewidth]{eg_languages.png}
+\includegraphics[align=t,width=\linewidth]{eg_languages.png}
 \\[\jot]%
 {\color{green}\enquote{\emph{%
 }}\sourceatright{\cites{}}}
