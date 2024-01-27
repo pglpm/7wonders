@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-26T22:26:51+0100
+%% Last-Updated: 2024-01-27T10:05:25+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -410,7 +410,7 @@ citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,
 \ifarxiv\else\addbibresource{portamanabib.bib}\fi
 \renewcommand{\bibfont}{\footnotesize}
 %\appto{\citesetup}{\footnotesize}% smaller font for citations
-\defbibheading{bibliography}[\bibname]{\section*{#1}\addcontentsline{toc}{section}{#1}%\markboth{#1}{#1}
+\defbibheading{bibliography}[\bibname]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}%\markboth{#1}{#1}
 }
 \newcommand*{\citep}{\footcites}
 \newcommand*{\citey}{\footcites}%{\parencites*}
@@ -465,7 +465,7 @@ Open Science Framework \doi{10.31219/osf.io/#1}%
 Open Science Framework \doi{10.17605/osf.io/#1}%
 }
 
-\newcommand*{\furl}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+\newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 
 \usepackage{graphicx}
 
@@ -554,19 +554,20 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
   \gdef\@chapapp{\appendixname}%
   \gdef\thesection{\@Alph\c@section}%
   \anappendixtrue}\makeatother
-\counterwithout{section}{chapter}
+% \counterwithout{section}{chapter}
+\chapterstyle{bianchi}
 \setsecnumformat{\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\large\bfseries\sffamily%
 \centering}
-\setsubsecheadstyle{\bfseries\sffamily%
+\setsecheadstyle{\bfseries\sffamily%
 \raggedright}
 %\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex}
 %\setaftersecskip{1.3ex plus .2ex }% plus 1ex minus .2ex}
 %\setsubsubsecheadstyle{\bfseries\sffamily\slshape\raggedright}
 %\setbeforesubsecskip{1.25ex plus 1ex minus .2ex }% plus 1ex minus .2ex}
 %\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex}
-\setsubsecindent{0pt}%0ex plus 1ex minus .2ex}
-\setsubsubsecheadstyle{\bfseries\sffamily%
+\setsecindent{0pt}%0ex plus 1ex minus .2ex}
+\setsubsecheadstyle{\bfseries\sffamily%
 \raggedright}
 \setparaheadstyle{\bfseries\sffamily%
 \raggedright}
@@ -684,7 +685,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \usepackage{wrapfig2}
 \newlength{\wfwidth}
-\setlength{\wfwidth}{0.34\linewidth}
+\setlength{\wfwidth}{0.4\linewidth}
 
 \definecolor{notecolour}{RGB}{68,170,153}
 %\newcommand*{\puzzle}{\maltese}
@@ -941,7 +942,19 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\firmlists
+% \firmlists
+
+\setlength{\wrapoverhang}{\parindent}
+\setlength{\intextsep}{1ex}% with wrapfigure
+% \setlength{\columnsep}{2em}% with wrapfigure
+
+\makepagenote
+\renewcommand*{\notedivision}{\clearpage\section*{URLs for chapter \thechapter}}
+\renewcommand*{\pagenotesubhead}[3]{}
+\renewcommand*{\notenuminnotes}[1]{\footnotesize #1.\space}
+% \renewcommand{\prenotetext}{\begingroup\footnotesize}
+% \renewcommand{\postnotetext}{\endgroup}
+
 \begin{document}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
@@ -991,7 +1004,7 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 
 \newpage
 \setcounter{section}{-1}
-\section{Introduction}
+\chapter{Introduction}
 \label{sec:intro}
 
 % \epigraphtextposition{flushright}
@@ -1008,16 +1021,13 @@ Until some decades ago, the 18th-century physical notions typically taught in in
 
 \smallskip
 
-
-% \setlength{\intextsep}{0ex}% with wrapfigure
-% \setlength{\columnsep}{2em}% with wrapfigure
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{The achieved performances of atomic clocks and time
 transfer techniques imply that the definition of time scales
 and the clock comparison procedures must be considered
 within the framework of general relativity}}\sourceatright{\cites{petitetal2005}}}
 \end{wrapfigure}
-That situation has changed today. Modern theories are an essential part of many everyday technologies, like nuclear reactors and the Global Positioning System \autocites[\url{https://www.gps.gov}; see the entertaining discussion in][Project~A]{tayloretal2000}[and also][]{petitetal2005,fliegeletal1996,ashby2002,muelleretal2008}; and they are required for developing new technological possibilities, from quantum computers\footnote{\url{https://www.ibm.com/topics/quantum-computing}.} to solar sails\footnote{see for instance \url{https://www.planetary.org/sci-tech/lightsail}, \url{https://www.cubesail.us}.}. An engineering student (including communication and data engineering) may likely end up in a job that requires an understanding of modern physical notions. The diffusion of large language models\footnote{\url{https://www.ibm.com/topics/large-language-models}.} will moreover require future engineers who actually \textbf{understand} those physical notions, not little monkeys who have been trained to manipulate some equations and to throw some technobabble around. Automated large language models are faster, cheaper, and more precise in doing the latter kind of monkey activities. So why should one hire a human to do the same?
+That situation has changed today. Modern theories are an essential part of many everyday technologies, like nuclear reactors and the \furl{https://www.gps.gov}{Global Positioning System} (see the entertaining discussion in \cites[Project~A]{tayloretal2000}, and also \cites{petitetal2005,fliegeletal1996,ashby2002,muelleretal2008}); and they are required for developing new technological possibilities, from \furl{https://www.ibm.com/topics/quantum-computing}{quantum computers} to \furl{https://www.planetary.org/sci-tech/lightsail}{solar sails} (see for instance the \furl{https://www.cubesail.us}{CubeSail} mission). An engineering student (including communication and data engineering) may likely end up in a job that requires an understanding of modern physical notions. The diffusion of \furl{https://www.ibm.com/topics/large-language-models}{large language models} will moreover require future engineers who actually \textbf{understand} those physical notions, not little monkeys who have been trained to manipulate some equations and to throw some technobabble around. Automated large language models are faster, cheaper, and more precise in doing the latter kind of monkey activities. So why should one hire a human to do the same?
 
 While moving from the older to the newer notions often requires re-learning efforts and conceptual re-orientations, the move in the opposite direction is less demanding. The modern physical notions are more encompassing than their 18th-century parents. Their understanding leads to an understanding of their older counterparts as approximate and special cases. Students, moreover, have often been hearing quite early from mass media about the new notions; for instance about the equivalence of mass and energy. Owing to this early exposure, students sometimes ask very intelligent questions -- \enquote{\emph{should the mass of the body be included in its internal energy?}} -- when exposed to the old notions.
 
@@ -1043,12 +1053,14 @@ The present lecture notes are an experiment and attempt to introduce classical m
 % *** Arena for physics (one point of view): space, time, "stuff"
 %
 
+\printpagenotes*
+
 \clearpage
 
-\section{Physics?}
+\chapter{Physics?}
 \label{sec:physics_general}
 
-% \subsection{Magic}
+% \section{Magic}
 % \label{sec:magic}
 
 If you think about it, many things we ordinarily do every day are just some sort of magic. Think of how you can instantaneously see and speak with a person living on another continent, in real time, using just a small widget in the palm of your hand. Think of how you can instantaneously see where you are on the Earth, using the same widget. Think of how fast you can go to another country, by flying in a huge metal thing. Think of how you can command and interact with a purely fictitious animated world when you play on your computer. The list can go on forever. Other things are luckily less ordinary, but still inspire a lot of awe: think of the devastating power unleashed by something roughly as small as a tennis ball, in an atomic bomb.
@@ -1066,15 +1078,15 @@ Many things can be said and have been said about science and physics. Rather tha
 \end{center}
 
 
-\subsection{Several possible formalisms or \enquote{languages}}
+\section{Several possible formalisms or \enquote{languages}}
 \label{sec:languages}
 
 % \setlength{\intextsep}{0ex}% with wrapfigure
 % \setlength{\columnsep}{2em}% with wrapfigure
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]{\color{green}%
-Example of two different languages expressing the same physical phenomenon%
+Example of two different formalisms expressing the same physical phenomenon%
 }
 \end{wrapfigure}
 Welcome back! The only thing about physics that I need to say here is that physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms. These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other subjects are like this too).
@@ -1085,27 +1097,28 @@ The formalism we'll be using might be called \enquote{field theory}. Roughly spe
 
 \medskip
 
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+It goes without saying that all these \enquote{physics languages} are to a great extent mathematical.
+
+One reason is that numbers allow us to convey information in a concise and precise way. Imagine you have to tell someone, who doesn't know
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 letters in which it is composed. It is written in the language of
 mathematics}}\sourceatright{\cites{galilei1623}}}
 \end{wrapfigure}
-It goes without saying that all these \enquote{physics languages} are to a great extent mathematical.
-
-One reason is that numbers allow us to convey information in a concise and precise way. Imagine you have to tell someone, who doesn't know Bergen, where in Bergen you are right now, to within 10\,m. You can do that with a description, \enquote{\textellipsis\ and there's a building called so-and-so which looks like so-and-so\textellipsis}, which would be lengthy and tricky. Or you can just give two numbers: latitude and longitude:
+Bergen, where in Bergen you are right now, to within 10\,m. You can do that with a description, \enquote{\textellipsis\ and there's a building called so-and-so which looks like so-and-so\textellipsis}, which would be lengthy and tricky. Or you can just give two numbers: latitude and longitude:
 \begin{equation*}
   \num{60.36940},\ \num{5.3518} \ .
 \end{equation*}
 And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
 \end{wrapfigure}
 But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way. All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
 
 I invite you again to read what many good texts say about the relationship between physics and mathematics. No point repeating here what has been said better elsewhere.
 
-\subsection{Quantities, primitive and derived}
+\section{Quantities, primitive and derived}
 \label{sec:primitives}
 
 One topic, however, must be briefly discussed because it's important in understanding the notes that follow. It's the distinction between \emph{primitive} and \emph{derived} quantities.
@@ -1126,7 +1139,7 @@ Often we have a choice about which quantities should be primitive and which shou
 
 Among quantities which we'll take as primitive are \emph{time}, \emph{space}, \emph{matter}, \emph{energy}, \emph{momentum}, and several others.
 
-\subsection{Physical dimensions and units}
+\section{Physical dimensions and units}
 \label{sec:units}
 
 \emph{Measurement} is the process by which we determine the value of a physical quantity. Measurements can be extremely complex, and can extremely different even if they are about the same quantity. Consider the ways we can measure the mass of a football, compared to the ways we can measure the mass of the Sun.
@@ -1160,17 +1173,17 @@ The measurement of some physical quantities consists in just one number with ass
 % **** quantities are "primitives"
 % **** dependence on coordinate system
 
+\printpagenotes*
 \clearpage
-
-\section{Time, space, \enquote{stuff}}
+\chapter{Time, space, \enquote{stuff}}
 \label{sec:time_space_stuff}
 
-\subsection{Time}
+\section{Time}
 \label{sec:time}
 
 
 
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
   {\color{green}\enquote{\emph{%
         In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\sourceatright{\cites{kovalevskyetal2004}}}
 \end{wrapfigure}
@@ -1198,7 +1211,7 @@ But that's an imaginary world. In our world is the more complicated situation de
 
 The time measured by a specific observer is called the \emph{proper time} of that observer. Luckily we know more about how the proper times of separated observers can differ when they meet again. It turns out -- according to our current understanding -- that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and to matter around the universe, and on how much energy is contained in the regions they travel. The general theory of relativity gives us the equations determining any such proper-time differences.
 
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{%
 The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} \num{4}~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
 \end{wrapfigure}
@@ -1218,7 +1231,7 @@ In most everyday situations for us, who live on or nearby Earth and move at spee
 measured with ordinary clocks or with our internal clocks. Consider a
 person walking \qty{10}{m} away from you and then immediately walking back
 to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize\centering% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize\centering% with wrapfigure
 \includegraphics[width=\linewidth]{net_rotations.png}
 \\%
 \url{https://xkcd.com/2882}
@@ -1234,7 +1247,7 @@ Time has physical dimension of $\mathsf{time}$, symbol $\textsf{T}$, and we shal
 
 
 
-\subsection{Space}
+\section{Space}
 \label{sec:space}
 
 Together with the notion of time, also the notion of space loses some of its traditional intuition. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid object in their vicinity. For objects that are far away from an observer, the very notion of \enquote{distance} becomes tricky has different and non-equivalent definitions; one must be very careful on which definition is being used.
@@ -1255,7 +1268,7 @@ Space has physical dimension of $\mathsf{length}$, symbol $\textsf{L}$, and we s
 
 
 
-\subsection{Coordinate systems}
+\section{Coordinate systems}
 \label{sec:coords}
 
 It is necessary to have a way for distinguishing physical events and phenomena and locating them in spacetime. This is achieved through a \emph{coordinate system}. A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning, such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer, but they don't need to.
@@ -1286,7 +1299,7 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 
 
 
-\subsection{Seven primitive quantities}
+\section{Seven primitive quantities}
 \label{sec:stuff}
 
 In the physics formalism that we're using there are about seven more quantities, technically called \emph{fields}, that we take as primitive:
@@ -1319,7 +1332,7 @@ What's remarkable about these seven quantities is that they are common to all ou
 
 Let us make a first acquaintance with these seven quantities.
 
-\subsection{Matter}
+\section{Matter}
 \label{sec:intro_matter}
 
 Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}.
@@ -1340,20 +1353,20 @@ In these notes we shall usually not consider distinctions between different kind
   It is important to clearly distinguish matter from \emph{mass}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
 \end{warning}
 
-\subsection{Electric charge}
+\section{Electric charge}
 \label{sec:intro_charge}
 
 Electric charge is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E01923}{\textsf{electric charge}} (equivalent to \textsf{electric current}$\times$\textsf{time}), and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{coulombs} (\unit{C})}.
 
 Electric charge is probably easily grasped today, and doesn't need much comments. In these notes we shall not discuss phenomena involving this quantity.
 
-\subsection{Magnetic flux}
+\section{Magnetic flux}
 \label{sec:intro_magneticflux}
 
 Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
 
 
-\begin{wrapfigure}{r}{0.5\linewidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 %\includegraphics[width=\linewidth]{magnflux1.png}
 \includegraphics[width=\linewidth]{magnflux2.png}
 \\{\color{green}\enquote{\emph{%
@@ -1363,7 +1376,7 @@ The electromagnetic field is most commonly represented by vectors associated to 
 
 Electromagnetism and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
 
-\subsection{Energy}
+\section{Energy}
 \label{sec:intro_energy}
 
 Energy is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E02101}{\textsf{energy}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.J03363}{\emph{joules} (\unit{J})}. Equivalently we can speak of mass, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03709}{\textsf{mass}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.K03391}{\emph{kilograms} (\unit{kg})}.
@@ -1374,16 +1387,16 @@ The notion of \emph{mass} is also intuitive in our everyday life; we associate i
 % relativity says that there's a strong connection between these two associations.
 From Relativity Theory and experimentally we know that \emph{energy and mass are the same thing}, and in these notes we shall fully take this point of view.
 
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{atomicbomb.jpg}
 \\[\jot]%
 {\color{green}\emph{Hydrogen Bomb Test, 1954%
-}\sourceatright{\href{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History}}}
+}\sourceatright{\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History}}}
 \end{wrapfigure}
 Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass. The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
 
 
-Here is an example. Consider a common
+Here is an example of the fact that energy is mass. Consider a common
 rubber band, and imagine we have an extremely precise weighing scale.
 We weigh the rubber band, unstretched, and observe a mass of
 \begin{equation*}
@@ -1397,7 +1410,7 @@ If we now weigh the rubber band again, while stretched, we observe a mass of app
   \qty{0.000500000000000003}{kg} \ .
 \end{equation*}
 The extremely small difference of \qty{3e-18}{kg} from the initial mass is exactly the elastic energy that we provided by stretching. Energy has weight; energy is mass.
-% \begin{wrapfigure}{r}{\wfwidth}%\footnotesize% with wrapfigure
+% \begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*%\footnotesize% with wrapfigure
 % \includegraphics[width=\linewidth]{rubberband.png}
 % {}
 % \end{wrapfigure}
@@ -1437,7 +1450,7 @@ Energy-mass is present wherever there is matter, charge, or magnetic flux, and v
 % 1 kg = 9e16 J
 % U = 50/2*0.1^2 = 0.25 J = 3e-18 kg
 
-\subsection{Momentum}
+\section{Momentum}
 \label{sec:intro_momentum}
 
 Momentum is a \emph{vector} quantity, with SI dimension $\textsf{energy}\times\textsf{time}/\textsf{length}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}/\emph{metres}$ (\unit{J\cdot s/m}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}/\emph{seconds}$ (\unit{kg\cdot m/s}). Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
@@ -1455,19 +1468,19 @@ Compare this formula with $E=mc^{2}$. From this point of view, you can think of 
 
 So, in a sunny day, when you close your eyes and feel the Sun's heat on your face, you are actually receiving momentum. And when you kick a ball, you are setting a huge bundle of energy in motion, and that's why the ball has acquired momentum.
 
-\subsection{Angular momentum}
+\section{Angular momentum}
 \label{sec:intro_angmomentum}
 
 \mynotew{To be written}
 
 
 
-\subsection{Entropy}
+\section{Entropy}
 \label{sec:intro_entropy}
 
 Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperature}, and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{joules}$/$\emph{kelvins} (\unit{J/K})}. From this definition it would seem that entropy is derived from temperature. However, although \textsf{temperature} is taken as primitive by the SI, the \furl{https://doi.org/10.1351/goldbook.K03374}{definition of temperature} actually depends on a fixed value of \furl{https://doi.org/10.1351/goldbook.B00695}{\emph{Boltzmann's constant}}, which has the dimension of \textsf{entropy}.
 
-\begin{wrapfigure}{r}{\wfwidth}% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*% with wrapfigure
 \includegraphics[width=\linewidth]{entropy_low.png}\\
 \includegraphics[width=\linewidth]{entropy_high.png}
 \\[\jot]\footnotesize%
@@ -1488,7 +1501,7 @@ We shall see later that the physical laws for entropy have also a different stat
 
 
 
-\subsection{Auxiliary quantities}
+\section{Auxiliary quantities}
 \label{sec:aux_quantities}
 
 Besides the seven principal quantities, other auxiliary quantities appear in some physical theories. Important examples are \textbf{temperature} and \textbf{metric}. Most auxiliary quantities don't have the \enquote{stuff-like} properties of the seven principal quantities. For instance, we cannot ask \enquote{what's the total amount of temperature in this region?}. We shall later discuss and use some auxiliary quantities, especially temperature.
@@ -1530,8 +1543,9 @@ The dimensions, units, and scalar or vector character of these quantities are su
 \end{table}
 
 
+\printpagenotes*
 \clearpage
-\section{Densities and fluxes}
+\chapter{Densities and fluxes}
 \label{sec:density_flux}
 
 How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?} We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple.
@@ -1628,11 +1642,12 @@ The definitions above of density and flux are appropriate if the quantity in que
 %% ***
 % The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
+\printpagenotes*
 \clearpage
-\section{Physical laws}
+\chapter{Physical laws}
 \label{sec:laws}
 
-\subsection{Two kinds of laws}
+\section{Two kinds of laws}
 \label{sec:two_kinds}
 
 
@@ -1649,14 +1664,14 @@ Balance laws, or simply balances, have this name because they express a sort of 
 
 Constitutive relations instead only apply to particular phenomena and only in particular theories. They express the diversity that we observe around us.
 
-\subsection{Balance and conservation laws}
+\section{Balance and conservation laws}
 \label{sec:balances}
 
 Balance laws are intuitively and visually easy to grasp. The archetype is as follows:
 
 Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{balance_plot.pdf}
 % \\[\jot]%
 % {\color{green}\enquote{\emph{%
@@ -1757,7 +1772,7 @@ A conservation law can be seen as a special and powerful case of a balance law, 
 \end{extra}
 
 
-\subsection{Balance laws expressed with derivatives}
+\section{Balance laws expressed with derivatives}
 \label{sec:balance_derivative}
 
 In \sect\,\ref{sec:density_flux} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $N_{1}$, $N_{2}$, $J$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
@@ -1868,7 +1883,7 @@ Let's make a simple check to see if this formula makes sense, in a simple one-di
 \begin{equation*}
   \frac{\de n}{\de t} + \frac{\de j_{x}}{\de x} = 0 \ .
 \end{equation*}
-\begin{wrapfigure}{r}{0.5\linewidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{0.5\linewidth}\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{ddxflux.pdf}
 \end{wrapfigure}
 Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x} > 0$. This means that the $x$-flux increases as we move from $x$ to $x+\Dx$, as shown in the side figure. The $x$-flux at $x$ is bringing some amount of quantity into the region of interest, the $x$-flux at  $x+\Dx$ is taking a larger amount out of that region. Therefore, during the short time $\Dt$ in which this flux takes place, the total amount of quantity within the region will decrease. But the total amount is given by $n(t)$, which is therefore decreasing with time. This means that its time derivative is negative: $\frac{\de n}{\de t} < 0$. This agrees with balance law above: the sum of the two derivatives must be zero, so if one is positive, the other must be negative.
@@ -1966,7 +1981,7 @@ The rudimentary routine above is the basis from which more precise and complex s
 
 \end{exercise}
 
-\subsection{Constitutive relations}
+\section{Constitutive relations}
 \label{sec:constitutive}
 
 In the previous section we saw that a balance law can be used to predict how the density of a quantity changes with time. But we also saw that in order to make such prediction we need to already know what the \emph{future} fluxes of the quantity will be, throughout the region of interest. This doesn't sound like a great achievement: to predict the future, we need the future. The situation doesn't improve if we have two or more quantities that satisfy balance laws: we shall need to know in advance the fluxes of each.
@@ -1983,9 +1998,10 @@ Constitutive relations come in a great variety of mathematical forms. Some of th
 
 
 
+\printpagenotes*
 \clearpage
 
-\section{The Seven Wonders of the World}
+\chapter{The Seven Wonders of the World}
 \label{sec:seven_wonders}
 
 We already remarked that the seven primitive quantities introduced in \sect\,\ref{sec:stuff} are common to all our main physical theories. Even more remarkable is that each of them obeys a balance law like~\eqref{eq:balanced}; three actually obey a strict conservation law like~\eqref{eq:conserved}.
@@ -2010,7 +2026,7 @@ Once you learn these balances, you can apply them to any kind of physical phenom
 
 Let us say something more about each.
 
-\subsection{Conservation of matter}
+\section{Conservation of matter}
 \label{sec:cons_matter}
 
 
@@ -2021,8 +2037,9 @@ More precisely: matter, electric charge, magnetic flux always satisfy strict con
 
 \smallskip
 
+\printpagenotes*
 \clearpage
-\section{Matter}
+\chapter{Matter}
 \label{sec:matter}
 
 Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
@@ -2032,24 +2049,24 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 
-\subsection{Electric charge and magnetic flux}
+\section{Electric charge and magnetic flux}
 \label{sec:charge_magnetic}
 
 
 
-\subsection{Magnetic flux}
+\section{Magnetic flux}
 \label{sec:magneticflux}
 
-\subsection{Energy}
+\section{Energy}
 \label{sec:energy}
 
-\subsection{Momentum}
+\section{Momentum}
 \label{sec:momentum}
 
-\subsection{Angular momentum}
+\section{Angular momentum}
 \label{sec:rotmomentum}
 
-\subsection{Entropy}
+\section{Entropy}
 \label{sec:entropy}
 
 
@@ -2118,7 +2135,7 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 \iffalse
-\begin{wrapfigure}{r}{\wfwidth}\footnotesize% with wrapfigure
+\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]%
 {\color{green}\enquote{\emph{%
@@ -2129,12 +2146,13 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 
+\printpagenotes*
 \clearpage
 
-\section{Thermodynamics}
+\chapter{Thermodynamics}
 \label{sec:thermodynamics}
 
-\subsection{Notes on \enquote{quasi-static} processes}
+\section{Notes on \enquote{quasi-static} processes}
 \label{sec:quasistatic}
 
 In general, none of the statements "reversible${}\Rightarrow{}$quasi-static" or "quasi-static${}\Rightarrow{}$reversible"
@@ -2273,7 +2291,7 @@ Under the last three conditions we have in general that $\mathrm{d}S \ge Q/T$; w
 %%\setlength{\intextsep}{0ex}% with wrapfigure
 %%\setlength{\columnsep}{0ex}% with wrapfigure
 %\begin{figure}[p!]% with figure
-%\begin{wrapfigure}{r}{0.4\linewidth} % with wrapfigure
+%\begin{wrapfigure}[1]{r}[\wrapoverhang]{0.4\linewidth} % with wrapfigure
 %  \centering\includegraphics[trim={12ex 0 18ex 0},clip,width=\linewidth]{maxent_saddle.png}\\
 %\caption{caption}\label{fig:comparison_a5}
 %\end{figure}% exp_family_maxent.nb
@@ -2308,6 +2326,7 @@ Under the last three conditions we have in general that $\mathrm{d}S \ge Q/T$; w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\printpagenotes*
 \clearpage
 \renewcommand*{\finalnamedelim}{\addcomma\space}
 \defbibnote{prenote}{{\footnotesize (\enquote{de $X$} is listed under D,
