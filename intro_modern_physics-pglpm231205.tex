@@ -1,20 +1,20 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-27T10:05:25+0100
+%% Last-Updated: 2024-01-27T11:37:52+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
 %\iftrue\pdfmapfile{+classico.map}\fi
 \newif\ifafour
-\afourfalse% true = A4, false = A5
+\afourtrue% true = A4, false = A5
 \newif\iftypodisclaim % typographical disclaim on the side
-\typodisclaimtrue
+\typodisclaimfalse
 \newcommand*{\memfontfamily}{zpl}
 %\newcommand*{\memfontenc}{T1}
 \newcommand*{\memfontpack}{newpx}
-\documentclass[\ifafour a4paper,12pt,\else a5paper,10pt,\fi%extrafontsizes,%
-onecolumn,oneside,article,%french,italian,german,swedish,latin,
+\documentclass[a4paper,12pt,%extrafontsizes,%
+onecolumn,oneside,%french,italian,german,swedish,latin,
 british%
 ]{memoir}
 \newcommand*{\firstdraft}{26 May 2023}
@@ -468,6 +468,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 
 \usepackage{graphicx}
+\usepackage{graphbox}
 
 %\usepackage{tikz-cd}
 
@@ -509,9 +510,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % %The length of this alphabet is \the\mylen. % print in document
 % \typeout{The length of the normal alphabet is \the\mylen} % put in log file
 % \endgroup  % end the grouping
-% \setlxvchars[\normalfont] %313.3632pt for a 66-characters line
+\setlxvchars[\normalfont] %313.3632pt for a 66-characters line
 % \setxlvchars[\normalfont]
-\setlength{\lxvchars}{28pc}
+% \setlength{\lxvchars}{28pc}
 % \typeout{lxvchars is \the\lxvchars}
 % \setlength{\trimtop}{0pt}
 % \setlength{\trimedge}{\stockwidth}
@@ -525,16 +526,16 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % The length of the normalsize alphabet is 159.6719pt - 12pt = 30.3586pc
 % Bringhurst gives 32pc as boundary optimal with 69 ch per line
 % The length of the normalsize alphabet is 191.60612pt - 14pt = 35.8634pc
-\ifafour\settypeblocksize{*}{32pc}{1.618} % A4
+%\ifafour\settypeblocksize{*}{32pc}{1.618} % A4
 %\setulmargins{*}{*}{1.667}%gives 5/3 margins % 2 or 1.667
-%\else\settypeblocksize{*}{26pc}{1.618}% nearer to a 66-line newpx and preserves GR
-\else\settypeblocksize{*}{27pc}{1.414}% nearer to a 70-line newpx and preserves sqrt2
-\fi
+\settypeblocksize{*}{\lxvchars}{1.618}% nearer to a 66-line newpx and preserves GR
+%\settypeblocksize{*}{27pc}{1.414}% nearer to a 70-line newpx and preserves sqrt2
+%\fi
 \setulmargins{*}{*}{1}%gives equal margins
-\setlrmargins{*}{*}{*}
+\setlrmargins{*}{*}{3}
 \setheadfoot{\onelineskip}{2.5\onelineskip}
 \setheaderspaces{*}{2\onelineskip}{*}
-\setmarginnotes{2ex}{10mm}{0pt}
+\setmarginnotes{\parindent}{0.33\textwidth}{1em}
 \checkandfixthelayout[nearest]
 %%% End layout
 %% this fixes missing white spaces
@@ -581,6 +582,10 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 %%% Headers, footers, pagestyle
 \copypagestyle{manaart}{plain}
+% \newlength{\newheadwidth}
+% \setlength{\newheadwidth}{\headwidth}
+% \addtolength{\newheadwidth}{\marginparsep}
+% \addtolength{\newheadwidth}{\marginparwidth}
 \makeheadrule{manaart}{\headwidth}{0.5\normalrulethickness}
 \makeoddhead{manaart}{%
 {\footnotesize%
@@ -605,6 +610,10 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \makeoddfoot{plain}{}{\makebox[0pt]{\thepage}}{}
 \fi%typodisclaimtrue
 \makeoddhead{plain}{\scriptsize\reporthead}{}{}
+
+%\setmpjustification{\flushleftright}{\flushleftright}
+\setfloatadjustment{marginfigure}{\flushleftright}
+
 % \copypagestyle{manainitial}{plain}
 % \makeheadrule{manainitial}{\headwidth}{0.5\normalrulethickness}
 % \makeoddhead{manainitial}{%
@@ -627,8 +636,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % \makeheadrule{headings}{\headwidth}{0.5\normalrulethickness}
 % \makeoddfoot{headings}{}{\thepage}{}
 \makepsmarks{manaart}{%
-\createmark{section}{left}{shownumber}{}{. }
-\createmark{subsection}{right}{shownumber}{}{. }
+\createmark{chapter}{left}{shownumber}{}{. }
+\createmark{section}{right}{shownumber}{}{. }
 }
 \nouppercaseheads
 \pagestyle{manaart}
@@ -954,7 +963,7 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 \renewcommand*{\notenuminnotes}[1]{\footnotesize #1.\space}
 % \renewcommand{\prenotetext}{\begingroup\footnotesize}
 % \renewcommand{\postnotetext}{\endgroup}
-
+\sideparmargin{right}
 \begin{document}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
@@ -1021,12 +1030,12 @@ Until some decades ago, the 18th-century physical notions typically taught in in
 
 \smallskip
 
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{The achieved performances of atomic clocks and time
 transfer techniques imply that the definition of time scales
 and the clock comparison procedures must be considered
 within the framework of general relativity}}\sourceatright{\cites{petitetal2005}}}
-\end{wrapfigure}
+}
 That situation has changed today. Modern theories are an essential part of many everyday technologies, like nuclear reactors and the \furl{https://www.gps.gov}{Global Positioning System} (see the entertaining discussion in \cites[Project~A]{tayloretal2000}, and also \cites{petitetal2005,fliegeletal1996,ashby2002,muelleretal2008}); and they are required for developing new technological possibilities, from \furl{https://www.ibm.com/topics/quantum-computing}{quantum computers} to \furl{https://www.planetary.org/sci-tech/lightsail}{solar sails} (see for instance the \furl{https://www.cubesail.us}{CubeSail} mission). An engineering student (including communication and data engineering) may likely end up in a job that requires an understanding of modern physical notions. The diffusion of \furl{https://www.ibm.com/topics/large-language-models}{large language models} will moreover require future engineers who actually \textbf{understand} those physical notions, not little monkeys who have been trained to manipulate some equations and to throw some technobabble around. Automated large language models are faster, cheaper, and more precise in doing the latter kind of monkey activities. So why should one hire a human to do the same?
 
 While moving from the older to the newer notions often requires re-learning efforts and conceptual re-orientations, the move in the opposite direction is less demanding. The modern physical notions are more encompassing than their 18th-century parents. Their understanding leads to an understanding of their older counterparts as approximate and special cases. Students, moreover, have often been hearing quite early from mass media about the new notions; for instance about the equivalence of mass and energy. Owing to this early exposure, students sometimes ask very intelligent questions -- \enquote{\emph{should the mass of the body be included in its internal energy?}} -- when exposed to the old notions.
@@ -1083,12 +1092,12 @@ Many things can be said and have been said about science and physics. Rather tha
 
 % \setlength{\intextsep}{0ex}% with wrapfigure
 % \setlength{\columnsep}{2em}% with wrapfigure
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]{\color{green}%
 Example of two different formalisms expressing the same physical phenomenon%
 }
-\end{wrapfigure}
+}
 Welcome back! The only thing about physics that I need to say here is that physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms. These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other subjects are like this too).
 
 In these notes I'm choosing one particular formalism: the one that for me is the most easily \emph{visualizable}; because I believe that visualization can be beneficial in learning new things. Or maybe I'm choosing it just because I like it best. I encourage you to explore how the physics you've learned is expressed in other physics formalisms; maybe you'll like another physics formalism better.
@@ -1100,20 +1109,20 @@ The formalism we'll be using might be called \enquote{field theory}. Roughly spe
 It goes without saying that all these \enquote{physics languages} are to a great extent mathematical.
 
 One reason is that numbers allow us to convey information in a concise and precise way. Imagine you have to tell someone, who doesn't know
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 letters in which it is composed. It is written in the language of
 mathematics}}\sourceatright{\cites{galilei1623}}}
-\end{wrapfigure}
+}
 Bergen, where in Bergen you are right now, to within 10\,m. You can do that with a description, \enquote{\textellipsis\ and there's a building called so-and-so which looks like so-and-so\textellipsis}, which would be lengthy and tricky. Or you can just give two numbers: latitude and longitude:
 \begin{equation*}
   \num{60.36940},\ \num{5.3518} \ .
 \end{equation*}
 And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
-\end{wrapfigure}
+}
 But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way. All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
 
 I invite you again to read what many good texts say about the relationship between physics and mathematics. No point repeating here what has been said better elsewhere.
@@ -1181,12 +1190,10 @@ The measurement of some physical quantities consists in just one number with ass
 \section{Time}
 \label{sec:time}
 
-
-
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
   {\color{green}\enquote{\emph{%
         In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\sourceatright{\cites{kovalevskyetal2004}}}
-\end{wrapfigure}
+}
 \emph{Time} is a primitive quantity. We understand the notion of time intuitively, even if it's difficult to explain (that's why it's taken as primitive). In 1905, with the theory of relativity, part of our everyday intuition about this notion was seriously shaken. For many years afterwards our old intuition could still be used in practice and in applications. But the new, correct intuition is becoming more and more important in everyday life and technologies. For example, GPS navigation, which we use everyday from leisure activities such as hiking or sightseeing to more critical ones such as aeroplane landing, critically depend on the correct notion and intuition of time. Let's see how our traditional intuition goes astray with a concrete experiment.
 
 Here's Alice, Bob, and Charlie. They have extremely precise clocks built in exactly the same way. They stay very close to one another and synchronize their clocks. Still keeping close, they go around, maybe on an aeroplane or space ship, and all the time they check their clocks. They notice that their clocks stay perfectly synchronized all the time, no matter where they go and what they do.
@@ -1196,6 +1203,14 @@ At some point they separate, each one going around independently. One of them mi
 Alice and Bob at some point meet again, and compare their clocks. They see that their clocks aren't synchronized anymore; the difference could be as small as microseconds, or as large as years. In fact, if this time discrepancy is large, they would notice that they themselves have aged differently; so time discrepancy doesn't affect the clocks only. Let's say for concreteness that Alice's clock is ahead of Bob's, or equivalently that Bob's is behind Alice's. Note the following aspects:
 
 First, neither Alice or Bob can say \enquote{my clock was wrong}: neither has noticed anything strange about the \enquote{passage of time}.
+
+\marginpar{
+\footnotesize% with wrapfigure
+  {\color{green}\enquote{\emph{%
+        In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\sourceatright{\cites{kovalevskyetal2004}}}
+}
+
+
 
 Second, they might wonder what's the time on Charlie's clock. But Charlie is at some distance away. They could decide to contact Charlie via radio, say, and ask \enquote{what shows your clock right \emph{now}?}. But they would notice that there's a delay, even if extremely small, in the radio transmission; so it's unclear to what time would Charlie's answer apply. If we say \enquote{let's account for the radio-signal speed}, we see that there's a logical problem: speed is distance divided by time, and here we have a problem in exactly determining what's the \enquote{correct} time! So we would be reasoning in circles. Besides, even neglecting these difficulties, Charlie's answer could reveal a time that completely different from Alice's and from Bob's -- it could be years ahead or behind both of theirs!
 
@@ -1211,10 +1226,10 @@ But that's an imaginary world. In our world is the more complicated situation de
 
 The time measured by a specific observer is called the \emph{proper time} of that observer. Luckily we know more about how the proper times of separated observers can differ when they meet again. It turns out -- according to our current understanding -- that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and to matter around the universe, and on how much energy is contained in the regions they travel. The general theory of relativity gives us the equations determining any such proper-time differences.
 
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 {\color{green}\enquote{\emph{%
 The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} \num{4}~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
-\end{wrapfigure}
+}
 The situation depicted in the experiments above is real. It can be measured, for example, comparing initially synchronized clocks that have been put in aeroplanes flying in different directions. Most importantly, it affects everyday relevant technologies such as the Global Positioning System. Formulae from general relativity appear in your phone's GPS software; see for instance \sect~20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. It must also be taken into account in the establishment and synchronization of time in our everyday equipments:
 %\autocites[]{icwg1983_r2022}
 \begin{quote}\footnotesize
@@ -1231,13 +1246,18 @@ In most everyday situations for us, who live on or nearby Earth and move at spee
 measured with ordinary clocks or with our internal clocks. Consider a
 person walking \qty{10}{m} away from you and then immediately walking back
 to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize\centering% with wrapfigure
+will be \qty{19.999999999999999889}{s}, a difference of \qty{e-16}{s}, which is the error of an atomic clock. %%***add ref
+If human beings still exist in some decades or centuries, with space travel they will probably have to deal more and more with proper-time discrepancies also in everyday life.
+% \marginpar{\footnotesize\centering% with wrapfigure
+% \includegraphics[width=\linewidth]{net_rotations.png}
+% \\%
+% \url{https://xkcd.com/2882}
+% }
+\marginpar{\footnotesize\centering% with wrapfigure
 \includegraphics[width=\linewidth]{net_rotations.png}
 \\%
 \url{https://xkcd.com/2882}
-\end{wrapfigure}
-will be \qty{19.999999999999999889}{s}, a difference of \qty{e-16}{s}, which is the error of an atomic clock. %%***add ref
-If human beings still exist in some decades or centuries, with space travel they will probably have to deal more and more with proper-time discrepancies also in everyday life.
+}
 
 For the most part of the rest of these notes, we won't need to deal with differences in proper time. But I recommend that you keep present how time really works, and that these small time discrepancies exist and occur all the time along your \emph{worldline}.
 
@@ -1366,12 +1386,12 @@ Electric charge is probably easily grasped today, and doesn't need much comments
 Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
 
 
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 %\includegraphics[width=\linewidth]{magnflux1.png}
-\includegraphics[width=\linewidth]{magnflux2.png}
+\includegraphics[align=t,width=\linewidth]{magnflux2.png}
 \\{\color{green}\enquote{\emph{%
 sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}}
-\end{wrapfigure}
+}
 The electromagnetic field is most commonly represented by vectors associated to each point in space. But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}).
 
 Electromagnetism and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
@@ -1387,12 +1407,6 @@ The notion of \emph{mass} is also intuitive in our everyday life; we associate i
 % relativity says that there's a strong connection between these two associations.
 From Relativity Theory and experimentally we know that \emph{energy and mass are the same thing}, and in these notes we shall fully take this point of view.
 
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
-\includegraphics[width=\linewidth]{atomicbomb.jpg}
-\\[\jot]%
-{\color{green}\emph{Hydrogen Bomb Test, 1954%
-}\sourceatright{\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History}}}
-\end{wrapfigure}
 Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass. The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
 
 
@@ -1410,10 +1424,16 @@ If we now weigh the rubber band again, while stretched, we observe a mass of app
   \qty{0.000500000000000003}{kg} \ .
 \end{equation*}
 The extremely small difference of \qty{3e-18}{kg} from the initial mass is exactly the elastic energy that we provided by stretching. Energy has weight; energy is mass.
-% \begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*%\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
+\includegraphics[align=t,width=\linewidth]{atomicbomb.jpg}
+\\[\jot]%
+{\color{green}\emph{Hydrogen Bomb Test, 1954%
+}\sourceatright{\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History}}}
+}
+% \marginpar{%\footnotesize% with wrapfigure
 % \includegraphics[width=\linewidth]{rubberband.png}
 % {}
-% \end{wrapfigure}
+% }
 
 If we set the unstretched band in motion, so that it acquires a kinetic energy of \qty{0.2}{J}, and we could weigh it while in motion (but without moving the weighing scale), we would observe a mass of approximately
 $$\qty{0.000500000000000002}{kg} \ .$$
@@ -1480,14 +1500,21 @@ So, in a sunny day, when you close your eyes and feel the Sun's heat on your fac
 
 Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperature}, and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{joules}$/$\emph{kelvins} (\unit{J/K})}. From this definition it would seem that entropy is derived from temperature. However, although \textsf{temperature} is taken as primitive by the SI, the \furl{https://doi.org/10.1351/goldbook.K03374}{definition of temperature} actually depends on a fixed value of \furl{https://doi.org/10.1351/goldbook.B00695}{\emph{Boltzmann's constant}}, which has the dimension of \textsf{entropy}.
 
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*% with wrapfigure
+Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading. One particularly \emph{bad} intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
+% \marginpar{% with wrapfigure
+% \includegraphics[width=\linewidth]{entropy_low.png}\\
+% \includegraphics[width=\linewidth]{entropy_high.png}
+% \\[\jot]\footnotesize%
+% {\color{green}Configurations from a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state.%
+% \sourceatright{\parencites{styer2000}}}
+% }
+\sidepar{% with wrapfigure
 \includegraphics[width=\linewidth]{entropy_low.png}\\
 \includegraphics[width=\linewidth]{entropy_high.png}
 \\[\jot]\footnotesize%
 {\color{green}Configurations from a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state.%
 \sourceatright{\parencites{styer2000}}}
-\end{wrapfigure}
-Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading. One particularly \emph{bad} intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
+}
 
 In these notes we shall rely on the idea that \emph{entropy expresses a limit on the flux of energy into matter}. Said in simpler but more imprecise words, entropy is a bound on how fast we can heat up a body. We shall develop this idea further later.
 
@@ -1671,12 +1698,12 @@ Balance laws are intuitively and visually easy to grasp. The archetype is as fol
 
 Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{balance_plot.pdf}
 % \\[\jot]%
 % {\color{green}\enquote{\emph{%
 % }}\sourceatright{\cites{}}}
-\end{wrapfigure}
+}
 Starting from that particular time, imagine the closed surface moving and deforming, changing shape and size but remaining closed -- no holes or cuts -- through time, until a later time $t_{2}$. At this time we shall have a closed surface that can be different from the initial one, and at a different position. We could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
 
 The initial and final surfaces and the sequence in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
@@ -2135,12 +2162,12 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 \iffalse
-\begin{wrapfigure}[1]{r}[\wrapoverhang]{\wfwidth}*\footnotesize% with wrapfigure
+\marginpar{\footnotesize% with wrapfigure
 \includegraphics[width=\linewidth]{eg_languages.png}
 \\[\jot]%
 {\color{green}\enquote{\emph{%
 }}\sourceatright{\cites{}}}
-\end{wrapfigure}
+}
 \fi
 
 
