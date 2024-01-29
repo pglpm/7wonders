@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-29T20:35:02+0100
+%% Last-Updated: 2024-01-29T22:18:03+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -414,7 +414,7 @@ citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,
 \ifarxiv\else\addbibresource{portamanabib.bib}\fi
 \renewcommand{\bibfont}{\footnotesize}
 %\appto{\citesetup}{\footnotesize}% smaller font for citations
-\defbibheading{bibliography}[\bibname]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}%\markboth{#1}{#1}
+\defbibheading{bibliography}[\bibname]{\chapter*{#1}\label{sec:biblio}\addcontentsline{toc}{chapter}{#1}%\markboth{#1}{#1}
 }
 \newcommand*{\citep}{\footcites}
 \newcommand*{\citey}{\footcites}%{\parencites*}
@@ -668,7 +668,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \Large\sffamily%
 }
 \postauthor{\par\end{center}}
-\predate{\DTMsetdatestyle{mydate}\begin{center}\normalfont}
+\predate{\DTMsetdatestyle{mydate}\begin{center}\footnotesize}
 \postdate{\par\end{center}}
 
 \setfloatadjustment{figure}{\footnotesize}
@@ -729,7 +729,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % \hspace*{\stretch{1}}%
 \parbox{1\linewidth}%\makebox[0pt][c]%
 {\protect\centering Luca %P.G.L.  Porta Mana
- \href{https://orcid.org/0000-0002-6070-0784}{\protect\includegraphics[scale=0.16]{pglpm_latex/orcid_32x32.png}}%
+ \href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}%
 % \\\footnotesize
 % Western Norway University of Applied Sciences%
 % \quad\epost{\email{pgl}{portamana.org}}%
@@ -947,7 +947,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \newtcolorbox{myframe}{enhanced, colback=white, colframe=midgrey, boxrule=0.5pt, breakable, after={\smallskip}}
 
-\newtcolorbox[auto counter, number within=section]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
 \newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small,
 fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
@@ -957,7 +957,7 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 \newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=section]{extra}[1][]{enhanced, width=0.9\linewidth, center, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter,#1}
+\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, width=0.9\linewidth, center, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -969,8 +969,9 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 % % \setlength{\columnsep}{2em}% with wrapfigure
 
 \makepagenote
-\renewcommand*{\notedivision}{\clearpage\section*{URLs for chapter \thechapter}}
-\renewcommand*{\pagenotesubhead}[3]{}
+\renewcommand*{\notedivision}{}
+\renewcommand*{\pagenotesubhead}[3]{\clearpage\section*{URLs for chapter #2}}
+\renewcommand*{\pagenotesubheadstarred}[3]{\clearpage\section*{URLs for chapter \textit{#3}}}
 \renewcommand*{\notenuminnotes}[1]{\footnotesize #1.\space}
 % \renewcommand{\prenotetext}{\begingroup\footnotesize}
 % \renewcommand{\postnotetext}{\endgroup}
@@ -1030,7 +1031,7 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 
 \newpage
 \setcounter{chapter}{-1}
-\chapter{Introduction}
+\addchap{Introduction}
 \label{sec:intro}
 
 % \epigraphtextposition{flushright}
@@ -1055,7 +1056,7 @@ within the framework of general relativity}}\sourceatright{\cites{petitetal2005}
 }
 That situation has changed today. Modern theories are an essential part of many everyday technologies, like nuclear reactors and the \furl{https://www.gps.gov}{Global Positioning System} (see the entertaining discussion in \cites[Project~A]{tayloretal2000}, and also \cites{petitetal2005,fliegeletal1996,ashby2002,muelleretal2008}); and they are required for developing new technological possibilities, from \furl{https://www.ibm.com/topics/quantum-computing}{quantum computers} to \furl{https://www.planetary.org/sci-tech/lightsail}{solar sails} (see for instance the \furl{https://www.cubesail.us}{CubeSail} mission). An engineering student (including communication and data engineering) may likely end up in a job that requires an understanding of modern physical notions. The diffusion of \furl{https://www.ibm.com/topics/large-language-models}{large language models} will moreover require future engineers who actually \textbf{understand} those physical notions, not little monkeys who have been trained to manipulate some equations and to throw some technobabble around. Automated large language models are faster, cheaper, and more precise in doing the latter kind of monkey activities. So why should one hire a human to do the same?
 
-While moving from the older to the newer notions often requires re-learning efforts and conceptual re-orientations, the move in the opposite direction is less demanding. The modern physical notions are more encompassing than their 18th-century parents. Their understanding leads to an understanding of their older counterparts as approximate and special cases. Students, moreover, have often been hearing quite early from mass media about the new notions; for instance about the equivalence of mass and energy. Owing to this early exposure, students sometimes ask very intelligent questions -- \enquote{\emph{should the mass of the body be included in its internal energy?}} -- when exposed to the old notions.
+While moving from the older to the newer notions often requires re-learning efforts and conceptual re-orientations, the move in the opposite direction is less demanding. The modern physical notions are more encompassing than their 18th-century parents. Their understanding leads to an understanding of their older counterparts as approximate and special cases. Students, moreover, have often been hearing quite early from mass media about the new notions; for instance about the equivalence of mass and energy. Owing to this early exposure, students sometimes ask very intelligent and deep questions -- such as \enquote{\emph{should the mass of the body be included in its internal energy?}} -- when exposed to the old notions.
 
 
 
@@ -1065,11 +1066,11 @@ While moving from the older to the newer notions often requires re-learning effo
 
 It is therefore high time that introductory Bachelor physics courses be based on modern physical notions. Students should not be required to waste time and mental effort to learn something that they must unlearn and re-learn, only because of academia's and teachers' inertia.
 
-Some teachers say \enquote{it would be too difficult for students to understand modern ideas, because they are too familiar with the old ones. This is why we need to teach the old and slightly incorrect ideas first, and correct them later}. I think that this kind of reasoning is scientifically unacceptable and leads to a vicious circle. Students are unfamiliar with new notions only because they were raised by a generation who was taught the old. New notions become familiar after a couple of generations learn them early. This is obvious if you consider that notions such as \enquote{energy}, \enquote{electromagnetic field}, \enquote{vector} are very familiar today, but were absolutely \emph{un}familiar a couple centuries ago. If we had always taught what's familiar, then we would still be teaching about the elements \emph{air, earth, water, fire}, and that the Sun revolves around the Earth. Arguments in favour of teaching old notions are just pretexts for laziness.
+Some teachers say \enquote{it would be too difficult for students to understand modern ideas, because they are too familiar with the old ones. This is why we need to teach the old and slightly incorrect ideas first, and correct them later}. I think that this kind of reasoning is scientifically unacceptable and leads to a vicious circle. Students are unfamiliar with new notions only because they were raised by a generation who was taught old ones. New notions become familiar only after a couple of generations learn them at an early stage. This is obvious if you consider that notions such as \enquote{energy}, \enquote{electromagnetic field}, \enquote{vector} are very familiar today, but were absolutely \emph{un}familiar a couple centuries ago. If we had always taught what's familiar, then we would still be teaching about the elements \emph{air, earth, water, fire}, and that the Sun revolves around the Earth. Arguments in favour of teaching old notions are for the most part just pretexts for laziness.
 
 \medskip
 
-The present lecture notes are an experiment and attempt to introduce classical mechanics and thermodynamics from modern physical notions. The core equations remain the same, but the students should have a broader conception of their meaning and of the symbols that appear in them.
+The present lecture notes are an experiment and an attempt to introduce classical mechanics and thermodynamics from modern physical notions. The core equations remain the same, but the students should have a broader conception of their meaning and of the symbols that appear in them.
 
 
 
@@ -1080,9 +1081,83 @@ The present lecture notes are an experiment and attempt to introduce classical m
 %
 
 \printpagenotes*
-
 \clearpage
+\chapter{Guide to the student}
+\label{sec:guide}
 
+\addsec{Maths prerequisites}
+\label{sec:guide_maths}
+
+\begin{itemize}
+\item Working familiarity with algebra, its operations, and their properties, including square roots; knowledge of exponentials and logarithms is useful.
+\item Working familiarity with solving equations and inequalities, linear and non-linear.
+\item Working familiarity with the study of functions of one real variable.
+\item Working familiarity with derivatives.
+\item Understanding of what an integral is, even if you won't be required to solve integrals.
+\item Working familiarity with vector calculus.
+\item Some familiarity with functions of many variables.
+\item Understanding of what partial derivatives are.
+\end{itemize}
+
+
+\addsec{Physics prerequisites}
+\label{sec:guide_physics}
+
+Just some vague reminiscences of secondary/high-school physics should be enough.
+
+It can be beneficial if you are familiar with basic physics notions such as \emph{velocity}, \emph{mass}, \emph{force}, and similar ones; and if you vaguely remember about Newton's laws.
+
+\addsec{Structure of this text}
+\label{sec:guide_text}
+
+\addsubsec{Graphical devices}
+
+The text includes the following graphical devices:
+
+\begin{itemize}
+\item Important notions:
+  \begin{definition}{Something}
+    This is a definition or explanation of Something.
+  \end{definition}
+\item Warnings and important points that require careful thinking:
+  \begin{warning}[Something]
+    Something you must be careful about.
+  \end{warning}
+\item Exercises:
+  \begin{exercise}
+    This isn't an exercise
+  \end{exercise}
+\item Possible objections you might be thinking about:
+  \begin{critique}[This isn't right!]
+    I have an objection here.
+  \end{critique}
+\item Discussions and connections with more advanced physics:
+  \begin{extra}{How things really are in quantum physics}
+    Just for your curiosity, you don't need to remember any of this.
+  \end{extra}
+\end{itemize}
+
+\addsubsec{Typographic conventions}
+
+\begin{itemize}
+\item Important notions and definitions are also given in \textbf{boldface}.
+
+\item Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}; you also recognize them because they have a little footnote number. The URLs are reported at the end of each chapter at the corresponding footnotes, just in case you're reading a printed copy and wonder what the link was.
+
+\item Bibliographic references are given like this: \cites{einstein1905c}, and reported in the final Bibliography on page~\pageref{sec:biblio}.
+
+
+\item
+\marginpar{\footnotesize% with wrapfigure
+\includegraphics[align=t,width=\linewidth]{saitama_image.png}
+\\[1.5\jot]{\color{green}%
+  This is an image of Saitama, which actually has nothing to do with the text on the left.}
+}%
+Pictures, graphs, or quotes related to the material are displayed on the right.
+\end{itemize}
+
+\printpagenotes*
+\clearpage
 \chapter{Physics?}
 \label{sec:physics_general}
 
@@ -1568,7 +1643,7 @@ Just like momentum, angular momentum is something that is associated not only wi
 }%
 You may wonder: \enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}. The answer is yes, we really need it, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and by momentum (\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
 Second, for some physical phenomena, for example involving liquid \furl{https://www.britannica.com/science/polymer}{polymers},
-% https://www.britannica.com/science/polymer 
+% https://www.britannica.com/science/polymer
 elementary particles, or electromagnetic radiation, the angular momentum includes an additional part, called \emph{spin} or \emph{intrinsic angular momentum}, that is not related to linear momentum. In the present notes we shall not use this more general kind of angular momentum.
 
 % \mynotew{More to be written}
