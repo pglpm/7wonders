@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-29T15:42:52+0100
+%% Last-Updated: 2024-01-29T20:31:01+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -62,7 +62,7 @@ british%
 % \newunicodechar{Ȳ}{\=Y}
 % \newunicodechar{ȳ}{\=y}
 
-\newcommand*{\bmmax}{0} % reduce number of bold fonts, before font packages
+\newcommand*{\bmmax}{3} % reduce number of bold fonts, before font packages
 \newcommand*{\hmmax}{0} % reduce number of heavy fonts, before font packages
 
 \usepackage{textcomp}
@@ -375,6 +375,10 @@ british%
 \colorlet{shadecolor}{lgrey}
 
 \usepackage{bm}
+
+\usepackage{pdfrender}
+\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\textbf{#1}}}
+\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\boldsymbol{#1}}}
 
 \usepackage{microtype}
 
@@ -1528,31 +1532,62 @@ Compare this formula with $E=mc^{2}$. From this point of view, you can think of 
 Angular momentum, also called \emph{moment of momentum} or \emph{rotational momentum}, is a \emph{vector} quantity, with SI dimension $\textsf{energy}\times\textsf{time}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}$ (\unit{J\cdot s}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}^{2}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}^{2}/\emph{seconds}$ (\unit{kg\cdot m^2/s}). It is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components.
 
 Angular momentum is perhaps an even subtler quantity than momentum. Luckily there's a way of calculating it in terms of momentum, so even if we don't fully grasp it intuitively we can still calculate it. If momentum is denoted by the vector $\bm{P}=(P_{x},P_{y},P_{z})$ and the position vector by $\yr=(x,y,z)$, then the angular momentum $\bm{L}=(L_{x}, L_{y}, L_{z})$ \emph{with respect to the origin of coordinates} is given by
-\begin{equation}
-  \label{eq:ang_momentum_def}
-  \begin{gathered}
-    \bm{L} = \yr \times \bm{P} 
-    \\
-    \text{or equivalently}\qquad\left\{\enspace
+\begin{subequations}
+  \begin{equation}
+    \label{eq:ang_momentum_def}
+    \begin{gathered}
+      \bm{L} = \yr \times \bm{P}
+      \\
+      \text{or equivalently}\qquad\left\{\enspace
+        \begin{aligned}
+          L_{x} & = y\,P_{z} - z\,P_{y}
+          \\    L_{y} & = z\,P_{x} - x\,P_{z}
+          \\    L_{z} & = x\,P_{y} - y\,P_{x}
+        \end{aligned}\right.
+    \end{gathered}
+  \end{equation}
+  Instead of calling the components \enquote{$(L_{x}, L_{y}, L_{z})$}, we can also call them \enquote{$(L_{yz}, L_{zx}, L_{xy})$}, as some books do. The latter names make the formulae above easier to remember:
+  \begin{equation}
+    \label{eq:ang_momentum_def_bis}
+\left\{\enspace
     \begin{aligned}
-      L_{x} &\equiv L_{yz} = y\,P_{z} - z\,P_{y}
-      \\    L_{y} &\equiv L_{zx} = z\,P_{x} - x\,P_{z}
-      \\    L_{z} &\equiv L_{xy} = x\,P_{y} - y\,P_{x}
+      L_{yz} & = y\,P_{z} - z\,P_{y}
+      \\    L_{zx} & = z\,P_{x} - x\,P_{z}
+      \\    L_{xy} & = x\,P_{y} - y\,P_{x}
     \end{aligned}\right.
-  \end{gathered}
 \end{equation}
-The components $(L_{x}, L_{y}, L_{z})$ can also be denoted $(L_{yz}, L_{zx}, L_{xy})$ instead, as shown in the formulae above; for some people they are easier to remember. Choose whichever you prefer.
+\end{subequations}
+choose whichever you prefer.
 
-Just like momentum, angular momentum is something that is associated not only to ordinary bodies (matter), but also to charge and magnetic flux, and therefore electromagnetic radiation.
+Just like momentum, angular momentum is something that is associated not only with ordinary bodies (matter), but also with charge and magnetic flux, and therefore electromagnetic radiation.
 
-You may wonder: \enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}. The answer is yes, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and momentum (\cites{truesdell1963b_r1968} tells how this was discovered). % \mynotew{rephrase this}
-Second, in some theories angular momentum includes an additional part that is not related to linear momentum; such theories are for instance necessary when describing materials like \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals} and some electromagnetic phenomena. In the present notes we shall not use this more general definition of angular momentum.
+\marginpar{\footnotesize% with wrapfigure
+\includegraphics[align=b,width=\linewidth]{polymer.png}
+\\\includegraphics[align=c,width=\linewidth]{polymer2.png} \\[\jot]%
+{\color{green}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).}
+}%
+You may wonder: \enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}. The answer is yes, we really need it, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and by momentum (\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
+Second, for some physical phenomena, for example involving liquid \furl{https://www.britannica.com/science/polymer}{polymers},
+% https://www.britannica.com/science/polymer
+elementary particles, or electromagnetic radiation, the angular momentum includes an additional part, called \emph{spin} or \emph{intrinsic angular momentum}, that is not related to linear momentum. In the present notes we shall not use this more general kind of angular momentum.
 
 % \mynotew{More to be written}
 
-\section{Some additional curiosities about energy, momentum, angular momentum}
+\section{What are energy, momentum, angular momentum?}
 \label{sec:curios_energymom}
 
+From the discussions and formulae above, it seems that \energym, momentum, angular momentum are related quite closely.
+
+Indeed Relativity Theory shows that they are different aspects of one single geometric object, called the \emph{energy-momentum tensor}. They are like its \enquote{shadows} (almost literally: they are projections of that object). This is also why their values get somehow intermixed if we change our system of coordinates. %
+
+General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}.
+%
+\marginpar{\footnotesize% with wrapfigure
+\includegraphics[align=t,width=\linewidth]{curvature1.png}
+\\[\jot]%
+{\color{green}Energy, momentum, angular momentum are particular curvatures of spacetime}%
+}%
+They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
 
 
 \section{Entropy}
@@ -1564,8 +1599,7 @@ Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperat
 \includegraphics[align=t,width=\linewidth]{entropy_low.png}\\
 \includegraphics[align=t,width=\linewidth]{entropy_high.png}
 \\[\jot]\footnotesize%
-{\color{green}Configurations from a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state.%
-\sourceatright{\parencites{styer2000}}}
+{\color{green}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
 }
 Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading. One particularly \emph{bad} intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
 
@@ -1587,11 +1621,8 @@ We shall see later that the physical laws for entropy have also a different stat
 Besides the seven principal quantities, other auxiliary quantities appear in some physical theories. Important examples are \textbf{temperature} and \textbf{metric}. Most auxiliary quantities don't have the \enquote{stuff-like} properties of the seven principal quantities. For instance, we cannot ask \enquote{what's the total amount of temperature in this region?}. We shall later discuss and use some auxiliary quantities, especially temperature.
 
 
-
-\clearpage
-
 The dimensions, units, and scalar or vector character of these quantities are summarized in table~\ref{tab:units}.
-\begin{table}[bt]
+\begin{table}[b]
   \centering
   \begin{tabular}{lll}
     \hline\\
@@ -1607,19 +1638,19 @@ The dimensions, units, and scalar or vector character of these quantities are su
     \\[\jot]\color{redpurple}
     Electric charge&\color{redpurple}\textsf{electric charge}&\color{redpurple}\emph{coulomb}\;\unit{C}
     \\[\jot]\color{red}
-    \textbf{Magnetic flux}&\color{red}\textsf{magnetic flux}&\color{red}\emph{weber}\;\unit{Wb}
+    \textxbf{Magnetic flux}&\color{red}\textsf{magnetic flux}&\color{red}\emph{weber}\;\unit{Wb}
     \\[\jot]\color{bluepurple}
     Energy&\color{bluepurple}\parbox[t]{10em}{\textsf{energy},\\[0\jot] \textsf{mass}}&\color{bluepurple}\parbox[t]{5em}{\emph{joule}\;\unit{J},\\[0\jot] \emph{kilogram}\;\unit{kg}}
     \\[5\jot]\color{blue}
-    \textbf{Momentum}&\color{blue}\parbox[t]{10em}{\textsf{mass$\cdot$length$/$time},\\[0\jot] \textsf{energy$\cdot$time$/$length}}&\color{blue}\parbox[t]{5em}{\unit{kg\cdot m/s},\\[0\jot] \unit{J\cdot s/m}}
+    \textxbf{Momentum}&\color{blue}\parbox[t]{10em}{\textsf{mass$\cdot$length$/$time},\\[0\jot] \textsf{energy$\cdot$time$/$length}}&\color{blue}\parbox[t]{5em}{\unit{kg\cdot m/s},\\[0\jot] \unit{J\cdot s/m}}
     \\[5\jot]\color{yellow}
-    \textbf{Angular momentum}&\color{yellow}\parbox[t]{10em}{\textsf{mass$\cdot$length$^{2}/$time},\\[0\jot] \textsf{energy$\cdot$time}}&\color{yellow}\parbox[t]{5em}{\unit{kg\cdot m^2/s},\\[0\jot] \unit{J\cdot s}}
+    \textxbf{Angular momentum}&\color{yellow}\parbox[t]{10em}{\textsf{mass$\cdot$length$^{2}/$time},\\[0\jot] \textsf{energy$\cdot$time}}&\color{yellow}\parbox[t]{5em}{\unit{kg\cdot m^2/s},\\[0\jot] \unit{J\cdot s}}
     \\[5\jot]\color{midgrey}
     Entropy&\color{midgrey}\textsf{energy$/$temperature}&\color{midgrey}\unit{J/K}
     \\[2\jot]
     \hline
   \end{tabular}
-  \caption{Dimensions and units of the main physical quantities used in these notes. Quantities in \textbf{boldface} are vectors, the others are scalars}\label{tab:units}
+  \caption{Dimensions and units of the main physical quantities used in these notes. Quantities in \textxbf{boldface} are vectors, the others are scalars}\label{tab:units}
 \end{table}
 % \begin{table}[tb]
 %   \centering
@@ -2506,6 +2537,12 @@ solution-name = Answer ,
 exercise-template = tcolorbox ,
 solution-template = tcolorbox
 }
+
+----
+density: Q/V
+flux, flow: Q(area)/t
+flux density: Q(area)/(A.t)
+or surface ... density
 
 
 %%% Local Variables: 
