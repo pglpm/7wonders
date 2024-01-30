@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-29T22:18:03+0100
+%% Last-Updated: 2024-01-30T21:14:40+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -977,6 +977,11 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 % \renewcommand{\postnotetext}{\endgroup}
 \sideparmargin{right}
 
+% \newlength{\pagewidth}
+% \setlength{\pagewidth}{\linewidth}
+% \addtolength{\pagewidth}{\marginparsep}
+% \addtolength{\pagewidth}{\marginparwidth}
+
 \begin{document}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
@@ -1048,7 +1053,7 @@ Until some decades ago, the 18th-century physical notions typically taught in in
 
 \smallskip
 
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 {\color{green}\enquote{\emph{The achieved performances of atomic clocks and time
 transfer techniques imply that the definition of time scales
 and the clock comparison procedures must be considered
@@ -1110,11 +1115,12 @@ It can be beneficial if you are familiar with basic physics notions such as \emp
 \addsec{Structure of this text}
 \label{sec:guide_text}
 
-\addsubsec{Graphical devices}
+\addsubsec{\faIcon{hand-point-right}\enspace Graphical devices}
 
 The text includes the following graphical devices:
-
 \begin{itemize}
+\item Important notions and definitions are also given in \textbf{boldface}.
+
 \item Important notions:
   \begin{definition}{Something}
     This is a definition or explanation of Something.
@@ -1137,24 +1143,49 @@ The text includes the following graphical devices:
   \end{extra}
 \end{itemize}
 
-\addsubsec{Typographic conventions}
+\addsubsec{\faIcon{hand-point-right}\enspace Side pictures and quotes}
 
-\begin{itemize}
-\item Important notions and definitions are also given in \textbf{boldface}.
+\marginpar{\footnotesize%
+  {\centering\includegraphics[align=b,width=0.5\linewidth]{saitama_image.png}
 
-\item Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}; you also recognize them because they have a little footnote number. The URLs are reported at the end of each chapter at the corresponding footnotes, just in case you're reading a printed copy and wonder what the link was.
-
-\item Bibliographic references are given like this: \cites{einstein1905c}, and reported in the final Bibliography on page~\pageref{sec:biblio}.
-
-
-\item
-\marginpar{\footnotesize% with wrapfigure
-\includegraphics[align=t,width=\linewidth]{saitama_image.png}
-\\[1.5\jot]{\color{green}%
+  }
+  {\color{green}%
   This is an image of Saitama, which actually has nothing to do with the text on the left.}
 }%
 Pictures, graphs, or quotes related to the material are displayed on the right.
+
+
+
+\addsubsec{\faIcon{hand-point-right}\enspace Hyperlinks and bibliography}
+
+Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}; you also recognize them because they have a little footnote number. The links' URLs are listed at the end of each chapter, just in case you're reading a printed copy and wonder what the link was.
+
+\medskip
+
+The text gives bibliographic references, like \enquote{\cites{einstein1905c}}, to scientific literature. The references are listed in the final Bibliography on page~\pageref{sec:biblio}.
+
+These references are not part of the course and don't need to be \enquote{studied}. They are given for two reasons:
+\begin{itemize}
+\item For your own curiosity.
+
+\item 
+\marginpar{\raggedright\footnotesize%
+{\color{green}\emph{%
+\enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}}
+\\[\jot](attributed to Gautama Buddha)}
+}%
+To back up what's written in the text.
+In science you should not believe something just because you've read it somewhere. You should, as much as possible, go and check \emph{for yourself} \emph{how the logic behind the statement is proved} and \emph{what is the experimental evidence behind the statement}.
 \end{itemize}
+
+\addsubsec{\faIcon{hand-point-right}\enspace Notation and terminology}
+
+Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
+
+
+
+
+
 
 \printpagenotes*
 \clearpage
@@ -1170,7 +1201,7 @@ We can do these astonishing things thanks to our understanding of how the world 
 
 \medskip
 
-Many things can be said and have been said about science and physics. Rather than repeating what's been already written in many excellent books, I invite you to take a break here and go read their introductions. Choose as you please; don't limit yourself to popular books; compare what they say.
+Many things can be said and have been said about science and physics. Rather than repeating what's been already written in many excellent books, I invite you to take a break here and go read their introductions. Choose as you please; compare what they say; don't limit yourself to popular books.
 
 \begin{center}
   \textellipsis
@@ -1182,14 +1213,20 @@ Many things can be said and have been said about science and physics. Rather tha
 \section{Several possible formalisms or \enquote{languages}}
 \label{sec:languages}
 
-Welcome back! The only thing about physics that I need to say here is that physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms.
-\marginpar{\footnotesize% with wrapfigure
-\includegraphics[align=t,width=\linewidth]{eg_languages.png}
-\\[1.5\jot]{\color{green}%
-Example of two different formalisms (one per line) expressing the same physical phenomenon%
+% Welcome back! The only thing about physics that I need to say here is that
+Physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms.
+\marginpar{\normalsize%
+  \begin{gather*}
+    \color{red}\delt\!\!\int\!\!L\,\di t = 0 \quad L=\frac12 m v^{2}
+    \\
+    \color{blue}\bm{F}=\frac{\di}{\di t}m\bm{v} \quad \bm{F}=0
+  \end{gather*}
+%\includegraphics[align=t,width=\linewidth]{eg_languages.png}
+{\footnotesize\color{green}%
+Example of two different formalisms (\textcolor{red}{red}, \textcolor{blue}{blue}) expressing the same physical phenomenon.\par%
 }
 }
-These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other subjects are like this too).
+These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other scientific subjects are like this too).
 
 In these notes I'm choosing one particular formalism: the one that for me is the most easily \emph{visualizable}; because I believe that visualization can be beneficial in learning new things. Or maybe I'm choosing it just because I like it best. I encourage you to explore how the physics you've learned is expressed in other physics formalisms; maybe you'll like another physics formalism better.
 
@@ -1197,7 +1234,7 @@ The formalism we'll be using might be called \enquote{field theory}. Roughly spe
 
 \medskip
 
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 {\color{green}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 letters in which it is composed. It is written in the language of
 mathematics}}\sourceatright{\cites{galilei1623}}}
@@ -1212,7 +1249,7 @@ Bergen, where in Bergen you are right now, to within 10\,m. You can do that with
 And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
 But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way.
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 {\color{green}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
 }
 All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
@@ -1260,10 +1297,39 @@ The topics of measurement and physical dimensions, which are studied in \emph{me
 
 The measurement of some physical quantities consists in just one number with associated physical dimension; we shall call such quantity a \textbf{scalar}. The measurement of other physical quantities consists instead in a triplet of numbers with associated physical dimension; we shall call such quantity a \textbf{vector}.
 \begin{warning}[What's scalar or vector depends on the theory]
-  \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definition used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
+  \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definitions used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
 \end{warning}
 
 
+\section{What is \enquote{fundamental} physics?}
+\label{sec:fundamental_physics}
+
+But what's the \enquote{ultimate} goal of physics? What's \enquote{fundamental} physics? The answer to this question is again subjective -- also in this case physics lets you express your proclivities and personality. In the history of physics one can probably identify two main conceptions of \enquote{fundamental} physics.
+
+For some physicists it is about finding the ultimate building blocks, so that one day we can say \enquote{\textellipsis and these are the constituents, and they obey these equations}. The history of physics seems to show that this goal is overturned every few generations. And yet every generation says \enquote{\emph{Now} we almost have the complete picture -- it's right behind the corner. It's true that previous generations thought they almost had it, and turned out to be wrong. But \emph{this time} is different, this time we have the real deal!} See \fig~\ref{fig:chew1} for a satirical depiction of this process by the son of the theoretical and particle physicist \furl{https://www.physics.lbl.gov/rememberinggeoffreychew/}{Geffrey Chew}. For this reason some physicists are a little sceptical about this goal; maybe it's a never-ending structure, with surprises at every deeper look.
+
+So for other physicists fundamental physics is about finding some point of view or mathematical structure that is rich enough to make useful predictions, and yet flexible enough to accommodate any new patterns or objects that we might discover. In a manner of speaking, it is about finding \enquote{patterns of patterns} or \enquote{laws about physical laws}.
+
+The two conceptions above are not mutually exclusive, and both are always pursued, even if time-changing fashions may emphasize the one or the other.
+
+In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between physical laws that we'll draw in \chap~\ref{sec:laws}.
+
+
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=1.2\textwidth]{chew1.png}
+  \\[\jot]  \includegraphics[width=1.2\textwidth]{chew2.png}
+  \caption{(Continues on p.~\pageref{fig:chew2})
+\emph{The progress of \enquote{fundamental} physics, conceived by Berkeley Chew, published in 1970 by his father, Professor Geoffrey F. Chew.} (Reproduced from  \cites{truesdell1984_r1987})}
+  \label{fig:chew1}
+\end{figure}
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=1.2\linewidth]{chew3.png}
+\\[\jot]  \includegraphics[width=1.2\linewidth]{chew4.png}
+  % \caption{\emph{\enquote{The progress of \enquote*{fundamental} physics, conceived by Berkeley Chew, published in 1970 by his father, Professor Geoffrey F. Chew.}} Reproduced from  \cites{truesdell1984_r1987}}
+  \label{fig:chew2}
+\end{figure}
 
 
 % ** 7
@@ -1278,8 +1344,8 @@ The measurement of some physical quantities consists in just one number with ass
 
 \printpagenotes*
 \clearpage
-\chapter{Time, space, \enquote{stuff}}
-\label{sec:time_space_stuff}
+\chapter{Building blocks: Time and space}
+\label{sec:time_space}
 
 \epigraph{\emph{If we want to describe the \emph{motion} of a material point, we give the values of its coordinates as a function of time. However, we should keep in mind that for such a mathematical description to have physical meaning, we first have to clarify what is to be understood here by \enquote{time}. We have to bear in mind that all our propositions involving time are always propositions about \emph{simultaneous events}. If, for example, I say that \enquote{the train arrives here at 7 o'clock}, that means, more or less, \enquote{the pointing of the small hand of my clock to~7 and the arrival of the train are simultaneous events}.}}{A. Einstein \cites*{einstein1905c}}
 
@@ -1304,7 +1370,7 @@ The experience just described will occur again any time two or more of them meet
 
 Consider for a moment an imaginary world in which these experiments had given a different kind of result. According to Newtonian mechanics, whenever two or more initially synchronized observers like Alice, Bob, Charlie had met, their clocks would have always shown exactly the same time. If one year, 23 days, 8 hours, 9 minutes, and \num{3.04539928324099266302} seconds have passed for you since you last met Alice, you'd see that exactly the same amount of time has passed for her when you two meet again. If you think about it, in this case it would have beeen somewhat natural to think \enquote{right now, the clocks of far-away Alice, Bob, Charlie must show the same time as mine} (even though you have no real experimental way of confirming that).
 
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
   {\color{green}\enquote{\emph{%
         In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\\{\cites{kovalevskyetal2004}}}
 }
@@ -1319,13 +1385,13 @@ The situation depicted in the experiments above is real. It can be measured, for
   International Atomic Time (TAI) is based on more than 250 atomic clocks distributed worldwide that provide its stability, whereas a small number of primary frequency standards provide its accuracy. Universal Coordinated Time, which is the basis of all legal time scales, is derived from TAI. To allow the construction of TAI and the general dissemination of time, clocks separated by thousands of kilometres must be compared and synchronized. \textelp{} The achieved performances of atomic clocks and time transfer techniques imply that the definition of time scales and the clock comparison procedures must be considered within the framework of general relativity. \sourceatright{(\cites{petitetal2005})}
 %\mbox{}\hfill (\cites{petitetal2005})
 \end{quote}
-% \begin{figure}[h!]\footnotesize\centering% with wrapfigure
+% \begin{figure}[h!]\footnotesize\centering%
 % \includegraphics[align=t,width=0.75\linewidth]{datetime_2x.png}
 % \\%
 % \url{https://xkcd.com/2867}
 % \end{figure}
 
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 {\color{green}\enquote{\emph{%
 The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} 4~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
 }
@@ -1340,7 +1406,7 @@ For the most part of the rest of these notes, we won't need to deal with differe
 
 \smallskip
 
-Time has physical dimension of \textsf{time} and we shall for the most part measure it using the unit \emph{second}, symbol $\unit{s}$.
+Time has physical dimension of \textsf{time} and we shall for the most part measure it using the unit \emph{second}, symbol \enquote*{$\unit{s}$}.
 
 
 
@@ -1360,7 +1426,7 @@ This value is exact by definition, and serves as a way to define a local notion 
 
 \smallskip
 
-Space has physical dimension of \textsf{length} and we shall for the most part measure it using the unit \emph{metre}, symbol $\unit{m}$.
+Space has physical dimension of \textsf{length} and we shall for the most part measure it using the unit \emph{metre}, symbol \enquote*{$\unit{m}$}.
 
 
 % In Bergen, a distance of 10\,m corresponds to a difference of 0.000\,1\,° in latitude or longitude
@@ -1375,7 +1441,7 @@ A coordinate system assigns four numerical labels to every point in spacetime. O
 
 A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \furl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time (UTC)}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
 
-\marginpar{\footnotesize\centering% with wrapfigure
+\marginpar{\footnotesize\centering%
 \includegraphics[align=c,width=\linewidth]{net_rotations.png}
 \\%
 \url{https://xkcd.com/2882}
@@ -1407,13 +1473,16 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 \mynotew{On relation between coord time and proper time for satellite}
 \end{exercise}
 
-
+\printpagenotes*
+\clearpage
+\chapter{Building blocks: \enquote{Stuff}}
+\label{cha:stuff}
 
 \section{Seven primitive quantities}
 \label{sec:stuff}
 
 In the physics formalism that we're using there are about seven more quantities, technically called \emph{fields}, that we take as primitive:
-\begin{center}\bfseries
+\begin{center}\bfseries\large
 \textcolor{green}{matter}
 \\ \textcolor{redpurple}{electric charge}
 \\ \textcolor{red}{magnetic flux}
@@ -1423,7 +1492,9 @@ In the physics formalism that we're using there are about seven more quantities,
 \\ \textcolor{midgrey}{entropy}
 \end{center}
 
-Recall that primitive quantities cannot be defined: we can only try to have an intuitive understanding of them, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But they all have two basic properties in common: of each, we can ask -- or rather, measure:
+Recall that primitive quantities cannot be defined: we can only try to have an intuitive understanding of them, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others.
+
+But all seven primitive quantities have two basic properties in common. Of each, we can ask -- or rather, measure:
 \begin{itemize}
 \item \textbf{How much of this quantity is in a particular (3D) region of space at a particular time?}
 \item \textbf{How much of this quantity flows through a particular (2D) surface during a particular time lapse?}
@@ -1500,15 +1571,20 @@ Electric charge is probably easily grasped today, and doesn't need much comments
 Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
 
 
-\marginpar{\footnotesize% with wrapfigure
+The electromagnetic field
+is most commonly represented by vectors associated to each point in space.
+\marginpar{\footnotesize%
 %\includegraphics[align=t,width=\linewidth]{magnflux1.png}
 \includegraphics[align=t,width=\linewidth]{magnflux2.png}
 \\{\color{green}\enquote{\emph{%
 sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}}
 }
-The electromagnetic field is most commonly represented by vectors associated to each point in space. But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}).
+But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension.
+This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}).
 
 Electromagnetism and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
+
+\bigskip
 
 \section{Energy}
 \label{sec:intro_energy}
@@ -1521,40 +1597,44 @@ The notion of \emph{mass} is also intuitive in our everyday life; we associate i
 % relativity says that there's a strong connection between these two associations.
 From Relativity Theory and experimentally we know that \emph{energy and mass are the same thing}, and in these notes we shall fully take this point of view.
 
-\marginpar{\footnotesize% with wrapfigure
-\includegraphics[align=t,width=\linewidth]{atomicbomb.jpg}
+Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass.
+\marginpar{\footnotesize%
+\includegraphics[align=c,width=\linewidth]{atomicbomb.jpg}
 \\[\jot]%
 {\color{green}\emph{Hydrogen Bomb Test, 1954%
 }\\{(\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History})}}
 }
-Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass. The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
+The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
 
 
-Here is an example of the fact that energy is mass. Consider a common
+Here is an example of the fact that energy is mass. Take a common
 rubber band, and imagine we have an extremely precise weighing scale.
-We weigh the rubber band, unstretched, and observe a mass of
+We weigh the rubber band, unstretched, and let's say that we measure a mass of
 \begin{equation*}
   \qty{0.0005000000000000000}{kg}\ .
 \end{equation*}
-Now we stretch the band a little, increasing its internal energy with \enquote{elastic energy} by, say, \qty{0.3}{J}.
+
+Now stretch the band a little. According to Newtonian mechanics, it then acquires \enquote{elastic energy}, which increases its initial internal energy by, say, \qty{0.3}{J}.
 % Refer later to elastic constant
 % 0.5 * 50 N/m * (0.1 m)^2 \approx 0.3 J
-If we now weigh the rubber band again, while stretched, we observe a mass of approximately
+If we now weigh the rubber band again, while stretched, we measure a mass of approximately
 \begin{equation*}
   \qty{0.000500000000000003}{kg} \ .
 \end{equation*}
-\marginpar{\footnotesize% with wrapfigure
+The extremely small difference of \qty{3e-18}{kg} from the initial mass
+is exactly the elastic energy that we provided by stretching.
+\marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{rubberbands.png}
 \\[\jot]%
-{\color{green}When we stretch a rubber band, its mass increases slightly}
+{\color{green}When we stretch a rubber band, its mass increases slightly -- even if the amount of rubber remains exactly the same.}
 }
-The extremely small difference of \qty{3e-18}{kg} from the initial mass is exactly the elastic energy that we provided by stretching. Energy has weight; energy is mass.
+Energy has weight; energy is mass.
 
-If we set the unstretched band in motion, so that it acquires a kinetic energy of \qty{0.2}{J}, and we could weigh it while in motion (but without moving the weighing scale), we would observe a mass of approximately
+Now set the unstretched band in motion, so that according to Newtonian mechanics it acquires a kinetic energy of, say, \qty{0.2}{J}. If we could weigh the band while in motion (but without moving the weighing scale), we would measure a mass of approximately
 $$\qty{0.000500000000000002}{kg} \ .$$
-The small difference from the initial mass is the new kinetic energy of the band. Energy has weight; energy is mass.
+The small difference from the initial mass is the new kinetic energy of the band. Any energy has weight; any energy is mass.
 
-As another example, a \qty{1000}{W} electric heater which radiates \qty{1000}{J} in one second, is also losing around \qty{0.00000000000001}{kg} of mass every second -- although it's also acquiring the same amount of mass as electromagnetic energy.
+As a final example, consider a \qty{1000}{W} electric heater, which is radiating \qty{1000}{J} in one second. The heater is also losing around \qty{0.00000000000001}{kg} of mass every second owing to this heat radiation -- although it's also acquiring the same amount of mass as electromagnetic energy.
 
 \smallskip
 
@@ -1634,49 +1714,58 @@ Angular momentum is perhaps an even subtler quantity than momentum. Luckily ther
 \end{subequations}
 choose whichever you prefer.
 
-Just like momentum, angular momentum is something that is associated not only with ordinary bodies (matter), but also with charge and magnetic flux, and therefore electromagnetic radiation.
+The formula above also suggests that we can somehow think of angular momentum as \enquote{energy in rotation}. Just like momentum, angular momentum is something that is associated not only with ordinary bodies (matter), but also with charge and magnetic flux, and therefore electromagnetic radiation.
 
-\marginpar{\footnotesize% with wrapfigure
-\includegraphics[align=b,width=\linewidth]{polymer.png}
-\\\includegraphics[align=c,width=\linewidth]{polymer2.png} \\[\jot]%
-{\color{green}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).}
+You may wonder:
+% \begin{marginfigure}\footnotesize%
+%   \includegraphics[align=b,width=\linewidth]{polymer.png}
+% \\\includegraphics[align=c,width=\linewidth]{polymer2.png} \\[\jot]%
+% {\color{green}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).}
+% \end{marginfigure}
+\marginpar{{\centering%
+\includegraphics[align=b,width=0.67\linewidth]{polymer.png}
+\\\includegraphics[align=c,width=\linewidth]{polymer2.png}}
+\\[\jot]%
+{\footnotesize\color{green}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).\par}
 }%
-You may wonder: \enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}. The answer is yes, we really need it, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and by momentum (\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
+\enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}. The answer is yes, we really need it, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and by momentum (\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
 Second, for some physical phenomena, for example involving liquid \furl{https://www.britannica.com/science/polymer}{polymers},
 % https://www.britannica.com/science/polymer
 elementary particles, or electromagnetic radiation, the angular momentum includes an additional part, called \emph{spin} or \emph{intrinsic angular momentum}, that is not related to linear momentum. In the present notes we shall not use this more general kind of angular momentum.
 
-% \mynotew{More to be written}
+\bigskip
 
 \section{What are energy, momentum, angular momentum?}
 \label{sec:curios_energymom}
 
-From the discussions and formulae above, it seems that \energym, momentum, angular momentum are related quite closely.
+From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another.
 
-Indeed Relativity Theory shows that they are different aspects of one single geometric object, called the \emph{energy-momentum tensor}. They are like its \enquote{shadows} (almost literally: they are projections of that object). This is also why their values get somehow intermixed if we change our system of coordinates. %
+Relativity Theory indeed shows that they are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space (almost literally: they are projections of that object). This is also why their values get intermixed if we change our system of coordinates. %
 
 General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}.
 %
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{curvature1.png}
 \\[\jot]%
-{\color{green}Energy, momentum, angular momentum are particular curvatures of spacetime}%
+{\color{green}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
 }%
 They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
 
+\bigskip
 
 \section{Entropy}
 \label{sec:intro_entropy}
 
 Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperature}, and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{joules}$/$\emph{kelvins} (\unit{J/K})}. From this definition it would seem that entropy is derived from temperature. However, although \textsf{temperature} is taken as primitive by the SI, the \furl{https://doi.org/10.1351/goldbook.K03374}{definition of temperature} actually depends on a fixed value of \furl{https://doi.org/10.1351/goldbook.B00695}{\emph{Boltzmann's constant}}, which has the dimension of \textsf{entropy}.
 
-\marginpar{% with wrapfigure
+Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading.
+\marginpar{%
 \includegraphics[align=t,width=\linewidth]{entropy_low.png}\\
 \includegraphics[align=t,width=\linewidth]{entropy_high.png}
 \\[\jot]\footnotesize%
 {\color{green}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
 }
-Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading. One particularly \emph{bad} intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
+One particularly misleading intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
 
 In these notes we shall rely on the idea that \emph{entropy expresses a limit on the flux of energy into matter}. Said in simpler but more imprecise words, entropy is a bound on how fast we can heat up a body. We shall develop this idea further later.
 
@@ -1887,7 +1976,7 @@ Balance laws are intuitively and visually easy to grasp. The archetype is as fol
 
 Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D region. A spherical surface delimiting a ball-shaped region is an example. Actually the surface doesn't need to be connected: it could consist of several separate closed surfaces, delimiting distinct 3D regions.
 
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{balance_plot.pdf}
 % \\[\jot]%
 % {\color{green}\enquote{\emph{%
@@ -2099,7 +2188,7 @@ Let's make a simple check to see if this formula makes sense, in a simple one-di
 \begin{equation*}
   \frac{\de n}{\de t} + \frac{\de j_{x}}{\de x} = 0 \ .
 \end{equation*}
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{ddxflux.pdf}
 }
 Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x} > 0$. This means that the $x$-flux increases as we move from $x$ to $x+\Dx$, as shown in the side figure. The $x$-flux at $x$ is bringing some amount of quantity into the region of interest, the $x$-flux at  $x+\Dx$ is taking a larger amount out of that region. Therefore, during the short time $\Dt$ in which this flux takes place, the total amount of quantity within the region will decrease. But the total amount is given by $n(t)$, which is therefore decreasing with time. This means that its time derivative is negative: $\frac{\de n}{\de t} < 0$. This agrees with balance law above: the sum of the two derivatives must be zero, so if one is positive, the other must be negative.
@@ -2210,7 +2299,7 @@ Constitutive relations express the diversity that we observe around us, for exam
 
 Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the density of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}. 
 
-
+\mynotew{Add examples of laws that reduce to the balances: Bernoulli, Poynting?, mechanical-energy-work theorem}
 
 
 
@@ -2351,7 +2440,7 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 \iffalse
-\marginpar{\footnotesize% with wrapfigure
+\marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{eg_languages.png}
 \\[\jot]%
 {\color{green}\enquote{\emph{%
@@ -2504,10 +2593,10 @@ Under the last three conditions we have in general that $\mathrm{d}S \ge Q/T$; w
 % \end{empheq}
 
 
-%%\setlength{\intextsep}{0ex}% with wrapfigure
-%%\setlength{\columnsep}{0ex}% with wrapfigure
+%%\setlength{\intextsep}{0ex}%
+%%\setlength{\columnsep}{0ex}%
 %\begin{figure}[p!]% with figure
-%\begin{wrapfigure}[1]{r}[\wrapoverhang]{0.4\linewidth} % with wrapfigure
+%\begin{wrapfigure}[1]{r}[\wrapoverhang]{0.4\linewidth} %
 %  \centering\includegraphics[trim={12ex 0 18ex 0},clip,width=\linewidth]{maxent_saddle.png}\\
 %\caption{caption}\label{fig:comparison_a5}
 %\end{figure}% exp_family_maxent.nb
