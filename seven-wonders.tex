@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-31T10:46:32+0100
+%% Last-Updated: 2024-01-31T18:55:00+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -925,6 +925,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \newcommand*{\dob}{degree of belief}
 \newcommand*{\dobs}{degrees of belief}
 \newcommand*{\yr}{\bm{r}}
+\newcommand*{\yv}{\bm{v}}
 \newcommand*{\yto}{t_{0}}
 \newcommand*{\yxo}{x_{0}}
 \newcommand*{\yyo}{y_{0}}
@@ -949,7 +950,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \newtcolorbox{myframe}{enhanced, colback=white, colframe=midgrey, boxrule=0.5pt, breakable, after={\smallskip}}
 
-\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable,
+  % fontupper=\small,
+  fonttitle=\bfseries, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
 \newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small,
 fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
@@ -1489,6 +1492,9 @@ Whenever we speak of a \enquote{region of space} or of a \enquote{surface in spa
 Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write, for instance, $(t,x)$ as our coordinates.
 
 \begin{exercise}
+\sidepar{\footnotesize\centering%
+  \includegraphics[align=t,width=\linewidth]{re_rs.pdf}
+}
   Consider a clock at rest on the Earth's surface, at a distance $r_{\text{e}}$ from the Earth's centre, and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\incr t_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\incr t_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
 \begin{equation*}
   \frac{\incr t_{\text{s}}}{\incr t_{\text{e}}} =
@@ -1500,26 +1506,65 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 \end{equation*}
 where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
 
-\begin{enumerate}[wide,label=\arabic*.]
+
+\begin{enumerate}[label={\bfseries\arabic*.},leftmargin=2em]
 \item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\incr t_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\incr t_{\text{s}}$ you see on the satellite?
 
 \item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\incr t_{\text{s}}/\incr t_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
 
   Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
 
-  In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
+  In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
+  astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
+\sidepar{\footnotesize\centering%
+\vspace{-10em}\includegraphics[align=t,width=\linewidth]{gargantua.png}
+}
 
   Given that Gargantua's mass is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
 \end{enumerate}
 \end{exercise}
-\marginpar{\footnotesize\centering%
-\vspace{-10em}\includegraphics[align=b,width=\linewidth]{gargantua.png}
-}
+
+
 
 \section{Velocity and acceleration}
 \label{sec:velocity}
 
+In some situations the spatial coordinates $\yr=(x,y,z)$ may turn out to be functions of the time coordinate $t$; the typical example is when we describe how the spatial position of a small body changes with coordinate time. We can write this functional dependence in different ways, for instance
+\begin{equation*}
+  \yr(t)\quad\text{or}\quad
+  \bigl(x(t),\ y(t),\ z(t)\bigr) \ .
+\end{equation*}
+So $\yr$ is a vector function of time, which simply means that we have a collection of three functions of time.
 
+If we take the derivative of each coordinate with respect to the time $t$, we obtain the \textbf{coordinate velocity}
+\begin{equation*}
+  \yv(t) \defd \frac{\di}{\di t}\yr(t) = \biggl(\frac{\di}{\di t} x(t),\ \frac{\di}{\di t} y(t),\ \frac{\di}{\di t} z(t)\biggr)
+\end{equation*}
+which is also a vector.
+
+\begin{warning}[Common notation for time derivative]
+  The derivative of some quantity with respect to coordinate time is often denoted by a dot over the quantity. So we can also write
+  \begin{equation*}
+    \yv(t) = \dot{\yr}(t) = \bigl(\dot{x}(t),\ \dot{y}(t),\ \dot{z}(t)\bigr)
+  \end{equation*}
+\end{warning}
+
+The coordinate velocity is usually different from the \emph{physical velocity}, which an observer would measure using proper time and space, for instance using bouncing light rays. In many everyday situations the difference between coordinate and physical velocity is so small that it can be neglected. But in situations involving subatomic particles at high speed, for example, one must take into account that the two velocities are different.
+
+\smallskip
+
+Taking the time derivative once more we obtain the coordinate acceleration, also a vector:
+\begin{equation*}
+  \bm{a}(t) \defd \frac{\di}{\di t}\yv(t) =
+  \frac{\di^{2}}{\di t^{2}}\yr(t) = \biggl(\frac{\di^{2}}{\di t^{2}} x(t),\ \frac{\di^{2}}{\di t^{2}} y(t),\ \frac{\di^{2}}{\di t^{2}} z(t)\biggr)
+\end{equation*}
+which is also a vector.
+
+\begin{extra}{Acceleration in relativity theory}
+  In relativity theory, acceleration acquires a special physical significance, because it includes the effect of gravity, and its calculation does not involve just a time derivative. For instance, let's say that you are standing still on the ground, and let's use a coordinate system where $x$ points in front of view, $y$ to your left, and $z$ points upwards. Then your coordinate velocity is $(0,0,0)$ also according to relativity theory, but the spatial part of your acceleration is approximately $(0,0,\qty{9.8}{m/s^{2}})$. The definitions and values of acceleration according to relativity theory and according to Newtonian mechanics are therefore quite different even in everyday situations.
+
+  In these notes we'll usually mean the Newtonian definition of acceleration.
+\end{extra}
 
 
 
