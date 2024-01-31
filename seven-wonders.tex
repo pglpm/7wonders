@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-31T18:55:00+0100
+%% Last-Updated: 2024-01-31T23:15:54+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -479,9 +479,21 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \PassOptionsToPackage{hyphens}{url}\usepackage[hypertexnames=false,pdfencoding=unicode,psdextra]{hyperref}
 
 \usepackage[depth=4]{bookmark}
-\hypersetup{colorlinks=true,bookmarksnumbered,pdfborder={0 0 0.25},citebordercolor={0.2667 0.4667 0.6667},citecolor=bluepurple,linkbordercolor={0.6667 0.2 0.4667},linkcolor=redpurple,urlbordercolor={0.1333 0.5333 0.2},urlcolor=green,breaklinks=true,pdftitle={\pdftitle},pdfauthor={\pdfauthor}}
+\hypersetup{%
+colorlinks=true,
+%pdfborderstyle={/S/U/W 0.5},
+bookmarksnumbered,pdfborder={0 0 0.25},
+citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkcolor=bluepurple,urlbordercolor=bluepurple,urlcolor=bluepurple,breaklinks=true,pdftitle={\pdftitle},pdfauthor={\pdfauthor}}
 % \usepackage[vertfit=local]{breakurl}% only for arXiv
 \providecommand*{\urlalt}{\href}
+% \makeatletter
+% \DeclareUrlCommand\ULurl@@{%
+%   \def\UrlFont{\ttfamily\color{blue}}%
+%   \def\UrlLeft{\uline\bgroup}%
+%   \def\UrlRight{\egroup}}
+% \def\ULurl@#1{\hyper@linkurl{\ULurl@@{#1}}{#1}}
+% \DeclareRobustCommand*\ULurl{\hyper@normalise\ULurl@}
+% \makeatother
 
 \usepackage{tensor}
 
@@ -709,7 +721,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 % \newlength{\wfwidth}
 % \setlength{\wfwidth}{0.4\linewidth}
 
-\definecolor{notecolour}{RGB}{68,170,153}
+\colorlet{mpcolor}{black}
 %\newcommand*{\puzzle}{\maltese}
 % \newcommand*{\puzzle}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{225}}}
 % \newcommand*{\wrench}{{\fontencoding{U}\fontfamily{fontawesomethree}\selectfont\symbol{114}}}
@@ -957,7 +969,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small,
 fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
 
-\newtcolorbox{critique}[1][Critique]{enhanced, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
+\newtcolorbox{critique}[1][Critique]{enhanced,center,
+width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
 
 \newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
@@ -1077,7 +1090,7 @@ Until some decades ago, the 18th-century physical notions typically taught in in
 \smallskip
 
 \marginpar{\footnotesize%
-{\color{green}\enquote{\emph{The achieved performances of atomic clocks and time
+{\color{mpcolor}\enquote{\emph{The achieved performances of atomic clocks and time
 transfer techniques imply that the definition of time scales
 and the clock comparison procedures must be considered
 within the framework of general relativity}}\sourceatright{\cites{petitetal2005}}}
@@ -1193,7 +1206,7 @@ These references are not part of the course and don't need to be \enquote{studie
 
 \item 
 \marginpar{\raggedright\footnotesize%
-{\color{green}\emph{%
+{\color{mpcolor}\emph{%
 \enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}}
 \\[\jot](attributed to Gautama Buddha)}
 }%
@@ -1245,7 +1258,7 @@ Physics can be expressed and written from wildly different points of view, using
     \color{blue}\bm{F}=\frac{\di}{\di t}m\bm{v} \quad \bm{F}=0
   \end{gather*}
 %\includegraphics[align=t,width=\linewidth]{eg_languages.png}
-{\footnotesize\color{green}%
+{\footnotesize\color{mpcolor}%
 Example of two different formalisms (\textcolor{red}{red}, \textcolor{blue}{blue}) expressing the same physical phenomenon.\par%
 }
 }
@@ -1258,7 +1271,7 @@ The formalism we'll be using might be called \enquote{field theory}. Roughly spe
 \medskip
 
 \marginpar{\footnotesize%
-{\color{green}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
+{\color{mpcolor}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 letters in which it is composed. It is written in the language of
 mathematics}}\sourceatright{\cites{galilei1623}}}
 }
@@ -1273,7 +1286,7 @@ And in these two numbers all digits are important; for instance, the latitude is
 
 But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way.
 \marginpar{\footnotesize%
-{\color{green}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
+{\color{mpcolor}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}}
 }
 All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
 
@@ -1393,7 +1406,7 @@ The experience just described will occur again any time two or more of them meet
 Consider for a moment an imaginary world in which these experiments had given a different kind of result. According to Newtonian mechanics, whenever two or more initially synchronized observers like Alice, Bob, Charlie had met, their clocks would have always shown exactly the same time. If one year, 23 days, 8 hours, 9 minutes, and \num{3.04539928324099266302} seconds have passed for you since you last met Alice, you'd see that exactly the same amount of time has passed for her when you two meet again. If you think about it, in this case it would have beeen somewhat natural to think \enquote{right now, the clocks of far-away Alice, Bob, Charlie must show the same time as mine} (even though you have no real experimental way of confirming that).
 
 \marginpar{\footnotesize%
-  {\color{green}\enquote{\emph{%
+  {\color{mpcolor}\enquote{\emph{%
         In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\\{\cites{kovalevskyetal2004}}}
 }
 But that's an imaginary world. In our world is the more complicated situation described initially that holds. Only one conclusion can be drawn from these experimental results: \textbf{Time is not some sort of universal quantity. It is, so to speak, \enquote{local} to a person or clock, or to a group of persons or clocks that stick together.} This also means that \emph{it doesn't make sense} to ask questions like \enquote{what can be the time for far-away Charlie, right now?}. % \emph{Now} only applies to you, or to anything that is in your immediate vicinity.
@@ -1414,7 +1427,7 @@ The situation depicted in the experiments above is real. It can be measured, for
 % \end{figure}
 
 \marginpar{\footnotesize%
-{\color{green}\enquote{\emph{%
+{\color{mpcolor}\enquote{\emph{%
 The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} 4~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}}
 }
 In most everyday situations for us, who live on or nearby Earth and move at speeds much smaller than $c$ with respect to one another, the discrepancies between our proper times are so small that cannot be
@@ -1493,9 +1506,9 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 
 \begin{exercise}
 \sidepar{\footnotesize\centering%
-  \includegraphics[align=t,width=\linewidth]{re_rs.pdf}
+  \includegraphics[align=t,width=0.75\linewidth]{re_rs.pdf}
 }
-  Consider a clock at rest on the Earth's surface, at a distance $r_{\text{e}}$ from the Earth's centre, and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\incr t_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\incr t_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
+  Consider a clock at rest on the Earth's surface, at a distance $\color{green}r_{\text{e}}$ from the Earth's centre; and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $\color{red}r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\incr t_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\incr t_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
 \begin{equation*}
   \frac{\incr t_{\text{s}}}{\incr t_{\text{e}}} =
   \frac{
@@ -1542,8 +1555,8 @@ If we take the derivative of each coordinate with respect to the time $t$, we ob
 \end{equation*}
 which is also a vector.
 
-\begin{warning}[Common notation for time derivative]
-  The derivative of some quantity with respect to coordinate time is often denoted by a dot over the quantity. So we can also write
+\begin{warning}[Dot-notation for time derivative]
+  The derivative of some quantity with respect to coordinate time is often denoted by a \textbf{dot} over the quantity. So we can also write
   \begin{equation*}
     \yv(t) = \dot{\yr}(t) = \bigl(\dot{x}(t),\ \dot{y}(t),\ \dot{z}(t)\bigr)
   \end{equation*}
@@ -1561,9 +1574,9 @@ Taking the time derivative once more we obtain the coordinate acceleration, also
 which is also a vector.
 
 \begin{extra}{Acceleration in relativity theory}
-  In relativity theory, acceleration acquires a special physical significance, because it includes the effect of gravity, and its calculation does not involve just a time derivative. For instance, let's say that you are standing still on the ground, and let's use a coordinate system where $x$ points in front of view, $y$ to your left, and $z$ points upwards. Then your coordinate velocity is $(0,0,0)$ also according to relativity theory, but the spatial part of your acceleration is approximately $(0,0,\qty{9.8}{m/s^{2}})$. The definitions and values of acceleration according to relativity theory and according to Newtonian mechanics are therefore quite different even in everyday situations.
+  In relativity theory, acceleration acquires a special physical significance, because it includes the effect of gravity, and its calculation does not involve just a time derivative. For instance, let's say that you are standing still on the ground, and let's use a coordinate system where $x$ points in front of view, $y$ to your left, and $z$ points upwards. Then your coordinate velocity is $\yv=(0,0,0)\:\unit{m/s}$ also according to relativity theory. But the spatial part of your acceleration is approximately $(0,0,9.8)\:\unit{m/s^{2}}$, not zero!
 
-  In these notes we'll usually mean the Newtonian definition of acceleration.
+  The definitions and values of acceleration according to relativity theory and according to Newtonian mechanics are therefore quite different even in everyday situations. In these notes we'll mean the Newtonian definition of acceleration, unless stated otherwise.
 \end{extra}
 
 
@@ -1574,31 +1587,40 @@ which is also a vector.
 \chapter{Building blocks: \enquote{Stuff}}
 \label{cha:stuff}
 
-\section{Seven primitive quantities}
+\section{Seven primitive quantities with two basic properties}
 \label{sec:stuff}
 
-In the physics formalism that we're using there are about seven more quantities, technically called \emph{fields}, that we take as primitive:
-\begin{center}\bfseries\large
-\textcolor{green}{matter}
-\\ \textcolor{redpurple}{electric charge}
-\\ \textcolor{red}{magnetic flux}
-\\ \textcolor{bluepurple}{energy}
-\\ \textcolor{blue}{momentum}
-\\ \textcolor{yellow}{angular momentum}
-\\ \textcolor{midgrey}{entropy}
-\end{center}
+Our physics formalism includes around seven more quantities that we take as primitive:
+\begin{definition}{Seven primitive quantities}
+  \begin{center}\bfseries
+    matter
+    \\ electric charge
+    \\ magnetic flux
+    \\ energy
+    \\ momentum
+    \\ angular momentum
+    \\ entropy
+  \end{center}
+\end{definition}
+Technically they are called \emph{fields}, for reasons that we shall see shortly.
 
-Recall that primitive quantities cannot be defined: we can only try to have an intuitive understanding of them, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others.
+Recall that primitive quantities cannot be defined: we can only try to understand them intuitively, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others.
 
-But all seven primitive quantities have two basic properties in common. Of each, we can ask -- or rather, measure:
-\begin{itemize}
-\item \textbf{How much of this quantity is in a particular (3D) region of space at a particular time?}
-\item \textbf{How much of this quantity flows through a particular (2D) surface during a particular time lapse?}
-\end{itemize}
+\medskip
+
+But all seven primitive quantities have two basic properties in common. Of each we can ask, or rather, measure:
+\begin{definition}{Two basic measurements that can be made on the seven quantities}
+  \begin{itemize}\bfseries
+  \item How much of this quantity is in a particular (3D) region of space at a particular time instant?
+  \item How much of this quantity flows through a particular (2D) surface during a particular time lapse?
+  \end{itemize}
+\end{definition}
 and we can ask these questions of any region of space and any time lapse.
 % \mynotew{densities and fluxes?}
-The results of the two measurements above are numbers, which in general can be positive or negative, for scalar quantities; or vectors for vector quantities
+The results of the two measurements above are numbers, which in general can be positive or negative, for scalar quantities; or vectors for vector quantities.
 % This number depends only on the chosen region, surfaces, and times.
+
+Note that these two kinds of measurement in general can't be made, and don't even make sense, for some other quantities. For instance, we cannot ask \enquote{what's the total amount of \emph{temperature} in this region?}, or \enquote{how much velocity is flowing through this surface?}.
 
 
 Owing to the two properties above, each of the seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
@@ -1606,6 +1628,14 @@ Owing to the two properties above, each of the seven quantities can be considere
 % For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. The density tells us how much quantity there's in a unit of volume. The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
 What's remarkable about these seven quantities is that they are common to all our main physical theories, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
+
+% \begin{critique}
+%   \emph{Wait! what about \emph{force}? isn't this a primitive quantity? or maybe it isn't included because it's defined as mass${}\times{}$acceleration?}
+% 
+%   \smallskip
+% 
+% We'll see that \emph{force} is defined as momentum flux; but that in general isn't mass${}\times{}$acceleration.
+% \end{critique}
 
 Let us make a first acquaintance with these seven quantities.
 
@@ -1672,7 +1702,7 @@ is most commonly represented by vectors associated to each point in space.
 \marginpar{\footnotesize%
 %\includegraphics[align=t,width=\linewidth]{magnflux1.png}
 \includegraphics[align=t,width=\linewidth]{magnflux2.png}
-\\{\color{green}\enquote{\emph{%
+\\{\color{mpcolor}\enquote{\emph{%
 sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}}
 }
 But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension.
@@ -1697,7 +1727,7 @@ Some texts say that \enquote{mass is a form of energy}, but that's incorrect: ma
 \marginpar{\footnotesize%
 \includegraphics[align=c,width=\linewidth]{atomicbomb.jpg}
 \\[\jot]%
-{\color{green}\emph{Hydrogen Bomb Test, 1954%
+{\color{mpcolor}\emph{Hydrogen Bomb Test, 1954%
 }\\{(\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History})}}
 }
 The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
@@ -1722,7 +1752,7 @@ is exactly the elastic energy that we provided by stretching.
 \marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{rubberbands.png}
 \\[\jot]%
-{\color{green}When we stretch a rubber band, its mass increases slightly -- even if the amount of rubber remains exactly the same.}
+{\color{mpcolor}When we stretch a rubber band, its mass increases slightly -- even if the amount of rubber remains exactly the same.}
 }
 Energy has weight; energy is mass.
 
@@ -1822,7 +1852,7 @@ You may wonder:
 \includegraphics[align=b,width=0.67\linewidth]{polymer.png}
 \\\includegraphics[align=c,width=\linewidth]{polymer2.png}}
 \\[\jot]%
-{\footnotesize\color{green}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).\par}
+{\footnotesize\color{mpcolor}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).\par}
 }%
 \enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}. The answer is yes, we really need it, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and by momentum (\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
 Second, for some physical phenomena, for example involving liquid \furl{https://www.britannica.com/science/polymer}{polymers},
@@ -1843,7 +1873,7 @@ General Relativity gives a new meaning to these quantities: they are \emph{parti
 \marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{curvature1.png}
 \\[\jot]%
-{\color{green}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
+{\color{mpcolor}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
 }%
 They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
 
@@ -1859,7 +1889,7 @@ Entropy is probably the most difficult quantity to grasp intuitively. Many seemi
 \includegraphics[align=t,width=\linewidth]{entropy_low.png}\\
 \includegraphics[align=t,width=\linewidth]{entropy_high.png}
 \\[\jot]\footnotesize%
-{\color{green}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
+{\color{mpcolor}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
 }
 One particularly misleading intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
 
@@ -1893,24 +1923,24 @@ The dimensions, units, and scalar or vector character of these quantities are su
     Length&\textsf{length}&\emph{metre}\;\unit{m}
     \\[\jot]
     Temperature&\textsf{temperature}&\emph{kelvin}\;\unit{K}
-    \\[2\jot]\color{green}
-    Matter&\color{green}\textsf{amount of substance}&\color{green}\emph{mole}\;\unit{mol}
-    \\[\jot]\color{redpurple}
-    Electric charge&\color{redpurple}\textsf{electric charge}&\color{redpurple}\emph{coulomb}\;\unit{C}
-    \\[\jot]\color{red}
-    \textxbf{Magnetic flux}&\color{red}\textsf{magnetic flux}&\color{red}\emph{weber}\;\unit{Wb}
-    \\[\jot]\color{bluepurple}
-    Energy&\color{bluepurple}\parbox[t]{10em}{\textsf{energy},\\[0\jot] \textsf{mass}}&\color{bluepurple}\parbox[t]{5em}{\emph{joule}\;\unit{J},\\[0\jot] \emph{kilogram}\;\unit{kg}}
-    \\[5\jot]\color{blue}
-    \textxbf{Momentum}&\color{blue}\parbox[t]{10em}{\textsf{mass$\cdot$length$/$time},\\[0\jot] \textsf{energy$\cdot$time$/$length}}&\color{blue}\parbox[t]{5em}{\unit{kg\cdot m/s},\\[0\jot] \unit{J\cdot s/m}}
-    \\[5\jot]\color{yellow}
-    \textxbf{Angular momentum}&\color{yellow}\parbox[t]{10em}{\textsf{mass$\cdot$length$^{2}/$time},\\[0\jot] \textsf{energy$\cdot$time}}&\color{yellow}\parbox[t]{5em}{\unit{kg\cdot m^2/s},\\[0\jot] \unit{J\cdot s}}
-    \\[5\jot]\color{midgrey}
-    Entropy&\color{midgrey}\textsf{energy$/$temperature}&\color{midgrey}\unit{J/K}
+    \\[2\jot]
+    Matter&\textsf{amount of substance}&\emph{mole}\;\unit{mol}
+    \\[\jot]
+    Electric charge&\textsf{electric charge}&\emph{coulomb}\;\unit{C}
+    \\[\jot]
+    \textbf{Magnetic flux}&\textsf{magnetic flux}&\emph{weber}\;\unit{Wb}
+    \\[\jot]
+    Energy&\parbox[t]{10em}{\textsf{energy},\\[0\jot] \textsf{mass}}&\parbox[t]{5em}{\emph{joule}\;\unit{J},\\[0\jot] \emph{kilogram}\;\unit{kg}}
+    \\[5\jot]
+    \textbf{Momentum}&\parbox[t]{10em}{\textsf{mass$\cdot$length$/$time},\\[0\jot] \textsf{energy$\cdot$time$/$length}}&\parbox[t]{5em}{\unit{kg\cdot m/s},\\[0\jot] \unit{J\cdot s/m}}
+    \\[5\jot]
+    \textbf{Angular momentum}&\parbox[t]{10em}{\textsf{mass$\cdot$length$^{2}/$time},\\[0\jot] \textsf{energy$\cdot$time}}&\parbox[t]{5em}{\unit{kg\cdot m^2/s},\\[0\jot] \unit{J\cdot s}}
+    \\[5\jot]
+    Entropy&\textsf{energy$/$temperature}&\unit{J/K}
     \\[2\jot]
     \hline
   \end{tabular}
-  \caption{Dimensions and units of the main physical quantities used in these notes. Quantities in \textxbf{boldface} are vectors, the others are scalars}\label{tab:units}
+  \caption{Dimensions and units of the main physical quantities used in these notes. Quantities in \textbf{boldface} are vectors, the others are scalars}\label{tab:units}
 \end{table}
 % \begin{table}[tb]
 %   \centering
@@ -2075,7 +2105,7 @@ Consider a closed 2D surface at a (coordinate) time $t_{1}$, which encloses a 3D
 \marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{balance_plot.pdf}
 % \\[\jot]%
-% {\color{green}\enquote{\emph{%
+% {\color{mpcolor}\enquote{\emph{%
 % }}\sourceatright{\cites{}}}
 }
 Starting from that particular time, imagine the closed surface moving and deforming, changing shape and size but remaining closed -- no holes or cuts -- through time, until a later time $t_{2}$. At this time we shall have a closed surface that can be different from the initial one, and at a different position. We could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
@@ -2539,7 +2569,7 @@ There are different kinds of matter, each of which satisfies a balance relation.
 \marginpar{\footnotesize%
 \includegraphics[align=t,width=\linewidth]{eg_languages.png}
 \\[\jot]%
-{\color{green}\enquote{\emph{%
+{\color{mpcolor}\enquote{\emph{%
 }}\sourceatright{\cites{}}}
 }
 \fi
