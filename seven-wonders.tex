@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-30T21:14:40+0100
+%% Last-Updated: 2024-01-31T10:46:32+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -18,7 +18,7 @@ onecolumn,oneside,titlepage,%french,italian,german,swedish,latin,
 british%
 ]{memoir}
 \newcommand*{\firstdraft}{26 May 2023}
-\newcommand*{\firstpublished}{\firstdraft}
+\newcommand*{\version}{0.1}
 \newcommand*{\updated}{\ifarxiv***\else\today\fi}
 \newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Notes on 21st-century physics}
 \newcommand*{\pdftitle}{The Seven Wonders of the World: Notes on 21st-century physics}
@@ -654,8 +654,10 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \pagestyle{manaart}
 
 %\setlength{\droptitle}{-3.9\onelineskip}
-\pretitle{\begin{center}\huge\sffamily%
-\bfseries}
+\pretitle{\begin{center}
+\smash{\includegraphics[align=t,width=\textwidth]{palebluedot2.png}}
+\huge\sffamily%
+\bfseries\color{white}}
 \posttitle{\par\end{center}\bigskip}
 
 \makeatletter\newcommand*{\atf}{\includegraphics[totalheight=\heightof{@}]{pglpm_latex/atblack.png}}\makeatother
@@ -664,11 +666,11 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \providecommand{\email}[2]{\href{mailto:#1ZZ@#2 ((remove ZZ))}{#1\protect\atf#2}}
 %\providecommand{\email}[2]{\href{mailto:#1@#2}{#1@#2}}
 
-\preauthor{\begin{center}
+\preauthor{\begin{center}\color{white}
 \Large\sffamily%
 }
 \postauthor{\par\end{center}}
-\predate{\DTMsetdatestyle{mydate}\begin{center}\footnotesize}
+\predate{\DTMsetdatestyle{mydate}\begin{center}\footnotesize\color{white}}
 \postdate{\par\end{center}}
 
 \setfloatadjustment{figure}{\footnotesize}
@@ -743,7 +745,7 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 }
 
 %\date{Draft of \today\ (first drafted \firstdraft)}
-\date{Version of \updated}
+\date{Version \version, \updated}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Macros @@@
@@ -987,10 +989,28 @@ fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclam
 \selectlanguage{british}\frenchspacing
 \begin{titlingpage}
 \calccentering{\unitlength}
-\begin{adjustwidth}{\unitlength}{-\unitlength}
-\maketitle
-\end{adjustwidth}
+\begin{adjustwidth*}{\unitlength}{-\unitlength}
+  \centering
+  \maketitle
+\end{adjustwidth*}
 \end{titlingpage}
+\killtitle
+\begin{adjustwidth*}{\unitlength}{-\unitlength}\thispagestyle{empty}
+  \centering
+  \includegraphics[align=c,height=1em]{cc_by_sa.png} Licence
+
+  \smallskip
+
+  Luca\enspace
+\href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}
+{\footnotesize\url{https://orcid.org/0000-0002-6070-0784}}
+
+\smallskip
+
+  Typeset with \LaTeX\ using 12\,pt Palatino and Optima fonts
+\end{adjustwidth*}
+\setcounter{page}{0}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Abstract
@@ -1306,7 +1326,7 @@ The measurement of some physical quantities consists in just one number with ass
 
 But what's the \enquote{ultimate} goal of physics? What's \enquote{fundamental} physics? The answer to this question is again subjective -- also in this case physics lets you express your proclivities and personality. In the history of physics one can probably identify two main conceptions of \enquote{fundamental} physics.
 
-For some physicists it is about finding the ultimate building blocks, so that one day we can say \enquote{\textellipsis and these are the constituents, and they obey these equations}. The history of physics seems to show that this goal is overturned every few generations. And yet every generation says \enquote{\emph{Now} we almost have the complete picture -- it's right behind the corner. It's true that previous generations thought they almost had it, and turned out to be wrong. But \emph{this time} is different, this time we have the real deal!} See \fig~\ref{fig:chew1} for a satirical depiction of this process by the son of the theoretical and particle physicist \furl{https://www.physics.lbl.gov/rememberinggeoffreychew/}{Geffrey Chew}. For this reason some physicists are a little sceptical about this goal; maybe it's a never-ending structure, with surprises at every deeper look.
+For some physicists it is about finding the ultimate building blocks, so that one day we can say \enquote{\textellipsis and these are the constituents, and they obey these equations}. The history of physics seems to show that this goal is overturned every few generations. And yet every generation says \enquote{\emph{Now} we almost have the complete picture -- it's right behind the corner. It's true that previous generations thought they almost had it, and turned out to be wrong. But \emph{this time} is different, this time we have the real deal!}. The theoretical and particle physicist \furl{https://www.physics.lbl.gov/rememberinggeoffreychew/}{Geffrey Chew} depicted this situation as in \fig~\ref{fig:chew1}. For this reason some physicists are a little sceptical about this goal; maybe it's a never-ending structure, with surprises at every deeper look.
 
 So for other physicists fundamental physics is about finding some point of view or mathematical structure that is rich enough to make useful predictions, and yet flexible enough to accommodate any new patterns or objects that we might discover. In a manner of speaking, it is about finding \enquote{patterns of patterns} or \enquote{laws about physical laws}.
 
@@ -1315,18 +1335,17 @@ The two conceptions above are not mutually exclusive, and both are always pursue
 In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between physical laws that we'll draw in \chap~\ref{sec:laws}.
 
 
-\begin{figure}[b]
+\begin{figure}[p]
   \centering
   \includegraphics[width=1.2\textwidth]{chew1.png}
-  \\[\jot]  \includegraphics[width=1.2\textwidth]{chew2.png}
-  \caption{(Continues on p.~\pageref{fig:chew2})
-\emph{The progress of \enquote{fundamental} physics, conceived by Berkeley Chew, published in 1970 by his father, Professor Geoffrey F. Chew.} (Reproduced from  \cites{truesdell1984_r1987})}
+  \\[1em]  \includegraphics[width=1.2\textwidth]{chew2.png}
+  \caption{(Continues on p.~\pageref{fig:chew2}) \emph{The progress of \enquote{fundamental} physics}, from \cites{chew1970} as reproduced in \cites{truesdell1984_r1987}}
   \label{fig:chew1}
 \end{figure}
-\begin{figure}[b]
+\begin{figure}[p]
   \centering
   \includegraphics[width=1.2\linewidth]{chew3.png}
-\\[\jot]  \includegraphics[width=1.2\linewidth]{chew4.png}
+\\[1em]  \includegraphics[width=1.2\linewidth]{chew4.png}
   % \caption{\emph{\enquote{The progress of \enquote*{fundamental} physics, conceived by Berkeley Chew, published in 1970 by his father, Professor Geoffrey F. Chew.}} Reproduced from  \cites{truesdell1984_r1987}}
   \label{fig:chew2}
 \end{figure}
@@ -1470,8 +1489,40 @@ Whenever we speak of a \enquote{region of space} or of a \enquote{surface in spa
 Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write, for instance, $(t,x)$ as our coordinates.
 
 \begin{exercise}
-\mynotew{On relation between coord time and proper time for satellite}
+  Consider a clock at rest on the Earth's surface, at a distance $r_{\text{e}}$ from the Earth's centre, and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\incr t_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\incr t_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
+\begin{equation*}
+  \frac{\incr t_{\text{s}}}{\incr t_{\text{e}}} =
+  \frac{
+    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{e}}}
+  }{
+    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{s}}}
+  }
+\end{equation*}
+where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
+
+\begin{enumerate}[wide,label=\arabic*.]
+\item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\incr t_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\incr t_{\text{s}}$ you see on the satellite?
+
+\item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\incr t_{\text{s}}/\incr t_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
+
+  Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
+
+  In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
+
+  Given that Gargantua's mass is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
+\end{enumerate}
 \end{exercise}
+\marginpar{\footnotesize\centering%
+\vspace{-10em}\includegraphics[align=b,width=\linewidth]{gargantua.png}
+}
+
+\section{Velocity and acceleration}
+\label{sec:velocity}
+
+
+
+
+
 
 \printpagenotes*
 \clearpage
