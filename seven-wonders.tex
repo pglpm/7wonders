@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-01T15:58:56+0100
+%% Last-Updated: 2024-02-01T23:17:00+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1030,6 +1030,8 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakab
 \calccentering{\unitlength}
 \begin{adjustwidth*}{\unitlength}{-\unitlength}
   \centering
+  % c6ddff % color of Earth in the Pale Blue Dot picture
+  \color[HTML]{C6DDFF}
   \maketitle
 \end{adjustwidth*}
 \end{titlingpage}
@@ -2120,7 +2122,7 @@ The dimensions, units, and scalar or vector character of these quantities are su
 
 \printpagenotes*
 \clearpage
-\chapter{Fluxes and totals}
+\chapter{Fluxes and volume integrals}
 \label{sec:total_flux}
 
 In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy -- have two common properties related to their measurement:
@@ -2129,15 +2131,67 @@ In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, elect
 \item[(2a)] we can measure the amount of quantity flowing through a two-dimensional surface during a time lapse\textellipsis
 \item[(2b)] \textellipsis or alternatively we can measure the amount of quantity flowing through a two-dimensional surface \emph{per unit time}, at a particular time instant
 \end{enumerate}
-\begin{definition}{Total and flux}
-  We shall call measurement~(1) the \textbf{total} of the quantity, although we won't need to use this term very often.
+\begin{definition}{volume integral and flux}
+  We can call measurement~(1) the \textbf{volume integral} of the quantity, but we won't need to use this term very often.
 
   \smallskip
 
-  Most important, we call measurement~(2b) the \textbf{flux} of the quantity. Remember that in order to calculate the flux through a surface we need to specify how that surface is moving.
+  Most important, we call measurement~(2b) the \textbf{flux} (or surface integral) of the quantity. Remember that in order to calculate the flux through a surface we need to specify how that surface is moving.
 \end{definition}
 
 These two notions and measurements are very intuitive; that's also why it's convenient to base our physics upon them. In this chapter we straighten some details about their definition and also about our intuition.
+
+\section{A first intuition}
+\label{sec:flux_intuition}
+
+First of all let's consider a scalar quantity. Our discussion will be valid for any one of the three scalar quantities (matter, electric charge, entropy) among the seven, but if you want you can think of a concrete example, say \emph{matter}.
+
+A first mental picture of the volume integral of matter in a region might look like this:
+\begin{center}
+  \includegraphics[align=t,height=7em]{volumeintegral.pdf}
+\end{center}
+we have eliminated one spatial dimension for simplicity, and considered the analogous two-dimensional idea. The region is in \textcolor{bluepurple}{light blue}, delimited by a closed \textcolor{blue} boundary. This is a snapshot at a given time instant. The number of points inside the boundary gives us an idea of the amount of matter that's within the region at this instant. Actually the points do more: they give us the idea that there's a higher amount of matter in some sub-regions, and lower amount in others. This is extra information that we don't need right now but will be useful later.
+
+As a mental picture, this can be a good start. Let's straighten out some of its aspects.
+
+The first aspect of the picture that we must be cautious about is the discreteness of the points. Sure, in some physical situations matter can be considered discrete; the points might represent atoms for instance. But in many common situations it's more advantageous to think of matter as being \emph{continuously distributed} within the region, even if it can be absent in some subregions, and if its \emph{density} may be higher or lower here or there. In this case the points in the picture only give us a qualitative indication of the density, they don't represent real discrete bunches of matter. Also, matter was here taken only as a concrete example; the quantity in question could be \emph{energy} instead, which is often continuously distributed.
+
+The second aspect is that some of the quantity within the region might be positive, and some negative. This is commonly true for electric charge, and can be true for matter as well (antimatter). We could represent this by using \textcolor{red}{red} points for the subregions containing quantity of negative sign, like negative electric charge or antimatter:
+\begin{center}
+  \includegraphics[align=t,height=7em]{volumeintegral_neg.pdf}
+\end{center}
+Now we realize something important: \emph{the total amount of a quantity in a region can be zero, and yet the amount in subregions can be non-zero.}
+
+So if we measure the total amount of a quantity in a region and find a value of zero, we still don't know what are the amounts within different subregions: some of them could be positive and other negative; unless we have physical grounds to rule out this possibility, of course. This lack of information is \emph{not} necessarily a difficulty when solving physical problems. But you must take it into consideration when forming mental pictures of the situation, and make allowance for the various possibilities. For instance, imagine that there's a lot of positive and a lot of negative quantity in the region; what you know is the difference or discrepancy between the two.
+\marginpar{\footnotesize%
+\includegraphics[align=t,width=\linewidth]{equivalent_VI.pdf}
+% \\[\jot]%
+% {\color{mpcolor}\enquote{\emph{%
+% }}\sourceatright{\cites{}}}
+}
+
+
+
+The total is given by the sum of positive and negative amounts, and it could even be zero!
+
+% add extra about quantum field theory \mynotew{}
+
+
+
+
+
+
+\begin{center}
+  % 0.2-0.24, 0.25-0.30 1-1.205
+  \includegraphics[align=t,height=0.3\textheight]{flux.pdf}
+\end{center}
+% \\
+% \includegraphics[align=t,width=\linewidth]{entropy_high.png}
+% \\[\jot]\footnotesize%
+% {\color{mpcolor}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
+
+
+
 
 
 
