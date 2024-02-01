@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-01-31T23:15:54+0100
+%% Last-Updated: 2024-02-01T10:01:44+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -131,6 +131,7 @@ british%
 
 \usepackage[shortlabels,inline]{enumitem}
 \SetEnumitemKey{para}{itemindent=\parindent,leftmargin=0pt,listparindent=\parindent,parsep=0pt,itemsep=\topsep}
+\SetEnumitemKey{shift}{leftmargin=1em}
 % \begin{asparaenum} = \begin{enumerate}[para]
 % \begin{inparaenum} = \begin{enumerate*}
 \setlist{itemsep=0pt,topsep=\parsep}
@@ -938,6 +939,19 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 \newcommand*{\dobs}{degrees of belief}
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yv}{\bm{v}}
+%
+\newcommand*{\yN}{N}
+\newcommand*{\yJ}{J}
+\newcommand*{\yM}{M}% m, and q_m for mass flow
+\newcommand*{\yE}{E}
+\newcommand*{\yU}{U}
+\newcommand*{\yEk}{\yE_{\textrm{k}}}%T
+\newcommand*{\yEp}{\yE_{\textrm{p}}}%V
+\newcommand*{\yH}{\varPhi}% really used for heat-flow
+\newcommand*{\yQ}{Q}% Q for time-integral
+\newcommand*{\yW}{W}% A,W for time-integral
+
+%
 \newcommand*{\yto}{t_{0}}
 \newcommand*{\yxo}{x_{0}}
 \newcommand*{\yyo}{y_{0}}
@@ -1151,7 +1165,7 @@ It can be beneficial if you are familiar with basic physics notions such as \emp
 \addsec{Structure of this text}
 \label{sec:guide_text}
 
-\addsubsec{\faIcon{hand-point-right}\enspace Graphical devices}
+\subsection{\faIcon{hand-point-right}\enspace Graphical devices}
 
 The text includes the following graphical devices:
 \begin{itemize}
@@ -1179,7 +1193,7 @@ The text includes the following graphical devices:
   \end{extra}
 \end{itemize}
 
-\addsubsec{\faIcon{hand-point-right}\enspace Side pictures and quotes}
+\subsection{\faIcon{hand-point-right}\enspace Side pictures and quotes}
 
 \marginpar{\footnotesize%
   {\centering\includegraphics[align=b,width=0.5\linewidth]{saitama_image.png}
@@ -1192,7 +1206,7 @@ Pictures, graphs, or quotes related to the material are displayed on the right.
 
 
 
-\addsubsec{\faIcon{hand-point-right}\enspace Hyperlinks and bibliography}
+\subsection{\faIcon{hand-point-right}\enspace Hyperlinks and bibliography}
 
 Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}; you also recognize them because they have a little footnote number. The links' URLs are listed at the end of each chapter, just in case you're reading a printed copy and wonder what the link was.
 
@@ -1214,7 +1228,7 @@ To back up what's written in the text.
 In science you should not believe something just because you've read it somewhere. You should, as much as possible, go and check \emph{for yourself} \emph{how the logic behind the statement is proved} and \emph{what is the experimental evidence behind the statement}.
 \end{itemize}
 
-\addsubsec{\faIcon{hand-point-right}\enspace Notation and terminology}
+\subsection{\faIcon{hand-point-right}\enspace Notation and terminology}
 
 Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
 
@@ -1520,7 +1534,7 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
 
 
-\begin{enumerate}[label={\bfseries\arabic*.},leftmargin=2em]
+\begin{enumerate}[shift,label={\bfseries\arabic*.}]
 \item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\incr t_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\incr t_{\text{s}}$ you see on the satellite?
 
 \item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\incr t_{\text{s}}/\incr t_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
@@ -1587,6 +1601,10 @@ which is also a vector.
 \chapter{Building blocks: \enquote{Stuff}}
 \label{cha:stuff}
 
+\epigraph{\emph{For Euler, clarity was the hallmark of truth. \textelp{} To him we owe also the brilliant imagination of the internal pressure in generality, the pressure field as equipollent to the action of the fluid outside any imaginary closed diaphragm upon that within. \textelp{} I remark upon it in emphasis of the role of imagination and the importance of quantities which can only be thought of and cannot in themselves be measured.}}{C. A. Truesdell \cites*{truesdell1956d}}
+
+
+
 \section{Seven primitive quantities with two basic properties}
 \label{sec:stuff}
 
@@ -1604,30 +1622,51 @@ Our physics formalism includes around seven more quantities that we take as prim
 \end{definition}
 Technically they are called \emph{fields}, for reasons that we shall see shortly.
 
-Recall that primitive quantities cannot be defined: we can only try to understand them intuitively, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others.
-
 \medskip
 
-But all seven primitive quantities have two basic properties in common. Of each we can ask, or rather, measure:
-\begin{definition}{Two basic measurements that can be made on the seven quantities}
-  \begin{itemize}\bfseries
-  \item How much of this quantity is in a particular (3D) region of space at a particular time instant?
-  \item How much of this quantity flows through a particular (2D) surface during a particular time lapse?
-  \end{itemize}
+Recall that primitive quantities cannot be defined: we can only try to understand them intuitively, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But all seven primitive quantities have two basic properties in common. Of each we can ask, or rather, measure:
+\begin{definition}{The two basic measurements that can be made on the seven quantities}
+  \begin{enumerate}[shift,label=\arabic*.]\bfseries
+  \item How much of this quantity is in a particular three-dimensional region of space at a particular time instant?
+  \item How much of this quantity flows through a particular two-dimensional surface during a particular time lapse?
+  \end{enumerate}
 \end{definition}
-and we can ask these questions of any region of space and any time lapse.
+We can ask these questions of any region of space and any time lapse, and the surface in the second question can be moving and deforming.
+
+Keep in mind that \emph{the region and surface can be completely imaginary}. This is what makes these questions very powerful for doing physics.
+
+For example, consider a classroom and the people in it. In your imagination you can divide the classroom into two halves, say the front and the rear half. You can then ask or measure simply by counting:\enspace
+\begin{enumerate*}[label=\arabic*.]
+\item how many people are, right now, in the rear half;\enspace
+\item how many people are crossing the imaginary division between the front and rear half during one minute, starting from now.
+\end{enumerate*}
+
 % \mynotew{densities and fluxes?}
 The results of the two measurements above are numbers, which in general can be positive or negative, for scalar quantities; or vectors for vector quantities.
 % This number depends only on the chosen region, surfaces, and times.
 
-Note that these two kinds of measurement in general can't be made, and don't even make sense, for some other quantities. For instance, we cannot ask \enquote{what's the total amount of \emph{temperature} in this region?}, or \enquote{how much velocity is flowing through this surface?}.
+Often we consider the second question, about the flow through a surface, in the case of a very short lapse of time, and divide the total flow by that time lapse. This is called the \textbf{flux} of the quantity through that surface. So we have an alternative form of the second measurement:
+\begin{definition}{Flux of a substance through a surface}
+  \begin{enumerate}[shift,label=\arabic*.]\bfseries
+  \item[2b.] How much of this quantity is flowing through a particular two-dimensional surface per unit time, at a particular time instant?
+  \end{enumerate}
+\end{definition}
+Note that when we measure or speak of a flux, \emph{we must always pay attention on whether the surface we are considering is moving}. If someone asks you what's the flux through a particular surface at a given instant, but they don't tell you what's the velocity of the surface, then the flux is unknown.
+
+As a trivial example, consider a glass surface, and a person on one side of it, moving with a high velocity directed towards the surface. Will the person crash on the glass? We can't say for sure. The glass surface could be a glass wall in a building, which is not moving; in which case the person will likely crash on it. Or it could be the windscreen of a car, which is moving together with the person, who's the driver; in which case the person won't crash on it.
+
+\smallskip
+
+The basic measurements above can't in general be made, and don't even make sense, for some other quantities. For instance, we cannot ask \enquote{what's the total amount of \emph{temperature} in this region?}, or \enquote{how much velocity is flowing through this surface?}.
 
 
-Owing to the two properties above, each of the seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
+Owing to the two properties above, each of the seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point and fill a region of space. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
 
 % For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. The density tells us how much quantity there's in a unit of volume. The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
-What's remarkable about these seven quantities is that they are common to all our main physical theories, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
+\smallskip
+
+What's remarkable about matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy, is that \emph{they are common to all our main physical theories}, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
 
 % \begin{critique}
 %   \emph{Wait! what about \emph{force}? isn't this a primitive quantity? or maybe it isn't included because it's defined as mass${}\times{}$acceleration?}
@@ -1637,12 +1676,14 @@ What's remarkable about these seven quantities is that they are common to all ou
 % We'll see that \emph{force} is defined as momentum flux; but that in general isn't mass${}\times{}$acceleration.
 % \end{critique}
 
+\smallskip
+
 Let us make a first acquaintance with these seven quantities.
 
 \section{Matter}
 \label{sec:intro_matter}
 
-Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}.
+Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}. Its flux is therefore measured in units of \emph{moles per second} (\unit{mol/s}). In statistical mechanics and particle physics, matter is often simply counted and so measured in dimensionless units, rather than moles.
 
 Matter is probably the easiest quantity to grasp intuitively; what we ordinarily call \enquote{stuff} is matter. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is usually classified into several kinds; the classification depends on the physical phenomena and physical theory one works with, and is related to whether the kinds of matter can be considered separately conserved, as we'll discuss in \sect\,\ref{sec:cons_matter}.
@@ -1651,7 +1692,7 @@ In everyday phenomena not involving \furl{https://www.iaea.org/newscenter/news/w
 % \url{https://www.britannica.com/science/radioactivity}
 or \furl{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}{nuclear energy},
 % \url{https://www.britannica.com/science/nuclear-fission}
-the different kinds of matter approximately correspond to the \furl{https://www.ciaaw.org/radioactive-elements.htm}{non-radioactive chemical elements}: hydrogen, helium, lithium, and so on. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
+the different kinds of matter approximately correspond to the non-\furl{https://www.ciaaw.org/radioactive-elements.htm}{radioactive chemical elements}: \furl{https://pubchem.ncbi.nlm.nih.gov/element/Hydrogen}{hydrogen}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Helium}{helium}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Lithium}{lithium}, and so on. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
 Note that some common everyday devices, such as smoke detectors, do involve radioactivity.
 
 In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}{\emph{baryons}},
@@ -1660,80 +1701,83 @@ such as protons and neutrons; and \furl{http://hyperphysics.phy-astr.gsu.edu/hba
 % \url{https://www.britannica.com/science/lepton}},
 such as electrons. In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved, such as electronic-leptons, muonic-leptons, and others. This kind of research is still open, but it seems that the total amount of baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved. Note that we're using the term \enquote*{matter} in a sense that includes anti-matter, such as positrons.
 
+The total amount of matter in a region \emph{can be negative}. \enquote{Negative matter} is what's usually called \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans.
+
+\begin{exercise}
+  According to statements on \furl{https://www.symmetrymagazine.org/2009/07/23/antimatter-from-bananas}{symmetrymagazine.org} and \furl{https://www.quantumdiaries.org/2009/07/21/positrons-from-bananas/}{quantumdiaries.org},
+  \begin{quote}
+    The average banana (rich in potassium) produces a positron roughly once every 75 minutes.
+  \end{quote}
+  Unfortunately the original site where the this statement was discussed, and the corresponding calculation made, seems not to exist anymore.
+\sidepar{\footnotesize%
+  \includegraphics[align=b,width=0.75\linewidth]{banana.jpg}
+\\{\color{mpcolor}How many positrons do bananas produce?}
+}
+
+\begin{enumerate}[shift,label=\arabic*.]\bfseries
+\item Do a little research and find out whether this statement is true.
+\item From your research, approximately quantify the flux of positrons around an ordinary banana, expressing it in \unit{particles/s}.
+\end{enumerate}
+\end{exercise}
+
 In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
 
 % There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
 \begin{warning}[Matter is different from mass or energy]
   It is important to clearly distinguish matter from \emph{mass} or \emph{energy}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
+
+  \smallskip
+
+  As far as we know, the total amount of energy associated with an amount of matter is always positive, whether the amount of matter is positive or negative (antimatter). This is the reason why antimatter \enquote{falls} just like positive matter, a fact that has been experimentally confirmed: see \cites{andersonetal2023}.
 \end{warning}
 
-\section{Electric charge}
+\begin{definition}{Matter: notation}
+  The amount of matter in a region is usually denoted with $\yN$, and flux of matter with $\yJ$. In chemistry we usually specify what kind of matter we are speaking about, writing for instance $\yN_{\mathrm{Ca}}=\qty{5.3}{mol}$, to indicate an amount of $\qty{5.3}{mol}$ of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Calcium}{calcium} atoms.
+\end{definition}
+
+
+\section{Electric charge and magnetic flux}
 \label{sec:intro_charge}
 
-If we either slide or attempt to slide a body over a surface, the motion is resisted
-by a bonding between the body and the surface. (We discuss this bonding more in
-the next chapter.) The resistance is considered to be a single force
+Electric charge is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E01923}{\textsf{electric charge}} (equivalent to \textsf{electric current}$\times$\textsf{time}), and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{coulombs} (\unit{C})}. Flux of electric charge is called \emph{electric current}, and measured in units of \furl{https://doi.org/10.1351/goldbook.A00300}{\emph{amperes} ($\unit{A} = \unit{C/s}$)}.
 
-% This figure of 6 m/s is probably an over-estimate for many locations in
-% Britain. For example, figure 4.1 shows daily average windspeeds in Cam-
-% bridge during 2006. The daily average speed reached 6 m/s on only about
+Electric charge is a quantity that is easily grasped in our everyday experience, and doesn't need much comments.
 
+\bigskip
 
-We will study a single neuron for two reasons. First, many neural network
-models are built out of single neurons, so it is good to understand them in
-detail. And second, a single neuron is itself capable of ‘learning’ – indeed,
-various standard statistical methods can be viewed in terms of single neurons
-– so this model will serve as a first example of
-
-
-Electric charge is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E01923}{\textsf{electric charge}} (equivalent to \textsf{electric current}$\times$\textsf{time}), and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{coulombs} (\unit{C})}.
-
-Electric charge is probably easily grasped today, and doesn't need much comments. In these notes we shall not discuss phenomena involving this quantity.
-
-\section{Magnetic flux}
-\label{sec:intro_magneticflux}
-
-Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
-
-
-The electromagnetic field
-is most commonly represented by vectors associated to each point in space.
 \marginpar{\footnotesize%
 %\includegraphics[align=t,width=\linewidth]{magnflux1.png}
 \includegraphics[align=t,width=\linewidth]{magnflux2.png}
 \\{\color{mpcolor}\enquote{\emph{%
 sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}}
 }
+Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
+
+
+The electromagnetic field
+is most commonly represented by vectors associated to each point in space.
 But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension.
-This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}).
+This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}). From this point of view, the \emph{voltage} turns out to be the flux of the magnetic flux; it is indeed measured in \emph{volts} (\unit{V}), equivalent to \emph{webers/second}.
 
 Electromagnetism and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
 
-\bigskip
 
 \section{Energy}
 \label{sec:intro_energy}
 
-Energy is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.E02101}{\textsf{energy}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.J03363}{\emph{joules} (\unit{J})}. Equivalently we can speak of mass, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03709}{\textsf{mass}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.K03391}{\emph{kilograms} (\unit{kg})}.
+Energy is a \emph{scalar} quantity, with SI dimension \textsf{energy}, and measured in units of \emph{joules} (\unit{J}); its flux is measured in units of \emph{watts} ($\unit{W}=\unit{J/s}$).
 
-The notion of energy is also easily grasped today, and often we speak about it as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will work well in these notes.
+Equivalently we can speak of mass, with SI dimension \textsf{mass}, and measured in units of \furl{https://doi.org/10.1351/goldbook.K03391}{\emph{kilograms} (\unit{kg})}; its flux is measured in \emph{kilograms per second} (\unit{kg/s}).
 
-The notion of \emph{mass} is also intuitive in our everyday life; we associate it with the difficulty in setting objects into motion, or with their weight.
+The notion of energy is easily grasped today, and often we speak about it as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will be enough in these notes. The notion of \emph{mass} is also very intuitive in our everyday life; we associate it with the difficulty in setting objects into motion, or with their weight.
 % relativity says that there's a strong connection between these two associations.
-From Relativity Theory and experimentally we know that \emph{energy and mass are the same thing}, and in these notes we shall fully take this point of view.
 
-Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy \emph{is} mass.
-\marginpar{\footnotesize%
-\includegraphics[align=c,width=\linewidth]{atomicbomb.jpg}
-\\[\jot]%
-{\color{mpcolor}\emph{Hydrogen Bomb Test, 1954%
-}\\{(\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History})}}
-}
-The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
+From Relativity Theory, and experimentally, we know that \emph{energy and mass are the same quantity}, and in these notes we shall fully take this point of view.
 
+Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy in all its possible forms \emph{is} mass.
 
-Here is an example of the fact that energy is mass. Take a common
+Here is an example of the fact that any form of energy is mass. Take a common
 rubber band, and imagine we have an extremely precise weighing scale.
 We weigh the rubber band, unstretched, and let's say that we measure a mass of
 \begin{equation*}
@@ -1750,7 +1794,7 @@ If we now weigh the rubber band again, while stretched, we measure a mass of app
 The extremely small difference of \qty{3e-18}{kg} from the initial mass
 is exactly the elastic energy that we provided by stretching.
 \marginpar{\footnotesize%
-\includegraphics[align=t,width=\linewidth]{rubberbands.png}
+\includegraphics[align=b,width=\linewidth]{rubberbands.png}
 \\[\jot]%
 {\color{mpcolor}When we stretch a rubber band, its mass increases slightly -- even if the amount of rubber remains exactly the same.}
 }
@@ -1761,6 +1805,14 @@ $$\qty{0.000500000000000002}{kg} \ .$$
 The small difference from the initial mass is the new kinetic energy of the band. Any energy has weight; any energy is mass.
 
 As a final example, consider a \qty{1000}{W} electric heater, which is radiating \qty{1000}{J} in one second. The heater is also losing around \qty{0.00000000000001}{kg} of mass every second owing to this heat radiation -- although it's also acquiring the same amount of mass as electromagnetic energy.
+
+The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
+\marginpar{\footnotesize%
+\includegraphics[align=t,width=\linewidth]{atomicbomb.jpg}
+\\[\jot]%
+{\color{mpcolor}\emph{Hydrogen Bomb Test, 1954%
+}\\{(\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History})}}
+}
 
 \smallskip
 
@@ -1778,9 +1830,26 @@ To grasp these numbers, consider that the mass of the rubber band above, \qty{0.
 
 From the examples above it is clear that the energy changes that we deal with and use in everyday situations are extremely small changes in mass -- so small that we can't measure them within the precision of ordinary weighing scales. Vice versa, the masses that we ordinarily deal with are huge amounts of energy. If we spoke only of \enquote*{energy} or only of \enquote*{mass} in all situations, and used only one unit, either joules or kilograms, we would have to work with very impractical numbers. \enquote*{Mass} can be considered a convenient term for \enquote*{energy} when huge amounts of it are involved, concentrated in small regions of space, and ordinary small energy changes can be neglected. In these notes we shall often use the expressions \enquote*{\energym} and \enquote*{\masse} to remember that these two words denote the same thing.
 
+\smallskip
+
+Energy-mass is present wherever there's matter, charge, or magnetic flux, and vice versa. \emph{Its specific relation with these quantities depends on the coordinate system} (\sect\,\ref{sec:coords}) that we choose. It is extremely important to keep in mind this dependence. For instance, in the examples above we said that the unstretched rubber band in motion had a \masse\ of \qty{0.000500000000000002}{kg}; but if we choose a coordinate system in which the band is not moving, its \masse\ would be \qty{0.000500000000000000}{kg}. Owing to this coordinate dependence, and depending on whether matter or magnetic flux is present in a region, we often conveniently partition an amount of energy into different \enquote{forms} such as rest energy, internal energy, kinetic energy, gravitational potential energy, electromagnetic energy. This is only a conceptual division.
+
+Also energy flux can be partitioned depending on the coordinate system and on whether there's also a flux of matter. This leads to the important distinction between two forms of energy flux: \textbf{heat} and \textbf{work}.
+
+We shall see later how to define and calculate these different forms of energy and energy flux.
+
+\smallskip
+
+\begin{definition}{Energy-mass: notation}
+  The amount of energy in a region is usually denoted with $\yE$, or with $\yM$ if we describe it as mass. Internal energy is denoted $\yU$, kinetic energy $\yEk$, potential energy $\yEp$.
+
+  The total flux of energy will be denoted $\yH$, in the form of heat $\yQ$, and in the form of work $\yW$.
+\end{definition}
+
+
 \medskip
 
-Energy-mass is present wherever there's matter, charge, or magnetic flux, and vice versa. Its specific relation with these quantities depends on the coordinate system (\sect\,\ref{sec:coords}) that we choose. It is extremely important to keep in mind this dependence. In the examples above we said that the unstretched rubber band in motion had a \masse\ of \qty{0.000500000000000002}{kg}; but if we choose a coordinate system in which the band is not moving, its \masse\ would be \qty{0.000500000000000000}{kg}. We shall see later how to reckon the energy of matter in a typical Earth-bound coordinate system.
+
 
 
 % *** we shall see later in \sect
@@ -1806,6 +1875,10 @@ According to Relativity Theory, momentum \emph{is} energy flux (such as heat), a
   \bm{Q} = \bm{P}c^{2}
 \end{equation}
 Compare this formula with $E=mc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy. On a sunny day, if you close your eyes and feel the Sun's heat on your face, what you are feeling is actually a flow of momentum. And when you kick a ball, you're setting a huge bundle of energy in motion, and that's why the ball has acquired momentum.
+
+\medskip
+
+Flux of momentum is what we call \textbf{force}.
 
 \section{Angular momentum}
 \label{sec:intro_angmomentum}
@@ -2394,10 +2467,10 @@ The rudimentary routine above is the basis from which more precise and complex s
     \end{multline*}
 
     Questions and tasks:
-    \begin{enumerate}[label={\bfseries\arabic*.},leftmargin=2em]
+    \begin{enumerate}[shif,label={\bfseries\arabic*.}]
     \item Which time evolution for $n$ do you observe? Does it make sense, given the fluxes above?
     \item Feel free to try out or generalize your script with:
-      \begin{itemize}[leftmargin=2em]
+      \begin{itemize}[shift]
       \item different initial values
       \item different fluxes
       \item an explicit formula for the flux, for instance
