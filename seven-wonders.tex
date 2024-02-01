@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-01T10:18:20+0100
+%% Last-Updated: 2024-02-01T15:18:34+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -744,7 +744,7 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 % \hspace*{\stretch{1}}%
 \parbox{1\linewidth}%\makebox[0pt][c]%
 {\protect\centering Luca %P.G.L.  Porta Mana
- \href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}%
+ %\href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}%
 % \\\footnotesize
 % Western Norway University of Applied Sciences%
 % \quad\epost{\email{pgl}{portamana.org}}%
@@ -950,7 +950,15 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
 \newcommand*{\yQ}{Q}% Q for time-integral
 \newcommand*{\yW}{W}% A,W for time-integral
-
+\newcommand*{\yP}{\bm{P}}
+\newcommand*{\yp}{\bm{p}}
+\newcommand*{\yF}{\bm{F}}
+\newcommand*{\yf}{\bm{f}}
+\newcommand*{\yL}{\bm{L}}% L or H
+%\newcommand*{\yl}{\bm{L}}
+\newcommand*{\yT}{\bm{\tau}}% M or T or M_Q
+%\newcommand*{\yt}{\bm{\tau}}
+\newcommand*{\yS}{S}
 %
 \newcommand*{\yto}{t_{0}}
 \newcommand*{\yxo}{x_{0}}
@@ -989,7 +997,7 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakab
 \newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, width=0.9\linewidth, center, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
+\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, width=0.9\linewidth, flush right, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1017,6 +1025,7 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakab
 \begin{document}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
+
 \begin{titlingpage}
 \calccentering{\unitlength}
 \begin{adjustwidth*}{\unitlength}{-\unitlength}
@@ -1025,6 +1034,8 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakab
 \end{adjustwidth*}
 \end{titlingpage}
 \killtitle
+
+\calccentering{\unitlength}
 \begin{adjustwidth*}{\unitlength}{-\unitlength}\thispagestyle{empty}
   \centering
   \includegraphics[align=c,height=1em]{cc_by_sa.png} Licence
@@ -1037,7 +1048,13 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakab
 
 \smallskip
 
-  Typeset with \LaTeX\ using 12\,pt Palatino and Optima fonts
+Typeset with \LaTeX\ using 12\,pt Palatino and Optima fonts
+
+\bigskip
+
+Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
+\\from right outside Pluto's orbit\\
+\url{https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/}
 \end{adjustwidth*}
 \setcounter{page}{0}
 
@@ -1339,7 +1356,7 @@ To each quantity we associate a \textbf{physical dimension}. The term \enquote*{
 With each physical dimension we can associate a measurement \textbf{unit}, which expresses a basic standard for comparing the measurement results of similar quantities. For example, we could use the \emph{minute} or the \emph{second} as units to measure $\mathsf{time}$.
 
 One can choose a basic set of physical dimensions from which to define all others, and for these a set of standard units. Here we shall follow the
-\furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}.
+\furl{https://www.nist.gov/pml/owm/metric-si/si-units}{International System of Units (SI)} (see also \furl{https://www.nist.gov/pml/special-publication-811}{NIST Special Publication 811}).
 
 The topics of measurement and physical dimensions, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves. I shall assume that you already know their basics notions and that you read about the SI.
 
@@ -1678,7 +1695,7 @@ What's remarkable about matter, electric charge, magnetic flux, energy, momentum
 
 \smallskip
 
-Let us make a first acquaintance with these seven quantities.
+Let us make a first acquaintance with these seven quantities. The discussion that follows is meant as an introduction; we shall repeat and say more about each quantity in later chapters.
 
 \section{Matter}
 \label{sec:intro_matter}
@@ -1868,7 +1885,7 @@ We shall see later how to define and calculate these different forms of energy a
 
 Momentum, also called \emph{linear momentum} to distinguish it from angular momentum, is a \emph{vector} quantity, with SI dimension $\textsf{energy}\times\textsf{time}/\textsf{length}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}/\emph{metres}$ (\unit{J\cdot s/m}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}/\emph{seconds}$ (\unit{kg\cdot m/s}). Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
 
-Momentum is a subtle quantity. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass of a body times the body's velocity, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only approximate and valid in some circumstances only; it cannot be used as a general definition. First, it is true that where there's matter in motion there's also momentum; but this momentum is given by the matter's mass$\,\times\,$velocity only as an approximation. Second, there can be momentum also where there's no matter; for instance where there's magnetic flux and charge. If you prepare a sealed glass box completely empty within (you create a vacumm), then there's momentum within the \enquote{empty} box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
+Momentum is a subtle quantity. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass of a body times the body's velocity, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only approximate and valid in some circumstances only; it cannot be used as a general definition. First, it is true that where there's matter in motion there's also momentum; but this momentum is given by the matter's mass${}\times{}$velocity only as an approximation. Second, there can be momentum also where there's no matter; for instance where there's magnetic flux and charge. If you prepare a sealed glass box completely empty within (you create a vacumm), then there's momentum within the \enquote{empty} box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
 
 It is therefore convenient if you separate your idea of momentum from the idea of \enquote{bodies moving}, and keep in mind that the latter idea is just a particular case of momentum. Momentum can be associated with motion, though. We shall see that there is an important connection between momentum and our intuitive idea of \enquote*{force}, which will be useful for getting a better intuition of momentum.
 
@@ -1881,19 +1898,26 @@ Compare this formula with $E=mc^{2}$. From this point of view, you can think of 
 
 \medskip
 
-Flux of momentum is what we call \textbf{force}.
+Flux of momentum is what we call \textbf{force}. Force is a notion that we understand intuitively and that we can \enquote{feel} with our own bodies. In Newtonian mechanics it's often taken as primitive, and is represented by a vector. But it can also be defined and interpreted as a \emph{flux of momentum}. This point of view can be very useful and even more intuitive in some situations. We shall discuss it more in depth in \sect\,\mynotew{}.
+
+\begin{definition}{Momentum: notation}
+  The amount of momentum in a region is usually denoted with $\yP$. The flux of momentum is also called force and denoted with $\yF$.
+\end{definition}
+
+
+
 
 \section{Angular momentum}
 \label{sec:intro_angmomentum}
 
 Angular momentum, also called \emph{moment of momentum} or \emph{rotational momentum}, is a \emph{vector} quantity, with SI dimension $\textsf{energy}\times\textsf{time}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}$ (\unit{J\cdot s}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}^{2}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}^{2}/\emph{seconds}$ (\unit{kg\cdot m^2/s}). It is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components.
 
-Angular momentum is perhaps an even subtler quantity than momentum. Luckily there's a way of calculating it in terms of momentum, so even if we don't fully grasp it intuitively we can still calculate it. If momentum is denoted by the vector $\bm{P}=(P_{x},P_{y},P_{z})$ and the position vector by $\yr=(x,y,z)$, then the angular momentum $\bm{L}=(L_{x}, L_{y}, L_{z})$ \emph{with respect to the origin of coordinates} is given by
+Angular momentum is perhaps an even subtler quantity than momentum. Luckily there's a way of calculating it in terms of momentum, so even if we don't fully grasp it intuitively, we can still calculate it. If the momentum \emph{in a small volume} is denoted by the vector $\yP=(P_{x},P_{y},P_{z})$ and the position vector by $\yr=(x,y,z)$, then the angular momentum $\yL=(L_{x}, L_{y}, L_{z})$ \emph{with respect to the origin of coordinates} is given by
 \begin{subequations}
   \begin{equation}
     \label{eq:ang_momentum_def}
     \begin{gathered}
-      \bm{L} = \yr \times \bm{P}
+      \yL = \yr \times \yP
       \\
       \text{or equivalently}\qquad\left\{\enspace
         \begin{aligned}
@@ -1914,9 +1938,35 @@ Angular momentum is perhaps an even subtler quantity than momentum. Luckily ther
     \end{aligned}\right.
 \end{equation}
 \end{subequations}
-choose whichever you prefer.
+Choose whichever you prefer.
 
 The formula above also suggests that we can somehow think of angular momentum as \enquote{energy in rotation}. Just like momentum, angular momentum is something that is associated not only with ordinary bodies (matter), but also with charge and magnetic flux, and therefore electromagnetic radiation.
+
+\smallskip
+
+The flux of angular momentum is also called the \emph{torque}, and bears a relation to the flux of momentum similar to the formula above. If the force -- flux of momentum -- is denoted by the vector $\yF=(F_{x},F_{y},F_{z})$ and the position vector by $\yr=(x,y,z)$, then the flux of angular momentum, or torque, $\yT=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
+  \begin{equation}
+    \label{eq:ang_momentum_def}
+    \begin{gathered}
+      \yT = \yr \times \yF
+      \\[\jot]
+      \text{or equivalently}\qquad\left\{\enspace
+        \begin{aligned}
+          \tau_{x} & = y\,F_{z} - z\,F_{y}
+          \\    \tau_{y} & = z\,F_{x} - x\,F_{z}
+          \\    \tau_{z} & = x\,F_{y} - y\,F_{x}
+        \end{aligned}\right.
+      \qquad\text{or}\qquad
+      \left\{\enspace
+    \begin{aligned}
+      \tau_{yz} & = y\,F_{z} - z\,F_{y}
+      \\    \tau_{zx} & = z\,F_{x} - x\,F_{z}
+      \\    \tau_{xy} & = x\,F_{y} - y\,F_{x}
+    \end{aligned}\right.
+    \end{gathered}
+  \end{equation}
+
+  \bigskip
 
 You may wonder:
 % \begin{marginfigure}\footnotesize%
@@ -1935,23 +1985,34 @@ Second, for some physical phenomena, for example involving liquid \furl{https://
 % https://www.britannica.com/science/polymer
 elementary particles, or electromagnetic radiation, the angular momentum includes an additional part, called \emph{spin} or \emph{intrinsic angular momentum}, that is not related to linear momentum. In the present notes we shall not use this more general kind of angular momentum.
 
+\smallskip
+
+\begin{definition}{Angular momentum: notation}
+  The amount of angular momentum in a region is usually denoted with $\yL$. The torque or flux of angular momentum is denoted with $\yT$.
+\end{definition}
+
+
 \bigskip
 
-\section{What are energy, momentum, angular momentum?}
-\label{sec:curios_energymom}
+\begin{extra}[label=extra:whatsenergy]{{What are energy, momentum, angular momentum?}}
+  
+  From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another.
 
-From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another.
+  \smallskip
 
-Relativity Theory indeed shows that they are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space (almost literally: they are projections of that object). This is also why their values get intermixed if we change our system of coordinates. %
+  Relativity Theory indeed shows that they are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space (almost literally: they are projections of that object). This is also why their values get intermixed if we change our system of coordinates. %
 
-General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}.
-%
-\marginpar{\footnotesize%
-\includegraphics[align=t,width=\linewidth]{curvature1.png}
-\\[\jot]%
-{\color{mpcolor}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
-}%
-They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
+\smallskip
+  
+  General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}.
+  % 
+  \sidepar{\footnotesize%
+    \includegraphics[align=c,width=\linewidth]{curvature1.png}
+    \\[\jot]%
+    {\color{mpcolor}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
+  }%
+  They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
+\end{extra}
 
 \bigskip
 
@@ -1978,6 +2039,13 @@ In many \enquote{continuum} phenomena, that is, phenomena where the molecular co
 In molecular phenomena involving statistical mechanics, on the other hand, entropy is no longer a physical notion, but a \emph{probabilitistic} and \emph{statistical} one, related to guesses and inferences that we make about the physical phenomenon. Yet from many points of view it has roles similar to those of the entropy used in continuum phenomena.
 
 We shall see later that the physical laws for entropy have also a different status with respect to the laws for the other six main quantities: they are, so to speak, \enquote{laws about laws}.
+
+\smallskip
+
+\begin{definition}{Entropy: notation}
+  The amount of entropy in a region is usually denoted with $\yS$. We shall see that the flux of entropy is tightly related to heat, and we won't need a special symbol for it.
+\end{definition}
+
 
 
 
@@ -2052,8 +2120,14 @@ The dimensions, units, and scalar or vector character of these quantities are su
 
 \printpagenotes*
 \clearpage
-\chapter{Densities and fluxes}
-\label{sec:density_flux}
+\chapter{Totals and fluxes}
+\label{sec:total_flux}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Densities and flux-densities}
+\label{sec:density_fluxdensity}
 
 How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?} We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple.
 %Let us take the quantity \emph{matter} as an example.
@@ -2282,9 +2356,9 @@ A conservation law can be seen as a special and powerful case of a balance law, 
 \section{Balance laws expressed with derivatives}
 \label{sec:balance_derivative}
 
-In \sect\,\ref{sec:density_flux} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $N_{1}$, $N_{2}$, $J$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
+In \sect\,\ref{sec:density_fluxdensity} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $N_{1}$, $N_{2}$, $J$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
 
-The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \sect\,\ref{sec:density_flux} to introduce density and flux.
+The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \sect\,\ref{sec:density_fluxdensity} to introduce density and flux.
 
 Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservation law~\eqref{eq:conserved} to the following situation:
 \begin{itemize}
