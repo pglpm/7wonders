@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-02T15:16:39+0100
+%% Last-Updated: 2024-02-02T21:32:31+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -2175,61 +2175,78 @@ As a visualization device, this representation can be useful. But let's straight
 
 \subsection{Fluxes}
 
-A flux, say again of energy, through a particular surface could be represented like this:
+Suppose that at a given time instant we have this surface:
 \begin{center}
-  \includegraphics[align=t,height=7em]{flux_2J.pdf}
+  \includegraphics[height=7em]{fluxsurface.pdf}
 \end{center}
-we have again eliminated one spatial dimension for simplicity. The surface is in \textcolor{darkgrey}{grey}, and we're indicating that the amount of energy instantaneously flowing in one second through the surface, from its left side to its right side, is \textcolor{bluepurple}{\qty{4}{J}}.
+where we have again eliminated one spatial dimension for simplicity. We want to visualize and graphically represent the fact that there's a flux of \textcolor{bluepurple}{\qty{8}{J/s}} across this surface, from its left side to its right side.
 
-Also this visualization can be useful, but we must again beware of some some aspects:
+One first visualization that comes to mind is this:
+\begin{center}
+  \includegraphics[align=c,height=7em]{flux_2J.pdf}
+\end{center}
+It conveys the correct information, but it's also misleading in several respects:
 \begin{itemize}[para]
-\item This is a snapshot at a given time instant. An instant earlier or later, the flux of energy might be different, the surface might be at a different position and with a different shape, or it might not exist anymore.
+\item This is a snapshot at a given time instant. An instant earlier or later, the surface might be at a different position and with a different shape. The \textcolor{bluepurple}{blue wavy arrow} might suggest that the surface is at rest, while something crosses it.
 
-\item The flux can occur because, roughly speaking, some amount of quantity is \enquote{moving} while the surface is at rest; or because the surface is moving; or both.  Two such situations are schematically depicted in \fig~\ref{fig:flux_interpretation}. We don't know which situation is occurring unless we're told how the surface is moving. Moreover, \emph{the description of this situation depends on the coordinate system}: in one coordinate system the surface may be at rest, but in another it may be moving.
- \begin{figure}[h]
-    \hspace*{\fill}
-  \includegraphics[align=t,height=21em]{flux_Jmove.pdf}
-\hfill
-  \includegraphics[align=t,height=21em]{flux_surfmove.pdf}
-    \hspace*{\fill}
-\caption{A flux doesn't necessarily mean that some quantity is \enquote{moving} (\textbf{left}): the surface could be moving instead (\textbf{right}), or both. The interpretation depends on the coordinate system.}\label{fig:flux_interpretation}
-  \end{figure}
-
-\item The flux as depicted in the initial picture only says that, in one second, there are \qty{4}{J} of energy less on the left side of the surface, and \qty{4}{J} more on the right side. \emph{But the flux doesn't say anything about any \enquote{movement} of energy}.
-
-\item Recall that some scalar quantities, such as electric charge and in some situations matter (antimatter), can have negative amounts.
-\marginpar{\footnotesize\centering%
-\includegraphics[align=b,width=0.33\linewidth]{volumeintegral_6C.pdf}
-\\[\jot]\flushleftright%
-{\color{mpcolor}A region with a negative amount of charge}
+\item A flux, properly speaking,
+\marginpar{\footnotesize%
+  {\color{mpcolor}\enquote{\emph{%
+Fechner [in 1845] supposed every current to consist in a streaming of electric charges, the vitreous charges travelling in one direction, and the resinous charges, equal to them in magnitude and number, travelling in the opposite direction with equal velocity.}}\sourceatright{\cites{whittaker1910_r1951}}}
 }
-
-\item We must not surmise that the amount of quantity is uniformly distributed within the volume. In fact there could be negative amounts of it in some subvolumes and positive in others.
-  \begin{warning}
-   Even if there is a zero amount of quantity in a volume, some subvolumes could have non-zero amounts: some positive and some negative, so that the total is zero.
-  \end{warning}
-
+says that after a very small time interval there's a lower amount of a quantity on one side of a surface, and a larger amount on the other. \emph{But it doesn't say anything about a \enquote{left-to-right movement} of the quantity, or a right-to-left one}. In our example it could be that \textcolor{purple}{\qty{-4}{J/s}} of energy \enquote{moved} from right to left; or even that \qty{+7}{J/s} moved from left to right, and \qty{-3}{J/s} from right to left, possibly across different parts of the surface. All these possibilities correspond to the same flux. Moreover, \emph{the description of this situation depends on the coordinate system}: in one coordinate system the surface may be at rest, but in another it may be moving.
 \end{itemize}
 
+Therefore we see that the flux of our example could be happening in several ways. Four equivalent ways are illustrated in \fig~\ref{fig:flux_interpretation}; combination of those are also possible.
+\begin{figure}[h]\centering
+\begin{tabularx}{\linewidth}{|X|X|X|X|}
+\centering  \includegraphics[align=t,height=21em]{flux_pq.pdf}
+&
+\centering   \includegraphics[align=t,height=21em]{flux_ps.pdf}
+&
+\centering   \includegraphics[align=t,height=21em]{flux_mq.pdf}
+&
+\centering   \includegraphics[align=t,height=21em]{flux_ms.pdf}
+  \end{tabularx}
+  \caption{Four allusive depictions of the same flux}\label{fig:flux_interpretation}
+\end{figure}
+
+\medskip
+
+\begin{samepage}
+  In view of these possibilities, a less misleading representation of the flux in our example could be as follows:
+  \begin{center}
+    \includegraphics[align=c,height=7em]{flux_both.pdf}
+  \end{center}
+\end{samepage}
+This picture says that there's an energy change of \qty{-4}{J/s} on the left side of the surface, and of \qty{+4}{J/s} on the right. The absence of arrows prevents unwarranted conclusions about \enquote{what's moving}. If we know that the surface is moving in a particular way, then arrows could of course be added to indicate this movement.
+
+\smallskip
+
+Please feel free to use the graphical representation and mental visualization that you prefer. The ones above are just suggestions. The real goal of the discussion above was to make you are aware of the subtleties regarding flux, so that you don't make wrong assumptions and jump to wrong conclusions when solving physics problems.
+
+\bigskip
+
+Our discussion shows an important mathematical and physical characteristic of the flux of a scalar quantity:
+\begin{definition}{\enquote*{To every flux there is always opposed an equal flux}}
+  A flux of a given sign in a particular direction is equivalent to a flux of opposite sign in the opposite direction.
+\end{definition}
 
 
 % add extra about quantum field theory \mynotew{}
 
 
+% \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.} \cites{newton1687_r1726}
+%
+% To every action there is always opposed an equal reaction: or, the mutualactions of two bodies upon each other are always equal, and directed tocontrary parts. \cites{newton1687_t1974}
 
 
+\section{Intuition and visualization for vector quantities}
+\label{sec:intuition_vector}
 
+Let's now consider the vector quantities momentum and angular momentum.
 
-\begin{center}
-  % 0.2-0.24, 0.25-0.30 1-1.205
-  \includegraphics[align=t,height=0.3\textheight]{flux.pdf}
-\end{center}
-% \\
-% \includegraphics[align=t,width=\linewidth]{entropy_high.png}
-% \\[\jot]\footnotesize%
-% {\color{mpcolor}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
-
-
+\subsection{Volume integrals}
 
 
 
