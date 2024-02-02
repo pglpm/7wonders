@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-01T23:17:00+0100
+%% Last-Updated: 2024-02-02T10:26:16+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -360,6 +360,7 @@ british%
 \definecolor{redpurple}{RGB}{170,51,119}
 \definecolor{grey}{RGB}{187,187,187}
 \definecolor{midgrey}{RGB}{119,119,119}
+\definecolor{darkgrey}{HTML}{555555}
 % Tol (2012) colour-blind-, print-, screen-friendly colours; Munsell terminology
 % \definecolor{lbpurple}{RGB}{51,34,136}
 % \definecolor{lblue}{RGB}{136,204,238}
@@ -722,7 +723,7 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 % \newlength{\wfwidth}
 % \setlength{\wfwidth}{0.4\linewidth}
 
-\colorlet{mpcolor}{black}
+\colorlet{mpcolor}{green}
 %\newcommand*{\puzzle}{\maltese}
 % \newcommand*{\puzzle}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{225}}}
 % \newcommand*{\wrench}{{\fontencoding{U}\fontfamily{fontawesomethree}\selectfont\symbol{114}}}
@@ -976,7 +977,7 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 \newcommand*{\masse}{mass-energy}
 %%% Custom macros end @@@
 
-\usepackage[quantity-product=\:]{siunitx}
+\usepackage[retain-explicit-plus,quantity-product=\:]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
 %\usepackage{multimedia}
@@ -2024,10 +2025,10 @@ elementary particles, or electromagnetic radiation, the angular momentum include
 Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperature}, and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{joules}$/$\emph{kelvins} (\unit{J/K})}. From this definition it would seem that entropy is derived from temperature. However, although \textsf{temperature} is taken as primitive by the SI, the \furl{https://doi.org/10.1351/goldbook.K03374}{definition of temperature} actually depends on a fixed value of \furl{https://doi.org/10.1351/goldbook.B00695}{\emph{Boltzmann's constant}}, which has the dimension of \textsf{entropy}.
 
 Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading.
-\marginpar{%
+\marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{entropy_low.png}\\
 \includegraphics[align=t,width=\linewidth]{entropy_high.png}
-\\[\jot]\footnotesize%
+\\[\jot]\footnotesize\flushleftright%
 {\color{mpcolor}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
 }
 One particularly misleading intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
@@ -2141,38 +2142,66 @@ In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, elect
 
 These two notions and measurements are very intuitive; that's also why it's convenient to base our physics upon them. In this chapter we straighten some details about their definition and also about our intuition.
 
-\section{A first intuition}
-\label{sec:flux_intuition}
+\section{Intuition and visualization for scalar quantities}
+\label{sec:intuition_scalar}
 
-First of all let's consider a scalar quantity. Our discussion will be valid for any one of the three scalar quantities (matter, electric charge, entropy) among the seven, but if you want you can think of a concrete example, say \emph{matter}.
+Let's first consider a scalar quantity: matter, electric charge, energy, or entropy.
 
-A first mental picture of the volume integral of matter in a region might look like this:
+\subsection{Volume integrals}
+
+A volume integral for, say, energy could be represented like this:
 \begin{center}
-  \includegraphics[align=t,height=7em]{volumeintegral.pdf}
+  \includegraphics[align=t,height=7em]{volumeintegral_8J.pdf}
 \end{center}
-we have eliminated one spatial dimension for simplicity, and considered the analogous two-dimensional idea. The region is in \textcolor{bluepurple}{light blue}, delimited by a closed \textcolor{blue} boundary. This is a snapshot at a given time instant. The number of points inside the boundary gives us an idea of the amount of matter that's within the region at this instant. Actually the points do more: they give us the idea that there's a higher amount of matter in some sub-regions, and lower amount in others. This is extra information that we don't need right now but will be useful later.
+we have eliminated one spatial dimension for simplicity, considering the analogous two-dimensional idea. The volume is in \textcolor{midgrey}{light grey}, delimited by a closed \textcolor{darkgrey}{darker grey} boundary, and we're indicating that the amount of energy within, the volume integral, is \textcolor{bluepurple}{\qty{8}{J}}.
 
-As a mental picture, this can be a good start. Let's straighten out some of its aspects.
+As a visualization device, this representation can be useful. But let's straighten out some of its aspects:
+\begin{itemize}
+\item Recall that this is a snapshot at a given time instant. So there are \qty{8}{J} of energy in the volume at that instant, but we don't know the situation earlier or later: there could be a different amount of energy, the region might be at a different position and have a different shape, or it might not even exist anymore.
 
-The first aspect of the picture that we must be cautious about is the discreteness of the points. Sure, in some physical situations matter can be considered discrete; the points might represent atoms for instance. But in many common situations it's more advantageous to think of matter as being \emph{continuously distributed} within the region, even if it can be absent in some subregions, and if its \emph{density} may be higher or lower here or there. In this case the points in the picture only give us a qualitative indication of the density, they don't represent real discrete bunches of matter. Also, matter was here taken only as a concrete example; the quantity in question could be \emph{energy} instead, which is often continuously distributed.
-
-The second aspect is that some of the quantity within the region might be positive, and some negative. This is commonly true for electric charge, and can be true for matter as well (antimatter). We could represent this by using \textcolor{red}{red} points for the subregions containing quantity of negative sign, like negative electric charge or antimatter:
-\begin{center}
-  \includegraphics[align=t,height=7em]{volumeintegral_neg.pdf}
-\end{center}
-Now we realize something important: \emph{the total amount of a quantity in a region can be zero, and yet the amount in subregions can be non-zero.}
-
-So if we measure the total amount of a quantity in a region and find a value of zero, we still don't know what are the amounts within different subregions: some of them could be positive and other negative; unless we have physical grounds to rule out this possibility, of course. This lack of information is \emph{not} necessarily a difficulty when solving physical problems. But you must take it into consideration when forming mental pictures of the situation, and make allowance for the various possibilities. For instance, imagine that there's a lot of positive and a lot of negative quantity in the region; what you know is the difference or discrepancy between the two.
-\marginpar{\footnotesize%
-\includegraphics[align=t,width=\linewidth]{equivalent_VI.pdf}
-% \\[\jot]%
-% {\color{mpcolor}\enquote{\emph{%
-% }}\sourceatright{\cites{}}}
+\item Recall that some scalar quantities, such as electric charge and in some situations matter (antimatter), can have negative amounts.
+\marginpar{\footnotesize\centering%
+\includegraphics[align=b,width=0.33\linewidth]{volumeintegral_6C.pdf}
+\\[\jot]\flushleftright%
+{\color{mpcolor}A region with a negative amount of charge}
 }
 
+\item We must not surmise that the amount of quantity is uniformly distributed within the volume. In fact there could be negative amounts of it in some subvolumes and positive in others.
+  \begin{warning}
+   Even if there is a zero amount of quantity in a volume, some subvolumes could have non-zero amounts: some positive and some negative, so that the total is zero.
+  \end{warning}
+
+\end{itemize}
+
+\subsection{Fluxes}
+
+A flux, say again of energy, through a particular surface could be represented like this:
+\begin{center}
+  \includegraphics[align=t,height=7em]{flux_2J.pdf}
+\end{center}
+we have again eliminated one spatial dimension for simplicity. The surface is in \textcolor{darkgrey}{grey}, and we're indicating that the amount of energy instantaneously flowing in one second through the surface, from its left side to its right side, is \textcolor{bluepurple}{\qty{4}{J}}.
+
+Also this visualization can be useful, but we must be careful about some of its aspects:
+\begin{itemize}
+\item This is a snapshot at a given time instant. An instant earlier or later, the flux of energy might be different, the surface might be at a different position and with a different shape, or it might not exist anymore.
+
+\item The flux only says that, in one second, there are \qty{4}{J} of energy less on the left side of the surface, and \qty{4}{J} more on the right side. \emph{But the flux does not say anything about the \enquote{movement} of energy}.
+
+\item Recall that some scalar quantities, such as electric charge and in some situations matter (antimatter), can have negative amounts.
+\marginpar{\footnotesize\centering%
+\includegraphics[align=b,width=0.33\linewidth]{volumeintegral_6C.pdf}
+\\[\jot]\flushleftright%
+{\color{mpcolor}A region with a negative amount of charge}
+}
+
+\item We must not surmise that the amount of quantity is uniformly distributed within the volume. In fact there could be negative amounts of it in some subvolumes and positive in others.
+  \begin{warning}
+   Even if there is a zero amount of quantity in a volume, some subvolumes could have non-zero amounts: some positive and some negative, so that the total is zero.
+  \end{warning}
+
+\end{itemize}
 
 
-The total is given by the sum of positive and negative amounts, and it could even be zero!
 
 % add extra about quantum field theory \mynotew{}
 
@@ -3048,6 +3077,41 @@ solution-name = Answer ,
 exercise-template = tcolorbox ,
 solution-template = tcolorbox
 }
+
+----
+
+
+
+First of all let's consider a scalar quantity. Our discussion will be valid for any one of the three scalar quantities (matter, electric charge, entropy) among the seven, but if you want you can think of a concrete example, say \emph{matter}.
+
+A first mental picture of the volume integral of matter in a region might look like this:
+\begin{center}
+  \includegraphics[align=t,height=7em]{volumeintegral.pdf}
+\end{center}
+we have eliminated one spatial dimension for simplicity, and considered the analogous two-dimensional idea. The region is in \textcolor{bluepurple}{light blue}, delimited by a closed \textcolor{blue} boundary. This is a snapshot at a given time instant. The number of points inside the boundary gives us an idea of the amount of matter that's within the region at this instant. Actually the points do more: they give us the idea that there's a higher amount of matter in some sub-regions, and lower amount in others. This is extra information that we don't need right now but will be useful later.
+
+As a mental picture, this can be a good start. Let's straighten out some of its aspects.
+
+The first aspect of the picture that we must be cautious about is the discreteness of the points. Sure, in some physical situations matter can be considered discrete; the points might represent atoms for instance. But in many common situations it's more advantageous to think of matter as being \emph{continuously distributed} within the region, even if it can be absent in some subregions, and if its \emph{density} may be higher or lower here or there. In this case the points in the picture only give us a qualitative indication of the density, they don't represent real discrete bunches of matter. Also, matter was here taken only as a concrete example; the quantity in question could be \emph{energy} instead, which is often continuously distributed.
+
+The second aspect is that some of the quantity within the region might be positive, and some negative. This is commonly true for electric charge, and can be true for matter as well (antimatter). We could represent this by using \textcolor{red}{red} points for the subregions containing quantity of negative sign, like negative electric charge or antimatter:
+\begin{center}
+  \includegraphics[align=t,height=7em]{volumeintegral_neg.pdf}
+\end{center}
+Now we realize something important: \emph{the total amount of a quantity in a region can be zero, and yet the amount in subregions can be non-zero.}
+
+So if we measure the total amount of a quantity in a region and find a value of zero, we still don't know what are the amounts within different subregions: some of them could be positive and other negative; unless we have physical grounds to rule out this possibility, of course. This lack of information is \emph{not} necessarily a difficulty when solving physical problems. But you must take it into consideration when forming mental pictures of the situation, and make allowance for the various possibilities. For instance, imagine that there's a lot of positive and a lot of negative quantity in the region; what you know is the difference or discrepancy between the two.
+\marginpar{\footnotesize%
+\includegraphics[align=t,width=\linewidth]{equivalent_VI.pdf}
+% \\[\jot]%
+% {\color{mpcolor}\enquote{\emph{%
+% }}\sourceatright{\cites{}}}
+}
+
+
+
+The total is given by the sum of positive and negative amounts, and it could even be zero!
+
 
 ----
 density: Q/V
