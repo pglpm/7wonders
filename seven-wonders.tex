@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-02T21:32:31+0100
+%% Last-Updated: 2024-02-02T22:26:54+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -998,7 +998,7 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakab
 \newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, width=0.9\linewidth, flush right, colback=midgrey!5!white, colframe=midgrey, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
+\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, width=0.9\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -2216,7 +2216,7 @@ Therefore we see that the flux of our example could be happening in several ways
 \begin{samepage}
   In view of these possibilities, a less misleading representation of the flux in our example could be as follows:
   \begin{center}
-    \includegraphics[align=c,height=7em]{flux_both.pdf}
+    \includegraphics[height=7em]{flux_both.pdf}
   \end{center}
 \end{samepage}
 This picture says that there's an energy change of \qty{-4}{J/s} on the left side of the surface, and of \qty{+4}{J/s} on the right. The absence of arrows prevents unwarranted conclusions about \enquote{what's moving}. If we know that the surface is moving in a particular way, then arrows could of course be added to indicate this movement.
@@ -2247,6 +2247,42 @@ Our discussion shows an important mathematical and physical characteristic of th
 Let's now consider the vector quantities momentum and angular momentum.
 
 \subsection{Volume integrals}
+A volume integral for, say, momentum could be represented as follows (we keep on simplifying our visualization to two dimensions):
+\begin{center}
+  \includegraphics[height=7em]{volumeintegral_8Ns.pdf}
+\end{center}
+Momentum is a vector quantity, so the total amount in the volume above is a vector. The picture shows the direction and orientation of this vector, and the magnitude of \qty{8}{N\cdot s}
+\marginpar{\footnotesize
+  \begin{warning}%[Vector magnitudes are positive]
+\footnotesize    Remember that the \emph{magnitude} of a vector is always positive!
+  \end{warning}
+}
+is explicitly reported.
+
+This visual representation is useful, if we keep in mind remarks analogous to those made in the scalar case:
+\begin{itemize}
+\item this is a time snapshot; 
+\item the vector could have a different orientation or magnitude; 
+\item different subvolumes could have amounts represented by different vectors; only the total vector is represented above.
+\end{itemize}
+to which we add one more remark:
+\begin{itemize}
+\item the origin of the vector representing the volume integral is unimportant: it doesn't need to be placed at the centre of the volume, for instance. The vector refers to the volume as a whole, not to some specific point within.
+\end{itemize}
+
+\begin{extra}{Adding vectors in General Relativity}
+  We are used to the idea of adding vectors placed at different points in space: we only have to first move each -- keeping it parallel to itself -- to a common point, and then add them all at that point with the usual rule.
+
+  \smallskip
+
+  This operation \emph{cannot} be done in General Relativity: the notion of parallelism doesn't apply anymore in a simple way, owing to the curvature of spacetime. The addition would lead to different results depending on how we transported the vectors. So in General Relativity we can only sum vectors that are placed at the same spacetime point.
+
+  \smallskip
+
+  How can this operation be possible in Newtonian mechanics and in practical applications, then? After all, General Relativity surely applies here! The answer is that the discrepancies of vector transportation are small enough in the neighbourhood of the Earth, as the curvature of spacetime is very small here.
+\end{extra}
+
+
 
 
 
@@ -2255,6 +2291,7 @@ Let's now consider the vector quantities momentum and angular momentum.
 \clearpage
 \chapter{Densities and flux-densities}
 \label{sec:density_fluxdensity}
+
 
 How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?} We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple.
 %Let us take the quantity \emph{matter} as an example.
