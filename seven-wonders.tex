@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-02T22:26:54+0100
+%% Last-Updated: 2024-02-03T09:34:42+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -983,22 +983,22 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 %\usepackage{multimedia}
 \usepackage[breakable,skins]{tcolorbox}
 
-\newtcolorbox{myframe}{enhanced, colback=white, colframe=midgrey, boxrule=0.5pt, breakable, after={\smallskip}}
+\newtcolorbox{myframe}{enhanced, no shadow, colback=white, colframe=midgrey, boxrule=1pt, breakable, after={\smallskip}}
 
-\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, colback=yellow!5!white, colframe=yellow, boxrule=0.5pt, breakable,
+\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, no shadow, colback=yellow!5!white, colframe=yellow, boxrule=1pt, breakable,
   % fontupper=\small,
   fonttitle=\bfseries, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
-\newtcolorbox{warning}[1][]{enhanced, colback=red!5!white, colframe=red, boxrule=0.5pt, breakable, fontupper=\small,
+\newtcolorbox{warning}[1][]{enhanced, no shadow,parbox=false, colback=red!5!white, colframe=red, boxrule=1pt, breakable, fontupper=\small,
 fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
 
-\newtcolorbox{critique}[1][Critique]{enhanced,center,
-width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
+\newtcolorbox{critique}[1][Critique]{enhanced, no shadow,parbox=false,center,
+width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
 
-\newtcolorbox{definition}[1]{enhanced, colback=green!5!white, colframe=green, boxrule=0.5pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
+\newtcolorbox{definition}[1]{enhanced, no shadow, colback=green!5!white, colframe=green, boxrule=1pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, width=0.9\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{atom}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
+\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1863,6 +1863,8 @@ We shall see later how to define and calculate these different forms of energy a
 \begin{definition}{Energy-mass: notation}
   The amount of energy in a region is usually denoted with $\yE$, or with $\yM$ if we describe it as mass. Internal energy is denoted $\yU$, kinetic energy $\yEk$, potential energy $\yEp$.
 
+  \smallskip
+  
   The total flux of energy will be denoted $\yH$, in the form of heat $\yQ$, and in the form of work $\yW$.
 \end{definition}
 
@@ -1886,7 +1888,26 @@ We shall see later how to define and calculate these different forms of energy a
 \section{Momentum}
 \label{sec:intro_momentum}
 
-Momentum, also called \emph{linear momentum} to distinguish it from angular momentum, is a \emph{vector} quantity, with SI dimension $\textsf{energy}\times\textsf{time}/\textsf{length}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}/\emph{metres}$ (\unit{J\cdot s/m}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}/\emph{seconds}$ (\unit{kg\cdot m/s}). Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
+Momentum, also called \emph{linear momentum} to distinguish it from angular momentum, is a \emph{vector} quantity. Its SI dimension and units can be written in several equivalent ways; we shall keep in mind especially these three:
+\begin{equation*}
+  \begin{gathered}
+    \textsf{force}\times\textsf{time}
+    \\\unit{N\cdot s}
+  \end{gathered}
+\enspace  \equiv\enspace
+  \begin{gathered}
+  \textsf{mass}\times\textsf{length}/\textsf{time}
+    \\\unit{kg\cdot m/s}
+  \end{gathered}
+\enspace  \equiv\enspace
+  \begin{gathered}
+  \textsf{energy}\times\textsf{time}/\textsf{length}
+    \\\unit{J\cdot s/m}
+  \end{gathered}
+\end{equation*}
+% $\textsf{energy}\times\textsf{time}/\textsf{length}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}/\emph{metres}$ (\unit{J\cdot s/m}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}/\emph{seconds}$ (\unit{kg\cdot m/s}). 
+Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
+% \mynotew{use \unit{N\cdot s}}
 
 Momentum is a subtle quantity. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass of a body times the body's velocity, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only approximate and valid in some circumstances only; it cannot be used as a general definition. First, it is true that where there's matter in motion there's also momentum; but this momentum is given by the matter's mass${}\times{}$velocity only as an approximation. Second, there can be momentum also where there's no matter; for instance where there's magnetic flux and charge. If you prepare a sealed glass box completely empty within (you create a vacumm), then there's momentum within the \enquote{empty} box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
 
@@ -1913,7 +1934,25 @@ Flux of momentum is what we call \textbf{force}. Force is a notion that we under
 \section{Angular momentum}
 \label{sec:intro_angmomentum}
 
-Angular momentum, also called \emph{moment of momentum} or \emph{rotational momentum}, is a \emph{vector} quantity, with SI dimension $\textsf{energy}\times\textsf{time}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}$ (\unit{J\cdot s}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}^{2}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}^{2}/\emph{seconds}$ (\unit{kg\cdot m^2/s}). It is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components.
+Angular momentum, also called \emph{moment of momentum} or \emph{rotational momentum}, is a \emph{vector} quantity. Its SI dimension and units can be written in several equivalent ways; we shall keep in mind especially these three:
+\begin{equation*}
+  \begin{gathered}
+    \textsf{force}\times\textsf{length}\times\textsf{time}
+    \\\unit{N\cdot m\cdot s}
+  \end{gathered}
+\enspace  \equiv\enspace
+  \begin{gathered}
+  \textsf{mass}\times\textsf{length}^{2}/\textsf{time}
+    \\\unit{kg\cdot m^{2}/s}
+  \end{gathered}
+\enspace  \equiv\enspace
+  \begin{gathered}
+  \textsf{energy}\times\textsf{time}
+    \\\unit{J\cdot s}
+  \end{gathered}
+\end{equation*}
+% , with SI dimension $\textsf{energy}\times\textsf{time}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}$ (\unit{J\cdot s}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}^{2}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}^{2}/\emph{seconds}$ (\unit{kg\cdot m^2/s}).
+It is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components.
 
 Angular momentum is perhaps an even subtler quantity than momentum. Luckily there's a way of calculating it in terms of momentum, so even if we don't fully grasp it intuitively, we can still calculate it. If the momentum \emph{in a small volume} is denoted by the vector $\yP=(P_{x},P_{y},P_{z})$ and the position vector by $\yr=(x,y,z)$, then the angular momentum $\yL=(L_{x}, L_{y}, L_{z})$ \emph{with respect to the origin of coordinates} is given by
 \begin{subequations}
@@ -1998,15 +2037,10 @@ elementary particles, or electromagnetic radiation, the angular momentum include
 \bigskip
 
 \begin{extra}[label=extra:whatsenergy]{{What are energy, momentum, angular momentum?}}
-  
-  From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another.
-
-  \smallskip
+From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another.
 
   Relativity Theory indeed shows that they are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space (almost literally: they are projections of that object). This is also why their values get intermixed if we change our system of coordinates. %
 
-\smallskip
-  
   General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}.
   % 
   \sidepar{\footnotesize%
@@ -2076,13 +2110,25 @@ The dimensions, units, and scalar or vector character of these quantities are su
     Electric charge&\textsf{electric charge}&\emph{coulomb}\;\unit{C}
     \\[\jot]
     \textbf{Magnetic flux}&\textsf{magnetic flux}&\emph{weber}\;\unit{Wb}
-    \\[\jot]
+    \\[2\jot]
     Energy&\parbox[t]{10em}{\textsf{energy},\\[0\jot] \textsf{mass}}&\parbox[t]{5em}{\emph{joule}\;\unit{J},\\[0\jot] \emph{kilogram}\;\unit{kg}}
-    \\[5\jot]
-    \textbf{Momentum}&\parbox[t]{10em}{\textsf{mass$\cdot$length$/$time},\\[0\jot] \textsf{energy$\cdot$time$/$length}}&\parbox[t]{5em}{\unit{kg\cdot m/s},\\[0\jot] \unit{J\cdot s/m}}
-    \\[5\jot]
-    \textbf{Angular momentum}&\parbox[t]{10em}{\textsf{mass$\cdot$length$^{2}/$time},\\[0\jot] \textsf{energy$\cdot$time}}&\parbox[t]{5em}{\unit{kg\cdot m^2/s},\\[0\jot] \unit{J\cdot s}}
-    \\[5\jot]
+    \\[7\jot]
+    \textbf{Momentum}
+    &\parbox[t]{10em}{$\textsf{force}\cdot\textsf{time}$,
+      \\[0\jot]$\textsf{mass}\cdot\textsf{length}/\textsf{time}$,
+      \\[0\jot]$\textsf{energy}\cdot\textsf{time}/\textsf{length}$}
+    &\parbox[t]{5em}{\unit{N\cdot s},
+      \\[0\jot]\unit{kg\cdot m/s},
+      \\[0\jot] \unit{J\cdot s/m}}
+    \\[12\jot]
+    \textbf{Angular momentum}
+    &\parbox[t]{10em}{$\textsf{force}\cdot\textsf{length}\cdot\textsf{time}$,
+      \\[0\jot]$\textsf{mass}\cdot\textsf{length}^{2}/\textsf{time}$,
+      \\[0\jot]$\textsf{energy}\cdot\textsf{time}$}
+    &\parbox[t]{5em}{\unit{N\cdot m\cdot s},
+      \\[0\jot]\unit{kg\cdot m^2/s},
+      \\[0\jot] \unit{J\cdot s}}
+    \\[12\jot]
     Entropy&\textsf{energy$/$temperature}&\unit{J/K}
     \\[2\jot]
     \hline
@@ -2227,18 +2273,17 @@ Please feel free to use the graphical representation and mental visualization th
 
 \bigskip
 
-Our discussion shows an important mathematical and physical characteristic of the flux of a scalar quantity:
+Our discussion shows an important mathematical and physical symmetry of the flux of a scalar quantity:
 \begin{definition}{\enquote*{To every flux there is always opposed an equal flux}}
-  A flux of a given sign in a particular direction is equivalent to a flux of opposite sign in the opposite direction.
+  A flux of a given sign in a particular surface-crossing direction is equivalent to a flux of opposite sign in the opposite crossing direction.
 \end{definition}
+
+\begin{exercise}
+  The volume integral of matter in a particular volume is equal to \qty{36}{mol}. Can we conclude that the volume doesn't contain antimatter?
+\end{exercise}
 
 
 % add extra about quantum field theory \mynotew{}
-
-
-% \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.} \cites{newton1687_r1726}
-%
-% To every action there is always opposed an equal reaction: or, the mutualactions of two bodies upon each other are always equal, and directed tocontrary parts. \cites{newton1687_t1974}
 
 
 \section{Intuition and visualization for vector quantities}
@@ -2251,7 +2296,7 @@ A volume integral for, say, momentum could be represented as follows (we keep on
 \begin{center}
   \includegraphics[height=7em]{volumeintegral_8Ns.pdf}
 \end{center}
-Momentum is a vector quantity, so the total amount in the volume above is a vector. The picture shows the direction and orientation of this vector, and the magnitude of \qty{8}{N\cdot s}
+Momentum is a vector quantity, so the total amount in the volume above is a vector. The picture shows the direction and orientation of this vector, and the magnitude of \textcolor{bluepurple}{\qty{8}{N\cdot s}}
 \marginpar{\footnotesize
   \begin{warning}%[Vector magnitudes are positive]
 \footnotesize    Remember that the \emph{magnitude} of a vector is always positive!
@@ -2265,22 +2310,93 @@ This visual representation is useful, if we keep in mind remarks analogous to th
 \item the vector could have a different orientation or magnitude; 
 \item different subvolumes could have amounts represented by different vectors; only the total vector is represented above.
 \end{itemize}
-to which we add one more remark:
+This last remark will be especially important when we discuss some physical phenomena involving rotation. As an example, look at \fig~\ref{fig:nonzero_vector_subregions}: the volume integral for the whole is \emph{zero}, but its left and right subregions have \emph{non-zero and opposite} volume integrals.
+\begin{figure}[h]\centering
+  \includegraphics[height=7em]{volumeintegral_N_divided.pdf}
+  \caption{The volume integral for the whole region is zero, but the volume integrals for the left and right subregions are non-zero and opposite}\label{fig:nonzero_vector_subregions}
+\end{figure}
+
+We add one more remark:
 \begin{itemize}
 \item the origin of the vector representing the volume integral is unimportant: it doesn't need to be placed at the centre of the volume, for instance. The vector refers to the volume as a whole, not to some specific point within.
 \end{itemize}
 
-\begin{extra}{Adding vectors in General Relativity}
-  We are used to the idea of adding vectors placed at different points in space: we only have to first move each -- keeping it parallel to itself -- to a common point, and then add them all at that point with the usual rule.
+\smallskip
 
-  \smallskip
+\begin{extra}{Adding vectors in General Relativity}
+ We are used to the idea of adding vectors placed at different points in space: we only have to first move each -- keeping it parallel to itself -- to a common point, and then add them all at that point with the usual rule.
 
   This operation \emph{cannot} be done in General Relativity: the notion of parallelism doesn't apply anymore in a simple way, owing to the curvature of spacetime. The addition would lead to different results depending on how we transported the vectors. So in General Relativity we can only sum vectors that are placed at the same spacetime point.
 
-  \smallskip
-
   How can this operation be possible in Newtonian mechanics and in practical applications, then? After all, General Relativity surely applies here! The answer is that the discrepancies of vector transportation are small enough in the neighbourhood of the Earth, as the curvature of spacetime is very small here.
 \end{extra}
+
+
+
+\bigskip
+
+\subsection{Fluxes}
+
+For the visualization and mental representation of the flux of a vector quantity we must pay attention to analogous warnings as for a scalar quantity. Consider again our example surface
+\begin{center}
+  \includegraphics[height=4em]{fluxsurface.pdf}
+\end{center}
+and suppose we are told that there's a flux of momentum through it, from left to right, having the following direction and orientation:
+\begin{center}
+  \includegraphics[height=4em]{flux_vec_total.pdf}
+\end{center}
+with magnitude \textcolor{bluepurple}{\qty{6}{N}}.
+
+\begin{warning}[Vector flux and crossing direction are two separate things]
+  The vector that represents the flux, like the one above, and the surface-crossing direction, say left-to-right, are completely separate and independent things. In particular, they can have completely different directions.
+\end{warning}
+
+\smallskip
+
+We could visualize the flux above as follows:
+\begin{center}
+  \includegraphics[height=5em]{flux_vector_shift.pdf}
+\end{center}
+with the familiar warning that the surface could be moving. But the following visualization also corresponds to exactly the same flux:
+\begin{center}
+  \includegraphics[height=5em]{flux_vector_shift_neg.pdf}
+\end{center}
+What happens in either illustration is that there's a change equal to a vectorial amount\enspace\includegraphics[align=c,height=2em]{flux_vec_total_neg.pdf}\enspace of magnitude \qty{6}{N} on the left of the surface, and a change equal to the \emph{opposite} vectorial amount\enspace\includegraphics[align=c,height=2em]{flux_vec_total.pdf}\enspace of the same magnitude on the right of the surface.
+
+\begin{samepage}
+  A less misleading representation of the flux in our example could therefore be:
+  \begin{center}
+    \includegraphics[height=7em]{flux_vec_both.pdf}
+  \end{center}
+\end{samepage}
+This picture says that there's a momentum change of a particular direction, orientation, magnitude on the left side of the surface, and an opposite momentum change on the right side of the surface.
+
+\medskip
+
+This discussion shows an important mathematical and physical symmetry of the flux of a vector quantity:
+\begin{definition}{\enquote*{To every flux there is always opposed an equal flux}}
+  A flux  in a particular surface-crossing direction is equivalent to a flux of opposite sign in the opposite crossing direction.
+\end{definition}
+
+\marginpar{\footnotesize%
+  {\color{mpcolor}\enquote{\emph{%
+        \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
+        \\[\jot]
+        \enquote{\emph{To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}}
+    \sourceatright{\cites{newton1687_r1726}}
+}}%
+This statement may sound familiar. Indeed \emph{it includes Newton's famous third law, the \enquote{principle of action and reaction}, as a special case}. Newton's third law is the expression of this symmetry of vector fluxes, but for the specific case of the flux of momentum, that is, force. Now we see that this property is more general: it applies not only to force, but also to the flux of angular momentum (torque), and also to the flux of scalar quantities, as we saw at the end of \sect~\ref{sec:intuition_scalar}.
+
+
+% \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.} \cites{newton1687_r1726}
+%
+% To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts. \cites{newton1687_t1974}
+
+
+
+
+
+
 
 
 
