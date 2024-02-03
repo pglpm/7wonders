@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-03T09:41:23+0100
+%% Last-Updated: 2024-02-03T10:55:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -414,6 +414,7 @@ citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,
 \DeclareDelimFormat{compcitedelim}{\addsemicolon\addspace\space}
 \DeclareDelimFormat{postnotedelim}{\addspace}
 \ifarxiv\else\addbibresource{portamanabib.bib}\fi
+\renewcommand{\nameyeardelim}{~}
 \renewcommand{\bibfont}{\footnotesize}
 %\appto{\citesetup}{\footnotesize}% smaller font for citations
 \defbibheading{bibliography}[\bibname]{\chapter*{#1}\label{sec:biblio}\addcontentsline{toc}{chapter}{#1}%\markboth{#1}{#1}
@@ -2265,7 +2266,7 @@ Therefore we see that the flux of our example could be happening in several ways
     \includegraphics[height=7em]{flux_both.pdf}
   \end{center}
 \end{samepage}
-This picture says that there's an energy change of \qty{-4}{J/s} on the left side of the surface, and of \qty{+4}{J/s} on the right. The absence of arrows prevents unwarranted conclusions about \enquote{what's moving}. If we know that the surface is moving in a particular way, then arrows could of course be added to indicate this movement.
+This picture says that there's an energy change of \qty{-4}{J/s} on the left side of the surface, and of \qty{+4}{J/s} on the right. Note that \textbf{the amounts indicated on the two sides must have equal magnitude but opposite sign}, otherwise the picture doesn't make sense. The absence of arrows prevents unwarranted conclusions about \enquote{what's moving}. If we know that the surface is moving in a particular way, then arrows could of course be added to indicate this movement.
 
 \smallskip
 
@@ -2273,11 +2274,11 @@ Please feel free to use the graphical representation and mental visualization th
 
 \bigskip
 
-Our discussion shows an important mathematical and physical symmetry of the flux of a scalar quantity:
-\begin{definition}{\enquote*{To every flux there is always opposed an equal flux}}
-  A flux of a given sign in a particular surface-crossing direction is equivalent to a flux of opposite sign in the opposite crossing direction.
-\end{definition}
-
+% Our discussion shows an important mathematical and physical symmetry of the flux of a scalar quantity:
+% \begin{definition}{Every flux is the same as the opposite flux in the opposite direction}
+%   A flux of a given sign in a particular surface-crossing direction is equivalent to a flux of opposite sign in the opposite crossing direction.
+% \end{definition}
+% 
 \begin{exercise}
   The volume integral of matter in a particular volume is equal to \qty{36}{mol}. Can we conclude that the volume doesn't contain antimatter?
 \end{exercise}
@@ -2299,7 +2300,7 @@ A volume integral for, say, momentum could be represented as follows (we keep on
 Momentum is a vector quantity, so the total amount in the volume above is a vector. The picture shows the direction and orientation of this vector, and the magnitude of \textcolor{bluepurple}{\qty{8}{N\cdot s}}
 \marginpar{\footnotesize
   \begin{warning}%[Vector magnitudes are positive]
-\footnotesize    Remember that the \emph{magnitude} of a vector is always positive!
+    \footnotesize    Remember that the \emph{magnitude} of a vector is always positive, and that\quad $\mathord{\mathcolor{purple}{\nwarrow}} = -1\cdot\mathord{\mathcolor{bluepurple}{\searrow}}$
   \end{warning}
 }
 is explicitly reported.
@@ -2313,7 +2314,7 @@ This visual representation is useful, if we keep in mind remarks analogous to th
 This last remark will be especially important when we discuss some physical phenomena involving rotation. As an example, look at \fig~\ref{fig:nonzero_vector_subregions}: the volume integral for the whole is \emph{zero}, but its left and right subregions have \emph{non-zero and opposite} volume integrals.
 \begin{figure}[h]\centering
   \includegraphics[height=7em]{volumeintegral_N_divided.pdf}
-  \caption{The volume integral for the whole region is zero, but the volume integrals for the left and right subregions are non-zero and opposite}\label{fig:nonzero_vector_subregions}
+  \caption{The volume integral for the whole region is zero, but the volume integrals for the left and right subregions are non-zero and opposite.}\label{fig:nonzero_vector_subregions}
 \end{figure}
 
 We add one more remark:
@@ -2361,7 +2362,7 @@ with the familiar warning that the surface could be moving. But the following vi
 \begin{center}
   \includegraphics[height=5em]{flux_vector_shift_neg.pdf}
 \end{center}
-What happens in either illustration is that there's a change equal to a vectorial amount\enspace\includegraphics[align=c,height=2em]{flux_vec_total_neg.pdf}\enspace of magnitude \qty{6}{N} on the left of the surface, and a change equal to the \emph{opposite} vectorial amount\enspace\includegraphics[align=c,height=2em]{flux_vec_total.pdf}\enspace of the same magnitude on the right of the surface.
+What happens in either illustration is that there's a change equal to a vectorial amount\enspace\includegraphics[align=c,height=2em]{vec_SE.pdf}\enspace of magnitude \qty{6}{N} on the left of the surface, and a change equal to the \emph{opposite} vectorial amount\enspace\includegraphics[align=c,height=2em]{vec_NW.pdf}\enspace of the same magnitude on the right of the surface.
 
 \begin{samepage}
   A less misleading representation of the flux in our example could therefore be:
@@ -2369,34 +2370,33 @@ What happens in either illustration is that there's a change equal to a vectoria
     \includegraphics[height=7em]{flux_vec_both.pdf}
   \end{center}
 \end{samepage}
-This picture says that there's a momentum change of a particular direction, orientation, magnitude on the left side of the surface, and an opposite momentum change on the right side of the surface.
+This picture says that there's a momentum change of a particular direction, orientation, magnitude on the left side of the surface, and an opposite momentum change on the right side of the surface. Note that \textbf{the vectors indicated on the two sides must be opposite and have equal magnitude}, otherwise the picture doesn't make sense.
 
-\medskip
+\section{The symmetry of fluxes}
+\label{sec:fluxes_symmetry}
 
-This discussion shows an important mathematical and physical symmetry of the flux of a vector quantity:
-\begin{definition}{\enquote*{To every flux there is always opposed an equal flux}}
+Our discussion about fluxes of scalar and vector quantities, and their graphical representation, for instance
+\begin{center}\hspace*{\fill}
+  \includegraphics[height=7em]{flux_both.pdf}
+  \hfill \includegraphics[height=7em]{flux_vec_both.pdf} \hspace*{\fill}
+\end{center}
+shows an important mathematical and physical symmetry of the flux of a quantity.
+
+Basically, the \emph{sign} of the flux is determined by the direction in which we imagine to cross the surface. This crossing direction is arbitrary, completely left to us (just like the surface itself is arbitrary). It is therefore always important, when we report a flux through a surface, to state which crossing direction we have agreed upon.
+
+We can state this symmetry as follows:
+\begin{definition}{Every flux is the same as the opposite flux in the opposite direction}
   A flux  in a particular surface-crossing direction is equivalent to a flux of opposite sign in the opposite crossing direction.
 \end{definition}
 
-\marginpar{\footnotesize%
-  {\color{mpcolor}\enquote{\emph{%
+\marginpar{\footnotesize\raggedright%
+  \color{mpcolor}\enquote{\emph{%
         \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
         \\[\jot]
         \enquote{\emph{LAW~III. To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}}
-    \sourceatright{\cites{newton1687_r1726}}
-}}%
-This statement may sound familiar. Indeed \emph{it includes Newton's famous third law, the \enquote{principle of action and reaction}, as a special case}. Newton's third law is the expression of this symmetry of vector fluxes, but for the specific case of the flux of momentum, that is, force. Now we see that this property is more general: it applies not only to force, but also to the flux of angular momentum (torque), and also to the flux of scalar quantities, as we saw at the end of \sect~\ref{sec:intuition_scalar}.
-
-
-% \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.} \cites{newton1687_r1726}
-%
-% To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts. \cites{newton1687_t1974}
-
-
-
-
-
-
+    \\\sourceatright{\cites{newton1687_r1726}} %\cites{newton1687_t1974}
+}%
+This statement may sound familiar. Indeed \emph{it includes Newton's famous third law, the \enquote{principle of action and reaction}, as a special case}. Newton's third law is the expression of this symmetry of vector fluxes, but for the specific case of the flux of momentum, that is, force. Now we see that this property is more general: it applies not only to force, but also to the flux of angular momentum (torque), and also to the flux of scalar quantities.
 
 
 
