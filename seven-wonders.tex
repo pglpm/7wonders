@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-04T14:44:06+0100
+%% Last-Updated: 2024-02-04T14:59:18+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -670,7 +670,7 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 
 %\setlength{\droptitle}{-3.9\onelineskip}
 \pretitle{\begin{center}
-\smash{\includegraphics[align=t,width=\textwidth]{palebluedot2.png}}
+% \smash{\includegraphics[align=t,width=\textwidth]{palebluedot2.png}}
 \huge\sffamily%
 \bfseries\color{white}}
 \posttitle{\par\end{center}\bigskip}
@@ -1023,8 +1023,19 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable
 % \setlength{\pagewidth}{\linewidth}
 % \addtolength{\pagewidth}{\marginparsep}
 % \addtolength{\pagewidth}{\marginparwidth}
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{palebluedotA4s.png}%
+\vfill
+}}}
 
 \begin{document}
+\AddToShipoutPicture*{\BackgroundPic}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
 
