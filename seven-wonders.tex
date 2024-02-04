@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-04T20:41:08+0100
+%% Last-Updated: 2024-02-04T22:05:40+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -120,14 +120,14 @@ british%
 \def\@endtheorem{\endtrivlist}
 \makeatother
 
-\newcommand*{\QED}{\textsc{q.e.d.}}
-\renewcommand*{\qedsymbol}{\QED}
-\theoremstyle{remark}
-\newtheorem{note}{Note}
-\newtheorem*{remark}{Note}
-\newtheoremstyle{innote}{\parsep}{\parsep}{\footnotesize}{}{}{}{0pt}{}
-\theoremstyle{innote}
-\newtheorem*{innote}{}
+% \newcommand*{\QED}{\textsc{q.e.d.}}
+% \renewcommand*{\qedsymbol}{\QED}
+% \theoremstyle{remark}
+% \newtheorem{note}{Note}
+% \newtheorem*{remark}{Note}
+% \newtheoremstyle{innote}{\parsep}{\parsep}{\footnotesize}{}{}{}{0pt}{}
+% \theoremstyle{innote}
+% \newtheorem*{innote}{}
 
 \usepackage[shortlabels,inline]{enumitem}
 \SetEnumitemKey{para}{itemindent=\parindent,leftmargin=0pt,listparindent=\parindent,parsep=0pt,itemsep=\topsep}
@@ -1012,8 +1012,8 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable
 
 \makepagenote
 \renewcommand*{\notedivision}{}
-\renewcommand*{\pagenotesubhead}[3]{\clearpage\section*{URLs for chapter #2}}
-\renewcommand*{\pagenotesubheadstarred}[3]{\clearpage\section*{URLs for chapter \textit{#3}}}
+\renewcommand*{\pagenotesubhead}[3]{\clearpage\addsec{URLs for chapter #2}}
+\renewcommand*{\pagenotesubheadstarred}[3]{\clearpage\addsec{URLs for chapter \textit{#3}}}
 \renewcommand*{\notenuminnotes}[1]{\footnotesize #1.\space}
 % \renewcommand{\prenotetext}{\begingroup\footnotesize}
 % \renewcommand{\postnotetext}{\endgroup}
@@ -2198,6 +2198,14 @@ In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, elect
 
 These two notions and measurements are very intuitive; that's also why it's convenient to base our physics upon them. In this chapter we straighten some details about their definition and also about our intuition.
 
+\section{How are the volumes and surfaces chosen?}
+\label{sec:choice_surfaces}
+
+The choice of volume -- and therefore of the surface bounding it -- for a volume integral, and the choice of surface for a flux \textbf{are completely arbitrary}, and they \textbf{can be completely imaginary}.
+%% this is what gives power
+
+
+
 \section{Intuition and visualization for scalar quantities}
 \label{sec:intuition_scalar}
 
@@ -2351,11 +2359,12 @@ For the visualization and mental representation of the flux of a vector quantity
 \begin{center}
   \includegraphics[height=4em]{fluxsurface.pdf}
 \end{center}
-and suppose we are told that there's a flux of momentum through it, from left to right, having the following direction and orientation:
+and suppose we are told that there's a flux of momentum through it, from left to right, {having the following direction and orientation:\noprelistbreak%
 \begin{center}
-  \includegraphics[height=4em]{vec_SE.pdf}
+  \includegraphics[height=4em]{vec_NW.pdf}
 \end{center}
-with magnitude \textcolor{bluepurple}{\qty{6}{N}}.
+}
+\noindent with magnitude \textcolor{bluepurple}{\qty{6}{N}}.
 
 \begin{warning}[Vector flux and crossing direction are two separate things]
   The vector that represents the flux, like the one above, and the surface-crossing direction, say left-to-right, are completely separate and independent things. In particular, they can have completely different directions.
@@ -2371,15 +2380,16 @@ with the familiar warning that the surface could be moving. But the following vi
 \begin{center}
   \includegraphics[height=5em]{flux_vector_shift_neg.pdf}
 \end{center}
-What happens in either illustration is that there's a change equal to a vectorial amount\enspace\includegraphics[align=c,height=2em]{vec_SE.pdf}\enspace of magnitude \qty{6}{N} on the left of the surface, and a change equal to the \emph{opposite} vectorial amount\enspace\includegraphics[align=c,height=2em]{vec_NW.pdf}\enspace of the same magnitude on the right of the surface.
+What happens in either illustration is that there's a change equal to a vectorial amount\enspace\includegraphics[align=c,height=2em]{vec_NW.pdf}\enspace of magnitude \qty{6}{N} on the \emph{right} of the surface, and a change equal to the \emph{opposite} vectorial amount\enspace\includegraphics[align=c,height=2em]{vec_SE.pdf}\enspace of the same magnitude on the \emph{left} of the surface.
 
-\begin{samepage}
-  A less misleading representation of the flux in our example could therefore be:
+{A less misleading representation of the flux in our example could therefore be like this:\noprelistbreak%
   \begin{center}
     \includegraphics[height=7em]{flux_vec_both.pdf}
   \end{center}
-\end{samepage}
-This picture says that there's a momentum change of a particular direction, orientation, magnitude on the left side of the surface, and an opposite momentum change on the right side of the surface. Note that \textbf{the vectors indicated on the two sides must be opposite and have equal magnitude}, otherwise the picture doesn't make sense.
+}
+\noindent This picture says that there's a momentum change of a particular direction, orientation, magnitude on the left side of the surface, and an opposite momentum change on the right side of the surface. Note that \textbf{the vectors indicated on the two sides must be opposite and have equal magnitude}, otherwise the picture doesn't make sense.
+
+An animated representation or mental visualization can also be quite illuminating. You can see one \furl{media/vectorfluxanimation.webp}{at this link}.
 
 \section{The symmetry of fluxes}
 \label{sec:fluxes_symmetry}
@@ -2391,7 +2401,7 @@ Our discussion about fluxes of scalar and vector quantities, and their graphical
 \end{center}
 shows an important mathematical and physical symmetry of the flux of a quantity.
 
-Basically, the \emph{sign} of the flux is determined by the direction in which we imagine to cross the surface. In the first picture above, if we are imagining to cross the surface from left to right, then the energy flux is \textcolor{bluepurple}{\qty{+4}{J/s}}; and if we are imagining to cross the surface from right to left, then the energy flux is \textcolor{purple}{\qty{-4}{J/s}}. Analogously for the vector flux in the second picture above, where the minus sign corresponds to flipping the vector.
+The \emph{sign} of the flux is determined by the direction in which we imagine to cross the surface. In the first picture above, if we are imagining to cross the surface from left to right, then the energy flux is \textcolor{bluepurple}{\qty{+4}{J/s}}; and if we are imagining to cross the surface from right to left, then the energy flux is \textcolor{purple}{\qty{-4}{J/s}}. Analogously for the vector flux in the second picture above, where the minus sign corresponds to flipping the vector.
 
 The crossing direction is arbitrary, completely left to us (just like the surface itself is arbitrary). It is therefore always important, when we report a flux through a surface, to state which crossing direction we have agreed upon.
 
@@ -2407,69 +2417,6 @@ We can state this symmetry as follows:
   A flux  in a particular surface-crossing direction is equivalent to a flux of opposite sign in the opposite crossing direction.
 \end{definition}
 This statement may sound familiar. Indeed \emph{it includes Newton's famous third law, the \enquote{principle of action and reaction}, as a special case}. Newton's third law is the expression of the symmetry of vector fluxes, but for the specific case of the flux of momentum, that is, force. Now we see that this property is more general: it applies not only to force, but also to the flux of angular momentum (torque), and to the flux of scalar quantities as well.
-
-
-\section{Closed surfaces, influxes, effluxes}
-\label{sec:in_out_flux}
-
-We shall often consider \textbf{closed} surfaces, that is, surfaces that don't have a boundary or border, like the surface of a sphere or of a cube. A closed surface delimits a specific three-dimensional volume, and we can naturally speak of its \textbf{interior} and its \textbf{exterior}. An example (simplified by removing one dimension as usual) is the surface delimiting the volume of our previous examples:
-\begin{center}
-  \includegraphics[height=7em]{closed_surface.pdf}
-\end{center}
-
-We can give two crossing directions to a closed surface: out-in, from exterior to interior; or in-out, from interior to exterior. A flux through the surface is usually called \textbf{influx} if we are considering the out-in crossing direction, and \textbf{efflux} or \emph{outflux} if we are considering the in-out crossing direction. Obviously
-\begin{equation*}
-  \text{influx} \equiv -\text{efflux}
-\end{equation*}
-
-Here is a depiction of an \emph{in}flux of \qty{2}{mol/s} of matter (equivalent to an efflux of \qty{-2}{mol/s}):
-\begin{center}
-  \includegraphics[height=7em]{closed_flux_mol.pdf}
-\end{center}
-\begin{warning}
-  It makes sense to speak of influx or efflux only for a \emph{closed} surface.
-
-  The influx and efflux, unless specified otherwise, are fluxes through the \emph{whole} surface. In the picture above, the influx of \qty{2}{mol/s} can be happening everywhere across the surface, or just across some portions of it.
-\end{warning}
-
-\medskip
-
-
-\begin{exercise}
-  Take an imaginary cylindrical surface enclosing one \furl{https://energyeducation.ca/encyclopedia/Control_rod}{control rod} in a \furl{https://www.britannica.com/technology/nuclear-reactor}{nuclear-fission reactor}. Let's say that in a reactor there are 20 such rods. Around \num{5e19}~neutrons are liberated in a second by the fission fuel, but 2/3 of these are absorbed by the control rods.
-
-  How much, on average, is the \textbf{ef}flux of neutrons (matter) through the surface of one control rod?
-
-  Express the result first in \unit{neutrons/s}, and then in \unit{mol/s}, using the Avogadro constant $$N_{\textrm{A}} = \qty{6.02214076e23}{particles/mol} \ .$$ Be careful about the signs!
-  % -1.7e18 n/s
-  % -2.8e-6 mol/s
-\end{exercise}
-\marginpar{\centering%
-\includegraphics[align=b,width=\linewidth]{nuclear_reactor.png}
-% \\[\jot]\flushleftright%
-% {\color{mpcolor}A region with a negative amount of charge}
-}
-
-% K: 0.86 g/cm^3 = 860 kg/m^3, aw=40*1.66e-27 kg
-% 40K: 40+19=59
-% NA=6.02214076e23
-% 1.29518072289e38 particles/m^3
-% 4400 Bq
-% 3835e-28 m^2
-% (1*pi*0.01)m^2
-% 
-% 500e6 J/s
-% 7.2e13 J/kg
-% 235 * 1.66e-27 kg/atom
-% 3 neutrons/atom
-% ((3 / (235 * 1.66e-27)) / 7.2e13) * 500e6
-% 5.3405109801e19 neutrons/s
-% 1.7801703267e19 neutrons/s at critical
-% 8.9008516335e17
-% 20 control rods
-% approx 1e18 n/s
-%
-% 3e18 enter
 
 \bigskip
 
@@ -2569,11 +2516,11 @@ Consider a surface and calls its sides $A$ and $B$. Now consider a flux of momen
 \subsection{Pressure}
 \label{sec:pressure}
 
-If the momentum-flux \textcolor{bluepurple}{from $A$ to $B$} is a vector also oriented from $A$ to $B$, then we call the momentum flux a \textbf{pressure}.\noprelistbreak
+If the momentum-flux \textcolor{bluepurple}{from $A$ to $B$} is a vector also oriented from $A$ to $B$, then we call the momentum flux a \textbf{pressure}, or a \emph{compressive momentum flux}.\noprelistbreak
 \begin{center}
   \href{media/pressureanimation.webp}{\includegraphics[height=0.24\linewidth]{pressure.pdf}}
   \\
-  {\footnotesize(click the picture for an animated version)\par}
+  {\footnotesize\furl{media/pressureanimation.webp}{(click the picture for an animated version)}\par}
 \end{center}
 \noindent By symmetry, there is an analogous relationship for the momentum flux as seen \textcolor{purple}{from $B$ to $A$}.
 
@@ -2586,11 +2533,11 @@ Pressure is the kind of momentum flux that we exert when we \emph{push} on an ob
 \subsection{Tension}
 \label{sec:tension}
 
-If the momentum-flux \textcolor{bluepurple}{from $A$ to $B$} is a vector oriented in the opposite way, from $B$ to $A$, then we call the momentum flux a \textbf{tension}.\noprelistbreak
+If the momentum-flux \textcolor{bluepurple}{from $A$ to $B$} is a vector oriented in the opposite way, from $B$ to $A$, then we call the momentum flux a \textbf{tension}, or a \emph{tensile momentum flux}.\noprelistbreak
 \begin{center}
   \href{media/tensionanimation.webp}{\includegraphics[height=0.24\linewidth]{tension.pdf}}
   \\
-  {\footnotesize(click the picture for an animated version)\par}
+  {\footnotesize\furl{media/tensionanimation.webp}{(click the picture for an animated version)}\par}
   \hspace*{\fill}
 \end{center}
 \noindent By symmetry, there is an analogous relationship for the momentum flux as seen \textcolor{purple}{from $B$ to $A$}.
@@ -2601,116 +2548,91 @@ Tension is the kind of momentum flux that we experience in our bones when we \em
 \subsection{Shear force}
 \label{sec:tension}
 
-If the momentum-flux \textcolor{bluepurple}{from $A$ to $B$} is a vector oriented along the surface, then we call the momentum flux a \textbf{shear force}.\noprelistbreak
+If the momentum-flux \textcolor{bluepurple}{from $A$ to $B$} is a vector oriented along the surface, then we call the momentum flux a \textbf{shear force}, or a \emph{shearing momentum flux}.\noprelistbreak
 \begin{center}
   \href{media/shearforceanimation.webp}{\includegraphics[height=0.24\linewidth]{shearforce.pdf}}
   \\
-  {\footnotesize(click the picture for an animated version)\par}
+  {\footnotesize\furl{media/shearforceanimation.webp}{(click the picture for an animated version)}\par}
 \end{center}
 \noindent By symmetry, there is an analogous relationship for the momentum flux as seen \textcolor{purple}{from $B$ to $A$}.
 
 Shear force is the kind of momentum flux that we experience under our feet when we walk, and that occurs between a car's wheels and the ground.
 % *** example with beams
 
-\printpagenotes*
-\clearpage
-\chapter{Densities and flux-densities}
-\label{sec:density_fluxdensity}
+\bigskip
+
+In general, a momentum flux won't have any of the three special directions above, but rather a combination of them.
 
 
-How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?} We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple.
-%Let us take the quantity \emph{matter} as an example.
+\begin{exercise}
+  Using your intuition, try to identify the various momentum fluxes that occur in the different parts of a tower crane. Which of the fluxes are (approximately) compressive, tensile, and shearing?
+\end{exercise}
+\marginpar{\centering%
+\includegraphics[align=b,width=\linewidth]{towercrane.jpg}
+}
 
 
-\begin{definition}{Density}
-  Take a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. At the instant $\yto$, imagine a very small cuboid centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $x,y,z$ and of lengths $\Dx$, $\Dy$, $\Dz$. Then we have
-  \begin{equation}
-    \label{eq:density_expl}
-    \text{\small amount of quantity in cuboid} = 
-    n(\yto,\yxo,\yyo,\yzo)\, \Dx\, \Dy\, \Dz \ .
-  \end{equation}
-  where $n(\yto,\yxo,\yyo,\yzo)$ is the \textbf{density} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$.
-\end{definition}
-The density tells us how much quantity there's in a unit of volume. As the notation suggests, it is a function of the coordinates, that is, of time and spatial position. This functional dependence reflects the fact that we can have a larger amount of a quantity concentrated in some regions at some times, than in other regions or at other times.
+\section{Closed surfaces, influxes, effluxes}
+\label{sec:in_out_flux}
 
-In order to calculate the total amount of the quantity in an arbitrary 3D region, we simply divide it into very small cuboids similar to the one above. For each cuboid we calculate the respective amount; this amount will generally be different from cuboid to cuboid, because the value of the density $n(t,x,y,z)$ will be different at each cuboid's centre. Then we sum up all these amounts.
+We shall often consider \textbf{closed} surfaces, that is, surfaces that don't have a boundary or border, like the surface of a sphere or of a cube. A closed surface delimits a specific three-dimensional volume, and we can naturally speak of its \textbf{interior} and its \textbf{exterior}. An example (simplified by removing one dimension as usual) is the surface delimiting the volume of our previous examples:
+\begin{center}
+  \includegraphics[height=7em]{closed_surface.pdf}
+\end{center}
 
-\begin{extra}{Isn't this an integral?}
-  You probably recognize this procedure as the description of integration. Indeed we can write:
-  \begin{equation}
-    \label{eq:density_integral}
-    \text{\small total amount of quantity in 3D region} = 
-    \iiint\limits_{\mathclap{\text{3D region}}}n(t,x,y,z)\, \di x\, \di y\, \di z \ .
-  \end{equation}
-\end{extra}
-Clearly we must know the value of the density $n$ at all points within the region, in order to calculate the total amount. Note that if the quantity is absent in some subregion, then $n(\dotso)=0$ there.
+We can give two crossing directions to a closed surface: out-in, from exterior to interior; or in-out, from interior to exterior. A flux through the surface is usually called \textbf{influx} if we are considering the out-in crossing direction, and \textbf{efflux} or \emph{outflux} if we are considering the in-out crossing direction. Obviously
+\begin{equation*}
+  \text{influx} \equiv -\text{efflux}
+\end{equation*}
 
-\medskip
+Here is a depiction of an \emph{in}flux of \qty{2}{mol/s} of matter (equivalent to an efflux of \qty{-2}{mol/s}):
+\begin{center}
+  \includegraphics[height=7em]{closed_flux_mol.pdf}
+\end{center}
+\begin{warning}
+  It makes sense to speak of influx or efflux only for a \emph{closed} surface.
 
-
-\begin{warning}[Do not confuse flux with movement]
-  Flux
+  The influx and efflux, unless specified otherwise, are fluxes through the \emph{whole} surface. In the picture above, the influx of \qty{2}{mol/s} can be happening everywhere across the surface, or just across some portions of it.
 \end{warning}
 
-For the flux of the quantity through a surface we consider three different cases:
-\begin{definition}{$x$-Flux}
-  Take again a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. Keeping $\yxo$ fixed, imagine a very small rectangular surface centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $y,z$ and of lengths $\Dy$, $\Dz$. Imagine that this surface exists for a lapse of time $\Dt$ around the time $\yto$. Then we have
-  \begin{equation}
-    \label{eq:xflux_expl}
-    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dy\,\Dz$\\ towards positive $x$\\during time lapse }\right\} = 
-    j_{x}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dy\, \Dz \ .
-  \end{equation}
-  where $j_{x}(\yto,\yxo,\yyo,\yzo)$ is the \textbf{$x$-flux} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$.
-\end{definition}
-The $x$-flux tells us how much quantity is flowing in a unit of time through a unit of surface parallel to $y,z$. Also the $x$-flux is a function of the coordinates, because the flux could be larger through some surfaces at some times, than through other surfaces at other times. If the quantity is flowing in the negative $x$ direction, then $j_{x}$ will be negative; and clearly if no quantity is flowing through the small rectangle, then $j_{x}=0$.
-
-In an analogous way we define a $y$-flux and a $z$-flux:
-
-\begin{definition}{$y$-Flux}
-  \begin{equation}
-    \label{eq:yflux_expl}
-    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dz\,\Dy$\\ towards positive $y$\\during time lapse }\right\} = 
-    j_{y}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dz\, \Dy \ .
-  \end{equation}
-\end{definition}
-\begin{definition}{$z$-Flux}
-  \begin{equation}
-    \label{eq:zflux_expl}
-    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dx\,\Dy$\\ towards positive $z$\\during time lapse }\right\} = 
-    j_{z}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dx\, \Dy \ .
-  \end{equation}
-\end{definition}
-
-The three fluxes can be grouped into the \textbf{flux vector}
-\begin{equation}
-  \label{eq:flux_vector}
-  \bm{j}(t,x,y,z) \defd
-  \bigl(j_{x}(t,x,y,z),\ j_{y}(t,x,y,z),\ j_{z}(t,x,y,z)\bigr)
-\end{equation}
-
-In order to calculate the total amount of the quantity through an arbitrary sequence of 2D surfaces during a time lapse, we simply divide the total time into very brief time lapses, and for each of these we approximate the surface with very small rectangles aligned along the three axes. For each such lapse and rectangle we calculate the respective flux amount, using $j_{x}$, $j_{y}$, or $j_{z}$ depending on the orientation of the rectangle. Then we sum up all these amounts.
-\begin{extra}
-  This is also the description of an integration, which can be written
-  \begin{multline}
-    \label{eq:flux_integral}
-    \text{\small total amount of quantity through sequence of surfaces} = {}\\
-    \begin{multlined}[b][0.9\linewidth]
-      \iiint j_{x}(t,x,y,z)\, \di t\, \di y\, \di z +{}
-      \\\iiint j_{y}(t,x,y,z)\, \di t\, \di z\, \di y +{}
-      \\\iiint j_{z}(t,x,y,z)\, \di t\, \di x\, \di y
-    \end{multlined}
-  \end{multline}
-
-  We shall not have to calculate density integrals~\eqref{eq:density_integral} and flux integrals~\eqref{eq:flux_integral} in these notes. In concrete physics problems these integrals are often difficult to calculate, and require advanced mathematical techniques and specialized software. But if you'll ever end up working in fields such as computational fluid dynamics, atmospheric or ocean modelling, or numerical relativity, then you shall probably encounter them again.
-\end{extra}
-
 \medskip
 
-The definitions above of density and flux are appropriate if the quantity in question is a scalar. For vector quantities such as momentum and angular momentum, the density is a vector, and each of the three fluxes is a vector as well.
-% For instance, for matter we could have $N_{1}=\qty{3.5}{mol}$, and for energy we could have $J=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
-%% ***
-% The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
+\begin{exercise}
+  Take an imaginary cylindrical surface enclosing one \furl{https://energyeducation.ca/encyclopedia/Control_rod}{control rod} in a \furl{https://www.britannica.com/technology/nuclear-reactor}{nuclear-fission reactor}. Let's say that in a reactor there are 20 such rods. Around \num{5e19}~neutrons are liberated in a second by the fission fuel, but 2/3 of these are absorbed by the control rods.
+
+  How much, on average, is the \textbf{ef}flux of neutrons (matter) through the surface of one control rod?
+
+  Express the result first in \unit{neutrons/s}, and then in \unit{mol/s}, using the Avogadro constant $$N_{\textrm{A}} = \qty{6.02214076e23}{particles/mol} \ .$$ Be careful about the signs!
+  % -1.7e18 n/s
+  % -2.8e-6 mol/s
+\end{exercise}
+\marginpar{\centering%
+\includegraphics[align=b,width=\linewidth]{nuclear_reactor.png}
+% \\[\jot]\flushleftright%
+% {\color{mpcolor}A region with a negative amount of charge}
+}
+
+% K: 0.86 g/cm^3 = 860 kg/m^3, aw=40*1.66e-27 kg
+% 40K: 40+19=59
+% NA=6.02214076e23
+% 1.29518072289e38 particles/m^3
+% 4400 Bq
+% 3835e-28 m^2
+% (1*pi*0.01)m^2
+% 
+% 500e6 J/s
+% 7.2e13 J/kg
+% 235 * 1.66e-27 kg/atom
+% 3 neutrons/atom
+% ((3 / (235 * 1.66e-27)) / 7.2e13) * 500e6
+% 5.3405109801e19 neutrons/s
+% 1.7801703267e19 neutrons/s at critical
+% 8.9008516335e17
+% 20 control rods
+% approx 1e18 n/s
+%
+% 3e18 enter
 
 \printpagenotes*
 \clearpage
@@ -3106,6 +3028,108 @@ Let us say something more about each.
 More precisely: matter, electric charge, magnetic flux always satisfy strict conservation laws. For matter we actually have several conservation laws, one for each kind of matter. Energy, momentum, angular momentum, entropy satisfy balance laws, which become conservation laws only in special circumstances, but not always.
 
 \smallskip
+
+
+\printpagenotes*
+\clearpage
+\chapter{Densities and flux-densities}
+\label{sec:density_fluxdensity}
+
+
+How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?} We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple.
+%Let us take the quantity \emph{matter} as an example.
+
+
+\begin{definition}{Density}
+  Take a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. At the instant $\yto$, imagine a very small cuboid centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $x,y,z$ and of lengths $\Dx$, $\Dy$, $\Dz$. Then we have
+  \begin{equation}
+    \label{eq:density_expl}
+    \text{\small amount of quantity in cuboid} = 
+    n(\yto,\yxo,\yyo,\yzo)\, \Dx\, \Dy\, \Dz \ .
+  \end{equation}
+  where $n(\yto,\yxo,\yyo,\yzo)$ is the \textbf{density} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$.
+\end{definition}
+The density tells us how much quantity there's in a unit of volume. As the notation suggests, it is a function of the coordinates, that is, of time and spatial position. This functional dependence reflects the fact that we can have a larger amount of a quantity concentrated in some regions at some times, than in other regions or at other times.
+
+In order to calculate the total amount of the quantity in an arbitrary 3D region, we simply divide it into very small cuboids similar to the one above. For each cuboid we calculate the respective amount; this amount will generally be different from cuboid to cuboid, because the value of the density $n(t,x,y,z)$ will be different at each cuboid's centre. Then we sum up all these amounts.
+
+\begin{extra}{Isn't this an integral?}
+  You probably recognize this procedure as the description of integration. Indeed we can write:
+  \begin{equation}
+    \label{eq:density_integral}
+    \text{\small total amount of quantity in 3D region} = 
+    \iiint\limits_{\mathclap{\text{3D region}}}n(t,x,y,z)\, \di x\, \di y\, \di z \ .
+  \end{equation}
+\end{extra}
+Clearly we must know the value of the density $n$ at all points within the region, in order to calculate the total amount. Note that if the quantity is absent in some subregion, then $n(\dotso)=0$ there.
+
+\medskip
+
+
+\begin{warning}[Do not confuse flux with movement]
+  Flux
+\end{warning}
+
+For the flux of the quantity through a surface we consider three different cases:
+\begin{definition}{$x$-Flux}
+  Take again a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. Keeping $\yxo$ fixed, imagine a very small rectangular surface centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $y,z$ and of lengths $\Dy$, $\Dz$. Imagine that this surface exists for a lapse of time $\Dt$ around the time $\yto$. Then we have
+  \begin{equation}
+    \label{eq:xflux_expl}
+    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dy\,\Dz$\\ towards positive $x$\\during time lapse }\right\} = 
+    j_{x}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dy\, \Dz \ .
+  \end{equation}
+  where $j_{x}(\yto,\yxo,\yyo,\yzo)$ is the \textbf{$x$-flux} at the spacetime point $(\yto,\yxo,\yyo,\yzo)$.
+\end{definition}
+The $x$-flux tells us how much quantity is flowing in a unit of time through a unit of surface parallel to $y,z$. Also the $x$-flux is a function of the coordinates, because the flux could be larger through some surfaces at some times, than through other surfaces at other times. If the quantity is flowing in the negative $x$ direction, then $j_{x}$ will be negative; and clearly if no quantity is flowing through the small rectangle, then $j_{x}=0$.
+
+In an analogous way we define a $y$-flux and a $z$-flux:
+
+\begin{definition}{$y$-Flux}
+  \begin{equation}
+    \label{eq:yflux_expl}
+    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dz\,\Dy$\\ towards positive $y$\\during time lapse }\right\} = 
+    j_{y}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dz\, \Dy \ .
+  \end{equation}
+\end{definition}
+\begin{definition}{$z$-Flux}
+  \begin{equation}
+    \label{eq:zflux_expl}
+    \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dx\,\Dy$\\ towards positive $z$\\during time lapse }\right\} = 
+    j_{z}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dx\, \Dy \ .
+  \end{equation}
+\end{definition}
+
+The three fluxes can be grouped into the \textbf{flux vector}
+\begin{equation}
+  \label{eq:flux_vector}
+  \bm{j}(t,x,y,z) \defd
+  \bigl(j_{x}(t,x,y,z),\ j_{y}(t,x,y,z),\ j_{z}(t,x,y,z)\bigr)
+\end{equation}
+
+In order to calculate the total amount of the quantity through an arbitrary sequence of 2D surfaces during a time lapse, we simply divide the total time into very brief time lapses, and for each of these we approximate the surface with very small rectangles aligned along the three axes. For each such lapse and rectangle we calculate the respective flux amount, using $j_{x}$, $j_{y}$, or $j_{z}$ depending on the orientation of the rectangle. Then we sum up all these amounts.
+\begin{extra}
+  This is also the description of an integration, which can be written
+  \begin{multline}
+    \label{eq:flux_integral}
+    \text{\small total amount of quantity through sequence of surfaces} = {}\\
+    \begin{multlined}[b][0.9\linewidth]
+      \iiint j_{x}(t,x,y,z)\, \di t\, \di y\, \di z +{}
+      \\\iiint j_{y}(t,x,y,z)\, \di t\, \di z\, \di y +{}
+      \\\iiint j_{z}(t,x,y,z)\, \di t\, \di x\, \di y
+    \end{multlined}
+  \end{multline}
+
+  We shall not have to calculate density integrals~\eqref{eq:density_integral} and flux integrals~\eqref{eq:flux_integral} in these notes. In concrete physics problems these integrals are often difficult to calculate, and require advanced mathematical techniques and specialized software. But if you'll ever end up working in fields such as computational fluid dynamics, atmospheric or ocean modelling, or numerical relativity, then you shall probably encounter them again.
+\end{extra}
+
+\medskip
+
+The definitions above of density and flux are appropriate if the quantity in question is a scalar. For vector quantities such as momentum and angular momentum, the density is a vector, and each of the three fluxes is a vector as well.
+% For instance, for matter we could have $N_{1}=\qty{3.5}{mol}$, and for energy we could have $J=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+
+%% ***
+% The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
+
 
 \printpagenotes*
 \clearpage
