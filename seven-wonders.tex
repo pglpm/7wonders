@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-05T14:51:22+0100
+%% Last-Updated: 2024-02-05T22:08:32+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -952,6 +952,7 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
 \newcommand*{\yQ}{Q}% Q for time-integral
 \newcommand*{\yW}{W}% A,W for time-integral
+\newcommand*{\yR}{R}% for energy source
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
@@ -1633,6 +1634,7 @@ which is also a vector.
 
 \epigraph{\emph{For Euler, clarity was the hallmark of truth. \textelp{} To him we owe also the brilliant imagination of the internal pressure in generality, the pressure field as equipollent to the action of the fluid outside any imaginary closed diaphragm upon that within. \textelp{} I remark upon it in emphasis of the role of imagination and the importance of quantities which can only be thought of and cannot in themselves be measured.}}{C. A. Truesdell \cites*{truesdell1956d}}
 
+\epigraph{\emph{if the skill of the mathematician has enabled the experimentalist to see that the quantities which he has measured are connected by necessary relations, the discoveries of physics have revealed to the mathematician new forms of quantities which he could never have imagined for himself.}}{J. Clerk Maxwell \cites*{maxwell1870}}
 
 
 \section{Seven primitive quantities with two basic properties}
@@ -2168,6 +2170,12 @@ The dimensions, units, and scalar or vector character of these quantities are su
 \chapter{Fluxes and volume integrals}
 \label{cha:total_flux}
 
+
+\epigraph{\emph{%
+For the sake of persons of these different types, scientific truth should be presented in different forms, and should be regarded as equally scientific, whether it appears in the robust form and the vivid colouring of a physical illustration, or in the tenuity and paleness of a symbolical expression.%
+}}{J. Clerk Maxwell \cites*{maxwell1870}}
+
+
 In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy -- have two common properties related to their measurement:
 \begin{enumerate}
 \item[(1)] we can measure the amount of quantity within a three-dimensional region, at a specific time instant
@@ -2598,12 +2606,12 @@ Recall that a flux is defined as the amount of a quantity crossing a surface in 
 
 Take now a surface existing between two time instants $t_{1}$ and $t_{2}$; during this time lapse it could also be moving and changing shape. Choose a crossing direction through the surface. At each intermediate time instant $t$ we can then measure the flux of a quantity crossing the surface in that direction, at that instant; denote it by $\yJ(t)$.
 
-The total amount of quantity that cross the surface between times $t_{1}$ and $t_{2}$ can be found by dividing the time interval into very short time lapses of length $\Dt$. For each short time lapse we know that the amount is $J(t)\,\Dt$. The total is obtained by adding these small amounts. As $\Dt$ is considered shorter and shorter, this sum is by definition an integral:
+The total amount of quantity that cross the surface between times $t_{1}$ and $t_{2}$ can be found by dividing the time interval into very short time lapses of length $\Dt$. For each short time lapse we know that the amount is $\yJ(t)\,\Dt$. The total is obtained by adding these small amounts. As $\Dt$ is considered shorter and shorter, this sum is by definition an integral:
 \begin{definition}{Total flow of quantity through a surface between two times}
 The total amount of quantity crossing a surface (relative to a specified crossing direction) between times $t_{1}$ and $t_{2}$ is given by
   \begin{equation}
     \label{eq:total_flow_integral}
-     \int_{t_{1}}^{t_{2}}\!\! J(t)\,\di t\ .
+     \int_{t_{1}}^{t_{2}}\!\! \yJ(t)\,\di t\ .
   \end{equation}
 \end{definition}
 
@@ -2632,7 +2640,7 @@ As a simple example, consider a room's door. During one minute, three people ent
 \begin{exercise}
   \begin{itemize}[shift]
   \item What is the physical dimension of the total flow of a quantity?
-  \item Suppose that we calculate the integral above in the case of matter, finding a total of $\int_{t_{1}}^{t_{2}}\!\! J(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
+  \item Suppose that we calculate the integral above in the case of matter, finding a total of $\int_{t_{1}}^{t_{2}}\!\! \yJ(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
   \end{itemize}
 \end{exercise}
 
@@ -2705,12 +2713,15 @@ We can give two crossing directions to a closed surface: out-in, from exterior t
 \chapter{Physical laws}
 \label{cha:laws}
 
+
+\epigraph{\emph{%
+Every branch of physical science is based on two sets of fundamental equations. The first set is that of basic laws of physics, which are postulated to hold valid for all bodies under all conceivable circumstances \textelp{}. The second set of fundamental equations are the constitutive equations: these are relationships which are not supposed to hold for all bodies, but only to describe the behavior of some restricted class of bodies, or possibly of a larger class of bodies for a more restricted class of phenomena.
+}}{G. Astarita \cites*{astarita1989_r1990}}
+
 \section{Two kinds of laws}
 \label{sec:two_kinds}
 
-
-
-In the previous chapter we introduced the main quantities in terms of which we describe physical phenomena. How do we describe the patterns, regularities, and diversities that we observe in these phenomena? This is the role of physical laws. Different physics formalisms or languages express these laws in different ways, even if the actual physical phenomenon is exactly the same.
+In \chap~\ref{cha:stuff} we introduced the main quantities in terms of which we describe physical phenomena. How do we describe the patterns, regularities, and diversities that we observe in these phenomena? This is the role of physical laws. Different physics formalisms or languages express these laws in different ways, even if the actual physical phenomenon is exactly the same.
 
 In the formalism we're using we distinguish between two kinds of physical laws:
 \begin{itemize}
@@ -2718,20 +2729,28 @@ In the formalism we're using we distinguish between two kinds of physical laws:
 \item \textbf{Constitutive relations}
 \end{itemize}
 
-Balance laws, or simply balances, have this name because they express a sort of trade-off or \enquote{budget}. \textbf{Conservation laws} are a special kind of balance laws. We shall see that there's a set of balances which apply to \emph{all} physical phenomena, without exceptions; they represent the basic universal patterns that we observe everywhere.
+Balance laws, or simply balances, have this name because they express a sort of trade-off or \enquote{budget} about physical quantities. \textbf{Conservation laws} are a special and important kind of balance laws.
 
-Constitutive relations instead only apply to particular phenomena and only in particular theories. They express the diversity that we observe around us.
+Constitutive equations
 
-\section{Balance and conservation laws}
-\label{sec:balances}
 
-Balance laws connect the \emph{volume integrals} and \emph{fluxes} discussed in \chap~\ref{cha:total_flux}. They are intuitively and visually easy to grasp. The archetype is as follows:
+We shall see that there's a set of balances which apply to \emph{all} physical phenomena, without exceptions; they represent the basic universal patterns that we observe everywhere. Constitutive relations instead only apply to particular phenomena and only in particular theories. They express the diversity that we observe around us.
+
+In this chapter we
+
+\section{Conservation laws}
+\label{sec:conservation_laws}
+
+Conservation laws tightly connect the \emph{volume integrals} and \emph{fluxes} discussed in \chap~\ref{cha:total_flux}. They are intuitively and visually easy to grasp. The archetype is as follows:
 
 Consider a \emph{closed} (\sect\,\ref{sec:in_out_flux}) control surface at a (coordinate) time $t_{1}$, delimited by a closed control surface. A ball-shaped region, delimited by a spherical surface, is an example. (Actually the control volume doesn't need to be connected: it could consist of several separate volumes, each delimited by a distinct closed surface.)
 
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{surfacemotion1.png}
-\\\includegraphics[align=t,width=\linewidth]{surfacemotion2.png} \\\includegraphics[align=t,width=\linewidth]{surfacemotion3.png} \\\includegraphics[align=t,width=\linewidth]{surfacemotion4.png} \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+\\\includegraphics[align=t,width=\linewidth]{surfacemotion2.png}
+\\\includegraphics[align=t,width=\linewidth]{surfacemotion3.png}
+\\\includegraphics[align=t,width=\linewidth]{surfacemotion4.png}
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
   Temporal sequence of closed control surfaces, represented by the golf ball (\furl{https://pglpm.github.io/7wonders/media/surfacemotion.mp4}{click here for an animated version})}%
 }%
 Starting from that particular time, imagine the closed control surface moving and deforming, changing shape and size but remaining closed -- no holes or cuts -- through time, until a later time $t_{2}$. At this time we shall have a final closed control surface that can be different from the initial one, and at a different position. The temporal sequence of closed control surface delimits a sequence of control volumes; see the sequence on the right as an example. We focus in particular on the initial and the final control volumes. Note that, if we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
@@ -2752,30 +2771,30 @@ Each of the three amounts above is, in this example, a scalar that can be positi
 \begin{equation*}
   \begin{gathered}
     t_{1} = \text{00:00:00Z}
-    \qquad t_{2} = \text{00:00:36Z}
+    \qquad t_{2} = \text{00:00:18Z}
     \\ \yN(t_{1}) = \qty{3.50}{mol}
-    \qquad \yJ(t) = 6\,\cos(t/\unit{s})\:\unit{mol/s}
-    \qquad \yN(t_{2}) = \qty{-2.45}{mol}
+    \qquad \yJ(t) = -0.06\,t\:\unit{mol/s^{2}}
+    \qquad \yN(t_{2}) = \qty{-6.22}{mol}
   \end{gathered}
 \end{equation*}
 note that $\yJ(t)$ is given as a function of the time $t$.
 
-% ; or a vector. For instance, for matter we could have $\yN(t_{1})=\qty{3.5}{mol}$; for energy we could have $J=\qty{-600}{J}$; for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+% ; or a vector. For instance, for matter we could have $\yN(t_{1})=\qty{3.5}{mol}$; for energy we could have $\yJ=\qty{-600}{J}$; for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
 \smallskip
 
 With this setup we can introduce two kinds of balance laws.
 
 \begin{definition}{Conservation law}
-  A quantity is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds always:
+  A quantity with volume integral $\yN(t)$ and flux $\yJ(t)$ is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds always:
   \begin{equation}
     \label{eq:conserved}
-    \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t = 0
+    \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = 0
   \end{equation}
 \end{definition}
 The meaning of the equation above is intuitive, especially if we rewrite it like this:
 \begin{equation*}
-      \yN(t_{2}) = \yN(t_{1}) + \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t
+      \yN(t_{2}) = \yN(t_{1}) + \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t
 \end{equation*}
 which says that the amount of quantity in the final control volume is equal to the amount in the initial control volume, plus the total amount (which could be negative) that flowed in in between those times. Said otherwise, any amount of quantity that appears in (or disappears from) the volume, must come in (or go out) through the surface; it can't appear out of nowhere.
 
@@ -2783,277 +2802,143 @@ A conservation law allows us to make several kinds of predictions or deductions.
 \begin{itemize}
 \item If we know the amount of quantity within the control surface at $t_{1}$ and the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the control surface at $t_{2}$: this is given by the last equation above.
   % \begin{equation*}
-  %   \yN(t_{2}) = \yN(t_{1}) + J \ .
+  %   \yN(t_{2}) = \yN(t_{1}) + \yJ \ .
   % \end{equation*}
   
 \item If we know the amount of quantity within the control surface at $t_{1}$ and the one at $t_{2}$, then we can deduce the total amount that flowed in through the surface between the times $t_{1}$ and $t_{2}$:
   \begin{equation*}
-    \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t = \yN(t_{2}) - \yN(t_{1}) \ .
+    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = \yN(t_{2}) - \yN(t_{1}) \ .
   \end{equation*}
-  
+
 \item If we know the amount of quantity within the surface at $t_{2}$ and the amount that flowed in between $t_{1}$ and $t_{2}$, we can deduce the amount within the surface at $t_{1}$:
   \begin{equation*}
-    \yN(t_{1}) = \yN(t_{2}) - \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t \ .
+    \yN(t_{1}) = \yN(t_{2}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t \ .
   \end{equation*}
 \end{itemize}
-These kinds of predictions and deductions are very powerful: consider that the shape and motion of the surface, as well as the times $t_{1}, t_{2}$, are completely arbitrary. Keep in mind that if the three quantities are scalars, then in general they can be positive, negative, or zero. For example, in the case of matter, if the total amount flowed in through the surface is negative, $J<0$, then we must also have $\yN(t_{2}) < \yN(t_{1})$.
 
-We unconsciously use some conservation laws all the time in our everyday life. If you seal a glass in a box, and upon dropping the box you hear that the glass shatters, and see that no holes were formed in the box, then you are sure that all the glass pieces now in the box could be glued together to form the original glass in its entirety.
+These kinds of predictions and deductions are very powerful, because we are fully free to decide the shapes and motion of the control surfaces and volumes, and even the times $t_{1}$ and $t_{2}$.
+
+We unconsciously use
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{deflated_tyre.jpg}
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+  Deflated tyre: did the air within just vanish out of existence?}%
+}%
+several conservation laws all the time in our everyday life. If a bike tyre is suddenly deflated, we conclude that that air must have got out of it through it surface, which must therefore have a hole or a defective valve; we don't conclude that air \enquote{just disappeared}.
+% If you seal a glass in a box, and upon dropping the box you hear that the glass shatters, and see that no holes were formed in the box, then you are sure that all the glass pieces now in the box could be glued together to form the original glass in its entirety.
 
 % \begin{itemize}
-% \item If we find a larger amount of the quantity within the surface at $t_{2}$ than the one at $t_{1}$, then the difference must have flowed in through the surface in between those times ($\yN(t_{2})-\yN(t_{1}) = J$).
-% \item If a total positive amount of the quantity is flowing in through the surface between times $t_{1}$ and $t_{2}$, then the amount of quantity within the surface at $t_{2}$ must be larger than the one at $t_{1}$ by this amount ($\yN(t_{1})+J = \yN(t_{2})$).
+% \item If we find a larger amount of the quantity within the surface at $t_{2}$ than the one at $t_{1}$, then the difference must have flowed in through the surface in between those times ($\yN(t_{2})-\yN(t_{1}) = \yJ$).
+% \item If a total positive amount of the quantity is flowing in through the surface between times $t_{1}$ and $t_{2}$, then the amount of quantity within the surface at $t_{2}$ must be larger than the one at $t_{1}$ by this amount ($\yN(t_{1})+\yJ = \yN(t_{2})$).
 % \end{itemize}
 % You can think of other similar interpretations.
 
 %% \mynotew{add more powerful ways by dividing regions, surface, time}
 
-Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of the more general balance law:
+\subsection{Differential form of a conservation law}
+\label{sec:conservation_laws_diff}
+
+The conservation law
+\begin{equation*}
+  \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = 0
+\end{equation*}
+is said to be written in \emph{integral form}, because it contains the integral of the flux, necessary to calculate the total amount of quantity that flowed through the control surface.
+
+Change the name of time $t_{1}$ simply to $t$, and take $t_{2}$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
+\begin{equation*}
+  t_{1}\ \text{becomes}\ t\ ,\enspace t_{2}\ \text{becomes}\ t+\Dt
+\end{equation*}
+\marginpar{%
+\footnotesize\flushleftright
+\begin{warning}
+  Some mathematical conditions must be satisfied to make these steps; or otherwise the derivative below must be carefully defined in a generalized sense.
+\end{warning}\par
+}%
+Then the conservation law above can be approximated as
+\begin{equation*}
+  \yN(t+\Dt) - \yN(t) - \yJ(t)\, \Dt \approx 0
+\end{equation*}
+If we divide the whole expression by $\Dt$ and consider smaller and smaller $\Dt$, the fraction\enspace$\frac{\yN(t+\Dt)-\yN(t)}{\Dt}$\enspace becomes, by definition, a derivative, and we obtain a new form for the conservation law:
+\begin{definition}{Conservation law in differential form}
+  A quantity is said to satisfy a \textbf{conservation law} if the following equality holds always:
+  \begin{equation}
+    \label{eq:conserved}
+    \frac{\di\yN(t)}{\di t}- \yJ(t) = 0
+  \end{equation}
+\end{definition}
+This form says that the rate of change of the volume integral of a quantity must be equal to the \emph{in}flux of that quantity.
+
+Both forms, integral and differential, of a conservation law are useful, in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and make predictions.
+
+
+\section{Balance laws}
+\label{sec:balance_laws}
+
+Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law, where this condition is \emph{not} satisfied.
+
+The setup is just like before: we consider an initial and final control volumes at $t_{1}$, $t_{2}$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume integral $\yE(t_{1})$, final volume integral $\yE(t_{2})$, and flux $\yH(t)$.
 
 \begin{definition}{Balance law}
-  A quantity is said to be only \textbf{balanced}, or to satisfy a \textbf{balance law} or simply \textbf{balance}, if the following equality holds:
+  A quantity with volume integral $\yE(t)$ and flux $\yH(t)$ is said to be only \textbf{balanced}, or to satisfy a \textbf{balance law} or simply \textbf{balance}, if the following equality holds always:
   \begin{equation}
     \label{eq:balanced}
-    \yN(t_{2}) - \yN(t_{1}) - J = R
+    \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t
   \end{equation}
-  where $R$ is the amount of quantity created within the sequence of surfaces between the times $t_{1}$ and $t_{2}$.
+  where $\yR(t)$, called the \textbf{source}, is the amount of quantity created within the closed control surface at time $t$.
 \end{definition}
-If the quantity is a scalar, then $R$ can also be negative, in which case we say that some of the quantity has been destroyed.
+If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we say that some of the quantity has been destroyed.
 
-A balance law allows us to make several kinds of predictions or deductions as well. For example:
-\begin{itemize}
-\item If we know the amount of quantity within the surface at $t_{1}$, the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, and the amount that was created within the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the surface at $t_{2}$:
+A balance law is in some respects more trivial than a conservation law. If we measure that $\yE(t_{1}) - \yE(t_{2}) + \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t$ is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed between $t_{1}$ and $t_{2}$. So a quantity can always be said to satisfy a balance. But a balance is not trivial if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+
+\begin{warning}
+  One could object: \enquote{why don't you just add the two integrals in the equation above, writing
   \begin{equation*}
-    \yN(t_{2}) = \yN(t_{1}) + J + R \ .
+    \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\bigl[\yH(t)-\yR(t)\bigr]\, \di t = 0
   \end{equation*}
-\end{itemize}
-And similarly as in the other examples for a conservation law. You see that in order to use a balance we need an extra piece of information.
+  and get a conservation law?}
 
-A balance law is somehow more trivial than a conservation law: if we measure that $\yN(t_{1}) - \yN(t_{2}) + J$ is not zero, we can always say that some amount of quantity must have been created or destroyed between the two times; so a quantity might always be said to satisfy a balance. But a balance is not trivial if we have some specific physical law that tells us in advance how the amount created or destroyed, $R$, can be calculated.
+The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the source $\yR$, on the other hand, involves what's happening \emph{in the control volumes, at each time}.
+\end{warning}
+So, whereas a conservation law allows us to predict the amount of quantity in the final volume just by making measurements on the surface during the time lapse, a general balance law requires us to make measurements at every point within the volume during the time lapse.
 
-A conservation law can be seen as a special and powerful case of a balance law, one for which $R=0$ \emph{always}.
+Thus a conservation law can be seen as a special and powerful case of a balance law, one for which $\yR(t)=0$ \emph{always and everywhere}.
 
 
-\begin{extra}[label={extra:cons_rel}]
+
+% A balance law allows us to make several kinds of predictions or deductions as well. For example:
+% \begin{itemize}
+% \item If we know the amount of quantity within the surface at $t_{1}$, the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, and the amount that was created within the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the surface at $t_{2}$:
+%   \begin{equation*}
+%     \yE(t_{2}) = \yE(t_{1}) + \yH + \yR \ .
+%   \end{equation*}
+% \end{itemize}
+% And similarly as in the other examples for a conservation law. You see that in order to use a balance we need an extra piece of information.
+
+
+\subsection{Differential form of a balance law}
+\label{sec:balance_laws_diff}
+
+By considering a very short time lapse $\Dt$, with reasoning analogous to the case of a conservation law, we can write a balance law in a different form:
+\begin{definition}{Balance law in differential form}
+  A quantity is said to satisfy a \textbf{balance law} if the following equality holds always:
+  \begin{equation}
+    \label{eq:conserved}
+    \frac{\di\yN(t)}{\di t}- \yJ(t) = \yR(t)
+  \end{equation}
+\end{definition}
+
+
+\begin{extra}[label={extra:cons_rel}]{Balance laws in General Relativity}
   Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $t_{1}$, the sequence of 2D surfaces between $t_{1}$ and $t_{2}$, and the 3D region at $t_{2}$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
 
-  And from a spacetime perspective, the amount of a quantity $\yN(t_{1})$ or $\yN(t_{2})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $J$ also disappear. Their only difference is that one ($C$) points exclusively in the time direction, while the other ($J$) also points partially in a spatial direction.
+  And from a spacetime perspective, the amount of a quantity $\yE(t_{1})$ or $\yE(t_{2})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. Their only difference is that one ($C$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
 \end{extra}
 
 
-\begin{extra}
+\begin{extra}{What about the magnetic flux?}
   In the case of magnetic flux, the idea of a conservation law is analogous, but is formulated with one less spatial dimension: we consider a closed 1D curve at $t_{1}$, one at $t_{2}$, and a sequence in between these times. The magnetic flux turns out to be a quantity for which it's possible to ask how much is \enquote{linked} to a closed curved, and how much is crossing a closed curve. One way to understand this is to imagine magnetic flux as a bundle of tubes or lines that are either closed or extend to infinity. It is a very fascinating quantity, and one may wonder if other quantities exist which satisfy similar balances even with one less dimension. But we shall not pursue magnetic flux or similar topics in these notes.
 \end{extra}
 
-
-\section{Balance laws expressed with derivatives}
-\label{sec:balance_derivative}
-
-In \chap~\ref{cha:density_fluxdensity} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $\yN(t_{1})$, $\yN(t_{2})$, $J$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
-
-The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \chap~\ref{cha:density_fluxdensity} to introduce density and flux.
-
-Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservation law~\eqref{eq:conserved} to the following situation:
-\begin{itemize}
-\item[$\yN(t_{1})$:] Choose an initial time $t_{1}=t-\Dth$, slightly before $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
-  \begin{equation}
-    \label{eq:C1dens}
-    \yN(t_{1}) = n\bigl(t-\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
-  \end{equation}
-  
-\item[$\yN(t_{2})$:] Choose a final time $t_{2} = t+\Dth$, slightly after $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
-  \begin{equation}
-    \label{eq:C2dens}
-    \yN(t_{2}) = n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
-  \end{equation}
-  
-\item[$J$:] We calculate the flux separately through the six rectangular surfaces bounding the small cuboid region:
-  \begin{itemize}
-  \item[$J_{x}$:] First choose a rectangular surface centred slightly to one side of the point $(x,y,z)$: at $(x-\Dxh, y, z)$, with sides parallel to $y,z$ and lengths $\Dy, \Dz$. We keep this surface constant for the small duration $\Dt$. The $x$-flux through this rectangle, towards positive $x$, during $\Dt$, is according to formula~\eqref{eq:xflux_expl}
-    \begin{equation*}
-      \label{eq:Fxfluxn}
-     J_{x}^{\text{in}} = j_{x}\bigl(t, x-\Dxh, y, z\bigr)\,\Dt\,\Dy\,\Dz \ .
-    \end{equation*}
-    Now choose the rectangular surface parallel to the previous one, but on the other side of the point $(x,y,z)$, centred at $(x+\Dxh, y, z)$. The $x$-flux through this rectangle, towards positive $x$, during $\Dt$, is
-    \begin{equation*}
-      \label{eq:Fxfluxp}
-      J_{x}^{\text{out}} = j_{x}\bigl(t, x+\Dxh, y, z\bigr)\,\Dt\,\Dy\,\Dz \ .
-    \end{equation*}
-    Note that the flux $J_{x}^{\text{in}}$ points to the interior of the 3D region, towards its centre $(x,y,z)$; whereas $J_{x}^{\text{out}}$ points to the exterior, away from the centre. The total flux into the region is therefore given by their difference:
-    \begin{equation}
-      \label{eq:Fxflux}
-      \begin{split}
-        J_{x} &= J_{x}^{\text{in}} - J_{x}^{\text{out}}
-        \\&= \bigl[ j_{x}\bigl(t, x-\Dxh, y, z\bigr) - j_{x}\bigl(t, x+\Dxh, y, z\bigr)\bigr]
-        \,\Dt\,\Dy\,\Dz
-      \end{split}
-    \end{equation}
-  
-  \item[$J_{y}, J_{z}$:] An analogous reasoning can be made to find the total flux through the other four surfaces, two parallel to $z,y$ and two to $x,y$. We find
-    \begin{align}
-      \label{eq:Fyflux}
-      \begin{split}
-        J_{y} &= J_{y}^{\text{in}} - J_{y}^{\text{out}}
-        \\&= \bigl[ j_{y}\bigl(t, x, y-\Dyh, z\bigr) - j_{x}\bigl(t, x, y+\Dyh, z\bigr)\bigr]
-        \,\Dt\,\Dz\,\Dx
-      \end{split}
-      \\[3\jot]
-      \label{eq:Fzflux}
-      \begin{split}
-        J_{z} &= J_{z}^{\text{in}} - J_{z}^{\text{out}}
-        \\&= \bigl[ j_{z}\bigl(t, x, y, z-\Dzh\bigr) - j_{x}\bigl(t, x, y, z+\Dzh\bigr)\bigr]
-        \,\Dt\,\Dx\,\Dy
-      \end{split}
-    \end{align}
-  \end{itemize}
-The total flux into the region during the time interval $\Dt$ is finally the sum of the three above:
-\begin{equation}
-  \label{eq:Fflux}
-  J = J_{x} + J_{y} + J_{z}
-\end{equation}
-\end{itemize}
-
-Up to now we have only chosen arbitrary surfaces, regions, and a time interval. Now let's assume that the corresponding amounts and fluxes satisfy a balance law like~\eqref{eq:conserved}. Putting together the puzzle pieces we find
-\begin{multline*}
-  \label{eq:balance_pieces}
-    \mathcolor{bluepurple}{\yN(t_{2})} -\mathcolor{green}{\yN(t_{1})} - \mathcolor{red}{J} = 0 \qquad     \Longrightarrow
-    \\[2\jot]
-    \left.\begin{aligned}
-      &\mathcolor{bluepurple}{n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz}
-      - \mathcolor{green}{n\bigl(t-\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz}
-      \\[\jot]\quad&\color{red}-\bigl[ j_{x}\bigl(t, x-\Dxh, y, z\bigr) - j_{x}\bigl(t, x+\Dxh, y, z\bigr)\bigr]
-      \,\Dt\,\Dy\,\Dz
-      \\[\jot]\quad&\color{red}-\bigl[ j_{y}\bigl(t, x, y-\Dyh, z\bigr) - j_{x}\bigl(t, x, y+\Dyh, z\bigr)\bigr]
-      \,\Dt\,\Dz\,\Dx
-      \\[\jot]\quad&\color{red}-\bigl[ j_{z}\bigl(t, x, y, z-\Dzh\bigr) - j_{x}\bigl(t, x, y, z+\Dzh\bigr)\bigr]
-      \,\Dt\,\Dx\,\Dy
-    \end{aligned}\enspace\right\}=0
-\end{multline*}
-This expression is quite long, but it should be intuitively understandable if you try to identify the individual summed terms.
-
-Now we take the last, long expression -- which is an equality -- and divide its left and right sides by $\Dt\,\Dx\,\Dy\,\Dz$. Note that many of the \enquote{$\incr$} factors simplify out. We arrive at this:
-\begin{equation*}
-  \label{eq:balance_deriv_incr}
-  \left.\begin{aligned}
-      &\frac{n\bigl(t+\Dth, x,y,z\bigr)
-      -n\bigl(t+\Dth, x,y,z\bigr)}{\Dt}
-      \\[\jot]\quad&+\frac{j_{x}\bigl(t, x+\Dxh, y, z\bigr) - j_{x}\bigl(t, x-\Dxh, y, z\bigr)}{\Dx}
-      \\[\jot]\quad&+\frac{j_{y}\bigl(t, x, y+\Dyh, z\bigr) - j_{y}\bigl(t, x, y-\Dyh, z\bigr)}{\Dy}
-      \\[\jot]\quad&+\frac{j_{z}\bigl(t, x,y,z+\Dzh\bigr) - j_{z}\bigl(t, x,y,z-\Dzh\bigr)}{\Dz}
-    \end{aligned}\enspace\right\}=0 \ .
-\end{equation*}
-Still a long expression; but examine each fraction: we have a difference between a term calculated at some point, and one calculated at some point plus an increment \enquote{${}\incr$}; this difference is then divided by that increment. This is the definition of \emph{partial derivative}, that is, the derivative with respect to one variable, while keeping the other variables fixed. The short symbol for this is \enquote{$\frac{\de\dotso}{\de\dotso}$}, so we can simply write
-\begin{definition}{Conservation law in derivative form}
-  \begin{equation}
-    \label{eq:balance_deriv}
-    \frac{\de n}{\de t}%(t,x,y,z)
-    +\frac{\de j_{x}}{\de x}%(t,x,y,z)
-    +\frac{\de j_{y}}{\de y}%(t,x,y,z)
-    +\frac{\de j_{z}}{\de z}%(t,x,y,z)
-    = 0
-  \end{equation}
-\end{definition}
-Let's make a simple check to see if this formula makes sense, in a simple one-dimensional case where we disregard the $y,z$ coordinates (let's say their fluxes are zero), so that the balance law becomes
-\begin{equation*}
-  \frac{\de n}{\de t} + \frac{\de j_{x}}{\de x} = 0 \ .
-\end{equation*}
-\marginpar{\footnotesize%
-\includegraphics[align=t,width=\linewidth]{ddxflux.pdf}
-}
-Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x} > 0$. This means that the $x$-flux increases as we move from $x$ to $x+\Dx$, as shown in the side figure. The $x$-flux at $x$ is bringing some amount of quantity into the region of interest, the $x$-flux at  $x+\Dx$ is taking a larger amount out of that region. Therefore, during the short time $\Dt$ in which this flux takes place, the total amount of quantity within the region will decrease. But the total amount is given by $n(t)$, which is therefore decreasing with time. This means that its time derivative is negative: $\frac{\de n}{\de t} < 0$. This agrees with balance law above: the sum of the two derivatives must be zero, so if one is positive, the other must be negative.
-
-\medskip
-
-Balance laws like~\eqref{eq:balance_deriv} are the basis of many important computational and simulation methods in a huge variety of physical applications: simulation of the ocean around an offshore oil platform, of wind in a wind farm, of air around an aeroplane's wing, of earthquakes, of electromagnetic-wave propagation, of oscillations in a suspension bridge, of percolation of fluids through terrain, of chemical reactions, of energy transfer\textellipsis The list could go on for pages!
-
-The basic idea for using a balance law for a simulation is easy to understand. Take again the simpler one-dimensional formula without $y,z$ coordinates, and rewrite it remembering the basic meaning of the derivative:
-\begin{equation*}
-  \frac{n(t+\Dt,x)-n(t,x)}{\Dt} + \frac{j_{x}(t, x+\Dxh)-j_{x}(t,x-\Dxh)}{\Dx} = 0
-\end{equation*}
-Suppose we know all quantities at time $t$; we can then find the density $n$ at time $t+\Dt$. Leave it on the left side and bring all other terms on the right side, multiplying them by $\Dt$:
-\begin{equation*}
-  n(t+\Dt,x) =
-  \Dt\,\biggl[ n(t,x) - \frac{j_{x}(t, x+\Dxh)-j_{x}(t,x-\Dxh)}{\Dx} \biggr]
-\end{equation*}
-which is essentially \furl{https://mathworld.wolfram.com/EulerForwardMethod.html}{Euler's method}.
-
-This formula can then be used iteratively to find the density $n$ at later times. As a simple simulation set-up, we consider a region of space of interest and divide it into cells of width $\Dx$. We also treat time in steps of $\Dt$. Then the iterative procedure goes as follows:
-\begin{myframe}
-  \begin{enumerate}[label=\arabic*.,ref=\arabic*]
-  \item \emph{Initial values:} Assign the value of $n$ at each $x$-cell at the initial time.
-  \item\label{item:timestep} \emph{For-loop in $x$:} for each $x$-cell, calculate the value of $n$ at $t+\Dt$, using the formula above.
-  \item Increase time by $\Dt$.
-  \item Go to~\ref{item:timestep}.
-  \end{enumerate}
-\end{myframe}
-
-For example, suppose we have two $x$-cells of width $\Dx=1$: one centred at $x_{1}$ and the other at $x_{2} = x_{1}+1$. There are three boundaries: the leftmost at $x_{1}-\tfrac12$, one between the cells at $x_{1}+\tfrac12 \equiv x_{2}-\tfrac12$, and the rightmost at $x_{2}+\tfrac12$. Then we have the following steps:
-
-{\small
-  
-\begin{enumerate}[label=\arabic*.]
-\item Assign the values $n(t_{0},x_{1}), n(t_{0},x_{2})$ of $n$ at $x_{1}$ and $x_{2}$ at time $t_{0}$.
-  
-\item Assign the values $$j_{x}\bigl(t_{0},x_{1}-\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{1}+\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{2}+\tfrac12\bigr)$$
-  of the fluxes at the three boundaries at time $t_{0}$.
-  
-\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{1}=t_{0}+\Dt$, for instance
-  $$ n(t_{1},x_{1}) =
-  \Dt\,\biggl[ n(t_{0},x_{1}) - \frac{j_{x}(t_{0}, x_{1}+\tfrac12)-j_{x}(t_{0},x_{1}-\tfrac12)}{\Dx} \biggr] \ .$$
-  Note that we have all quantities required on the right side.
-  
-\item Assign the values $$j_{x}\bigl(t_{1},x_{1}-\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{1},x_{1}+\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{1},x_{2}+\tfrac12\bigr)$$
-  of the fluxes at the three boundaries at time $t_{1}$.
-  
-\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{2}=t_{1}+\Dt$, for instance
-  $$ n(t_{2},x_{1}) =
-  \Dt\,\biggl[ n(t_{1},x_{1}) - \frac{j_{x}(t_{1}, x_{1}+\tfrac12)-j_{x}(t_{1},x_{1}-\tfrac12)}{\Dx} \biggr] \ .$$
-  Note that we have again all quantities required on the right side.
-
-\item And so on.
-\end{enumerate}
-
-}
-
-This routine requires us \emph{to know the flux at each $x$-cell and at each time}. But we shall soon see that this requirement can be bypassed.
-
-The rudimentary routine above is the basis from which more precise and complex simulation routines are developed.
-
-\begin{exercise}
-  Write a script, in your preferred programming language, that implements the simulation routine above in an $x$-grid with four cells $x=1,\ \dotsc,\ x=4$. Take a grid size $\Dx=1$ and time step $\Dt=1$. We can imagine that the quantity in question is electric charge. Use the following initial values for $n(t,x)$ at $t=0$:
-  \begin{equation*}
-    n(t\mo0, x\mo1)=7\ ,\enspace
-    n(t\mo0, x\mo2)=0\ ,\enspace
-    n(t\mo0, x\mo3)=0\ ,\enspace
-    n(t\mo0, x\mo4)=7
-  \end{equation*}
-  and assume the flux is, at each time $t$:
-  \begin{multline*}
-      j_{x}(t, x\mo0.5)=0\ ,\\
-      j_{x}(t, x\mo1.5)=+2\ ,\enspace
-      j_{x}(t, x\mo2.5)=0\ ,\enspace
-      j_{x}(t, x\mo3.5)=-2\ ,\\
-      j_{x}(t, x\mo4.5)=0 \ .
-    \end{multline*}
-
-    Questions and tasks:
-    \begin{enumerate}[shif,label={\bfseries\arabic*.}]
-    \item Which time evolution for $n$ do you observe? Does it make sense, given the fluxes above?
-    \item Feel free to try out or generalize your script with:
-      \begin{itemize}[shift]
-      \item different initial values
-      \item different fluxes
-      \item an explicit formula for the flux, for instance
-        \begin{equation*}
-          j_{x}(t,x) = 8\,x^{3} - 60\,x^{2} + 118\,x - 45
-        \end{equation*}
-      \item time-dependent fluxes
-      \item more cells
-      \item two or three dimensions, including $y$- or $z$-fluxes
-      \end{itemize}
-    \end{enumerate}
-
-\end{exercise}
 
 \section{Constitutive relations}
 \label{sec:constitutive}
@@ -3207,10 +3092,222 @@ In order to calculate the total amount of the quantity through an arbitrary sequ
 \medskip
 
 The definitions above of density and flux are appropriate if the quantity in question is a scalar. For vector quantities such as momentum and angular momentum, the density is a vector, and each of the three fluxes is a vector as well.
-% For instance, for matter we could have $\yN(t_{1})=\qty{3.5}{mol}$, and for energy we could have $J=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+% For instance, for matter we could have $\yN(t_{1})=\qty{3.5}{mol}$, and for energy we could have $\yJ=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
 %% ***
 % The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
+
+
+
+\section{Balance laws expressed with derivatives}
+\label{sec:balance_derivative}
+
+In \chap~\ref{cha:density_fluxdensity} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $\yN(t_{1})$, $\yN(t_{2})$, $\yJ$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
+
+The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \chap~\ref{cha:density_fluxdensity} to introduce density and flux.
+
+Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservation law~\eqref{eq:conserved} to the following situation:
+\begin{itemize}
+\item[$\yN(t_{1})$:] Choose an initial time $t_{1}=t-\Dth$, slightly before $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+  \begin{equation}
+    \label{eq:C1dens}
+    \yN(t_{1}) = n\bigl(t-\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
+  \end{equation}
+  
+\item[$\yN(t_{2})$:] Choose a final time $t_{2} = t+\Dth$, slightly after $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+  \begin{equation}
+    \label{eq:C2dens}
+    \yN(t_{2}) = n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
+  \end{equation}
+  
+\item[$\yJ$:] We calculate the flux separately through the six rectangular surfaces bounding the small cuboid region:
+  \begin{itemize}
+  \item[$\yJ_{x}$:] First choose a rectangular surface centred slightly to one side of the point $(x,y,z)$: at $(x-\Dxh, y, z)$, with sides parallel to $y,z$ and lengths $\Dy, \Dz$. We keep this surface constant for the small duration $\Dt$. The $x$-flux through this rectangle, towards positive $x$, during $\Dt$, is according to formula~\eqref{eq:xflux_expl}
+    \begin{equation*}
+      \label{eq:Fxfluxn}
+     \yJ_{x}^{\text{in}} = j_{x}\bigl(t, x-\Dxh, y, z\bigr)\,\Dt\,\Dy\,\Dz \ .
+    \end{equation*}
+    Now choose the rectangular surface parallel to the previous one, but on the other side of the point $(x,y,z)$, centred at $(x+\Dxh, y, z)$. The $x$-flux through this rectangle, towards positive $x$, during $\Dt$, is
+    \begin{equation*}
+      \label{eq:Fxfluxp}
+      \yJ_{x}^{\text{out}} = j_{x}\bigl(t, x+\Dxh, y, z\bigr)\,\Dt\,\Dy\,\Dz \ .
+    \end{equation*}
+    Note that the flux $\yJ_{x}^{\text{in}}$ points to the interior of the 3D region, towards its centre $(x,y,z)$; whereas $\yJ_{x}^{\text{out}}$ points to the exterior, away from the centre. The total flux into the region is therefore given by their difference:
+    \begin{equation}
+      \label{eq:Fxflux}
+      \begin{split}
+        \yJ_{x} &= \yJ_{x}^{\text{in}} - \yJ_{x}^{\text{out}}
+        \\&= \bigl[ j_{x}\bigl(t, x-\Dxh, y, z\bigr) - j_{x}\bigl(t, x+\Dxh, y, z\bigr)\bigr]
+        \,\Dt\,\Dy\,\Dz
+      \end{split}
+    \end{equation}
+  
+  \item[$\yJ_{y}, \yJ_{z}$:] An analogous reasoning can be made to find the total flux through the other four surfaces, two parallel to $z,y$ and two to $x,y$. We find
+    \begin{align}
+      \label{eq:Fyflux}
+      \begin{split}
+        \yJ_{y} &= \yJ_{y}^{\text{in}} - \yJ_{y}^{\text{out}}
+        \\&= \bigl[ j_{y}\bigl(t, x, y-\Dyh, z\bigr) - j_{x}\bigl(t, x, y+\Dyh, z\bigr)\bigr]
+        \,\Dt\,\Dz\,\Dx
+      \end{split}
+      \\[3\jot]
+      \label{eq:Fzflux}
+      \begin{split}
+        \yJ_{z} &= \yJ_{z}^{\text{in}} - \yJ_{z}^{\text{out}}
+        \\&= \bigl[ j_{z}\bigl(t, x, y, z-\Dzh\bigr) - j_{x}\bigl(t, x, y, z+\Dzh\bigr)\bigr]
+        \,\Dt\,\Dx\,\Dy
+      \end{split}
+    \end{align}
+  \end{itemize}
+The total flux into the region during the time interval $\Dt$ is finally the sum of the three above:
+\begin{equation}
+  \label{eq:Fflux}
+  \yJ = \yJ_{x} + \yJ_{y} + \yJ_{z}
+\end{equation}
+\end{itemize}
+
+Up to now we have only chosen arbitrary surfaces, regions, and a time interval. Now let's assume that the corresponding amounts and fluxes satisfy a balance law like~\eqref{eq:conserved}. Putting together the puzzle pieces we find
+\begin{multline*}
+  \label{eq:balance_pieces}
+    \mathcolor{bluepurple}{\yN(t_{2})} -\mathcolor{green}{\yN(t_{1})} - \mathcolor{red}{\yJ} = 0 \qquad     \Longrightarrow
+    \\[2\jot]
+    \left.\begin{aligned}
+      &\mathcolor{bluepurple}{n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz}
+      - \mathcolor{green}{n\bigl(t-\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz}
+      \\[\jot]\quad&\color{red}-\bigl[ j_{x}\bigl(t, x-\Dxh, y, z\bigr) - j_{x}\bigl(t, x+\Dxh, y, z\bigr)\bigr]
+      \,\Dt\,\Dy\,\Dz
+      \\[\jot]\quad&\color{red}-\bigl[ j_{y}\bigl(t, x, y-\Dyh, z\bigr) - j_{x}\bigl(t, x, y+\Dyh, z\bigr)\bigr]
+      \,\Dt\,\Dz\,\Dx
+      \\[\jot]\quad&\color{red}-\bigl[ j_{z}\bigl(t, x, y, z-\Dzh\bigr) - j_{x}\bigl(t, x, y, z+\Dzh\bigr)\bigr]
+      \,\Dt\,\Dx\,\Dy
+    \end{aligned}\enspace\right\}=0
+\end{multline*}
+This expression is quite long, but it should be intuitively understandable if you try to identify the individual summed terms.
+
+Now we take the last, long expression -- which is an equality -- and divide its left and right sides by $\Dt\,\Dx\,\Dy\,\Dz$. Note that many of the \enquote{$\incr$} factors simplify out. We arrive at this:
+\begin{equation*}
+  \label{eq:balance_deriv_incr}
+  \left.\begin{aligned}
+      &\frac{n\bigl(t+\Dth, x,y,z\bigr)
+      -n\bigl(t+\Dth, x,y,z\bigr)}{\Dt}
+      \\[\jot]\quad&+\frac{j_{x}\bigl(t, x+\Dxh, y, z\bigr) - j_{x}\bigl(t, x-\Dxh, y, z\bigr)}{\Dx}
+      \\[\jot]\quad&+\frac{j_{y}\bigl(t, x, y+\Dyh, z\bigr) - j_{y}\bigl(t, x, y-\Dyh, z\bigr)}{\Dy}
+      \\[\jot]\quad&+\frac{j_{z}\bigl(t, x,y,z+\Dzh\bigr) - j_{z}\bigl(t, x,y,z-\Dzh\bigr)}{\Dz}
+    \end{aligned}\enspace\right\}=0 \ .
+\end{equation*}
+Still a long expression; but examine each fraction: we have a difference between a term calculated at some point, and one calculated at some point plus an increment \enquote{${}\incr$}; this difference is then divided by that increment. This is the definition of \emph{partial derivative}, that is, the derivative with respect to one variable, while keeping the other variables fixed. The short symbol for this is \enquote{$\frac{\de\dotso}{\de\dotso}$}, so we can simply write
+\begin{definition}{Conservation law in derivative form}
+  \begin{equation}
+    \label{eq:balance_deriv}
+    \frac{\de n}{\de t}%(t,x,y,z)
+    +\frac{\de j_{x}}{\de x}%(t,x,y,z)
+    +\frac{\de j_{y}}{\de y}%(t,x,y,z)
+    +\frac{\de j_{z}}{\de z}%(t,x,y,z)
+    = 0
+  \end{equation}
+\end{definition}
+Let's make a simple check to see if this formula makes sense, in a simple one-dimensional case where we disregard the $y,z$ coordinates (let's say their fluxes are zero), so that the balance law becomes
+\begin{equation*}
+  \frac{\de n}{\de t} + \frac{\de j_{x}}{\de x} = 0 \ .
+\end{equation*}
+\marginpar{\footnotesize%
+\includegraphics[align=t,width=\linewidth]{ddxflux.pdf}
+}
+Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x} > 0$. This means that the $x$-flux increases as we move from $x$ to $x+\Dx$, as shown in the side figure. The $x$-flux at $x$ is bringing some amount of quantity into the region of interest, the $x$-flux at  $x+\Dx$ is taking a larger amount out of that region. Therefore, during the short time $\Dt$ in which this flux takes place, the total amount of quantity within the region will decrease. But the total amount is given by $n(t)$, which is therefore decreasing with time. This means that its time derivative is negative: $\frac{\de n}{\de t} < 0$. This agrees with balance law above: the sum of the two derivatives must be zero, so if one is positive, the other must be negative.
+
+\medskip
+
+Balance laws like~\eqref{eq:balance_deriv} are the basis of many important computational and simulation methods in a huge variety of physical applications: simulation of the ocean around an offshore oil platform, of wind in a wind farm, of air around an aeroplane's wing, of earthquakes, of electromagnetic-wave propagation, of oscillations in a suspension bridge, of percolation of fluids through terrain, of chemical reactions, of energy transfer\textellipsis The list could go on for pages!
+
+The basic idea for using a balance law for a simulation is easy to understand. Take again the simpler one-dimensional formula without $y,z$ coordinates, and rewrite it remembering the basic meaning of the derivative:
+\begin{equation*}
+  \frac{n(t+\Dt,x)-n(t,x)}{\Dt} + \frac{j_{x}(t, x+\Dxh)-j_{x}(t,x-\Dxh)}{\Dx} = 0
+\end{equation*}
+Suppose we know all quantities at time $t$; we can then find the density $n$ at time $t+\Dt$. Leave it on the left side and bring all other terms on the right side, multiplying them by $\Dt$:
+\begin{equation*}
+  n(t+\Dt,x) =
+  \Dt\,\biggl[ n(t,x) - \frac{j_{x}(t, x+\Dxh)-j_{x}(t,x-\Dxh)}{\Dx} \biggr]
+\end{equation*}
+which is essentially \furl{https://mathworld.wolfram.com/EulerForwardMethod.html}{Euler's method}.
+
+This formula can then be used iteratively to find the density $n$ at later times. As a simple simulation set-up, we consider a region of space of interest and divide it into cells of width $\Dx$. We also treat time in steps of $\Dt$. Then the iterative procedure goes as follows:
+\begin{myframe}
+  \begin{enumerate}[label=\arabic*.,ref=\arabic*]
+  \item \emph{Initial values:} Assign the value of $n$ at each $x$-cell at the initial time.
+  \item\label{item:timestep} \emph{For-loop in $x$:} for each $x$-cell, calculate the value of $n$ at $t+\Dt$, using the formula above.
+  \item Increase time by $\Dt$.
+  \item Go to~\ref{item:timestep}.
+  \end{enumerate}
+\end{myframe}
+
+For example, suppose we have two $x$-cells of width $\Dx=1$: one centred at $x_{1}$ and the other at $x_{2} = x_{1}+1$. There are three boundaries: the leftmost at $x_{1}-\tfrac12$, one between the cells at $x_{1}+\tfrac12 \equiv x_{2}-\tfrac12$, and the rightmost at $x_{2}+\tfrac12$. Then we have the following steps:
+
+{\small
+  
+\begin{enumerate}[label=\arabic*.]
+\item Assign the values $n(t_{0},x_{1}), n(t_{0},x_{2})$ of $n$ at $x_{1}$ and $x_{2}$ at time $t_{0}$.
+  
+\item Assign the values $$j_{x}\bigl(t_{0},x_{1}-\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{1}+\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{2}+\tfrac12\bigr)$$
+  of the fluxes at the three boundaries at time $t_{0}$.
+  
+\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{1}=t_{0}+\Dt$, for instance
+  $$ n(t_{1},x_{1}) =
+  \Dt\,\biggl[ n(t_{0},x_{1}) - \frac{j_{x}(t_{0}, x_{1}+\tfrac12)-j_{x}(t_{0},x_{1}-\tfrac12)}{\Dx} \biggr] \ .$$
+  Note that we have all quantities required on the right side.
+  
+\item Assign the values $$j_{x}\bigl(t_{1},x_{1}-\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{1},x_{1}+\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{1},x_{2}+\tfrac12\bigr)$$
+  of the fluxes at the three boundaries at time $t_{1}$.
+  
+\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{2}=t_{1}+\Dt$, for instance
+  $$ n(t_{2},x_{1}) =
+  \Dt\,\biggl[ n(t_{1},x_{1}) - \frac{j_{x}(t_{1}, x_{1}+\tfrac12)-j_{x}(t_{1},x_{1}-\tfrac12)}{\Dx} \biggr] \ .$$
+  Note that we have again all quantities required on the right side.
+
+\item And so on.
+\end{enumerate}
+
+}
+
+This routine requires us \emph{to know the flux at each $x$-cell and at each time}. But we shall soon see that this requirement can be bypassed.
+
+The rudimentary routine above is the basis from which more precise and complex simulation routines are developed.
+
+\begin{exercise}
+  Write a script, in your preferred programming language, that implements the simulation routine above in an $x$-grid with four cells $x=1,\ \dotsc,\ x=4$. Take a grid size $\Dx=1$ and time step $\Dt=1$. We can imagine that the quantity in question is electric charge. Use the following initial values for $n(t,x)$ at $t=0$:
+  \begin{equation*}
+    n(t\mo0, x\mo1)=7\ ,\enspace
+    n(t\mo0, x\mo2)=0\ ,\enspace
+    n(t\mo0, x\mo3)=0\ ,\enspace
+    n(t\mo0, x\mo4)=7
+  \end{equation*}
+  and assume the flux is, at each time $t$:
+  \begin{multline*}
+      j_{x}(t, x\mo0.5)=0\ ,\\
+      j_{x}(t, x\mo1.5)=+2\ ,\enspace
+      j_{x}(t, x\mo2.5)=0\ ,\enspace
+      j_{x}(t, x\mo3.5)=-2\ ,\\
+      j_{x}(t, x\mo4.5)=0 \ .
+    \end{multline*}
+
+    Questions and tasks:
+    \begin{enumerate}[shif,label={\bfseries\arabic*.}]
+    \item Which time evolution for $n$ do you observe? Does it make sense, given the fluxes above?
+    \item Feel free to try out or generalize your script with:
+      \begin{itemize}[shift]
+      \item different initial values
+      \item different fluxes
+      \item an explicit formula for the flux, for instance
+        \begin{equation*}
+          j_{x}(t,x) = 8\,x^{3} - 60\,x^{2} + 118\,x - 45
+        \end{equation*}
+      \item time-dependent fluxes
+      \item more cells
+      \item two or three dimensions, including $y$- or $z$-fluxes
+      \end{itemize}
+    \end{enumerate}
+
+\end{exercise}
+
 
 
 \printpagenotes*
