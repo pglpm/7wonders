@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-05T13:33:20+0100
+%% Last-Updated: 2024-02-05T14:51:22+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -2767,28 +2767,33 @@ note that $\yJ(t)$ is given as a function of the time $t$.
 With this setup we can introduce two kinds of balance laws.
 
 \begin{definition}{Conservation law}
-  A quantity is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds:
+  A quantity is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds always:
   \begin{equation}
     \label{eq:conserved}
     \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t = 0
   \end{equation}
 \end{definition}
+The meaning of the equation above is intuitive, especially if we rewrite it like this:
+\begin{equation*}
+      \yN(t_{2}) = \yN(t_{1}) + \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t
+\end{equation*}
+which says that the amount of quantity in the final control volume is equal to the amount in the initial control volume, plus the total amount (which could be negative) that flowed in in between those times. Said otherwise, any amount of quantity that appears in (or disappears from) the volume, must come in (or go out) through the surface; it can't appear out of nowhere.
 
 A conservation law allows us to make several kinds of predictions or deductions. For example:
 \begin{itemize}
-\item If we know the amount of quantity within the surface at $t_{1}$ and the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the surface at $t_{2}$:
+\item If we know the amount of quantity within the control surface at $t_{1}$ and the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the control surface at $t_{2}$: this is given by the last equation above.
+  % \begin{equation*}
+  %   \yN(t_{2}) = \yN(t_{1}) + J \ .
+  % \end{equation*}
+  
+\item If we know the amount of quantity within the control surface at $t_{1}$ and the one at $t_{2}$, then we can deduce the total amount that flowed in through the surface between the times $t_{1}$ and $t_{2}$:
   \begin{equation*}
-    \yN(t_{2}) = \yN(t_{1}) + J \ .
+    \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t = \yN(t_{2}) - \yN(t_{1}) \ .
   \end{equation*}
   
-\item If we know the amount of quantity within the surface at $t_{1}$ and the one at $t_{2}$, then we can deduce the total amount that flowed in through the surface between the times $t_{1}$ and $t_{2}$:
+\item If we know the amount of quantity within the surface at $t_{2}$ and the amount that flowed in between $t_{1}$ and $t_{2}$, we can deduce the amount within the surface at $t_{1}$:
   \begin{equation*}
-    J = \yN(t_{2}) - \yN(t_{1}) \ .
-  \end{equation*}
-  
-\item If we know the amount of quantity within the surface at $t_{2}$ and the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, then we can deduce the amount within the surface at $t_{1}$:
-  \begin{equation*}
-    \yN(t_{1}) = \yN(t_{2}) - J \ .
+    \yN(t_{1}) = \yN(t_{2}) - \int_{t_{1}}^{t_{2}}\!\!J(t)\, \di t \ .
   \end{equation*}
 \end{itemize}
 These kinds of predictions and deductions are very powerful: consider that the shape and motion of the surface, as well as the times $t_{1}, t_{2}$, are completely arbitrary. Keep in mind that if the three quantities are scalars, then in general they can be positive, negative, or zero. For example, in the case of matter, if the total amount flowed in through the surface is negative, $J<0$, then we must also have $\yN(t_{2}) < \yN(t_{1})$.
