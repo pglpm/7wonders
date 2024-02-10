@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-07T21:23:33+0100
+%% Last-Updated: 2024-02-10T23:11:30+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -585,7 +585,7 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 \chapterstyle{bianchi}
 \setsecnumformat{\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\large\bfseries\sffamily%
-\raggedright}
+\centering}
 % \setsecheadstyle{\bfseries\sffamily%
 % \raggedright}
 %\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex}
@@ -605,6 +605,10 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 \newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
 \newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
 \newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
+
+% \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect\,#1}}
+
+% \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect\,#1}}
 
 %%% Headers, footers, pagestyle
 \copypagestyle{manaart}{plain}
@@ -908,7 +912,7 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 %\def\hy{-\penalty0\hskip0pt\relax}
 %\newcommand*{\labelbis}[1]{\tag*{(\ref{#1})$_\text{r}$}}
 %\newcommand*{\mathbox}[2][.8]{\parbox[t]{#1\columnwidth}{#2}}
-\newcommand*{\zerob}[1]{\makebox[0pt][l]{#1}}
+\newcommand*{\zerob}[1]{\makebox[0pt][c]{#1}}
 \newcommand*{\tprod}{\mathop{\textstyle\prod}\nolimits}
 \newcommand*{\tsum}{\mathop{\textstyle\sum}\nolimits}
 %\newcommand*{\tint}{\begingroup\textstyle\int\endgroup\nolimits}
@@ -987,20 +991,23 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 
 \newtcolorbox{myframe}{enhanced, no shadow, colback=white, colframe=midgrey, boxrule=1pt, breakable, after={\smallskip}}
 
-\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, no shadow,parbox=false, colback=yellow!5!white, colframe=yellow, boxrule=1pt, breakable,
+\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, no shadow, sharp corners, parbox=false, colback=yellow!5!white, colframe=yellow, boxrule=1pt, breakable,
   % fontupper=\small,
   fonttitle=\bfseries, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
-\newtcolorbox{warning}[1][]{enhanced, no shadow,parbox=false, colback=red!5!white, colframe=red, boxrule=1pt, breakable, fontupper=\small,
-fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
+\newtcolorbox{warning}[1][]{enhanced, no shadow, parbox=false, colback=red!5!white, colframe=red, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt, breakable,
+% fontupper=\small, fonttitle=\bfseries\small,
+fonttitle=\bfseries,
+after={\smallskip}, title=\hspace{-2ex}\faIcon{exclamation-circle}\enspace#1}
 
-\newtcolorbox{critique}[1][Critique]{enhanced, no shadow,parbox=false,center,
-width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
+% \newtcolorbox{critique}[1][Critique]{enhanced, no shadow,parbox=false,center,
+% width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
 
-\newtcolorbox{definition}[1]{enhanced, no shadow, colback=green!5!white, colframe=green, boxrule=1pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
+\newtcolorbox{definition}[1]{enhanced, no shadow, colback=green!5!white, colframe=green, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt, breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
+\newtcolorbox{extra}[1]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{user-astronaut}\enspace#1}
+% \newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Beginning of document
@@ -1024,6 +1031,9 @@ width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable
 % \setlength{\pagewidth}{\linewidth}
 % \addtolength{\pagewidth}{\marginparsep}
 % \addtolength{\pagewidth}{\marginparwidth}
+
+%\usepackage{cancel}
+
 \usepackage{eso-pic}
 \newcommand\BackgroundPic{%
 \put(0,0){%
@@ -1204,14 +1214,18 @@ It can be beneficial if you are familiar with basic physics notions such as \emp
 \subsection{\faIcon{hand-point-right}\enspace Graphical devices}
 
 The text includes the following graphical devices:
-\begin{itemize}
+\begin{itemize}[para]
 \item Important notions and definitions are also given in \textbf{boldface}.
 
-\item Important notions:
+\item Important-notion boxes:
   \begin{definition}{Something}
     This is a definition or explanation of Something.
   \end{definition}
 \item Warnings and important points that require careful thinking:
+  % \colorlet{shadecolor}{red}
+  % \begin{shaded}
+  %   Something you must be careful about.
+  % \end{shaded}
   \begin{warning}[Something]
     Something you must be careful about.
   \end{warning}
@@ -1219,13 +1233,13 @@ The text includes the following graphical devices:
   \begin{exercise}
     This isn't an exercise
   \end{exercise}
-\item Possible objections you might be thinking about:
-  \begin{critique}[This isn't right!]
-    I have an objection here.
-  \end{critique}
+% \item Possible objections you might be thinking about:
+%   \begin{critique}[This isn't right!]
+%     I have an objection here.
+%   \end{critique}
 \item Discussions and connections with more advanced physics:
   \begin{extra}{How things really are in quantum physics}
-    Just for your curiosity, you don't need to remember any of this.
+    Just for your curiosity: you don't need to remember any of this.
   \end{extra}
 \end{itemize}
 
@@ -1386,6 +1400,105 @@ The measurement of some physical quantities consists in just one number with ass
   \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definitions used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
 \end{warning}
 
+\section{Informal tips about units and maths}
+\label{sec:units_maths}
+
+\subsection{Importance of units}
+\label{sec:importance_units}
+
+Units are very important and must always be written for several reasons.
+
+First, a number without units doesn't tell us anything. If I tell you \enquote{the place is at a distance 100 from here}, you have no idea how far the place is. \enquote{100} what? 100~metres? 100~kilometres? These are completely different distances.
+
+Second, units give us useful information about mathematical objects and their physical relationships and measurement. If you see the expression \enquote{\qty{3}{m/s}}, then there's a strong possibility that that's a velocity. If you see the expression \enquote{\qty{5}{J/m^2}}, then you have a hint that it could be measured by measuring an energy and then dividing by an area.
+
+Third, because of the previous reason, keeping track of units often allows us to quickly catch errors in solving a physical problem.
+
+\subsection{Variables and units}
+\label{sec:variables_units}
+
+When a physical quantity is denoted by a symbol or variable, keep in mind that a unit is \enquote{contained} in the symbol, so to speak. For example if the variable $t$ denotes a time, then it includes some time unit, say seconds. This becomes apparent when we write the value of the symbol, for instance \enquote{$t=\qty{120}{s}$}. The unit is not predetermined, but it must correspond to the dimension of that quantity. We could for instance write \enquote{$t=\qty{2}{min}$} instead; the two expressions are completely equivalent.
+
+This fact must be kept in mind when combining symbols. For example, if $d$ is a distance and $t$ is a time, then writing $v=d/t$ tells us that $v$ is a velocity, and it has appropriate units that come from $d$ and $t$, for instance \unit{m/s}.
+
+Units otherwise behave just like \emph{literal constants} for all mathematical purposes, just like the letter \enquote*{$a$} in the expression \enquote*{$a\, x$}. This is why they can, for instance, be simplified:
+\begin{equation*}
+  \qty{3}{mol/s} \cdot \qty{5}{s} = 
+  \num{3}\:\frac{\unit{mol}}{\not\unit{s}} \cdot \num{5}\:\not\unit{s} = \qty{15}{mol} \ .
+\end{equation*}
+
+\subsection{Mathematical functions and units}
+\label{sec:functions_units}
+
+Particular care must be taken with trigonometric and exponential functions, such as $\sin()$, $\cos()$, $\tan()$, $\exp()$, $\log()$; \textbf{these functions only admit a dimensionless argument} (which for the trigonometric ones corresponds to \emph{radians}). So there cannot be units like \enquote*{\unit{s}} or \enquote*{\unit{m}} within these functions: we must make sure that any units present within cancel out.
+
+This makes sense, because we wouldn't know how to interpret the argument otherwise. Suppose you read \enquote{$\cos(\qty{60}{s})$} somewhere: how much is that? If we say \enquote{just discard the unit}, we would have
+\begin{equation*}
+  \cos(\qty{60}{s}) \stackrel{?}{=} \cos(60) \approx -0.95
+\end{equation*}
+but wait: $\qty{60}{s}\equiv\qty{1}{min}$, so we could equivalently write \enquote{$\cos(\qty{1}{min})$}. Then, according to the hypothetical rule \enquote{just discard the unit}, we would have
+\begin{equation*}
+  \cos(\qty{60}{s}) \equiv \cos(\qty{1}{min})\stackrel{?}{=} \cos(1) \approx +0.54
+\end{equation*}
+a completely different result!
+
+For this reason an expression like \enquote*{$cos(t)$}, with $t$ denoting time, doesn't make sense: there's a time unit in the argument of $\cos()$. If we want to express an oscillation with time, we must write instead something like
+\begin{equation*}
+  \cos\biggl(\frac{t}{T}\biggr)
+\end{equation*}
+where $T$ is the period of the oscillation, a symbol which also includes a time unit, which simplifies with the one in $t$. If the period of the oscillation is $T=\qty{1}{s}$ then we can also simply write
+\begin{equation*}
+  \cos(t/\unit{s})
+\end{equation*}
+This expression is now unambiguous: suppose that $t=\qty{60}{s}\equiv\qty{1}{min}$, then
+\begin{equation*}
+  \begin{aligned}
+    \cos(t/\unit{s})
+    &= \cos(\qty{60}{s}/\unit{s}) =\cos(60) \approx -0.95
+    \\
+    &= \cos(\qty{1}{min}/\unit{s}) =\cos(1\cdot 60\:\not\unit{s}/\not\unit{s}\bigr)
+=\cos(60) \approx -0.95
+  \end{aligned}
+\end{equation*}
+
+\smallskip
+
+Also remember that \textbf{the results of trigonometric and exponential functions are dimensionless numbers}, so an expression like \enquote*{$3\,\cos(\dotso)$} denotes a pure number, with no units. If you want to express that the result is a length, the appropriate units must appear. We can for instance write
+\begin{equation*}
+  L\,\cos(\dotso)
+\end{equation*}
+where $L$ is a length, and therefore includes some kind of length unit such as \enquote*{\unit{m}}. If this length is, say, $L=\qty{2}{m}$ we can also simply write
+\begin{equation*}
+  2\,\cos(\dotso)\:\unit{m}
+\end{equation*}
+
+\subsection{Units and derivatives}
+\label{sec:units_derivatives}
+
+When we follow the rules above, all other mathematical operations automatically take care of everything. The derivative, for instance, is calculated in the usual way, treating any visible units as literal constants. Let's see a concrete example. This expression
+\begin{equation*}
+x(t) = 2\,\cos(t/\unit{s})\:\unit{m}
+\end{equation*}
+says that the position of some object oscillates with time, between the values \qty{-2}{m} and \qty{+2}{m}. When $t=\qty{0}{s}$, the position is $x=\qty{+2}{m}$. The position $x=\qty{-2}{m}$ is reached when the argument of $\cos()$ is $\pu$, that is
+\begin{equation*}
+  t/\unit{s} = \pu \quad\limplies\quad t\approx \qty{3.14}{s} \ .
+\end{equation*}
+
+The velocity of the object (see \sect~\ref{sec:velocity}) is given by the derivative of this expression with respect to $t$. Let's calculate it treating all unit symbols as literal constants:
+\begin{equation*}
+  \frac{\di x(t)}{\di t} = \frac{\di}{\di t}\Bigl(
+  2\,\cos(t/\unit{s})\:\unit{m}
+  \Bigr)
+  =
+  2\,\Bigl[
+  \mathcolor{grey}{\underbracket{\color{black}-\sin(t/\unit{s})\cdot\frac{1}{\unit{s}}}_{\zerob{\color{grey}\footnotesize chain rule}}}
+  \Bigr]\:\unit{m}
+  =
+ -2\,\sin(t/\unit{s})\:\unit{m/s}
+\end{equation*}
+and you see that the correct units for velocity have automatically appeared.
+
+\clearpage
 
 \section{What is \enquote{fundamental} physics?}
 \label{sec:fundamental_physics}
@@ -1451,7 +1564,18 @@ Second, they might wonder what's the time on Charlie's clock. But Charlie is at 
 
 Third, if they now stay together, they will see that their clocks remain exactly synchronized, besides the discrepancy they noticed when they met. This discrepancy doesn't increase or decrease. They may even retrace together Alice's and Bob's previous trips; their clocks still remain synchronized.
 
-The experience just described will occur again any time two or more of them meet. There could be a hundred observers like Alice, Bob, Charlie, initially at the same place and synchronized. Whenever two or more of them meet after having been separated, they will notice discrepancies in their clocks. But their clocks will have exactly the same time lapses as long as they stay together.
+The experience just described will occur again any time two or more of them meet. There could be a hundred observers like Alice, Bob, Charlie, initially at the same place and synchronized. Whenever two or more of them meet after having been separated, they will notice discrepancies in their clocks. But their clocks will have exactly the same time lapses as long as they stay together. See the illustration in \fig~\ref{fig:ABC_spacetime}
+
+\begin{figure}[p]
+  \includegraphics[width=\linewidth]{ABC_spacetime.png}
+  \caption{Illustration of the experiences of Alice (\textcolor{green}{dashed \faIcon{grin-tongue}}), Bob (\textcolor{red}{solid \faIcon{flushed}}), Charlie (\textcolor{bluepurple}{dot-dashed \faIcon{grimace}}) with time. The page represents a two-dimensional spacetime, and is followed from bottom to top.
+\\\textbf{Bottom}: Alice, Bob, Charlie stay close and observe their clocks are perfectly synchronized from 12:00 to 12:10, then they separate.
+\\\textbf{Right}: Charlie visits a region near a strong \masse\ source. Upon meeting again with Bob, the two notice their clocks differ: 16:00 for Bob, 12:30 for Charlie. Yet this clock difference stays the same while they travel together for \qty{10}{min}.
+\\\textbf{Left}: Alice wanders around travelling at high speed with respect to the fixed stars. At some point she wonders what's the time \enquote{now} for Bob and Charlie. Obviously this question doesn't make sense, because
+(1)~when Bob and Charlie are together their clocks differ -- impossible to say what's \enquote{the} time at their position; (2)~not clear which instant in Bob \amp\ Charlie's trajectory should be considered as \enquote{now} (\textcolor{yellow}{yellow dashed lines}).
+\\\textbf{Top}: When all three meet again, their clocks have completely different readings; and they themselves have aged differently. But their clocks run again at the same rate as long as they stay close.}  \label{fig:ABC_spacetime}
+\end{figure}
+\clearpage
 
 Consider for a moment an imaginary world in which these experiments had given a different kind of result. According to Newtonian mechanics, whenever two or more initially synchronized observers like Alice, Bob, Charlie had met, their clocks would have always shown exactly the same time. If one year, 23 days, 8 hours, 9 minutes, and \num{3.04539928324099266302} seconds have passed for you since you last met Alice, you'd see that exactly the same amount of time has passed for her when you two meet again. If you think about it, in this case it would have beeen somewhat natural to think \enquote{right now, the clocks of far-away Alice, Bob, Charlie must show the same time as mine} (even though you have no real experimental way of confirming that).
 
@@ -1554,38 +1678,38 @@ Whenever we speak of a \enquote{region of space} or of a \enquote{surface in spa
 
 Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write, for instance, $(t,x)$ as our coordinates.
 
-\begin{exercise}
-\sidepar{\footnotesize\centering%
-  \includegraphics[align=t,width=0.75\linewidth]{re_rs.pdf}
-}
-  Consider a clock at rest on the Earth's surface, at a distance $\color{green}r_{\text{e}}$ from the Earth's centre; and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $\color{red}r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\Dt_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\Dt_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
-\begin{equation*}
-  \frac{\Dt_{\text{s}}}{\Dt_{\text{e}}} =
-  \frac{
-    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{e}}}
-  }{
-    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{s}}}
-  }
-\end{equation*}
-where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
-
-
-\begin{enumerate}[shift,label={\bfseries\arabic*.}]
-\item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\Dt_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\Dt_{\text{s}}$ you see on the satellite?
-
-\item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\Dt_{\text{s}}/\Dt_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
-
-  Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
-
-  In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
-  astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
-\sidepar{\footnotesize\centering%
-\vspace{-10em}\includegraphics[align=t,width=\linewidth]{gargantua.png}
-}
-
-  Given that Gargantua's mass is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
-\end{enumerate}
-\end{exercise}
+% \begin{exercise}
+% \sidepar{\footnotesize\centering%
+%   \includegraphics[align=t,width=0.75\linewidth]{re_rs.pdf}
+% }
+%   Consider a clock at rest on the Earth's surface, at a distance $\color{green}r_{\text{e}}$ from the Earth's centre; and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $\color{red}r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\Dt_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\Dt_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
+% \begin{equation*}
+%   \frac{\Dt_{\text{s}}}{\Dt_{\text{e}}} =
+%   \frac{
+%     \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{e}}}
+%   }{
+%     \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{s}}}
+%   }
+% \end{equation*}
+% where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
+% 
+% 
+% \begin{enumerate}[shift,label={\bfseries\arabic*.}]
+% \item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\Dt_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\Dt_{\text{s}}$ you see on the satellite?
+% 
+% \item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\Dt_{\text{s}}/\Dt_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
+% 
+%   Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
+% 
+%   In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
+%   astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
+% \sidepar{\footnotesize\centering%
+% \vspace{-10em}\includegraphics[align=t,width=\linewidth]{gargantua.png}
+% }
+% 
+%   Given that Gargantua's mass is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
+% \end{enumerate}
+% \end{exercise}
 
 
 
@@ -1605,12 +1729,12 @@ If we take the derivative of each coordinate with respect to the time $t$, we ob
 \end{equation*}
 which is also a vector.
 
-\begin{warning}[Dot-notation for time derivative]
+\begin{definition}{Dot-notation for time derivative}
   The derivative of some quantity with respect to coordinate time is often denoted by a \textbf{dot} over the quantity. So we can also write
   \begin{equation*}
     \yv(t) = \dot{\yr}(t) = \bigl(\dot{x}(t),\ \dot{y}(t),\ \dot{z}(t)\bigr)
   \end{equation*}
-\end{warning}
+\end{definition}
 
 The coordinate velocity is usually different from the \emph{physical velocity}, which an observer would measure using proper time and space, for instance using bouncing light rays. In many everyday situations the difference between coordinate and physical velocity is so small that it can be neglected. But in situations involving subatomic particles at high speed, for example, one must take into account that the two velocities are different.
 
@@ -1629,6 +1753,55 @@ which is also a vector.
   The definitions and values of acceleration according to relativity theory and according to Newtonian mechanics are therefore quite different even in everyday situations. In these notes we'll mean the Newtonian definition of acceleration, unless stated otherwise.
 \end{extra}
 
+\clearpage
+
+
+% \begin{subappendices}
+% 
+% \addsec{\color{green}\faIcon{puzzle-piece}\enspace Exercises\enspace\faIcon{puzzle-piece}}
+% 
+% % \setsecnumformat{E\upshape\oldstylenums{\csname the#1\endcsname\quad}}
+% % \setsecnumformat{\sectionname\
+% % \oldstylenums{\csname the#1\endcsname\quad}}
+% 
+% \exsubsec{\ref{sec:coords}}
+% 
+% \marginpar{\footnotesize\centering%
+%   \includegraphics[align=t,width=0.75\linewidth]{re_rs.pdf}
+% }
+%   Consider a clock at rest on the Earth's surface, at a distance $\color{green}r_{\text{e}}$ from the Earth's centre; and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $\color{red}r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\Dt_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\Dt_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
+% \begin{equation*}
+%   \frac{\Dt_{\text{s}}}{\Dt_{\text{e}}} =
+%   \frac{
+%     \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{e}}}
+%   }{
+%     \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{s}}}
+%   }
+% \end{equation*}
+% where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
+% 
+% 
+% \begin{enumerate}[shift,label={\bfseries\arabic*.}]
+% \item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\Dt_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\Dt_{\text{s}}$ you see on the satellite?
+% 
+% \item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\Dt_{\text{s}}/\Dt_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
+% 
+%   Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
+% 
+%   In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
+%   astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
+% \sidepar{\footnotesize\centering%
+% \vspace{-10em}\includegraphics[align=t,width=\linewidth]{gargantua.png}
+% }
+% 
+%   Given that Gargantua's mass is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
+% \end{enumerate}
+% 
+% 
+% 
+% \end{subappendices}
+
+
 
 
 
@@ -1637,15 +1810,15 @@ which is also a vector.
 \chapter{Building blocks: \enquote{Stuff}}
 \label{cha:stuff}
 
-\epigraph{\emph{For Euler, clarity was the hallmark of truth. \textelp{} To him we owe also the brilliant imagination of the internal pressure in generality, the pressure field as equipollent to the action of the fluid outside any imaginary closed diaphragm upon that within. \textelp{} I remark upon it in emphasis of the role of imagination and the importance of quantities which can only be thought of and cannot in themselves be measured.}}{C. A. Truesdell \cites*{truesdell1956d}}
+% \epigraph{\emph{For Euler, clarity was the hallmark of truth. \textelp{} To him we owe also the brilliant imagination of the internal pressure in generality, the pressure field as equipollent to the action of the fluid outside any imaginary closed diaphragm upon that within. \textelp{} I remark upon it in emphasis of the role of imagination and the importance of quantities which can only be thought of and cannot in themselves be measured.}}{C. A. Truesdell \cites*{truesdell1956d}}
 
 \epigraph{\emph{if the skill of the mathematician has enabled the experimentalist to see that the quantities which he has measured are connected by necessary relations, the discoveries of physics have revealed to the mathematician new forms of quantities which he could never have imagined for himself.}}{J. Clerk Maxwell \cites*{maxwell1870}}
 
 
-\section{Seven primitive quantities with two basic properties}
+\section{Seven primitive quantities with three basic properties}
 \label{sec:stuff}
 
-Our physics formalism includes around seven more quantities that we take as primitive:
+Besides time and space, our physics formalism includes around seven more quantities that we take as primitive:
 \begin{definition}{Seven primitive quantities}
   \begin{center}\bfseries
     matter
@@ -1657,11 +1830,11 @@ Our physics formalism includes around seven more quantities that we take as prim
     \\ entropy
   \end{center}
 \end{definition}
-Technically they are called \emph{fields}, for reasons that we shall see shortly.
+Technically they are called \emph{fields}, for reasons we shall shortly see.
 
 \medskip
 
-Recall that primitive quantities cannot be defined: we can only try to understand them intuitively, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But all seven primitive quantities have two basic properties in common. Of each we can ask, or rather, measure:
+Recall that primitive quantities cannot be defined: we can only try to understand them intuitively, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But all seven primitive quantities have three basic properties in common. First of all, of each we can ask, or rather, measure:
 \begin{definition}{The two basic measurements that can be made on the seven quantities}
   \begin{enumerate}[shift,label=\arabic*.]\bfseries
   \item How much of this quantity is in a particular three-dimensional region of space at a particular time instant?
@@ -1679,13 +1852,24 @@ Often we consider the second question, about the flow through a surface, in the 
   \item[2b.] How much of this quantity is flowing through a particular two-dimensional surface per unit time, at a particular time instant?
   \end{enumerate}
 \end{definition}
-This is called the \textbf{flux} of the quantity through that surface. 
+This is called the \textbf{flux} of the quantity through that surface.
+
+The third  property common to the seven quantities regards the two measurements above.
+\begin{definition}{Extensivity of the seven quantities}
+  If we consider two or more separate volumes, the amount of quantity in the total volume is equal to the sum of the amounts in the separate volumes.
+
+  Analogously for the flux through separate surfaces.
+\end{definition}
+We say that each of the seven quantities is an \textbf{extensive} quantity
 
 \smallskip
 
 The basic measurements above can't in general be made, and don't even make sense, for some other quantities. For instance, we cannot ask \enquote{what's the total amount of \emph{temperature} in this region?}, or \enquote{how much velocity is flowing through this surface?}.
 
-Owing to the two properties above, each of the seven quantities can be considered as some kind of \enquote{stuff} that can be present at each spacetime point and fill a region of space. But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
+\smallskip
+
+Thanks to the three properties above, each of the seven quantities can be intuitively visualized as some kind of \enquote{stuff} that can be present at each spacetime point, fills regions of space, and flows through surfaces. This visualization is useful, but also comes with some warnings which we'll discuss later.
+% But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
 
 % For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. The density tells us how much quantity there's in a unit of volume. The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
@@ -1726,6 +1910,22 @@ such as electrons. In particle physics, even more subtle classifications of matt
 
 The total amount of matter in a region \emph{can be negative}. \enquote{Negative matter} is what's usually called \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans.
 
+In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
+
+% There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
+
+\begin{definition}{Matter: notation}
+  The amount of matter in a region is usually denoted with $\yN$, and flux of matter with $\yJ$. In chemistry we usually specify what kind of matter we are speaking about, writing for instance $\yN_{\mathrm{Ca}}=\qty{5.3}{mol}$, to indicate an amount of $\qty{5.3}{mol}$ of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Calcium}{calcium} atoms.
+\end{definition}
+
+\begin{warning}[Matter is different from mass or energy]
+  It is important to clearly distinguish matter from \emph{mass} or \emph{energy}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
+
+  \smallskip
+
+  As far as we know, the total amount of energy associated with an amount of matter is always positive, whether the amount of matter is positive or negative (antimatter). This is the reason why antimatter \enquote{falls} just like positive matter, a fact that has been experimentally confirmed: see \cites{andersonetal2023}.
+\end{warning}
+
 \begin{exercise}
   According to statements on \furl{https://www.symmetrymagazine.org/2009/07/23/antimatter-from-bananas}{symmetrymagazine.org} and \furl{https://www.quantumdiaries.org/2009/07/21/positrons-from-bananas/}{quantumdiaries.org},
   \begin{quote}
@@ -1743,21 +1943,6 @@ The total amount of matter in a region \emph{can be negative}. \enquote{Negative
 \end{enumerate}
 \end{exercise}
 
-In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
-
-% There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena such as nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
-
-\begin{warning}[Matter is different from mass or energy]
-  It is important to clearly distinguish matter from \emph{mass} or \emph{energy}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
-
-  \smallskip
-
-  As far as we know, the total amount of energy associated with an amount of matter is always positive, whether the amount of matter is positive or negative (antimatter). This is the reason why antimatter \enquote{falls} just like positive matter, a fact that has been experimentally confirmed: see \cites{andersonetal2023}.
-\end{warning}
-
-\begin{definition}{Matter: notation}
-  The amount of matter in a region is usually denoted with $\yN$, and flux of matter with $\yJ$. In chemistry we usually specify what kind of matter we are speaking about, writing for instance $\yN_{\mathrm{Ca}}=\qty{5.3}{mol}$, to indicate an amount of $\qty{5.3}{mol}$ of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Calcium}{calcium} atoms.
-\end{definition}
 
 
 \section{Electric charge and magnetic flux}
@@ -1793,28 +1978,52 @@ Energy is a \emph{scalar} quantity, with SI dimension \textsf{energy}, and measu
 
 Equivalently we can speak of mass, with SI dimension \textsf{mass}, and measured in units of \furl{https://doi.org/10.1351/goldbook.K03391}{\emph{kilograms} (\unit{kg})}; its flux is measured in \emph{kilograms per second} (\unit{kg/s}).
 
-The notion of energy is easily grasped today, and often we speak about it as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will be enough in these notes. The notion of \emph{mass} is also very intuitive in our everyday life; we associate it with the difficulty in setting objects into motion, or with their weight.
+The notion of energy is easily grasped today, and often we speak about it as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will be enough in these notes. The notion of \emph{mass} is also very intuitive in our everyday life; we associate it with the difficulty in setting objects into motion, or with the weight of objects.
 % relativity says that there's a strong connection between these two associations.
 
-From Relativity Theory, and experimentally, we know that \emph{energy and mass are the same quantity}, and in these notes we shall fully take this point of view.
+\marginpar{%
+\footnotesize{\color{mpcolor}\enquote{\emph{%
+we are led to the more general conclusion: The mass of a body is a measure of its energy content; if the energy changes by $L$, the mass changes in the same sense by $L/9\!\cdot\!10^{20}$, if the energy is measured in ergs and the mass in grams.
+%\par Perhaps it will prove possible to test this theory using bodies whose energy content is variable to a high degree (e.g., salts of radium).
+}}\sourceatright{\cites{einstein1905d}}}
+}
+From Relativity Theory and experimentally we know that \emph{energy and mass are the same quantity}, and in these notes we shall emphasize this experimental fact.
 
-Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy in all its possible forms \emph{is} mass.
 
-Here is an example of the fact that any form of energy is mass. Take a common
-rubber band, and imagine we have an extremely precise weighing scale.
-We weigh the rubber band, unstretched, and let's say that we measure a mass of
+\subsection{Why we cannot differentiate between energy and mass}
+\label{sec:mass_is_energy}
+
+Let's see some examples of why it is impossible to make a real distinction between energy and mass. The following examples have been simplified in some of their aspects, but their main point is valid.
+
+\paragraph{Heated gas}
+
+Imagine we have a box with a given amount of gas, say \qty{1}{mol} of oxygen molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
 \begin{equation*}
-  \qty{0.0005000000000000000}{kg}\ .
+  \qty{0.031999540000000000}{kg} \ .
 \end{equation*}
+Now we heat the gas, providing \qty{60}{J}, while making sure that not a single molecule of oxygen gets in or out of the box. The temperature of the gas increases by around \qty{3}{K}. We observe that the weight measured by the scale increases while we heat the gas, reaching the new value
+% cp= 29.4 J/mol/K  cv=21.1
+\begin{equation*}
+  \qty{0.031999540000000668}{kg} \ .
+\end{equation*}
+Clearly the mass has increased, but no molecules were added! The additional mass is the \qty{60}{J} that we provided to the gas. Energy has weight, energy is mass.
 
-Now stretch the band a little. According to Newtonian mechanics, it then acquires \enquote{elastic energy}, which increases its initial internal energy by, say, \qty{0.3}{J}.
+% Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy in all its possible forms \emph{is} mass.
+
+\paragraph{Stretched rubber band}
+
+Take a common rubber band, and imagine again that we have an extremely precise weighing scale. The rubber band, unstretched, has a mass of exactly
+\begin{equation*}
+  \qty{0.000500000000000000000}{kg}\ .
+\end{equation*}
+Now we stretch the band a little. According to Newtonian mechanics it acquires \enquote*{elastic energy}, which increases its initial internal energy by, say, \qty{0.3}{J}.
 % Refer later to elastic constant
 % 0.5 * 50 N/m * (0.1 m)^2 \approx 0.3 J
-If we now weigh the rubber band again, while stretched, we measure a mass of approximately
+Now we weigh the rubber band again, while stretched, and observe a mass of approximately
 \begin{equation*}
-  \qty{0.000500000000000003}{kg} \ .
+  \qty{0.000500000000000003338}{kg} \ .
 \end{equation*}
-The extremely small difference of \qty{3e-18}{kg} from the initial mass
+The extremely small difference of around \qty{3e-18}{kg} from the initial mass
 is exactly the elastic energy that we provided by stretching.
 \marginpar{\footnotesize%
 \includegraphics[align=b,width=\linewidth]{rubberbands.png}
@@ -1824,20 +2033,27 @@ is exactly the elastic energy that we provided by stretching.
 Energy has weight; energy is mass.
 
 Now set the unstretched band in motion, so that according to Newtonian mechanics it acquires a kinetic energy of, say, \qty{0.2}{J}. If we could weigh the band while in motion (but without moving the weighing scale), we would measure a mass of approximately
-$$\qty{0.000500000000000002}{kg} \ .$$
-The small difference from the initial mass is the new kinetic energy of the band. Any energy has weight; any energy is mass.
+$$\qty{0.000500000000000002225}{kg} \ .$$
+The small difference from the initial mass is the new kinetic energy of the band.
 
-As a final example, consider a \qty{1000}{W} electric heater, which is radiating \qty{1000}{J} in one second. The heater is also losing around \qty{0.00000000000001}{kg} of mass every second owing to this heat radiation -- although it's also acquiring the same amount of mass as electromagnetic energy.
+This case is actually connected with the example of the gas above. If we observed the gas at a molecular level, we would interpret the energy of \qty{60}{J} provided to it as additional kinetic energy of its molecules. The increase in weight was exactly this additional kinetic energy.
 
-The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
-\marginpar{\footnotesize%
+\paragraph{Fission and atomic bombs}
+\marginpar{%
 \includegraphics[align=t,width=\linewidth]{atomicbomb.jpg}
 \\[\jot]%
-{\color{mpcolor}\emph{Hydrogen Bomb Test, 1954%
-}\\{(\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History})}}
+{\color{mpcolor}\footnotesize\emph{Hydrogen Bomb Test, 1954%
+}\\{(\furl{https://nuclearmuseum.pastperfectonline.com/Archive/716477C1-5E7A-485C-8BE1-857919471563}{National Museum of Nuclear Science \amp\ History})}\par}
 }
+The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
+In the case of nuclear fission, if we weigh the amount of nuclear material, say within a box, before and after fission, we observe that its mass has decreased. But we also observe that a great amount of energy has been released out of the box.
 
-\smallskip
+\paragraph{Electric heater}
+
+As a final example consider a \qty{1000}{W} electric heater, which is radiating \qty{1000}{J} in one second. The heater is also losing around \qty{0.00000000000001}{kg} of mass every second owing to this heat radiation -- although it's also acquiring the same amount of mass as electromagnetic energy.
+
+
+\medskip
 
 The equivalence between energy and mass is given by the famous formula $E=m c^{2}$, where $c$ is the speed of light, \eqn~\eqref{eq:c}. In their respective units this gives
 \begin{equation*}
@@ -1847,13 +2063,26 @@ The equivalence between energy and mass is given by the famous formula $E=m c^{2
     \qty{1}{J} \approx \qty{0.0000000000000000111265}{kg}
   \end{gathered}
 \end{equation*}
-To grasp these numbers, consider that the mass of the rubber band above, \qty{0.5}{g}, is comparable to the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
+To grasp these numbers, consider that the mass of the rubber band in the example above, \qty{0.5}{g}, is comparable to the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
 
-\smallskip
+\subsection{The practical distinction between mass and energy}
+\label{sec:dist_mass_energy}
+
+***
 
 From the examples above it is clear that the energy changes that we deal with and use in everyday situations are extremely small changes in mass -- so small that we can't measure them within the precision of ordinary weighing scales. Vice versa, the masses that we ordinarily deal with are huge amounts of energy. If we spoke only of \enquote*{energy} or only of \enquote*{mass} in all situations, and used only one unit, either joules or kilograms, we would have to work with very impractical numbers. \enquote*{Mass} can be considered a convenient term for \enquote*{energy} when huge amounts of it are involved, concentrated in small regions of space, and ordinary small energy changes can be neglected. In these notes we shall often use the expressions \enquote*{\energym} and \enquote*{\masse} to remember that these two words denote the same thing.
 
-\smallskip
+\subsection{Different \enquote*{forms} of energy}
+\label{sec:forms_energy}
+
+We often speak of different \emph{forms} of \energym. The most important for us will be \textbf{internal energy}, \textbf{kinetic energy}, \textbf{gravitational potential energy}, to be discussed later; another important one is \emph{electromagnetic energy}. We also speak of different forms of energy flux; the most important for us will be \textbf{heat} and \textbf{work}.
+
+\begin{warning}[\enquote*{Forms} of \energym\ are coordinate- and observer-dependent]
+  Although the distinction of energy forms is often useful, it's important to keep in mind that it is not absolute: \emph{it depends on the coordinate system, on the scale of observation, and on the theory used}.
+\end{warning}
+For example, in one system of spatial coordinates we say that a volume has \qty{11}{J} of internal energy and \qty{2}{J} of kinetic energy, but in another system of spatial coordinates this corresponds to \qty{13}{J} of internal energy and \qty{0}{J} of kinetic energy. The same happens if we keep the initial system of coordinates but change our observation scale, for instance modelling a gas no longer as a uniform fluid but as a collection of molecules. The same is true of energy flux: what we call \enquote*{heat} on one observation scale is \enquote*{work} on a finer scale. In phenomena that involve matter and electromagnetic fields, any separation between \enquote*{energy of matter} and \enquote*{energy of electromagnetic field} is often arbitrary.
+
+So whenever you hear about a distinction between forms of energy or energy fluxes, pay attentionwhich coordinate system and which observation scale are being used.
 
 Energy-mass is present wherever there's matter, charge, or magnetic flux, and vice versa. \emph{Its specific relation with these quantities depends on the coordinate system} (\sect\,\ref{sec:coords}) that we choose. It is extremely important to keep in mind this dependence. For instance, in the examples above we said that the unstretched rubber band in motion had a \masse\ of \qty{0.000500000000000002}{kg}; but if we choose a coordinate system in which the band is not moving, its \masse\ would be \qty{0.000500000000000000}{kg}. Owing to this coordinate dependence, and depending on whether matter or magnetic flux is present in a region, we often conveniently partition an amount of energy into different \enquote{forms} such as rest energy, internal energy, kinetic energy, gravitational potential energy, electromagnetic energy. This is only a conceptual division.
 
@@ -1868,7 +2097,7 @@ We shall see later how to define and calculate these different forms of energy a
 
   \smallskip
   
-  The total flux of energy will be denoted $\yH$, in the form of heat $\yQ$, and in the form of work $\yW$.
+  The total flux of energy will be denoted by $\yH$; the flux in the form of heat, by $\yQ$; and in the form of work, by $\yW$.
 \end{definition}
 
 
@@ -1912,17 +2141,18 @@ Momentum, also called \emph{linear momentum} to distinguish it from angular mome
 Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
 % \mynotew{use \unit{N\cdot s}}
 
-Momentum is a subtle quantity. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass of a body times the body's velocity, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only approximate and valid in some circumstances only; it cannot be used as a general definition. First, it is true that where there's matter in motion there's also momentum; but this momentum is given by the matter's mass${}\times{}$velocity only as an approximation. Second, there can be momentum also where there's no matter; for instance where there's magnetic flux and charge. If you prepare a sealed glass box completely empty within (you create a vacumm), then there's momentum within the \enquote{empty} box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
+Momentum is a subtle quantity. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass of a body times the body's velocity, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only valid in some circumstances; it cannot be used as a general definition. First, it is true that where there's matter in motion there's also momentum; but this momentum is given by \enquote*{mass${}\times{}$velocity} only as an approximation. Second, there can be momentum also where there is no matter; for instance where there is magnetic flux. If you prepare a sealed glass box which is completely empty of matter within (you create a vacuum), there still is momentum within the box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
 
-It is therefore convenient if you separate your idea of momentum from the idea of \enquote{bodies moving}, and keep in mind that the latter idea is just a particular case of momentum. Momentum can be associated with motion, though. We shall see that there is an important connection between momentum and our intuitive idea of \enquote*{force}, which will be useful for getting a better intuition of momentum.
+It is therefore convenient to separate your idea of momentum from the idea of \enquote{bodies moving}, and keep in mind that the latter idea is just a particular case of momentum. Yet, momentum is somehow associated with motion; motion of matter or motion of electromagnetic fields. % We shall moreover see that there is an important connection between momentum and our intuitive idea of \enquote*{force}.
 
-According to Relativity Theory, momentum \emph{is} energy flux (such as heat), and energy flux \emph{is} momentum. If we represent momentum with the symbol $\bm{P}$, and energy flux with the symbol $\bm{Q}$, the equivalence between them is given by
-\begin{equation}
-  \label{eq:momentum_heat}
-  \bm{Q} = \bm{P}c^{2}
-\end{equation}
-Compare this formula with $E=mc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy. On a sunny day, if you close your eyes and feel the Sun's heat on your face, what you are feeling is actually a flow of momentum. And when you kick a ball, you're setting a huge bundle of energy in motion, and that's why the ball has acquired momentum.
-
+\begin{extra}{Momentum is energy flux}
+  According to Relativity Theory, momentum \emph{is} energy flux (such as heat), and energy flux \emph{is} momentum. If we represent momentum with the symbol $\bm{P}$, and energy flux with the symbol $\bm{Q}$, the equivalence between them is given by
+  \begin{equation}
+    \label{eq:momentum_heat}
+    \bm{Q} = \bm{P}c^{2}
+  \end{equation}
+  Compare this formula with $E=mc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy. On a sunny day, if you close your eyes and feel the Sun's heat on your face, what you are feeling is actually a flow of momentum. And when you kick a ball, you're setting a huge bundle of energy in motion, and that's why the ball has acquired momentum.
+\end{extra}
 \medskip
 
 Flux of momentum is what we call \textbf{force}. Force is a notion that we understand intuitively and that we can \enquote{feel} with our own bodies. In Newtonian mechanics it's often taken as primitive, and is represented by a vector. But it can also be defined and interpreted as a \emph{flux of momentum}. This point of view can be very useful and even more intuitive in some situations. We shall discuss it more in depth in \sect\,\mynotew{}.
@@ -2039,7 +2269,7 @@ elementary particles, or electromagnetic radiation, the angular momentum include
 
 \bigskip
 
-\begin{extra}[label=extra:whatsenergy]{{What are energy, momentum, angular momentum?}}
+\begin{extra}{{What are energy, momentum, angular momentum?}}
 From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another.
 
   Relativity Theory indeed shows that they are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space (almost literally: they are projections of that object). This is also why their values get intermixed if we change our system of coordinates. %
@@ -2181,11 +2411,12 @@ For the sake of persons of these different types, scientific truth should be pre
 }}{J. Clerk Maxwell \cites*{maxwell1870}}
 
 
-In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy -- have two common properties related to their measurement:
+In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy -- have three common properties related to their measurement:
 \begin{enumerate}
 \item[(1)] we can measure the amount of quantity within a three-dimensional region, at a specific time instant
 \item[(2a)] we can measure the amount of quantity flowing through a two-dimensional surface during a time lapse\textellipsis
 \item[(2b)] \textellipsis or alternatively we can measure the amount of quantity flowing through a two-dimensional surface \emph{per unit time}, at a particular time instant
+\item[(3)] the amount in a volume consisting of separate volumes is equal to the total of the separate amounts; similarly for the flux through separate surfaces.
 \end{enumerate}
 \begin{definition}{volume integral and flux}
   We can call measurement~(1) the \textbf{volume integral} of the quantity, but we won't need to use this term very often.
@@ -2937,7 +3168,7 @@ By considering a very short time lapse $\Dt$, with reasoning analogous to the ca
 \end{definition}
 
 
-\begin{extra}[label={extra:cons_rel}]{Balance laws in General Relativity}
+\begin{extra}{Balance laws in General Relativity}
   Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $t_{1}$, the sequence of 2D surfaces between $t_{1}$ and $t_{2}$, and the 3D region at $t_{2}$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
 
   And from a spacetime perspective, the amount of a quantity $\yE(t_{1})$ or $\yE(t_{2})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. Their only difference is that one ($C$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
