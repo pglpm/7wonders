@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-12T07:56:05+0100
+%% Last-Updated: 2024-02-12T15:34:40+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -983,6 +983,11 @@ citebordercolor=bluepurple,citecolor=bluepurple,linkbordercolor=bluepurple,linkc
 \newcommand*{\masse}{mass-energy}
 %%% Custom macros end @@@
 
+% % https://latex.org/forum/viewtopic.php?t=878
+% \newenvironment{widepar}%
+% {\setlength{\rightskip}{-\marginparsep}\addtolength{\rightskip}{-\marginparwidth}}{\par}
+
+
 \usepackage[retain-explicit-plus,quantity-product=\:]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
@@ -1006,7 +1011,7 @@ after={\smallskip}, title=\hspace{0ex}\faIcon{exclamation-circle}\enspace#1}
 \newtcolorbox{definition}[1]{enhanced, no shadow, colback=green!5!white, colframe=green, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt, breakable, fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox{extra}[1]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{user-astronaut}\enspace#1}
+\newtcolorbox{extra}[1]{enhanced, no shadow, parbox=false,width=0.975\linewidth, center, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{user-astronaut}\enspace#1}
 % \newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2171,7 +2176,7 @@ The same is true of energy flux: what we call \enquote*{heat} on one observation
 \section{Momentum}
 \label{sec:intro_momentum}
 
-Momentum, also called \emph{linear momentum} to distinguish it from angular momentum, is a \emph{vector} quantity. Its SI dimension and units can be written in several equivalent ways; we shall keep in mind especially these three:
+Momentum, also called \emph{linear momentum} or \emph{translational momentum} to distinguish it from angular momentum, is a \emph{vector} quantity. Its SI dimension and units can be written in several equivalent ways; we shall keep in mind especially these three:
 \begin{equation*}
   \begin{gathered}
     \textsf{force}\times\textsf{time}
@@ -2192,7 +2197,7 @@ Momentum, also called \emph{linear momentum} to distinguish it from angular mome
 Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
 % \mynotew{use \unit{N\cdot s}}
 
-Momentum is a subtle quantity, even subtler than energy. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass of a body times the body's velocity, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only valid in special circumstances, and doesn't apply in many everyday technological applications, especially when electromagnetism is involved. So we cannot use it a general definition. That relation itself is actually only an approximation, even in the circumstances where it's used.
+Momentum is a subtle quantity, even subtler than energy. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass and the velocity of a body, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only valid in special circumstances, and cannot be used in many everyday technological applications, especially when electromagnetism is involved. And that relation is actually only an approximation even in the circumstances where it's used.
 
 % First, it is true that where there's matter in motion there's also momentum; but this momentum is given by \enquote*{mass${}\times{}$velocity} only as an approximation. Second, there can be momentum also where there is no matter; for instance where there is magnetic flux. If you prepare a sealed glass box which is completely empty of matter within (you create a vacuum), there still is momentum within the box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
 
@@ -2204,11 +2209,15 @@ Just as energy is often mentally visualized as a sort of fluid (although this vi
 \\[\jot]%
 \footnotesize{\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{blue}{(3D) vector}}
 }
-Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of momentum within that volume. This amount is represented by a \emph{vector}. You can imagine a continuous collection of vectors filling the volume, possibly with different directions and small magnitudes, and then taking the total of all these vectors. This visualization obviously comes with many warnings too, but it can be very useful if we are careful.
+Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of momentum within that volume. This amount is represented by a \emph{vector}. You can imagine a continuous collection of vectors filling the volume, possibly with different directions and small magnitudes; the total momentum is the sum of all these vectors. This visualization obviously comes with many warnings, but it can be very useful if we are careful.
 
-\medskip
+And just as energy, the total amount of momentum is \emph{coordinate-dependent}. So we have the same warning here:
+\begin{warning}[Amounts of momentum are coordinate-dependent]
+  Don't change coordinate system in the middle of calculations of momentum!
+\end{warning}
 
-Flux of momentum is what we call \textbf{force}. A static force, like the one you exert when you hold a bag, is usually represented and mentally visualized as a static vector. In \chap~\ref{cha:total_flux} we shall discuss a different visualization, in which force is represented as a sort of flow of vectors.
+
+Flux of momentum is what we call \textbf{force}. A static force, like the one you exert when you hold a bag, is often mentally visualized as a static vector. In \chap~\ref{cha:total_flux} we shall discuss a different visualization, in which force is represented as a sort of flow of vectors.
 
 % Force is a notion that we understand intuitively and that we can \enquote{feel} with our own bodies. In Newtonian mechanics it's often taken as primitive, and is represented by a vector. But it can also be defined and interpreted as a \emph{flux of momentum}. This point of view can be very useful and even more intuitive in some situations. We shall discuss it more in depth in \sect\,\mynotew{}.
 
@@ -2258,7 +2267,7 @@ Angular momentum is probably an even subtler quantity than momentum. Just as mom
 There isn't a clear-cut distinction between translational and rotational motion: usually they involve each other to some degree. A translational motion can be interpreted as a rotation around a point that is very far away; and a rotation of an extended object can be interpreted as small translational motions of its parts.
 
 This is the reason why in many situations we can calculate angular momentum in terms of momentum. % so even if we don't fully grasp it intuitively, we can still calculate it
-If the momentum in a \emph{small} volume is denoted by the vector $\yP=(P_{x},P_{y},P_{z})$, and the position vector by $\yr=(x,y,z)$, then the angular momentum $\yL=(L_{x}, L_{y}, L_{z})$ \emph{with respect to the origin of coordinates}, in that same volume, is given by
+If the momentum in a \emph{small} volume is denoted by the vector $\yP=(P_{x},P_{y},P_{z})$, and the position vector by $\yr=(x,y,z)$, then the angular momentum $\yL=(L_{x}, L_{y}, L_{z})$ \emph{with respect to the origin of coordinates}, in that same volume, is given by the vector product
 \begin{subequations}
   \begin{equation}
     \label{eq:ang_momentum_def}
@@ -2286,7 +2295,17 @@ If the momentum in a \emph{small} volume is denoted by the vector $\yP=(P_{x},P_
 \end{subequations}
 Choose whichever you prefer.
 
-The formula above also suggests that we can somehow think of angular momentum as \enquote{energy in rotation}. Just like momentum, angular momentum is something that is associated not only with ordinary bodies (matter), but also with charge and magnetic flux, and therefore electromagnetic radiation.
+Angular momentum is something that is associated not only with ordinary bodies (matter), but also with electromagnetic fields. Just like momentum, also angular momentum can be visualized as a \enquote{fluid of vectors}.
+%
+\marginpar{%
+\includegraphics[align=t,width=\linewidth]{cubetwistedarrow.pdf}\label{fig:volumetwistedarrow}%
+\\[\jot]%
+\footnotesize{\color{mpcolor}The amount of angular momentum within a volume is represented by a \textcolor{yellow}{(3D) vector}. (Curious about the little circulation symbol around the vector? Then read on.)}
+}
+Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of angular momentum within that volume. This amount is represented by a \emph{vector}, and is \emph{coordinate-dependent}:
+\begin{warning}[Amounts of angular momentum are coordinate-dependent]
+  Don't change coordinate system in the middle of calculations of angular momentum!
+\end{warning}
 
 \smallskip
 
@@ -2315,21 +2334,22 @@ The flux of angular momentum is also called the \emph{torque}, and bears a relat
   \bigskip
 
 You may wonder:
+\enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}.
 % \begin{marginfigure}\footnotesize%
 %   \includegraphics[align=b,width=\linewidth]{polymer.png}
 % \\\includegraphics[align=c,width=\linewidth]{polymer2.png} \\[\jot]%
 % {\color{green}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).}
 % \end{marginfigure}
-\marginpar{{\centering%
+\marginpar{\centering%
 \includegraphics[align=b,width=0.67\linewidth]{polymer.png}
-\\\includegraphics[align=c,width=\linewidth]{polymer2.png}}
-\\[\jot]%
-{\footnotesize\color{mpcolor}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).\par}
+\\\includegraphics[align=c,width=\linewidth]{polymer2.png}
+\\[\jot]\flushleftright%
+\footnotesize{\color{mpcolor}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).}
 }%
-\enquote{Do we really need angular momentum? after all it just looks like something constructed from momentum}. The answer is yes, we really need it, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and by momentum (\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
+The answer is yes, we really need it, for two reasons. First, angular momentum obeys an important universal law which is independent from those obeyed by energy and by momentum (\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
 Second, for some physical phenomena, for example involving liquid \furl{https://www.britannica.com/science/polymer}{polymers},
 % https://www.britannica.com/science/polymer
-elementary particles, or electromagnetic radiation, the angular momentum includes an additional part, called \emph{spin} or \emph{intrinsic angular momentum}, that is not related to linear momentum. In the present notes we shall not use this more general kind of angular momentum.
+elementary particles, or electromagnetic radiation, the angular momentum includes an additional part, called \emph{spin} or \emph{intrinsic angular momentum}, that is \emph{not} related to linear momentum. In the present notes we shall not use this more general kind of angular momentum.
 
 \smallskip
 
@@ -2338,24 +2358,56 @@ elementary particles, or electromagnetic radiation, the angular momentum include
 \end{definition}
 
 
+
+\subsection{Angular momentum as a twisted vector}
+\label{sec:twisted_vec}
+
+In order to represent angular momentum we can use a kind of vectors different from the arrow-like ones (called \emph{polar} vectors) with which you are probably familiar. They are called \textbf{twisted vectors}, or also \emph{pseudo}-vectors or \emph{axial} vectors or \emph{outer-oriented} vectors. Twisted vectors represent rotations, and therefore have an orientation, not along them, but \emph{around} them:
+\begin{center}
+\includegraphics[width=0.34\linewidth]{io-vector.pdf}%
+\hspace*{0.12\linewidth}\includegraphics[width=0.34\linewidth]{oo-vector.pdf}%
+%
+\\\footnotesize
+\makebox[0pt][c]{an ordinary vector}\hspace*{0.46\linewidth}\makebox[0pt][c]{a twisted vector}
+\end{center}
+Their length still represents the magnitude of the vector. They make it immediately clear what is the axis of rotation, and what is the sense of rotation.
+
+The sum of twisted vectors is analogous to the sum of ordinary vectors, with the parallelogram rule:
+\begin{center}
+\includegraphics[width=0.67\linewidth]{tvectorsum.pdf}%
+\end{center}
+
+Ordinary vectors and twisted vectors behave very differently if we look at their images through a mirror parallel to their axis: the orientation of ordinary vectors appears unchanged, whereas the orientation of twisted vectors appears \emph{reversed}:
+\begin{center}
+  \includegraphics[width=0.67\linewidth]{mirror.pdf}
+\end{center}
+this phenomenon reflects the behaviour of rotations under reflections.
+
+For some mysterious reason many books are afraid of using twisted vectors, and rely on ordinary vectors instead,
+\marginpar{%
+\includegraphics[align=t,width=\linewidth]{curlrighthand.png}
+% \\[\jot]%
+% \footnotesize{\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{blue}{(3D) vector}}
+}
+introducing the \enquote{right-hand rule} to determine the sense of rotation from the arrow of the ordinary vector. If you've ever asked yourself \enquote{why the right hand, and not the left hand?}, the answer is that it's purely a convention; one could have introduced a left-hand rule instead. Using twisted vectors we don't need these arbitrary conventions and mnemonics: the sense of rotation is unequivocally indicated by the twisted vector.
+
+Use whichever vector representation you prefer. In these notes we shall use a hybrid notation, as in the side picture of p.~\pageref{fig:volumetwistedarrow}, so as to make everybody (or no one) happy.
+
+
 \bigskip
 
 \begin{extra}{{What are energy, momentum, angular momentum?}}
-From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another.
+From the discussions and formulae above, it seems that \energym, momentum, angular momentum are quite closely related to one another. For all three, the amount in a volume or through a surface is undefined unless we specify a coordinate system. And we shall see later that all three satisfy balance laws but not necessarily conservation laws.
 
-  Relativity Theory indeed shows that they are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space (almost literally: they are projections of that object). This is also why their values get intermixed if we change our system of coordinates. %
+  Relativity Theory indeed shows that energy, momentum, angular momentum are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space. This is also why their values get intermixed if we change our system of coordinates. %
 
-  General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}.
-  % 
-  \sidepar{\footnotesize%
-    \includegraphics[align=c,width=\linewidth]{curvature1.png}
-    \\[\jot]%
-    {\color{mpcolor}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
-  }%
-  They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
+  General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}. They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. % We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
 \end{extra}
-
-\bigskip
+\marginpar{\vspace{-10em}%
+\includegraphics[align=t,width=\linewidth]{curvature1.png}%
+\\[\jot]%
+\footnotesize{\color{mpcolor}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
+}%
 
 \section{Entropy}
 \label{sec:intro_entropy}
@@ -2364,10 +2416,10 @@ Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperat
 
 Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading.
 \marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{entropy_low.png}\\
-\includegraphics[align=t,width=\linewidth]{entropy_high.png}
-\\[\jot]\footnotesize\flushleftright%
-{\color{mpcolor}Microscopic configurations of a lattice gas. \textbf{Top}: a configuration coming from a \emph{low}-entropy state. \textbf{Bottom}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
+\includegraphics[align=c,width=0.49\linewidth]{entropy_low.png}\hfill%
+\includegraphics[align=c,width=0.49\linewidth]{entropy_high.png}
+\\[\jot]\flushleftright%
+\footnotesize{\color{mpcolor}Microscopic configurations of a lattice gas. \textbf{Left}: a configuration coming from a \emph{low}-entropy state. \textbf{Right}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}}.
 }
 One particularly misleading intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
 
@@ -2396,7 +2448,7 @@ We shall see later that the physical laws for entropy have also a different stat
 Besides the seven principal quantities, other auxiliary quantities appear in some physical theories. Important examples are \textbf{temperature} and \textbf{metric}. Most auxiliary quantities don't have the \enquote{stuff-like} properties of the seven principal quantities. For instance, we cannot ask \enquote{what's the total amount of temperature in this region?}. We shall later discuss and use some auxiliary quantities, especially temperature.
 
 
-The dimensions, units, and scalar or vector character of these quantities are summarized in table~\ref{tab:units}.
+The dimensions, units, and scalar or vector character of all quantities mentioned so far are summarized in table~\ref{tab:units}.
 \begin{table}[b]
   \centering
   \begin{tabular}{lll}
@@ -2483,24 +2535,23 @@ For the sake of persons of these different types, scientific truth should be pre
 
 
 In \chap~\ref{cha:stuff} we said that the main seven quantities -- matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy -- have three common properties related to their measurement:
-\begin{enumerate}
-\item[(1)] we can measure the amount of quantity within a three-dimensional region, at a specific time instant
-\item[(2a)] we can measure the amount of quantity flowing through a two-dimensional surface during a time lapse\textellipsis
+\begin{enumerate}\color{green}
+\item[(1)] We can measure the amount of quantity within a three-dimensional region, at a specific time instant
+\item[(2a)] We can measure the amount of quantity flowing through a two-dimensional surface during a time lapse\textellipsis
 \item[(2b)] \textellipsis or alternatively we can measure the amount of quantity flowing through a two-dimensional surface \emph{per unit time}, at a particular time instant
-\item[(3)] the amount in a volume consisting of separate volumes is equal to the total of the separate amounts; similarly for the flux through separate surfaces.
+\item[(3)]\label{item:extensivity}The amount in a volume consisting of separate volumes is equal to the total of the separate amounts. Similarly for the flux through separate surfaces.
 \end{enumerate}
+
+Let's give definite names to the measurements~(1) and~(2b):
 \begin{definition}{volume integral and flux}
-  We can call measurement~(1) the \textbf{volume integral} of the quantity, but we won't need to use this term very often.
+  We can call measurement~(1) the \textbf{volume integral} of the quantity, although we won't use this term very often.
 
   \smallskip
 
-  Most important, we call measurement~(2b) the \textbf{flux} of the quantity. Remember that in order to calculate the flux through a surface we need to specify how that surface is moving.
+  Most important, we call measurement~(2b) the \textbf{flux} of the quantity. % Remember that in order to calculate the flux through a surface we need to specify how that surface is moving.
 \end{definition}
 
-
-
 \smallskip
-
 
 These two notions and measurements are very intuitive; that's also why it's convenient to base our physics upon them. In this chapter we straighten some details about their definition and also about our intuition.
 
@@ -2509,10 +2560,10 @@ These two notions and measurements are very intuitive; that's also why it's conv
 
 A first question that comes to mind is: how are the volumes and surfaces chosen?
 
-The choice of volume -- and therefore of the surface bounding it -- for a volume integral, and the choice of surface for a flux \emph{are completely arbitrary}, and they \emph{can be completely imaginary}. Since they are under our control, they are called \textbf{control volumes} and \textbf{control surfaces}.
+The choice of volume (and therefore of the surface bounding it) for a volume integral, and the choice of surface for a flux are \emph{completely arbitrary}, and they can be \emph{completely imaginary}. Since they are under our control, they are called \textbf{control volumes} and \textbf{control surfaces}.
 
 For example, consider a classroom and the people in it. In your imagination you can divide the classroom into two halves, say the front and the rear half. You can then ask or measure simply by counting:\enspace
-\begin{enumerate*}[label=\arabic*.]
+\begin{enumerate*}[label=(\arabic*)]
 \item how many people are, right now, in the rear half;\enspace
 \item how many people are crossing the imaginary division between the front and rear half during one minute, starting from now.
 \end{enumerate*}
@@ -2520,59 +2571,195 @@ For example, consider a classroom and the people in it. In your imagination you 
 % The results of the two measurements above are numbers, which in general can be positive or negative, for scalar quantities; or vectors for vector quantities.
 % % This number depends only on the chosen region, surfaces, and times.
 
+\smallskip
+
 A control volume and a control surface don't need to be static: they can move and deform.
 
-We can consider a control volume that exists for just one time instant, because the volume integral in a control volume \emph{does not depend on the instantaneous motion of the volume}.
+In the case of a control volume, movement doesn't matter: the volume integral in a control volume \emph{does not depend on the instantaneous motion of the volume}. In fact we can even imagine a control volume that exists for just one time instant.
 
 \marginpar{%
-\includegraphics[align=t,width=\linewidth]{ball_wall.png}
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-  The golf ball has a velocity directed towards the metal surface on the left. Will it hit the surface? We don't know unless we're told how the surface is moving.}
+\includegraphics[align=c,width=\linewidth]{ball_wall.png}
+\\[\jot]\flushleftright%
+\footnotesize{\color{mpcolor}The golf ball is moving leftwards. Will it hit the metal surface? We don't know unless we know how the surface is moving.}%
 }%
-For a control surface the situation is slightly different. The flux through a control surface \emph{depends also on the motion of the surface}. As a trivial example, consider a glass surface, and a person on one side of it, moving with a high velocity directed towards the surface. Will the person crash on the glass? We can't say for sure. The glass surface could be a glass wall in a building, which is not moving; in which case the person will likely crash on it. Or it could be the windscreen of a car, which is moving together with the person, who's the driver; in which case the person won't crash on it.
+In the case of a control surface the situation is different. The flux through it \emph{depends also on the motion of the surface}. As a trivial example, consider a glass surface, and a person on one side of it, moving with a high velocity directed towards the surface. Will the person crash on the glass? We can't say for sure. The glass surface could be a glass wall in a building, which is not moving; in this case the person will likely crash on it. Or it could be the windscreen of a car, which is moving together with the person, who's the driver; in this case the person won't crash on it.
 
-So we can't just imagine a surface that exists for one time instant: we need to imagine it for a very short time lapse, to be able to say how it's moving. If someone asks you what's the flux through a control surface at a given instant, but they don't tell you what's the motion of the surface, then the flux is unknown.
+So we can't just imagine a surface that exists for one time instant: we need to imagine it for a very short time lapse, and be able to say how it's moving. If someone asks you what's the flux through a control surface at a given instant, but they don't tell you what's the motion of the surface, then the flux is unknown.
 
 
 \smallskip
 
-The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in making predictions. Typically they are chosen so as to simplify the equations that describe the physical situation, and to focus on details of interest.
+The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in making predictions. Typically they are chosen so as to simplify the equations that describe the physical situation, simulate physical phenomena in a more precise way, and focus on details of interest.
+\marginpar{%
+\includegraphics[align=c,width=\linewidth]{liquidvolume.png}
+\\[\jot]\flushleftright%
+\footnotesize{\color{mpcolor}Clever choice of control volume and surfaces allow us to model and predict complex motions of fluids; \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{see also animation} (\cites{wojtanetal2009})}%
+}%
 
 When we study some solid object, like a football, a rocket, or a planet, we typically choose a control volume that tightly encloses the object. When we study something flowing or moving, such as a fluid material or an electromagnetic field, we typically divide the space of interest into small control volumes and surfaces, constructing a \emph{mesh}; this mesh can even be refined in regions that are of special interest.
 
+\section{Intuition and visualization of volume integrals}
+\label{sec:intuition_volume}
 
-\section{Intuition and visualization for scalar quantities}
-\label{sec:intuition_scalar}
+\subsection{Scalar quantities}
 
-Let's first consider a scalar quantity: matter, electric charge, energy, or entropy.
-
-\subsection{Volume integrals}
-
-A volume integral for, say, energy could be represented like this:
+A volume integral for a scalar quantity, for example energy, can be represented like this:
 \begin{center}
   \includegraphics[align=t,height=7em]{volumeintegral_8J.pdf}
 \end{center}
-we have eliminated one spatial dimension for simplicity, considering the analogous two-dimensional idea. The volume is in \textcolor{midgrey}{light grey}, delimited by a closed \textcolor{darkgrey}{darker grey} boundary, and we're indicating that the amount of energy within, the volume integral, is \textcolor{bluepurple}{\qty{8}{J}}.
+we have eliminated one spatial dimension for simplicity, considering the analogous two-dimensional idea. The volume is in \textcolor{midgrey}{light grey}, delimited by a closed \textcolor{darkgrey}{darker grey} boundary, and we're indicating that the volume integral, that is, the amount of energy within, is \textcolor{bluepurple}{\qty{8}{J}}.
 
 As a visualization device, this representation can be useful. But let's straighten out some of its aspects:
 \begin{itemize}[para]
-\item Recall that this is a snapshot at a given time instant. So there are \qty{8}{J} of energy in the volume at that instant, but we don't know the situation earlier or later: there could be a different amount of energy, the region might be at a different position and have a different shape, or it might not even exist anymore.
+\item Recall that this is a snapshot at a given time instant. So there are \qty{8}{J} of energy in the volume at that instant, but we don't know the situation earlier or later: there could be a different amount of energy, the region might be at a different position and have a different shape, or it might not even exist.
 
 \item Recall that some scalar quantities, such as electric charge and in some situations matter (antimatter), can have negative amounts.
-\marginpar{\footnotesize\centering%
-\includegraphics[align=b,width=0.33\linewidth]{volumeintegral_6C.pdf}
+\marginpar{\centering%
+\includegraphics[align=c,width=0.5\linewidth]{volumeintegral_6C.pdf}
 \\[\jot]\flushleftright%
-{\color{mpcolor}A region with a negative amount of charge}
+\footnotesize{\color{mpcolor}A region with a negative amount of charge}
 }
 
-\item We must not surmise that the amount of quantity is uniformly distributed within the volume. In fact there could be negative amounts of it in some subvolumes and positive in others.
-  \begin{warning}
-   Even if there is a zero amount of quantity in a volume, some subvolumes could have non-zero amounts: some positive and some negative, so that the total is zero.
-  \end{warning}
-
+\item We must not surmise that the amount of quantity is uniformly distributed within the volume. In fact there could be negative amounts of it in some subvolumes and positive in others. In particular,  even if there is a zero amount of quantity in a volume, some subvolumes could have non-zero amounts: some positive and some negative, so that the total is zero.
+  % \begin{warning}
+  %  Even if there is a zero amount of quantity in a volume, some subvolumes could have non-zero amounts: some positive and some negative, so that the total is zero.
+  % \end{warning}
 \end{itemize}
 
-\subsection{Fluxes}
+\subsection{Vector quantities}
+
+A volume integral for a vector quantity, for example momentum, can be represented as follows (we still simplify our visualization to two dimensions):
+\begin{center}
+  \includegraphics[height=7em]{volumeintegral_8Ns.pdf}
+\end{center}
+% \marginpar{\footnotesize
+%   \begin{warning}%[Vector magnitudes are positive]
+%     Remember that the \emph{magnitude} of a vector is always positive, and that\quad $\mathord{\mathcolor{purple}{\nwarrow}} = -1\cdot\mathord{\mathcolor{bluepurple}{\searrow}}$
+%   \end{warning}
+% }
+Momentum is a vector quantity, so the total amount in the volume above is a vector. The picture shows the direction and orientation of this vector, and the magnitude of \textcolor{bluepurple}{\qty{8}{N\cdot s}}
+is explicitly reported.
+\begin{warning}[Vector magnitudes and opposite vectors]
+  Remember that the \emph{magnitude} of a vector is always positive, and that\quad $\mathord{\mathcolor{purple}{\nwarrow}} = -1\cdot\mathord{\mathcolor{bluepurple}{\searrow}}$
+\end{warning}
+
+The visual representation above is useful, if we keep in mind remarks analogous to the scalar case:
+\begin{itemize}
+\item This is a time snapshot.
+\item The origin of the vector representing the volume integral is unimportant: for instance, it doesn't need to be placed at the centre of the volume. The vector refers to the volume as a whole, not to some specific point within.
+\item Different subvolumes could have amounts represented by different vectors; only the total vector is represented above.
+\end{itemize}
+This last remark will be especially important when we discuss some physical phenomena involving rotation. As an example, look at the side picture:%\fig~\ref{fig:nonzero_vector_subregions}:
+\marginpar{\centering%
+\includegraphics[align=b,width=0.5\linewidth]{volumeintegral_N_divided.pdf}
+\\[\jot]\flushleftright%
+\footnotesize{\color{mpcolor}The whole region has zero volume integral. The left and right subregions have non-zero and opposite volume integrals.}%
+}
+the volume integral for the whole region is \emph{zero}, but its left and right subregions have \emph{non-zero and opposite} volume integrals.
+% \begin{figure}[h]\centering
+%   \includegraphics[height=7em]{volumeintegral_N_divided.pdf}
+%   \caption{The whole region has zero volume integral. The left and right subregions have non-zero and opposite volume integrals.}\label{fig:nonzero_vector_subregions}
+% \end{figure}
+
+\smallskip
+
+
+\begin{exercise}
+  Remember the third property (p.~\pageref{item:extensivity}) of our seven main quantities: The amount in a volume consisting of separate volumes is equal to the total of the separate amounts.
+
+We have a region consisting of two subregions; the amounts of momentum in each subregion are shown below.
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{exercise_momentumsum.pdf}
+  \end{center}
+  \begin{enumerate}[label=\bfseries\arabic*.]
+  \item Write the total momentum in each subregion in component form, $(P_{x}, P_{y})$, according to the coordinate system shown.
+  \item Calculate the momentum in the whole region; represent it graphically as vector and write it in component form.
+  \end{enumerate}
+
+  
+\end{exercise}
+
+\begin{extra}{Adding vectors in General Relativity}
+ We are used to the idea of adding vectors placed at different points in space: we only have to first move each -- keeping it parallel to itself -- to a common point, and then add them all at that point with the usual rule.
+
+  This operation \emph{cannot} be done in General Relativity: the notion of parallelism doesn't apply anymore in a simple way, owing to the curvature of spacetime. The addition would lead to different results depending on how we transported the vectors. So in General Relativity we can only sum vectors that are placed at the same spacetime point.
+
+  How can this operation be possible in Newtonian mechanics and in practical applications, then? After all, General Relativity surely applies here! The answer is that the discrepancies of vector transportation are small enough in the neighbourhood of the Earth, as the curvature of spacetime is very small here.
+\end{extra}
+
+
+\section{Intuition and visualization of fluxes}
+\label{sec:intuition_fluxes}
+
+\subsection{The direction, reckoning, and representation of fluxes}
+\label{sec:flux_direction}
+
+Earlier we took the intuitive example of a flow of people through an open door; we might ask, for instance, how many people crossed the door in a minute. But one more detail about this flow is important: in which direction did the persons crossed the door? For example, if the door leads to a classroom, we may need to know whether the people who crossed the door got in or out, so as to know if there are seats left in the classroom.
+
+In order to do this we can:
+\begin{enumerate*}[label=\arabic*.]
+\item Assign a crossing direction to the door, calling for instance \enquote*{positive} the direction from outside to inside the classroom.
+\item Count as \enquote*{positive} each person who crosses the door in the positive direction, and count as \enquote*{negative} each person who crosses the door in the opposite direction.
+\end{enumerate*}
+The total tells us the \emph{net} number of people who \emph{entered} the classroom.
+If the total is positive, then more people got in than out; if the total is negative, then more people got out than in.
+
+One important aspect of this example and terminology is the following symmetry:
+\begin{itemize}
+\item What crossing direction is called \enquote*{positive} is fully arbitrary, just a matter of agreement.
+\item If we decide to call \enquote*{positive} the other crossing direction, then the total will change sign. But the physical situation is of course still the same.
+\end{itemize}
+Therefore the sentences \enquote{\qty{+5}{persons} entered the room} and \enquote{\qty{-5}{persons} exited the room}
+% \begin{itemize}\tightlist
+% \item \qty{+5}{persons} entered the room
+% \item \qty{-5}{persons} entered the room
+% \item \qty{-5}{persons} exited the room
+% \item \qty{+5}{persons} exited the room
+% \end{itemize}
+are saying exactly the same thing.
+
+Another important aspect of the example above is that if we're told \enquote{\qty{-5}{persons} exited the room}, we don't know how exactly this happened: it could be that 5~persons got into the room during that minute; or that 10~persons got in and 5~got out; and so on. This is why we call \enquote*{\num{-5}} the \emph{net} amount.
+
+Finally, consider a similar example but with a quantity that can ordinarily also be negative, such as electric charge. Call \enquote*{positive} the crossing direction from outside to inside the room. If we're told that a net charge amount of \qty{-5} crossed the door in the positive direction in one minute, then this could have happened in several ways:
+\begin{itemize}\tightlist
+\item a charge of \num{-5} was brought into the room
+\item a charge of \num{+5} was brought out of the room
+\item a charge of \num{-2} was brought into the room, and a charge of \num{+3} was brought out
+\item \textellipsis and many other possible combinations.
+\end{itemize}
+
+\smallskip
+
+The purpose of the examples and scenarios above is just to make you aware of some  aspects of what we shall call \enquote{flux}, which are trivial but important when considering fluxes of physical quantities.
+
+How can we graphically represent the flux of a quantity, in such a way as to take care of these aspects? Consider these three representations:
+\begin{center}
+\hspace*{\fill}\includegraphics[height=5em]{flux_plus5c.pdf}
+\hfill\includegraphics[height=5em]{flux_minus5c.pdf}
+\hfill\includegraphics[height=5em]{flux_minusplus5.pdf}
+\hspace*{\fill}
+\end{center}
+The \textcolor{midgrey}{grey straight line} represents a surface (simplified to two dimensions) through which we're measuring a flux. In the first and second picture, the wavy arrows represent arbitrary crossing directions called \enquote*{positive}. The \textcolor{bluepurple}{blue arrow} represents that we're calling \enquote*{positive} the left-to-right direction; the \textcolor{purple}{red arrow} represents that we're calling \enquote*{positive} the right-to-left direction. The signed number represents the net amount according to the positive direction -- so the first and second picture represent the same thing. One possible drawback of these two pictures is that they may suggest that a given amount is actually moving from left to right or vice versa; but we have seen that in general we don't know this.
+The third picture tries to avoid this misleading suggestion by not showing any arrows; it is mean to represent that on the left side the amount of quantity has changed by \textcolor{purple}{\num{-5}}, and on the right side by \textcolor{bluepurple}{\num{+5}}.
+
+The third representation above has one more advantage. Remember from \sect~\ref{sec:choice_surfaces} that a flux through a surface may occur because the surface itself is moving. The wavy arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
+
+In these notes we shall settle on the third representation above, but feel free to use the one you prefer -- as long as you are aware of all these aspects of a flux.
+\begin{warning}[What a flux does and doesn't tell]
+  A flux tells us the net change in the amounts of a quantity on the two sides of a surface. These two amounts are equal in magnitude but have opposite signs.
+
+  \smallskip
+
+  A flux does \emph{not} tell us:
+  \begin{itemize}\tightlist
+  \item whether the quantity \enquote{was in motion}
+  \item \textellipsis and if the quantity was in motion, what was its sign
+  \item whether the surface was in motion
+  \end{itemize}
+\end{warning}
+
+
+\subsection{Flux of a scalar quantity}
 
 Suppose that at a given time instant we have this surface:
 \begin{center}
@@ -2645,44 +2832,6 @@ Please feel free to use the graphical representation and mental visualization th
 Let's now consider the vector quantities momentum and angular momentum.
 
 \subsection{Volume integrals}
-A volume integral for, say, momentum could be represented as follows (we keep on simplifying our visualization to two dimensions):
-\begin{center}
-  \includegraphics[height=7em]{volumeintegral_8Ns.pdf}
-\end{center}
-Momentum is a vector quantity, so the total amount in the volume above is a vector. The picture shows the direction and orientation of this vector, and the magnitude of \textcolor{bluepurple}{\qty{8}{N\cdot s}}
-\marginpar{\footnotesize
-  \begin{warning}%[Vector magnitudes are positive]
-    \footnotesize    Remember that the \emph{magnitude} of a vector is always positive, and that\quad $\mathord{\mathcolor{purple}{\nwarrow}} = -1\cdot\mathord{\mathcolor{bluepurple}{\searrow}}$
-  \end{warning}
-}
-is explicitly reported.
-
-This visual representation is useful, if we keep in mind remarks analogous to those made in the scalar case:
-\begin{itemize}
-\item this is a time snapshot; 
-\item the vector could have a different orientation or magnitude; 
-\item different subvolumes could have amounts represented by different vectors; only the total vector is represented above.
-\end{itemize}
-This last remark will be especially important when we discuss some physical phenomena involving rotation. As an example, look at \fig~\ref{fig:nonzero_vector_subregions}: the volume integral for the whole is \emph{zero}, but its left and right subregions have \emph{non-zero and opposite} volume integrals.
-\begin{figure}[h]\centering
-  \includegraphics[height=7em]{volumeintegral_N_divided.pdf}
-  \caption{The volume integral for the whole region is zero, but the volume integrals for the left and right subregions are non-zero and opposite.}\label{fig:nonzero_vector_subregions}
-\end{figure}
-
-We add one more remark:
-\begin{itemize}
-\item the origin of the vector representing the volume integral is unimportant: it doesn't need to be placed at the centre of the volume, for instance. The vector refers to the volume as a whole, not to some specific point within.
-\end{itemize}
-
-\smallskip
-
-\begin{extra}{Adding vectors in General Relativity}
- We are used to the idea of adding vectors placed at different points in space: we only have to first move each -- keeping it parallel to itself -- to a common point, and then add them all at that point with the usual rule.
-
-  This operation \emph{cannot} be done in General Relativity: the notion of parallelism doesn't apply anymore in a simple way, owing to the curvature of spacetime. The addition would lead to different results depending on how we transported the vectors. So in General Relativity we can only sum vectors that are placed at the same spacetime point.
-
-  How can this operation be possible in Newtonian mechanics and in practical applications, then? After all, General Relativity surely applies here! The answer is that the discrepancies of vector transportation are small enough in the neighbourhood of the Earth, as the curvature of spacetime is very small here.
-\end{extra}
 
 
 
