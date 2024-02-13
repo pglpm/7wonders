@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-13T08:40:57+0100
+%% Last-Updated: 2024-02-13T12:37:30+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -2653,7 +2653,7 @@ is explicitly reported.
 The visual representation above is useful, if we keep in mind remarks analogous to the scalar case:
 \begin{itemize}
 \item This is a time snapshot.
-\item The origin of the vector representing the volume integral is unimportant: for instance, it doesn't need to be placed at the centre of the volume. The vector refers to the volume as a whole, not to some specific point within.
+\item\label{item:applicationpoint}The application point of the vector representing the volume integral is unimportant: for instance, it doesn't need to be placed at the centre of the volume. The vector refers to the volume as a whole, not to some specific point within.
 \item Different subvolumes could have amounts represented by different vectors; only the total vector is represented above.
 \end{itemize}
 This last remark will be especially important when we discuss some physical phenomena involving rotation. As an example, look at the side picture:%\fig~\ref{fig:nonzero_vector_subregions}:
@@ -2775,7 +2775,7 @@ In these notes we shall settle on the third representation above, but feel free 
   \end{itemize}
 \end{warning}
 
-\subsection{How does a flux change, if we change the surface?}
+\subsection{How does a scalar flux change, if we change the surface?}
 \label{sec:surface_change_scalar}
 
 We know that the flux through a surface consisting of two smaller surfaces is the sum of the fluxes through the smaller surfaces. But what if we consider a \emph{different} surface, maybe intersecting the original one? It's important to keep in mind that \textbf{a flux refers to a particular surface, and can be very different if we consider a different surface, even if it's close to the original one}.
@@ -2879,12 +2879,12 @@ The situation in the case of vector fluxes can require a little more thinking an
 The \textcolor{midgrey}{grey straight line} represents a surface through which we're measuring the flux of a vector quantity; on the left side of the surface, the amount of quantity has changed by\enspace\includegraphics[align=c,height=1.5em]{vec_flux_left.pdf}\enspace and on the right side by\enspace\includegraphics[align=c,height=1.5em]{vec_flux_right.pdf}\:.
 Obviously these two changes have equal magnitude but are opposite.
 
-As a mental image of a vector flux, you can imagine a flow of vectors crossing the surface in one direction, together with a flow of opposite arrows crossing the surface in the opposite direction. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanim.webp}{See this link} as an example.
+As a mental image of a vector flux, you can imagine a flow of vectors crossing the surface in one direction, together with a flow of opposite arrows crossing the surface in the opposite direction. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{See this link} as an example.
 %
 \marginpar{\centering%
 \includegraphics[align=b,width=0.5\linewidth]{vectorfluxanim.png}%
 \\[\jot]\flushleftright%
-\footnotesize{\color{mpcolor}Imagine the \textcolor{blue}{blue upper arrows} moving from left to right, and the \textcolor{purple}{red lower arrows} moving from right to left. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanim.webp}{Animated version here}}.%
+\footnotesize{\color{mpcolor}Imagine the \textcolor{blue}{blue upper arrows} moving from left to right, and the \textcolor{purple}{red lower arrows} moving from right to left. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{Animated version here}}.%
 }%
 
 \smallskip
@@ -2895,9 +2895,47 @@ Since a vector is represented by three numbers (which can be positive or negativ
 \end{center}
 the picture says that the $x$-component of the quantity has changed on the right side of the surface by \textcolor{blue}{\num{-21}}, and on the left side by \textcolor{purple}{\num{+21}}; the $y$-component  has changed on the right side by \textcolor{blue}{\num{+25}}, and on the left side by \textcolor{purple}{\num{-25}}; and the $z$-component hasn't changed on either side.
 
-\bigskip
+\medskip
+
+Another aspect of vector fluxes that we must try not to get confused about is the application point of the vector representing the flux (the base point of the arrow). This is a time snapshot. Just like in the case of vector volume integrals (p.~\pageref{item:applicationpoint}), \textbf{the application point of the vector representing the flux is unimportant. The vector refers to one side of the surface as a whole.}
+
+\medskip
+
+\begin{exercise}
+  A horizontal surface is given, and there is a flux of a vector quantity through it (for the moment we neglect units):
+  \begin{enumerate}[label=\arabic*.]
+  \item If we take the \emph{downward} crossing direction as \enquote*{positive}, the flux $xyz$-components are $(5,5,0)$. Represent this flux graphically, in the way discussed in the present section. Use the coordinate system\enspace\includegraphics[align=c,height=2em]{coords_xy.pdf}\enspace were $y$ points upward.
+  \item Taking the same crossing direction, represent graphically the flux $(0,-2,0)$ instead.
+  \item Taking the same downward crossing direction, we are now told that there is a flux with components $(1,-2,3)$. What are the components of this flux if we take the \emph{upward} crossing direction as positive?
+  \end{enumerate}
+\end{exercise}
 
 
+\medskip
+
+\subsection{How does a scalar flux change, if we change the surface?}
+\label{sec:surface_change_scalar}
+
+We saw that the flux of a scalar quantity can be very different if we take a slightly different surface. The same is true of the flux of a vector quantity: in particular, \textbf{the vectors representing the fluxes through two slightly different surfaces can point in completely different directions}.
+
+Here is an example. Take a fixed point $P$. Now take a small vertical surface passing through $P$. The flux of a vector quantity (momentum for example) through this quantity can be as in this picture:
+\begin{center}
+  \includegraphics[align=c,height=6em]{skewfluxPx.pdf} \makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux1.webp}{Animated version})}
+\end{center}
+it has components $\mathcolor{blue}{(9,-6,0)}$, with magnitude around \num{10.8}, if we take the rightward crossing direction as positive.
+
+Now forget about that surface, and take instead a small horizontal surface passing through the point $P$. The flux -- of the same quantity -- through this surface can be as in this picture:
+\begin{center}
+  \includegraphics[height=4em]{skewfluxPy.pdf}
+  \includegraphics[align=c,height=6em]{skewfluxPx.pdf} \makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux2.webp}{Animated version})}
+\end{center}
+it has components $\mathcolor{blue}{(-6,-3,0)}$, with magnitude around \num{6.7}, if we take the upward crossing direction as positive.
+
+Clearly the vectors representing the fluxes through these two surfaces are different: they point in different directions, and have even different magnitudes.
+
+
+
+clearpage
 
 
 
