@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-13T18:52:29+0100
+%% Last-Updated: 2024-02-13T21:20:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1190,7 +1190,7 @@ The present lecture notes are an experiment and an attempt to introduce classica
 
 \printpagenotes*
 \clearpage
-\chapter{Guide to the student}
+\chapter{Guide to the text}
 \label{cha:guide}
 
 \addsec{Maths prerequisites}
@@ -1673,8 +1673,16 @@ We shall often denote the four coordinates of a coordinate system by the letters
 \end{equation*}
 where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial position. The triplet of spatial coordinates is often denoted by the vector $\yr$:
 \begin{equation*}
-  \yr \defd (x,y,z) \ .
+  \yr \defd (x,y,z)
+  \qquad\text{or}\qquad
+  \yr \defd [x,y,z]
+  \qquad\text{or}\qquad
+  \yr \defd
+  \begin{bmatrix}
+    x\\y\\z
+  \end{bmatrix}
 \end{equation*}
+use parentheses \enquote*{$()$} or brackets \enquote*{$[]$}, and horizontal or vertical notation as you prefer.
 
 It is always important to specify how the coordinate system you're using is defined.
 The definition of the spatial coordinates $(x,y,z)$ is typically different from problem to problem. We shall typically use coordinates that form $\frac{\pu}{2}\,\unit{rad} \equiv \ang{90}$ angles with one another; but their directions and their origin -- that is, where they have value $x=y=z=\qty{0}{m}$ -- always depend on the problem, so make sure you always specify them.
@@ -1726,20 +1734,20 @@ Some physical phenomena happen along a line, in one dimension. In this case we c
 In some situations the spatial coordinates $\yr=(x,y,z)$ may turn out to be functions of the time coordinate $t$; the typical example is when we describe how the spatial position of a small body changes with coordinate time. We can write this functional dependence in different ways, for instance
 \begin{equation*}
   \yr(t)\quad\text{or}\quad
-  \bigl(x(t),\ y(t),\ z(t)\bigr) \ .
+  \bigl[x(t),\ y(t),\ z(t)\bigr] \ .
 \end{equation*}
 So $\yr$ is a vector function of time, which simply means that we have a collection of three functions of time.
 
 If we take the derivative of each coordinate with respect to the time $t$, we obtain the \textbf{coordinate velocity}
 \begin{equation*}
-  \yv(t) \defd \frac{\di}{\di t}\yr(t) = \biggl(\frac{\di}{\di t} x(t),\ \frac{\di}{\di t} y(t),\ \frac{\di}{\di t} z(t)\biggr)
+  \yv(t) \defd \frac{\di}{\di t}\yr(t) = \biggl[\frac{\di}{\di t} x(t),\ \frac{\di}{\di t} y(t),\ \frac{\di}{\di t} z(t)\biggr]
 \end{equation*}
 which is also a vector.
 
 \begin{definition}{Dot-notation for time derivative}
   The derivative of some quantity with respect to coordinate time is often denoted by a \textbf{dot} over the quantity. So we can also write
   \begin{equation*}
-    \yv(t) = \dot{\yr}(t) = \bigl(\dot{x}(t),\ \dot{y}(t),\ \dot{z}(t)\bigr)
+    \yv(t) = \dot{\yr}(t) = \bigl[\dot{x}(t),\ \dot{y}(t),\ \dot{z}(t)\bigr]
   \end{equation*}
 \end{definition}
 
@@ -1750,7 +1758,7 @@ The coordinate velocity is usually different from the \emph{physical velocity}, 
 Taking the time derivative once more we obtain the coordinate acceleration, also a vector:
 \begin{equation*}
   \bm{a}(t) \defd \frac{\di}{\di t}\yv(t) =
-  \frac{\di^{2}}{\di t^{2}}\yr(t) = \biggl(\frac{\di^{2}}{\di t^{2}} x(t),\ \frac{\di^{2}}{\di t^{2}} y(t),\ \frac{\di^{2}}{\di t^{2}} z(t)\biggr)
+  \frac{\di^{2}}{\di t^{2}}\yr(t) = \biggl[\frac{\di^{2}}{\di t^{2}} x(t),\ \frac{\di^{2}}{\di t^{2}} y(t),\ \frac{\di^{2}}{\di t^{2}} z(t)\biggr]
 \end{equation*}
 which is also a vector.
 
@@ -1766,18 +1774,18 @@ which is also a vector.
   \begin{enumerate}[label=\bfseries\arabic*.]
   \item Here are the three components of a time-dependent velocity vector; the variable $t$ is the time, and therefore has dimension \textsf{time}. Introduce units \enquote*{\unit{s}} and \enquote*{\unit{m}} appropriately in such a way that the expression is dimensionally correct:
     \begin{equation*}
-      \bm{v}(t) = \bigl(4, \cos(3\,t), -\exp(8/t)\bigr)
+      \bm{v}(t) = \bigl[4, \cos(3\,t), -\exp(8/t)\bigr]
     \end{equation*}
   \item The position vector of a satellite is given below. Calculate the satellite's velocity and acceleration vectors:
     \begin{equation*}
       \bm{r}(t) =
       \begin{bmatrix}
         \num[exponent-mode=scientific]{20e+6}\,
-        \cos\bigl(\frac{t}{\qty{13751}{s}}\bigr)\:\unit{m}\\[2\jot]
+        \cos\bigl(\frac{t}{\qty{13751}{s}}\bigr)\\[2\jot]
         \num[exponent-mode=scientific]{22e+6}\,
-        \sin\bigl(\frac{t}{\qty{13751}{s}}\bigr)\:\unit{m}\\[2\jot]
-        \qty{0}{m}
-      \end{bmatrix}
+        \sin\bigl(\frac{t}{\qty{13751}{s}}\bigr)\\[2\jot]
+        \num{0}
+      \end{bmatrix}\:\unit{m}
     \end{equation*}
   \item What is the satellite's velocity at $t=\qty{6875}{s}$? What is the magnitude of the velocity (that is, the speed)?
   \end{enumerate}
@@ -2429,10 +2437,10 @@ From the discussions and formulae above, it seems that \energym, momentum, angul
 
   General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}. They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. % We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
 \end{extra}
-\marginpar{\vspace{-10em}%
+\marginpar{\vspace{-11em}%
 \includegraphics[align=t,width=\linewidth]{curvature1.png}%
 \\[\jot]%
-\footnotesize{\color{mpcolor}Energy, momentum, angular momentum are particular curvatures of spacetime.}%
+\footnotesize{\color{mpcolor}Energy, momentum, angular momentum are measures of particular curvatures of spacetime.}%
 }%
 
 \section{Entropy}
