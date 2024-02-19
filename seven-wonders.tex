@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-15T17:19:15+0100
+%% Last-Updated: 2024-02-19T14:17:10+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -961,6 +961,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
+\newcommand*{\yG}{\bm{G}}
 \newcommand*{\yf}{\bm{f}}
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
@@ -1697,40 +1698,42 @@ Whenever we speak of a \enquote{region of space} or of a \enquote{surface in spa
 
 \smallskip
 
-Some physical phenomena happen along a line, in one dimension. In this case we can omit two of the spatial coordinates, assuming they have some constant, unimportant values. In these cases we can simply write, for instance, $(t,x)$ as our coordinates.
+Some physical phenomena happen approximately along a line, in one dimension; or on a surface, in two dimensions. In these cases we can omit two or one of the spatial coordinates, assuming they have some constant, unimportant values; and we can simply write, for instance, $(t,x)$ or $(t,x,y)$ as our coordinates.
 
-% \begin{exercise}
-% \sidepar{\footnotesize\centering%
-%   \includegraphics[align=t,width=0.75\linewidth]{re_rs.pdf}
-% }
-%   Consider a clock at rest on the Earth's surface, at a distance $\color{green}r_{\text{e}}$ from the Earth's centre; and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $\color{red}r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\Dt_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\Dt_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
-% \begin{equation*}
-%   \frac{\Dt_{\text{s}}}{\Dt_{\text{e}}} =
-%   \frac{
-%     \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{e}}}
-%   }{
-%     \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{s}}}
-%   }
-% \end{equation*}
-% where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
-% 
-% 
-% \begin{enumerate}[shift,label={\bfseries\arabic*.}]
-% \item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\Dt_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\Dt_{\text{s}}$ you see on the satellite?
-% 
-% \item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\Dt_{\text{s}}/\Dt_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
-% 
-%   Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
-% 
-%   In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
-%   astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
-% \sidepar{\footnotesize\centering%
-% \vspace{-10em}\includegraphics[align=t,width=\linewidth]{gargantua.png}
-% }
-% 
-%   Given that Gargantua's mass is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
-% \end{enumerate}
-% \end{exercise}
+\begin{exercise}
+  Consider a clock at rest on the Earth's surface, at a distance $\color{green}r_{\text{e}}$ from the Earth's centre; and a clock on a satellite, for instance a GPS satellite or the \furl{https://www.nasa.gov/international-space-station/}{International Space Station}, right above the first clock, at a distance $\color{red}r_{\text{s}}$ from the Earth's centre. An observer by the clock on Earth measuring a time lapse $\Dt_{\text{e}}$ will see the clock on the satellite has having run for a time lapse $\Dt_{\text{s}}$, and vice versa (note that this \enquote{vice versa} only holds in this specific situation!). The relation between two time lapses is approximately given by
+\sidepar{\centering%
+  \includegraphics[align=t,width=0.75\linewidth]{re_rs.pdf}
+}
+\begin{equation*}
+  \frac{\Dt_{\text{s}}}{\Dt_{\text{e}}} =
+  \frac{
+    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{e}}}
+  }{
+    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{s}}}
+  }
+\end{equation*}
+where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
+
+
+
+\begin{enumerate}[shift,label={\bfseries\arabic*.}]
+\item Take the case of a GPS satellite, with $r_{\text{e}}=\qty{6.4e6}{m}$ and $r_{\text{s}}=\qty{2.6e7}{m}$ (\furl{https://www.nasa.gov/directorates/somd/space-communications-navigation-program/gps/}{NASA data}). If you, on the ground, measure a time lapse of $\Dt_{\text{e}}=\qty{10}{years}$, what's the difference, in seconds, with the time lapse $\Dt_{\text{s}}$ you see on the satellite?
+
+\item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\Dt_{\text{s}}/\Dt_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
+
+  Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
+
+  In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
+  astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
+\sidepar{\footnotesize\centering%
+\vspace{-7em}\includegraphics[align=t,width=\linewidth]{gargantua.png}
+}
+
+  Given that Gargantua's mass is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
+\end{enumerate}
+\end{exercise}
+
 
 
 
@@ -2359,7 +2362,7 @@ Given a particular volume at a particular instant in time, and given a coordinat
 
 The flux of angular momentum is also called the \emph{torque}, and bears a relation to the flux of momentum similar to the formula above. If the force -- flux of momentum -- is denoted by the vector $\yF=(F_{x},F_{y},F_{z})$ and the position vector by $\yr=(x,y,z)$, then the flux of angular momentum, or torque, $\yT=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
   \begin{equation}
-    \label{eq:ang_momentum_def}
+    \label{eq:torque_def}
     \begin{gathered}
       \yT = \yr \times \yF
       \\[\jot]
@@ -2910,10 +2913,10 @@ In \sect~\ref{sec:forms_energy} we mentioned that energy flux can be categorized
 \begin{exercise}
     For each question, answer in an \emph{unambiguous} way and sketch a picture representing the flux.
   \begin{enumerate}[label=\bfseries\arabic*.]
-  \item The two sides of a particular surface are called \enquote*{up} and \enquote*{down}. During \qty{0.2}{s}, an energy of \qty{+3}{J} flows from the up- to the down-side, and an energy of \qty{-4}{J} flows from the down- to the up-side. How much is the flux of energy through the surface?
+  \item The two sides of a particular surface are called \enquote*{up} and \enquote*{down}. During \qty{0.2}{s}, an energy of \qty{+3}{J} flows from the up-side to the down-side, and an energy of \qty{-4}{J} flows from the down-side to the up-side. How much is the flux of energy through the surface?
   \item Through the same surface, at a later time, \qty{2}{mol} of neutrons flow from the up- to the down- side in \qty{0.01}{s}, and \qty{2}{mol} of neutrons flow from the down- to the up-side during the same time. How much is the flux of matter through the surface?
-  \item The two sides of a surface are called \enquote*{in} and \enquote*{out}. During \qty{0.01}{s} there is a flow of \num{1000} electrons from the in-side to the out-side, and also a flow of \num{1000} \emph{positrons} (anti-electron) in the same direction. How much is the flux of matter through the surface?
-  \item The side picture shows a \textcolor{green}{surface} moving from left to right at a (constant) velocity of \qty{1}{m/s}. The space to its right has two static regions with some amount of \textcolor{blue}{energy} as shown. How much is the flux of energy through the surface in \qty{1}{s}?
+  \item The two sides of a surface are called \enquote*{in} and \enquote*{out}. During \qty{0.01}{s} there is a flow of \num{1000} electrons from the in-side to the out-side, and also a flow of \num{1000} \emph{positrons} (anti-electrons) in the same direction. How much is the flux of matter through the surface?
+  \item The side picture shows a \textcolor{green}{surface} moving from left to right at a (constant) velocity of \qty{1}{m/s}. The space to its right has two static regions with some amount of \textcolor{blue}{energy} as shown (there's no energy behind to the left of the surface). How much is the flux of energy through the surface in \qty{1}{s}?
   \end{enumerate}
 \end{exercise}
 \marginpar{\centering%
@@ -3273,49 +3276,15 @@ The individual fluxes and the total efflux are consistent, since
 % 3e18 enter
 
 
-\printpagenotes*
-\clearpage
-\chapter{Physical laws}
-\label{cha:laws}
-
-
-\epigraph{\emph{%
-Every branch of physical science is based on two sets of fundamental equations. The first set is that of basic laws of physics, which are postulated to hold valid for all bodies under all conceivable circumstances \textelp{}. The second set of fundamental equations are the constitutive equations: these are relationships which are not supposed to hold for all bodies, but only to describe the behavior of some restricted class of bodies, or possibly of a larger class of bodies for a more restricted class of phenomena.
-}}{G. Astarita \cites*{astarita1989_r1990}}
-
-\section{Two kinds of laws}
-\label{sec:two_kinds}
-
-In \chap~\ref{cha:stuff} we introduced the main quantities in terms of which we describe physical phenomena. How do we describe the patterns, regularities, and diversities that we observe in these phenomena? This is the role of physical laws. Different physics formalisms or languages express these laws in different ways, even if the actual physical phenomenon is exactly the same.
-
-In the formalism we're using we distinguish between two kinds of physical laws:
-\begin{itemize}
-\item \textbf{Balance laws}
-\item \textbf{Constitutive relations}
-\end{itemize}
-
-Balance laws, or simply balances, have this name because they express a sort of trade-off or \enquote{budget} about physical quantities. \textbf{Conservation laws} are a special and important kind of balance laws.
-
-Constitutive equations
-
-
-We shall see that there's a set of balances which apply to \emph{all} physical phenomena, without exceptions; they represent the basic universal patterns that we observe everywhere. Constitutive relations instead only apply to particular phenomena and only in particular theories. They express the diversity that we observe around us.
-
-In this chapter we
-
-
-
-\clearpage
-
-\section{Total flows}
+\section{Integrated fluxes}
 \label{sec:total_flow}
 
-Recall that a flux is defined as the amount of a quantity crossing a surface in a short time lapse $\Dt$, divided by that time lapse. This is why the dimension of a flux is\enspace$\frac{\text{dimension of quantity}}{\text{time}}$. Denoting the flux by, say, $\yJ$, this definition also means that the amount of quantity crossing the surface in $\Dt$ is equal to $\yJ\,\Dt$.
+A flux is defined as the amount of a quantity crossing a surface in a short time lapse $\Dt$, divided by that time lapse. Denoting the flux by, say, $\yJ$, this definition also means that the amount of quantity crossing the surface in a short time $\Dt$ is equal to $\yJ\,\Dt$.
 
-Take now a surface existing between two time instants $t_{1}$ and $t_{2}$; during this time lapse it could also be moving and changing shape. Choose a crossing direction through the surface. At each intermediate time instant $t$ we can then measure the flux of a quantity crossing the surface in that direction, at that instant; denote it by $\yJ(t)$.
+Take now a surface that exists between two time instants $t_{1}$ and $t_{2}$; during this time lapse it could also be moving and changing shape. Choose a crossing direction through the surface. At each intermediate time instant $t$ we can then measure the flux of a quantity crossing the surface in that direction, at that instant; denote it by $\yJ(t)$.
 
-The total amount of quantity that cross the surface between times $t_{1}$ and $t_{2}$ can be found by dividing the time interval into very short time lapses of length $\Dt$. For each short time lapse we know that the amount is $\yJ(t)\,\Dt$. The total is obtained by adding these small amounts. As $\Dt$ is considered shorter and shorter, this sum is by definition an integral:
-\begin{definition}{Total flow of quantity through a surface between two times}
+The total amount of quantity that crosses the surface between times $t_{1}$ and $t_{2}$ can be found by integrating $\yJ(t)$. That is, we divide the time interval into very short time lapses of length $\Dt$; for each short time lapse we know that the amount that crosses the surface is $\yJ(t)\,\Dt$. The total is obtained by adding these small amounts. As $\Dt$ is considered shorter and shorter, this sum is by definition an integral:
+\begin{definition}{Integrated flux of a quantity through a surface between two times}
 The total amount of quantity crossing a surface (relative to a specified crossing direction) between times $t_{1}$ and $t_{2}$ is given by
   \begin{equation}
     \label{eq:total_flow_integral}
@@ -3323,7 +3292,7 @@ The total amount of quantity crossing a surface (relative to a specified crossin
   \end{equation}
 \end{definition}
 
-The meaning of the integral above should be clear for any scalar quantity, for which the flux is also a scalar. In the case of a vector quantity, for instance momentum, the flux is also a vector. How is the integral of a vector calculated? The procedure is simple: a vector is represented by three components, and we calculate the integral for each component obtaining three results, which are the components of a new vector.
+The meaning of the integral above should be clear for any scalar quantity, for which the flux is also a scalar. In the case of a vector quantity, for instance momentum, the flux is also a vector, represented by three components. The integral of a vector is obtained by calculating the integral for each component, obtaining three results, which are the components of a new vector. Geometrically this corresponds to summing a large number of very small vectors.
 
 Take the case of momentum, whose flux (force) we denote $\yF=(F_{x}, F_{y}, F_{z})$. The integral of this flux is then
 \begin{equation}
@@ -3338,20 +3307,57 @@ Take the case of momentum, whose flux (force) we denote $\yF=(F_{x}, F_{y}, F_{z
 
 \medskip
 
-\begin{warning}[There can be zero total flow with non-zero flux]
-  The result of the integral above could be zero -- which means that no \emph{net} amount of quantity crossed the surface between $t_{1}$ and $t_{2}$. Yet the flux $\yJ(t)$ can be non-zero, even at all times. Of course it needs to be positive at some times, and negative at others.
+\begin{warning}[The integrated flux can be zero even with non-zero flux]
+  The result of the integral defining the integrated flux can be zero. This means that no \emph{net} amount of quantity crossed the surface between $t_{1}$ and $t_{2}$. Yet the flux $\yJ(t)$ can be non-zero, even at all times; of course it needs to be positive at some times, and negative at others.
 \end{warning}
-As a simple example, consider a room's door. During one minute, three people enter through the door; during the next minute, three people (not necessarily the same!) exit. The total flow of people is zero, but the flux was non-zero during the first minute, and non-zero during the second minute.
+As a simple example, consider a room's door. During one minute, three people enter through the door; during the next minute, three people (not necessarily the same) exit through the door. The total flow of people is zero, but the flux was non-zero during the first minute, and non-zero during the second minute.
 
 \smallskip
 
 \begin{exercise}
-  \begin{itemize}[shift]
-  \item What is the physical dimension of the total flow of a quantity?
-  \item Suppose that we calculate the integral above in the case of matter, finding a total of $\int_{t_{1}}^{t_{2}}\!\! \yJ(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
-  \end{itemize}
+  \begin{enumerate}[label=\bfseries\arabic*.]
+  \item What is the physical dimension of the integrated flux of a quantity?
+  \item Suppose that we calculate the integral above for a particular surface in the case of matter, finding a total of $\int_{t_{1}}^{t_{2}}\!\! \yJ(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
+  \end{enumerate}
 \end{exercise}
 
+
+
+
+\printpagenotes*
+\clearpage
+\chapter{Physical laws}
+\label{cha:laws}
+
+
+\epigraph{\emph{%
+Every branch of physical science is based on two sets of fundamental equations. The first set is that of basic laws of physics, which are postulated to hold valid for all bodies under all conceivable circumstances \textelp{}. The second set of fundamental equations are the constitutive equations: these are relationships which are not supposed to hold for all bodies, but only to describe the behavior of some restricted class of bodies, or possibly of a larger class of bodies for a more restricted class of phenomena.
+}}{G. Astarita \cites*{astarita1989_r1990}}
+
+\section{Two kinds of laws}
+\label{sec:two_kinds}
+
+In \chap~\ref{cha:stuff} we introduced seven main quantities in terms of which we describe physical phenomena. How do we describe the patterns, regularities, and diversities that we observe in these phenomena? This is the role of \emph{physical laws}. Different physics formalisms express physical laws in different ways, even if the actual physical phenomenon is exactly the same. In the formalism that we are using we distinguish between two kinds of physical laws:
+\begin{definition}{Main distinction between two kinds of physical laws}
+  \begin{itemize}
+  \item\textbf{Fundamental laws} represent universal patterns that we observe everywhere. We shall see that there is a set of seven fundamental laws that apply on every known scale of space and time, and also across different physical theories.
+
+\item\textbf{constitutive relations}  only apply to particular phenomena and only in particular theories. They express the diversity that we observe around us, and different kinds of approximations that we use in describing physical phenomena.
+  \end{itemize}
+\end{definition}
+
+This distinction it's important. The fundamental laws can be applied with some confidence to every new phenomenon we observe, and often allow us to make predictions of at least a qualitative character. We only modify them as a last resort (which, so far, has been rarely or never necessary). We have a lot of freedom in modifying constitutive relations instead, and in proposing new ones to account for newly observed physical phenomena.
+
+\medskip
+
+As far as we know there is a very small number of fundamental laws and, remarkably, \emph{all known fundamental laws are balance laws}.
+\begin{definition}{Balance and conservation laws}
+  \textbf{Balance laws}, or simply \emph{balances}, have this name because they express a sort of trade-off or \enquote{budget} about physical quantities.
+
+  \textbf{Conservation laws} are a special and important kind of balance laws.
+\end{definition}
+
+In this chapter we shall see how to mathematically express balance and conservation laws, as well as some kinds of constitutive relations.
 
 
 
@@ -3360,41 +3366,41 @@ As a simple example, consider a room's door. During one minute, three people ent
 
 Conservation laws tightly connect the \emph{volume integrals} and \emph{fluxes} discussed in \chap~\ref{cha:total_flux}. They are intuitively and visually easy to grasp. The archetype is as follows:
 
-Consider a \emph{closed} (\sect\,\ref{sec:in_out_flux}) control surface at a (coordinate) time $t_{1}$, delimited by a closed control surface. A ball-shaped region, delimited by a spherical surface, is an example. (Actually the control volume doesn't need to be connected: it could consist of several separate volumes, each delimited by a distinct closed surface.)
+Consider a \emph{closed} (\sect\,\ref{sec:in_out_flux}) control surface at a (coordinate) time $t_{1}$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
 
+Starting from time $t_{1}$, imagine the closed control surface moving and deforming through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $t_{2}$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the right as an example.
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{surfacemotion1.png}
 \\\includegraphics[align=t,width=\linewidth]{surfacemotion2.png}
 \\\includegraphics[align=t,width=\linewidth]{surfacemotion3.png}
 \\\includegraphics[align=t,width=\linewidth]{surfacemotion4.png}
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-  Temporal sequence of closed control surfaces, represented by the golf ball (\furl{https://pglpm.github.io/7wonders/media/surfacemotion.mp4}{click here for an animated version})}%
+  Temporal sequence of closed control surfaces, represented by the golf ball's surface (\furl{https://pglpm.github.io/7wonders/media/surfacemotion.mp4}{click here for an animated version})}%
 }%
-Starting from that particular time, imagine the closed control surface moving and deforming, changing shape and size but remaining closed -- no holes or cuts -- through time, until a later time $t_{2}$. At this time we shall have a final closed control surface that can be different from the initial one, and at a different position. The temporal sequence of closed control surface delimits a sequence of control volumes; see the sequence on the right as an example. We focus in particular on the initial and the final control volumes. Note that, if we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun.
 
 % The initial and final control volumes and the sequence of control surfaces in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
 
-Now consider any one of the seven primitive quantities of \sect\,\ref{sec:stuff}, except magnetic flux.Remember that we can measure the amount of this quantity in any control volume, and its flux across any control surface.  For concreteness let's take \emph{matter}, for which we denote volume integrals by $\yN$ and flux by $\yJ$. We make the following measurements:
+Now consider any one of the seven primitive quantities of \sect\,\ref{sec:stuff}, except magnetic flux. Recall that these quantities are \emph{extensive}: we can measure the amount of this quantity in any control volume, and its flux across any control surface. For concreteness let's take \emph{matter}, for which we denote volume integrals by $\yN$ and flux by $\yJ$. We make the following measurements:
 \begin{itemize}
 \item $N(t_{1})$: total amount of matter contained within the control volume at time $t_{1}$.
 
-\item $\yJ(t)$: \emph{in}flux (flux flowing inwards, \sect~\ref{sec:in_out_flux}) of matter (and antimatter!) through the closed surface at time $t$, for all times $t$ between $t_{1}$ and $t_{2}$.
+\item $\yJ(t)$: \emph{\textbf{in}}flux (flux crossing inwards, \sect~\ref{sec:in_out_flux}) of matter (and antimatter!) through the closed surface at any particular time $t$ between $t_{1}$ and $t_{2}$.
 
 \item $\yN(t_{2})$: total amount of matter contained within the control volume at time $t_{2}$.
 \end{itemize}
-% The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
 
 Each of the three amounts above is, in this example, a scalar that can be positive, negative, or zero. For instance we could have:
 \begin{equation*}
   \begin{gathered}
-    t_{1} = \text{00:00:00Z}
-    \qquad t_{2} = \text{00:00:18Z}
+    t_{1} = \text{00:00:00}
+    \qquad t_{2} = \text{00:00:18}
     \\ \yN(t_{1}) = \qty{3.50}{mol}
     \qquad \yJ(t) = -0.06\,t\:\unit{mol/s^{2}}
     \qquad \yN(t_{2}) = \qty{-6.22}{mol}
   \end{gathered}
 \end{equation*}
 note that $\yJ(t)$ is given as a function of the time $t$.
+% The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
 
 % ; or a vector. For instance, for matter we could have $\yN(t_{1})=\qty{3.5}{mol}$; for energy we could have $\yJ=\qty{-600}{J}$; for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
@@ -3403,7 +3409,7 @@ note that $\yJ(t)$ is given as a function of the time $t$.
 With this setup we can introduce two kinds of balance laws.
 
 \begin{definition}{Conservation law}
-  A quantity with volume integral $\yN(t)$ and flux $\yJ(t)$ is said to be \textbf{conserved}, or to satisfy a \textbf{conservation law}, if the following equality holds always:
+  An extensive quantity with volume integral $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:conserved}
     \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = 0
@@ -3413,27 +3419,27 @@ The meaning of the equation above is intuitive, especially if we rewrite it like
 \begin{equation*}
       \yN(t_{2}) = \yN(t_{1}) + \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t
 \end{equation*}
-which says that the amount of quantity in the final control volume is equal to the amount in the initial control volume, plus the total amount (which could be negative) that flowed in in between those times. Said otherwise, any amount of quantity that appears in (or disappears from) the volume, must come in (or go out) through the surface; it can't appear out of nowhere.
+This expression says that the amount of quantity in the final control volume, $\yN(t_{2})$, is equal to the amount in the initial control volume, $\yN(t_{1})$, plus the total amount (which could be negative) that flowed in between those times, that is, the integrated flux $\int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t$. Said otherwise, any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear out of nowhere.
 
 A conservation law allows us to make several kinds of predictions or deductions. For example:
 \begin{itemize}
-\item If we know the amount of quantity within the control surface at $t_{1}$ and the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the control surface at $t_{2}$: this is given by the last equation above.
+\item If we know the amount of quantity within the control surface at $t_{1}$ and the net amount that crossed the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the control surface at $t_{2}$: this is given by the last equation above.
   % \begin{equation*}
   %   \yN(t_{2}) = \yN(t_{1}) + \yJ \ .
   % \end{equation*}
-  
-\item If we know the amount of quantity within the control surface at $t_{1}$ and the one at $t_{2}$, then we can deduce the total amount that flowed in through the surface between the times $t_{1}$ and $t_{2}$:
+
+\item If we know the amount of quantity within the control surface at $t_{1}$ and the one at $t_{2}$, then we can deduce the net amount that crossed the surface between the times $t_{1}$ and $t_{2}$:
   \begin{equation*}
     \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = \yN(t_{2}) - \yN(t_{1}) \ .
   \end{equation*}
 
-\item If we know the amount of quantity within the surface at $t_{2}$ and the amount that flowed in between $t_{1}$ and $t_{2}$, we can deduce the amount within the surface at $t_{1}$:
+\item If we know the amount of quantity within the surface at $t_{2}$ and the net amount that crossed the surface between $t_{1}$ and $t_{2}$, we can deduce the amount initially within the surface, at $t_{1}$:
   \begin{equation*}
     \yN(t_{1}) = \yN(t_{2}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t \ .
   \end{equation*}
 \end{itemize}
 
-These kinds of predictions and deductions are very powerful, because we are fully free to decide the shapes and motion of the control surfaces and volumes, and even the times $t_{1}$ and $t_{2}$.
+These kinds of predictions and deductions are very powerful because we are fully free to decide the shape and motion of the control surface and volume, as well as the times $t_{1}$ and $t_{2}$.
 
 We unconsciously use
 \marginpar{\centering%
@@ -3452,26 +3458,33 @@ several conservation laws all the time in our everyday life. If a bike tyre is s
 
 %% \mynotew{add more powerful ways by dividing regions, surface, time}
 
-\subsection{Differential form of a conservation law}
+\smallskip
+
+Note that the discussion so far is equally valid for a scalar or a vector quantity (we shall consider vector quantities more in detail in a moment).
+
+
+\subsection{Differential form of conservation laws}
 \label{sec:conservation_laws_diff}
 
 The conservation law
 \begin{equation*}
   \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = 0
 \end{equation*}
-is said to be written in \emph{integral form}, because it contains the integral of the flux, necessary to calculate the total amount of quantity that flowed through the control surface.
+is said to be written in \emph{integral form}, because it contains the integrated flux, necessary to calculate the net amount of quantity that crosses the control surface.
 
-Change the name of time $t_{1}$ simply to $t$, and take $t_{2}$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
+Change the symbol for time $t_{1}$ simply into $t$, and take $t_{2}$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
 \begin{equation*}
   t_{1}\ \text{becomes}\ t\ ,\enspace t_{2}\ \text{becomes}\ t+\Dt
 \end{equation*}
+Then the integrated flux can be approximated by $\int_{t}^{t+\Dt}\!\!\yJ(t)\, \di t \approx \yJ(t)\, \Dt$ (because the flux $\yJ(t)$ is approximately constant in the short time lapse $\Dt$).
+
 \marginpar{%
-\footnotesize\flushleftright
+\footnotesize\flushleftright%
 \begin{warning}
-  Some mathematical conditions must be satisfied to make these steps; or otherwise the derivative below must be carefully defined in a generalized sense.
+  Some mathematical conditions must be satisfied to make these steps; otherwise the derivative below must be carefully defined in a generalized sense.
 \end{warning}\par
 }%
-Then the conservation law above can be approximated as
+The conservation law can then be approximated as
 \begin{equation*}
   \yN(t+\Dt) - \yN(t) - \yJ(t)\, \Dt \approx 0
 \end{equation*}
@@ -3479,11 +3492,11 @@ If we divide the whole expression by $\Dt$ and consider smaller and smaller $\Dt
 \begin{definition}{Conservation law in differential form}
   A quantity is said to satisfy a \textbf{conservation law} if the following equality holds always:
   \begin{equation}
-    \label{eq:conserved}
+    \label{eq:conserved_diff}
     \frac{\di\yN(t)}{\di t}- \yJ(t) = 0
   \end{equation}
 \end{definition}
-This form says that the rate of change of the volume integral of a quantity must be equal to the \emph{in}flux of that quantity.
+This form says that the rate of change of the volume integral of a quantity must equal \emph{\textbf{in}}flux of that quantity.
 
 Both forms, integral and differential, of a conservation law are useful, in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and make predictions.
 
@@ -3491,35 +3504,41 @@ Both forms, integral and differential, of a conservation law are useful, in diff
 \section{Balance laws}
 \label{sec:balance_laws}
 
-Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law, where this condition is \emph{not} satisfied.
+Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law where this condition is not necessarily satisfied.
 
-The setup is just like before: we consider an initial and final control volumes at $t_{1}$, $t_{2}$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume integral $\yE(t_{1})$, final volume integral $\yE(t_{2})$, and flux $\yH(t)$.
+The setup is just like before: consider an initial and final closed control surfaces and volumes at $t_{1}$, $t_{2}$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume integral $\yE(t_{1})$, final volume integral $\yE(t_{2})$, and influx $\yH(t)$.
 
 \begin{definition}{Balance law}
-  A quantity with volume integral $\yE(t)$ and flux $\yH(t)$ is said to be only \textbf{balanced}, or to satisfy a \textbf{balance law} or simply \textbf{balance}, if the following equality holds always:
+  A quantity with volume integral $\yE(t)$ and influx $\yH(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:balanced}
     \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t
   \end{equation}
-  where $\yR(t)$, called the \textbf{source}, is the amount of quantity created within the closed control surface at time $t$.
+  where $\yR(t)$, called the \textbf{source}, is the amount of quantity created per unit time within the closed control surface at time $t$.
 \end{definition}
-If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we say that some of the quantity has been destroyed.
+If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we say that some of the quantity is being destroyed at time $t$.
 
-A balance law is in some respects more trivial than a conservation law. If we measure that $\yE(t_{1}) - \yE(t_{2}) + \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t$ is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed between $t_{1}$ and $t_{2}$. So a quantity can always be said to satisfy a balance. But a balance is not trivial if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+\smallskip
 
-\begin{warning}
-  One could object: \enquote{why don't you just add the two integrals in the equation above, writing
+According to the definition above, a conservation law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}; that is, there never are sources or sinks of the quantity. It is powerful because the source $\yR(t)$ is already known and has an extremely simple value (zero).
+
+For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that $\yE(t_{1}) - \yE(t_{2}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t$ is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed between $t_{1}$ and $t_{2}$. So an extensive quantity can always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+
+So, whereas a conservation law allows us to predict the amount of quantity in the final volume just by making measurements on the surface during the time lapse, a general balance law requires us to make measurements at every point \emph{within} the volume as well during the time lapse.
+
+\smallskip
+
+\begin{warning}[Sources are very different from fluxes]
+  One could object: \enquote{why don't you just put the flux $\yH(t)$ and the source $\yR(t)$ together, adding the two integrals in the equation above? Wouldn't you get
   \begin{equation*}
     \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\bigl[\yH(t)-\yR(t)\bigr]\, \di t = 0
   \end{equation*}
-  and get a conservation law?}
+  which looks like a conservation law?}
 
-The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the source $\yR$, on the other hand, involves what's happening \emph{in the control volumes, at each time}.
+\smallskip
+
+Unfortunately the formula above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the source $\yR$, on the other hand, involves what's happening \emph{within the control volumes, at each time}. Said otherwise, the integral $\int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t$ is not an integrated flux.
 \end{warning}
-So, whereas a conservation law allows us to predict the amount of quantity in the final volume just by making measurements on the surface during the time lapse, a general balance law requires us to make measurements at every point within the volume during the time lapse.
-
-Thus a conservation law can be seen as a special and powerful case of a balance law, one for which $\yR(t)=0$ \emph{always and everywhere}.
-
 
 
 % A balance law allows us to make several kinds of predictions or deductions as well. For example:
@@ -3531,24 +3550,84 @@ Thus a conservation law can be seen as a special and powerful case of a balance 
 % \end{itemize}
 % And similarly as in the other examples for a conservation law. You see that in order to use a balance we need an extra piece of information.
 
+\subsection{Balance law for vector quantities}
+\label{sec:balance_laws_vect}
 
-\subsection{Differential form of a balance law}
+Let us now consider an extensive vector quantity like \emph{momentum}. Denote its initial and final volume integrals by $\yP(t_{1})$ and $\yP(t_{2})$, and its influx (the force) by $\yF(t)$. These are all time-dependent vectors:
+\begin{equation*}
+  \yP(t) =
+  \begin{bmatrix}
+    P_{x}(t)\\
+    P_{y}(t)\\
+    P_{z}(t)
+  \end{bmatrix}
+  \qquad
+  \yF(t) =
+  \begin{bmatrix}
+    F_{x}(t)\\
+    F_{y}(t)\\
+    F_{z}(t)
+  \end{bmatrix} \ .
+\end{equation*}
+
+The balance law has an analogous form:
+\begin{equation}
+  \label{eq:balanced_momentum}
+  \yP(t_{2}) - \yP(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yF(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+\end{equation}
+where the source
+\begin{equation*}
+  \yG(t) =
+  \begin{bmatrix}
+    G_{x}(t)\\
+    G_{y}(t)\\
+    G_{z}(t)
+  \end{bmatrix}
+\end{equation*}
+is the amount of momentum created per unit time within the control volume at time $t$. This balance corresponds to three equations, one per component:
+\begin{equation}
+  \label{eq:balanced_momentum_components}
+\left\{\   \begin{aligned}
+    P_{x}(t_{2}) - P_{x}(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!F_{x}(t)\, \di t &= \int_{t_{1}}^{t_{2}}\!\!G_{x}(t)\,\di t
+    \\
+    P_{y}(t_{2}) - P_{y}(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!F_{y}(t)\, \di t &= \int_{t_{1}}^{t_{2}}\!\!G_{y}(t)\,\di t
+    \\
+    P_{z}(t_{2}) - P_{z}(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!F_{z}(t)\, \di t &= \int_{t_{1}}^{t_{2}}\!\!G_{z}(t)\,\di t
+  \end{aligned}\right.
+\end{equation}
+
+
+
+
+\subsection{Differential form of balance laws}
 \label{sec:balance_laws_diff}
 
-By considering a very short time lapse $\Dt$, with reasoning analogous to the case of a conservation law, we can write a balance law in a different form:
+By considering a very short time lapse $\Dt$, with reasoning analogous to the case of a conservation law~\eqref{eq:conserved_diff}, we can write a balance law in a different form:
 \begin{definition}{Balance law in differential form}
-  A quantity is said to satisfy a \textbf{balance law} if the following equality holds always:
+  A quantity is said to satisfy a \textbf{balance law} if the following equality holds \emph{always}:
   \begin{equation}
-    \label{eq:conserved}
-    \frac{\di\yN(t)}{\di t}- \yJ(t) = \yR(t)
+    \label{eq:balance_diff}
+    \frac{\di\yE(t)}{\di t}- \yH(t) = \yR(t)
   \end{equation}
 \end{definition}
 
+For a vector quantity such as momentum, the differential form again corresponds to three equations, one per component:
+\begin{equation}
+\left\{\   \begin{aligned}
+    \frac{\di\yP_{x}(t)}{\di t}- \yF_{x}(t) &= \yG_{x}(t)
+\\
+    \frac{\di\yP_{y}(t)}{\di t}- \yF_{y}(t) &= \yG_{y}(t)
+\\
+    \frac{\di\yP_{z}(t)}{\di t}- \yF_{z}(t) &= \yG_{z}(t)
+  \end{aligned}\right.
+\end{equation}
+
+\bigskip
 
 \begin{extra}{Balance laws in General Relativity}
   Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $t_{1}$, the sequence of 2D surfaces between $t_{1}$ and $t_{2}$, and the 3D region at $t_{2}$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
 
-  And from a spacetime perspective, the amount of a quantity $\yE(t_{1})$ or $\yE(t_{2})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. Their only difference is that one ($C$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
+  And from a spacetime perspective, the amount of a quantity $\yE(t_{1})$ or $\yE(t_{2})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
 \end{extra}
 
 
