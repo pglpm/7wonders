@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-19T14:17:10+0100
+%% Last-Updated: 2024-02-19T15:37:51+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3408,7 +3408,7 @@ note that $\yJ(t)$ is given as a function of the time $t$.
 
 With this setup we can introduce two kinds of balance laws.
 
-\begin{definition}{Conservation law}
+\begin{definition}{Conservation law in integral form}
   An extensive quantity with volume integral $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:conserved}
@@ -3461,6 +3461,30 @@ several conservation laws all the time in our everyday life. If a bike tyre is s
 \smallskip
 
 Note that the discussion so far is equally valid for a scalar or a vector quantity (we shall consider vector quantities more in detail in a moment).
+
+\bigskip
+
+\begin{exercise}
+Solve the following exercises not just by using intuition, but by explaining step-by-step how you use a conservation law, in integral or differential form, to obtain the result.
+
+\begin{enumerate}[label=\bfseries\arabic*.]
+  \item For the present exercise we assume that energy satisfies a conservation law.
+
+    An apartment's room has two identical electric heaters along a wall. An electric heater can be considered as a piece of surface across which energy flows into the room: the energy is entering (through the electric cable) in the form of electromagnetic energy, and is converted into internal energy (mainly of the room's air) by means of the heater. Suppose that each heater corresponds to an influx of \qty{200}{J/s}.
+
+    The room also has a window, which is the only other part of the room's boundary where energy can flow in or out.
+
+    In one hour we measure that the total amount of energy in the room has not changed. How much is the energy \emph{\textbf{in}}flux through the window?
+
+\medskip
+
+  \item For the present exercise we assume that \furl{https://pubchem.ncbi.nlm.nih.gov/element/Argon}{Argon} atoms satisfy a conservation law.
+
+    A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has a constant influx of \qty{2}{mol/s} of Argon atoms at one inlet, and a constant outflux of Argon atoms, possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of Argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the Argon outflux at the outlet?
+  \end{enumerate}
+\end{exercise}
+
+
 
 
 \subsection{Differential form of conservation laws}
@@ -3522,12 +3546,9 @@ If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case w
 
 According to the definition above, a conservation law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}; that is, there never are sources or sinks of the quantity. It is powerful because the source $\yR(t)$ is already known and has an extremely simple value (zero).
 
-For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that $\yE(t_{1}) - \yE(t_{2}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t$ is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed between $t_{1}$ and $t_{2}$. So an extensive quantity can always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{1}) - \yE(t_{2}) - \int_{t_{1}}^{t_{2}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{1}$ and $t_{2}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
-So, whereas a conservation law allows us to predict the amount of quantity in the final volume just by making measurements on the surface during the time lapse, a general balance law requires us to make measurements at every point \emph{within} the volume as well during the time lapse.
-
-\smallskip
-
+A conservation law is powerful because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
 \begin{warning}[Sources are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the source $\yR(t)$ together, adding the two integrals in the equation above? Wouldn't you get
   \begin{equation*}
