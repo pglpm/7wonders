@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-19T23:06:15+0100
+%% Last-Updated: 2024-02-20T10:30:30+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3442,11 +3442,6 @@ A conservation law allows us to make several kinds of predictions or deductions.
 These kinds of predictions and deductions are very powerful because we are fully free to decide the shape and motion of the control surface and volume, as well as the times $t_{1}$ and $t_{2}$.
 
 We unconsciously use
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{deflated_tyre.jpg}
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-  Deflated tyre: did the air within just vanish out of existence?}%
-}%
 several conservation laws all the time in our everyday life. If a bike tyre is suddenly deflated, we conclude that that air must have got out of it through it surface, which must therefore have a hole or a defective valve; we don't conclude that air \enquote{just disappeared}.
 % If you seal a glass in a box, and upon dropping the box you hear that the glass shatters, and see that no holes were formed in the box, then you are sure that all the glass pieces now in the box could be glued together to form the original glass in its entirety.
 
@@ -3461,42 +3456,6 @@ several conservation laws all the time in our everyday life. If a bike tyre is s
 \smallskip
 
 Note that the discussion so far is equally valid for a scalar or a vector quantity (we shall consider vector quantities more in detail in a moment).
-
-\bigskip
-
-\begin{exercise}
-{\itshape Solve the following exercises not just by using intuition, but \textbf{by explaining step-by-step how you use a conservation law}, in integral or differential form, to obtain the result:
-\begin{itemize}\tightlist
-\item what is the relevant time interval (if using the integral form)
-\item how you define the closed control surfaces and their movement, as well as any subdivisions of the surfaces
-\item what are the volume integral and integrated-flux values you know, and which you want to find
-\end{itemize}}
-
-\medskip
-
-\begin{enumerate}[label=\bfseries\arabic*.]
-\item For the present exercise we assume that energy satisfies a conservation law.
-
-  An apartment's room has two identical electric heaters along a wall. An electric heater can be considered as a piece of surface across which energy flows into the room: the energy is entering (through the electric cable) in the form of electromagnetic energy, and is converted into internal energy (mainly of the room's air) by means of the heater. Suppose that each heater corresponds to an influx of \qty{200}{J/s}.
-
-    The room also has a window, which is the only other part of the room's boundary where energy can flow in or out.
-
-    In one hour we measure that the total amount of energy in the room has not changed. How much is the energy \emph{\textbf{in}}flux through the window?
-
-\medskip
-
-%% *** check realistic values
-  \item For the present exercise we assume that \furl{https://pubchem.ncbi.nlm.nih.gov/element/Argon}{Argon} atoms satisfy a conservation law.
-
-    A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has a constant influx of \qty{2}{mol/s} of Argon atoms at one inlet, and a constant outflux of Argon atoms, possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of Argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the Argon outflux at the outlet?
-  \end{enumerate}
-\end{exercise}
-\marginpar{\vspace{-24\baselineskip}\centering%
-\includegraphics[align=b,width=\linewidth]{room_heater_window.jpg}
-}
-\marginpar{\vspace{-8\baselineskip}\centering%
-\includegraphics[align=b,width=\linewidth]{distillation_column.jpg}
-}
 
 
 
@@ -3538,6 +3497,85 @@ This form says that the rate of change of the volume integral of a quantity must
 
 Both forms, integral and differential, of a conservation law are useful, in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and make predictions.
 
+\subsection{Example}
+\label{sec:example_conservation}
+
+We consider an imaginary, closed control surface wrapping the tube within a bicycle tyre. The control surface deforms just like the tube may deform.
+
+At a given time there are \qty{12.6}{mol} of air within the tube, and therefore within our initial control volume. The control surface at this time has a tubular shape.
+
+The bicycle and its tyres moves around, and with them also our closed control surface. Thirty minutes later the tyre is flat, and the inner tube only has \qty{0.5}{mol} of air.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{deflated_tyre.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+%   Deflated tyre: did the air within just vanish out of existence?}%
+}%
+Our final control surface no longer has a tubular shape, but that doesn't matter. Within it there are \qty{0.5}{mol} of air.
+
+We assume that air satisfies a conservation law. From the description above we have
+\begin{equation*}
+  t_{1}=\qty{0}{s} \ ,\quad
+  t_{2}=\qty{1800}{s} \ ,\quad
+  \yN(t_{1})=\qty{12.6}{mol} \ ,\quad
+  \yN(t_{2})=\qty{0.5}{mol} \ .
+\end{equation*}
+The conservation law~\eqref{eq:conserved} allows us to calculate the integrated \textbf{in}flux:
+\begin{equation*}
+  \begin{split}
+    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t &= \yN(t_{2}) - \yN(t_{1})
+    \\&= \qty{0.5}{mol} - \qty{12.6}{mol}
+    \\&= \qty{-12.1}{mol}
+  \end{split}
+\end{equation*}
+
+The negative-signed result says that \qty{12.1}{mol} of air have crossed the moving control surface, in an outward direction, during thirty minutes. Obviously this happened because the tyre tube must have a hole.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{tyre_hole.jpg}
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
+Note that this is a physical hole in the physical tube; our control surface is imaginary and doesn't have any holes. It's just a sort of \enquote{border checkpoint} where anything can in principle move through; we only keep count of what's crossing, how much, and how fast.
+
+We see that the fact that air satisfies a conservation law allows us to determine the integrated flux through the control surface. But it doesn't allow us to determine the flux $\yJ(t)$ at every individual time between $t_{1}$ and $t_{2}$. For example, we don't know if there was a larger flux at the beginning than at the end; the the tyre may have gone completely flat just after \qty{60}{s}; in that case the flux $\yJ(t)$ was zero for $t>\qty{60}{s}$.
+
+\bigskip
+
+\begin{exercise}
+{\itshape Solve the following exercises not just by using intuition, but \textbf{by explaining step-by-step how you use a conservation law}, in integral or differential form, to obtain the result:
+\begin{itemize}\tightlist
+\item what is the relevant time interval (if using the integral form)
+\item how you define the closed control surfaces and their movement, as well as any subdivisions of the surfaces
+\item what are the volume integral and integrated-flux values you know, and which you want to find
+\end{itemize}}
+
+\medskip
+
+\begin{enumerate}[label=\bfseries\arabic*.]
+\item For the present exercise we assume that energy satisfies a conservation law.
+
+  An apartment's room has two identical electric heaters along a wall. An electric heater can be considered as a piece of surface across which energy flows into the room: the energy is entering (through the electric cable) in the form of electromagnetic energy, and is converted into internal energy (mainly of the room's air) by means of the heater. Suppose that each heater corresponds to an influx of \qty{200}{J/s}.
+
+    The room also has a window, which is the only other part of the room's boundary where energy can flow in or out.
+
+    In one hour we measure that the total amount of energy in the room has not changed. How much is the energy \emph{\textbf{in}}flux through the window?
+
+\medskip
+
+%% *** check realistic values
+  \item For the present exercise we assume that \furl{https://pubchem.ncbi.nlm.nih.gov/element/Argon}{Argon} atoms satisfy a conservation law.
+
+    A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has a constant influx of \qty{2}{mol/s} of Argon atoms at one inlet, and a constant outflux of Argon atoms, possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of Argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the Argon outflux at the outlet?
+  \end{enumerate}
+\end{exercise}
+\marginpar{\vspace{-24\baselineskip}\centering%
+\includegraphics[align=b,width=\linewidth]{room_heater_window.jpg}
+}
+\marginpar{\vspace{-8\baselineskip}\centering%
+\includegraphics[align=b,width=\linewidth]{distillation_column.jpg}
+}
+
+
+
 
 \section{Balance laws}
 \label{sec:balance_laws}
@@ -3552,9 +3590,9 @@ The setup is just like before: consider an initial and final closed control surf
     \label{eq:balanced}
     \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t
   \end{equation}
-  where $\yR(t)$, called the \textbf{source}, is the amount of quantity created per unit time within the closed control surface at time $t$.
+  where $\yR(t)$, called the \textbf{source} or \textbf{supply}, is the amount of quantity created per unit time within the closed control surface at time $t$.
 \end{definition}
-If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we say that some of the quantity is being destroyed at time $t$.
+If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
 
 \smallskip
 
@@ -3562,11 +3600,16 @@ According to the definition above, a conservation law is a \emph{special, powerf
 
 For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{1}) - \yE(t_{2}) - \int_{t_{1}}^{t_{2}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{1}$ and $t_{2}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
-A conservation law is powerful because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
+\marginpar{\centering%
+\includegraphics[align=b,width=\linewidth]{tennisball_boundary.png}%
+\\\footnotesize\flushleftright{\color{mpcolor}%
+A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} lines), but not what happens within the control volumes in between}%
+}%
+A conservation law is therefore powerful also because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
 \begin{warning}[Sources are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the source $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
-    \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\bigl[\yH(t)-\yR(t)\bigr]\, \di t = 0
+    \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \di t = 0
   \end{equation*}
   which looks like a conservation law?}
 
@@ -3646,9 +3689,9 @@ By considering a very short time lapse $\Dt$, with reasoning analogous to the ca
     \frac{\di\yE(t)}{\di t}- \yH(t) = \yR(t)
   \end{equation}
 \end{definition}
-
 For a vector quantity such as momentum, the differential form again corresponds to three equations, one per component:
 \begin{equation}
+      \label{eq:balance_diff_components}
 \left\{\   \begin{aligned}
     \frac{\di\yP_{x}(t)}{\di t}- \yF_{x}(t) &= \yG_{x}(t)
 \\
@@ -3657,6 +3700,101 @@ For a vector quantity such as momentum, the differential form again corresponds 
     \frac{\di\yP_{z}(t)}{\di t}- \yF_{z}(t) &= \yG_{z}(t)
   \end{aligned}\right.
 \end{equation}
+
+
+\subsection{Example}
+\label{sec:example_balance_vect}
+
+Take a coordinate system $(x,y,z)$ where $y$ has a horizontal direction and $z$ an upward direction. At a particular time instant a tennis ball has momentum\enspace$[0,\num{1.70},\num{0.98}]\:\unit{N\,s}$.\enspace It flies for two seconds. During this time there's a continuous and constant source of momentum within the ball, equal to\enspace$[0,0,-\num{0.579}]\:\unit{N}$.\enspace No momentum is leaving or entering the ball in any other way.
+
+We assume that momentum satisfies a balance law. Choose an imaginary, closed control surface that tightly wraps the tennis ball and moves with it. From the description above we have
+\begin{equation*}
+  \begin{gathered}
+    t_{1}=\qty{0}{s}\ ,\quad
+    t_{2}=\qty{2}{s}\ ,\quad
+    \yP(t_{1})=[0,\num{1.70},\num{0.98}]\:\unit{N\,s}\ ,\\[\jot]
+    \yF(t)=[0,0,0]\:\unit{N}\text{ (const.)}\ ,\quad
+    \yG(t)=[0,0,\num{-0.579}]\:\unit{N}\text{ (const.)}\ .
+  \end{gathered}
+\end{equation*}
+The balance law~\eqref{eq:balanced_momentum} allow us to find the amount of momentum in the tennis ball at time $t_{2}=\qty{2}{s}$:
+% \begin{equation*}
+%   \begin{split}
+%     \yP(t_{2})
+%     &= \yP(t_{1})
+%     + \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t
+%     + \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+%     \\[\jot]
+%     &= \yP(t_{1})
+%     + \yF\cdot (t_{2}-t_{1})
+%     + \yG\cdot (t_{2}-t_{1})
+%     \\[\jot]
+%     &= [0,\num{1.70},\num{0.98}]\:\unit{N\,s}
+%     + [0,0,0]\:\unit{N} \cdot \qty{2}{s}
+%     + [0,0,\num{-0.579}]\:\unit{N} \cdot \qty{2}{s}
+%   \end{split}
+% \end{equation*}
+\begin{equation*}
+  \begin{split}
+    \yP(t_{2})
+    &= \yP(t_{1})
+    + \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t
+    + \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+    \\[2\jot]
+    &= \yP(t_{1})
+    + \yF\cdot (t_{2}-t_{1})
+    + \yG\cdot (t_{2}-t_{1})
+    \qquad\qquad\mathrlap{\text{\color{green}\footnotesize(because $\yF$, $\yG$ are constant)}}
+    \\[2\jot]
+    &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
+    + \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N} \cdot \qty{2}{s}
+    + \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N} \cdot \qty{2}{s}
+    \\[2\jot]
+    &= \begin{bmatrix}0\\\num{1.70}\\\num{-0.18}\end{bmatrix}\:\unit{N\,s}
+  \end{split}
+\end{equation*}
+
+We see that two seconds later the ball's momentum has the same $x$- and $y$-component, but its $z$-component points downward -- which means that the ball is moving downward.
+
+The description above actually has enough information for us to apply the balance law in differential form, equation~\eqref{eq:balance_diff_components}, because the value of the influx $\yF$ and source $\yG$ are given at every time $t$ (they are constant). We find that, at any time $t$ between $t_{1}$ and $t_{2}$, the rate of change of momentum is
+\begin{equation*}
+  \begin{split}
+    \frac{\di\yP(t)}{\di t}
+    &= \yF(t)
+    + \yG(t)
+    \\[2\jot]
+    &= \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}
+    + \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
+    \\[2\jot]
+    &= \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
+  \end{split}
+\end{equation*}
+So we could find the momentum at time $t_{2}$, or at any other time between $t_{1}$ and $t_{2}$, by an easy integration:
+\begin{equation*}
+  \begin{split}
+        \yP(t_{2})
+    &= \yP(t_{1})
+    + \int_{t_{1}}^{t_{2}}\! \frac{\di\yP(t)}{\di t}\,\di t
+    \\[2\jot]
+    &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
+    + \int_{t_{1}}^{t_{2}}
+    \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
+    \ \di t
+    \\[2\jot]
+    &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
+    + 
+    \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
+\cdot (t_{2}-t_{1})
+\qquad\qquad\mathrlap{\text{\color{green}\footnotesize(because the integrand is constant)}}
+    \\[2\jot]
+    &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
+    + 
+    \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
+\cdot \qty{2}{s}
+    \\[2\jot]
+    &= \begin{bmatrix}0\\\num{1.70}\\\num{-0.18}\end{bmatrix}\:\unit{N\,s}
+  \end{split}
+\end{equation*}
 
 
 \marginpar{\vspace{3\baselineskip}\centering%
