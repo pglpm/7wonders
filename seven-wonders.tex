@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-20T10:30:30+0100
+%% Last-Updated: 2024-02-20T10:43:09+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3500,17 +3500,15 @@ Both forms, integral and differential, of a conservation law are useful, in diff
 \subsection{Example}
 \label{sec:example_conservation}
 
-We consider an imaginary, closed control surface wrapping the tube within a bicycle tyre. The control surface deforms just like the tube may deform.
-
-At a given time there are \qty{12.6}{mol} of air within the tube, and therefore within our initial control volume. The control surface at this time has a tubular shape.
-
-The bicycle and its tyres moves around, and with them also our closed control surface. Thirty minutes later the tyre is flat, and the inner tube only has \qty{0.5}{mol} of air.
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{deflated_tyre.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 %   Deflated tyre: did the air within just vanish out of existence?}%
 }%
-Our final control surface no longer has a tubular shape, but that doesn't matter. Within it there are \qty{0.5}{mol} of air.
+The tube within the tyre of a bicycle has, at a given time, \qty{12.6}{mol} of air.
+The bicycle and its tyres moves around, and thirty minutes later the tyre is flat, the inner tube having only \qty{0.5}{mol} of air.
+
+We consider an imaginary, closed control surface wrapping the tube. The control surface deforms just like the tube deforms. The initial control surface has therefore a tubular shape, but the final control surface doesn't.
 
 We assume that air satisfies a conservation law. From the description above we have
 \begin{equation*}
@@ -3711,13 +3709,14 @@ We assume that momentum satisfies a balance law. Choose an imaginary, closed con
 \begin{equation*}
   \begin{gathered}
     t_{1}=\qty{0}{s}\ ,\quad
-    t_{2}=\qty{2}{s}\ ,\quad
-    \yP(t_{1})=[0,\num{1.70},\num{0.98}]\:\unit{N\,s}\ ,\\[\jot]
-    \yF(t)=[0,0,0]\:\unit{N}\text{ (const.)}\ ,\quad
-    \yG(t)=[0,0,\num{-0.579}]\:\unit{N}\text{ (const.)}\ .
+    t_{2}=\qty{2}{s}\ ,
+        \\[\jot]
+    \yP(t_{1})=\begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}\ ,
+\quad    \yF(t)=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}\text{\footnotesize\ (const.)}\ ,\quad
+    \yG(t)=\begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}\text{\footnotesize\ (const.)}\ .
   \end{gathered}
 \end{equation*}
-The balance law~\eqref{eq:balanced_momentum} allow us to find the amount of momentum in the tennis ball at time $t_{2}=\qty{2}{s}$:
+The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of momentum in the tennis ball at time $t_{2}=\qty{2}{s}$:
 % \begin{equation*}
 %   \begin{split}
 %     \yP(t_{2})
@@ -3756,7 +3755,9 @@ The balance law~\eqref{eq:balanced_momentum} allow us to find the amount of mome
 
 We see that two seconds later the ball's momentum has the same $x$- and $y$-component, but its $z$-component points downward -- which means that the ball is moving downward.
 
-The description above actually has enough information for us to apply the balance law in differential form, equation~\eqref{eq:balance_diff_components}, because the value of the influx $\yF$ and source $\yG$ are given at every time $t$ (they are constant). We find that, at any time $t$ between $t_{1}$ and $t_{2}$, the rate of change of momentum is
+\medskip
+
+The description above actually has enough information for applying the balance law in differential form, formula~\eqref{eq:balance_diff_components}, because the value of the influx $\yF$ and source $\yG$ are given at every time $t$ (they are constant). We find that, at any time $t$ between $t_{1}$ and $t_{2}$, the rate of change of momentum is
 \begin{equation*}
   \begin{split}
     \frac{\di\yP(t)}{\di t}
