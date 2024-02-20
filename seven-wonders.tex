@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-20T14:53:59+0100
+%% Last-Updated: 2024-02-20T17:11:58+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3756,7 +3756,13 @@ For a vector quantity such as momentum, the differential form again corresponds 
 \subsection{Example with a moving control surface}
 \label{sec:example_balance_vect}
 
-Take a coordinate system $(x,y,z)$ where $y$ has a horizontal direction and $z$ an upward direction. At a particular time instant a tennis ball has momentum\enspace$[0,\num{1.70},\num{0.98}]\:\unit{N\,s}$.\enspace It flies for two seconds. During this time there's a continuous and constant supply of momentum within the ball, equal to\enspace$[0,0,-\num{0.579}]\:\unit{N}$.\enspace No momentum is leaving or entering the ball in any other way.
+Take a coordinate system $(x,y,z)$ where $y$ has a horizontal direction and $z$ an upward direction. At a particular time instant a tennis ball has momentum\enspace$[0,\num{1.70},\num{0.98}]\:\unit{N\,s}$.\enspace It flies for two seconds.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
+During this time there's a continuous and constant supply of momentum within the ball, equal to\enspace$[0,0,-\num{0.579}]\:\unit{N}$.\enspace No momentum is leaving or entering the ball in any other way.
 
 We assume that momentum satisfies a balance law. Choose an imaginary, closed control surface that tightly wraps the tennis ball and moves with it. From the description above we have
 \begin{equation*}
@@ -4000,17 +4006,41 @@ Spacetime representation of the evolution of a closed control surface, containin
 \section{Constitutive relations}
 \label{sec:constitutive}
 
-In the previous section we saw that a balance law can be used to predict how the density of a quantity changes with time. But we also saw that in order to make such prediction we need to already know what the \emph{future} fluxes of the quantity will be, throughout the region of interest. This doesn't sound like a great achievement: to predict the future, we need the future. The situation doesn't improve if we have two or more quantities that satisfy balance laws: we shall need to know in advance the fluxes of each.
+In the previous sections we have seen several examples of use of conservation and balance laws. They allowed us to determine or predict the amount of quantities in given spatial regions or crossing through surfaces.
 
-It turns out, however, that there are physical laws which \emph{relate the densities of some quantities to the fluxes of others}. Such relations can potentially allow us to calculate the time evolution without knowing the fluxes in advance. Roughly, the basic idea is as follows: From the density of one quantity, we calculate the fluxes of the second quantity, and use them to predict its density at a later time. Once we know this density, we use it to calculate the new fluxes of the first quantity, and therefore its density at a later time; and so on. This cross-prediction does not fully eliminate the necessity of specifying some future quantities in advance; but the remaining ones that we need to specify are often in our control. Indeed this is how we can predict how a physical system will respond to influences controlled by us.
+The examples also showed that extra information is always needed in order to use the balance laws. For instance, in the example with the tennis ball of p.~\pageref{sec:example_balance_vect} we said that there was no flux of momentum through the moving control surface (the flying ball). In the example with the body of water of p.~\pageref{sec:example_balance_static} we said \enquote{where there's no water, there's no momentum}; and we also said that the flux of momentum was zero on some surfaces, but non-zero on others.
 
-Physical laws of this kind turn out not to be universal: they depend on, or are \furl{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}} of, the particular physical phenomenon and the physical theory being used. For this reason they are called \textbf{constitutive relations} or \textbf{constitutive equations}. In some fields they are called \textbf{closure equations}, because they allow us to \enquote{close} the system of balance equations in such a way that it can be used for future predictions without knowing in advance the future value of some quantities.
+\emph{Well, how did we know?}
 
-Constitutive relations express the diversity that we observe around us, for example the different behaviours of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and general relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
+This kind of information and physical properties were \emph{not} something we could deduce from the conservation or balance laws.
 
-Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the density of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}. 
+\marginpar{%
+\footnotesize\flushleftright{\color{mpcolor}%
+\emph{\enquote{Having the power of constituting, establishing, or giving formal, definite, or organized existence to something; constructive.}}\\
+\emph{\enquote{That makes a thing what it is; forming an essential part or element; essential.}}%
+\\\sourceatright{(\enquote{Constitutive}, Oxford English Dictionary)}
+}%
+}%
+Indeed those were examples of physical properties that apply, not universally, but only to some specific phenomena, and only to some theory-dependent degree of approximation. They were examples of \emph{constitutive relations}:
+\begin{definition}{Constitutive relation}
+  A \textbf{constitutive relation}, also called \emph{constitutive equation} or \emph{closure equation}, is a physical relationship or property that is only true for specific physical phenomena.
 
-\mynotew{Add examples of laws that reduce to the balances: Bernoulli, Poynting?, mechanical-energy-work theorem}
+  \smallskip
+
+  A constitutive relation often has different expressions, of varying levels of approximation, in different theories.
+\end{definition}
+
+
+Constitutive relations express the diversity that we observe around us,
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{phases_matter2.png}%
+\\[\jot]\footnotesize{\color{mpcolor}%
+(image by \furl{https://commons.wikimedia.org/wiki/User:Spirit469}{Spirit469})}%
+}%
+for example the fact that a body of water can easily change shape upon movement, as opposed to a block of concrete, which we rely on for its rigidity. Constitutive relations also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which applies for low speeds and weak gravitational phenomena only, and general relativity, which applies also to cosmological scales. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
+
+Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the volume integral of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}.
+
 
 
 
@@ -4929,6 +4959,20 @@ This statement may sound familiar. Indeed \emph{it includes Newton's famous thir
 \bigskip
 
 % \mynotew{Section on not making conclusions about a flux through a surface from flux through another}
+
+----
+
+In the previous section we saw that a balance law can be used to predict how the density of a quantity changes with time. But we also saw that in order to make such prediction we need to already know what the \emph{future} fluxes of the quantity will be, throughout the region of interest. This doesn't sound like a great achievement: to predict the future, we need the future. The situation doesn't improve if we have two or more quantities that satisfy balance laws: we shall need to know in advance the fluxes of each.
+
+It turns out, however, that there are physical laws which \emph{relate the densities of some quantities to the fluxes of others}. Such relations can potentially allow us to calculate the time evolution without knowing the fluxes in advance. Roughly, the basic idea is as follows: From the density of one quantity, we calculate the fluxes of the second quantity, and use them to predict its density at a later time. Once we know this density, we use it to calculate the new fluxes of the first quantity, and therefore its density at a later time; and so on. This cross-prediction does not fully eliminate the necessity of specifying some future quantities in advance; but the remaining ones that we need to specify are often in our control. Indeed this is how we can predict how a physical system will respond to influences controlled by us.
+
+Physical laws of this kind turn out not to be universal: they depend on, or are \furl{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}} of, the particular physical phenomenon and the physical theory being used. For this reason they are called \textbf{constitutive relations} or \textbf{constitutive equations}. In some fields they are called \textbf{closure equations}, because they allow us to \enquote{close} the system of balance equations in such a way that it can be used for future predictions without knowing in advance the future value of some quantities.
+
+Constitutive relations express the diversity that we observe around us, for example the different behaviours of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and general relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
+
+Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the density of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}. 
+
+\mynotew{Add examples of laws that reduce to the balances: Bernoulli, Poynting?, mechanical-energy-work theorem}
 
 
 
