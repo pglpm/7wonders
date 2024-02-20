@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-20T10:43:09+0100
+%% Last-Updated: 2024-02-20T14:53:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1903,7 +1903,7 @@ Often we consider the second question, about the flow through a surface, in the 
 This is called the \textbf{flux} of the quantity through that surface.
 
 The third  property common to the seven quantities regards the two measurements above.
-\begin{definition}{Extensivity of the seven quantities}
+\begin{definition}{Extensivity of the seven quantities}\label{def:extensivity}
   If we consider two or more separate volumes, the amount of quantity in the total volume is equal to the sum of the amounts in the separate volumes.
 
   Analogously for the flux through separate surfaces.
@@ -3497,8 +3497,8 @@ This form says that the rate of change of the volume integral of a quantity must
 
 Both forms, integral and differential, of a conservation law are useful, in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and make predictions.
 
-\subsection{Example}
-\label{sec:example_conservation}
+\subsection{Example with a moving control surface}
+\label{sec:example_conservation_moving}
 
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{deflated_tyre.jpg}
@@ -3534,7 +3534,60 @@ There's a physical hole in the physical tube, but no holes in the imaginary cont
 }%
 Note that this is a physical hole in the physical tube; our control surface is imaginary and doesn't have any holes. It's just a sort of \enquote{border checkpoint} where anything can in principle move through; we only keep count of what's crossing, how much, and how fast.
 
-We see that the fact that air satisfies a conservation law allows us to determine the integrated flux through the control surface. But it doesn't allow us to determine the flux $\yJ(t)$ at every individual time between $t_{1}$ and $t_{2}$. For example, we don't know if there was a larger flux at the beginning than at the end; the the tyre may have gone completely flat just after \qty{60}{s}; in that case the flux $\yJ(t)$ was zero for $t>\qty{60}{s}$.
+We see that the fact that air satisfies a conservation law allows us to determine the integrated flux through the control surface. But it doesn't allow us to determine the flux $\yJ(t)$ at every individual time between $t_{1}$ and $t_{2}$. For example, we don't know if there was a larger flux at the beginning than at the end; the tyre may have gone completely flat just after \qty{60}{s}; in that case the flux $\yJ(t)$ was zero for $t>\qty{60}{s}$.
+
+\subsection{Example with a static control surface}
+\label{sec:example_conservation_static}
+
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{waterblock.pdf}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
+In the previous example we chose a closed control surface that moved and deformed with some object of interest (the tyre tube). But we can also choose a different control surface, for instance a static one.
+
+Consider a body of \qty{53.4}{mol} of water having cylindrical shape with \qty{1}{m} diameter and \qty{1.226}{m} height. It is flowing downward, say within a pipe, owing to gravity. At a particular time it fills a given section of the pipe; after \qty{0.5}{s} it is situated, for an instant, immediately underneath the initial position, as illustrated in the side picture.
+
+Suppose we want to know the net quantity of water that flowed downward across the circular surface separating the initial and final positions. We can calculate this quantity by assuming that water (as matter) satisfies a conservation law.
+
+We choose a \emph{static} closed control surface of cylindrical shape.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{waterblock_control2.pdf}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
+This control surface is located in such a way that it wraps the body of water at the final time; at the initial time, therefore, the control surface is empty. See the side picture, where the control surface is represented by the \textcolor{yellow}{dashed yellow line}. This static control surface consists of three parts: a circular surface at the bottom, a side surface, and a circular surface at the top -- which is the one that interests us.
+
+According to the description above we have
+\begin{equation*}
+  t_{1}=\qty{0}{s} \ ,\quad
+  t_{2}=\qty{0.5}{s} \ ,\quad
+  \yN(t_{1})=\qty{0}{mol} \ ,\quad
+  \yN(t_{2})=\qty{53.4}{mol} \ .
+\end{equation*}
+From the conservation law~\eqref{eq:conserved} we calculate the integrated \textbf{in}flux:
+\begin{equation*}
+  \begin{split}
+    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t &= \yN(t_{2}) - \yN(t_{1})
+    \\&= \qty{53.4}{mol} - \qty{12.6}{mol}
+    \\&= \qty{53.4}{mol}
+  \end{split}
+\end{equation*}
+Note that this is the integrated influx through the \emph{whole} cylindrical surface. The conservation law doesn't tell us anything about the integrated influx through \emph{parts} of the surface. In the present case we provide the extra knowledge that the fluxes through the side and bottom surfaces are zero, between $t_{1}$ and $t_{1}$. Then, by the extensivity property (p.~\pageref{def:extensivity}),
+\begin{equation*}
+  \begin{split}
+    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t &=
+    \int_{t_{1}}^{t_{2}}\!\bigl[\yJ_{\text{top}}(t) +
+    \yJ_{\text{side}}(t) +
+    \yJ_{\text{bot}}(t)\bigr]\,\di t
+    \\
+      \qty{53.4}{mol} &=
+      \int_{t_{1}}^{t_{2}}\!\bigl[\yJ_{\text{top}}(t) +
+      \qty{0}{mol/s} +
+      \qty{0}{mol/s}\bigr]\,\di t
+  \end{split}
+\end{equation*}
+from which we find, as was intuitively clear, that the net amount of water that crossed the top surface in a downward direction is \qty{53.4}{mol}.
 
 \bigskip
 
@@ -3588,13 +3641,13 @@ The setup is just like before: consider an initial and final closed control surf
     \label{eq:balanced}
     \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t
   \end{equation}
-  where $\yR(t)$, called the \textbf{source} or \textbf{supply}, is the amount of quantity created per unit time within the closed control surface at time $t$.
+  where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per unit time within the closed control surface at time $t$.
 \end{definition}
 If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
 
 \smallskip
 
-According to the definition above, a conservation law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}; that is, there never are sources or sinks of the quantity. It is powerful because the source $\yR(t)$ is already known and has an extremely simple value (zero).
+According to the definition above, a conservation law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}; that is, there never are sources or sinks of the quantity. It is powerful because the supply $\yR(t)$ is already known and has an extremely simple value (zero).
 
 For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{1}) - \yE(t_{2}) - \int_{t_{1}}^{t_{2}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{1}$ and $t_{2}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
@@ -3604,8 +3657,8 @@ For this reason, a balance law is in some respects more trivial than a conservat
 A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} lines), but not what happens within the control volumes in between}%
 }%
 A conservation law is therefore powerful also because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
-\begin{warning}[Sources are very different from fluxes]
-  One could object: \enquote{why don't you just put the flux $\yH(t)$ and the source $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
+\begin{warning}[Supplies are very different from fluxes]
+  One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
     \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \di t = 0
   \end{equation*}
@@ -3613,7 +3666,7 @@ A conservation law is therefore powerful also because it allows us to predict th
 
 \smallskip
 
-Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the source $\yR$, on the other hand, involves what's happening \emph{within the control volumes, at each time}. A conservation law involves only fluxes within the integral. That is, it doesn't require us to know what's happening within the control volumes, except at the initial and final time.
+Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the supply $\yR$, on the other hand, involves what's happening \emph{within the control volumes, at each time}. A conservation law involves only fluxes within the integral. That is, it doesn't require us to know what's happening within the control volumes, except at the initial and final time.
 % Said otherwise, the integral $\int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t$ is not an integrated flux.
 \end{warning}
 
@@ -3652,7 +3705,7 @@ The balance law has an analogous form:
   \label{eq:balanced_momentum}
   \yP(t_{2}) - \yP(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yF(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
 \end{equation}
-where the source
+where the supply
 \begin{equation*}
   \yG(t) =
   \begin{bmatrix}
@@ -3700,10 +3753,10 @@ For a vector quantity such as momentum, the differential form again corresponds 
 \end{equation}
 
 
-\subsection{Example}
+\subsection{Example with a moving control surface}
 \label{sec:example_balance_vect}
 
-Take a coordinate system $(x,y,z)$ where $y$ has a horizontal direction and $z$ an upward direction. At a particular time instant a tennis ball has momentum\enspace$[0,\num{1.70},\num{0.98}]\:\unit{N\,s}$.\enspace It flies for two seconds. During this time there's a continuous and constant source of momentum within the ball, equal to\enspace$[0,0,-\num{0.579}]\:\unit{N}$.\enspace No momentum is leaving or entering the ball in any other way.
+Take a coordinate system $(x,y,z)$ where $y$ has a horizontal direction and $z$ an upward direction. At a particular time instant a tennis ball has momentum\enspace$[0,\num{1.70},\num{0.98}]\:\unit{N\,s}$.\enspace It flies for two seconds. During this time there's a continuous and constant supply of momentum within the ball, equal to\enspace$[0,0,-\num{0.579}]\:\unit{N}$.\enspace No momentum is leaving or entering the ball in any other way.
 
 We assume that momentum satisfies a balance law. Choose an imaginary, closed control surface that tightly wraps the tennis ball and moves with it. From the description above we have
 \begin{equation*}
@@ -3757,7 +3810,7 @@ We see that two seconds later the ball's momentum has the same $x$- and $y$-comp
 
 \medskip
 
-The description above actually has enough information for applying the balance law in differential form, formula~\eqref{eq:balance_diff_components}, because the value of the influx $\yF$ and source $\yG$ are given at every time $t$ (they are constant). We find that, at any time $t$ between $t_{1}$ and $t_{2}$, the rate of change of momentum is
+The description above actually has enough information for applying the balance law in differential form, formula~\eqref{eq:balance_diff_components}, because the value of the influx $\yF$ and supply $\yG$ are given at every time $t$ (they are constant). We find that, at any time $t$ between $t_{1}$ and $t_{2}$, the rate of change of momentum is
 \begin{equation*}
   \begin{split}
     \frac{\di\yP(t)}{\di t}
@@ -3798,22 +3851,132 @@ So we could find the momentum at time $t_{2}$, or at any other time between $t_{
 \end{equation*}
 
 
-\marginpar{\vspace{3\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{concrete.pdf}%
-% \\\footnotesize\flushleftright{\color{mpcolor}%
-% Spacetime representation of the evolution of a closed control surface, containing some pointlike objects (adapted from \cites{misneretal1970_r2017})}%
+\subsection{Example with a static control surface}
+\label{sec:example_balance_static}
+
+Consider again the example from p.~\ref{sec:example_conservation_static} of a cylindrical body of water moving downward in a lapse of time of \qty{0.5}{s}, depicted again in the side picture.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{waterblock_control2.pdf}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
+The body of water has a fully downward momentum of magnitude \qty{4.72}{N\,s} at the final time; and where there's no water, there's no momentum.
+
+We are now interested in the net amount of \emph{momentum} that crosses, in a downward direction, the circular surface separating the initial and final location.
+
+We could use the same strategy adopted in that example: considering a static control surface at the final position of the body of water. From the description, our data are
+\begin{equation*}
+    t_{1}=\qty{0}{s}\ ,\quad
+    t_{2}=\qty{0.5}{s}\ , \quad
+        \yP(t_{1})=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
+        \quad
+    \yP(t_{2})=\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
+\end{equation*}
+But we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum} for finding the integrated influx. It is also necessary to know the supply of momentum $\yG(t)$, or at least its integral. This is an example of what was said in \sect~\ref{sec:balance_laws}: balance laws in general require more information than conservation laws.
+
+Suppose we are told that the net amount of momentum generated \emph{within the control volume}, during the \qty{0.5}{s}, has magnitude \qty{1.57}{N\,s} and fully downward direction. That is,
+\begin{equation*}
+  \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+  =
+  \begin{bmatrix}
+    0\\0\\\num{-1.57}
+  \end{bmatrix}\:\unit{N\,s}
+\end{equation*}
+
+Now we can use the balance law~\eqref{eq:balanced_momentum} to find the integrated influx:
+\begin{equation*}
+  \begin{split}
+    \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t
+    &=\yP(t_{2}) - \yP(t_{1})
+- \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+    \\[2\jot]
+    &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
+    - \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}
+    - \begin{bmatrix}0\\0\\\num{-1.57}\end{bmatrix}\:\unit{N\,s}
+    \\[2\jot]
+    &= \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\:\unit{N\,s}
+  \end{split}
+\end{equation*}
+\marginpar{\centering%
+\includegraphics[align=b,width=\linewidth]{warning_supply_static.pdf}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
+
+\medskip
+
+Let us finish this example with a quick analysis using a \emph{moving} control surface, wrapping the body of water. We are told that the water initially has zero momentum. Moreover, there is no flux of momentum through a surface that moves along with the water. Our data are therefore
+\begin{equation*}
+  \begin{gathered}
+    t_{1}=\qty{0}{s}\ ,\quad
+    t_{2}=\qty{0.5}{s}\ , \quad
+    \\[\jot]
+    \underline{\yP}(t_{1})=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
+    \quad
+    \underline{\yP}(t_{2})
+    =\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
+    \quad
+    \underline{\yF}(t)
+    =\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}\text{\footnotesize\ (const.)} \ .
+  \end{gathered}
+\end{equation*}
+Note that the volume integrals and fluxes now have slightly different, underlined symbols. This is because \textbf{they refer to different control surfaces and volumes}. We expect their values to be different from the previous ones, which referred to static surfaces. Indeed we already notice that
+\begin{equation*}
+  \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t =
+  \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\:\unit{N\,s}
+  \enspace\bm{\ne}\enspace
+  \int_{t_{1}}^{t_{2}}\!\!\underline{\yF}(t)\,\di t =
+  \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s} \ .
+\end{equation*}
+
+We have enough data to find the total amount of momentum generated within the moving control volume:
+\begin{equation*}
+  \begin{split}
+    \int_{t_{1}}^{t_{2}}\!\!\underline{\yG}(t)\,\di t
+    &=\underline{\yP}(t_{2}) - \underline{\yP}(t_{1})
+- \int_{t_{1}}^{t_{2}}\!\!\underline{\yF}(t)\,\di t
+    \\[2\jot]
+    &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
+    - \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}
+    -  \int_{t_{1}}^{t_{2}}\!\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}
+    \ \di t
+    \\[2\jot]
+    &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
+  \end{split}
+\end{equation*}
+We notice again the difference:
+\marginpar{\centering%
+\includegraphics[align=b,width=\linewidth]{warning_supply_static.pdf}
+\\[4em]\includegraphics[align=b,width=\linewidth]{warning_supply_moving.pdf}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
+\begin{equation*}
+  \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t =
+  \begin{bmatrix}0\\0\\\num{-1.57}\end{bmatrix}\:\unit{N\,s}
+  \enspace\bm{\ne}\enspace
+  \int_{t_{1}}^{t_{2}}\!\!\underline{\yG}(t)\,\di t =
+  \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
+\end{equation*}
+
+\begin{warning}[Fluxes and supplies depend on the particular control surface and its motion]
+  The integrated flux $\int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t$ and integrated supply $\int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t$ that appear in conservation and balance laws are strictly dependent on the sequence of closed control surfaces and volumes that we choose.
+
+  Therefore, if we analyse the same physical phenomenon with a new set of control surfaces, we cannot expect the results of calculations with the old set to be valid for the new one.
+\end{warning}
+
+\bigskip
+
+
 \begin{exercise}
-In this exercise we assume that momentum satisfies a balance law.
-  
-  A rectangular block of concrete having has width and depth of \qty{1}{m}, height \qty{1.226}{m}, and \masse\ \qty{2942}{kg}. At an initial time $t_{1}=\qty{0}{s}$ the block is at rest, and its total momentum is \qty{0}{N\cdot s}. The block suddenly falls, and a short time $t_{2}=\qty{0.5}{s}$ later it is exactly underneath its initial position, as indicated in the side picture.
+  Consider once more the body of water analysed in the previous example.
 
-  We want to calculate the block's momentum
+  This time choose a \emph{static} closed control surface that coincides with the \emph{initial} position of the body of water. This surface therefore includes all water at time $t_{1}$, but is empty -- and has zero momentum -- at time $t_{2}$.
 
-  suddenly falls for \qty{0.5}{s}. It turns out that after \qty{0.5}{s}
+  Calculate the integrated supply for this new control surface between $t_{1}$ and $t_{2}$.
+
+  \emph{(Hint: consider the result from the exercise and  the \textbf{symmetry of fluxes} for the flux through the bottom part of the surface, as well as the fact that the fluxes through the side and top surfaces are zero.)}
 \end{exercise}
-
-%5000
 
 \bigskip
 
