@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-20T17:30:19+0100
+%% Last-Updated: 2024-02-21T09:16:10+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -139,7 +139,7 @@ british%
 \setlist[enumerate,2]{label=(\roman*)}
 \setlist[enumerate]{label=(\alph*),leftmargin=1.5\parindent}
 \setlist[itemize]{leftmargin=1.5\parindent}
-\setlist[description]{leftmargin=1.5\parindent}
+\setlist[description]{leftmargin=1.5\parindent,font=\sffamily\bfseries}
 % old alternative:
 % \setlist[enumerate,2]{label=\alph*.}
 % \setlist[enumerate]{leftmargin=\parindent}
@@ -949,7 +949,11 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
+\newcommand*{\yn}{n}
+\newcommand*{\yj}{\bm{j}}
+\newcommand*{\yrho}{\rho}
 \newcommand*{\yM}{M}% m, and q_m for mass flow
+\newcommand*{\ym}{m}% m, and q_m for mass flow
 \newcommand*{\yE}{E}
 \newcommand*{\yU}{U}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
@@ -958,6 +962,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yQ}{Q}% Q for time-integral
 \newcommand*{\yW}{W}% A,W for time-integral
 \newcommand*{\yR}{R}% for energy source
+\newcommand*{\yg}{\bm{g}}% gravitational acceleration
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
@@ -4032,17 +4037,89 @@ Indeed those were examples of physical properties that apply, not universally, b
 
 
 Constitutive relations express the diversity that we observe around us,
+for example the fact that a body of water can easily change shape upon movement, as opposed to a block of concrete, which we rely on for its rigidity. The differences between states of matter
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{phases_matter2.png}%
-\\[\jot]\footnotesize{\color{mpcolor}%
-(image by \furl{https://commons.wikimedia.org/wiki/User:Spirit469}{Spirit469})}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+Four states of matter (\furl{https://commons.wikimedia.org/wiki/File:Four_Fundamental_States_of_Matter.png}{image by Spirit469})}%
 }%
-for example the fact that a body of water can easily change shape upon movement, as opposed to a block of concrete, which we rely on for its rigidity. Constitutive relations also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which applies for low speeds and weak gravitational phenomena only, and general relativity, which applies also to cosmological scales. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
+-- solid, liquid, gas, plasma, and there are others -- arise from different constitutive relations. Constitutive relations also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which applies for low speeds and weak gravitational phenomena only, and general relativity, which applies also to cosmological scales.
+
+When we read that a new physical phenomenon has been discovered, usually that means that a new \emph{constitutive relation} has been discovered. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
 Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the volume integral of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}.
 
 \subsection{Examples}
 \label{sec:example_constitutive}
+
+Let us briefly discuss some of the constitutive equations that have silently been used in the examples of the previous sections. All the constitutive relations below are valid only in \enquote{Newtonian approximation}, that is, when speeds are much lower than the speed of light and gravitation is weak.
+
+
+\begin{description}
+\item[Constitutive relation for \masse\ and matter.]
+If a small control volume contains an amount of matter $\yN$, then it also contains an amount of \masse\
+\begin{equation*}
+\yM =  \yrho\yN
+\end{equation*}
+where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depends on the kind of matter.
+ This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
+
+\item[Constitutive relation for momentum and matter.]
+Take a small control volume containing an amount of matter $\yN$, and such that there is no flux of matter across its surface. Then this control volume also contains an amount of momentum
+\marginpar{%
+\footnotesize\flushleftright{\color{mpcolor}%
+This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
+\begin{equation*}
+  \yP = \yM\yv
+\end{equation*}
+where $\yv$ is the velocity of the control volume.
+Note that this relation uses the previous one between mass and matter, so we have $\yP = \yrho\yN\yv$.
+
+\begin{extra}{More symmetric relation between mass \amp\ momentum and matter}
+  When we work with \emph{densities}, which express the amounts of a quantity per unit volume or per unit surface, the relation between \masse\ \amp\ momentum on one side, and matter \amp\ its flux on the other, becomes more explicit and symmetric. We have
+  \begin{equation*}
+    \ym = \rho\yn \qquad \yp = \rho\yj
+  \end{equation*}
+  where $\ym$ and $\yp$ are the mass and momentum densities, and $\yn$ and $\yj$ are the matter and matter-flux densities.
+\end{extra}
+
+\item[Constitutive relation for supply of momentum.]
+  If a small control volume contains an amount of \masse\ $\yM$, then it also has a supply of momentum
+  \begin{equation*}
+    \yG = \yM\yg
+  \end{equation*}
+  where $\yg$ is a vector that depends on the gravitational field.  This constitutive relation expresses the \emph{gravitational force}.
+
+  For physical phenomena on the Earth's surface, the vector $\yg$ is approximately constant: it points towards the Earth's centre and has magnitude $g\defd\abs{\yg}\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}}$.
+
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{earth_nasa.png}%
+\\[\jot]\footnotesize{\color{mpcolor}%
+(\furl{https://nssdc.gsfc.nasa.gov/imgcat/html/group_page/ER.html}{image from NASA})}%
+}%
+  For physical phenomena further away from Earth, for instance when dealing with satellite motion, the vector $\yg$ points towards the Earth's centre and has magnitude
+  \begin{equation*}
+    g = \frac{G M_{\textrm{E}}}{r^{2}}
+  \end{equation*}
+  where $G=\qty{6.67}{N\,m^{2}/kg^{2}}$ is the gravitational constant, $M_{\textrm{E}}=\qty{5.97e24}{kg}$ is \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{Earth's mass}, and $r$ is the distance of the control volume from the Earth's centre.
+
+\item[Constitutive relation for \energym\ of matter.]
+  Take a small control volume on Earth's surface containing an amount of matter $\yN$, and such that there is no flux of matter across its surface. Then this control volume also contains an amount of \energym
+  \begin{equation*}
+    \yE = \yE_{0} + \yU + \frac12 \yM v^{2} + \yM g h
+  \end{equation*}
+  where the first term is a constant zero level of energy, the second term $\yU$ is called \emph{internal energy}, the third is called \emph{kinetic energy}, and the fourth \emph{gravitational potential energy}. The internal energy $\yU$ is typically a function of the amount of matter $\yN$.
+
+  Matter enters this formula also through the constitutive relation $\yM=\yrho\yN$. The zero value $\yE_{0}$ is usually unimportant because we mostly work with energy changes. This value is huge in ordinary situations, as discussed in \sect~\ref{sec:intro_energy}.
+  % \begin{extra}{Expression for the total \energym}
+  %   The full expression for the \energym\ is
+  %   \begin{equation*}
+  %     \yE \equiv \yM c^{2} = \rho\yN\,c^{2} + \yU + \frac12 \yrho\yN v^{2} + \yrho \yN g h
+  %   \end{equation*}
+  %   In using the constitutive relations for momentum we usually discard the much smaller terms $\yU+\dotsb$, approximating $\yM\approx \yrho\yN$.
+  % \end{extra}
+
+\end{description}
 
 
 
