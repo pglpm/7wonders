@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-21T14:59:18+0100
+%% Last-Updated: 2024-02-22T10:01:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -379,9 +379,6 @@ british%
 
 \usepackage{bm}
 
-\usepackage{pdfrender}
-\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\textbf{#1}}}
-\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\boldsymbol{#1}}}
 
 \usepackage{microtype}
 
@@ -481,6 +478,11 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %\usepackage{tikz-cd}
 
 \PassOptionsToPackage{hyphens}{url}\usepackage[hypertexnames=false,pdfencoding=unicode,psdextra]{hyperref}
+
+\usepackage{pdfrender}
+\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\textbf{#1}}}
+\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\boldsymbol{#1}}}
+
 
 \usepackage[depth=4]{bookmark}
 \hypersetup{%
@@ -3353,7 +3355,7 @@ In \chap~\ref{cha:stuff} we introduced seven main quantities in terms of which w
   \begin{itemize}
   \item\textbf{Fundamental laws} represent universal patterns that we observe everywhere. We shall see that there is a set of seven fundamental laws that apply on every known scale of space and time, and also across different physical theories.
 
-\item\textbf{constitutive relations}  only apply to particular phenomena and only in particular theories. They express the diversity that we observe around us, and different kinds of approximations that we use in describing physical phenomena.
+\item\textbf{constitutive relations}  only apply to particular phenomena, only on particular time \amp\ space scales, only in particular theories. They express the diversity that we observe around us, and different kinds of approximations that we use in describing physical phenomena.
   \end{itemize}
 \end{definition}
 
@@ -3557,7 +3559,7 @@ We see that the fact that air satisfies a conservation law allows us to determin
 }%
 In the previous example we chose a closed control surface that moved and deformed with some object of interest (the tyre tube). But we can also choose a different control surface, for instance a static one.
 
-Consider a block of \qty{53.4}{mol} of ice having cylindrical shape with \qty{1}{m} diameter and \qty{1.226}{m} height. It is falling downward owing to gravity. At a particular time it occupies a particular position; after \qty{0.5}{s} it is situated, for an instant, immediately underneath the initial position, as illustrated in the side picture.
+Consider a block of \qty{53.4}{mol} of ice having cylindrical shape with \qty{1}{m} diameter and \qty{1.226}{m} height. It is falling downward owing to gravity (and in a vacuum). At a particular time it occupies a particular position; after \qty{0.5}{s} it is situated, for an instant, immediately underneath the initial position, as illustrated in the side picture.
 
 Suppose we want to know the net quantity of ice that passed, in a downward direction, across the circular surface separating the initial and final positions. We can calculate this quantity by assuming that ice (as matter) satisfies a conservation law.
 
@@ -3619,14 +3621,14 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 
     The room also has a window, which is the only other part of the room's boundary where energy can flow in or out.
 
-    In one hour we measure that the total amount of energy in the room has not changed. How much is the energy \emph{\textbf{in}}flux through the window?
+    In one hour we measure that the total amount of energy in the room has not changed. How much is the integrated energy \emph{\textbf{in}}flux through the window during that time?
 
 \medskip
 
 %% *** check realistic values
   \item For the present exercise we assume that \furl{https://pubchem.ncbi.nlm.nih.gov/element/Argon}{Argon} atoms satisfy a conservation law.
 
-    A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has a constant influx of \qty{2}{mol/s} of Argon atoms at one inlet, and a constant outflux of Argon atoms, possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of Argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the Argon outflux at the outlet?
+    A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has a constant influx of \qty{2}{mol/s} of Argon atoms at one inlet, and a constant outflux of Argon atoms, possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of Argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the Argon \emph{\textbf{out}}flux (\emph{not} the integrated outflux) at the outlet?
   \end{enumerate}
 \end{exercise}
 \marginpar{\vspace{-24\baselineskip}\centering%
@@ -3755,11 +3757,11 @@ For a vector quantity such as momentum, the differential form again corresponds 
 \begin{equation}
       \label{eq:balance_diff_components}
 \left\{\   \begin{aligned}
-    \frac{\di\yP_{x}(t)}{\di t}- \yF_{x}(t) &= \yG_{x}(t)
+    \frac{\di P_{x}(t)}{\di t}- F_{x}(t) &= G_{x}(t)
 \\
-    \frac{\di\yP_{y}(t)}{\di t}- \yF_{y}(t) &= \yG_{y}(t)
+    \frac{\di P_{y}(t)}{\di t}- F_{y}(t) &= G_{y}(t)
 \\
-    \frac{\di\yP_{z}(t)}{\di t}- \yF_{z}(t) &= \yG_{z}(t)
+    \frac{\di P_{z}(t)}{\di t}- F_{z}(t) &= G_{z}(t)
   \end{aligned}\right.
 \end{equation}
 
