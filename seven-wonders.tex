@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-28T15:19:37+0100
+%% Last-Updated: 2024-02-28T19:21:12+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4222,7 +4222,7 @@ In fact even the notion of \emph{velocity} of an object is actually built from t
   \begin{equation*}
     v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
   \end{equation*}
-  And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields.
+  And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields (Newtonian approximation).
 \end{extra}
 
 \section{Examples of constitutive relations}
@@ -4292,23 +4292,46 @@ Closely related to the previous constitutive relation is the one relating a amou
 
 Consider a small closed control surface containing, at time $t$, an amount $\yN$ of matter of a particular kind. The surface is chosen in such a way that there are no empty subregions within, and that the total flux of matter $\yJ$ through it is zero. By the law of conservation of matter, the amount of matter $\yN$ within the surface is therefore constant. If the control volume enclosed by the surface is small enough, the requirements above typically determine a velocity $\yv$ with which the volume is moving (see the blue box on p.~\pageref{extra:velocity_matter}).
 
-Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associate a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$. Then a common constitutive relation says that the control volume also contains an amount of momentum
-\begin{equation}
-  \label{eq:matter_momentum_Newton}
-  \yP = \yM\yv \equiv \yrho\yN\yv
-  % \qquad\text{with}\qquad
-  % \yM=\yrho\yN
-\end{equation}
+Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associates a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$. Then a common constitutive relation says that the control volume also contains an amount of momentum
+\begin{definition}{Momentum of matter}
+  \begin{equation}
+    \label{eq:matter_momentum_Newton}
+    \yP = \yM\yv \equiv \yrho\yN\yv
+    % \qquad\text{with}\qquad
+    % \yM=\yrho\yN
+  \end{equation}
+\end{definition}
 
-An analogous constitutive relation also exists between flux of momentum and flux of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead. Take a small surface that is \emph{not moving} in the coordinate system $(t,x,y,z)$, and is parallel to the coordinates $y$ and $z$. Call $\yJ_{x}$ the flux of matter through this surface in the positive-$x$ direction. Then through this surface there's also a flux of momentum
-\begin{equation}
-  \label{eq:matterflux_force_Newton}
-  \yF = \yrho\yJ_{x}\,\yv
-  %\qquad\text{\color{midgrey}(also equivalent to\enspace$\yF=\yM\yv\,\yJ_{x}/\yN$)}
-\end{equation}
+An analogous constitutive relation also exists between flux of momentum and flux of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead.
+\begin{definition}{Convective flux of momentum (special case)}
+  Take a small surface that is \emph{not moving} in the coordinate system $(t,x,y,z)$, and is parallel to the coordinates $y$ and $z$. Call $\yJ_{x}$ the flux of matter through this surface in the positive-$x$ direction. Then through this surface there's also a flux of momentum
+  \begin{equation}
+    \label{eq:matterflux_force_Newton}
+    \yF_{\text{c}} = \yrho\yJ_{x}\,\yv
+    % \qquad\text{\color{midgrey}(also equivalent to\enspace$\yF=\yM\yv\,\yJ_{x}/\yN$)}
+  \end{equation}
+  called a \textbf{convective flux of momentum}. Analogous relations hold for small, non-moving surfaces parallel to the $zx$ and $xy$ planes.
+\end{definition}
+\begin{warning}
+  Keep in mind that usually there are additional, non-convective flows of momentum (forces) associated with matter, as we shall see later.
+\end{warning}
+
+These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the gravitational fields are strong, or when some kind of electromagnetic phenomena are also involved.
 
 \begin{exercise}
+  The  picture at the margin shows a river seen from the side. There's an approximately \emph{steady flow} of water; this means that if we choose a static control volume anywhere in the river, such as the one indicated by the dashed \textcolor{purple}{purple} and \textcolor{yellow}{yellow} lines, the amount of water $\yN$ therein is \emph{constant in time}. This doesn't mean that the flux of water across a non-closed surface is zero.
+
+  Assume that water satisfies conservation of matter, that the amount of water in the indicated volume is $\yN=\qty{4e5}{mol}$, that the flux across the surfaces indicated by the \textcolor{purple}{long-dashed purple lines}, along the river banks, is zero.
+  \begin{enumerate}[label=\bfseries\arabic*.]
+  \item What can you say about the two fluxes across the two surfaces indicated by the  \textcolor{yellow}{short-dashed yellos lines}, each considered as crossed from left to right? Can you find their numerical values?
+  \item You are told that $P=\qty{21600}{N\,s}$
+  \end{enumerate}
+
   
+  Let us say that the water is flowing in a river in a steady way; this means that 
+
+
+  has constant (in time and space) velocity $v$
 \end{exercise}
 
 \subsection{Thermodynamics}
