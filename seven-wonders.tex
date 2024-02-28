@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-28T19:21:12+0100
+%% Last-Updated: 2024-02-28T22:23:02+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4288,12 +4288,10 @@ Phenomena for which this constitutive equation is no longer valid appear for exa
 \subsection{Relation between matter and momentum}
 \label{sec:const_matter_momentum}
 
-Closely related to the previous constitutive relation is the one relating a amount of matter and an amount of momentum.
+Closely related to the previous constitutive relation is another one relating a amount of matter and an amount of momentum. Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associates a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$.
 
-Consider a small closed control surface containing, at time $t$, an amount $\yN$ of matter of a particular kind. The surface is chosen in such a way that there are no empty subregions within, and that the total flux of matter $\yJ$ through it is zero. By the law of conservation of matter, the amount of matter $\yN$ within the surface is therefore constant. If the control volume enclosed by the surface is small enough, the requirements above typically determine a velocity $\yv$ with which the volume is moving (see the blue box on p.~\pageref{extra:velocity_matter}).
-
-Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associates a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$. Then a common constitutive relation says that the control volume also contains an amount of momentum
-\begin{definition}{Momentum of matter}
+\begin{definition}{Newtonian formula for momentum}
+Consider a small control volume containing, at time $t$, an amount $\yN$ of matter of a particular kind. If the volume is small enough we can consider all matter within as moving with approximately the same velocity $\yv$.  The \textbf{Newtonian formula for the momentum of matter} is a constitutive relation that says that the control volume also contains an amount of momentum
   \begin{equation}
     \label{eq:matter_momentum_Newton}
     \yP = \yM\yv \equiv \yrho\yN\yv
@@ -4301,6 +4299,7 @@ Assume that the constitutive relation between matter and mass, previously discus
     % \yM=\yrho\yN
   \end{equation}
 \end{definition}
+(The velocity $\yv$ is actually determined by the flux of matter, see the blue box on p.~\pageref{extra:velocity_matter}, but for the present purpose you can use your intuitive understanding of this velocity).
 
 An analogous constitutive relation also exists between flux of momentum and flux of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead.
 \begin{definition}{Convective flux of momentum (special case)}
@@ -4319,20 +4318,25 @@ An analogous constitutive relation also exists between flux of momentum and flux
 These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the gravitational fields are strong, or when some kind of electromagnetic phenomena are also involved.
 
 \begin{exercise}
-  The  picture at the margin shows a river seen from the side. There's an approximately \emph{steady flow} of water; this means that if we choose a static control volume anywhere in the river, such as the one indicated by the dashed \textcolor{purple}{purple} and \textcolor{yellow}{yellow} lines, the amount of water $\yN$ therein is \emph{constant in time}. This doesn't mean that the flux of water across a non-closed surface is zero.
+  The side picture shows the section of a river. The river has an approximately \emph{steady flow} of water; this means that if we choose a static control volume anywhere in the river, such as the one in the depicted section, the amount of water $\yN$ therein is \emph{constant in time}.
 
-  Assume that water satisfies conservation of matter, that the amount of water in the indicated volume is $\yN=\qty{4e5}{mol}$, that the flux across the surfaces indicated by the \textcolor{purple}{long-dashed purple lines}, along the river banks, is zero.
+  Assume that
+  \begin{enumerate*}[label=(\alph*)]
+  \item water satisfies conservation of matter;
+  \item the amount of water in the illustrated volume is $\yN=\qty{4e5}{mol}$;
+  \item water only flows across the imaginary vertical surfaces that delimit the river section on the front and back of the picture, cutting across the river.
+  \end{enumerate*}
   \begin{enumerate}[label=\bfseries\arabic*.]
-  \item What can you say about the two fluxes across the two surfaces indicated by the  \textcolor{yellow}{short-dashed yellos lines}, each considered as crossed from left to right? Can you find their numerical values?
-  \item You are told that $P=\qty{21600}{N\,s}$
+  \item What can you say about the two fluxes across the two imaginary vertical surfaces, each considered as crossed from right to left in the picture? Can you find their numerical values?
+
+  \item You are told that the illustrated volume of water has total momentum $P=\qty{21600}{N\,s}$, directed from left to right perpendicularly to the imaginary vertical surfaces. Assuming the Newtonian formula for momentum, and the molar-mass constant $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, can you find the values of the fluxes from the previous question?
   \end{enumerate}
-
-  
-  Let us say that the water is flowing in a river in a steady way; this means that 
-
-
-  has constant (in time and space) velocity $v$
 \end{exercise}
+\marginpar{\vspace{-18\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{riverbed3.png}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+(Illustration by \furl{https://dribbble.com/squarefountain}{Cathryn Briggs})}%
+}%
 
 \subsection{Thermodynamics}
 \label{sec:matter_const_thermodynamics}
@@ -4347,12 +4351,15 @@ relating the pressure $p$ (essentially a momentum flux), volume $V$, temperature
 \section{Examples of applications}
 \label{sec:matter_applic}
 
-\section{Rigid-body and particle mechanics}
+\subsection{Rigid-body and particle mechanics}
 \label{sec:cons_matter_particle}
 
-In many applications the law of conservation of mass is used implicitly: we set up our description of the physical phenomenon in such a way that the law is automatically satisfied. This means that the law entered our predictions by constraining our set-up.
+In many applications, we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is automatically satisfied. The law thus enter our descriptions and predictions silently, in an implicit way.
 
-One example is when we focus on a small, particle-like object (relative to the environment), such as a tennis ball in an open field, or a planet in a solar system. In these cases we can choose a sequence of control surfaces
+One example is when we focus on a small (relative to the environment) object, such as a tennis ball in an open field, or a planet in a solar system.
+
+***\mynotew{}
+In these cases we can choose a sequence of control surfaces
 
 there is an amount of matter that at each time occupies a small volume (relative to the environment). We therefore decide to use a sequence of closed control surfaces (\sect~\ref{sec:choice_surfaces}) that tightly encloses the amount of matter at each time $t$. As the amount of matter in these control volumes is constant, that is, $\di\yN/\di t = 0$, by the law of conservation of matter the flux must then be zero: $\yJ(t)=0$. The requirement that the flux be zero then determines how the closed control surfaces must move in space; this we finally encode in the velocity of the small object. Once this is done, the law of conservation of matter is automatically taken care of, and we can focus on other conservation laws.
 
@@ -4362,7 +4369,7 @@ The same procedure is used in the description of a rigid body, that is, an amoun
 
 
 
-\section{In chemistry}
+\subsection{In chemistry}
 \label{sec:cons_matter_chemistry}
 
 
