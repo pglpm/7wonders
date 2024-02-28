@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-26T21:22:30+0100
+%% Last-Updated: 2024-02-28T15:19:37+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -975,6 +975,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yT}{\bm{\tau}}% M or T or M_Q
 %\newcommand*{\yt}{\bm{\tau}}
 \newcommand*{\yS}{S}
+\newcommand*{\yte}{T}%temperature
 %
 \newcommand*{\yto}{t_{0}}
 \newcommand*{\yxo}{x_{0}}
@@ -1956,7 +1957,7 @@ Keep in mind that it is very difficult, if not impossible, to answer questions l
 Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}. Its flux is therefore measured in units of \emph{moles per second} (\unit{mol/s}). In statistical mechanics and particle physics, matter is often simply counted and so measured in dimensionless units, rather than moles.
 
 Matter is probably the easiest quantity to grasp intuitively; what we ordinarily call \enquote{stuff} is matter. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
-It is usually classified into several kinds; the classification depends on the physical phenomena and physical theory one works with, and is related to whether the kinds of matter can be considered separately conserved, as we'll discuss in \sect\,\ref{sec:cons_matter}.
+It is usually classified into several kinds; the classification depends on the physical phenomena and physical theory one works with, and is related to whether the kinds of matter can be considered separately conserved, as we'll discuss in \sect\,\ref{cha:cons_matter}.
 
 In everyday phenomena not involving \furl{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}{radioactivity}
 % \url{https://www.britannica.com/science/radioactivity}
@@ -4129,21 +4130,10 @@ Note that this relation uses the previous one between mass and matter, so we hav
 \end{description}
 
 
+\section{The Seven Wonders of the World}
+\label{sec:seven_wonders}
 
-
-
-
-\printpagenotes*
-\clearpage
-
-\chapter{The Seven Wonders of the World}
-\label{cha:seven_wonders}
-
-\section{Seven fundamental laws}
-\label{sec:seven_laws}
-
-In \chap~\ref{cha:stuff} we discussed seven primitive quantities that are common to all our main physical theories, and in \chap~\ref{cha:laws} we discussed about  fundamental laws, and about balance and conservation laws.
-
+In \chap~\ref{cha:stuff} we discussed seven primitive quantities that are common to all our main physical theories. %, and in \chap~\ref{cha:laws} we discussed about fundamental laws, and about balance and conservation laws.
 The reason for introducing those seven primitive quantities is that each of them obeys a balance law. More precisely: \emph{matter}, \emph{electric charge}, and \emph{magnetic flux} actually obey strict conservation laws, like~\eqref{eq:conserved}. Whereas \emph{energy}, \emph{momentum}, \emph{angular momentum}, and \emph{entropy} satisfy balance laws, like~\eqref{eq:balanced}, that may have a supply; only in special circumstances these quantities also obey conservation laws.
 
 What's remarkable is that these seven balance laws are known, so far, to be satisfied by \emph{all} phenomena and in \emph{all} our main physical theories, approximate or not: from subatomic scales to cosmological scales; from Newtonian mechanics to general relativity and quantum theory. No exceptions are known. They are our fundamental laws:
@@ -4190,12 +4180,196 @@ Some physical phenomena may also be predicted using either a particular set of f
 
 \smallskip
 
-The fact that the seven fundamental balances govern every physical phenomenon does not either mean that they can be used by themselves. We saw examples of this fact in \chap~\ref{cha:laws}, where the fundamental laws often needed to be augmented by appropriate constitutive equations.
+The fact that the seven fundamental balances govern every physical phenomenon doesn't mean that they can be used alone, by themselves. We saw examples of this fact in \chap~\ref{cha:laws}, where the fundamental laws often needed to be augmented by appropriate constitutive equations.
 
-In the following sections we shall give examples of constitutive relations that typically accompany the seven balance laws.
+In the following chapters we shall explore the seven fundamental balance laws in more detail, also giving examples of constitutive relations that typically accompany them.
 
-\section{Conservation of matter}
-\label{sec:cons_matter}
+
+
+
+
+\printpagenotes*
+\clearpage
+
+\chapter{Conservation of matter}
+\label{cha:cons_matter}
+
+\section{Formulation and generalities}
+\label{sec:cons_matter_formulation}
+
+Choose an arbitrary sequence of closed control surfaces between coordinate times $t_{1}$ and $t_{2}$, enclosing a sequence of control volumes. Denote by $\yN(t)$ and $\yJ(t)$ the amount of matter in the control volume and the influx through the control surface at time $t$. Then the law of \textbf{conservation of matter} is expressed by either of the equations
+\begin{definition}{Conservation of matter}
+  \begin{equation}
+    \label{eq:cons_matter}
+    \begin{gathered}
+      \underbracket[0pt]{\yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t = 0}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = 0}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
+
+In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume integral, but it would make little sense if the flux didn't equal the rate of change of the volume integral.
+\begin{extra}{Velocity from flux and volume integral}\label{extra:velocity_matter}
+  Suppose we have a coordinate system $(t,x,y,z)$. Consider a small spatial region of cuboid shape delimited by two surfaces having $x$ constant, two having $y$ constant, and two having $z$ constant. The instantaneous velocity component $v_{x}$ is defined as the ratio of:
+  \begin{enumerate*}[label=(\alph*)]
+  \item the flux $\yJ_{x}$ through any of the two $x$-constant surfaces, crossing in the positive-$x$ orientation, divided by surface area $A$, and 
+  \item the volume integral $\yN$ in the cuboid region, divided by the region's volume $V$:
+  \end{enumerate*}
+  \begin{equation*}
+    v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
+  \end{equation*}
+  And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields.
+\end{extra}
+
+\section{Examples of constitutive relations}
+\label{sec:matter_constitutive}
+
+\subsection{Relation between matter and \masse}
+\label{sec:const_matter_mass}
+
+The most common constitutive relation used  with conservation of matter is the one relating a constant amount of \masse\ $\yM$ to a particular amount of matter $\yN$:
+\begin{definition}{Molar mass}
+  \begin{equation}
+    \label{eq:molar_mass}
+    \yM = \yrho\, \yN
+  \end{equation}
+  where the proportionality constant $\yrho=\yM/\yN$ is called \textbf{molar-mass constant}, and depends on the kind of matter considered.
+\end{definition}
+
+For instance, in many physical phenomena involving water we assume the constitutive relation above, with a 
+of \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{water molar-mass constant} of approximately $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$. If a volume contains $\yN=\qty{20}{mol}$ of water, we usually attribute to it a \masse\ of
+\begin{equation*}
+  \begin{split}
+    \yM &= \yrho_{\mathrm{H_2O}}\, \yN
+    \\
+    &=\qty{0.0180}{kg/mol} \times \qty{20}{mol}
+    \\
+    &= \qty{0.36}{kg}\,.
+  \end{split}
+\end{equation*}
+
+The exact value of the molar-mass constant depends not only on the substance but also on the context and application: the substance may actually consist of a mixture of different kinds of matter. \enquote*{Air} for example is a mixture of different chemical elements, and their proportion in the mixture may depend on physical conditions such as temperature, and on geographical position. \enquote*{Water} is a mixture of different \furl{https://www.britannica.com/science/isotope}{isotopes}, and again the mixture proportions may vary with physical conditions.
+
+The constant relating \masse\ and amount of matter is the same for volume integrals and for fluxes. So to a matter flux $\yJ$ we can associate a \masse\ flux $\yrho\yJ$. For instance, if through a surface there's a flux of $\yJ=\qty{30}{mol/s}$ of water, then we associate to it a mass flux of
+$$\yrho_{\mathrm{H_2O}}\,\yJ = \qty{0.0180}{kg/mol} \times \qty{30}{mol/s} = \qty{0.54}{kg/s}\,.$$
+
+\smallskip
+
+Using this constitutive relation we can re-express the conservation of matter in terms of mass. Suppose that for a given kind of matter the proportionality constant is $\yrho$; then conservation of matter implies
+\begin{equation*}
+  \begin{gathered}
+    \yrho\yN(t_{2}) - \yrho\yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yrho\yJ(t)\,\di t = 0
+    \qquad%\text{\footnotesize\color{grey}or}
+    \qquad
+    \frac{\di\yrho\yN(t)}{\di t} - \yrho\yJ(t) = 0
+  \end{gathered}
+\end{equation*}
+This is the \enquote*{law of conservation of mass}. Keep in mind that this is not a universal law: it's only an approximate law, only valid as long as the constitutive relation between matter and \masse\ is acceptable.
+
+Phenomena for which this constitutive equation is no longer valid appear for example in particle physics, nuclear physics, and astrophysics.
+
+\begin{exercise}
+  At a particular time, a party balloon contains \qty{0.012}{kg} of Helium. A minute later, the same balloon contains \qty{0.010}{kg} of helium. Assume conservation of Helium, as well as a constitutive relation between amount and mass with \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/He}{Helium molar-mass constant} $\yrho_{\mathrm{He}} = \qty{4e-3}{kg/mol}$.
+  \begin{enumerate}[label=\bfseries\arabic*.]
+  \item How much is the \emph{integrated efflux} of Helium, \textbf{in moles}, through the balloon's surface during the one-minute lapse of time?
+  \item Assume that the efflux of Helium was constant in time during the one-minute time lapse. How much was the efflux of Helium, in moles/second?
+  \end{enumerate}
+\end{exercise}
+\marginpar{\vspace{-11\baselineskip}\centering%
+\includegraphics[align=t,height=7em]{helium_balloons.jpg}%
+}
+
+
+
+\subsection{Relation between matter and momentum}
+\label{sec:const_matter_momentum}
+
+Closely related to the previous constitutive relation is the one relating a amount of matter and an amount of momentum.
+
+Consider a small closed control surface containing, at time $t$, an amount $\yN$ of matter of a particular kind. The surface is chosen in such a way that there are no empty subregions within, and that the total flux of matter $\yJ$ through it is zero. By the law of conservation of matter, the amount of matter $\yN$ within the surface is therefore constant. If the control volume enclosed by the surface is small enough, the requirements above typically determine a velocity $\yv$ with which the volume is moving (see the blue box on p.~\pageref{extra:velocity_matter}).
+
+Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associate a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$. Then a common constitutive relation says that the control volume also contains an amount of momentum
+\begin{equation}
+  \label{eq:matter_momentum_Newton}
+  \yP = \yM\yv \equiv \yrho\yN\yv
+  % \qquad\text{with}\qquad
+  % \yM=\yrho\yN
+\end{equation}
+
+An analogous constitutive relation also exists between flux of momentum and flux of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead. Take a small surface that is \emph{not moving} in the coordinate system $(t,x,y,z)$, and is parallel to the coordinates $y$ and $z$. Call $\yJ_{x}$ the flux of matter through this surface in the positive-$x$ direction. Then through this surface there's also a flux of momentum
+\begin{equation}
+  \label{eq:matterflux_force_Newton}
+  \yF = \yrho\yJ_{x}\,\yv
+  %\qquad\text{\color{midgrey}(also equivalent to\enspace$\yF=\yM\yv\,\yJ_{x}/\yN$)}
+\end{equation}
+
+\begin{exercise}
+  
+\end{exercise}
+
+\subsection{Thermodynamics}
+\label{sec:matter_const_thermodynamics}
+
+Matter enters in many constitutive relations in thermodynamics and chemistry. An example is the ideal gas law
+\begin{equation*}
+  p V = R \yN \yte
+\end{equation*}
+relating the pressure $p$ (essentially a momentum flux), volume $V$, temperature $T$ of an amount $\yN$ of an ideal gas in equilibrium conditions; $R = \qty{8.31446261815324}{N\,m/(K\,mol)}$\enspace (exactly) is the \furl{https://www.britannica.com/science/universal-gas-constant}{molar gas constant}.
+
+
+\section{Examples of applications}
+\label{sec:matter_applic}
+
+\section{Rigid-body and particle mechanics}
+\label{sec:cons_matter_particle}
+
+In many applications the law of conservation of mass is used implicitly: we set up our description of the physical phenomenon in such a way that the law is automatically satisfied. This means that the law entered our predictions by constraining our set-up.
+
+One example is when we focus on a small, particle-like object (relative to the environment), such as a tennis ball in an open field, or a planet in a solar system. In these cases we can choose a sequence of control surfaces
+
+there is an amount of matter that at each time occupies a small volume (relative to the environment). We therefore decide to use a sequence of closed control surfaces (\sect~\ref{sec:choice_surfaces}) that tightly encloses the amount of matter at each time $t$. As the amount of matter in these control volumes is constant, that is, $\di\yN/\di t = 0$, by the law of conservation of matter the flux must then be zero: $\yJ(t)=0$. The requirement that the flux be zero then determines how the closed control surfaces must move in space; this we finally encode in the velocity of the small object. Once this is done, the law of conservation of matter is automatically taken care of, and we can focus on other conservation laws.
+
+The same procedure is used in the description of a rigid body, that is, an amount of matter that occupies a region of constant volume and shape. The volume doesn't need to be small in this case. Again by using tightly enclosing control surfaces, their motion is determined by 
+
+
+
+
+
+\section{In chemistry}
+\label{sec:cons_matter_chemistry}
+
+
+
+
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of energy}
+\label{cha:bal_energy}
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of momentum}
+\label{cha:bal_momentum}
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of angular momentum}
+\label{cha:bal_ang_momentum}
+
+% \printpagenotes*
+% \clearpage
+% \chapter{Conservation of electric charge and magnetic flux}
+% \label{cha:cons_charge_magneticflux}
+%
+% \printpagenotes*
+% \clearpage
+% \chapter{Balance of entropy}
+% \label{cha:bal_entropy}
 
 
 
