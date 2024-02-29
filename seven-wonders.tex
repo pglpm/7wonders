@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-02-28T22:23:02+0100
+%% Last-Updated: 2024-02-29T22:32:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1716,9 +1716,9 @@ Some physical phenomena happen approximately along a line, in one dimension; or 
 \begin{equation*}
   \frac{\Dt_{\text{s}}}{\Dt_{\text{e}}} =
   \frac{
-    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{e}}}
+    \sqrt{1-2\frac{G}{c^{2}}\frac{M}{r_{e}}}
   }{
-    \sqrt{1-\frac{G}{c^{2}}\frac{M}{r_{s}}}
+    \sqrt{1-2\frac{G}{c^{2}}\frac{M}{r_{s}}}
   }
 \end{equation*}
 where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
@@ -3335,8 +3335,51 @@ As a simple example, consider a room's door. During one minute, three people ent
   \end{enumerate}
 \end{exercise}
 
+\section{Fluxes and velocities}
+\label{sec:fluxes_velocities}
 
+The idea of flux naturally evokes the idea of movement, and therefore of \emph{velocity}. Is there a relationship between flux and velocity?
 
+The answer is yes: velocity is in fact essentially defined from a flux and a volume integral. Consider for example how we measure the velocity of an object: we are actually keeping track of a flow of matter from one region of space to another.
+
+The rigorous definition of velocity from flux is somewhat involved, so here we'll just see a simplified and approximate example of how such a definition work. In any case, in the following chapters you won't need to remember any particular mathematical definition; just keep in mind that there's a tight connection between velocity, flux, and volume integral.
+
+Take an extensive scalar quantity, like matter, charge, energy, or entropy. For concreteness let's think of matter. Take a coordinate system $(t,x,y,z)$ and a point in space at some specific time. Around this point choose a very small cuboid region, delimited by six small rectangular surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one. The cuboid has volume $V$, and the amount of matter (volume integral) in it is $\yN$. The flux through either one of the two $yz$ surfaces, crossing in the positive-$x$ direction, is $\yJ_{x}$, and either surface has area $A$. Note that if the cuboid is small enough, the flux through either of the two $yz$ surfaces, and their area, is approximately the same.
+
+The $x$-component of the velocity of matter in this region, $v_{x}$, is defined as
+\begin{equation}
+  \label{eq:velocity_from_flux}
+  v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
+\end{equation}
+with analogous definitions for the $y$- and $z$-components.
+This definition is valid for small velocities and weak gravitational fields.
+
+The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive property. If you choose \emph{any} very small surface centred at this point, and move it with this velocity (in the direction specified by the velocity), then the matter flux through it is zero. This reflects the intuitive understanding that if a surface is \enquote{moving} together with the matter, at the same speed, then we shouldn't observe any flux through it.
+
+\medskip
+
+\clearpage
+
+% \begin{equation*}
+%   \incr t =
+%   \sqrt{
+%     \dfrac{
+% 1- \frac{2\,G\,M}{R\,c^{2}}
+%     }{
+%     1
+%     -\frac{v^{2}}{c^{2}}
+%     -\frac{2\,G\,M}{(h+R)\,c^{2}}
+%     -\frac{2\,G\,M}{(h+R)\,c^{2}}\,\frac{v^{2}}{c^{2}}
+%   }}\,\incr\tau
+% \end{equation*}
+% \begin{equation*}
+%   \begin{aligned}
+%     M &= \text{mass of planet or star}\\
+%     R &= \text{radius of planet or star}\\
+%     h &= \text{altitude of satellite from surface of planet or star}\\
+%     v &= \text{speed of satellite}\\
+%   \end{aligned}
+% \end{equation*}
 
 \printpagenotes*
 \clearpage
