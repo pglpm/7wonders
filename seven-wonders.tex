@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-01T18:57:07+0100
+%% Last-Updated: 2024-03-01T22:03:32+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1061,6 +1061,9 @@ keepaspectratio]{palebluedotA4s.png}%
 }}}
 
 %\usepackage[6-73,105-107]{pagesel}
+% \usepackage{tikz}
+% \usetikzlibrary{positioning}
+% \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 
 \begin{document}
 \AddToShipoutPicture*{\BackgroundPic}
@@ -4290,15 +4293,24 @@ For example, suppose that the total amount of energy in a given control volume, 
 As you recall from the definition of conservation and balance law on page~\pageref{eq:conserved}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must be either clearly stated or understood from the context. If this sequence is not specified, the volume integrals and fluxes above don't have any clear meaning.
 \end{warning}
 
-The formula above is almost always refined in a variety of ways, some extremely complex, in order to reduce the numerical error that comes from using a finite timestep $\Dt$ and from the approximation of the derivative. Yet it is the essential core of most numerical predictions done in physics.
+\begin{exercise}
+  At time\enspace$t=\qty{0}{s}$\enspace the amount of a particular substance (a kind of matter) in a control volume is \qty{0}{mol}, and there is an influx of \qty{8}{mol/s}. Assume that the substance satisfies a conservation law, and calculate the amount of substance at time\enspace$t'=\qty{0.01}{s}$\,.
+\end{exercise}
 
-In the case of a vector quantity such as momentum the time-stepped evolution equation remains the same. We only have to remember that we have three equations -- one per vector component -- instead of one:
+
+
+
+
+
+\subsection{Vector quantities}
+\label{sec:timestep_vector}
+
+In the case of a vector quantity such as momentum, the time-stepped evolution equation remains the same. We only have to remember that we have three equations -- one per vector component -- instead of one:
 \begin{equation}\label{eq:finite_diff_vect}
   \begin{gathered}
     \yP(t+\Dt)  \approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
-\qquad\text{or}
-    \\[\jot]
-    \left\{\   \begin{aligned}
+    \\[2\jot]
+\mathclap{\text{or}\qquad}    \left\{\   \begin{aligned}
         P_{x}(t+\Dt)  &\approx P_{x}(t) + [F_{x}(t) + G_{x}(t)]\,\Dt\\
         P_{y}(t+\Dt)  &\approx P_{y}(t) + [F_{y}(t) + G_{y}(t)]\,\Dt\\
         P_{z}(t+\Dt)  &\approx P_{z}(t) + [F_{z}(t) + G_{z}(t)]\,\Dt
@@ -4306,10 +4318,13 @@ In the case of a vector quantity such as momentum the time-stepped evolution equ
   \end{gathered}
 \end{equation}
 
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
 \begin{exercise}
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
-  \item At time\enspace$t=\qty{0}{s}$\enspace the amount of a particular substance (a kind of matter) in a control volume is \qty{0}{mol}, and there is an influx of \qty{8}{mol/s}. Assume that the substance satisfies a conservation law, and calculate the amount of substance at time\enspace$t'=\qty{0.01}{s}$\,.
-
   \item Let's follow the flight of a tennis ball by choosing a sequence of closed control surfaces, with corresponding control volumes, that tightly wrap it.
 
     At time\enspace$t=\qty{100}{s}$\enspace the amount of momentum and the supply of momentum in the tennis ball are
@@ -4333,12 +4348,44 @@ In the case of a vector quantity such as momentum the time-stepped evolution equ
     What was the velocity of the tennis ball at time $t$? How much is it \enspace$\qty{0.01}{s}$\enspace later?
   \end{enumerate}
 \end{exercise}
-\marginpar{\vspace{-19\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
 
+\medskip
+
+\subsection{Iterating}
+\label{sec:timestep_iterate}
+
+The evolution equation~\eqref{eq:finite_diff} can obviously be used iteratively:
+once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
+\begin{equation*}
+  \begin{aligned}
+    \yE(t+\Dt) &
+    \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
+    \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+    \\[-\jot]
+    \yE(t+2\Dt)  &
+    \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
+    \yE(t+\Dt) + [\yH(t+\Dt) + \yR(t+\Dt)]\,\Dt
+    \\[-\jot]
+    \yE(t+3\Dt)  &
+    \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
+    \yE(t+2\Dt) + [\yH(t+2\Dt) + \yR(t+2\Dt)]\,\Dt
+    \\[-\jot]
+    &\dotso
+  \end{aligned}
+% \begin{tikzpicture}[overlay,remember picture]%,out=315,in=225,distance=0.4cm]
+%     \draw[thick,yellow,->] (a.south) to (b.north);
+%   \end{tikzpicture}
+\end{equation*}
+To do this, you notice that we need to know the new values of influx $\yH$ and supply $\yR$ at all subsequent time steps. These values are \emph{not} given by the evolution equation~\eqref{eq:finite_diff}.
+
+In fact, the evolution equation from a balance or conservation law always gives us the \emph{volume integral} at a new time. So it would seem that we have no ways to predict a \emph{flux} or a \emph{supply}. Where do we get these from? There are two possibilities:
+\begin{itemize}[para]
+\item They are simply assigned at every time step, completely or in part. This may be possible because they are known, measured, or controlled. In this case we say that they are given as \textbf{boundary values} or \textbf{boundary conditions}.
+
+  For example, for isolated moving objects such as the tennis ball in the last exercise, it is known that the influx of momentum is zero  if the object is moving in vacuum, or sometimes negligible when moving through air.
+
+\item They can be calculated, thanks to \emph{constitutive relations}, from the values of volume integrals of other quantities.
+\end{itemize}
 
 \begin{exercise}
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
