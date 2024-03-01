@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-01T11:54:33+0100
+%% Last-Updated: 2024-03-01T18:57:07+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1788,7 +1788,7 @@ which is also a vector.
 \medskip
 
 \begin{exercise}
-  \begin{enumerate}[label=\bfseries\arabic*.]
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item Here are the three components of a time-dependent velocity vector; the variable $t$ is the time, and therefore has dimension \textsf{time}. Introduce units \enquote*{\unit{s}} and \enquote*{\unit{m}} appropriately in such a way that the expression is dimensionally correct:
     \begin{equation*}
       \bm{v}(t) = \bigl[4, \cos(3\,t), -\exp(8/t)\bigr]
@@ -2755,7 +2755,7 @@ We have a region consisting of two subregions; the amounts of momentum in each s
   \begin{center}
     \includegraphics[width=0.5\linewidth]{exercise_momentumsum.pdf}
   \end{center}
-  \begin{enumerate}[label=\bfseries\arabic*.]
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item Write the total momentum in each subregion in component form, $(P_{x}, P_{y})$, according to the coordinate system shown.
   \item Calculate the momentum in the whole region; represent it graphically as vector and write it in component form.
   \end{enumerate}
@@ -2920,7 +2920,7 @@ In \sect~\ref{sec:forms_energy} we mentioned that energy flux can be categorized
 
 \begin{exercise}
     For each question, answer in an \emph{unambiguous} way and sketch a picture representing the flux.
-  \begin{enumerate}[label=\bfseries\arabic*.]
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item The two sides of a particular surface are called \enquote*{up} and \enquote*{down}. During \qty{0.2}{s}, an energy of \qty{+3}{J} flows from the up-side to the down-side, and an energy of \qty{-4}{J} flows from the down-side to the up-side. How much is the flux of energy through the surface?
   \item Through the same surface, at a later time, \qty{2}{mol} of neutrons flow from the up- to the down- side in \qty{0.01}{s}, and \qty{2}{mol} of neutrons flow from the down- to the up-side during the same time. How much is the flux of matter through the surface?
   \item The two sides of a surface are called \enquote*{in} and \enquote*{out}. During \qty{0.01}{s} there is a flow of \num{1000} electrons from the in-side to the out-side, and also a flow of \num{1000} \emph{positrons} (anti-electrons) in the same direction. How much is the flux of matter through the surface?
@@ -3329,7 +3329,7 @@ As a simple example, consider a room's door. During one minute, three people ent
 \smallskip
 
 \begin{exercise}
-  \begin{enumerate}[label=\bfseries\arabic*.]
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item What is the physical dimension of the integrated flux of a quantity?
   \item Suppose that we calculate the integral above for a particular surface in the case of matter, finding a total of $\int_{t_{1}}^{t_{2}}\!\! \yJ(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
   \end{enumerate}
@@ -3346,12 +3346,7 @@ The rigorous definition of velocity from flux is somewhat involved, so here we'l
 
 Take an extensive scalar quantity, like matter, charge, energy, or entropy. For concreteness let's think of matter. Take a coordinate system $(t,x,y,z)$ and a point in space at some specific time. Around this point choose a very small cuboid region, delimited by six small rectangular surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one. The cuboid has volume $V$, and the amount of matter (volume integral) in it is $\yN$. The flux through either one of the two $yz$ surfaces, crossing in the positive-$x$ direction, is $\yJ_{x}$, and either surface has area $A$. Note that if the cuboid is small enough, the flux through either of the two $yz$ surfaces, and their area, is approximately the same.
 
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{flux_velocity.pdf}
-\\[\jot]\footnotesize\flushleftright%
-{\color{mpcolor}A region with a negative amount of charge}%
-}%
-The $x$-component of the velocity of matter in this region, $v_{x}$, is defined as
+The $x$-component of the velocity of matter in this region is defined as
 \begin{equation}
   \label{eq:velocity_from_flux}
   v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
@@ -3361,6 +3356,17 @@ This definition is valid for small velocities and weak gravitational fields.
 
 
 The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive property. If you choose \emph{any} very small surface centred at this point, and move it with this velocity (in the direction specified by the velocity), then the matter flux through it is zero. This reflects the intuitive understanding that if a surface is \enquote{moving} together with the matter, at the same speed, then we shouldn't observe any flux through it.
+
+\marginpar{\vspace{2\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{flux_velocity.pdf}
+% \\[\jot]\footnotesize\flushleftright%
+% {\color{mpcolor}A region with a negative amount of charge}%
+}%
+\begin{exercise}
+  Try to prove the formula~\eqref{eq:velocity_from_flux} relating flux and velocity in an intuitive way, referring to the illustration on the side.
+
+  As a starting point, consider this question: if the amount of matter $\yN$ in the volume $V$ is moving with velocity $v_{x}$ in the positive-$x$ direction, how much of it will cross the area $A$ during a time $\incr t$?
+\end{exercise}
 
 \medskip
 
@@ -3671,7 +3677,7 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 
 \medskip
 
-\begin{enumerate}[label=\bfseries\arabic*.]
+\begin{enumerate}[shift,label=\bfseries\arabic*.]
 \item For the present exercise we assume that energy satisfies a conservation law.
 
   An apartment's room has two identical electric heaters along a wall. An electric heater can be considered as a piece of surface across which energy flows into the room: the energy is entering (through the electric cable) in the form of electromagnetic energy, and is converted into internal energy (mainly of the room's air) by means of the heater. Suppose that each heater corresponds to an influx of \qty{200}{J/s}.
@@ -4128,7 +4134,7 @@ If a small control volume contains an amount of matter $\yN$, then it also conta
 where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depends on the kind of matter.
  This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
 
-\item[Constitutive relation for momentum and matter.]
+\item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity}
 Take a small control volume containing an amount of matter $\yN$, and such that there is no flux of matter across its surface. Then this control volume also contains an amount of momentum
 \marginpar{%
 \footnotesize\flushleftright{\color{mpcolor}%
@@ -4240,6 +4246,124 @@ The fact that the seven fundamental balances govern every physical phenomenon do
 
 In the following chapters we shall explore the seven fundamental balance laws in more detail, also giving examples of constitutive relations that typically accompany them.
 
+\section{Numerical simulations}
+\label{sec:numeric_simulation}
+
+Recall again the differential form of a balance law:
+\begin{equation*}
+  \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
+\end{equation*}
+Here we use the symbols for the volume integral and flux of energy, but the present discussion is valid for any of the other six quantities; and if $\yR=0$ it is also valid for a conservation law.
+
+The differential form of the balance law immediately lends itself to numerical simulation and prediction. The basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}. According to the meaning of the derivative, if we take a very small time step $\Dt$ then
+\begin{equation*}
+  \frac{\di\yE(t)}{\di t} \approx
+  \frac{\yE(t+\Dt) - \yE(t)}{\Dt}
+\end{equation*}
+So we can write the balance law above as
+\begin{equation*}
+  \frac{\yE(t+\Dt) - \yE(t)}{\Dt} -  \yH(t) \approx \yR(t)
+\end{equation*}
+Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. We obtain
+\begin{definition}{Time-stepped evolution equation}
+  \begin{equation}\label{eq:finite_diff}
+    \yE(t+\Dt)  \approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+  \end{equation}
+\end{definition}
+
+This equation says that if we know the value of the volume integral $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $t$, then we can predict the volume integral at a short time later, $\yE(t+\Dt)$.
+
+For example, suppose that the total amount of energy in a given control volume, at time\enspace$t=\qty{20}{s}$\enspace is\enspace$\yE(t)=\qty{500}{J}$\,.\enspace At that same time there is a net influx of\enspace$\yH(t)= \qty{-30}{J/s}$\enspace into the control volume. And let's suppose that the supply is zero,\enspace$\yR(t)=\qty{0}{J/s}$\,.\enspace The amount of energy in the control volume \qty{0.1}{s} later, that is, at time\enspace$t+\Dt = \qty{20}{s} + \qty{0.1}{s} = \qty{20.1}{s}$\,,\enspace is then
+\begin{equation*}
+  \begin{split}
+    \yE(\qty{20.1}{s}) &\approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+    \\
+    &\approx \yE(\qty{20}{s}) + [\yH(\qty{20}{s}) + \yR(\qty{20}{s})]\cdot\qty{0.1}{s}
+    \\
+    &\approx \qty{500}{J} + [\qty{-30}{J/s} + \qty{0}{J/s}]\cdot\qty{0.1}{s}
+    \\
+    &\approx \qty{497}{J} \,.
+  \end{split}
+\end{equation*}
+
+\begin{warning}[A control-surface sequence is understood]
+As you recall from the definition of conservation and balance law on page~\pageref{eq:conserved}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must be either clearly stated or understood from the context. If this sequence is not specified, the volume integrals and fluxes above don't have any clear meaning.
+\end{warning}
+
+The formula above is almost always refined in a variety of ways, some extremely complex, in order to reduce the numerical error that comes from using a finite timestep $\Dt$ and from the approximation of the derivative. Yet it is the essential core of most numerical predictions done in physics.
+
+In the case of a vector quantity such as momentum the time-stepped evolution equation remains the same. We only have to remember that we have three equations -- one per vector component -- instead of one:
+\begin{equation}\label{eq:finite_diff_vect}
+  \begin{gathered}
+    \yP(t+\Dt)  \approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
+\qquad\text{or}
+    \\[\jot]
+    \left\{\   \begin{aligned}
+        P_{x}(t+\Dt)  &\approx P_{x}(t) + [F_{x}(t) + G_{x}(t)]\,\Dt\\
+        P_{y}(t+\Dt)  &\approx P_{y}(t) + [F_{y}(t) + G_{y}(t)]\,\Dt\\
+        P_{z}(t+\Dt)  &\approx P_{z}(t) + [F_{z}(t) + G_{z}(t)]\,\Dt
+      \end{aligned}\right.
+  \end{gathered}
+\end{equation}
+
+\begin{exercise}
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
+  \item At time\enspace$t=\qty{0}{s}$\enspace the amount of a particular substance (a kind of matter) in a control volume is \qty{0}{mol}, and there is an influx of \qty{8}{mol/s}. Assume that the substance satisfies a conservation law, and calculate the amount of substance at time\enspace$t'=\qty{0.01}{s}$\,.
+
+  \item Let's follow the flight of a tennis ball by choosing a sequence of closed control surfaces, with corresponding control volumes, that tightly wrap it.
+
+    At time\enspace$t=\qty{100}{s}$\enspace the amount of momentum and the supply of momentum in the tennis ball are
+    \begin{equation*}
+      \yP(t) =
+      \begin{bmatrix}
+        3\\0\\2
+      \end{bmatrix}\:\unit{N\,s}
+      \qquad
+      \yG(t) =
+      \begin{bmatrix}
+        0\\0\\-0.579
+      \end{bmatrix}\:\unit{N}
+    \end{equation*}
+    and the influx of momentum is zero. Calculate the momentum within the control volume\enspace$\qty{0.01}{s}$\enspace later.
+
+  \item The tennis ball has a \masse\enspace$\yM = \qty{0.059}{kg}$\,.\enspace Assume the constitutive equation for momentum discussed on p.~\pageref{item:momentum_mass_velocity}:
+    \begin{equation*}
+      \yP = \yM\,\yv
+    \end{equation*}
+    What was the velocity of the tennis ball at time $t$? How much is it \enspace$\qty{0.01}{s}$\enspace later?
+  \end{enumerate}
+\end{exercise}
+\marginpar{\vspace{-19\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
+
+
+\begin{exercise}
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
+  \item Write a script, in your preferred programming language, that implements the time-stepped evolution equation above. The script should initially ask for the timestep $\Dt$ (which is kept constant afterwards), and then should read the values
+
+
+  %   routine above in an $x$-grid with four cells $x=1,\ \dotsc,\ x=4$. Take a grid size $\Dx=1$ and time step $\Dt=1$. We can imagine that the quantity in question is electric charge. Use the following initial values for $n(t,x)$ at $t=0$:
+  % \begin{equation*}
+  %   n(t\mo0, x\mo1)=7\ ,\enspace
+  %   n(t\mo0, x\mo2)=0\ ,\enspace
+  %   n(t\mo0, x\mo3)=0\ ,\enspace
+  %   n(t\mo0, x\mo4)=7
+  % \end{equation*}
+  % and assume the flux is, at each time $t$:
+  % \begin{multline*}
+  %     j_{x}(t, x\mo0.5)=0\ ,\\
+  %     j_{x}(t, x\mo1.5)=+2\ ,\enspace
+  %     j_{x}(t, x\mo2.5)=0\ ,\enspace
+  %     j_{x}(t, x\mo3.5)=-2\ ,\\
+  %     j_{x}(t, x\mo4.5)=0 \ .
+  %   \end{multline*}
+
+  \end{enumerate}
+\end{exercise}
+
 
 
 
@@ -4266,20 +4390,20 @@ Choose an arbitrary sequence of closed control surfaces between coordinate times
   \end{equation}
 \end{definition}
 
-Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
+Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. % This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
 
-In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume integral, but it would make little sense if the flux didn't equal the rate of change of the volume integral.
-\begin{extra}{Velocity from flux and volume integral}\label{extra:velocity_matter}
-  Suppose we have a coordinate system $(t,x,y,z)$. Consider a small spatial region of cuboid shape delimited by two surfaces having $x$ constant, two having $y$ constant, and two having $z$ constant. The instantaneous velocity component $v_{x}$ is defined as the ratio of:
-  \begin{enumerate*}[label=(\alph*)]
-  \item the flux $\yJ_{x}$ through any of the two $x$-constant surfaces, crossing in the positive-$x$ orientation, divided by surface area $A$, and 
-  \item the volume integral $\yN$ in the cuboid region, divided by the region's volume $V$:
-  \end{enumerate*}
-  \begin{equation*}
-    v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
-  \end{equation*}
-  And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields (Newtonian approximation).
-\end{extra}
+% In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume integral, but it would make little sense if the flux didn't equal the rate of change of the volume integral.
+% \begin{extra}{Velocity from flux and volume integral}\label{extra:velocity_matter}
+%   Suppose we have a coordinate system $(t,x,y,z)$. Consider a small spatial region of cuboid shape delimited by two surfaces having $x$ constant, two having $y$ constant, and two having $z$ constant. The instantaneous velocity component $v_{x}$ is defined as the ratio of:
+%   \begin{enumerate*}[label=(\alph*)]
+%   \item the flux $\yJ_{x}$ through any of the two $x$-constant surfaces, crossing in the positive-$x$ orientation, divided by surface area $A$, and 
+%   \item the volume integral $\yN$ in the cuboid region, divided by the region's volume $V$:
+%   \end{enumerate*}
+%   \begin{equation*}
+%     v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
+%   \end{equation*}
+%   And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields (Newtonian approximation).
+% \end{extra}
 
 \section{Examples of constitutive relations}
 \label{sec:matter_constitutive}
@@ -4330,7 +4454,7 @@ Phenomena for which this constitutive equation is no longer valid appear for exa
 
 \begin{exercise}
   At a particular time, a party balloon contains \qty{0.012}{kg} of Helium. A minute later, the same balloon contains \qty{0.010}{kg} of helium. Assume conservation of Helium, as well as a constitutive relation between amount and mass with \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/He}{Helium molar-mass constant} $\yrho_{\mathrm{He}} = \qty{4e-3}{kg/mol}$.
-  \begin{enumerate}[label=\bfseries\arabic*.]
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item How much is the \emph{integrated efflux} of Helium, \textbf{in moles}, through the balloon's surface during the one-minute lapse of time?
   \item Assume that the efflux of Helium was constant in time during the one-minute time lapse. How much was the efflux of Helium, in moles/second?
   \end{enumerate}
@@ -4355,7 +4479,7 @@ Consider a small control volume containing, at time $t$, an amount $\yN$ of matt
     % \yM=\yrho\yN
   \end{equation}
 \end{definition}
-(The velocity $\yv$ is actually determined by the flux of matter, see the blue box on p.~\pageref{extra:velocity_matter}, but for the present purpose you can use your intuitive understanding of this velocity).
+(The velocity $\yv$ is actually determined by the flux of matter, see the blue box on p\mynotew{}, but for the present purpose you can use your intuitive understanding of this velocity).
 
 An analogous constitutive relation also exists between flux of momentum and flux of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead.
 \begin{definition}{Convective flux of momentum (special case)}
@@ -4382,7 +4506,7 @@ These constitutive relations are only approximate and become incorrect when the 
   \item the amount of water in the illustrated volume is $\yN=\qty{4e5}{mol}$;
   \item water only flows across the imaginary vertical surfaces that delimit the river section on the front and back of the picture, cutting across the river.
   \end{enumerate*}
-  \begin{enumerate}[label=\bfseries\arabic*.]
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item What can you say about the two fluxes across the two imaginary vertical surfaces, each considered as crossed from right to left in the picture? Can you find their numerical values?
 
   \item You are told that the illustrated volume of water has total momentum $P=\qty{21600}{N\,s}$, directed from left to right perpendicularly to the imaginary vertical surfaces. Assuming the Newtonian formula for momentum, and the molar-mass constant $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, can you find the values of the fluxes from the previous question?
