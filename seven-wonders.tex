@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-02T21:22:15+0100
+%% Last-Updated: 2024-03-02T21:58:40+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4375,14 +4375,14 @@ once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to 
 \begin{equation}\label{eq:timestepped_evolution}
   \begin{aligned}
     \mathcolor{blue}{\yE(t+\Dt)} &
-    \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
+    \mathrel{\underset{\mathclap{\color{blue}\displaystyle\searrow}}{\approx}}
     \yE(t) + [\yH(t) + \yR(t)]\,\Dt
     \\[-\jot]
     \mathcolor{red}{\yE(t+2\Dt)}  &
-    \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
+    \mathrel{\underset{\mathclap{\color{red}\displaystyle\searrow}}{\approx}}
     \mathcolor{blue}{\yE(t+\Dt)} + [\yH(t+\Dt) + \yR(t+\Dt)]\,\Dt
     \\[-\jot]
-    \yE(t+3\Dt)  &
+    \mathcolor{yellow}{\yE(t+3\Dt)}  &
     \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
     \mathcolor{red}{\yE(t+2\Dt)} + [\yH(t+2\Dt) + \yR(t+2\Dt)]\,\Dt
     \\[-\jot]
@@ -4420,7 +4420,7 @@ In fact, the evolution equation from a balance or conservation law always gives 
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
-\begin{exercise}
+\begin{exercise}[label={ex:tennisball2}]
   In Exercise~\ref{ex:tennisball} you calculated the evolution of the tennis ball's momentum -- all its three components -- for one timestep of \qty{0.01}{s}.
 
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
@@ -4560,6 +4560,15 @@ plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
     &\dotso
   \end{aligned}
 \end{equation*}
+
+\begin{exercise}[label={ex:tennisball3}]
+  Modify the script you made for part \textbf{1.} of Exercise~\ref{ex:tennisball2}, so that it also evolves the position $\yr(t)$ of the tennis ball.
+
+  Redo the numerical simulation you did for that exercise, with the same numerical parameters, and with an initial position for the tennis ball $\yr(t_{0}) = [0,0,2]\:\unit{m}$.
+
+  Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the two margin plots above.
+\end{exercise}
+
 
 
 \printpagenotes*
