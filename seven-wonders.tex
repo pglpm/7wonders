@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-02T17:24:33+0100
+%% Last-Updated: 2024-03-02T21:22:15+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1061,7 +1061,9 @@ keepaspectratio]{palebluedotA4s.png}%
 }}}
 
 %\usepackage[6-73,105-107]{pagesel}
-% \usepackage{tikz}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{arrows.meta}
 % \usetikzlibrary{positioning}
 % \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 
@@ -4372,17 +4374,17 @@ once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to 
 }%
 \begin{equation}\label{eq:timestepped_evolution}
   \begin{aligned}
-    \yE(t+\Dt) &
+    \mathcolor{blue}{\yE(t+\Dt)} &
     \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
     \yE(t) + [\yH(t) + \yR(t)]\,\Dt
     \\[-\jot]
-    \yE(t+2\Dt)  &
+    \mathcolor{red}{\yE(t+2\Dt)}  &
     \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
-    \yE(t+\Dt) + [\yH(t+\Dt) + \yR(t+\Dt)]\,\Dt
+    \mathcolor{blue}{\yE(t+\Dt)} + [\yH(t+\Dt) + \yR(t+\Dt)]\,\Dt
     \\[-\jot]
     \yE(t+3\Dt)  &
     \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
-    \yE(t+2\Dt) + [\yH(t+2\Dt) + \yR(t+2\Dt)]\,\Dt
+    \mathcolor{red}{\yE(t+2\Dt)} + [\yH(t+2\Dt) + \yR(t+2\Dt)]\,\Dt
     \\[-\jot]
     &\dotso
   \end{aligned}
@@ -4487,16 +4489,78 @@ Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. 
 \end{definition}
 This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iterated as discussed on page~\pageref{sec:timestep_iterate}. This way we numerically integrate the position $\yr(t)$ and can therefore keep track and predict the motion of an object.
 
-The numerical integration of a position vector $\yr(t)$ is often done together with the numerical integration of momentum $\yP(t)$: thanks to the constitutive relation $\yP=\yM\yv$, knowing the momentum at a later timestep allows us to know the velocity at a later timestep.
+\smallskip
 
-Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward, assuming that the other two coordinates have some constant value. Assume these conditions:
+The numerical integration of a position vector $\yr(t)$ is often done together with the numerical integration of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\yM\yv$, knowledge of the momentum at a later timestep allows us to also know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial $\yr(t)$ and  $\yP(t)$ are given, and also the influx $\yF$ and supply $\yG$ are known at all times:
+\begin{equation*}
+  \begin{aligned}
+    \yv(t)\tikzmark{va} &= \yP(t)/\yM
+    \\[3\jot]
+    \yr\tikzmark{ra}(t+\Dt)  &\approx \yr(t) + \tikzmark{vb}\yv(t)\,\Dt\\
+    \yP\tikzmark{pa}(t+\Dt)  &\approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt\\
+    \yv\tikzmark{vva}(t+\Dt) &= \tikzmark{pb}\yP(t+\Dt)/\yM
+     \\[3\jot]
+    \yr(t+2\Dt)  &\approx \tikzmark{rb}\yr(t+\Dt) + \tikzmark{vvb}\yv(t+\Dt)\,\Dt\\
+    \yP(t+2\Dt)  &\approx \tikzmark{pc}\yP(t+\Dt) + [\yF(t+\Dt) + \yG(t+\Dt)]\,\Dt\\
+    \yv(t+2\Dt) &= \yP(t+2\Dt)/\yM
+    \\[3\jot]
+    \yr(t+3\Dt)  &\approx \yr(t+2\Dt) + \yv(t+2\Dt)\,\Dt\\
+    \yP(t+3\Dt)  &\approx \yP(t+2\Dt) + [\yF(t+2\Dt) + \yG(t+2\Dt)]\,\Dt\\
+    \yv(t+3\Dt) &= \yP(t+3\Dt)/\yM
+    \\[3\jot]
+    &\dotso
+  \end{aligned}
+\end{equation*}
+\begin{tikzpicture}[remember picture]
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to  ([shift={(0ex,1ex)}]pic cs:vb);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:vva) to  ([shift={(0ex,1ex)}]pic cs:vvb);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:ra) to  ([shift={(0ex,1ex)}]pic cs:rb);
+\draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to  ([shift={(0ex,1.5ex)}]pic cs:pb);
+\draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to  ([shift={(0ex,1.5ex)}]pic cs:pc);
+\end{tikzpicture}
+Keep in mind that these are vector equations, so each one corresponds to three components.
+
+For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
+
+Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward, the other two coordinates having some constant value. Assume these conditions:
 \begin{itemize}\tightlist
 \item initial time is $t_{0}=\qty{0}{s}$
-\item initial position is $z(t_{0})=\qty{2}{m}$
-\item initial momentum is $P_{z}(t_{0})=\qty{1}{N\,s}$
-\item \masse\ of object is $\yM=\qty{3}{kg}$
-\item momentum supply, gravity, is $G_{z}=-\yM\cdot\qty{9.81}{N/kg}$
+\item initial position is $z(t_{0})=\qty{5}{m}$
+\item initial momentum is $P_{z}(t_{0})=\qty{30}{N\,s}$
+\item \masse\ of object is $\yM=\qty{4}{kg}$
+\item momentum supply, gravity, is $G_{z}=-\yM\cdot\qty{9.81}{N/kg} = \qty{-39.23}{N}$
+\item timestep is $\Dt = \qty{0.1}{s}$
 \end{itemize}
+Then numerical integration up to $t=\qty{0.2}{s}$ would look as follows:\noprelistbreak
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{plot_tennisball_z.pdf}\\
+\includegraphics[width=\linewidth]{plot_tennisball_P.pdf}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integration for \qty{2}{s}}%
+}%
+\begin{equation*}
+  \begin{aligned}
+    v_{z}(\qty{0}{s}) &= P_{z}(\qty{0}{s})/\yM\\
+    &=\qty{30}{N\,s}/\qty{4}{kg} = \qty{7.50}{m/s}
+    \\[3\jot]
+    z(\qty{0.1}{s})  &\approx z(\qty{0}{s}) + v_{z}(\qty{0}{s})\,\Dt\\
+    &\approx \qty{5}{m} + \qty{7.50}{m/s}\cdot\qty{0.1}{s} = \qty{5.75}{m}\\[0.5\jot]
+    P_{z}(\qty{0.1}{s})  &\approx P_{z}(\qty{0}{s}) + [F_{z}(\qty{0}{s}) + G_{z}(\qty{0}{s})]\,\Dt \\
+    &\approx\qty{30}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{26.08}{N\,s} \\[0.5\jot]
+    v_{z}(\qty{0.1}{s}) &= P_{z}(\qty{0.1}{s})/\yM\\
+    &=\qty{26.08}{N\,s}/\qty{4}{kg} = \qty{6.52}{m/s}
+    \\[3\jot]
+    z(\qty{0.2}{s})  &\approx z(\qty{0.1}{s}) + v_{z}(\qty{0.1}{s})\,\Dt\\
+    &\approx \qty{5.75}{m} + \qty{6.52}{m/s}\cdot\qty{0.1}{s} = \qty{6.40}{m}\\[0.5\jot]
+    P_{z}(\qty{0.2}{s})  &\approx P_{z}(\qty{0.1}{s}) + [F_{z}(\qty{0.1}{s}) + G_{z}(\qty{0.1}{s})]\,\Dt\\
+    &\approx\qty{26.08}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{22.15}{N\,s} \\[0.5\jot]
+    v_{z}(\qty{0.2}{s}) &= P_{z}(\qty{0.2}{s})/\yM\\
+    &=\qty{22.15}{N\,s}/\qty{4}{kg} = \qty{5.54}{m/s}
+    \\[3\jot]
+    &\dotso
+  \end{aligned}
+\end{equation*}
+
 
 \printpagenotes*
 \clearpage
