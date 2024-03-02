@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-01T22:17:31+0100
+%% Last-Updated: 2024-03-02T17:24:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4138,15 +4138,24 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
  This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
 
 \item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity}
-Take a small control volume containing an amount of matter $\yN$, and such that there is no flux of matter across its surface. Then this control volume also contains an amount of momentum
+  Take a small control volume of cuboid shape, with side surfaces \emph{not moving} in the coordinate system $(t,x,y,z)$, and parallel to the $yz$-, $zx$-, and $xy$-coordinates. The cuboid has volume $V$ and each side surface has area $A$.
+
+  The control volume contains an amount of matter $\yN$. The flux across the side parallel to $yz$, in the positive-$x$ direction, is $\yJ_{x}$; and similarly for the other two directions. Remember from \sect~\ref{sec:fluxes_velocities} that we can consider the matter in the control volume as moving with velocity
+  \begin{equation*}
+    \yv = (v_{x}, v_{y}, v_{z}) = \frac{V}{A\,\yN}\, (\yJ_{x}, \yJ_{y}, \yJ_{z})
+  \end{equation*}
+
+  Then this control volume also contains an amount of momentum
 \marginpar{%
-\footnotesize\flushleftright{\color{mpcolor}%
-This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
+    \footnotesize\flushleftright{\color{mpcolor}%
+      This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
 \begin{equation*}
-  \yP = \yM\yv
+  \yP = \yM\yv \equiv \yrho\,\yN\,\yv \equiv \yrho\, \frac{V}{A}\,
+  \begin{bmatrix}
+    J_{x}\\J_{y}\\J_{z}
+  \end{bmatrix}
 \end{equation*}
-where $\yv$ is the velocity of the control volume.
-Note that this relation uses the previous one between mass and matter, so we have $\yP = \yrho\yN\yv$.
+The relation \enquote{$\yP=\yM\yv$} is the traditional one; but we see that it is completely equivalent to a relation between momentum and \emph{flux} of matter.
 
 \begin{extra}{More symmetric relation between mass \amp\ momentum and matter}
   When we work with \emph{densities}, which express the amounts of a quantity per unit volume or per unit surface, the relation between \masse\ \amp\ momentum on one side, and matter \amp\ its flux on the other, becomes more explicit and symmetric. We have
@@ -4159,7 +4168,7 @@ Note that this relation uses the previous one between mass and matter, so we hav
 \item[Constitutive relation for supply of momentum.]
   If a small control volume contains an amount of \masse\ $\yM$, then it also has a supply of momentum
   \begin{equation*}
-    \yG = \yM\yg
+    \yG = \yM\yg = \yrho\yN\yg
   \end{equation*}
   where $\yg$ is a vector that depends on the gravitational field.  This constitutive relation expresses the \emph{gravitational force}.
 
@@ -4258,7 +4267,7 @@ Recall again the differential form of a balance law:
 \end{equation*}
 Here we use the symbols for the volume integral and flux of energy, but the present discussion is valid for any of the other six quantities; and if $\yR=0$ it is also valid for a conservation law.
 
-The differential form of the balance law immediately lends itself to numerical simulation and prediction. The basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}. According to the meaning of the derivative, if we take a very small time step $\Dt$ then
+The differential form of the balance law immediately lends itself to numerical simulation and prediction. The basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}. According to the meaning of the derivative, if we take a small time step $\Dt$ then
 \begin{equation*}
   \frac{\di\yE(t)}{\di t} \approx
   \frac{\yE(t+\Dt) - \yE(t)}{\Dt}
@@ -4276,10 +4285,10 @@ Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. 
 
 This equation says that if we know the value of the volume integral $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $t$, then we can predict the volume integral at a short time later, $\yE(t+\Dt)$.
 
-For example, suppose that the total amount of energy in a given control volume, at time\enspace$t=\qty{20}{s}$\enspace is\enspace$\yE(t)=\qty{500}{J}$\,.\enspace At that same time there is a net influx of\enspace$\yH(t)= \qty{-30}{J/s}$\enspace into the control volume. And let's suppose that the supply is zero,\enspace$\yR(t)=\qty{0}{J/s}$\,.\enspace The amount of energy in the control volume \qty{0.1}{s} later, that is, at time\enspace$t+\Dt = \qty{20}{s} + \qty{0.1}{s} = \qty{20.1}{s}$\,,\enspace is then
+For example, suppose that the total amount of energy in a given control volume, at time\enspace$t_{0}=\qty{20}{s}$\enspace is\enspace$\yE(t_{0})=\qty{500}{J}$\,.\enspace At that same time there is a net influx of\enspace$\yH(t_{0})= \qty{-30}{J/s}$\enspace into the control volume. And let's suppose that the supply is zero,\enspace$\yR(t_{0})=\qty{0}{J/s}$\,.\enspace The amount of energy in the control volume \qty{0.1}{s} later, that is, at time\enspace$t_{0}+\Dt = \qty{20}{s} + \qty{0.1}{s} = \qty{20.1}{s}$\,,\enspace is then
 \begin{equation*}
   \begin{split}
-    \yE(\qty{20.1}{s}) &\approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+    \yE(\qty{20.1}{s}) &\approx \yE(t_{0}) + [\yH(t_{0}) + \yR(t_{0})]\,\Dt
     \\
     &\approx \yE(\qty{20}{s}) + [\yH(\qty{20}{s}) + \yR(\qty{20}{s})]\cdot\qty{0.1}{s}
     \\
@@ -4323,18 +4332,18 @@ In the case of a vector quantity such as momentum, the time-stepped evolution eq
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
-\begin{exercise}
+\begin{exercise}[label={ex:tennisball}]
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item Let's follow the flight of a tennis ball by choosing a sequence of closed control surfaces, with corresponding control volumes, that tightly wrap it.
 
-    At time\enspace$t=\qty{100}{s}$\enspace the amount of momentum and the supply of momentum in the tennis ball are
+    At time\enspace$t_{0}=\qty{0}{s}$\enspace the amount of momentum and the supply of momentum in the tennis ball are
     \begin{equation*}
-      \yP(t) =
+      \yP(t_{0}) =
       \begin{bmatrix}
         3\\0\\2
       \end{bmatrix}\:\unit{N\,s}
       \qquad
-      \yG(t) =
+      \yG(t_{0}) =
       \begin{bmatrix}
         0\\0\\-0.579
       \end{bmatrix}\:\unit{N}
@@ -4345,18 +4354,23 @@ In the case of a vector quantity such as momentum, the time-stepped evolution eq
     \begin{equation*}
       \yP = \yM\,\yv
     \end{equation*}
-    What was the velocity of the tennis ball at time $t$? How much is it \enspace$\qty{0.01}{s}$\enspace later?
+    What was the velocity of the tennis ball at time $t_{0}$? How much is it \enspace$\qty{0.01}{s}$\enspace later?
   \end{enumerate}
 \end{exercise}
 
 \medskip
 
-\subsection{Iterating}
+\subsection{Iterating: numerical time integration and boundary conditions}
 \label{sec:timestep_iterate}
 
 The evolution equation~\eqref{eq:finite_diff} can obviously be used iteratively:
 once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
-\begin{equation*}
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{momentum_timestep2.png}
+\\[2\jot]\footnotesize\flushleftright{\color{mpcolor}%
+\furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage} iterating an evolution equation for momentum}%
+}%
+\begin{equation}\label{eq:timestepped_evolution}
   \begin{aligned}
     \yE(t+\Dt) &
     \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
@@ -4375,45 +4389,114 @@ once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to 
 % \begin{tikzpicture}[overlay,remember picture]%,out=315,in=225,distance=0.4cm]
 %     \draw[thick,yellow,->] (a.south) to (b.north);
 %   \end{tikzpicture}
-\end{equation*}
-To do this, you notice that we need to know the new values of influx $\yH$ and supply $\yR$ at all subsequent time steps. These values are \emph{not} given by the evolution equation~\eqref{eq:finite_diff}.
+\end{equation}
+\begin{definition}{Numerical time integration}
+  The numerical calculation of a quantity at successive time steps, with algorithms similar to the one illustrated above, is called \textbf{numerical time integration}, often simply shortened to \emph{integration}.
+\end{definition}
+
+\subsection{Boundary conditions}
+\label{sec:boundary_conds}
+
+In order to do the numerical time integration above, you notice that we need to know the new values of influx $\yH$ and supply $\yR$ at all subsequent time steps. These values are \emph{not} given by the evolution equation~\eqref{eq:finite_diff}.
 
 In fact, the evolution equation from a balance or conservation law always gives us the \emph{volume integral} at a new time. So it would seem that we have no ways to predict a \emph{flux} or a \emph{supply}. Where do we get these from? There are two possibilities:
 \begin{itemize}[para]
-\item They are simply assigned at every time step, completely or in part. This may be possible because they are known, measured, or controlled. In this case we say that they are given as \textbf{boundary values} or \textbf{boundary conditions}.
+\item They are simply assigned at every time step, completely or in part. This may be possible because they are known, measured, or controlled.
+  \begin{definition}{Boundary conditions}
+    The quantities that we need to specify \emph{at each time} for the prediction or simulation of a physical phenomenon are called \textbf{boundary conditions}, and their values \emph{boundary values}.
+  \end{definition}
 
-  For example, for isolated moving objects such as the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or sometimes negligible when moving through air; and the constant value of the momentum supply (the gravitational force) is also known.
+  For example, for isolated moving objects such as the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or sometimes negligible when moving through air; and the constant value of the momentum supply (the gravitational force) is also known. They are both given as boundary conditions for that specific problems.
 
 \item They can be calculated, thanks to \emph{constitutive relations}, from the values of volume integrals of other quantities -- which are in turn predicted with an evolution equation.
+
+  An example is the constitutive relation for momentum and matter briefly discussed on p.~\pageref{item:momentum_mass_velocity}, which relates the \emph{flux} of matter to the \emph{volume integral} of momentum.  We shall later explore and use more examples of constitutive relations for the purpose of simulating physical systems.
 \end{itemize}
 
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
 \begin{exercise}
+  In Exercise~\ref{ex:tennisball} you calculated the evolution of the tennis ball's momentum -- all its three components -- for one timestep of \qty{0.01}{s}.
+
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
-  \item Write a script, in your preferred programming language, that implements the time-stepped evolution equation above. The script should initially ask for the timestep $\Dt$ (which is kept constant afterwards), and then should read the values
+  \item Write a script, in your preferred programming language, that implements the time-stepped evolution algorithm~\eqref{eq:timestepped_evolution} and evolves all three components of momentum. Assume:
+    \begin{itemize}\tightlist
+    \item total duration of simulation is \qty{2}{s}
+    \item timestep is $\Dt={0.01}{s}$
+    \item momentum at initial time $t_{0}=\qty{0}{s}$ is $\yP(t_{0}) = [3,0,3]\:\unit{N\,s}$
+    \item momentum influx is zero at all times
+    \item  momentum supply is $\yG=[0,0,\num{-0.579}]\:\unit{N}$ at all times
+    \end{itemize}
+    The script should output the values of the three momentum components of the tennis ball at all times; plot each of them against time.
 
+    \smallskip
 
-  %   routine above in an $x$-grid with four cells $x=1,\ \dotsc,\ x=4$. Take a grid size $\Dx=1$ and time step $\Dt=1$. We can imagine that the quantity in question is electric charge. Use the following initial values for $n(t,x)$ at $t=0$:
-  % \begin{equation*}
-  %   n(t\mo0, x\mo1)=7\ ,\enspace
-  %   n(t\mo0, x\mo2)=0\ ,\enspace
-  %   n(t\mo0, x\mo3)=0\ ,\enspace
-  %   n(t\mo0, x\mo4)=7
-  % \end{equation*}
-  % and assume the flux is, at each time $t$:
-  % \begin{multline*}
-  %     j_{x}(t, x\mo0.5)=0\ ,\\
-  %     j_{x}(t, x\mo1.5)=+2\ ,\enspace
-  %     j_{x}(t, x\mo2.5)=0\ ,\enspace
-  %     j_{x}(t, x\mo3.5)=-2\ ,\\
-  %     j_{x}(t, x\mo4.5)=0 \ .
-  %   \end{multline*}
+  \item Recall the constitutive relation $\yP=\yM\yv$ for the tennis ball, with $\yM = \qty{0.059}{kg}$. Use the results of your script to plot the three components of the velocity $\yv$ against time.
 
+    \smallskip
+
+  \item Make your script more general: it should initially ask for (or require as arguments, if implemented as a function):
+    \begin{itemize}\tightlist
+    \item the desired total simulation time
+    \item the timestep $\Dt$ to be used in the algorithm
+    \item the initial momentum $\yP(t_{0})$
+    \item the mass $\yM$ of the tennis ball (or other flying object)
+    \end{itemize}
+    and then use the constant momentum supply
+    \begin{equation*}
+      \yG = \yM\cdot [0,0,-9.81]\:\unit{N/kg}
+    \end{equation*}
   \end{enumerate}
 \end{exercise}
 
+\subsection{Integration of position}
+\label{sec:position_integration}
 
+In many applications we are interested in how the position $\yr$ of a small object, or of a small portion of an object, changes in time. The time integration that we have discussed for the volume integrals of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
 
+The velocity $\yv$ of a point is the time derivative of its position:
+$\yv(t) = \frac{\di\yr(t)}{\di t}$.
+% \begin{equation*}
+%   \yv(t) = \frac{\di\yr(t)}{\di t}
+%   \qquad\text{or}\qquad
+% \left\{\   \begin{aligned}
+%   v_{x}(t) &= \frac{\di x(t)}{\di t}\\
+%   v_{y}(t) &= \frac{\di y(t)}{\di t}\\
+%   v_{z}(t) &= \frac{\di z(t)}{\di t}
+%       \end{aligned}\right.
+% \end{equation*}
+For a small time step $\Dt$ we can approximately write
+\begin{equation*}
+  \yv(t) \approx
+  \frac{\yr(t+\Dt) - \yr(t)}{\Dt}
+\end{equation*}
+Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. We obtain
+\begin{definition}{Time-stepped evolution equation for position}
+  \begin{equation}\label{eq:finite_diff}
+    \yr(t+\Dt)  \approx \yr(t) + \yv(t)\,\Dt
+  \qquad\text{or}\qquad
+\left\{\   \begin{aligned}
+    x(t+\Dt)  &\approx x(t) + v_{x}(t)\,\Dt\\[\jot]
+    y(t+\Dt)  &\approx y(t) + v_{y}(t)\,\Dt\\[\jot]
+    z(t+\Dt)  &\approx z(t) + v_{z}(t)\,\Dt
+      \end{aligned}\right.
+  \end{equation}
+\end{definition}
+This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iterated as discussed on page~\pageref{sec:timestep_iterate}. This way we numerically integrate the position $\yr(t)$ and can therefore keep track and predict the motion of an object.
 
+The numerical integration of a position vector $\yr(t)$ is often done together with the numerical integration of momentum $\yP(t)$: thanks to the constitutive relation $\yP=\yM\yv$, knowing the momentum at a later timestep allows us to know the velocity at a later timestep.
+
+Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward, assuming that the other two coordinates have some constant value. Assume these conditions:
+\begin{itemize}\tightlist
+\item initial time is $t_{0}=\qty{0}{s}$
+\item initial position is $z(t_{0})=\qty{2}{m}$
+\item initial momentum is $P_{z}(t_{0})=\qty{1}{N\,s}$
+\item \masse\ of object is $\yM=\qty{3}{kg}$
+\item momentum supply, gravity, is $G_{z}=-\yM\cdot\qty{9.81}{N/kg}$
+\end{itemize}
 
 \printpagenotes*
 \clearpage
@@ -4544,8 +4627,13 @@ An analogous constitutive relation also exists between flux of momentum and flux
 
 These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the gravitational fields are strong, or when some kind of electromagnetic phenomena are also involved.
 
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{riverbed3.png}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+(Illustration by \furl{https://dribbble.com/squarefountain}{Cathryn Briggs})}%
+}%
 \begin{exercise}
-  The side picture shows the section of a river. The river has an approximately \emph{steady flow} of water; this means that if we choose a static control volume anywhere in the river, such as the one in the depicted section, the amount of water $\yN$ therein is \emph{constant in time}.
+  The side picture illustrates the section of a river. The river has an approximately \emph{steady flow} of water; this means that if we choose a static control volume anywhere in the river, such as the one in the depicted section, the amount of water $\yN$ therein is \emph{constant in time}.
 
   Assume that
   \begin{enumerate*}[label=(\alph*)]
@@ -4559,11 +4647,6 @@ These constitutive relations are only approximate and become incorrect when the 
   \item You are told that the illustrated volume of water has total momentum $P=\qty{21600}{N\,s}$, directed from left to right perpendicularly to the imaginary vertical surfaces. Assuming the Newtonian formula for momentum, and the molar-mass constant $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, can you find the values of the fluxes from the previous question?
   \end{enumerate}
 \end{exercise}
-\marginpar{\vspace{-18\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{riverbed3.png}%
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-(Illustration by \furl{https://dribbble.com/squarefountain}{Cathryn Briggs})}%
-}%
 
 \subsection{Thermodynamics}
 \label{sec:matter_const_thermodynamics}
