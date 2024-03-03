@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-03T08:17:08+0100
+%% Last-Updated: 2024-03-03T11:04:37+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3354,7 +3354,7 @@ Take an extensive scalar quantity, like matter, charge, energy, or entropy. For 
 The $x$-component of the velocity of matter in this region is defined as
 \begin{equation}
   \label{eq:velocity_from_flux}
-  v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
+  v_{x} \defd \frac{J_{x}/A}{\yN/V}
 \end{equation}
 with analogous definitions for the $y$- and $z$-components.
 This definition is valid for small velocities and weak gravitational fields.
@@ -4200,32 +4200,14 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
  This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
 
 \item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity}
-  Take a small control volume of cuboid shape, with side surfaces \emph{not moving} in the coordinate system $(t,x,y,z)$, and parallel to the $yz$-, $zx$-, and $xy$-coordinates. The cuboid has volume $V$ and each side surface has area $A$.
-
-  The control volume contains an amount of matter $\yN$. The flux across the side parallel to $yz$, in the positive-$x$ direction, is $\yJ_{x}$; and similarly for the other two directions. Remember from \sect~\ref{sec:fluxes_velocities} that we can consider the matter in the control volume as moving with velocity
-  \begin{equation*}
-    \yv = (v_{x}, v_{y}, v_{z}) = \frac{V}{A\,\yN}\, (\yJ_{x}, \yJ_{y}, \yJ_{z})
-  \end{equation*}
-
-  Then this control volume also contains an amount of momentum
+  Take a small control volume containing an amount of matter $\yN$ moving with velocity $\yv$ (and recall from \sect~\ref{sec:fluxes_velocities} that there's a connection between velocity and flux of matter). Then this control volume also contains an amount of momentum
 \marginpar{%
     \footnotesize\flushleftright{\color{mpcolor}%
       This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
 \begin{equation*}
-  \yP = \yM\yv \equiv \yrho\,\yN\,\yv \equiv \yrho\, \frac{V}{A}\,
-  \begin{bmatrix}
-    J_{x}\\J_{y}\\J_{z}
-  \end{bmatrix}
+  \yP = \yM\yv \equiv \yrho\,\yN\,\yv
 \end{equation*}
-The relation \enquote{$\yP=\yM\yv$} is the traditional one; but we see that it is completely equivalent to a relation between momentum and \emph{flux} of matter.
 
-\begin{extra}{More symmetric relation between mass \amp\ momentum and matter}
-  When we work with \emph{densities}, which express the amounts of a quantity per unit volume or per unit surface, the relation between \masse\ \amp\ momentum on one side, and matter \amp\ its flux on the other, becomes more explicit and symmetric. We have
-  \begin{equation*}
-    \ym = \rho\yn \qquad \yp = \rho\yj
-  \end{equation*}
-  where $\ym$ and $\yp$ are the mass and momentum densities, and $\yn$ and $\yj$ are the matter and matter-flux densities.
-\end{extra}
 
 \item[Constitutive relation for supply of momentum.]
   If a small control volume contains an amount of \masse\ $\yM$, then it also has a supply of momentum
@@ -4334,11 +4316,6 @@ In the case of a vector quantity such as momentum, the time-stepped evolution eq
   \end{gathered}
 \end{equation}
 
-\marginpar{\vspace{3\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
 \begin{exercise}[label={ex:tennisball}]
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item Let's follow the flight of a tennis ball by choosing a sequence of closed control surfaces, with corresponding control volumes, that tightly wrap it.
@@ -4364,6 +4341,11 @@ In the case of a vector quantity such as momentum, the time-stepped evolution eq
     What was the velocity of the tennis ball at time $t_{0}$? How much is it \enspace$\qty{0.01}{s}$\enspace later?
   \end{enumerate}
 \end{exercise}
+\marginpar{\vspace{-15\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
 
 \medskip
 
@@ -4431,18 +4413,9 @@ In fact, the evolution equation from a balance or conservation law always gives 
 
 \item They can be calculated, thanks to \emph{constitutive relations}, from the values of volume integrals of other quantities -- which are in turn predicted with an evolution equation.
 
-  An example is the Newtonian constitutive relation for momentum and matter
-  \begin{equation*}
-    \yP = \yM\yv =  \yrho\, \frac{V}{A}\,[J_{x}, J_{y}, J_{z}]
-  \end{equation*}
-  briefly discussed on p.~\pageref{item:momentum_mass_velocity}, which relates the \emph{flux} of matter to the \emph{volume integral} of momentum. We shall later explore and use more examples of constitutive relations for the purpose of simulating physical systems.
+  An example is the Newtonian constitutive relation for momentum and matter $\yP = \yM\yv$, briefly discussed on p.~\pageref{item:momentum_mass_velocity}: it actually relates relates the \emph{flux} of matter (which determines the velocity $\yv$, see \sect~\ref{sec:fluxes_velocities}) to the \emph{volume integral} of momentum. We shall see this relationship more clearly in \sect~\ref{sec:matter_constitutive}. We shall later explore and use more examples of constitutive relations for the purpose of simulating physical systems.
 \end{itemize}
 
-\marginpar{\vspace{3\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
 \begin{exercise}[label={ex:tennisball2}]
   In Exercise~\ref{ex:tennisball} you calculated the evolution of the tennis ball's momentum -- all its three components -- for one timestep of \qty{0.01}{s}.
 
@@ -4476,15 +4449,15 @@ In fact, the evolution equation from a balance or conservation law always gives 
     \end{equation*}
   \end{enumerate}
 \end{exercise}
+\marginpar{\vspace{-23\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{tennisball.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
 
 \subsection{Integration of position}
 \label{sec:position_integration}
 
-\marginpar{\vspace{\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{perseverance_trajectory.jpg}%
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of their trajectory (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
-}}%
 In many applications we are interested in how the position $\yr$ of a small object, or of a small portion of an object, changes in time. The time integration that we have discussed for the volume integrals of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
 
 The velocity $\yv$ of a point is the time derivative of its position:
@@ -4515,6 +4488,11 @@ Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. 
       \end{aligned}\right.
   \end{equation}
 \end{definition}
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{perseverance_trajectory.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of their trajectory (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
+}}%
 This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iterated as discussed on page~\pageref{sec:timestep_iterate}. This way we numerically integrate the position $\yr(t)$ and can therefore keep track and predict the motion of an object.
 
 \smallskip
@@ -4563,11 +4541,11 @@ Let's see an example with a falling object. For simplicity we only consider the 
 \item timestep is $\Dt = \qty{0.1}{s}$
 \end{itemize}
 Then numerical integration up to $t=\qty{0.2}{s}$ would look as follows:\noprelistbreak
-\marginpar{\vspace{\baselineskip}\centering%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{plot_tennisball_z.pdf}\\
 \includegraphics[width=\linewidth]{plot_tennisball_P.pdf}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integration for \qty{2}{s}}%
+Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integration for \qty{2}{s}}%
 }%
 \begin{equation*}
   \begin{aligned}
@@ -4675,7 +4653,13 @@ of \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{water molar-ma
   \end{split}
 \end{equation*}
 
-The exact value of the molar-mass constant depends not only on the substance but also on the context and application: the substance may actually consist of a mixture of different kinds of matter. \enquote*{Air} for example is a mixture of different chemical elements, and their proportion in the mixture may depend on physical conditions such as temperature, and on geographical position. \enquote*{Water} is a mixture of different \furl{https://www.britannica.com/science/isotope}{isotopes}, and again the mixture proportions may vary with physical conditions.
+The exact value of the molar-mass constant depends not only on the substance but also on the context and application: the substance may actually consist of a mixture of different kinds of matter. \enquote*{Air} for example is a mixture of different chemical elements, and their proportion in the mixture may depend on physical conditions such as temperature, and on geographical position.
+\marginpar{\vspace{-\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{water_isotopes.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+There are several different isotopes of water, with different masses (image from \furl{https://www.usgs.gov/media/images/water-isotopes-diagram}{U.S. Geological Survey})}%
+}%
+\enquote*{Water} is a mixture of different \furl{https://www.britannica.com/science/isotope}{isotopes} (molecules differing in the number of neutrons), and again the mixture proportions may vary with physical conditions.
 
 The constant relating \masse\ and amount of matter is the same for volume integrals and for fluxes. So to a matter flux $\yJ$ we can associate a \masse\ flux $\yrho\yJ$. For instance, if through a surface there's a flux of $\yJ=\qty{30}{mol/s}$ of water, then we associate to it a mass flux of
 $$\yrho_{\mathrm{H_2O}}\,\yJ = \qty{0.0180}{kg/mol} \times \qty{30}{mol/s} = \qty{0.54}{kg/s}\,.$$
@@ -4711,40 +4695,76 @@ Phenomena for which this constitutive equation is no longer valid appear for exa
 \subsection{Relation between matter and momentum}
 \label{sec:const_matter_momentum}
 
-Closely related to the previous constitutive relation is another one relating a amount of matter and an amount of momentum. Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associates a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$.
+Closely related to the previous constitutive relation is the one relating an amount of matter and an amount of momentum, briefly discussed on p.~\pageref{item:momentum_mass_velocity}. Let us examine this constitutive relation more thoroughly.
+
+Fix a coordinate system $(t,x,y,z)$. At a given point in space, take a small rectangular control surface of area $A$, with sides parallel to the coordinate axes $y$ and $z$. The surface must \emph{not} be moving in that coordinate system. Through this surface, in the positive-$x$ direction, there's a flux of matter that we denote $J_{x}$.
+
+Construct two more surfaces of area $A$ through the same point in a analogous way: one parallel to the $zx$ axes and one to the $xy$ axes. The matter fluxes through them are $J_{y}$ and $J_{z}$.
+
+\marginpar{\vspace{-5\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{Px_Jx2.pdf}%
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% }%
+}%
+Finally take a control volume of cuboid shape that fits the three surfaces. This cuboid has volume $V$, and contains an amount of matter $\yN$ and an amount of momentum $\yP$. Recall from \sect~\ref{sec:fluxes_velocities} that we associate with the matter flowing through the first surface a velocity component $v_{x} \equiv \frac{J_{x}/A}{\yN/V}$, and similarly for the other two surfaces.
+
+% Take a small control volume of cuboid shape, with side surfaces \emph{not moving} in the coordinate system $(t,x,y,z)$, and parallel to the $yz$-, $zx$-, and $xy$-coordinates. The cuboid has volume $V$ and each side surface has area $A$.
+% 
+%   The control volume contains an amount of matter $\yN$. The flux across the side parallel to $yz$, in the positive-$x$ direction, is $\yJ_{x}$; and similarly for the other two directions. Remember from \sect~\ref{sec:fluxes_velocities} that we can consider the matter in the control volume as moving with velocity
+%   \begin{equation*}
+%     \yv = (v_{x}, v_{y}, v_{z}) = \frac{V}{A\,\yN}\, (\yJ_{x}, \yJ_{y}, \yJ_{z})
+%   \end{equation*}
+% 
+%   Then this control volume also contains an amount of momentum
+% \marginpar{%
+%     \footnotesize\flushleftright{\color{mpcolor}%
+%       This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
+% \begin{equation*}
+%   \yP = \yM\yv \equiv \yrho\,\yN\,\yv \equiv \yrho\, \frac{V}{A}\,
+%   \begin{bmatrix}
+%     J_{x}\\J_{y}\\J_{z}
+%   \end{bmatrix}
+% \end{equation*}
+% The relation \enquote{$\yP=\yM\yv$} is the traditional one; but we see that it is completely equivalent to a relation between momentum and \emph{flux} of matter.
+
+Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associates a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$.
 
 \begin{definition}{Newtonian formula for momentum}
-Consider a small control volume containing, at time $t$, an amount $\yN$ of matter of a particular kind. If the volume is small enough we can consider all matter within as moving with approximately the same velocity $\yv$.  The \textbf{Newtonian formula for the momentum of matter} is a constitutive relation that says that the control volume also contains an amount of momentum
+The \textbf{Newtonian formula for the momentum of matter} is a constitutive relation saying that the flux and velocity of matter and the volume integral of momentum are proportional:
   \begin{equation}
     \label{eq:matter_momentum_Newton}
-    \yP = \yM\yv \equiv \yrho\yN\yv
+    \yP = \yM\yv = \yrho\, \frac{V}{A}\,
+  \begin{bmatrix}
+    J_{x}\\J_{y}\\J_{z}
+  \end{bmatrix}
     % \qquad\text{with}\qquad
     % \yM=\yrho\yN
   \end{equation}
 \end{definition}
-(The velocity $\yv$ is actually determined by the flux of matter, see the blue box on p\mynotew{}, but for the present purpose you can use your intuitive understanding of this velocity).
+This relation is only valid for very small areas and volumes (we should really take a limit), so small that the flux of matter or the volume integral of momentum wouldn't change if we choose a surface and a volume in slightly different positions.
 
-An analogous constitutive relation also exists between flux of momentum and flux of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead.
+\bigskip
+
+An analogous constitutive relation also exists between \emph{flux} of momentum and flux and volume integral of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead.
 \begin{definition}{Convective flux of momentum (special case)}
-  Take a small surface that is \emph{not moving} in the coordinate system $(t,x,y,z)$, and is parallel to the coordinates $y$ and $z$. Call $\yJ_{x}$ the flux of matter through this surface in the positive-$x$ direction. Then through this surface there's also a flux of momentum
+Through the $yz$-surface above there's a flux of momentum
   \begin{equation}
     \label{eq:matterflux_force_Newton}
-    \yF_{\text{c}} = \yrho\yJ_{x}\,\yv
+    \yF_{\text{conv}} = \yrho J_{x}\,\yv \equiv
+    \yrho\, \frac{V}{A}\,\frac{J_{x}}{\yN}\,
+  \begin{bmatrix}
+    J_{x}\\J_{y}\\J_{z}
+  \end{bmatrix}
     % \qquad\text{\color{midgrey}(also equivalent to\enspace$\yF=\yM\yv\,\yJ_{x}/\yN$)}
   \end{equation}
-  called a \textbf{convective flux of momentum}. Analogous relations hold for small, non-moving surfaces parallel to the $zx$ and $xy$ planes.
+  called a \textbf{convective flux}. Analogous relations hold for the surfaces parallel to the $zx$ and $xy$ coordinates.
 \end{definition}
 \begin{warning}
-  Keep in mind that usually there are additional, non-convective flows of momentum (forces) associated with matter, as we shall see later.
+  Usually there are additional, non-convective flows of momentum (forces) associated with matter, as we shall see later.
 \end{warning}
 
 These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the gravitational fields are strong, or when some kind of electromagnetic phenomena are also involved.
 
-\marginpar{\vspace{3\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{riverbed3.png}%
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-(Illustration by \furl{https://dribbble.com/squarefountain}{Cathryn Briggs})}%
-}%
 \begin{exercise}
   The side picture illustrates the section of a river. The river has an approximately \emph{steady flow} of water; this means that if we choose a static control volume anywhere in the river, such as the one in the depicted section, the amount of water $\yN$ therein is \emph{constant in time}.
 
@@ -4760,6 +4780,25 @@ These constitutive relations are only approximate and become incorrect when the 
   \item You are told that the illustrated volume of water has total momentum $P=\qty{21600}{N\,s}$, directed from left to right perpendicularly to the imaginary vertical surfaces. Assuming the Newtonian formula for momentum, and the molar-mass constant $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, can you find the values of the fluxes from the previous question?
   \end{enumerate}
 \end{exercise}
+\marginpar{\vspace{-19\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{riverbed3.png}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+(Illustration by \furl{https://dribbble.com/squarefountain}{Cathryn Briggs})}%
+}%
+
+\begin{extra}{More symmetric relation between mass \amp\ momentum and matter}
+  When we work with \emph{densities}, which express the amounts of a quantity per unit volume or per unit surface, the relation between \masse\ \amp\ momentum on one side, and matter \amp\ its flux on the other, becomes more explicit and symmetric. We have
+  \begin{equation*}
+    \ym = \rho\yn \qquad \yp = \rho\yj
+  \end{equation*}
+  where $\ym$ and $\yp$ are the mass and momentum densities, and $\yn$ and $\yj$ are the matter and matter-flux densities.
+\end{extra}
+
+
+
+
+
+
 
 \subsection{Thermodynamics}
 \label{sec:matter_const_thermodynamics}
