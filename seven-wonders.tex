@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-03T11:04:37+0100
+%% Last-Updated: 2024-03-03T15:32:40+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4334,7 +4334,7 @@ In the case of a vector quantity such as momentum, the time-stepped evolution eq
     \end{equation*}
     and the influx of momentum is zero. Calculate the momentum within the control volume\enspace$\qty{0.01}{s}$\enspace later.
 
-  \item The tennis ball has a \masse\enspace$\yM = \qty{0.059}{kg}$\,.\enspace Assume the constitutive equation for momentum discussed on p.~\pageref{item:momentum_mass_velocity}:
+  \item The tennis ball has a \masse\enspace$\yM = \qty{0.059}{kg}$\,.\enspace Assume the constitutive relation for momentum discussed on p.~\pageref{item:momentum_mass_velocity}:
     \begin{equation*}
       \yP = \yM\,\yv
     \end{equation*}
@@ -4729,8 +4729,8 @@ Finally take a control volume of cuboid shape that fits the three surfaces. This
 
 Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associates a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$.
 
-\begin{definition}{Newtonian formula for momentum}
-The \textbf{Newtonian formula for the momentum of matter} is a constitutive relation saying that the flux and velocity of matter and the volume integral of momentum are proportional:
+\begin{definition}{Newtonian constitutive relation for momentum}
+The \textbf{Newtonian relation for the momentum of matter} is a constitutive relation saying that the flux and velocity of matter and the volume integral of momentum are proportional:
   \begin{equation}
     \label{eq:matter_momentum_Newton}
     \yP = \yM\yv = \yrho\, \frac{V}{A}\,
@@ -4765,6 +4765,19 @@ Through the $yz$-surface above there's a flux of momentum
 
 These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the gravitational fields are strong, or when some kind of electromagnetic phenomena are also involved.
 
+In particular, according to the Newtonian constitutive relation, \emph{momentum and velocity of matter are always parallel}, because they are two vectors that differ by a multiplicative scalar. In general this is not exactly true: momentum can have a different direction from velocity. In general relativity one must often take this fact into account.
+
+\begin{extra}{More symmetric relation between mass \amp\ momentum and matter}
+  When we work with \emph{densities}, which express the amounts of a quantity per unit volume or per unit surface, the relation between \masse\ \amp\ momentum on one side, and matter \amp\ its flux on the other, becomes more explicit and symmetric. We have
+  \begin{equation*}
+    \ym = \rho\yn \qquad \yp = \rho\yj
+  \end{equation*}
+  where $\ym$ and $\yp$ are the mass and momentum densities, and $\yn$ and $\yj$ are the matter and matter-flux densities.
+\end{extra}
+
+
+\smallskip
+
 \begin{exercise}
   The side picture illustrates the section of a river. The river has an approximately \emph{steady flow} of water; this means that if we choose a static control volume anywhere in the river, such as the one in the depicted section, the amount of water $\yN$ therein is \emph{constant in time}.
 
@@ -4777,7 +4790,7 @@ These constitutive relations are only approximate and become incorrect when the 
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item What can you say about the two fluxes across the two imaginary vertical surfaces, each considered as crossed from right to left in the picture? Can you find their numerical values?
 
-  \item You are told that the illustrated volume of water has total momentum $P=\qty{21600}{N\,s}$, directed from left to right perpendicularly to the imaginary vertical surfaces. Assuming the Newtonian formula for momentum, and the molar-mass constant $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, can you find the values of the fluxes from the previous question?
+  \item You are told that the illustrated volume of water has total momentum $P=\qty{21600}{N\,s}$, directed from left to right perpendicularly to the imaginary vertical surfaces. Assuming the Newtonian constitutive relation for momentum, and the molar-mass constant $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, can you find the values of the fluxes from the previous question?
   \end{enumerate}
 \end{exercise}
 \marginpar{\vspace{-19\baselineskip}\centering%
@@ -4785,15 +4798,6 @@ These constitutive relations are only approximate and become incorrect when the 
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 (Illustration by \furl{https://dribbble.com/squarefountain}{Cathryn Briggs})}%
 }%
-
-\begin{extra}{More symmetric relation between mass \amp\ momentum and matter}
-  When we work with \emph{densities}, which express the amounts of a quantity per unit volume or per unit surface, the relation between \masse\ \amp\ momentum on one side, and matter \amp\ its flux on the other, becomes more explicit and symmetric. We have
-  \begin{equation*}
-    \ym = \rho\yn \qquad \yp = \rho\yj
-  \end{equation*}
-  where $\ym$ and $\yp$ are the mass and momentum densities, and $\yn$ and $\yj$ are the matter and matter-flux densities.
-\end{extra}
-
 
 
 
@@ -4803,12 +4807,24 @@ These constitutive relations are only approximate and become incorrect when the 
 \subsection{Thermodynamics}
 \label{sec:matter_const_thermodynamics}
 
-Matter enters in many constitutive relations in thermodynamics and chemistry. An example is the ideal gas law
-\begin{equation*}
-  p V = R \yN \yte
-\end{equation*}
-relating the pressure $p$ (essentially a momentum flux), volume $V$, temperature $T$ of an amount $\yN$ of an ideal gas in equilibrium conditions; $R = \qty{8.31446261815324}{N\,m/(K\,mol)}$\enspace (exactly) is the \furl{https://www.britannica.com/science/universal-gas-constant}{molar gas constant}.
+In the previous section we saw a constitutive relation between matter and \emph{flux} of momentum, which we called \enquote*{convective flux}. It is a flux that's always present whenever there's matter in motion.
 
+In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{barometer.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+A barometer to measure atmospheric pressure (image from \furl{https://education.nationalgeographic.org/resource/atmospheric-pressure/}{National Geographic})}%
+}%
+The most cogent example is the air around us, which continuously has a flux of momentum with all other matter it is in contact with (including itself): what we call \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. It is always a \emph{compressive} flux, as described in \sect~\ref{sec:pressure} p.~\pageref{sec:pressure}.
+
+For some kinds of matter in a gaseous state, the magnitude of their compressive flux of momentum $\yF_{\text{press}}$ can be approximated by the formula:
+\begin{definition}{Ideal-gas law}
+  \begin{equation*}
+    \frac{F_{\text{press}}}{A} = R\,\yte\,\frac{\yN}{V}
+  \end{equation*}
+  called the \textbf{ideal-gas law}, where $A$ is the area through which the momentum flux occurs, $V$ is the volume of a small region adjacent to the area, $\yN$ is the amount of matter in that volume, $\yte$ is its temperature, and $$R = \qty{8.31446261815324}{N\,m/(K\,mol)}\qquad\text{(exactly)}$$ is the \furl{https://www.britannica.com/science/universal-gas-constant}{molar gas constant}. The ratio $\yF_{\text{press}}/A$ of force and area is called \emph{pressure}.
+\end{definition}
+This law is very important in thermodynamics and chemistry, even if it's only an approximation.
 
 \section{Examples of applications}
 \label{sec:matter_applic}
@@ -4816,22 +4832,12 @@ relating the pressure $p$ (essentially a momentum flux), volume $V$, temperature
 \subsection{Rigid-body and particle mechanics}
 \label{sec:cons_matter_particle}
 
-In many applications, we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is automatically satisfied. The law thus enter our descriptions and predictions silently, in an implicit way.
+In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is automatically satisfied. This is achieved by choosing a sequence of closed control surfaces for which the flux of matter is zero, and therefore the amount of matter in the control volumes is constant. This procedure is often carried without many comments -- to the point of being almost forgotten at times.
 
-One example is when we focus on a small (relative to the environment) object, such as a tennis ball in an open field, or a planet in a solar system.
-
-***\mynotew{}
-In these cases we can choose a sequence of control surfaces
-
-there is an amount of matter that at each time occupies a small volume (relative to the environment). We therefore decide to use a sequence of closed control surfaces (\sect~\ref{sec:choice_surfaces}) that tightly encloses the amount of matter at each time $t$. As the amount of matter in these control volumes is constant, that is, $\di\yN/\di t = 0$, by the law of conservation of matter the flux must then be zero: $\yJ(t)=0$. The requirement that the flux be zero then determines how the closed control surfaces must move in space; this we finally encode in the velocity of the small object. Once this is done, the law of conservation of matter is automatically taken care of, and we can focus on other conservation laws.
-
-The same procedure is used in the description of a rigid body, that is, an amount of matter that occupies a region of constant volume and shape. The volume doesn't need to be small in this case. Again by using tightly enclosing control surfaces, their motion is determined by 
+We saw an example of this procedure in the numerical evolution of the motion of a falling object in \sect~\ref{sec:example_falling_object_timestep} p.~\pageref{sec:example_falling_object_timestep}. Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}: you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is taken as constant, it doesn't change with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$; we are therefore assuming that the amount of matter doesn't change in time: $\di\yN(t)/\di t = 0$. This is indeed guaranteed, thanks to the balance of matter, by choosing a sequence of control surfaces that have no net flux of matter through them, $\yJ=0$ -- in other words, they tightly wrap and follow the moving object.
 
 
-
-
-
-\subsection{In chemistry}
+\subsection{Chemistry}
 \label{sec:cons_matter_chemistry}
 
 
