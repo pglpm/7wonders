@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-03T16:31:13+0100
+%% Last-Updated: 2024-03-03T21:45:21+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4840,14 +4840,35 @@ This law is very important in thermodynamics and chemistry, even if it's only an
 
 In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is automatically satisfied. This is achieved by choosing a sequence of closed control surfaces for which the flux of matter is zero, and therefore the amount of matter in the control volumes is constant. This procedure is often carried without many comments -- to the point of being almost forgotten at times.
 
-We saw an example of this procedure in the numerical evolution of the motion of a falling object in \sect~\ref{sec:example_falling_object_timestep} p.~\pageref{sec:example_falling_object_timestep}. Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}: you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is taken as constant, it doesn't change with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change in time: $\di\yN(t)/\di t = 0$. This is indeed guaranteed thanks to the balance of matter, by choosing a sequence of control surfaces that have no net flux of matter through them, $\yJ=0$; in other words, they tightly wrap and follow the moving object.
+We saw an example of this procedure in the numerical evolution of the motion of a falling object in \sect~\ref{sec:example_falling_object_timestep} p.~\pageref{sec:example_falling_object_timestep}.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{timesteps.png}%
+\\[2\jot]\footnotesize{\color{mpcolor}%
+Snippet of formula~\eqref{eq:timestep_momentum_position}}%
+}%
+Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}: you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\di t = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
 
 
 \subsection{Chemistry}
 \label{sec:cons_matter_chemistry}
 
+One of the main assumptions in chemistry is the \enquote*{permanence of atoms}. This assumption imposes important restrictions in the \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry} of chemical reactions, that is, in determining the amounts of products that can appear from given amounts of reactants.
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{match_reaction.jpg}%
+% \\[2\jot]\footnotesize{\color{mpcolor}%
+% A match burning}%
+}%
+For instance, the \furl{https://chem.washington.edu/lecture-demos/match-head-reaction}{match-head reaction}
+\begin{equation*}
+  3\,\mathrm{P_{4}} + 10\,\mathrm{K\,Cl\,O_{3}}
+  \to 3\,\mathrm{P_{4}O_{10}} + 10\,\mathrm{K\,Cl}
+  % \mathrm{CH_{3}CHO} \to \mathrm{CH_{4}} + \mathrm{CO}
+\end{equation*}
+expresses that if 30 moles of oxygen atoms appear among the reactants, they must also appear among the products; same for the 12 moles of sulphur (P) atoms, and so on.
 
+This assumption is simply the statement of conservation of matter, \emph{separately} for each chemical element: since the reaction doesn't let any other matter go in or out, the flux $\yJ$ for each chemical element must be zero. Therefore the amount $\yN$ of each chemical element must be constant: $\di\yN(t)/\di t = \yJ = 0$.
 
+This assumption is often called \enquote*{conservation of mass}, but, as explained in \sect~\ref{sec:cons_matter_formulation}, \enquote{mass} is only a proxy. The assumption of permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
 
 
 \printpagenotes*
