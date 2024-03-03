@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-03T15:32:40+0100
+%% Last-Updated: 2024-03-03T16:31:13+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4809,15 +4809,21 @@ In particular, according to the Newtonian constitutive relation, \emph{momentum 
 
 In the previous section we saw a constitutive relation between matter and \emph{flux} of momentum, which we called \enquote*{convective flux}. It is a flux that's always present whenever there's matter in motion.
 
-In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}.
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{barometer.jpg}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-A barometer to measure atmospheric pressure (image from \furl{https://education.nationalgeographic.org/resource/atmospheric-pressure/}{National Geographic})}%
+  A barometer to measure atmospheric pressure (image from \furl{https://education.nationalgeographic.org/resource/atmospheric-pressure/}{National Geographic})}%
 }%
-The most cogent example is the air around us, which continuously has a flux of momentum with all other matter it is in contact with (including itself): what we call \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. It is always a \emph{compressive} flux, as described in \sect~\ref{sec:pressure} p.~\pageref{sec:pressure}.
+In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}. The most cogent example is the air around us, which has a continuous flux of momentum, of approximately \qty[print-unity-mantissa=false]{1e5}{N} on every square-metre of surface, called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. This flux is always \emph{compressive} (\sect~\ref{sec:pressure} p.~\pageref{sec:pressure}) and occurs through any surface: any imaginary surface within the body of air itself, and any real surface between air and any other object.
+
+\smallskip
 
 For some kinds of matter in a gaseous state, the magnitude of their compressive flux of momentum $\yF_{\text{press}}$ can be approximated by the formula:
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{idealgas_mug.jpg}%
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% The famous \enquote{$pV=NRT$} formula}%
+}%
 \begin{definition}{Ideal-gas law}
   \begin{equation*}
     \frac{F_{\text{press}}}{A} = R\,\yte\,\frac{\yN}{V}
@@ -4834,7 +4840,7 @@ This law is very important in thermodynamics and chemistry, even if it's only an
 
 In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is automatically satisfied. This is achieved by choosing a sequence of closed control surfaces for which the flux of matter is zero, and therefore the amount of matter in the control volumes is constant. This procedure is often carried without many comments -- to the point of being almost forgotten at times.
 
-We saw an example of this procedure in the numerical evolution of the motion of a falling object in \sect~\ref{sec:example_falling_object_timestep} p.~\pageref{sec:example_falling_object_timestep}. Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}: you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is taken as constant, it doesn't change with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$; we are therefore assuming that the amount of matter doesn't change in time: $\di\yN(t)/\di t = 0$. This is indeed guaranteed, thanks to the balance of matter, by choosing a sequence of control surfaces that have no net flux of matter through them, $\yJ=0$ -- in other words, they tightly wrap and follow the moving object.
+We saw an example of this procedure in the numerical evolution of the motion of a falling object in \sect~\ref{sec:example_falling_object_timestep} p.~\pageref{sec:example_falling_object_timestep}. Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}: you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is taken as constant, it doesn't change with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change in time: $\di\yN(t)/\di t = 0$. This is indeed guaranteed thanks to the balance of matter, by choosing a sequence of control surfaces that have no net flux of matter through them, $\yJ=0$; in other words, they tightly wrap and follow the moving object.
 
 
 \subsection{Chemistry}
