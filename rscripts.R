@@ -39,7 +39,7 @@ cbind(t,r=r,P=P,v=v)
 #### Earth orbit
 
 tdur <- 3*366*24*3600
-dt <- 10
+dt <- 360
 M <- 5.9722e24
 Msun <- 1988500e24
 P0 <- M * c(0, 30.29e3)
@@ -63,8 +63,9 @@ for(i in 1:(nsteps-1)){
     P[i+1,] <- P[i,] + Gforce(r[i,])*dt
     v[i+1,] <- P[i+1,]/M
 }
+au <- 149597870691
 toplot <- round(seq(1,nsteps,length.out=tdur/3600))
-tplot(r[toplot,1],r[toplot,2],xlab="x",ylab="y",type='l',asp=1)
+tplot(r[toplot,1]/au,r[toplot,2]/au,xlab="x",ylab="y",type='l',asp=1)
 tplot(0,0,type='p',pch=16,cex=3,col=yellow,add=T)
 
 
