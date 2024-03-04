@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-03T22:07:22+0100
+%% Last-Updated: 2024-03-04T18:36:07+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -469,8 +469,6 @@ Open Science Framework \doi{10.31219/osf.io/#1}%
 \newcommand*{\osfproj}[1]{%
 Open Science Framework \doi{10.17605/osf.io/#1}%
 }
-
-\newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 
 \usepackage{graphicx}
 \usepackage{graphbox}
@@ -943,9 +941,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % %\smash{
 % \begin{tabular}[#1]{c}#2\\[0.5\jot]\rule{1pt}{#3}\\#4\end{tabular}}%}
 % \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
-%\DeclareMathOperator*{\argsup}{arg\,sup}
-\newcommand*{\dob}{degree of belief}
-\newcommand*{\dobs}{degrees of belief}
+% \DeclareMathOperator*{\argsup}{arg\,sup}
+\newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
+\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1} p.\,\pageref{#1}}}\textcolor{blue}{#2}}
+
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yv}{\bm{v}}
 %
@@ -1511,7 +1510,7 @@ says that the position of some object oscillates with time, between the values \
   t/\unit{s} = \pu \quad\limplies\quad t\approx \qty{3.14}{s} \ .
 \end{equation*}
 
-The velocity of the object (see \sect~\ref{sec:velocity}) is given by the derivative of this expression with respect to $t$. Let's calculate it treating all unit symbols as literal constants:
+The \autoref{sec:velocity}{velocity} of the object is given by the derivative of this expression with respect to $t$. Let's calculate it treating all unit symbols as literal constants:
 \begin{equation*}
   \frac{\di x(t)}{\di t} = \frac{\di}{\di t}\Bigl(
   2\,\cos(t/\unit{s})\:\unit{m}
@@ -2063,7 +2062,7 @@ Let's see some examples of why it is impossible to make a real distinction betwe
 
 \paragraph{Heated gas}
 
-Imagine we have a box with a given amount of gas, say \qty{1}{mol} of oxygen molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
+Imagine we have a box with a given amount of gas, say \qty{1}{mol} of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Oxygen}{oxygen} molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
 \begin{equation*}
   \qty{0.031999540000000000}{kg} \ .
 \end{equation*}
@@ -2846,7 +2845,7 @@ How can we graphically represent the flux of a quantity, in such a way as to tak
 The \textcolor{midgrey}{grey straight line} represents a surface (simplified to two dimensions) through which we're measuring a flux. In the first and second picture, the wavy arrows represent arbitrary crossing directions called \enquote*{positive}. The \textcolor{blue}{blue arrow} represents that we're calling \enquote*{positive} the left-to-right direction; the \textcolor{purple}{red arrow} represents that we're calling \enquote*{positive} the right-to-left direction. The signed number represents the net amount according to the positive direction -- so the first and second picture represent the same thing. One possible drawback of these two pictures is that they may suggest that a given amount is actually moving from left to right or vice versa; but we have seen that in general we don't know this.
 The third picture tries to avoid this misleading suggestion by not showing any arrows; it is meant to represent that on the left side the amount of quantity has changed by \textcolor{purple}{\num{-5}}, and on the right side by \textcolor{blue}{\num{+5}}.
 
-The third representation above has one more advantage. Remember from \sect~\ref{sec:choice_surfaces} that a flux through a surface may occur because the surface itself is moving. The wavy arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
+The third representation above has one more advantage. \autoref{sec:choice_surfaces}{Remember  that a flux through a surface may occur because the surface itself is moving}. The wavy arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
 
 In these notes we shall settle on the third representation above, but feel free to use the one you prefer -- as long as you are aware of all the important aspects of a flux.
 \begin{warning}[What a flux does and doesn't tell]
@@ -2919,7 +2918,7 @@ Remember that \emph{anti}matter \enquote{counts as \num{-1}} for calculating amo
 
 \subsection{Energy flux}
 \label{sec:energy_flux}
-In \sect~\ref{sec:forms_energy} we mentioned that energy flux can be categorized into different kinds, depending on whether there are fluxes of other quantities through the same surface. We study the exact definitions and formulae later on. The total flux is given by the sum of all these kinds. For instance, through a horizontal surface we can have a downward energy flux of \qty{3}{J/s} as \emph{heat}, and a downward flux of \qty{-1}{J/s} as \emph{work}. The total downward flux is then \qty{2}{J/s}. The energy flux that you will calculate in the fourth exercise below is called \emph{energy convection}.
+\autoref{sec:forms_energy}{We already mentioned} that energy flux can be categorized into different kinds, depending on whether there are fluxes of other quantities through the same surface. We study the exact definitions and formulae later on. The total flux is given by the sum of all these kinds. For instance, through a horizontal surface we can have a downward energy flux of \qty{3}{J/s} as \emph{heat}, and a downward flux of \qty{-1}{J/s} as \emph{work}. The total downward flux is then \qty{2}{J/s}. The energy flux that you will calculate in the fourth exercise below is called \emph{energy convection}.
 
 \bigskip
 
@@ -2932,8 +2931,7 @@ In \sect~\ref{sec:forms_energy} we mentioned that energy flux can be categorized
   \item The side picture shows a \textcolor{green}{surface} moving from left to right at a (constant) velocity of \qty{1}{m/s}. The space to its right has two static regions with some amount of \textcolor{blue}{energy} as shown (there's no energy behind to the left of the surface). How much is the flux of energy through the surface in \qty{1}{s}?
   \end{enumerate}
 \end{exercise}
-\marginpar{\centering%
-\vspace*{-9em}\includegraphics[align=b,width=\linewidth]{surfacemoving_J.pdf}
+\marginpar{\vspace{-7\baselineskip}\centering\includegraphics[align=b,width=\linewidth]{surfacemoving_J.pdf}
 }
 
 
@@ -2946,7 +2944,7 @@ In \sect~\ref{sec:forms_energy} we mentioned that energy flux can be categorized
 
 The flux of a vector quantity is also a vector, because it is given by an amount of that quantity, which is a vector, divided by time, which is a scalar.
 
-The discussion of \sect~\ref{sec:flux_scalar_direction} about the arbitrary choice of a crossing direction and the minus signs that appear when we reverse it also applies, in an analogous way, to vector fluxes. Also the discussion about the minus sign remains the same; we must only remember that a minus sign changes the sense or orientation of a vector:
+\autoref{sec:flux_scalar_direction}{The discussion about the arbitrary choice of a crossing direction} and the minus signs that appear when we reverse it also applies, in an analogous way, to vector fluxes. Also the discussion about the minus sign remains the same; we must only remember that a minus sign changes the sense or orientation of a vector:
 \begin{equation*}
   \mathord{\nwarrow} \mathrel{\enspace=\enspace} -1\cdot\mathord{\searrow}
 \end{equation*}
@@ -3031,12 +3029,12 @@ If we have a vector flux through a particular surface, and we're asked about the
 \section{Flux of momentum: force}
 \label{sec:force_is_flux}
 
-We already mentioned in \sect\,\ref{sec:intro_momentum} that \textbf{flux of momentum is what we call \enquote*{force}}. Owing to the importance of the notion of \emph{force} in the many branches of physics which rely on Newtonian mechanics, we must discuss this connection in depth. This connection, as well as the connection to Newton's laws, will become even clearer when we discuss the balance of momentum in \sect\,\mynotew{}.
+\autoref{sec:intro_momentum}{We already mentioned} that \textbf{flux of momentum is what we call \enquote*{force}}. Owing to the importance of the notion of \emph{force} in the many branches of physics which rely on Newtonian mechanics, we must discuss this connection in depth. This connection, as well as the connection to Newton's laws, will become even clearer when we discuss the balance of momentum in \chap\,\ref{cha:bal_momentum}.
 
 \subsection{Units}
 \label{sec:units_momflux}
 
-In \sect~\ref{sec:intro_momentum} we said that momentum can be measured in newton-seconds, \enquote*{\unit{N\cdot s}}. Its flux, being a momentum per unit time, is therefore measured in newtons, \enquote*{\unit{N}}.
+\autoref{sec:intro_momentum}{You recall} that momentum can be measured in newton-seconds, \enquote*{\unit{N\cdot s}}. Its flux, being a momentum per unit time, is therefore measured in newtons, \enquote*{\unit{N}}.
 
 \subsection{Representing and visualizing force as flux of momentum}
 \label{sec:visualize_force}
@@ -3447,10 +3445,10 @@ In this chapter we shall see how to mathematically express balance and conservat
 
 Conservation laws tightly connect the \emph{volume integrals} and \emph{fluxes} discussed in \chap~\ref{cha:total_flux}. They are intuitively and visually easy to grasp. The archetype is as follows:
 
-Consider a \emph{closed} (\sect\,\ref{sec:in_out_flux}) control surface at a (coordinate) time $t_{1}$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
+Consider a \autoref{sec:in_out_flux}{\emph{closed} control surface} at a (coordinate) time $t_{1}$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
 
-Starting from time $t_{1}$, imagine the closed control surface moving and deforming through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $t_{2}$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the right as an example.
-\marginpar{\centering%
+Starting from time $t_{1}$, imagine the closed control surface moving and deforming through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $t_{2}$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the side picture below as an example.
+\marginpar{\vspace{10\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{surfacemotion1.png}
 \\\includegraphics[align=t,width=\linewidth]{surfacemotion2.png}
 \\\includegraphics[align=t,width=\linewidth]{surfacemotion3.png}
@@ -3461,11 +3459,11 @@ Starting from time $t_{1}$, imagine the closed control surface moving and deform
 
 % The initial and final control volumes and the sequence of control surfaces in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
 
-Now consider any one of the seven primitive quantities of \sect\,\ref{sec:stuff}, except magnetic flux. Recall that these quantities are \emph{extensive}: we can measure the amount of this quantity in any control volume, and its flux across any control surface. For concreteness let's take \emph{matter}, for which we denote volume integrals by $\yN$ and flux by $\yJ$. We make the following measurements:
+Now consider any one of the \autoref{sec:stuff}{seven primitive quantities}, except magnetic flux. Recall that these quantities are \emph{extensive}: we can measure the amount of this quantity in any control volume, and its flux across any control surface. For concreteness let's take \emph{matter}, for which we denote volume integrals by $\yN$ and flux by $\yJ$. We make the following measurements:
 \begin{itemize}
 \item $N(t_{1})$: total amount of matter contained within the control volume at time $t_{1}$.
 
-\item $\yJ(t)$: \emph{\textbf{in}}flux (flux crossing inwards, \sect~\ref{sec:in_out_flux}) of matter (and antimatter!) through the closed surface at any particular time $t$ between $t_{1}$ and $t_{2}$.
+\item $\yJ(t)$: \emph{\textbf{in}}flux (\autoref{sec:in_out_flux}{flux crossing inwards}) of matter (and antimatter!) through the closed surface at any particular time $t$ between $t_{1}$ and $t_{2}$.
 
 \item $\yN(t_{2})$: total amount of matter contained within the control volume at time $t_{2}$.
 \end{itemize}
@@ -3959,7 +3957,7 @@ We could use the same strategy adopted in that example: considering a static con
         \quad
     \yP(t_{2})=\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
 \end{equation*}
-But we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum} for finding the integrated influx. It is also necessary to know the supply of momentum $\yG(t)$, or at least its integral. This is an example of what was said in \sect~\ref{sec:balance_laws}: balance laws in general require more information than conservation laws.
+But we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum} for finding the integrated influx. It is also necessary to know the supply of momentum $\yG(t)$, or at least its integral. This is an example of \autoref{sec:balance_laws}{what we said previously}: balance laws in general require more information than conservation laws.
 
 Suppose we are told that the net amount of momentum generated \emph{within the control volume}, during the \qty{0.5}{s}, has magnitude \qty{1.57}{N\,s} and fully downward direction. That is,
 \begin{equation*}
@@ -4199,9 +4197,7 @@ If a small control volume contains an amount of matter $\yN$, then it also conta
 where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depends on the kind of matter.
  This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
 
-\item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity}
-  Take a small control volume containing an amount of matter $\yN$ moving with velocity $\yv$ (and recall from \sect~\ref{sec:fluxes_velocities} that there's a connection between velocity and flux of matter). Then this control volume also contains an amount of momentum
-\marginpar{%
+\item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity} Take a small control volume containing an amount of matter $\yN$ moving with velocity $\yv$ (and \autoref{sec:fluxes_velocities}{recall that there's a connection between velocity and flux of matter}). Then this control volume also contains an amount of momentum \marginpar{%
     \footnotesize\flushleftright{\color{mpcolor}%
       This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
 \begin{equation*}
@@ -4236,7 +4232,7 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
   \end{equation*}
   where the first term is a constant zero level of energy, the second term $\yU$ is called \emph{internal energy}, the third is called \emph{kinetic energy}, and the fourth \emph{gravitational potential energy}. The internal energy $\yU$ is typically a function of the amount of matter $\yN$.
 
-  Matter enters this formula also through the constitutive relation $\yM=\yrho\yN$. The zero value $\yE_{0}$ is usually unimportant because we mostly work with energy changes. This value is huge in ordinary situations, as discussed in \sect~\ref{sec:intro_energy}.
+  Matter enters this formula also through the constitutive relation $\yM=\yrho\yN$. The zero value $\yE_{0}$ is usually unimportant because we mostly work with energy changes. \autoref{sec:intro_energy}{This value is huge in ordinary situations}.
   % \begin{extra}{Expression for the total \energym}
   %   The full expression for the \energym\ is
   %   \begin{equation*}
@@ -4413,7 +4409,7 @@ In fact, the evolution equation from a balance or conservation law always gives 
 
 \item They can be calculated, thanks to \emph{constitutive relations}, from the values of volume integrals of other quantities -- which are in turn predicted with an evolution equation.
 
-  An example is the Newtonian constitutive relation for momentum and matter $\yP = \yM\yv$, briefly discussed on p.~\pageref{item:momentum_mass_velocity}: it actually relates relates the \emph{flux} of matter (which determines the velocity $\yv$, see \sect~\ref{sec:fluxes_velocities}) to the \emph{volume integral} of momentum. We shall see this relationship more clearly in \sect~\ref{sec:matter_constitutive}. We shall later explore and use more examples of constitutive relations for the purpose of simulating physical systems.
+  An example is the Newtonian constitutive relation for momentum and matter $\yP = \yM\yv$, \autoref{item:momentum_mass_velocity}{briefly discussed previously}. It actually relates the \emph{flux} of matter (which determines the velocity $\yv$, see \sect~\ref{sec:fluxes_velocities}) to the \emph{volume integral} of momentum. We shall see this relationship more clearly later in \sect~\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
 \end{itemize}
 
 \begin{exercise}[label={ex:tennisball2}]
@@ -4695,18 +4691,18 @@ Phenomena for which this constitutive equation is no longer valid appear for exa
 \subsection{Relation between matter and momentum}
 \label{sec:const_matter_momentum}
 
-Closely related to the previous constitutive relation is the one relating an amount of matter and an amount of momentum, briefly discussed on p.~\pageref{item:momentum_mass_velocity}. Let us examine this constitutive relation more thoroughly.
+Closely related to the previous constitutive relation is the one relating an amount of matter and an amount of momentum \autoref{item:momentum_mass_velocity}{briefly discussed before}. Let us examine this constitutive relation more thoroughly.
 
 Fix a coordinate system $(t,x,y,z)$. At a given point in space, take a small rectangular control surface of area $A$, with sides parallel to the coordinate axes $y$ and $z$. The surface must \emph{not} be moving in that coordinate system. Through this surface, in the positive-$x$ direction, there's a flux of matter that we denote $J_{x}$.
 
 Construct two more surfaces of area $A$ through the same point in a analogous way: one parallel to the $zx$ axes and one to the $xy$ axes. The matter fluxes through them are $J_{y}$ and $J_{z}$.
 
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-7\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{Px_Jx2.pdf}%
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % }%
 }%
-Finally take a control volume of cuboid shape that fits the three surfaces. This cuboid has volume $V$, and contains an amount of matter $\yN$ and an amount of momentum $\yP$. Recall from \sect~\ref{sec:fluxes_velocities} that we associate with the matter flowing through the first surface a velocity component $v_{x} \equiv \frac{J_{x}/A}{\yN/V}$, and similarly for the other two surfaces.
+Finally take a control volume of cuboid shape that fits the three surfaces. This cuboid has volume $V$, and contains an amount of matter $\yN$ and an amount of momentum $\yP$. \autoref{sec:fluxes_velocities}{Recall the association} between the matter flux through the first surface and the velocity component $v_{x} \equiv \frac{J_{x}/A}{\yN/V}$, and similarly for the other two surfaces.
 
 % Take a small control volume of cuboid shape, with side surfaces \emph{not moving} in the coordinate system $(t,x,y,z)$, and parallel to the $yz$-, $zx$-, and $xy$-coordinates. The cuboid has volume $V$ and each side surface has area $A$.
 % 
@@ -4864,11 +4860,19 @@ For instance, the \furl{https://chem.washington.edu/lecture-demos/match-head-rea
   \to 3\,\mathrm{P_{4}O_{10}} + 10\,\mathrm{K\,Cl}
   % \mathrm{CH_{3}CHO} \to \mathrm{CH_{4}} + \mathrm{CO}
 \end{equation*}
-expresses that if 30 moles of oxygen (O) atoms appear among the reactants, they must also appear among the products; same for the 12 moles of phosphorus (P) atoms, and so on.
+expresses that if 30 moles of oxygen (O) atoms appear among the reactants, they must also appear among the products; same for the 12 moles of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Phosphorus}{phosphorus (P) atoms}, the 10 moles of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Potassium}{potassium (K) atoms}, and so on.
 
 This assumption is simply the statement of conservation of matter, \emph{separately} for each chemical element: since the reaction doesn't let any other matter go in or out, the flux $\yJ$ for each chemical element must be zero. Therefore the amount $\yN$ of each chemical element must be constant: $\di\yN(t)/\di t = \yJ = 0$.
 
 This assumption is often called \enquote*{conservation of mass}, but, as explained in \sect~\ref{sec:cons_matter_formulation}, \enquote{mass} is only a proxy for matter. The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
+
+\subsection{Climate}
+\label{sec:cons_matter_climate}
+
+The law of conservation of matter turn out to be very useful also in problems related to climate. On the Earth's surface and atmosphere, many isotopes of chemical elements\sect
+
+
+%%%***venturi tube
 
 
 \printpagenotes*
