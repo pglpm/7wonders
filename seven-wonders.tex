@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-05T21:51:52+0100
+%% Last-Updated: 2024-03-05T21:56:18+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4956,13 +4956,40 @@ This assumption is simply the statement of conservation of matter, \emph{separat
 
 This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{sec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}. The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
 
+\subsection{Climate}
+\label{sec:cons_matter_climate}
+
+The laws of conservation and balances of matter turn out to be very useful also in problems related to climate.
+
+On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{https://www.britannica.com/science/isotope/The-discovery-of-isotopes\#ref496311}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, such as the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
+
+For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects such as ice or wood.
+
+%
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{carbon_cycle.jpg}%
+\\[2\jot]\footnotesize\flushleftright{\color{mpcolor}%
+  The fluxes of carbon across the \enquote*{control volumes} of atmosphere, oceans, and other environments (image from \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory})}%
+}%
+This is how we are able to say that human usage of fossil fuel is an important factor in the increase of carbon dioxide ($\mathrm{CO_{2}}$) in the atmosphere during the past 200 years or so. Take a look at the more detailed explanations given by the \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory}.
+
+\begin{exercise}
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+
+  Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
+  $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
+  with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $t_{0}=\qty{0}{yr}$ and $\yN(t_{0})=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+\end{exercise}
+
+
 \subsection{Fluid dynamics}
 \label{sec:fluid_dyn_areavel}
 
 The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume integrals and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
 %
-\marginpar{\centering%
+\marginpar{\vspace{-\baselineskip}\centering%
 \includegraphics[align=t,height=15em]{pipesection.pdf}%
 }%
 Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\di t}=0$. By the law of conservation of matter, the total influx must then be zero:
@@ -4999,41 +5026,14 @@ where $A_{1}, A_{2}$ are  the areas  of the top and bottom surfaces, and $v_{1},
 \end{equation*}
 that is, if the area through which the flux occur decreases, then the velocity of the fluid through it increases, and vice versa.
 %
-\marginpar{\vspace{-2\baselineskip}\centering%
+\marginpar{\vspace{-7\baselineskip}\centering%
 \includegraphics[align=t,width=0.5\linewidth]{tap_water.jpg}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-The thickness and velocity variation of water running from a tap is a consequence of the law of conservation of matter}%
+The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
 This is  what we often observe in running water from our taps.
 
 \bigskip
-
-\subsection{Climate}
-\label{sec:cons_matter_climate}
-
-The laws of conservation and balances of matter turn out to be very useful also in problems related to climate.
-
-On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{https://www.britannica.com/science/isotope/The-discovery-of-isotopes\#ref496311}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, such as the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
-
-For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects such as ice or wood.
-
-%
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{carbon_cycle.jpg}%
-\\[2\jot]\footnotesize\flushleftright{\color{mpcolor}%
-  The fluxes of carbon across the \enquote*{control volumes} of atmosphere, oceans, and other environments (image from \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory})}%
-}%
-This is how we are able to say that human usage of fossil fuel is an important factor in the increase of carbon dioxide ($\mathrm{CO_{2}}$) in the atmosphere during the past 200 years or so. Take a look at the more detailed explanations given by the \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory}.
-
-\begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
-
-  Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
-  $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
-  with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $t_{0}=\qty{0}{yr}$ and $\yN(t_{0})=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
-\end{exercise}
 
 
 
