@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-05T11:22:33+0100
+%% Last-Updated: 2024-03-05T13:47:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4955,7 +4955,31 @@ This assumption is often called \enquote*{conservation of mass}, but, as previou
 \subsection{Climate}
 \label{sec:cons_matter_climate}
 
-The law of conservation of matter turn out to be very useful also in problems related to climate. On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{https://www.britannica.com/science/isotope/The-discovery-of-isotopes\#ref496311}{stable isotopes} of the chemical elements
+The laws of conservation and balances of matter turn out to be very useful also in problems related to climate.
+
+On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{https://www.britannica.com/science/isotope/The-discovery-of-isotopes\#ref496311}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, such as the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
+
+For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects such as ice or wood.
+
+%
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{carbon_cycle.jpg}%
+\\[2\jot]\footnotesize\flushleftright{\color{mpcolor}%
+  The fluxes of carbon across the \enquote*{control volumes} of atmosphere, oceans, and other environments (image from \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory})}%
+}%
+This is how we are able to say that human usage of fossil fuel is an important factor in the increase of carbon dioxide ($\mathrm{CO_{2}}$) in the atmosphere during the past 200 years or so. Take a look at the more detailed explanations given by the \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory}.
+
+\begin{exercise}
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+
+  Find out the ice's age by numerically evolving the balance equation
+  $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
+  with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{text{final}})= \qty{2e-13}{mol}$.
+
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $t_{0}=\qty{0}{yr}$ and $\yN(t_{0})=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+\end{exercise}
+
+
 
 
 %%%***venturi tube
