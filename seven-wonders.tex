@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-04T21:49:13+0100
+%% Last-Updated: 2024-03-05T11:22:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -253,7 +253,7 @@ british%
 % \let\varkappa\kappa
 % \DeclareMathSymbol{\varphi}{\mathalpha}{egreeki}{"27}
 % %
-% \DeclareMathSymbol{\varAlpha}{\mathalpha}{egreeki}{"41}
+\DeclareMathSymbol{\varAlpha}{\mathalpha}{egreeki}{"41}
 % \DeclareMathSymbol{\varBeta}{\mathalpha}{egreeki}{"42}
 % \DeclareMathSymbol{\varGamma}{\mathalpha}{egreeki}{"00}
 % \DeclareMathSymbol{\varDelta}{\mathalpha}{egreeki}{"01}
@@ -952,6 +952,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yJ}{J}
 \newcommand*{\yn}{n}
 \newcommand*{\yj}{\bm{j}}
+\newcommand*{\ya}{\varAlpha}
 \newcommand*{\yrho}{\rho}
 \newcommand*{\yM}{M}% m, and q_m for mass flow
 \newcommand*{\ym}{m}% m, and q_m for mass flow
@@ -2888,7 +2889,7 @@ the new side picture shows two similar intersecting surfaces, one fully vertical
 
 
 
-\subsection{Flux units}
+\subsection{Flux units: scalar quantities}
 
 Remember that the flux of a quantity is defined as an amount of that quantity \emph{per time lapse}. Therefore the physical dimension of the flux is
 \begin{equation*}
@@ -3025,6 +3026,27 @@ If we have a vector flux through a particular surface, and we're asked about the
 \begin{warning}[Each surface has a unique flux]
   A flux, scalar or vector, through a particular surface, in general doesn't tell you anything about the flux though another surface, even if the other surface is only slightly different from the first one.
 \end{warning}
+
+\subsection{Flux units: vector quantities}
+
+Also for vector quantities the physical dimension of the flux is
+\begin{equation*}
+  \frac{\textsf{quantity}}{\textsf{time}}
+\end{equation*}
+and its units will be the units of the quantity divided by seconds:
+\begin{definition}{units of fluxes of the three vector quantities}
+  \centering
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+    \textbf{quantity}&& momentum & ang. momentum & magnetic field
+    \\[2\jot]
+    \textbf{flux units}&& \unit{N} & \unit{N\,m} & \unit{Wb/s}
+    \\[2\jot]
+    \textbf{equivalent units}&& &  & \emph{volt} \unit{V}
+  \end{tabular*}
+%  \caption{Units of scalar fluxes}
+  \label{tab:fluxes_vector_units}
+\end{definition}
+
 
 
 
@@ -3381,6 +3403,36 @@ The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive 
 
   In Newtonian approximation these two velocities are equal, so we do not need to distinguish them. In situations where the Newtonian approximation is not valid, on the other hand, we have to take into account the \enquote{velocity of matter} and the \enquote{velocity of energy} separately. This difference is important for instance in the study of plasma in stars and in numerical general relativity. There is an ongoing discussion as to which of the two velocities is more convenient to use; see for instance \cites{kandusetal2008}, especially the section \emph{Eckart frame versus Landau frame}, which refers to the choice between these two velocities.
 \end{extra}
+
+\section{Symbols for volume integrals and fluxes}
+\label{sec:symbols_volint_flux}
+
+Let us summarize the symbols for volume integrals and fluxes of the seven quantities, together with their units, that are used in these notes:
+\begin{definition}{Symbols and units of volume integrals and fluxes}
+  \centering
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcll}
+    \textbf{quantity}&& \textbf{vol. integral}\enspace(unit) & \textbf{flux}\enspace(unit)
+    \\[2\jot]
+    matter&& $\yN$\enspace(\unit{mol}) & $\yJ$\enspace(\unit{mol/s})
+    \\[2\jot]
+    energy&& $\yE$\enspace(\unit{J}) & $\yH$\enspace(\unit{J/s}, \unit{W})
+    \\[2\jot]
+    momentum&& $\yP$\enspace(\unit{N\,s}) & $\yF$\enspace(\unit{N})
+    \\[2\jot]
+    angular momentum&& $\yL$\enspace(\unit{N\,m\,s}) & $\yT$\enspace(\unit{N\,m})
+    \\[3\jot]
+    entropy&& $\yS$\enspace(\unit{J/K}) & $\yQ/\yte$\enspace(\unit{J/(K\,s)})
+    \\[2\jot]
+    \color{grey}\footnotesize electric charge&&\color{grey}\footnotesize (not used)\enspace(\unit{C}) &\color{grey}\footnotesize (not used)\enspace(\unit{C/s}, \unit{A})
+    \\[2\jot]
+    \color{grey}\footnotesize magnetic field&&\color{grey}\footnotesize (not used)\enspace(\unit{Wb}) &\color{grey}\footnotesize (not used)\enspace(\unit{Wb/s}, \unit{V})
+  \end{tabular*}
+%  \caption{Units of scalar fluxes}
+  \label{tab:symbols_volint_fluxes}
+\end{definition}
+
+
+
 
 \clearpage
 
@@ -4625,6 +4677,20 @@ Conservation of matter is a law that we intuitively take for granted and use con
 %   And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields (Newtonian approximation).
 % \end{extra}
 
+\subsection{Balances of matter}
+\label{sec:matter_balances}
+
+The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{considered together}. \marginpar{\vspace{-\baselineskip}\footnotesize\flushleftright{\color{mpcolor}%
+    \emph{\enquote{All these operators conserve $B-L$, so in any superunified theory we expect $B-L$ to be conserved\textellipsis}}}%
+  \sourceatright{\cites{wilczeketal1979}}%
+}%
+More specifically, it seems to hold in extreme physical conditions if we count baryonic and anti-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as negative.
+
+When we consider different kinds of matter, such as different chemical elements, individual conservation laws still hold and can be applied in many common and important physical situations.
+
+For some kinds of matter, conservation does not hold, however; for example in the previously mentioned \autoref{sec:intro_matter}{phenomena involving radioactive decay and nuclear energy}. For these kinds of matter we can still apply a \emph{balance} law, with a non-zero supply or sink.
+
+
 \section{Examples of constitutive relations}
 \label{sec:matter_constitutive}
 
@@ -4653,7 +4719,7 @@ of \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{water molar-ma
 \end{equation*}
 
 The exact value of the molar-mass constant depends not only on the substance but also on the context and application: the substance may actually consist of a mixture of different kinds of matter. \enquote*{Air} for example is a mixture of different chemical elements, and their proportion in the mixture may depend on physical conditions such as temperature, and on geographical position.
-\marginpar{\vspace{-\baselineskip}\centering%
+\marginpar{\vspace{-9\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{water_isotopes.jpg}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 There are several different isotopes of water, with different masses (image from \furl{https://www.usgs.gov/media/images/water-isotopes-diagram}{U.S. Geological Survey})}%
@@ -4696,15 +4762,10 @@ Phenomena for which this constitutive equation is no longer valid appear for exa
 
 Closely related to the previous constitutive relation is the one \autoref{item:momentum_mass_velocity}{relating an amount of matter and an amount of momentum}, briefly discussed before. Let us examine this constitutive relation more thoroughly.
 
-Fix a coordinate system $(t,x,y,z)$. At a given point in space, take a small rectangular control surface of area $A$, with sides parallel to the coordinate axes $y$ and $z$. The surface must \emph{not} be moving in that coordinate system. Through this surface, in the positive-$x$ direction, there's a flux of matter that we denote $J_{x}$.
+Fix a coordinate system $(t,x,y,z)$. At a given point in space, take a small rectangular control surface of area $A$, with sides parallel to the coordinate axes $y$ and $z$. See side picture below. The surface must \emph{not} be moving in that coordinate system. Through this surface, in the positive-$x$ direction, there's a flux of matter that we denote $J_{x}$.
 
 Construct two more surfaces of area $A$ through the same point in a analogous way: one parallel to the $zx$ axes and one to the $xy$ axes. The matter fluxes through them are $J_{y}$ and $J_{z}$.
 
-\marginpar{\vspace{-7\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{Px_Jx2.pdf}%
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% }%
-}%
 Finally take a control volume of cuboid shape that fits the three surfaces. This cuboid has volume $V$, and contains an amount of matter $\yN$ and an amount of momentum $\yP$. Recall the \autoref{sec:fluxes_velocities}{association between the matter flux} through the first surface and the velocity component $v_{x} \equiv \frac{J_{x}/A}{\yN/V}$, and similarly for the other two surfaces.
 
 % Take a small control volume of cuboid shape, with side surfaces \emph{not moving} in the coordinate system $(t,x,y,z)$, and parallel to the $yz$-, $zx$-, and $xy$-coordinates. The cuboid has volume $V$ and each side surface has area $A$.
@@ -4728,6 +4789,11 @@ Finally take a control volume of cuboid shape that fits the three surfaces. This
 
 Assume that the constitutive relation between matter and mass, previously discussed, is valid, and associates a \masse\ $\yM=\yrho\yN$ to the amount of matter $\yN$.
 
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{Px_Jx2.pdf}%
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% }%
+}%
 \begin{definition}{Newtonian constitutive relation for momentum}
 The \textbf{Newtonian relation for the momentum of matter} is a constitutive relation saying that the flux and velocity of matter and the volume integral of momentum are proportional:
   \begin{equation}
@@ -4798,7 +4864,7 @@ In particular, according to the Newtonian constitutive relation, \emph{momentum 
 (Illustration by \furl{https://dribbble.com/squarefountain}{Cathryn Briggs})}%
 }%
 
-\subsection{Thermodynamics}
+\subsection{Gas pressure}
 \label{sec:matter_const_thermodynamics}
 
 In the previous section we saw a constitutive relation between matter and \emph{flux} of momentum, which we called \enquote*{convective flux}. It is a flux that's always present whenever there's matter in motion.
@@ -4807,11 +4873,6 @@ In some circumstances, matter gives rise to a flux of momentum even when it is n
 
 \smallskip
 
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{barometer.jpg}%
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-  A barometer for measuring atmospheric pressure (image from \furl{https://education.nationalgeographic.org/resource/atmospheric-pressure/}{National Geographic})}%
-}%
 For some kinds of matter in a gaseous state, the magnitude of their compressive flux of momentum $\yF_{\text{press}}$ can be approximated by the formula:
 % \marginpar{\vspace{3\baselineskip}\centering%
 % \includegraphics[align=t,width=\linewidth]{idealgas_mug.jpg}%
@@ -4824,7 +4885,34 @@ For some kinds of matter in a gaseous state, the magnitude of their compressive 
   \end{equation*}
   called the \textbf{ideal-gas law}, where $A$ is the area through which the momentum flux occurs, $V$ is the volume of a small region adjacent to the area, $\yN$ is the amount of matter in that volume, $\yte$ is its temperature, and $$R = \qty{8.31446261815324}{N\,m/(K\,mol)}\qquad\text{(exactly)}$$ is the \furl{https://www.britannica.com/science/universal-gas-constant}{molar gas constant}. The ratio $\yF_{\text{press}}/A$ of force and area is called \emph{pressure}.
 \end{definition}
+\marginpar{\vspace{-13\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{barometer.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+  A barometer for measuring atmospheric pressure (image from \furl{https://education.nationalgeographic.org/resource/atmospheric-pressure/}{National Geographic})}%
+}%
 This law is very important in thermodynamics and chemistry, even if it's only an approximation.
+
+\subsection{Radioactive decay}
+\label{sec:matter_const_radioactive}
+
+For radioactive substances, for which conservation of mass does not hold, we still have a balance law where the \autoref{sec:balance_laws}{supply}, which we can denote with the symbol $-\ya$, has a specific constitutive equation:
+\begin{definition}{Matter supply in radioactive decay}
+  \begin{equation*}
+  -\ya(t) =  -\lambda\,\yN(t)
+\end{equation*}
+where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
+
+If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance then takes the form
+  \begin{equation*}
+  \frac{\di\yN(t)}{\di t} =  -\lambda\,\yN(t)
+\end{equation*}
+called the \furl{https://www.britannica.com/science/radioactivity/Rates-of-radioactive-transitions\#ref496415}{\emph{law of radioactive decay}}.
+\end{definition}
+\marginpar{\vspace{-13\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{radioactive.png}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+When we see this symbol we know that there's matter that's only balanced, not conserved -- which involves danger}%
+}%
 
 \section{Examples of applications}
 \label{sec:matter_applic}
@@ -4867,7 +4955,7 @@ This assumption is often called \enquote*{conservation of mass}, but, as previou
 \subsection{Climate}
 \label{sec:cons_matter_climate}
 
-The law of conservation of matter turn out to be very useful also in problems related to climate. On the Earth's surface and atmosphere, many isotopes of chemical elements\sect
+The law of conservation of matter turn out to be very useful also in problems related to climate. On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{https://www.britannica.com/science/isotope/The-discovery-of-isotopes\#ref496311}{stable isotopes} of the chemical elements
 
 
 %%%***venturi tube
