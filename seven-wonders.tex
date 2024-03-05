@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-05T13:47:59+0100
+%% Last-Updated: 2024-03-05T21:51:52+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -943,7 +943,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
-\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1} p.\,\pageref{#1}}}\textcolor{blue}{#2}}
+\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1}, \pageref{#1}}}\textcolor{blue}{#2}}
 
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yv}{\bm{v}}
@@ -4646,6 +4646,10 @@ Yet, the simple timestepping scheme that we have explored remains the core of mo
 \chapter{Conservation of matter}
 \label{cha:cons_matter}
 
+\epigraph{\emph{%
+\enquote{What you do in this world is a matter of no consequence,} returned my companion, bitterly. \enquote{The question is, what can you make people believe that you have done?\textellipsis}
+}}{Sherlock Holmes (A. C. Doyle) \cites*{doyle1887}}
+
 \section{Formulation and generalities}
 \label{sec:cons_matter_formulation}
 
@@ -4719,7 +4723,7 @@ of \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{water molar-ma
 \end{equation*}
 
 The exact value of the molar-mass constant depends not only on the substance but also on the context and application: the substance may actually consist of a mixture of different kinds of matter. \enquote*{Air} for example is a mixture of different chemical elements, and their proportion in the mixture may depend on physical conditions such as temperature, and on geographical position.
-\marginpar{\vspace{-9\baselineskip}\centering%
+\marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{water_isotopes.jpg}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 There are several different isotopes of water, with different masses (image from \furl{https://www.usgs.gov/media/images/water-isotopes-diagram}{U.S. Geological Survey})}%
@@ -4909,7 +4913,7 @@ If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance t
 called the \furl{https://www.britannica.com/science/radioactivity/Rates-of-radioactive-transitions\#ref496415}{\emph{law of radioactive decay}}.
 \end{definition}
 \marginpar{\vspace{-13\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{radioactive.png}%
+\includegraphics[align=t,width=0.75\linewidth]{radioactive.png}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 When we see this symbol we know that there's matter that's only balanced, not conserved -- which involves danger}%
 }%
@@ -4952,6 +4956,58 @@ This assumption is simply the statement of conservation of matter, \emph{separat
 
 This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{sec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}. The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
 
+\subsection{Fluid dynamics}
+\label{sec:fluid_dyn_areavel}
+
+The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume integrals and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
+
+%
+\marginpar{\centering%
+\includegraphics[align=t,height=15em]{pipesection.pdf}%
+}%
+Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\di t}=0$. By the law of conservation of matter, the total influx must then be zero:
+\begin{equation*}
+  {\color{grey}\underbrace{\color{black}\frac{\di\yN(t)}{\di t}}_{\color{grey}{}=0}\color{black}} - \yJ(t) = 0
+  \qquad\Longrightarrow\qquad
+  \yJ(t) = 0
+\end{equation*}
+and it is given by the influxes through three surfaces: the side surface, the one at the top, and the one at the bottom. The influx through the side surface is zero. Let us denote the influx through the top surface by $\yJ_{1}$, and the influx through the bottom surface by $\yJ_{2}$. We must therefore have
+\begin{equation*}
+  0 = \yJ(t) = \yJ_{1}(t) + \yJ_{2}(t)
+  \qquad\Longrightarrow\qquad
+  \yJ_{1}(t) = -\yJ_{2}(t)
+\end{equation*}
+%
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{jet1.png}%
+\\[\jot]\footnotesize{\color{mpcolor}%
+(image from \furl{https://www.jet-x.org/a8.html}{JetX})}}%
+that is, the influx through the top surface must equal the efflux through the bottom one.
+This is a very powerful deduction: consider that it is valid even if the flow of the fluid is turbulent, and it is valid in more general situations such as at different sections of a jet engine.
+
+\medskip
+
+If the surfaces are small enough, we can also use the \autoref{sec:fluxes_velocities}{connection between flux and velocity}:
+\begin{equation*}
+  v_{1} = \frac{\yJ_{1}/A_{1}}{\yN/V}
+  \qquad
+  v_{2} = \frac{-\yJ_{2}/A_{2}}{\yN/V}
+\end{equation*}
+where $A_{1}, A_{2}$ are  the areas  of the top and bottom surfaces, and $v_{1}, v_{2}$ the \emph{downward} velocities through them (hence the minus sign for the bottom surface). From $\yJ_{1} = -\yJ_{2}$ we then find this important relationship:
+\begin{equation*}
+  v_{1}\,A_{1} = v_{2}\,A_{2}
+\end{equation*}
+that is, if the area through which the flux occur decreases, then the velocity of the fluid through it increases, and vice versa.
+%
+\marginpar{\vspace{-2\baselineskip}\centering%
+\includegraphics[align=t,width=0.5\linewidth]{tap_water.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+The thickness and velocity variation of water running from a tap is a consequence of the law of conservation of matter}%
+}%
+This is  what we often observe in running water from our taps.
+
+\bigskip
+
 \subsection{Climate}
 \label{sec:cons_matter_climate}
 
@@ -4972,13 +5028,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 \begin{exercise}
   Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
-  Find out the ice's age by numerically evolving the balance equation
+  Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
-  with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{text{final}})= \qty{2e-13}{mol}$.
+  with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
 
   Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $t_{0}=\qty{0}{yr}$ and $\yN(t_{0})=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
 \end{exercise}
-
 
 
 
@@ -4994,6 +5049,17 @@ This is how we are able to say that human usage of fossil fuel is an important f
 \clearpage
 \chapter{Balance of momentum}
 \label{cha:bal_momentum}
+
+\epigraph{\emph{%
+I hold in fact
+ \begin{enumerate}[label=(\arabic*)]
+ \item That small portions of space \emph{are} in fact of a nature analogous to little hills on a surface which is on the average flat; namely, that the ordinary laws of geometry are not valid in them.
+ \item That this property of being curved or distorted is continually being passed on from one portion of space to another after the manner of a wave.
+ \item That this variation of the curvature of space is what really happens in that phenomenon which we call the \emph{motion of matter}, whether ponderable or etherial.
+ \item That in the physical world nothing else takes place but this variation, subject (possibly) to the law of continuity.
+ \end{enumerate}
+}}{W. K. Clifford \cites*{clifford1876}}
+
 
 \printpagenotes*
 \clearpage
