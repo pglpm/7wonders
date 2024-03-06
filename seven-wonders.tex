@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-06T06:36:25+0100
+%% Last-Updated: 2024-03-06T09:46:05+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -943,7 +943,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
-\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1}, \pageref{#1}}}\textcolor{blue}{#2}}
+\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
 
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yv}{\bm{v}}
@@ -954,8 +954,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yj}{\bm{j}}
 \newcommand*{\ya}{\varAlpha}
 \newcommand*{\yrho}{\rho}
-\newcommand*{\yM}{M}% m, and q_m for mass flow
-\newcommand*{\ym}{m}% m, and q_m for mass flow
+\newcommand*{\yM}{m}% m, and q_m for mass flow
 \newcommand*{\yE}{E}
 \newcommand*{\yU}{U}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
@@ -973,6 +972,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
 \newcommand*{\yT}{\bm{\tau}}% M or T or M_Q
+\newcommand*{\ym}{\bm{M}}% M or T or M_Q
 %\newcommand*{\yt}{\bm{\tau}}
 \newcommand*{\yS}{S}
 \newcommand*{\yte}{T}%temperature
@@ -1675,16 +1675,25 @@ Space has physical dimension of \textsf{length} and we shall for the most part m
 
 It is necessary to have a way for distinguishing physical events and phenomena and locating them in spacetime. This is achieved through a \textbf{coordinate system}.
 
-A coordinate system assigns four numerical labels to every point in spacetime. Often these labels have some kind of physical meaning -- such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to.
+A coordinate system assigns four numerical labels to every point in spacetime.
+%
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{lattice_meters_clocks2.png}
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+A lattice of clocks and meters, defining a spacetime coordinate system (from \cites{tayloretal2000})}%
+}%
+Often these labels have some kind of physical meaning -- such as the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to.
 
 A coordinate system also solves the problems coming from proper-time and space discrepancies among different observers. We can assign to every physical event a \emph{coordinate time} and a \emph{coordinate spatial position}, which are the same for all observers, because decided by agreement. Coordinate time doesn't have a strict physical meaning, and will generally be different from the proper times registered by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \furl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time (UTC)}. The clock on your phone, and on devices that get synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper time exactly equal to UTC (besides small variation coming from the movements of Solar System bodies). Observers at other altitudes or moving with respect to Earth's surface notice that their proper times are slightly different from UTC.
 
+Up to now we have often used the word \enquote*{event}, informally taking its meaning for granted. Let's be more precise: we call \textbf{event} or \textbf{spacetime point} an extremely small region of space -- a point -- that only lasts for a very small lapse of time -- an instant. The name \enquote*{event} is used because typically we approximately identify such a point and instant by means of a physical phenomenon of limited spatial extension and short duration, such as the collision of two subatomic particles. The sudden burst of a very small soap bubble can be considered as an event in some circumstances; but something like \enquote{a tennis ball} cannot be considered as an event, mainly because a tennis ball exists for quite a long time, not just for a short instant. From a four-dimensional spacetime point of view,
+%
 \marginpar{\centering%
-\includegraphics[align=c,width=\linewidth]{net_rotations.png}
+\includegraphics[align=t,width=\linewidth]{net_rotations.png}
 \\\footnotesize{\color{mpcolor}%
 \url{https://xkcd.com/2882}}%
 }%
-Up to now we have often used the word \enquote*{event}, informally taking its meaning for granted. Let's be more precise: we call \textbf{event} or \textbf{spacetime point} an extremely small region of space -- a point -- that only lasts for a very small lapse of time -- an instant. The name \enquote*{event} is used because typically we approximately identify such a point and instant by means of a physical phenomenon of limited spatial extension and short duration, such as the collision of two subatomic particles. The sudden burst of a very small soap bubble can be considered as an event in some circumstances; but something like \enquote{a tennis ball} cannot be considered as an event, mainly because a tennis ball exists for quite a long time, not just for a short instant. From a four-dimensional spacetime point of view, a tennis ball could be characterized as a line: a \textbf{worldline}.
+a tennis ball could be characterized as a line: a \textbf{worldline}.
 
 
 \smallskip
@@ -1952,8 +1961,7 @@ Let us make a first acquaintance with these seven quantities. The discussion tha
 
 \marginpar{\centering%
 \href{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{\includegraphics[align=c,width=\linewidth]{feynman_why2.png}}%
-\\%
-\flushleftright\footnotesize{\color{mpcolor}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 Richard Feynman explains the difficulty of \enquote{why} questions in a \furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{funny and insightful video}.}%
 }%
 Keep in mind that it is very difficult, if not impossible, to answer questions like \enquote{what \emph{really} is\textellipsis?} or \enquote{why \emph{really} does\textellipsis?}.
@@ -2164,7 +2172,7 @@ In these notes we shall often use the expressions \enquote*{\energym} and \enquo
 
 We often speak of different \emph{forms} of \energym. The most important for us will be \textbf{internal energy}, \textbf{kinetic energy}, \textbf{gravitational potential energy}, to be discussed later; another important one is \emph{electromagnetic energy}.
 
-In \chap\,\ref{cha:laws} we shall see that the differences among these energy forms come from the way they are calculated from other quantities, such as matter or magnetic flux and electric charge. For example, if we know that in a volume there's an amount of a particular kind of matter, then we know that there must also be an amount of energy given by a particular formula. And if that matter is moving, then we have to add to the total an extra amount of energy given by another formula. And if in that volume there's a gravitational field, then another extra amount must be added, given by yet another formula. Similarly if we know that an electromagnetic field is in that volume.
+In \chap\,\ref{cha:laws} we shall see that the differences among these energy forms come from the way they are calculated from other quantities, such as matter or magnetic flux and electric charge. For example, if we know that in a volume there's an amount of a particular kind of matter, then we know that there must also be an amount of energy given by a particular formula. And if that matter is moving, then we have to add to the total an extra amount of energy given by another formula. And if in that volume there's a gravitational field (that is, a particular kind of spacetime curvature), then another extra amount must be added, given by yet another formula. Similarly if we know that an electromagnetic field is in that volume.
 
 We also speak of different forms of flux of energy. The most important for us will be \textbf{heat} and \textbf{work}, and possibly \textbf{convection}. The difference is again in how these fluxes are calculated depending on whether there are also fluxes of matter.
 
@@ -2524,12 +2532,22 @@ We shall see later that the physical laws for entropy have also a different stat
 \end{definition}
 
 
+\section{Metric}
+\label{sec:metric}
+
+A very important quantity constitutes an eighth fundamental building block of all our physical theories: the \textbf{metric}. It is quite different from the seven fundamental quantities, from both a physical and a geometrical point of view. For instance it is \emph{not} an extensive quantity: we can't ask \enquote{what's the total amount of metric in this region?} -- it would be a meaningless question.
+
+The metric characterizes our measurements of space and time. It's the object that allows us to calculate how much \emph{physical} time has elapsed, or the \emph{physical} distance of an object. In General Relativity it allows us to calculate the curvature of spacetime.
+
+In the Newtonian approximation, that is, for speeds smaller than the speed of light and low energy densities (hence weak gravitational fields and small spacetime curvature), the metric is just a static, uniform background object, and spacetime has no curvature. This is why we can speak of an \enquote*{absolute time} and \enquote*{absolute distances} in this approximation. In these notes we shall for the most part use this Newtonian approximation.
+
+In General Relativity the metric is a dynamic object instead: it can change in time, and can vary from region to region. These changes are determined by the seven fundamental quantities, and the metric, in turn, determines changes in the seven quantities.
 
 
 \section{Auxiliary quantities}
 \label{sec:aux_quantities}
 
-Besides the seven principal quantities, other auxiliary quantities appear in some physical theories. Important examples are \textbf{temperature} and \textbf{metric}. Most auxiliary quantities don't have the \enquote{stuff-like} properties of the seven principal quantities. For instance, we cannot ask \enquote{what's the total amount of temperature in this region?}. We shall later discuss and use some auxiliary quantities, especially temperature.
+Besides the seven principal quantities, other auxiliary quantities appear in some physical theories. Important examples are \textbf{temperature} and \textbf{strain}. Most auxiliary quantities are not extensive. For instance we cannot ask \enquote{what's the total amount of temperature in this region?}. We shall later discuss and use some auxiliary quantities, especially temperature.
 
 
 The dimensions, units, and scalar or vector character of all quantities mentioned so far are summarized in table\,\ref{tab:units}.
@@ -3379,7 +3397,7 @@ The $x$-component of the velocity of matter in this region is defined as
   v_{x} \defd \frac{J_{x}/A}{\yN/V}
 \end{equation}
 with analogous definitions for the $y$- and $z$-components.
-This definition is valid for small velocities and weak gravitational fields.
+This definition is valid for small velocities and low energy concentrations (hence weak gravitational fields or spacetime curvature).
 
 
 The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive property. If you choose \emph{any} very small surface centred at this point, and move it with this velocity (in the direction specified by the velocity), then the matter flux through it is zero. This reflects the intuitive understanding that if a surface is \enquote{moving} together with the matter, at the same speed, then we shouldn't observe any flux through it.
@@ -4229,7 +4247,7 @@ for example the fact that a body of water can easily change shape upon movement,
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 Four states of matter (\furl{https://commons.wikimedia.org/wiki/File:Four_Fundamental_States_of_Matter.png}{image by Spirit469})}%
 }%
--- solid, liquid, gas, plasma, and there are others -- arise from different constitutive relations. Constitutive relations also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which applies for low speeds and weak gravitational phenomena only, and general relativity, which applies also to cosmological scales.
+-- solid, liquid, gas, plasma, and there are others -- arise from different constitutive relations. Constitutive relations also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which applies only for low speeds and low energy concentrations (hence weak gravitational fields and small spacetime curvature), and general relativity, which applies on all scales, including cosmological scales.
 
 When we read that a new physical phenomenon has been discovered, usually that means that a new \emph{constitutive relation} has been discovered. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
@@ -4265,7 +4283,7 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
   \begin{equation*}
     \yG = \yM\yg = \yrho\yN\yg
   \end{equation*}
-  where $\yg$ is a vector that depends on the gravitational field.  This constitutive relation expresses the \emph{gravitational force}.
+  where $\yg$ is a vector that depends on the gravitational field (it expresses spacetime curvature).  This constitutive relation expresses the \emph{gravitational force}.
 
   For physical phenomena on the Earth's surface, the vector $\yg$ is approximately constant: it points towards the Earth's centre and has magnitude $g\defd\abs{\yg}\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}}$.
 
@@ -4832,7 +4850,7 @@ Through the $yz$-surface above there's a flux of momentum
   Usually there are additional, non-convective flows of momentum (forces) associated with matter, as we shall see later.
 \end{warning}
 
-These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the gravitational fields are strong, or when some kind of electromagnetic phenomena are also involved.
+These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the energy concentrations are so high to create strong gravitational fields (high spacetime curvature), or when some kind of electromagnetic phenomena are also involved.
 
 In particular, according to the Newtonian constitutive relation, \emph{momentum and velocity of matter are always parallel}, because they are two vectors that differ by a multiplicative scalar. In general this is not exactly true: momentum can have a different direction from velocity. In general relativity one must often take this fact into account.
 
@@ -5058,7 +5076,7 @@ This is  what we often observe in running water from our taps.
 
 \epigraph{\emph{%
 I hold in fact
- \begin{enumerate}[label=(\arabic*)]
+ \begin{enumerate}[label=(\arabic*),wide,itemindent=2em]
  \item That small portions of space \emph{are} in fact of a nature analogous to little hills on a surface which is on the average flat; namely, that the ordinary laws of geometry are not valid in them.
  \item That this property of being curved or distorted is continually being passed on from one portion of space to another after the manner of a wave.
  \item That this variation of the curvature of space is what really happens in that phenomenon which we call the \emph{motion of matter}, whether ponderable or etherial.
@@ -5605,6 +5623,40 @@ Finally, the equation $\mathrm{d}S = Q/T$ is only valid for a process that is:
 \item without bulk heating (such as instead happens in a microwave oven).
 \end{itemize}
 Under the last three conditions we have in general that $\mathrm{d}S \ge Q/T$; when the equality sign is satisfied, then the process is \emph{defined} as reversible. See Astarita, \sect\,1.5, or Müller \amp\ Müller, for the different forms of the second law under different circumstances. This equation may be valid in quasi-static and non-quasi-static processes, as explained above.
+
+
+
+\begin{equation*}
+      \frac{\di\yN(t)}{\di t}- \yJ(t) = 0
+\end{equation*}
+
+\begin{equation*}
+      \frac{\di\yN(t)}{\di t}- \yJ(t) = -\ya(t)
+\end{equation*}
+
+\begin{equation*}
+      \frac{\di\yE(t)}{\di t}- \yH(t) = \yR(t)
+\end{equation*}
+
+\begin{equation*}
+      \frac{\di\yP(t)}{\di t}- \yF(t) = \yG(t)
+\end{equation*}
+
+\begin{equation*}
+      \frac{\di\yL(t)}{\di t}- \yT(t) = \ym(t)
+\end{equation*}
+
+% \begin{equation*}
+%       \frac{\di q(t)}{\di t}- I(t) = 0
+% \end{equation*}
+
+% \begin{equation*}
+%       \frac{\di\bm{B}(t)}{\di t}- \yJ(t) = 0
+% \end{equation*}
+
+\begin{equation*}
+      \frac{\di\yS(t)}{\di t}- \frac{\yH(t)}{T(t)} \ge 0
+\end{equation*}
 
 % ### References ###
 
