@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-06T09:46:05+0100
+%% Last-Updated: 2024-03-06T18:37:02+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3501,7 +3501,7 @@ This distinction it's important. The fundamental laws can be applied with some c
 
 \medskip
 
-As far as we know there is a very small number of fundamental laws and, remarkably, \emph{all known fundamental laws are balance laws}.
+As far as we know there is a very small number of fundamental laws and, remarkably, all known fundamental laws \emph{are balance laws}.
 \begin{definition}{Balance and conservation laws}
   \textbf{Balance laws}, or simply \emph{balances}, have this name because they express a sort of trade-off or \enquote{budget} about physical quantities.
 
@@ -3510,6 +3510,9 @@ As far as we know there is a very small number of fundamental laws and, remarkab
 
 In this chapter we shall see how to mathematically express balance and conservation laws, as well as some kinds of constitutive relations.
 
+\begin{warning}[\enquote*{Conservation} vs \enquote*{balance} in other texts]
+  Be aware that many texts do \emph{not} distinguish between \enquote*{conservation law} and \enquote*{balance law}, and often use \enquote*{conservation} to mean both; which is unfortunate, since balance is the most general of the two. Always try to infer from the context how these two terms are used.
+\end{warning}
 
 
 \section{Conservation laws}
@@ -3519,15 +3522,23 @@ Conservation laws tightly connect \autoref{cha:total_flux}{\emph{volume integral
 
 Consider a \autoref{sec:in_out_flux}{\emph{closed} control surface} at a (coordinate) time $t_{1}$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
 
-Starting from time $t_{1}$, imagine the closed control surface moving and deforming through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $t_{2}$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the side picture below as an example.
-\marginpar{\vspace{10\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{surfacemotion1.png}
-\\\includegraphics[align=t,width=\linewidth]{surfacemotion2.png}
-\\\includegraphics[align=t,width=\linewidth]{surfacemotion3.png}
-\\\includegraphics[align=t,width=\linewidth]{surfacemotion4.png}
+Starting from time $t_{1}$, imagine the closed control surface moving and deforming \marginpar{\vspace{-\baselineskip}\centering%
+\includegraphics[align=t,width=0.245\linewidth]{cs4.png}\hfill%
+\includegraphics[align=t,width=0.245\linewidth]{cs3.png}\hfill%
+\includegraphics[align=t,width=0.245\linewidth]{cs2.png}\hfill%
+\includegraphics[align=t,width=0.245\linewidth]{cs1.png}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-  Temporal sequence of closed control surfaces, represented by the golf ball's surface (\furl{https://pglpm.github.io/7wonders/media/surfacemotion.mp4}{click here for an animated version})}%
+Four snapshots of a moving and deforming closed control surface (\furl{https://pglpm.github.io/7wonders/media/volume_moving.gif}{click here for animated version})}%
 }%
+% \marginpar{\vspace{10\baselineskip}\centering%
+% \includegraphics[align=t,width=\linewidth]{surfacemotion1.png}
+% \\\includegraphics[align=t,width=\linewidth]{surfacemotion2.png}
+% \\\includegraphics[align=t,width=\linewidth]{surfacemotion3.png}
+% \\\includegraphics[align=t,width=\linewidth]{surfacemotion4.png}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+%   Temporal sequence of closed control surfaces, represented by the golf ball's surface (\furl{https://pglpm.github.io/7wonders/media/surfacemotion.mp4}{click here for an animated version})}%
+% }%
+through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $t_{2}$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the side picture below as an example.
 
 % The initial and final control volumes and the sequence of control surfaces in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
 

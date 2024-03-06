@@ -82,3 +82,18 @@ tplot(t,v,xlab=bquote(italic(t)/"s"),ylab=bquote(italic(v)[italic(z)](italic(t))
 dev.off()
 
 cbind(t,r=r,P=P,v=v)
+
+
+n0 <- 1e-12
+t2 <- 5700
+n <- n0
+nnow <- 2e-13
+t <- 0
+dt <- 1/365
+lam <- log(2)/t2
+while(n > nnow){
+    t <- t+dt
+    n <- n - lam*n*dt
+}
+print(t)
+print(n)
