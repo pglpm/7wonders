@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-09T20:26:30+0100
+%% Last-Updated: 2024-03-09T22:54:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4635,9 +4635,9 @@ Yet, the simple timestepping scheme that we have explored remains the core of mo
 
 
 \epigraph{\itshape%
-\hspace{1em}\textins{Marco Polo:} \enquote{You take delight not in a city's seven or seventy wonders, but in the answer it gives to a question of yours.}
+\hspace{1em}\textins{Marco Polo:} \enquote{\textellipsis You take delight not in a city's seven or seventy wonders, but in the answer it gives to a question of yours.}
 
-\hspace{1em}\textins{Kublai Khan:} \enquote{Or the question it asks you, forcing you to answer\textellipsis}}{I. Calvino \cites*{calvino1972_t1979}}
+\hspace{1em}\textins{Kublai Khan:} \enquote{Or the question it asks you, forcing you to answer, like Thebes through the mouth of the Sphinx.}}{I. Calvino \cites*{calvino1972_t1979}}
 
 
 The reason for introducing the \autoref{cha:stuff}{seven primitive quantities}, which are common to all our main physical theories, is that each of them obeys a \autoref{cha:laws}{balance law}. More precisely: \emph{matter}, \emph{electric charge}, and \emph{magnetic flux} actually obey conservation laws, like~\eqref{eq:conserved}. Whereas \emph{energy}, \emph{momentum}, \emph{angular momentum}, and \emph{entropy} satisfy balance laws, like~\eqref{eq:balanced}, that may have a supply; only in special circumstances these quantities also obey conservation laws.
@@ -4704,22 +4704,55 @@ In the present chapter we shall give the mathematical expression of each of the 
 \section{Common aspects in the formulation of each law}
 \label{sec:common_formulation}
 
+Recall that in order 
+
+Just like in the formulation of any conservation or balance law,
+
 
 
 \section{Conservation and balances of matter}
 \label{sec:cons_matter}
 
-\begin{definition}{Conservation of matter}
+\begin{definition}{Balance of matter}
   \begin{equation}
     \label{eq:cons_matter}
-    \begin{gathered}
-      \underbracket[0pt]{\yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t = 0}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad%\text{\footnotesize\color{grey}or}
+    \begin{gathered}[t]
+      \underbracket[0pt]{\yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t = -\int_{t_{1}}^{t_{2}}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \quad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = 0}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = -\ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
   \end{equation}
+  where the supply $\ya$ is called \textbf{activity}, and $\ya(t)\equiv 0$ in case of conservation.
 \end{definition}
+
+Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. % This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
+
+% In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume integral, but it would make little sense if the flux didn't equal the rate of change of the volume integral.
+% \begin{extra}{Velocity from flux and volume integral}\label{extra:velocity_matter}
+%   Suppose we have a coordinate system $(t,x,y,z)$. Consider a small spatial region of cuboid shape delimited by two surfaces having $x$ constant, two having $y$ constant, and two having $z$ constant. The instantaneous velocity component $v_{x}$ is defined as the ratio of:
+%   \begin{enumerate*}[label=(\alph*)]
+%   \item the flux $\yJ_{x}$ through any of the two $x$-constant surfaces, crossing in the positive-$x$ orientation, divided by surface area $A$, and 
+%   \item the volume integral $\yN$ in the cuboid region, divided by the region's volume $V$:
+%   \end{enumerate*}
+%   \begin{equation*}
+%     v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
+%   \end{equation*}
+%   And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields (Newtonian approximation).
+% \end{extra}
+
+\subsection{Balances of matter}
+\label{sec:matter_balances}
+
+The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{considered together}. \marginpar{\vspace{-\baselineskip}\footnotesize\flushleftright{\color{mpcolor}%
+    \emph{\enquote{All these operators conserve $B-L$, so in any superunified theory we expect $B-L$ to be conserved\textellipsis}}}%
+  \sourceatright{\cites{wilczeketal1979}}%
+}%
+More specifically, it seems to hold in extreme physical conditions if we count baryonic and anti-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as negative.
+
+When we consider different kinds of matter, such as different chemical elements, individual conservation laws still hold and can be applied in many common and important physical situations.
+
+For some kinds of matter, conservation does not hold, however; for example in the previously mentioned \autoref{sec:intro_matter}{phenomena involving radioactive decay and nuclear energy}. For these kinds of matter we can still apply a \emph{balance} law, with a non-zero supply or sink.
 
 
 
@@ -4729,7 +4762,7 @@ In the present chapter we shall give the mathematical expression of each of the 
 \begin{definition}{Balance of energy}
   \begin{equation}
     \label{eq:bal_energy}
-    \begin{gathered}
+    \begin{gathered}[t]
       \underbracket[0pt]{\yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
@@ -4747,7 +4780,7 @@ In the present chapter we shall give the mathematical expression of each of the 
 \begin{definition}{Balance of momentum}
   \begin{equation}
     \label{eq:bal_momentum}
-    \begin{gathered}
+    \begin{gathered}[t]
       \underbracket[0pt]{\yP(t_{2}) - \yP(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
@@ -4763,7 +4796,7 @@ In the present chapter we shall give the mathematical expression of each of the 
 \begin{definition}{Balance of angular momentum}
   \begin{equation}
     \label{eq:bal_ang_momentum}
-    \begin{gathered}
+    \begin{gathered}[t]
       \underbracket[0pt]{\yL(t_{2}) - \yL(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yT(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
@@ -4779,7 +4812,7 @@ In the present chapter we shall give the mathematical expression of each of the 
 \begin{definition}{Balance of entropy}
   \begin{equation}
     \label{eq:bal_entropy}
-    \begin{gathered}
+    \begin{gathered}[t]
       \underbracket[0pt]{\yS(t_{2}) - \yS(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yB(t)\,\di t \ge 0}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
