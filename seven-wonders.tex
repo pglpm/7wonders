@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-06T22:23:40+0100
+%% Last-Updated: 2024-03-09T20:26:30+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -854,8 +854,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \renewcommand*{\asymp}{\simeq}%equivalent to 
 %\newcommand*{\corr}{\mathrel{\hat{=}}}%corresponds to
 %\providecommand{\varparallel}{\ensuremath{\mathbin{/\mkern-7mu/}}}%parallel (tentative symbol)
-\renewcommand*{\le}{\leqslant}%less or equal
-\renewcommand*{\ge}{\geqslant}%greater or equal
+% \renewcommand*{\le}{\leqslant}%less or equal
+% \renewcommand*{\ge}{\geqslant}%greater or equal
 %\DeclarePairedDelimiter\clcl{[}{]}
 %\DeclarePairedDelimiter\clop{[}{[}
 %\DeclarePairedDelimiter\opcl{]}{]}
@@ -975,7 +975,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\ym}{\bm{M}}% M or T or M_Q
 %\newcommand*{\yt}{\bm{\tau}}
 \newcommand*{\yS}{S}
-\newcommand*{\ySf}{H}
+\newcommand*{\yB}{H}
 \newcommand*{\yte}{T}%temperature
 %
 \newcommand*{\yto}{t_{0}}
@@ -1473,7 +1473,7 @@ but wait: $\qty{60}{s}\equiv\qty{1}{min}$, so we could equivalently write \enquo
 \end{equation*}
 a completely different result!
 
-For this reason an expression like \enquote*{$cos(t)$}, with $t$ denoting time, doesn't make sense: there's a time unit in the argument of $\cos()$. If we want to express an oscillation with time, we must write instead something like
+For this reason an expression like \enquote*{$\cos(t)$}, with $t$ denoting time, doesn't make sense: there's a time unit in the argument of $\cos()$. If we want to express an oscillation with time, we must write instead something like
 \begin{equation*}
   \cos\biggl(\frac{t}{T}\biggr)
 \end{equation*}
@@ -1912,6 +1912,7 @@ Recall that primitive quantities cannot be defined: we can only try to understan
 \begin{definition}{The two basic measurements that can be made on the seven quantities}
   \begin{enumerate}[shift,label=\arabic*.]\bfseries
   \item How much of this quantity is in a particular three-dimensional region of space at a particular time instant?
+    
   \item How much of this quantity flows through a particular two-dimensional surface during a particular time lapse?
   \end{enumerate}
 \end{definition}
@@ -3441,7 +3442,7 @@ Let us summarize the symbols for volume integrals and fluxes of the seven quanti
     \\[2\jot]
     angular momentum&& $\yL$\enspace[\unit{N\,m\,s}] & $\yT$\enspace[\unit{N\,m}]
     \\[3\jot]
-    entropy&& $\yS$\enspace[\unit{J/K}] & $\ySf$\enspace[\unit{J/(K\,s)}]
+    entropy&& $\yS$\enspace[\unit{J/K}] & $\yB$\enspace[\unit{J/(K\,s)}]
     \\[2\jot]
     \color{grey}\footnotesize electric charge&&\color{grey}\footnotesize (not used)\enspace[\unit{C}] &\color{grey}\footnotesize (not used)\enspace[\unit{C/s} \textcolor{grey}{\footnotesize or} \unit{A}]
     \\[2\jot]
@@ -3509,6 +3510,12 @@ As far as we know there is a very small number of fundamental laws and, remarkab
 
   \textbf{Conservation laws} are a special and important kind of balance laws.
 \end{definition}
+\marginpar{\vspace{-4\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{physics_vs_magic.png}
+\\\footnotesize{\color{mpcolor}%
+\url{https://xkcd.com/2904}}%
+}%
+
 
 In this chapter we shall see how to mathematically express balance and conservation laws, as well as some kinds of constitutive relations.
 
@@ -4167,61 +4174,8 @@ Spacetime representation of the evolution of a closed control surface, containin
 \end{extra}
 
 
-\section{The Seven Wonders of the World}
-\label{sec:seven_wonders}
-
-The reason for introducing the \autoref{cha:stuff}{seven primitive quantities}, which are common to all our main physical theories, is that each of them obeys a balance law. More precisely: \emph{matter}, \emph{electric charge}, and \emph{magnetic flux} actually obey strict conservation laws, like~\eqref{eq:conserved}. Whereas \emph{energy}, \emph{momentum}, \emph{angular momentum}, and \emph{entropy} satisfy balance laws, like~\eqref{eq:balanced}, that may have a supply; only in special circumstances these quantities also obey conservation laws.
-
-What's remarkable is that these seven balance laws are known, so far, to be satisfied by \emph{all} phenomena and in \emph{all} our main physical theories, approximate or not: from subatomic scales to cosmological scales; from Newtonian mechanics to general relativity and quantum theory. No exceptions are known. They are our fundamental laws:
-\calccentering{\unitlength}
-\begin{adjustwidth}{\unitlength}{-\unitlength}
-\begin{definition}{The seven fundamental balance laws}
-  \centering\large\bfseries\sffamily%\color{blue}
-%     \textcolor{green}{Conservation of matter}
-% \\ \textcolor{purple}{Conservation of electric charge}
-% \\ \textcolor{red}{Conservation of magnetic flux}
-% \\ \textcolor{blue}{Balance of energy}
-% \\ \textcolor{cyan}{Balance of momentum}
-% \\ \textcolor{yellow}{Balance of angular momentum}
-% \\ \textcolor{midgrey}{Balance of entropy}
-    Conservation of matter
-\\ Conservation of electric charge
-\\ Conservation of magnetic flux
-\\ Balance of energy
-\\ Balance of momentum
-\\ Balance of angular momentum
-\\ Balance of entropy
-\end{definition}
-\end{adjustwidth}
-These balances are truly the Seven Wonders of the World, even more long-lasting than \furl{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}{the traditional \enquote{seven wonders}}.
-
-\smallskip
-
-Once you learn these balances, you can apply them to any kind of physical phenomenon or problem you work with: construction of bridges, control of chemical reactions, operation of GPS navigation and satellites, monitoring of nuclear power plants, sending robots to Mars, or collisions of subatomic particles.
-
-\subsection{Roles of the seven fundamental balances in description and prediction}
-\label{sec:role_seven_laws}
-
-The seven fundamental balances govern every physical phenomenon. Yet this doesn't mean that all of them are always used explicitly.
-
-\marginpar{\centering%
-\includegraphics[align=t,height=5em]{lighter.jpg}%
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-The description of how a common lighter works, thanks to \furl{https://www.britannica.com/science/piezoelectricity}{piezoelectricity}, requires more or less all seven fundamental laws to be explicitly accounted for.}%
-}%
-For some physical phenomena all the seven laws enter our calculations.
-
-For some other physical phenomena, some of the seven laws do not appear explicitly in our calculations; yet  they still enter implicitly in the way we choose to set up or describe the phenomenon. For instance we may choose control volumes or control surfaces in such a way that some conservation laws are automatically satisfied. A typical example is the choice of control surface around a given object (amount of matter), which guarantees that the law of conservation of matter is automatically satisfied.
-
-For still other physical phenomena, some of the seven laws may not be required because we do not need the kind of physical information they provide. We saw an example of this with the \autoref{sec:example_conservation_moving}{flat-tyre problem}, where we only used the conservation of matter but we weren't interested in what happened to other quantities such as energy or momentum.
-
-Some physical phenomena may also be predicted using either a particular set of fundamental laws, for instance conservation of matter and balance of momentum; or a different set, for instance conservation of matter and balance of energy. We shall see examples of all these possibilities in the next sections.
-
-\smallskip
-
-The fact that the seven fundamental balances govern every physical phenomenon doesn't mean that they can be used alone, by themselves. We saw examples of this fact in \chap\,\ref{cha:laws}, where the fundamental laws often needed to be augmented by appropriate constitutive equations.
-
-In the following chapters we shall explore the seven fundamental balance laws in more detail, also giving examples of constitutive relations that typically accompany them.
+% \section{The Seven Wonders of the World}
+% \label{sec:seven_wonders}
 
 
 
@@ -4664,17 +4618,191 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
 \subsection{Applicability of numerical integration}
 \label{sec:applicable_numericintegration}
 
-We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timestepped_evolution} and~\eqref{eq:timestep_momentum_position}, focusing on momentum and position. But obviously this procedure can be applied to all the seven fundamental quantities and their balance laws: it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
+We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timestepped_evolution} and~\eqref{eq:timestep_momentum_position}, focusing on momentum and position. But obviously this procedure can be applied to any quantities that satisfy balance laws.% : it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
 
 The timestepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors; see for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
 
 Yet, the simple timestepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
 
 
+\printpagenotes*
+\clearpage
+\chapter{The Seven Wonders of the world}
+\label{cha:seven_wonders}
+
+\section{Seven fundamental laws}
+\label{sec:seven_fundamental}
+
+
+\epigraph{\itshape%
+\hspace{1em}\textins{Marco Polo:} \enquote{You take delight not in a city's seven or seventy wonders, but in the answer it gives to a question of yours.}
+
+\hspace{1em}\textins{Kublai Khan:} \enquote{Or the question it asks you, forcing you to answer\textellipsis}}{I. Calvino \cites*{calvino1972_t1979}}
+
+
+The reason for introducing the \autoref{cha:stuff}{seven primitive quantities}, which are common to all our main physical theories, is that each of them obeys a \autoref{cha:laws}{balance law}. More precisely: \emph{matter}, \emph{electric charge}, and \emph{magnetic flux} actually obey conservation laws, like~\eqref{eq:conserved}. Whereas \emph{energy}, \emph{momentum}, \emph{angular momentum}, and \emph{entropy} satisfy balance laws, like~\eqref{eq:balanced}, that may have a supply; only in special circumstances these quantities also obey conservation laws.
+
+What's remarkable about these seven balance laws?
+\begin{itemize}[para]
+\item They are known, so far, to be satisfied by \emph{all} physical phenomena, from subatomic scales to cosmological scales. No exceptions are known.
+\item They are satisfied in \emph{all} our main physical theories, approximate or not: from Newtonian mechanics to special relativity, from general relativity to quantum theory. In fact, some of these laws are the very backbone of these theories.
+\item Each one can be expressed by the \emph{same} mathematical equation in all of these theories.
+\end{itemize}
+
+They are our fundamental laws:
+\calccentering{\unitlength}
+\begin{adjustwidth}{\unitlength}{-\unitlength}
+\begin{definition}{The seven fundamental balance laws}
+  \centering\large\bfseries\sffamily%\color{blue}
+%     \textcolor{green}{Conservation of matter}
+% \\ \textcolor{purple}{Conservation of electric charge}
+% \\ \textcolor{red}{Conservation of magnetic flux}
+% \\ \textcolor{blue}{Balance of energy}
+% \\ \textcolor{cyan}{Balance of momentum}
+% \\ \textcolor{yellow}{Balance of angular momentum}
+% \\ \textcolor{midgrey}{Balance of entropy}
+    Conservation of matter
+\\ Conservation of electric charge
+\\ Conservation of magnetic flux
+\\ Balance of energy
+\\ Balance of momentum
+\\ Balance of angular momentum
+\\ Balance of entropy
+\end{definition}
+\end{adjustwidth}
+These balances are truly the Seven Wonders of the World, even more long-lasting than the \furl{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}{traditional \enquote{seven wonders}} or the \furl{https://www.britannica.com/list/new-seven-wonders-of-the-world}{\enquote{new seven wonders}}.
+
+\smallskip
+
+Once you learn these balances, you can apply them to any kind of physical phenomenon or problem you work with: construction of bridges, control of chemical reactions, operation of GPS navigation and satellites, monitoring of nuclear power plants, sending robots to Mars, or collisions of subatomic particles. In fact, every physical phenomenon requires at least one of these seven balances for its physical description.
+
+\subsection{Roles of the seven fundamental balances in description and prediction}
+\label{sec:role_seven_laws}
+
+The seven fundamental balances govern every physical phenomenon. Yet this doesn't mean that all of them are always used explicitly.
+
+\marginpar{\centering%
+\includegraphics[align=t,height=5em]{lighter.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+The description of how a common lighter works, thanks to \furl{https://www.britannica.com/science/piezoelectricity}{piezoelectricity}, requires more or less all seven fundamental laws to be explicitly accounted for.}%
+}%
+For some physical phenomena all the seven laws enter our calculations.
+
+For some other physical phenomena, some of the seven laws do not appear explicitly in our calculations; yet  they still enter implicitly in the way we choose to set up or describe the phenomenon. For instance we may choose control volumes or control surfaces in such a way that some conservation laws are automatically satisfied. A typical example is the choice of control surface around a given object (amount of matter), which guarantees that the law of conservation of matter is automatically satisfied.
+
+For still other physical phenomena, some of the seven laws may not be required because we do not need the kind of physical information they provide. We saw an example of this with the \autoref{sec:example_conservation_moving}{flat-tyre problem}, where we only used the conservation of matter but we weren't interested in what happened to other quantities such as energy or momentum.
+
+Some physical phenomena may also be predicted using either a particular set of fundamental laws, for instance conservation of matter and balance of momentum; or a different set, for instance conservation of matter and balance of energy. We shall see examples of all these possibilities in the rest of these notes.
+
+The fact that the seven fundamental balances govern every physical phenomenon doesn't mean that they can be used alone, by themselves. We saw examples of this fact in the chapter about \autoref{cha:laws}{physical laws}, where balance laws often needed to be augmented by appropriate constitutive equations.
+
+\smallskip
+
+In the present chapter we shall give the mathematical expression of each of the seven fundamental laws, and see some simple examples of their applications.
+% following chapters we shall explore the seven fundamental balance laws in more detail, also giving examples of constitutive relations that typically accompany them.
+
+\section{Common aspects in the formulation of each law}
+\label{sec:common_formulation}
+
+
+
+\section{Conservation and balances of matter}
+\label{sec:cons_matter}
+
+\begin{definition}{Conservation of matter}
+  \begin{equation}
+    \label{eq:cons_matter}
+    \begin{gathered}
+      \underbracket[0pt]{\yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t = 0}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = 0}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+
+
+\section{Balance of energy}
+\label{sec:bal_energy}
+
+\begin{definition}{Balance of energy}
+  \begin{equation}
+    \label{eq:bal_energy}
+    \begin{gathered}
+      \underbracket[0pt]{\yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+
+
+
+\section{Balance of momentum}
+\label{sec:bal_momentum}
+
+\begin{definition}{Balance of momentum}
+  \begin{equation}
+    \label{eq:bal_momentum}
+    \begin{gathered}
+      \underbracket[0pt]{\yP(t_{2}) - \yP(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} - \yF(t) = \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+
+\section{Balance of angular momentum}
+\label{sec:bal_ang_momentum}
+
+\begin{definition}{Balance of angular momentum}
+  \begin{equation}
+    \label{eq:bal_ang_momentum}
+    \begin{gathered}
+      \underbracket[0pt]{\yL(t_{2}) - \yL(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yT(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} - \yT(t) = \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+
+\section{Balance of entropy}
+\label{sec:bal_entropy}
+
+\begin{definition}{Balance of entropy}
+  \begin{equation}
+    \label{eq:bal_entropy}
+    \begin{gathered}
+      \underbracket[0pt]{\yS(t_{2}) - \yS(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yB(t)\,\di t \ge 0}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yS(t)}{\di t} - \yB(t) \ge 0}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+\section{Conservation of electric charge and magnetic flux}
+\label{sec:cons_charge}
+
+
+
 
 \printpagenotes*
 \clearpage
+\chapter{Constitutive relations}
+\label{cha:constitutive}
 
+
+
+\printpagenotes*
+\clearpage
 \chapter{Conservation of matter}
 \label{cha:cons_matter}
 
@@ -5007,7 +5135,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
 
 %
 \marginpar{\vspace{2\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{ice_core_2x}%
+\includegraphics[align=t,width=\linewidth]{ice_core.png}%
 \\\footnotesize{\color{mpcolor}%
 \url{https://xkcd.com/2902}}%
 }%
