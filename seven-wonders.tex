@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-10T10:58:09+0100
+%% Last-Updated: 2024-03-10T15:17:37+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3343,14 +3343,14 @@ The individual fluxes and the total efflux are consistent, since
 
 A flux is defined as the amount of a quantity crossing a surface in a short time lapse $\Dt$, divided by that time lapse. Denoting the flux by, say, $\yJ$, this definition also means that the amount of quantity crossing the surface in a short time $\Dt$ is equal to $\yJ\,\Dt$.
 
-Take now a surface that exists between two time instants $t_{1}$ and $t_{2}$; during this time lapse it could also be moving and changing shape. Choose a crossing direction through the surface. At each intermediate time instant $t$ we can then measure the flux of a quantity crossing the surface in that direction, at that instant; denote it by $\yJ(t)$.
+Take now a surface that exists between two time instants $t_{0}$ and $t_{1}$; during this time lapse it could also be moving and changing shape. Choose a crossing direction through the surface. At each intermediate time instant $t$ we can then measure the flux of a quantity crossing the surface in that direction, at that instant; denote it by $\yJ(t)$.
 
-The total amount of quantity that crosses the surface between times $t_{1}$ and $t_{2}$ can be found by integrating $\yJ(t)$. That is, we divide the time interval into very short time lapses of length $\Dt$; for each short time lapse we know that the amount that crosses the surface is $\yJ(t)\,\Dt$. The total is obtained by adding these small amounts. As $\Dt$ is considered shorter and shorter, this sum is by definition an integral:
+The total amount of quantity that crosses the surface between times $t_{0}$ and $t_{1}$ can be found by integrating $\yJ(t)$. That is, we divide the time interval into very short time lapses of length $\Dt$; for each short time lapse we know that the amount that crosses the surface is $\yJ(t)\,\Dt$. The total is obtained by adding these small amounts. As $\Dt$ is considered shorter and shorter, this sum is by definition an integral:
 \begin{definition}{Integrated flux of a quantity through a surface between two times}
-The total amount of quantity crossing a surface (relative to a specified crossing direction) between times $t_{1}$ and $t_{2}$ is given by
+The total amount of quantity crossing a surface (relative to a specified crossing direction) between times $t_{0}$ and $t_{1}$ is given by
   \begin{equation}
     \label{eq:total_flow_integral}
-     \int_{t_{1}}^{t_{2}}\!\! \yJ(t)\,\di t\ .
+     \int_{t_{0}}^{t_{1}}\!\! \yJ(t)\,\di t\ .
   \end{equation}
 \end{definition}
 
@@ -3359,18 +3359,18 @@ The meaning of the integral above should be clear for any scalar quantity, for w
 Take the case of momentum, whose flux (force) we denote $\yF=(F_{x}, F_{y}, F_{z})$. The integral of this flux is then
 \begin{equation}
   \label{eq:total_flow_integral_vector}
-  \int_{t_{1}}^{t_{2}}\!\! \yF(t)\,\di t \defd
+  \int_{t_{0}}^{t_{1}}\!\! \yF(t)\,\di t \defd
   \Biggl(
-  \int_{t_{1}}^{t_{2}}\!\! F_{x}(t)\,\di t \ ,\enspace
-  \int_{t_{1}}^{t_{2}}\!\! F_{y}(t)\,\di t \ ,\enspace
-  \int_{t_{1}}^{t_{2}}\!\! F_{z}(t)\,\di t
+  \int_{t_{0}}^{t_{1}}\!\! F_{x}(t)\,\di t \ ,\enspace
+  \int_{t_{0}}^{t_{1}}\!\! F_{y}(t)\,\di t \ ,\enspace
+  \int_{t_{0}}^{t_{1}}\!\! F_{z}(t)\,\di t
   \Biggr) \ .
 \end{equation}
 
 \medskip
 
 \begin{warning}[The integrated flux can be zero even with non-zero flux]
-  The result of the integral defining the integrated flux can be zero. This means that no \emph{net} amount of quantity crossed the surface between $t_{1}$ and $t_{2}$. Yet the flux $\yJ(t)$ can be non-zero, even at all times; of course it needs to be positive at some times, and negative at others.
+  The result of the integral defining the integrated flux can be zero. This means that no \emph{net} amount of quantity crossed the surface between $t_{0}$ and $t_{1}$. Yet the flux $\yJ(t)$ can be non-zero, even at all times; of course it needs to be positive at some times, and negative at others.
 \end{warning}
 As a simple example, consider a room's door. During one minute, three people enter through the door; during the next minute, three people (not necessarily the same) exit through the door. The total flow of people is zero, but the flux was non-zero during the first minute, and non-zero during the second minute.
 
@@ -3379,7 +3379,7 @@ As a simple example, consider a room's door. During one minute, three people ent
 \begin{exercise}
   \begin{enumerate}[shift,label=\bfseries\arabic*.]
   \item What is the physical dimension of the integrated flux of a quantity?
-  \item Suppose that we calculate the integral above for a particular surface in the case of matter, finding a total of $\int_{t_{1}}^{t_{2}}\!\! \yJ(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
+  \item Suppose that we calculate the integral above for a particular surface in the case of matter, finding a total of $\int_{t_{0}}^{t_{1}}\!\! \yJ(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
   \end{enumerate}
 \end{exercise}
 
@@ -3532,9 +3532,9 @@ In this chapter we shall see how to mathematically express balance and conservat
 
 Conservation laws tightly connect \autoref{cha:total_flux}{\emph{volume integrals} and \emph{fluxes}}. They are intuitively and visually easy to grasp. The archetype is as follows:
 
-Consider a \autoref{sec:in_out_flux}{\emph{closed} control surface} at a (coordinate) time $t_{1}$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
+Consider a \autoref{sec:in_out_flux}{\emph{closed} control surface} at a (coordinate) time $t_{0}$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
 
-Starting from time $t_{1}$, imagine the closed control surface moving and deforming \marginpar{\vspace{-\baselineskip}\centering%
+Starting from time $t_{0}$, imagine the closed control surface moving and deforming \marginpar{\vspace{-\baselineskip}\centering%
 \includegraphics[align=t,width=0.245\linewidth]{cs1.png}\hfill%
 \includegraphics[align=t,width=0.245\linewidth]{cs2.png}\hfill%
 \includegraphics[align=t,width=0.245\linewidth]{cs3.png}\hfill%
@@ -3550,33 +3550,33 @@ Four snapshots of a moving and deforming closed control surface (\furl{https://p
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 %   Temporal sequence of closed control surfaces, represented by the golf ball's surface (\furl{https://pglpm.github.io/7wonders/media/surfacemotion.mp4}{click here for an animated version})}%
 % }%
-through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $t_{2}$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the side picture below as an example.
+through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $t_{1}$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the side picture below as an example.
 
 % The initial and final control volumes and the sequence of control surfaces in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
 
 Now consider any one of the \autoref{sec:stuff}{seven primitive quantities}, except magnetic flux. Recall that these quantities are \emph{extensive}: we can measure the amount of this quantity in any control volume, and its flux across any control surface. For concreteness let's take \emph{matter}, for which we denote volume integrals by $\yN$ and flux by $\yJ$. We make the following measurements:
 \begin{itemize}
-\item $N(t_{1})$: total amount of matter contained within the control volume at time $t_{1}$.
+\item $N(t_{0})$: total amount of matter contained within the control volume at time $t_{0}$.
 
-\item $\yJ(t)$: \emph{\textbf{in}}flux (\autoref{sec:in_out_flux}{flux crossing inwards}) of matter (and antimatter!) through the closed surface at any particular time $t$ between $t_{1}$ and $t_{2}$.
+\item $\yJ(t)$: \emph{\textbf{in}}flux (\autoref{sec:in_out_flux}{flux crossing inwards}) of matter (and antimatter!) through the closed surface at any particular time $t$ between $t_{0}$ and $t_{1}$.
 
-\item $\yN(t_{2})$: total amount of matter contained within the control volume at time $t_{2}$.
+\item $\yN(t_{1})$: total amount of matter contained within the control volume at time $t_{1}$.
 \end{itemize}
 
 Each of the three amounts above is, in this example, a scalar that can be positive, negative, or zero. For instance we could have:
 \begin{equation*}
   \begin{gathered}
-    t_{1} = \text{00:00:00}
-    \qquad t_{2} = \text{00:00:18}
-    \\ \yN(t_{1}) = \qty{3.50}{mol}
+    t_{0} = \text{00:00:00}
+    \qquad t_{1} = \text{00:00:18}
+    \\ \yN(t_{0}) = \qty{3.50}{mol}
     \qquad \yJ(t) = -0.06\,t\:\unit{mol/s^{2}}
-    \qquad \yN(t_{2}) = \qty{-6.22}{mol}
+    \qquad \yN(t_{1}) = \qty{-6.22}{mol}
   \end{gathered}
 \end{equation*}
 note that $\yJ(t)$ is given as a function of the time $t$.
 % The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
 
-% ; or a vector. For instance, for matter we could have $\yN(t_{1})=\qty{3.5}{mol}$; for energy we could have $\yJ=\qty{-600}{J}$; for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+% ; or a vector. For instance, for matter we could have $\yN(t_{0})=\qty{3.5}{mol}$; for energy we could have $\yJ=\qty{-600}{J}$; for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
 \smallskip
 
@@ -3586,42 +3586,42 @@ With this setup we can introduce two kinds of balance laws.
   An extensive quantity with volume integral $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:conserved}
-    \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = 0
+    \yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t = 0
   \end{equation}
 \end{definition}
 The meaning of the equation above is intuitive, especially if we rewrite it like this:
 \begin{equation*}
-      \yN(t_{2}) = \yN(t_{1}) + \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t
+      \yN(t_{1}) = \yN(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t
 \end{equation*}
-This expression says that the amount of quantity in the final control volume, $\yN(t_{2})$, is equal to the amount in the initial control volume, $\yN(t_{1})$, plus the total amount (which could be negative) that flowed in between those times, that is, the integrated flux $\int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t$. Said otherwise, any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear out of nowhere.
+This expression says that the amount of quantity in the final control volume, $\yN(t_{1})$, is equal to the amount in the initial control volume, $\yN(t_{0})$, plus the total amount (which could be negative) that flowed in between those times, that is, the integrated flux $\int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t$. Said otherwise, any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear out of nowhere.
 
 A conservation law allows us to make several kinds of predictions or deductions. For example:
 \begin{itemize}
-\item If we know the amount of quantity within the control surface at $t_{1}$ and the net amount that crossed the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the control surface at $t_{2}$: this is given by the last equation above.
+\item If we know the amount of quantity within the control surface at $t_{0}$ and the net amount that crossed the surface between $t_{0}$ and $t_{1}$, then we can predict the amount within the control surface at $t_{1}$: this is given by the last equation above.
   % \begin{equation*}
-  %   \yN(t_{2}) = \yN(t_{1}) + \yJ \ .
+  %   \yN(t_{1}) = \yN(t_{0}) + \yJ \ .
   % \end{equation*}
 
-\item If we know the amount of quantity within the control surface at $t_{1}$ and the one at $t_{2}$, then we can deduce the net amount that crossed the surface between the times $t_{1}$ and $t_{2}$:
+\item If we know the amount of quantity within the control surface at $t_{0}$ and the one at $t_{1}$, then we can deduce the net amount that crossed the surface between the times $t_{0}$ and $t_{1}$:
   \begin{equation*}
-    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = \yN(t_{2}) - \yN(t_{1}) \ .
+    \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t = \yN(t_{1}) - \yN(t_{0}) \ .
   \end{equation*}
 
-\item If we know the amount of quantity within the surface at $t_{2}$ and the net amount that crossed the surface between $t_{1}$ and $t_{2}$, we can deduce the amount initially within the surface, at $t_{1}$:
+\item If we know the amount of quantity within the surface at $t_{1}$ and the net amount that crossed the surface between $t_{0}$ and $t_{1}$, we can deduce the amount initially within the surface, at $t_{0}$:
   \begin{equation*}
-    \yN(t_{1}) = \yN(t_{2}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t \ .
+    \yN(t_{0}) = \yN(t_{1}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t \ .
   \end{equation*}
 \end{itemize}
 
-These kinds of predictions and deductions are very powerful because we are fully free to decide the shape and motion of the control surface and volume, as well as the times $t_{1}$ and $t_{2}$.
+These kinds of predictions and deductions are very powerful because we are fully free to decide the shape and motion of the control surface and volume, as well as the times $t_{0}$ and $t_{1}$.
 
 We unconsciously use
 several conservation laws all the time in our everyday life. If a bike tyre is suddenly deflated, we conclude that that air must have got out of it through it surface, which must therefore have a hole or a defective valve; we don't conclude that air \enquote{just disappeared}.
 % If you seal a glass in a box, and upon dropping the box you hear that the glass shatters, and see that no holes were formed in the box, then you are sure that all the glass pieces now in the box could be glued together to form the original glass in its entirety.
 
 % \begin{itemize}
-% \item If we find a larger amount of the quantity within the surface at $t_{2}$ than the one at $t_{1}$, then the difference must have flowed in through the surface in between those times ($\yN(t_{2})-\yN(t_{1}) = \yJ$).
-% \item If a total positive amount of the quantity is flowing in through the surface between times $t_{1}$ and $t_{2}$, then the amount of quantity within the surface at $t_{2}$ must be larger than the one at $t_{1}$ by this amount ($\yN(t_{1})+\yJ = \yN(t_{2})$).
+% \item If we find a larger amount of the quantity within the surface at $t_{1}$ than the one at $t_{0}$, then the difference must have flowed in through the surface in between those times ($\yN(t_{1})-\yN(t_{0}) = \yJ$).
+% \item If a total positive amount of the quantity is flowing in through the surface between times $t_{0}$ and $t_{1}$, then the amount of quantity within the surface at $t_{1}$ must be larger than the one at $t_{0}$ by this amount ($\yN(t_{0})+\yJ = \yN(t_{1})$).
 % \end{itemize}
 % You can think of other similar interpretations.
 
@@ -3639,13 +3639,13 @@ Note that the discussion so far is equally valid for a scalar or a vector quanti
 
 The conservation law
 \begin{equation*}
-  \yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\, \di t = 0
+  \yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t = 0
 \end{equation*}
 is said to be written in \emph{integral form}, because it contains the integrated flux, necessary to calculate the net amount of quantity that crosses the control surface.
 
-Change the symbol for time $t_{1}$ simply into $t$, and take $t_{2}$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
+Change the symbol for time $t_{0}$ simply into $t$, and take $t_{1}$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
 \begin{equation*}
-  t_{1}\ \text{becomes}\ t\ ,\enspace t_{2}\ \text{becomes}\ t+\Dt
+  t_{0}\ \text{becomes}\ t\ ,\enspace t_{1}\ \text{becomes}\ t+\Dt
 \end{equation*}
 Then the integrated flux can be approximated by $\int_{t}^{t+\Dt}\!\!\yJ(t)\, \di t \approx \yJ(t)\, \Dt$ (because the flux $\yJ(t)$ is approximately constant in the short time lapse $\Dt$).
 
@@ -3686,15 +3686,15 @@ We consider an imaginary, closed control surface wrapping the tube. The control 
 
 We assume that air satisfies a conservation law. From the description above we have
 \begin{equation*}
-  t_{1}=\qty{0}{s} \ ,\quad
-  t_{2}=\qty{1800}{s} \ ,\quad
-  \yN(t_{1})=\qty{12.6}{mol} \ ,\quad
-  \yN(t_{2})=\qty{0.5}{mol} \ .
+  t_{0}=\qty{0}{s} \ ,\quad
+  t_{1}=\qty{1800}{s} \ ,\quad
+  \yN(t_{0})=\qty{12.6}{mol} \ ,\quad
+  \yN(t_{1})=\qty{0.5}{mol} \ .
 \end{equation*}
 The conservation law~\eqref{eq:conserved} allows us to calculate the integrated \textbf{in}flux:
 \begin{equation*}
   \begin{split}
-    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t &= \yN(t_{2}) - \yN(t_{1})
+    \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t &= \yN(t_{1}) - \yN(t_{0})
     \\&= \qty{0.5}{mol} - \qty{12.6}{mol}
     \\&= \qty{-12.1}{mol}
   \end{split}
@@ -3708,7 +3708,7 @@ There's a physical hole in the physical tube, but no holes in the imaginary cont
 The negative-signed result says that \qty{12.1}{mol} of air have crossed the moving control surface, in an outward direction, during thirty minutes. Obviously this happened because the tyre tube must have a hole.
 Note that this is a physical hole in the physical tube; our control surface is imaginary and doesn't have any holes. It's just a sort of \enquote{border checkpoint} where anything can in principle move through; we only keep count of what's crossing, how much, and how fast.
 
-We see that the fact that air satisfies a conservation law allows us to determine the integrated flux through the control surface. But it doesn't allow us to determine the flux $\yJ(t)$ at every individual time between $t_{1}$ and $t_{2}$. For example, we don't know if there was a larger flux at the beginning than at the end; the tyre may have gone completely flat just after \qty{60}{s}; in that case the flux $\yJ(t)$ was zero for $t>\qty{60}{s}$.
+We see that the fact that air satisfies a conservation law allows us to determine the integrated flux through the control surface. But it doesn't allow us to determine the flux $\yJ(t)$ at every individual time between $t_{0}$ and $t_{1}$. For example, we don't know if there was a larger flux at the beginning than at the end; the tyre may have gone completely flat just after \qty{60}{s}; in that case the flux $\yJ(t)$ was zero for $t>\qty{60}{s}$.
 
 \subsection{Example with a static control surface}
 \label{sec:example_conservation_static}
@@ -3734,29 +3734,29 @@ This control surface is located in such a way that it wraps the block of ice at 
 
 According to the description above we have
 \begin{equation*}
-  t_{1}=\qty{0}{s} \ ,\quad
-  t_{2}=\qty{0.5}{s} \ ,\quad
-  \yN(t_{1})=\qty{0}{mol} \ ,\quad
-  \yN(t_{2})=\qty{53.4}{mol} \ .
+  t_{0}=\qty{0}{s} \ ,\quad
+  t_{1}=\qty{0.5}{s} \ ,\quad
+  \yN(t_{0})=\qty{0}{mol} \ ,\quad
+  \yN(t_{1})=\qty{53.4}{mol} \ .
 \end{equation*}
 From the conservation law~\eqref{eq:conserved} we calculate the integrated \textbf{in}flux:
 \begin{equation*}
   \begin{split}
-    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t &= \yN(t_{2}) - \yN(t_{1})
+    \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t &= \yN(t_{1}) - \yN(t_{0})
     \\&= \qty{53.4}{mol} - \qty{12.6}{mol}
     \\&= \qty{53.4}{mol}
   \end{split}
 \end{equation*}
-Note that this is the integrated influx through the \emph{whole} cylindrical surface. The conservation law doesn't tell us anything about the integrated influx through \emph{parts} of the surface. In the present case we provide the extra knowledge that the fluxes through the side and bottom surfaces are zero, between $t_{1}$ and $t_{1}$. Then, by the \autoref{def:extensivity}{extensivity property},
+Note that this is the integrated influx through the \emph{whole} cylindrical surface. The conservation law doesn't tell us anything about the integrated influx through \emph{parts} of the surface. In the present case we provide the extra knowledge that the fluxes through the side and bottom surfaces are zero, between $t_{0}$ and $t_{0}$. Then, by the \autoref{def:extensivity}{extensivity property},
 \begin{equation*}
   \begin{split}
-    \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t &=
-    \int_{t_{1}}^{t_{2}}\!\bigl[\yJ_{\text{top}}(t) +
+    \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t &=
+    \int_{t_{0}}^{t_{1}}\!\bigl[\yJ_{\text{top}}(t) +
     \yJ_{\text{side}}(t) +
     \yJ_{\text{bot}}(t)\bigr]\,\di t
     \\
       \qty{53.4}{mol} &=
-      \int_{t_{1}}^{t_{2}}\!\bigl[\yJ_{\text{top}}(t) +
+      \int_{t_{0}}^{t_{1}}\!\bigl[\yJ_{\text{top}}(t) +
       \qty{0}{mol/s} +
       \qty{0}{mol/s}\bigr]\,\di t
   \end{split}
@@ -3807,13 +3807,13 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 
 Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law where this condition is not necessarily satisfied.
 
-The setup is just like before: consider an initial and final closed control surfaces and volumes at $t_{1}$, $t_{2}$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume integral $\yE(t_{1})$, final volume integral $\yE(t_{2})$, and influx $\yH(t)$.
+The setup is just like before: consider an initial and final closed control surfaces and volumes at $t_{0}$, $t_{1}$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume integral $\yE(t_{0})$, final volume integral $\yE(t_{1})$, and influx $\yH(t)$.
 
 \begin{definition}{Balance law}
   A quantity with volume integral $\yE(t)$ and influx $\yH(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:balanced}
-    \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t
+    \yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yH(t)\, \di t = \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t
   \end{equation}
   where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per unit time within the closed control surface at time $t$.
 \end{definition}
@@ -3823,7 +3823,7 @@ If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case w
 
 According to the definition above, a conservation law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}; that is, there never are sources or sinks of the quantity. It is powerful because the supply $\yR(t)$ is already known and has an extremely simple value (zero).
 
-For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{1}) - \yE(t_{2}) - \int_{t_{1}}^{t_{2}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{1}$ and $t_{2}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{0}) - \yE(t_{1}) - \int_{t_{0}}^{t_{1}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{0}$ and $t_{1}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
 \marginpar{\centering%
 \includegraphics[align=b,width=\linewidth]{tennisball_boundary.png}%
@@ -3834,22 +3834,22 @@ A conservation law is therefore powerful also because it allows us to predict th
 \begin{warning}[Supplies are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
-    \yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \di t = 0
+    \yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \di t = 0
   \end{equation*}
   which looks like a conservation law?}
 
 \smallskip
 
 Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the supply $\yR$, on the other hand, involves what's happening \emph{within the control volumes, at each time}. A conservation law involves only fluxes within the integral. That is, it doesn't require us to know what's happening within the control volumes, except at the initial and final time.
-% Said otherwise, the integral $\int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t$ is not an integrated flux.
+% Said otherwise, the integral $\int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t$ is not an integrated flux.
 \end{warning}
 
 
 % A balance law allows us to make several kinds of predictions or deductions as well. For example:
 % \begin{itemize}
-% \item If we know the amount of quantity within the surface at $t_{1}$, the amount that flowed in through the surface between $t_{1}$ and $t_{2}$, and the amount that was created within the surface between $t_{1}$ and $t_{2}$, then we can predict the amount within the surface at $t_{2}$:
+% \item If we know the amount of quantity within the surface at $t_{0}$, the amount that flowed in through the surface between $t_{0}$ and $t_{1}$, and the amount that was created within the surface between $t_{0}$ and $t_{1}$, then we can predict the amount within the surface at $t_{1}$:
 %   \begin{equation*}
-%     \yE(t_{2}) = \yE(t_{1}) + \yH + \yR \ .
+%     \yE(t_{1}) = \yE(t_{0}) + \yH + \yR \ .
 %   \end{equation*}
 % \end{itemize}
 % And similarly as in the other examples for a conservation law. You see that in order to use a balance we need an extra piece of information.
@@ -3857,7 +3857,7 @@ Unfortunately the mathematical expression above wouldn't be a conservation law, 
 \subsection{Balance law for vector quantities}
 \label{sec:balance_laws_vect}
 
-Let us now consider an extensive vector quantity like \emph{momentum}. Denote its initial and final volume integrals by $\yP(t_{1})$ and $\yP(t_{2})$, and its influx (the force) by $\yF(t)$. These are all time-dependent vectors:
+Let us now consider an extensive vector quantity like \emph{momentum}. Denote its initial and final volume integrals by $\yP(t_{0})$ and $\yP(t_{1})$, and its influx (the force) by $\yF(t)$. These are all time-dependent vectors:
 \begin{equation*}
   \yP(t) =
   \begin{bmatrix}
@@ -3877,7 +3877,7 @@ Let us now consider an extensive vector quantity like \emph{momentum}. Denote it
 The balance law has an analogous form:
 \begin{equation}
   \label{eq:balanced_momentum}
-  \yP(t_{2}) - \yP(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yF(t)\, \di t = \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+  \yP(t_{1}) - \yP(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yF(t)\, \di t = \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t
 \end{equation}
 where the supply
 \begin{equation*}
@@ -3892,11 +3892,11 @@ is the amount of momentum created per unit time within the control volume at tim
 \begin{equation}
   \label{eq:balanced_momentum_components}
 \left\{\   \begin{aligned}
-    P_{x}(t_{2}) - P_{x}(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!F_{x}(t)\, \di t &= \int_{t_{1}}^{t_{2}}\!\!G_{x}(t)\,\di t
+    P_{x}(t_{1}) - P_{x}(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!F_{x}(t)\, \di t &= \int_{t_{0}}^{t_{1}}\!\!G_{x}(t)\,\di t
     \\
-    P_{y}(t_{2}) - P_{y}(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!F_{y}(t)\, \di t &= \int_{t_{1}}^{t_{2}}\!\!G_{y}(t)\,\di t
+    P_{y}(t_{1}) - P_{y}(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!F_{y}(t)\, \di t &= \int_{t_{0}}^{t_{1}}\!\!G_{y}(t)\,\di t
     \\
-    P_{z}(t_{2}) - P_{z}(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!F_{z}(t)\, \di t &= \int_{t_{1}}^{t_{2}}\!\!G_{z}(t)\,\di t
+    P_{z}(t_{1}) - P_{z}(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!F_{z}(t)\, \di t &= \int_{t_{0}}^{t_{1}}\!\!G_{z}(t)\,\di t
   \end{aligned}\right.
 \end{equation}
 
@@ -3942,25 +3942,25 @@ During this time there's a continuous and constant supply of momentum within the
 We assume that momentum satisfies a balance law. Choose an imaginary, closed control surface that tightly wraps the tennis ball and moves with it. From the description above we have
 \begin{equation*}
   \begin{gathered}
-    t_{1}=\qty{0}{s}\ ,\quad
-    t_{2}=\qty{2}{s}\ ,
+    t_{0}=\qty{0}{s}\ ,\quad
+    t_{1}=\qty{2}{s}\ ,
         \\[\jot]
-    \yP(t_{1})=\begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}\ ,
+    \yP(t_{0})=\begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}\ ,
 \quad    \yF(t)=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}\text{\footnotesize\ (const.)}\ ,\quad
     \yG(t)=\begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}\text{\footnotesize\ (const.)}\ .
   \end{gathered}
 \end{equation*}
-The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of momentum in the tennis ball at time $t_{2}=\qty{2}{s}$:
+The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of momentum in the tennis ball at time $t_{1}=\qty{2}{s}$:
 % \begin{equation*}
 %   \begin{split}
-%     \yP(t_{2})
-%     &= \yP(t_{1})
-%     + \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t
-%     + \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+%     \yP(t_{1})
+%     &= \yP(t_{0})
+%     + \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t
+%     + \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t
 %     \\[\jot]
-%     &= \yP(t_{1})
-%     + \yF\cdot (t_{2}-t_{1})
-%     + \yG\cdot (t_{2}-t_{1})
+%     &= \yP(t_{0})
+%     + \yF\cdot (t_{1}-t_{0})
+%     + \yG\cdot (t_{1}-t_{0})
 %     \\[\jot]
 %     &= [0,\num{1.70},\num{0.98}]\:\unit{N\,s}
 %     + [0,0,0]\:\unit{N} \cdot \qty{2}{s}
@@ -3969,14 +3969,14 @@ The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of mom
 % \end{equation*}
 \begin{equation*}
   \begin{split}
-    \yP(t_{2})
-    &= \yP(t_{1})
-    + \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t
-    + \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+    \yP(t_{1})
+    &= \yP(t_{0})
+    + \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t
+    + \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t
     \\[2\jot]
-    &= \yP(t_{1})
-    + \yF\cdot (t_{2}-t_{1})
-    + \yG\cdot (t_{2}-t_{1})
+    &= \yP(t_{0})
+    + \yF\cdot (t_{1}-t_{0})
+    + \yG\cdot (t_{1}-t_{0})
     \qquad\qquad\mathrlap{\text{\color{green}\footnotesize(because $\yF$, $\yG$ are constant)}}
     \\[2\jot]
     &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
@@ -3991,7 +3991,7 @@ We see that two seconds later the ball's momentum has the same $x$- and $y$-comp
 
 \medskip
 
-The description above actually has enough information for applying the balance law in differential form, formula~\eqref{eq:balance_diff_components}, because the value of the influx $\yF$ and supply $\yG$ are given at every time $t$ (they are constant). We find that, at any time $t$ between $t_{1}$ and $t_{2}$, the rate of change of momentum is
+The description above actually has enough information for applying the balance law in differential form, formula~\eqref{eq:balance_diff_components}, because the value of the influx $\yF$ and supply $\yG$ are given at every time $t$ (they are constant). We find that, at any time $t$ between $t_{0}$ and $t_{1}$, the rate of change of momentum is
 \begin{equation*}
   \begin{split}
     \frac{\di\yP(t)}{\di t}
@@ -4004,22 +4004,22 @@ The description above actually has enough information for applying the balance l
     &= \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
   \end{split}
 \end{equation*}
-So we could find the momentum at time $t_{2}$, or at any other time between $t_{1}$ and $t_{2}$, by an easy integration:
+So we could find the momentum at time $t_{1}$, or at any other time between $t_{0}$ and $t_{1}$, by an easy integration:
 \begin{equation*}
   \begin{split}
-        \yP(t_{2})
-    &= \yP(t_{1})
-    + \int_{t_{1}}^{t_{2}}\! \frac{\di\yP(t)}{\di t}\,\di t
+        \yP(t_{1})
+    &= \yP(t_{0})
+    + \int_{t_{0}}^{t_{1}}\! \frac{\di\yP(t)}{\di t}\,\di t
     \\[2\jot]
     &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
-    + \int_{t_{1}}^{t_{2}}
+    + \int_{t_{0}}^{t_{1}}
     \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
     \ \di t
     \\[2\jot]
     &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
     + 
     \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\:\unit{N}
-\cdot (t_{2}-t_{1})
+\cdot (t_{1}-t_{0})
 \qquad\qquad\mathrlap{\text{\color{green}\footnotesize(because the integrand is constant)}}
     \\[2\jot]
     &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\:\unit{N\,s}
@@ -4047,17 +4047,17 @@ We are now interested in the net amount of \emph{momentum} that crosses, in a do
 
 We could use the same strategy adopted in that example: considering a static control surface at the final position of the block of ice. From the description, our data are
 \begin{equation*}
-    t_{1}=\qty{0}{s}\ ,\quad
-    t_{2}=\qty{0.5}{s}\ , \quad
-        \yP(t_{1})=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
+    t_{0}=\qty{0}{s}\ ,\quad
+    t_{1}=\qty{0.5}{s}\ , \quad
+        \yP(t_{0})=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
         \quad
-    \yP(t_{2})=\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
+    \yP(t_{1})=\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
 \end{equation*}
 But we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum} for finding the integrated influx. It is also necessary to know the supply of momentum $\yG(t)$, or at least its integral. This is an example of what we said previously: \autoref{sec:balance_laws}{balance laws in general require more information} than conservation laws.
 
 Suppose we are told that the net amount of momentum generated \emph{within the control volume}, during the \qty{0.5}{s}, has magnitude \qty{1.57}{N\,s} and fully downward direction. That is,
 \begin{equation*}
-  \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+  \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t
   =
   \begin{bmatrix}
     0\\0\\\num{-1.57}
@@ -4067,9 +4067,9 @@ Suppose we are told that the net amount of momentum generated \emph{within the c
 Now we can use the balance law~\eqref{eq:balanced_momentum} to find the integrated influx:
 \begin{equation*}
   \begin{split}
-    \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t
-    &=\yP(t_{2}) - \yP(t_{1})
-- \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t
+    \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t
+    &=\yP(t_{1}) - \yP(t_{0})
+- \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
     - \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}
@@ -4089,12 +4089,12 @@ Now we can use the balance law~\eqref{eq:balanced_momentum} to find the integrat
 Let us finish this example with a quick analysis using a \emph{moving} control surface, wrapping the block of ice. We are told that the block initially has zero momentum. Moreover, there is no flux of momentum through a surface that moves along with the block. Our data are therefore
 \begin{equation*}
   \begin{gathered}
-    t_{1}=\qty{0}{s}\ ,\quad
-    t_{2}=\qty{0.5}{s}\ , \quad
+    t_{0}=\qty{0}{s}\ ,\quad
+    t_{1}=\qty{0.5}{s}\ , \quad
     \\[\jot]
-    \underline{\yP}(t_{1})=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
+    \underline{\yP}(t_{0})=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
     \quad
-    \underline{\yP}(t_{2})
+    \underline{\yP}(t_{1})
     =\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
     \quad
     \underline{\yF}(t)
@@ -4103,23 +4103,23 @@ Let us finish this example with a quick analysis using a \emph{moving} control s
 \end{equation*}
 Note that the volume integrals and fluxes are now represented by different symbols (we use an underline, but we could use any other graphical symbol, or simply change the letters themselves). This is because \textbf{they refer to different control surfaces and volumes}. We expect their values to be different from the previous ones, which referred to static surfaces. Indeed we already notice that
 \begin{equation*}
-  \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t =
+  \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t =
   \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\:\unit{N\,s}
   \enspace\bm{\ne}\enspace
-  \int_{t_{1}}^{t_{2}}\!\!\underline{\yF}(t)\,\di t =
+  \int_{t_{0}}^{t_{1}}\!\!\underline{\yF}(t)\,\di t =
   \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s} \ .
 \end{equation*}
 
 We have enough data to find the total amount of momentum generated within the moving control volume:
 \begin{equation*}
   \begin{split}
-    \int_{t_{1}}^{t_{2}}\!\!\underline{\yG}(t)\,\di t
-    &=\underline{\yP}(t_{2}) - \underline{\yP}(t_{1})
-- \int_{t_{1}}^{t_{2}}\!\!\underline{\yF}(t)\,\di t
+    \int_{t_{0}}^{t_{1}}\!\!\underline{\yG}(t)\,\di t
+    &=\underline{\yP}(t_{1}) - \underline{\yP}(t_{0})
+- \int_{t_{0}}^{t_{1}}\!\!\underline{\yF}(t)\,\di t
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
     - \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}
-    -  \int_{t_{1}}^{t_{2}}\!\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}
+    -  \int_{t_{0}}^{t_{1}}\!\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}
     \ \di t
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
@@ -4133,15 +4133,15 @@ We notice again the difference:
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
 \begin{equation*}
-  \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t =
+  \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t =
   \begin{bmatrix}0\\0\\\num{-1.57}\end{bmatrix}\:\unit{N\,s}
   \enspace\bm{\ne}\enspace
-  \int_{t_{1}}^{t_{2}}\!\!\underline{\yG}(t)\,\di t =
+  \int_{t_{0}}^{t_{1}}\!\!\underline{\yG}(t)\,\di t =
   \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
 \end{equation*}
 
 \begin{warning}[Fluxes and supplies depend on the particular control surface and its motion]
-  The integrated flux $\int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t$ and integrated supply $\int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t$ that appear in conservation and balance laws are strictly dependent on the sequence of closed control surfaces and volumes that we choose.
+  The integrated flux $\int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t$ and integrated supply $\int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t$ that appear in conservation and balance laws are strictly dependent on the sequence of closed control surfaces and volumes that we choose.
 
   Therefore, if we analyse the same physical phenomenon with a new set of control surfaces, in general we cannot expect the results of calculations with the old set to be valid for the new one.
 \end{warning}
@@ -4151,9 +4151,9 @@ We notice again the difference:
 \begin{exercise}
   Consider once more the block of ice analysed in the previous example.
 
-  This time choose a \emph{static} closed control surface that coincides with the \emph{initial} position of the block. This surface therefore includes all ice at time $t_{1}$, but is empty -- and has zero momentum -- at time $t_{2}$.
+  This time choose a \emph{static} closed control surface that coincides with the \emph{initial} position of the block. This surface therefore includes all ice at time $t_{0}$, but is empty -- and has zero momentum -- at time $t_{1}$.
 
-  Calculate the integrated supply for this new control surface between $t_{1}$ and $t_{2}$.
+  Calculate the integrated supply for this new control surface between $t_{0}$ and $t_{1}$.
 
   \emph{(Hint: consider the result from the exercise and  the \textbf{symmetry of fluxes} for the flux through the bottom part of the surface, as well as the fact that the fluxes through the side and top surfaces are zero.)}
 \end{exercise}
@@ -4161,9 +4161,9 @@ We notice again the difference:
 \bigskip
 
 \begin{extra}{Balance laws in General Relativity}
-  Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $t_{1}$, the sequence of 2D surfaces between $t_{1}$ and $t_{2}$, and the 3D region at $t_{2}$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
+  Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $t_{0}$, the sequence of 2D surfaces between $t_{0}$ and $t_{1}$, and the 3D region at $t_{1}$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
 
-  And from a spacetime perspective, the amount of a quantity $\yE(t_{1})$ or $\yE(t_{2})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
+  And from a spacetime perspective, the amount of a quantity $\yE(t_{0})$ or $\yE(t_{1})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
 \end{extra}
 \marginpar{\vspace{-15\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{worlddiagram.jpg}%
@@ -4173,7 +4173,7 @@ Spacetime representation of the evolution of a closed control surface, containin
 
 
 \begin{extra}{What about the magnetic flux?}
-  In the case of magnetic flux, the idea of a conservation law is analogous, but is formulated with one less spatial dimension: we consider a closed 1D curve at $t_{1}$, one at $t_{2}$, and a sequence in between these times. The magnetic flux turns out to be a quantity for which it's possible to ask how much of it is \enquote{linked} to a closed curve, and how much of it is crossing a closed curve. One way to understand this is to imagine magnetic flux as a bundle of tubes or lines that are either closed or extend to infinity. It is a very fascinating quantity, and one may wonder if other quantities exist which satisfy similar balances even with one less dimension. But we shall not pursue magnetic flux and related topics in these notes.
+  In the case of magnetic flux, the idea of a conservation law is analogous, but is formulated with one less spatial dimension: we consider a closed 1D curve at $t_{0}$, one at $t_{1}$, and a sequence in between these times. The magnetic flux turns out to be a quantity for which it's possible to ask how much of it is \enquote{linked} to a closed curve, and how much of it is crossing a closed curve. One way to understand this is to imagine magnetic flux as a bundle of tubes or lines that are either closed or extend to infinity. It is a very fascinating quantity, and one may wonder if other quantities exist which satisfy similar balances even with one less dimension. But we shall not pursue magnetic flux and related topics in these notes.
 \end{extra}
 
 
@@ -4737,7 +4737,7 @@ Keep these points in mind as we discuss the seven balances.
   \begin{equation}
     \label{eq:cons_matter}
     \begin{gathered}[t]
-      \underbracket[0pt]{\yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t = -\int_{t_{1}}^{t_{2}}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t = -\int_{t_{0}}^{t_{1}}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \quad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = -\ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
@@ -4761,14 +4761,14 @@ Conservation of matter is a law that we intuitively take for granted and use con
 %   And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields (Newtonian approximation).
 % \end{extra}
 
-\subsection{Balances vs conservation of matter}
+\subsection{Balance vs conservation of matter}
 \label{sec:matter_balances}
 
 The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{when considered together}. \marginpar{\vspace{-\baselineskip}\footnotesize\flushleftright{\color{mpcolor}%
     \emph{\enquote{All these operators conserve \mbox{$B-L$} \textins{number of baryons $B$ minus number of leptons $L$}, so in any superunified theory we expect \mbox{$B-L$} to be conserved\textellipsis}}}%
   \sourceatright{\cites{wilczeketal1979}}%
 }%
-More specifically, it seems to hold also in extreme physical conditions if we count baryonic and anti-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as negative.
+More specifically it seems to hold, even in extreme physical conditions, if we count baryonic and \emph{anti}-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as \enquote*{negative}. As an example, consider a closed surface containing two neutrons (baryon number \num{+1}), and some energy, in such a way that the total electric charge, momentum, and angular momentum are zero. Then it's today considered impossible that the two neutrons could just disappear, and two protons (baryon number \num{+1} each) plus two electrons (lepton number \num{+1} each) appear in their stead, even if energy, momentum, and so on were exactly the same. This is because otherwise we would have first $\yN(t_{0}) = \num{+2}$ and then $\yN(t_{1}) = \num{+2}-\num{2}=0$, without any flux of matter: $\yJ(t)=0$; conservation of matter would be broken.
 
 \smallskip
 
@@ -4901,6 +4901,22 @@ The thickness and velocity variations of tap water are a consequence of the law 
 This is  what we often observe in running water from our taps.
 
 
+\section{Balance of momentum}
+\label{sec:bal_momentum}
+
+\begin{definition}{Balance of momentum}
+  \begin{equation}
+    \label{eq:bal_momentum}
+    \begin{gathered}[t]
+      \underbracket[0pt]{\yP(t_{1}) - \yP(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} - \yF(t) = \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+
 
 
 \section{Balance of energy}
@@ -4912,32 +4928,13 @@ This is  what we often observe in running water from our taps.
   \begin{equation}
     \label{eq:bal_energy}
     \begin{gathered}[t]
-      \underbracket[0pt]{\yE(t_{2}) - \yE(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yH(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
   \end{equation}
 \end{definition}
-
-
-
-
-\section{Balance of momentum}
-\label{sec:bal_momentum}
-
-\begin{definition}{Balance of momentum}
-  \begin{equation}
-    \label{eq:bal_momentum}
-    \begin{gathered}[t]
-      \underbracket[0pt]{\yP(t_{2}) - \yP(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yF(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad%\text{\footnotesize\color{grey}or}
-      \qquad
-      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} - \yF(t) = \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
-  \end{equation}
-\end{definition}
-
 
 \section{Balance of angular momentum}
 \label{sec:bal_ang_momentum}
@@ -4946,7 +4943,7 @@ This is  what we often observe in running water from our taps.
   \begin{equation}
     \label{eq:bal_ang_momentum}
     \begin{gathered}[t]
-      \underbracket[0pt]{\yL(t_{2}) - \yL(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yT(t)\,\di t = \int_{t_{1}}^{t_{2}}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yL(t_{1}) - \yL(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yT(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yL(t)}{\di t} - \yT(t) = \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
@@ -4962,7 +4959,7 @@ This is  what we often observe in running water from our taps.
   \begin{equation}
     \label{eq:bal_entropy}
     \begin{gathered}[t]
-      \underbracket[0pt]{\yS(t_{2}) - \yS(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yB(t)\,\di t \ge 0}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yS(t_{1}) - \yS(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yB(t)\,\di t \ge 0}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yS(t)}{\di t} - \yB(t) \ge 0}_{\mathclap{\text{\color{grey}differential form}}}
@@ -4995,12 +4992,12 @@ This is  what we often observe in running water from our taps.
 \section{Formulation and generalities}
 \label{sec:cons_matter_formulation}
 
-Choose an arbitrary sequence of closed control surfaces between coordinate times $t_{1}$ and $t_{2}$, enclosing a sequence of control volumes. Denote by $\yN(t)$ and $\yJ(t)$ the amount of matter in the control volume and the influx through the control surface at time $t$. Then the law of \textbf{conservation of matter} is expressed by either of the equations
+Choose an arbitrary sequence of closed control surfaces between coordinate times $t_{0}$ and $t_{1}$, enclosing a sequence of control volumes. Denote by $\yN(t)$ and $\yJ(t)$ the amount of matter in the control volume and the influx through the control surface at time $t$. Then the law of \textbf{conservation of matter} is expressed by either of the equations
 \begin{definition}{Conservation of matter}
   \begin{equation}
     \label{eq:cons_matter}
     \begin{gathered}
-      \underbracket[0pt]{\yN(t_{2}) - \yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yJ(t)\,\di t = 0}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t = 0}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = 0}_{\mathclap{\text{\color{grey}differential form}}}
@@ -5080,7 +5077,7 @@ $$\yrho_{\mathrm{H_2O}}\,\yJ = \qty{0.0180}{kg/mol} \times \qty{30}{mol/s} = \qt
 Using this constitutive relation we can re-express the conservation of matter in terms of mass. Suppose that for a given kind of matter the proportionality constant is $\yrho$; then conservation of matter implies
 \begin{equation*}
   \begin{gathered}
-    \yrho\yN(t_{2}) - \yrho\yN(t_{1}) - \int_{t_{1}}^{t_{2}}\!\!\yrho\yJ(t)\,\di t = 0
+    \yrho\yN(t_{1}) - \yrho\yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yrho\yJ(t)\,\di t = 0
     \qquad%\text{\footnotesize\color{grey}or}
     \qquad
     \frac{\di\yrho\yN(t)}{\di t} - \yrho\yJ(t) = 0
@@ -5526,7 +5523,7 @@ In order to calculate the total amount of the quantity through an arbitrary sequ
 \medskip
 
 The definitions above of density and flux are appropriate if the quantity in question is a scalar. For vector quantities such as momentum and angular momentum, the density is a vector, and each of the three fluxes is a vector as well.
-% For instance, for matter we could have $\yN(t_{1})=\qty{3.5}{mol}$, and for energy we could have $\yJ=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+% For instance, for matter we could have $\yN(t_{0})=\qty{3.5}{mol}$, and for energy we could have $\yJ=\qty{-600}{J}$. For momentum and angular momentum, each of the three amounts is instead a vector, of appropriate physical dimensions, that can have any magnitude and direction or components. For instance, for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
 %% ***
 % The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
@@ -5536,22 +5533,22 @@ The definitions above of density and flux are appropriate if the quantity in que
 \section{Balance laws expressed with derivatives}
 \label{sec:balance_derivative}
 
-In \chap\,\ref{cha:density_fluxdensity} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $\yN(t_{1})$, $\yN(t_{2})$, $\yJ$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
+In \chap\,\ref{cha:density_fluxdensity} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $\yN(t_{0})$, $\yN(t_{1})$, $\yJ$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
 
 The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \chap~\ref{cha:density_fluxdensity} to introduce density and flux.
 
 Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservation law~\eqref{eq:conserved} to the following situation:
 \begin{itemize}
-\item[$\yN(t_{1})$:] Choose an initial time $t_{1}=t-\Dth$, slightly before $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+\item[$\yN(t_{0})$:] Choose an initial time $t_{0}=t-\Dth$, slightly before $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
   \begin{equation}
     \label{eq:C1dens}
-    \yN(t_{1}) = n\bigl(t-\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
+    \yN(t_{0}) = n\bigl(t-\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
   \end{equation}
   
-\item[$\yN(t_{2})$:] Choose a final time $t_{2} = t+\Dth$, slightly after $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+\item[$\yN(t_{1})$:] Choose a final time $t_{1} = t+\Dth$, slightly after $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
   \begin{equation}
     \label{eq:C2dens}
-    \yN(t_{2}) = n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
+    \yN(t_{1}) = n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
   \end{equation}
   
 \item[$\yJ$:] We calculate the flux separately through the six rectangular surfaces bounding the small cuboid region:
@@ -5603,7 +5600,7 @@ The total flux into the region during the time interval $\Dt$ is finally the sum
 Up to now we have only chosen arbitrary surfaces, regions, and a time interval. Now let's assume that the corresponding amounts and fluxes satisfy a balance law like~\eqref{eq:conserved}. Putting together the puzzle pieces we find
 \begin{multline*}
   \label{eq:balance_pieces}
-    \mathcolor{blue}{\yN(t_{2})} -\mathcolor{green}{\yN(t_{1})} - \mathcolor{red}{\yJ} = 0 \qquad     \Longrightarrow
+    \mathcolor{blue}{\yN(t_{1})} -\mathcolor{green}{\yN(t_{0})} - \mathcolor{red}{\yJ} = 0 \qquad     \Longrightarrow
     \\[2\jot]
     \left.\begin{aligned}
       &\mathcolor{blue}{n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz}
@@ -5684,17 +5681,17 @@ For example, suppose we have two $x$-cells of width $\Dx=1$: one centred at $x_{
 \item Assign the values $$j_{x}\bigl(t_{0},x_{1}-\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{1}+\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{2}+\tfrac12\bigr)$$
   of the fluxes at the three boundaries at time $t_{0}$.
   
-\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{1}=t_{0}+\Dt$, for instance
-  $$ n(t_{1},x_{1}) =
+\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{0}=t_{0}+\Dt$, for instance
+  $$ n(t_{0},x_{1}) =
   \Dt\,\biggl[ n(t_{0},x_{1}) - \frac{j_{x}(t_{0}, x_{1}+\tfrac12)-j_{x}(t_{0},x_{1}-\tfrac12)}{\Dx} \biggr] \ .$$
   Note that we have all quantities required on the right side.
   
-\item Assign the values $$j_{x}\bigl(t_{1},x_{1}-\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{1},x_{1}+\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{1},x_{2}+\tfrac12\bigr)$$
-  of the fluxes at the three boundaries at time $t_{1}$.
+\item Assign the values $$j_{x}\bigl(t_{0},x_{1}-\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{1}+\tfrac12\bigr)\ , \enspace j_{x}\bigl(t_{0},x_{2}+\tfrac12\bigr)$$
+  of the fluxes at the three boundaries at time $t_{0}$.
   
-\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{2}=t_{1}+\Dt$, for instance
-  $$ n(t_{2},x_{1}) =
-  \Dt\,\biggl[ n(t_{1},x_{1}) - \frac{j_{x}(t_{1}, x_{1}+\tfrac12)-j_{x}(t_{1},x_{1}-\tfrac12)}{\Dx} \biggr] \ .$$
+\item Calculate the values of $n$ at $x_{1}$ and $x_{2}$ at time $t_{1}=t_{0}+\Dt$, for instance
+  $$ n(t_{1},x_{1}) =
+  \Dt\,\biggl[ n(t_{0},x_{1}) - \frac{j_{x}(t_{0}, x_{1}+\tfrac12)-j_{x}(t_{0},x_{1}-\tfrac12)}{\Dx} \biggr] \ .$$
   Note that we have again all quantities required on the right side.
 
 \item And so on.
