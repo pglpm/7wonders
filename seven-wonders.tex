@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-10T15:17:37+0100
+%% Last-Updated: 2024-03-10T21:57:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3765,6 +3765,12 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 
 \bigskip
 
+\marginpar{\vspace{14\baselineskip}\centering%
+\includegraphics[align=b,width=\linewidth]{room_heater_window.jpg}
+}
+\marginpar{\vspace{6\baselineskip}\centering%
+\includegraphics[align=b,width=\linewidth]{distillation_column.jpg}
+}
 \begin{exercise}
 {\itshape Solve the following exercises not just by using intuition, but \textbf{by explaining step-by-step how you use a conservation law}, in integral or differential form, to obtain the result:
 \begin{itemize}\tightlist
@@ -3792,12 +3798,6 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
     A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has a constant influx of \qty{2}{mol/s} of argon atoms at one inlet, and a constant outflux of argon atoms, possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the argon \emph{\textbf{out}}flux (\emph{not} the integrated outflux) at the outlet?
   \end{enumerate}
 \end{exercise}
-\marginpar{\vspace{-24\baselineskip}\centering%
-\includegraphics[align=b,width=\linewidth]{room_heater_window.jpg}
-}
-\marginpar{\vspace{-8\baselineskip}\centering%
-\includegraphics[align=b,width=\linewidth]{distillation_column.jpg}
-}
 
 
 
@@ -3818,6 +3818,12 @@ The setup is just like before: consider an initial and final closed control surf
   where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per unit time within the closed control surface at time $t$.
 \end{definition}
 If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
+\marginpar{\centering%
+\includegraphics[align=c,width=\linewidth]{tennisball_boundary.png}%
+\\\footnotesize\flushleftright{\color{mpcolor}%
+A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} contours), but not what happens within the control volumes in between}%
+}%
+A conservation law is therefore powerful also because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
 
 \smallskip
 
@@ -3825,11 +3831,6 @@ According to the definition above, a conservation law is a \emph{special, powerf
 
 For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{0}) - \yE(t_{1}) - \int_{t_{0}}^{t_{1}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{0}$ and $t_{1}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
-\marginpar{\centering%
-\includegraphics[align=b,width=\linewidth]{tennisball_boundary.png}%
-\\\footnotesize\flushleftright{\color{mpcolor}%
-A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} lines), but not what happens within the control volumes in between}%
-}%
 A conservation law is therefore powerful also because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
 \begin{warning}[Supplies are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
@@ -4035,17 +4036,13 @@ So we could find the momentum at time $t_{1}$, or at any other time between $t_{
 \subsection{Example with a static control surface}
 \label{sec:example_balance_static}
 
-Consider again the \autoref{sec:example_conservation_static}{example of a cylindrical block of ice} moving downward, in a vacuum, during a lapse of time of \qty{0.5}{s}, depicted in the side picture.
-\marginpar{\vspace{0.5\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{waterblock_control2.pdf}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
+Consider again the \autoref{sec:example_conservation_static}{example of a cylindrical block of ice} moving downward, in a vacuum, during a lapse of time of \qty{0.5}{s}, depicted in the side picture below.
 The block of ice has a fully downward momentum of magnitude \qty{4.72}{N\,s} at the final time. %; and where there's no matter, there's no momentum.
 
 We are now interested in the net amount of \emph{momentum} that crosses, in a downward direction, the circular surface separating the initial and final location.
 
-We could use the same strategy adopted in that example: considering a static control surface at the final position of the block of ice. From the description, our data are
+We could use the same strategy adopted in that example: considering a static control
+surface at the final position of the block of ice. From the description, our data are
 \begin{equation*}
     t_{0}=\qty{0}{s}\ ,\quad
     t_{1}=\qty{0.5}{s}\ , \quad
@@ -4054,6 +4051,11 @@ We could use the same strategy adopted in that example: considering a static con
     \yP(t_{1})=\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
 \end{equation*}
 But we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum} for finding the integrated influx. It is also necessary to know the supply of momentum $\yG(t)$, or at least its integral. This is an example of what we said previously: \autoref{sec:balance_laws}{balance laws in general require more information} than conservation laws.
+\marginpar{\vspace{2\baselineskip}\centering%
+\includegraphics[align=t,width=\linewidth]{waterblock_control2.pdf}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
 
 Suppose we are told that the net amount of momentum generated \emph{within the control volume}, during the \qty{0.5}{s}, has magnitude \qty{1.57}{N\,s} and fully downward direction. That is,
 \begin{equation*}
@@ -4110,6 +4112,12 @@ Note that the volume integrals and fluxes are now represented by different symbo
   \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s} \ .
 \end{equation*}
 
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{warning_supply_static.pdf}
+\\[4em]\includegraphics[align=b,width=\linewidth]{warning_supply_moving.pdf}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
 We have enough data to find the total amount of momentum generated within the moving control volume:
 \begin{equation*}
   \begin{split}
@@ -4126,12 +4134,6 @@ We have enough data to find the total amount of momentum generated within the mo
   \end{split}
 \end{equation*}
 We notice again the difference:
-\marginpar{\centering%
-\includegraphics[align=b,width=\linewidth]{warning_supply_static.pdf}
-\\[4em]\includegraphics[align=b,width=\linewidth]{warning_supply_moving.pdf}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
 \begin{equation*}
   \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t =
   \begin{bmatrix}0\\0\\\num{-1.57}\end{bmatrix}\:\unit{N\,s}
@@ -4211,13 +4213,13 @@ Indeed those were examples of physical properties that apply, not universally, b
 \end{definition}
 
 
-Constitutive relations express the diversity that we observe around us,
-for example the fact that a body of water can easily change shape upon movement, as opposed to a block of concrete, which we rely on for its rigidity. The differences between states of matter
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{phases_matter2.png}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 Four states of matter (\furl{https://commons.wikimedia.org/wiki/File:Four_Fundamental_States_of_Matter.png}{image by Spirit469})}%
 }%
+Constitutive relations express the diversity that we observe around us,
+for example the fact that a body of water can easily change shape upon movement, as opposed to a block of concrete, which we rely on for its rigidity. The differences between states of matter
 -- solid, liquid, gas, plasma, and there are others -- arise from different constitutive relations. Constitutive relations also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which applies only for low speeds and low energy concentrations (hence weak gravitational fields and small spacetime curvature), and general relativity, which applies on all scales, including cosmological scales.
 
 When we read that a new physical phenomenon has been discovered, usually that means that a new \emph{constitutive relation} has been discovered. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
@@ -4291,28 +4293,56 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
 \section{Numerical simulations}
 \label{sec:numeric_simulation}
 
-Recall again the differential form of a balance law:
+Recall again the integral and differential forms of a balance law (we use the symbols for energy here, but the reasoning is valid for any other quantity):
 \begin{equation*}
-  \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
+    \begin{gathered}[t]
+      \underbracket[0pt]{\yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  % \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
 \end{equation*}
-Here we use the symbols for the volume integral and flux of energy, but the present discussion is valid for any of the other six quantities; and if $\yR=0$ it is also valid for a conservation law.
+If $\yR=0$, then this is a conservation law.
 
-The differential form of the balance law immediately lends itself to numerical simulation and prediction. The basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}. According to the meaning of the derivative, if we take a small time step $\Dt$ then
+From either of these forms we can find an approximate mathematical expression to make predictions for a short instant of time. Let's see this from the integral form first.
+
+Suppose that the lapse of time between $t_{0}$ and $t_{1}$:
 \begin{equation*}
-  \frac{\di\yE(t)}{\di t} \approx
-  \frac{\yE(t+\Dt) - \yE(t)}{\Dt}
+  \Dt = t_{1} - t_{0}
 \end{equation*}
-Me can therefore rewrite the balance law in differential form as
+is extremely short. So short that the flux $\yH(t)$ and the supply $\yR(t)$ can't change appreciably during this time lapse, and we can take them as constant:
 \begin{equation*}
-  \frac{\yE(t+\Dt) - \yE(t)}{\Dt} -  \yH(t) \approx \yR(t)
+  \yH(t) \approx \yH(t_{0}) \qquad
+  \yR(t) \approx \yR(t_{0})
 \end{equation*}
-Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. We obtain
-\begin{definition}{Time-stepped evolution equation}
+(if they do change appreciably, then we consider an even shorter $\Dt$). If they are practically constant, then their integrals become
+\marginpar{\vspace{\baselineskip}\footnotesize\flushleftright{\color{mpcolor}%
+Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\,\di x = \text{const}\cdot(b-a)$$%
+}}%
+\begin{equation*}
+  \begin{aligned}
+    \int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t &\approx
+\int_{t_{0}}^{t_{1}}\!\!\yH(t_{0})\,\di t =
+    \yH(t_{0})\,(t_{1}-t_{0}) = \yH(t_{0})\,\Dt\\
+    \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t &\approx
+    \int_{t_{0}}^{t_{1}}\!\!\yR(t_{0})\,\di t =
+    \yR(t_{0})\,(t_{1}-t_{0}) = \yR(t_{0})\,\Dt
+  \end{aligned}
+\end{equation*}
+And finally, considering that $t_{1} = t_{0} + \Dt$, the balance law in integral form can be written approximately as
+\begin{equation*}
+  \underbracket[0pt]{\yE(t_{0}+\Dt)}_{\color{grey}\mathclap{{}=E(t_{1})}} - \yE(t_{0}) - \underbracket[0pt]{\yH(t_{0})\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t}} \approx \underbracket[0pt]{\yR(t_{0})\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}}
+\end{equation*}
+
+Now let's bring to the right side all terms that refer to time $t_{0}$. We obtain:
+\begin{definition}{Finite-difference approximation}
   \begin{equation}\label{eq:finite_diff}
-    \yE(t+\Dt)  \approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+    \yE(t_{0}+\Dt)  \approx \yE(t_{0}) + [\yH(t_{0}) + \yR(t_{0})]\,\Dt
   \end{equation}
+  called a \textbf{finite-difference approximation}.
 \end{definition}
-This equation says that if we know the value of the volume integral $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $t$, then we can predict the volume integral at a short time later, $\yE(t+\Dt)$.
+This equation says that if we know the value of the volume integral $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $t_{0}$, then we can predict the value of the volume integral a short time later, $\yE(t_{0}+\Dt)$.
 
 For example, suppose that the total amount of energy in a given control volume, at time\enspace$t_{0}=\qty{20}{s}$\enspace is\enspace$\yE(t_{0})=\qty{500}{J}$\,.\enspace At that same time there's a net influx of\enspace$\yH(t_{0})= \qty{-30}{J/s}$\enspace into the control volume. And let's suppose that the supply is zero,\enspace$\yR(t_{0})=\qty{0}{J/s}$\,.\enspace The amount of energy in the control volume \qty{0.1}{s} later, that is, at time\enspace$t_{0}+\Dt = \qty{20}{s} + \qty{0.1}{s} = \qty{20.1}{s}$\,,\enspace is then
 \begin{equation*}
@@ -4326,24 +4356,32 @@ For example, suppose that the total amount of energy in a given control volume, 
     &\approx \qty{497}{J} \,.
   \end{split}
 \end{equation*}
+This basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}.
 
 \begin{warning}[A control-surface sequence is understood]
 As you recall from the \autoref{eq:conserved}{definition of conservation and balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must be either clearly stated or understood from the context. If this sequence is not specified, the volume integrals and fluxes above don't have any clear meaning.
 \end{warning}
 
 \begin{exercise}
-  At time\enspace$t=\qty{0}{s}$\enspace the amount of oxygen in a control volume is \qty{0}{mol}, and at that instant there is an influx of \qty{8}{mol/s}. Assume that oxygen satisfies a conservation law, and calculate its amount in the control volume at time\enspace$t'=\qty{0.01}{s}$\,.
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
+  \item At time\enspace$t=\qty{0}{s}$\enspace the amount of oxygen in a control volume is \qty{0}{mol}, and at that instant there is an influx of \qty{8}{mol/s}. Assume that oxygen satisfies a conservation law, and calculate its amount in the control volume at time\enspace$t'=\qty{0.01}{s}$\,.
+
+  \item Try to obtain the finite-difference approximation starting from the differential form of the balance law instead:
+    \begin{equation*}
+      \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
+    \end{equation*}
+Use the fact that the derivative at a given time $t_{0}$ can be approximately calculated as
+    \begin{equation*}
+      \frac{\di\yE(t_{0})}{\di t} \approx
+      \frac{\yE(t_{0}+\Dt) - \yE(t_{0})}{\Dt} \ .
+    \end{equation*}
+  \end{enumerate}
 \end{exercise}
-
-
-
-
-
 
 \subsection{Vector quantities}
 \label{sec:timestep_vector}
 
-In the case of a vector quantity such as momentum, the time-stepped evolution equation remains the same. We only have to remember that we have three equations -- one per vector component -- instead of one:
+The finite-difference approximation is also valid for the balance law of a vector quantity like momentum. We only have to remember that we have three equations -- one per vector component -- instead of one:
 \begin{equation}\label{eq:finite_diff_vect}
   \begin{gathered}
     \yP(t+\Dt)  \approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
@@ -4581,7 +4619,7 @@ Let's see an example with a falling object. For simplicity we only consider the 
 \item timestep is $\Dt = \qty{0.1}{s}$
 \end{itemize}
 Then numerical integration up to $t=\qty{0.2}{s}$ would look as follows:\noprelistbreak
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{plot_tennisball_z.pdf}\\
 \includegraphics[width=\linewidth]{plot_tennisball_P.pdf}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
@@ -4782,7 +4820,12 @@ In other circumstances, however, conservation of these individual kinds of matte
 \paragraph{Rigid-body and particle mechanics}
 \label{sec:cons_matter_particle}
 
-In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is \emph{automatically} satisfied. This is achieved by choosing a sequence of closed control surfaces for which the net flux of matter is zero: $\yJ(t)=0$, and therefore the amount of matter in the control volumes is constant. In other words, the control surfaces tightly wrap and follow the moving object of interest. % This procedure is often carried without many comments -- to the point of being almost forgotten at times.
+In many applications, the law of conservation of matter can be used in such a subtle way that we almost don't notice that we're actually using it.
+
+This happens when we choose closed control surfaces through which there is no flux of matter: $\yJ(t)=0$. For example, in studying solid objects, we choose control surfaces that tightly \enquote{wrap} and follow the object; think of what we did in the tennis-ball examples and exercises of the chapter on \autoref{sec:example_balance_vect}{physical laws}. With this choice, the amount of matter $\yN$ within the control surfaces doesn't change in time, thanks to the law of conservation of matter. So this law is hidden in the fact that we're taking that amount of matter as constant.
+
+% In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is \emph{automatically} satisfied.
+% This is achieved by choosing a sequence of closed control surfaces for which the net flux of matter is zero: $\yJ(t)=0$, and therefore the amount of matter in the control volumes is constant. In other words, the control surfaces tightly wrap and follow the moving object of interest. % This procedure is often carried without many comments -- to the point of being almost forgotten at times.
 
 We saw an example of this procedure in the \autoref{sec:example_falling_object_timestep}{numerical evolution of the motion of a falling object}.
 \marginpar{\centering%
