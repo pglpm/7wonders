@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-10T21:57:33+0100
+%% Last-Updated: 2024-03-11T22:03:35+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -570,9 +570,9 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\pdfinterwordspaceon% seems to add a white margin to Sumatrapdf
 
 %%% Sectioning
-\newcommand*{\asudedication}[1]{%
-{\par\centering\textit{#1}\par}}
-\newenvironment{acknowledgements}{\section*{Thanks}\addcontentsline{toc}{section}{Thanks}}{\par}
+% \newcommand*{\asudedication}[1]{%
+% {\par\centering\textit{#1}\par}}
+% \newenvironment{acknowledgements}{\section*{Thanks}\addcontentsline{toc}{section}{Thanks}}{\par}
 \makeatletter\renewcommand{\appendix}{\par
   \bigskip{\centering
    \interlinepenalty \@M
@@ -584,6 +584,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
   \anappendixtrue}\makeatother
 % \counterwithout{section}{chapter}
 \chapterstyle{bianchi}
+\setsecnumdepth{subsection}
 \setsecnumformat{\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\large\bfseries\sffamily%
 \centering}
@@ -599,7 +600,6 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \raggedright}
 \setparaheadstyle{\itshape\bfseries\sffamily%
 \raggedright}
-\setcounter{secnumdepth}{2}
 \setlength{\headwidth}{\textwidth}
 \newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
 \newcommand{\addsec}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
@@ -2150,7 +2150,7 @@ The equivalence between energy and mass is given by the famous formula $E=m c^{2
 \end{equation*}
 To grasp these numbers, consider that the mass of the rubber band in the example above, \qty{0.5}{g}, is comparable to the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
 
-\subsection{The practical used of the words \enquote*{mass} and \enquote*{energy}}
+\subsection{The practical use of the words \enquote*{mass} and \enquote*{energy}}
 \label{sec:dist_mass_energy}
 
 From the examples above it becomes clear that energy and mass are two names for the same thing. But it also becomes clear that in our daily experience we deal with energy-mass in two different ways:
@@ -2836,7 +2836,7 @@ So let's remember:
 \end{definition}
 \marginpar{\vspace{-7em}\label{fig:newtonIII}%
 \footnotesize\raggedright\color{mpcolor}\enquote{\emph{\langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
-    \\\sourceatright{\cites{newton1687_r1726}}\par %\cites{newton1687_t1974}
+    \\\sourceatright{\cites{newton1687}}\par %\cites{newton1687_t1974}
 }%
 
 Another important aspect of the example above is that if we're told \enquote{\qty{-5}{persons} exited the room}, we don't know how exactly this happened: it could be that 5~persons got into the room during that minute; or that 10~persons got in and 5~got out; and so on. This is why we call \enquote*{\num{-5}} the \emph{net} amount.
@@ -3135,7 +3135,7 @@ The picture says: on the side of the ground, momentum is changing by an amount h
   %       \\[\jot]
         \enquote{\emph{LAW~III. To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}}
         \\(Original Latin on p.~\pageref{fig:newtonIII})% \cites{newton1687_t1974}
-        \\\sourceatright{\cites{newton1687_r1726}}
+        \\\sourceatright{\cites{newton1687}}
 }%
 From the examples above, we see that thinking of force as momentum flux automatically leads to \emph{Newton's third law}:
 if one side is gaining/losing momentum with a given orientation, by symmetry the other side is gaining/losing momentum with the opposite orientation. So if one side is experiencing a force with a given orientation, the other side must be experiencing a force with the opposite orientation.
@@ -4251,7 +4251,7 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
 \end{equation*}
 
 
-\item[Constitutive relation for supply of momentum.]
+\item[Constitutive relation for supply of momentum.]\label{sec:supply_momentum_gravity}
   If a small control volume contains an amount of \masse\ $\yM$, then it also has a supply of momentum
   \begin{equation*}
     \yG = \yM\yg = \yrho\yN\yg
@@ -4533,10 +4533,10 @@ In fact, the evolution equation from a balance or conservation law always gives 
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
 
-\subsection{Integration of position}
+\subsection{Numerical time integration of position}
 \label{sec:position_integration}
 
-In many applications we are interested in how the position $\yr$ of a small object, or of a small portion of an object, changes in time. The time integration that we have discussed for the volume integrals of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
+In many applications we are interested in how the position $\yr$ of a small object, or of a small portion of an object, changes in time. The numerical time integration that we have discussed for the volume integrals of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
 
 The velocity $\yv$ of a point is the time derivative of its position:
 $\yv(t) = \frac{\di\yr(t)}{\di t}$.
@@ -4566,7 +4566,7 @@ Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. 
       \end{aligned}\right.
   \end{equation}
 \end{definition}
-This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iteraded \autoref{sec:timestep_iterate}{as we did with a general balance law}. This way we numerically integrate the position $\yr(t)$ and can therefore keep track and predict the motion of an object.
+This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iteraded \autoref{sec:timestep_iterate}{as we did with a general balance law}. This way we numerically time-integrate the position $\yr(t)$ and can therefore keep track and predict the motion of an object.
 
 \smallskip
 
@@ -4575,7 +4575,7 @@ This formula says that if we know the position and the velocity at some time, we
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of their trajectory (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
 }}%
-The numerical integration of a position vector $\yr(t)$ is often done together with the numerical integration of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\yM\yv$, knowledge of the momentum at a later timestep allows us to also know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial $\yr(t)$ and  $\yP(t)$ are given, and also the influx $\yF$ and supply $\yG$ are known at all times:
+The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\yM\yv$, knowledge of the momentum at a later timestep allows us to also know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial $\yr(t)$ and  $\yP(t)$ are given, and also the influx $\yF$ and supply $\yG$ are known at all times:
 \begin{equation}\label{eq:timestep_momentum_position}
   \begin{aligned}
     \yv\tikzmark{va}(t)&= \yP(t)/\yM
@@ -4606,7 +4606,7 @@ Keep in mind that these are vector equations, so each one corresponds to three c
 
 For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
 
-\subsection{Integration of position: example}
+\subsection{Numerical time integration of position: example}
 \label{sec:example_falling_object_timestep}
 
 Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward, the other two coordinates having some constant value. Assume these conditions:
@@ -4656,7 +4656,7 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
   Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the two margin plots above.
 \end{exercise}
 
-\subsection{Applicability of numerical integration}
+\subsection{Applicability of numerical time integration}
 \label{sec:applicable_numericintegration}
 
 We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timestepped_evolution} and~\eqref{eq:timestep_momentum_position}, focusing on momentum and position. But obviously this procedure can be applied to any quantities that satisfy balance laws.% : it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
@@ -4769,14 +4769,13 @@ Keep these points in mind as we discuss the seven balances.
 \section{Conservation and balances of matter}
 \label{sec:cons_matter}
 
-\begin{definition}{Balance of matter}
+\begin{definition}{Balance and conservation of matter}
   Volume integral: $\yN$\qquad Flux: $\yJ$\qquad Supply: $-\ya$
 
   \begin{equation}
     \label{eq:cons_matter}
     \begin{gathered}[t]
       \underbracket[0pt]{\yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t = -\int_{t_{0}}^{t_{1}}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \quad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = -\ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
@@ -4814,6 +4813,38 @@ In many common and important physical situations, conservation laws still hold f
 
 In other circumstances, however, conservation of these individual kinds of matter does not hold anymore; for example in the previously mentioned \autoref{sec:intro_matter}{phenomena involving radioactive decay and nuclear energy}. Yet in these circumstances we can still apply a \emph{balance} law, with a non-zero supply or sink.
 
+\subsection{Conservation of mass as a proxy for conservation of matter}
+\label{sec:mass_proxy_matter}
+
+Under many important and common circumstances, if a control volume contains an amount of matter $\yN$ then it also contains an amount of \masse\ $\yM$ (but the opposite is not always true: a control volume can contain \masse\ and no matter). This amount of \masse\ is typically huge when measured in joules. For instance, a volume with $\yN=\qty{1}{mol}$ of water (roughly \qty{2e-5}{m^3} for liquid water) contains approximately $\yM = \qty{1.62e15}{J}$ of \masse.
+
+The amount of \masse\ depends on the kind of matter and on other quantities in that volume, and usually changes with time. These changes, however, are typically \autoref{sec:dist_mass_energy}{extremely small compared to the total amount} -- say much less than \qty{0.00000001}{\percent} in the example above with water! So, as a very good approximation, we can consider this amount as practically constant. The amount of \masse\ $\yM$ is therefore proportional to the amount of matter $\yN$, and we write
+\begin{definition}{Molar mass}
+  \begin{equation*}
+\yM =  \yrho\yN
+\end{equation*}
+where the proportionality factor $\yrho$, called \textbf{molar mass}, depends on the kind of matter and can be taken as practically constant in many applications.
+\end{definition}
+For instance, the
+\furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{molar-mass of water} is  $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, which means that \qty{1}{mol} of water has a \masse\ of \qty{0.0180}{kg}, or equivalently \qty{1.62e15}{J}.
+
+In applications where we can consider the molar mass as practically constant, we can then use \enquote*{mass} as a \emph{proxy} for matter, and express the balance of matter~\eqref{eq:cons_matter} as \enquote{conservation of mass} instead: we only need to multiply volume integral $\yN$, flux $\yJ$, and supply $\ya$ by the molar-mass $\yrho$ appropriate to that kind of matter.
+\begin{warning}[\enquote{Conservation of mass} is a proxy for conservation of matter]
+  Keep in mind that many books speak of \enquote{conservation of mass}, but they're using mass as an approximate proxy for matter, in the sense explained above.
+\end{warning}
+
+\begin{exercise}
+  At a particular time, a party balloon contains \qty{0.012}{kg} of Helium. A minute later, the same balloon contains \qty{0.010}{kg} of helium. Assume conservation of Helium, as well as a \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/He}{molar-mass for Helium} $\yrho_{\mathrm{He}} = \qty{4e-3}{kg/mol}$.
+  \begin{enumerate}[shift,label=\bfseries\arabic*.]
+  \item How much is the \emph{integrated efflux} of Helium, \textbf{in moles}, through the balloon's surface during the one-minute lapse of time?
+  \item Assume that the efflux of Helium was constant in time during the one-minute time lapse. How much was the efflux of Helium, in moles/second?
+  \end{enumerate}
+\end{exercise}
+\marginpar{\vspace{-11\baselineskip}\centering%
+\includegraphics[align=t,height=7em]{helium_balloons.jpg}%
+}
+
+
 \subsection{Example applications}
 \label{sec:matter_examples}
 
@@ -4828,13 +4859,13 @@ This happens when we choose closed control surfaces through which there is no fl
 % This is achieved by choosing a sequence of closed control surfaces for which the net flux of matter is zero: $\yJ(t)=0$, and therefore the amount of matter in the control volumes is constant. In other words, the control surfaces tightly wrap and follow the moving object of interest. % This procedure is often carried without many comments -- to the point of being almost forgotten at times.
 
 We saw an example of this procedure in the \autoref{sec:example_falling_object_timestep}{numerical evolution of the motion of a falling object}.
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{timesteps.png}%
-\\[2\jot]\footnotesize{\color{mpcolor}%
-Snippet of formula~\eqref{eq:timestep_momentum_position}}%
-}%
+% \marginpar{\centering%
+% \includegraphics[align=t,width=\linewidth]{timesteps.png}%
+% \\[2\jot]\footnotesize{\color{mpcolor}%
+% Snippet of formula~\eqref{eq:timestep_momentum_position}}%
+% }%
 Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}:
-at each timestep  the mass $\yM$ was assumed to be constant, not changing with time. It turns out that this assumption was guaranteed, implicitly, by the law of conservation of matter.
+at each timestep  the mass $\yM$ was assumed to be constant, not changing with time. But  as explained above, \autoref{sec:mass_proxy_matter}{this mass is proportional to the amount of matter}: $\yM = \yrho \yN$. So this assumption was guaranteed, implicitly, by the law of conservation of matter.
 
 % you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\di t = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
 
@@ -4858,7 +4889,8 @@ expresses that if 30 moles of oxygen (O) atoms appear among the reactants, they 
 
 This assumption is simply the statement of conservation of matter, \emph{separately} for each chemical element: since the reaction doesn't let any other matter go in or out, the flux $\yJ$ for each chemical element must be zero. Therefore the amount $\yN$ of each chemical element must be constant: $\di\yN(t)/\di t = \yJ = 0$.
 
-This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{sec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}. The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
+% This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{sec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}. 
+The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
 
 \paragraph{Climate}
 \label{sec:cons_matter_climate}
@@ -4936,12 +4968,12 @@ where $A_{1}, A_{2}$ are  the areas  of the top and bottom surfaces, and $v_{1},
 \end{equation*}
 that is, if the area through which the flux occur decreases, then the velocity of the fluid through it increases, and vice versa.
 %
-\marginpar{\vspace{-7\baselineskip}\centering%
+\marginpar{\vspace{-6\baselineskip}\centering%
 \includegraphics[align=t,width=0.5\linewidth]{tap_water.jpg}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
-This is  what we often observe in running water from our taps.
+This is  what we often observe in water running from our taps.
 
 
 \section{Balance of momentum}
@@ -4952,14 +4984,76 @@ This is  what we often observe in running water from our taps.
     \label{eq:bal_momentum}
     \begin{gathered}[t]
       \underbracket[0pt]{\yP(t_{1}) - \yP(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yP(t)}{\di t} - \yF(t) = \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
   \end{equation}
 \end{definition}
 
+Among the seven universal balances, the balance of momentum is probably the one   most used in applications where motion or stability are important.
+%
+\marginpar{\vspace{-\baselineskip}\footnotesize\raggedright\color{mpcolor}%
+% \enquote{\emph{\langnohyph{LEX~II.
+% Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secundum lineam rectam qua vis illa imprimitur.}}}%
+\enquote{\emph{LAW~II. The change of motion is proportional to the motive force impressed; and is made in the direction of the right line in which that force is impressed.}}%
+\\\sourceatright{\cites{newton1687}}\par %\cites{newton1687_t1974}
+}%
+Newton's famous \enquote{second law} is included in this balance as a special case.
 
+The importance of this balance comes to a great extent from two kinds of constitutive relations:
+\begin{itemize}
+\item a small number of constitutive relations that connect the volume integral $\yP$ of momentum with the motion and flux of matter and of the electromagnetic field;
+\item an amazingly wide variety of constitutive relations that connect, in the most diverse ways, the flux $\yF$ of momentum with many properties of matter, such as its extension, deformation, motion, temperature, and the simultaneous presence of charge and electromagnetic field.
+\end{itemize}
+
+Through this balance we can therefore describe and predict motions. We saw a concrete example of this application in the \autoref{sec:example_falling_object_timestep}{numerical time integration of the motion of a falling object}. But this balance is also essential in the opposite problem: when we need to study the conditions under which no motion occurs. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume integral $\yP$ of momentum is constantly zero.
+
+\subsection{Example applications}
+\label{sec:momentum_examples}
+
+\paragraph{Statics}
+\label{sec:bal_momentum_statics}
+
+As just mentioned, there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \furl{https://www.britannica.com/science/statics}{statics}. Let's see a couple of concrete examples.
+
+\begin{enumerate}[label={\sffamily Ex.\,\arabic*}]
+\item \marginpar{\centering%
+    \includegraphics[align=t,width=0.5\linewidth]{apple_table.jpg}%
+    % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+    % The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+  }%
+  An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation? Let's choose a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
+  \begin{equation*}
+    \yP(t) = [0\,,0\,,0]\:\unit{N\,s}\enspace\text{(constant)}.
+  \end{equation*}
+  We also know that a control volume on Earth's surface \autoref{sec:supply_momentum_gravity}{has a constant \emph{supply} of momentum}, proportional to the \masse\ it contains. Let's say that the supply in this case is
+  \begin{equation*}
+    \yG(t) = [0\,,0\,,\num{-1.5}]\:\unit{N}\enspace\text{(constant)}.
+  \end{equation*}
+  Then \emph{what can the momentum fluxes across different parts of the control surface be?}
+
+  A straightforward application of momentum balance tells us that the \emph{net} \textbf{in}flux of momentum must be
+  \begin{equation*}
+    \yF(t) = [0\,,0\,,\num{1.5}]\:\unit{N}\enspace\text{(constant)}.
+  \end{equation*}
+  Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The \autoref{sec:in_out_flux}{influxes through different parts of the control surface could be very different} from this value, which is only their total; but the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from constitutive relations.
+
+  In the present case there's a constitutive relation about the momentum flux between a substance like air and the book, which says that such flux is approximately zero:
+  \begin{equation*}
+    \yF_{\text{air-book}}(t) \approx [0\,,0\,,0]\:\unit{N} \ .
+  \end{equation*}
+  The only remaining part of the control surface is the one between the book and the table. So the total influx $\yF(t)$ that appears in the momentum balance must be the sum of these two:
+  \begin{equation*}
+    \yF(t) = \yF_{\text{air-book}}(t) + \yF_{\text{table-book}}(t) \ .
+  \end{equation*}
+  So from the last three equations we finally find
+  \begin{equation*}
+    \yF_{\text{table-book}}(t) \approx [0\,,0\,,\num{1.5}]\:\unit{N}\enspace\text{(constant)}.
+  \end{equation*}
+  In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This kind of flux is called \textbf{normal force}, and we'll discuss it again later on.
+
+\item Consider a cable car suspended on a cable and not moving; for simplicity let's say that the cable is almost horizontal. Which momentum fluxes occur in this situation? It's interesting to choose a static closed control surface that wraps the car and part of the cables
+\end{enumerate}
 
 
 \section{Balance of energy}
@@ -6370,7 +6464,7 @@ We can state this symmetry as follows:
         \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
         \\[\jot]
         \enquote{\emph{LAW~III. To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}}
-    \\\sourceatright{\cites{newton1687_r1726}} %\cites{newton1687_t1974}
+    \\\sourceatright{\cites{newton1687}} %\cites{newton1687_t1974}
 }%
 \begin{definition}{Every flux is the same as the opposite flux in the opposite direction}
   A flux  in a particular surface-crossing direction is equivalent to a flux of opposite sign in the opposite crossing direction.
