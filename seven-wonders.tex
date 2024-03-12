@@ -1,7 +1,7 @@
 \pdfoutput=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-12T09:54:27+0100
+%% Last-Updated: 2024-03-12T22:22:22+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3201,7 +3201,7 @@ Tension is the kind of momentum flux that we experience in our bones when we \em
 % *** any object in state of \enquote{tension}
 
 \subsection{Shear force}
-\label{sec:tension}
+\label{sec:shear}
 
 If the momentum-flux \textcolor{blue}{from $A$ to $B$} is a vector oriented transversally, along the surface itself, then we call the momentum flux a \textbf{shear force}, or \emph{shearing momentum flux}. Here are two examples of shear force:
 \begin{center}
@@ -3266,7 +3266,7 @@ The influx and efflux are fluxes \emph{through the whole surface}. Consider for 
   \includegraphics[align=c,height=6em]{efflux_N.pdf}
   \hspace*{\fill}
 \end{center}
-On the left we have an efflux of \qty{+5}{J/s} on the whole outer side of the surface. We don't know whether these \qty{5}{J/s} are being evenly distributed all around the surface, or just at particular spots of it. On the right we have an efflux of \qty{5}{N}, with a vector pointing approximately rightward. Again we don't know what are the flux vectors of individual pieces of the surface: the vector in the picture is just their total.
+On the left we have an efflux of \qty{+5}{J/s} on the whole outer side of the surface. We don't know whether these \qty{5}{J/s} are being evenly distributed all around the surface, or just at particular spots of it. On the right we have an efflux of \qty{8}{N}, with a vector pointing approximately rightward. Again we don't know what are the flux vectors of individual pieces of the surface: the vector in the picture is just their total.
 
 Let's see another example of this fact. The picture below on the left show the \textcolor{cyan}{outward fluxes} through three parts of a closed surface; the picture on the right shows the \textcolor{blue}{total efflux} through the same surface:
 \begin{center}
@@ -3498,7 +3498,7 @@ In \chap\,\ref{cha:stuff} we introduced seven main quantities in terms of which 
   \item\textbf{Fundamental laws} represent universal patterns that we observe everywhere, and that are taken as the basic mathematical equations in a physical theory.
     % We shall see that there is a set of seven fundamental laws that apply on every known scale of space and time, and also across different physical theories.
 
-  \item\textbf{constitutive relations} only apply to particular phenomena, only on particular time \amp\ space scales, only in particular theories. They express the diversity that we observe around us, and different kinds of approximations that we use in describing physical phenomena.
+  \item\textbf{constitutive relations} or \textbf{properties} only apply to particular phenomena, only on particular time \amp\ space scales, only in particular theories. They express the diversity that we observe around us, and different kinds of approximations that we use in describing physical phenomena.
   \end{itemize}
 \end{definition}
 
@@ -4206,7 +4206,7 @@ This kind of information and physical properties were \emph{not} something we co
 
 Indeed those were examples of physical properties that apply, not universally, but only to some specific phenomena, and only to some theory-dependent degree of approximation. They were examples of \emph{constitutive relations}:
 \begin{definition}{Constitutive relation}
-  A \textbf{constitutive relation}, also called \emph{constitutive equation} or \emph{closure equation}, is a physical relationship or property that is only true for specific physical phenomena.
+  A \textbf{constitutive relation}, also called \emph{constitutive equation}, or \emph{closure equation}, or \emph{constitutive property}, is a physical relationship or property that is only true for specific physical phenomena.
 
   \smallskip
 
@@ -5025,9 +5025,13 @@ We also know that a control volume on Earth's surface \autoref{sec:supply_moment
 \end{equation*}
 Then \emph{what can the momentum fluxes across different parts of the control surface be?}
 
-A straightforward application of momentum balance tells us that the \emph{net} \textbf{in}flux of momentum must be
+A straightforward application of momentum balance in differential form tells us that the \emph{net} \textbf{in}flux of momentum must be
 \begin{equation*}
-  \yF(t) = [0\,,0\,,\num{1.5}]\:\unit{N}\enspace\text{(constant)}.
+  \begin{split}
+    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-1.5}]\:\unit{N}}
+\\[2\jot]
+ &=   [0\,,0\,,\num{1.5}]\:\unit{N}\enspace\text{(constant)}.
+  \end{split}
 \end{equation*}
 Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The \autoref{sec:in_out_flux}{influxes through different parts of the control surface could be very different} from this value, which is only their total; but the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from constitutive relations.
 
@@ -5056,12 +5060,110 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 \subsection{Example application: statics again}
 \label{sec:bal_momentum_cablecar}
 
+%
 \marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{cable-car3.jpg}
-}
-Consider a cable car suspended on a horizontal cable and not moving. Which momentum fluxes occur in this situation?
+\includegraphics[align=t,width=\linewidth]{cable-car3.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\furl{https://www.scenicworld.com.au/experience/scenic-skyway}{\emph{Scenic Skyway}} cable car, Australia}%
+Consider a cable car suspended on a horizontal cable, and not moving. Which momentum fluxes occur in this situation?
 
-It's interesting to choose a static closed control surface that wraps the car and part of the cables
+This problem has some similarities with the previous one about the book on a table. Choose a control volume containing the cable car.
+\begin{itemize}\tightlist
+\item The total momentum in this volume is constantly zero, because the cable car isn't moving
+\item There's a constant momentum supply because of gravity; let's say that in this case it's
+  \begin{equation*}
+    \yG(t) = [0\,,0\,,\num{-8e4}]\:\unit{N}\enspace\text{(constant)}
+  \end{equation*}
+\item By the balance of momentum, there must then be an influx of upward-momentum of the same magnitude as the supply:
+  \begin{equation*}
+  \begin{split}
+    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-8e4}]\:\unit{N}}
+\\[2\jot]
+ &=   [0\,,0\,,\num{8e4}]\:\unit{N}\enspace\text{(constant)}.
+  \end{split}
+\end{equation*}
+\item Also in this case the influx through the parts of the control surface in contact with air is practically zero:
+  \begin{equation*}
+  \yF_{\text{air-car}}(t) \approx [0\,,0\,,0]\:\unit{N} \ .
+\end{equation*}
+\end{itemize}
+
+All the influx of momentum must therefore come through the cable. But there are some interesting aspects on how this happens. In this case it's interesting to choose a static closed control surface that wraps the car and part of the cables,  \enquote{cutting} the cables in imagination, as illustrated by the \textcolor{red}{red polygon} in the picture below:
+\begin{center}
+  \includegraphics[align=t,width=\linewidth]{cablecardraw.jpg}
+\end{center}
+This picture also depict, as zoom-ins, the two parts of the imaginary control surface that \enquote{cut} the cable (for simplicity imagine that there's only one cable). The total influx $\yF$ must happen through these two small regions of the surface, in the cable. An interesting question is: \emph{How much is the momentum influx \textbf{through each one?}}. Call these two momentum influxes $\yF_{\text{left}}$ through surface cutting the cable on the left; and $\yF_{\text{right}}$ through surface cutting the cable on the right. Since all these fluxes are constant in time, let's drop the argument \enquote*{$(t)$}; and let's drop the $y$-components, which are all zero.
+
+We know that
+\begin{equation*}
+  \yF_{\text{left}} + \yF_{\text{right}} = \yF = 
+  \begin{bsmallmatrix}
+    0\\\num{8e4}
+  \end{bsmallmatrix}\:\unit{N}
+\end{equation*}
+but this doesn't tell us how much $\yF_{\text{left}}$ and $\yF_{\text{right}}$ are individually. For example we could have
+\begin{equation*}
+  \yF_{\text{left}} \stackrel{?}{=}
+  \begin{bsmallmatrix}
+    \num{5}\\ \num{-2e4}
+  \end{bsmallmatrix}\:\unit{N}
+  \qquad
+  \yF_{\text{right}} \stackrel{?}{=}
+  \begin{bsmallmatrix}
+    \num{-5}\\ \num{20e4}
+  \end{bsmallmatrix}\:\unit{N}
+\end{equation*}
+and the total influx would be the correct one. For the moment we can only say that
+\begin{equation*}
+  (\yF_{\text{left}})_{x} = - (\yF_{\text{right}})_{x}
+  \qquad
+  (\yF_{\text{left}})_{z} = \qty{8e4}{N} - (\yF_{\text{right}})_{z}
+\end{equation*}
+where \enquote*{$(\dotso)_{x}$} denotes the $x$-component, and similarly for the $z$-component.
+
+We shall see later that the balance of angular momentum applied to this problem leads to a further constraint:\enspace$(\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z}$\,.\enspace So we can conclude that
+\begin{equation*}
+  (\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z} = \qty{4e4}{N} 
+\end{equation*}
+that is, each half of the cable is \enquote{taking half of the weight}, as intuitively expected.
+
+The last part of our mystery, about the $x$-components, can be solved thanks to an additional constitutive property:
+\begin{definition}{{Momentum flux allowed in cables and ropes}}
+  A cable, rope, or similar object can (approximately) only transmit \autoref{sec:tension}{\emph{tensile} momentum flux}, aligned along its axis.
+\end{definition}
+Pictorially this means that only the momentum flux represented in the left picture below (tension) is physically possible:
+\begin{center}
+\includegraphics[align=c,width=0.33\linewidth]{cabletension.jpg}%
+\hfill
+\includegraphics[align=c,width=0.22\linewidth]{cableshear.jpg}%
+\includegraphics[align=c,width=0.22\linewidth]{cablepressure.jpg}%
+\includegraphics[align=c,width=0.22\linewidth]{cablemix.jpg}%
+\end{center}
+the other three (from left to right: shear, pressure, mixed) are not.
+
+We therefore need to know the directions of the axes of the two parts of the cable. Let's suppose that each part has an inclination of $\qty{0.12}{rad}\approx\qty{6.9}{\degree}$, but in opposite directions. This must then also be the angle between the influx $\yF_{\text{left}}$ and its horizontal component $(\yF_{\text{left}})_{x}$, as in this picture (the angle has been exaggerated for clarity):
+\begin{center}
+  \includegraphics[width=0.533\linewidth]{cableangle.jpg}
+\end{center}
+From trigonometry we find
+\begin{equation*}
+  (\yF_{\text{left}})_{x} =
+  -(\yF_{\text{left}})_{z}/\tan(\qty{0.12}{rad})
+  =  -\qty{4e4}{N}/0.12 \approx \qty{-3.3e5}{N}
+\end{equation*}
+and therefore\enspace$(\yF_{\text{right}})_{x} \approx \qty{3.3e5}{N}$:
+\begin{equation*}
+  \yF_{\text{left}} \approx
+  \begin{bsmallmatrix}
+    \num{-3.3e5}\\ \num{4e4}
+  \end{bsmallmatrix}\:\unit{N}
+  \qquad
+  \yF_{\text{right}} \approx
+  \begin{bsmallmatrix}
+    \num{3.3e5}\\ \num{4e4}
+  \end{bsmallmatrix}\:\unit{N}
+\end{equation*}
+The magnitude of these tensions is also approximately $\abs{\yF_{\text{left}}} = \abs{\yF_{\text{right}}} \approx \qty{3e5}{N}$ or an equivalent weight of 30\,tonnes.
 
 
 \section{Balance of energy}
