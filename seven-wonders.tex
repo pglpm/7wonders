@@ -1,7 +1,8 @@
 \pdfoutput=1
+\pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-12T22:23:01+0100
+%% Last-Updated: 2024-03-13T09:27:30+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -2832,7 +2833,7 @@ Therefore the sentences \enquote{\qty{+5}{persons} entered the room} and \enquot
 are saying exactly the same thing. This somewhat trivial fact about fluxes will, later on, turn out to be connected with a famous law.
 So let's remember:
 %
-\begin{definition}{Every flux is equivalent to a flux of opposite amount in the opposite direction}
+\begin{definition}{Every flux is equivalent to a flux of opposite amount in the opposite direction,label={sec:symmetryflux}}
   A flux in a particular surface-crossing direction is equivalent to a flux of \emph{opposite} sign in the \emph{opposite} crossing direction.
 \end{definition}
 \marginpar{\vspace{-7em}\label{fig:newtonIII}%
@@ -5011,26 +5012,31 @@ Through this balance we can therefore describe and predict motions. We saw a con
 
 As just mentioned, there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \furl{https://www.britannica.com/science/statics}{statics}. Let's see a couple of concrete examples.
 
-\marginpar{\centering%
-  \includegraphics[align=t,width=0.5\linewidth]{ice_core.png}%
+\smallskip
+
+\marginpar{\vspace{-2\baselineskip}\centering%
+\includegraphics[width=\linewidth]{bookontable.jpg}%
+\\\includegraphics[width=3em]{axes.pdf}%
   % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
-An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation? Let's choose a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
+An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation?
+
+Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
 \begin{equation*}
   \yP(t) = [0\,,0\,,0]\:\unit{N\,s}\enspace\text{(constant)}.
 \end{equation*}
-We also know that a control volume on Earth's surface \autoref{sec:supply_momentum_gravity}{has a constant \emph{supply} of momentum}, proportional to the \masse\ it contains. Let's say that the supply in this case is
+We also know that any control volume close to Earth's surface \autoref{sec:supply_momentum_gravity}{has a constant \emph{supply} of momentum}, proportional to the \masse\ it contains. Let's say that the supply in this case is
 \begin{equation*}
-  \yG(t) = [0\,,0\,,\num{-1.5}]\:\unit{N}\enspace\text{(constant)}.
+  \yG(t) = [0\,,0\,,\num{-10}]\:\unit{N}\enspace\text{(constant)}.
 \end{equation*}
 Then \emph{what can the momentum fluxes across different parts of the control surface be?}
 
 A straightforward application of momentum balance in differential form tells us that the \emph{net} \textbf{in}flux of momentum must be
 \begin{equation*}
   \begin{split}
-    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-1.5}]\:\unit{N}}
+    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-10}]\:\unit{N}}
 \\[2\jot]
- &=   [0\,,0\,,\num{1.5}]\:\unit{N}\enspace\text{(constant)}.
+ &=   [0\,,0\,,\num{10}]\:\unit{N}\enspace\text{(constant)}.
   \end{split}
 \end{equation*}
 Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The \autoref{sec:in_out_flux}{influxes through different parts of the control surface could be very different} from this value, which is only their total; but the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from constitutive relations.
@@ -5042,12 +5048,12 @@ In the present case there's a constitutive relation about the momentum flux betw
   \yF(t) = \yF_{\text{air-book}}(t) + \yF_{\text{table-book}}(t) \ .
 \end{equation*}
 From the last three equations we finally find
-\begin{equation*} \yF_{\text{table-book}}(t) \approx [0\,,0\,,\num{1.5}]\:\unit{N}\enspace\text{(constant)}.
+\begin{equation*} \yF_{\text{table-book}}(t) \approx [0\,,0\,,\num{10}]\:\unit{N}\enspace\text{(constant)}.
 \end{equation*}
 In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This kind of flux is called \textbf{normal force}, and we'll discuss it again later on.
 
 \begin{exercise}
-  Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces, each wrapping one book. Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-1.5}]\:\unit{N}$ (constant in time), and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
+  Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces, each wrapping one book. Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-10}]\:\unit{N}$ (constant in time), and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
 
   Use the balance of momentum with the two control surfaces to find:
 \begin{enumerate}[exerc]
@@ -5056,6 +5062,17 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 \end{enumerate}
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
+
+\subsection{Example application: airborne flight}
+\label{sec:bal_momentum_flight}
+
+A conceptually simple application of the momentum balance is airborne flight. From the point of view of momentum, the objective of flight is to compensate or over-compensate the constant downward-momentum supply $\yG$ that an object surrounded by air, or by some kind of atmosphere, receives because of gravity. One way to compensate this is by creating an influx of upward-momentum, or equivalently an efflux of downward-momentum. In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{sec:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
+
+The way in which the downward-momentum flux from the object to the air is realized can be very different:
+\begin{description}
+\item[Buoyancy] 
+\end{description}
+
 
 \subsection{Example application: statics again}
 \label{sec:bal_momentum_cablecar}
@@ -5101,7 +5118,13 @@ We know that
     0\\\num{8e4}
   \end{bsmallmatrix}\:\unit{N}
 \end{equation*}
-but this doesn't tell us how much $\yF_{\text{left}}$ and $\yF_{\text{right}}$ are individually. For example we could have
+from this equation we find
+\begin{equation*}
+  (\yF_{\text{left}})_{x} = - (\yF_{\text{right}})_{x}
+  \qquad
+  (\yF_{\text{left}})_{z} = \qty{8e4}{N} - (\yF_{\text{right}})_{z}
+\end{equation*}
+where \enquote*{$(\dotso)_{x}$} denotes the $x$-component, and similarly for the $z$-component. But this doesn't tell us how much $\yF_{\text{left}}$ and $\yF_{\text{right}}$ are individually. For example we could have
 \begin{equation*}
   \yF_{\text{left}} \stackrel{?}{=}
   \begin{bsmallmatrix}
@@ -5113,15 +5136,9 @@ but this doesn't tell us how much $\yF_{\text{left}}$ and $\yF_{\text{right}}$ a
     \num{-5}\\ \num{20e4}
   \end{bsmallmatrix}\:\unit{N}
 \end{equation*}
-and the total influx would be the correct one. For the moment we can only say that
-\begin{equation*}
-  (\yF_{\text{left}})_{x} = - (\yF_{\text{right}})_{x}
-  \qquad
-  (\yF_{\text{left}})_{z} = \qty{8e4}{N} - (\yF_{\text{right}})_{z}
-\end{equation*}
-where \enquote*{$(\dotso)_{x}$} denotes the $x$-component, and similarly for the $z$-component.
+and the total influx would be the correct one.
 
-We shall see later that the balance of angular momentum applied to this problem leads to a further constraint:\enspace$(\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z}$\,.\enspace So we can conclude that
+We shall see later that the \emph{balance of angular momentum} applied to this problem leads to a further constraint:\enspace$(\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z}$\,.\enspace So we can conclude that
 \begin{equation*}
   (\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z} = \qty{4e4}{N} 
 \end{equation*}
@@ -5163,7 +5180,19 @@ and therefore\enspace$(\yF_{\text{right}})_{x} \approx \qty{3.3e5}{N}$:
     \num{3.3e5}\\ \num{4e4}
   \end{bsmallmatrix}\:\unit{N}
 \end{equation*}
-The magnitude of these tensions is also approximately $\abs{\yF_{\text{left}}} = \abs{\yF_{\text{right}}} \approx \qty{3e5}{N}$ or an equivalent weight of 35\,tonnes.
+The magnitude of these tensions is also approximately $\abs{\yF_{\text{left}}} = \abs{\yF_{\text{right}}} \approx \qty{3e5}{N}$ or an equivalent weight of 35\,tonnes (this result seems in the correct order of magnitude, comparing with the data in \cites{brownjohn1998}).
+
+In solving the cable-car problem above we used the balance of momentum, but note and keep in mind how that balance alone wasn't enough. We also had to use:
+\begin{itemize}\tightlist
+\item the balance of angular momentum
+\item constitutive relations regarding:
+  \begin{itemize}\tightlist
+  \item the momentum supply
+  \item the amount of momentum flux between air and the cable car
+  \item the kind of momentum flux allowed in a cable
+  \end{itemize}
+\end{itemize}
+
 
 
 \section{Balance of energy}
@@ -5968,7 +5997,7 @@ The rudimentary routine above is the basis from which more precise and complex s
     \end{multline*}
 
     Questions and tasks:
-    \begin{enumerate}[shif,label={\bfseries\arabic*.}]
+    \begin{enumerate}[exerc]
     \item Which time evolution for $n$ do you observe? Does it make sense, given the fluxes above?
     \item Feel free to try out or generalize your script with:
       \begin{itemize}[shift]
