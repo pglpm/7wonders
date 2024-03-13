@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-13T09:27:30+0100
+%% Last-Updated: 2024-03-13T19:15:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -2740,7 +2740,7 @@ As a visualization device, this representation can be useful. But let's straight
 \end{exercise}
 
 
-\subsection{Vector quantities}
+\subsection{Vector quantities}\label{sec:volintegral_vector}
 
 A volume integral for a vector quantity, for example momentum, can be represented as follows (we still simplify our visualization to two dimensions):
 \begin{center}
@@ -2824,7 +2824,7 @@ One important aspect of this example and terminology is the following symmetry:
 \item If we decide to call \enquote*{positive} the other crossing direction, then the total will change sign. But the physical situation is of course still the same.
 \end{itemize}
 Therefore the sentences \enquote{\qty{+5}{persons} entered the room} and \enquote{\qty{-5}{persons} exited the room}
-% \begin{itemize}\tightlist
+% \begin{itemize}[nosep]
 % \item \qty{+5}{persons} entered the room
 % \item \qty{-5}{persons} entered the room
 % \item \qty{-5}{persons} exited the room
@@ -2844,7 +2844,7 @@ So let's remember:
 Another important aspect of the example above is that if we're told \enquote{\qty{-5}{persons} exited the room}, we don't know how exactly this happened: it could be that 5~persons got into the room during that minute; or that 10~persons got in and 5~got out; and so on. This is why we call \enquote*{\num{-5}} the \emph{net} amount.
 
 Finally, consider a similar example but with a quantity that can ordinarily also be negative, such as electric charge. Call \enquote*{positive} the crossing direction from outside to inside the room. If we're told that a net charge amount of \qty{-5} crossed the door in the positive direction in one minute, then this could have happened in several ways:
-\begin{itemize}\tightlist
+\begin{itemize}[nosep]
 \item a charge of \num{-5} was brought into the room
 \item a charge of \num{+5} was brought out of the room
 \item a charge of \num{-2} was brought into the room during the first \qty{30}{s}, and a charge of \num{+3} was brought out in the remaining \qty{30}{s}
@@ -2880,7 +2880,7 @@ In these notes we shall settle on the third representation above, but feel free 
   \smallskip
 
   A flux does \emph{not} tell us:
-  \begin{itemize}\tightlist
+  \begin{itemize}[nosep]
   \item whether the quantity \enquote{was in motion}
   \item \textellipsis and if the quantity was in motion, what was its sign
   \item whether the surface was in motion
@@ -3775,7 +3775,7 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 }
 \begin{exercise}
 {\itshape Solve the following exercises not just by using intuition, but \textbf{by explaining step-by-step how you use a conservation law}, in integral or differential form, to obtain the result:
-\begin{itemize}\tightlist
+\begin{itemize}[nosep]
 \item what is the relevant time interval (if using the integral form)
 \item how you define the closed control surfaces and their movement, as well as any subdivisions of the surfaces
 \item what are the volume integral and integrated-flux values you know, and which you want to find
@@ -4501,7 +4501,7 @@ In fact, the evolution equation from a balance or conservation law always gives 
 
   \begin{enumerate}[exerc]
   \item Write a script, in your preferred programming language, that implements the time-stepped evolution algorithm~\eqref{eq:timestepped_evolution} and evolves all three components of momentum. Assume:
-    \begin{itemize}\tightlist
+    \begin{itemize}[nosep]
     \item total duration of simulation is \qty{2}{s}
     \item timestep is $\Dt={0.01}{s}$
     \item momentum at initial time $t_{0}=\qty{0}{s}$ is $\yP(t_{0}) = [3,0,3]\:\unit{N\,s}$
@@ -4517,7 +4517,7 @@ In fact, the evolution equation from a balance or conservation law always gives 
     \smallskip
 
   \item Make your script more general: it should initially ask for (or require as arguments, if implemented as a function):
-    \begin{itemize}\tightlist
+    \begin{itemize}[nosep]
     \item the desired total simulation time
     \item the timestep $\Dt$ to be used in the algorithm
     \item the initial momentum $\yP(t_{0})$
@@ -4612,7 +4612,7 @@ For some physical phenomena -- such as planets orbiting around a star or satelli
 \label{sec:example_falling_object_timestep}
 
 Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward, the other two coordinates having some constant value. Assume these conditions:
-\begin{itemize}\tightlist
+\begin{itemize}[nosep]
 \item initial time is $t_{0}=\qty{0}{s}$
 \item initial position is $z(t_{0})=\qty{5}{m}$
 \item initial momentum is $P_{z}(t_{0})=\qty{30}{N\,s}$
@@ -4759,7 +4759,7 @@ Recall that a balance or conservation law always involves a \autoref{sec:conserv
 Also recall that we are free to choose this sequence of closed control surfaces as we please. A balance law is so powerful because it holds no matter what our choice of surfaces is.
 
 The \enquote{budget} involves three amounts:
-\begin{itemize}\tightlist
+\begin{itemize}[nosep]
 \item\textbf{volume integral}: how much of a quantity is within a control volume
 \item\textbf{flux}: how much of a quantity is flowing through a surface per unit time
 \item\textbf{supply}: how much of a quantity is being created or destroyed within a control volume per unit time; this is zero for a conservation law.
@@ -5052,7 +5052,7 @@ From the last three equations we finally find
 \end{equation*}
 In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This kind of flux is called \textbf{normal force}, and we'll discuss it again later on.
 
-\begin{exercise}
+\begin{exercise}[label={ex:twobooks}]
   Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces, each wrapping one book. Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-10}]\:\unit{N}$ (constant in time), and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
 
   Use the balance of momentum with the two control surfaces to find:
@@ -5063,16 +5063,119 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
 
+\subsection{Example application: atmospheric pressure}
+\label{sec:bal_momentum_atmosphere}
+
+There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
+\begin{itemize}
+\item It is always \autoref{sec:pressure}{\emph{compressive}}, that is, its direction is always orthogonal to the surface, and its orientation is the same as the crossing orientation.
+\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
+\item Its magnitude slowly decreases with altitude; that is, a \qty{1}{m^2} surface \qty{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty{1}{m^2} surface close to the ground.
+\end{itemize}
+
+In examining momentum fluxes for objects on Earth we often neglect the presence of air and atmospheric pressure. We did so in the previous example about a book on a table. The reason is that the \emph{total} momentum flux from atmospheric pressure around an object is usually approximately zero. This happens on account of three factors:
+\begin{enumerate*}[label=(\alph*)]
+\item there's always at least a thin layer of air around an object; even an object lying on a table or on the ground has a thin layer of air underneath;
+\item the atmospheric-pressure momentum flux is always orthogonal to every small piece of surface;
+\item its magnitude is approximately the same at the same altitude.
+\end{enumerate*}
+Together, these factors lead to a zero total when we sum up all the atmospheric-pressure fluxes across the different parts of a surface that encloses an object.
+
+Indeed we suddenly feel the heavy presence of atmospheric pressure when the first or the last of those factors doesn't hold anymore.
+
+For example you may sometimes have made the mistake of laying a wide slab of glass, say from a window, upon another, only to find out that you couldn't easily lift it up anymore: the two slabs were sort of \enquote{stuck} together.
+%
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{glassslabs.png}%
+}%
+The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So the total momentum flux from air to the upper slab does no longer sum up to zero: there's only a compressive flux of downward momentum from air to the slab across its upper surface. As mentioned, for a \qty{1}{m^2} slab this flux is equivalent to a weight of \qty{10000}{kg}! You can't lift the upper slab, not because it's \enquote{stuck} to the lower one, but because it suddenly has a net force of 10\:tonnes on top (which presses the two glass slabs together even more, and therefore drives out more air between them). The only thing you can do is to try to let air again between the two slabs, for instance moving them to a vertical position, so that there will again be atmospheric pressure on both sides of each slab.
+
+%
+\marginpar{\centering%
+\includegraphics[align=t,width=\linewidth]{sucker.jpg}%
+}%
+The same phenomenon occurs, in a more useful way, with a suction cup: the atmospheric pressure on its two sides is very different, and therefore it receives a net influx of momentum pointing towards the wall. This, in turn, leads to an influx of upward momentum owing to friction (which we'll discuss later), which compensate for the momentum supply from gravity. Thus the cup can stay in place without falling and even support some object.
+
+\smallskip
+
+In some cases the magnitude of the atmospheric pressure is different because of altitude, and this can be exploited for flying, as we discuss below. But in order to do that, try to solve this exercise first:
+\begin{exercise}[label={ex:atmosphericpressure}]
+  In this exercise we apply a reasoning very similar to that of Exercise~\ref{ex:twobooks}.
+
+  Consider a body of air at rest. Imagine a closed control surface which encloses some of this air. This is analogous to the \autoref{sec:bal_momentum_statics}{example with the book on the table}; now instead of a book we simply have a volume of air, and instead of a table we have air also underneath the volume. For definiteness let's say that the volume is a cuboid with small height $h$ and horizontal base area $A$, so the volume is $h\,A$
+
+  Air is matter, and therefore this control volume has a constant supply of downward momentum owing to gravity. On Earth's surface we can say (this is a constitutive relation) that a volume $h\,A$ of air has a momentum supply approximately equal to
+  \begin{equation*}
+    \yG=h\cdot A \cdot \qty{11.8}{N/m^{3}}\ .
+  \end{equation*}
+
+  Assume that the momentum flux on the lateral surface of the volume is zero.
+  \begin{enumerate}[exerc]
+  \item Apply the momentum balance, and extensivity of momentum, to find the \textbf{difference in magnitude} between the momentum influx through the bottom of the cuboid and the momentum influx through the top of the cuboid.
+    \item Pressure is defined as momentum flux \emph{per unit area}. How much is the pressure difference between the bottom and top of the cuboid of air?
+    \item Try to generalize and write an approximate formula of how pressure changes with altitude.
+    \end{enumerate}
+
+    {\color{red}\footnotesize\faIcon{exclamation-circle}\enspace The results obtained in this exercise are approximate, because the supply of momentum $\yG$ actually changes with altitude as well, and depends on other quantities such as temperature. But they do have the correct order of magnitude.\par}
+\end{exercise}
+
 \subsection{Example application: airborne flight}
 \label{sec:bal_momentum_flight}
 
-A conceptually simple application of the momentum balance is airborne flight. From the point of view of momentum, the objective of flight is to compensate or over-compensate the constant downward-momentum supply $\yG$ that an object surrounded by air, or by some kind of atmosphere, receives because of gravity. One way to compensate this is by creating an influx of upward-momentum, or equivalently an efflux of downward-momentum. In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{sec:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
+Airborne flight is a conceptually extremely simple application of momentum balance.
 
-The way in which the downward-momentum flux from the object to the air is realized can be very different:
+In terms of momentum, the objective of flight is to compensate or over-compensate the constant downward-momentum supply $\yG$ that an object, not touching any other solid object, receives because of gravity. One way to compensate this supply is by creating a \emph{net} influx of upward-momentum, or equivalently a \emph{net} efflux of downward-momentum, between the object and the air or atmosphere that surrounds it. This is airborne flight.
+
+The ways in which such a momentum flux between object and air is realized can be very different:
 \begin{description}
-\item[Buoyancy] 
+\item[Buoyancy]
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=\linewidth]{airlander.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}}%
+}%
+In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per unit volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which hot-air balloons, airships, and also submarines, are based.
+
+\item[Soaring]
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=\linewidth]{hangglider.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+A hang-glider (image from \furl{https://www.jaerenluftsport.no}{Jæren Luftsportsklubb})}%
+}%
+Air is not always at rest (with respect to the Earth's surface). Owing to energy flow in the atmosphere and Earth's rotation, bodies of air -- air currents -- can be moving in different directions, including upward. An upward-moving body of air contains a net upward momentum. If an object stops the vertical motion of this air, for example deflecting it horizontally, then by the balance of momentum there must be a flux of upward momentum from the body of air to the object. This upward momentum can compensate the gravity supply of downward momentum, and therefore the object can float or rise. This mechanism is called \furl{https://www.britannica.com/topic/locomotion/Gravitational-gliding\#ref497010}{soaring or gliding} and is used by birds and gliders; it's also the mechanism that lifts a light object such as a piece of paper or a feather.
+
+\item[Propelled flight] We can try to create a flow of downward momentum from an object to the surrounding air, even if air is initially at rest. As a result, a body of air surrounding the object will acquire a net, partially downward movement. By the \autoref{sec:symmetryflux}{symmetry of fluxes} this also means that momentum with an upward component flows from the air to the object, and this component can compensate the object's weight. This is achieved by birds by flapping their wings, and by aeroplanes and helicopters through horizontally moving wings or blades.
 \end{description}
 
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[width=\linewidth]{supersonic_airfoil.png}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}}}
+%
+\begin{extra}{It's not the shape of the wings}
+  Some texts say that wings can sustain an aeroplane because their cross-section has an asymmetric shape, slightly more bulged upward than downward. This is not true. In fact, aeroplanes with completely symmetric wings fly as well.
+\begin{quote}\footnotesize
+the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
+\end{quote}
+\end{extra}
+
+% In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{sec:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
+
+\subsection{Example application: rocket}
+\label{sec:bal_momentum_flight}
+
+The flight mechanisms discussed in the previous section rely on the presence of air or some kind of atmosphere around the object, with which a momentum flux can occur. This is not possible in outer space, and such flux may not be enough to lift an object even if air is surrounding it.
+
+Another way of producing an influx of upward momentum is to release matter having downward momentum. As we saw in an \autoref{sec:example_balance_static}{example with a falling block of ice}, if through a surface there's a flux of matter, then there's also a flux of momentum. So if an object manages to realize a strong enough flux of matter through a surface at its bottom, the object itself will experience an influx of upward momentum, which can overcome the object's weight. Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter.
+
+
+
+This is the momentum-flux mechanism employed by rockets.
+
+
+The basic idea is again very simple. Suppose we have some matter within a control volume, having a zero net amount of momentum. The fact that the net amount in the volume is zero doesn't mean that \autoref{sec:volintegral_vector}{the amounts in some subvolumes may be different from zero}. If we manage to distribute some downward momentum to the matter at the bottom of the control volume, then the 
 
 \subsection{Example application: statics again}
 \label{sec:bal_momentum_cablecar}
@@ -5085,7 +5188,7 @@ The way in which the downward-momentum flux from the object to the air is realiz
 Consider a cable car suspended on a horizontal cable, and not moving. Which momentum fluxes occur in this situation?
 
 This problem has some similarities with the previous one about the book on a table. Choose a control volume containing the cable car.
-\begin{itemize}\tightlist
+\begin{itemize}[nosep]
 \item The total momentum in this volume is constantly zero, because the cable car isn't moving
 \item There's a constant momentum supply because of gravity; let's say that in this case it's
   \begin{equation*}
@@ -5183,10 +5286,10 @@ and therefore\enspace$(\yF_{\text{right}})_{x} \approx \qty{3.3e5}{N}$:
 The magnitude of these tensions is also approximately $\abs{\yF_{\text{left}}} = \abs{\yF_{\text{right}}} \approx \qty{3e5}{N}$ or an equivalent weight of 35\,tonnes (this result seems in the correct order of magnitude, comparing with the data in \cites{brownjohn1998}).
 
 In solving the cable-car problem above we used the balance of momentum, but note and keep in mind how that balance alone wasn't enough. We also had to use:
-\begin{itemize}\tightlist
+\begin{itemize}[nosep]
 \item the balance of angular momentum
 \item constitutive relations regarding:
-  \begin{itemize}\tightlist
+  \begin{itemize}[nosep]
   \item the momentum supply
   \item the amount of momentum flux between air and the cable car
   \item the kind of momentum flux allowed in a cable
