@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-13T19:15:43+0100
+%% Last-Updated: 2024-03-14T08:32:50+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -949,6 +949,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yv}{\bm{v}}
+\newcommand*{\yvs}{v_{\text{s}}}
 %
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
@@ -3588,18 +3589,14 @@ With this setup we can introduce two kinds of balance laws.
   An extensive quantity with volume integral $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:conserved}
-    \yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t = 0
+    \yN(t_{1}) = \yN(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t
   \end{equation}
 \end{definition}
-The meaning of the equation above is intuitive, especially if we rewrite it like this:
-\begin{equation*}
-      \yN(t_{1}) = \yN(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t
-\end{equation*}
-This expression says that the amount of quantity in the final control volume, $\yN(t_{1})$, is equal to the amount in the initial control volume, $\yN(t_{0})$, plus the total amount (which could be negative) that flowed in between those times, that is, the integrated flux $\int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t$. Said otherwise, any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear out of nowhere.
+The meaning of the equation above is intuitive: the amount of quantity in the final control volume, $\yN(t_{1})$, must be equal to the amount in the initial control volume, $\yN(t_{0})$, plus the total amount (which could be negative) that flowed in through the surface between those times, that is, the integrated flux $\int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t$. Said otherwise, any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear or disappear out of nowhere.
 
 A conservation law allows us to make several kinds of predictions or deductions. For example:
 \begin{itemize}
-\item If we know the amount of quantity within the control surface at $t_{0}$ and the net amount that crossed the surface between $t_{0}$ and $t_{1}$, then we can predict the amount within the control surface at $t_{1}$: this is given by the last equation above.
+\item If we know the amount of quantity within the control surface at $t_{0}$ and the net amount that crossed the surface between $t_{0}$ and $t_{1}$, then we can predict the amount within the control surface at $t_{1}$: this is given by the equation above.
   % \begin{equation*}
   %   \yN(t_{1}) = \yN(t_{0}) + \yJ \ .
   % \end{equation*}
@@ -3641,13 +3638,13 @@ Note that the discussion so far is equally valid for a scalar or a vector quanti
 
 The conservation law
 \begin{equation*}
-  \yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t = 0
+  \yN(t_{1}) = \yN(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\, \di t
 \end{equation*}
 is said to be written in \emph{integral form}, because it contains the integrated flux, necessary to calculate the net amount of quantity that crosses the control surface.
 
 Change the symbol for time $t_{0}$ simply into $t$, and take $t_{1}$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
 \begin{equation*}
-  t_{0}\ \text{becomes}\ t\ ,\enspace t_{1}\ \text{becomes}\ t+\Dt
+  t_{0}\ \text{becomes}\ t\ ,\quad t_{1}\ \text{becomes}\ t+\Dt
 \end{equation*}
 Then the integrated flux can be approximated by $\int_{t}^{t+\Dt}\!\!\yJ(t)\, \di t \approx \yJ(t)\, \Dt$ (because the flux $\yJ(t)$ is approximately constant in the short time lapse $\Dt$).
 
@@ -3659,17 +3656,21 @@ Then the integrated flux can be approximated by $\int_{t}^{t+\Dt}\!\!\yJ(t)\, \d
 }%
 The conservation law can then be approximated as
 \begin{equation*}
-  \yN(t+\Dt) - \yN(t) - \yJ(t)\, \Dt \approx 0
+  \yN(t+\Dt) \approx \yN(t) + \yJ(t)\, \Dt
 \end{equation*}
-If we divide the whole expression by $\Dt$ and consider smaller and smaller $\Dt$, the fraction\enspace$\frac{\yN(t+\Dt)-\yN(t)}{\Dt}$\enspace becomes, by definition, a derivative, and we obtain a new form for the conservation law:
+Now bring the term $\yN(t)$ to the left side, and divide the whole expression by $\Dt$:
+\begin{equation*}
+  \frac{\yN(t+\Dt) - \yN(t)}{\Dt} \approx \yJ(t)\, \Dt
+\end{equation*}
+Consider smaller and smaller $\Dt$: then the fraction\enspace$\frac{\yN(t+\Dt)-\yN(t)}{\Dt}$\enspace becomes, by definition, a derivative, and we obtain a new form for the conservation law:
 \begin{definition}{Conservation law in differential form}
   A quantity is said to satisfy a \textbf{conservation law} if the following equality holds always:
   \begin{equation}
     \label{eq:conserved_diff}
-    \frac{\di\yN(t)}{\di t}- \yJ(t) = 0
+    \frac{\di\yN(t)}{\di t} = \yJ(t)
   \end{equation}
 \end{definition}
-This form says that the rate of change of the volume integral of a quantity must equal \emph{\textbf{in}}flux of that quantity.
+This form says that the rate of change of the volume integral of a quantity must equal \emph{\textbf{in}}flux of that quantity, that is, the rate at which the quantity is coming in through the control surface.
 
 Both forms, integral and differential, of a conservation law are useful, in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and make predictions.
 
@@ -3768,10 +3769,10 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 \bigskip
 
 \marginpar{\vspace{14\baselineskip}\centering%
-\includegraphics[align=b,width=\linewidth]{room_heater_window.jpg}
+\includegraphics[width=\linewidth]{room_heater_window.jpg}
 }
-\marginpar{\vspace{6\baselineskip}\centering%
-\includegraphics[align=b,width=\linewidth]{distillation_column.jpg}
+\marginpar{\vspace{5\baselineskip}\centering%
+\includegraphics[width=\linewidth]{distillation_column.jpg}
 }
 \begin{exercise}
 {\itshape Solve the following exercises not just by using intuition, but \textbf{by explaining step-by-step how you use a conservation law}, in integral or differential form, to obtain the result:
@@ -3815,29 +3816,32 @@ The setup is just like before: consider an initial and final closed control surf
   A quantity with volume integral $\yE(t)$ and influx $\yH(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:balanced}
-    \yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yH(t)\, \di t = \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t
+    \yE(t_{1}) = \yE(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yH(t)\, \di t + \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t
   \end{equation}
   where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per unit time within the closed control surface at time $t$.
 \end{definition}
-If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
-\marginpar{\centering%
+\marginpar{\vspace{-10\baselineskip}\centering%
 \includegraphics[align=c,width=\linewidth]{tennisball_boundary.png}%
-\\\footnotesize\flushleftright{\color{mpcolor}%
-A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} contours), but not what happens within the control volumes in between}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} contours), but not what happens within the control volumes in between. A balance law instead also involves what happens within the control volumes in between.}%
 }%
-A conservation law is therefore powerful also because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
+If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
+
+The meaning of the equation above is intuitive: the amount of quantity in the final control volume, $\yE(t_{1})$, must be equal to the amount in the initial control volume, $\yE(t_{0})$, plus the total amount that flowed in through the surface between those times,  $\int_{t_{0}}^{t_{1}}\!\!\yH(t)\, \di t$, plus the total amount that was created in the volume, $\int_{t_{0}}^{t_{1}}\!\!\yR(t)\, \di t$.
+
+According to the definition above, a \emph{conservation} law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}. That is, there never are sources or sinks of the quantity: the quantity cannot be \emph{created} or \emph{destroyed}: it can only \enquote{move around}.
+
+A conservation law is powerful because the supply $\yR(t)$ is already known and has an extremely simple value (zero). It is also powerful because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse: we must do this to check whether some quantity was created or destroyed within the volume.
 
 \smallskip
 
-According to the definition above, a conservation law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}; that is, there never are sources or sinks of the quantity. It is powerful because the supply $\yR(t)$ is already known and has an extremely simple value (zero).
-
-For this reason, a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{0}) - \yE(t_{1}) - \int_{t_{0}}^{t_{1}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{0}$ and $t_{1}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(t_{0}) - \yE(t_{1}) - \int_{t_{0}}^{t_{1}}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $t_{0}$ and $t_{1}$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
 A conservation law is therefore powerful also because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
 \begin{warning}[Supplies are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
-    \yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \di t = 0
+    \yE(t_{1}) = \yE(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \di t = 0
   \end{equation*}
   which looks like a conservation law?}
 
@@ -3880,7 +3884,7 @@ Let us now consider an extensive vector quantity like \emph{momentum}. Denote it
 The balance law has an analogous form:
 \begin{equation}
   \label{eq:balanced_momentum}
-  \yP(t_{1}) - \yP(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yF(t)\, \di t = \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t
+  \yP(t_{1}) = \yP(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yF(t)\, \di t + \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t
 \end{equation}
 where the supply
 \begin{equation*}
@@ -3895,11 +3899,11 @@ is the amount of momentum created per unit time within the control volume at tim
 \begin{equation}
   \label{eq:balanced_momentum_components}
 \left\{\   \begin{aligned}
-    P_{x}(t_{1}) - P_{x}(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!F_{x}(t)\, \di t &= \int_{t_{0}}^{t_{1}}\!\!G_{x}(t)\,\di t
+    P_{x}(t_{1}) &= P_{x}(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!F_{x}(t)\, \di t + \int_{t_{0}}^{t_{1}}\!\!G_{x}(t)\,\di t
     \\
-    P_{y}(t_{1}) - P_{y}(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!F_{y}(t)\, \di t &= \int_{t_{0}}^{t_{1}}\!\!G_{y}(t)\,\di t
+    P_{y}(t_{1}) &= P_{y}(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!F_{y}(t)\, \di t + \int_{t_{0}}^{t_{1}}\!\!G_{y}(t)\,\di t
     \\
-    P_{z}(t_{1}) - P_{z}(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!F_{z}(t)\, \di t &= \int_{t_{0}}^{t_{1}}\!\!G_{z}(t)\,\di t
+    P_{z}(t_{1}) &= P_{z}(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!F_{z}(t)\, \di t + \int_{t_{0}}^{t_{1}}\!\!G_{z}(t)\,\di t
   \end{aligned}\right.
 \end{equation}
 
@@ -3914,18 +3918,18 @@ By considering a very short time lapse $\Dt$, with reasoning analogous to the ca
   A quantity is said to satisfy a \textbf{balance law} if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:balance_diff}
-    \frac{\di\yE(t)}{\di t}- \yH(t) = \yR(t)
+    \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
   \end{equation}
 
   For a vector quantity such as momentum, the differential form again corresponds to three equations, one per component:
 \begin{equation}
       \label{eq:balance_diff_components}
 \left\{\   \begin{aligned}
-    \frac{\di P_{x}(t)}{\di t}- F_{x}(t) &= G_{x}(t)
+    \frac{\di P_{x}(t)}{\di t} &= F_{x}(t) + G_{x}(t)
 \\
-    \frac{\di P_{y}(t)}{\di t}- F_{y}(t) &= G_{y}(t)
+    \frac{\di P_{y}(t)}{\di t} &= F_{y}(t) + G_{y}(t)
 \\
-    \frac{\di P_{z}(t)}{\di t}- F_{z}(t) &= G_{z}(t)
+    \frac{\di P_{z}(t)}{\di t} &= F_{z}(t) + G_{z}(t)
   \end{aligned}\right.
 \end{equation}
 \end{definition}
@@ -4114,9 +4118,9 @@ Note that the volume integrals and fluxes are now represented by different symbo
   \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s} \ .
 \end{equation*}
 
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{warning_supply_static.pdf}
-\\[4em]\includegraphics[align=b,width=\linewidth]{warning_supply_moving.pdf}
+\marginpar{\vspace{-8\baselineskip}\centering%
+\includegraphics[width=\linewidth]{warning_supply_static.pdf}
+\\[4em]\includegraphics[width=\linewidth]{warning_supply_moving.pdf}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
@@ -4150,7 +4154,7 @@ We notice again the difference:
   Therefore, if we analyse the same physical phenomenon with a new set of control surfaces, in general we cannot expect the results of calculations with the old set to be valid for the new one.
 \end{warning}
 
-\bigskip
+\smallskip
 
 \begin{exercise}
   Consider once more the block of ice analysed in the previous example.
@@ -4162,18 +4166,18 @@ We notice again the difference:
   \emph{(Hint: consider the result from the exercise and  the \textbf{symmetry of fluxes} for the flux through the bottom part of the surface, as well as the fact that the fluxes through the side and top surfaces are zero.)}
 \end{exercise}
 
-\bigskip
+\smallskip
 
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[width=\linewidth]{worlddiagram.jpg}%
+\\\footnotesize\flushleftright{\color{mpcolor}%
+Spacetime representation of the evolution of a closed control surface, containing some pointlike objects (adapted from \cites{misneretal1970_r2017})}%
+}%
 \begin{extra}{Balance laws in General Relativity}
   Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $t_{0}$, the sequence of 2D surfaces between $t_{0}$ and $t_{1}$, and the 3D region at $t_{1}$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
 
   And from a spacetime perspective, the amount of a quantity $\yE(t_{0})$ or $\yE(t_{1})$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
 \end{extra}
-\marginpar{\vspace{-15\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{worlddiagram.jpg}%
-\\\footnotesize\flushleftright{\color{mpcolor}%
-Spacetime representation of the evolution of a closed control surface, containing some pointlike objects (adapted from \cites{misneretal1970_r2017})}%
-}%
 
 
 \begin{extra}{What about the magnetic flux?}
@@ -4200,7 +4204,6 @@ In the previous sections we have seen several examples of use of conservation an
 % }%
 % }%
 The examples also showed that extra information is always needed in order to use the balance laws. For instance, in the \autoref{sec:example_balance_vect}{example with the tennis ball} we said that there was no flux of momentum through the moving control surface (the flying ball). In the \autoref{sec:example_balance_static}{example with the block of ice} we said \enquote{where there's no matter, there's no momentum}; and we also said that the flux of momentum was zero on some surfaces, but non-zero on others.
-
 \emph{Well, how did we know?}
 
 This kind of information and physical properties were \emph{not} something we could deduce from the conservation or balance laws.
@@ -4215,13 +4218,14 @@ Indeed those were examples of physical properties that apply, not universally, b
 \end{definition}
 
 
+Constitutive relations express the diversity that we observe around us,
+for example the fact that a body of water can easily change shape upon movement, as opposed to a block of concrete, which we rely on for its rigidity.
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{phases_matter2.png}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 Four states of matter (\furl{https://commons.wikimedia.org/wiki/File:Four_Fundamental_States_of_Matter.png}{image by Spirit469})}%
 }%
-Constitutive relations express the diversity that we observe around us,
-for example the fact that a body of water can easily change shape upon movement, as opposed to a block of concrete, which we rely on for its rigidity. The differences between states of matter
+The differences between states of matter
 -- solid, liquid, gas, plasma, and there are others -- arise from different constitutive relations. Constitutive relations also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which applies only for low speeds and low energy concentrations (hence weak gravitational fields and small spacetime curvature), and general relativity, which applies on all scales, including cosmological scales.
 
 When we read that a new physical phenomenon has been discovered, usually that means that a new \emph{constitutive relation} has been discovered. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
@@ -4244,13 +4248,12 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
  This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
 
 \item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity} Take a small control volume containing an amount of matter $\yN$ moving with velocity $\yv$ (and recall that \autoref{sec:fluxes_velocities}{there's a connection between velocity and flux of matter}). Then this control volume also contains an amount of momentum
-%
-\marginpar{%
-    \footnotesize\flushleftright{\color{mpcolor}%
-      This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
 \begin{equation*}
   \yP = \yM\yv \equiv \yrho\,\yN\,\yv
 \end{equation*}
+%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\flushleftright{\color{mpcolor}%
+This is the famous relation that old textbooks take as the \emph{definition} of momentum.}}%
 
 
 \item[Constitutive relation for supply of momentum.]\label{sec:supply_momentum_gravity}
@@ -4298,10 +4301,10 @@ where $\yrho$, called \emph{molar mass}, is (approximately) a constant that depe
 Recall again the integral and differential forms of a balance law (we use the symbols for energy here, but the reasoning is valid for any other quantity):
 \begin{equation*}
     \begin{gathered}[t]
-      \underbracket[0pt]{\yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yE(t_{1}) = \yE(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t + \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
   % \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
 \end{equation*}
@@ -4334,10 +4337,9 @@ Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\,\di x = \text{const}\cdot(
 \end{equation*}
 And finally, considering that $t_{1} = t_{0} + \Dt$, the balance law in integral form can be written approximately as
 \begin{equation*}
-  \underbracket[0pt]{\yE(t_{0}+\Dt)}_{\color{grey}\mathclap{{}=E(t_{1})}} - \yE(t_{0}) - \underbracket[0pt]{\yH(t_{0})\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t}} \approx \underbracket[0pt]{\yR(t_{0})\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}}
+  \underbracket[0pt]{\yE(t_{0}+\Dt)}_{\color{grey}\mathclap{{}=E(t_{1})}} \approx \yE(t_{0}) + \underbracket[0pt]{\yH(t_{0})\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t}} + \underbracket[0pt]{\yR(t_{0})\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}}
 \end{equation*}
-
-Now let's bring to the right side all terms that refer to time $t_{0}$. We obtain:
+Factoring $\Dt$ we obtain:
 \begin{definition}{Finite-difference approximation}
   \begin{equation}\label{eq:finite_diff}
     \yE(t_{0}+\Dt)  \approx \yE(t_{0}) + [\yH(t_{0}) + \yR(t_{0})]\,\Dt
@@ -4370,7 +4372,7 @@ As you recall from the \autoref{eq:conserved}{definition of conservation and bal
 
   \item Try to obtain the finite-difference approximation starting from the differential form of the balance law instead:
     \begin{equation*}
-      \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
+      \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
     \end{equation*}
 Use the fact that the derivative at a given time $t_{0}$ can be approximately calculated as
     \begin{equation*}
@@ -4434,11 +4436,6 @@ The finite-difference approximation is also valid for the balance law of a vecto
 
 The evolution equation~\eqref{eq:finite_diff} can obviously be used iteratively:
 once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{momentum_timestep2.png}
-\\[2\jot]\footnotesize\flushleftright{\color{mpcolor}%
-\furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage} iterating an evolution equation for momentum}%
-}%
 \begin{equation}\label{eq:timestepped_evolution}
   % \begin{aligned}
   %   \mathcolor{blue}{\yE(t+\Dt)} &
@@ -4473,6 +4470,11 @@ once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to 
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bEa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bEb);
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:cEa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:cEb);
 \end{tikzpicture}
+\marginpar{\vspace{-7\baselineskip}\centering%
+\includegraphics[width=\linewidth]{momentum_timestep2.png}
+\\[2\jot]\footnotesize\flushleftright{\color{mpcolor}%
+\furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage} iterating an evolution equation for momentum}%
+}%
 \begin{definition}{Numerical time integration}
   The numerical calculation of a quantity at successive time steps, with algorithms similar to the one illustrated above, is called \textbf{numerical time integration}, often simply shortened to \emph{integration}.
 \end{definition}
@@ -4572,14 +4574,9 @@ This formula says that if we know the position and the velocity at some time, we
 
 \smallskip
 
-\marginpar{\vspace{\baselineskip}\centering%
-\includegraphics[align=t,width=\linewidth]{perseverance_trajectory.jpg}%
-\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of their trajectory (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
-}}%
 The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\yM\yv$, knowledge of the momentum at a later timestep allows us to also know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial $\yr(t)$ and  $\yP(t)$ are given, and also the influx $\yF$ and supply $\yG$ are known at all times:
 \begin{equation}\label{eq:timestep_momentum_position}
-  \begin{aligned}
+  \begin{aligned}[b]
     \yv\tikzmark{va}(t)&= \yP(t)/\yM
     \\[3\jot]
     \yr\tikzmark{ra}(t+\Dt)  &\approx \yr(t) + \tikzmark{vb}\yv(t)\,\Dt\\
@@ -4605,6 +4602,11 @@ The numerical time integration of a position vector $\yr(t)$ is often done toget
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pc);
 \end{tikzpicture}
 Keep in mind that these are vector equations, so each one corresponds to three components.
+\marginpar{\vspace{2\baselineskip}\centering%
+\includegraphics[width=\linewidth]{perseverance_trajectory.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of their trajectory (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
+}}%
 
 For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
 
@@ -4777,9 +4779,9 @@ Keep these points in mind as we discuss the seven balances.
   \begin{equation}
     \label{eq:cons_matter}
     \begin{gathered}[t]
-      \underbracket[0pt]{\yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t = -\int_{t_{0}}^{t_{1}}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad
-      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} - \yJ(t) = -\ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\yN(t_{1}) =\yN(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t  -\int_{t_{0}}^{t_{1}}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad\quad
+      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} = \yJ(t)  -\ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
   \end{equation}
   The supply $\ya$ is usually called \textbf{activity}, and $\ya(t)\equiv 0$ in case of conservation.
@@ -4821,7 +4823,7 @@ In other circumstances, however, conservation of these individual kinds of matte
 Under many important and common circumstances, if a control volume contains an amount of matter $\yN$ then it also contains an amount of \masse\ $\yM$ (but the opposite is not always true: a control volume can contain \masse\ and no matter). This amount of \masse\ is typically huge when measured in joules. For instance, a volume with $\yN=\qty{1}{mol}$ of water (roughly \qty{2e-5}{m^3} for liquid water) contains approximately $\yM = \qty{1.62e15}{J}$ of \masse.
 
 The amount of \masse\ depends on the kind of matter and on other quantities in that volume, and usually changes with time. These changes, however, are typically \autoref{sec:dist_mass_energy}{extremely small compared to the total amount} -- say much less than \qty{0.00000001}{\percent} in the example above with water! So, as a very good approximation, we can consider this amount as practically constant. The amount of \masse\ $\yM$ is therefore proportional to the amount of matter $\yN$, and we write
-\begin{definition}{Molar mass}
+\begin{definition}{Molar mass}\label{def:molarmass}
   \begin{equation*}
 \yM =  \yrho\yN
 \end{equation*}
@@ -4930,14 +4932,15 @@ This is how we are able to say that human usage of fossil fuel is an important f
 The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume integrals and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
 %
-\marginpar{\vspace{-\baselineskip}\centering%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[align=t,height=15em]{pipesection.pdf}%
 }%
 Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\di t}=0$. By the law of conservation of matter, the total influx must then be zero:
 \begin{equation*}
-  {\color{grey}\underbrace{\color{black}\frac{\di\yN(t)}{\di t}}_{\color{grey}{}=0}\color{black}} - \yJ(t) = 0
-  \qquad\Longrightarrow\qquad
-  \yJ(t) = 0
+  0=\frac{\di\yN(t)}{\di t} = \yJ(t)
+  % {\color{grey}\underbrace{\color{black}\frac{\di\yN(t)}{\di t}}_{\color{grey}{}=0}\color{black}} = \yJ(t)
+  % \qquad\Longrightarrow\qquad
+  % \yJ(t) = 0
 \end{equation*}
 and it is given by the influxes through three surfaces: the side surface, the one at the top, and the one at the bottom. The influx through the side surface is zero. Let us denote the influx through the top surface by $\yJ_{1}$, and the influx through the bottom surface by $\yJ_{2}$. We must therefore have
 \begin{equation*}
@@ -4982,9 +4985,9 @@ This is  what we often observe in water running from our taps.
   \begin{equation}
     \label{eq:bal_momentum}
     \begin{gathered}[t]
-      \underbracket[0pt]{\yP(t_{1}) - \yP(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad
-      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} - \yF(t) = \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\yP(t_{1}) = \yP(t_{0}) + \int_{t_{0}}^{t_{1}}\!\!\yF(t)\,\di t + \int_{t_{0}}^{t_{1}}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad\quad
+      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
   \end{equation}
 \end{definition}
@@ -5104,9 +5107,9 @@ In some cases the magnitude of the atmospheric pressure is different because of 
 
   Consider a body of air at rest. Imagine a closed control surface which encloses some of this air. This is analogous to the \autoref{sec:bal_momentum_statics}{example with the book on the table}; now instead of a book we simply have a volume of air, and instead of a table we have air also underneath the volume. For definiteness let's say that the volume is a cuboid with small height $h$ and horizontal base area $A$, so the volume is $h\,A$
 
-  Air is matter, and therefore this control volume has a constant supply of downward momentum owing to gravity. On Earth's surface we can say (this is a constitutive relation) that a volume $h\,A$ of air has a momentum supply approximately equal to
+  Air is matter, and therefore this control volume has a constant supply of downward momentum owing to gravity. On Earth's surface we can say (this is a constitutive relation) that a volume $h\,A$ of air has a momentum supply with $z$-component approximately equal to
   \begin{equation*}
-    \yG=h\cdot A \cdot \qty{11.8}{N/m^{3}}\ .
+    G_{z} = -h\cdot A \cdot \qty{11.8}{N/m^{3}}\ .
   \end{equation*}
 
   Assume that the momentum flux on the lateral surface of the volume is zero.
@@ -5168,14 +5171,24 @@ the popular theory of lift generation found in many textbooks is completely wron
 
 The flight mechanisms discussed in the previous section rely on the presence of air or some kind of atmosphere around the object, with which a momentum flux can occur. This is not possible in outer space, and such flux may not be enough to lift an object even if air is surrounding it.
 
-Another way of producing an influx of upward momentum is to release matter having downward momentum. As we saw in an \autoref{sec:example_balance_static}{example with a falling block of ice}, if through a surface there's a flux of matter, then there's also a flux of momentum. So if an object manages to realize a strong enough flux of matter through a surface at its bottom, the object itself will experience an influx of upward momentum, which can overcome the object's weight. Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter.
+Another way of producing an influx of upward momentum is to release matter having downward momentum. As we saw in an \autoref{sec:example_balance_static}{example with a falling block of ice}, if through a surface there's a flux of matter, then there's also a flux of momentum. So if an object manages to realize a strong enough flux of matter through a surface at its bottom, the object itself will experience an influx of upward momentum, which can overcome the object's weight. This is the momentum-flux mechanism employed by rockets.
+
+Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter, and the law of conservation of matter must hold as well.
+
+% In order to use the balance of momentum in this application, we need a constitutive relation between the flux of matter and the flux of momentum. In the simple case in which all kinds of motions and fluxes happen only in one direction, say $z$, the relation is as follow:
+% \begin{definition}{Constitutive relation for matter flux and momentum flux}
+%   Fix a coordinate direction $z$, and suppose that at some instant of time there's a small surface orthogonal to the $z$-axis and moving with velocity $\yvs$ with respect to the coordinate system.
+% 
+%   If there's a flux of matter $\yJ_{z}$ across the surface in the positive-$z$ direction, and the flowing matter has velocity $v_{z}$ with respect to the coordinate system, then there is also a flux of momentum $F_{z}$ given by
+%   \begin{equation}
+%     \label{eq:matterflux_momentumflux}
+%     F_{z} = \yrho\, \yJ_{z}\, (v_{z}-\yvs)
+%   \end{equation}
+%   where $\yrho$ is the \autoref{def:molarmass}{molar mass} of that kind of matter.
+% \end{definition}
+% % This constitutive relation makes sense: first, if $v_{z}=\yvs$ it means that the matter and the surface are moving together, so there can't be a flux of momentum across the surface
 
 
-
-This is the momentum-flux mechanism employed by rockets.
-
-
-The basic idea is again very simple. Suppose we have some matter within a control volume, having a zero net amount of momentum. The fact that the net amount in the volume is zero doesn't mean that \autoref{sec:volintegral_vector}{the amounts in some subvolumes may be different from zero}. If we manage to distribute some downward momentum to the matter at the bottom of the control volume, then the 
 
 \subsection{Example application: statics again}
 \label{sec:bal_momentum_cablecar}
@@ -5297,7 +5310,7 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \end{itemize}
 
 
-
+\clearpage
 \section{Balance of energy}
 \label{sec:bal_energy}
 
