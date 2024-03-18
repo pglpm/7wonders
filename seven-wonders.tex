@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-18T15:29:02+0100
+%% Last-Updated: 2024-03-18T18:40:40+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -950,6 +950,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yv}{\bm{v}}
 \newcommand*{\yvs}{v_{\text{s}}}
+\newcommand*{\ylo}{l_{\textrm{n}}}
+\newcommand*{\yle}{l}
+\newcommand*{\ydl}{\incr\bm{l}}
+\newcommand*{\ydlm}{\incr l}
 %
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
@@ -4847,7 +4851,7 @@ The most common constitutive relation used  together with conservation of matter
 As far as we know, if a control volume contains an amount of matter $\yN$, then it always also contains an amount of \masse\ $\yM$ (but the opposite is not always true: a control volume can contain \masse\ and no matter). This amount of \masse\ is typically huge when measured in joules. For instance, a volume with $\yN=\qty{1}{mol}$ of water (roughly \qty{2e-5}{m^3} for liquid water) contains approximately $\yM = \qty{1.62e15}{J}$ of \masse.
 
 The amount of \masse\ depends on the kind of matter and on other quantities in that volume, and usually changes with time. These changes, however, are typically \autoref{sec:dist_mass_energy}{extremely small compared to the total amount} -- say much less than \qty{0.00000001}{\percent} in the example above with water! So, as a very good approximation, we can consider this amount as practically constant. The amount of \masse\ $\yM$ is therefore proportional to the amount of matter $\yN$, and we write
-\begin{definition}{Molar mass}\label{def:molarmass}
+\begin{definition}{Mass-energy of matter}\label{def:molarmass}
   \begin{equation*}
 \yM =  \yrho\yN
 \end{equation*}
@@ -4900,6 +4904,29 @@ In applications where we can consider the molar mass as practically constant, we
 \marginpar{\vspace{-11\baselineskip}\centering%
 \includegraphics[height=7em]{helium_balloons.jpg}%
 }
+
+\subsection{Radioactive decay}
+\label{sec:matter_const_radioactive}
+
+For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $-\ya$ has a specific constitutive equation:
+\begin{definition}{Matter supply in radioactive decay}
+  \begin{equation*}
+  -\ya(t) =  -\lambda\,\yN(t)
+\end{equation*}
+where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
+
+If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance then takes the form
+  \begin{equation*}
+  \frac{\di\yN(t)}{\di t} =  -\lambda\,\yN(t)
+\end{equation*}
+called the \furl{https://www.britannica.com/science/radioactivity/Rates-of-radioactive-transitions\#ref496415}{\emph{law of radioactive decay}}.
+\end{definition}
+\marginpar{\vspace{-7\baselineskip}\centering%
+\includegraphics[width=0.75\linewidth]{radioactive.png}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+When we see this symbol we know that there's matter that's only balanced, not conserved -- which involves danger}%
+}%
+
 
 \section{Examples of applications}
 \label{sec:matter_applic}
@@ -4955,7 +4982,7 @@ The laws of conservation and balances of matter turn out to be very useful also 
 
 On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{https://www.britannica.com/science/isotope/The-discovery-of-isotopes\#ref496311}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, such as the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
 
-For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects such as ice or wood.
+For the radioactive isotopes, the \autoref{nsec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects such as ice or wood.
 
 % %
 % \marginpar{\centering%
@@ -4966,7 +4993,7 @@ For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of 
 This is how we are able to say that human usage of fossil fuel is an important factor in the increase of carbon dioxide ($\mathrm{CO_{2}}$) in the atmosphere during the past 200 years or so. Take a look at the more detailed explanations given by the \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory}.
 
 %
-\marginpar{\vspace{2\baselineskip}\centering%
+\marginpar{\vspace{1\baselineskip}\centering%
 \includegraphics[width=\linewidth]{ice_core.png}%
 \\\footnotesize{\color{mpcolor}%
 \url{https://xkcd.com/2902}}%
@@ -4987,7 +5014,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
 The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume integrals and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
 %
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-8\baselineskip}\centering%
 \includegraphics[height=15em]{pipesection.pdf}%
 }%
 Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\di t}=0$. By the law of conservation of matter, the total influx must then be zero:
@@ -5067,18 +5094,104 @@ This is what we often observe in water running from our taps. We can feel with o
 
 Among the seven universal balances, the balance of momentum is probably the one most used in applications where motion or stability are important. Newton's famous \enquote{second law} is included in this balance as a special case, if we disregard the specific association that Newton made between momentum and velocity.
 
-The importance of this balance comes to a great extent from two kinds of constitutive relations:
+\begin{warning}[Amounts of momentum depend on the coordinate system]
+  Remember that the amount of momentum $\yP$ in a volume, the flux $\yF$ through a surface, and the supply $\yG$ in a volume \textbf{all depend on the specific coordinate system $(t,x,y,z)$}. If we use a different coordinate system, these amounts will be different \emph{for the same volume and surface}. For example, a tennis ball can contain a huge amount of momentum with respect to one coordinate system, and \emph{zero} momentum with respect to another!
+\end{warning}
+
+\smallskip
+
+The importance of the balance of momentum comes to a great extent from two kinds of constitutive relations:
 \begin{itemize}
 \item a small number of constitutive relations that connect the volume integral $\yP$ of momentum with the motion and flux of matter and of the electromagnetic field;
 \item an amazingly wide variety of constitutive relations that connect, in the most diverse ways, the flux $\yF$ of momentum with many properties of matter, such as its extension, deformation, motion, temperature, and the simultaneous presence of charge and electromagnetic field.
 \end{itemize}
 
-Through this balance we can therefore describe and predict motions. We saw a concrete example of this application in the \autoref{sec:example_falling_object_timestep}{numerical time integration of the motion of a falling object}. But this balance is also essential in the opposite problem: when we need to study the conditions under which no motion occurs. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume integral $\yP$ of momentum is constantly zero.
+Through this balance we can therefore describe and predict motions. We saw a concrete example of this application in the \autoref{sec:example_falling_object_timestep}{numerical time integration of the motion of a falling object}.
 
-\subsection{Example application: statics}
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
+\includegraphics[width=\linewidth]{bryggen.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+Momentum balance keeps buildings from collapsing (photo: \emph{Bryggen}, Bergen, from \furl{https://whc.unesco.org/en/list/59}{UNESCO World Heritage Centre})}%
+}%
+But this balance is also essential in the opposite problem: when we need to study things that \emph{don't and shouldn't move}, like a building or a bridge. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume integral $\yP$ of momentum is constantly zero.
+
+\section{Examples of constitutive relations}
+\label{sec:momentum_constitutive}
+
+\subsection{Newtonian momentum}
+\label{sec:bal_momentum_Newton}
+
+One of the most important constitutive relations is the one connecting momentum with the flux of matter. We have mentioned it several times in the previous chapters, and used it in \autoref{ex:tennisball}{examples of numerical integration}.
+
+Consider a \emph{small} control volume containing an amount of matter $\yN$. From the \autoref{sec:const_matter_mass}{constitutive equation between matter and \masse} we know that this volume also contains an amount of \masse\ $\yM=\yrho\yN$. The matter in this volume also has a velocity $\yv$ (possibly zero), \autoref{sec:fluxes_velocities}{related to its flux}. The \textbf{Newtonian formula for the momentum of matter} then says that the control volume also contains an amount of momentum $\yP$ that is proportional to the \masse\ and the velocity:
+\begin{definition}{Newtonian constitutive relation for momentum}
+If a control volume contains an amount of matter $\yN$ having \masse\ $\yM$ and velocity $\yv$, then it also contains an amount of momentum
+  \begin{equation}
+    \label{eq:matter_momentum_Newton}
+    \yP = \yM\yv = \yrho\, \frac{V}{A}\,
+  \begin{bmatrix}
+    J_{x}\\J_{y}\\J_{z}
+  \end{bmatrix}
+    % \qquad\text{with}\qquad
+    % \yM=\yrho\yN
+\end{equation}
+This relation is only valid for very small areas and volumes (we should take the limit).
+\end{definition}
+
+You are probably familiar with the first equality above; old textbook present it as the \emph{definition} of momentum. We know today that this equality is only approximate: it's only valid for small speeds compared to the speed of light, in weak gravitational fields, and when changes in \energym\ are small compared to the total.
+
+\subsection{Hookean spring}
+\label{sec:hooke}
+
+\marginpar{\vspace{1\baselineskip}\centering%
+\includegraphics[width=0.49\linewidth]{elasticband.jpg}%
+\includegraphics[width=0.49\linewidth]{spring.jpg}%
+}%
+We are all familiar with elastic bands, springs, and similar objects having the following approximate properties:
+\begin{enumerate*}[label=(\alph*)]
+\item one of their dimensions is somehow singled out, maybe because more extended, with respect to the other two;
+\item if we try to modify their length along that particular dimension, they exert a tension or, in some cases, a pressure;
+\item the tension or compression are stronger, the more the extension in that dimension is modified;
+\item these objects return to an initial configuration when we don't try to modify their extension.
+\end{enumerate*}
+
+We know that \autoref{sec:pressure_tension_shear}{tension and compression are particular kinds of forces, that is, momentum fluxes}. Objects like elastic bands and springs therefore create particular momentum fluxes that are related to their spatial extension.
+
+We can approximately treat these objects as control volumes for which the following constitutive properties apply:
+\begin{definition}{Hookean spring}\label{def:hooke}
+  A \textbf{Hookean spring} is a control volume with the following properties:
+  \begin{itemize}[shift]
+  \item One dimension has a natural length $\ylo$ that is much larger than the other two, which are usually neglected.
+  \item The total amount and supply of momentum $\yP$ within the control volume are negligible.
+  \item Across the (small) surfaces orthogonal to main dimension there is an \textbf{ef}flux of momentum equal to
+    \begin{equation}
+      \label{eq:hooke}
+      \yF_{\textrm{e}} = -k\,\ydl
+    \end{equation}
+    this formula is called \textbf{Hooke's law}.
+  \end{itemize}
+  $k$ is a constant, called the \textbf{elastic constant} of the spring; $\ydl$ is a vector along the main dimension, with magnitude\enspace$\ydlm = \abs{\yle-\ylo}$\enspace equal to difference between the present length $\yle$ and the natural length $\ylo$; it points \emph{away} from the control volume if $\yle>\ylo$, and \emph{toward} the control volume if $\yle<\ylo$.
+  \begin{center}
+\includegraphics[width=0.67\linewidth]{hooke3.jpg}%
+  \end{center}
+\end{definition}
+%
+% \marginpar{\vspace{-6\baselineskip}\centering%
+% \includegraphics[width=\linewidth]{hooke2.jpg}%
+% }%
+Note the minus sign in Hooke's law. It means that if the present length is larger than the natural one, $\yle > \ylo$, then there is an influx of momentum directed towards the spring, that is, the spring exerts a \emph{tensile} force towards itself; and if the present length is smaller than the natural one, $\yle < \ylo$, then there is an influx of momentum directed away from the spring, that is, the spring exerts a \emph{compressive} force away from itself.
+
+A Hookean spring is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities, and offers a very simple relation between this flux and its spatial extension. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
+
+
+\section{Examples of applications}
+\label{sec:momentum_applic}
+
+\subsection{Statics}
 \label{sec:bal_momentum_statics}
 
-As just mentioned, there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \furl{https://www.britannica.com/science/statics}{statics}. Let's see a couple of concrete examples.
+As previously mentioned there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \furl{https://www.britannica.com/science/statics}{statics}. Let's see a couple of concrete examples.
 
 \smallskip
 
@@ -5212,7 +5325,7 @@ Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid A
 \item[Soaring]
 Air is not always at rest (with respect to the Earth's surface). Owing to energy flow in the atmosphere and Earth's rotation, bodies of air -- air currents -- can be moving in different directions, including upward. An upward-moving body of air contains a net upward momentum. If an object stops the vertical motion of this air, for example deflecting it horizontally, then by the balance of momentum there must be a flux of upward momentum from the body of air to the object. This upward momentum can compensate the gravity supply of downward momentum, and therefore the object can float or rise. This mechanism is called \furl{https://www.britannica.com/topic/locomotion/Gravitational-gliding\#ref497010}{soaring or gliding} and is used by birds and gliders; it's also the mechanism that lifts a light object such as a piece of paper or a feather.
 %
-\marginpar{\vspace{-8\baselineskip}\centering%
+\marginpar{\vspace{-7\baselineskip}\centering%
 \includegraphics[width=\linewidth]{hangglider.jpg}%
 \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 A hang-glider (image from \furl{https://www.jaerenluftsport.no}{Jæren Luftsportsklubb})}%
@@ -5458,13 +5571,13 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \printpagenotes*
 \clearpage
 \chapter{Balance of energy}
-\label{cha:bal_energy}
+\label{ncha:bal_energy}
 
 \begin{definition}{Balance of energy}
   Volume integral: $\yE$\qquad Flux: $\yH$\qquad Supply: $\yR$
 
   \begin{equation}
-    \label{eq:bal_energy}
+    \label{neq:bal_energy}
     \begin{gathered}[t]
       \underbracket[0pt]{\yE(t_{1}) - \yE(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yH(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
@@ -5477,11 +5590,11 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \printpagenotes*
 \clearpage
 \chapter{Balance of angular momentum}
-\label{cha:bal_ang_momentum}
+\label{ncha:bal_ang_momentum}
 
 \begin{definition}{Balance of angular momentum}
   \begin{equation}
-    \label{eq:bal_ang_momentum}
+    \label{neq:bal_ang_momentum}
     \begin{gathered}[t]
       \underbracket[0pt]{\yL(t_{1}) - \yL(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yT(t)\,\di t = \int_{t_{0}}^{t_{1}}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
@@ -5495,11 +5608,11 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \printpagenotes*
 \clearpage
 \chapter{Balance of entropy}
-\label{cha:bal_entropy}
+\label{ncha:bal_entropy}
 
 \begin{definition}{Balance of entropy}
   \begin{equation}
-    \label{eq:bal_entropy}
+    \label{neq:bal_entropy}
     \begin{gathered}[t]
       \underbracket[0pt]{\yS(t_{1}) - \yS(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yB(t)\,\di t \ge 0}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
@@ -5512,7 +5625,7 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \printpagenotes*
 \clearpage
 \chapter{Conservation of electric charge and magnetic flux}
-\label{cha:cons_charge}
+\label{ncha:cons_charge}
 
 
 
@@ -5520,26 +5633,26 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \printpagenotes*
 \clearpage
 \chapter{Constitutive relations}
-\label{cha:constitutive}
+\label{ncha:constitutive}
 
 
 
 \printpagenotes*
 \clearpage
 \chapter{Conservation of matter}
-\label{cha:cons_matter}
+\label{ncha:cons_matter}
 
 \epigraph{\emph{%
 \enquote{What you do in this world is a matter of no consequence,} returned my companion, bitterly. \enquote{The question is, what can you make people believe that you have done?\textellipsis}%
 }}{Sherlock Holmes (A. C. Doyle) \cites*{doyle1887}}
 
 \section{Formulation and generalities}
-\label{sec:cons_matter_formulation}
+\label{nsec:cons_matter_formulation}
 
 Choose an arbitrary sequence of closed control surfaces between coordinate times $t_{0}$ and $t_{1}$, enclosing a sequence of control volumes. Denote by $\yN(t)$ and $\yJ(t)$ the amount of matter in the control volume and the influx through the control surface at time $t$. Then the law of \textbf{conservation of matter} is expressed by either of the equations
 \begin{definition}{Conservation of matter}
   \begin{equation}
-    \label{eq:cons_matter}
+    \label{neq:cons_matter}
     \begin{gathered}
       \underbracket[0pt]{\yN(t_{1}) - \yN(t_{0}) - \int_{t_{0}}^{t_{1}}\!\!\yJ(t)\,\di t = 0}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
@@ -5552,7 +5665,7 @@ Choose an arbitrary sequence of closed control surfaces between coordinate times
 Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. % This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
 
 % In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume integral, but it would make little sense if the flux didn't equal the rate of change of the volume integral.
-% \begin{extra}{Velocity from flux and volume integral}\label{extra:velocity_matter}
+% \begin{extra}{Velocity from flux and volume integral}\label{nextra:velocity_matter}
 %   Suppose we have a coordinate system $(t,x,y,z)$. Consider a small spatial region of cuboid shape delimited by two surfaces having $x$ constant, two having $y$ constant, and two having $z$ constant. The instantaneous velocity component $v_{x}$ is defined as the ratio of:
 %   \begin{enumerate*}[label=(\alph*)]
 %   \item the flux $\yJ_{x}$ through any of the two $x$-constant surfaces, crossing in the positive-$x$ orientation, divided by surface area $A$, and 
@@ -5565,7 +5678,7 @@ Conservation of matter is a law that we intuitively take for granted and use con
 % \end{extra}
 
 \subsection{Balances of matter}
-\label{sec:matter_balances}
+\label{nsec:matter_balances}
 
 The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{considered together}. \marginpar{\vspace{-\baselineskip}\footnotesize\flushleftright{\color{mpcolor}%
     \emph{\enquote{All these operators conserve $B-L$, so in any superunified theory we expect $B-L$ to be conserved\textellipsis}}}%
@@ -5575,19 +5688,19 @@ More specifically, it seems to hold in extreme physical conditions if we count b
 
 When we consider different kinds of matter, such as different chemical elements, individual conservation laws still hold and can be applied in many common and important physical situations.
 
-For some kinds of matter, conservation does not hold, however; for example in the previously mentioned \autoref{sec:intro_matter}{phenomena involving radioactive decay and nuclear energy}. For these kinds of matter we can still apply a \emph{balance} law, with a non-zero supply or sink.
+For some kinds of matter, conservation does not hold, however; for example in the previously mentioned {phenomena involving radioactive decay and nuclear energy}. For these kinds of matter we can still apply a \emph{balance} law, with a non-zero supply or sink.
 
 
 \section{Examples of constitutive relations}
-\label{sec:matter_constitutive}
+\label{nsec:matter_constitutive}
 
 \subsection{Relation between matter and \masse}
-\label{sec:const_matter_mass}
+\label{nsec:const_matter_mass}
 
 The most common constitutive relation used  together with conservation of matter is the one relating a constant amount of \masse\ $\yM$ to a particular amount of matter $\yN$:
 \begin{definition}{Molar mass}
   \begin{equation}
-    \label{eq:molar_mass}
+    \label{neq:molar_mass}
     \yM = \yrho\, \yN
   \end{equation}
   where the proportionality constant $\yrho=\yM/\yN$ is called \textbf{molar-mass constant}, and depends on the kind of matter considered.
@@ -5645,19 +5758,19 @@ Phenomena for which this constitutive equation is no longer valid appear for exa
 
 
 \subsection{Relation between matter and momentum}
-\label{sec:const_matter_momentum}
+\label{nsec:const_matter_momentum}
 
-Closely related to the previous constitutive relation is the one \autoref{item:momentum_mass_velocity}{relating an amount of matter and an amount of momentum}, briefly discussed before. Let us examine this constitutive relation more thoroughly.
+Closely related to the previous constitutive relation is the one {relating an amount of matter and an amount of momentum}, briefly discussed before. Let us examine this constitutive relation more thoroughly.
 
 Fix a coordinate system $(t,x,y,z)$. At a given point in space, take a small rectangular control surface of area $A$, with sides parallel to the coordinate axes $y$ and $z$. See side picture below. The surface must \emph{not} be moving in that coordinate system. Through this surface, in the positive-$x$ direction, there's a flux of matter that we denote $J_{x}$.
 
 Construct two more surfaces of area $A$ through the same point in a analogous way: one parallel to the $zx$ axes and one to the $xy$ axes. The matter fluxes through them are $J_{y}$ and $J_{z}$.
 
-Finally take a control volume of cuboid shape that fits the three surfaces. This cuboid has volume $V$, and contains an amount of matter $\yN$ and an amount of momentum $\yP$. Recall the \autoref{sec:fluxes_velocities}{association between the matter flux} through the first surface and the velocity component $v_{x} \equiv \frac{J_{x}/A}{\yN/V}$, and similarly for the other two surfaces.
+Finally take a control volume of cuboid shape that fits the three surfaces. This cuboid has volume $V$, and contains an amount of matter $\yN$ and an amount of momentum $\yP$. Recall the {association between the matter flux} through the first surface and the velocity component $v_{x} \equiv \frac{J_{x}/A}{\yN/V}$, and similarly for the other two surfaces.
 
 % Take a small control volume of cuboid shape, with side surfaces \emph{not moving} in the coordinate system $(t,x,y,z)$, and parallel to the $yz$-, $zx$-, and $xy$-coordinates. The cuboid has volume $V$ and each side surface has area $A$.
 % 
-%   The control volume contains an amount of matter $\yN$. The flux across the side parallel to $yz$, in the positive-$x$ direction, is $\yJ_{x}$; and similarly for the other two directions. Remember from \sect\,\ref{sec:fluxes_velocities} that we can consider the matter in the control volume as moving with velocity
+%   The control volume contains an amount of matter $\yN$. The flux across the side parallel to $yz$, in the positive-$x$ direction, is $\yJ_{x}$; and similarly for the other two directions. Remember from \sect\,\ref{nsec:fluxes_velocities} that we can consider the matter in the control volume as moving with velocity
 %   \begin{equation*}
 %     \yv = (v_{x}, v_{y}, v_{z}) = \frac{V}{A\,\yN}\, (\yJ_{x}, \yJ_{y}, \yJ_{z})
 %   \end{equation*}
@@ -5684,7 +5797,7 @@ Assume that the constitutive relation between matter and mass, previously discus
 \begin{definition}{Newtonian constitutive relation for momentum}
 The \textbf{Newtonian relation for the momentum of matter} is a constitutive relation saying that the flux and velocity of matter and the volume integral of momentum are proportional:
   \begin{equation}
-    \label{eq:matter_momentum_Newton}
+    \label{neq:matter_momentum_Newton}
     \yP = \yM\yv = \yrho\, \frac{V}{A}\,
   \begin{bmatrix}
     J_{x}\\J_{y}\\J_{z}
@@ -5701,7 +5814,7 @@ An analogous constitutive relation also exists between \emph{flux} of momentum a
 \begin{definition}{Convective flux of momentum (special case)}
 Through the $yz$-surface above there's a flux of momentum
   \begin{equation}
-    \label{eq:matterflux_force_Newton}
+    \label{neq:matterflux_force_Newton}
     \yF_{\text{conv}} = \yrho J_{x}\,\yv \equiv
     \yrho\, \frac{V}{A}\,\frac{J_{x}}{\yN}\,
   \begin{bmatrix}
@@ -5752,11 +5865,11 @@ In particular, according to the Newtonian constitutive relation, \emph{momentum 
 }%
 
 \subsection{Gas pressure}
-\label{sec:matter_const_thermodynamics}
+\label{nsec:matter_const_thermodynamics}
 
 In the previous section we saw a constitutive relation between matter and \emph{flux} of momentum, which we called \enquote*{convective flux}. It is a flux that's always present whenever there's matter in motion.
 
-In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}. The most cogent example is the air around us, which has a continuous flux of momentum, of approximately \qty[print-unity-mantissa=false]{1e5}{N} on every square-metre of surface, called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. This flux is always \autoref{sec:pressure}{\emph{compressive}} and occurs through any surface: any imaginary surface within the body of air itself, and any real surface between air and any other object.
+In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}. The most cogent example is the air around us, which has a continuous flux of momentum, of approximately \qty[print-unity-mantissa=false]{1e5}{N} on every square-metre of surface, called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. This flux is always {\emph{compressive}} and occurs through any surface: any imaginary surface within the body of air itself, and any real surface between air and any other object.
 
 \smallskip
 
@@ -5780,9 +5893,9 @@ For some kinds of matter in a gaseous state, the magnitude of their compressive 
 This law is very important in thermodynamics and chemistry, even if it's only an approximation.
 
 \subsection{Radioactive decay}
-\label{sec:matter_const_radioactive}
+\label{nsec:matter_const_radioactive}
 
-For radioactive substances, for which conservation of mass does not hold, we still have a balance law where the \autoref{sec:balance_laws}{supply}, which we can denote with the symbol $-\ya$, has a specific constitutive equation:
+For radioactive substances, for which conservation of mass does not hold, we still have a balance law where the {supply}, which we can denote with the symbol $-\ya$, has a specific constitutive equation:
 \begin{definition}{Matter supply in radioactive decay}
   \begin{equation*}
   -\ya(t) =  -\lambda\,\yN(t)
@@ -5802,24 +5915,24 @@ When we see this symbol we know that there's matter that's only balanced, not co
 }%
 
 \section{Examples of applications}
-\label{sec:matter_applic}
+\label{nsec:matter_applic}
 
 \subsection{Rigid-body and particle mechanics}
-\label{sec:cons_matter_particle}
+\label{nsec:cons_matter_particle}
 
 In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is automatically satisfied. This is achieved by choosing a sequence of closed control surfaces for which the flux of matter is zero, and therefore the amount of matter in the control volumes is constant. This procedure is often carried without many comments -- to the point of being almost forgotten at times.
 
-We saw an example of this procedure in the \autoref{sec:example_falling_object_timestep}{numerical evolution of the motion of a falling object}.
+We saw an example of this procedure in the {numerical evolution of the motion of a falling object}.
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{timesteps.png}%
 \\[2\jot]\footnotesize{\color{mpcolor}%
 Snippet of formula~\eqref{eq:timestep_momentum_position}}%
 }%
-Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}: you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\di t = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
+Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}: you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\yM$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\yM = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\di t = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{neq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
 
 
 \subsection{Chemistry}
-\label{sec:cons_matter_chemistry}
+\label{nsec:cons_matter_chemistry}
 
 One of the main assumptions in chemistry is the \enquote*{permanence of atoms}. This assumption imposes important restrictions in the \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry} of chemical reactions, that is, in determining the amounts of products that can appear from given amounts of reactants.
 \marginpar{\centering%
@@ -5837,10 +5950,10 @@ expresses that if 30 moles of oxygen (O) atoms appear among the reactants, they 
 
 This assumption is simply the statement of conservation of matter, \emph{separately} for each chemical element: since the reaction doesn't let any other matter go in or out, the flux $\yJ$ for each chemical element must be zero. Therefore the amount $\yN$ of each chemical element must be constant: $\di\yN(t)/\di t = \yJ = 0$.
 
-This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{sec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}. The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
+This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{nsec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}. The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
 
 \subsection{Climate}
-\label{sec:cons_matter_climate}
+\label{nsec:cons_matter_climate}
 
 The laws of conservation and balances of matter turn out to be very useful also in problems related to climate.
 
@@ -5873,7 +5986,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
 
 
 \subsection{Fluid dynamics}
-\label{sec:fluid_dyn_areavel}
+\label{nsec:fluid_dyn_areavel}
 
 The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume integrals and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
@@ -5903,7 +6016,7 @@ This is a very powerful deduction: consider that it is valid even if the flow of
 
 \medskip
 
-If the surfaces are small enough, we can also use the \autoref{sec:fluxes_velocities}{connection between flux and velocity}:
+If the surfaces are small enough, we can also use the {connection between flux and velocity}:
 \begin{equation*}
   v_{1} = \frac{\yJ_{1}/A_{1}}{\yN/V}
   \qquad
@@ -5932,12 +6045,12 @@ This is  what we often observe in running water from our taps.
 \printpagenotes*
 \clearpage
 \chapter{Balance of energy}
-\label{cha:bal_energy}
+\label{ncha:bal_energy}
 
 \printpagenotes*
 \clearpage
 \chapter{Balance of momentum}
-\label{cha:bal_momentum}
+\label{ncha:bal_momentum}
 
 \epigraph{\emph{%
 I hold in fact
@@ -5953,17 +6066,17 @@ I hold in fact
 \printpagenotes*
 \clearpage
 \chapter{Balance of angular momentum}
-\label{cha:bal_ang_momentum}
+\label{ncha:bal_ang_momentum}
 
 % \printpagenotes*
 % \clearpage
 % \chapter{Conservation of electric charge and magnetic flux}
-% \label{cha:cons_charge_magneticflux}
+% \label{ncha:cons_charge_magneticflux}
 %
 % \printpagenotes*
 % \clearpage
 % \chapter{Balance of entropy}
-% \label{cha:bal_entropy}
+% \label{ncha:bal_entropy}
 
 
 
@@ -5975,7 +6088,7 @@ I hold in fact
 \printpagenotes*
 \clearpage
 \chapter{Densities and flux-densities}
-\label{cha:density_fluxdensity}
+\label{ncha:density_fluxdensity}
 
 
 How do we mathematically represent the seven main quantities? We said that, for each, we can ask \emph{how much in this region?} and \emph{how much through this surface during this time?} We must therefore use mathematical objects that allow us to answer these two questions. These objects are the \emph{density} and the \emph{flux vector}. The idea behind them is quite simple.
@@ -5985,7 +6098,7 @@ How do we mathematically represent the seven main quantities? We said that, for 
 \begin{definition}{Density}
   Take a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. At the instant $\yto$, imagine a very small cuboid centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $x,y,z$ and of lengths $\Dx$, $\Dy$, $\Dz$. Then we have
   \begin{equation}
-    \label{eq:density_expl}
+    \label{neq:density_expl}
     \text{\small amount of quantity in cuboid} = 
     n(\yto,\yxo,\yyo,\yzo)\, \Dx\, \Dy\, \Dz \ .
   \end{equation}
@@ -5998,7 +6111,7 @@ In order to calculate the total amount of the quantity in an arbitrary 3D region
 \begin{extra}{Isn't this an integral?}
   You probably recognize this procedure as the description of integration. Indeed we can write:
   \begin{equation}
-    \label{eq:density_integral}
+    \label{neq:density_integral}
     \text{\small total amount of quantity in 3D region} = 
     \iiint\limits_{\mathclap{\text{3D region}}}n(t,x,y,z)\, \di x\, \di y\, \di z \ .
   \end{equation}
@@ -6016,7 +6129,7 @@ For the flux of the quantity through a surface we consider three different cases
 \begin{definition}{$x$-Flux}
   Take again a point in spacetime with coordinates $(\yto,\yxo,\yyo,\yzo)$. Keeping $\yxo$ fixed, imagine a very small rectangular surface centred at $(\yxo,\yyo,\yzo)$, with sides aligned with the coordinate axes $y,z$ and of lengths $\Dy$, $\Dz$. Imagine that this surface exists for a lapse of time $\Dt$ around the time $\yto$. Then we have
   \begin{equation}
-    \label{eq:xflux_expl}
+    \label{neq:xflux_expl}
     \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dy\,\Dz$\\ towards positive $x$\\during time lapse }\right\} = 
     j_{x}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dy\, \Dz \ .
   \end{equation}
@@ -6028,14 +6141,14 @@ In an analogous way we define a $y$-flux and a $z$-flux:
 
 \begin{definition}{$y$-Flux}
   \begin{equation}
-    \label{eq:yflux_expl}
+    \label{neq:yflux_expl}
     \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dz\,\Dy$\\ towards positive $y$\\during time lapse }\right\} = 
     j_{y}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dz\, \Dy \ .
   \end{equation}
 \end{definition}
 \begin{definition}{$z$-Flux}
   \begin{equation}
-    \label{eq:zflux_expl}
+    \label{neq:zflux_expl}
     \left.\parbox[c]{10em}{\small amount of quantity\\ through rectangle $\Dx\,\Dy$\\ towards positive $z$\\during time lapse }\right\} = 
     j_{z}(\yto,\yxo,\yyo,\yzo)\, \Dt\, \Dx\, \Dy \ .
   \end{equation}
@@ -6043,7 +6156,7 @@ In an analogous way we define a $y$-flux and a $z$-flux:
 
 The three fluxes can be grouped into the \textbf{flux vector}
 \begin{equation}
-  \label{eq:flux_vector}
+  \label{neq:flux_vector}
   \bm{j}(t,x,y,z) \defd
   \bigl(j_{x}(t,x,y,z),\ j_{y}(t,x,y,z),\ j_{z}(t,x,y,z)\bigr)
 \end{equation}
@@ -6052,7 +6165,7 @@ In order to calculate the total amount of the quantity through an arbitrary sequ
 \begin{extra}
   This is also the description of an integration, which can be written
   \begin{multline}
-    \label{eq:flux_integral}
+    \label{neq:flux_integral}
     \text{\small total amount of quantity through sequence of surfaces} = {}\\
     \begin{multlined}[b][0.9\linewidth]
       \iiint j_{x}(t,x,y,z)\, \di t\, \di y\, \di z +{}
@@ -6061,7 +6174,7 @@ In order to calculate the total amount of the quantity through an arbitrary sequ
     \end{multlined}
   \end{multline}
 
-  We shall not have to calculate density integrals~\eqref{eq:density_integral} and flux integrals~\eqref{eq:flux_integral} in these notes. In concrete physics problems these integrals are often difficult to calculate, and require advanced mathematical techniques and specialized software. But if you'll ever end up working in fields such as computational fluid dynamics, atmospheric or ocean modelling, or numerical relativity, then you shall probably encounter them again.
+  We shall not have to calculate density integrals~\eqref{neq:density_integral} and flux integrals~\eqref{neq:flux_integral} in these notes. In concrete physics problems these integrals are often difficult to calculate, and require advanced mathematical techniques and specialized software. But if you'll ever end up working in fields such as computational fluid dynamics, atmospheric or ocean modelling, or numerical relativity, then you shall probably encounter them again.
 \end{extra}
 
 \medskip
@@ -6075,41 +6188,41 @@ The definitions above of density and flux are appropriate if the quantity in que
 
 
 \section{Balance laws expressed with derivatives}
-\label{sec:balance_derivative}
+\label{nsec:balance_derivative}
 
-In \chap\,\ref{cha:density_fluxdensity} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $\yN(t_{0})$, $\yN(t_{1})$, $\yJ$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
+In \chap\,\ref{ncha:density_fluxdensity} we saw that each of the main seven quantities is represented by a density and by a flux vector, which allow us to calculate the amount of quantity within a 3D region at a particular time, an flowing through a 2D surface during an time interval. These amounts are exactly what $\yN(t_{0})$, $\yN(t_{1})$, $\yJ$ express. Therefore, a conservation or balance law must also give some relationship between density and flux vector.
 
-The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \chap~\ref{cha:density_fluxdensity} to introduce density and flux.
+The way to find such relationship is intuitive and mathematically simple, if only a bit lengthy. The idea is to formulate the balance law for a very simple case, the same simple set-up that we used in \chap~\ref{ncha:density_fluxdensity} to introduce density and flux.
 
 Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservation law~\eqref{eq:conserved} to the following situation:
 \begin{itemize}
-\item[$\yN(t_{0})$:] Choose an initial time $t_{0}=t-\Dth$, slightly before $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+\item[$\yN(t_{0})$:] Choose an initial time $t_{0}=t-\Dth$, slightly before $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{neq:density_expl}, by
   \begin{equation}
-    \label{eq:C1dens}
+    \label{neq:C1dens}
     \yN(t_{0}) = n\bigl(t-\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
   \end{equation}
   
-\item[$\yN(t_{1})$:] Choose a final time $t_{1} = t+\Dth$, slightly after $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{eq:density_expl}, by
+\item[$\yN(t_{1})$:] Choose a final time $t_{1} = t+\Dth$, slightly after $t$, and a cuboid region centred at $(x,y,)$ with sides $\Dx$, $\Dy$, $\Dz$. The total amount of the quantity within this region is given, adapting formula~\eqref{neq:density_expl}, by
   \begin{equation}
-    \label{eq:C2dens}
+    \label{neq:C2dens}
     \yN(t_{1}) = n\bigl(t+\Dth, x,y,z\bigr)\,\Dx\,\Dy\,\Dz \ .
   \end{equation}
   
 \item[$\yJ$:] We calculate the flux separately through the six rectangular surfaces bounding the small cuboid region:
   \begin{itemize}
-  \item[$\yJ_{x}$:] First choose a rectangular surface centred slightly to one side of the point $(x,y,z)$: at $(x-\Dxh, y, z)$, with sides parallel to $y,z$ and lengths $\Dy, \Dz$. We keep this surface constant for the small duration $\Dt$. The $x$-flux through this rectangle, towards positive $x$, during $\Dt$, is according to formula~\eqref{eq:xflux_expl}
+  \item[$\yJ_{x}$:] First choose a rectangular surface centred slightly to one side of the point $(x,y,z)$: at $(x-\Dxh, y, z)$, with sides parallel to $y,z$ and lengths $\Dy, \Dz$. We keep this surface constant for the small duration $\Dt$. The $x$-flux through this rectangle, towards positive $x$, during $\Dt$, is according to formula~\eqref{neq:xflux_expl}
     \begin{equation*}
-      \label{eq:Fxfluxn}
+      \label{neq:Fxfluxn}
      \yJ_{x}^{\text{in}} = j_{x}\bigl(t, x-\Dxh, y, z\bigr)\,\Dt\,\Dy\,\Dz \ .
     \end{equation*}
     Now choose the rectangular surface parallel to the previous one, but on the other side of the point $(x,y,z)$, centred at $(x+\Dxh, y, z)$. The $x$-flux through this rectangle, towards positive $x$, during $\Dt$, is
     \begin{equation*}
-      \label{eq:Fxfluxp}
+      \label{neq:Fxfluxp}
       \yJ_{x}^{\text{out}} = j_{x}\bigl(t, x+\Dxh, y, z\bigr)\,\Dt\,\Dy\,\Dz \ .
     \end{equation*}
     Note that the flux $\yJ_{x}^{\text{in}}$ points to the interior of the 3D region, towards its centre $(x,y,z)$; whereas $\yJ_{x}^{\text{out}}$ points to the exterior, away from the centre. The total flux into the region is therefore given by their difference:
     \begin{equation}
-      \label{eq:Fxflux}
+      \label{neq:Fxflux}
       \begin{split}
         \yJ_{x} &= \yJ_{x}^{\text{in}} - \yJ_{x}^{\text{out}}
         \\&= \bigl[ j_{x}\bigl(t, x-\Dxh, y, z\bigr) - j_{x}\bigl(t, x+\Dxh, y, z\bigr)\bigr]
@@ -6119,14 +6232,14 @@ Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservatio
   
   \item[$\yJ_{y}, \yJ_{z}$:] An analogous reasoning can be made to find the total flux through the other four surfaces, two parallel to $z,y$ and two to $x,y$. We find
     \begin{align}
-      \label{eq:Fyflux}
+      \label{neq:Fyflux}
       \begin{split}
         \yJ_{y} &= \yJ_{y}^{\text{in}} - \yJ_{y}^{\text{out}}
         \\&= \bigl[ j_{y}\bigl(t, x, y-\Dyh, z\bigr) - j_{x}\bigl(t, x, y+\Dyh, z\bigr)\bigr]
         \,\Dt\,\Dz\,\Dx
       \end{split}
       \\[3\jot]
-      \label{eq:Fzflux}
+      \label{neq:Fzflux}
       \begin{split}
         \yJ_{z} &= \yJ_{z}^{\text{in}} - \yJ_{z}^{\text{out}}
         \\&= \bigl[ j_{z}\bigl(t, x, y, z-\Dzh\bigr) - j_{x}\bigl(t, x, y, z+\Dzh\bigr)\bigr]
@@ -6136,14 +6249,14 @@ Take a point in spacetime with coordinates $(t,x,y,z)$. We apply the conservatio
   \end{itemize}
 The total flux into the region during the time interval $\Dt$ is finally the sum of the three above:
 \begin{equation}
-  \label{eq:Fflux}
+  \label{neq:Fflux}
   \yJ = \yJ_{x} + \yJ_{y} + \yJ_{z}
 \end{equation}
 \end{itemize}
 
 Up to now we have only chosen arbitrary surfaces, regions, and a time interval. Now let's assume that the corresponding amounts and fluxes satisfy a balance law like~\eqref{eq:conserved}. Putting together the puzzle pieces we find
 \begin{multline*}
-  \label{eq:balance_pieces}
+  \label{neq:balance_pieces}
     \mathcolor{blue}{\yN(t_{1})} -\mathcolor{green}{\yN(t_{0})} - \mathcolor{red}{\yJ} = 0 \qquad     \Longrightarrow
     \\[2\jot]
     \left.\begin{aligned}
@@ -6161,7 +6274,7 @@ This expression is quite long, but it should be intuitively understandable if yo
 
 Now we take the last, long expression -- which is an equality -- and divide its left and right sides by $\Dt\,\Dx\,\Dy\,\Dz$. Note that many of the \enquote{$\incr$} factors simplify out. We arrive at this:
 \begin{equation*}
-  \label{eq:balance_deriv_incr}
+  \label{neq:balance_deriv_incr}
   \left.\begin{aligned}
       &\frac{n\bigl(t+\Dth, x,y,z\bigr)
       -n\bigl(t+\Dth, x,y,z\bigr)}{\Dt}
@@ -6173,7 +6286,7 @@ Now we take the last, long expression -- which is an equality -- and divide its 
 Still a long expression; but examine each fraction: we have a difference between a term calculated at some point, and one calculated at some point plus an increment \enquote{${}\incr$}; this difference is then divided by that increment. This is the definition of \emph{partial derivative}, that is, the derivative with respect to one variable, while keeping the other variables fixed. The short symbol for this is \enquote{$\frac{\de\dotso}{\de\dotso}$}, so we can simply write
 \begin{definition}{Conservation law in derivative form}
   \begin{equation}
-    \label{eq:balance_deriv}
+    \label{neq:balance_deriv}
     \frac{\de n}{\de t}%(t,x,y,z)
     +\frac{\de j_{x}}{\de x}%(t,x,y,z)
     +\frac{\de j_{y}}{\de y}%(t,x,y,z)
@@ -6192,7 +6305,7 @@ Suppose that the derivative of the $x$-flux is positive: $\frac{\de j_{x}}{\de x
 
 \medskip
 
-Balance laws like~\eqref{eq:balance_deriv} are the basis of many important computational and simulation methods in a huge variety of physical applications: simulation of the ocean around an offshore oil platform, of wind in a wind farm, of air around an aeroplane's wing, of earthquakes, of electromagnetic-wave propagation, of oscillations in a suspension bridge, of percolation of fluids through terrain, of chemical reactions, of energy transfer\textellipsis The list could go on for pages!
+Balance laws like~\eqref{neq:balance_deriv} are the basis of many important computational and simulation methods in a huge variety of physical applications: simulation of the ocean around an offshore oil platform, of wind in a wind farm, of air around an aeroplane's wing, of earthquakes, of electromagnetic-wave propagation, of oscillations in a suspension bridge, of percolation of fluids through terrain, of chemical reactions, of energy transfer\textellipsis The list could go on for pages!
 
 The basic idea for using a balance law for a simulation is easy to understand. Take again the simpler one-dimensional formula without $y,z$ coordinates, and rewrite it remembering the basic meaning of the derivative:
 \begin{equation*}
@@ -6209,9 +6322,9 @@ This formula can then be used iteratively to find the density $n$ at later times
 \begin{myframe}
   \begin{enumerate}[label=\arabic*.,ref=\arabic*]
   \item \emph{Initial values:} Assign the value of $n$ at each $x$-cell at the initial time.
-  \item\label{item:timestep} \emph{For-loop in $x$:} for each $x$-cell, calculate the value of $n$ at $t+\Dt$, using the formula above.
+  \item\label{nitem:timestep} \emph{For-loop in $x$:} for each $x$-cell, calculate the value of $n$ at $t+\Dt$, using the formula above.
   \item Increase time by $\Dt$.
-  \item Go to~\ref{item:timestep}.
+  \item Go to~\ref{nitem:timestep}.
   \end{enumerate}
 \end{myframe}
 
@@ -6288,7 +6401,7 @@ The rudimentary routine above is the basis from which more precise and complex s
 \printpagenotes*
 \clearpage
 \chapter{Matter}
-\label{cha:matter}
+\label{ncha:matter}
 
 Matter is probably the easiest quantity to grasp intuitively; it's what we can really call \enquote{stuff}. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is important to clearly distinguish matter from \emph{mass}: mass can be considered a property of matter, but the two are different: for example, the mass of some amount of matter may change, even if the amount of matter stays the same.
@@ -6298,24 +6411,24 @@ There are different kinds of matter, each of which satisfies a balance relation.
 
 
 \section{Electric charge and magnetic flux}
-\label{sec:charge_magnetic}
+\label{nsec:charge_magnetic}
 
 
 
 \section{Magnetic flux}
-\label{sec:magneticflux}
+\label{nsec:magneticflux}
 
 \section{Energy}
-\label{sec:energy}
+\label{nsec:energy}
 
 \section{Momentum}
-\label{sec:momentum}
+\label{nsec:momentum}
 
 \section{Angular momentum}
-\label{sec:rotmomentum}
+\label{nsec:rotmomentum}
 
 \section{Entropy}
-\label{sec:entropy}
+\label{nsec:entropy}
 
 
 
@@ -6398,10 +6511,10 @@ There are different kinds of matter, each of which satisfies a balance relation.
 \clearpage
 
 \chapter{Thermodynamics}
-\label{cha:thermodynamics}
+\label{ncha:thermodynamics}
 
 \section{Notes on \enquote{quasi-static} processes}
-\label{sec:quasistatic}
+\label{nsec:quasistatic}
 
 In general, none of the statements "reversible${}\Rightarrow{}$quasi-static" or "quasi-static${}\Rightarrow{}$reversible"
 is true.
@@ -6696,7 +6809,7 @@ In the rest of these notes we shall use the terms \enquote*{momentum flux} and \
 % says that after a very small time interval there's a lower amount of a quantity on one side of a surface, and a larger amount on the other. \emph{But it doesn't say anything about a \enquote{left-to-right movement} of the quantity, or a right-to-left one}. In our example it could be that \textcolor{purple}{\qty{-4}{J/s}} of energy \enquote{moved} from right to left; or even that \qty{+7}{J/s} moved from left to right, and \qty{-3}{J/s} from right to left, possibly across different parts of the surface. All these possibilities correspond to the same flux. Moreover, \emph{the description of this situation depends on the coordinate system}: in one coordinate system the surface may be at rest, but in another it may be moving.
 % \end{itemize}
 % 
-% Therefore we see that the flux of our example could be happening in several ways. Four equivalent ways are illustrated in \fig~\ref{fig:flux_interpretation}; combination of those are also possible.
+% Therefore we see that the flux of our example could be happening in several ways. Four equivalent ways are illustrated in \fig~\ref{nfig:flux_interpretation}; combination of those are also possible.
 % \begin{figure}[h]\centering
 % \begin{tabularx}{\linewidth}{|X|X|X|X|}
 % \centering  \includegraphics[align=t,height=21em]{flux_pq.pdf}
@@ -6707,7 +6820,7 @@ In the rest of these notes we shall use the terms \enquote*{momentum flux} and \
 % &
 % \centering   \includegraphics[align=t,height=21em]{flux_ms.pdf}
 %   \end{tabularx}
-%   \caption{Four allusive depictions of the same flux}\label{fig:flux_interpretation}
+%   \caption{Four allusive depictions of the same flux}\label{nfig:flux_interpretation}
 % \end{figure}
 % 
 % \medskip
@@ -6740,7 +6853,7 @@ In the rest of these notes we shall use the terms \enquote*{momentum flux} and \
 
 
 \section{Intuition and visualization for vector quantities}
-\label{sec:intuition_vector}
+\label{nsec:intuition_vector}
 
 Let's now consider the vector quantities momentum and angular momentum.
 
@@ -6789,7 +6902,7 @@ What happens in either illustration is that there's a change equal to a vectoria
 An animated representation or mental visualization can also be quite illuminating. You can see one \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimation.webp}{at this link}.
 
 \section{The symmetry of fluxes}
-\label{sec:fluxes_symmetry}
+\label{nsec:fluxes_symmetry}
 
 Our discussion about fluxes of scalar and vector quantities, and their graphical representation, for instance
 \begin{center}\hspace*{\fill}
