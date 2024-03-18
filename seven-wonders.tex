@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-18T18:40:40+0100
+%% Last-Updated: 2024-03-18T22:16:16+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -5119,7 +5119,7 @@ But this balance is also essential in the opposite problem: when we need to stud
 \section{Examples of constitutive relations}
 \label{sec:momentum_constitutive}
 
-\subsection{Newtonian momentum}
+\subsection{Newtonian momentum: relation between momentum and matter}
 \label{sec:bal_momentum_Newton}
 
 One of the most important constitutive relations is the one connecting momentum with the flux of matter. We have mentioned it several times in the previous chapters, and used it in \autoref{ex:tennisball}{examples of numerical integration}.
@@ -5141,7 +5141,7 @@ This relation is only valid for very small areas and volumes (we should take the
 
 You are probably familiar with the first equality above; old textbook present it as the \emph{definition} of momentum. We know today that this equality is only approximate: it's only valid for small speeds compared to the speed of light, in weak gravitational fields, and when changes in \energym\ are small compared to the total.
 
-\subsection{Hookean spring}
+\subsection{Hookean spring: relation between momentum flux and distance}
 \label{sec:hooke}
 
 \marginpar{\vspace{1\baselineskip}\centering%
@@ -5156,7 +5156,7 @@ We are all familiar with elastic bands, springs, and similar objects having the 
 \item these objects return to an initial configuration when we don't try to modify their extension.
 \end{enumerate*}
 
-We know that \autoref{sec:pressure_tension_shear}{tension and compression are particular kinds of forces, that is, momentum fluxes}. Objects like elastic bands and springs therefore create particular momentum fluxes that are related to their spatial extension.
+We know that \autoref{sec:pressure_tension_shear}{tension and compression are particular kinds of forces, that is, momentum fluxes}. Objects like elastic bands and springs therefore create particular momentum fluxes that are related to their spatial extension. Their behaviour is therefore described by a \emph{constitutive relation about the flux of momentum $\yF$}.
 
 We can approximately treat these objects as control volumes for which the following constitutive properties apply:
 \begin{definition}{Hookean spring}\label{def:hooke}
@@ -5182,7 +5182,43 @@ We can approximately treat these objects as control volumes for which the follow
 % }%
 Note the minus sign in Hooke's law. It means that if the present length is larger than the natural one, $\yle > \ylo$, then there is an influx of momentum directed towards the spring, that is, the spring exerts a \emph{tensile} force towards itself; and if the present length is smaller than the natural one, $\yle < \ylo$, then there is an influx of momentum directed away from the spring, that is, the spring exerts a \emph{compressive} force away from itself.
 
-A Hookean spring is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities, and offers a very simple relation between this flux and its spatial extension. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
+In modelling some physical problems we can put $\ylo=\qty{0}{m}$: this represents that the natural length of the spring is very small compared to usual amounts by which the spring is stretched. Note that in this case the spring always exerts a tension, never a pressure.
+
+A Hookean spring is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities, and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
+
+
+\subsection{Gravity: momentum supply near a planet's surface}
+\label{sec:gravity}
+
+According to general relativity, there can be creation of momentum in a control volume, that is, a momentum supply $\yG$, depending on our choice of coordinate system and on the nearby presence of large amounts of \energym. General relativity also makes it clear that it doesn't make sense to distinguish between these two effects in a small control volume: if we measure a supply of momentum $\yG$ in a very small region, it could be because of our coordinate system, or because of the nearby presence of \energym. In fact, by changing our coordinate system we can always make the supply to be zero \emph{in a small region} -- but in general not everywhere.
+
+Examples of these kinds of supplies are the \enquote*{gravitational force}, the \enquote*{centrifugal force}, and other forces called \enquote*{inertial}. For example, when we're travelling in a car that speeds up or slows down, we feel a horizontal force pushing us against our seat or pulling us away from it.
+%
+\marginpar{\vspace{-\baselineskip}\centering%
+\includegraphics[width=\linewidth]{crashtest.jpg}%
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+The supply of momentum appearing in a slowed-down car can be deadly real}%
+}%
+That force is a supply of momentum. We feel that supply because our \enquote{force-receptors}, the \furl{https://openbooks.lib.msu.edu/neuroscience/chapter/touch-the-skin/}{mechanoreceptors} in our skin and bones, \emph{measure momentum flux with respect to a coordinate system that is at rest with respect to our body}, that is, a coordinate system where our body has constant coordinates, independent of time. A person on the street that sees us passing by would say that there's no momentum supply (besides the vertical one discussed below), simply because that person is using a different coordinate system.
+
+
+When we consider physical phenomena that happen close to a planet's surface and involve spatial extensions that are small compared to the planet's size, and we choose a coordinate system fixed with the planet's ground, then we have special supply of momentum:
+\begin{definition}{Gravitational force near a planet's surface}
+  Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ the vertical coordinate with an upward positive direction. A control volume containing an amount of \masse\ $\yM$ also has a supply of downward momentum, the \textbf{gravitational force}, given by
+  \begin{equation}
+    \label{eq:gravity_surface}
+    \yG = \yM\,\yg\ ,\qquad\text{with}\qquad \yg=[\qty{0}{N/kg},\ \qty{0}{N/kg},\ -g] \ ,
+  \end{equation}
+  where $g$, the \emph{gravitational acceleration}, depends on the planet. On Earth it is approximately
+  \begin{equation}
+    \label{eq:g_acc}
+    g \approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}} \ .
+  \end{equation}
+  This supply of momentum is approximately constant in time.
+\end{definition}
+
+
+
 
 
 \section{Examples of applications}
