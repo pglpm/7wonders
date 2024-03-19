@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-19T20:20:28+0100
+%% Last-Updated: 2024-03-19T22:15:21+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -946,6 +946,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 \renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
+
+\newcommand*{\yuu}{\bm{u}}
+\newcommand*{\yww}{\bm{w}}
+
 
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yra}{\yr_{a}}
@@ -2378,7 +2382,7 @@ If the momentum in a \emph{small} volume is denoted by the vector $\yP=(P_{x},P_
         \end{aligned}\right.
     \end{gathered}
   \end{equation}
-  Instead of calling the components \enquote{$(L_{x}, L_{y}, L_{z})$}, we can also call them \enquote{$(L_{yz}, L_{zx}, L_{xy})$}, as some books do. The latter names make the formulae above easier to remember:
+  Instead of calling the components \enquote{$(L_{x}, L_{y}, L_{z})$}, we can also call them \enquote{$(L_{yz}, L_{zx}, L_{xy})$}, as some books do. The last names make the formulae above easier to remember:
   \begin{equation}
     \label{eq:ang_momentum_def_bis}
 \left\{\enspace
@@ -5586,7 +5590,7 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \subsection{Hookean spring and harmonic oscillator}
 \label{sec:hooke_oscillator}
 
-The physical system composed of two bodies of matter connected by a spring, with the latter modelled by the \autoref{sec:hooke}{Hookean constitutive properties}, is one of particular importance in physics, for several reasons. Its equations can be solved analytically and describe a \furl{https://www.britannica.com/science/mechanics/Simple-harmonic-oscillations\#ref612067}{\emph{harmonic oscillator}}, with a behaviour that can be predicted without numerical time-integration methods. The \emph{mathematical form} of its equations can also be applied to many other physical phenomena involving quantities other than momentum. Hooke's law can sometimes be used as a linear approximation in more complicated systems. And if we consider particular additional forces applied to one or both of the two bodies, we can study simple examples of the important phenomena of \furl{https://www.britannica.com/science/resonance-vibration}{\emph{resonance}} and \furl{https://www.britannica.com/science/damping}{\emph{damping}}.
+The physical system composed of two bodies of matter connected by a spring, with the spring modelled by the \autoref{sec:hooke}{Hookean constitutive properties}, is one of particular importance in physics, for several reasons. Its equations can be solved analytically and describe a \furl{https://www.britannica.com/science/mechanics/Simple-harmonic-oscillations\#ref612067}{\emph{harmonic oscillator}}, with a behaviour that can be predicted without numerical time-integration methods. The \emph{mathematical form} of its equations can also be applied to many other physical phenomena involving quantities other than momentum. Hooke's law can sometimes be used as a linear approximation in more complicated systems. And if we consider particular additional forces applied to one or both of the two bodies, we can study simple examples of the important phenomena of \furl{https://www.britannica.com/science/resonance-vibration}{\emph{resonance}} and \furl{https://www.britannica.com/science/damping}{\emph{damping}}.
 
 The Hookean spring and the harmonic oscillator are therefore discussed in detail in essentially all physics textbooks and in specialized treatises. For this reason I won't discuss them here. I recommend that you read the  \furl{https://www.feynmanlectures.caltech.edu/I_21.html}{chapter on the harmonic oscillator} and \furl{https://www.feynmanlectures.caltech.edu/I_23.html}{that on resonance} in Feynman's Lectures, for example.
 
@@ -5621,6 +5625,12 @@ If we consider gravity effects, the control volumes of the two bodies might also
 The control volume for the spring contains no momentum $\yP$ and has no supply $\yG$, according to the Hookean constitutive properties. At the two narrow surfaces in contact with the bodies, however, it has momentum \textbf{in}fluxes $-\yFa$ and $-\yFb$, owing to the \autoref{def:symmetryflux}{symmetry of fluxes}. The total momentum influx is therefore $\yF=-\yFa-\yFa$ by extensivity.
 
 Note that all the quantities so far, except the masses, depend on the time $t$.
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[height=15em]{hooke_controls.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFa$, $\yFb$ happen across these surfaces, but their vectors are placed on the side in the illustration.
+}%
 
 The Hookean constitutive relation~\eqref{eq:hooke} says that the momentum \textbf{ef}flux across one surface, say the one in contact with body $a$, must be
 \begin{equation*}
@@ -5674,6 +5684,26 @@ Now let's apply balances and constitutive equations to the three control volumes
   \end{equation*}
 \end{description}
 
+One immediate consequence of the momentum balance for the spring is that the effluxes at its extremities must be equal and opposite:\enspace$\yFa = -\yFb$\,, since by the balance the total influx is zero:\enspace$0 = \yF = -\yFa-\yFb$. Note also that the influx of momentum $\yFa$ in body $a$ is the same as one of the effluxes from the spring by construction, since the surface of this flux is in common to their control volumes.
+
+The set of equations above is usually solved analytically by introducing two alternative vector variables:
+\begin{equation*}
+  \yuu \defd \frac{\yMa\,\yra + \yMb\,\yrb}{\yMa+\yMb}
+  \qquad
+  \yww \defd \yra - \yrb
+\end{equation*}
+the first being called the \emph{centre of mass}. In terms of these variables the whole set of equations above reduces to these two linear differential equations with constant coefficients (each equation is a set of three, one for each component):
+\begin{equation*}
+  \frac{\di^{2}\yuu(t)}{\di t^{2}} = 0
+  \qquad\quad
+  \frac{\di^{2}\yww(t)}{\di t^{2}} + k\,\frac{\yMa+\yMb}{\yMa\,\yMb}\,\yww(t) = 0
+\end{equation*}
+that can be solved analytically.
+\begin{exercise}
+  Try to refresh your knowledge of linear differential equations with constant coefficients, and find the general solution for the equations above.
+
+  Then express this solution in terms of the positions $\yra$ and $\yrb$.
+\end{exercise}
 
 
 
@@ -6750,7 +6780,7 @@ A similar criticism can be read in Astarita, \sect\,2.9, p. 62, where he also pr
   one speak of slowness without implying the concept of time? How slow is slow
   enough? If one chooses to develop a thermodynamic theory (rather than a
   thermostatic one), the answer is easy. For instance, in the case of a system where
-  the state is $V, T, \dot{V}$ [the latter is the rate of change of $V$], one needs to assume that [the non-equilibrium pressure] $p(V,T,\dot{V})$ is a Taylor-series expandable
+  the state is $V, T, \dot{V}$ [the last is the rate of change of $V$], one needs to assume that [the non-equilibrium pressure] $p(V,T,\dot{V})$ is a Taylor-series expandable
   at $\dot{V} = 0$ to obtain [that
   $$
   p = p^* + \frac{\partial p}{\partial \dot{V}}\biggl\lvert_{\dot{V}=0}\dot{V} + \mathrm{O}(\dot{V}^2) \ ,
