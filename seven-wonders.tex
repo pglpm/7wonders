@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-18T22:16:16+0100
+%% Last-Updated: 2024-03-19T15:17:08+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -625,7 +625,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \sffamily\leftmark}}{}{{\footnotesize\sffamily\itshape%
 \rightmark}}
 \makeoddfoot{manaart}{}{\thepage}{}
-\newcommand*\autanet{\includegraphics[height=\heightof{M}]{autanet.pdf}}
+%\newcommand*\autanet{\includegraphics[height=\heightof{M}]{autanet.pdf}}
 \definecolor{mygray}{gray}{0.333}
 \iftypodisclaim%
 \ifafour\newcommand\addprintnote{\begin{picture}(0,0)%
@@ -948,7 +948,11 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
 
 \newcommand*{\yr}{\bm{r}}
+\newcommand*{\yra}{\yr_{\textrm{a}}}
+\newcommand*{\yrb}{\yr_{\textrm{b}}}
 \newcommand*{\yv}{\bm{v}}
+\newcommand*{\yva}{\yv_{\textrm{a}}}
+\newcommand*{\yvb}{\yv_{\textrm{b}}}
 \newcommand*{\yvs}{v_{\text{s}}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
@@ -962,6 +966,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\ya}{\varAlpha}
 \newcommand*{\yrho}{\rho}
 \newcommand*{\yM}{m}% m, and q_m for mass flow
+\newcommand*{\yMa}{\yM_{\textrm{a}}}
+\newcommand*{\yMb}{\yM_{\textrm{b}}}
 \newcommand*{\yE}{E}
 \newcommand*{\yU}{U}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
@@ -972,9 +978,15 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yR}{R}% for energy source
 \newcommand*{\yg}{\bm{g}}% gravitational acceleration
 \newcommand*{\yP}{\bm{P}}
+\newcommand*{\yPa}{\yP_{\textrm{a}}}
+\newcommand*{\yPb}{\yP_{\textrm{b}}}
 \newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
+\newcommand*{\yFa}{\yF_{\textrm{a}}}
+\newcommand*{\yFb}{\yF_{\textrm{b}}}
 \newcommand*{\yG}{\bm{G}}
+\newcommand*{\yGa}{\yG_{\textrm{a}}}
+\newcommand*{\yGb}{\yG_{\textrm{b}}}
 \newcommand*{\yf}{\bm{f}}
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
@@ -2111,11 +2123,11 @@ Now we weigh the rubber band again, while stretched, and observe a mass of appro
 \end{equation*}
 The extremely small difference of around \qty{3e-18}{kg} from the initial mass
 is exactly the elastic energy that we provided by stretching.
+%
 \marginpar{%
-\includegraphics[align=b,width=\linewidth]{rubberbands.png}
-\\[\jot]%
-{\footnotesize\color{mpcolor}When we stretch a rubber band, its mass increases slightly -- even if the amount of rubber remains exactly the same.\par}
-}
+\centering\includegraphics[align=b,width=\linewidth]{rubberbands.png}
+\\[\jot]\footnotesize\flushleftright{\color{mpcolor}When we stretch a rubber band, its mass increases slightly -- even if the amount of rubber remains exactly the same.}%
+}%
 Energy has weight; energy is mass.
 
 Now set the unstretched band in motion, so that according to Newtonian mechanics it acquires a kinetic energy of, say, \qty{0.2}{J}. If we could weigh the band while in motion (but without moving the weighing scale), we would measure a mass of approximately
@@ -5184,7 +5196,50 @@ Note the minus sign in Hooke's law. It means that if the present length is large
 
 In modelling some physical problems we can put $\ylo=\qty{0}{m}$: this represents that the natural length of the spring is very small compared to usual amounts by which the spring is stretched. Note that in this case the spring always exerts a tension, never a pressure.
 
-A Hookean spring is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities, and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
+A Hookean spring is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities, and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple, \emph{linear} relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
+
+\subsection{Non-hookean springs}
+\label{sec:nonhooke}
+
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{rubberbands.png}%
+}
+Items like rubber bands and strings deviate from Hooke's law in a notable way: they exert a purely tensile force, that is, they effect a tensile flux of momentum, only if they are stretched beyond their natural, relaxed length.
+
+This kind of behaviour can of course be modelled, at least qualitatively, by a constitutive equation such as the following:
+\begin{definition}{Constitutive equation for rubber bands and strings}
+  Suppose that the two extremities of a rubber band have position vectors $\yra$ and $\yrb$, and that the natural length of the rubber band is $\ylo$. Then the momentum \textbf{ef}fluxes at the extremities $\yra$ and $\yrb$ are approximately given by
+  \begin{equation}
+    \label{eq:nonhooke}
+    \yF_{\textrm{a}} = - \yF_{\textrm{b}} 
+    \begin{dcases*}
+      0\ ,& if\enspace$\abs{\yra - \yrb} \le \ylo$
+      \\
+      -k\,
+      \tfrac{\yra-\yrb}{
+        \abs{\yra - \yrb}
+      }\,\bigl(\abs{\yra - \yrb} -\ylo \bigr) \ ,
+      & if\enspace$\abs{\yra - \yrb} > \ylo$
+    \end{dcases*}
+  \end{equation}
+\end{definition}
+A string can be approximately modelled by such a constitutive equation with a large constant $k$.
+
+This constitutive equation is difficult to be used with analytical methods, but presents no particular problems in numerical simulations. It is even possible to modify the dependence on the elongation\enspace$\abs{\yra - \yrb} -\ylo$\enspace to \emph{non-linear} formulae, for instance
+  \begin{equation}
+    \label{eq:nonhooke_square}
+    \yF_{\textrm{a}} = - \yF_{\textrm{b}} 
+    \begin{dcases*}
+      0\ ,& if\enspace$\abs{\yra - \yrb} \le \ylo$
+      \\
+      -k\,
+      \tfrac{\yra-\yrb}{
+        \abs{\yra - \yrb}
+      }\ f\Bigl(\abs{\yra - \yrb} -\ylo \Bigr) \ ,
+      & if\enspace$\abs{\yra - \yrb} > \ylo$
+    \end{dcases*}
+  \end{equation}
+  where $f()$ is a function of our choice,  constructed for example by fitting data.
 
 
 \subsection{Gravity: momentum supply near a planet's surface}
@@ -5203,7 +5258,7 @@ That force is a supply of momentum. We feel that supply because our \enquote{for
 
 
 When we consider physical phenomena that happen close to a planet's surface and involve spatial extensions that are small compared to the planet's size, and we choose a coordinate system fixed with the planet's ground, then we have special supply of momentum:
-\begin{definition}{Gravitational force near a planet's surface}
+\begin{definition}{Gravitational force near a planet's surface}\label{def:gravity_surface}
   Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ the vertical coordinate with an upward positive direction. A control volume containing an amount of \masse\ $\yM$ also has a supply of downward momentum, the \textbf{gravitational force}, given by
   \begin{equation}
     \label{eq:gravity_surface}
@@ -5285,7 +5340,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
   % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
 
-\subsection{Example application: atmospheric pressure}
+\subsection{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
 
 There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
@@ -5341,7 +5396,7 @@ In some cases the magnitude of the atmospheric pressure is different because of 
     {\color{red}\footnotesize\faIcon{exclamation-circle}\enspace The results obtained in this exercise are approximate, because the supply of momentum $\yG$ actually changes with altitude as well, and depends on other quantities such as temperature. But they do have the correct order of magnitude.\par}
 \end{exercise}
 
-\subsection{Example application: airborne flight}
+\subsection{Airborne flight}
 \label{sec:bal_momentum_flight}
 
 Airborne flight is a conceptually extremely simple application of momentum balance.
@@ -5384,7 +5439,7 @@ the popular theory of lift generation found in many textbooks is completely wron
 
 % In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{sec:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
 
-\subsection{Example application: rocket}
+\subsection{Rockets}
 \label{sec:bal_momentum_flight}
 
 The flight mechanisms discussed in the previous section rely on the presence of air or some kind of atmosphere around the object, with which a momentum flux can occur. This is not possible in outer space, and such flux may not be enough to lift an object even if air is surrounding it.
@@ -5408,7 +5463,7 @@ Obviously the amount of matter in the control volume defining the object will be
 
 
 
-\subsection{Example application: statics again}
+\subsection{Statics again: cable cars}
 \label{sec:bal_momentum_cablecar}
 
 %
@@ -5527,8 +5582,60 @@ In solving the cable-car problem above we used the balance of momentum, but note
   \end{itemize}
 \end{itemize}
 
-\printpagenotes*
-\clearpage
+
+\subsection{Elastic bands: numerical time integration}
+\label{sec:nonhooke_integration}
+
+Consider two bodies of matter of small extension compared to the distance between them, and having mass-energies $\yMa$, $\yMb$. We attach them to the two ends of a Hookean spring, which for simplicity we take as having a small natural length, $\ylo\approx\qty{0}{m}$.
+
+In terms of control surfaces, we have three of them: two tightly enveloping one body each, and a third enveloping the spring.
+
+The first two corresponding control volumes can be considered as points; \autoref{sec:cons_matter_particle}{by construction, conservation of matter automatically holds for them}. They contain amounts of momentum $\yPa = \yMa\,\yva$, $\yPb=\yMb\,\yvb$. If we consider gravity effects, they might also have constant momentum supplies $\yMa\,\yg$, $\yMb\,\yg$ according to the \autoref{def:gravity_surface}{constitutive equation for gravitational force}. But for simplicity let's omit these. They also have momentum influxes $\yFa$, $\yFb$ coming from the spring.
+
+The third control volume, \autoref{sec:hooke}{according to the simplifications typical of Hookean springs}, has two negligible dimensions and can be represented by a straight line; it contains no momentum and has no momentum supply. But it has two opposite fluxes of momentum at its extremities, between itself and the two small bodies. The magnitude of these fluxes is proportional to the length of the control volume.
+
+If the two small bodies have position vectors $\yra$, $\yrb$, we have three balances of momentum for the three control surfaces:
+\begin{description}[itemsep=1ex]
+\item[Body \enquote*{a}:]
+  \begin{equation*}
+ \begin{gathered}
+      \frac{\di\yPa(t)}{\di t} = \yFa(t) + \yGa(t)
+      \\[\jot]
+      \yPa(t) = \yMa\yva(t)
+      \qquad
+      \yGa(t) = 0
+    \end{gathered}
+  \end{equation*}
+
+\item[Body \enquote*{b}:]
+  \begin{equation*}
+ \begin{gathered}
+      \frac{\di\yPb(t)}{\di t} = \yFb(t) + \yGb(t)
+      \\
+      \yPb(t) = \yMb\yvb(t)
+      % \qquad
+      % \yFb(t) = -\yFa(t)
+      \qquad
+      \yGb(t) = 0
+    \end{gathered}
+  \end{equation*}
+
+\item[Spring:]
+  \begin{equation*}
+ \begin{gathered}
+      \frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)
+      \\
+      \yP(t) = 0
+      \qquad
+      \yF(t) = -\yFa(t) - \yFb(t)
+            \quad
+      \yFa(t) = -k\,[\yra(t)-\yrb(t)]
+      \qquad
+      \yG = 0
+    \end{gathered}
+  \end{equation*}
+\end{description}
+
 
 
 
@@ -5592,6 +5699,8 @@ In solving the cable-car problem above we used the balance of momentum, but note
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \printpagenotes*
 \clearpage
+\renewcommand*{\bibmark}{\markboth{\bibname}{}}
+\bibmark
 \renewcommand*{\finalnamedelim}{\addcomma\space}
 \defbibnote{prenote}{{\footnotesize (\enquote{de $X$} is listed under D,
     \enquote{van $X$} under V, and so on, regardless of national
