@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-20T13:42:44+0100
+%% Last-Updated: 2024-03-20T22:25:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4685,9 +4685,9 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
 
 We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timestepped_evolution} and~\eqref{eq:timestep_momentum_position}, focusing on momentum and position. But obviously this procedure can be applied to any quantities that satisfy balance laws.% : it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
 
-The timestepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors; see for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
+The time-stepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors; see for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
 
-Yet, the simple timestepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
+Yet, the simple time-stepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
 
 
 \printpagenotes*
@@ -5289,7 +5289,7 @@ This kind of behaviour can of course be modelled, at least qualitatively, by a c
   Suppose that the two extremities of a rubber band have position vectors $\yra$ and $\yrb$, and that the natural length of the rubber band is $\ylo$. Then the momentum \textbf{ef}fluxes at the extremities $\yra$ and $\yrb$ are approximately given by
   \begin{equation}
     \label{eq:nonhooke}
-    \yF_{\textrm{a}} = - \yF_{\textrm{b}} 
+    \yFa = 
     \begin{dcases*}
       0\ ,& if\enspace$\abs{\yra - \yrb} \le \ylo$
       \\
@@ -5306,7 +5306,7 @@ A string can be approximately modelled by such a constitutive equation with a la
 This constitutive equation is difficult to be used with analytical methods, but presents no particular problems in numerical simulations. It is even possible to modify the dependence on the elongation\enspace$\abs{\yra - \yrb} -\ylo$\enspace to \emph{non-linear} formulae, for instance
   \begin{equation}
     \label{eq:nonhooke_square}
-    \yF_{\textrm{a}} = - \yF_{\textrm{b}} 
+    \yFa = 
     \begin{dcases*}
       0\ ,& if\enspace$\abs{\yra - \yrb} \le \ylo$
       \\
@@ -7327,6 +7327,16 @@ density: Q/V
 flux, flow: Q(area)/t
 flux density: Q(area)/(A.t)
 or surface ... density
+
+$$
+P_{x} = \yM\,v_{x} +
+\frac{1}{c^{2}}\bigl(
+\yH_{x} +
+\tfrac12 \yM\,v_{x}\,\yv^{2}
++ \yM\,v_{x}\,\yE/V
++ 3\,\yM\,g\,v_{x}
+\bigr)
+$$
 
 
 %%% Local Variables: 
