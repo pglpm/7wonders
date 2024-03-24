@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-20T22:25:43+0100
+%% Last-Updated: 2024-03-24T19:11:22+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1025,6 +1025,16 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 \usepackage[retain-explicit-plus,quantity-product=\:]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
+
+\usepackage{listings}
+\lstdefinestyle{mycode}{
+  basicstyle=\ttfamily\footnotesize\color{blue},
+  moredelim=**[is][\color{grey}]{\%@}{\%@},
+  frame=single,
+  numbers=left,
+  numberstyle=\sffamily\scriptsize,
+  xleftmargin=\parindent
+}
 
 % \usepackage{multimedia}
 \usepackage[breakable,skins]{tcolorbox}
@@ -4689,6 +4699,96 @@ The time-stepping scheme discussed in the previous sections is very crude and qu
 
 Yet, the simple time-stepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
 
+\bigskip
+
+\subsection{Example script for numerical integration}
+\label{sec:tennisball_script}
+
+Here is an example script that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB). The \textcolor{blue}{blue lines} are those strictly related to numerical time integration; the \textcolor{grey}{grey lines} take care of saving and plotting data. You can use this script as a starting point for exercises that require scripting in the next chapters.
+
+\marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright{\color{mpcolor}%
+\furl{}{Download \texttt{tennisball.m}}}%
+}%
+\lstinputlisting[style=mycode]{code/tennisball.m}
+  
+% \begin{lstlisting}[style=mycode]
+% %% (base SI units used throughout)
+% %% Numerical simulation of object motion in 2D with gravity
+% %% Coordinates (y,z)
+% %% Parameters and initial values:
+% t0 = 0; % initial time
+% t1 = t0 + 2; % final time
+% Py0 = 3; Pz0 = 0.75; % initial momentum
+% y0 = 0; z0 = 2; % initial position
+% Fy = 0; Fz = 0; % momentum influx (constant)
+% Gy = 0; Gz = -0.579; % momentum supply (constant)
+% m = 0.059; % tennis ball's mass
+% dt = 0.01; % time step@
+% %% adjust final time if not multiple of timestep
+% t1 = t1 + mod(t1-t0,dt);
+% %% check if timestep and time interval are consistent
+% %% (we can integrate backward in time)
+% if (t1-t0)*dt <= 0
+% error('time interval inconsistent with timestep');
+% end
+% %% 
+% %% We save values of all quantities at some steps during the simulation,
+% %% in case we want to do some analysis or plotting afterwards.
+% %% Saving at all timesteps could be too costly in terms of memory
+% Nsaves = 200; % number of timepoints to save during the simulation
+% %% Calculate time interval for saving
+% dsave = (t1-t0)/(Nsaves-1);
+% if abs(dsave) < abs(dt)
+% error('time interval between saves is smaller than timestep')
+% end
+% %% Initialize vectors to contain saved values
+% tSave = nan(Nsaves,1);
+% ySave = nan(Nsaves,1); zSave = nan(Nsaves,1);
+% PySave = nan(Nsaves,1); PzSave = nan(Nsaves,1);
+% vySave = nan(Nsaves,1); vzSave = nan(Nsaves,1);
+% %% 
+% %% Initialize plot
+% cols = get(0, 'DefaultAxesColorOrder');
+% plot(ySave(1), zSave(1), '.', 'Color', cols(1,:)); axis('tight');
+% xlabel('y/m'); ylabel('z/m');
+% hold on;@
+% %% Numerical time integration
+% %% initialize
+% t = t0;
+% y = y0; z = z0;
+% Py = Py0; Pz = Pz0;
+% vy = Py/m; vz = Pz/m;
+% %% Save initial values
+% i = 1; % index that keeps count of savepoints
+% tSave(i) = t0;
+% ySave(i) = y0; zSave(i) = z0;
+% PySave(i) = Py0; PzSave(i) = Pz0;
+% vySave(i) = Py0/m; vzSave(i) = Pz0/m;
+% while abs(t) < abs(t1)
+%   %% update time
+%   t = t + dt;
+%   %% update momentum
+%   Py = Py + (Fy + Gy)*dt;
+%   Pz = Pz + (Fz + Gz)*dt;
+%   %% update velocity (from constitutive relation P=mv)
+%   vy = Py/m;
+%   vz = Pz/m;
+%   %% update position
+%   y = y + vy*dt;
+%   z = z + vz*dt;
+%   @%% Check whether we save & plot at this step
+%   if min(abs([0 dsave] - mod(t-t0, dsave))) <= abs(dt)/2
+%     i = i+1;
+%     tSave(i) = t;
+%     ySave(i) = y; zSave(i) = z;
+%     vySave(i) = vy; vzSave(i) = vz;
+%     PySave(i) = Py; PzSave(i) = Pz;
+%     plot(y, z, '.', 'Color', cols(1,:));
+%     pause(0.001);
+%   end@
+% end
+% @plot(ySave, zSave, 'Color', cols(1,:)); axis('tight');@
+% \end{lstlisting}
 
 \printpagenotes*
 \clearpage
@@ -5813,6 +5913,8 @@ The basic time-stepping scheme  looks as follows:
   We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{one dimension}, so that all vectors reduce to one component only, say the $x$-component (below we still use vector notation anyway). We also assume that the natural length $\ylo$ of the spring is zero and that there is no gravity supply.
   \begin{enumerate}[exerc]
   \item Write a script, in your preferred programming language, that implements a numerical time integration scheme according to the time-steping scheme~\eqref{eq:timestep_hooke} above, from an initial time $\yti$ to a final time $\ytf$ with timestep $\Dt$.
+
+    As a starting point you can use the script
 
     The script should save the values of $\yra,\yrb$ for subsequent analysis. It should also let you specify the quantities $\yMa,\yMb,k$, as well as the initial values of $\yra,\yrb,\yva,\yva$, as parameters (that is, no specific numerical values for them are hard-coded in the script).
 
@@ -7337,6 +7439,106 @@ P_{x} = \yM\,v_{x} +
 + 3\,\yM\,g\,v_{x}
 \bigr)
 $$
+
+$$
+\begin{gathered}
+  \yP(t+\Dt) = \yP(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG(t)\,\di t
+  \\
+  \yF(t) = 0
+  \\
+  \yG(t) = \dotso
+\end{gathered}
+$$
+
+$$
+\begin{aligned}
+  &\yP_a(t+\Dt) = \yP_a(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_a(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_a(t)\,\di t
+  \\
+  &\yP_b(t+\Dt) = \yP_b(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_b(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_b(t)\,\di t
+  \\
+  &\yF_{b}(t) = -\yF_{a}
+  \\
+  &\yF_{a}(t) = -k\, (z_{a}-z_{b})
+  \\
+  &\yP_{a} = \yMa v_{a}
+  \\
+  &\yP_{b} = \yMb v_{b}
+  \\
+  &\yG_{a}(t) = \dotso
+  \\
+  &\yG_{b}(t) = \dotso
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  &\yP_a(t+\Dt) = \yP_a(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_a(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_a(t)\,\di t
+  \\
+  &\yP_b(t+\Dt) = \yP_b(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_b(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_b(t)\,\di t
+  \\
+  &\yP_c(t+\Dt) = \yP_c(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_c(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_c(t)\,\di t
+  \\
+  &\yF_{b}(t) = -\yF_{a}
+  \\
+  &\yF_{a}(t) = -k\, (\yr_{a}-\yr_{b})
+  \\
+  &\yP_{a} = \yMa \yv_{a}
+  \\
+  &\yP_{b} = \yMb \yv_{b}
+  \\
+  &\yG_{a}(t) = \dotso
+  \\
+  &\yG_{b}(t) = \dotso
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+  &\yP_a(t+\Dt) = \yP_a(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_a(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_a(t)\,\di t
+  \\
+  &\yP_b(t+\Dt) = \yP_b(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_b(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_b(t)\,\di t
+  \\
+  &\yP_c(t+\Dt) = \yP_c(t) + \int_{t}^{\mathrlap{t+\Dt}}\!\yF_c(t)\,\di t + \int_{t}^{\mathrlap{t+\Dt}}\!\yG_c(t)\,\di t
+  \\
+  &\yF_{ba}(t) = -\yF_{ab}
+  \\
+  &\yF_{ca}(t) = -\yF_{ac}
+  \\
+  &\yF_{bc}(t) = -\yF_{cb}
+  \\
+  &\yF_{ab}(t) = -k\, (\yr_{a}-\yr_{b})
+  \\
+  &\yF_{ac}(t) = -k\, (\yr_{a}-\yr_{c})
+  \\
+  &\yF_{cb}(t) = -k\, (\yr_{c}-\yr_{b})
+  \\
+  &\yP_{a} = \yMa \yv_{a}
+  \\
+  &\yP_{b} = \yMb \yv_{b}
+  \\
+  &\yP_{c} = \yMb \yv_{c}
+  \\
+  &\yG_{a}(t) = \dotso
+  \\
+  &\yG_{b}(t) = \dotso
+  \\
+  &\yG_{c}(t) = \dotso
+\end{aligned}
+$$
+
+
+$$
+\yF_{\text{Earth-Sun}} =
+-G\frac{\yM_{\text{Sun}}\,\yM_{\text{Earth}}}{\abs{\yr_{\text{Earth}} - \yr_{\text{Sun}}}^2}\,
+ \biggl[
+ \tfrac{\yr_{\text{Earth}} - \yr_{\text{Sun}}}{\abs{\yr_{\text{Earth}} - \yr_{\text{Sun}}}}
+ +2\,
+ \yv_{\text{Earth}} \times \Bigl(\yv_{\text{Sun}} \times
+ \tfrac{\yr_{\text{Earth}} - \yr_{\text{Sun}}}{\abs{\yr_{\text{Earth}} - \yr_{\text{Sun}}}}
+\Bigr)
+ \biggr]
+ $$
+
 
 
 %%% Local Variables: 
