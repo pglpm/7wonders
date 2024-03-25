@@ -32,44 +32,45 @@ tSave = nan(Nsaves,1);
 ySave = nan(Nsaves,1); zSave = nan(Nsaves,1);
 PySave = nan(Nsaves,1); PzSave = nan(Nsaves,1);
 vySave = nan(Nsaves,1); vzSave = nan(Nsaves,1);
-%%
-%% Initialize plot
-cols = get(0, 'DefaultAxesColorOrder');
-plot(ySave(1), zSave(1), '.', 'Color', cols(1,:)); axis('tight');
-xlabel('y/m'); ylabel('z/m'); hold on; %@
-%% Numerical time integration
-%% initialize
-t = t0;
-y = y0; z = z0;
-Py = Py0; Pz = Pz0;
-vy = Py/m; vz = Pz/m; %@
 %% Save initial values
 i = 1; % index that keeps count of savepoints
 tSave(i) = t0;
 ySave(i) = y0; zSave(i) = z0;
 PySave(i) = Py0; PzSave(i) = Pz0;
-vySave(i) = Py0/m; vzSave(i) = Pz0/m; %@
-while abs(t) < abs(t1)
+vySave(i) = Py0/m; vzSave(i) = Pz0/m;
+%% Initialize plot
+cols = get(0, 'DefaultAxesColorOrder');
+plot(ySave(1), zSave(1), '.', 'Color', cols(1,:)); axis('tight');
+xlabel('y/m'); ylabel('z/m'); hold on; %@
+%%
+%% Numerical time integration
+%% initialize
+t = t0;
+y = y0; z = z0;
+Py = Py0; Pz = Pz0;
+vy = Py/m; vz = Pz/m;
+%% loop
+while sign(dt)*t < sign(dt)*t1 % this check allows for backward time integration
   %% update time
-    t = t + dt;
-    %% update momentum
-    Py = Py + (Fy + Gy)*dt;
-    Pz = Pz + (Fz + Gz)*dt;
-    %% update velocity (from constitutive relation P=mv)
-    vy = Py/m;
-    vz = Pz/m;
-    %% update position
-    y = y + vy*dt;
-    z = z + vz*dt; %@
-    %% Check whether we save & plot at this step
-    if min(abs([0 dsave] - mod(t-t0, dsave))) <= abs(dt)/2
-      i = i+1;
-      tSave(i) = t;
-      ySave(i) = y; zSave(i) = z;
-      vySave(i) = vy; vzSave(i) = vz;
-      PySave(i) = Py; PzSave(i) = Pz;
-      plot(y, z, '.', 'Color', cols(1,:));
-      pause(0.001);
-    end %@
+  t = t + dt;
+  %% update momentum
+  Py = Py + (Fy + Gy)*dt;
+  Pz = Pz + (Fz + Gz)*dt;
+  %% update velocity (from constitutive relation P=mv)
+  vy = Py/m;
+  vz = Pz/m;
+  %% update position
+  y = y + vy*dt;
+  z = z + vz*dt; %@
+  %% Check whether we save & plot at this step
+  if min(abs([0 dsave] - mod(t-t0, dsave))) <= abs(dt)/2
+    i = i+1;
+    tSave(i) = t;
+    ySave(i) = y; zSave(i) = z;
+    vySave(i) = vy; vzSave(i) = vz;
+    PySave(i) = Py; PzSave(i) = Pz;
+    plot(y, z, '.', 'Color', cols(1,:));
+    pause(0.001);
+  end %@
 end %@
 plot(ySave, zSave, 'Color', cols(1,:)); axis('tight'); %@
