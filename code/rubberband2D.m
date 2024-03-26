@@ -7,12 +7,12 @@ ya0 = -3; za0 = 3; % initial position of object a
 yb0 = 0; zb0 = 0; % initial position of object a
 vya0 = 0; vza0 = 0; % initial velocity of object a
 vyb0 = 0; vzb0 = 0; % initial velocity of object b
-Gya = 0; Gza = -ma*9.8; % gravity supply on object a
+Gya = 0; Gza = -9.8*ma; % gravity supply on object a
 Gyb = 0; Gzb = 0; % gravity supply on object b
 k = 5000; % spring constant
 ln = 5; % natural length of rubber band
 t0 = 0; % initial time
-t1 = 20; % final time
+t1 = 10; % final time
 dt = 0.001; % time step %@
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t0,dt);
@@ -45,9 +45,9 @@ ybSave(1) = yb0; zbSave(1) = zb0;
 PyaSave(1) = ma*vya0; PzaSave(1) = ma*vza0;
 PybSave(1) = mb*vyb0; PzbSave(1) = mb*vzb0;
 %% Initialize plot
-cols = get(0, 'DefaultAxesColorOrder');
-plot(yaSave(1), zaSave(1), '.', 'Color', cols(1,:)); axis('tight');
-plot(ybSave(1), zbSave(1), '.', 'Color', cols(2,:)); axis('tight');
+fig = figure(); cols = get(0, 'DefaultAxesColorOrder');
+plot(yaSave(1), zaSave(1), 's','Color',cols(1,:)); axis('tight');
+plot(ybSave(1), zbSave(1), 'o','Color',cols(1,:)); axis('tight');
 xlabel('{\it y}/m'); ylabel('{\it z}/m'); hold on; %@
 %%
 %% Numerical time integration
@@ -98,19 +98,11 @@ while sign(dt)*t < sign(dt)*t1 % this check allows for backward time integration
     ybSave(i) = yb; zbSave(i) = zb;
     PyaSave(i) = Pya; PzaSave(i) = Pza;
     PybSave(i) = Pyb; PzbSave(i) = Pzb;
-    plot(ya, za,'.','Color',cols(1,:));
-    plot(yb, zb,'.','Color',cols(2,:));
+    plot(ya, za, 's','Color',cols(1,:));
+    plot(yb, zb, 'o','Color',cols(2,:));
     pause(0.001);
   end %@
 end %@
 %% Plot trajectory
 plot(yaSave,zaSave,'-','Color',cols(1,:));
-plot(ybSave,zbSave,'-.','Color',cols(2,:));
-%% Plot total y-momentum vs t
-figure();
-plot(tSave,PyaSave+PybSave,'-','Color',cols(3,:));
-axis('tight'); xlabel('{\it t}/s'); ylabel('{\it P_y}/(Ns)');
-%% Plot total z-momentum vs t
-figure();
-plot(tSave,PzaSave+PzbSave,'-','Color',cols(3,:));
-axis('tight'); xlabel('{\it t}/s'); ylabel('{\it P_z}/(Ns)'); %@
+plot(ybSave,zbSave,'-.','Color',cols(2,:)); %@

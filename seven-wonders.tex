@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-25T22:07:40+0100
+%% Last-Updated: 2024-03-26T16:04:26+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -962,6 +962,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yle}{l}
 \newcommand*{\ydl}{\incr\bm{l}}
 \newcommand*{\ydlm}{\incr l}
+\newcommand*{\tot}{_{\textrm{tot}}}
 %
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
@@ -5354,8 +5355,6 @@ Note the minus sign in Hooke's law. It means that if the present length is large
 
 In modelling some physical problems we can put $\ylo=\qty{0}{m}$: this represents that the natural length of the spring is very small compared to usual amounts by which the spring is stretched. Note that in this case the spring always exerts a tension, never a pressure.
 
-A Hookean spring is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities, and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple, \emph{linear} relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
-
 \begin{exercise}
   What are the physical dimensions of the elastic constant $k$? in which units could we measure it?
 \end{exercise}
@@ -5378,36 +5377,70 @@ This kind of behaviour can of course be modelled, at least qualitatively, by a c
       0\ ,& if\enspace$\abs{\yra - \yrb} \le \ylo$
       \\
       -k\,
-      \tfrac{\yra-\yrb}{
-        \abs{\yra - \yrb}
-      }\,\bigl(\abs{\yra - \yrb} -\ylo \bigr) \ ,
+      \bigl(\abs{\yra - \yrb} -\ylo \bigr)\,
+      \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}\ ,
       & if\enspace$\abs{\yra - \yrb} > \ylo$
     \end{dcases*}
   \end{equation}
+  Note that $\tfrac{\yra-\yrb}{\abs{\yra - \yrb}}$ is just a \emph{unit vector} directed from the position $\yrb$ to the position $\yra$.
 \end{definition}
+
 A string can be approximately modelled by such a constitutive equation with a large constant $k$.
 
-This constitutive equation is difficult to be used with analytical methods, but presents no particular problems in numerical simulations. It is even possible to modify the dependence on the elongation\enspace$\abs{\yra - \yrb} -\ylo$\enspace to \emph{non-linear} formulae, for instance
-  \begin{equation}
-    \label{eq:nonhooke_square}
-    \yFab = 
-    \begin{dcases*}
-      0\ ,& if\enspace$\abs{\yra - \yrb} \le \ylo$
-      \\
-      -k\,
-      \tfrac{\yra-\yrb}{
-        \abs{\yra - \yrb}
-      }\ f\Bigl(\abs{\yra - \yrb} -\ylo \Bigr) \ ,
-      & if\enspace$\abs{\yra - \yrb} > \ylo$
-    \end{dcases*}
-  \end{equation}
-  where $f()$ is a function of our choice,  constructed for example by fitting data.
+This constitutive equation is difficult to be used with analytical methods, but can be amenable to numerical time integration
 
+\subsection{Pairwise forces}
+\label{sec:pairwise_forces}
 
-\subsection{Gravity: momentum supply near a planet's surface}
+A Hookean or non-Hookean \enquote{spring} is modelled as having no \masse\ or momentum of its own. It is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities.% , and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple, \emph{linear} relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
+
+We can clearly employ this general idea to model other, wildly different, physical phenomena:
+\begin{definition}{Pairwise forces}
+  Consider a phenomenon where these three main conditions are met:
+  \begin{itemize}[shift,noitemsep]
+  \item a transfer of momentum occurs between two \emph{separate} control volumes
+  \item this transfer can approximately be treated as \emph{instantaneous}
+  \item \masse\ and momentum involved in the transfer (such as the mass and momentum of a real spring) can be neglected
+  \end{itemize}
+
+  Under these conditions we have a constitutive relation of the general form
+  \begin{equation*}
+    \label{eq:pairwise}
+    \yFab =  f\bigl(\abs{\yra - \yrb}\bigr)\ \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
+  \end{equation*}
+  where $f()$ can in principle be any real function.
+
+  \smallskip
+
+  We call this a \textbf{pairwise long-distance force}.
+\end{definition}
+
+Among the most important examples of such a constitutive relation is \textbf{Newton's law of gravitation}:
+\begin{equation}
+  \label{eq:Newton_gravitation}
+  \yFab = -G\,\frac{\yMa\,\yMb}{\abs{\yra - \yrb}^{2}}\
+  \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
+\end{equation}
+Another example is the force of the so-called \emph{Lennard-Jones potential}:
+\begin{equation*}
+  \label{eq:LennardJones}
+  \yFab = \frac{\epsilon}{\abs{\yra - \yrb}}\,
+  \biggl[
+  12\,\biggl(\frac{\sigma}{\abs{\yra - \yrb}}\biggr)^{12}
+  -6\,\biggl(\frac{\sigma}{\abs{\yra - \yrb}}\biggr)^{6}
+  \biggr]\
+  \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
+\end{equation*}
+Which is often used to model the flux of momentum among molecules of some fluids and solids.
+
+\smallskip
+
+According to general relativity there cannot be an \emph{instantaneous} transfer of momentum between two spatially separate control volumes. The momentum transfer modelled by pairwise forces actually occurs in a lapse of time, mediated by matter or electromagnetic field present between the two control volumes.
+
+\subsection{Gravity and momentum supply near a planet's surface}
 \label{sec:gravity}
 
-According to general relativity, there can be creation of momentum in a control volume, that is, a momentum supply $\yG$, depending on our choice of coordinate system and on the nearby presence of large amounts of \energym. General relativity also makes it clear that it doesn't make sense to distinguish between these two effects in a small control volume: if we measure a supply of momentum $\yG$ in a very small region, it could be because of our coordinate system, or because of the nearby presence of \energym. In fact, by changing our coordinate system we can always make the supply to be zero \emph{in a small region} -- but in general not everywhere.
+According to general relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we measure a supply of momentum $\yG$ in a very small region, it could be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply to be zero \emph{in a small region} -- but in general not everywhere.
 
 Examples of these kinds of supplies are the \enquote*{gravitational force}, the \enquote*{centrifugal force}, and other forces called \enquote*{inertial}. For example, when we're travelling in a car that speeds up or slows down, we feel a horizontal force pushing us against our seat or pulling us away from it.
 %
@@ -5448,18 +5481,20 @@ As previously mentioned there are situations in which we must study or find whic
 
 \smallskip
 
-\marginpar{\vspace{-4\baselineskip}\centering%
+An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation?
+%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=\linewidth]{opmvol1.jpg}%
 \\\includegraphics[width=3em]{axes.pdf}%
   % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
-An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation?
 
 Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
 \begin{equation*}
   \yP(t) = [0\,,0\,,0]\:\unit{N\,s}\enspace\text{(constant)}.
 \end{equation*}
-We also know that any control volume close to Earth's surface \autoref{sec:supply_momentum_gravity}{has a constant \emph{supply} of momentum}, proportional to the \masse\ it contains. Let's say that the supply in this case is
+We also know that any control volume close to Earth's surface %\autoref{sec:supply_momentum_gravity}{}
+has a constant \emph{supply} of momentum, proportional to the \masse\ it contains. Let's say that the supply in this case is
 \begin{equation*}
   \yG(t) = [0\,,0\,,\num{-2}]\:\unit{N}\enspace\text{(constant)}.
 \end{equation*}
@@ -5981,7 +6016,196 @@ The basic time-stepping scheme looks as follows:
 \subsection{Non-Hookean spring: numerical time integration}
 \label{sec:nonHooke_simulation}
 
-The system of two masses connected by a \autoref{sec:nonhooke}{\emph{non-Hookean} spring} with constitutive relation~\eqref{eq:nonhooke} is analytically challenging.  Its numerical solution, however, only involves a change of a couple of lines to the code that you wrote for Exercise~\ref{ex:hooke}.
+The system of two masses connected by a \autoref{sec:nonhooke}{\emph{non-Hookean} spring} with constitutive relation~\eqref{eq:nonhooke} is analytically challenging.  Its numerical solution, however, only involves a change of a couple of lines to the code that you wrote for Exercise~\ref{ex:hooke}. A small mathematical change in a constitutive relation can lead to a much richer set of behaviours, as the examples in the side plots below show.
+
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[width=\linewidth]{rubberband2Dplot1.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{rubberband2Dplot2.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{rubberband2Dplot3.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Examples of trajectories of two masses connected by a non-Hookean spring (\textcolor{blue}{}), for different values of parameters and initial conditions.%
+}%
+\begin{exercise}
+  Modify the script you wrote for Exercise~\ref{ex:hooke} so that the spring is modelled by the non-Hookean constitutive relation~\eqref{eq:nonhooke} (which can be implemented with an \texttt{if}-statement), instead of the Hookean one.
+
+  Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the side plots:
+\begin{description}[shift,itemsep=\baselineskip]
+      \item[Set 1:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yMa=\qty{1}{kg}
+        \qquad
+        \yMb=\qty{1}{kg}
+        \qquad
+        k=\qty{5}{N/m}
+        \qquad
+        \ylo = \qty{5}{m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{3}]\:\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{0},\, \num{0}]\:\unit{m}
+        \\
+        \yva(\yti)=[\num{3},\, \num{1}]\:\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \\
+        \yGa(\yti)= \yMa\cdot[\num{0},\, \num{-9.8}]\:\unit{N/kg}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
+      \end{gathered}
+    \end{equation*}
+
+  \item[Set 2:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yMa=\qty{2}{kg}
+        \qquad
+        \yMb=\qty{2}{kg}
+        \qquad
+        k=\qty{5}{N/m}
+        \qquad
+        \ylo = \qty{5}{m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{0}]\:\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{3},\, \num{0}]\:\unit{m}
+        \\
+        \yva(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \\
+        \yGa(\yti)= [\num{0},\, \num{0}]\:\unit{N}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
+      \end{gathered}
+    \end{equation*}
+
+  \item[Set 3:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yMa=\qty{1}{kg}
+        \qquad
+        \yMb=\qty{5000}{kg}
+        \qquad
+        k=\qty{5000}{N/m}
+        \qquad
+        \ylo = \qty{5}{m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{3}]\:\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{0},\, \num{0}]\:\unit{m}
+        \\
+        \yva(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \\
+        \yGa(\yti)= \yMa\cdot[\num{0},\, \num{-9.8}]\:\unit{N/kg}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
+      \end{gathered}
+    \end{equation*}
+
+  \item[Set 4:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{30}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yMa=\qty{1}{kg}
+        \qquad
+        \yMb=\qty{5000}{kg}
+        \qquad
+        k=\qty{5}{N/m}
+        \qquad
+        \ylo = \qty{5}{m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{3}]\:\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{0},\, \num{0}]\:\unit{m}
+        \\
+        \yva(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \\
+        \yGa(\yti)= \yMa\cdot[\num{0},\, \num{-9.8}]\:\unit{N/kg}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
+      \end{gathered}
+    \end{equation*}
+  \end{description}
+
+  Play with other parameters and initial values!
+\end{exercise}
+
+
+\subsection{Many-body systems}
+\label{sec:many-body}
+
+
+
+
+
+\section{Choice of control surfaces and volumes}
+\label{sec:momentum_choice_control}
+
+In the preceding examples with the two bodies \amp\ spring, we chose to describe the system by means of three closed control surfaces. We did so because we were interested in the detailed motion of the two bodies with respect to each other, and we were \emph{not} interested in what was happening \emph{within} each body.
+
+In a real physical realization, for instance with two tennis balls connected by a spring, each tennis ball would slightly deform upon receiving momentum flux from the spring. If we were interested in such deformations, we would need to describe each tennis ball by a set of control surfaces and volumes, small enough so as to keep a detailed track of the different momentum contents and momentum fluxes within the ball. This detailed description would also require knowledge of constitutive relations for the ball's material. Analogously for the spring, if we wished to describe it as a real spring made of different, deforming parts.
+
+Yet in other situations we may instead not even be interested in the relative motion of the tennis balls.
+%
+\marginpar{\vspace{-1\baselineskip}\centering%
+\includegraphics[width=\linewidth]{spring2Dplot_straight.pdf}%
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% Examples of trajectories of two masses connected by a non-Hookean spring (\textcolor{blue}{}), for different values of parameters and initial conditions.%
+}%
+For instance, in Exercise~\ref{ex:hooke} p.~\pageref{ex:hooke}, with the Hookean spring, one set of initial values leads to the trajectories shown in the plot on the side. The distance between the two bodies cyclically changes between zero and a maximum value. If we imagine to zoom out from this plot, the positions of the two masses become almost indistinguishable, that is,\enspace$\yra \approx \yrb$\,;\enspace and we see that the system as a whole is essentially moving on a straight line. A zoomed-out plot of $\yra(t)$ or $\yrb(t)$ against time $t$ would also show that its velocity is essentially constant.
+
+In such a situation we would have chosen just \emph{one} closed control surface containing the two bodies and the spring. By the \autoref{def:extensivity}{extensivity property}, the total \masse\ $\yM\tot$, momentum content $\yP\tot$, momentum flux $\yF\tot$, and momentum supply $\yG\tot$ for this closed control surface can be obtained by adding up those of the three original control surfaces, spring+$a$+$b$:
+%
+\marginpar{\vspace{-2\baselineskip}\centering%
+\includegraphics[width=0.75\linewidth]{hooke_control1.jpg}%
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+}%
+\begin{equation*}
+  \begin{gathered}
+    \yM\tot= 0+\yMa+\yMb\qquad
+    \yP\tot=0+\yPa+\yPb\\[\jot]
+    \yF\tot=(-\yFab-\yFba)+\yFab+\yFba\qquad
+    \yG\tot=0+\yGa+\yGb
+  \end{gathered}
+\end{equation*}
+Note that the total momentum influx is zero:\enspace$\yF\tot=0$\,.\enspace Indeed the only non-zero momentum fluxes occur at the surfaces between each body and the spring -- but in the present description these two surfaces are not considered (just like the momentum fluxes that in reality occur \emph{within} each body were not considered when we chose three control volumes).
+
+Momentum balance also applies to the total control volume:
+\begin{equation*}
+  \yP\tot(\ytf) = \yP\tot(\yti) + \int_{\yti}^{\ytf}\!\!\yF\tot(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG\tot(t)\,\di t
+\end{equation*}
+If the total momentum influx and supplies are zero, then we find\enspace$\yP\tot(\ytf) = \yP\tot(\yti)$\,,\enspace which explains why we found that the velocity for the whole system could be considered as constant.
+
+
+
 
 
 %%%% examples use empheq
