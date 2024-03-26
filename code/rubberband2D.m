@@ -1,30 +1,28 @@
 %% SI units used throughout
-%% Simulation of two bodies connected by Hookean spring in 2D
+%% Simulation of two bodies connected by non-Hookean spring in 2D
 %% Coordinates (y,z)
 ma = 1; % mass of object a
-mb = 5000; % mass of object b
-ya0 = -3; za0 = 3; % initial position of object a
+mb = 1; % mass of object b
+ya0 = -1; za0 = 1; % initial position of object a
 yb0 = 0; zb0 = 0; % initial position of object a
 vya0 = 0; vza0 = 0; % initial velocity of object a
 vyb0 = 0; vzb0 = 0; % initial velocity of object b
 Gya = 0; Gza = -9.8*ma; % gravity supply on object a
 Gyb = 0; Gzb = 0; % gravity supply on object b
-k = 5000; % spring constant
+k = 4; % spring constant
 ln = 5; % natural length of rubber band
 t0 = 0; % initial time
-t1 = 10; % final time
-dt = 0.001; % time step %@
+t1 = 10; % final time, can also be earlier than initial
+dt = 0.001; % time step, negative if backward time integration %@
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t0,dt);
 %% check if timestep and time interval are consistent
-%% (we can integrate backward in time)
 if (t1-t0)*dt <= 0
   error('time interval inconsistent with timestep');
 end
-%%
-%% We save values of all quantities at some steps during the simulation,
-%% in case we want to do some analysis or plotting afterwards.
-%% Saving at all timesteps could be too costly in terms of memory
+%% Save values of all quantities at some steps during the simulation,
+%% for subsequente analysis or plotting
+%% (saving at all timesteps could be too costly)
 Nsaves = 200; % number of timepoints to save during the simulation
 %% Calculate time interval for saving
 dsave = (t1-t0)/(Nsaves-1);
@@ -45,11 +43,11 @@ ybSave(1) = yb0; zbSave(1) = zb0;
 PyaSave(1) = ma*vya0; PzaSave(1) = ma*vza0;
 PybSave(1) = mb*vyb0; PzbSave(1) = mb*vzb0;
 %% Initialize plot
-fig = figure(); cols = get(0, 'DefaultAxesColorOrder');
+cols = get(0, 'DefaultAxesColorOrder');
 plot(yaSave(1), zaSave(1), 's','Color',cols(1,:)); axis('tight');
 plot(ybSave(1), zbSave(1), 'o','Color',cols(1,:)); axis('tight');
-xlabel('{\it y}/m'); ylabel('{\it z}/m'); hold on; %@
-%%
+xlabel('{\it y}/m'); ylabel('{\it z}/m'); hold on;
+%% %@
 %% Numerical time integration
 %% Initialize
 t = t0;
@@ -60,12 +58,11 @@ vyb = vyb0; vzb = vzb0;
 Pya = ma*vya0; Pza = ma*vza0;
 Pyb = mb*vyb0; Pzb = mb*vzb0;
 %% loop
-while sign(dt)*t < sign(dt)*t1 % this check allows for backward time integration
+while sign(dt)*t < sign(dt)*t1 % possible backward time integration
   %% update time
   t = t + dt;
-  %% Calculate force by rubber band
-  l = norm([ya-yb, za-zb]); % present length
   %% non-Hookean constitutive relation
+  l = norm([ya-yb, za-zb]); % present length
   if l < ln
     Fyab = 0;
     Fzab = 0;
@@ -90,7 +87,7 @@ while sign(dt)*t < sign(dt)*t1 % this check allows for backward time integration
   za = za + vza*dt;
   yb = yb + vyb*dt;
   zb = zb + vzb*dt; %@
-  %% Check whether we save & plot at this step
+  %% Check whether to save & plot at this step
   if min(abs([0 dsave] - mod(t-t0, dsave))) <= abs(dt)/2
     i = i+1;
     tSave(i) = t;

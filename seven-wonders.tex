@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-26T16:04:26+0100
+%% Last-Updated: 2024-03-26T22:36:24+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4682,12 +4682,10 @@ The time-stepping scheme discussed in the previous sections is very crude and qu
 
 Yet, the simple time-stepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
 
-\bigskip
-
-\subsection{Example script for numerical integration}
+\subsection{Example script for numerical time integration}
 \label{sec:tennisball_script}
 
-Here is an example script that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB). The \textcolor{blue}{blue lines} are those strictly related to numerical time integration; the \textcolor{grey}{grey lines} take care of saving and plotting data. You can use this script as a starting point for exercises that require scripting in the next chapters.
+Here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB), that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data. You can use this script as a starting point for exercises that require scripting in the next chapters.
 
 \smallskip
 
@@ -5422,7 +5420,7 @@ Among the most important examples of such a constitutive relation is \textbf{New
   \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
 \end{equation}
 Another example is the force of the so-called \emph{Lennard-Jones potential}:
-\begin{equation*}
+\begin{equation}
   \label{eq:LennardJones}
   \yFab = \frac{\epsilon}{\abs{\yra - \yrb}}\,
   \biggl[
@@ -5430,7 +5428,7 @@ Another example is the force of the so-called \emph{Lennard-Jones potential}:
   -6\,\biggl(\frac{\sigma}{\abs{\yra - \yrb}}\biggr)^{6}
   \biggr]\
   \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
-\end{equation*}
+\end{equation}
 Which is often used to model the flux of momentum among molecules of some fluids and solids.
 
 \smallskip
@@ -6025,7 +6023,7 @@ The system of two masses connected by a \autoref{sec:nonhooke}{\emph{non-Hookean
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Examples of trajectories of two masses connected by a non-Hookean spring (\textcolor{blue}{}), for different values of parameters and initial conditions.%
 }%
-\begin{exercise}
+\begin{exercise}[label={ex:nonhooke}]
   Modify the script you wrote for Exercise~\ref{ex:hooke} so that the spring is modelled by the non-Hookean constitutive relation~\eqref{eq:nonhooke} (which can be implemented with an \texttt{if}-statement), instead of the Hookean one.
 
   Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the side plots:
@@ -6162,7 +6160,15 @@ Examples of trajectories of two masses connected by a non-Hookean spring (\textc
 \subsection{Many-body systems}
 \label{sec:many-body}
 
+We can obviously consider more than two objects connected by a number of springs or other \autoref{sec:pairwise_forces}{pairwise forces}. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
 
+%
+\marginpar{\vspace{-3\baselineskip}\centering%
+\includegraphics[width=\linewidth]{md_simulation.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics}}%
+}%
+This way we can numerically simulate complex physical phenomena such as a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
 
 
 
@@ -6204,6 +6210,19 @@ Momentum balance also applies to the total control volume:
 \end{equation*}
 If the total momentum influx and supplies are zero, then we find\enspace$\yP\tot(\ytf) = \yP\tot(\yti)$\,,\enspace which explains why we found that the velocity for the whole system could be considered as constant.
 
+\medskip
+
+\section{Example script for non-Hookean spring }
+\label{sec:nonhooke_script}
+
+Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\pageref{ex:nonhooke}. It is a generalization of the \autoref{sec:tennisball_script}{\texttt{tennisball.m} script}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data.
+
+\smallskip
+
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+\furl{https://pglpm.github.io/7wonders/code/rubberband2D.m}{Download \texttt{rubberband2D.m}}%
+}%
+\lstinputlisting[style=mycode]{code/rubberband2D.m}
 
 
 
