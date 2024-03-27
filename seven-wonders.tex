@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-03-26T22:36:24+0100
+%% Last-Updated: 2024-03-27T10:32:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -945,7 +945,13 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
-\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{hand-point-right}\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
+\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{%
+%hand-point-right%
+%undo%
+%undo-alt%
+reply%
+%history%
+}\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
 
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
@@ -2654,7 +2660,7 @@ The dimensions, units, and scalar or vector character of all quantities mentione
 
 \printpagenotes*
 \clearpage
-\chapter{Fluxes and volume integrals}
+\chapter{Fluxes and volume contents}
 \label{cha:total_flux}
 
 
@@ -2671,12 +2677,12 @@ Recall that the \autoref{cha:stuff}{main seven quantities} -- matter, electric c
 \end{enumerate}
 
 Let's give definite names to the measurements~(1) and~(2b):
-\begin{definition}{volume integral and flux}
-  We can call measurement~(1) the \textbf{volume integral} of the quantity, although we won't use this term very often.
+\begin{definition}{volume content and flux}
+  We can call measurement~(1) the \textbf{volume content} or \textbf{volume integral} of the quantity.
 
   \smallskip
 
-  Most important, we call measurement~(2b) the \textbf{flux} of the quantity. % Remember that in order to calculate the flux through a surface we need to specify how that surface is moving.
+  We call measurement~(2b) the \textbf{flux} of the quantity. % Remember that in order to calculate the flux through a surface we need to specify how that surface is moving.
 \end{definition}
 
 \smallskip
@@ -2688,7 +2694,7 @@ These two notions and measurements are very intuitive; that's also why it's conv
 
 A first question that comes to mind is: how are the volumes and surfaces chosen?
 
-The choice of volume (and therefore of the surface bounding it) for a volume integral, and the choice of surface for a flux are \emph{completely arbitrary}, and they can be \emph{completely imaginary}. Since they are under our control, they are called \textbf{control volumes} and \textbf{control surfaces}.
+The choice of volume (and therefore of the surface bounding it) for a volume content, and the choice of surface for a flux are \emph{completely arbitrary}, and they can be \emph{completely imaginary}. Since they are under our control, they are called \textbf{control volumes} and \textbf{control surfaces}.
 
 For example, consider a classroom and the people in it. In your imagination you can divide the classroom into two halves, say the front and the rear half. You can then ask or measure simply by counting:\enspace
 \begin{enumerate*}[label=(\arabic*)]
@@ -2703,7 +2709,7 @@ For example, consider a classroom and the people in it. In your imagination you 
 
 A control volume and a control surface don't need to be static: they can move and deform.
 
-In the case of a control volume, movement doesn't matter: the volume integral in a control volume \emph{does not depend on the instantaneous motion of the volume}. In fact we can even imagine a control volume that exists for just one time instant.
+In the case of a control volume, movement doesn't matter: the volume content in a control volume \emph{does not depend on the instantaneous motion of the volume}. In fact we can even imagine a control volume that exists for just one time instant.
 
 \marginpar{%
 \includegraphics[align=c,width=\linewidth]{ball_wall.png}
@@ -2724,16 +2730,16 @@ The fact that we can choose control volumes and control surfaces arbitrarily giv
 
 When we study some solid object, like a football, a rocket, or a planet, we typically choose a control volume that tightly encloses the object. When we study something flowing or moving, such as a fluid material or an electromagnetic field, we typically divide the space of interest into small control volumes and surfaces, constructing a \emph{mesh}; this mesh can even be refined in regions that are of special interest.
 
-\section{Volume integrals}
+\section{Volume contents}
 \label{sec:intuition_volume}
 
 \subsection{Scalar quantities}
 
-A volume integral for a scalar quantity, for example energy, can be represented like this:
+A volume content (or volume integral) for a scalar quantity, for example energy, can be represented like this:
 \begin{center}
   \includegraphics[align=t,height=7em]{volumeintegral_8J.pdf}
 \end{center}
-we have eliminated one spatial dimension for simplicity, considering the analogous two-dimensional idea. The volume is in \textcolor{midgrey}{light grey}, delimited by a closed \textcolor{darkgrey}{darker grey} boundary, and we're indicating that the volume integral, that is, the amount of energy within, is \textcolor{blue}{\qty{8}{J}}.
+we have eliminated one spatial dimension for simplicity, considering the analogous two-dimensional idea. The volume is in \textcolor{midgrey}{light grey}, delimited by a closed \textcolor{darkgrey}{darker grey} boundary, and we're indicating that the volume content, that is, the amount of energy within, is \textcolor{blue}{\qty{8}{J}}.
 
 As a visualization device, this representation can be useful. But let's straighten out some of its aspects:
 \begin{itemize}[para]
@@ -2754,13 +2760,13 @@ As a visualization device, this representation can be useful. But let's straight
 \bigskip
 
 \begin{exercise}
-  The volume integral of matter in a particular volume is equal to \qty{36}{mol}. Can we conclude that the volume doesn't contain antimatter?
+  The volume content of matter in a particular volume is equal to \qty{36}{mol}. Can we conclude that the volume doesn't contain antimatter?
 \end{exercise}
 
 
 \subsection{Vector quantities}\label{sec:volintegral_vector}
 
-A volume integral for a vector quantity, for example momentum, can be represented as follows (we still simplify our visualization to two dimensions):
+A volume content for a vector quantity, for example momentum, can be represented as follows (we still simplify our visualization to two dimensions):
 \begin{center}
   \includegraphics[height=7em]{volumeintegral_8Ns.pdf}
 \end{center}
@@ -2778,18 +2784,18 @@ is explicitly reported.
 The visual representation above is useful, if we keep in mind remarks analogous to the scalar case:
 \begin{itemize}
 \item This is a time snapshot.
-\item\label{item:applicationpoint}The application point of the vector representing the volume integral is unimportant: for instance, it doesn't need to be placed at the centre of the volume. The vector refers to the volume as a whole, not to some specific point within.
+\item\label{item:applicationpoint}The application point of the vector representing the volume content is unimportant: for instance, it doesn't need to be placed at the centre of the volume. The vector refers to the volume as a whole, not to some specific point within.
 \item Different subvolumes could have amounts represented by different vectors; only the total vector is represented above.
 \end{itemize}
 This last remark will be especially important when we discuss some physical phenomena involving rotation. As an example, look at the side picture:%\fig~\ref{fig:nonzero_vector_subregions}:
 \marginpar{\vspace{-8\baselineskip}\centering%
 \includegraphics[width=0.5\linewidth]{volumeintegral_N_divided.pdf}
-\\[\jot]\flushleftright\footnotesize\color{mpcolor}The whole region has zero volume integral. The left and right subregions have non-zero and opposite volume integrals.%
+\\[\jot]\flushleftright\footnotesize\color{mpcolor}The whole region has zero volume content. The left and right subregions have non-zero and opposite volume contents.%
 }
-the volume integral for the whole region is \emph{zero}, but its left and right subregions have \emph{non-zero and opposite} volume integrals.
+the volume content for the whole region is \emph{zero}, but its left and right subregions have \emph{non-zero and opposite} volume contents.
 % \begin{figure}[h]\centering
 %   \includegraphics[height=7em]{volumeintegral_N_divided.pdf}
-%   \caption{The whole region has zero volume integral. The left and right subregions have non-zero and opposite volume integrals.}\label{fig:nonzero_vector_subregions}
+%   \caption{The whole region has zero volume content. The left and right subregions have non-zero and opposite volume contents.}\label{fig:nonzero_vector_subregions}
 % \end{figure}
 
 \smallskip
@@ -3023,7 +3029,7 @@ the picture says that the $x$-component of the quantity has changed on the right
 
 \medskip
 
-Another aspect of vector fluxes that we must try not to get confused about is the application point of the vector representing the flux (the base point of the arrow). This is a time snapshot. Just like in \autoref{item:applicationpoint}{the case of vector volume integrals}, \textbf{the application point of the vector representing the flux is unimportant. The vector refers to one side of the surface as a whole.}
+Another aspect of vector fluxes that we must try not to get confused about is the application point of the vector representing the flux (the base point of the arrow). This is a time snapshot. Just like in \autoref{item:applicationpoint}{the case of vector volume contents}, \textbf{the application point of the vector representing the flux is unimportant. The vector refers to one side of the surface as a whole.}
 
 \medskip
 
@@ -3405,9 +3411,9 @@ As a simple example, consider a room's door. During one minute, three people ent
 
 The idea of flux naturally evokes the idea of movement, and therefore of \emph{velocity}. Is there a relationship between flux and velocity?
 
-The answer is yes: velocity is in fact essentially defined from a flux and a volume integral. Consider for example how we measure the velocity of an object: we are actually keeping track of a flow of matter -- the matter that makes up the object -- from a region of space to another.
+The answer is yes: velocity is in fact essentially defined from a flux and a volume content. Consider for example how we measure the velocity of an object: we are actually keeping track of a flow of matter -- the matter that makes up the object -- from a region of space to another.
 
-The rigorous definition of velocity from flux is involved, so here we'll just see a simplified and approximate example of how this definition works. In the following chapters you will not need to remember any particular mathematical definition; just keep in mind that there's a tight connection between velocity, flux, and volume integral.
+The rigorous definition of velocity from flux is involved, so here we'll just see a simplified and approximate example of how this definition works. In the following chapters you will not need to remember any particular mathematical definition; just keep in mind that there's a tight connection between velocity, flux, and volume content.
 
 Take an extensive scalar quantity like matter, charge, energy, or entropy. For concreteness let's take matter. Choose a coordinate system $(t,x,y,z)$ and consider a point in space at a specific time.
 %
@@ -3416,7 +3422,7 @@ Take an extensive scalar quantity like matter, charge, energy, or entropy. For c
 % \\[\jot]\footnotesize\flushleftright%
 % {\color{mpcolor}A region with a negative amount of charge}%
 }%
-Around this point, choose a very small cuboid region, delimited by six small rectangular surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one (see side picture). The cuboid has volume $V$, and the amount of matter (volume integral) in it is $\yN$. The two $yz$ surfaces (one of them is in \textcolor{purple}{dark red} in the picture) have area $A$, approximately the same for both; and there is a flux of matter $\yJ_{x}$ crossing either of these two surfaces in the positive-$x$ direction. These two parallel surfaces have approximately the same area and the same flux because the cuboid region is very small.
+Around this point, choose a very small cuboid region, delimited by six small rectangular surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one (see side picture). The cuboid has volume $V$, and the amount of matter (volume content or integral) in it is $\yN$. The two $yz$ surfaces (one of them is in \textcolor{purple}{dark red} in the picture) have area $A$, approximately the same for both; and there is a flux of matter $\yJ_{x}$ crossing either of these two surfaces in the positive-$x$ direction. These two parallel surfaces have approximately the same area and the same flux because the cuboid region is very small.
 
 The $x$-component of the coordinate velocity of matter in this region is then \emph{defined} as
 \begin{equation}
@@ -3444,11 +3450,11 @@ The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive 
   In Newtonian approximation these two velocities are equal, so we do not need to distinguish them. In situations where the Newtonian approximation is not valid, on the other hand, we have to take into account the \enquote{velocity of matter} and the \enquote{velocity of energy} separately. This difference is important for instance in the study of plasma in stars and in numerical general relativity. There is an ongoing discussion as to which of the two velocities is more convenient to use; see for instance \cites{kandusetal2008}, especially the section \emph{Eckart frame versus Landau frame}, which refers to the choice between these two velocities.
 \end{extra}
 
-\section{Symbols for volume integrals and fluxes}
+\section{Symbols for volume contents and fluxes}
 \label{sec:symbols_volint_flux}
 
-Let us summarize the symbols for volume integrals and fluxes of the seven quantities, together with their units, that are used in these notes:
-\begin{definition}{Symbols and units of volume integrals and fluxes}
+Let us summarize the symbols for volume contents and fluxes of the seven quantities, together with their units, that are used in these notes:
+\begin{definition}{Symbols and units of volume contents and fluxes}
   \centering
   \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcll}
     \textbf{quantity}&& \textbf{vol. integral}\enspace[unit] & \textbf{flux}\enspace[unit]
@@ -3546,7 +3552,7 @@ In this chapter we shall see how to mathematically express balance and conservat
 \section{Conservation laws}
 \label{sec:conservation_laws}
 
-Conservation laws tightly connect \autoref{cha:total_flux}{\emph{volume integrals} and \emph{fluxes}}. They are intuitively and visually easy to grasp. The archetype is as follows:
+Conservation laws tightly connect \autoref{cha:total_flux}{\emph{volume contents} and \emph{fluxes}}. They are intuitively and visually easy to grasp. The archetype is as follows:
 
 Consider a \autoref{sec:in_out_flux}{\emph{closed} control surface} at a (coordinate) time $\yti$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
 
@@ -3570,7 +3576,7 @@ through time, changing shape and size but remaining closed -- no holes or cuts -
 
 % The initial and final control volumes and the sequence of control surfaces in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
 
-Now consider any one of the \autoref{sec:stuff}{seven primitive quantities}, except magnetic flux. Recall that these quantities are \emph{extensive}: we can measure the amount of this quantity in any control volume, and its flux across any control surface. For concreteness let's take \emph{matter}, for which we denote volume integrals by $\yN$ and flux by $\yJ$. We make the following measurements:
+Now consider any one of the \autoref{sec:stuff}{seven primitive quantities}, except magnetic flux. Recall that these quantities are \emph{extensive}: we can measure the amount of this quantity in any control volume, and its flux across any control surface. For concreteness let's take \emph{matter}, for which we denote volume contents by $\yN$ and flux by $\yJ$. We make the following measurements:
 \begin{itemize}
 \item $N(\yti)$: total amount of matter contained within the control volume at time $\yti$.
 
@@ -3599,7 +3605,7 @@ note that $\yJ(t)$ is given as a function of the time $t$.
 With this setup we can introduce two kinds of balance laws.
 
 \begin{definition}{Conservation law in integral form}
-  An extensive quantity with volume integral $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds \emph{always}:
+  An extensive quantity with volume content $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:conserved}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
@@ -3683,7 +3689,7 @@ Consider smaller and smaller $\Dt$: then the fraction\enspace$\frac{\yN(t+\Dt)-\
     \frac{\di\yN(t)}{\di t} = \yJ(t)
   \end{equation}
 \end{definition}
-This form says that the rate of change of the volume integral of a quantity must equal \emph{\textbf{in}}flux of that quantity, that is, the rate at which the quantity is coming in through the control surface.
+This form says that the rate of change of the volume content of a quantity must equal \emph{\textbf{in}}flux of that quantity, that is, the rate at which the quantity is coming in through the control surface.
 
 Both forms, integral and differential, of a conservation law are useful, in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and make predictions.
 
@@ -3792,7 +3798,7 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 \begin{itemize}[nosep]
 \item what is the relevant time interval (if using the integral form)
 \item how you define the closed control surfaces and their movement, as well as any subdivisions of the surfaces
-\item what are the volume integral and integrated-flux values you know, and which you want to find
+\item what are the volume content and integrated-flux values you know, and which you want to find
 \end{itemize}}
 
 \medskip
@@ -3823,10 +3829,10 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 
 Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law where this condition is not necessarily satisfied.
 
-The setup is just like before: consider an initial and final closed control surfaces and volumes at $\yti$, $\ytf$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume integral $\yE(\yti)$, final volume integral $\yE(\ytf)$, and influx $\yH(t)$.
+The setup is just like before: consider an initial and final closed control surfaces and volumes at $\yti$, $\ytf$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume content $\yE(\yti)$, final volume content $\yE(\ytf)$, and influx $\yH(t)$.
 
 \begin{definition}{Balance law}
-  A quantity with volume integral $\yE(t)$ and influx $\yH(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds \emph{always}:
+  A quantity with volume content $\yE(t)$ and influx $\yH(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds \emph{always}:
   \begin{equation}
     \label{eq:balanced}
     \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
@@ -3877,7 +3883,7 @@ Unfortunately the mathematical expression above wouldn't be a conservation law, 
 \subsection{Balance law for vector quantities}
 \label{sec:balance_laws_vect}
 
-Let us now consider an extensive vector quantity like \emph{momentum}. Denote its initial and final volume integrals by $\yP(\yti)$ and $\yP(\ytf)$, and its influx (the force) by $\yF(t)$. These are all time-dependent vectors:
+Let us now consider an extensive vector quantity like \emph{momentum}. Denote its initial and final volume contents by $\yP(\yti)$ and $\yP(\ytf)$, and its influx (the force) by $\yF(t)$. These are all time-dependent vectors:
 \begin{equation*}
   \yP(t) =
   \begin{bmatrix}
@@ -4122,7 +4128,7 @@ Let us finish this example with a quick analysis using a \emph{moving} control s
     =\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}\text{\footnotesize\ (const.)} \ .
   \end{gathered}
 \end{equation*}
-Note that the volume integrals and fluxes are now represented by different symbols (we use an underline, but we could use any other graphical symbol, or simply change the letters themselves). This is because \textbf{they refer to different control surfaces and volumes}. We expect their values to be different from the previous ones, which referred to static surfaces. Indeed we already notice that
+Note that the volume contents and fluxes are now represented by different symbols (we use an underline, but we could use any other graphical symbol, or simply change the letters themselves). This is because \textbf{they refer to different control surfaces and volumes}. We expect their values to be different from the previous ones, which referred to static surfaces. Indeed we already notice that
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t =
   \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\:\unit{N\,s}
@@ -4243,7 +4249,7 @@ The differences between states of matter
 
 When we read that a new physical phenomenon has been discovered, usually that means that a new \emph{constitutive relation} has been discovered. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
-Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the volume integral of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}.
+Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the volume content of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}.
 
 \subsection{Examples}
 \label{sec:example_constitutive}
@@ -4359,7 +4365,7 @@ Factoring $\Dt$ we obtain:
   \end{equation}
   called a \textbf{finite-difference approximation}.
 \end{definition}
-This equation says that if we know the value of the volume integral $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $\yti$, then we can predict the value of the volume integral a short time later, $\yE(\yti+\Dt)$.
+This equation says that if we know the value of the volume content $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $\yti$, then we can predict the value of the volume content a short time later, $\yE(\yti+\Dt)$.
 
 For example, suppose that the total amount of energy in a given control volume, at time\enspace$\yti=\qty{20}{s}$\enspace is\enspace$\yE(\yti)=\qty{500}{J}$\,.\enspace At that same time there's a net influx of\enspace$\yH(\yti)= \qty{-30}{J/s}$\enspace into the control volume. And let's suppose that the supply is zero,\enspace$\yR(\yti)=\qty{0}{J/s}$\,.\enspace The amount of energy in the control volume \qty{0.1}{s} later, that is, at time\enspace$\yti+\Dt = \qty{20}{s} + \qty{0.1}{s} = \qty{20.1}{s}$\,,\enspace is then
 \begin{equation*}
@@ -4376,7 +4382,7 @@ For example, suppose that the total amount of energy in a given control volume, 
 This basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}.
 
 \begin{warning}[A control-surface sequence is understood]
-As you recall from the \autoref{eq:conserved}{definition of conservation and balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must be either clearly stated or understood from the context. If this sequence is not specified, the volume integrals and fluxes above don't have any clear meaning.
+As you recall from the \autoref{eq:conserved}{definition of conservation and balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must be either clearly stated or understood from the context. If this sequence is not specified, the volume contents and fluxes above don't have any clear meaning.
 \end{warning}
 
 \begin{exercise}
@@ -4448,7 +4454,7 @@ The finite-difference approximation is also valid for the balance law of a vecto
 \label{sec:timestep_iterate}
 
 The evolution equation~\eqref{eq:finite_diff} can obviously be used iteratively:
-once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
+once we have the volume content $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
 \begin{equation}\label{eq:timestepped_evolution}
   % \begin{aligned}
   %   \mathcolor{blue}{\yE(t+\Dt)} &
@@ -4492,12 +4498,12 @@ once we have the volume integral $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to 
   The numerical calculation of a quantity at successive time steps, with algorithms similar to the one illustrated above, is called \textbf{numerical time integration}, often simply shortened to \emph{integration}.
 \end{definition}
 
-\subsection{Boundary conditions}
+\subsection{Boundary conditions and constitutive equations}
 \label{sec:boundary_conds}
 
 In order to do the numerical time integration above, you notice that we need to know the new values of influx $\yH$ and supply $\yR$ at all subsequent time steps. These values are \emph{not} given by the evolution equation~\eqref{eq:finite_diff}.
 
-In fact, the evolution equation from a balance or conservation law always gives us the \emph{volume integral} at a new time. So it would seem that we have no ways to predict a \emph{flux} or a \emph{supply}. Where do we get these from? There are two possibilities:
+In fact, the evolution equation from a balance or conservation law always gives us the \emph{volume content} at a new time. So it would seem that we have no ways to predict a \emph{flux} or a \emph{supply}. Where do we get these from? There are two possibilities:
 \begin{itemize}[para]
 \item They are simply assigned at every time step, completely or in part. This may be possible because they are known, measured, or controlled.
   \begin{definition}{Boundary conditions}
@@ -4506,9 +4512,9 @@ In fact, the evolution equation from a balance or conservation law always gives 
 
   For example, for isolated moving objects such as the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or sometimes negligible when moving through air; and the constant value of the momentum supply (the gravitational force) is also known. They are both given as boundary conditions for that specific problems.
 
-\item They can be calculated, thanks to \emph{constitutive relations}, from the values of volume integrals of other quantities -- which are in turn predicted with an evolution equation.
+\item They can be calculated, thanks to \emph{constitutive relations}, from the values of volume contents of other quantities -- which are in turn predicted with an evolution equation.
 
-  An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \yM\yv$, briefly discussed previously. It actually relates the \emph{flux} of matter (\autoref{sec:fluxes_velocities}{which determines the velocity $\yv$}) to the \emph{volume integral} of momentum. We shall see this relationship more clearly later in \sect\,\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
+  An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \yM\yv$, briefly discussed previously. It actually relates the \emph{flux} of matter (\autoref{sec:fluxes_velocities}{which determines the velocity $\yv$}) to the \emph{volume content} of momentum. We shall see this relationship more clearly later in \sect\,\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
 \end{itemize}
 
 \begin{exercise}[label={ex:tennisball2}]
@@ -4553,7 +4559,7 @@ In fact, the evolution equation from a balance or conservation law always gives 
 \subsection{Numerical time integration of position}
 \label{sec:position_integration}
 
-In many applications we are interested in how the position $\yr$ of a small object, or of a small portion of an object, changes in time. The numerical time integration that we have discussed for the volume integrals of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
+In many applications we are interested in how the position $\yr$ of a small object, or of a small portion of an object, changes in time. The numerical time integration that we have discussed for the volume contents of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
 
 The velocity $\yv$ of a point is the time derivative of its position:
 $\yv(t) = \frac{\di\yr(t)}{\di t}$.
@@ -4843,7 +4849,7 @@ Also recall that we are free to choose this sequence of closed control surfaces 
 
 The \enquote{budget} involves three amounts:
 \begin{description}
-\item[volume integral:] how much of a quantity is within a control volume;
+\item[volume content:] how much of a quantity is within a control volume;
 \item[influx:] how much of a quantity is flowing in through a closed control surface per unit time;
 \item[supply:] how much of a quantity is being created or destroyed within a control volume per unit time; this is zero for a conservation law.
 \end{description}
@@ -4968,7 +4974,7 @@ Note that some constitutive relations will reappear again and again in different
 \label{sec:cons_matter_formulation}
 
 \begin{definition}{Balance and conservation of matter}
-  Volume integral: $\yN$\qquad Flux: $\yJ$\qquad Supply: $-\ya$
+  Volume content: $\yN$\qquad Flux: $\yJ$\qquad Supply: $-\ya$
 
   \begin{equation}
     \label{eq:cons_matter}
@@ -4983,12 +4989,12 @@ Note that some constitutive relations will reappear again and again in different
 
 Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. % This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
 
-% In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume integral, but it would make little sense if the flux didn't equal the rate of change of the volume integral.
-% \begin{extra}{Velocity from flux and volume integral}\label{extra:velocity_matter}
+% In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume content, but it would make little sense if the flux didn't equal the rate of change of the volume content.
+% \begin{extra}{Velocity from flux and volume content}\label{extra:velocity_matter}
 %   Suppose we have a coordinate system $(t,x,y,z)$. Consider a small spatial region of cuboid shape delimited by two surfaces having $x$ constant, two having $y$ constant, and two having $z$ constant. The instantaneous velocity component $v_{x}$ is defined as the ratio of:
 %   \begin{enumerate*}[label=(\alph*)]
 %   \item the flux $\yJ_{x}$ through any of the two $x$-constant surfaces, crossing in the positive-$x$ orientation, divided by surface area $A$, and 
-%   \item the volume integral $\yN$ in the cuboid region, divided by the region's volume $V$:
+%   \item the volume content $\yN$ in the cuboid region, divided by the region's volume $V$:
 %   \end{enumerate*}
 %   \begin{equation*}
 %     v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
@@ -5053,14 +5059,14 @@ There are several different isotopes of water, with different masses (image from
 
 \medskip
 
-The constant relating \masse\ and amount of matter is the same for volume integrals and for fluxes. So to a matter flux $\yJ$ we can associate a \masse\ flux $\yrho\yJ$. For instance, if through a surface there's a flux of $\yJ=\qty{30}{mol/s}$ of water, then we associate to it a mass flux of
+The constant relating \masse\ and amount of matter is the same for volume contents and for fluxes. So to a matter flux $\yJ$ we can associate a \masse\ flux $\yrho\yJ$. For instance, if through a surface there's a flux of $\yJ=\qty{30}{mol/s}$ of water, then we associate to it a mass flux of
 $$\yrho_{\mathrm{H_2O}}\,\yJ = \qty{0.0180}{kg/mol} \times \qty{30}{mol/s} = \qty{0.54}{kg/s}\,.$$
 
 \subsection{Conservation of mass as a proxy for conservation of matter}
 \label{sec:mass_proxy_matter}
 
 
-In applications where we can consider the molar mass as practically constant, we can then use \enquote*{mass} as a \emph{proxy} for matter, and express the balance of matter~\eqref{eq:cons_matter} as \enquote{conservation of mass} instead: we only need to multiply volume integral $\yN$, flux $\yJ$, and supply $\ya$ by the molar-mass $\yrho$ appropriate to that kind of matter. 
+In applications where we can consider the molar mass as practically constant, we can then use \enquote*{mass} as a \emph{proxy} for matter, and express the balance of matter~\eqref{eq:cons_matter} as \enquote{conservation of mass} instead: we only need to multiply volume content $\yN$, flux $\yJ$, and supply $\ya$ by the molar-mass $\yrho$ appropriate to that kind of matter. 
 \begin{warning}[\enquote{Conservation of mass} is a proxy for conservation of matter]
   Keep in mind that many books speak of \enquote{conservation of mass}, but they're using mass as an approximate proxy for matter, in the sense explained above.
 \end{warning}
@@ -5181,7 +5187,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
 \subsection{Nozzle flow}
 \label{sec:fluid_dyn_areavel}
 
-The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume integrals and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
+The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume contents and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
 %
 \marginpar{\vspace{-8\baselineskip}\centering%
@@ -5271,7 +5277,7 @@ Among the seven universal balances, the balance of momentum is probably the one 
 
 The importance of the balance of momentum comes to a great extent from two kinds of constitutive relations:
 \begin{itemize}
-\item a small number of constitutive relations that connect the volume integral $\yP$ of momentum with the motion and flux of matter and of the electromagnetic field;
+\item a small number of constitutive relations that connect the volume content $\yP$ of momentum with the motion and flux of matter and of the electromagnetic field;
 \item an amazingly wide variety of constitutive relations that connect, in the most diverse ways, the flux $\yF$ of momentum with many properties of matter, such as its extension, deformation, motion, temperature, and the simultaneous presence of charge and electromagnetic field.
 \end{itemize}
 
@@ -5283,7 +5289,7 @@ Through this balance we can therefore describe and predict motions. We saw a con
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Momentum balance keeps buildings from collapsing (photo: \emph{Bryggen}, Bergen, from \furl{https://whc.unesco.org/en/list/59}{UNESCO World Heritage Centre})%
 }%
-But this balance is also essential in the opposite problem: when we need to study things that \emph{don't and shouldn't move}, like a building or a bridge. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume integral $\yP$ of momentum is constantly zero.
+But this balance is also essential in the opposite problem: when we need to study things that \emph{don't and shouldn't move}, like a building or a bridge. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume content $\yP$ of momentum is constantly zero.
 
 \section{Examples of constitutive relations}
 \label{sec:momentum_constitutive}
@@ -5794,7 +5800,7 @@ In these notes, instead, I'd like to discuss  more in detail the role of the bal
   \begin{itemize}[shift]
   \item How would you set up a coordinate system and closed control surfaces to describe this physical phenomenon? how many control volumes?
   \item How many applications of the balance of momentum would you need to make?
-  \item What would be the volume integrals, fluxes, and supplies in these balances?
+  \item What would be the volume contents, fluxes, and supplies in these balances?
   \item What would be the relevant constitutive relations?
   \item What would be the initial data and the \autoref{sec:boundary_conds}{boundary conditions}?
   \end{itemize}
@@ -6225,6 +6231,68 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 \lstinputlisting[style=mycode]{code/rubberband2D.m}
 
 
+\printpagenotes*
+\clearpage
+\chapter{Balance of energy}
+\label{ncha:bal_energy}
+
+\epigraph{I turned the page. The answer was, for the wind-up toy, ``Energy makes it go.'' And for the boy on the bicycle, ``Energy makes it go.'' For everything, ``\emph{Energy} makes it go.''
+
+\smallskip
+
+Now that doesn't \emph{mean} anything. Suppose it's ``Wakalixes.'' That's the general principle: ``Wakalixes makes it go.'' There's no knowledge coming in. The child doesn't learn anything; it's just a \emph{word}! \textelp{}
+
+\smallskip
+
+It's also not even true that ``energy makes it go,'' because if it stops, you could say, ``energy makes it stop'' just as well.%
+}{R. P. Feynman \cites*{feynman1985_r1989}}
+
+\section{Formulation and generalities}
+\label{sec:bal_energy_formulation}
+
+\begin{definition}{Balance of energy}
+  Volume content: $\yE$\qquad Flux: $\yH$\qquad Supply: $\yR$
+
+  \begin{equation}
+    \label{neq:bal_energy}
+    \begin{gathered}[t]
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
+    \end{gathered}
+  \end{equation}
+\end{definition}
+
+The balance of energy is extremely important in physical phenomena that underlie many modern (post-\furl{https://www.britannica.com/event/Industrial-Revolution}{industrial revolution}) technologies. It often must be explicitly accounted for together with the balance of momentum, and often it's the main governing balance when the balance of momentum can be neglected. It's the balance that we use when we put thick clothes on in order to keep warm, or when we watch a video or do computations on a laptop.
+
+In discussing the \autoref{sec:bal_momentum_formulation}{balance of momentum} we saw that there were just a few constitutive relations for its volume content, and a plethora of constitutive relations for its flux. In the case of energy there is a great variety of constitutive relations that connect both its volume content $\yE$ and its flux $\yH$ to many other quantities: matter, momentum, angular momentum, and \autoref{sec:aux_quantities}{auxiliary quantities} such as metric and temperature.
+
+The balance of energy is therefore very important for numerical time integration. Recall that balance laws allow us to predict \emph{volume contents} at a later time, but not fluxes or supplies. Fluxes and supplies must \autoref{sec:boundary_conds}{either be given as boundary conditions, or predicted by constitutive relations} that connect them to the volume contents of other quantities. The balance and constitutive equations for energy often have this specific \enquote{gluing} role.
+
+\subsection{Forms of energy}
+\label{sec:energy_forms}
+
+In physics textbooks and literature we find many different energies and many different energy balances. These texts often discuss sequences of mathematical steps that show how we can get from one form of energy balance to another.
+
+Relativity theory gives a simple explanation of such variety: \emph{the definition of energy depends on the choice of an \enquote*{observer}}, that is, of a velocity and a clock. This choice of observer is independent from the choice of a coordinate system; that is, once we have chosen coordinates $(t,x,y,z)$, we can still choose observers that have different velocities and measure time in different ways. Moreover, this choice of observer can be different at each spacetime point. It is this variety of observer choices that leads to the variety of energies.
+
+Three particular observer choices are usually made, if electromagnetic fields are negligible:
+\begin{itemize}
+\item At each point in space and time we can choose an observer that is not moving with respect to the coordinates $(x,y,z)$, that is, with zero coordinate velocity; and that measure time according to coordinate time $t$. We call \textbf{total energy} the energy defined with respect to such observers, and we shall denote it $\yE$.
+  
+\item If matter is present, we can choose observers that move with the matter's velocity, so that for them matter is not moving; and these observers measure time according to their proper time. We call the energy so defined the \textbf{internal energy} of matter, and denote it $\yU$. Note that this energy cannot be defined if matter is not present.
+
+\item We can choose observers at rest with respect to the coordinates $(x,y,z)$, as in the first case, but that measure time according to their \autoref{sec:time}{\emph{proper time}} rather than coordinate time. Energy defined in such a way is usually different from the previous two. The difference between this energy and internal energy is called \emph{kinetic energy}, which we denote $\yEk$.  And the difference between total energy and this energy is called \emph{potential gravitational energy}, which we denote $\yEp$.
+\end{itemize}
+
+We thus have the relation
+\begin{equation}
+  \label{eq:energy_division}
+  \yE = \yU + \yEk + \yEp
+\end{equation}
+
+
 
 
 %%%% examples use empheq
@@ -6303,39 +6371,6 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 
 \printpagenotes*
 \clearpage
-\chapter{Balance of energy}
-\label{ncha:bal_energy}
-
-\epigraph{I turned the page. The answer was, for the wind-up toy, ``Energy makes it go.'' And for the boy on the bicycle, ``Energy makes it go.'' For everything, ``\emph{Energy} makes it go.''
-
-\medskip
-
-Now that doesn't \emph{mean} anything. Suppose it's ``Wakalixes.'' That's the general principle: ``Wakalixes makes it go.'' There's no knowledge coming in. The child doesn't learn anything; it's just a \emph{word}! \textelp{}
-
-\medskip
-
-It's also not even true that ``energy makes it go,'' because if it stops, you could say, ``energy makes it stop'' just as well.%
-}{R. P. Feynman \cites*{feynman1985_r1989}}
-
-
-
-
-\begin{definition}{Balance of energy}
-  Volume integral: $\yE$\qquad Flux: $\yH$\qquad Supply: $\yR$
-
-  \begin{equation}
-    \label{neq:bal_energy}
-    \begin{gathered}[t]
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad%\text{\footnotesize\color{grey}or}
-      \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
-  \end{equation}
-\end{definition}
-
-\printpagenotes*
-\clearpage
 \chapter{Balance of angular momentum}
 \label{ncha:bal_ang_momentum}
 
@@ -6411,12 +6446,12 @@ Choose an arbitrary sequence of closed control surfaces between coordinate times
 
 Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. % This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
 
-% In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume integral, but it would make little sense if the flux didn't equal the rate of change of the volume integral.
-% \begin{extra}{Velocity from flux and volume integral}\label{nextra:velocity_matter}
+% In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume content, but it would make little sense if the flux didn't equal the rate of change of the volume content.
+% \begin{extra}{Velocity from flux and volume content}\label{nextra:velocity_matter}
 %   Suppose we have a coordinate system $(t,x,y,z)$. Consider a small spatial region of cuboid shape delimited by two surfaces having $x$ constant, two having $y$ constant, and two having $z$ constant. The instantaneous velocity component $v_{x}$ is defined as the ratio of:
 %   \begin{enumerate*}[label=(\alph*)]
 %   \item the flux $\yJ_{x}$ through any of the two $x$-constant surfaces, crossing in the positive-$x$ orientation, divided by surface area $A$, and 
-%   \item the volume integral $\yN$ in the cuboid region, divided by the region's volume $V$:
+%   \item the volume content $\yN$ in the cuboid region, divided by the region's volume $V$:
 %   \end{enumerate*}
 %   \begin{equation*}
 %     v_{x} \defd \frac{\yJ_{x}/A}{\yN/V}
@@ -6473,7 +6508,7 @@ There are several different isotopes of water, with different masses (image from
 }%
 \enquote*{Water} is a mixture of different \furl{https://www.britannica.com/science/isotope}{isotopes} (molecules differing in the number of neutrons), and again the mixture proportions may vary with physical conditions.
 
-The constant relating \masse\ and amount of matter is the same for volume integrals and for fluxes. So to a matter flux $\yJ$ we can associate a \masse\ flux $\yrho\yJ$. For instance, if through a surface there's a flux of $\yJ=\qty{30}{mol/s}$ of water, then we associate to it a mass flux of
+The constant relating \masse\ and amount of matter is the same for volume contents and for fluxes. So to a matter flux $\yJ$ we can associate a \masse\ flux $\yrho\yJ$. For instance, if through a surface there's a flux of $\yJ=\qty{30}{mol/s}$ of water, then we associate to it a mass flux of
 $$\yrho_{\mathrm{H_2O}}\,\yJ = \qty{0.0180}{kg/mol} \times \qty{30}{mol/s} = \qty{0.54}{kg/s}\,.$$
 
 \smallskip
@@ -6542,7 +6577,7 @@ Assume that the constitutive relation between matter and mass, previously discus
 % }%
 }%
 \begin{definition}{Newtonian constitutive relation for momentum}
-The \textbf{Newtonian relation for the momentum of matter} is a constitutive relation saying that the flux and velocity of matter and the volume integral of momentum are proportional:
+The \textbf{Newtonian relation for the momentum of matter} is a constitutive relation saying that the flux and velocity of matter and the volume content of momentum are proportional:
   \begin{equation}
     \label{neq:matter_momentum_Newton}
     \yP = \yM\yv = \yrho\, \frac{V}{A}\,
@@ -6553,11 +6588,11 @@ The \textbf{Newtonian relation for the momentum of matter} is a constitutive rel
     % \yM=\yrho\yN
   \end{equation}
 \end{definition}
-This relation is only valid for very small areas and volumes (we should really take a limit), so small that the flux of matter or the volume integral of momentum wouldn't change if we choose a surface and a volume in slightly different positions.
+This relation is only valid for very small areas and volumes (we should really take a limit), so small that the flux of matter or the volume content of momentum wouldn't change if we choose a surface and a volume in slightly different positions.
 
 \bigskip
 
-An analogous constitutive relation also exists between \emph{flux} of momentum and flux and volume integral of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead.
+An analogous constitutive relation also exists between \emph{flux} of momentum and flux and volume content of matter. Its most general formulation involves many mathematical terms, so let's consider a simplified situation instead.
 \begin{definition}{Convective flux of momentum (special case)}
 Through the $yz$-surface above there's a flux of momentum
   \begin{equation}
@@ -6734,7 +6769,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
 \subsection{Fluid dynamics}
 \label{nsec:fluid_dyn_areavel}
 
-The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume integrals and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
+The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume contents and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
 %
 \marginpar{\vspace{-\baselineskip}\centering%
@@ -7481,7 +7516,7 @@ solution-template = tcolorbox
 
 First of all let's consider a scalar quantity. Our discussion will be valid for any one of the three scalar quantities (matter, electric charge, entropy) among the seven, but if you want you can think of a concrete example, say \emph{matter}.
 
-A first mental picture of the volume integral of matter in a region might look like this:
+A first mental picture of the volume content of matter in a region might look like this:
 \begin{center}
   \includegraphics[align=t,height=7em]{volumeintegral.pdf}
 \end{center}
@@ -7591,7 +7626,7 @@ In the rest of these notes we shall use the terms \enquote*{momentum flux} and \
 % % \end{definition}
 % % 
 % \begin{exercise}
-%   The volume integral of matter in a particular volume is equal to \qty{36}{mol}. Can we conclude that the volume doesn't contain antimatter?
+%   The volume content of matter in a particular volume is equal to \qty{36}{mol}. Can we conclude that the volume doesn't contain antimatter?
 % \end{exercise}
 
 
@@ -7603,7 +7638,7 @@ In the rest of these notes we shall use the terms \enquote*{momentum flux} and \
 
 Let's now consider the vector quantities momentum and angular momentum.
 
-\subsection{Volume integrals}
+\subsection{Volume contents}
 
 
 
