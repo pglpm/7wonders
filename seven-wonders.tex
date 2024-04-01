@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-01T12:18:04+0200
+%% Last-Updated: 2024-04-01T18:38:22+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -6270,10 +6270,10 @@ In discussing the \autoref{sec:bal_momentum_formulation}{balance of momentum} we
 
 The balance of energy is therefore very important for numerical time integration. Recall that balance laws allow us to predict \emph{volume contents} at a later time, but not fluxes or supplies. Fluxes and supplies must \autoref{sec:boundary_conds}{either be given as boundary conditions, or predicted by constitutive relations} that connect them to the volume contents of other quantities. The balance and constitutive equations for energy often have this specific \enquote{gluing} role.
 
-\subsection{Forms of energy}
-\label{sec:energy_forms}
+\subsection{Definitions of energy}
+\label{sec:energy_defs}
 
-In physics textbooks and literature we find many different energies and energy fluxes and many different energy balances. These texts often discuss sequences of mathematical steps that show how we can get from one form of energy balance to another.
+In physics textbooks and literature we find many different energies, energy fluxes, and energy balances. These texts often discuss sequences of mathematical steps that show how we can get from one form of energy balance to another.
 
 %
 \marginpar{\vspace{-3\baselineskip}\centering%
@@ -6321,10 +6321,29 @@ Note that \emph{we do not need to use all of these differently defined energies;
 Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}})
 }%
 \begin{itemize}
-\item It is defined anywhere, even where no matter is present
-\item Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, it practically \emph{satisfies a conservation law} in these common coordinate systems
-\item Its volume content $\yE$ and flux $\yH$ typically contain terms that refer to the motion of matter and on the gravitational field
+\item It is defined anywhere, even where no matter is present.
+\item Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, it practically \emph{satisfies a conservation law} in these common coordinate systems.
+\item Its volume content $\yE$ and flux $\yH$ typically contain terms that refer to the motion of matter and on the gravitational field.
 \end{itemize}
+
+\subsection{Forms of energy}
+\label{sec:energy_forms}
+
+We shall see that the energy content within a control volume and the energy flux through a control surface can depend on many other quantities such as matter content and flux, momentum content and flux, electric charge and electromagnetic field, and auxiliary quantities such as temperature. This dependence can be wildly different, depending on the physical phenomenon.
+
+In general it is not possible to separate the dependence of energy on other quantities into neatly distinct \enquote{pieces}, and say \enquote{this is the energy contribution of matter}, \enquote{this is the energy contribution of the electromagnetic field}, and so on. So it does not really make sense to speak of \enquote*{energy of matter}, \enquote*{energy of electromagnetic field}, and similar distinctions. \emph{Energy is a property of the set of other quantities taken as a whole}.
+%
+\marginpar{\vspace{-\baselineskip}\centering%
+\includegraphics[width=\linewidth]{disc-pickup-guitar.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+The functioning of a guitar pickup is based on the fact that energy cannot be clearly separated into \enquote*{mechanical} and \enquote*{electromagnetic} (\furl{https://commons.wikimedia.org/wiki/File:Piezoelectric_pickup1.jpg}{image by Georg Feitscher})%
+}%
+The absence of such a separation is the origin of many interesting and useful physical phenomena such as \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/piezo.html}{piezoelectricity} and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/magstrict.html}{magnetostriction}.
+
+In some situations it is possible to \emph{approximately} express energy as a sum of terms that depend on particular quantities only. In these cases we can speak for instance of \enquote*{elastic energy}, \enquote*{radiation energy}, and similar expressions. Keep in mind that these expressions denote particular mathematical parts and don't really mean that energy can ultimately be divided that way.
+
+In the previous section we divided energy into \enquote*{internal}, \enquote*{kinetic}, and \enquote*{gravitational}. That division, however, comes from different references for the definition of energy and does not imply separate dependence on matter, electromagnetic field, and so on. Internal, kinetic, and gravitational energy will in general all depend on all other relevant quantities.
+
 
 \subsection{Is energy conserved?}
 \label{sec:energy_conserved}
@@ -6384,9 +6403,20 @@ We have an intuitive understanding of the notion of \emph{hotness} and \emph{col
 % \includegraphics[width=\linewidth]{universeexpansion2.jpg}%
 % \\[\jot]
 \footnotesize\flushleftright\color{mpcolor}%
-\emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts in general are born and evolve.%
+\emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
 }%
-The physical bases for this quantification are far from trivial
+The physical bases and measurement procedures for this quantification are far from trivial, but we shall take them for granted in the present notes.
+
+Temperature is useful because it enters in many constitutive relations involving energy, but is easier to measure than energy. It will thus appear in our equations and in our numerical time-integration procedures. There are several scales of temperature measurement; of special importance is \emph{absolute temperature} which is measured in kelvins (\unit{K}). In the following we shall use this temperature, denoting it $\yte$.
+
+Temperature generally depends on the place and time: it is a function of the coordinates, $\yte(t, x,y,z)$.
+
+\section{Examples of constitutive relations}
+\label{sec:energy_constitutive}
+
+
+
+
 
 %%%% examples use empheq
 %   \begin{empheq}[left={\mathllap{\begin{aligned}    \de\yF_{\yc}/\de\yp&=0\text{:} \\
