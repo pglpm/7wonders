@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-01T18:38:22+0200
+%% Last-Updated: 2024-04-02T01:35:57+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -981,6 +981,7 @@ reply%
 \newcommand*{\yMb}{\yM_{b}}
 \newcommand*{\yE}{E}
 \newcommand*{\yU}{U}
+\newcommand*{\yUo}{\yU_{0}}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
@@ -988,6 +989,7 @@ reply%
 \newcommand*{\yW}{W}% A,W for time-integral
 \newcommand*{\yR}{R}% for energy source
 \newcommand*{\yg}{\bm{g}}% gravitational acceleration
+\newcommand*{\ypo}{A}% gravitational potential energy
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yPa}{\yP_{a}}
 \newcommand*{\yPb}{\yP_{b}}
@@ -6414,8 +6416,115 @@ Temperature generally depends on the place and time: it is a function of the coo
 \section{Examples of constitutive relations}
 \label{sec:energy_constitutive}
 
+We shall focus on simplified versions of constitutive relations that allow us to study the behaviour of fluids in situations where only one dimension is relevant.
+
+\subsection{Energy content for matter: internal, kinetic, gravitational energy}
+\label{sec:energy_volume_matter}
+
+If a small control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
+\begin{definition}{Energy associated with matter,label={def:energy_volume_matter}}
+  If a small control volume on Earth's surface contains an amount of matter $\yN$ having velocity $\yv$ and \autoref{def:molarmass}{molar mass} $\yrho$, and negligible electromagnetic fields, then its total \energym\ content is given by $\yM c^{2} + \yE$, with
+  \begin{equation}
+    \label{eq:energy_volume_matter}
+    \yE = \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
+  \end{equation}
+  where $\yU$ is the \emph{internal energy} and is given by a further constitutive relation dependent of the physical phenomenon; $g$ is the \autoref{sec:supply_momentum_gravity}{gravitational acceleration}; $\yM = \yrho\yN$; and we have assumed a coordinate system $(x,y,z)$ at rest with the Earth's surface, with $z$ pointing upwards.
+
+\smallskip
+
+  The terms $\frac{1}{2}\yM \yv^{2}$ and $\yM g z$ are called \emph{kinetic energy} and \emph{gravitational potential energy}.
+\end{definition}
+This general formula is only valid in Newtonian approximation, for speeds smaller than the speed of light and weak gravitational fields.
+
+As already discussed several times, in most macroscopic phenomena the term $\yM c^{2}$ overwhelms $\yE$, so when the total \masse\ is required we simply approximate it with $\yM$. But for physical phenomena where energy exchanges are important we change the \enquote{zero} of our energy measurements, shifting it by $\yM c^{2}$. The exact amount by which we shift the zero is unimportant; this is why we can add an arbitrary constant term $\yUo$ (possibly negative) to the internal energy $\yU$, as long as $\yUo$ is much less than $\yM c^{2}$.
+
+Note that the general constitutive relation above is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later. For the moment let's see some examples of these kinds of energy.
+
+\paragraph{Small bodies in motion}
+
+In the preceding chapters we have considered small bodies of matter such as tennis balls. Often when a small body is involved we neglect its internal energy $\yU$ and only focus on its kinetic and potential energies $\frac{1}{2}\yM \yv^{2} + \yM g z$.
+
+\paragraph{Springs and rubber bands}
+
+In studying Hookean and non-Hookean springs and rubber bands in \chap\,\ref{cha:bal_momentum}, we said that they are usually modelled as objects without mass. They therefore have negligible kinetic and potential energies. All their energy is therefore internal energy.
+
+\paragraph{Gases}
+Matter in a gaseous state is also often modelled as having negligible mass. All its energy is therefore modelled as internal energy. This is similar to the modelling of objects such as springs and rubber bands. An important difference is that the internal energy of gases is typically highly dependent on temperature, whereas the the temperature dependence for springs can be neglected in many applications.
+
+\paragraph{Solids and fluids}
+
+In modelling extended matter in a solid and fluid state, usually all three forms of energy must be taken into account. They can moreover be quite variable from one small control volume to another. This is why their modelling and simulation can be extremely complex.
 
 
+\subsection{Heat flux and power}
+\label{sec:heating_power}
+
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=\linewidth]{illustr_push.jpg}%
+% \includegraphics[width=0.49\linewidth]{hand_push_door.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{hand_weight2.jpg}%
+% \\\includegraphics[width=0.49\linewidth]{hammer_iron2.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{hands_pump.jpg}%
+% \\[\jot]
+% \footnotesize\flushleftright\color{mpcolor}%
+% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
+}%
+Consider a person pushing a door or lifting a weight on the palm of their hand, a hammer hitting a piece of hot iron, or a bike-pump piston quickly pressed down. These and many other physical phenomena can be characterized as follows:
+\begin{itemize}
+\item there's a control surface moving with some velocity $\yv$
+\item there is matter on both sides of this control surface
+\item but there is no flux of matter through the control surface
+\item and no matter is moving transversally to the control surface (as instead it happens, say, when dragging a weight on the ground)
+\item no visible electromagnetic fields are involved.
+\end{itemize}
+
+In situations like these, a flux of energy occurs across the moving control surface. Choose a positive crossing direction, and denote by $\yF$ the flux of momentum through the surface. Then the energy flux $\yH$ in this direction can be written as the sum of two terms:
+\begin{equation}
+  \label{eq:heat_power}
+  \yH = \yQ + \yF\cdot \yv
+\end{equation}
+The first term is called the \textbf{heat flux} or \emph{heating}, the second term is called the \textbf{power} transmitted by the force $\yF$ on the matter. Either term can be negative.
+
+The heat flux $\yQ$ can sometimes be controlled, and is therefore given in a physical problem or simulation; other times it is instead specified by a constitutive relation. The momentum flux $\yF$ if usually given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
+
+Note that the control surface can also be purely imaginary, with no real physical separation between the matter on its sides. And it can also be at rest: this case simply corresponds to a zero velocity, $\yv=\qty{0}{m/s}$.
+
+\begin{warning}[No power without matter]
+  There can be a heat flux even if there is no matter on one or both sides of the control surface. But \emph{no power is transmitted} unless there is matter on \emph{both} sides.
+\end{warning}
+
+Let us see some examples.
+\paragraph{Holding a cup of hot tea} When we hold a cup of hot tea or coffee, there is a positive energy \textbf{ef}flux $\yQ$ from the cup to our hands. There is a momentum flux $\yF$ between the cup and our hands, which makes it possible to hold the cup; but no power is transmitted  by it if we hold the cup still, because $\yv=0$. If we move the cup around, then some power can be transmitted, and it shows as an increase in the kinetic energy of the tea, which can even splash out of the cup.
+
+\paragraph{Cooking}
+When we cook something we create a heat \textbf{in}flux into the item being cooked. There is a heat flux not only through the outer surface of the item, but also through imaginary inner surfaces within.
+
+\paragraph{Spring and body}
+In studying Hookean and non-Hookean springs and rubber bands, we saw that there is a momentum flux between one end of the spring and the body attached there. If the momentum flux into the body is $\yF$, and the body is moving with velocity $\yv$, then an amount of power $\yF\cdot \yv$ is transmitted into the body: it increases its kinetic energy $\frac12\yM\yv^{2}$. This same power is obviously transmitted out of the spring, reducing its internal energy. Any heat flux between the spring and the bodies is usually negligible.
+
+\paragraph{Gases}
+
+In describing and using matter in a gaseous state, both heat flux and power must usually be taken into account. In fact, a lot of physical theory and technology are focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
+
+
+
+
+
+
+
+\subsection{Constitutive relations for the ideal gas}
+\label{sec:int_energy_idealgas}
+
+One of the simplest constitutive relations for internal energy can be used as a first approximation for many gases, especially when they are rarefied, that is, when their amount of matter per unit volume is low.
+\begin{definition}{Internal energy of ideal gas}
+  If a small control volume contains an amount of matter $\yN$ and has uniform temperature $\yte$, then it has an internal energy approximately given by
+  \begin{equation}
+    \label{eq:int_energy_idealgas}
+    \yU = C\,\yN\,\yte
+  \end{equation}
+  where the constant $C$ depends on the kind of matter and is called
+\end{definition}
 
 
 %%%% examples use empheq
