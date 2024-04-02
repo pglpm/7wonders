@@ -1,16 +1,15 @@
 %% SI units used throughout
-%% Simulation of two bodies connected by non-Hookean spring in 2D
-%% Coordinates (y,z)
-ma = 1; % mass of object a
-mb = 1; % mass of object b
-ya0 = -1; za0 = 1; % initial position of object a
-yb0 = 0; zb0 = 0; % initial position of object a
-vya0 = 0; vza0 = 0; % initial velocity of object a
-vyb0 = 0; vzb0 = 0; % initial velocity of object b
-Gya = 0; Gza = -9.8*ma; % gravity supply on object a
-Gyb = 0; Gzb = 0; % gravity supply on object b
-k = 4; % spring constant
-ln = 5; % natural length of rubber band
+%% Simulation of ideal gas in 1D
+%% Coordinate z
+N = 1; % amount of matter
+L0 = 1; % initial volume
+T0 = 273.15+25; % initial temp
+Q = 0; % heat flux
+%%
+R = 8.31446261815; % gas constant
+C = 3*R/2; % molar heat capacity
+H = 18e-6; % shear viscosity
+%%
 t0 = 0; % initial time
 t1 = 10; % final time, can also be earlier than initial
 dt = 0.001; % time step, negative if backward time integration %@
