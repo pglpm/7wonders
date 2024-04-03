@@ -3,7 +3,7 @@
 %% Coordinate z
 N = 0.02; % amount of ideal gas
 A = 0.01; % area of piston
-z0 = 0.5; % initial position of piston
+z0 = 0.6; % initial position of piston
 v0 = 0; % initial velocity of piston
 T0 = 273.15+25; % initial temperature of gas
 m = 10; % mass of piston
@@ -18,7 +18,7 @@ G = -m*g; % gravity supply of momentum to piston
 %%
 t0 = 0; % initial time
 t1 = 10; % final time, can also be earlier than initial
-dt = 0.0001; % time step, negative if backward time integration %@
+dt = 0.001; % time step, negative if backward time integration %@
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t0,dt);
 %% check if timestep and time interval are consistent
