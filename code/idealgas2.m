@@ -1,14 +1,14 @@
 %% SI units used throughout
 %% Simulation of ideal gas in 1D
 %% Coordinate z
-N = 0.02; % amount of ideal gas
+N = 0.27; % amount of ideal gas 0.27 / 0.02
 A = 0.01; % area of piston
 z0 = 0.6; % initial position of piston
 v0 = 0; % initial velocity of piston
 T0 = 273.15+25; % initial temperature of gas
 m = 10; % mass of piston
-k = 80*sqrt(4*pi*A); % heat conductivity
-%% Fatm = -1e5 * A; % atmospheric force
+k = 0*80*sqrt(4*pi*A); % heat conductivity
+Fatm = -1e5 * A; % atmospheric force
 %%
 R = 8.31446261815; % gas constant
 C = 20; % molar heat capacity
@@ -17,8 +17,8 @@ g = 9.80665; % gravitational acceleration
 G = -m*g; % gravity supply of momentum to piston
 %%
 t0 = 0; % initial time
-t1 = 10; % final time, can also be earlier than initial
-dt = 0.001; % time step, negative if backward time integration %@
+t1 = 1; % final time, can also be earlier than initial
+dt = 0.0001; % time step, negative if backward time integration %@
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t0,dt);
 %% check if timestep and time interval are consistent
@@ -74,7 +74,7 @@ while sign(dt)*t < sign(dt)*t1 % possible backward time integration
   %% update temperature of gas
   T = U/(C*N);
   %% update momentum of piston
-  P = P + (F + G)*dt;
+  P = P + (F + G + Fatm)*dt;
   %% update velocity of piston
   v = P/m;
   %% update position of piston

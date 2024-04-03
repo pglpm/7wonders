@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-02T15:32:47+0200
+%% Last-Updated: 2024-04-03T20:22:13+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1009,6 +1009,7 @@ reply%
 \newcommand*{\yS}{S}
 \newcommand*{\yB}{H}
 \newcommand*{\yte}{T}%temperature
+\newcommand*{\yvis}{\lambda}%temperature
 %
 \newcommand*{\yti}{t_{0}}
 \newcommand*{\ytf}{t_{1}}
@@ -4860,9 +4861,9 @@ The budget is expressed in the following general forms:
 \begin{definition}{General form of the universal balance laws (again)}
   \begin{equation*}
     \begin{gathered}[t]
-      \underbracket[0pt]{\textsf{\footnotesize vol.\,integral}(\ytf) = \textsf{\footnotesize vol.\,integral}(\yti) + \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\di t + \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize supply}(t)\,\di t}_{\mathclap{\text{\color{grey}integral fosf}}}
+      \underbracket[0pt]{\textsf{\footnotesize vol.\,content}(\ytf) = \textsf{\footnotesize vol.\,content}(\yti) + \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\di t + \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize supply}(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \\[2\jot]
-      \underbracket[0pt]{\frac{\di\,\textsf{\footnotesize vol.\,integral}(t)}{\di t} = \textsf{\footnotesize influx}(t) + \textsf{\footnotesize supply}(t)}_{\mathclap{\text{\color{grey}differential fosf}}}
+      \underbracket[0pt]{\frac{\di\,\textsf{\footnotesize vol.\,content}(t)}{\di t} = \textsf{\footnotesize influx}(t) + \textsf{\footnotesize supply}(t)}_{\mathclap{\text{\color{grey}differential form}}}
     \end{gathered}
   \end{equation*}
   If the $\textsf{\footnotesize supply}(t)$ must always be zero, then we have a \emph{conservation law}.
@@ -4873,7 +4874,7 @@ The budget is expressed in the following general forms:
 
       \smallskip
 
-  \emph{The expressions above are valid in Newtonian mechanics, general relativity, and even quantum theory if the symbols are interpreted as so-called \enquote*{statistical operators}, which encode probabilistic properties.}
+  \emph{The expressions above are valid in any system of coordinates, and in Newtonian mechanics, general relativity, and even quantum theory if the symbols are interpreted as so-called \enquote*{statistical operators}, which encode probabilistic properties.}
 \end{definition}
 
 The individual balances and symbols for matter, momentum, energy, angular momentum, entropy are also presented in table\,\ref{tab:balances} p.\,\pageref{tab:balances}.
@@ -6558,17 +6559,74 @@ In describing and using matter in a gaseous state, both heat flux and power must
 \subsection{Constitutive relations for the ideal gas}
 \label{sec:int_energy_idealgas}
 
-The general constitutive relations~\eqref{eq:energy_volume_matter} for energy content and~\eqref{eq:heat_power} for energy flux can be applied to many common situations. They need, however, more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. The variety of constitutive relations for these three quantities is the subject of \furl{https://www.britannica.com/technology/materials-science}{materials science}, and could fill numerous tomes. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
+The general constitutive relations~\eqref{eq:energy_volume_matter} for energy content and~\eqref{eq:heat_power} for energy flux can be applied to many common situations and with all sorts of materials. They need, however, more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. The variety of constitutive relations for these three quantities is the subject of \furl{https://www.britannica.com/technology/materials-science}{materials science}, and could fill numerous tomes. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
 
-Let us discuss some simple constitutive relations can be used as a first approximation for many gases, especially when they are rarefied, that is, when their amount of matter per unit volume is low. We call them constitutive relations or \emph{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation by using this set of constitutive relations.
+There is a set of simple constitutive relations which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per unit volume is low. We say that these constitutive relations apply to \emph{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation by using this set of constitutive relations.
 
-\begin{definition}{Internal energy of ideal gas}
-  If a small control volume contains an amount of matter $\yN$ and has uniform temperature $\yte$, then it has an internal energy approximately given by
+Even if the mathematical form of the ideal-gas constitutive relations is simple, their application can be extremely complex. These relations apply to very small control volumes, and if we want to accurately model a body of gas, we need to use a large number of them. This gives rise to many interesting behaviours, such as turbulence.
+
+We consider their application in the following simplified setup:
+\begin{itemize}[nosep]
+\item Only one control volume is used. Two of its dimensions are fixed; and the third, say the vertical one, is variable. We can assume a cylindrical shape with constant base area $A$ and variable volume $V$.
+\item test
+\item test
+\end{itemize}
+
+\begin{definition}{Ideal-gas law}
+  If a small control volume $V$ contains an amount $\yN$ of matter, has temperature $\yte$, and there is no flux of matter through its surface, then the \textbf{pressure} $p$, that is, the momentum \textbf{ef}flux \emph{per unit area} through a small surface, has magnitude
+  \begin{equation}
+    \label{eq:ideal_gas_p}
+    p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
+  \end{equation}
+  where $\frac{\di V}{\di t}$ is the rate of change of volume and $\lambda$ is a \textbf{viscosity} coefficient.
+
+  \smallskip
+
+  If only one dimension of the volume is changing, then the coefficient $\yvis$ is given by
+  \begin{equation}
+    \label{eq:viscosity_gen}
+    \yvis = \frac{4}{3}\eta + \zeta
+  \end{equation}
+  where $\eta$ and $\zeta$ are called the \emph{shear} and \emph{bulk} \furl{https://www.britannica.com/science/fluid-mechanics/Viscosity}{viscosity coefficients}. These coefficients are always positive, and usually depend on the temperature.
+\end{definition}
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=\linewidth]{idealgas_mug.jpg}%
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% The famous \enquote{$pV=NRT$} formula}%
+}%
+In the expression above you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking valid only valid when the ideal gas is at rest. If the ideal gas is in motion, for instance expanding or contracting, so that its volume $V$ changes with time, then additional terms must be added to the formula. The term above is valid only in particular cases.
+Usually these additional terms are extremely small and therefore neglected.
+
+The fact that the viscosity coefficients above must be positive is a consequence of the \emph{balance of entropy} -- the second law of thermodynamics -- which we shall discuss later.
+
+\medskip
+
+\begin{definition}{Internal energy of an ideal gas}
+  If a small control volume contains an amount of matter $\yN$ and has uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ equal to
   \begin{equation}
     \label{eq:int_energy_idealgas}
     \yU = C\,\yN\,\yte
   \end{equation}
-  where the constant $C$ depends on the kind of matter and is called
+  where the constant $C$ depends on the kind of matter and is called \emph{molar heat capacity}.
+\end{definition}
+This formula is very important: it says that, for an ideal gas, the absolute temperature is a direct measure of the internal energy, so it can often be used as a proxy for the latter.
+\begin{warning}[Only valid for an ideal gas]
+  \begin{itemize}[shift]
+  \item Keep in mind that this particular relation between internal energy and temperature is valid for an ideal gas only. In general, the internal energy of a material depends on other quantities besides temperature.
+  \item The statement \enquote{depends only on temperature} must of course be understood correctly.
+  \end{itemize}
+\end{warning}
+
+\medskip
+
+\begin{definition}{Fourier law}
+  Consider small control surface of area $A$, orthogonal to some direction, say the coordinate-$z$ direction. Then through this surface there is a heat flux $\yQ$ given by \textbf{Fourier's law of heat conduction}:
+  \begin{equation}
+    \label{eq:fourier_law}
+    \yQ = -A k \frac{\de\yte}{\de z}
+  \end{equation}
+where $\frac{\de\yte}{\de z}$ tells how much the temperature $\yte$ differs along the $z$-direction, and $k$ is called the \furl{https://www.britannica.com/science/thermal-conductivity}{coefficient of thermal conductivity}. This coefficient is always positive, and usually depends on the temperature.
 \end{definition}
 
 
