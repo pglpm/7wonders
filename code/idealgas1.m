@@ -8,11 +8,11 @@ v0 = 0; % initial velocity of mass above piston
 T0 = 273.15+25; % initial temperature of gas
 Q = 0; % heat influx
 m = 5; % mass above piston
-P0 = 1e5; % atmospheric pressure
+Fatm = 1e5 * A; % atmospheric force
 %%
 R = 8.31446261815; % gas constant
-C = 3*R/2; % molar heat capacity
-H = 18e1 *4/3; % shear viscosity
+C = 20; % molar heat capacity
+H = 18e-6 * 4/3 + 0.7*18e-6; % viscosity
 g = 9.80665; % gravitational acceleration
 G = -m*g; % supply of momentum to mass above piston
 %%
@@ -68,7 +68,7 @@ while sign(dt)*t < sign(dt)*t1 % possible backward time integration
   %% same as *minus* force on gas
   F = N*R*T/z - A*H*v/z;
   %% update internal energy of gas
-  U = U + (Q - F*v)*dt;
+  U = U + (Q - F*v - Fatm*v)*dt;
   %% update temperature of gas
   T = U/(C*N);
   %% update momentum of mass above piston

@@ -1,19 +1,20 @@
 %% SI units used throughout
 %% Simulation of ideal gas in 1D
 %% Coordinate z
-N = 0.01; % amount of ideal gas
+N = 0.02; % amount of ideal gas
 A = 0.01; % area of piston
-z0 = 0.51; % initial position of mass above piston
-v0 = 0; % initial velocity of mass above piston
+z0 = 0.5; % initial position of piston
+v0 = 0; % initial velocity of piston
 T0 = 273.15+25; % initial temperature of gas
-m = 5; % mass above piston
+m = 10; % mass of piston
 k = 80*sqrt(4*pi*A); % heat conductivity
+%% Fatm = -1e5 * A; % atmospheric force
 %%
 R = 8.31446261815; % gas constant
-C = 3*R/2; % molar heat capacity
-H = 18e-6 *4/3; % shear viscosity
+C = 20; % molar heat capacity
+H = 18e-6 * (4/3 + 0.7); % viscosity
 g = 9.80665; % gravitational acceleration
-G = -m*g; % supply of momentum to mass above piston
+G = -m*g; % gravity supply of momentum to piston
 %%
 t0 = 0; % initial time
 t1 = 10; % final time, can also be earlier than initial
@@ -45,11 +46,11 @@ tSave(1) = t0;
 zSave(1) = z0;
 vSave(1) = v0;
 TSave(1) = T0;
-FSave(1) = N*R*T0/z0 - A*H*v0/z0;
+FSave(1) = (N*R*T0 - A*H*v0)/z0;
 %% Initialize plot
 cols = get(0, 'DefaultAxesColorOrder');
 plot(tSave(1), zSave(1), 'o','Color',cols(1,:)); axis('tight');
-xlabel('{\it t}/s'); ylabel('{\it z}/m'); hold on;
+xlabel('time {\it t}/s'); ylabel('position {\it z}/m'); hold on;
 %% %@
 %% Numerical time integration
 %% Initialize
@@ -63,20 +64,20 @@ P = m*v0;
 while sign(dt)*t < sign(dt)*t1 % possible backward time integration
   %% update time
   t = t + dt;
-  %% constitutive relation for force on mass above piston
+  %% constitutive relation for force on piston
   %% same as *minus* force on gas
-  F = N*R*T/z - A*H*v/z;
+  F = (N*R*T - A*H*v)/z;
   %% constitutive relation for heat flux
-  Q = (T0 - T)*k*z;
+  Q = k*(T0 - T)*z;
   %% update internal energy of gas
   U = U + (Q - F*v)*dt;
   %% update temperature of gas
   T = U/(C*N);
-  %% update momentum of mass above piston
+  %% update momentum of piston
   P = P + (F + G)*dt;
-  %% update velocity of mass above piston
+  %% update velocity of piston
   v = P/m;
-  %% update position of mass above piston
+  %% update position of piston
   z = z + v*dt; %@
   %% Check whether to save & plot at this step
   if min(abs([0 dsave] - mod(t-t0, dsave))) <= abs(dt)/2
@@ -94,7 +95,7 @@ end %@
 plot(tSave,zSave,'-','Color',cols(1,:));
 figure();
 plot(tSave,TSave-273.15,'-','Color',cols(2,:)); axis('tight');
-xlabel('{\it t}/s'); ylabel('{\it T}/C');
+xlabel('time {\it t}/s'); ylabel('temperature {\it T}/C');
 figure();
 plot(tSave,(T0-TSave)*k.*zSave,'-','Color',cols(3,:)); axis('tight');
-xlabel('{\it t}/s'); ylabel('{\it Q}/W');
+xlabel('time {\it t}/s'); ylabel('heat flux {\it Q}/W');
