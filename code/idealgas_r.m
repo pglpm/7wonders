@@ -1,3 +1,6 @@
+%%% idealgas_r.m
+%% Last-Updated: 2024-04-04T16:28:30+0200
+%%
 %% SI units used throughout
 %% Simulation of ideal gas in 1D
 %% Coordinate z
@@ -7,7 +10,7 @@ z0 = 0.061103; % initial position of piston
 v0 = 0; % initial velocity of piston
 T0 = 273.15+23.5; % initial temperature of gas
 m = 0.10668; % mass of piston
-k = 10 +0*8*sqrt(4*pi*A); % heat conductivity
+k = 8*sqrt(4*pi*A); % heat conductivity
 Fatm = -1e5 * A; % atmospheric force
 %%
 R = 8.31446261815; % gas constant
@@ -61,7 +64,7 @@ T = T0;
 U = C*N*T0;
 P = m*v0;
 %% loop
-while sign(dt)*t < sign(dt)*t1 % possible backward time integration
+while (t < t1 && t0 < t1) || (t1 < t && t1 < t0) % possible backward time integr.
   %% update time
   t = t + dt;
   %% constitutive relation for force on piston

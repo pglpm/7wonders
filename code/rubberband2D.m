@@ -1,19 +1,22 @@
+%%% rubberband2D.m
+%% Last-Updated: 2024-04-04T16:25:00+0200
+%%
 %% SI units used throughout
 %% Simulation of two bodies connected by non-Hookean spring in 2D
 %% Coordinates (y,z)
 ma = 1; % mass of object a
 mb = 1; % mass of object b
-ya0 = -1; za0 = 1; % initial position of object a
-yb0 = 0; zb0 = 0; % initial position of object a
+ya0 = 0; za0 = 0; % initial position of object a
+yb0 = 0.01; zb0 = 0; % initial position of object a
 vya0 = 0; vza0 = 0; % initial velocity of object a
-vyb0 = 0; vzb0 = 0; % initial velocity of object b
-Gya = 0; Gza = -9.8*ma; % gravity supply on object a
+vyb0 = 0; vzb0 = 0.1; % initial velocity of object b
+Gya = 0; Gza = 0; % gravity supply on object a
 Gyb = 0; Gzb = 0; % gravity supply on object b
 k = 4; % spring constant
-ln = 5; % natural length of rubber band
+ln = 0.05; % natural length of rubber band
 t0 = 0; % initial time
 t1 = 10; % final time, can also be earlier than initial
-dt = 0.001; % time step, negative if backward time integration %@
+dt = 0.01; % time step, negative if backward time integration %@
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t0,dt);
 %% check if timestep and time interval are consistent
@@ -31,10 +34,10 @@ if abs(dsave) < abs(dt)
 end
 %% Initialize vectors to contain saved values
 tSave = nan(Nsaves,1); % time
-yaSave = nan(Nsaves,1); zaSave = nan(Nsaves,1);
-ybSave = nan(Nsaves,1); zbSave = nan(Nsaves,1);
-PyaSave = nan(Nsaves,1); PzaSave = nan(Nsaves,1);
-PybSave = nan(Nsaves,1); PzbSave = nan(Nsaves,1);
+yaSave = nan(Nsaves,1); zaSave = nan(Nsaves,1); % position object a
+ybSave = nan(Nsaves,1); zbSave = nan(Nsaves,1); % position object b
+PyaSave = nan(Nsaves,1); PzaSave = nan(Nsaves,1); % momentum object a
+PybSave = nan(Nsaves,1); PzbSave = nan(Nsaves,1); % momentum object b
 %% Save initial values
 i = 1; % index that keeps count of savepoints
 tSave(1) = t0;
@@ -45,7 +48,7 @@ PybSave(1) = mb*vyb0; PzbSave(1) = mb*vzb0;
 %% Initialize plot
 cols = get(0, 'DefaultAxesColorOrder');
 plot(yaSave(1), zaSave(1), 's','Color',cols(1,:)); axis('tight');
-plot(ybSave(1), zbSave(1), 'o','Color',cols(1,:)); axis('tight');
+plot(ybSave(1), zbSave(1), 'o','Color',cols(2,:));
 xlabel('{\it y}/m'); ylabel('{\it z}/m'); hold on;
 %% %@
 %% Numerical time integration
@@ -58,7 +61,7 @@ vyb = vyb0; vzb = vzb0;
 Pya = ma*vya0; Pza = ma*vza0;
 Pyb = mb*vyb0; Pzb = mb*vzb0;
 %% loop
-while sign(dt)*t < sign(dt)*t1 % possible backward time integration
+while (t < t1 && t0 < t1) || (t1 < t && t1 < t0) % possible backward time integr.
   %% update time
   t = t + dt;
   %% non-Hookean constitutive relation
@@ -82,7 +85,7 @@ while sign(dt)*t < sign(dt)*t1 % possible backward time integration
   vza = Pza/ma;
   vyb = Pyb/mb;
   vzb = Pzb/mb;
-  %% update position
+  %% update position. We could also update first position, then velocity
   ya = ya + vya*dt;
   za = za + vza*dt;
   yb = yb + vyb*dt;
@@ -100,6 +103,6 @@ while sign(dt)*t < sign(dt)*t1 % possible backward time integration
     pause(0.001);
   end %@
 end %@
-%% Plot trajectory
+%% Plot full trajectory
 plot(yaSave,zaSave,'-','Color',cols(1,:));
 plot(ybSave,zbSave,'-.','Color',cols(2,:)); %@

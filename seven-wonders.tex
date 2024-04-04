@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-04T01:03:40+0200
+%% Last-Updated: 2024-04-04T18:04:05+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1010,7 +1010,11 @@ reply%
 \newcommand*{\yB}{H}
 \newcommand*{\yte}{T}%temperature
 \newcommand*{\yvis}{\lambda}%temperature
-%
+\newcommand*{\yxa}{x_{a}}%temperature
+\newcommand*{\yxb}{x_{b}}%temperature
+\newcommand*{\ytea}{\yte_{a}}%temperature
+\newcommand*{\yteb}{\yte_{b}}%temperature
+% 
 \newcommand*{\yti}{t_{0}}
 \newcommand*{\ytf}{t_{1}}
 \newcommand*{\yxi}{x_{0}}
@@ -1775,9 +1779,9 @@ Some physical phenomena happen approximately along a line, in one dimension; or 
 \begin{equation*}
   \frac{\Dt_{\text{s}}}{\Dt_{\text{e}}} =
   \frac{
-    \sqrt{1-2\frac{G}{c^{2}}\frac{M}{r_{e}}}
-  }{
     \sqrt{1-2\frac{G}{c^{2}}\frac{M}{r_{s}}}
+  }{
+    \sqrt{1-2\frac{G}{c^{2}}\frac{M}{r_{e}}}
   }
 \end{equation*}
 where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the Earth's mass $M=\qty{6.0e24}{kg}$.
@@ -1789,7 +1793,7 @@ where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the E
 
 \item If the time lapses are large compared with the time needed to go from ground to orbit or vice versa, then $\Dt_{\text{s}}/\Dt_{\text{e}}$ is also the ratio between the real \emph{ageing} of a person who's been in orbit and one who's been on the ground, when they meet again.
 
-  Now consider the case with a black hole instead of Earth. The formula above still apply approximately.
+  Now consider the case with a black hole instead of Earth. The formula above can still be applied as an approximation.
 
   In the movie \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
   astronauts go on Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, and stay there for \qty{3}{hours}, leaving one astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). When they meet again, the latter astronaut has aged \emph{23\;years}.
@@ -6563,13 +6567,34 @@ The general constitutive relations~\eqref{eq:energy_volume_matter} for energy co
 
 There is a set of simple constitutive relations which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per unit volume is low. We say that these constitutive relations apply to \emph{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation by using this set of constitutive relations.
 
+\smallskip
+
+In discussing the constitutive relations below, we consider a closed control surface that encloses an amount of ideal gas. We assume that there is no flux of the gas through the surface, and no movement of the gas along the moving parts of the surface. The conditions for formula~\eqref{eq:heat_power} are therefore satisfied. These conditions are approximately true for many practical cases, such as air under compression or expansion in a bike pump.
+
+The constitutive relations that we now discuss apply, strictly speaking, to small control volumes, where all quantities within may be considered to have just one value everywhere. Later on we shall nevertheless apply them, as approximations, to larger volumes. It also goes without saying that these constitutive relations are only valid in Newtonian approximation: for small velocities and weak gravitation.
+
+\subsection{Pressure (momentum flux) of an ideal gas}
+\label{sec:pressure_ideal_gas}
+
+We start with a constitutive relation that connects:
+\begin{itemize}[nosep]
+\item the flux of momentum through the closed control surface containing the ideal gas
+\item the amount of ideal gas within
+\item the temperature within
+\item the volume enclosed by the control surface
+\end{itemize}
+
 \begin{definition}{Ideal-gas law}
-  If a small control volume $V$ contains an amount $\yN$ of matter, has temperature $\yte$, and there is no flux of matter through its surface, then the \textbf{pressure} $p$, that is, the momentum \textbf{ef}flux \emph{per unit area} through a small surface, has magnitude
+  If the closed control surface encloses a volume $V$ with an amount $\yN$ of ideal gas, at uniform temperature $\yte$, then the \textbf{pressure} $p$, that is, the momentum \textbf{ef}flux \emph{per unit area} through a small part of the surface, has magnitude
   \begin{equation}
     \label{eq:ideal_gas_p}
     p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
   \end{equation}
   where $\frac{\di V}{\di t}$ is the rate of change of volume and $\lambda$ is a \textbf{viscosity} coefficient.
+
+  \smallskip
+
+  The total efflux through a part of the surface with area $A$ is thus given by $p A$.
 
   \smallskip
 
@@ -6580,32 +6605,37 @@ There is a set of simple constitutive relations which can be used as approximati
   \end{equation}
   where $\eta$ and $\zeta$ are called the \emph{shear} and \emph{bulk} \furl{https://www.britannica.com/science/fluid-mechanics/Viscosity}{viscosity coefficients}. These coefficients are always positive, and usually depend on the temperature.
 \end{definition}
-In the expression above you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking valid only valid when the ideal gas is at rest. If the ideal gas is in motion, for instance expanding or contracting, so that its volume $V$ changes with time, then additional terms must be added to the formula. The term above is valid only in particular cases.
-Usually these additional terms are extremely small and therefore neglected.
+In the expression above you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
 %
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-4\baselineskip}\centering%
 \includegraphics[width=\linewidth]{idealgas_mug.jpg}%
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % The famous \enquote{$pV=NRT$} formula}%
 }%
 
-The fact that the viscosity coefficients above must be positive is a consequence of the \emph{balance of entropy} -- the second law of thermodynamics -- which we shall discuss later.
+If the ideal gas is in motion, for instance expanding or contracting and its volume $V$ changes with time, then additional terms must be added to the famous \enquote{$pV=NRT$} formula. This is what we see in the relation~\eqref{eq:ideal_gas_p} above. Usually these additional terms are extremely small and therefore neglected.
 
-\bigskip
+The fact that the viscosity coefficients must be positive is a consequence of the \emph{balance of entropy} -- the second law of thermodynamics -- which we shall discuss later.
+
+
+\subsection{Internal energy of an ideal gas}
+\label{sec:intenergy_ideal_gas}
+
+Next we discuss a constitutive equation that connects the amount of internal energy in the control volume with the amount of ideal gas and its temperature:
 
 \begin{definition}{Internal energy of an ideal gas}
-  If a small control volume contains an amount of matter $\yN$ and has uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ equal to
+  If a small control volume contains an amount $\yN$ of ideal gas, at uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ equal to
   \begin{equation}
     \label{eq:int_energy_idealgas}
     \yU = C\,\yN\,\yte
   \end{equation}
-  where the constant $C$ depends on the kind of matter and is called \emph{molar heat capacity}.
+  where the constant $C$ depends on the kind of ideal gas and is called \emph{molar heat capacity}.
 \end{definition}
 This formula is very important: for an ideal gas, the absolute temperature is a direct measure of the internal energy, so it can often be used as a proxy for the latter.
 
 \begin{warning}[Validity of the internal-energy formula]
   \begin{itemize}[shift]
-  \item Keep in mind that the particular constitutive relation~\eqref{eq:int_energy_idealgas} is valid for an ideal gas only. In general, the internal energy of a material is related to other quantities besides amount of matter and temperature.
+  \item Keep in mind that the particular constitutive relation~\eqref{eq:int_energy_idealgas} is valid for an ideal gas only. The internal energy of a generic material is related to other quantities besides amount of matter and temperature.
 
   \item Some books express the formula above saying \enquote{the internal energy of an ideal gas depends only on temperature}. This statement is somewhat vague and easy to misunderstand. First, the internal energy clearly \enquote{depends} also on the amount of matter $\yN$. Second, if in some application we express the amount of matter or the temperature as functions of other quantities, such as volume, then the internal energy also becomes a function of those quantities. The formula above can be simply expressed as follow: if you know the amount (and kind) of matter in a volume, and the temperature in that volume, then you also know the internal energy.
   \end{itemize}
@@ -6614,15 +6644,27 @@ This formula is very important: for an ideal gas, the absolute temperature is a 
 \bigskip
 
 \begin{definition}{Fourier law}
-  Consider small control surface of area $A$ orthogonal to some direction, say the coordinate-$z$ direction. Then through this surface there is a heat flux $\yQ$ given by \textbf{Fourier's law of heat conduction}:
+  Consider small control surface of area $A$ orthogonal to some direction, say the coordinate-$x$ direction. Then through this surface there is a heat flux $\yQ$ given by \textbf{Fourier's law of heat conduction}:
   \begin{equation}
     \label{eq:fourier_law}
-    \yQ = -A k \frac{\de\yte}{\de z}
+    \yQ = -A k \frac{\de\yte}{\de x}
   \end{equation}
-where $\frac{\de\yte}{\de z}$ tells how much the temperature $\yte$ differs along the $z$-direction, and $k$ is called the \furl{https://www.britannica.com/science/thermal-conductivity}{coefficient of thermal conductivity}. This coefficient is always positive, and usually depends on the temperature.
+where $\frac{\de\yte}{\de x}$ tells how much the temperature $\yte$ differs along the $x$-direction, and $k$ is called the \furl{https://www.britannica.com/science/thermal-conductivity}{coefficient of thermal conductivity}. This coefficient is always positive, and usually depends on the temperature.
 \end{definition}
 
-The minus sign in this formula means that, if the temperature increases towards larger $z$-values, then a positive flux of energy occurs towards smaller $z$-values. In other words, positive energy flows from the hotter to the colder side of the surface. The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy}, as in the case of the viscosity coefficients.
+The minus sign in this formula means that, if the temperature increases towards larger $x$-values, then a positive flux of energy occurs towards smaller $x$-values. In other words, positive energy flows from the hotter to the colder side of the surface. The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy}, as in the case of the viscosity coefficients.
+
+%
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{fourier.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+NB: if $\yteb >\ytea$, then $\yQ<0$%
+}%
+We shall also use an approximate version of this formula: if at points with coordinates $\yxa$ and $\yxb$ there are temperatures $\ytea$ and $\yteb$, then the heat flux $\yQ$ in the through any surface between the two points and orthogonal to the line joining them, in the $\yxa\to\yxb$ direction, is
+\begin{equation}
+  \label{eq:fourier_law_discrete}
+  \yQ = - A k \frac{\yteb-\ytea}{\yxb-\yxa}
+\end{equation}
 
 This constitutive relation is valid also in many other phenomena that do not involve ideal gases, for instance for the heat conduction in a metal. But it is \emph{not universal}.
 
@@ -6641,6 +6683,12 @@ Even more interesting examples, in which Fourier's law does not apply, occur for
 
 Even if the mathematical form of the ideal-gas constitutive relations is simple, their application can be extremely complex. These relations apply to very small control volumes. If we want to model a body of gas accurately, we need to use a large number of such control volumes. This way we can try to simulate many interesting physical behaviours that an ideal gas can have, such as turbulence.
 
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
+\includegraphics[width=0.3\linewidth]{piston_scenario.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Depiction of our typical setup. The control volume is $V$. The \textcolor{yellow}{yellow} surface on the top has area $A$ and can move vertically with velocity $\yv$. There can be momentum fluxes at the top and bottom surfaces, and heat fluxes at the top, bottom, and side surfaces.%
+}%
 In the following applications we shall make the following assumptions and simplifications:
 \begin{itemize}[nosep]
 \item Only one control volume is used. We assume that some quantities such as temperature can be considered uniform within the volume.

@@ -1,3 +1,6 @@
+%%% tennisball.m
+%% Last-Updated: 2024-04-04T16:25:10+0200
+%%
 %% (base SI units used throughout)
 %% Numerical simulation of object motion in 2D with gravity
 %% Coordinates (y,z)
@@ -48,7 +51,7 @@ y = y0; z = z0;
 Py = Py0; Pz = Pz0;
 vy = Py/m; vz = Pz/m;
 %% loop
-while sign(dt)*t < sign(dt)*t1 % possible backward time integration
+while (t < t1 && t0 < t1) || (t1 < t && t1 < t0) % possible backward time integr.
   %% update time
   t = t + dt;
   %% update momentum
@@ -71,5 +74,5 @@ while sign(dt)*t < sign(dt)*t1 % possible backward time integration
     pause(0.001);
   end %@
 end %@
-%% Plot trajectory
+%% Plot full trajectory
 plot(ySave, zSave, 'Color', cols(1,:)); axis('tight'); %@
