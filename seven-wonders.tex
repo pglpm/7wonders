@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-04T18:04:05+0200
+%% Last-Updated: 2024-04-07T00:01:53+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -981,6 +981,8 @@ reply%
 \newcommand*{\yMb}{\yM_{b}}
 \newcommand*{\yE}{E}
 \newcommand*{\yU}{U}
+\newcommand*{\yUd}{u}
+\newcommand*{\yUr}{U_{\text{new}}}
 \newcommand*{\yUo}{\yU_{0}}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
@@ -1009,6 +1011,7 @@ reply%
 \newcommand*{\yS}{S}
 \newcommand*{\yB}{H}
 \newcommand*{\yte}{T}%temperature
+\newcommand*{\ytece}{T_{\text{C}}}%temperature
 \newcommand*{\yvis}{\lambda}%temperature
 \newcommand*{\yxa}{x_{a}}%temperature
 \newcommand*{\yxb}{x_{b}}%temperature
@@ -5035,7 +5038,7 @@ The most common constitutive relation used  together with conservation of matter
 As far as we know, if a control volume contains an amount of matter $\yN$, then it always also contains an amount of \masse\ $\yM$ (but the opposite is not always true: a control volume can contain \masse\ and no matter). This amount of \masse\ is typically huge when measured in joules. For instance, a volume with $\yN=\qty{1}{mol}$ of water (roughly \qty{2e-5}{m^3} for liquid water) contains approximately $\yM = \qty{1.62e15}{J}$ of \masse.
 
 The amount of \masse\ depends on the kind of matter and on other quantities in that volume, and usually changes with time. These changes, however, are typically \autoref{sec:dist_mass_energy}{extremely small compared to the total amount} -- say much less than \qty{0.00000001}{\percent} in the example above with water! So, as a very good approximation, we can consider this amount as practically constant. The amount of \masse\ $\yM$ is therefore proportional to the amount of matter $\yN$, and we write
-\begin{definition}{Mass-energy of matter}\label{def:molarmass}
+\begin{definition}{Mass-energy of matter,label={def:molarmass}}
   \begin{equation*}
 \yM =  \yrho\yN
 \end{equation*}
@@ -6243,6 +6246,10 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 \chapter{Balance of energy}
 \label{ncha:bal_energy}
 
+\marginpar{\vspace{-5\baselineskip}\mynotew{\color{purple}\textbf{NOTE: this chapter is undergoing some changes. It will include more worked-out examples and some explanations will be made clearer. Please re-check it for changes in the next days (update-time of these notes is always written on the first page).}}
+}
+
+
 \epigraph{I turned the page. The answer was, for the wind-up toy, ``Energy makes it go.'' And for the boy on the bicycle, ``Energy makes it go.'' For everything, ``\emph{Energy} makes it go.''
 
 \smallskip
@@ -6253,6 +6260,7 @@ Now that doesn't \emph{mean} anything. Suppose it's ``Wakalixes.'' That's the ge
 
 It's also not even true that ``energy makes it go,'' because if it stops, you could say, ``energy makes it stop'' just as well.%
 }{R. P. Feynman \cites*{feynman1985_r1989}}
+
 
 \section{Formulation and generalities}
 \label{sec:bal_energy_formulation}
@@ -6271,85 +6279,120 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
   \end{equation}
 \end{definition}
 
-The balance of energy is extremely important in physical phenomena that underlie many modern (post-\furl{https://www.britannica.com/event/Industrial-Revolution}{industrial revolution}) technologies. It often must be explicitly accounted for together with the balance of momentum, and often it's the main governing balance when the balance of momentum can be neglected. It's the balance that we use when we put thick clothes on in order to keep warm, or when we watch a video or do computations on a laptop.
+The balance of energy is extremely important in physical phenomena that underlie many modern (post-\furl{https://www.britannica.com/event/Industrial-Revolution}{industrial revolution}) technologies. It must often be explicitly accounted for, together with the balance of momentum; and it often is the main governing balance, when the balance of momentum can be neglected. It's the relevant balance when we put thick clothes on in order to keep warm, or when we watch a video or do computations on a laptop.
 
-In discussing the \autoref{sec:bal_momentum_formulation}{balance of momentum} we saw that there were just a few constitutive relations for its volume content, and a plethora of constitutive relations for its flux. In the case of energy there is a great variety of constitutive relations that connect both its volume content $\yE$ and its flux $\yH$ to many other quantities: matter, momentum, angular momentum, and \autoref{sec:aux_quantities}{auxiliary quantities} such as metric and temperature.
+In discussing the \autoref{sec:bal_momentum_formulation}{balance of momentum} we saw that there were just a few constitutive relations for its volume content $\yP$, and a plethora of constitutive relations for its flux $\yF$. In the case of energy there is a great variety of constitutive relations that connect both its volume content $\yE$ and its flux $\yH$ to many other quantities: matter, momentum, angular momentum, \autoref{sec:aux_quantities}{auxiliary quantities} such as metric and temperature, and others.
 
-The balance of energy is therefore very important for numerical time integration. Recall that balance laws allow us to predict \emph{volume contents} at a later time, but not fluxes or supplies. Fluxes and supplies must \autoref{sec:boundary_conds}{either be given as boundary conditions, or predicted by constitutive relations} that connect them to the volume contents of other quantities. The balance and constitutive equations for energy often have this specific \enquote{gluing} role.
+The balance of energy is therefore also very important for numerical time integration. Recall that balance laws, if used alone, allow us to predict \emph{volume contents} at a later time, but not fluxes or supplies. Fluxes and supplies must \autoref{sec:boundary_conds}{either be given as boundary conditions, or predicted by constitutive relations} that connect them to the volume contents of other quantities. The balance and constitutive equations for energy often have this particular \enquote{gluing} role.
 
-\subsection{Definitions of energy}
+
+\subsection{Definitions of \enquote*{total energy}}
 \label{sec:energy_defs}
 
-In physics textbooks and literature we find many different energies, energy fluxes, and energy balances. These texts often discuss sequences of mathematical steps that show how we can get from one form of energy balance to another.
+In the physics literature we can read about energies and energy fluxes having all sorts of names -- \enquote*{internal}, \enquote*{kinetic}, \enquote*{potential}, \enquote*{elastic}, \enquote*{electromagnetic}, and others. We can also read about different kinds of energy balances, which can be related to one another through particular sequences of mathematical steps.
 
+One confusing aspect of such variety is that it becomes unclear what is, and what is not, to be counted as \enquote{energy content}. One example is \enquote*{gravitational potential energy}. Some texts define it as \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/gpot.html}{\enquote{energy an object possesses because of its position in a gravitational field}}, that is, as energy content.
 %
-\marginpar{\vspace{-3\baselineskip}\centering%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[align=c,width=0.495\linewidth]{birdetal1.jpg}%
+\hfill\includegraphics[align=c,width=0.495\linewidth]{birdetal2.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Snippets from a formula on p.~330 of %\eqn~(11.1-8) in
+\emph{Introductory Transport Phenomena} \parencites{birdetal2015}. Compare the expression above on the right with \eqn~\eqref{eq:thermodynamic_energy} on page~\pageref{eq:thermodynamic_energy} below.%
+}%
+Other texts, especially in fluid dynamics or material science, do not include any gravitational terms in the energy content; related terms appear instead as energy fluxes or supplies. Another example is \enquote*{kinetic energy}, which is sometimes included in the total energy content, and sometimes not, for instance in fluid dynamics.
+
+One can show that all these points of view have mathematically the same consequences. Is the definition of \enquote*{total energy content} arbitrary, then? Yes it is, and relativity theory gives a clear understanding of this arbitrariness.
+
+% Suppose we select either a control surface, possibly moving, within two coordinate times; or a control volume -- that is, a three-dimensional region of spacetime at fixed coordinate $t$. From a spacetime point of view, these are just arbitrary three-dimensional regions chosen within four-dimensional spacetime.
+% 
+% We then ask: \enquote*{how much is the \emph{total} energy that flowed through that surface?} or \enquote*{how much is the \emph{total} energy contained in that volume?}
+% 
+% If we asked these questions for matter or for electric charge instead of energy, then they would have unique and definite answers. All observers, even observers moving almost with the speed of light, would measure the same amounts. The answers would be the same even if there were strong gravitational fields. And these answers would actually be \emph{independent of any choice of coordinates}.
+% 
+% Not so for energy, nor for momentum. 
+Relativity shows that \emph{the definition of \enquote{total energy} depends on the choice of a reference velocity and a reference clock}. This choice of velocity \amp\ clock can even be different at each spacetime point. Furthermore, this choice is \emph{independent from the choice of a coordinate system}. That is, once we have chosen coordinates $(t,x,y,z)$, we can still choose arbitrary reference velocities and reference clocks to define \enquote*{total energy}.
+%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[width=0.75\linewidth]{4vector.pdf}%
 \\\footnotesize\flushleftright\color{mpcolor}%
-A reference \enquote*{velocity \amp\ clock} is simply a vector in four-dimensional spacetime%
+A reference \enquote*{velocity \amp\ clock} is simply a vector (with four components) in four-dimensional spacetime%
 }%
-Relativity theory gives a simple explanation of such a variety: \emph{the definition of energy depends on the choice of a reference velocity and a reference clock}. This choice of velocity \amp\ clock can moreover be different at each spacetime point. It is this variety of choices that leads to the variety of energies.
 
-%
-\marginpar{\vspace{\baselineskip}%
-\footnotesize\flushleftright\color{red}%
-\faIcon{exclamation-circle}\enspace Some texts say that different definitions of energy correspond to different choices of coordinate systems, but that is not correct.%
-}%
-Keep in mind that the choice of velocity \amp\ clock for the definition of energy is \emph{independent from the choice of a coordinate system}. That is, once we have chosen coordinates $(t,x,y,z)$, we can still choose arbitrary reference velocities and reference times.
 
-Given a coordinate system $(t,x,y,z)$, three possible choices are usually made when electromagnetic fields are negligible:
+Given a coordinate system $(t,x,y,z)$, one of the following three choices is usually implicitly made, when electromagnetic fields are negligible:
 \begin{itemize}
-\item[\faIcon{globe}] At each point in space and time we can choose a zero coordinate velocity -- that is, we don't move with respect to the coordinates $(x,y,z)$ -- and we can measure time according to coordinate time $t$. We call \textbf{total energy} or \textbf{coordinate energy} the energy defined with respect to this velocity \amp\ clock, and denote its volume content by $\yE$.
+\item[\faIcon{globe}] At each point in space and time we may choose a zero coordinate velocity -- that is, we don't move with respect to the coordinates $(x,y,z)$ -- and we may measure time according to coordinate time $t$. % We call \textbf{total energy} or \textbf{coordinate energy} the energy defined with respect to this velocity \amp\ clock. % In these notes we shall denote its volume content by $\yE$, and its flux by $\yH$.
 
-\item[\faIcon{water}] If matter is present, we can choose the matter's velocity, and  measure time according to the proper time of a clock moving together with that matter. We call the energy so defined the \textbf{internal energy} of matter, and denote its volume content by $\yU$. Note that this energy cannot be defined if matter is not present. This definition of energy is often adopted in the description of fluids.
+  In Newtonian approximation, the total energy content defined by this choice includes so-called internal-energy, kinetic-energy, and gravitational-potential-energy terms.
 
-\item[\faIcon{clock}\faIcon{globe}] We can choose a zero coordinate velocity, as in the first case, but measure time according to \autoref{sec:time}{\emph{proper time}} rather than coordinate time $t$. Energy defined with respect to this reference velocity \amp\ clock is usually different from the previous two definitions. The difference between this energy and internal energy is called \emph{kinetic energy}; we denote its volume content by $\yEk$. The difference between total energy and this energy is called \emph{potential gravitational energy}; we denote its volume content by $\yEp$.
+\item[\faIcon{water}] If matter is present, we may choose the matter's velocity (which is \autoref{sec:fluxes_velocities}{related to the matter flux}), and we may measure time according to the proper time of a clock moving together with that body of matter. % We call the energy so defined the \textbf{internal energy} of matter.% , and denote its volume content by $\yU$.
+
+  In Newtonian approximation, the total energy content defined by this choice includes only an internal-energy term.
+Note that this energy \emph{cannot} be defined if matter is not present. This definition of energy is often adopted in the description of fluids.
+
+
+\item[\faIcon{clock}\faIcon{globe}] We may choose a zero coordinate velocity, as in the first case, but measure time according to \autoref{sec:time}{\emph{proper time}} rather than coordinate time $t$. % Energy defined with respect to this reference velocity \amp\ clock is usually different from the previous two definitions. The difference between this energy and internal energy is called \emph{kinetic energy}.% ; we denote its volume content by $\yEk$.
+  % The difference between total energy and this energy is called \emph{potential gravitational energy}.% ; we denote its volume content by $\yEp$.
+
+  In Newtonian approximation, the total energy content defined by this choice includes internal-energy and kinetic-energy terms, but no terms related to gravity (this is the choice underlying the formula snippet in the previous side picture).
 \end{itemize}
-We thus have the relation
-\begin{equation}
-  \label{eq:energy_division}
-  \yE = \yU + \yEk + \yEp
-\end{equation}
 
-%
-\marginpar{\vspace{\baselineskip}%
-  \footnotesize\flushleftright\color{mpcolor}%
-  \enquote{\emph{a distinction is made between the principle of conservation of energy and the first law of thermodynamics, the two being identical only when matter is at rest}} \sourceatright{\cites{eckart1940c}}%
-}%
-Each of these differently defined energies satisfies a balance law with different fluxes and supplies. An interesting property of \emph{internal energy} is that the gravitational field is completely absent in its volume content, flux, and supply. Its balance is usually called the \textbf{first law of thermodynamics}. Otherwise, what appears as volume content in one definition also typically appears, slightly disguised, as flux or supply in another definition.
+Each of these differently defined energies satisfies a balance law with different fluxes and supplies.
+An interesting property of the second definition above is that the gravitational field is completely absent in its volume content, flux, and supply. % Its balance is usually called the \textbf{first law of thermodynamics}. % Otherwise, what appears as volume content in one definition also typically appears, slightly disguised, as flux or supply in another definition.
 
 \smallskip
 
-Note that \emph{we do not need to use all of these differently defined energies; one is enough}. Depending on the physical application or problem, one definition can be mathematically more convenient to use than another. In these notes we shall use the \emph{total energy}, because of the following interesting or convenient features:
+Note that we do \emph{not} need to use \emph{all} of these differently defined energies at the same time; \emph{one is enough}. Depending on the physical application or problem, one definition can be mathematically more convenient to use than another.
+
+In these notes we shall use the \enquote*{total} or \enquote*{coordinate} energy, because it has the following interesting or convenient features:
+\begin{itemize}
+\item It is defined anywhere, even where no matter is present.
 %
 \marginpar{\vspace{\baselineskip}\centering%
 \includegraphics[width=\linewidth]{icrf3sx.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}})
 }%
-\begin{itemize}
-\item It is defined anywhere, even where no matter is present.
-\item Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, it practically \emph{satisfies a conservation law} in these common coordinate systems.
-\item Its volume content $\yE$ and flux $\yH$ typically contain terms that refer to the motion of matter and on the gravitational field.
+\item Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, this energy practically \emph{satisfies a conservation law} in these common coordinate systems.
+\item Its volume content % $\yE$ 
+  and flux % $\yH$
+  typically contain terms that refer to the motion of matter and to the gravitational field.
 \end{itemize}
+
+
+
+
+\begin{warning}[An aspect still rarely discussed]
+  Most physics textbooks today unfortunately do not mention the dependence of the energy definition on a reference velocity \amp\ clock; or worse they mix it up with the dependence on coordinate systems. This dependence, however, is as important as the fact that energy and mass are the same thing.
+  % This dependence also makes it clear that the difference, say, between \enquote*{internal energy} and \enquote*{kinetic energy} is on a different level from the difference, say, between \enquote*{elastic energy} and \enquote*{electromagnetic energy}. The latter depends on the choice of constitutive relations, rather than on a reference velocity \amp\ clock, and is often only approximate.
+\end{warning}
 
 \subsection{Forms of energy}
 \label{sec:energy_forms}
 
-We shall see that the energy content within a control volume and the energy flux through a control surface can depend on many other quantities such as matter content and flux, momentum content and flux, electric charge and electromagnetic field, and auxiliary quantities such as temperature. This dependence can be wildly different, depending on the physical phenomenon.
+Once we have agreed on a definition of \enquote*{total energy content} by means of a  reference velocity \amp\ clock, a distinction is usually further made between different \enquote{forms} of energy
+% allows us to make a distinction between \enquote*{internal}, \enquote*{kinetic}, \enquote*{gravitational-potential} energy. But often we hear about other distinctions between energies, such as
+for example \enquote*{elastic} or \enquote*{electromagnetic}. This distinction as a different origin: it comes from particular \emph{constitutive relations} that connect the total energy to other quantities like matter, temperature, electromagnetic field. There is a wild variety of such constitutive relations, which depend on the physical phenomenon to be described.
 
-In general it is not possible to separate the dependence of energy on other quantities into neatly distinct \enquote{pieces}, and say \enquote{this is the energy contribution of matter}, \enquote{this is the energy contribution of the electromagnetic field}, and so on. So it does not really make sense to speak of \enquote*{energy of matter}, \enquote*{energy of electromagnetic field}, and similar distinctions. \emph{Energy is a property of the set of other quantities taken as a whole}.
+In general it is not possible to separate the dependence of total energy on other quantities into a sum of neatly distinct \enquote{pieces} such as
+\begin{equation*}
+  \text{\enquote{mechanical energy}} +
+  \text{\enquote{thermal energy}} +
+  \text{\enquote{electromagnetic energy}} +
+\dotsb
+\end{equation*}
+and say \enquote{this is the energy contributed by matter}, \enquote{this is the energy contributed by the electromagnetic field}, and so on. % So it does not really make sense to speak of \enquote*{energy of matter}, \enquote*{energy of electromagnetic field}, and similar distinctions.
+\emph{Energy is a property of the other quantities taken as a whole}.
 %
-\marginpar{\vspace{-\baselineskip}\centering%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[width=\linewidth]{disc-pickup-guitar.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 The functioning of a guitar pickup is based on the fact that energy cannot be clearly separated into \enquote*{mechanical} and \enquote*{electromagnetic} (\furl{https://commons.wikimedia.org/wiki/File:Piezoelectric_pickup1.jpg}{image by Georg Feitscher})%
 }%
 The absence of such a separation is the origin of many interesting and useful physical phenomena such as \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/piezo.html}{piezoelectricity} and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/magstrict.html}{magnetostriction}.
 
-In some situations it is possible to \emph{approximately} express energy as a sum of terms that depend on particular quantities only. In these cases we can speak for instance of \enquote*{elastic energy}, \enquote*{radiation energy}, and similar expressions. Keep in mind that these expressions denote particular mathematical parts and don't really mean that energy can ultimately be divided that way.
-
-In the previous section we divided energy into \enquote*{internal}, \enquote*{kinetic}, and \enquote*{gravitational}. That division, however, comes from different references for the definition of energy and does not imply separate dependence on matter, electromagnetic field, and so on. Internal, kinetic, and gravitational energy will in general all depend on all other relevant quantities.
+In some situations, however, it is possible to \emph{approximately} express energy as a sum of terms that depend on particular quantities only. In these cases we can speak for instance of \enquote*{elastic energy}, \enquote*{radiation energy}, and similar expressions denoting the terms in the approximate sum.
 
 
 \subsection{Is energy conserved?}
@@ -6357,27 +6400,24 @@ In the previous section we divided energy into \enquote*{internal}, \enquote*{ki
 
 Energy is \emph{balanced}, but not \emph{conserved}, according to our \autoref{wa:conservation}{definitions of these terms}. This is not a controversial statement: recall that many texts use the term \enquote*{conservation} in the sense of \enquote*{balance}, that is, they are not excluding the presence of a volume supply.
 %
-\marginpar{\vspace{-\baselineskip}\centering%
+\marginpar{\vspace{-3\baselineskip}\centering%
 \includegraphics[width=\linewidth]{batchelor_energy.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Balance of internal energy in a classic text on fluid dynamics (\cites{batchelor1967_r2000} \eqn\,(3.4.3)). The first summand on the right is the energy supply.%
 }%
-In fluid mechanics, for instance, the internal-energy definition is typically used, and as mentioned in the previous section this energy definition satisfies a balance law, not a conservation law.
-
-% No, according to our present knowledge. First of all, recall that \autoref{wa:conservation}{many texts use the term \enquote*{conservation} in the sense of \enquote*{balance}} as defined in the present notes. So when they speak of \enquote{energy conservation} they don't exclude the presence of an energy supply, the creation of energy within a volume.
-% In fluid mechanics, for instance, we usually describe physical phenomena using the internal-energy definition, and as mentioned above this energy definition satisfies a balance law, not a conservation law.
+In fluid mechanics, for instance, the internal-energy definition is typically used, and as previously mentioned this energy definition satisfies a balance law, not a conservation law.
 
 The statement \enquote{energy is conserved}, however, is often meant in another sense: if we take a control volume where nothing is flowing in or out -- no energy, matter, electric charge, electromagnetic field, momentum -- then isn't its energy content conserved, constant in time?
 % But doesn't the energy that appears as \enquote{supply} come from somewhere else, so it also disappears from somewhere else and its total is the same?
 
-The answer to this question is also no. As far as we know, there is constant creation of energy on cosmological scales, no matter how we choose the reference velocity \amp\ clock for its definition. The total energy of the universe (provided such a notion can be mathematically defined) is therefore not constant.
+The answer to this question is also no. As far as we know, there is constant creation of energy on cosmological scales, no matter how we choose the reference velocity \amp\ clock for the definition of energy. The total energy of the universe (provided such a notion can be mathematically defined) is therefore not constant.
 %
 \marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[width=\linewidth]{universeexpansion2.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Depiction of change of spacetime metric on cosmological scales, in three different coordinate systems (from \cites{davisetal2004})%
 }%
-The reason is that the metric of the universe is not constant along the time direction -- the so-called \furl{https://www.jpl.nasa.gov/edu/news/2023/7/24/exploring-the-mystery-of-our-expanding-universe/}{expansion of the universe} -- and an energy that is strictly conserved can only be defined if the metric is constant.
+The reason is that the metric of the universe is not constant along the time direction -- the so-called \furl{https://www.jpl.nasa.gov/edu/news/2023/7/24/exploring-the-mystery-of-our-expanding-universe/}{expansion of the universe} -- and an energy that is strictly conserved can only be defined if the metric is constant along some time direction:
 \begin{quote}\footnotesize
 cosmologists have not done a very good job of spreading the word about something that's been well-understood since at least the 1920's: energy is not conserved in general relativity \sourceatright{\furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll 2010}}
 \end{quote}
@@ -6414,36 +6454,70 @@ We have an intuitive understanding of the notion of \emph{hotness} and \emph{col
 }%
 The physical bases and measurement procedures for this quantification are far from trivial, but we shall take them for granted in the present notes.
 
-Temperature is useful because it enters in many constitutive relations involving energy, but is easier to measure than energy. It will thus appear in our equations and in our numerical time-integration procedures. There are several scales of temperature measurement; of special importance is \emph{absolute temperature} which is measured in kelvins (\unit{K}). In the following we shall use this temperature, denoting it $\yte$.
+Temperature is useful because it enters in many constitutive relations involving energy, but is easier to measure than energy. It will thus appear in our equations and in our numerical time-integration procedures.
 
-Temperature generally depends on the place and time: it is a function of the coordinates, $\yte(t, x,y,z)$.
+There are several scales of temperature measurement; of special importance is \furl{https://www.iso.org/obp/ui/\#iso:std:iso:80000:-5:ed-2:v1:en:tab:1}{\textbf{thermodynamic temperature}}, also called \emph{absolute temperature}, which is measured in \emph{kelvins} (\unit{K}). Thermodynamic temperature has the special property of being always positive in most physical phenomena (there are exceptions, especially in some phenomena where \furl{https://www.britannica.com/science/statistical-mechanics}{statistical mechanics} becomes relevant).
+
+In these notes we shall use thermodynamic temperature, denoting it $\yte$. Its relation with Celsius temperature $\ytece$ (measured in \emph{degrees Celsius}, \unit{\degreeCelsius}) is given by
+\begin{equation}
+  \label{eq:kelvin_celsius}
+  \ytece = \yte - \qty{273.15}{K}
+\end{equation}
+that is, a redefinition of the \enquote{zero} value; for instance\enspace$\qty{25.00}{\degreeCelsius} = \qty{298.15}{K}$\,.\enspace Note that temperature \emph{differences} are the same for the two temperatures: $\incr\ytece = \incr\yte$, because the constant zero-value cancels out.
+
+Temperature generally depends on the place and the time, so it can be a function of the coordinates: $\yte(t, x,y,z)$.
 
 \section{Examples of constitutive relations}
 \label{sec:energy_constitutive}
 
-We shall focus on simplified versions of constitutive relations that allow us to study the behaviour of fluids in situations where only one dimension is relevant.
+Energy probably has the greatest variety of constitutive relations for its content and its flux. Whole books are dedicated to the discussion of constitutive relations for energy.
+
+In these notes we shall first restrict our focus on general constitutive relations that can be applied in physical phenomena that involve matter but not electric charge or the electromagnetic field. Then we shall restrict our focus even further, on constitutive relations for specific kinds of matter in particular states, for example ideal gases. Often we shall also simplify the discussion by considering physical phenomena where only one spatial dimension is relevant.
 
 \subsection{Energy content for matter: internal, kinetic, gravitational energy}
 \label{sec:energy_volume_matter}
 
 If a small control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
 \begin{definition}{Energy associated with matter,label={def:energy_volume_matter}}
-  If a small control volume on Earth's surface contains an amount of matter $\yN$ having velocity $\yv$ and \autoref{def:molarmass}{molar mass} $\yrho$, and negligible electromagnetic fields, then its total \energym\ content is given by $\yM c^{2} + \yE$, with
+  If a small control volume on Earth's surface contains an amount of matter $\yN$ having coordinate velocity $\yv$ and \autoref{def:molarmass}{molar mass} $\yrho$, and negligible electromagnetic fields, then its total \energym\ content is given by
   \begin{equation}
     \label{eq:energy_volume_matter}
+   \yM c^{2} +  \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
+  \end{equation}
+  with $\yM = \yrho\yN$. In this expression, $c$ is the speed of light, $g$ is the \autoref{sec:supply_momentum_gravity}{gravitational acceleration} and we have assumed a coordinate system $(x,y,z)$ with $z$ pointing upwards. % The factor $\yM$ is \autoref{def:molarmass}{connected to the amount of matter} $\yN$ in the volume by $\yM = \yrho\yN$.
+
+    \smallskip
+
+    The term $\yU$ is called \textbf{internal thermodynamic energy} and is given by some further constitutive relation that depends of the physical phenomenon. The terms $\frac{1}{2}\yM \yv^{2}$ and $\yM g z$ are called \textbf{kinetic energy} and \textbf{gravitational potential energy}.
+
+  \smallskip
+
+  Usually we change the \enquote{zero} of \energym content, removing the term $\yM c^{2}$ and defining the total energy as
+    \begin{equation}
+    \label{eq:thermodynamic_energy}
     \yE = \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
   \end{equation}
-  where $\yU$ is the \emph{internal energy} and is given by a further constitutive relation dependent of the physical phenomenon; $g$ is the \autoref{sec:supply_momentum_gravity}{gravitational acceleration}; $\yM = \yrho\yN$; and we have assumed a coordinate system $(x,y,z)$ at rest with the Earth's surface, with $z$ pointing upwards.
-
-\smallskip
-
-  The terms $\frac{1}{2}\yM \yv^{2}$ and $\yM g z$ are called \emph{kinetic energy} and \emph{gravitational potential energy}.
 \end{definition}
-This general formula is only valid in Newtonian approximation, for speeds smaller than the speed of light and weak gravitational fields.
+The formulae above are valid in Newtonian approximation, for speeds smaller than the speed of light and weak gravitational fields.
 
-As already discussed several times, in most macroscopic phenomena the term $\yM c^{2}$ overwhelms $\yE$, so when the total \masse\ is required we simply approximate it with $\yM$. But for physical phenomena where energy exchanges are important we change the \enquote{zero} of our energy measurements, shifting it by $\yM c^{2}$. The exact amount by which we shift the zero is unimportant; this is why we can add an arbitrary constant term $\yUo$ (possibly negative) to the internal energy $\yU$, as long as $\yUo$ is much less than $\yM c^{2}$.
+As we discussed some chapters ago, \autoref{sec:mass_is_energy}{energy and mass are the same thing}. Formula~\eqref{eq:energy_volume_matter} above is actually also the mass, multiplied by $c^{2}$, contained in the control volume. In these notes we often call only \enquote*{$\yM$} the mass contained in a control volume, but clearly this is an approximation: we are neglecting the terms $\yU/c^{2} + \frac{1}{2}\yM \yv^{2}/c^{2} + \yM g z/c^{2}$ because they are extremely small; there are in fact even smaller terms that are neglected in the expressions above.
 
-Note that the general constitutive relation above is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later. For the moment let's see some examples of these kinds of energy.
+The values of $\yM$ and $\yU$ are actually arbitrary to some degree, and there is no clear-cut separation between $\yM c^{2}$ and $\yU$ in the sum $\yM c^{2} + \yU$. We can for example remove some amount $\yUd$ (possibly negative) from the definition of $\yU$, and add $\yUd/c^{2}$ to the definition of $\yM$:
+\begin{equation*}
+  \mathcolor{grey}{\underbracket[1pt]{\mathcolor{black}{\bigl(\yM + \tfrac{1}{c^{2}}\yUd\bigr)}}}_{\mathclap{\mathcolor{midgrey}{\text{new $\yM$}}}} c^{2} +
+  \mathcolor{grey}{\underbracket[1pt]{\mathcolor{black}{(\yU-\yUd)}}}_{\mathclap{\mathcolor{midgrey}{\text{new $\yU$}}}}
+\end{equation*}
+The change in $\yM$ is usually negligible: we could be changing, say, beyond its 9th decimal digit. But the change in $\yU$ can be quite large. So this means that we can effectively redefine the \enquote{zero} of the thermodynamic internal energy $\yU$. For water and steam, for instance, $\yU$ is decreed to be zero at a particular physical condition called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/thermo/pvtsur.html\#c1}{triple point} \parencites{wagneretal1998_r2008}.
+\begin{exercise}
+  Consider a control volume containing water, with $\yM = \qty{1}{kg}$ and internal energy $\yU=\qty{100000}{J}$. Suppose we want to redefine the internal energy so that it is zero instead. By how much should we redefine $\yM$, so that the sum $\yM c^{2}+\yU$ stays the same?
+\end{exercise}
+
+
+When the total \masse\ is required, for example in the \autoref{eq:matter_momentum_Newton}{Newtonian formula for momentum}, we simply approximate it with $\yM$. But for physical phenomena where energy \emph{exchanges} are important, we change the \enquote{zero} of our energy measurements, shifting it by $\yM c^{2}$, so that energy calculations are numerically more manageable. This is why we shall use the total energy $\yE$ as defined in formula~\eqref{eq:thermodynamic_energy}. Note that even if this definition we can choose the zero of $\yU$.
+
+\medskip
+
+The general constitutive relation~\eqref{eq:thermodynamic_energy} applies to a large variety of physical phenomena. But it is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later. For the moment let's see some examples of these kinds of energy.
 
 \paragraph{Small bodies in motion}
 
@@ -6477,37 +6551,37 @@ In modelling extended matter in a solid and fluid state, usually all three forms
 }%
 Consider a person pushing a door or lifting a weight on the palm of their hand, a hammer hitting a piece of hot iron, or a bike-pump piston quickly pressed down. These and many other physical phenomena can be characterized as follows:
 \begin{itemize}[nosep]
-\item there's a control surface moving with some velocity $\yv$
-%\item there is matter on both sides of this control surface
-\item there is no flux of matter through the control surface
-\item no matter is moving transversally to the control surface (as instead it happens, say, when dragging a weight on the ground)
-\item no visible electromagnetic fields are involved.
+\item there's a control surface, possibly moving
+\item there is matter at least on one side of this control surface, in contact with it
+\item but there is no flux of matter through the control surface
+\item electric charges and electromagnetic fields are negligible on a macroscopic scale.
 \end{itemize}
-In situations like these there is a general formula for the flux of energy through the moving control surface.
+In situations like these there is a general formula for the flux of energy through the control surface.
 \begin{definition}{Heat flux and power}
-Consider a control surface moving with velocity $\yv$, satisfying the conditions above. Choose a positive crossing direction. If $\yF$ is the flux of momentum through this control surface, then the energy flux $\yH$ through it is given by
+Consider a control surface, possibly moving, satisfying the conditions above. Choose a positive crossing direction. If $\yF$ is the flux of momentum through this control surface, and $\yv$ the velocity of matter in contact with it, then the energy flux $\yH$ through it is given by
 \begin{equation}
   \label{eq:heat_power}
-  \yH = \mathord{\underbracket[0pt]{\yQ}_{\clap{\color{grey}\footnotesize heat flux}}} + \overbracket[0pt]{\yF\cdot \yv}^{\clap{\color{grey}\footnotesize power}}
+  \yH = \yQ + \yF\cdot \yv
+  % \yH = \underbracket[0pt]{\yQ}_{\mathclap{\text{\color{grey}\footnotesize heat flux}}} +
+  %   \overbracket[0pt]{\yF\cdot \yv}^{\mathclap{\parbox{4em}{\color{grey}\centering\footnotesize mechanical\\ power}}}
 \end{equation}
-The term $\yQ$ is called the \textbf{heat flux} or \emph{heating}; the  term $\yF\cdot \yv$ is called the \textbf{power} or \emph{working} transmitted by the force $\yF$.
+The term $\yQ$ is called the \textbf{heat flux} or \emph{heating}; the  term $\yF\cdot \yv$ is called the \textbf{mechanical power} or \emph{working} transmitted by the force $\yF$.
 
 \smallskip
 
-If the heat flux term vanishes, $\yQ=\qty{0}{J/s}$, then the energy flux is called \textbf{adiabatic}.
+If the heat flux vanishes, $\yQ=\qty{0}{J/s}$, then the energy flux is called \textbf{adiabatic}.
 
 \smallskip
 
-We can also consider the \autoref{sec:total_flow}{integrated flux} of energy, that is, the total energy that was flowed through the surface between times $\yti$ and $\ytf$:
+We can also consider the \autoref{sec:total_flow}{integrated flux} of energy, that is, the total energy that flowed through the surface between times $\yti$ and $\ytf$:
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t =
-  \mathord{\underbracket[0pt]{\int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t}_{\clap{\color{grey}\footnotesize heat}}}
-  + \underbracket[0pt]{\int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)
-    \ \di t}_{\clap{\color{grey}\footnotesize work}}
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
+  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \di t
 \end{equation*}
-The integrated heat flux is called the \textbf{heat} transferred through the surface, and the integrated power is called the \textbf{work} done by the force.
+The integrated heat flux is called the \textbf{heat} transferred through the surface, and the integrated mechanical power is called the \textbf{mechanical work} done by the force.
 \end{definition}
-Note that the momentum flux $\yF$ can be zero, and the heat flux and power can independently be zero or negative. The control surface can be purely imaginary, with no real physical separation between the matter on its sides. And it can also be at rest: this case simply corresponds to a zero velocity, $\yv=\qty{0}{m/s}$.
+Note that the momentum flux $\yF$ can be zero, and the heat flux and mechanical power can independently be zero or negative. The control surface can be purely imaginary, so that there is no real physical separation between the matter on its sides.
 
 The heat flux $\yQ$ can  be controlled in some situations, and in that case it is given in a physical problem or simulation. In other situations it is instead specified by a constitutive relation. The momentum flux $\yF$ if usually given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
 % \begin{warning}[No power without matter]
@@ -6590,7 +6664,10 @@ We start with a constitutive relation that connects:
     \label{eq:ideal_gas_p}
     p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
   \end{equation}
-  where $\frac{\di V}{\di t}$ is the rate of change of volume and $\lambda$ is a \textbf{viscosity} coefficient.
+  where $\frac{\di V}{\di t}$ is the rate of change of volume, $\lambda$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
+  \begin{equation*}
+    R = \qty{8.31446261815324}{J/(mol\cdot K)}
+  \end{equation*}
 
   \smallskip
 
@@ -6621,7 +6698,7 @@ The fact that the viscosity coefficients must be positive is a consequence of th
 \subsection{Internal energy of an ideal gas}
 \label{sec:intenergy_ideal_gas}
 
-Next we discuss a constitutive equation that connects the amount of internal energy in the control volume with the amount of ideal gas and its temperature:
+Next we discuss a constitutive relation that connects the amount of internal energy in the control volume with the amount of ideal gas and its temperature:
 
 \begin{definition}{Internal energy of an ideal gas}
   If a small control volume contains an amount $\yN$ of ideal gas, at uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ equal to
@@ -6637,41 +6714,31 @@ This formula is very important: for an ideal gas, the absolute temperature is a 
   \begin{itemize}[shift]
   \item Keep in mind that the particular constitutive relation~\eqref{eq:int_energy_idealgas} is valid for an ideal gas only. The internal energy of a generic material is related to other quantities besides amount of matter and temperature.
 
-  \item Some books express the formula above saying \enquote{the internal energy of an ideal gas depends only on temperature}. This statement is somewhat vague and easy to misunderstand. First, the internal energy clearly \enquote{depends} also on the amount of matter $\yN$. Second, if in some application we express the amount of matter or the temperature as functions of other quantities, such as volume, then the internal energy also becomes a function of those quantities. The formula above can be simply expressed as follow: if you know the amount (and kind) of matter in a volume, and the temperature in that volume, then you also know the internal energy.
+  \item Some books express the formula above saying \enquote{the internal energy of an ideal gas depends only on temperature}. This statement is somewhat vague and easy to misunderstand. First, the internal energy clearly \enquote{depends} also on the amount of matter $\yN$. Second, if in some application we express the amount of matter or the temperature as functions of other quantities, such as volume, then the internal energy also becomes a function of those quantities. The formula above can be simply expressed as follow: if we know the amount (and kind) of matter in a volume, and the temperature in that volume, then we also know the amount of internal energy therein.
   \end{itemize}
 \end{warning}
 
-\bigskip
+\subsection{Heat flux}
+\label{sec:heat_flux}
+
+Lastly we discuss a constitutive relation that connects heat flux and temperature. This relation applies to many physical phenomena and materials: not only to ideal gases, but to many other fluids and solids as well.
 
 \begin{definition}{Fourier law}
-  Consider small control surface of area $A$ orthogonal to some direction, say the coordinate-$x$ direction. Then through this surface there is a heat flux $\yQ$ given by \textbf{Fourier's law of heat conduction}:
+  Consider a small control surface of area $A$ orthogonal to some direction, say the coordinate-$x$ direction. Then through this surface there is a heat flux $\yQ$ given by \textbf{Fourier's law of heat conduction}:
   \begin{equation}
     \label{eq:fourier_law}
     \yQ = -A k \frac{\de\yte}{\de x}
   \end{equation}
 where $\frac{\de\yte}{\de x}$ tells how much the temperature $\yte$ differs along the $x$-direction, and $k$ is called the \furl{https://www.britannica.com/science/thermal-conductivity}{coefficient of thermal conductivity}. This coefficient is always positive, and usually depends on the temperature.
 \end{definition}
+The minus sign in this formula means that, if the temperature increases towards larger $x$-values, then a positive flux of energy occurs towards smaller $x$-values. In other words, positive energy flows from the hotter to the colder side of the surface. The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy} (second law of thermodynamics), as in the case of the viscosity coefficients.
 
-The minus sign in this formula means that, if the temperature increases towards larger $x$-values, then a positive flux of energy occurs towards smaller $x$-values. In other words, positive energy flows from the hotter to the colder side of the surface. The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy}, as in the case of the viscosity coefficients.
-
-%
-\marginpar{\vspace{\baselineskip}\centering%
-\includegraphics[width=\linewidth]{fourier.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-NB: if $\yteb >\ytea$, then $\yQ<0$%
-}%
-We shall also use an approximate version of this formula: if at points with coordinates $\yxa$ and $\yxb$ there are temperatures $\ytea$ and $\yteb$, then the heat flux $\yQ$ in the through any surface between the two points and orthogonal to the line joining them, in the $\yxa\to\yxb$ direction, is
-\begin{equation}
-  \label{eq:fourier_law_discrete}
-  \yQ = - A k \frac{\yteb-\ytea}{\yxb-\yxa}
-\end{equation}
-
-This constitutive relation is valid also in many other phenomena that do not involve ideal gases, for instance for the heat conduction in a metal. But it is \emph{not universal}.
+It's important to make clear that \emph{Fourier's law is not a universal law}. There are physical situations and materials for which the heat flux is connected to temperature in more complex ways; and not only to temperature, but also to momentum flux, matter flux, electromagnetic quantities. \furl{https://www.energy.gov/energysaver/thermoelectric-coolers}{Thermoelectric coolers} are an example application of these more complex constitutive relations for the heat flux.
 
 \begin{warning}[Heat can flow from cold to hot]
-  Some texts say that \enquote{heat cannot flow from cold to hot}, and present this vague statement as a consequence of, or equivalent to, the second law of thermodynamics.
+  Some texts say that \enquote{heat cannot flow from cold to hot}, and present this vague statement as a consequence of, or equivalent to, the second law of thermodynamics. This statement is actually \emph{not} true, from several points of view.
 
-  Heat actually can flow from cold to hot. An everyday example is a refrigerator:
+  Heat can flow from cold to hot. An everyday example is a refrigerator:
   \begin{quote}\footnotesize
     It is obvious that, on a macroscopic scale, heat flows from a cold source to a hotter sink in a refrigerator: thus the idea that the second law requires heat to invariably flow from hot to cold is belied by the fact that refrigerators do work.
     \sourceatright{\parencites{astarita1989_r1990}}%
@@ -6679,9 +6746,27 @@ This constitutive relation is valid also in many other phenomena that do not inv
 Even more interesting examples, in which Fourier's law does not apply, occur for materials such as polymers \mynotew{add text and reference}
 \end{warning}
 
-\bigskip
+\smallskip
 
-Even if the mathematical form of the ideal-gas constitutive relations is simple, their application can be extremely complex. These relations apply to very small control volumes. If we want to model a body of gas accurately, we need to use a large number of such control volumes. This way we can try to simulate many interesting physical behaviours that an ideal gas can have, such as turbulence.
+%
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{fourier.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+NB: if $\yteb >\ytea$, then $\yQ<0$%
+}%
+In some applications we shall use an approximate version of Fourier's law.
+Suppose that at points with coordinates $\yxa$ and $\yxb$ there are temperatures $\ytea$ and $\yteb$, and the distance between these points is not too large. Then the heat flux $\yQ$ in the $\yxa\to\yxb$ direction, through any surface between the two points and orthogonal to the line joining them, is approximately given by
+\begin{equation}
+  \label{eq:fourier_law_discrete}
+  \yQ = - A k \frac{\yteb-\ytea}{\yxb-\yxa}
+\end{equation}
+Clearly we are approximating the spatial derivative of temperature $\frac{\de\yte}{\de x}$ with a finite difference.
+
+
+\subsection{Application of the constitutive relations for ideal gases}
+\label{sec:application_constit_idealgas}
+
+Even if the mathematical form of the ideal-gas constitutive relations above is simple, their application can be extremely complex. As already mentioned these relations apply to very small control volumes. If we want to model a body of gas accurately, we need to use a large number of such control volumes. This way we can try to simulate many interesting physical behaviours that an ideal gas can have, such as turbulence.
 
 %
 \marginpar{\vspace{-6\baselineskip}\centering%
@@ -6689,13 +6774,17 @@ Even if the mathematical form of the ideal-gas constitutive relations is simple,
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Depiction of our typical setup. The control volume is $V$. The \textcolor{yellow}{yellow} surface on the top has area $A$ and can move vertically with velocity $\yv$. There can be momentum fluxes at the top and bottom surfaces, and heat fluxes at the top, bottom, and side surfaces.%
 }%
-In the following applications we shall make the following assumptions and simplifications:
+In the applications of the following sections we shall make these assumptions and simplifications:
 \begin{itemize}[nosep]
-\item Only one control volume is used. We assume that some quantities such as temperature can be considered uniform within the volume.
-\item Two dimensions of the control volume are fixed. The third, say the vertical one, can be variable. We can assume a cylindrical shape with constant base area $A$ and variable volume $V$.
-\item There is no flux of matter through the closed surface of the control volume. The law of conservation of matter is therefore automatically satisfied.
+\item Only one control volume or closed control surface is used. We assume that relevant quantities such as temperature can be considered uniform within the volume.
+\item Two dimensions of the control volume are fixed. The third, say the vertical one, can be variable. We can for instance assume a cylindrical shape with constant base area $A$ and variable volume $V$.
+\item There is no flux of matter through the closed control surface. The law of conservation of matter is therefore automatically satisfied.
 \item A control volume containing an ideal gas has negligible momentum (analogously to the \autoref{sec:hooke}{assumption for Hookean and non-Hookean springs}).
 \end{itemize}
+
+\bigskip
+
+\mynotew{to be continued}
 
 
 
@@ -8310,6 +8399,44 @@ $$
 \Bigr)
  \biggr]
  $$
+
+ ------------
+
+ % We shall see that the energy content within a control volume and the energy flux through a control surface can depend on many other quantities such as matter content and flux, momentum content and flux, electric charge and electromagnetic field, and auxiliary quantities such as temperature. This dependence can be wildly different, depending on the physical phenomenon.
+
+Keep in mind that these expressions denote particular mathematical parts and don't really mean that energy can ultimately be divided that way.
+
+In the previous section we divided energy into \enquote*{internal}, \enquote*{kinetic}, and \enquote*{gravitational}. That division, however, comes from different references for the definition of energy and does not imply separate dependence on matter, electromagnetic field, and so on. Internal, kinetic, and gravitational energy will in general all depend on all other relevant quantities.
+
+% No, according to our present knowledge. First of all, recall that \autoref{wa:conservation}{many texts use the term \enquote*{conservation} in the sense of \enquote*{balance}} as defined in the present notes. So when they speak of \enquote{energy conservation} they don't exclude the presence of an energy supply, the creation of energy within a volume.
+% In fluid mechanics, for instance, we usually describe physical phenomena using the internal-energy definition, and as mentioned above this energy definition satisfies a balance law, not a conservation law.
+
+
+  
+\end{itemize}
+We thus have the relation
+\begin{multline*}
+  \label{eq:energy_division}
+  % \yE = \yU + \yEk + \yEp
+  \text{\enquote*{coordinate} energy} ={}\\
+  \text{internal energy} +
+  \text{kinetic energy} +
+  \text{gravitational potential energy}
+\end{multline*}
+
+% % 
+% \marginpar{\vspace{\baselineskip}%
+%   \footnotesize\flushleftright\color{mpcolor}%
+%   \enquote{\emph{a distinction is made between the principle of conservation of energy and the first law of thermodynamics, the two being identical only when matter is at rest}} \sourceatright{\cites{eckart1940c}}%
+% }%
+
+
+% It is this variety of choices that leads to the variety of \enquote{kinds} of energy.
+% %
+% \marginpar{\vspace{\baselineskip}%
+% \footnotesize\flushleftright\color{red}%
+% \faIcon{exclamation-circle}\enspace Some texts say that different definitions of energy correspond to different choices of coordinate systems, but that is not correct.%
+% }%
 
 
 
