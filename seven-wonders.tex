@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-07T18:00:53+0200
+%% Last-Updated: 2024-04-07T22:00:03+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -3775,7 +3775,7 @@ From the conservation law~\eqref{eq:conserved} we calculate the integrated \text
 \begin{equation*}
   \begin{split}
     \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t &= \yN(\ytf) - \yN(\yti)
-    \\&= \qty{53.4}{mol} - \qty{12.6}{mol}
+    \\&= \qty{53.4}{mol} - \qty{0}{mol}
     \\&= \qty{53.4}{mol}
   \end{split}
 \end{equation*}
@@ -4329,12 +4329,10 @@ This is the famous relation that old textbooks take as the \emph{definition} of 
 
 Recall again the integral and differential forms of a balance law (we use the symbols for energy here, but the reasoning is valid for any other quantity):
 \begin{equation*}
-    \begin{gathered}[t]
       \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
   % \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
 \end{equation*}
 If $\yR=0$, then this is a conservation law.
@@ -4988,11 +4986,9 @@ Note that some constitutive relations will reappear again and again in different
 
   \begin{equation}
     \label{eq:cons_matter}
-    \begin{gathered}[t]
       \underbracket[0pt]{\yN(\ytf) =\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  -\int_{\yti}^{\ytf}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yN(t)}{\di t} = \yJ(t)  -\ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
   \end{equation}
   The supply $\ya$ is usually called \textbf{activity}, and $\ya(t)\equiv 0$ in case of conservation.
 \end{definition}
@@ -5269,11 +5265,9 @@ Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secund
 \begin{definition}{Balance of momentum}
   \begin{equation}
     \label{eq:bal_momentum}
-    \begin{gathered}[t]
       \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
   \end{equation}
 \end{definition}
 
@@ -6270,12 +6264,10 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
 
   \begin{equation}
     \label{eq:bal_energy}
-    \begin{gathered}[t]
       \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
   \end{equation}
 \end{definition}
 
@@ -6354,7 +6346,7 @@ In these notes we shall use the \enquote*{total} or \enquote*{coordinate} energy
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}})
 }%
-\item Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, this energy practically \emph{satisfies a conservation law} in these common coordinate systems.
+\item\label{item:energy_no_supply} Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, this energy practically \emph{satisfies a conservation law} in these common coordinate systems.
 \item Its volume content % $\yE$ 
   and flux % $\yH$
   typically contain terms that refer to the motion of matter and to the gravitational field.
@@ -6542,17 +6534,17 @@ This general constitutive relation applies to a large variety of physical phenom
 
 Of importance in physics and engineering applications are not only changes in the total energy $\yE$, but also exchanges among its internal, kinetic, and gravitational terms, even when the total energy is constant. Here are some examples.
 
-\paragraph{Bodies in motion through air}
+\paragraph{Bodies in motion}
 
-In the preceding chapters we have considered small bodies of matter such as tennis balls. In many situations where the motion of a small body is involved, its internal energy $\yU$ is approximately constant, and therefore we only focus on its kinetic $\tfrac{1}{2}\yM \yv^{2}$ and potential $\yM g z$ energies. An exchange can happen between them. For instance, in a tennis ball falling in a vacuum, the gravitational energy is decreasing while the kinetic energy is increasing at the same rate: the vertical coordinate of the ball is decreasing, and its downward velocity increasing.
+In the preceding chapters we have considered small bodies of matter such as tennis balls. In many situations where the motion of a body is involved, its internal energy $\yU$ is approximately constant, and therefore we only focus on its kinetic $\tfrac{1}{2}\yM \yv^{2}$ and potential $\yM g z$ energies. An exchange of energy can happen between them. For instance, in a tennis ball falling in a vacuum, the gravitational energy is decreasing while the kinetic energy is increasing at the same rate: the vertical coordinate of the ball is decreasing, and its downward velocity increasing.
 
-In other situations the internal energy is not constant, and exchanges happen among all three energy components, as well as changes in the total energy. A ball bouncing on the floor is an example. We can clearly see that its vertical position $z$, and therefore its gravitational energy $\yM g z$, alternately decreases and increases. The same is true for its velocity $\yv$ and kinetic energy $\tfrac{1}{2}\yM \yv^{2}$, which are zero at the highest and lowest (bouncing) points. But we also observe that the highest vertical position of the ball gets lower and lower, until the ball rests on the floor, which means that its kinetic and gravitational energies are both zero. They have been converted partly in internal energy $\yU$ of the ball, and partly transferred, via energy flux, to the internal energy of the floor.
+In other situations the internal energy is not constant, and there are exchanges among all three energy components, as well as changes in the total energy. A ball bouncing on the floor is an example. We can clearly see that its vertical position $z$, and therefore its gravitational energy $\yM g z$, alternately decreases and increases. The same is true for its velocity $\yv$ and kinetic energy $\tfrac{1}{2}\yM \yv^{2}$, which are zero at the highest and lowest (bouncing) points. But we also observe that the highest vertical position of the ball gets lower and lower, until the ball rests on the floor, which means that its kinetic and gravitational energies are both zero. They have been converted partly in internal energy $\yU$ of the ball, and partly transferred, via energy flux, to the internal energy of the floor.
 
 %
 \marginpar{\vspace{\baselineskip}%\centering%
 \includegraphics[width=\linewidth]{skydive2.jpg}%
 }%
-Another example where this kind of energy conversion and energy flux are important is kydiving. The gravitational energy of a skydiver is obviously decreasing. If it were completely converted to kinetic energy, the skydiver would acquire a dangerously excessive falling speed. Instead, this energy is luckily mainly transferred, via friction, to the internal energy of the surrounding air, and partly converted into internal energy of the skydiver. For this reason the kinetic energy, and therefore the falling velocity, of the skydiver remain constant after some time.
+Another example where this kind of energy conversion and energy flux are important is skydiving. The gravitational energy of a skydiver is obviously decreasing. If it were completely converted to kinetic energy, the skydiver would acquire a dangerously excessive falling speed. Instead, this energy is luckily mainly transferred, via friction, to the internal energy of the surrounding air, and partly converted into internal energy of the skydiver. For this reason the kinetic energy, and therefore the falling velocity, of the skydiver remain constant after some time.
 
 \begin{exercise}
   A skydiver jumps with zero initial velocity at an altitude of \qty{3000}{m}. What would be the skydiver's velocity at \qty{1000}{m}, if there were no changes in internal energy and no energy fluxes?
@@ -6588,14 +6580,14 @@ In modelling extended matter in a solid and fluid state, usually all three forms
 }%
 Consider a person pushing a door or lifting a weight on the palm of their hand, a hammer hitting a piece of hot iron, or a bike-pump piston quickly pressed down. These and many other physical phenomena can be characterized as follows:
 \begin{itemize}[nosep]
-\item there's a control surface, possibly moving
-\item there is matter at least on one side of this control surface, in contact with it
-\item but there is no flux of matter through the control surface
+\item there's a control surface in contact with matter on both sides
+\item the control surface may be moving
+\item there is no flux of matter through the control surface
 \item electric charges and electromagnetic fields are negligible on a macroscopic scale.
 \end{itemize}
-In situations like these there is a general formula for the flux of energy through the control surface.
+In situations like these there is a general constitutive formula for the flux of energy through the control surface.
 \begin{definition}{Heat flux and power}
-Consider a control surface, possibly moving, satisfying the conditions above. Choose a positive crossing direction. If $\yF$ is the flux of momentum through this control surface, and $\yv$ the velocity of matter in contact with it, then the energy flux $\yH$ through it is given by
+Consider a control surface, possibly moving, satisfying the conditions above. Choose a crossing direction in order to define fluxes. If $\yF$ is the flux of momentum through this control surface, and $\yv$ the velocity of matter in contact with it, then the energy flux $\yH$ through the surface is given by
 \begin{equation}
   \label{eq:heat_power}
   \yH = \yQ + \yF\cdot \yv
@@ -6610,35 +6602,45 @@ If the heat flux vanishes, $\yQ=\qty{0}{J/s}$, then the energy flux is called \t
 
 \smallskip
 
-We can also consider the \autoref{sec:total_flow}{integrated flux} of energy, that is, the total energy that flowed through the surface between times $\yti$ and $\ytf$:
+We can also consider the \autoref{sec:total_flow}{integrated flux} of energy, that is, the total energy that flows through the surface between times $\yti$ and $\ytf$:
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t =
   \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
   + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \di t
 \end{equation*}
-The integrated heat flux is called the \textbf{heat} transferred through the surface, and the integrated mechanical power is called the \textbf{mechanical work} done by the force.
+The integrated heat flux is called the \textbf{heat} transferred through the surface, and the integrated mechanical power is called the \textbf{mechanical work} done by the force
 \end{definition}
-Note that the momentum flux $\yF$ can be zero, and the heat flux and mechanical power can independently be zero or negative. The control surface can be purely imaginary, so that there is no real physical separation between the matter on its sides.
+In applying the formula above, keep always in mind the following:
+\begin{itemize}[nosep]
+\item the control surface can be purely imaginary, so that there is no real physical separation between the matter on its sides
+\item the heat flux and mechanical power can independently be zero or negative
+\end{itemize}
 
-The heat flux $\yQ$ can  be controlled in some situations, and in that case it is given in a physical problem or simulation. In other situations it is instead specified by a constitutive relation. The momentum flux $\yF$ if usually given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
-% \begin{warning}[No power without matter]
-%   There can be a heat flux even if there is no matter on one or both sides of the control surface. But \emph{no power is transmitted} unless there is matter on \emph{both} sides.
-% \end{warning}
+The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
 
 \medskip
 
 Let us see some examples.
-\paragraph{Holding a cup of hot tea} When we hold a cup of hot tea or coffee, there is a positive energy \textbf{ef}flux $\yQ$ from the cup to our hands. There is a momentum flux $\yF$ between the cup and our hands, which makes it possible to hold the cup; but no power is transmitted  by it if we hold the cup still, because $\yv=0$. If we move the cup around, then some power can be transmitted, and it shows as an increase in the kinetic energy of the tea, which can even splash out of the cup.
+
+\paragraph{Holding a cup of hot tea} When we hold a cup of hot tea or coffee, we can feel a flux of positive energy from the cup to our hands. How much of it is heat flux, and how much is mechanical power?
+
+Let's consider a control surface between our hands and the cup, and let's choose a hands${}\to{}$cup crossing direction. There is obviously a momentum flux from our hands to the cup. The cup has a constant downward \autoref{def:gravity_surface}{supply of momentum from gravity}, but it isn't falling. This means that there must be a influx of upward momentum. We can also feel the pressure that the cup exerts on our hands; by the symmetry of fluxes this means that there must also be a flux of momentum to the cup that points towards its centre. So the total influx of momentum $\yF$ is not zero. The cup, however, is not moving: its velocity $\yv$ is zero. The mechanical power $\yF\cdot \yv$ is therefore zero as well.
+
+The energy flux through our control surface must therefore be completely in the form of heat flux $\yQ$, and the heat \textbf{in}flux through our control surface is negative, because energy is flowing from the cup to our hands.
+
+If we move the cup around, then its velocity is no longer zero, and some mechanical power $\yF\cdot\yv$ can be transmitted. It shows as an increase in the kinetic energy of the tea, which can even splash out of the cup.
 
 \paragraph{Cooking}
-When we cook something we create a heat \textbf{in}flux into the item being cooked. There is a heat flux not only through the outer surface of the item, but also through imaginary inner surfaces within.
+When we cook something we create a heat \textbf{in}flux into the item being cooked. No mechanical power is transferred, since the velocity of matter is zero.
 
 \paragraph{Spring and body}
-In studying Hookean and non-Hookean springs and rubber bands, we saw that there is a momentum flux between one end of the spring and the body attached there. If the momentum flux into the body is $\yF$, and the body is moving with velocity $\yv$, then an amount of power $\yF\cdot \yv$ is transmitted into the body: it increases its kinetic energy $\frac12\yM\yv^{2}$. This same power is obviously transmitted out of the spring, reducing its internal energy. Any heat flux between the spring and the bodies is usually negligible.
+In studying Hookean and non-Hookean springs and rubber bands, we saw that there is a momentum flux from one end of the spring to the body attached at that end. If the momentum flux into the body is $\yF$, and the body is moving with velocity $\yv$, then there is an energy flux into the body, in the form of mechanical power $\yF\cdot \yv$. This energy flux increases the body's kinetic energy $\tfrac12\yM\yv^{2}$.
+
+By the symmetry of fluxes, this same amount of energy flows out of the spring, reducing its internal energy. Any heat flux between the spring and the bodies attached to it is usually negligible.
 
 \paragraph{Gases}
 
-In describing and using matter in a gaseous state, both heat flux and power must usually be taken into account. In fact, a lot of physical theory and technology are focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
+In describing and using matter in a gaseous state, heat flux and mechanical power must both usually be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
 
 %
 \marginpar{\vspace{2\baselineskip}\centering%
@@ -6656,18 +6658,116 @@ In describing and using matter in a gaseous state, both heat flux and power must
   \begin{enumerate}[exerc]
   \item Water is flowing downwards in a pipe, as illustrated in the side picture by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
 
-  \item Suppose that there is no power $\yF\cdot\yv$ transmitted through a moving control surface. Does this mean that the momentum flux $\yF$ is zero? Or does this mean that the surface's velocity $\yv$ is zero?
+  \item Suppose that there is no power $\yF\cdot\yv$ transmitted through a moving control surface. Does this mean that the momentum flux $\yF$ is zero? Or does this mean that the matter's velocity $\yv$ is zero?
 
   \item\label{item:energyflux_trick} A control surface, with a given crossing direction, is moving with velocity $[0,2,-3]\:\unit{m/s}$. Through this surface we have a heat flux of $\qty{-3}{J/s}$ and a momentum flux of $[1,-2,1]\:\unit{N}$. How much is the energy flux through the surface?
 
-  \item\label{item:bikepump} Consider the control surface that separates air from the piston within a bike pump, schematized by the \textcolor{purple}{red line} in the side illustration. The surface is moving downward with a velocity $[0,0,-0.5]\:\unit{m/s}$, and the downward flux of momentum is $[0,0,-20]\:\unit{N}$. The energy flux through this surface is adiabatic. How much is the downward flux of energy through this surface?
+  \item\label{item:bikepump} Consider the control surface that separates air from the piston within a bike pump, schematized by the \textcolor{purple}{red line} in the side illustration. The piston and the gas in contact with it, on the two sides of the control surface, are moving downward with a velocity $[0,0,-0.5]\:\unit{m/s}$. The downward flux of momentum is $[0,0,-20]\:\unit{N}$. The energy flux through this surface is adiabatic. How much is the downward flux of energy through this surface?
 
-  \item Consider again the control surface of question~\ref{item:energyflux_trick} above. We are now told that there is no matter flux through this surface, nor transversal movement of matter. How much is the energy flux through the surface?
+  \item Consider again the control surface of question~\ref{item:energyflux_trick} above. We are now told that there is no matter flux through this surface, and the matter in contact with the surface on both sides is moving with the same velocity as the surface. How much is the energy flux through the surface?
 
   \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
   \end{enumerate}
 \end{exercise}
 
+% \section{The Newtonian balance of energy for matter}
+% \label{sec:newton_balance_energy}
+% 
+% We have thus far discussed two general families of constitutive relations, one for the energy content $\yE$, formula~\eqref{eq:thermodynamic_energy} and one for the energy flux $\yH$, formula~\eqref{eq:heat_power}, which can be applied to a control volume:
+% \begin{equation*}
+%   \begin{gathered}
+%     \yE = \yU + \tfrac12 \yM \yv^{2} + \yM g z
+%     \\
+%     \yH = \yQ + \yF\cdot\yv
+%   \end{gathered}
+% \end{equation*}
+% Let us recall the conditions under which they are valid:
+% \begin{itemize}[nosep]
+% \item matter present within and directly outside the control volume
+% \item control volume small enough  to consider the velocity $\yv$ the same throughout
+% \item no matter flux through the surface of the control volume
+% \item no electric charges or electromagnetic fields
+% \item Newtonian approximation, and close to the Earth's surface
+% \end{itemize}
+% We also said that \autoref{item:energy_no_supply}{our definition of energy approximately satisfies a conservation law}, so the energy supply is zero: $\yR=0$.
+% 
+% We can insert these expressions for $\yE,\yH,\yR$ in the equation of energy balance~\eqref{eq:bal_energy}, obtaining these specialized integral and differential forms of the energy balance:
+% \begin{equation}
+%   \label{eq:bal_energy_newton}
+%   \begin{gathered}
+%       \begin{multlined}[0.9\linewidth]
+%         \yU(\ytf) + \tfrac12 \yM \yv^{2}(\ytf) + \yM g z(\ytf) ={}\\
+%         \yU(\yti) + \tfrac12 \yM \yv^{2}(\yti) + \yM g z(\yti)
+%         + \int_{\yti}^{\ytf}\!\!
+%         \bigl[\yQ(t) + \yF(t)\cdot\yv(t)\bigr]\,\di t
+%       \end{multlined}
+%     \\[4\jot]
+%       \frac{\di\bigl[\yU(t) + \tfrac12 \yM \yv^{2}(t) + \yM g z(t)\bigr]}{\di t} =
+%       \yQ(t) + \yF(t)\cdot\yv(t)
+%   \end{gathered}
+% \end{equation}
+
+
+
+
+
+\subsection{The \enquote{work-energy theorem}}
+\label{sec:workenergy_thm}
+
+Let us consider, at a particular time $t$, a control volume containing a body of matter with total \masse\ $\yM$ and having the same velocity $\yv(t)$ everywhere. In other words, if we measure the velocity of matter in a small portion of the volume, we find $\yv(t)$; if we measure the velocity in another small portion, we find $\yv(t)$ as well; and so on.
+
+In Newtonian approximation and in absence of charges and electromagnetic fields, the total momentum in the control volume is $\yP(t)=\yM\yv(t)$. Suppose that there's a total influx of momentum $\yF$ through the surface of the control volume; and there's a constant momentum supply $\yG(t) = \yM g\, [0,0,1]$ from gravity. We have chosen coordinates $(x,y,z)$ with $z$ pointing upwards.
+
+The differential form of the balance of momentum is therefore
+\begin{equation*}
+  \begin{aligned}[b]
+    \frac{\di\yP(t)}{\di t} &= \yF(t) + \yG(t)
+\\
+    \frac{\di\yM \yv(t)}{\di t} &= \yF(t) + \yM g\, [0,0,1]
+  \end{aligned}
+\end{equation*}
+Multiply the left and right sides of this equation by $\yv(t) = [v_{x}(t), v_{y}(t), v_{z}(t)]$, using the dot-product:
+\begin{equation}
+    \label{eq:balance_mom_wethm}
+  \frac{\di\yM \yv(t)}{\di t} \cdot \yv(t) = \yF(t)\cdot \yv(t) + \yM g\, [0,0,1]\cdot \yv(t)
+\end{equation}
+
+Now note the following equalities:
+\begin{equation*}
+  \begin{gathered}
+    [0,0,1]\cdot\yv(t) = [0,0,1]\cdot [v_{x}(t), v_{y}(t), v_{z}(t)] = v_{z}(t)
+    = \frac{\di z(t)}{\di t}
+    \\[2\jot]
+    \frac{\di \yv(t)^{2}}{\di t} =
+  \frac{\di[\yv(t) \cdot \yv(t)]}{\di t} =
+  \frac{\di\yv(t)}{\di t} \cdot \yv(t) + \yv(t)\cdot \frac{\di\yv(t)}{\di t}
+  =
+  2\frac{\di\yv(t)}{\di t} \cdot \yv(t)
+  \end{gathered}
+\end{equation*}
+\marginpar{\vspace{-3\baselineskip}%
+\footnotesize\flushleftright\color{mpcolor}%
+the equalities come from the product rule of the derivative and the commutativity property of the dot-product%
+}%
+Multiplying the first set of equalities above by the constant $\yM g$, and the second by the constant $\tfrac12 \yM$, we find
+\begin{equation*}
+  \begin{gathered}
+    \yM g\,[0,0,1]\cdot\yv(t) 
+    = \frac{\di\yM g z(t)}{\di t}
+    \\[2\jot]
+    \frac{\di \tfrac12 \yM \yv(t)^{2}}{\di t} =
+  \frac{\di\yM\yv(t)}{\di t} \cdot \yv(t)
+  \end{gathered}
+\end{equation*}
+We can now replace these equalities in formula~\eqref{eq:balance_mom_wethm}, the balance of momentum that we dot-multiplied by the velocity, and bring the last term on the right to the left. We obtain this equation:
+\begin{equation}
+  \label{eq:wethm}
+  \frac{\di\bigl[\tfrac12 \yM \yv(t)^{2} + \yM g z(t)\bigr]}{\di t} =
+  \yF(t)\cdot \yv(t)
+\end{equation}
+which is usually called \enquote{\textbf{work-energy theorem}}.
+
+The equation above is very peculiar. On the left side, within the time derivative, w see the kinetic energy and gravitational potential energy; so this is almost the full energy content $\yE$ given by the general constitutive relation~\eqref{eq:thermodynamic_energy}, except that the internal energy $\yU$ is missing. On the right side we see the mechanical power; so this is almost the full energy flux $\yH$ given by the general constitutive relation~\eqref{eq:heat_power}, except that the heat flux $\yQ$ is missing.
 
 
 
@@ -6908,12 +7008,10 @@ In the applications of the following sections we shall make these assumptions an
 \begin{definition}{Balance of angular momentum}
   \begin{equation}
     \label{neq:bal_ang_momentum}
-    \begin{gathered}[t]
       \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yT(t) + \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
   \end{equation}
 \end{definition}
 
@@ -6926,12 +7024,10 @@ In the applications of the following sections we shall make these assumptions an
 \begin{definition}{Balance of entropy}
   \begin{equation}
     \label{neq:bal_entropy}
-    \begin{gathered}[t]
       \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yS(t)}{\di t} \ge \yB(t) 0}_{\mathclap{\text{\color{grey}differential form}}}
-    \end{gathered}
   \end{equation}
 \end{definition}
 
