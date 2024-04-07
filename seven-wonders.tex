@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-07T00:01:53+0200
+%% Last-Updated: 2024-04-07T11:13:57+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -6400,7 +6400,7 @@ In some situations, however, it is possible to \emph{approximately} express ener
 
 Energy is \emph{balanced}, but not \emph{conserved}, according to our \autoref{wa:conservation}{definitions of these terms}. This is not a controversial statement: recall that many texts use the term \enquote*{conservation} in the sense of \enquote*{balance}, that is, they are not excluding the presence of a volume supply.
 %
-\marginpar{\vspace{-3\baselineskip}\centering%
+\marginpar{\vspace{-\baselineskip}\centering%
 \includegraphics[width=\linewidth]{batchelor_energy.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Balance of internal energy in a classic text on fluid dynamics (\cites{batchelor1967_r2000} \eqn\,(3.4.3)). The first summand on the right is the energy supply.%
@@ -6479,12 +6479,13 @@ In these notes we shall first restrict our focus on general constitutive relatio
 
 If a small control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
 \begin{definition}{Energy associated with matter,label={def:energy_volume_matter}}
-  If a small control volume on Earth's surface contains an amount of matter $\yN$ having coordinate velocity $\yv$ and \autoref{def:molarmass}{molar mass} $\yrho$, and negligible electromagnetic fields, then its total \energym\ content is given by
+  If a small control volume on Earth's surface contains an amount of matter $\yN$ having coordinate velocity $\yv$ and constant \autoref{def:molarmass}{molar mass} $\yrho$, and negligible electromagnetic fields, then its total \energym\ content is given by
   \begin{equation}
     \label{eq:energy_volume_matter}
-   \yM c^{2} +  \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
+    \yM c^{2} +  \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
+    \qquad\text{with}\quad \yM = \yrho\yN
   \end{equation}
-  with $\yM = \yrho\yN$. In this expression, $c$ is the speed of light, $g$ is the \autoref{sec:supply_momentum_gravity}{gravitational acceleration} and we have assumed a coordinate system $(x,y,z)$ with $z$ pointing upwards. % The factor $\yM$ is \autoref{def:molarmass}{connected to the amount of matter} $\yN$ in the volume by $\yM = \yrho\yN$.
+In this expression, $c$ is the speed of light, $g$ is the \autoref{sec:supply_momentum_gravity}{gravitational acceleration}, and we have assumed a coordinate system $(x,y,z)$ with $z$ pointing upwards. % The factor $\yM$ is \autoref{def:molarmass}{connected to the amount of matter} $\yN$ in the volume by $\yM = \yrho\yN$.
 
     \smallskip
 
@@ -6492,7 +6493,7 @@ If a small control volume contains matter, and any electric charge or electromag
 
   \smallskip
 
-  Usually we change the \enquote{zero} of \energym content, removing the term $\yM c^{2}$ and defining the total energy as
+  Usually we change the \enquote{zero} of \energym\ content, removing the term $\yM c^{2}$ and defining the total energy as
     \begin{equation}
     \label{eq:thermodynamic_energy}
     \yE = \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
@@ -6500,28 +6501,62 @@ If a small control volume contains matter, and any electric charge or electromag
 \end{definition}
 The formulae above are valid in Newtonian approximation, for speeds smaller than the speed of light and weak gravitational fields.
 
-As we discussed some chapters ago, \autoref{sec:mass_is_energy}{energy and mass are the same thing}. Formula~\eqref{eq:energy_volume_matter} above is actually also the mass, multiplied by $c^{2}$, contained in the control volume. In these notes we often call only \enquote*{$\yM$} the mass contained in a control volume, but clearly this is an approximation: we are neglecting the terms $\yU/c^{2} + \frac{1}{2}\yM \yv^{2}/c^{2} + \yM g z/c^{2}$ because they are extremely small; there are in fact even smaller terms that are neglected in the expressions above.
+As we discussed some chapters ago, \autoref{sec:mass_is_energy}{energy and mass are the same thing}. Formula~\eqref{eq:energy_volume_matter} above is actually also the mass, multiplied by $c^{2}$, contained in the control volume. In these notes we often call only \enquote*{$\yM$} the mass contained in a control volume, but clearly this is an approximation: we are neglecting the terms $(\yU + \frac{1}{2}\yM \yv^{2} + \yM g z)/c^{2}$ because they are extremely small -- there are in fact even smaller terms, coming from relativity theory, that are neglected in the expressions above.
 
-The values of $\yM$ and $\yU$ are actually arbitrary to some degree, and there is no clear-cut separation between $\yM c^{2}$ and $\yU$ in the sum $\yM c^{2} + \yU$. We can for example remove some amount $\yUd$ (possibly negative) from the definition of $\yU$, and add $\yUd/c^{2}$ to the definition of $\yM$:
+%
+\marginpar{\vspace{\baselineskip}%
+\footnotesize\flushleftright\color{mpcolor}%
+\enquote*{\emph{the \emph{baryon ``mass'' density} $\rho_{0}$, despite its name, and despite the fact it is sometimes even more misleadingly called ``density of rest mass-energy,'' is actually a measure of the number density of baryons $n$, and nothing more. It is defined as the product of $n$ with some standard figure for the mass per baryon, $\mu_{0}$, in some well-defined standard state; thus, $\rho_{0}\equiv n\mu_{0}.$}}\sourceatright{\cites{misneretal1970_r2017} \sect\,39.3}%
+}%
+In the sum $\yM c^{2} + \yU$ there actually isn't a clear-cut separation between $\yM c^{2}$ and $\yU$, because the constant value of the molar mass density $\yrho$ in $\yM=\yrho\yN$ is arbitrary to some degree. We can for example remove some constant amount $\yUd$ (possibly negative) from the definition of $\yU$, while adding $\yUd/c^{2}$ to the definition of $\yM$:
 \begin{equation*}
   \mathcolor{grey}{\underbracket[1pt]{\mathcolor{black}{\bigl(\yM + \tfrac{1}{c^{2}}\yUd\bigr)}}}_{\mathclap{\mathcolor{midgrey}{\text{new $\yM$}}}} c^{2} +
-  \mathcolor{grey}{\underbracket[1pt]{\mathcolor{black}{(\yU-\yUd)}}}_{\mathclap{\mathcolor{midgrey}{\text{new $\yU$}}}}
+ \mathcolor{grey}{\underbracket[1pt]{\mathcolor{black}{(\yU-\yUd)}}}_{\mathclap{\mathcolor{midgrey}{\text{new $\yU$}}}}
 \end{equation*}
-The change in $\yM$ is usually negligible: we could be changing, say, beyond its 9th decimal digit. But the change in $\yU$ can be quite large. So this means that we can effectively redefine the \enquote{zero} of the thermodynamic internal energy $\yU$. For water and steam, for instance, $\yU$ is decreed to be zero at a particular physical condition called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/thermo/pvtsur.html\#c1}{triple point} \parencites{wagneretal1998_r2008}.
+The change in $\yM$ is usually negligible, beyond its 9th decimal digit. But the change in $\yU$ can be quite large. This means that we can arbitrarily redefine the \enquote{zero} of the thermodynamic internal energy $\yU$. For water and steam, for instance, $\yU$ is decreed to be zero at a particular physical condition called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/thermo/pvtsur.html\#c1}{triple point} \parencites{wagneretal1998_r2008}.
 \begin{exercise}
   Consider a control volume containing water, with $\yM = \qty{1}{kg}$ and internal energy $\yU=\qty{100000}{J}$. Suppose we want to redefine the internal energy so that it is zero instead. By how much should we redefine $\yM$, so that the sum $\yM c^{2}+\yU$ stays the same?
 \end{exercise}
 
+\begin{warning}[Zero-point of internal energy and conservation of matter]
+  We must remember that $\yM = \yrho\yN$, so the content of matter $\yN$ and its balance should also enter the discussion. In phenomena where matter and antimatter are both present the zero-point of internal energy cannot be redefined arbitrarily. Usually electric charge and electromagnetic field become important in such phenomena, so the general constitutive relation~\eqref{eq:energy_volume_matter} may not be appropriate anyway.
 
-When the total \masse\ is required, for example in the \autoref{eq:matter_momentum_Newton}{Newtonian formula for momentum}, we simply approximate it with $\yM$. But for physical phenomena where energy \emph{exchanges} are important, we change the \enquote{zero} of our energy measurements, shifting it by $\yM c^{2}$, so that energy calculations are numerically more manageable. This is why we shall use the total energy $\yE$ as defined in formula~\eqref{eq:thermodynamic_energy}. Note that even if this definition we can choose the zero of $\yU$.
+  The discussion above about the zero-point of internal energy is somewhat imprecise, and meant only to give you an idea of why we can define the zero-point arbitrarily. A rigorous but more complicated analysis would involve the law of conservation of matter, and would show that in appropriate circumstances the zero-point of internal energy mathematically disappears from the balance of matter \parencites{eckart1940c}.
+\end{warning}
 
 \medskip
 
-The general constitutive relation~\eqref{eq:thermodynamic_energy} applies to a large variety of physical phenomena. But it is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later. For the moment let's see some examples of these kinds of energy.
+When the total \masse\ is required, for example in the \autoref{eq:matter_momentum_Newton}{Newtonian formula for momentum}, we simply approximate it with $\yM$. But for physical phenomena where energy \emph{exchanges} are important, we change the \enquote{zero} of our energy measurements, shifting it by $\yM c^{2}$, so that energy calculations are numerically more manageable.
+
+This is why we shall use the total energy $\yE$ as defined in formula~\eqref{eq:thermodynamic_energy}:
+\begin{equation*}
+  \yE = \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
+\end{equation*}
+Note that in this definition we can still arbitrarily choose the zero of $\yU$.
+
+\medskip
+
+This general constitutive relation applies to a large variety of physical phenomena. But it is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later.
+
+\smallskip
+
+Of importance in physics and engineering applications are not only changes in the total energy $\yE$, but also exchanges among its internal, kinetic, and gravitational terms, even when the total energy is constant. Here are some examples.
 
 \paragraph{Small bodies in motion}
 
-In the preceding chapters we have considered small bodies of matter such as tennis balls. Often when a small body is involved we neglect its internal energy $\yU$ and only focus on its kinetic and potential energies $\frac{1}{2}\yM \yv^{2} + \yM g z$.
+In the preceding chapters we have considered small bodies of matter such as tennis balls. In many situations where the motion of a small body is involved, its internal energy $\yU$ is approximately constant, and therefore we only focus on its kinetic $\tfrac{1}{2}\yM \yv^{2}$ and potential $\yM g z$ energies. An exchange can happen between them. For instance, in a tennis ball falling in a vacuum, the gravitational energy is decreasing while the kinetic energy is increasing at the same rate: the vertical coordinate of the ball is decreasing, and its downward velocity increasing.
+
+In other situations the internal energy is not constant, and exchanges happen among all three energy components, as well as changes in the total energy. A ball bouncing on the floor is an example. We can clearly see that its vertical position $z$, and therefore its gravitational energy $\yM g z$, alternately decreases and increases. The same is true for its velocity $\yv$ and kinetic energy $\tfrac{1}{2}\yM \yv^{2}$, which are zero at the highest and lowest (bouncing) points. But we also observe that the highest vertical position of the ball gets lower and lower, until the ball rests on the floor, which means that its kinetic and gravitational energies are both zero. They have been converted partly in internal energy $\yU$ of the ball, and partly transferred, via energy flux, to the internal energy of the floor.
+
+%
+\marginpar{\vspace{\baselineskip}%\centering%
+\includegraphics[width=\linewidth]{skydive2.jpg}%
+}%
+Another example where this kind of energy conversion and energy flux are important is kydiving. The gravitational energy of a skydiver is obviously decreasing. If it were completely converted to kinetic energy, the skydiver would acquire a dangerously excessive falling speed. Instead, this energy is luckily mainly transferred, via friction, to the internal energy of the surrounding air, and partly converted into internal energy of the skydiver. For this reason the kinetic energy, and therefore the falling velocity, of the skydiver remain constant after some time.
+
+\begin{exercise}
+  
+\end{exercise}
 
 \paragraph{Springs and rubber bands}
 
