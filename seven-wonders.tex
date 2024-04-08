@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-08T10:34:24+0200
+%% Last-Updated: 2024-04-08T19:20:01+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -963,7 +963,9 @@ reply%
 \newcommand*{\yv}{\bm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
-\newcommand*{\yvs}{v_{\text{s}}}
+\newcommand*{\yvs}{\bm{v}_{\text{s}}}
+\newcommand*{\yns}{\bm{n}_{\text{s}}}
+\newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
 \newcommand*{\ydl}{\incr\bm{l}}
@@ -1154,7 +1156,7 @@ Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
 \\from right outside Pluto's orbit\\
 \url{https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/}
 \end{adjustwidth*}
-\setcounter{page}{0}
+\setcounter{page}{2}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4071,28 +4073,25 @@ So we could find the momentum at time $\ytf$, or at any other time between $\yti
 \subsection{Example with a static control surface}
 \label{sec:example_balance_static}
 
-Consider again the \autoref{sec:example_conservation_static}{example of a cylindrical block of ice} moving downward, in a vacuum, during a lapse of time of \qty{0.5}{s}, depicted in the side picture below.
-The block of ice has a fully downward momentum of magnitude \qty{4.72}{N\,s} at the final time. %; and where there's no matter, there's no momentum.
+Consider again the \autoref{sec:example_conservation_static}{example of a cylindrical block of ice} moving downward, in a vacuum, during a lapse of time of \qty{0.5}{s}, depicted in the side picture below. In the previous example we discussed the net amount of matter that crosses, in a downward direction, the circular surface separating the initial and final location. Now we are instead interested in the net amount of \emph{momentum} that crosses that surface. We shall therefore use the balance of momentum~\eqref{eq:balanced_momentum}.
 
-We are now interested in the net amount of \emph{momentum} that crosses, in a downward direction, the circular surface separating the initial and final location.
-
-We could use the same strategy adopted in that example: considering a static control
-surface at the final position of the block of ice. From the description, our data are
+Let's try using a strategy analogous to that adopted in the previous example with the conservation of matter, considering a static closed control surface at the final position of the block of ice. In the previous analysis we were given the initial and final contents within the control volume. So suppose we are given this information:
 \begin{equation*}
-    \yti=\qty{0}{s}\ ,\quad
-    \ytf=\qty{0.5}{s}\ , \quad
-        \yP(\yti)=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
-        \quad
-    \yP(\ytf)=\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
+  \yti=\qty{0}{s}\ ,\quad
+  \ytf=\qty{0.5}{s}\ , \quad
+  \yP(\yti)=\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s}\ ,
+  \quad
+  \yP(\ytf)=\begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}\ ,
 \end{equation*}
-But we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum} for finding the integrated influx. It is also necessary to know the supply of momentum $\yG(t)$, or at least its integral. This is an example of what we said previously: \autoref{sec:balance_laws}{balance laws in general require more information} than conservation laws.
-\marginpar{\vspace{2\baselineskip}\centering%
+At the initial time $\yti$ the there's no momentum within the control volume, because it's empty. At the final time we are told that the control volume contains a fully downward momentum of magnitude \qty{4.72}{N\,s}.
+
+Unfortunately we can't yet find the integrated flux of momentum: the problem is that we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum}. It is also necessary to know the supply of momentum $\yG(t)$, or at least its time integral. This is an example of what we said previously: \autoref{sec:balance_laws}{balance laws in general require more information} than conservation laws. \marginpar{\vspace{2\baselineskip}\centering%
 \includegraphics[width=\linewidth]{waterblock_control2.pdf}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
 
-Suppose we are told that the net amount of momentum generated \emph{within the control volume}, during the \qty{0.5}{s}, has magnitude \qty{1.57}{N\,s} and fully downward direction. That is,
+Suppose we are told that the net supply of momentum generated \emph{within the control volume}, during the \qty{0.5}{s}, has magnitude \qty{1.57}{N\,s} and fully downward direction. That is,
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
   =
@@ -4121,9 +4120,17 @@ Now we can use the balance law~\eqref{eq:balanced_momentum} to find the integrat
 % % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 % }%
 
-\medskip
+\subsection{Another example with a moving control surface}
+\label{sec:ice_moving_surface}
 
-Let us finish this example with a quick analysis using a \emph{moving} control surface, wrapping the block of ice. We are told that the block initially has zero momentum. Moreover, there is no flux of momentum through a surface that moves along with the block. Our data are therefore
+Let us finish with a quick analysis of the block of ice, but using a \emph{moving} control surface instead. We consider one that tightly wraps the block of ice at all times between $\yti$ and $\ytf$.
+
+Note we are using a different control surface and volume from the previous example.
+The values of momentum contents and fluxes may therefore be different from the previous ones, which referred to other regions of space. In order not to get confused, we represent the present ones using different symbols -- let's  underline them, for instance (we could use any other graphical symbol, or simply change the letters themselves).
+
+Let's suppose that we want to know how much is the integrated supply of momentum in the present control volume, between times $\yti$ and $\ytf$. In order to find it from the balance of momentum, we need to know the initial and final momentum content, as well as the integrated influx.
+
+We are told that the block initially has zero momentum (because it is dropped and has therefore zero velocity at that instant), and a downward momentum with magnitude \qty{4.72}{N\,s} at the final time. Moreover there is no flux of momentum through a surface that moves along with the block. Our data are therefore
 \begin{equation*}
   \begin{gathered}
     \yti=\qty{0}{s}\ ,\quad
@@ -4138,22 +4145,8 @@ Let us finish this example with a quick analysis using a \emph{moving} control s
     =\begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N}\text{\footnotesize\ (const.)} \ .
   \end{gathered}
 \end{equation*}
-Note that the volume contents and fluxes are now represented by different symbols (we use an underline, but we could use any other graphical symbol, or simply change the letters themselves). This is because \textbf{they refer to different control surfaces and volumes}. We expect their values to be different from the previous ones, which referred to static surfaces. Indeed we already notice that
-\begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t =
-  \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\:\unit{N\,s}
-  \enspace\bm{\ne}\enspace
-  \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\di t =
-  \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s} \ .
-\end{equation*}
 
-\marginpar{\vspace{-8\baselineskip}\centering%
-\includegraphics[width=\linewidth]{warning_supply_static.pdf}
-\\[4em]\includegraphics[width=\linewidth]{warning_supply_moving.pdf}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
-We have enough data to find the total amount of momentum generated within the moving control volume:
+We have enough data to find the integrated supply of momentum generated within the moving control volume:
 \begin{equation*}
   \begin{split}
     \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\di t
@@ -4168,7 +4161,18 @@ We have enough data to find the total amount of momentum generated within the mo
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
   \end{split}
 \end{equation*}
-We notice again the difference:
+
+\medskip
+
+Note again how the momentum flux and supply in the present analysis are different from the previous one, because \emph{they refer to different control surfaces and volumes}.  For instance, the integrated flux
+\begin{equation*}
+  \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t =
+  \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\:\unit{N\,s}
+  \enspace\bm{\ne}\enspace
+  \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\di t =
+  \begin{bmatrix}0\\0\\0\end{bmatrix}\:\unit{N\,s} \ .
+\end{equation*}
+and also the integrated supply is different:
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t =
   \begin{bmatrix}0\\0\\\num{-1.57}\end{bmatrix}\:\unit{N\,s}
@@ -4176,6 +4180,15 @@ We notice again the difference:
   \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\di t =
   \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\:\unit{N\,s}
 \end{equation*}
+% \marginpar{\vspace{-8\baselineskip}%
+% \includegraphics[width=\linewidth]{warning_supply_static.pdf}
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% the illustrations above and below show that integrated flux and supply across the 
+% 
+% \\[4em]\includegraphics[width=\linewidth]{warning_supply_moving.pdf}
+% % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+% }%
 
 \begin{warning}[Fluxes and supplies depend on the particular control surface and its motion]
   The integrated flux $\int_{\yti}^{\ytf}\!\!\yF(t)\,\di t$ and integrated supply $\int_{\yti}^{\ytf}\!\!\yG(t)\,\di t$ that appear in conservation and balance laws are strictly dependent on the sequence of closed control surfaces and volumes that we choose.
@@ -4186,27 +4199,27 @@ We notice again the difference:
 \smallskip
 
 \begin{exercise}
-  Consider once more the block of ice analysed in the previous example.
+  Consider once more the block of ice analysed in the previous two examples.
 
-  This time choose a \emph{static} closed control surface that coincides with the \emph{initial} position of the block. This surface therefore includes all ice at time $\yti$, but is empty -- and has zero momentum -- at time $\ytf$.
+  This time choose a \emph{static} closed control surface that coincides with the \emph{initial} position of the block. This surface therefore includes all ice at time $\yti$, but is empty at time $\ytf$. The initial and final momentum contents are zero.
 
   Calculate the integrated supply for this new control surface between $\yti$ and $\ytf$.
 
-  \emph{(Hint: consider the result from the exercise and  the \textbf{symmetry of fluxes} for the flux through the bottom part of the surface, as well as the fact that the fluxes through the side and top surfaces are zero.)}
+  \emph{(Hint: consider the results from the example of \sect\,\ref{sec:example_balance_static}, and use the \textbf{symmetry of fluxes} to find the flux through the bottom part of the control surface of the present exercise. Recall also that the fluxes through the side and top surfaces are zero.)}
 \end{exercise}
 
-\smallskip
+\bigskip
 
-\marginpar{\vspace{3\baselineskip}\centering%
+\begin{extra}{Balance laws in General Relativity}
+  Conservation and balance laws appear simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $\yti$, the sequence of 2D surfaces between $\yti$ and $\ytf$, and the 3D region at $\ytf$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
+
+  And from a spacetime perspective, the amount of a quantity $\yE(\yti)$ or $\yE(\ytf)$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
+\end{extra}
+\marginpar{\vspace{-15\baselineskip}\centering%
 \includegraphics[width=\linewidth]{worlddiagram.jpg}%
 \\\footnotesize\flushleftright\color{mpcolor}%
 Spacetime representation of the evolution of a closed control surface, containing some pointlike objects (adapted from \cites{misneretal1970_r2017})%
 }%
-\begin{extra}{Balance laws in General Relativity}
-  Conservation and balance laws appear even simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $\yti$, the sequence of 2D surfaces between $\yti$ and $\ytf$, and the 3D region at $\ytf$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
-
-  And from a spacetime perspective, the amount of a quantity $\yE(\yti)$ or $\yE(\ytf)$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
-\end{extra}
 
 
 \begin{extra}{What about the magnetic flux?}
@@ -4290,15 +4303,15 @@ This is the famous relation that old textbooks take as the \emph{definition} of 
   \begin{equation*}
     \yG = \yM\yg = \yrho\yN\yg
   \end{equation*}
-  where $\yg$ is a vector that depends on the gravitational field (it expresses spacetime curvature).  This constitutive relation expresses the \emph{gravitational force}.
-
-  For physical phenomena on the Earth's surface, the vector $\yg$ is approximately constant: it points towards the Earth's centre and has magnitude $g\defd\abs{\yg}\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}}$.
-
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{earth_nasa.png}%
 \\[\jot]\footnotesize\color{mpcolor}%
 (\furl{https://nssdc.gsfc.nasa.gov/imgcat/html/group_page/ER.html}{image from NASA})%
 }%
+where $\yg$ is a vector that depends on the gravitational field (it expresses spacetime curvature).  This constitutive relation expresses the \emph{gravitational force}.
+
+  For physical phenomena on the Earth's surface, the vector $\yg$ is approximately constant: it points towards the Earth's centre and has magnitude $g\defd\abs{\yg}\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}}$.
+
   For physical phenomena further away from Earth, for instance when dealing with satellite motion, the vector $\yg$ points towards the Earth's centre and has magnitude
   \begin{equation*}
     g = \frac{G M_{\textrm{E}}}{r^{2}}
@@ -4629,12 +4642,12 @@ The numerical time integration of a position vector $\yr(t)$ is often done toget
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pc);
 \end{tikzpicture}
 Keep in mind that these are vector equations, so each one corresponds to three components.
-\marginpar{\vspace{2\baselineskip}\centering%
+
+\marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[width=\linewidth]{perseverance_trajectory.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of their trajectory (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
 }%
-
 For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
 
 \subsection{Numerical time integration of position: example}
@@ -6674,6 +6687,46 @@ In describing and using matter in a gaseous state, heat flux and mechanical powe
   \end{enumerate}
 \end{exercise}
 
+\begin{extra}{What if there's matter flux? Transport terms,label={ex:energy_matter_flux}}
+  We have repeated many times that the constitutive relation for the energy flux is through a control surface
+  \begin{equation*}
+    \yH = \yQ + \yF\cdot\yv
+  \end{equation*}
+  is only valid when there isn't any flux of matter through that surface. What if there \emph{is} a flux of matter? how does that constitutive relation change?
+
+  There is indeed a more general formula that can be used even when there is a flux of matter through the control surface. To understand it, however, we must:
+  \begin{itemize}[shift,nosep]
+  \item give the formulae for the fluxes of matter, momentum, energy at the same time
+  \item take into account the contents of matter, momentum, energy in a thin control volume connected to the surface
+  \item take into account the velocity of the control surface itself.
+  \end{itemize}
+So the description is somewhat more complicated; you see why we choose to avoid this more general situation in the notes. But here are the fully general formulae, in case you're curious.
+
+  Choose a crossing direction for the surface, and
+  \begin{itemize}[shift,nosep]
+  \item $\yvs$ is the velocity of the surface
+  \item $\yns$ is a \emph{unit} vector orthogonal to the surface, having the same direction as the crossing direction
+  \item $A$ is the area of the surface
+  \item $V$ is the volume of a thin control volume in contact with the surface
+  \item $\yN$, $\yP$, $\yE$ are the matter, momentum, energy contents in that thin control volume
+  \item $\yv$ is the velocity of matter in contact with the surface
+  \end{itemize}
+  Then the fluxes of matter, momentum, energy are given by the following general formulae, if no electromagnetic fields or electric charges are present and in Newtonian approximation:
+  \begin{equation*}
+    \begin{aligned}
+      \yJ &= \frac{A}{V}\,\yN\, \yns\cdot(\yv - \yvs)
+      \\
+      \yF &= \yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
+      \\
+      \yH &= \yQ + \yst\cdot \yv + \frac{A}{V}\,\yE\, \yns\cdot(\yv - \yvs)
+    \end{aligned}
+  \end{equation*}
+  In these formulae, $\yst$ is called the \emph{stress vector}. The terms containing the expression\enspace$\yns\cdot(\yv-\yvs)$\enspace are called \emph{transport terms}, because they originate from the transport of matter through the surface.
+
+  If the flux of matter is zero, $\yJ=0$, then the expression $\yns\cdot(\yv-\yvs)$ must be zero too, and the analogous expressions in the fluxes of momentum and energy are zero as well; all fluxes become much simpler.
+\end{extra}
+
+
 \subsection{Summary}
 \label{sec:summary_newton_energy}
 
@@ -6787,7 +6840,7 @@ The equation above is called the \textbf{thermodynamical ideal-gas law}.
 
 In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
 %
-\marginpar{\vspace{-8\baselineskip}\centering%
+\marginpar{\vspace{-3\baselineskip}\centering%
 \includegraphics[width=\linewidth]{idealgas_mug.jpg}%
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % The famous \enquote{$pV=NRT$} formula}%
@@ -6835,11 +6888,11 @@ Lastly we discuss a constitutive relation that connects heat flux and temperatur
   Consider a control surface of area $A$ and call its two sides $a$ and $b$. If the matter on side $a$ has approximately uniform temperature $\ytea$, and the matter on side $b$ has approximately uniform temperature $\yteb$, then the heat flux $\yQ$ in the $a\to b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
 \begin{equation}
   \label{eq:newton_cooling}
-  \yQ = - A h (\ytea-\yteb)
+  \yQ = A h (\ytea-\yteb)
 \end{equation}
 where $h$ is called the \emph{coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
 \end{definition}
-The minus sign in the constitutive formula above means that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
+The constitutive formula above with $h>0$ says that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
 % The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy} (second law of thermodynamics), as in the case of the viscosity coefficients.
 
 Newton's law of cooling implies that we can approximately consider temperature as having a jump or discontinuity between the two sides of the surface. In situations where this approximation is too gross, another constitutive equation is often used: \textbf{Fourier's law of heat conduction}, which we can write as
