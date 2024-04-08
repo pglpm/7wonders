@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-07T22:00:03+0200
+%% Last-Updated: 2024-04-08T10:34:24+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -6469,9 +6469,9 @@ In these notes we shall first restrict our focus on general constitutive relatio
 \subsection{Energy content for matter: internal, kinetic, gravitational energy}
 \label{sec:energy_volume_matter}
 
-If a small control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
+If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
 \begin{definition}{Energy associated with matter,label={def:energy_volume_matter}}
-  If a small control volume on Earth's surface contains an amount of matter $\yN$ having coordinate velocity $\yv$ and constant \autoref{def:molarmass}{molar mass} $\yrho$, and negligible electromagnetic fields, then its total \energym\ content is given by
+  Consider a control volume close to Earth's surface and containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must also be such that the coordinate velocity $\yv$ and \autoref{def:molarmass}{molar mass} $\yrho$ of the matter within are approximately constant (this is true, for instance, if the volume is small enough). Then the total \energym\ content in this control volume is given by
   \begin{equation}
     \label{eq:energy_volume_matter}
     \yM c^{2} +  \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
@@ -6578,7 +6578,7 @@ In modelling extended matter in a solid and fluid state, usually all three forms
 % \footnotesize\flushleftright\color{mpcolor}%
 % \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
 }%
-Consider a person pushing a door or lifting a weight on the palm of their hand, a hammer hitting a piece of hot iron, or a bike-pump piston quickly pressed down. These and many other physical phenomena can be characterized as follows:
+Think of a person pushing a door or lifting a weight on the palm of their hand, a hammer hitting a piece of hot iron, or a bike-pump piston quickly pressed down. These and many other physical phenomena can be characterized as follows:
 \begin{itemize}[nosep]
 \item there's a control surface in contact with matter on both sides
 \item the control surface may be moving
@@ -6587,7 +6587,11 @@ Consider a person pushing a door or lifting a weight on the palm of their hand, 
 \end{itemize}
 In situations like these there is a general constitutive formula for the flux of energy through the control surface.
 \begin{definition}{Heat flux and power}
-Consider a control surface, possibly moving, satisfying the conditions above. Choose a crossing direction in order to define fluxes. If $\yF$ is the flux of momentum through this control surface, and $\yv$ the velocity of matter in contact with it, then the energy flux $\yH$ through the surface is given by
+  Consider a control surface, possibly moving, satisfying the conditions above. This control surface must also be such that the velocity $\yv$ of matter in contact with it, is the same at every point of the surface (this is true, for instance, if the surface is small enough).
+
+  \smallskip
+
+  Choose a crossing direction in order to define fluxes. If $\yF$ is the flux of momentum through this control surface, then the energy flux $\yH$ through the surface is given by
 \begin{equation}
   \label{eq:heat_power}
   \yH = \yQ + \yF\cdot \yv
@@ -6670,133 +6674,93 @@ In describing and using matter in a gaseous state, heat flux and mechanical powe
   \end{enumerate}
 \end{exercise}
 
-% \section{The Newtonian balance of energy for matter}
-% \label{sec:newton_balance_energy}
-% 
-% We have thus far discussed two general families of constitutive relations, one for the energy content $\yE$, formula~\eqref{eq:thermodynamic_energy} and one for the energy flux $\yH$, formula~\eqref{eq:heat_power}, which can be applied to a control volume:
-% \begin{equation*}
-%   \begin{gathered}
-%     \yE = \yU + \tfrac12 \yM \yv^{2} + \yM g z
-%     \\
-%     \yH = \yQ + \yF\cdot\yv
-%   \end{gathered}
-% \end{equation*}
-% Let us recall the conditions under which they are valid:
-% \begin{itemize}[nosep]
-% \item matter present within and directly outside the control volume
-% \item control volume small enough  to consider the velocity $\yv$ the same throughout
-% \item no matter flux through the surface of the control volume
-% \item no electric charges or electromagnetic fields
-% \item Newtonian approximation, and close to the Earth's surface
-% \end{itemize}
-% We also said that \autoref{item:energy_no_supply}{our definition of energy approximately satisfies a conservation law}, so the energy supply is zero: $\yR=0$.
-% 
-% We can insert these expressions for $\yE,\yH,\yR$ in the equation of energy balance~\eqref{eq:bal_energy}, obtaining these specialized integral and differential forms of the energy balance:
-% \begin{equation}
-%   \label{eq:bal_energy_newton}
-%   \begin{gathered}
-%       \begin{multlined}[0.9\linewidth]
-%         \yU(\ytf) + \tfrac12 \yM \yv^{2}(\ytf) + \yM g z(\ytf) ={}\\
-%         \yU(\yti) + \tfrac12 \yM \yv^{2}(\yti) + \yM g z(\yti)
-%         + \int_{\yti}^{\ytf}\!\!
-%         \bigl[\yQ(t) + \yF(t)\cdot\yv(t)\bigr]\,\di t
-%       \end{multlined}
-%     \\[4\jot]
-%       \frac{\di\bigl[\yU(t) + \tfrac12 \yM \yv^{2}(t) + \yM g z(t)\bigr]}{\di t} =
-%       \yQ(t) + \yF(t)\cdot\yv(t)
-%   \end{gathered}
-% \end{equation}
+\subsection{Summary}
+\label{sec:summary_newton_energy}
 
-
-
-
-
-\subsection{The \enquote{work-energy theorem}}
-\label{sec:workenergy_thm}
-
-Let us consider, at a particular time $t$, a control volume containing a body of matter with total \masse\ $\yM$ and having the same velocity $\yv(t)$ everywhere. In other words, if we measure the velocity of matter in a small portion of the volume, we find $\yv(t)$; if we measure the velocity in another small portion, we find $\yv(t)$ as well; and so on.
-
-In Newtonian approximation and in absence of charges and electromagnetic fields, the total momentum in the control volume is $\yP(t)=\yM\yv(t)$. Suppose that there's a total influx of momentum $\yF$ through the surface of the control volume; and there's a constant momentum supply $\yG(t) = \yM g\, [0,0,1]$ from gravity. We have chosen coordinates $(x,y,z)$ with $z$ pointing upwards.
-
-The differential form of the balance of momentum is therefore
+So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that \autoref{item:energy_no_supply}{our definition of total energy approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
 \begin{equation*}
-  \begin{aligned}[b]
-    \frac{\di\yP(t)}{\di t} &= \yF(t) + \yG(t)
-\\
-    \frac{\di\yM \yv(t)}{\di t} &= \yF(t) + \yM g\, [0,0,1]
+  \begin{aligned}
+    \yE(t) &=  \yU(t) + \tfrac{1}{2}\yM \yv(t)^{2} + \yM g z(t)
+    \\
+    \yH(t) &= \yQ(t) + \yF(t)\cdot\yv(t)
+    \\
+    \yR(t) &= 0
   \end{aligned}
 \end{equation*}
-Multiply the left and right sides of this equation by $\yv(t) = [v_{x}(t), v_{y}(t), v_{z}(t)]$, using the dot-product:
-\begin{equation}
-    \label{eq:balance_mom_wethm}
-  \frac{\di\yM \yv(t)}{\di t} \cdot \yv(t) = \yF(t)\cdot \yv(t) + \yM g\, [0,0,1]\cdot \yv(t)
-\end{equation}
+Let us recall the physical conditions under which they are valid:
+\begin{itemize}[nosep]
+\item matter present within and directly outside the control volume
+\item control volume and surface such that the matter velocity $\yv$ and molar mass $\yrho$, and therefore also $\yM$, are the same throughout
+\item no matter flux through the control surface
+\item no electric charges or electromagnetic fields
+\item Newtonian approximation, and close to the Earth's surface
+\end{itemize}
 
-Now note the following equalities:
-\begin{equation*}
-  \begin{gathered}
-    [0,0,1]\cdot\yv(t) = [0,0,1]\cdot [v_{x}(t), v_{y}(t), v_{z}(t)] = v_{z}(t)
-    = \frac{\di z(t)}{\di t}
-    \\[2\jot]
-    \frac{\di \yv(t)^{2}}{\di t} =
-  \frac{\di[\yv(t) \cdot \yv(t)]}{\di t} =
-  \frac{\di\yv(t)}{\di t} \cdot \yv(t) + \yv(t)\cdot \frac{\di\yv(t)}{\di t}
-  =
-  2\frac{\di\yv(t)}{\di t} \cdot \yv(t)
-  \end{gathered}
-\end{equation*}
-\marginpar{\vspace{-3\baselineskip}%
-\footnotesize\flushleftright\color{mpcolor}%
-the equalities come from the product rule of the derivative and the commutativity property of the dot-product%
-}%
-Multiplying the first set of equalities above by the constant $\yM g$, and the second by the constant $\tfrac12 \yM$, we find
-\begin{equation*}
-  \begin{gathered}
-    \yM g\,[0,0,1]\cdot\yv(t) 
-    = \frac{\di\yM g z(t)}{\di t}
-    \\[2\jot]
-    \frac{\di \tfrac12 \yM \yv(t)^{2}}{\di t} =
-  \frac{\di\yM\yv(t)}{\di t} \cdot \yv(t)
-  \end{gathered}
-\end{equation*}
-We can now replace these equalities in formula~\eqref{eq:balance_mom_wethm}, the balance of momentum that we dot-multiplied by the velocity, and bring the last term on the right to the left. We obtain this equation:
-\begin{equation}
-  \label{eq:wethm}
-  \frac{\di\bigl[\tfrac12 \yM \yv(t)^{2} + \yM g z(t)\bigr]}{\di t} =
-  \yF(t)\cdot \yv(t)
-\end{equation}
-which is usually called \enquote{\textbf{work-energy theorem}}.
+Under these conditions, the formulae above can be used together with the balance of energy~\eqref{eq:bal_energy} in order to describe many common physical situations, with all sorts of materials, and to make predictions, for instance by \autoref{sec:numeric_simulation}{numerical simulations}. Note how these constitutive formulae connect the fluxes and volume contents of energy, matter, momentum; and they even involve two new auxiliary quantities: the internal energy $\yU$ and the heat flux $\yQ$.
 
-The equation above is very peculiar. On the left side, within the time derivative, w see the kinetic energy and gravitational potential energy; so this is almost the full energy content $\yE$ given by the general constitutive relation~\eqref{eq:thermodynamic_energy}, except that the internal energy $\yU$ is missing. On the right side we see the mechanical power; so this is almost the full energy flux $\yH$ given by the general constitutive relation~\eqref{eq:heat_power}, except that the heat flux $\yQ$ is missing.
+In order to concretely use these constitutive formulae, we need first more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. The variety of constitutive relations for these three quantities is the subject of \furl{https://www.britannica.com/technology/materials-science}{materials science}, and could fill numerous tomes. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
+
+We shall now focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ which can be used in a more restricted but still quite broad range of physical situations, involving gases.
 
 
 
-\section{Constitutive relations for the ideal gas}
+\section{Constitutive relations for ideal gases}
 \label{sec:int_energy_idealgas}
 
-The general constitutive relations~\eqref{eq:energy_volume_matter} for energy content and~\eqref{eq:heat_power} for energy flux can be applied to many common situations and with all sorts of materials. They need, however, more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. The variety of constitutive relations for these three quantities is the subject of \furl{https://www.britannica.com/technology/materials-science}{materials science}, and could fill numerous tomes. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
+There is a set of simple constitutive relations which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per unit volume $\yN/V$ is low. We say that these constitutive relations apply to \textbf{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation using these relations.
 
-There is a set of simple constitutive relations which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per unit volume is low. We say that these constitutive relations apply to \emph{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation by using this set of constitutive relations.
+The constitutive relations for ideal gases involve constants and a couple of functions that can be different depending on the kind of gas. So there isn't just one ideal gas, but a family of them. Some texts speak of \emph{the} ideal gas, as if there was only one; but they do so because they discuss properties that are common to all ideal gases.
 
 \smallskip
 
-In discussing the constitutive relations below, we consider a closed control surface that encloses an amount of ideal gas. We assume that there is no flux of the gas through the surface, and no movement of the gas along the moving parts of the surface. The conditions for formula~\eqref{eq:heat_power} are therefore satisfied. These conditions are approximately true for many practical cases, such as air under compression or expansion in a bike pump.
+In discussing the constitutive relations below, we consider a closed control surface that encloses an amount of some ideal gas. We assume that there is no flux of the gas through the enclosing surface, and more generally that the conditions listed in the previous \ref{sec:summary_newton_energy}{summary} are satisfied. These conditions are approximately true for many practical cases, such as air under compression or expansion in a bike pump.
 
-The constitutive relations that we now discuss apply, strictly speaking, to small control volumes, where all quantities within may be considered to have just one value everywhere. Later on we shall nevertheless apply them, as approximations, to larger volumes. It also goes without saying that these constitutive relations are only valid in Newtonian approximation: for small velocities and weak gravitation.
+If we want to model a body of gas accurately, however, we generally need to use a large number of such control volumes, each one enough small that the conditions above are approximately satisfied within it. This way we can try to simulate many interesting physical behaviours that ideal gases can have, such as turbulence.
+
+% The constitutive relations that we now discuss apply, strictly speaking, to small control volumes, where all quantities within may be considered to have just one value everywhere. Later on we shall nevertheless apply them, as approximations, to larger volumes. It also goes without saying that these constitutive relations are only valid in Newtonian approximation: for small velocities and weak gravitation.
 
 \subsection{Pressure (momentum flux) of an ideal gas}
 \label{sec:pressure_ideal_gas}
 
 We start with a constitutive relation that connects:
 \begin{itemize}[nosep]
-\item the flux of momentum through the closed control surface containing the ideal gas
+\item the flux of momentum $\yF$ through the closed control surface containing an ideal gas
 \item the amount of ideal gas within
 \item the temperature within
 \item the volume enclosed by the control surface
 \end{itemize}
 
+This constitutive relation is more easily expressed in terms of the momentum flux through a surface, \emph{divided by the area} of the surface:
+\begin{definition}{Stress vector and pressure}
+  For a control surface of area $A$ where the momentum flux $\yF$ is uniform throughout, we call \textbf{stress vector} the momentum flux divided by the area: $\yF/A$.
+
+  \smallskip
+
+If the momentum flux $\yF$, and therefore the stress vector, are orthogonal to the surface and point \emph{away from the surface}, then we call \textbf{pressure} the magnitude of the stress vector, and usually denote it $p$:
+\begin{equation}
+  \label{eq:pressure_def}
+  p \defd \frac{\abs{\yF}}{A}
+\end{equation}
+The name \emph{tension} is used instead of \emph{pressure} if the momentum flux points towards the surface. Compare our discussion about \autoref{sec:pressure_tension_shear}{compressive and tensile momentum fluxes}.
+
+\smallskip
+
+Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
+\end{definition}
+
+\begin{warning}[\enquote*{Pressure} can have many different meanings]
+  Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the stress vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
+
+  So when you read a text that uses or discusses \enquote*{pressure}, make sure to get correctly in which sense the text is using this word.
+
+  In these notes we shall sometimes use \enquote*{pressure} in a slightly different or more general meaning, which should be clear from the context.
+\end{warning}
+
+
+Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
+
 \begin{definition}{Ideal-gas law}
-  If the closed control surface encloses a volume $V$ with an amount $\yN$ of ideal gas, at uniform temperature $\yte$, then the \textbf{pressure} $p$, that is, the momentum \textbf{ef}flux \emph{per unit area} through a small part of the surface, has magnitude
+  If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yte$, and the momentum flux is orthogonal to the surface and uniform throughout, then the pressure $p$ is given by
   \begin{equation}
     \label{eq:ideal_gas_p}
     p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
@@ -6805,12 +6769,13 @@ We start with a constitutive relation that connects:
   \begin{equation*}
     R = \qty{8.31446261815324}{J/(mol\cdot K)}
   \end{equation*}
+The equation above is called the \textbf{thermodynamical ideal-gas law}.
 
   \smallskip
 
-  The total efflux through a part of the surface with area $A$ is thus given by $p A$.
+  If the surface has area $A$, the magnitude of the momentum flux is therefore $\abs{\yF} = p A$.
 
-  \smallskip
+  \medskip
 
   If only one dimension of the volume is changing, then the coefficient $\yvis$ is given by
   \begin{equation}
@@ -6819,15 +6784,16 @@ We start with a constitutive relation that connects:
   \end{equation}
   where $\eta$ and $\zeta$ are called the \emph{shear} and \emph{bulk} \furl{https://www.britannica.com/science/fluid-mechanics/Viscosity}{viscosity coefficients}. These coefficients are always positive, and usually depend on the temperature.
 \end{definition}
-In the expression above you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
+
+In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
 %
-\marginpar{\vspace{-4\baselineskip}\centering%
+\marginpar{\vspace{-8\baselineskip}\centering%
 \includegraphics[width=\linewidth]{idealgas_mug.jpg}%
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % The famous \enquote{$pV=NRT$} formula}%
 }%
 
-If the ideal gas is in motion, for instance expanding or contracting and its volume $V$ changes with time, then additional terms must be added to the famous \enquote{$pV=NRT$} formula. This is what we see in the relation~\eqref{eq:ideal_gas_p} above. Usually these additional terms are extremely small and therefore neglected.
+If the ideal gas is in motion, for instance expanding or contracting and its volume $V$ changes with time, then additional terms must be added to the famous \enquote{$pV=NRT$} formula. This is what we see in the relation~\eqref{eq:ideal_gas_p} above. In many cases these additional terms are extremely small and therefore neglected.
 
 The fact that the viscosity coefficients must be positive is a consequence of the \emph{balance of entropy} -- the second law of thermodynamics -- which we shall discuss later.
 
@@ -6855,22 +6821,34 @@ This formula is very important: for an ideal gas, the absolute temperature is a 
   \end{itemize}
 \end{warning}
 
-\subsection{Heat flux}
+\subsection{Heat flux between sides of different temperatures}
 \label{sec:heat_flux}
 
 Lastly we discuss a constitutive relation that connects heat flux and temperature. This relation applies to many physical phenomena and materials: not only to ideal gases, but to many other fluids and solids as well.
-
-\begin{definition}{Fourier law}
-  Consider a small control surface of area $A$ orthogonal to some direction, say the coordinate-$x$ direction. Then through this surface there is a heat flux $\yQ$ given by \textbf{Fourier's law of heat conduction}:
-  \begin{equation}
-    \label{eq:fourier_law}
-    \yQ = -A k \frac{\de\yte}{\de x}
-  \end{equation}
-where $\frac{\de\yte}{\de x}$ tells how much the temperature $\yte$ differs along the $x$-direction, and $k$ is called the \furl{https://www.britannica.com/science/thermal-conductivity}{coefficient of thermal conductivity}. This coefficient is always positive, and usually depends on the temperature.
+%
+\marginpar{\vspace{4\baselineskip}\centering%
+\includegraphics[width=\linewidth]{newton_cooling.jpg}%
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% NB: if $\yteb >\ytea$, then $\yQ<0$%
+}%
+\begin{definition}{Newton's law of cooling}
+  Consider a control surface of area $A$ and call its two sides $a$ and $b$. If the matter on side $a$ has approximately uniform temperature $\ytea$, and the matter on side $b$ has approximately uniform temperature $\yteb$, then the heat flux $\yQ$ in the $a\to b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
+\begin{equation}
+  \label{eq:newton_cooling}
+  \yQ = - A h (\ytea-\yteb)
+\end{equation}
+where $h$ is called the \emph{coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
 \end{definition}
-The minus sign in this formula means that, if the temperature increases towards larger $x$-values, then a positive flux of energy occurs towards smaller $x$-values. In other words, positive energy flows from the hotter to the colder side of the surface. The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy} (second law of thermodynamics), as in the case of the viscosity coefficients.
+The minus sign in the constitutive formula above means that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
+% The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy} (second law of thermodynamics), as in the case of the viscosity coefficients.
 
-It's important to make clear that \emph{Fourier's law is not a universal law}. There are physical situations and materials for which the heat flux is connected to temperature in more complex ways; and not only to temperature, but also to momentum flux, matter flux, electromagnetic quantities. \furl{https://www.energy.gov/energysaver/thermoelectric-coolers}{Thermoelectric coolers} are an example application of these more complex constitutive relations for the heat flux.
+Newton's law of cooling implies that we can approximately consider temperature as having a jump or discontinuity between the two sides of the surface. In situations where this approximation is too gross, another constitutive equation is often used: \textbf{Fourier's law of heat conduction}, which we can write as
+\begin{equation*}
+  \yQ = -A k \frac{\de\yte}{\de x}
+\end{equation*}
+In this expression we imagine the surface to be orthogonal to the $yz$ directions, and the crossing direction to be the positive $x$-direction. The derivative $\frac{\de\yte}{\de x}$ is the gradient of the temperature, expressing how much the temperature changes from one point to another very close one.
+
+Let's make clear that Newton's law of cooling and Fourier's law \emph{are not universal}. There are physical situations and materials for which the heat flux is connected to temperature in more complex ways; and not only to temperature, but also to momentum flux, matter flux, electromagnetic quantities. \furl{https://www.energy.gov/energysaver/thermoelectric-coolers}{Thermoelectric coolers} are an example application of these more complex constitutive relations for the heat flux.
 
 \begin{warning}[Heat can flow from cold to hot]
   Some texts say that \enquote{heat cannot flow from cold to hot}, and present this vague statement as a consequence of, or equivalent to, the second law of thermodynamics. This statement is actually \emph{not} true, from several points of view.
@@ -6882,23 +6860,6 @@ It's important to make clear that \emph{Fourier's law is not a universal law}. T
 \end{quote}
 Even more interesting examples, in which Fourier's law does not apply, occur for materials such as polymers \mynotew{add text and reference}
 \end{warning}
-
-\smallskip
-
-%
-\marginpar{\vspace{\baselineskip}\centering%
-\includegraphics[width=\linewidth]{fourier.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-NB: if $\yteb >\ytea$, then $\yQ<0$%
-}%
-In some applications we shall use an approximate version of Fourier's law.
-Suppose that at points with coordinates $\yxa$ and $\yxb$ there are temperatures $\ytea$ and $\yteb$, and the distance between these points is not too large. Then the heat flux $\yQ$ in the $\yxa\to\yxb$ direction, through any surface between the two points and orthogonal to the line joining them, is approximately given by
-\begin{equation}
-  \label{eq:fourier_law_discrete}
-  \yQ = - A k \frac{\yteb-\ytea}{\yxb-\yxa}
-\end{equation}
-Clearly we are approximating the spatial derivative of temperature $\frac{\de\yte}{\de x}$ with a finite difference.
-
 
 \subsection{Application of the constitutive relations for ideal gases}
 \label{sec:application_constit_idealgas}
@@ -8570,6 +8531,106 @@ We thus have the relation
 % \footnotesize\flushleftright\color{red}%
 % \faIcon{exclamation-circle}\enspace Some texts say that different definitions of energy correspond to different choices of coordinate systems, but that is not correct.%
 % }%
+
+\section{The Newtonian balance of energy for matter}
+\label{sec:newton_balance_energy}
+
+We have thus far discussed two general families of constitutive relations, one for the energy content $\yE$, formula~\eqref{eq:thermodynamic_energy} and one for the energy flux $\yH$, formula~\eqref{eq:heat_power}, which can be applied to a control volume:
+\begin{equation*}
+  \begin{gathered}
+    \yE = \yU + \tfrac12 \yM \yv^{2} + \yM g z
+    \\
+    \yH = \yQ + \yF\cdot\yv
+  \end{gathered}
+\end{equation*}
+Let us recall the conditions under which they are valid:
+\begin{itemize}[nosep]
+\item matter present within and directly outside the control volume
+\item control volume small enough  to consider the velocity $\yv$ the same throughout
+\item no matter flux through the surface of the control volume
+\item no electric charges or electromagnetic fields
+\item Newtonian approximation, and close to the Earth's surface
+\end{itemize}
+We also said that \autoref{item:energy_no_supply}{our definition of energy approximately satisfies a conservation law}, so the energy supply is zero: $\yR=0$.
+
+We can insert these expressions for $\yE,\yH,\yR$ in the equation of energy balance~\eqref{eq:bal_energy}, obtaining these specialized integral and differential forms of the energy balance:
+\begin{equation}
+  \label{eq:bal_energy_newton}
+  \begin{gathered}
+      \begin{multlined}[0.9\linewidth]
+        \yU(\ytf) + \tfrac12 \yM \yv^{2}(\ytf) + \yM g z(\ytf) ={}\\
+        \yU(\yti) + \tfrac12 \yM \yv^{2}(\yti) + \yM g z(\yti)
+        + \int_{\yti}^{\ytf}\!\!
+        \bigl[\yQ(t) + \yF(t)\cdot\yv(t)\bigr]\,\di t
+      \end{multlined}
+    \\[4\jot]
+      \frac{\di\bigl[\yU(t) + \tfrac12 \yM \yv^{2}(t) + \yM g z(t)\bigr]}{\di t} =
+      \yQ(t) + \yF(t)\cdot\yv(t)
+  \end{gathered}
+\end{equation}
+
+
+
+
+
+\subsection{The \enquote{work-energy theorem}}
+\label{sec:workenergy_thm}
+
+Let us consider, at a particular time $t$, a control volume containing a body of matter with total \masse\ $\yM$ and having the same velocity $\yv(t)$ everywhere. In other words, if we measure the velocity of matter in a small portion of the volume, we find $\yv(t)$; if we measure the velocity in another small portion, we find $\yv(t)$ as well; and so on.
+
+In Newtonian approximation and in absence of charges and electromagnetic fields, the total momentum in the control volume is $\yP(t)=\yM\yv(t)$. Suppose that there's a total influx of momentum $\yF$ through the surface of the control volume; and there's a constant momentum supply $\yG(t) = \yM g\, [0,0,1]$ from gravity. We have chosen coordinates $(x,y,z)$ with $z$ pointing upwards.
+
+The differential form of the balance of momentum is therefore
+\begin{equation*}
+  \begin{aligned}[b]
+    \frac{\di\yP(t)}{\di t} &= \yF(t) + \yG(t)
+\\
+    \frac{\di\yM \yv(t)}{\di t} &= \yF(t) + \yM g\, [0,0,1]
+  \end{aligned}
+\end{equation*}
+Multiply the left and right sides of this equation by $\yv(t) = [v_{x}(t), v_{y}(t), v_{z}(t)]$, using the dot-product:
+\begin{equation}
+    \label{eq:balance_mom_wethm}
+  \frac{\di\yM \yv(t)}{\di t} \cdot \yv(t) = \yF(t)\cdot \yv(t) + \yM g\, [0,0,1]\cdot \yv(t)
+\end{equation}
+
+Now note the following equalities:
+\begin{equation*}
+  \begin{gathered}
+    [0,0,1]\cdot\yv(t) = [0,0,1]\cdot [v_{x}(t), v_{y}(t), v_{z}(t)] = v_{z}(t)
+    = \frac{\di z(t)}{\di t}
+    \\[2\jot]
+    \frac{\di \yv(t)^{2}}{\di t} =
+  \frac{\di[\yv(t) \cdot \yv(t)]}{\di t} =
+  \frac{\di\yv(t)}{\di t} \cdot \yv(t) + \yv(t)\cdot \frac{\di\yv(t)}{\di t}
+  =
+  2\frac{\di\yv(t)}{\di t} \cdot \yv(t)
+  \end{gathered}
+\end{equation*}
+\marginpar{\vspace{-3\baselineskip}%
+\footnotesize\flushleftright\color{mpcolor}%
+the equalities come from the product rule of the derivative and the commutativity property of the dot-product%
+}%
+Multiplying the first set of equalities above by the constant $\yM g$, and the second by the constant $\tfrac12 \yM$, we find
+\begin{equation*}
+  \begin{gathered}
+    \yM g\,[0,0,1]\cdot\yv(t) 
+    = \frac{\di\yM g z(t)}{\di t}
+    \\[2\jot]
+    \frac{\di \tfrac12 \yM \yv(t)^{2}}{\di t} =
+  \frac{\di\yM\yv(t)}{\di t} \cdot \yv(t)
+  \end{gathered}
+\end{equation*}
+We can now replace these equalities in formula~\eqref{eq:balance_mom_wethm}, the balance of momentum that we dot-multiplied by the velocity, and bring the last term on the right to the left. We obtain this equation:
+\begin{equation}
+  \label{eq:wethm}
+  \frac{\di\bigl[\tfrac12 \yM \yv(t)^{2} + \yM g z(t)\bigr]}{\di t} =
+  \yF(t)\cdot \yv(t)
+\end{equation}
+which is usually called \enquote{\textbf{work-energy theorem}}.
+
+The equation above is very peculiar. On the left side, within the time derivative, w see the kinetic energy and gravitational potential energy; so this is almost the full energy content $\yE$ given by the general constitutive relation~\eqref{eq:thermodynamic_energy}, except that the internal energy $\yU$ is missing. On the right side we see the mechanical power; so this is almost the full energy flux $\yH$ given by the general constitutive relation~\eqref{eq:heat_power}, except that the heat flux $\yQ$ is missing.
+
 
 
 
