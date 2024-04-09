@@ -4,4 +4,4 @@
 
 Various teaching notes and material about mechanics, thermodynamics, electromagnetism, general relativity.
 
-[Current draft: *seven-wonders.pdf*](seven-wonders.pdf)
+[Current draft: *seven-wonders.pdf*](https://github.com/pglpm/7wonders/raw/master/seven-wonders.pdf)
