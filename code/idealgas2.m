@@ -1,5 +1,5 @@
 %%% idealgas2.m
-%% Last-Updated: 2024-04-04T16:36:08+0200
+%% Last-Updated: 2024-04-10T08:43:10+0200
 %%
 %% SI units used throughout
 %% Simulation of ideal gas in 1D
@@ -11,7 +11,7 @@ z0 = 0.6; % initial position of piston
 v0 = 0; % initial velocity of piston
 T0 = 273.15+25; % initial temperature of gas
 m = 10; % mass of piston
-k = 80; % heat conductivity
+h = 80; % heat conductivity
 Fatm = -1e5 * A; % atmospheric force
 %%
 R = 8.31446261815; % gas constant
@@ -52,6 +52,8 @@ vSave(1) = v0;
 TSave(1) = T0;
 FSave(1) = (N*R*T0 - A*lambda*v0)/z0;
 %% Initialize plot
+close all;
+subplot(3,1,1)
 cols = get(0, 'DefaultAxesColorOrder');
 plot(tSave(1), zSave(1), 'o','Color',cols(1,:)); axis('tight');
 xlabel('time {\it t}/s'); ylabel('position {\it z}/m'); hold on;
@@ -72,7 +74,7 @@ while (t < t1 && t0 < t1) || (t1 < t && t1 < t0) % possible backward time integr
   %% same as *minus* force on gas
   F = (N*R*T - A*lambda*v)/z;
   %% constitutive relation for heat flux
-  Q = k * (T0 - T) * z * (2*pi*r);
+  Q = h * (T0 - T) * z * (2*pi*r);
   %% update internal energy of gas
   U = U + (Q - F*v)*dt;
   %% update temperature of gas
@@ -97,9 +99,11 @@ while (t < t1 && t0 < t1) || (t1 < t && t1 < t0) % possible backward time integr
 end %@
 %% Plot full time dependence
 plot(tSave,zSave,'-','Color',cols(1,:));
-figure();
+%% figure();
+subplot(3,1,2)
 plot(tSave,TSave-273.15,'-','Color',cols(2,:)); axis('tight');
 xlabel('time {\it t}/s'); ylabel('temperature {\it T}/C');
-figure();
-plot(tSave,(T0-TSave)*k.*zSave,'-','Color',cols(3,:)); axis('tight');
+%figure();
+subplot(3,1,3)
+plot(tSave,(T0-TSave)*h.*zSave,'-','Color',cols(3,:)); axis('tight');
 xlabel('time {\it t}/s'); ylabel('heat flux {\it Q}/W');
