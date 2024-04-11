@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-11T01:12:40+0200
+%% Last-Updated: 2024-04-11T18:32:16+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -588,11 +588,11 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \chapterstyle{bianchi}
 \setsecnumdepth{subsection}
 \setsecnumformat{\csname #1secnumformat\endcsname}
-\newcommand\sectionsecnumformat{\thesection\quad}
+\newcommand\sectionsecnumformat{Oppgave\enspace\thesection\quad}
 \newcommand\subsectionsecnumformat{(\thesubsection)\enspace}
 %\setsecnumformat{\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\large\bfseries\sffamily%
-\centering}
+\raggedright}
 \counterwithout{section}{chapter}
 %\counterwithout{subsection}{section}
 % \setsecheadstyle{\bfseries\sffamily%
@@ -1137,23 +1137,26 @@ keepaspectratio]{images/palebluedotA4s.png}%
   \Large\bfseries Example exam questions
 \end{center}
 
+\noindent{\footnotesize\color{green}\emph{Deloppgaver (a), (b), etc teller lik}\\
+\textbf{Explain your reasoning}, that's what gives you points. A correct numerical answer without explanation of how it is obtained does not give points. A wrong numerical answer but with a correct main explanation does give you points.\par}
+
 \section{}
 
 \marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/exam_robotarm2.jpg}%
 }%
-A robot arm must lift, vertically, a block of concrete having mass $\yM=\qty{100}{kg}$, as illustrated in the figure. Take the block itself as a control volume, and adopt coordinates $(x,z)$ as illustrated; $z=\qty{0}{m}$ corresponds to the floor. Assume that there's no atmosphere. The gravitational acceleration is $g=\qty{9.8}{N/kg}$.
+A robot arm must lift, vertically, a block of concrete having mass $\yM=\qty{100}{kg}$ (see figure). Take the block itself as a control volume, and use coordinates $(x,z)$ as illustrated; $z=\qty{0}{m}$ corresponds to the floor. Assume that there is no atmosphere. The gravitational acceleration is $g=\qty{9.8}{N/kg}$.
 
 \subsection{}
 
 \begin{enumerate}[label=\roman*.]
-\item Calculate the \textbf{total} force (momentum flux) that the gripper must exert on the block in order to lift it with a constant (upward) speed.
+\item Calculate the \textbf{total} force (momentum flux) that the gripper (the robot's \enquote{hand}) must exert on the block in order to lift it with a constant upward speed.
 
   Express this total force as a vector with $x$- and $z$-components.
 
-  Explain which law you use to calculate the total force.
+  Which law do you use to calculate the total force? which constitutive relations?
 
-\item The left and right fingers of the gripper exert forces of this form:
+\item The left and right fingers of the gripper exert forces having these unknown components:
   \begin{equation*}
     \overbracket[0pt]{\begin{bmatrix}
       A \\ \mu\, A
@@ -1165,25 +1168,27 @@ A robot arm must lift, vertically, a block of concrete having mass $\yM=\qty{100
   \end{equation*}
   with $A>0$ and $B>0$, where $\mu=\num{0.21}$ is called sliding-friction coefficient.
 
-  Find $A$ and $B$; don't forget the physical units. Which principle about fluxes and volume contents are you using, in order to find these two forces from the total one?
+  Find $A$ and $B$; don't forget the physical units.
 
-\item What is the magnitude of the force exerted by the left finger of the gripper?
+  Which principle about fluxes and volume contents are you using, in order to find these two forces from the total one?
+
+\item What is the \textbf{magnitude} of the force exerted by the \textbf{left} finger of the gripper?
 \end{enumerate}
 
 \subsection{}
 
-The block is being lifted at a constant upward speed of $\qty{0.01}{m/s}$. But when the block of concrete is at $z=\qty{1}{m}$ from the ground (distance measured from the bottom of the block to the ground), suddenly the gripper breaks, and doesn't exert any force anymore.
+The block is being lifted at a constant upward speed of $\qty{0.01}{m/s}$. When the bottom of the block of concrete is at $z=\qty{1}{m}$ from the ground, the gripper suddenly breaks and does not exert any force anymore.
 
 \smallskip
 
-We want to find the magnitude of the velocity $\yv$ that the block possesses right before it hits the ground.
+Find the magnitude of the velocity $\yv$ that the block possesses right before it hits the ground:
 
 \begin{enumerate}[label=\roman*.]
-\item Find the magnitude of $\yv$ using the balance of energy. Assume that the internal energy of the block is constant. \emph{\footnotesize(Warning: remember that the block had an upward velocity while it was lifted!)}
+\item Find the magnitude of $\yv$ using the balance of energy. Assume that the internal energy of the block is constant in time. \emph{(Warning: remember that the block had an upward velocity while it was lifted!)}
 
   Explain how you use the energy balance: what is the energy content? fluxes? supply?
 
-\item Using \emph{only} the balance of energy (and no intuitive reasoning), can you find not only the magnitude of $\yv$, but also its $x$- and $z$-components? Explain your reasoning about why this is or is not possible.
+\item  Using \emph{only} the balance of energy (and no intuitive reasoning), can you find not only the magnitude of $\yv$, but also its $x$- and $z$-components? Explain your reasoning about why this is or is not possible. \emph{[This question does not have a right or wrong answer; what's important is to show your reasoning.]}
 
 \item Use the balance of momentum to explain why the $x$-component of $\yv$ must be zero. \emph{(Hint: had the initial momentum any $x$-component? Did the total flux or supply of momentum have any $x$-component during the fall?)}
 \end{enumerate}
@@ -1193,39 +1198,39 @@ We want to find the magnitude of the velocity $\yv$ that the block possesses rig
 \marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/exam_blockfloor.jpg}%
 }%
-Luckily the floor is made of a special deformable material that dampens and stops the fall of the block, so that it does not get too damaged.
+The floor is made of a special material that deforms (see picture) and gently stops the fall of the block.
 
 Disregard the horizontal dimension, and consider a $z$-coordinate directed upward.
 
-The floor exerts a vertical force (momentum flux) $F$ on the block. This force has constitutive equation
+As soon as the block is in contact with the floor, the floor starts exerting a vertical force (momentum flux) $F$ on the block. This force has constitutive equation
 \begin{equation*}
-  F = - k\,z - \mu\,v
+  F(t) = - k\,z(t) - \mu\,v(t)
 \end{equation*}
-where $z \le 0$ is the position of the block's bottom and $v$ its velocity (velocity is positive if it is upward). The constant $k$ is an elastic constant, and $\mu$ is a dampening coefficient.
+where $z(t) \le 0$ is the position of the block's bottom and $v(t)$ its velocity, at time $t$. The velocity is positive if it points upward. The constant $k$ is an elastic constant, and $\mu$ is a dampening constant.
 
 \begin{enumerate}[label=\roman*.]
 \item Find the units of $k$ and those of $\mu$.
 
-\item Assume that $k=1500$ and $\mu=1000$, measured in the units you found. How much is the force $F$ (including its sign) the moment the block hits the floor?  \emph{(Hint: you already calculated the velocity at impact in a previous question, and the floor correspond to the zero of the $z$ coordinate.)}
+\item Assume that $k=1500$ and $\mu=1000$, measured in the units you found. How much is the force $F(\yti)$ (including its sign) at the very moment $\yti$ the block hits the floor?  \emph{(Hint: you already calculated the velocity at impact in a previous question, and the floor correspond to the zero of the $z$ coordinate.)}
 
 \item Between the moment $\yti$ when the block hits the floor, and the moment $\ytf$ when it stops, the integrated flux of momentum given to the block by the floor is
   \begin{equation*}
     \int_{\yti}^{\ytf}\!\!F(t)\,\di t = \qty{+3392.42}{N\,s}
   \end{equation*}
-  Use the balance of momentum in integral form to find how much is the integrated supply of momentum $G$ between $\yti$ and $\ytf$. \emph{(Hint: How much is the final momentum, when the block has stopped? and how much was the initial momentum?)}
+  Use the balance of momentum in integral form to find the integrated supply of momentum $G$ between $\yti$ and $\ytf$. \emph{(Hint: How much is the final momentum, when the block has stopped? how much was the initial momentum? Note that you do not need to solve any integrals.)}
 
-\item The integrated supply of momentum that you just found is, by integration, also equal to
+\item The integrated supply of momentum that you just found is, by analytical integration, also equal to
   \begin{equation*}
     \int_{\yti}^{\ytf}\!\!G(t)\,\di t = -\yM\,g\,(\ytf-\yti)
   \end{equation*}
-  Find the time $(\ytf-\yti)$ that it took for the floor to completely stop the fall of the block of concrete.
+  From this expression and your previous result, find the time $(\ytf-\yti)$ that it took for the floor to completely stop the fall of the block of concrete.
 \end{enumerate}
 
 \section{}
 
-We want to find how much the floor was deformed by stopping the block of concrete, or in other words how deep is the \enquote{hole} that the block made on the floor. This depth corresponds to the final $z$ position of the block's bottom, once it has stopped.
+We want to find how deep is the \enquote{hole} that the block made on the floor (see previous picture). This depth corresponds to the final $z$ position of the block's bottom, once it has stopped.
 
-We decide to find this numerically, by numerically integrating the motion of the block of concrete as it is slowed down by the deformable floor. A simple script to implement this is shown in the next page. The script continues as long as the velocity is higher than \qty{0.001}{m/s} (that is, \qty{1}{mm/s}), then outputs the final depth \texttt{\color{blue}z} of the block and the time \texttt{\color{blue}t} elapsed.
+We can find this by numerically integrating the motion of the block in contact with the floor. The script to do this is shown on the next page. The script is designed to continue as long as the velocity is higher than \qty{0.001}{m/s}, then it outputs the final depth \texttt{\color{blue}z} of the block and the time \texttt{\color{blue}t} elapsed.
 
 \begin{table}[ht]
   \centering
@@ -1239,26 +1244,29 @@ We decide to find this numerically, by numerically integrating the motion of the
 
 \begin{enumerate}[label=\roman*.]
 \item Explain which balance law is implemented in the script.
-\item Locate the line, in the while-loop, where the balance law is implemented. Explain the meaning of the various terms on this line.
-\item Which constitutive relations are used in the while-loop?
+\item Locate the line, in the while-loop, where the balance law is implemented. Explain the meaning of the various terms on this specific line.
 \end{enumerate}
 
 \subsection{}
 
 \begin{enumerate}[label=\roman*.]
+\item Which constitutive relations are used in the while-loop?
+
 \item Add comments to each of the lines \texttt{\color{blue}21}--\texttt{\color{blue}25}, shortly explaining what each does.
-\item Explain why the lines are in the order given. Could any of those lines be moved to another position in the while-loop?
+
+% \item Explain why the lines are in the order given. Could any of those lines be moved to another position in the while-loop?
 \end{enumerate}
 
 \subsection{}
 
-Assume that the energy of the floor consists only of internal energy $\yU$. Also assume that this energy increases only from the mechanical power $F\cdot v$ coming from the force exerted by the block on the floor (no heat flux).
+Assume that the total energy $\yE$ of the floor consists only of internal energy $\yU$ (no kinetic or potential energies). Also assume that this energy increases only from the mechanical power $F\cdot v$ coming from the force exerted by the block on the floor; that is the energy flux is adiabatic.
 
-Take the initial energy of the floor to be \qty{0}{J}. Add two lines to the script:
+Take the initial energy of the floor to be $\yU(\yti)=\qty{0}{J}$. Add two lines to the script, in appropriate places:
 \begin{itemize}
 \item one that initializes the value of the internal energy
 \item one that updates the internal energy, using the balance of energy.
 \end{itemize}
+that is, tell between which lines of the script above you would insert your lines, and what the code of your new lines would be.
 
 \section{}
 
@@ -1268,12 +1276,12 @@ Take the initial energy of the floor to be \qty{0}{J}. Add two lines to the scri
 \begin{enumerate}[label=\roman*.]
 \item Explain what is the difference between a universal law and a constitutive relation. Give at least two examples of constitutive relations.
 
-\item Why do we consider Newton's formula\enspace$\yP = \ym\yv$\enspace(relating momentum, mass, velocity) to be a constitutive relation, rather than a universal law?
+\item Why do we consider Newton's formula\enspace$\yP = \ym\yv$\enspace(relating momentum, mass, velocity) to be a constitutive relation, rather than a universal law? \emph{[This question does not have a right or wrong answer; simply tell what you know.]}
 \end{enumerate}
 
 \subsection{}
 
-What is the difference between a conservation law and a balance law? Which quantities do you know that are conserved, and which balanced but not conserved?
+What is the difference between a \emph{conservation} law and a \emph{balance} law? Which quantities do you know that are conserved, and which that are balanced but not conserved?
 
 \subsection{}
 
@@ -1285,11 +1293,6 @@ How large is the mass $M$ of the hypothetical planet in which you two live? Use 
   \biggl[1+ \frac{G}{c^{2}}\,\frac{M}{R}\,\biggr]\,\incr t_{\text{you}}
 \end{equation*}
 where $\incr t_{\text{friend}}$ is your friend's proper time while in orbit, $\incr t_{\text{you}}$ is your proper time, $G=\qty{6.7e-11}{m^{3}/(kg\cdot s^{2})}$, $c=\qty{3e8}{m/s}$, and assume your planet has radius $R=\qty{7e7}{m}$.
-
-
-
-
-
 
 \end{document}
 
