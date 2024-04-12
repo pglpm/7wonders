@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-11T00:21:08+0200
+%% Last-Updated: 2024-04-13T00:03:58+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1248,6 +1248,13 @@ Some teachers say \enquote{it would be too difficult for students to understand 
 
 The present lecture notes are an experiment and attempt to introduce classical mechanics and thermodynamics from modern physical notions and viewpoints. The core equations remain the same, but the students should have a broader conception of their meaning and of the symbols that appear in them.
 
+\iffalse % replies from NASA/JPL, 2024-04-12
+  "Yes, NASA/JPL include relativistic effects when we plan or calculate trajectories for Earth, Moon, and beyond.  The same PPN (parameterized post-Newtonian) metric is used to calculate and plan spacecraft dynamics.  For example, if we don’t include the relativistic effect, GPS orbits will be not as good as what we have now. 😊" Ryan Park, Group Supervisor of JPL's Solar System Dynamics Group
+
+   "Further to what Ryan said, we use the same dynamical models for navigating in cis-lunar or geocentric space as we do for interplanetary missions: the physics doesn’t change between the two regimes, and the same software is use for navigating in both regimes.
+
+It seems the professor has already found the key document by Moyer, which I would have referenced myself. In fact, I used the relativistic expressions in Moyer’s earlier internal JPL document when I coded up the dynamical models used in our Small Body software, back in the early ‘90s, and the same Moyer expressions were used in JPL navigation software for a couple decades before that (back at least to the ‘70s)." Paul Chodas, JPL's director for the Center of Near Earth Object Studies.
+\fi
 
 
 % ** 6
@@ -6575,6 +6582,22 @@ Matter in a gaseous state is also often modelled as having negligible mass. All 
 \paragraph{Solids and fluids}
 
 In modelling extended matter in a solid and fluid state, usually all three forms of energy must be taken into account. They can moreover be quite variable from one small control volume to another. This is why their modelling and simulation can be extremely complex.
+
+\subsection{Preliminary comments about movement of matter at a surface}
+\label{sec:matter_move_surface}
+
+In the next section we shall discuss constitutive relations for energy fluxes through a control surface. These relations are valid under two requirements:
+\begin{itemize}[nosep]
+\item matter in contact with the control surface has velocity $\yv$
+\item there is no flux of matter through the control surface.
+\end{itemize}
+
+These two requirements sometimes appear as contradictory at first sight: if there's no flux of matter, then how can matter have a non-zero velocity?
+
+Both conditions can actually coexist, and there are two main ways in which they do. Let's discuss them briefly so that you can at least understand them intuitively.
+
+
+
 
 
 \subsection{Heat flux and power}
