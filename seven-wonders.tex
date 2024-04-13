@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-13T15:44:57+0200
+%% Last-Updated: 2024-04-13T19:07:28+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4441,7 +4441,7 @@ The budget is expressed in the following general forms:
 \end{definition}
 
 The individual balances and symbols for matter, momentum, energy, angular momentum, entropy are also presented in table\,\ref{tab:balances} p.\,\pageref{tab:balances}.
-\begin{table}[hb]
+\begin{table}[hbt]
   \centering
     \begin{equation*}
       \begin{aligned}[t]
@@ -4539,7 +4539,7 @@ Note that some constitutive relations will reappear again and again in different
 \subsection{Prediction and forecast}
 \label{sec:forecast}
 
-In the previous chapters we have mentioned \enquote*{prediction} several times: predicting the value of a quantity, predicting a physical behaviour, and so on. What do we mean by \enquote*{prediction}, more exactly?
+We have mentioned \enquote*{prediction} several times in the present notes: predicting the value of a quantity, predicting a physical behaviour, and so on. What do we mean by \enquote*{prediction}, more exactly?
 
 This word is used in mainly two ways in physics; one more general and the other more specific.
 
@@ -4547,7 +4547,7 @@ In the general sense, predicting something means managing to find out some piece
 
 As a more physical example, we may be able to predict that the pressure inside a bike tyre has a particular value, just from knowing the volume of the tyre, the amount of air in it, and the air's temperature -- without directly measuring the pressure with a manometer. Another example is what you did in Exercise~\ref{ex:clocks}-~\ref{item:gps_clock}: you predicted the time lapse of a GPS satellite's clock, by using the time lapse of your own clock and the laws of general relativity.
 
-In these two examples, the predictions are about a piece of information -- pressure, time lapse -- that occurs at the same \emph{coordinate} time as the information we have -- volume, your time lapse, and so on. (Recall that \autoref{sec:time}{it doesn't make sense to say that two events occur at the same \emph{physical} time}, unless they occur at the same place.)
+In these two examples, the predictions are about a piece of information -- pressure, time lapse -- that occurs at the same time as the information we have -- volume, your time lapse, and so on. (We are speaking about \emph{coordinate} time; recall that \autoref{sec:time}{it doesn't make sense to say that two events occur at the same \emph{physical} time}, unless they occur at the same place.)
 
 \smallskip
 
@@ -4562,13 +4562,17 @@ Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance 
 \enquote*{Prediction} in this sense, or forecast, is extremely important in our technologies and in human activity in general. We often wish to forecast tomorrow's weather. In designing a bridge, we want to forecast whether it will be able to sustain certain loads.
 In sending a probe to Mars, we want to predict where Mars will be, and what trajectory our probe will follow.
 
-\section{Forecast: the universal balance laws}
+\subsection{The special role of the universal balance laws, and finite-difference approximations}
 \label{sec:forecast_balances}
 
-When we look at physics from the point of view of forecasting, we realize the very special role of the {universal balance laws}.
+When we look at physics from the point of view of forecasting, we realize the very special position and role of the universal balance laws. They state that a budget holds among several quantities, and these quantities \emph{refer to different times}. With enough information about some quantities at some earlier times, they therefore determine the values of some quantities at later times.
+
+We shall now discuss the basics of how the universal balances can be applied, together with constitutive relations, to make concrete numerical predictions in actual physical situations.
+
+\smallskip
 
 
-Recall again the integral and differential forms of a balance law (we use the symbols for energy here, but the reasoning is valid for any other quantity):
+Recall again the integral and differential forms of a balance law; we use the symbols for energy here, but the reasoning is valid for any other quantity:
 \begin{equation*}
       \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
@@ -4578,7 +4582,7 @@ Recall again the integral and differential forms of a balance law (we use the sy
 \end{equation*}
 If $\yR=0$, then this is a conservation law.
 
-From either of these forms we can find an approximate mathematical expression to make predictions for a short instant of time. Let's see this from the integral form first.
+From either of these forms we can find an approximate mathematical expression to make predictions about a short instant of time ahead. Let's see how this is done from the integral form.
 
 Suppose that the lapse of time between $\yti$ and $\ytf$:
 \begin{equation*}
@@ -4608,7 +4612,7 @@ And finally, considering that $\ytf = \yti + \Dt$, the balance law in integral f
   \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\,\di t}} + \underbracket[0pt]{\yR(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}}
 \end{equation*}
 Factoring $\Dt$ we obtain:
-\begin{definition}{Finite-difference approximation}
+\begin{definition}{Finite-difference approximation,label={def:finitedifference}}
   \begin{equation}\label{eq:finite_diff}
     \yE(\yti+\Dt)  \approx \yE(\yti) + [\yH(\yti) + \yR(\yti)]\,\Dt
   \end{equation}
@@ -4633,6 +4637,8 @@ This basic idea is the same as the one behind \furl{https://encyclopediaofmath.o
 \begin{warning}[A control-surface sequence is understood]
 As you recall from the \autoref{eq:conserved}{definition of conservation and balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must be either clearly stated or understood from the context. If this sequence is not specified, the volume contents and fluxes above don't have any clear meaning.
 \end{warning}
+
+Keep in mind that the finite-difference approximation~\eqref{eq:finite_diff} that we derived is not the only possible one. They key step in our derivation was the approximation of the integrals appearing in the integral form of the balance law. Other approximating approaches are possible for them, and they lead to  finite-difference approximations of slightly different forms. Entire books are devoted on these approximation schemes, and if you'll work in some physics or engineering fields you'll learn several of them in more detail. Some of these alternative forms lead in fact to improved approximations and numerical predictions; they are, however, more complicated and therefore we don't discuss them here.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
@@ -4922,6 +4928,7 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
 
   Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the two margin plots above.
 \end{exercise}
+
 
 \subsection{Applicability of numerical time integration}
 \label{sec:applicable_numericintegration}
@@ -5775,7 +5782,7 @@ The Hookean spring and the harmonic oscillator are therefore discussed in detail
 
 In these notes, instead, I'd like to discuss  more in detail the role of the balance of momentum and of constitutive relations in this system, as these aspects are often quickly glossed over in other texts.
 \begin{exercise}
-  Before continuing, try to  on your own the analysis of two small bodies connected by a Hookean spring, as %\autoref{sec:hooke}{}
+  Before continuing, try to do on your own the analysis of two small bodies connected by a Hookean spring, as %\autoref{sec:hooke}{}
   previously defined. Consider in particular:
   \begin{itemize}[shift]
   \item How would you set up a coordinate system and closed control surfaces to describe this physical phenomenon? how many control volumes?
@@ -5788,50 +5795,56 @@ In these notes, instead, I'd like to discuss  more in detail the role of the bal
 
 \medskip
 
-We consider two bodies of matter, call them $a$ and $b$, of small extension compared to the distance between them. We attach them at the two ends of a Hookean spring, which for simplicity here we take as having a negligible natural length; that is, $\ylo\approx\qty{0}{m}$. We choose a coordinate system at rest with the Earth's surface, so that the only momentum supply, if considered, is given by the constitutive equation for gravitational force.
+We consider two bodies of matter, call them $a$ and $b$, of small extension compared to the distance between them. We attach them at the two ends of a Hookean spring, which for simplicity here we take as having a negligible natural length; that is, $\ylo\approx\qty{0}{m}$. We choose a coordinate system at rest with the Earth's surface; let's denote it $(y,z)$, with $z$ pointing upward. The only momentum supply, if considered, is given by the constitutive equation for gravitational force.
 
-In terms of control surfaces, we have three of them: two tightly enveloping one body each, and a third enveloping the spring. Let us analyse each one in turn, writing down its relevant balances. Note that all  quantities below, except the masses, depend on the time $t$.
+In terms of control surfaces, we have three of them: one tightly enveloping body $a$, one body $b$, and a third enveloping the spring. Let us analyse each one in turn, writing down its relevant balances. Note that all  quantities below, except the masses and the elastic constant $k$, depend on the time $t$.
 
 
 \begin{description}[itemsep=1ex]
 \item[Body $a$:]
-  The two control volume for body $a$ is small and can be characterized simply by its position vector $\yra$. The mass-energy in this control volume is $\yMa$. \autoref{sec:cons_matter_particle}{By construction, conservation of matter automatically holds for this control volume}.
+  The control volume for body $a$ is small and can be characterized simply by its position vector $\yra$. The mass-energy in this control volume is $\yMa$.
+
+  By construction, \autoref{sec:cons_matter_particle}{conservation of matter automatically holds} for this control volume. It remains, hidden, in the relation between the position and velocity of the control volume: $\yva(t)=\di\yra(t)/\di t$.
 
   This control volume contains an amount of momentum $\yPa = \yMa\,\yva$, according to the \autoref{sec:bal_momentum_Newton}{Newtonian constitutive equation}.
 
   We assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control surface for the spring (see \textcolor{purple}{thick red lines} in the side picture below).  Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} means that it's the influx into body $a$, coming from the spring that connects it to body $b$.
 
-  If we considered gravity effects, this control volume would also have a constant momentum supply $\yGa=\yMa\,\yg$, according to the \autoref{def:gravity_surface}{constitutive equation for gravitational force}. Let's omit this supply for simplicity.
+  If we consider gravity effects, this control volume also has a constant momentum supply $\yGa=-\yMa\,g\,[0,1]$, according to the \autoref{def:gravity_surface}{constitutive equation for gravitational force}.
 
   For this control volume we have therefore the following momentum balance and constitutive relations:
   \begin{equation*}
  \begin{aligned}
 &\text{\footnotesize momentum balance} &\quad&\frac{\di\yPa(t)}{\di t} = \yFab(t) + \yGa(t)
       \\[\jot]
+&\text{\footnotesize velocity} &\quad&\frac{\di\yra(t)}{\di t} = \yva(t)
+      \\[\jot]
 &\text{\footnotesize const. relation} &\quad&\yPa(t) = \yMa\yva(t)
       \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yGa(t) = 0
+&\text{\footnotesize const. relation} &\quad&\yGa(t) = -\yMa\,g\,[0,1]
     \end{aligned}
   \end{equation*}
 
 %
-\marginpar{\vspace{-3\baselineskip}\centering%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[height=15em]{images/hooke_controls.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration.
+Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
 }%
 \item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\yMb$, total momentum $\yPb=\yMb\,\yvb$.
 
-  The only momentum flux occurs across the portion of control surface in common with that of the spring; there we have an \textbf{in}flux $\yFba$. For simplicity we omit the momentum supply $\yGb=\yMb\,\yg$ from gravity.
+  The only momentum flux occurs across the portion of control surface in common with that of the spring; there we have an \textbf{in}flux $\yFba$.
 
   For this control volume we have the following momentum balance and constitutive relations:
   \begin{equation*}
  \begin{aligned}
 &\text{\footnotesize momentum balance} &\quad&\frac{\di\yPb(t)}{\di t} = \yFba(t) + \yGb(t)
       \\[\jot]
+&\text{\footnotesize velocity} &\quad&\frac{\di\yrb(t)}{\di t} = \yvb(t)
+      \\[\jot]
 &\text{\footnotesize const. relation} &\quad&\yPb(t) = \yMb\yvb(t)
       \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yGb(t) = 0
+&\text{\footnotesize const. relation} &\quad&\yGb(t) = -\yMb\,g\,[0,1]
     \end{aligned}
   \end{equation*}
 
@@ -5854,14 +5867,17 @@ The momentum balance and constitutive relations for the control volume of the sp
       \\[\jot]
 &\text{\footnotesize total influx by extensivity} &\quad&\yF(t) = -\yFab(t) - \yFba(t)
       \\[\jot]
-&\text{\footnotesize Hooke const. relation} &\quad&\yP(t) = 0
+&\text{\footnotesize assumption for spring} &\quad&\yP(t) = 0
       \\[\jot]
-&\text{\footnotesize Hooke const. relation} &\quad&\yG(t) = 0
+&\text{\footnotesize assumption for spring} &\quad&\yG(t) = 0
       \\[\jot]
 &\text{\footnotesize Hooke const. relation} &\quad&\yFab(t) = -k\,[\yra(t)-\yrb(t)]
     \end{aligned}
   \end{equation*}
-  The momentum balance for the spring reduces to a very simple equation:\enspace$0 = \yF = -\yFab-\yFba$\,.\enspace We thus find that the effluxes at the extremities of the spring must be opposite:
+
+  Something peculiar happens in the case of the spring: \textbf{the momentum balance for the spring reduces to a very simple equation:}
+  $$0 = \yF = -\yFab-\yFba$$
+  We thus find that the effluxes at the extremities of the spring must be opposite:
 \begin{equation*}
   \yFab = -\yFba
 \end{equation*}
@@ -5902,10 +5918,87 @@ that can be solved analytically.
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\subsection{Hookean spring: numerical time integration}
-\label{sec:hooke_numerical}
 
-Even though the physical system of two masses connected by a Hookean spring can be solved analytically, it is interesting to examine what its numerical time-integration scheme is; also because such a scheme can be readily generalized to constitutive relations for \autoref{sec:nonhooke}{non-Hookean springs}, for which analytical solutions may not exist.
+\section{Numerical time integration: strategies}
+\label{sec:strategy_simulation}
+
+The physical system of two masses connected by a Hookean spring can be solved, and its behaviour predicted, analytically. But finding analytical solutions becomes more difficult or even impossible as soon as we consider \autoref{sec:nonhooke}{non-Hookean springs} and more general constitutive relations, or more masses. We then resort to numerical time-integration methods to predict the behaviour of such systems.
+
+The essential ideas of such methods were introduced in \chap~\ref{sec:numeric_simulation}. It is interesting to build a numerical time-integration scheme for the masses-and-spring system. Such a scheme can also be readily generalized to other constitutive relations. At the same time we can also discuss a general strategy to build algorithms for numerical time integration.
+
+% We have now met with the balance of momentum, which is extremely important to predict the motion of objects, and with several examples of constitutive relations relating momentum, matter (its position and velocity), and \masse.
+
+\subsection{A strategy to build a numerical time-integration algorithm}
+\label{sec:strategy_scheme}
+
+We wrote our \autoref{sec:applicable_numericintegration}{first time-integration algorithm} proceeding intuitively, without following any particular scheme. Our present physical system involves more quantities and more constitutive equations. It is therefore convenient to find a more systematic way to build a simulation algorithm. Let's see the main steps using the present physical system as an example.
+
+In trying to reach a systematic way we shall also realize again the importance of the universal balance laws.
+
+\medskip
+
+First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case they are}
+\begin{equation*}\label{eq:timestep_hooke}
+  \begin{aligned}[b]
+\frac{\di\yPa(t)}{\di t} &= \yFab(t) + \yGa(t)
+&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
+    \\
+\frac{\di\yPb(t)}{\di t} &= \yFba(t) + \yGb(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
+    \\[\jot]
+\frac{\di\yra(t)}{\di t} &= \yva(t)
+&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
+\\    \frac{\di\yrb(t)}{\di t} &= \yvb(t)
+&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
+\\[\jot]
+    \yFba(t)  &=-\yFab(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
+    \\[2\jot]
+    \yPa(t) &= \yM\yva(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
+\\        \yPb(t) &= \yM\yvb(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+    \\[\jot]
+\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
+&&{\text{\footnotesize\color{midgrey}Hooke's law}}
+  \end{aligned}
+\end{equation*}
+where each vector equation represents two equations: one for component $y$, one for $z$. We could have written the balance laws in integral, rather than differential, form. The latter form is simply more compact. Recall the peculiarity about the momentum balance for the spring: since the spring is assumed to always have zero momentum, the balance simplified to the equation\enspace$\yFba(t) =-\yFab(t)$\,,\enspace where no time derivative appear anymore.
+
+In order to do numerical time integration, we approximate the balance laws and the velocities with \autoref{def:finitedifference}{finite-difference approximations}. Our set of equations is therefore rewritten this way:
+\begin{equation*}\label{eq:timestep_hooke_approx}
+  \begin{aligned}[b]
+    \yPa(t+\Dt)  &\approx \yPa(t) + [\yFab(t) + \yGa(t)]\,\Dt
+&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
+    \\
+    \yPb(t+\Dt)  &\approx \yPb(t) + [\yFba(t) + \yGb(t)]\,\Dt
+&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
+    \\[\jot]
+    \yra(t+\Dt)  &\approx \yra(t) + \yva(t)\,\Dt
+&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
+   \\    \yrb(t+\Dt)  &\approx \yrb(t) + \yvb(t)\,\Dt
+&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
+\\[\jot]
+    \yFba(t)  &=-\yFab(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
+    \\[2\jot]
+    \yPa(t) &= \yM\yva(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
+\\        \yPb(t) &= \yM\yvb(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+    \\[\jot]
+\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
+&&{\text{\footnotesize\color{midgrey}Hooke's law}}
+  \end{aligned}
+\end{equation*}
+
+
+
+
+\begin{enumerate}[label=\textbf{\arabic*.},start=0]
+\item\emph{a} test
+\end{enumerate}
+
 
 For such a scheme we need to \autoref{sec:timestep_vector}{step forward in time the momentum} of both masses using their momentum balances. The momentum balance of the spring is reduced to the equation\enspace$\yFba=-\yFab$\,,\enspace as discussed in the previous section.
 
