@@ -1,8 +1,7 @@
 %%% idealgas_piston.m
-%% Last-Updated: 2024-04-12T23:56:01+0200
-%%
-%% SI units used throughout
+%% Last-Updated: 2024-04-13T13:04:38+0200
 %% Simulation of ideal gas & mass piston in 1D
+%% SI units used throughout
 %% Coordinate z
 m = 10; % mass of piston
 N = 0.04; % amount of ideal gas
@@ -40,7 +39,7 @@ t1 = t1 + mod(t1-t0,dt);
 Nsaves = 200; % number of timepoints to save during the simulation
 %% Calculate time interval for saving
 dsave = (t1-t0)/(Nsaves-1);
-if dsave < dt
+if abs(dsave) < (dt)
   error('time interval between saves is smaller than timestep')
 end
 %% Initialize vectors to contain saved values
@@ -50,10 +49,10 @@ vSave = nan(Nsaves,1);
 TSave = nan(Nsaves,1);
 %% Save initial values
 i = 1; % index that keeps count of savepoints
-tSave(1) = t0;
-zSave(1) = z0;
-vSave(1) = v0;
-TSave(1) = T0;
+tSave(1) = t;
+zSave(1) = z;
+vSave(1) = v;
+TSave(1) = T;
 %% Initialize plot
 close all;
 subplot(2,1,1)
@@ -105,4 +104,4 @@ end %@
 plot(tSave,zSave,'-','Color',cols(1,:));
 subplot(2,1,2)
 plot(tSave,TSave-273.15,'-','Color',cols(2,:)); axis('tight');
-xlabel('time {\it t}/s'); ylabel('temperature {\it T}/C');
+xlabel('time {\it t}/s'); ylabel('temperature {\it T}/C');  %@
