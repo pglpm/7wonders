@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-13T19:07:28+0200
+%% Last-Updated: 2024-04-13T23:31:50+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -5937,7 +5937,7 @@ In trying to reach a systematic way we shall also realize again the importance o
 
 \medskip
 
-First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case they are}
+First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case} they are
 \begin{equation*}\label{eq:timestep_hooke}
   \begin{aligned}[b]
 \frac{\di\yPa(t)}{\di t} &= \yFab(t) + \yGa(t)
@@ -5954,10 +5954,15 @@ First we must have a clear list of the balance laws and constitutive relations t
     \yFba(t)  &=-\yFab(t)
 &&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
     \\[2\jot]
-    \yPa(t) &= \yM\yva(t)
+    \yPa(t) &= \yMa\yva(t)
 &&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
-\\        \yPb(t) &= \yM\yvb(t)
+\\        \yPb(t) &= \yMb\yvb(t)
 &&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+    \\[\jot]
+    \yGa(t) &= -\yMa\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $a$}}
+\\      \yGb(t) &= -\yMb\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
     \\[\jot]
 \yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
 &&{\text{\footnotesize\color{midgrey}Hooke's law}}
@@ -5965,7 +5970,7 @@ First we must have a clear list of the balance laws and constitutive relations t
 \end{equation*}
 where each vector equation represents two equations: one for component $y$, one for $z$. We could have written the balance laws in integral, rather than differential, form. The latter form is simply more compact. Recall the peculiarity about the momentum balance for the spring: since the spring is assumed to always have zero momentum, the balance simplified to the equation\enspace$\yFba(t) =-\yFab(t)$\,,\enspace where no time derivative appear anymore.
 
-In order to do numerical time integration, we approximate the balance laws and the velocities with \autoref{def:finitedifference}{finite-difference approximations}. Our set of equations is therefore rewritten this way:
+In order to do numerical time integration, we approximate the balance laws and the velocities with \autoref{def:finitedifference}{finite-difference approximations}. Our set of equations is therefore rewritten as follows:
 \begin{equation*}\label{eq:timestep_hooke_approx}
   \begin{aligned}[b]
     \yPa(t+\Dt)  &\approx \yPa(t) + [\yFab(t) + \yGa(t)]\,\Dt
@@ -5982,10 +5987,15 @@ In order to do numerical time integration, we approximate the balance laws and t
     \yFba(t)  &=-\yFab(t)
 &&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
     \\[2\jot]
-    \yPa(t) &= \yM\yva(t)
+    \yPa(t) &= \yMa\yva(t)
 &&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
-\\        \yPb(t) &= \yM\yvb(t)
+\\        \yPb(t) &= \yMb\yvb(t)
 &&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+    \\[\jot]
+    \yGa(t) &= -\yMa\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentumsupply body $a$}}
+\\      \yGb(t) &= -\yMb\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
     \\[\jot]
 \yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
 &&{\text{\footnotesize\color{midgrey}Hooke's law}}
@@ -5993,31 +6003,15 @@ In order to do numerical time integration, we approximate the balance laws and t
 \end{equation*}
 
 
-
+This is now our starting point. Let's see a reasoned set of steps to write a script that implements these equations.
 
 \begin{enumerate}[label=\textbf{\arabic*.},start=0]
-\item\emph{a} test
+\item\textbf{Find any constants appearing in the equations} test
 \end{enumerate}
 
 
 For such a scheme we need to \autoref{sec:timestep_vector}{step forward in time the momentum} of both masses using their momentum balances. The momentum balance of the spring is reduced to the equation\enspace$\yFba=-\yFab$\,,\enspace as discussed in the previous section.
 
-The basic time-stepping scheme looks as follows:
-\begin{equation}\label{eq:timestep_hooke}
-  \begin{aligned}[b]
-    \yFab(t)  &=-k\,[\yra(t)-\yrb(t)]\\
-    \yFba(t)  &=-\yFab(t)
-    \\[\jot]
-    \yPa(t+\Dt)  &\approx \yPa(t) + [\yFab(t) + \yGa(t)]\,\Dt\\
-    \yPb(t+\Dt)  &\approx \yPb(t) + [\yFba(t) + \yGb(t)]\,\Dt
-    \\[\jot]
-    \yra(t+\Dt)  &\approx \yra(t) + \yva(t)\,\Dt\\
-    \yrb(t+\Dt)  &\approx \yrb(t) + \yvb(t)\,\Dt
-    \\[\jot]
-    \yva(t+\Dt) &= \yPa(t+\Dt)/\yMa\\
-    \yvb(t+\Dt) &= \yPb(t+\Dt)/\yMb
-  \end{aligned}
-\end{equation}
 
 \medskip
 
@@ -7106,6 +7100,9 @@ In the applications of the following sections we shall make these assumptions an
 \clearpage
 \chapter{Balance of entropy}
 \label{ncha:bal_entropy}
+
+\epigraph{Their various ``second laws'' sound more like warnings or threats than principles of a rational science.}{C.\,A. Truesdell, III \cites*{truesdell1969_r1984}}
+
 
 \begin{definition}{Balance of entropy}
   \begin{equation}
