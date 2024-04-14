@@ -1,10 +1,11 @@
 %%% rubberband2D.m
-%% Last-Updated: 2024-04-13T13:01:48+0200
+%% Last-Updated: 2024-04-14T10:09:07+0200
 %% Simulation of two bodies connected by non-Hookean spring in 2D
 %% SI units used throughout
 %% Coordinates (y,z)
 ma = 1; % mass of object a
 mb = 1; % mass of object b
+g = 9.80665; % gravitational acceleration
 k = 4; % spring constant
 ln = 0.05; % natural length of rubber band
 %%
