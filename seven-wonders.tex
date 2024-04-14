@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-14T17:43:24+0200
+%% Last-Updated: 2024-04-14T18:50:02+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -599,7 +599,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex}
 \setsecindent{0pt}%0ex plus 1ex minus .2ex}
 \setsubsecheadstyle{\bfseries\sffamily%
-\raggedright}
+\centering}
 \setparaheadstyle{\itshape\bfseries\sffamily%
 \raggedright}
 \setlength{\headwidth}{\textwidth}
@@ -989,7 +989,9 @@ reply%
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
+\newcommand*{\yHs}{\yH_{s}}% really used for heat-flow
 \newcommand*{\yQ}{Q}% Q for time-integral
+\newcommand*{\yQs}{Q_{s}}% Q for time-integral
 \newcommand*{\yW}{W}% A,W for time-integral
 \newcommand*{\yR}{R}% for energy source
 \newcommand*{\yg}{\bm{g}}% gravitational acceleration
@@ -6948,11 +6950,19 @@ We can also consider the \autoref{sec:total_flow}{integrated flux} of energy, th
 \end{equation*}
 The integrated heat flux is called the \textbf{heat} transferred through the surface, and the integrated mechanical power is called the \textbf{mechanical work} done by the force
 \end{definition}
+
+\begin{warning}[Tricky points in applying the energy-flux formula,label={warn:energyflux}]
 In applying the formula above, keep always in mind the following:
-\begin{itemize}[nosep]
-\item the control surface can be purely imaginary, so that there is no real physical separation between the matter on its sides
-\item the heat flux and mechanical power can independently be zero or negative
+\begin{itemize}
+\item The control surface can be purely imaginary, and there is no real physical separation between the matter on its sides.
+
+\item The heat flux could be negative and the mechanical power positive, or vice versa.
+
+\item When we deal with closed control surfaces, the conditions for applying the formula above often do \textbf{not} hold over the whole surface. For instance, the velocity $\yv$ or the heat flux $\yQ$ could be different on different parts the surface.
+
+  To calculate the \emph{total} energy flux in such cases, we  must first divide the closed surface into parts for which the formula above can be applied, then add the results.
 \end{itemize}
+\end{warning}
 
 The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
 
@@ -6960,9 +6970,19 @@ The heat flux $\yQ$ can be controlled in some situations, and in that case it is
 
 Let us see some examples.
 
-\paragraph{Holding a cup of hot tea} When we hold a cup of hot tea or coffee, we can feel a flux of positive energy from the cup to our hands. How much of it is heat flux, and how much is mechanical power?
+\paragraph{Holding a cup of hot tea}
+When we hold a cup of hot tea or coffee,
+we can feel a flux of energy
+%
+\marginpar{\vspace{-1\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/handstea.jpg}%
+\\[\jot]\footnotesize\color{mpcolor}%
+(Image from \furl{https://bunkajapan.com/blogs/japanese-tea-culture/how-to-hold-a-tea-cup}{\emph{Bunka Japan}})%
+}%
+from the cup to our hands. How much of it is heat flux, and how much is mechanical power?
 
-Let's consider a control surface between our hands and the cup, and let's choose a hands${}\to{}$cup crossing direction. There is obviously a momentum flux from our hands to the cup. The cup has a constant downward \autoref{def:gravity_surface}{supply of momentum from gravity}, but it isn't falling. This means that there must be a influx of upward momentum. We can also feel the pressure that the cup exerts on our hands; by the symmetry of fluxes this means that there must also be a flux of momentum to the cup that points towards its centre. So the total influx of momentum $\yF$ is not zero. The cup, however, is not moving: its velocity $\yv$ is zero. The mechanical power $\yF\cdot \yv$ is therefore zero as well.
+Let's consider a control surface between our hands and the cup, and let's choose a hands${}\to{}$cup crossing direction. There is obviously a momentum flux from our hands to the cup. The cup has a constant downward %\autoref{def:gravity_surface}
+{supply of momentum from gravity}, but it isn't falling. This means that there must be a influx of upward momentum. We can also feel the pressure that the cup exerts on our hands; by the symmetry of fluxes this means that there must also be a flux of momentum to the cup that points towards its centre. So the total influx of momentum $\yF$ is not zero. The cup, however, is not moving: its velocity $\yv$ is zero. The mechanical power $\yF\cdot \yv$ is therefore zero as well.
 
 The energy flux through our control surface must therefore be completely in the form of heat flux $\yQ$, and the heat \textbf{in}flux through our control surface is negative, because energy is flowing from the cup to our hands.
 
@@ -6981,7 +7001,7 @@ By the symmetry of fluxes, this same amount of energy flows out of the spring, r
 In describing and using matter in a gaseous state, heat flux and mechanical power must both usually be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
 
 %
-\marginpar{\vspace{2\baselineskip}\centering%
+\marginpar{\vspace{2\baselineskip}\centering%-33 at bottom
 \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
 \\[7\baselineskip]\includegraphics[height=6\baselineskip]{images/pump_piston.pdf}%
 % \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
@@ -7007,6 +7027,40 @@ In describing and using matter in a gaseous state, heat flux and mechanical powe
   \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
   \end{enumerate}
 \end{exercise}
+
+
+
+\subsection{Summary}
+\label{sec:summary_newton_energy}
+
+So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
+\begin{equation*}
+  \begin{aligned}
+    \yE(t) &=  \yU(t) + \tfrac{1}{2}\yM \yv(t)^{2} + \yM g z(t)
+    \\
+    \yH(t) &= \yQ(t) + \yF(t)\cdot\yv(t)
+    \\
+    \yR(t) &= 0
+  \end{aligned}
+\end{equation*}
+Let us recall the physical conditions under which they are valid:
+\begin{itemize}[nosep]
+\item matter present within and directly outside the control volume
+\item control volume and surface such that the matter velocity $\yv$ and molar mass $\yrho$, and therefore also $\yM$, are the same throughout
+\item no matter flux through the control surface
+\item no electric charges or electromagnetic fields
+\item Newtonian approximation, and close to the Earth's surface
+\end{itemize}
+\begin{warning}[Division of control volume or surface may be necessary]
+In some situations we must divide a control volume or closed control surface into several parts where these conditions are valid.
+\end{warning}
+
+
+Under these conditions, the formulae above can be used together with the balance of energy~\eqref{eq:bal_energy} in order to describe many common physical situations, with all sorts of materials, and to make predictions, for instance by \autoref{sec:numeric_simulation}{numerical simulations}. Note how these constitutive formulae connect the fluxes and volume contents of energy, matter, momentum; and they even involve two new auxiliary quantities: the internal energy $\yU$ and the heat flux $\yQ$.
+
+In order to concretely use these constitutive formulae, we need first more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. The variety of constitutive relations for these three quantities is the subject of \furl{https://www.britannica.com/technology/materials-science}{materials science}, and could fill numerous tomes. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
+
+We shall now focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ which can be used in a more restricted but still quite broad range of physical situations, involving gases.
 
 \begin{extra}{What if there's matter flux? Transport terms,label={ex:energy_matter_flux}}
   We have repeated many times that the constitutive relation for the energy flux is through a control surface
@@ -7046,36 +7100,6 @@ So the description is somewhat more complicated; you see why we choose to avoid 
 
   If the flux of matter is zero, $\yJ=0$, then the expression $\yns\cdot(\yv-\yvs)$ must be zero too, and the analogous expressions in the fluxes of momentum and energy are zero as well; all fluxes become much simpler.
 \end{extra}
-
-
-\subsection{Summary}
-\label{sec:summary_newton_energy}
-
-So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that \autoref{item:energy_no_supply}{our definition of total energy approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
-\begin{equation*}
-  \begin{aligned}
-    \yE(t) &=  \yU(t) + \tfrac{1}{2}\yM \yv(t)^{2} + \yM g z(t)
-    \\
-    \yH(t) &= \yQ(t) + \yF(t)\cdot\yv(t)
-    \\
-    \yR(t) &= 0
-  \end{aligned}
-\end{equation*}
-Let us recall the physical conditions under which they are valid:
-\begin{itemize}[nosep]
-\item matter present within and directly outside the control volume
-\item control volume and surface such that the matter velocity $\yv$ and molar mass $\yrho$, and therefore also $\yM$, are the same throughout
-\item no matter flux through the control surface
-\item no electric charges or electromagnetic fields
-\item Newtonian approximation, and close to the Earth's surface
-\end{itemize}
-
-Under these conditions, the formulae above can be used together with the balance of energy~\eqref{eq:bal_energy} in order to describe many common physical situations, with all sorts of materials, and to make predictions, for instance by \autoref{sec:numeric_simulation}{numerical simulations}. Note how these constitutive formulae connect the fluxes and volume contents of energy, matter, momentum; and they even involve two new auxiliary quantities: the internal energy $\yU$ and the heat flux $\yQ$.
-
-In order to concretely use these constitutive formulae, we need first more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. The variety of constitutive relations for these three quantities is the subject of \furl{https://www.britannica.com/technology/materials-science}{materials science}, and could fill numerous tomes. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
-
-We shall now focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ which can be used in a more restricted but still quite broad range of physical situations, involving gases.
-
 
 
 \section{Constitutive relations for ideal gases}
@@ -7141,7 +7165,7 @@ Now that the notion of pressure is introduced, we can formulate a particular con
   \end{equation}
   where $\frac{\di V}{\di t}$ is the rate of change of volume, $\lambda$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
   \begin{equation*}
-    R = \qty{8.31446261815324}{J/(mol\cdot K)}
+    R = \qty{8.31446261815324}{J/(mol\cdot K)}\quad\text{(exactly)}
   \end{equation*}
 The equation above is called the \textbf{thermodynamical ideal-gas law}.
 
@@ -7149,14 +7173,14 @@ The equation above is called the \textbf{thermodynamical ideal-gas law}.
 
   If the surface has area $A$, the magnitude of the momentum flux is therefore $\abs{\yF} = p A$.
 
-  \medskip
-
-  If only one dimension of the volume is changing, then the coefficient $\yvis$ is given by
-  \begin{equation}
-    \label{eq:viscosity_gen}
-    \yvis = \frac{4}{3}\eta + \zeta
-  \end{equation}
-  where $\eta$ and $\zeta$ are called the \emph{shear} and \emph{bulk} \furl{https://www.britannica.com/science/fluid-mechanics/Viscosity}{viscosity coefficients}. These coefficients are always positive, and usually depend on the temperature.
+  % \medskip
+  % 
+  % If only one dimension of the volume is changing, then the coefficient $\yvis$ is given by
+  % \begin{equation}
+  %   \label{eq:viscosity_gen}
+  %   \yvis = \frac{4}{3}\eta + \zeta
+  % \end{equation}
+  % where $\eta$ and $\zeta$ are called the \emph{shear} and \emph{bulk} \furl{https://www.britannica.com/science/fluid-mechanics/Viscosity}{viscosity coefficients}. These coefficients are always positive, and usually depend on the temperature.
 \end{definition}
 
 In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
@@ -7209,7 +7233,7 @@ Lastly we discuss a constitutive relation that connects heat flux and temperatur
   Consider a control surface of area $A$ and call its two sides $a$ and $b$. If the matter on side $a$ has approximately uniform temperature $\ytea$, and the matter on side $b$ has approximately uniform temperature $\yteb$, then the heat flux $\yQ$ in the $a\to b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
 \begin{equation}
   \label{eq:newton_cooling}
-  \yQ = A h (\ytea-\yteb)
+  \yQ = A h\, (\ytea-\yteb)
 \end{equation}
 where $h$ is called the \emph{coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
 \end{definition}
@@ -7256,8 +7280,14 @@ In the applications of the following sections we shall make these assumptions an
 
 \bigskip
 
-\mynotew{to be continued}
+\subsection{Example: ideal gas and massive piston}
+\label{sec:gas_pistonmass}
 
+One of the simplest system involving an ideal gas consists of the following elements:
+\begin{itemize}[nosep]
+\item A tubular container with rigid walls, containing a given amount of ideal gas. The ideal gas cannot escape the container. The container may allow for heat fluxes through its walls.
+\item A movable
+\end{itemize}
 
 
 
