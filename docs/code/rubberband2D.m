@@ -1,28 +1,27 @@
 %%% rubberband2D.m
-%% Last-Updated: 2024-04-14T15:51:53+0200
-%% Simulation of two bodies connected by non-Hookean spring in 2D
+%% Simulation of two bodies connected by non-Hookean rubber band
 %% SI units used throughout
 %% Coordinates (y,z)
 %%%% Constants
 ma = 1; % mass of object a
-mb = 1; % mass of object b
+mb = 5000; % mass of object b
 g = 9.80665; % gravitational acceleration
-k = 4; % spring constant
-ln = 0.05; % natural length of rubber band
+k = 5; % spring constant
+ln = 5; % natural length of rubber band
 %%
 Gya = 0; Gza = -ma*g; % gravity supply on object a
-Gyb = 0; Gzb = -mb*g; % gravity supply on object b
+Gyb = 0; Gzb = -mb*g*0; % gravity supply on object b
 %%
 t1 = 10; % final time
 dt = 0.001; % time step
 %%%% STATE: y,z,vy,vz for a and b; initial conditions
 t = 0; % initial time
-ya = 0; za = 0; % initial position of object a
-yb = 0.1; zb = 0; % initial position of object a
+ya = -3; za = 3; % initial position of object a
+yb = 0; zb = 0; % initial position of object a
 vya = 0; vza = 0; % initial velocity of object a
-vyb = 0; vzb = 0.1; % initial velocity of object b
+vyb = 0; vzb = 0; % initial velocity of object b
 %% %@
-%% Plot & saving
+%%%% Plot & saving
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t,dt);
 %% Save values of all quantities at some steps during the simulation,
@@ -52,10 +51,11 @@ vybSave(1) = vyb; vzbSave(1) = vzb;
 close all;
 cols = get(0, 'DefaultAxesColorOrder');
 plot(yaSave(1), zaSave(1), 's','Color',cols(1,:)); axis('tight');
+hold on;
 plot(ybSave(1), zbSave(1), 'o','Color',cols(2,:));
-xlabel('{\it y}/m'); ylabel('{\it z}/m'); hold on;
+xlabel('{\it y}/m'); ylabel('{\it z}/m');
 %% %@
-%% Numerical time integration
+%%%% Numerical time integration
 %% loop
 while t < t1
   %% We need y,z,vy,vz,Py,Pz,Fy,Fz for a and b (G constant)
@@ -102,8 +102,8 @@ while t < t1
     tSave(i) = t;
     yaSave(i) = ya; zaSave(i) = za;
     ybSave(i) = yb; zbSave(i) = zb;
-    PyaSave(i) = Pya; PzaSave(i) = Pza;
-    PybSave(i) = Pyb; PzbSave(i) = Pzb;
+    vyaSave(i) = vya; vzaSave(i) = vza;
+    vybSave(i) = vyb; vzbSave(i) = vzb;
     plot(ya, za, 's','Color',cols(1,:));
     plot(yb, zb, 'o','Color',cols(2,:));
     pause(0.001);

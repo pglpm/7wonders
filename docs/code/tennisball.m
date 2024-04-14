@@ -1,5 +1,4 @@
 %%% tennisball.m
-%% Last-Updated: 2024-04-13T13:02:58+0200
 %% Numerical simulation of object motion in 2D with gravity
 %% (base SI units used throughout)
 %% Coordinates (y,z)

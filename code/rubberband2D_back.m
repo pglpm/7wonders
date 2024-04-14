@@ -1,5 +1,5 @@
 %%% rubberband2D.m
-%% Last-Updated: 2024-04-04T16:25:00+0200
+%% Last-Updated: 2024-04-14T17:19:23+0200
 %%
 %% SI units used throughout
 %% Simulation of two bodies connected by non-Hookean spring in 2D
@@ -106,3 +106,15 @@ end %@
 %% Plot full trajectory
 plot(yaSave,zaSave,'-','Color',cols(1,:));
 plot(ybSave,zbSave,'-.','Color',cols(2,:)); %@
+
+filename = '1';
+set(gca, 'FontSize', 33);print(fig, ['../rubberband2Dplot' filename '.pdf'], '-dpdf');
+Plot total y-momentum vs t
+figure();
+plot(tSave,PyaSave+PybSave,'-','Color',cols(3,:));
+axis('tight'); xlabel('{\it t}/s'); ylabel('{\it P_y}/(Ns)');
+Plot total z-momentum vs t
+figure();
+plot(tSave,PzaSave+PzbSave,'-','Color',cols(3,:));
+axis('tight'); xlabel('{\it t}/s'); ylabel('{\it P_z}/(Ns)'); %@
+

@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-14T15:44:29+0200
+%% Last-Updated: 2024-04-14T17:43:24+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -6320,7 +6320,12 @@ end
 
     Your script should save all or some values of the state $\yra,\yrb,\yva,\yvb$, and their corresponding $t$ values, so that it's possible to plot their time evolution afterwards.
 
-  \item Run the script with the following values:
+    \smallskip
+
+    {\footnotesize\emph{(If you had difficulties writing your script, for the following exercises you can download and use \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{the script \texttt{hooke\_spring.m}}, written for \furl{https://octave.org/}{Octave}/MATLAB, as a starting point.)}\par}
+
+
+  \item Run your script with the following values:
     \begin{equation*}
       \begin{gathered}
         \yti=\qty{0}{s}
@@ -6340,6 +6345,10 @@ end
         \yva(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
         \qquad
         \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \\
+        \yGa(\yti)=[\num{0},\, \num{0}]\:\unit{N}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
       \end{gathered}
     \end{equation*}
 
@@ -6376,24 +6385,20 @@ end
 
     How do the components of the total momentum differ from the previous simulation? Try to explain why.
 
-  \item Play with all the parameter values and initial conditions, and see what happen. Before simulating, try to intuitively predict what the behaviour of the system will be.
+  \item Play with all the parameter values and initial conditions, and see what happens. Before simulating, try to intuitively predict what the behaviour of the system will be.
   \end{enumerate}
 \end{exercise}
 
 \subsection{Non-Hookean spring: numerical time integration}
 \label{sec:nonHooke_simulation}
 
-The system of two masses connected by a \autoref{sec:nonhooke}{\emph{non-Hookean} spring} with constitutive relation~\eqref{eq:nonhooke} is analytically challenging.  Its numerical solution, however, only involves a change of a couple of lines to the code that you wrote for Exercise~\ref{ex:hooke}. A small mathematical change in a constitutive relation can lead to a much richer set of behaviours, as the examples in the side plots below show.
+The system of two masses connected by a \autoref{sec:nonhooke}{\emph{non-Hookean} spring} with constitutive relation~\eqref{eq:nonhooke} is analytically challenging.
+Its numerical solution, however, only involves a change of a couple of lines to the code that you wrote for Exercise~\ref{ex:hooke}.
 
-\marginpar{\vspace{3\baselineskip}\centering%
-\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot2.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Examples of trajectories of two masses connected by a non-Hookean spring (\textcolor{blue}{}), for different values of parameters and initial conditions.%
-}%
+A small mathematical change in a constitutive relation can lead to a much richer set of behaviours, as the examples in the side plots below show.
+
 \begin{exercise}[label={ex:nonhooke}]
-  Modify the script you wrote for Exercise~\ref{ex:hooke} so that the spring is modelled by the non-Hookean constitutive relation~\eqref{eq:nonhooke} (which can be implemented with an \texttt{if}-statement), instead of the Hookean one.
+  Modify the script you wrote for Exercise~\ref{ex:hooke} so that the spring is modelled by the non-Hookean constitutive relation~\eqref{eq:nonhooke}. This constitutive relation can be implemented with an \texttt{if}-statement, for instance.
 
   Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the side plots:
 \begin{description}[shift,itemsep=\baselineskip]
@@ -6406,23 +6411,23 @@ Examples of trajectories of two masses connected by a non-Hookean spring (\textc
         \qquad
         \Dt = \qty{0.001}{s}
         \\
-        \yMa=\qty{1}{kg}
+        \yMa=\qty{0.1}{kg}
         \qquad
-        \yMb=\qty{1}{kg}
+        \yMb=\qty{0.1}{kg}
         \qquad
-        k=\qty{5}{N/m}
+        k=\qty{0.5}{N/m}
         \qquad
-        \ylo = \qty{5}{m}
+        \ylo = \qty{0.5}{m}
         \\
-        \yra(\yti)=[\num{-3},\, \num{3}]\:\unit{m}
+        \yra(\yti)=[\num{-0.3},\, \num{0.3}]\:\unit{m}
         \qquad
         \yrb(\yti)=[\num{0},\, \num{0}]\:\unit{m}
         \\
-        \yva(\yti)=[\num{3},\, \num{1}]\:\unit{m/s}
+        \yva(\yti)=[\num{1},\, \num{5}]\:\unit{m/s}
         \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
+        \yvb(\yti)=[\num{0},\, \num{5}]\:\unit{m/s}
         \\
-        \yGa(\yti)= \yMa\cdot[\num{0},\, \num{-9.8}]\:\unit{N/kg}
+        \yGa(\yti)= \yMa\cdot[\num{0},\, \num{0}]\:\unit{N/kg}
         \qquad
         \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
       \end{gathered}
@@ -6476,7 +6481,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring (\textc
         \qquad
         \ylo = \qty{5}{m}
         \\
-        \yra(\yti)=[\num{-3},\, \num{3}]\:\unit{m}
+        \yra(\yti)=[\num{-3},\, \num{0}]\:\unit{m}
         \qquad
         \yrb(\yti)=[\num{0},\, \num{0}]\:\unit{m}
         \\
@@ -6484,7 +6489,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring (\textc
         \qquad
         \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
         \\
-        \yGa(\yti)= \yMa\cdot[\num{0},\, \num{-9.8}]\:\unit{N/kg}
+        \yGa(\yti)= -\yMa\,g\,\cdot[0,\, 1]
         \qquad
         \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
       \end{gathered}
@@ -6495,7 +6500,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring (\textc
       \begin{gathered}
         \yti=\qty{0}{s}
         \qquad
-        \ytf=\qty{30}{s}
+        \ytf=\qty{10}{s}
         \qquad
         \Dt = \qty{0.001}{s}
         \\
@@ -6515,7 +6520,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring (\textc
         \qquad
         \yvb(\yti)=[\num{0},\, \num{0}]\:\unit{m/s}
         \\
-        \yGa(\yti)= \yMa\cdot[\num{0},\, \num{-9.8}]\:\unit{N/kg}
+        \yGa(\yti)= \yMa\,g\,\cdot[0,\, 1]
         \qquad
         \yGb(\yti)=[\num{0},\, \num{0}]\:\unit{N}
       \end{gathered}
@@ -6524,6 +6529,13 @@ Examples of trajectories of two masses connected by a non-Hookean spring (\textc
 
   Play with other parameters and initial values!
 \end{exercise}
+\marginpar{\vspace{-23\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{Mass $b$ in red}%
+}%
 
 
 \medskip

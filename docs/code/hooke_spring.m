@@ -1,5 +1,4 @@
 %%% hooke_spring.m
-%% Last-Updated: 2024-04-14T16:01:42+0200
 %% Simulation of two bodies connected by Hookean spring in 2D
 %% SI units used throughout
 %% Coordinates (y,z)
@@ -9,8 +8,8 @@ mb = 2; % mass of object b
 g = 9.80665; % gravitational acceleration
 k = 5; % spring constant
 %%
-Gya = 0; Gza = -ma*g; % gravity supply on object a
-Gyb = 0; Gzb = -mb*g; % gravity supply on object b
+Gya = 0; Gza = -ma*g*0; % gravity supply on object a
+Gyb = 0; Gzb = -mb*g*0; % gravity supply on object b
 %%
 t1 = 10; % final time
 dt = 0.001; % time step
@@ -20,7 +19,8 @@ ya = -3; za = 0; % initial position of object a
 yb = 3; zb = 0; % initial position of object a
 vya = 0; vza = 0; % initial velocity of object a
 vyb = 0; vzb = 0; % initial velocity of object b
-%%%% %@ Plot & saving
+%% %@
+%%%% Plot & saving
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t,dt);
 %% Save values of all quantities at some steps during the simulation,
