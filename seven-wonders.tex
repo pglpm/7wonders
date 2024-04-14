@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-14T18:50:02+0200
+%% Last-Updated: 2024-04-14T23:53:27+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -5330,7 +5330,7 @@ We are all familiar with elastic bands, springs, and similar objects having the 
 We know that \autoref{sec:pressure_tension_shear}{tension and compression are particular kinds of forces, that is, momentum fluxes}. Objects like elastic bands and springs therefore create particular momentum fluxes that are related to their spatial extension. Their behaviour is therefore described by a \emph{constitutive relation about the flux of momentum $\yF$}.
 
 We can approximately treat these objects as control volumes for which the following constitutive properties apply:
-\begin{definition}{Hookean spring}\label{def:hooke}
+\begin{definition}{Hookean spring,label={def:hooke}}
   A \textbf{Hookean spring} is a control volume with the following properties:
   \begin{itemize}[shift]
   \item One dimension has a natural length $\ylo$ that is much larger than the other two, which are usually neglected.
@@ -7157,7 +7157,7 @@ Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{
 
 Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
 
-\begin{definition}{Ideal-gas law}
+\begin{definition}{Ideal-gas law,label={def:idealgas_law}}
   If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yte$, and the momentum flux is orthogonal to the surface and uniform throughout, then the pressure $p$ is given by
   \begin{equation}
     \label{eq:ideal_gas_p}
@@ -7259,10 +7259,71 @@ Let's make clear that Newton's law of cooling and Fourier's law \emph{are not un
 Even more interesting examples, in which Fourier's law does not apply, occur for materials such as polymers \mynotew{add text and reference}
 \end{warning}
 
+\subsection{Further typical assumptions about ideal gases}
+\label{sec:further_idealgas}
+
+Besides the particular constitutive relations for momentum flux, internal energy, and heat flux just discussed, it is typically assumed that a not-too-large volume of ideal gas has a negligible mass. This is usually a reasonable assumption.
+\begin{exercise}
+  Calculate the mass of a litre, that is \qty{1e-3}{m^3}, of air. Use the following information:
+  \begin{itemize}[nosep]
+  \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\yM\approx\yrho\yN$
+  \item the pressure $p$ of air is around \qty{1e5}{N/m^2}
+  \item take a thermodynamic temperature of air $\yte=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
+  \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
+  \end{itemize}
+\end{exercise}%1.2e-3
+
+If the mass $\yM$ of a volume of ideal gas is assumed to be zero, then four other quantities are zero as well in that volume, at all times:
+\begin{itemize}[nosep]
+\item the total momentum content $\yP=\yM\yv$
+\item the momentum supply from gravity $\yG=\yM\yg$
+\item the kinetic energy $\tfrac12\yM\yv^{2}$
+\item the gravitational potential energy $\yM g z$
+\end{itemize}
+
+This assumption has an important consequence for the balance of momentum of a control volume containing an ideal gas: we have
+\begin{equation*}
+  \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\mathcolor{grey}{{}=0}} =
+\yF(t) +
+\underbracket[0pt]{\yG(t)}_{\mathcolor{grey}{{}=0}}
+\qquad\Longrightarrow\qquad
+\yF(t) = 0
+\end{equation*}
+that is, the \emph{total} momentum influx is always zero. But note that \textbf{this does not mean that the momentum influx is zero everywhere} across the closed control surface;
+%
+\marginpar{\vspace{-3\baselineskip}\centering%
+\includegraphics[width=0.3\linewidth]{images/idealgas_mominflux.pdf}%
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% NB: if $\yteb >\ytea$, then $\yQ<0$%
+}%
+it only means that the momentum influxes of opposite parts of the surface cancel out perfectly, as schematized in the side figure. In fact, any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude
+\begin{equation*}
+  F_{A} = A\,p = A\,\frac{R \yN \yte}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\di t}
+\end{equation*}
+and directed \emph{inwards}, according to the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
+
+\smallskip
+
+Another important consequence of assuming that a volume of ideal gas has zero mass is that its total energy is purely internal energy:
+\begin{equation*}
+  \yE = 
+ \underbracket[0pt]{\yU}_{\mathcolor{grey}{{}=C N \yte}}
+  + \underbracket[0pt]{\tfrac12\yM\yv^{2}}_{\mathcolor{grey}{{}=0}}
+  + \underbracket[0pt]{\yM g z}_{\mathcolor{grey}{{}=0}}
+  = C N \yte
+\end{equation*}
+which also means that any energy influx or efflux only changes the internal energy of the gas.
+
+The masslessness assumption can become inadequate under extremely fast compressions or expansions.
+%% 0.5mv2/(CNT) = 1 when v = 600m/s
+
+% The same assumption \autoref{def:hooke}{was made for springs} and rubber bands, and the same consequences applies here: 
+
+
 \subsection{Application of the constitutive relations for ideal gases}
 \label{sec:application_constit_idealgas}
 
-Even if the mathematical form of the ideal-gas constitutive relations above is simple, their application can be extremely complex. As already mentioned these relations apply to very small control volumes. If we want to model a body of gas accurately, we need to use a large number of such control volumes. This way we can try to simulate many interesting physical behaviours that an ideal gas can have, such as turbulence.
+Even if the mathematical form of the ideal-gas constitutive relations above is simple, their application can be extremely complex. As already mentioned, these relations only apply to control volumes where the physical characteristics of the gas, like temperature and amount of matter per unit volume, are uniform; that is, they are the same in any sub-volume. If we want to model a body of gas accurately, and simulate phenomena such as turbulence, we therefore need to use a large number of such control volumes.
 
 %
 \marginpar{\vspace{-6\baselineskip}\centering%
