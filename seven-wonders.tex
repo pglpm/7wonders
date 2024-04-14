@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-14T13:23:49+0200
+%% Last-Updated: 2024-04-14T15:44:29+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4852,19 +4852,20 @@ The numerical time integration of a position vector $\yr(t)$ is often done toget
 \begin{equation}\label{eq:timestep_momentum_position}
   \begin{aligned}[b]
     \yv\tikzmark{va}(\yti)&= \yP(\yti)/\yM
-    \\[3\jot]
+    \\[2\jot]
     \yr\tikzmark{ra}(\yti+\Dt)  &\approx \yr(\yti) + \tikzmark{vb}\yv(\yti)\,\Dt\\
-    \yP\tikzmark{pa}(\yti+\Dt)  &\approx \yP(\yti) + [\yF(\yti) + \yG(\yti)]\,\Dt\\
+    \yP\tikzmark{pa}(\yti+\Dt)  &\approx \yP(\yti) + [\yF(\yti) + \yG(\yti)]\,\Dt
+    \\[4\jot]
     \yv\tikzmark{vva}(\yti+\Dt) &= \tikzmark{pb}\yP(\yti+\Dt)/\yM
-     \\[3\jot]
+     \\[2\jot]
     \yr(\yti+2\Dt)  &\approx \tikzmark{rb}\yr(\yti+\Dt) + \tikzmark{vvb}\yv(\yti+\Dt)\,\Dt\\
-    \yP(\yti+2\Dt)  &\approx \tikzmark{pc}\yP(\yti+\Dt) + [\yF(\yti+\Dt) + \yG(\yti+\Dt)]\,\Dt\\
+    \yP(\yti+2\Dt)  &\approx \tikzmark{pc}\yP(\yti+\Dt) + [\yF(\yti+\Dt) + \yG(\yti+\Dt)]\,\Dt
+    \\[4\jot]
     \yv(\yti+2\Dt) &= \yP(\yti+2\Dt)/\yM
-    \\[3\jot]
+    \\[2\jot]
     \yr(\yti+3\Dt)  &\approx \yr(\yti+2\Dt) + \yv(\yti+2\Dt)\,\Dt\\
-    \yP(\yti+3\Dt)  &\approx \yP(\yti+2\Dt) + [\yF(\yti+2\Dt) + \yG(\yti+2\Dt)]\,\Dt\\
-    \yv(\yti+3\Dt) &= \yP(\yti+3\Dt)/\yM
-    \\[3\jot]
+    \yP(\yti+3\Dt)  &\approx \yP(\yti+2\Dt) + [\yF(\yti+2\Dt) + \yG(\yti+2\Dt)]\,\Dt
+    \\[4\jot]
     &\dotso
   \end{aligned}
 \end{equation}
@@ -4902,21 +4903,25 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
   \begin{aligned}
     v_{z}(\qty{0}{s}) &= P_{z}(\qty{0}{s})/\yM\\
     &=\qty{30}{N\,s}/\qty{4}{kg} = \qty{7.50}{m/s}
-    \\[3\jot]
+    \\[2\jot]
     z(\qty{0.1}{s})  &\approx z(\qty{0}{s}) + v_{z}(\qty{0}{s})\,\Dt\\
-    &\approx \qty{5}{m} + \qty{7.50}{m/s}\cdot\qty{0.1}{s} = \qty{5.75}{m}\\[0.5\jot]
+    &\approx \qty{5}{m} + \qty{7.50}{m/s}\cdot\qty{0.1}{s} = \qty{5.75}{m}
+    \\[0.5\jot]
     P_{z}(\qty{0.1}{s})  &\approx P_{z}(\qty{0}{s}) + [F_{z}(\qty{0}{s}) + G_{z}(\qty{0}{s})]\,\Dt \\
-    &\approx\qty{30}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{26.08}{N\,s} \\[0.5\jot]
+    &\approx\qty{30}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{26.08}{N\,s}
+    \\[4\jot]
     v_{z}(\qty{0.1}{s}) &= P_{z}(\qty{0.1}{s})/\yM\\
     &=\qty{26.08}{N\,s}/\qty{4}{kg} = \qty{6.52}{m/s}
-    \\[3\jot]
+    \\[2\jot]
     z(\qty{0.2}{s})  &\approx z(\qty{0.1}{s}) + v_{z}(\qty{0.1}{s})\,\Dt\\
-    &\approx \qty{5.75}{m} + \qty{6.52}{m/s}\cdot\qty{0.1}{s} = \qty{6.40}{m}\\[0.5\jot]
+    &\approx \qty{5.75}{m} + \qty{6.52}{m/s}\cdot\qty{0.1}{s} = \qty{6.40}{m}
+    \\[0.5\jot]
     P_{z}(\qty{0.2}{s})  &\approx P_{z}(\qty{0.1}{s}) + [F_{z}(\qty{0.1}{s}) + G_{z}(\qty{0.1}{s})]\,\Dt\\
-    &\approx\qty{26.08}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{22.15}{N\,s} \\[0.5\jot]
-    v_{z}(\qty{0.2}{s}) &= P_{z}(\qty{0.2}{s})/\yM\\
-    &=\qty{22.15}{N\,s}/\qty{4}{kg} = \qty{5.54}{m/s}
+    &\approx\qty{26.08}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{22.15}{N\,s}
     \\[3\jot]
+    % v_{z}(\qty{0.2}{s}) &= P_{z}(\qty{0.2}{s})/\yM\\
+    % &=\qty{22.15}{N\,s}/\qty{4}{kg} = \qty{5.54}{m/s}
+    % \\[2\jot]
     &\dotso
   \end{aligned}
 \end{equation*}
@@ -4942,7 +4947,9 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
 \subsection{Example script for numerical time integration}
 \label{sec:tennisball_script}
 
-Here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB), that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data. You can use this script as a starting point for exercises that require scripting in the next chapters.
+We shall come back to numerical time integration in a later chapter, and approach in a more systematic way the problem of writing a simulation script.
+
+For the moment, here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB), that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data. You can use this script as a starting point for exercises that require scripting in the next chapters.
 
 \smallskip
 
@@ -5950,7 +5957,9 @@ Yet in other situations we may instead not even be interested in the relative mo
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 % Examples of trajectories of two masses connected by a non-Hookean spring (\textcolor{blue}{}), for different values of parameters and initial conditions.%
 }%
-For instance, in Exercise~\ref{ex:hooke} p.~\pageref{ex:hooke}, with the Hookean spring, one set of initial values leads to the trajectories shown in the plot on the side. The distance between the two bodies cyclically changes between zero and a maximum value. If we imagine to zoom out from this plot, the positions of the two masses become almost indistinguishable, that is,\enspace$\yra \approx \yrb$\,;\enspace and we see that the system as a whole is essentially moving on a straight line. A zoomed-out plot of $\yra(t)$ or $\yrb(t)$ against time $t$ would also show that its velocity is essentially constant.
+For instance,
+% in Exercise~\ref{ex:hooke} p.~\pageref{ex:hooke}, with the Hookean spring,
+a particular set of initial values $\yra(\yti), \yrb(\yti), \yva(\yti), \yvb(\yti)$ for the tennis balls leads to the trajectories shown in the plot on the side. The distance between the two tennis balls cyclically changes between zero and a maximum value. If we imagine to zoom out from this plot, the positions of the two masses become almost indistinguishable, that is,\enspace$\yra \approx \yrb$\,;\enspace and we see that the system as a whole is essentially moving on a straight line. A zoomed-out plot of $\yra(t)$ or $\yrb(t)$ against time $t$ would also show that its velocity is essentially constant.
 
 In such a situation we would have chosen just \emph{one} closed control surface containing the two bodies and the spring. By the \autoref{def:extensivity}{extensivity property}, the total \masse\ $\yM\tot$, momentum content $\yP\tot$, momentum flux $\yF\tot$, and momentum supply $\yG\tot$ for this closed control surface can be obtained by adding up those of the three original control surfaces, spring+$a$+$b$:
 %
@@ -5981,15 +5990,16 @@ If the total momentum influx and supplies are zero, then we find\enspace$\yP\tot
 
 The physical system of two masses connected by a Hookean spring can be solved, and its behaviour predicted, analytically. But finding analytical solutions becomes more difficult or even impossible as soon as we consider \autoref{sec:nonhooke}{non-Hookean springs} and more general constitutive relations, or more masses. We then resort to numerical time-integration methods to predict the behaviour of such systems.
 
-The essential ideas of such methods were introduced in \chap~\ref{sec:numeric_simulation}. It is interesting to build a numerical time-integration scheme for the masses-and-spring system. Such a scheme can also be readily generalized to other constitutive relations. At the same time we can also discuss a general strategy to build algorithms for numerical time integration.
+The \autoref{sec:numeric_simulation}{essential idea of such numerical methods} was introduced in an earlier chapter. Let us now apply it to the masses-and-spring system. If we write an algorithm that numerically simulates a Hookean spring, it is then very easy to generalize it to a non-Hookean spring and to even more complex constitutive relations.
 
 % We have now met with the balance of momentum, which is extremely important to predict the motion of objects, and with several examples of constitutive relations relating momentum, matter (its position and velocity), and \masse.
 
-We wrote our \autoref{sec:applicable_numericintegration}{first time-integration algorithm} proceeding intuitively, without following any particular scheme. Our present physical system involves more quantities and more constitutive equations. It is therefore convenient to find a more systematic way to build a simulation algorithm. Let's see the main steps using the present physical system as an example.
+We wrote our \autoref{sec:applicable_numericintegration}{first time-integration algorithm} by proceeding intuitively, without following any particular scheme. Our present physical system involves more quantities and more constitutive equations. It is therefore convenient to find a more systematic way to build a simulation algorithm. Let's see the main steps using the present physical system as an example.
 
 In trying to reach a systematic way we shall also realize again the importance of the universal balance laws.
 
-\medskip
+\subsection{Summary of the relevant equations}
+\label{sec:summary_equations_strategy_script}
 
 First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case} they are
 \begin{equation*}\label{eq:timestep_hooke}
@@ -6059,17 +6069,20 @@ In order to do numerical time integration, we approximate the balance laws and t
 
 This is now our starting point. Let's see a reasoned set of steps to write a script that implements these equations.
 
-\clearpage
+\bigskip
+
 
 \subsection{A strategy to build a numerical time-integration algorithm}
 \label{sec:strategy_scheme}
 
-Our strategy can be divided into four systematic steps. We can write the script as we follow them: after each step, take a look at the example script of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy}, and locate the lines where that step was implemented.
+Our strategy can be divided into six systematic steps, which we reason out now. The script can be written along, as we follow them. After each step, take a look at the example script of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy}, and locate the lines where that step was implemented.
 
 
 \paragraph{\color{red}0. Find any constants appearing in the equations.}
 
 Constitutive relations typically contain constant quantities, that is, quantities that don't change in time. These constants must be known in order to simulate the system. They are therefore \textbf{declared at the beginning of the script}. In our case the constants are the masses $\yMa$, $\yMb$, the gravitational acceleration $g$, and the elastic constant $k$. Other examples could be fixed lengths, areas, volumes.
+
+The discrete timestep $\Dt$ is also a constant in our scripts. In more advanced techniques, however, the timestep may be \emph{adaptive}, that is, it may change at every iteration, depending on particular conditions. This can lead to smaller numerical errors.
 
 Volume contents, fluxes, and supplies usually depend on time; but in special situations some of them may turn out to be constant as well. In such situations it is computationally efficient to declare them before the time-stepping loop, rather than computing them anew (obtaining always the same value) at each time step. In our case we see that the gravity supplies of the two bodies, $\yGa(t) = -\yMa\,g\,[0,1]$ and $\yGb(t) = -\yMb\,g\,[0,1]$ are constant, because the masses, the gravitational acceleration, and the unit vector $[0,1]$ are constant.
 \sidepar{\vspace{-1ex}\footnotesize{\color{red}\faIcon{eye}\faIcon{code}\enspace page\,\pageref{tab:script_strategy}}}
@@ -6149,9 +6162,13 @@ This minimum set is called the \emph{state} of the physical system:
   \smallskip
 
   It is usually encoded in a minimal set of time-dependent quantities, but the choice of quantities is often not unique. In this case we say that different sets of quantities \emph{represent the same state}.
+
+  \smallskip
+
+  The values of a state at the beginning of a numerical time integration are called \textbf{initial conditions}.
 \end{definition}
 
-The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at the initial time need to be \textbf{declared before the time-stepping loop}.
+The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at the initial time, that is, the initial conditions, need to be \textbf{declared before the time-stepping loop}, together with the value of the initial time.
 \sidepar{\vspace{-1ex}\footnotesize{\color{yellow}\faIcon{eye}\faIcon{code}\enspace page\,\pageref{tab:script_strategy}}}
 
 
@@ -6218,25 +6235,32 @@ For how long should our simulation run? This obviously depends on the applicatio
 We insert these conditions in the for- or while-loop, and initialize them as necessary.
 \sidepar{\vspace{-1ex}\footnotesize{\color{midgrey}\faIcon{eye}\faIcon{code}\enspace page\,\pageref{tab:script_strategy}}}
 
+\bigskip
+
+After these six steps, the essential part of our numerical-time-integration script is ready. The script will probably need additional lines to perform tasks that depend on the specific problem. For example we may want to store the numerical values of some quantities at different times, for later analysis; or plot some of them as the simulation evolves. The ways these tasks are implemented are often heavily dependent on the programming language, and we therefore cannot discuss them in detail here.
+
 \clearpage
 
 \begin{table}[h]
-\caption{Example script for numerical time integration of the spring-bodies system}
-\label{tab:script_strategy}
+  \caption{Example script for numerical time integration of the spring\,\amp\,bodies system}\label{tab:script_strategy}
+  {\footnotesize The \textcolor{red}{constants}, \textcolor{yellow}{initial values}, and the \textcolor{midgrey}{stop condition} (stop at \qty{10}{s}) can of course be different. Vector components are declared on one line.\par}
+
 \small
 \begin{framed}
 \color{red}\begin{verbatim}
-%%%% 0.  Constants
+%%%% 0.  Constants and timestep
 ma = 1;
 mb = 1;
 g = 9.80665;
 k = 4;
 Gya = 0; Gza = -ma*g;
 Gyb = 0; Gzb = -mb*g;
+dt = 0.01;
 \end{verbatim}
 \vspace{-1.5\baselineskip}
 \color{yellow}\begin{verbatim}
-%%%% 2.  State: initial values
+%%%% 2.  State: ya,za,vya,vza,yb,zb,vyb,vzb; initial conditions
+t = 0;
 ya = 0; za = 0;
 yb = 0.1; zb = 0.1;
 vya = 0; vza = 0;
@@ -6245,11 +6269,11 @@ vyb = 0; vzb = 0.1;
 \vspace{-1.5\baselineskip}
 \color{midgrey}\begin{verbatim}
 %%%% 5.  Condition for stopping loop
-while t < t1
+while t < 10
 \end{verbatim}
 \vspace{-1.5\baselineskip}
 \color{blue}\begin{verbatim}
-    %%%% 3.  Calculate from state to quantities for forward-driving
+    %%%% 3.  Calculate forward-driving quantities from state
     Pya = ma*vya;  Pza = ma*vza;
     Fyab = -k*(ya-yb);  Fzab = -k*(za-zb);
     Pyb = mb*vyb;  Pzb = mb*vzb;
@@ -6257,7 +6281,7 @@ while t < t1
 \end{verbatim}
 \vspace{-1.5\baselineskip}
 \color{green}\begin{verbatim}
-    %%%% 1.  Forward driving
+    %%%% 1.  Drive forward in time
     Pya = Pya + (Fyab + Gya)*dt;  Pza = Pza + (Fzab + Gza)*dt;
     Pyb = Pyb + (Fyba + Gyb)*dt;  Pzb = Pzb + (Fzba + Gzb)*dt;
     ya = ya + vya*dt;  za = za + vza*dt;
@@ -6280,19 +6304,21 @@ end
 \color{black}
 \clearpage
 
-For such a scheme we need to \autoref{sec:timestep_vector}{step forward in time the momentum} of both masses using their momentum balances. The momentum balance of the spring is reduced to the equation\enspace$\yFba=-\yFab$\,,\enspace as discussed in the previous section.
+% For such a scheme we need to \autoref{sec:timestep_vector}{step forward in time the momentum} of both masses using their momentum balances. The momentum balance of the spring is reduced to the equation\enspace$\yFba=-\yFab$\,,\enspace as discussed in the previous section.
 
 
 \medskip
 
 \begin{exercise}[label={ex:hooke}]
-  We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $y$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
+  % We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $y$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
   \begin{enumerate}[exerc]
-  \item Write a script, in your preferred programming language, that implements a numerical time integration scheme according to the time-steping scheme~\eqref{eq:timestep_hooke} above, from an initial time $\yti$ to a final time $\ytf$ with timestep $\Dt$.
+  \item Examine our previous \autoref{sec:tennisball_script}{script \texttt{tennisball.m}} for numerically integrating the motion of a tennis ball, and pinpoint where the six building steps above are implemented.
 
-    As a starting point you can use the \autoref{sec:tennisball_script}{script \texttt{tennisball.m}}.
+    Which quantities constitute the \emph{state} in that script?
 
-    Your script should save some or all of the values of $t,\yra,\yrb,\yPa,\yPb$ for subsequent analysis. It should also let you specify the quantities $\yMa,\yMb,k$, as well as the initial values of $\yra,\yrb,\yva,\yva$, as parameters (that is, no specific numerical values for them are hard-coded in the script).
+  \item Implement the pseudo-code of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} in your preferred programming language.
+
+    Your script should save all or some values of the state $\yra,\yrb,\yva,\yvb$, and their corresponding $t$ values, so that it's possible to plot their time evolution afterwards.
 
   \item Run the script with the following values:
     \begin{equation*}

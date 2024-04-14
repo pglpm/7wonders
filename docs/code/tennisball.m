@@ -1,21 +1,30 @@
-%% (base SI units used throughout)
+%%% tennisball.m
+%% Last-Updated: 2024-04-13T13:02:58+0200
 %% Numerical simulation of object motion in 2D with gravity
+%% (base SI units used throughout)
 %% Coordinates (y,z)
-%% Parameters and initial values:
-Py0 = 3; Pz0 = 0.75; % initial momentum
+%% Parameters
+m = 0.059; % tennis ball's mass
+%%
+%% Initial values
+t0 = 0; % initial time
 y0 = 0; z0 = 2; % initial position
+Py0 = 3; Pz0 = 0.75; % initial momentum
+%%
+t1 = t0 + 2; % final time
+dt = 0.01; % time step
+%%
+%% Initialize values for loop
+t = t0;
+y = y0; z = z0;
+Py = Py0; Pz = Pz0;
+%%
 Fy = 0; Fz = 0; % momentum influx (constant)
 Gy = 0; Gz = -0.579; % momentum supply (constant)
-m = 0.059; % tennis ball's mass
-t0 = 0; % initial time
-t1 = t0 + 2; % final time, can also be earlier than initial
-dt = 0.01; % time step, negative if backward time integration %@
+%% %@
+%% Plot & saving
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t0,dt);
-%% check if timestep and time interval are consistent
-if (t1-t0)*dt <= 0
-  error('time interval inconsistent with timestep');
-end
 %% Save values of all quantities at some steps during the simulation,
 %% for subsequente analysis or plotting
 %% (saving at all timesteps could be too costly)
@@ -29,37 +38,34 @@ end
 tSave = nan(Nsaves,1);
 ySave = nan(Nsaves,1); zSave = nan(Nsaves,1);
 PySave = nan(Nsaves,1); PzSave = nan(Nsaves,1);
-vySave = nan(Nsaves,1); vzSave = nan(Nsaves,1);
 %% Save initial values
 i = 1; % index that keeps count of savepoints
-tSave(i) = t0;
-ySave(i) = y0; zSave(i) = z0;
-PySave(i) = Py0; PzSave(i) = Pz0;
-vySave(i) = Py0/m; vzSave(i) = Pz0/m;
+tSave(i) = t;
+ySave(i) = y; zSave(i) = z;
+PySave(i) = Py; PzSave(i) = Pz;
 %% Initialize plot
 cols = get(0, 'DefaultAxesColorOrder');
 plot(ySave(1), zSave(1), '.', 'Color', cols(1,:)); axis('tight');
 xlabel('y/m'); ylabel('z/m'); hold on;
 %% %@
 %% Numerical time integration
-%% initialize
-t = t0;
-y = y0; z = z0;
-Py = Py0; Pz = Pz0;
-vy = Py/m; vz = Pz/m;
 %% loop
-while sign(dt)*t < sign(dt)*t1 % possible backward time integration
-  %% update time
-  t = t + dt;
+while t < t1
+  %% We need Py,Px,y,z,vy,vz
+  %% we have y,z,Py,Pz
+  %% find vy,vz using constitutive relations
+  vy = Py/m; vz = Pz/m;
+  %%
+  %% Drive forward in time
   %% update momentum
   Py = Py + (Fy + Gy)*dt;
   Pz = Pz + (Fz + Gz)*dt;
-  %% update velocity (from constitutive relation P=mv)
-  vy = Py/m;
-  vz = Pz/m;
   %% update position
   y = y + vy*dt;
-  z = z + vz*dt; %@
+  z = z + vz*dt;
+  %% update time
+  t = t + dt;
+  %% %@
   %% Check whether to save & plot at this step
   if min(abs([0 dsave] - mod(t-t0, dsave))) <= abs(dt)/2
     i = i+1;
@@ -71,5 +77,5 @@ while sign(dt)*t < sign(dt)*t1 % possible backward time integration
     pause(0.001);
   end %@
 end %@
-%% Plot trajectory
+%% Plot full trajectory
 plot(ySave, zSave, 'Color', cols(1,:)); axis('tight'); %@

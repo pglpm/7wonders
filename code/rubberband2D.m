@@ -1,42 +1,36 @@
 %%% rubberband2D.m
-%% Last-Updated: 2024-04-14T10:09:07+0200
+%% Last-Updated: 2024-04-14T15:51:53+0200
 %% Simulation of two bodies connected by non-Hookean spring in 2D
 %% SI units used throughout
 %% Coordinates (y,z)
+%%%% Constants
 ma = 1; % mass of object a
 mb = 1; % mass of object b
 g = 9.80665; % gravitational acceleration
 k = 4; % spring constant
 ln = 0.05; % natural length of rubber band
 %%
-%% STATE: y,z,vy,vz for a and b
-ya0 = 0; za0 = 0; % initial position of object a
-yb0 = 0.1; zb0 = 0; % initial position of object a
-vya0 = 0; vza0 = 0; % initial velocity of object a
-vyb0 = 0; vzb0 = 0.1; % initial velocity of object b
+Gya = 0; Gza = -ma*g; % gravity supply on object a
+Gyb = 0; Gzb = -mb*g; % gravity supply on object b
 %%
-t0 = 0; % initial time
 t1 = 10; % final time
 dt = 0.001; % time step
-%% Initialize state for numerical time integration
-t = t0;
-ya = ya0; za = za0;
-yb = yb0; zb = zb0;
-vya = vya0; vza = vza0;
-vyb = vyb0; vzb = vzb0;
-%%
-Gya = 0; Gza = 0; % gravity supply on object a
-Gyb = 0; Gzb = 0; % gravity supply on object b
+%%%% STATE: y,z,vy,vz for a and b; initial conditions
+t = 0; % initial time
+ya = 0; za = 0; % initial position of object a
+yb = 0.1; zb = 0; % initial position of object a
+vya = 0; vza = 0; % initial velocity of object a
+vyb = 0; vzb = 0.1; % initial velocity of object b
 %% %@
 %% Plot & saving
 %% adjust final time if not multiple of timestep
-t1 = t1 + mod(t1-t0,dt);
+t1 = t1 + mod(t1-t,dt);
 %% Save values of all quantities at some steps during the simulation,
 %% for subsequente analysis or plotting
 %% (saving at all timesteps could be too costly)
 Nsaves = 200; % number of timepoints to save during the simulation
 %% Calculate time interval for saving
-dsave = (t1-t0)/(Nsaves-1);
+dsave = (t1-t)/(Nsaves-1);
 if abs(dsave) < abs(dt)
   error('time interval between saves is smaller than timestep')
 end
@@ -48,6 +42,7 @@ vyaSave = nan(Nsaves,1); vzaSave = nan(Nsaves,1); % velocity object a
 vybSave = nan(Nsaves,1); vzbSave = nan(Nsaves,1); % velocity object b
 %% Save initial values
 i = 1; % index that keeps count of savepoints
+t0 = t;
 tSave(1) = t;
 yaSave(1) = ya; zaSave(1) = za;
 ybSave(1) = yb; zbSave(1) = zb;

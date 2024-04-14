@@ -1,24 +1,28 @@
+%%% idealgas2.m
+%% Last-Updated: 2024-04-10T08:43:10+0200
+%%
 %% SI units used throughout
 %% Simulation of ideal gas in 1D
 %% Coordinate z
-N = 0.27; % amount of ideal gas 0.27 / 0.02
-A = 0.01; % area of piston
+N = 0.2; % amount of ideal gas
+r = 0.05; % radius of piston
+A = pi * r^2; % area of piston
 z0 = 0.6; % initial position of piston
 v0 = 0; % initial velocity of piston
 T0 = 273.15+25; % initial temperature of gas
 m = 10; % mass of piston
-k = 0*80*sqrt(4*pi*A); % heat conductivity
+h = 80; % heat conductivity
 Fatm = -1e5 * A; % atmospheric force
 %%
 R = 8.31446261815; % gas constant
 C = 20; % molar heat capacity
-H = 18e-6 * (4/3 + 0.7); % viscosity
+lambda = 18e-6 * (4/3 + 0.7); % viscosity
 g = 9.80665; % gravitational acceleration
 G = -m*g; % gravity supply of momentum to piston
 %%
 t0 = 0; % initial time
-t1 = 1; % final time, can also be earlier than initial
-dt = 0.0001; % time step, negative if backward time integration %@
+t1 = 5; % final time, can also be earlier than initial
+dt = 0.001; % time step, negative if backward time integration %@
 %% adjust final time if not multiple of timestep
 t1 = t1 + mod(t1-t0,dt);
 %% check if timestep and time interval are consistent
@@ -46,8 +50,10 @@ tSave(1) = t0;
 zSave(1) = z0;
 vSave(1) = v0;
 TSave(1) = T0;
-FSave(1) = (N*R*T0 - A*H*v0)/z0;
+FSave(1) = (N*R*T0 - A*lambda*v0)/z0;
 %% Initialize plot
+close all;
+subplot(3,1,1)
 cols = get(0, 'DefaultAxesColorOrder');
 plot(tSave(1), zSave(1), 'o','Color',cols(1,:)); axis('tight');
 xlabel('time {\it t}/s'); ylabel('position {\it z}/m'); hold on;
@@ -61,14 +67,14 @@ T = T0;
 U = C*N*T0;
 P = m*v0;
 %% loop
-while sign(dt)*t < sign(dt)*t1 % possible backward time integration
+while (t < t1 && t0 < t1) || (t1 < t && t1 < t0) % possible backward time integr.
   %% update time
   t = t + dt;
   %% constitutive relation for force on piston
   %% same as *minus* force on gas
-  F = (N*R*T - A*H*v)/z;
+  F = (N*R*T - A*lambda*v)/z;
   %% constitutive relation for heat flux
-  Q = k*(T0 - T)*z;
+  Q = h * (T0 - T) * z * (2*pi*r);
   %% update internal energy of gas
   U = U + (Q - F*v)*dt;
   %% update temperature of gas
@@ -91,11 +97,13 @@ while sign(dt)*t < sign(dt)*t1 % possible backward time integration
     pause(0.001);
   end %@
 end %@
-%% Plot trajectory
+%% Plot full time dependence
 plot(tSave,zSave,'-','Color',cols(1,:));
-figure();
+%% figure();
+subplot(3,1,2)
 plot(tSave,TSave-273.15,'-','Color',cols(2,:)); axis('tight');
 xlabel('time {\it t}/s'); ylabel('temperature {\it T}/C');
-figure();
-plot(tSave,(T0-TSave)*k.*zSave,'-','Color',cols(3,:)); axis('tight');
+%figure();
+subplot(3,1,3)
+plot(tSave,(T0-TSave)*h.*zSave,'-','Color',cols(3,:)); axis('tight');
 xlabel('time {\it t}/s'); ylabel('heat flux {\it Q}/W');
