@@ -11,7 +11,7 @@ R = 8.31446261815; % molar gas constant
 C = 20; % molar heat capacity
 lambda = 0.00004; % gas viscosity
 h = 8000; % heat conductivity
-Tenv = 273.15 + 23; % temperature of environment
+Te = 273.15 + 23; % temperature of environment
 Fatm = -100000*A; % force on piston by atmosphere
 %%
 G = -m*g; % gravity supply of momentum to piston
@@ -65,7 +65,7 @@ while t < t1
   Fgas = -(N*R*T/z - A*lambda*v/z);
   Fpis = -Fgas + Fatm;
   U = C*N*T;
-  Q = A*z*h*(Tenv - T);
+  Q = A*h*(Te - T);
   %%
   %% Drive forward in time
   %% update momentum of piston
