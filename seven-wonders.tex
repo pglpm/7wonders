@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-15T10:36:01+0200
+%% Last-Updated: 2024-04-15T13:03:31+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1003,6 +1003,8 @@ reply%
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{ab}}
 \newcommand*{\yFba}{\yF_{ba}}
+\newcommand*{\yFp}{F_{\text{p}}}
+\newcommand*{\yFatm}{F_{\text{atm}}}
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
@@ -5173,12 +5175,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 % \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 % }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
 \end{exercise}
 
 
@@ -5542,7 +5544,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
 \begin{itemize}
 \item It is always \autoref{sec:pressure}{\emph{compressive}}, that is, its direction is always orthogonal to the surface, and its orientation is the same as the crossing orientation.
-\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
+\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty[print-unity-mantissa=false]{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
 \item Its magnitude slowly decreases with altitude; that is, a \qty{1}{m^2} surface \qty{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty{1}{m^2} surface close to the ground.
 \end{itemize}
 
@@ -7263,10 +7265,10 @@ Even more interesting examples, in which Fourier's law does not apply, occur for
 
 Besides the particular constitutive relations for momentum flux, internal energy, and heat flux just discussed, it is typically assumed that a not-too-large volume of ideal gas has a negligible mass. This is usually a reasonable assumption.
 \begin{exercise}
-  Calculate the mass of a litre, that is \qty{1e-3}{m^3}, of air. Use the following information:
+  Calculate the mass of a litre, that is \qty[print-unity-mantissa=false]{1e-3}{m^3}, of air. Use the following information:
   \begin{itemize}[nosep]
   \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\yM\approx\yrho\yN$
-  \item the pressure $p$ of air is around \qty{1e5}{N/m^2}
+  \item the pressure $p$ of air is around \qty[print-unity-mantissa=false]{1e5}{N/m^2}
   \item take a thermodynamic temperature of air $\yte=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
   \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
   \end{itemize}
@@ -7337,19 +7339,79 @@ The masslessness assumption is of course inadequate in some conditions like extr
 % \item There is no flux of matter through the closed control surface. The law of conservation of matter is therefore automatically satisfied.
 % \item A control volume containing an ideal gas has negligible momentum (analogously to the \autoref{sec:hooke}{assumption for Hookean and non-Hookean springs}).
 % \end{itemize}
-% 
+%
 % \bigskip
 
-\subsection{Example: ideal gas and massive piston}
-\label{sec:gas_pistonmass}
+\section{Example: ideal gas and piston}
+\label{sec:idealgas_ex}
 
-One of the simplest system involving an ideal gas consists of the following elements:
-\begin{itemize}[nosep]
-\item A tubular container with rigid walls, containing a given amount of ideal gas. The ideal gas cannot escape the container. The container may allow for heat fluxes through its walls.
-\item A movable
-\end{itemize}
+\subsection{Setup}
+\label{sec:idealgas_ex_setup}
 
+One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
+%
+\marginpar{\vspace{-2\baselineskip}\centering%
+\includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
+}%
+To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$. The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
 
+Since the piston has mass $\yM$, it also has momentum $\yP=\yM\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yG = -\yM\,g$. You may wonder why we need to consider a piston having mass. There are two main reasons. First, in a real situation a piston does have a mass that is non-negligible, compared with the mass of the gas. Second, the assumption that the gas has no mass makes \autoref{sec:further_idealgas}{the balance of momentum become singular}, as discussed in the previous section, and any description and prediction of motion becomes therefore impossible -- unless we add mass somewhere else. The piston is effectively also a proxy for the mass of the gas. We encountered an analogous situation with the spring-and-bodies system.
+
+\subsection{Control volumes \amp\ surfaces}
+\label{sec:idealgas_ex_control}
+
+As usual we must choose a set of control volumes and surfaces to describe the physical system, so that we can define the contents, fluxes, and supplies of any relevant balance laws.
+
+A natural choice is a control volume tightly wrapping the piston, and another control volume coinciding with the chamber's walls, containing the gas. The two control volumes have one horizontal surface in common, of area $A$, where the piston is in contact with the gas. Therefore there will be fluxes of quantities between the two control volumes. By the \autoref{def:symmetryflux}{symmetry of fluxes}, the flux $X$ of any quantity from one volume to the other through this surface, corresponds to a flux $-X$ from the second volume to the first.
+
+The control volume of the piston is rigid but movable; its position is determined by the coordinate $z(t)$. The volume $V(t)$ of the chamber can instead change with time, and is related to $z(t)$ by
+\begin{equation}\label{eq:Vz_gas}
+  V(t) = A\,z(t)
+\end{equation}
+Although this is a geometric relation, its deeper origin actually lies in the law of conservation of matter, because the shapes and positions of these control volumes are chosen so that matter is automatically conserved.
+
+The vertical velocity $v(t)$ of the piston is given by
+\begin{equation*}
+  v(t) = \frac{\di z(t)}{\di t}
+\end{equation*}
+and is positive if the piston is moving upwards. We also define the rate of change of the volume $V(t)$, which turns out to be related to the velocity $v(t)$:
+\begin{equation}\label{eq:Vv_gas}
+  \frac{\di V(t)}{\di t} = \frac{\di A\, z(t)}{\di t} = A\,v(t)
+\end{equation}
+
+\subsection{Balances}
+\label{sec:idealgas_ex_balances}
+
+Let's see how the main balances apply to the chosen control volumes of this physical system.
+
+\paragraph{Conservation of matter}
+
+As mentioned in the previous section, the control volumes have been chosen so as to automatically satisfy this conservation law. But this law still appears very subtly through the geometric relations~\eqref{eq:Vz_gas} and~\eqref{eq:Vv_gas}. We therefore don't need to worry about its balance, as long as we use those geometric relations.
+
+The constant amount of matter in the piston is such that its mass is $\yM$, and the constant amount of ideal gas in the chamber is $\yN$.
+
+\paragraph{Balance of momentum}
+
+Let's first apply this balance to the control volume of the piston.
+
+The momentum content of the piston is $P(t) = \yM v(t)$, positive when directed upwards.
+
+The \emph{total} momentum influx $\yFp$ is the sum of the fluxes through three main surfaces:
+\begin{description}
+\item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$ approximately constant and equal to
+  \begin{equation}
+    \label{eq:gas_piston_Fatm}
+    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+  \end{equation}
+
+\item[Side:] There usually are \autoref{sec:shear}{shear forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero.
+
+%
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/piston_forces.pdf}%
+}%
+\item[Bottom:]
+\end{description}
 
 %%%% examples use empheq
 %   \begin{empheq}[left={\mathllap{\begin{aligned}    \de\yF_{\yc}/\de\yp&=0\text{:} \\
@@ -7818,12 +7880,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
 \end{exercise}
 
 
