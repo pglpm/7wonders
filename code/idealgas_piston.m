@@ -10,7 +10,7 @@ g = 9.8; % gravitational acceleration
 R = 8.31446261815; % molar gas constant
 C = 20; % molar heat capacity
 mu = 0.00004; % gas viscosity
-h = 8000; % heat conductivity
+h = 8000; % heat-transfer coefficient
 Te = 273.15 + 23; % temperature of environment
 Fatm = -100000*A; % force on piston by atmosphere
 %%
