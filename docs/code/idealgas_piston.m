@@ -1,8 +1,8 @@
 %%% idealgas_piston.m
-%% Last-Updated: 2024-04-13T13:04:38+0200
 %% Simulation of ideal gas & mass piston in 1D
 %% SI units used throughout
 %% Coordinate z
+%%%% Constants
 m = 10; % mass of piston
 N = 0.04; % amount of ideal gas
 A = 0.1^2; % area of piston
@@ -14,25 +14,19 @@ h = 8000; % heat conductivity
 Tenv = 273.15 + 23; % temperature of environment
 Fatm = -100000*A; % force on piston by atmosphere
 %%
-%% STATE: z, v, T
-z0 = 0.1; % initial position of piston
-v0 = 0; % initial velocity of piston
-T0 = 273.15 + 23; % initial temperature of gas
+G = -m*g; % gravity supply of momentum to piston
 %%
-t0 = 0; % initial time
 t1 = 1; % final time
 dt = 0.0001; % time step
-%% Initialize state for numerical time integration
-t = t0;
-z = z0;
-v = v0;
-T = T0;
-%%
-G = -m*g; % gravity supply of momentum to piston
+%%%% STATE: z, v, T; initial conditions
+t = 0; % initial time
+z = 0.1; % initial position of piston
+v = 0; % initial velocity of piston
+T = 273.15 + 23; % initial temperature of gas
 %% %@
 %% Plot & saving
 %% adjust final time if not multiple of timestep
-t1 = t1 + mod(t1-t0,dt);
+t1 = t1 + mod(t1-t,dt);
 %% Save values of all quantities at some steps during the simulation,
 %% for subsequente analysis or plotting
 %% (saving at all timesteps could be too costly)
@@ -49,6 +43,7 @@ vSave = nan(Nsaves,1);
 TSave = nan(Nsaves,1);
 %% Save initial values
 i = 1; % index that keeps count of savepoints
+t0 = t;
 tSave(1) = t;
 zSave(1) = z;
 vSave(1) = v;
