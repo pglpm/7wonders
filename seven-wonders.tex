@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-15T13:03:31+0200
+%% Last-Updated: 2024-04-15T17:04:54+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1003,7 +1003,8 @@ reply%
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{ab}}
 \newcommand*{\yFba}{\yF_{ba}}
-\newcommand*{\yFp}{F_{\text{p}}}
+\newcommand*{\yFpg}{F_{\text{pg}}}
+\newcommand*{\yFgp}{F_{\text{gp}}}
 \newcommand*{\yFatm}{F_{\text{atm}}}
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
@@ -1046,7 +1047,7 @@ reply%
 % {\setlength{\rightskip}{-\marginparsep}\addtolength{\rightskip}{-\marginparwidth}}{\par}
 
 
-\usepackage[retain-explicit-plus,quantity-product=\:]{siunitx}
+\usepackage[print-unity-mantissa=false,retain-explicit-plus,quantity-product=\:]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
 \usepackage{listings}
@@ -2135,7 +2136,7 @@ From Relativity Theory and experimentally we know that \emph{energy and mass are
 
 Let's see some examples of why it is impossible to make a real distinction between energy and mass. The following examples have been simplified in some of their aspects, but their main point is valid.
 
-\paragraph{Heated gas}
+\paragraph{Heated gas.}
 
 Imagine we have a box with a given amount of gas, say \qty{1}{mol} of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Oxygen}{oxygen} molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
 \begin{equation*}
@@ -2150,7 +2151,7 @@ Clearly the mass has increased, but no molecules were added! The additional mass
 
 % Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy in all its possible forms \emph{is} mass.
 
-\paragraph{Stretched or moving rubber band}
+\paragraph{Stretched or moving rubber band.}
 
 Take a common rubber band, and imagine again that we have an extremely precise weighing scale. The rubber band, unstretched, has a mass of exactly
 \begin{equation*}
@@ -2178,7 +2179,7 @@ The small difference from the initial mass is the new kinetic energy of the band
 
 This case is actually connected with the example of the gas above. If we observed the gas at a molecular level, we would interpret the energy of \qty{60}{J} provided to it as additional kinetic energy of its molecules. The increase in weight was exactly this additional kinetic energy.
 
-\paragraph{Fission and atomic bombs}
+\paragraph{Fission and atomic bombs.}
 \marginpar{%
 \includegraphics[align=t,width=\linewidth]{images/atomicbomb.jpg}
 \\[\jot]\color{mpcolor}\footnotesize\emph{Hydrogen Bomb Test, 1954%
@@ -2187,7 +2188,7 @@ This case is actually connected with the example of the gas above. If we observe
 The \furl{https://www.britannica.com/science/nuclear-fission}{atomic bomb} is a dark example of the fact that mass is energy.
 In the case of nuclear fission, if we weigh the amount of nuclear material, say within a box, before and after fission, we observe that its mass has decreased. But we also observe that a great amount of energy has been released out of the box.
 
-\paragraph{Electric heater}
+\paragraph{Electric heater.}
 
 As a final example consider a \qty{1000}{W} electric heater, which is radiating \qty{1000}{J} in one second. The heater is also losing around \qty{0.00000000000001}{kg} of mass every second owing to this heat radiation -- although it's also acquiring the same amount of mass as electromagnetic energy.
 
@@ -5175,12 +5176,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 % \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 % }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
 \end{exercise}
 
 
@@ -5544,7 +5545,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
 \begin{itemize}
 \item It is always \autoref{sec:pressure}{\emph{compressive}}, that is, its direction is always orthogonal to the surface, and its orientation is the same as the crossing orientation.
-\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty[print-unity-mantissa=false]{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
+\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
 \item Its magnitude slowly decreases with altitude; that is, a \qty{1}{m^2} surface \qty{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty{1}{m^2} surface close to the ground.
 \end{itemize}
 
@@ -5745,17 +5746,17 @@ Pictorially this means that only the momentum flux represented in the left pictu
 \end{center}
 the other three (from left to right: shear, pressure, mixed) are not.
 
-We therefore need to know the directions of the axes of the two parts of the cable. Let's suppose that each part has an inclination of $\qty{0.12}{rad}\approx\qty{6.9}{\degree}$, but in opposite directions. This must then also be the angle between the influx $\yF_{\text{left}}$ and its horizontal component $(\yF_{\text{left}})_{x}$, as in this picture (the angle has been exaggerated for clarity):
+We therefore need to know the directions of the axes of the two parts of the cable. Let's suppose that each part has an inclination of $\qty{0.12}{rad}\approx\qty{6.9}{\degree}$, but in opposite directions. This must then also be the angle between the influx $\yF_{\text{right}}$ and its horizontal component $(\yF_{\text{right}})_{x}$, as in this picture (the angle has been exaggerated for clarity):
 \begin{center}
-  \includegraphics[width=0.533\linewidth]{images/cableangle.jpg}
+  \includegraphics[width=0.533\linewidth]{images/cableangle2.jpg}
 \end{center}
 From trigonometry we find
 \begin{equation*}
-  (\yF_{\text{left}})_{x} =
-  -(\yF_{\text{left}})_{z}/\tan(\qty{0.12}{rad})
-  =  -\qty{4e4}{N}/0.12 \approx \qty{-3.3e5}{N}
+  (\yF_{\text{right}})_{x} =
+  (\yF_{\text{right}})_{z}/\tan(\qty{0.12}{rad})
+  =  \qty{4e4}{N}/0.12 \approx \qty{3.3e5}{N}
 \end{equation*}
-and therefore\enspace$(\yF_{\text{right}})_{x} \approx \qty{3.3e5}{N}$:
+and therefore\enspace$(\yF_{\text{left}})_{x} \approx \qty{-3.3e5}{N}$:
 \begin{equation*}
   \yF_{\text{left}} \approx
   \begin{bsmallmatrix}
@@ -6103,7 +6104,7 @@ These driving equations easy to identify: \enquote*{$t+\Dt$} appears in them. In
 \sidepar{\vspace{-1ex}\footnotesize{\color{green}\faIcon{eye}\faIcon{code}\enspace page\,\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{yellow}2. Choose a \emph{state} for the physical system}
+\paragraph{\color{yellow}2. Choose a \emph{state} for the physical system.}
 
 The driving equations in the core lines of the loop calculate later quantities from a particular set of present quantities. We must therefore make sure that the values of these quantities are defined before the core lines, and that they are known before the time-stepping loop begins as well. In our case we see that we need 8 quantities, underlined below, with two components each, for a total of 16 numbers:
 \begin{equation*}
@@ -6175,7 +6176,7 @@ The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at t
 \sidepar{\vspace{-1ex}\footnotesize{\color{yellow}\faIcon{eye}\faIcon{code}\enspace page\,\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{blue}3. From the state, determine the quantities necessary for forward-driving}
+\paragraph{\color{blue}3. From the state, determine the quantities necessary for forward-driving.}
 
 Recall that the forward-driving equations require, at each time step, the $2\times 8$ quantities
 \begin{equation*}
@@ -6207,7 +6208,7 @@ In the code, the formulae that calculate the quantities necessary to the forward
 \sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{eye}\faIcon{code}\enspace page\,\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{cyan}4. Find the new state from the time-updated quantities}
+\paragraph{\color{cyan}4. Find the new state from the time-updated quantities.}
 
 The time-stepping loop of our code is now able to determine quantities at a later time $t+\Dt$, given the state at the present time $t$. The quantities that we obtain at the later time are
 \begin{equation*}
@@ -6231,7 +6232,7 @@ Now are ready to go back to the beginning of the loop!
 \sidepar{\vspace{-1ex}\footnotesize{\color{cyan}\faIcon{eye}\faIcon{code}\enspace page\,\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{midgrey}5. Decide the condition for stopping the time loop}
+\paragraph{\color{midgrey}5. Decide the condition for stopping the time loop.}
 
 For how long should our simulation run? This obviously depends on the application. We may want to run it for a given amount of time. Or we may want to stop it as soon as some condition is met; for instance, if the position or speed of a body reach particular values. The possibilities are endless.
 
@@ -6855,7 +6856,7 @@ This general constitutive relation applies to a large variety of physical phenom
 
 Of importance in physics and engineering applications are not only changes in the total energy $\yE$, but also exchanges among its internal, kinetic, and gravitational terms, even when the total energy is constant. Here are some examples.
 
-\paragraph{Bodies in motion}
+\paragraph{Bodies in motion.}
 
 In the preceding chapters we have considered small bodies of matter such as a tennis ball. In many situations where the motion of a body is involved, its internal energy $\yU$ is approximately constant, and therefore we only focus on its kinetic $\tfrac{1}{2}\yM \yv^{2}$ and potential $\yM g z$ energies. An exchange of energy can happen between them. For instance, in a tennis ball falling in a vacuum, the gravitational energy is decreasing while the kinetic energy is increasing at the same rate: the vertical coordinate of the ball is decreasing, and its downward velocity increasing.
 
@@ -6873,14 +6874,14 @@ Another example where this kind of energy conversion and energy flux are importa
   Compare the velocity you found and the typical velocity of \qty{200}{km/h} that a skydiver may have at \qty{1000}{m}, when the parachute is deployed.
 \end{exercise}
 
-\paragraph{Springs and rubber bands}
+\paragraph{Springs and rubber bands.}
 
 In studying Hookean and non-Hookean springs and rubber bands in \chap\,\ref{cha:bal_momentum}, we said that they are usually modelled as objects without mass. They therefore have negligible kinetic and potential energies. All their energy is therefore internal energy.
 
-\paragraph{Gases}
+\paragraph{Gases.}
 Matter in a gaseous state is also often modelled as having negligible mass. All its energy is therefore modelled as internal energy. This is similar to the modelling of objects like springs and rubber bands. An important difference is that the internal energy of gases is typically highly dependent on temperature, whereas the the temperature dependence for springs can be neglected in many applications.
 
-\paragraph{Solids and fluids}
+\paragraph{Solids and fluids.}
 
 In modelling extended matter in a solid and fluid state, usually all three forms of energy must be taken into account. They can moreover be quite variable from one small control volume to another. This is why their modelling and simulation can be extremely complex.
 
@@ -6923,7 +6924,7 @@ Think of a person pushing a door or lifting a weight on the palm of their hand, 
 \item electric charges and electromagnetic fields are negligible on a macroscopic scale.
 \end{itemize}
 In situations like these there is a general constitutive formula for the flux of energy through the control surface.
-\begin{definition}{Heat flux and power}
+\begin{definition}{Heat flux and power,label={def:heatflux_adiabatic}}
   Consider a control surface, possibly moving, satisfying the conditions above. This control surface must also be such that the velocity $\yv$ of matter in contact with it, is the same at every point of the surface (this is true, for instance, if the surface is small enough).
 
   \smallskip
@@ -6971,7 +6972,7 @@ The heat flux $\yQ$ can be controlled in some situations, and in that case it is
 
 Let us see some examples.
 
-\paragraph{Holding a cup of hot tea}
+\paragraph{Holding a cup of hot tea.}
 When we hold a cup of hot tea or coffee,
 we can feel a flux of energy
 %
@@ -6989,15 +6990,15 @@ The energy flux through our control surface must therefore be completely in the 
 
 If we move the cup around, then its velocity is no longer zero, and some mechanical power $\yF\cdot\yv$ can be transmitted. It shows as an increase in the kinetic energy of the tea, which can even splash out of the cup.
 
-\paragraph{Cooking}
+\paragraph{Cooking.}
 When we cook something we create a heat \textbf{in}flux into the item being cooked. No mechanical power is transferred, since the velocity of matter is zero.
 
-\paragraph{Spring and body}
+\paragraph{Spring and body.}
 In studying Hookean and non-Hookean springs and rubber bands, we saw that there is a momentum flux from one end of the spring to the body attached at that end. If the momentum flux into the body is $\yF$, and the body is moving with velocity $\yv$, then there is an energy flux into the body, in the form of mechanical power $\yF\cdot \yv$. This energy flux increases the body's kinetic energy $\tfrac12\yM\yv^{2}$.
 
 By the symmetry of fluxes, this same amount of energy flows out of the spring, reducing its internal energy. Any heat flux between the spring and the bodies attached to it is usually negligible.
 
-\paragraph{Gases}
+\paragraph{Gases.}
 
 In describing and using matter in a gaseous state, heat flux and mechanical power must both usually be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
 
@@ -7102,6 +7103,63 @@ So the description is somewhat more complicated; you see why we choose to avoid 
   If the flux of matter is zero, $\yJ=0$, then the expression $\yns\cdot(\yv-\yvs)$ must be zero too, and the analogous expressions in the fluxes of momentum and energy are zero as well; all fluxes become much simpler.
 \end{extra}
 
+\section{Rigid bodies}
+\label{sec:rigid_bodies}
+
+Rigid bodies have very peculiar properties in respect of the balance of energy. A \textbf{rigid body} is a body (of matter) that has constant volume and \emph{shape}; or in other words a body that cannot deform. It can of course move, and in general its amount of matter, \masse, and velocity can be different in different parts of the body;
+%
+\marginpar{\vspace{-\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/boomerang.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
+}%
+think of a boomerang for instance.
+
+Their constitutive equations for the energy of a rigid body take on a peculiar form, because of its rigidity:
+\begin{itemize}
+\item \textbf{the heat flux contributes only to changes in internal energy}
+\item  \textbf{the internal energy can only change through heat fluxes}
+\item \textbf{the mechanical power contributes only to changes in kinetic \amp\ potential gravitational energy}
+\item \textbf{kinetic \amp\ potential gravitational energy can only change through mechanical power}
+\end{itemize}
+
+Let's express these conditions mathematically. Consider a control volume containing all or part of a rigid body, and over which the velocity $\yv$ is the same in different sub-volumes, even if it can change with time. The mass and internal energy contained in the control volume are $\yM$ and $\yU$, the total momentum influx and heat flux across the closed control surface are $\yF$ and $\yQ$. Use a vertical coordinate $z$. Then, in integral form:
+\begin{subequations}
+  \label{eq:rigid_body_energy_int}
+  \begin{gather}
+    \yU(\ytf) = \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yQ(t)\, \di t
+    \\[\jot]
+  \label{eq:rigid_body_energy_int_power}
+    \tfrac12\yM\yv(\ytf) + \yM g z(\ytf) =
+    \tfrac12\yM\yv(\yti) + \yM g z(\yti) +
+    \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+  \end{gather}
+\end{subequations}
+or equivalently in differential form:
+\begin{subequations}
+\label{eq:rigid_body_energy_diff}
+  \begin{gather}
+    \frac{\di\yU(t)}{\di t} = \yQ(t)
+    \\[\jot]
+\label{eq:rigid_body_energy_diff_power}
+      \frac{\di\bigl[\tfrac12 \yM \yv(t)^{2} + \yM g z(t)\bigr]}{\di t} =
+  \yF(t)\cdot \yv(t)
+\end{gather}
+\end{subequations}
+
+We can say that mechanical and thermal phenomena gets completely separated in a rigid body. This separation does \emph{not} occur for ordinary deformable bodies: in general, mechanical power can produce changes in internal energy.
+
+Moreover, it turns out that \textbf{the equations relating kinetic \amp\ gravitational potential energy can be derived from the balance of momentum}. In other words, formulae~\eqref{eq:rigid_body_energy_int_power} and \eqref{eq:rigid_body_energy_diff_power} above can be derived from the balance of momentum applied to the same control volume: they do not represent some additional physical law.
+
+\smallskip
+
+The special constitutive property of rigid bodies has an important consequence. \emph{If we are not interested in the changes of the internal energy of a rigid body, then we do not need to consider the balance of energy}. The balance of momentum is all we need.
+
+This fact explain why we were able to solve many problems of motion in the previous chapters: many bodies we considered, such as tennis balls or blocks of materials, were practically rigid, and we were not investigating their internal energies. The balance of momentum was therefore sufficient to describe their motion. Springs and rubber bands are \emph{not} rigid, but for them we implicitly assumed that their internal energy was constant, and no heat fluxes occurred.
+
+\smallskip
+
+Rigidity is obviously only an approximation. In fact, general relativity makes this notion strictly speaking impossible. But in situations where Newtonian approximations apply, the approximation of rigidity makes many physical phenomena much easier to describe.
 
 \section{Constitutive relations for ideal gases}
 \label{sec:int_energy_idealgas}
@@ -7186,7 +7244,7 @@ The equation above is called the \textbf{thermodynamical ideal-gas law}.
 
 In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
 %
-\marginpar{\vspace{-3\baselineskip}\centering%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/idealgas_mug.jpg}%
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % The famous \enquote{$pV=NRT$} formula}%
@@ -7202,7 +7260,7 @@ The fact that the viscosity coefficients must be positive is a consequence of th
 
 Next we discuss a constitutive relation that connects the amount of internal energy in the control volume with the amount of ideal gas and its temperature:
 
-\begin{definition}{Internal energy of an ideal gas}
+\begin{definition}{Internal energy of an ideal gas,label={def:internalenergy_gas}}
   If a small control volume contains an amount $\yN$ of ideal gas, at uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ equal to
   \begin{equation}
     \label{eq:int_energy_idealgas}
@@ -7233,7 +7291,7 @@ Lastly we discuss a constitutive relation that connects heat flux and temperatur
 where $h$ is called the \emph{coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
 \end{definition}
 %
-\marginpar{\vspace{-7\baselineskip}\centering%
+\marginpar{\vspace{-10\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/newton_cooling.jpg}%
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 % NB: if $\yteb >\ytea$, then $\yQ<0$%
@@ -7265,10 +7323,10 @@ Even more interesting examples, in which Fourier's law does not apply, occur for
 
 Besides the particular constitutive relations for momentum flux, internal energy, and heat flux just discussed, it is typically assumed that a not-too-large volume of ideal gas has a negligible mass. This is usually a reasonable assumption.
 \begin{exercise}
-  Calculate the mass of a litre, that is \qty[print-unity-mantissa=false]{1e-3}{m^3}, of air. Use the following information:
+  Calculate the mass of a litre, that is \qty{1e-3}{m^3}, of air. Use the following information:
   \begin{itemize}[nosep]
   \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\yM\approx\yrho\yN$
-  \item the pressure $p$ of air is around \qty[print-unity-mantissa=false]{1e5}{N/m^2}
+  \item the pressure $p$ of air is around \qty{1e5}{N/m^2}
   \item take a thermodynamic temperature of air $\yte=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
   \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
   \end{itemize}
@@ -7297,7 +7355,9 @@ that is, the \emph{total} momentum influx is always zero. But note that \emph{th
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 % NB: if $\yteb >\ytea$, then $\yQ<0$%
 }%
-it only means that the momentum influxes of opposite parts of the surface cancel out perfectly, as schematized in the side figure. In fact, \textbf{any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude}
+it only means that the momentum influxes of opposite parts of the surface cancel out perfectly, as schematized in the side figure.
+
+Remember that when we use the ideal-gas law~\eqref{eq:ideal_gas_p}, we are assuming that \textbf{any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude}
 \begin{equation*}
   F_{A} = A\,p = A\,\frac{R \yN \yte}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\di t}
 \end{equation*}
@@ -7315,7 +7375,7 @@ Another important consequence of assuming that a volume of ideal gas has zero ma
 \end{equation*}
 which also means that any energy influx or efflux only changes the internal energy of the gas.
 
-The masslessness assumption is of course inadequate in some conditions like extremely fast compressions or expansions.
+The masslessness assumption is of course inadequate in some conditions like extremely fast compressions or expansions. In such conditions also the ideal-gas law~\eqref{eq:ideal_gas_p} must be modified.
 %% 0.5mv2/(CNT) = 1 when v = 600m/s
 
 % The same assumption \autoref{def:hooke}{was made for springs} and rubber bands, and the same consequences applies here: 
@@ -7348,12 +7408,12 @@ The masslessness assumption is of course inadequate in some conditions like extr
 \subsection{Setup}
 \label{sec:idealgas_ex_setup}
 
-One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
+One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture below.
+To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$. The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
 %
-\marginpar{\vspace{-2\baselineskip}\centering%
+\marginpar{\vspace{-9\baselineskip}\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
-To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$. The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
 
 Since the piston has mass $\yM$, it also has momentum $\yP=\yM\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yG = -\yM\,g$. You may wonder why we need to consider a piston having mass. There are two main reasons. First, in a real situation a piston does have a mass that is non-negligible, compared with the mass of the gas. Second, the assumption that the gas has no mass makes \autoref{sec:further_idealgas}{the balance of momentum become singular}, as discussed in the previous section, and any description and prediction of motion becomes therefore impossible -- unless we add mass somewhere else. The piston is effectively also a proxy for the mass of the gas. We encountered an analogous situation with the spring-and-bodies system.
 
@@ -7379,39 +7439,155 @@ and is positive if the piston is moving upwards. We also define the rate of chan
   \frac{\di V(t)}{\di t} = \frac{\di A\, z(t)}{\di t} = A\,v(t)
 \end{equation}
 
-\subsection{Balances}
-\label{sec:idealgas_ex_balances}
+\smallskip
 
-Let's see how the main balances apply to the chosen control volumes of this physical system.
+Let's now see how the main balances apply to the chosen control volumes of this physical system.
 
-\paragraph{Conservation of matter}
+\subsection{Conservation of matter}
+\label{sec:idealgas_ex_matter}
 
 As mentioned in the previous section, the control volumes have been chosen so as to automatically satisfy this conservation law. But this law still appears very subtly through the geometric relations~\eqref{eq:Vz_gas} and~\eqref{eq:Vv_gas}. We therefore don't need to worry about its balance, as long as we use those geometric relations.
 
 The constant amount of matter in the piston is such that its mass is $\yM$, and the constant amount of ideal gas in the chamber is $\yN$.
 
-\paragraph{Balance of momentum}
+\subsection{Balances of momentum}
+\label{sec:idealgas_ex_momentum}
+
+\paragraph{Piston.}
 
 Let's first apply this balance to the control volume of the piston.
 
 The momentum content of the piston is $P(t) = \yM v(t)$, positive when directed upwards.
 
-The \emph{total} momentum influx $\yFp$ is the sum of the fluxes through three main surfaces:
+\smallskip
+
+The \emph{total} momentum influx $F(t)$ is the sum of the fluxes through three main surfaces:
 \begin{description}
+\item[Side:] There usually are \autoref{sec:shear}{shear forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero.
+
 \item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$ approximately constant and equal to
   \begin{equation}
     \label{eq:gas_piston_Fatm}
-    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+    \yFatm = - A\cdot\qty{1e5}{N/m^{2}}
   \end{equation}
 
-\item[Side:] There usually are \autoref{sec:shear}{shear forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero.
-
+\item[Bottom:] The momentum flux through this surface is particularly important, because it's momentum exchanged between the piston and the gas. Denote by $\yFpg(t)$ the \emph{in}flux of momentum from the gas into the piston, and $\yFgp(t)$ the \emph{in}flux of momentum from the piston into the gas. Again by the symmetry of fluxes we have
+  \begin{equation*}
+%    \label{eq:Fpg_gas}
+    \yFpg(t) = -\yFgp(t)
+  \end{equation*}
 %
-\marginpar{\vspace{\baselineskip}\centering%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/piston_forces.pdf}%
 }%
-\item[Bottom:]
+
+  The momentum influx $\yFgp(t)$ into a gas, being a pressure, always points inwards; it is always negative, downward, in our case. The momentum influx $\yFpg(t)$ into the piston is therefore always positive, upward.
+
+  For the moment we don't have any constitutive relation for the influx $\yFpg(t)$, but we shall have one when we examine the control volume of the gas.
 \end{description}
+
+The total influx of momentum, or surface force, into the piston is therefore
+\begin{equation}
+  \label{eq:F_piston}
+  F(t) = \yFatm + \yFpg(t)
+\end{equation}
+
+\smallskip
+
+The gravitational supply of momentum to the piston must be taken into account in our case, because the piston can move vertically. It would have been neglected if the piston had moved horizontally instead. It is given by
+\begin{equation}
+  \label{eq:piston_G}
+  G = -\yM\,g
+\end{equation}
+
+\smallskip
+
+The equations governing the motion of the piston are therefore
+\begin{equation}
+  \label{eq:piston_equations}
+  \begin{gathered}
+    \frac{\di P(t)}{\di t} = F(t) + G(t)
+    \\[\jot]
+    P(t) = \yM v(t)
+    \qquad
+    F(t) = \yFatm + \yFpg(t)
+    \qquad
+    G = -\yM\,g
+    \\[\jot]
+    \yFatm = - A\cdot\qty{1e5}{N/m^{2}}
+  \end{gathered}
+\end{equation}
+together with the relation between momentum influxes for piston and gas at the common surface:
+  \begin{equation}
+    \label{eq:Fpg_gas}
+    \yFpg(t) = -\yFgp(t)
+  \end{equation}
+
+\medskip
+
+\paragraph{Ideal gas.}
+
+We are considering the ideal gas to be practically massless; therefore its momentum content is zero.
+
+We saw that when the gas is considered massless, the balance of momentum just becomes a requirement that \autoref{sec:further_idealgas}{the \emph{total} flux of momentum be zero} as well. Recall also that the momentum influx through a small surface always points inward, orthogonal to the surface.
+
+The total momentum influx into the gas takes places through three main surfaces:
+\begin{description}
+\item[Side:] The influxes on opposite parts of the side surface are equal in magnitude but opposite in orientation, and cancel each other out. The total force through the side surface is therefore zero, and we don't need to keep track of it.
+
+\item[Top:] The gas is in contact with the piston at the top surface. The influx of momentum through the top, $\yFgp$, is therefore equal to minus the momentum influx $\yFpg$ into the piston. We wrote this in formula~\eqref{eq:Fpg_gas}:
+  \begin{equation*}
+    \yFpg(t) = -\yFgp(t)
+  \end{equation*}
+
+  We have a constitutive relation for the pressure corresponding to this influx: the \autoref{def:idealgas_law}{ideal-gas law}:
+  \begin{equation*}
+%    \label{eq:gas_top_F}
+    \yFgp(t) = -A\,p(t)
+    \quad\text{with}\quad
+    p(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+  \end{equation*}
+  The first equation has a minus sign because the influx always points inward, therefore downward in our case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yte(t)$ of the ideal gas, both of which can change with time.
+
+\item[Bottom:] It is usually assumed that the chamber containing the ideal gas rests on some support or on the ground. Through the corresponding surface there is therefore an efflux of downward-pointing momentum, as it happened in our analysis of the \autoref{sec:bal_momentum_statics}{books on a table}. The momentum influx at the bottom is opposite to the influx at the top surface. We therefore don't need to keep track of the momentum flux at the bottom.
+\end{description}
+
+The only equations relevant to the momentum of the gas are therefore
+\begin{equation}
+  \label{eq:gas_top_F}
+  \yFgp(t) = -A\,p(t)
+  \qquad
+  p(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+\end{equation}
+together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
+
+\subsection{Balances of energy}
+\label{sec:idealgas_ex_energy}
+
+\paragraph{Piston.} Let's first consider the control volume of the piston.
+
+We are treating the piston as a \emph{rigid} body. It motion is therefore \autoref{sec:rigid_bodies}{completely determined by the balance of momentum}. We would need to consider the balance of energy for the piston, if we were interested in how its internal energy changes. But in the present problem this is of no interest.
+
+You may object: \enquote{but we expect the gas to exchange heat, possibly with the piston as well}. This is a fully valid and intelligent objection! The gas is indeed likely to exchange energy in the form of heat with the piston, unless we insulate the surface between them and make the energy flux through it \autoref{def:heatflux_adiabatic}{adiabatic}. We are silently making one or both of these assumptions:
+\begin{itemize}
+\item the area $A$ between piston and gas is small compared to the rest of the gas surface, and can therefore be neglected
+\item from the point of view of heat exchange (only), the piston can be considered just like the rigid walls and not treated in a special way.
+\end{itemize}
+
+\paragraph{Ideal gas.}
+
+The energy content $\yE(t)$ of the control volume containing the ideal gas \ref{sec:further_idealgas}{amounts only to its internal energy} $\yU(t)$, owing to the zero-mass assumption. And we do have a \autoref{def:internalenergy_gas}{constitutive relation for internal energy}, which connects the latter to the amount $\yN$ of gas and to its thermodynamic temperature $\yte(t)$. The energy content is therefore given by
+\begin{equation}
+  \label{eq:gas_ex_energy}
+  \yE(t) = C\yN\yte(t)
+\end{equation}
+
+
+
+
+\mynotew{to be continued}
+
+
 
 %%%% examples use empheq
 %   \begin{empheq}[left={\mathllap{\begin{aligned}    \de\yF_{\yc}/\de\yp&=0\text{:} \\
@@ -7774,7 +7950,7 @@ In particular, according to the Newtonian constitutive relation, \emph{momentum 
 
 In the previous section we saw a constitutive relation between matter and \emph{flux} of momentum, which we called \enquote*{convective flux}. It is a flux that's always present whenever there's matter in motion.
 
-In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}. The most cogent example is the air around us, which has a continuous flux of momentum, of approximately \qty[print-unity-mantissa=false]{1e5}{N} on every square-metre of surface, called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. This flux is always {\emph{compressive}} and occurs through any surface: any imaginary surface within the body of air itself, and any real surface between air and any other object.
+In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}. The most cogent example is the air around us, which has a continuous flux of momentum, of approximately \qty{1e5}{N} on every square-metre of surface, called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. This flux is always {\emph{compressive}} and occurs through any surface: any imaginary surface within the body of air itself, and any real surface between air and any other object.
 
 \smallskip
 
@@ -7880,12 +8056,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
 \end{exercise}
 
 
