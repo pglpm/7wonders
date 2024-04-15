@@ -6,10 +6,10 @@
 m = 10; % mass of piston
 N = 0.04; % amount of ideal gas
 A = 0.1^2; % area of piston
-g = 9.80665; % gravitational acceleration
+g = 9.8; % gravitational acceleration
 R = 8.31446261815; % molar gas constant
 C = 20; % molar heat capacity
-lambda = 0.00004; % gas viscosity
+mu = 0.00004; % gas viscosity
 h = 8000; % heat conductivity
 Te = 273.15 + 23; % temperature of environment
 Fatm = -100000*A; % force on piston by atmosphere
@@ -20,7 +20,7 @@ t1 = 1; % final time
 dt = 0.0001; % time step
 %%%% STATE: z, v, T; initial conditions
 t = 0; % initial time
-z = 0.1; % initial position of piston
+z = 0.15; % initial position of piston
 v = 0; % initial velocity of piston
 T = 273.15 + 23; % initial temperature of gas
 %% %@
@@ -58,31 +58,31 @@ xlabel('time {\it t}/s'); ylabel('position {\it z}/m'); hold on;
 %% Numerical time integration
 %% loop
 while t < t1
-  %% We need P,Fmass,z,v,U,Fgas,Q (G constant)
+  %% We need P,Fpg,z,v,E,Fgp,Qbot (G constant)
   %% we have z,v,T
-  %% find P,Fpis,U,Q,Fgas using constitutive relations
+  %% find P,Fpg,E,Qbot,Fgp using constitutive relations
   P = m*v;
-  Fgas = -(N*R*T/z - A*lambda*v/z);
-  Fpis = -Fgas + Fatm;
-  U = C*N*T;
-  Q = A*h*(Te - T);
+  Fgp = -(N*R*T/z - A*mu*v/z);
+  Fpg = -Fgp;
+  E = C*N*T;
+  Qbot = A*h*(Te - T);
   %%
   %% Drive forward in time
   %% update momentum of piston
-  P = P + (Fpis + G)*dt;
+  P = P + (Fpg + Fatm + G)*dt;
   %% update position of piston
   z = z + v*dt;
   %% update internal energy of gas
-  U = U + (Q + Fgas*v)*dt;
+  E = E + (Qbot + Fgp*v)*dt;
   %% update time
   t = t + dt;
   %%
   %% Find new state for next iteration
   %% We need z,v,T
-  %% we have P,z,U
+  %% we have P,z,E
   %% find v,T using constitutive relations
   v = P/m;
-  T = U/(C*N);
+  T = E/(C*N);
   %% %@
   %% Check whether to save & plot at this step
   if min(abs([0 dsave] - mod(t-t0, dsave))) <= dt/2

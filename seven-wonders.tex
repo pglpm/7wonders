@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-15T22:45:53+0200
+%% Last-Updated: 2024-04-15T23:23:04+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1019,7 +1019,7 @@ reply%
 \newcommand*{\yB}{H}
 \newcommand*{\yte}{T}%temperature
 \newcommand*{\ytece}{T_{\text{C}}}%temperature
-\newcommand*{\yvis}{\lambda}%temperature
+\newcommand*{\yvis}{\mu}%temperature
 \newcommand*{\yxa}{x_{a}}%temperature
 \newcommand*{\yxb}{x_{b}}%temperature
 \newcommand*{\ytea}{\yte_{a}}%temperature
@@ -4959,7 +4959,7 @@ For the moment, here is an example script, written in \furl{https://octave.org/}
 
 \smallskip
 
-\marginpar{\vspace{1\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
 \furl{https://pglpm.github.io/7wonders/code/tennisball.m}{Download \texttt{tennisball.m}}%
 }%
 \lstinputlisting[style=mycode]{code/tennisball.m}
@@ -6552,7 +6552,7 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 
 \smallskip
 
-\marginpar{\vspace{1\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
 \furl{https://pglpm.github.io/7wonders/code/rubberband2D.m}{Download \texttt{rubberband2D.m}}%
 }%
 \lstinputlisting[style=mycode]{code/rubberband2D.m}
@@ -7641,7 +7641,8 @@ The total energy influx in the control volume enclosing the ideal gas is therefo
 \begin{equation}
   \label{eq:gas_energy_influx}
   \begin{gathered}
-    \yH(t) = \yQb(t) + \yFgp(t) \,v(t) \qquad\text{with}
+    \yH(t) = \yQb(t) + \yFgp(t) \,v(t)
+    \\\text{with}
     \\[\jot]
     \yQb(t) = A\,h\,[\ytee-\yte(t)]
     \qquad
@@ -7649,10 +7650,62 @@ The total energy influx in the control volume enclosing the ideal gas is therefo
   \end{gathered}
 \end{equation}
 
+We finally have all the equations to describe and numerically time-integrate our physical system.
 
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Use the \autoref{sec:strategy_simulation}{basic script-writing strategy} to write a script that simulates the system of ideal gas \amp\ piston.
+  \item What is the \autoref{def:state}{state} of the system?
+  \item Simulate the system with the following numerical constants and initial conditions:
+    \begin{equation*}
+      \begin{gathered}
+        \yM = \qty{10}{kg}
+        \qquad
+        \yN = \qty{0.04}{mol}
+        \qquad
+        A = \qty{0.01}{m^{2}}
+        \qquad
+        \ytee = \qty{296.15}{K}
+        \\
+        C = \qty{20}{J/(mol\cdot K)}
+        \quad
+        \yvis = \qty{0.00004}{N\,s/m^{2}}
+        \quad
+        h = \qty{8000}{J/(K\, s\, m^{2})}
+        \\
+        g = \qty{9.8}{N/kg}
+        \qquad
+        R = \qty{8.314}{J/(mol\, K)}
+        \\
+        \yti = \qty{0}{s}
+        \qquad
+        \ytf = \qty{1}{s}
+        \qquad
+        \Dt = \qty{0.0001}{s}
+        \\
+        z(\yti) = \qty{0.1}{m}
+        \qquad
+        v(\yti) = \qty{0}{m/s}
+        \qquad
+        T(\yti) = \qty{296.15}{m/s}
+      \end{gathered}
+    \end{equation*}
+    Plot the position $z(t)$ of the piston and the temperature $\yte(t)$ of the ideal gas as functions of time. What do you observe?
+  \item Simulate again with the same values as before but a coefficient of heat transfer $h=\qty{0}{J/(K\,s\,m^{2})}$, that is, assuming that all energy fluxes are adiabatic. Plot again position and temperature against time. What do you observe?
+  \item Keeping all energy fluxes adiabatic, simulate now by setting the viscosity coefficient $\yvis = \qty{400}{N\,s/m^{2}}$. What do you observe?
 
-\mynotew{to be continued}
+  \item Play and simulate with other values!
+  \end{enumerate}
+\end{exercise}
 
+\clearpage
+
+Here is an example of Octave/MATLAB script for simulating the system of ideal gas and piston and plotting $z(t)$ and $\yte(t)$:
+
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\furl{https://pglpm.github.io/7wonders/code/idealgas_piston.m}{Download \texttt{idealgas\_piston.m}}%
+}%
+\lstinputlisting[style=mycode]{code/idealgas_piston.m}
 
 
 %%%% examples use empheq
