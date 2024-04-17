@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-17T00:30:56+0200
+%% Last-Updated: 2024-04-17T16:01:33+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1001,11 +1001,13 @@ reply%
 \newcommand*{\yPb}{\yP_{b}}
 \newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
-\newcommand*{\yFab}{\yF_{ab}}
-\newcommand*{\yFba}{\yF_{ba}}
+\newcommand*{\yFab}{\yF_{as}}
+\newcommand*{\yFba}{\yF_{bs}}
 \newcommand*{\yFpg}{F_{\text{pg}}}
 \newcommand*{\yFgp}{F_{\text{gp}}}
 \newcommand*{\yFatm}{F_{\text{atm}}}
+\newcommand*{\yFn}{\yF_{\text{n}}}
+\newcommand*{\yFt}{\yF_{\text{s}}}
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
@@ -1516,9 +1518,9 @@ When a physical quantity is denoted by a symbol or variable, keep in mind that a
 
 This fact must be kept in mind when combining symbols. For example, if $d$ is a distance and $t$ is a time, then writing $v=d/t$ tells us that $v$ is a velocity, and it has appropriate units that come from $d$ and $t$, for instance \unit{m/s}.
 
-Units otherwise behave just like \emph{literal constants} for all mathematical purposes, just like the letter \enquote*{$a$} in the expression \enquote*{$a\, x$}. This is why they can, for instance, be simplified:
+Units otherwise behave just like \emph{literal constants} for all mathematical purposes, just like the letter \enquote*{$a$} in the expression \enquote*{$a\, x$}. This is why they can be simplified; for instance:
 \begin{equation*}
-  \qty{3}{mol/s} \cdot \qty{5}{s} = 
+  \qty{3}{mol/s} \cdot \qty{5}{s} =
   \num{3}\:\frac{\unit{mol}}{\mathcolor{red}{\not}\!\unit{s}} \cdot \num{5}\:\mathcolor{red}{\not}\!\unit{s} = \qty{15}{mol} \ .
 \end{equation*}
 
@@ -5354,7 +5356,7 @@ We can approximately treat these objects as control volumes for which the follow
 % \marginpar{\vspace{-6\baselineskip}\centering%
 % \includegraphics[width=\linewidth]{images/hooke2.jpg}%
 % }%
-Note the minus sign in Hooke's law. It means that if the present length is larger than the natural one, $\yle > \ylo$, then there is an influx of momentum directed towards the spring, that is, the spring exerts a \emph{tensile} force towards itself; and if the present length is smaller than the natural one, $\yle < \ylo$, then there is an influx of momentum directed away from the spring, that is, the spring exerts a \emph{compressive} force away from itself.
+Note the minus sign in Hooke's law. It means that if the present length is larger than the natural one, $\yle > \ylo$, then there flux of momentum getting out of the spring is oriented towards the spring; that is, the spring exerts a \emph{tensile} force towards itself. And if the present length is smaller than the natural one, $\yle < \ylo$, then the flux of momentum getting out of the spring is oriented away from the spring; that is, the spring exerts a \emph{compressive} force away from itself.
 
 In modelling some physical problems we can put $\ylo=\qty{0}{m}$: this represents that the natural length of the spring is very small compared to usual amounts by which the spring is stretched. Note that in this case the spring always exerts a tension, never a pressure.
 
@@ -5820,7 +5822,7 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 
   This control volume contains an amount of momentum $\yPa = \yMa\,\yva$, according to the \autoref{sec:bal_momentum_Newton}{Newtonian constitutive equation}.
 
-  We assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control surface for the spring (see \textcolor{purple}{thick red lines} in the side picture below).  Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} means that it's the influx into body $a$, coming from the spring that connects it to body $b$.
+  We assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control surface for the spring (see \textcolor{purple}{thick red lines} in the side picture below).  Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} is the influx in body $a$ coming from the spring; analogously for $\yFba$ and body $b$.
 
   If we consider gravity effects, this control volume also has a constant momentum supply $\yGa=-\yMa\,g\,[0,1]$, according to the \autoref{def:gravity_surface}{constitutive equation for gravitational force}.
 
@@ -5864,7 +5866,11 @@ Schematics of the analysis. The control volumes are indicated by \textcolor{yell
   The control volume for the spring, %\autoref{sec:hooke}{}
   according to the simplifications typical of Hookean springs, has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with two surfaces of the control volumes for the bodies $a$ and $b$, one surface each. The amount of matter and matter flux in the control volume for the spring are considered to be zero, again according to the simplifications for Hookean springs. The same is true for the total momentum $\yP$ and supply $\yG$, also zero.
 
-  At the two narrow surfaces in contact with  bodies $a$ and $b$ (see side picture), the control surface has momentum \textbf{in}fluxes $-\yFab$ and $-\yFba$: the minus sign comes from the \autoref{def:symmetryflux}{symmetry of fluxes}. The total momentum influx is therefore $\yF=-\yFab-\yFab$ by extensivity.
+  At the surface where the spring is in contact with body $a$ (see side picture above), there is an \textbf{in}flux of momentum for the spring, equal to $-\yFab$. The minus sign comes from the \autoref{def:symmetryflux}{symmetry of fluxes}, because $\yFab$ is the influx for body $a$.
+
+Analogously, at the surface where the spring is in contact with body $b$, there is a momentum influx for the spring equal to $-\yFba$.
+
+  The total momentum influx for the spring is therefore $\yF=-\yFab-\yFba$ by extensivity.
 
 The Hookean constitutive relation~\eqref{eq:hooke} says that the momentum \textbf{ef}flux across one surface, say the one in contact with body $a$, must be
 \begin{equation*}
@@ -6628,7 +6634,7 @@ One can show that all these points of view have mathematically the same conseque
 % Not so for energy, nor for momentum. 
 Relativity shows that \emph{the definition of \enquote{total energy} depends on the choice of a reference velocity and a reference clock}. This choice of velocity \amp\ clock can even be different at each spacetime point. Furthermore, this choice is \emph{independent from the choice of a coordinate system}. That is, once we have chosen coordinates $(t,x,y,z)$, we can still choose arbitrary reference velocities and reference clocks to define \enquote*{total energy}.
 %
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-3\baselineskip}\centering%
 \includegraphics[width=0.75\linewidth]{images/4vector.pdf}%
 \\\footnotesize\flushleftright\color{mpcolor}%
 A reference \enquote*{velocity \amp\ clock} is simply a vector (with four components) in four-dimensional spacetime%
@@ -6663,13 +6669,15 @@ Note that we do \emph{not} need to use \emph{all} of these differently defined e
 In these notes we shall use the \enquote*{total} or \enquote*{coordinate} energy, because it has the following interesting or convenient features:
 \begin{itemize}
 \item It is defined anywhere, even where no matter is present.
+
+\item\label{item:energy_no_supply} Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, this energy practically \emph{satisfies a conservation law} in these common coordinate systems.
 %
-\marginpar{\vspace{\baselineskip}\centering%
+\marginpar{\vspace{-6\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/icrf3sx.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}})
 }%
-\item\label{item:energy_no_supply} Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, this energy practically \emph{satisfies a conservation law} in these common coordinate systems.
+
 \item Its volume content % $\yE$ 
   and flux % $\yH$
   typically contain terms that refer to the motion of matter and to the gravitational field.
@@ -6995,13 +7003,13 @@ If we move the cup around, then its velocity is no longer zero, and some mechani
 When we cook something we create a heat \textbf{in}flux into the item being cooked. No mechanical power is transferred, since the velocity of matter is zero.
 
 \paragraph{Spring and body.}
-In studying Hookean and non-Hookean springs and rubber bands, we saw that there is a momentum flux from one end of the spring to the body attached at that end. If the momentum flux into the body is $\yF$, and the body is moving with velocity $\yv$, then there is an energy flux into the body, in the form of mechanical power $\yF\cdot \yv$. This energy flux increases the body's kinetic energy $\tfrac12\yM\yv^{2}$.
+In studying Hookean and non-Hookean springs and rubber bands, we saw that there is a momentum flux from one end of the spring to the body attached at that end. If the momentum influx for the body is $\yF$, and the body is moving with velocity $\yv$, then there is an energy flux into the body, in the form of mechanical power $\yF\cdot \yv$. This energy flux increases the body's kinetic energy $\tfrac12\yM\yv^{2}$.
 
 By the symmetry of fluxes, this same amount of energy flows out of the spring, reducing its internal energy. Any heat flux between the spring and the bodies attached to it is usually negligible.
 
 \paragraph{Gases.}
 
-In describing and using matter in a gaseous state, heat flux and mechanical power must both usually be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
+In describing and using matter in a gaseous state, usually heat flux and mechanical power must both be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
@@ -7472,7 +7480,7 @@ The \emph{total} momentum influx $F(t)$ is the sum of the fluxes through three m
     \yFatm = - A\cdot\qty{1e5}{N/m^{2}}
   \end{equation}
 
-\item[Bottom:] The momentum flux through this surface is particularly important, because it's momentum exchanged between the piston and the gas. Denote by $\yFpg(t)$ the \emph{in}flux of momentum from the gas into the piston, and $\yFgp(t)$ the \emph{in}flux of momentum from the piston into the gas. Again by the symmetry of fluxes we have
+\item[Bottom:] The momentum flux through this surface is particularly important, because it's momentum exchanged between the piston and the gas. Denote by $\yFpg(t)$ the flux of momentum from the gas to the piston, and $\yFgp(t)$ the flux of momentum from the piston into the gas. Again by the symmetry of fluxes we have
   \begin{equation*}
 %    \label{eq:Fpg_gas}
     \yFpg(t) = -\yFgp(t)
@@ -7482,12 +7490,12 @@ The \emph{total} momentum influx $F(t)$ is the sum of the fluxes through three m
 \includegraphics[width=\linewidth]{images/piston_forces.pdf}%
 }%
 
-  The momentum influx $\yFgp(t)$ into a gas, being a pressure, always points inwards; it is always negative, downward, in our case. The momentum influx $\yFpg(t)$ into the piston is therefore always positive, upward.
+  The momentum influx $\yFgp(t)$ for the gas, being a pressure, always points inwards; in our coordinates it is always negative, downward. The momentum influx $\yFpg(t)$ for the piston is therefore always positive, upward.
 
   For the moment we don't have any constitutive relation for the influx $\yFpg(t)$, but we shall have one when we examine the control volume of the gas.
 \end{description}
 
-The total influx of momentum, or surface force, into the piston is therefore
+The total influx of momentum, or surface force, for the piston is therefore
 \begin{equation}
   \label{eq:F_piston}
   F(t) = \yFatm + \yFpg(t)
@@ -7532,13 +7540,13 @@ We are considering the ideal gas to be practically massless; therefore its momen
 
 \medskip
 
-We saw that when the gas is considered massless, the balance of momentum just becomes a requirement that \autoref{sec:further_idealgas}{the \emph{total} flux of momentum be zero} as well. Recall also that the momentum influx through a small surface always points inward, orthogonal to the surface.
+We saw that when the gas is considered massless, the balance of momentum just becomes a requirement that \autoref{sec:further_idealgas}{the \emph{total} flux of momentum be zero} as well. Also recall that the momentum flowing through a small surface, being a pressure, always has an inward orientation, orthogonal to the surface.
 
-The total momentum influx into the gas takes places through three main surfaces:
+The total momentum influx for the gas takes places through three main surfaces:
 \begin{description}
 \item[Side:] The influxes on opposite parts of the side surface are equal in magnitude but opposite in orientation, and cancel each other out. The total force through the side surface is therefore zero, and we don't need to keep track of it.
 
-\item[Top:] The gas is in contact with the piston at the top surface. The influx of momentum through the top, $\yFgp$, is therefore equal to minus the momentum influx $\yFpg$ into the piston. We wrote this in formula~\eqref{eq:Fpg_gas}:
+\item[Top:] The gas is in contact with the piston at the top surface. The influx of momentum through the top, $\yFgp$, is therefore equal to minus the momentum flux $\yFpg$ from the gas to the piston. We wrote this in formula~\eqref{eq:Fpg_gas}:
   \begin{equation*}
     \yFpg(t) = -\yFgp(t)
   \end{equation*}
@@ -7637,7 +7645,7 @@ where $\yFgp(t)$ is given by formula~\eqref{eq:gas_top_F}.
   % \end{equation*}
 \end{description}
 
-The total energy influx in the control volume enclosing the ideal gas is therefore
+The total energy influx into the control volume enclosing the ideal gas is therefore
 \begin{equation}
   \label{eq:gas_energy_influx}
   \begin{gathered}
@@ -9461,7 +9469,7 @@ which is usually called \enquote{\textbf{work-energy theorem}}.
 
 The equation above is very peculiar. On the left side, within the time derivative, w see the kinetic energy and gravitational potential energy; so this is almost the full energy content $\yE$ given by the general constitutive relation~\eqref{eq:thermodynamic_energy}, except that the internal energy $\yU$ is missing. On the right side we see the mechanical power; so this is almost the full energy flux $\yH$ given by the general constitutive relation~\eqref{eq:heat_power}, except that the heat flux $\yQ$ is missing.
 
-
+$$\yFn = \frac{\di P_{z}}{\di t} - \bigl(F_{z}\bigr)_{\text{other}} - G_{z}$$
 
 
 %%% Local Variables: 
