@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-20T16:50:23+0200
+%% Last-Updated: 2024-04-22T16:56:44+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -5260,6 +5260,8 @@ Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secund
 \label{sec:bal_momentum_formulation}
 
 \begin{definition}{Balance of momentum}
+    Volume content: $\yP$\qquad Flux: $\yF$\qquad Supply: $\yG$
+
   \begin{equation}
     \label{eq:bal_momentum}
       \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
@@ -6563,6 +6565,28 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 }%
 \lstinputlisting[style=mycode]{code/rubberband2D.m}
 
+\printpagenotes*
+\clearpage
+\chapter{Balance of angular momentum}
+\label{ncha:bal_ang_momentum}
+
+\epigraph{Around the world, around the world}{Daft Punk \cites*{daftpunk2005c}}
+
+
+\begin{definition}{Balance of angular momentum}
+      Volume content: $\yL$\qquad Flux: $\yT$\qquad Supply: $\ym$
+
+  \begin{equation}
+    \label{neq:bal_ang_momentum}
+      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yT(t) + \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
+  \end{equation}
+\end{definition}
+
+\mynotew{To be written in a later version}
+
 
 \printpagenotes*
 \clearpage
@@ -7724,10 +7748,16 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 
 \epigraph{Their various ``second laws'' sound more like warnings or threats than principles of a rational science.}{C.\,A. Truesdell, III \cites*{truesdell1969_r1984}}
 
+\section{Formulation and generalities}
+\label{sec:bal_entropy_formulation}
+
 
 \begin{definition}{Balance of entropy}
+  Volume content: $\yS$\qquad Flux: $\yB$
+
+
   \begin{equation}
-    \label{neq:bal_entropy}
+    \label{eq:bal_entropy}
       \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
@@ -7736,6 +7766,48 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 \end{definition}
 
 % Refer to MacKay
+
+We still lack a complete understanding of entropy and its balance. Although they are successfully used in many applications, the connections among these uses and their common logical foundation are sometimes unclear. This state of affairs is reflected in the many and wildly different presentations of entropy and its balance: different in wording, mathematical formulation, scope, and sometimes even physical consequences.
+
+Most university textbooks only present limited and special cases of properties and uses of entropy and its balance -- often making them appear as more general than they really are, or even mistakenly as \enquote{universal}. Typically textbooks restrict themselves to situations where there the contents and fluxes of quantities for a control volume do not change with time. The discipline that studies such situations is called \emph{thermostatics}.
+
+In these lecture notes entropy and its balance are presented from a point of view, actively developed since the 1960s, having the following features:
+\begin{itemize}[nosep]
+\item It has been used for many years in concrete technological applications (some examples at NASA: \cites{changetal1971,hughesetal1986,turonetal2004,diosadyetal2018,katoetal2020}),
+  % freed2007,
+  and in the study complex materials such as polymers and mixtures.
+  %(for instance \cites{faria2001}).
+\item It has led to new physical constitutive relations, or the establishment of existing ones from first principles.
+\item It's formulated with the same mathematics, and at the same mathematical level, as the physics of matter, momentum, angular momentum, energy, and electromagnetism.
+\item It includes time-dependent phenomena and is fully connected with phenomena involving the other six basic quantities.
+\end{itemize}
+
+\subsection{Thermodynamic entropy and statistical entropy}
+\label{sec:stat_entropy}
+
+One added difficulty is that entropy and its balance can also be approached from a completely different direction, especially when we study physical systems at small scales. It's the approach of \furl{https://plato.stanford.edu/entries/statphys-statmech/}{\emph{statistical mechanics}}, which considers physical situations in which we lack information about initial conditions, boundary conditions, or constitutive relations. In statistical mechanics, a slightly different entropy appears not as a physical quantity, but as a measure of our lack of information -- in the strict technical sense of \furl{https://www.britannica.com/science/information-theory}{Information Theory} -- about the physical system. Also this entropy satisfies a balance law very similar to~\eqref{eq:bal_entropy} above.
+
+We thus have a \textbf{thermodynamic entropy} and a \textbf{statistical entropy}. Their fascinating relation is still not fully understood, and still the object of debate.
+
+In the present notes we shall focus on \emph{thermodynamic} entropy.
+
+\subsection{Entropy balance as a meta-law}
+\label{sec:entropy_metalaw}
+
+The entropy balance~\eqref{eq:bal_entropy} has an immediately apparent peculiarity, compared to the general form of a \autoref{sec:balance_laws}{balance law}: in is not an equality
+$$\dotso=\dotso$$
+but an \emph{inequality}
+$$\dotso\ge\dotso$$
+Why? and what are the consequences of this difference?
+
+One important consequence is that it cannot be used in a \autoref{sec:numeric_simulation}{numerical-time-integration} scheme. If we rewrite it in an approximate form for a short timestep $\Dt$:
+\begin{equation*}
+  \yS(t+\Dt) \gtrsim \yS(t) + \yB(t)\,\Dt
+\end{equation*}
+this relation doesn't tell us the value of the entropy content at time $t+\Dt$, but only an approximate minimum value that this content could have. As far as we know, it could be much larger than this minimum.
+
+It therefore appears that this law does not allow us to \enquote{drive forward} a physical system.
+
 
 
 
@@ -7812,22 +7884,6 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 ]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\printpagenotes*
-\clearpage
-\chapter{Balance of angular momentum}
-\label{ncha:bal_ang_momentum}
-
-\begin{definition}{Balance of angular momentum}
-  \begin{equation}
-    \label{neq:bal_ang_momentum}
-      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad%\text{\footnotesize\color{grey}or}
-      \qquad
-      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yT(t) + \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
-  \end{equation}
-\end{definition}
-
 
 
 \printpagenotes*
