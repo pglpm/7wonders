@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-23T00:08:34+0200
+%% Last-Updated: 2024-04-23T07:54:36+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -4316,7 +4316,7 @@ This is the famous relation that old textbooks take as the \emph{definition} of 
 \item[Constitutive relation for supply of momentum.]\label{sec:supply_momentum_gravity}
   If a small control volume contains an amount of \masse\ $\yM$, then it also has a supply of momentum
   \begin{equation*}
-    \yG = \yM\yg = \yrho\yN\yg
+    \yG = \yM g  = \yrho\yN\yg
   \end{equation*}
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{images/earth_nasa.png}%
@@ -4325,7 +4325,10 @@ This is the famous relation that old textbooks take as the \emph{definition} of 
 }%
 where $\yg$ is a vector that depends on the gravitational field (it expresses spacetime curvature).  This constitutive relation expresses the \emph{gravitational force}.
 
-  For physical phenomena on the Earth's surface, the vector $\yg$ is approximately constant: it points towards the Earth's centre and has magnitude $g\defd\abs{\yg}\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}}$.
+For physical phenomena on the Earth's surface, the vector $\yg$ is approximately constant: it points towards the ground and has magnitude $g\defd\abs{\yg}\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}}$. In a coordinate system $(x,y,z)$ where $z$ points upward, it can be written
+\begin{equation*}
+  \yg = - g \begin{bmatrix}0\\0\\1\end{bmatrix} \ .
+\end{equation*}
 
   For physical phenomena further away from Earth, for instance when dealing with satellite motion, the vector $\yg$ points towards the Earth's centre and has magnitude
   \begin{equation*}
@@ -4334,9 +4337,9 @@ where $\yg$ is a vector that depends on the gravitational field (it expresses sp
   where $G=\qty{6.67}{N\,m^{2}/kg^{2}}$ is the gravitational constant, $M_{\textrm{E}}=\qty{5.97e24}{kg}$ is \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{Earth's mass}, and $r$ is the distance of the control volume from the Earth's centre.
 
 \item[Constitutive relation for \energym\ of matter.]
-  Take a small control volume on Earth's surface containing an amount of matter $\yN$, and such that there is no flux of matter across its surface. Then this control volume also contains an amount of \energym
+  Take a small control volume on Earth's surface containing an amount of matter $\yN$, and such that there is no flux of matter across its surface. In a coordinate system $(x,y,z)$ where $z$ points upward, this control volume also contains an amount of \energym
   \begin{equation*}
-    \yE = \yE_{0} + \yU + \frac12 \yM v^{2} + \yM g h
+    \yE = \yE_{0} + \yU + \frac12 \yM v^{2} + \yM g z
   \end{equation*}
   where the first term is a constant zero level of energy, the second term $\yU$ is called \emph{internal energy}, the third is called \emph{kinetic energy}, and the fourth \emph{gravitational potential energy}. The internal energy $\yU$ is typically a function of the amount of matter $\yN$.
 
@@ -5464,7 +5467,7 @@ When we consider physical phenomena that happen close to a planet's surface and 
   Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ the vertical coordinate with an upward positive direction. A control volume containing an amount of \masse\ $\yM$ also has a supply of downward momentum, the \textbf{gravitational force}, given by
   \begin{equation}
     \label{eq:gravity_surface}
-    \yG = \yM\,\yg\ ,\qquad\text{with}\qquad \yg=[\qty{0}{N/kg},\ \qty{0}{N/kg},\ -g] \ ,
+    \yG = \yM\,\yg\ ,\qquad\text{with}\qquad \yg= -g \begin{bmatrix}0\\0\\1\end{bmatrix} \ ,
   \end{equation}
   where $g$, the \emph{gravitational acceleration}, depends on the planet. On Earth it is approximately
   \begin{equation}
@@ -7249,7 +7252,7 @@ Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{
 
 Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
 
-\begin{definition}{Ideal-gas law,label={def:idealgas_law}}
+\begin{definition}{Ideal-gas law with viscosity,label={def:idealgas_law}}
   If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yte$, and the momentum flux is orthogonal to the surface and uniform throughout, then the pressure $p$ is given by
   \begin{equation}
     \label{eq:ideal_gas_p}
@@ -7259,7 +7262,7 @@ Now that the notion of pressure is introduced, we can formulate a particular con
   \begin{equation*}
     R = \qty{8.31446261815324}{J/(mol\cdot K)}\quad\text{(exactly)}
   \end{equation*}
-The equation above is called the \textbf{thermodynamical ideal-gas law}.
+The equation above is called the \textbf{ideal-gas law with viscosity}.
 
   \smallskip
 
@@ -7809,7 +7812,7 @@ this relation doesn't tell us the value of the entropy content at time $t+\Dt$, 
 This law, therefore, apparently does not allow us to \enquote{drive forward} a physical system. What is its physical role then?
 
 It turns out that the balance of entropy can be viewed as a \enquote*{meta-law}; that is, not a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, it determines which constitutive relations are physically admissible, and which are not admissible. In very simple cases this meta-law leads to restrictions on coefficients, which for instance can only be positive. We shall see a couple of simple examples of this case. But in more complex cases it leads to much more powerful results; for example that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright\color{blue}%
-\faIcon{user-astronaut}\enspace If you feel adventurous, check the simplest examples discussed in Astarita's book, in the section cited in the quote.%
+\faIcon{user-astronaut}\enspace If you feel adventurous, check the simple examples discussed in Astarita's book, in the section cited in the quote, or in \chap~2 of \cites{samohyletal1987_r2014}.%
 }%
 These complex and more beautiful cases unfortunately require much more advanced mathematics.
 \begin{quote}\footnotesize
