@@ -16,8 +16,8 @@ Fatm = -100000*A; % force on piston by atmosphere
 %%
 G = -m*g; % gravity supply of momentum to piston
 %%
-t1 = 1; % final time
-dt = 0.0001; % time step
+t1 = 3; % final time
+dt = 0.00001; % time step
 %%%% STATE: z, v, T; initial conditions
 t = 0; % initial time
 z = 0.15; % initial position of piston
@@ -49,7 +49,7 @@ zSave(1) = z;
 vSave(1) = v;
 TSave(1) = T;
 %% Initialize plot
-close all;
+clf;%close all;
 subplot(2,1,1)
 cols = get(0, 'DefaultAxesColorOrder');
 plot(tSave(1), zSave(1), 'o','Color',cols(1,:)); axis('tight');

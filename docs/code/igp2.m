@@ -10,19 +10,19 @@ g = 9.8; % gravitational acceleration
 R = 8.31446261815; % molar gas constant
 C = 20; % molar heat capacity
 mu = 0.00004; % gas viscosity
-h = 8000; % heat-transfer coefficient
+h = 1; % heat-transfer coefficient
 Te = 273.15 + 23; % temperature of environment
 Fatm = -100000*A; % force on piston by atmosphere
 %%
 G = -m*g; % gravity supply of momentum to piston
 %%
 t1 = 1; % final time
-dt = 0.0001; % time step
+dt = 0.00001; % time step
 %%%% STATE: z, v, T; initial conditions
 t = 0; % initial time
 z = 0.15; % initial position of piston
 v = 0; % initial velocity of piston
-T = 273.15 + 23; % initial temperature of gas
+T = 273.15 + 223; % initial temperature of gas
 %% %@
 %% Plot & saving
 %% adjust final time if not multiple of timestep
@@ -49,7 +49,7 @@ zSave(1) = z;
 vSave(1) = v;
 TSave(1) = T;
 %% Initialize plot
-close all;
+clf;%close all;
 subplot(2,1,1)
 cols = get(0, 'DefaultAxesColorOrder');
 plot(tSave(1), zSave(1), 'o','Color',cols(1,:)); axis('tight');

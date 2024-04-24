@@ -66,21 +66,21 @@ while t < t1
   %% non-Hookean constitutive relation
   l = norm([ya-yb, za-zb]); % present length
   if l < ln
-    Fyab = 0;
-    Fzab = 0;
+    Fyas = 0; % momentum flux from spring to a, y comp.
+    Fzas = 0; % momentum flux from spring to a, z comp.
   else
-    Fyab = -k*(ya-yb)*(l-ln)/l;
-    Fzab = -k*(za-zb)*(l-ln)/l;
+    Fyas = -k*(ya-yb)*(l-ln)/l;
+    Fzas = -k*(za-zb)*(l-ln)/l;
   end
-  Fyba = -Fyab;
-  Fzba = -Fzab;
+  Fybs = -Fyas;
+  Fzbs = -Fzas;
   %%
   %% Drive forward in time
   %% update momentum
-  Pya = Pya + (Fyab + Gya)*dt;
-  Pza = Pza + (Fzab + Gza)*dt;
-  Pyb = Pyb + (Fyba + Gyb)*dt;
-  Pzb = Pzb + (Fzba + Gzb)*dt;
+  Pya = Pya + (Fyas + Gya)*dt;
+  Pza = Pza + (Fzas + Gza)*dt;
+  Pyb = Pyb + (Fybs + Gyb)*dt;
+  Pzb = Pzb + (Fzbs + Gzb)*dt;
   %% update position
   ya = ya + vya*dt;
   za = za + vza*dt;
