@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-24T10:58:05+0200
+%% Last-Updated: 2024-04-24T22:55:06+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -7771,7 +7771,7 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 
 % Refer to MacKay
 
-Our understanding of entropy and its balance is still incomplete. Although they are successfully used in many applications, the connections among these uses and their common logical foundation are sometimes unclear. This state of affairs is reflected in the many and wildly different presentations of entropy and its balance: different in wording, mathematical formulation, scope, and sometimes even physical consequences.
+The balance of entropy expresses what's commonly called the \enquote{second law of thermodynamics}. Although entropy and of its balance are successfully used in many applications, our understanding of the and their physical foundation is still incomplete. This state of affairs is reflected in the many and wildly different presentations of entropy and its balance: different in wording, mathematical formulation, scope, and sometimes even physical consequences.
 
 Most university textbooks only present limited and special cases of properties and uses of entropy and its balance -- often making them appear as more general than they really are, or even mistakenly as \enquote{universal}. Typically textbooks restrict themselves to situations where there the contents and fluxes of quantities for a control volume do not change with time. The discipline that studies such situations is called \emph{thermostatics}.
 
@@ -7792,23 +7792,100 @@ In the technical literature the entropy balance goes under the name of \furl{htt
 
 One added difficulty is that entropy and its balance can also be approached from a completely different direction, especially when we study physical systems at small scales. It's the approach of \furl{https://plato.stanford.edu/entries/statphys-statmech/}{\emph{statistical mechanics}}, which considers physical situations in which we lack information about initial conditions, boundary conditions, or constitutive relations. In statistical mechanics, a slightly different entropy appears not as a physical quantity, but as a measure of our lack of information -- in the strict technical sense of \furl{https://www.britannica.com/science/information-theory}{Information Theory} -- about the physical system. Also this entropy satisfies a balance law very similar to~\eqref{eq:bal_entropy} above.
 
-We thus have a \textbf{thermodynamic entropy} and a \textbf{statistical entropy}. Their fascinating relation is still not fully understood, and still the object of debate.
+We thus have a \textbf{thermodynamic entropy} and a \textbf{statistical entropy}. Their fascinating relation is only partly understood, and still the object of debate.
 
 In the present notes we shall focus on \emph{thermodynamic} entropy.
 
 \section{The physical role of the entropy balance}
 \label{sec:entropy_balance_role}
 
-\subsection{Entropy balance as a meta-law}
-\label{sec:entropy_metalaw}
-
-The entropy balance~\eqref{eq:bal_entropy} has an immediately apparent peculiarity, compared to the general form of a \autoref{sec:balance_laws}{balance law}: it is not an equality
+The entropy balance~\eqref{eq:bal_entropy} has an apparent peculiarity, compared to the general form of a \autoref{sec:balance_laws}{balance law}: it is not an equality
 $$\dotso=\dotso$$
 but an \emph{inequality}
 $$\dotso\ge\dotso$$
 Why? and what are the consequences of this difference?
 
-One important consequence is that it cannot be used in a \autoref{sec:numeric_simulation}{numerical-time-integration} scheme. If we rewrite it in an approximate form for a short timestep $\Dt$:
+\smallskip
+
+There are many texts and media that try to summarize the meaning of inequality in simple terms. But the reality is that this inequality leads to a large variety of very different phenomena, and cannot be summarized in a few words.
+
+This should not be surprising. Take the \autoref{sec:bal_momentum_formulation}{balance of momentum} for example. It leads to all sorts of motions and deformations of objects, and to the stability of others; from the stillness of a pen on a table, to the extremely complicated motion of the atmosphere. That balance law could not be summarized in some simple sentence like \enquote{objects spontaneously fall downward}. First, such a sentence would be false in many situations -- just look at the motion of rocks expelled by a volcano. Second, it would be useless for precise predictions and numerical simulation.
+
+\marginpar{\vspace{-2\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/mixing.jpg}\\%
+\includegraphics[width=\linewidth]{images/life_plant.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+The mixing of two liquids and the growing of life are both consequences of the second law of thermodynamics.}%
+The same variety of consequences holds true for the balance of entropy. The mixing of two liquids can be said to be a consequence of the balance of entropy (together with the other balances). But also the appearance of life on Earth is a consequence of the balance of entropy; and all physical mechanisms underlying life are consequences of the balance of entropy, too (together with the other balances). Any simplistic summaries, mentioning \enquote{tendency to disorder} or \enquote{spontaneously doing this or that} or similar, are simply false in many physical situations, and also vague (what does \enquote*{to tend} mean? how is \enquote*{disorder} defined? what's \enquote*{spontaneous} and what's not?) and useless for quantitative predictions.
+
+
+\subsection{Irreversibility}
+\label{sec:irreversibility}
+
+From a qualitative point of view, the inequality of the balance of entropy expresses \emph{irreversibility}; but we must be careful about the meaning of this word.
+
+Consider first a generic balance or conservation law; let's take conservation of matter for instance:
+\begin{equation*}
+  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t
+\end{equation*}
+Suppose a control volume contains an amount \qty{20}{mol} of matter. During an interval of time we provide a net flow of matter $\int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t = \qty{3}{mol}$ into the control volume. By the conservation law, at the end we have an amount \qty{23}{mol} of matter in the control volume. This also means that in principle we could revert to an amount of \qty{20}{mol} by providing a \emph{negative} amount of the same flow as before, \qty{-3}{mol}. We can, in principle, change the matter content in the volume between \qty{20}{mol} and \qty{23}{mol} by providing a net flow of \qty{+3}{mol} or its opposite \qty{-3}{mol}. If we consider a balance with a supply, the conclusion remains the same, if we invert also the sign of the supply.
+
+Now consider the balance of entropy with a strict inequality:
+\begin{equation*}
+  \yS(\ytf) > \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
+\end{equation*}
+Suppose a control volume contains an amount \qty{20}{J/K} of entropy. During an interval of time we provide a net flow of entropy $\int_{\yti}^{\ytf}\!\!\yB(t)\,\di t = \qty{3}{J/K}$ into the control volume. By the inequality above, at the end we \emph{cannot} have an amount \qty{23}{J/K} of entropy in the control volume: it will be larger, say \qty{23.1}{J/K}. If we want to revert to an entropy content of \qty{20}{J/K}, then simply reversing the total flow to \qty{-3}{J/K} won't be enough. In fact, even \qty{-3.1}{J/K} won't be enough, because by the inequality above we must have
+\begin{equation*}
+  \text{\footnotesize new entropy amount} > \qty{23.1}{J/K} - \qty{3.1}{J/K}
+\end{equation*}
+and the new entropy content would be more than \qty{20}{J/K}.
+
+This is what we call \textbf{irreversibility}: we cannot revert to a given content in the volume \emph{by inverting the flux}.
+
+\begin{warning}[\enquote*{Irreversibility} does not mean that we cannot revert to a given content]
+  Note that the example above does \emph{not} imply that we can never have again an entropy content of \qty{20}{J/K} in the control volume. It's only saying that we cannot achieve this by simply giving the opposite of the entropy flux we gave before. In principle, the original entropy content can still be re-established, but by providing a larger negative entropy flux than before.
+
+Analogously, the example does not imply that the entropy content of the volume can only increase. The entropy content can very well decrease, provided an enough large negative entropy flow is provided.
+\end{warning}
+
+\medskip
+
+In cases where the balance of entropy holds with an equal sign:
+\begin{equation*}
+  \yS(\ytf) = \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
+\end{equation*}
+then we can of course revert to a given entropy content by inverting the entropy flux.
+
+\begin{definition}{Reversible and irreversible processes,label={def:reversible}}
+  We call a physical change, transformation, or phenomenon between two times $\yti$ and $\ytf$ \textbf{reversible} if it satisfies the balance of entropy with an equal \enquote*{$=$} sign.
+
+  \smallskip
+
+  We call it instead \textbf{irreversible} if it satisfies the balance of entropy with a strict inequality \enquote*{$<$} sign.
+\end{definition}
+
+For some physical materials it happens that all physical phenomena they undergo obey an entropy balance with a strict equality, as above.
+\begin{definition}{Elastic material,label={def:elastic}}
+  A material is called (thermodynamically) \textbf{elastic} if all changes it may undergo are \emph{reversible}.
+\end{definition}
+
+
+\subsection{Entropy is generally non-unique}
+\label{sec:entropy_nonunique}
+
+
+\begin{quote}\footnotesize
+First, there are bodies which have two entropies \textelp{} whose difference is nonconstant \textelp{}. Second, it can happen that the body does not have a smooth entropy. These two peculiarities are related to the fact that for the entropy we have only an inequality.
+\sourceatright{\parencites[\sect~7.6 p.~127]{silhavy1997}}
+\end{quote}
+
+
+
+\subsection{Entropy balance as a meta-law}
+\label{sec:entropy_metalaw}
+
+
+One important consequence of the inequality sign in the balance of entropy is that it cannot be used in a \autoref{sec:numeric_simulation}{numerical-time-integration} scheme. If we rewrite it in an approximate form for a short timestep $\Dt$:
 \begin{equation*}
   \yS(t+\Dt) \gtrsim \yS(t) + \yB(t)\,\Dt
 \end{equation*}
@@ -7820,17 +7897,17 @@ this relation doesn't tell us the value of the entropy content at time $t+\Dt$, 
     &\gtrsim \qty{10.2}{J/K}
   \end{aligned}
 \end{equation*}
-This mean that maybe $\yS(t+\Dt) \approx \qty{10.2}{J/K}$, or maybe $\yS(t+\Dt)=\qty{1000}{J/K}$, or maybe even larger values.
+This mean that maybe $\yS(t+\Dt) \approx \qty{10.2}{J/K}$, or maybe $\yS(t+\Dt)=\qty{1000}{J/K}$, or maybe even larger values -- the law doesn't really tell us.
 
-This law, therefore, apparently does not allow us to \enquote{drive forward} a physical system. In fact, in simulating any physical system we can in principle always do without the balance of entropy. We only need to use the other six balances and constitutive equations (and, in General Relativity, the equations for the evolution of the metric).
+This law, therefore, apparently does not allow us to \enquote{drive forward} a physical system. In fact, it turns out that in simulating or predicting the behaviour of any physical system we can in principle always do without the balance of entropy: we only need to use the other six balances and any relevant constitutive equations (and, in General Relativity, the equations for the time-evolution of the metric).
 
-What is its physical role of this balance, then?
+What is its physical role of this balance law, then?
 
 \smallskip
 
-It turns out that \emph{the balance of entropy can be viewed as a \enquote*{meta-law}}. That is, not a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, this meta-law determines which constitutive relations are physically admissible, and which are not admissible. In very simple cases it leads to restrictions on coefficients. For example, it's a consequence of the balance of entropy that the viscosity coefficient $\yvis$ in the \autoref{def:idealgas_law}{ideal-gas law} and the coefficient of heat transfer $\yhea$ in \autoref{def:newton_cooling}{Newton's law of cooling} must be positive. We shall see a simple example of how this kind of restrictions come about.
+The answer is that \emph{the balance of entropy can be viewed as a \enquote*{meta-law}}. That is, not as a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, this meta-law determines which constitutive relations are physically admissible and which are not admissible. In very simple cases it leads to restrictions on the values of physical coefficients. For example, it's a consequence of the balance of entropy that the viscosity coefficient $\yvis$ in the \autoref{def:idealgas_law}{ideal-gas law} and the coefficient of heat transfer $\yhea$ in \autoref{def:newton_cooling}{Newton's law of cooling} must be positive. We shall see a simple example of how this kind of restrictions come about.
 
-In more complex cases the balance of entropy leads to much more powerful results; for example that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright\color{blue}%
+But in more complex cases the balance of entropy leads to much more powerful results; for example that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright\color{blue}%
   \faIcon{user-astronaut}\enspace If you feel adventurous, check the simple examples discussed in Astarita's book, in the section cited in the quote, or in \chap~2 of \cites{samohyletal1987_r2014}.%
 }%
 These complex and more beautiful cases unfortunately require much more advanced mathematics.
@@ -7846,14 +7923,6 @@ The subtlety arises, of course, because the second law is an inequality, and the
 %% warning about "spontaneously" (vague, and "life")
 
 
-\subsection{Entropy is generally non-unique}
-\label{sec:entropy_nonunique}
-
-
-\begin{quote}\footnotesize
-First, there are bodies which have two entropies \textelp{} whose difference is nonconstant \textelp{}. Second, it can happen that the body does not have a smooth entropy. These two peculiarities are related to the fact that for the entropy we have only an inequality.
-\sourceatright{\parencites[\sect~7.6 p.~127]{silhavy1997}}
-\end{quote}
 
 
 
