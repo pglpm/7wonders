@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-23T07:54:36+0200
+%% Last-Updated: 2024-04-24T10:58:05+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1022,6 +1022,7 @@ reply%
 \newcommand*{\yte}{T}%temperature
 \newcommand*{\ytece}{T_{\text{C}}}%temperature
 \newcommand*{\yvis}{\mu}%temperature
+\newcommand*{\yhea}{h}%temperature
 \newcommand*{\yxa}{x_{a}}%temperature
 \newcommand*{\yxb}{x_{b}}%temperature
 \newcommand*{\ytea}{\yte_{a}}%temperature
@@ -6571,7 +6572,7 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 \printpagenotes*
 \clearpage
 \chapter{Balance of angular momentum}
-\label{ncha:bal_ang_momentum}
+\label{cha:bal_ang_momentum}
 
 \epigraph{Around the world, around the world}{Daft Punk \cites*{daftpunk2005c}}
 
@@ -6580,7 +6581,7 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
       Volume content: $\yL$\qquad Flux: $\yT$\qquad Supply: $\ym$
 
   \begin{equation}
-    \label{neq:bal_ang_momentum}
+    \label{eq:bal_ang_momentum}
       \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
@@ -6594,10 +6595,10 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 \printpagenotes*
 \clearpage
 \chapter{Balance of energy}
-\label{ncha:bal_energy}
+\label{cha:bal_energy}
 
-\marginpar{\vspace{-5\baselineskip}\mynotew{\color{purple}\textbf{NOTE: this chapter is undergoing some changes. It will include more worked-out examples and some explanations will be made clearer. Please re-check it for changes in the next days (update-time of these notes is always written on the first page).}}
-}
+% \marginpar{\vspace{-5\baselineskip}\mynotew{\color{purple}\textbf{NOTE: this chapter is undergoing some changes. It will include more worked-out examples and some explanations will be made clearer. Please re-check it for changes in the next days (update-time of these notes is always written on the first page).}}
+% }
 
 
 \epigraph{I turned the page. The answer was, for the wind-up toy, ``Energy makes it go.'' And for the boy on the bicycle, ``Energy makes it go.'' For everything, ``\emph{Energy} makes it go.''
@@ -7322,9 +7323,9 @@ Lastly we discuss a constitutive relation that connects heat flux and temperatur
   Consider a control surface of area $A$ and call its two sides $a$ and $b$. If the matter on side $a$ has approximately uniform temperature $\ytea$, and the matter on side $b$ has approximately uniform temperature $\yteb$, then the heat flux $\yQ$ in the $a\to b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
 \begin{equation}
   \label{eq:newton_cooling}
-  \yQ = A h\, (\ytea-\yteb)
+  \yQ = A \yhea\, (\ytea-\yteb)
 \end{equation}
-where $h$ is called the \emph{coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
+where $\yhea$ is called the \emph{coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
 \end{definition}
 %
 \marginpar{\vspace{-10\baselineskip}\centering%
@@ -7332,7 +7333,7 @@ where $h$ is called the \emph{coefficient of heat transfer} and depends on the p
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 % NB: if $\yteb >\ytea$, then $\yQ<0$%
 }%
-The constitutive formula above with $h>0$ says that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
+The constitutive formula above with $\yhea>0$ says that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
 % The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy} (second law of thermodynamics), as in the case of the viscosity coefficients.
 
 Newton's law of cooling implies that we can approximately consider temperature as having a jump or discontinuity between the two sides of the surface. In situations where this approximation is too gross, another constitutive equation is often used: \textbf{Fourier's law of heat conduction}, which we can write as
@@ -7631,7 +7632,7 @@ Recall that the energy influx $\yH$ through a surface of area $a$ that satisfies
 \begin{equation*}
   \yH(t) = \yQ(t) + \yF(t)\cdot \yv(t)
   \quad\text{with}\quad
-  \yQ(t) = a\,h\, [\ytee-\yte(t)]
+  \yQ(t) = a\,\yhea\, [\ytee-\yte(t)]
 \end{equation*}
 We are calling $\ytee$ the temperature of the walls and piston enclosing the ideal gas, and assuming it to be constant.
 
@@ -7645,7 +7646,7 @@ The \emph{total} energy influx $\yH(t)$ is the sum of fluxes through two main su
 
 \item[Bottom:] Let's consider the possibility of a heat flux $\yQb$ through the bottom surface. Since the area $A$ of this surface is constant, this flux is
   \begin{equation*}
-    \yQb(t) = A\,h\,[\ytee-\yte(t)]
+    \yQb(t) = A\,\yhea\,[\ytee-\yte(t)]
   \end{equation*}
 
   The momentum influx $\yF_{\text{bottom}}$ through the bottom wall is directed upward. The velocity of the gas is approximately assumed to be vertical, and we also assume that it is zero at the bottom surface, because the bottom surface is not moving. Otherwise it would mean either that a vacuum is forming right above the surface, or that some gas is passing through it. Neither of these possibilities are contemplated in the present case; they would require different constitutive relations. If the gas velocity at this surface is zero, then the mechanical power is also zero.
@@ -7679,7 +7680,7 @@ The total energy influx into the control volume enclosing the ideal gas is there
     \yH(t) = \yQb(t) + \yFgp(t) \,v(t)
     \\\text{with}
     \\[\jot]
-    \yQb(t) = A\,h\,[\ytee-\yte(t)]
+    \yQb(t) = A\,\yhea\,[\ytee-\yte(t)]
     \qquad
     \yFgp(t) = -A\biggl[\frac{R \yN \yte(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]
   \end{gathered}
@@ -7706,7 +7707,7 @@ We finally have all the equations to describe and numerically time-integrate our
         \quad
         \yvis = \qty{0.00004}{N\,s/m^{2}}
         \quad
-        h = \qty{8000}{J/(K\, s\, m^{2})}
+        \yhea = \qty{8000}{J/(K\, s\, m^{2})}
         \\
         g = \qty{9.8}{N/kg}
         \qquad
@@ -7726,7 +7727,7 @@ We finally have all the equations to describe and numerically time-integrate our
       \end{gathered}
     \end{equation*}
     Plot the position $z(t)$ of the piston and the temperature $\yte(t)$ of the ideal gas as functions of time. What do you observe?
-  \item Simulate again with the same values as before but a coefficient of heat transfer $h=\qty{0}{J/(K\,s\,m^{2})}$, that is, assuming that all energy fluxes are adiabatic. Plot again position and temperature against time. What do you observe?
+  \item Simulate again with the same values as before but a coefficient of heat transfer $\yhea=\qty{0}{J/(K\,s\,m^{2})}$, that is, assuming that all energy fluxes are adiabatic. Plot again position and temperature against time. What do you observe?
   \item Keeping all energy fluxes adiabatic, simulate now by setting the viscosity coefficient $\yvis = \qty{400}{N\,s/m^{2}}$. What do you observe?
 
   \item Play and simulate with other values!
@@ -7747,7 +7748,7 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 \printpagenotes*
 \clearpage
 \chapter{Balance of entropy}
-\label{ncha:bal_entropy}
+\label{cha:bal_entropy}
 
 \epigraph{Their various ``second laws'' sound more like warnings or threats than principles of a rational science.}{C.\,A. Truesdell, III \cites*{truesdell1969_r1984}}
 
@@ -7770,7 +7771,7 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 
 % Refer to MacKay
 
-We still lack a complete understanding of entropy and its balance. Although they are successfully used in many applications, the connections among these uses and their common logical foundation are sometimes unclear. This state of affairs is reflected in the many and wildly different presentations of entropy and its balance: different in wording, mathematical formulation, scope, and sometimes even physical consequences.
+Our understanding of entropy and its balance is still incomplete. Although they are successfully used in many applications, the connections among these uses and their common logical foundation are sometimes unclear. This state of affairs is reflected in the many and wildly different presentations of entropy and its balance: different in wording, mathematical formulation, scope, and sometimes even physical consequences.
 
 Most university textbooks only present limited and special cases of properties and uses of entropy and its balance -- often making them appear as more general than they really are, or even mistakenly as \enquote{universal}. Typically textbooks restrict themselves to situations where there the contents and fluxes of quantities for a control volume do not change with time. The discipline that studies such situations is called \emph{thermostatics}.
 
@@ -7784,6 +7785,7 @@ In these lecture notes entropy and its balance are presented from a point of vie
 \item It's formulated with the same mathematics, and at the same mathematical level, as the physics of matter, momentum, angular momentum, energy, and electromagnetism.
 \item It includes time-dependent phenomena and is fully connected with phenomena involving the other six basic quantities.
 \end{itemize}
+In the technical literature the entropy balance goes under the name of \furl{https://encyclopediaofmath.org/wiki/Clausius-Duhem_inequality}{\textbf{Clausius-Duhem inequality}}.
 
 \subsection{Thermodynamic entropy and statistical entropy}
 \label{sec:stat_entropy}
@@ -7794,10 +7796,13 @@ We thus have a \textbf{thermodynamic entropy} and a \textbf{statistical entropy}
 
 In the present notes we shall focus on \emph{thermodynamic} entropy.
 
-\subsection{The entropy balance is a meta-law}
+\section{The physical role of the entropy balance}
+\label{sec:entropy_balance_role}
+
+\subsection{Entropy balance as a meta-law}
 \label{sec:entropy_metalaw}
 
-The entropy balance~\eqref{eq:bal_entropy} has an immediately apparent peculiarity, compared to the general form of a \autoref{sec:balance_laws}{balance law}: in is not an equality
+The entropy balance~\eqref{eq:bal_entropy} has an immediately apparent peculiarity, compared to the general form of a \autoref{sec:balance_laws}{balance law}: it is not an equality
 $$\dotso=\dotso$$
 but an \emph{inequality}
 $$\dotso\ge\dotso$$
@@ -7807,18 +7812,39 @@ One important consequence is that it cannot be used in a \autoref{sec:numeric_si
 \begin{equation*}
   \yS(t+\Dt) \gtrsim \yS(t) + \yB(t)\,\Dt
 \end{equation*}
-this relation doesn't tell us the value of the entropy content at time $t+\Dt$, but only an approximate minimum value that this content could have. As far as we know, it could be much larger than this minimum.
+this relation doesn't tell us the value of the entropy content at time $t+\Dt$, but only an approximate minimum value that this content could have. As far as we know, it could be much larger than this minimum. For example, if a closed control surface at some time $t$  contains an amount of entropy $\yS(t) = \qty{10}{J/K}$, and  the net entropy flux at that time is $\yB(t) = \qty{2}{J/(K\,s)}$, then we can say that a time $\Dt=\qty{0.1}{s}$ after the content should be
+\begin{equation*}
+  \begin{aligned}
+    \yS(t+\Dt) &\gtrsim \yS(t) + \yB(t)\,\Dt\\
+    &\gtrsim \qty{10}{J/K} + \qty{2}{J/(K\,s)}\cdot\qty{0.1}{s}\\
+    &\gtrsim \qty{10.2}{J/K}
+  \end{aligned}
+\end{equation*}
+This mean that maybe $\yS(t+\Dt) \approx \qty{10.2}{J/K}$, or maybe $\yS(t+\Dt)=\qty{1000}{J/K}$, or maybe even larger values.
 
-This law, therefore, apparently does not allow us to \enquote{drive forward} a physical system. What is its physical role then?
+This law, therefore, apparently does not allow us to \enquote{drive forward} a physical system. In fact, in simulating any physical system we can in principle always do without the balance of entropy. We only need to use the other six balances and constitutive equations (and, in General Relativity, the equations for the evolution of the metric).
 
-It turns out that the balance of entropy can be viewed as a \enquote*{meta-law}; that is, not a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, it determines which constitutive relations are physically admissible, and which are not admissible. In very simple cases this meta-law leads to restrictions on coefficients, which for instance can only be positive. We shall see a couple of simple examples of this case. But in more complex cases it leads to much more powerful results; for example that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright\color{blue}%
-\faIcon{user-astronaut}\enspace If you feel adventurous, check the simple examples discussed in Astarita's book, in the section cited in the quote, or in \chap~2 of \cites{samohyletal1987_r2014}.%
+What is its physical role of this balance, then?
+
+\smallskip
+
+It turns out that \emph{the balance of entropy can be viewed as a \enquote*{meta-law}}. That is, not a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, this meta-law determines which constitutive relations are physically admissible, and which are not admissible. In very simple cases it leads to restrictions on coefficients. For example, it's a consequence of the balance of entropy that the viscosity coefficient $\yvis$ in the \autoref{def:idealgas_law}{ideal-gas law} and the coefficient of heat transfer $\yhea$ in \autoref{def:newton_cooling}{Newton's law of cooling} must be positive. We shall see a simple example of how this kind of restrictions come about.
+
+In more complex cases the balance of entropy leads to much more powerful results; for example that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright\color{blue}%
+  \faIcon{user-astronaut}\enspace If you feel adventurous, check the simple examples discussed in Astarita's book, in the section cited in the quote, or in \chap~2 of \cites{samohyletal1987_r2014}.%
 }%
 These complex and more beautiful cases unfortunately require much more advanced mathematics.
 \begin{quote}\footnotesize
 The subtlety arises, of course, because the second law is an inequality, and therefore only other inequalities can be deduced from it by a purely algebraic procedure. However, \textelp{} one can in fact deduce from the second law, when coupled with appropriate constitutive assumptions, consequences which are equations, not inequalities; the procedure is more a logical than an algebraic one.
 \sourceatright{\parencites[\sect~2.4 p.~46]{astarita1989_r1990}}
 \end{quote}
+
+%% ***meaning: irreversibility, lower/upper bound on something***
+%% more on statistical?
+
+%% warning about verbal expressions of second law
+%% warning about "spontaneously" (vague, and "life")
+
 
 \subsection{Entropy is generally non-unique}
 \label{sec:entropy_nonunique}
