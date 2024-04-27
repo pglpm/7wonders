@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-27T15:00:46+0200
+%% Last-Updated: 2024-04-27T17:09:08+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -6569,27 +6569,6 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 }%
 \lstinputlisting[style=mycode]{code/rubberband2D.m}
 
-\printpagenotes*
-\clearpage
-\chapter{Balance of angular momentum}
-\label{cha:bal_ang_momentum}
-
-\epigraph{Around the world, around the world}{Daft Punk \cites*{daftpunk2005c}}
-
-
-\begin{definition}{Balance of angular momentum}
-      Volume content: $\yL$\qquad Flux: $\yT$\qquad Supply: $\ym$
-
-  \begin{equation}
-    \label{eq:bal_ang_momentum}
-      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
-      \qquad%\text{\footnotesize\color{grey}or}
-      \qquad
-      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yT(t) + \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
-  \end{equation}
-\end{definition}
-
-\mynotew{To be written in a later version}
 
 
 \printpagenotes*
@@ -6722,7 +6701,7 @@ Map of some distant astronomical objects used to define the International Celest
 \subsection{Forms of energy}
 \label{sec:energy_forms}
 
-Once we have agreed on a definition of \enquote*{total energy content} by means of a  reference velocity \amp\ clock, a distinction is usually further made between different \enquote{forms} of energy
+Once we have agreed on a definition of \enquote*{total energy content} by means of a  reference velocity \amp\ clock, a distinction is usually further made between different \enquote{forms} of energy,
 % allows us to make a distinction between \enquote*{internal}, \enquote*{kinetic}, \enquote*{gravitational-potential} energy. But often we hear about other distinctions between energies, like
 for example \enquote*{elastic} or \enquote*{electromagnetic}. This distinction as a different origin: it comes from particular \emph{constitutive relations} that connect the total energy to other quantities like matter, temperature, electromagnetic field. There is a wild variety of such constitutive relations, which depend on the physical phenomenon to be described.
 
@@ -6801,9 +6780,17 @@ We have an intuitive understanding of the notion of \emph{hotness} and \emph{col
 % \includegraphics[width=\linewidth]{images/universeexpansion2.jpg}%
 % \\[\jot]
 \footnotesize\flushleftright\color{mpcolor}%
-\emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
+\emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.
+
+\medskip
+
+\emph{Is There a Temperature?} by T.\,S.~Bir{\'o} \parencites*{biro2011} discusses fascinating physical phenomena for which our microscopic understanding of temperature is still incomplete.%
 }%
 The physical bases and measurement procedures for this quantification are far from trivial, but we shall take them for granted in the present notes.
+
+For some physical phenomena, especially those involving gases, we know that temperature is related to the invisible motion of microscopic parts of matter, such as molecules. But there are also physical phenomena for which our microscopic understanding of temperature is more complex, and in some cases  still unclear.
+
+\smallskip
 
 Temperature is useful because it enters in many constitutive relations involving energy, but is easier to measure than energy. It will thus appear in our equations and in our numerical time-integration procedures.
 
@@ -6830,7 +6817,7 @@ In these notes we shall first restrict our focus on general constitutive relatio
 
 If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
 \begin{definition}{Energy associated with matter,label={def:energy_volume_matter}}
-  Consider a control volume close to Earth's surface and containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must also be such that the coordinate velocity $\yv$ and \autoref{def:molarmass}{molar mass} $\yrho$ of the matter within are approximately constant (this is true, for instance, if the volume is small enough). Then the total \energym\ content in this control volume is given by
+  Consider a control volume close to Earth's surface and containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must also be such that the coordinate velocity $\yv$, \autoref{def:molarmass}{molar mass} $\yrho$ of the matter within, and the $z$-coordinate are approximately the same throughout the volume (this is true, for instance, if the volume is small enough). Then the total \energym\ content in this control volume is given by
   \begin{equation}
     \label{eq:energy_volume_matter}
     \yM c^{2} +  \yU + \frac{1}{2}\yM \yv^{2} + \yM g z
@@ -6889,22 +6876,17 @@ Note that in this definition we can still arbitrarily choose the zero of $\yU$.
 
 This general constitutive relation applies to a large variety of physical phenomena. But it is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later.
 
-\subsection{Forms of energy content depend on the observation scale}
+\subsection{The separation between internal and kinetic energy\\ depends on the observation scale}
 \label{sec:dependence_energycontentdivision}
 
 Given a control volume containing matter, at a particular time and in a coordinate system, the amount of \emph{total} energy contained therein is uniquely determined and agreed upon by all researchers, even if one researcher is making measurements on that volume with coarse instruments, and another researcher is making measurements on a molecular scale.
 
-But the division of this total energy into internal, kinetic, gravitational does \emph{depend on the detail and scale of observation}. For instance, a researcher who describes the matter within the volume as a continuous gas, may measure a total energy $\yE=\qty{4000}{J}$, and describe this as a sum of $\yU=\qty{4000}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{0}{J} kinetic energy. Another researcher, who describes the matter within the same volume as a bunch of atoms in motion, also measures a total energy $\yE=\qty{4000}{J}$, but may describe this as a sum of $\yU=\qty{0}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{4000}{J} kinetic energy, obtained by summing up $\tfrac12\yM\yv^{2}$ for all the atoms in the volume.
+But the separation of this total energy into internal, kinetic, gravitational does \emph{depend on the detail and scale of observation}. For instance, a researcher who describes the matter within the volume as a continuous gas may measure a total energy $\yE=\qty{4000}{J}$, and describe this as a sum of $\yU=\qty{4000}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{0}{J} kinetic energy. Another researcher, who describes the matter within the same volume as a large number of atoms in motion, also measures a total energy $\yE=\qty{4000}{J}$, but may describe this as a sum of $\yU=\qty{0}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{4000}{J} kinetic energy, obtained by summing up $\tfrac12\yM\yv^{2}$ for all the atoms in the volume.
 
-The reason of this difference is that the first researcher does not measure any visible velocity in the gas: the instruments used average it out to zero. This researcher therefore attributes the total energy completely to internal energy.
-Indeed this research still detects the atomic motion indirectly, as a \emph{temperature} possessed by the gas, and as we shall see later, internal energy is usually associated with temperature.
-
-The second researcher, on the other hand, can measure the velocities of the individual atoms, and therefore attributes all the total energy to kinetic energy. For this researcher the gas has no temperature and no internal energy.
-
-\bigskip
+The reason of this difference is that the first researcher does not measure any \emph{visible} velocity in the gas: the measuring instruments average it out to zero. This researcher therefore attributes the total energy completely to internal energy, and indeed still detects the atomic motion indirectly, as a \emph{temperature} possessed by the gas. The second researcher, on the other hand, can measure the velocities of the individual atoms, and therefore attributes all the total energy to kinetic energy. For this researcher the gas has no temperature and no internal energy.
 
 
-\section{Examples of constitutive relations for energy content}
+\subsection{Examples of constitutive relations for energy content}
 \label{sec:energy_constitutive_content}
 
 Of importance in physics and engineering applications are not only changes in the total energy $\yE$, but also exchanges among its internal, kinetic, and gravitational terms, even when the total energy is constant. Here are some examples.
@@ -6917,7 +6899,7 @@ In other situations the internal energy is not constant, and there are exchanges
 
 Another example where this kind of energy conversion and energy flux are important is skydiving. The gravitational energy of a skydiver is obviously decreasing. If it were completely converted to kinetic energy, the skydiver would acquire a dangerously excessive falling speed. Instead, this energy is luckily mainly transferred, via friction, to the internal energy of the surrounding air, and partly converted into internal energy of the skydiver. For this reason the kinetic energy, and therefore the falling velocity, of the skydiver remain constant after some time.
 %
-\marginpar{\vspace{-5\baselineskip}%\centering%
+\marginpar{\vspace{-7\baselineskip}%\centering%
 \includegraphics[width=\linewidth]{images/skydive2.jpg}%
 }%
 
@@ -7022,11 +7004,17 @@ In applying the formula above, keep always in mind the following:
 The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
 
 
-\subsection{Forms of energy flux depend on the observation scale}
+\subsection{The separation between heat and power\\ depends on the observation scale}
 \label{sec:dependence_energyfluxdivision}
 
+We have discussed the fact that the total energy content in a control volume doesn't depend on our manner of description and measuring instruments, but the separation into internal and kinetic energy does. A completely analogous situation, and for analogous reasons, occurs for the flux of total energy through a control surface, and its separation into heat flux and mechanical power.
 
-Let us see some examples.
+Consider two bodies of matter in contact. For one researcher, who observes these bodies macroscopically, there may be a flux of total energy $\yH=\qty{1}{J/s}$ through the contact surface, and no visible motion of matter. This researcher therefore consider this energy flux to consist completely in a heat flux $\yQ=\qty{1}{J/s}$, and no mechanical power $\yF\cdot\yv$ since the velocity $\yv$ is zero. For another researcher, who can keep track of molecular motions and velocities, the total-energy flux is still $\yH=\qty{1}{J/s}$; but this flux consists completely in \qty{1}{J/s} of mechanical power, obtained by summing up $\yF\cdot\yv$ for all molecules at the contact surface; the heat flux $\yQ$ is zero.
+
+\subsection{Examples of constitutive relations for energy flux}
+\label{sec:energy_constitutive_flux}
+
+Let us see some examples of constitutive equations of energy flux, and heat flux in particular.
 
 \paragraph{Holding a cup of hot tea.}
 When we hold a cup of hot tea or coffee,
@@ -7058,6 +7046,10 @@ By the symmetry of fluxes, this same amount of energy flows out of the spring, r
 
 In describing and using matter in a gaseous state, usually heat flux and mechanical power must both be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by furnishing \emph{influxes of heat} to it.
 
+%
+\marginpar{\vspace{2\baselineskip}\centering%-33 at bottom, 2 at top
+\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+}%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Water is flowing downwards in a pipe, as illustrated in the side picture by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
@@ -7074,9 +7066,10 @@ In describing and using matter in a gaseous state, usually heat flux and mechani
   \end{enumerate}
 \end{exercise}
 %
-\marginpar{\vspace{-33\baselineskip}\centering%-33 at bottom, 2 at top
-\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-\\[7\baselineskip]\includegraphics[height=6\baselineskip]{images/pump_piston.pdf}%
+\marginpar{\vspace{-18\baselineskip}\centering%-33 at bottom, 2 at top
+%\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+%\\[7\baselineskip]
+\includegraphics[height=6\baselineskip]{images/pump_piston.pdf}%
 % \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
 % \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
 % \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
@@ -7164,7 +7157,7 @@ So the description is somewhat more complicated; you see why we choose to avoid 
 
 Rigid bodies have very peculiar properties in respect of the balance of energy. A \textbf{rigid body} is a body (of matter) that has constant volume and \emph{shape}; or in other words a body that cannot deform. It can of course move, and in general its amount of matter, \masse, and velocity can be different in different parts of the body;
 %
-\marginpar{\vspace{-\baselineskip}\centering%
+\marginpar{\vspace{-6\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/boomerang.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 \furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
@@ -7464,12 +7457,12 @@ The masslessness assumption is of course inadequate in some conditions like extr
 \subsection{Setup}
 \label{sec:idealgas_ex_setup}
 
-One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture below.
-To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$. The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
 %
-\marginpar{\vspace{-9\baselineskip}\centering%
+\marginpar{\vspace{-3\baselineskip}\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
+One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
+To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$. The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
 
 Since the piston has mass $\yM$, it also has momentum $\yP=\yM\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yG = -\yM\,g$. You may wonder why we need to consider a piston having mass. There are two main reasons. First, in a real situation a piston does have a mass that is non-negligible, compared with the mass of the gas. Second, the assumption that the gas has no mass makes \autoref{sec:further_idealgas}{the balance of momentum become singular}, as discussed in the previous section, and any description and prediction of motion becomes therefore impossible -- unless we add mass somewhere else. The piston is effectively also a proxy for the mass of the gas. We encountered an analogous situation with the spring-and-bodies system.
 
@@ -7533,7 +7526,7 @@ The \emph{total} momentum influx $F(t)$ is the sum of the fluxes through three m
     \yFpg(t) = -\yFgp(t)
   \end{equation*}
 %
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-4\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/piston_forces.pdf}%
 }%
 
@@ -7753,7 +7746,7 @@ We finally have all the equations to describe and numerically time-integrate our
   \end{enumerate}
 \end{exercise}
 
-\clearpage
+\bigskip
 
 Here is an example of Octave/MATLAB script for simulating the system of ideal gas and piston and plotting $z(t)$ and $\yte(t)$:
 
@@ -7762,6 +7755,28 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 }%
 \lstinputlisting[style=mycode]{code/idealgas_piston.m}
 
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of angular momentum}
+\label{cha:bal_ang_momentum}
+
+\epigraph{Around the world, around the world}{Daft Punk \cites*{daftpunk2005c}}
+
+
+\begin{definition}{Balance of angular momentum}
+      Volume content: $\yL$\qquad Flux: $\yT$\qquad Supply: $\ym$
+
+  \begin{equation}
+    \label{eq:bal_ang_momentum}
+      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \qquad%\text{\footnotesize\color{grey}or}
+      \qquad
+      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yT(t) + \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
+  \end{equation}
+\end{definition}
+
+\mynotew{To be written in a later version}
 
 
 \printpagenotes*
@@ -7823,24 +7838,28 @@ We thus have a \textbf{thermodynamic entropy} and a \textbf{statistical entropy}
 \subsection{Entropy depends on the observation scale}
 \label{sec:entropy_obsscale}
 
-The entropy content in a given control volume, and the entropy flux through a given control surface at a given coordinate (both at a given coordinate time) \emph{do not depend on the coordinate system} chosen. From this point of view they are like the content \amp\ flux of matter, electric charge, and magnetic flux; and unlike momentum, angular momentum, and energy.
+The entropy content in a given control volume, and the entropy flux through a given control surface, at a given coordinate time, \emph{do not depend on the coordinate system} chosen. In this regard they are like the content \amp\ flux of matter, electric charge, and magnetic flux; and unlike momentum, angular momentum, and energy.
 
-On the other hand, entropy content \amp\ flux do \emph{depend on the detail and scale of observation} of a physical phenomenon. From this point of view they are unlike all other six fundamental quantities, whose \emph{total} content and flux do not depend on the observation scale.
+On the other hand, entropy content \amp\ flux do \emph{depend on the detail and scale of observation} of a physical phenomenon. In this regard they are unlike all other six fundamental quantities, whose \emph{total} content and flux do not depend on the observation scale.
 
-As an example of what we mean with \enquote*{detail} and scale of observation, take a control volume containing \enquote*{air}. This control volume may be studied and described as containing:
+As an example, % of what we mean with \enquote*{detail} and scale of observation
+take a control volume containing air. This control volume could be studied, described, and measured in three different ways:
 \begin{enumerate*}[label=(\alph*)]
-\item a continuous, fluid amount of matter of one kind: \enquote*{air}; \item or a continuous, fluid mixture of amounts of matter of different kinds: nitrogen, oxygen, and several others; \item or a bunch of molecules in motion.
+\item as containing a continuous, fluid amount of matter of one kind: \enquote*{air}; \item as containing a continuous, fluid mixture of amounts of matter of different kinds: nitrogen, oxygen, and several others; \item as containing a bunch of molecules in motion.
 \end{enumerate*}
-The \emph{total} energy content measured within this control volume, at a particular time instant, will be exactly the same, say \qty{4000}{J}, in all three cases. What changes among them is the division of this total energy into internal and kinetic; but the total is the same
+
+The \emph{total} energy content measured within this control volume, at a particular time instant, will be exactly the same in all three cases. What changes among them is the \autoref{sec:dependence_energycontentdivision}{division of this total energy into internal and kinetic}, but the total is the same. The total entropy content assigned to this control volume, on the other hand, will generally be different in each case.
+\begin{quote}\footnotesize
+A given object of study cannot always be assigned a unique value, its ``entropy''. It may have many different entropies, each one worthwhile. The proper choice will depend on the interests of the individual, the particular phenomena under study, the degree of precision available or arbitrarily decided upon, or the method of description which is employed; and each of these criteria is largely subject to the discretion of the individual.
 
 
-The entropy content attributed to this control volume will be different
+\textelp{} For another example we turn to aerodynamics. The existence of diffusion between oxygen and nitrogen somewhere in a wind tunnel will usually be of no interest. Therefore the aerodynamicist uses an entropy which does not recognize the separate existence of the two elements but only that of ``air''. In other circumstances, the possibility of diffusion between elements with a much smaller mass ratio (e.g., 238/235) may be considered quite relevant.
+\sourceatright{\parencites[\sect~1 pp.~323, 325]{grad1961}}
+\end{quote}
 
+% For example, a researcher may be studying a given amount of gas, seen as a macroscopic fluid, in a control volume. At a particular time, this researcher measures a total energy content of \qty{3800}{J}, total momentum content of $[0,0,0]\:\unit{N\,s}$, and assigns a total entropy content of \qty{150}{J/K} within the control volume. Another researcher is studying the same gas in the same control volume, but on a molecular scale, thus seeing it as a bunch of molecules in motion. This other researcher also measures, at the same time instant, a total energy content \qty{3800}{J} and total momentum content $[0,0,0]\:\unit{N\,s}$, but may assign a total entropy content of \qty{0}{J/K} (this is correct if this researcher knows the exact positions, velocities, and a couple more characteristics of every molecule in the control volume at that time instant).
 
-
-For example, a researcher may be studying a given amount of gas, seen as a macroscopic fluid, in a control volume. At a particular time, this researcher measures a total energy content of \qty{3800}{J}, total momentum content of $[0,0,0]\:\unit{N\,s}$, and assigns a total entropy content of \qty{150}{J/K} within the control volume. Another researcher is studying the same gas in the same control volume, but on a molecular scale, thus seeing it as a bunch of molecules in motion. This other researcher also measures, at the same time instant, a total energy content \qty{3800}{J} and total momentum content $[0,0,0]\:\unit{N\,s}$, but may assign a total entropy content of \qty{0}{J/K} (this is correct if this researcher knows the exact positions, velocities, and a couple more characteristics of every molecule in the control volume at that time instant).
-
-We shall now see that this peculiar dependence of entropy on the observation scale actually makes a lot of sense, when we understand how the entropy balance is used.
+We shall now see that this peculiar dependence of entropy on the details and scale of observation actually makes a lot of sense when we understand how the entropy balance is used.
 
 
 \section{The physical role of the entropy balance}
