@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-26T10:38:41+0200
+%% Last-Updated: 2024-04-27T15:00:46+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -6889,7 +6889,23 @@ Note that in this definition we can still arbitrarily choose the zero of $\yU$.
 
 This general constitutive relation applies to a large variety of physical phenomena. But it is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later.
 
-\smallskip
+\subsection{Forms of energy content depend on the observation scale}
+\label{sec:dependence_energycontentdivision}
+
+Given a control volume containing matter, at a particular time and in a coordinate system, the amount of \emph{total} energy contained therein is uniquely determined and agreed upon by all researchers, even if one researcher is making measurements on that volume with coarse instruments, and another researcher is making measurements on a molecular scale.
+
+But the division of this total energy into internal, kinetic, gravitational does \emph{depend on the detail and scale of observation}. For instance, a researcher who describes the matter within the volume as a continuous gas, may measure a total energy $\yE=\qty{4000}{J}$, and describe this as a sum of $\yU=\qty{4000}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{0}{J} kinetic energy. Another researcher, who describes the matter within the same volume as a bunch of atoms in motion, also measures a total energy $\yE=\qty{4000}{J}$, but may describe this as a sum of $\yU=\qty{0}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{4000}{J} kinetic energy, obtained by summing up $\tfrac12\yM\yv^{2}$ for all the atoms in the volume.
+
+The reason of this difference is that the first researcher does not measure any visible velocity in the gas: the instruments used average it out to zero. This researcher therefore attributes the total energy completely to internal energy.
+Indeed this research still detects the atomic motion indirectly, as a \emph{temperature} possessed by the gas, and as we shall see later, internal energy is usually associated with temperature.
+
+The second researcher, on the other hand, can measure the velocities of the individual atoms, and therefore attributes all the total energy to kinetic energy. For this researcher the gas has no temperature and no internal energy.
+
+\bigskip
+
+
+\section{Examples of constitutive relations for energy content}
+\label{sec:energy_constitutive_content}
 
 Of importance in physics and engineering applications are not only changes in the total energy $\yE$, but also exchanges among its internal, kinetic, and gravitational terms, even when the total energy is constant. Here are some examples.
 
@@ -6899,11 +6915,11 @@ In the preceding chapters we have considered small bodies of matter such as a te
 
 In other situations the internal energy is not constant, and there are exchanges among all three energy components, as well as changes in the total energy. A ball bouncing on the floor is an example. We can clearly see that its vertical position $z$, and therefore its gravitational energy $\yM g z$, alternately decreases and increases. The same is true for its velocity $\yv$ and kinetic energy $\tfrac{1}{2}\yM \yv^{2}$, which are zero at the highest and lowest (bouncing) points. But we also observe that the highest vertical position of the ball gets lower and lower, until the ball rests on the floor, which means that its kinetic and gravitational energies are both zero. They have been converted partly in internal energy $\yU$ of the ball, and partly transferred, via energy flux, to the internal energy of the floor.
 
+Another example where this kind of energy conversion and energy flux are important is skydiving. The gravitational energy of a skydiver is obviously decreasing. If it were completely converted to kinetic energy, the skydiver would acquire a dangerously excessive falling speed. Instead, this energy is luckily mainly transferred, via friction, to the internal energy of the surrounding air, and partly converted into internal energy of the skydiver. For this reason the kinetic energy, and therefore the falling velocity, of the skydiver remain constant after some time.
 %
-\marginpar{\vspace{\baselineskip}%\centering%
+\marginpar{\vspace{-5\baselineskip}%\centering%
 \includegraphics[width=\linewidth]{images/skydive2.jpg}%
 }%
-Another example where this kind of energy conversion and energy flux are important is skydiving. The gravitational energy of a skydiver is obviously decreasing. If it were completely converted to kinetic energy, the skydiver would acquire a dangerously excessive falling speed. Instead, this energy is luckily mainly transferred, via friction, to the internal energy of the surrounding air, and partly converted into internal energy of the skydiver. For this reason the kinetic energy, and therefore the falling velocity, of the skydiver remain constant after some time.
 
 \begin{exercise}
   A skydiver jumps with zero initial velocity at an altitude of \qty{3000}{m}. What would be the skydiver's velocity at \qty{1000}{m}, if there were no changes in internal energy and no energy fluxes?
@@ -7005,7 +7021,10 @@ In applying the formula above, keep always in mind the following:
 
 The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
 
-\medskip
+
+\subsection{Forms of energy flux depend on the observation scale}
+\label{sec:dependence_energyfluxdivision}
+
 
 Let us see some examples.
 
@@ -7771,31 +7790,64 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 
 % Refer to MacKay
 
-The balance of entropy expresses what's commonly called the \enquote{second law of thermodynamics}. Although entropy and of its balance are successfully used in many applications, our understanding of the and their physical foundation is still incomplete. This state of affairs is reflected in the many and wildly different presentations of entropy and its balance: different in wording, mathematical formulation, scope, and sometimes even physical consequences.
+The balance of entropy expresses what's commonly called \enquote{second law of thermodynamics}. Entropy and its balance are successfully used in many applications, but our understanding of them and of their physical foundation is still incomplete. This state of affairs is reflected in the many and wildly different presentations of entropy and its balance: different in wording, mathematical formulation, scope, and sometimes even in physical consequences.
 
-Most university textbooks only present limited and special cases of properties and uses of entropy and its balance -- often making them appear as more general than they really are, or even mistakenly as \enquote{universal}. Typically textbooks restrict themselves to situations where there the contents and fluxes of quantities for a control volume do not change with time. The discipline that studies such situations is called \emph{thermostatics}.
+Many textbooks only present limited and special cases of properties and uses of entropy and its balance, and unfortunately they often make these limited, special cases appear as more general, or of broader application, than they actually are. Such textbooks also typically restrict themselves to situations where there the contents of quantities in a control volume do not change with time, and the fluxes are zero. We call this a situation of \emph{equilibrium}. The discipline that studies equilibrium situations is called \emph{thermostatics}.
 
-In these lecture notes entropy and its balance are presented from a point of view, actively developed since the 1960s, having the following features:
+In these lecture notes, entropy and its balance are presented from a point of view, actively developed and used since the 1960s, having the following features:
 \begin{itemize}[nosep]
 \item It has been used for many years in concrete technological applications (some examples at NASA: \cites{changetal1971,hughesetal1986,turonetal2004,diosadyetal2018,katoetal2020}),
   % freed2007,
   and in the study complex materials such as polymers and mixtures.
   %(for instance \cites{faria2001}).
-\item It has led to new physical constitutive relations, or the establishment of existing ones from first principles.
-\item It's formulated with the same mathematics, and at the same mathematical level, as the physics of matter, momentum, angular momentum, energy, and electromagnetism.
+\item It has led to new physical constitutive relations, or to the physical and mathematical foundation of existing ones, from first principles.
+\item It is formulated with the same mathematics, and at the same mathematical level, as the physics of matter, momentum, angular momentum, energy, and electromagnetism.
 \item It includes time-dependent phenomena and is fully connected with phenomena involving the other six basic quantities.
 \end{itemize}
-In the technical literature the entropy balance goes under the name of \furl{https://encyclopediaofmath.org/wiki/Clausius-Duhem_inequality}{\textbf{Clausius-Duhem inequality}}.
+
+In the technical literature the entropy balance above, used in its full generality, goes under the name of \furl{https://encyclopediaofmath.org/wiki/Clausius-Duhem_inequality}{\textbf{Clausius-Duhem inequality}}.
+
 
 \subsection{Thermodynamic entropy and statistical entropy}
 \label{sec:stat_entropy}
 
 One added difficulty is that entropy and its balance can also be approached from a completely different direction, especially when we study physical systems at small scales. It's the approach of \furl{https://plato.stanford.edu/entries/statphys-statmech/}{\emph{statistical mechanics}}, which considers physical situations in where we lack information about initial conditions, or boundary conditions, or constitutive relations. In statistical mechanics, a conceptually different entropy appears, not as a physical quantity, but as a measure of our lack of information about the physical system, in the strict technical sense of \furl{https://www.britannica.com/science/information-theory}{Information Theory}. Also this entropy satisfies a balance law very similar to~\eqref{eq:bal_entropy} above.
+\begin{quote}\footnotesize
+One of the reasons for the bewilderment which is sometimes felt at an unheralded appearance of the term entropy is the superabundance of objects which bear this name. On the one hand, there is a large choice of macroscopic quantities (functions of state variables) called entropy, on the other hand, a variety of microscopic quantities, similarly named, associated with the logarithm of a probability or the mean value of the logarithm of a density. Each one of these concepts is suited for a specific purpose. More confusing, however, than the lack of imagination in terminology is the fact that several of these distinct concepts, different in meaning and in numerical value, may be significant in a single problem.
+\sourceatright{\parencites[\sect~1 p.~323]{grad1961}}
+\end{quote}
+
 
 We thus have a \textbf{thermodynamic entropy} and a \textbf{statistical entropy}. Their fascinating relation is only partly understood, and still the object of some debate. In the present notes we shall focus on \emph{thermodynamic} entropy.
 
+\subsection{Entropy depends on the observation scale}
+\label{sec:entropy_obsscale}
+
+The entropy content in a given control volume, and the entropy flux through a given control surface at a given coordinate (both at a given coordinate time) \emph{do not depend on the coordinate system} chosen. From this point of view they are like the content \amp\ flux of matter, electric charge, and magnetic flux; and unlike momentum, angular momentum, and energy.
+
+On the other hand, entropy content \amp\ flux do \emph{depend on the detail and scale of observation} of a physical phenomenon. From this point of view they are unlike all other six fundamental quantities, whose \emph{total} content and flux do not depend on the observation scale.
+
+As an example of what we mean with \enquote*{detail} and scale of observation, take a control volume containing \enquote*{air}. This control volume may be studied and described as containing:
+\begin{enumerate*}[label=(\alph*)]
+\item a continuous, fluid amount of matter of one kind: \enquote*{air}; \item or a continuous, fluid mixture of amounts of matter of different kinds: nitrogen, oxygen, and several others; \item or a bunch of molecules in motion.
+\end{enumerate*}
+The \emph{total} energy content measured within this control volume, at a particular time instant, will be exactly the same, say \qty{4000}{J}, in all three cases. What changes among them is the division of this total energy into internal and kinetic; but the total is the same
+
+
+The entropy content attributed to this control volume will be different
+
+
+
+For example, a researcher may be studying a given amount of gas, seen as a macroscopic fluid, in a control volume. At a particular time, this researcher measures a total energy content of \qty{3800}{J}, total momentum content of $[0,0,0]\:\unit{N\,s}$, and assigns a total entropy content of \qty{150}{J/K} within the control volume. Another researcher is studying the same gas in the same control volume, but on a molecular scale, thus seeing it as a bunch of molecules in motion. This other researcher also measures, at the same time instant, a total energy content \qty{3800}{J} and total momentum content $[0,0,0]\:\unit{N\,s}$, but may assign a total entropy content of \qty{0}{J/K} (this is correct if this researcher knows the exact positions, velocities, and a couple more characteristics of every molecule in the control volume at that time instant).
+
+We shall now see that this peculiar dependence of entropy on the observation scale actually makes a lot of sense, when we understand how the entropy balance is used.
+
+
 \section{The physical role of the entropy balance}
 \label{sec:entropy_balance_role}
+
+\subsection{Amazing variety of consequences}
+\label{sec:amazing_variety_entropy}
 
 The entropy balance~\eqref{eq:bal_entropy} has an apparent peculiarity, compared to the general form of a \autoref{sec:balance_laws}{balance law}: it is not an equality
 $$\dotso=\dotso$$
@@ -7807,43 +7859,50 @@ Why? and what are the consequences of this peculiarity?
 
 There are many texts and media that try to summarize the meaning of the entropy balance and its inequality sign in simple terms. But the reality is that this inequality leads to a large variety of very different phenomena, and cannot be summarized in words.
 
-This should not be surprising. Take the \autoref{sec:bal_momentum_formulation}{balance of momentum} for example. It leads to all sorts of motions and deformations of objects, and also to the stability of objects; from the extremely complicated motion of the atmosphere to the stillness of a pen resting on a table. This balance law could not be summarized in some simple sentence like \enquote{objects spontaneously fall downward}. First, such a sentence would be false in many situations -- just look at the motion of rocks expelled by a volcano, or at cosmological expansion. Second, it would be useless for precise predictions and numerical simulations.
+This should not be surprising. Take the \autoref{sec:bal_momentum_formulation}{balance of momentum} for example. It leads to all sorts of motions and deformations of objects, but also to the stability of objects: from the extremely complicated motion of the atmosphere to the stillness of a pen resting on a table. This balance law could not be summarized in some simple sentence, like \enquote{objects spontaneously fall downward}. First, such a sentence would be false in many situations: just look at the motion of rocks expelled by a volcano, or at cosmological expansion. Second, it would be useless for precise predictions and numerical simulations.
 
 \marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/mixing.jpg}\\%
 \includegraphics[width=\linewidth]{images/life_plant.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 The mixing of two liquids and the growing of life are both consequences of the second law of thermodynamics.}%
-The same remark holds true for the balance of entropy, which also leads to a wild variety of very different consequences. The mixing of two liquids can be said to be a consequence of the balance of entropy (together with the other balances). But also the appearance of life on Earth is a consequence of the balance of entropy; and all complex physical mechanisms underlying life are consequences of the balance of entropy, too (together with the other balances). Any simplistic summaries, like common ones mentioning \enquote{tendency to disorder} or \enquote{spontaneously doing this or that} or similar, are simply \emph{false} in many physical situations. And they are vague -- what does \enquote*{to tend} mean? how is \enquote*{disorder} defined and quantified? what's \enquote*{spontaneous} and what's not? -- and useless for quantitative predictions.
+The same remark holds true for the balance of entropy. This balance also leads to a wild variety of very different physical consequences. The mixing of two liquids can be said to be a consequence of the balance of entropy (together with the other balances). But also the appearance of life on Earth is a consequence of the balance of entropy; and all complex physical mechanisms underlying life are consequences of the balance of entropy, too (together with the other balances). Any simplistic summaries, like common ones mentioning \enquote{tendency to disorder} or \enquote{spontaneously doing this or that} or similar, are
+\begin{enumerate*}[label=(\alph*)]
+\item simply \emph{false} in many physical situations; \item vague: what does \enquote*{to tend} mean? how is \enquote*{disorder} defined and quantified? to what initial values of position, velocity, and so on, does \enquote*{spontaneous} refer to? what's \enquote*{spontaneous} and what's not? \item useless for quantitative predictions.
+\end{enumerate*}
 
 
 \subsection{Irreversibility}
 \label{sec:irreversibility}
 
-From a qualitative point of view, the inequality sign in the balance of entropy expresses \emph{irreversibility}; but we must be careful about the meaning of this word.
+From a qualitative point of view, the inequality sign in the balance of entropy expresses \emph{irreversibility}; but we must understand this word in the right way.
 
 Consider first a generic balance or conservation law; let's take conservation of matter for instance:
 \begin{equation*}
   \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t
 \end{equation*}
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/matter_content.jpg}}%
 Suppose a control volume contains an amount \qty{20}{mol} of matter. During an interval of time we provide a net flow of matter $\int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t = \qty{3}{mol}$ into the control volume. By the conservation law, at the end we have an amount \qty{23}{mol} of matter in the control volume. This also means that in principle we could revert to an amount of \qty{20}{mol} by providing a \emph{negative} amount of the same flow as before, \qty{-3}{mol}. We can, in principle, change the matter content in the volume between \qty{20}{mol} and \qty{23}{mol} by providing a net flow of \qty{+3}{mol} or its opposite \qty{-3}{mol}. If we consider a balance with a supply, the conclusion remains the same, if we invert also the sign of the supply.
 
 Now consider the balance of entropy with a strict inequality:
 \begin{equation*}
   \yS(\ytf) > \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
 \end{equation*}
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/entropy_content.jpg}}%
 Suppose a control volume contains an amount \qty{20}{J/K} of entropy. During an interval of time we provide a net flow of entropy $\int_{\yti}^{\ytf}\!\!\yB(t)\,\di t = \qty{3}{J/K}$ into the control volume. By the inequality above, at the end we \emph{cannot} have an amount \qty{23}{J/K} of entropy in the control volume: it will be larger, say \qty{23.1}{J/K}. If we want to revert to an entropy content of \qty{20}{J/K}, then simply reversing the total flow to \qty{-3}{J/K} won't be enough. In fact, even \qty{-3.1}{J/K} won't be enough, because by the inequality above we must have
 \begin{equation*}
   \text{\footnotesize new entropy amount} > \qty{23.1}{J/K} - \qty{3.1}{J/K}
 \end{equation*}
 and the new entropy content would be more than \qty{20}{J/K}.
 
-This is what we call \textbf{irreversibility}: we cannot revert to a given content in the volume \emph{by inverting the flux}.
+This is what we call \textbf{irreversibility}: we cannot revert to a given entropy content in the volume \emph{by inverting the entropy flux}.
 
 \begin{warning}[\enquote*{Irreversibility} does not mean that we cannot revert to a given content]
-  Note that the example above does \emph{not} imply that we can never have again an entropy content of \qty{20}{J/K} in the control volume. It's only saying that we cannot achieve this by simply giving the opposite of the entropy flux we gave before. In principle, the original entropy content can still be re-established, but by providing a larger negative entropy flux than before.
+  Note that the example above does \emph{not} imply that we can never have again an entropy content of \qty{20}{J/K} in the control volume. It is only showing that we cannot achieve this by simply providing an entropy flux opposite in sign to the flux we provided before. The original entropy content can still in principle be re-established; but in order to achieve this we need to providing a larger negative entropy flux than before.
 
-Analogously, the example does not imply that the entropy content of the volume can only increase. The entropy content can very well decrease, provided an enough large negative entropy flow is provided.
+Analogously, the example does \emph{not} imply that the entropy content of a control volume can only increase. The entropy content can very well decrease, provided an enough large negative entropy flow is provided.
 \end{warning}
 
 \medskip
@@ -7855,14 +7914,60 @@ In cases where the balance of entropy holds with an equal sign:
 then we can of course revert to a given entropy content by inverting the entropy flux.
 
 \begin{definition}{Reversible and irreversible processes,label={def:reversible}}
-  We call a physical change, transformation, or phenomenon between two times $\yti$ and $\ytf$ \textbf{reversible} if it satisfies the balance of entropy with an equal \enquote*{$=$} sign.
+  We call a physical change, process, transformation, or phenomenon between two times $\yti$ and $\ytf$ \textbf{reversible} if it satisfies the balance of entropy with an equal \enquote*{$=$} sign, at least approximately.
 
-  \smallskip
+  \medskip
 
   We call it instead \textbf{irreversible} if it satisfies the balance of entropy with a strict inequality \enquote*{$<$} sign.
+
+  \medskip
+
+  There is no clear-cut division between \enquote*{reversible} and \enquote*{irreversible} processes. A process may lead to an entropy content that is \emph{slightly} larger than the one we would have obtained with a perfectly reversible process; but the difference is so small, with respect to our approximations, that it can be neglected. In this case the process is called reversible for all practical purposes. Arguably there are in fact no \emph{exactly} reversible processes in nature.
 \end{definition}
 
-For some physical materials, within specific physical ranges of some quantities, it happens that all physical phenomena they undergo obey an entropy balance with a strict equality.
+\bigskip
+
+
+\subsection{Entropy balance as a meta-law}
+\label{sec:entropy_metalaw}
+
+%% ***add connection with obs scale
+One important consequence of the inequality sign in the balance of entropy is that this balance cannot be used in a \autoref{sec:numeric_simulation}{numerical-time-integration} scheme. If we rewrite it in an approximate form for a short timestep $\Dt$:
+\begin{equation*}
+  \yS(t+\Dt) \gtrsim \yS(t) + \yB(t)\,\Dt
+\end{equation*}
+this relation doesn't tell us the value of the entropy content at time $t+\Dt$, but only an approximate minimum value that this content could have. As far as we know, it could be much larger than this minimum. For example, if a closed control surface at some time $t$ contains an amount of entropy $\yS(t) = \qty{10}{J/K}$, and the net entropy flux at that time is $\yB(t) = \qty{2}{J/(K\,s)}$, then we can say that a time $\Dt=\qty{0.1}{s}$ after the content should be
+\begin{equation*}
+  \begin{aligned}
+    \yS(t+\Dt) &\gtrsim \yS(t) + \yB(t)\,\Dt\\
+    &\gtrsim \qty{10}{J/K} + \qty{2}{J/(K\,s)}\cdot\qty{0.1}{s}\\
+    &\gtrsim \qty{10.2}{J/K}
+  \end{aligned}
+\end{equation*}
+This mean that maybe $\yS(t+\Dt) \approx \qty{10.2}{J/K}$, or maybe $\yS(t+\Dt)=\qty{1000}{J/K}$, or maybe even larger values -- the law doesn't really tell us.
+
+This law, therefore, apparently does not allow us to \enquote{drive forward} a physical system.
+
+In fact, when we simulate or predict the behaviour of any physical system, it turns out that we can in principle always do without the balance of entropy. We only need to use the other six balances together with any relevant constitutive equations (and, in General Relativity, the equations for the time-evolution of the metric).
+
+What is its physical role of this balance law, then?
+
+\smallskip
+
+The answer is that \emph{the balance of entropy can be viewed as a \enquote*{meta-law}}. That is, not as a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, this meta-law determines which constitutive relations are physically admissible and which are not admissible. In very simple cases it leads to restrictions on the values of physical coefficients. For example, it's a consequence of the balance of entropy that the viscosity coefficient $\yvis$ in the \autoref{def:idealgas_law}{ideal-gas law} and the coefficient of heat transfer $\yhea$ in \autoref{def:newton_cooling}{Newton's law of cooling} must be positive. We shall see a simple example of how this kind of restrictions come about.
+
+But in more complex cases the balance of entropy leads to much more powerful results; for example that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright\color{blue}%
+  \faIcon{user-astronaut}\enspace If you feel adventurous, check the simple examples discussed in Astarita's book, in the section cited in the quote, or in \chap~2 of \cites{samohyletal1987_r2014}.%
+}%
+These complex and more beautiful cases unfortunately require much more advanced mathematics.
+\begin{quote}\footnotesize
+The subtlety arises, of course, because the second law is an inequality, and therefore only other inequalities can be deduced from it by a purely algebraic procedure. However, \textelp{} one can in fact deduce from the second law, when coupled with appropriate constitutive assumptions, consequences which are equations, not inequalities; the procedure is more a logical than an algebraic one.
+\sourceatright{\parencites[\sect~2.4 p.~46]{astarita1989_r1990}}
+\end{quote}
+
+
+%% speak about maths models here
+For some physical materials, within specific ranges of their quantities such as , it happens that all physical phenomena they undergo obey an entropy balance with a strict equality.
 \begin{definition}{Elastic material,label={def:elastic}}
   A material is called (thermodynamically) \textbf{elastic} if all changes it may undergo are \emph{reversible}.
 \end{definition}
@@ -7887,40 +7992,6 @@ First, there are bodies which have two entropies \textelp{} whose difference is 
 
 
 
-\subsection{Entropy balance as a meta-law}
-\label{sec:entropy_metalaw}
-
-
-One important consequence of the inequality sign in the balance of entropy is that it cannot be used in a \autoref{sec:numeric_simulation}{numerical-time-integration} scheme. If we rewrite it in an approximate form for a short timestep $\Dt$:
-\begin{equation*}
-  \yS(t+\Dt) \gtrsim \yS(t) + \yB(t)\,\Dt
-\end{equation*}
-this relation doesn't tell us the value of the entropy content at time $t+\Dt$, but only an approximate minimum value that this content could have. As far as we know, it could be much larger than this minimum. For example, if a closed control surface at some time $t$  contains an amount of entropy $\yS(t) = \qty{10}{J/K}$, and  the net entropy flux at that time is $\yB(t) = \qty{2}{J/(K\,s)}$, then we can say that a time $\Dt=\qty{0.1}{s}$ after the content should be
-\begin{equation*}
-  \begin{aligned}
-    \yS(t+\Dt) &\gtrsim \yS(t) + \yB(t)\,\Dt\\
-    &\gtrsim \qty{10}{J/K} + \qty{2}{J/(K\,s)}\cdot\qty{0.1}{s}\\
-    &\gtrsim \qty{10.2}{J/K}
-  \end{aligned}
-\end{equation*}
-This mean that maybe $\yS(t+\Dt) \approx \qty{10.2}{J/K}$, or maybe $\yS(t+\Dt)=\qty{1000}{J/K}$, or maybe even larger values -- the law doesn't really tell us.
-
-This law, therefore, apparently does not allow us to \enquote{drive forward} a physical system. In fact, it turns out that in simulating or predicting the behaviour of any physical system we can in principle always do without the balance of entropy: we only need to use the other six balances and any relevant constitutive equations (and, in General Relativity, the equations for the time-evolution of the metric).
-
-What is its physical role of this balance law, then?
-
-\smallskip
-
-The answer is that \emph{the balance of entropy can be viewed as a \enquote*{meta-law}}. That is, not as a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, this meta-law determines which constitutive relations are physically admissible and which are not admissible. In very simple cases it leads to restrictions on the values of physical coefficients. For example, it's a consequence of the balance of entropy that the viscosity coefficient $\yvis$ in the \autoref{def:idealgas_law}{ideal-gas law} and the coefficient of heat transfer $\yhea$ in \autoref{def:newton_cooling}{Newton's law of cooling} must be positive. We shall see a simple example of how this kind of restrictions come about.
-
-But in more complex cases the balance of entropy leads to much more powerful results; for example that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{0\baselineskip}\footnotesize\flushleftright\color{blue}%
-  \faIcon{user-astronaut}\enspace If you feel adventurous, check the simple examples discussed in Astarita's book, in the section cited in the quote, or in \chap~2 of \cites{samohyletal1987_r2014}.%
-}%
-These complex and more beautiful cases unfortunately require much more advanced mathematics.
-\begin{quote}\footnotesize
-The subtlety arises, of course, because the second law is an inequality, and therefore only other inequalities can be deduced from it by a purely algebraic procedure. However, \textelp{} one can in fact deduce from the second law, when coupled with appropriate constitutive assumptions, consequences which are equations, not inequalities; the procedure is more a logical than an algebraic one.
-\sourceatright{\parencites[\sect~2.4 p.~46]{astarita1989_r1990}}
-\end{quote}
 
 %% ***meaning: irreversibility, lower/upper bound on something***
 %% more on statistical?
