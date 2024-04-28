@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-28T15:25:56+0200
+%% Last-Updated: 2024-04-29T00:04:45+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -7266,7 +7266,7 @@ The fact that the viscosity coefficients must be positive is a consequence of th
 Next we discuss a constitutive relation that connects the amount of internal energy in the control volume with the amount of ideal gas and its temperature:
 
 \begin{definition}{Internal energy of an ideal gas,label={def:internalenergy_gas}}
-  If a small control volume contains an amount $\yN$ of ideal gas, at uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ equal to
+  If a small control volume contains an amount $\yN$ of ideal gas at uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ given by
   \begin{equation}
     \label{eq:int_energy_idealgas}
     \yU = C\,\yN\,\yte
@@ -8034,6 +8034,52 @@ This relation has wide applicability, but pay close attention to the conditions 
   \end{enumerate}
 \end{exercise}
 
+\subsection{Entropy of an ideal gas}
+\label{sec:entropy_ideal_gas}
+
+In \chap~\ref{cha:bal_energy} we discussed constitutive relations for \autoref{sec:int_energy_idealgas}{the pressure $p$ and the internal energy $\yU$} of an control volume containing an ideal gas:
+\begin{equation*}
+  p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t} \ ,
+  \qquad\qquad
+  \yU = C\,\yN\,\yte
+\end{equation*}
+where $\yN$ is the amount of gas, $\yte$ the temperature of the gas, assumed uniform, $V$ is the volume, and $R$, $C$, $\yvis$ are the molar gas constant, molar heat capacity, and viscosity coefficient.
+
+Under the same conditions of validity for the constitutive relations above, we also have a constitutive relation for the entropy content $\yS$ of the volume of ideal gas:
+\begin{definition}{Entropy of an ideal gas}
+  If a small control volume contains an amount $\yN$ of ideal gas at uniform temperature $\yte$, then it also contains an amount of entropy $\yS$ given by
+  \begin{equation}
+    \label{eq:entropy_idealgas}
+    \yS = C \yN \ln\frac{\yte}{\yte_{0}} - R \yN \ln\frac{\yN/V}{\yN_{0}/V_{0}}
+  \end{equation}
+  where $\yte_{0}, \yN_{0}, V_{0}$ are arbitrary reference temperature, amount of matter, and volume.
+\end{definition}
+
+
+\section{Examples of applications}
+\label{sec:entropy_applications}
+
+\subsection{Impossible and possible thermal engines}
+\label{sec:heat_engine}
+
+Recall that we are completely free in our choice of a \autoref{sec:choice_surfaces}{control volume}: it can have any size and shape, and can move and deform in any way. This freedom is extremely powerful: we can for example imagine a control volume that wraps a very complex engine having moving parts. Through the surface of this control volume we can keep track of any exchanges of energy between the engine and its exterior; in particular exchanges of heat and of mechanical power. And whatever happens in the engine, that is, in our imaginary control volume, must obey the seven universal balance laws.
+
+This powerful freedom in choosing a control volume, when combined with the balances of entropy and energy, can lead to results that have an amazing generality. Thanks to these results we can for example prevent the waste of efforts in technological ideas that would eventually turn out to be unfeasible. Let us see a couple of examples of this kind of results.
+
+\smallskip
+
+First of all let's define what we mean by \enquote*{thermal engine}: a device that can absorb or emit both heat and mechanical work, operating forever at least in principle. A device operated by an electric battery, for instance, is not an engine, because it will cease operating once the battery is exhausted. The ability to operate forever means that at recurring points in time the device must be find itself in the same state, so as to start over.
+
+Now let's ask: would it be possible to build a thermal engine that takes some energy in the form of heat at an inlet, and releases energy in the form of work, say by lifting an object?
+
+The operation of such an engine is completely captured in the side picture. Imagine to wrap such an engine, no matter how complex it could be, in a control volume. A part (\textcolor{purple}{red}) of the surface of such a control volume delimits the inlet through which the engine receives heat $\yQ$. Let's say that the engine has temperature $\yte$ at the inlet. Another part (\textcolor{blue}{blue}) of the surface delimits the movable components through which the engine is releasing mechanical power $-\yF\cdot\yv$, where $\yF$ is the influx of momentum through that part, and $\yv$ is the velocity of the matter set into motion. This expression has a minus sign because this is the mechanical power that \emph{we} receive, so it's an \emph{ef}flux for the engine.
+
+Now imagine the engine starting
+
+%
+\marginpar{\vspace{6\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/engine_1temp.jpg}%
+}%
 
 
 
