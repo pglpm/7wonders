@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-28T00:44:04+0200
+%% Last-Updated: 2024-04-28T11:48:21+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1935,7 +1935,7 @@ Often we consider the second question, about the flow through a surface, in the 
 This is called the \textbf{flux} of the quantity through that surface.
 
 The third  property common to the seven quantities regards the two measurements above.
-\begin{definition}{Extensivity of the seven quantities}\label{def:extensivity}
+\begin{definition}{Extensivity of the seven quantities,label={def:extensivity}}
   If we consider two or more separate volumes, the amount of quantity in the total volume is equal to the sum of the amounts in the separate volumes.
 
   Analogously for the flux through separate surfaces.
@@ -7920,7 +7920,7 @@ The subtlety arises, of course, because the second law is an inequality, and the
 
 In very simple cases this meta-law leads to restrictions on the values of physical coefficients. For example, it's a consequence of the balance of entropy that the viscosity coefficient $\yvis$ in the \autoref{def:idealgas_law}{ideal-gas law} and the coefficient of heat transfer $\yhea$ in \autoref{def:newton_cooling}{Newton's law of cooling} must be positive. We shall see a simple example of how this kind of restrictions come about.
 
-But in more complex cases this meta-law leads to much more powerful results. For example, it can dictate that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{-3\baselineskip}\footnotesize\flushleftright\color{blue}%
+But in more complex cases this meta-law leads to much more powerful results. For example, it can dictate that some constitutive relations cannot contain particular physical quantities as variables. \marginpar{\vspace{-2\baselineskip}\footnotesize\flushleftright\color{blue}%
   \faIcon{user-astronaut}\enspace If you feel adventurous, check the simple examples discussed in Astarita's book, in the section cited in the quote, or in \chap~2 of \cites{samohyletal1987_r2014}.%
 }%
 The discussion of these complex and more fascinating cases unfortunately requires much more advanced mathematics, so we can only get a dim glimpse of them in these notes.
@@ -7952,7 +7952,57 @@ For many physical phenomena and materials, a change of the reference state simpl
 
 But this non-uniqueness is not a problem. Any one of the entropies, defined with respect to different reference states, can be used for instance as one of the quantities that define the state of the physical system. The prediction of the physical system's behaviour will be the same.
 
+\section{Examples of constitutive relations}
+\label{sec:entropy_constitutive}
 
+We have emphasized that the balance of entropy (together with the other balances) imposes restrictions on the possible constitutive relations between the physical quantities used to model a physical phenomenon. Among such quantities are also the entropy content $\yS$ and entropy flux $\yB$ which enter this very balance (if you think about it, it's extremely intriguing that a physical law manages to determine the expressions of the very terms it contains).
+
+The most important constitutive relation for entropy is the one that relates its flux $\yB$ with the \autoref{sec:heating_power}{heat flux} $\yQ$ and the thermodynamic temperature $\yte$.
+\begin{definition}{Entropy flux,label={def:entropyflux}}
+  Consider a control surface, possibly moving, with an assigned crossing direction, and satisfying the following conditions:
+  \begin{itemize}[shift,nosep]
+  \item the surface is in contact with matter on both sides
+  \item no flux of matter through the surface
+  \item no chemical reactions (transformations between matter types) occur across the surface
+  \item no electromagnetic phenomena involved
+  \item the temperature $\yte$ is the same on every part of the surface
+  \item the heat flux through the surface is $\yQ$
+  \end{itemize}
+
+\smallskip
+
+  Then across the control surface there is an entropy flux $\yB$ given by
+  \begin{equation}
+    \label{eq:entropy_flux}
+    \yB = \frac{\yQ}{\yte}
+  \end{equation}
+\end{definition}
+This relation has wide applicability, but pay close attention to the conditions for its validity. In particular, it is not correct if there is a net flux of matter through the surface. Nor is it correct if there are opposite fluxes of \emph{different kinds} of matter that cancel each one out -- so the \emph{net} flux is zero -- but chemical reactions are occurring between these different matter kinds. It is also important that the temperature be well-defined and be uniform, that is, have the same value, on the surface and at least in a small spatial region on each side of the surface. If the temperature is not uniform, the surface is usually divided into smaller parts, so that the temperature can be considered uniform in each part separately, and then the total flux is obtained by summation, thanks to \autoref{def:extensivity}{extensivity}.
+
+\marginpar{\vspace{6\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/entropyflux2.jpg}%
+}%
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item At a particular time instant, across a closed control surface there is a flux of energy as illustrated in the side picture:
+    \begin{itemize}[shift]
+    \item \textcolor{purple}{through one part} of the surface there is a heat influx of \qty{200}{J/s} and no flux of mechanical power; the temperature around that part is \qty{400}{K}
+    \item \textcolor{green}{through one part} there is a \qty{40}{J/s} heat efflux and a \qty{50}{J/s} efflux of mechanical power; the temperature around that part is \qty{150}{K}
+    \item \textcolor{blue}{through one part} there is a  \qty{10}{J/s} heat efflux and no flux mechanical power; the temperature around that part is \qty{100}{K}
+    \item \textcolor{yellow}{through one part}  there is a  \qty{30}{J/s} influx of mechanical power and no heat flux; the temperature around that part is \qty{100}{K}
+    \item \textcolor{midgrey}{through the rest} of the surface there are no energy fluxes of any kind.
+    \end{itemize}
+    Each part of the surface satisfies the conditions of the constitutive relation~\eqref{eq:entropy_flux}.
+
+    \smallskip
+
+    How much is the \emph{net influx} of entropy through the whole closed control surface?
+
+    \bigskip
+
+  \item Suppose that through a particular control surface, at a given time, there is zero \emph{net} energy flux. The surface satisfies the conditions of the constitutive relation~\eqref{eq:entropy_flux}. Can we say that the entropy flux through that surface is also zero?
+  \end{enumerate}
+\end{exercise}
 
 % For elastic materials, a change of the reference state will simply shift all entropy values by a constant amount. For inelastic materials, however, a change of reference state leads to a redefined entropy that depends on time and on other quantities in a different way from the previously defined entropy.
 % 
@@ -7966,7 +8016,6 @@ But this non-uniqueness is not a problem. Any one of the entropies, defined with
 % %% *** mynotew{Add pointer to angular momentum}
 % The definitions of angular momentum and of energy depend on particular reference choices. In the case of angular momentum it's a point in space; in the case of energy it's a reference velocity \amp\ clock (a four-dimensional vector in spacetime).
 % 
-% The definition of entropy also depends on a reference choice: a \emph{reference \autoref{def:state}{state}} of a control volume, that is, on a particular set of values for the minimal number of quantities needed to predict what will happen in the control volume. It is a state to which we assign zero entropy by convention.
 
 
 
