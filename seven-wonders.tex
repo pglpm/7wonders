@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-29T11:50:36+0200
+%% Last-Updated: 2024-04-29T13:24:19+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -24,7 +24,7 @@ british%
 %%%***%%%\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Notes on 21st-century physics}
 \newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Lecture notes for ING\,175}
 \newcommand*{\pdftitle}{The Seven Wonders of the World: Notes on 21st-century physics}
-\newcommand*{\headtitle}{21st-century physics (ING175)}
+\newcommand*{\headtitle}{21st-century physics (ING\,175)}
 \newcommand*{\pdfauthor}{P.G.L.  Porta Mana}
 \newcommand*{\headauthor}{\nameref}
 \newcommand*{\reporthead}{\iftrue\else Open Science Framework \href{https://doi.org/10.31219/osf.io/***}{\textsc{doi}:10.31219/osf.io/***}\fi}% Report number
@@ -960,6 +960,8 @@ reply%
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
+\newcommand*{\yxa}{x_{a}}%
+\newcommand*{\yxb}{x_{b}}%
 \newcommand*{\yv}{\bm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
@@ -992,8 +994,12 @@ reply%
 \newcommand*{\yHs}{\yH_{s}}%
 \newcommand*{\yQ}{Q}% Q really for time-integral
 \newcommand*{\yQb}{Q_{\text{bot}}}%
-\newcommand*{\yhe}{\incr H}% A,W for time-integral
-\newcommand*{\yW}{\incr W}% A,W for time-integral
+\newcommand*{\yQp}{Q^{+}}%
+\newcommand*{\yQm}{Q^{-}}%
+\newcommand*{\yhe}{\incr H}% integrated heat flux
+\newcommand*{\yhep}{\incr H^{+}}%
+\newcommand*{\yhem}{\incr H^{-}}% 
+\newcommand*{\yW}{\incr W}% work
 \newcommand*{\yR}{R}% for energy source
 \newcommand*{\yg}{\bm{g}}% gravitational acceleration
 \newcommand*{\ypo}{A}% gravitational potential energy
@@ -1020,15 +1026,15 @@ reply%
 %\newcommand*{\yt}{\bm{\tau}}
 \newcommand*{\yS}{S}
 \newcommand*{\yB}{\varPi}
+\newcommand*{\yvis}{\mu}%
+\newcommand*{\yhea}{h}%heat-transfer coefficient
 \newcommand*{\yte}{T}%temperature
-\newcommand*{\ytece}{T_{\text{C}}}%temperature
-\newcommand*{\yvis}{\mu}%temperature
-\newcommand*{\yhea}{h}%temperature
-\newcommand*{\yxa}{x_{a}}%temperature
-\newcommand*{\yxb}{x_{b}}%temperature
-\newcommand*{\ytea}{\yte_{a}}%temperature
-\newcommand*{\yteb}{\yte_{b}}%temperature
-\newcommand*{\ytee}{\yte_{\text(ext)}}%temperature
+\newcommand*{\ytece}{T_{\text{C}}}%
+\newcommand*{\ytep}{\yte^{+}}%
+\newcommand*{\ytem}{\yte^{-}}%
+\newcommand*{\ytea}{\yte_{a}}%
+\newcommand*{\yteb}{\yte_{b}}%
+\newcommand*{\ytee}{\yte_{\text(ext)}}%
 %
 \newcommand*{\yti}{t_{0}}
 \newcommand*{\ytf}{t_{1}}
@@ -8084,7 +8090,7 @@ The operation of such an engine is captured in the side picture. Imagine to wrap
 
 The engine starts at time $\yti$ and operates until time $\ytf$, at which time its state is exactly the same as at the initial one, and is ready to continue to another operation cycle. In a cycle, the total amount of heat $\yhe$ we provide to the engine and the total amount of work $\yW$ we \emph{receive} from it are given, with a shorter notation, by
 \begin{equation*}
-  \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t \ ,
+  \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
   \qquad\qquad
   \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
 \end{equation*}
@@ -8156,10 +8162,108 @@ But note that the converse is possible: we can \emph{absorb} a net amount of hea
 
 We can therefore try a different design, where one of the conditions above is dropped. The ability to operate cyclically is very convenient, so let's try to keep it. What happens if we let heat be exchanged at different temperatures?
 
-% \subsection{A possible thermal engine, with limitations}
-% \label{sec:heat_engine2}
-% 
-% Let modify our original design
+\subsection{A possible thermal engine, with limitations}
+\label{sec:heat_engine2}
+
+Let modify our original design. Now we allow the exchange of heat to happen at two different temperatures. This could be done by changing the temperature of one part of the surface over time (within a cycle), or by allowing heat to be exchanged at two different inlets, having constant but different temperatures. We choose the second option as it's easier to analyse and lead to the same results as the first.
+
+%
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/engine_2temp.jpg}%
+}%
+The new engine design is represented in the side picture. An influx of heat $\yQp(t)$ occurs through a part (\textcolor{purple}{dark red}) of the control surface at constant temperature $\ytep$; another influx of heat $\yQm(t)$ occurs through another part (\textcolor{red}{light red})  at constant temperature $\ytem$. We assume
+\begin{equation*}
+  \ytep > \ytem
+\end{equation*}
+but for the moment we are not making assumptions about $\yQp()$ and $\yQm(t)$; we only require that the net amount of heat provided to the engine in a cycle be positive. Across another, movable part (\textcolor{blue}{blue}) of the control surface, the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$.
+
+We consider an operation cycle of the engine between times $\yti$, $\ytf$. Employ again the shorter notation for the time-integrated fluxes:
+\begin{equation*}
+  \begin{gathered}
+    \yhep \defd \int_{\yti}^{\ytf}\!\!\yQp(t)\,\di t
+    \qquad\qquad
+    \yhem \defd \int_{\yti}^{\ytf}\!\!\yQm(t)\,\di t
+    \\
+    \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+  \end{gathered}
+\end{equation*}
+so that the net amount of energy flowing into the control volume in this cycle is
+\begin{equation*}
+  \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\di t =
+ \yhep + \yhem -\yW
+\end{equation*}
+
+The balance of energy applied to the engine's control volume requires that
+\begin{equation*}
+  \yU(\ytf) = \yU(\yti) + \yhep + \yhem - \yW
+\end{equation*}
+and since $\yU(\ytf)=\yU(\yti)$ we find
+\begin{equation}\label{eq:engine2_heatwork}
+  \yW = \yhep + \yhem
+\end{equation}
+That is, the net work released in a cycle must be equal to the net heat provided, as expected. Note that we would like
+
+The flux of entropy for the engine's control volume is
+\begin{equation*}
+    \int_{\yti}^{\ytf}\!\!\yB_{\text{tot}}(t)\,\di t =
+    \int_{\yti}^{\ytf}\!\frac{\yQp(t)}{\ytep}\,\di t +
+    \int_{\yti}^{\ytf}\!\frac{\yQm(t)}{\ytem}\,\di t
+\equiv \frac{\yhep}{\ytep} + \frac{\yhem}{\ytem}
+\end{equation*}
+The balance of entropy applied to the control volume therefore says
+\begin{equation*}
+    \yS(\ytf) \ge \yS(\yti) + \frac{\yhep}{\ytep} + \frac{\yhem}{\ytem}
+\end{equation*}
+and since $\yS(\ytf)=\yS(\yti)$ in this operation cycle we finally find
+\begin{equation*}
+  \frac{\yhep}{\ytep} + \frac{\yhem}{\ytem}  \le 0
+\end{equation*}
+For this new engine, the entropy balance is not saying that the net amount of heat provided in a cycle cannot be positive. It looks like the new engine design might work.
+
+With a little algebra, and recalling that a thermodynamic temperature $\ytem >0$, we can rewrite the inequality above as follows:
+\begin{equation}\label{eq:engine2_heatminus}
+  \yhem \le -\frac{\ytem}{\ytep}\yhep
+\end{equation}
+The fraction $\ytem/\ytep$ is positive; so if $\yhep$ is positive, $\yhem$ must be negative, or vice versa. The entropy balance is therefore saying that \emph{in a cycle, if the net amount of heat exchanged at one inlet is positive, then the net amount exchanged at the other inlet must be negative}.
+
+We wished to have a positive net amount of heat provided to the engine in a cycle, that is,
+\begin{equation*}
+  \yhep + \yhem > 0
+\end{equation*}
+This \emph{is} indeed feasible! If $\yhep$ is positive, then $\yhem$ is negative, but its absolute value is less than $\yhep$, because in formula~\eqref{eq:engine2_heatminus} the fraction $\ytem/\ytep$ is less than $1$. Suppose for instance that $\yhep=\qty{8000}{J}$, $\ytep=\qty{400}{K}$, $\ytem=\qty{100}{K}$. Formula~\eqref{eq:engine2_heatminus} then requires
+\begin{equation*}
+  \yhem \le -\frac{\qty{100}{K}}{\qty{400}{K}}\cdot\qty{8000}{J} = -\qty{2000}{J}
+\end{equation*}
+and it would be possible to have, say, $\yhem=-\qty{3000}{J}$. The net heat amount provided to the engine in a cycle would then be $\qty{8000}{J}-\qty{3000} = +\qty{5000}{J}$. According to the requirement~\eqref{eq:engine2_heatwork} from the balance of energy, in a cycle we would then gain a net work of \qty{5000}{J}. The new engine design is successful!
+
+\medskip
+
+An interesting question arises: how much work, in a cycle, can we squeeze out of our engine? We see that we are giving an energy amount $\yhep$ as heat to the engine, and the engine is returning to us $\yhem$ as heat and $\yW$ as work. Can we somehow minimize $\yhem$ and maximize $\yW$?
+
+It turns out that the balance of entropy also tells us what's the maximal amount of work that we can obtain from the engine. Combine together the requirements~\eqref{eq:engine2_heatwork} and~\eqref{eq:engine2_heatminus}, by substituting $\yhem$ from the latter into the former:
+\begin{equation*}
+  \yW = \yhep + \yhem
+  \enspace\text{\footnotesize and}\enspace
+  \yhem \le -\frac{\ytem}{\ytep}\yhep
+\quad\Longrightarrow\quad
+  \yW \le \yhep -\frac{\ytem}{\ytep}\yhep
+%  =  \biggl(1-\frac{\ytem}{\ytep}\biggr)\,\yhep
+\end{equation*}
+by using a little algebra we finally find the maximal work obtainable:
+\begin{equation*}
+  \yW \le \biggl(1-\frac{\ytem}{\ytep}\biggr)\,\yhep
+\end{equation*}
+The factor $1-\ytem/\ytep$ is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature is positive, the efficiency cannot be greater than $1$.
+
+In order to maximize the amount of work $\yW$ obtained and minimize the amount of heat $\yhem$ received back from the engine, we must try to make the efficiency as close to $1$ as possible. Looking at the fraction $\ytem/\ytep$ we see that there are two main ways, both of which can be pursued:
+\begin{itemize}
+\item Lower as much as possible, close to \qty{0}{K}, the temperature $\ytem$ at which heat is received back from the engine
+\item Increase as much as possible the temperature $\ytep$ at which heat is provided to the engine.
+\end{itemize}
+
+\medskip
+
+It is amazing that we can say, beforehand, how much work we can at most get from such an engine -- without even knowing or needing to specify what kind of technology, materials, and way of operation it could be based upon. You see the strength of the consequences that the little \enquote{$\ge$} sign in the balance of entropy can have.
 
 
 
