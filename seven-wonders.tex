@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-29T00:04:45+0200
+%% Last-Updated: 2024-04-29T11:50:36+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -989,10 +989,11 @@ reply%
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
-\newcommand*{\yHs}{\yH_{s}}% really used for heat-flow
-\newcommand*{\yQ}{Q}% Q for time-integral
-\newcommand*{\yQb}{Q_{\text{bot}}}% Q for time-integral
-\newcommand*{\yW}{W}% A,W for time-integral
+\newcommand*{\yHs}{\yH_{s}}%
+\newcommand*{\yQ}{Q}% Q really for time-integral
+\newcommand*{\yQb}{Q_{\text{bot}}}%
+\newcommand*{\yhe}{\incr H}% A,W for time-integral
+\newcommand*{\yW}{\incr W}% A,W for time-integral
 \newcommand*{\yR}{R}% for energy source
 \newcommand*{\yg}{\bm{g}}% gravitational acceleration
 \newcommand*{\ypo}{A}% gravitational potential energy
@@ -1018,7 +1019,7 @@ reply%
 \newcommand*{\ym}{\bm{M}}% M or T or M_Q
 %\newcommand*{\yt}{\bm{\tau}}
 \newcommand*{\yS}{S}
-\newcommand*{\yB}{H}
+\newcommand*{\yB}{\varPi}
 \newcommand*{\yte}{T}%temperature
 \newcommand*{\ytece}{T_{\text{C}}}%temperature
 \newcommand*{\yvis}{\mu}%temperature
@@ -1028,7 +1029,7 @@ reply%
 \newcommand*{\ytea}{\yte_{a}}%temperature
 \newcommand*{\yteb}{\yte_{b}}%temperature
 \newcommand*{\ytee}{\yte_{\text(ext)}}%temperature
-% 
+%
 \newcommand*{\yti}{t_{0}}
 \newcommand*{\ytf}{t_{1}}
 \newcommand*{\yxi}{x_{0}}
@@ -8070,16 +8071,95 @@ This powerful freedom in choosing a control volume, when combined with the balan
 
 First of all let's define what we mean by \enquote*{thermal engine}: a device that can absorb or emit both heat and mechanical work, operating forever at least in principle. A device operated by an electric battery, for instance, is not an engine, because it will cease operating once the battery is exhausted. The ability to operate forever means that at recurring points in time the device must be find itself in the same state, so as to start over.
 
-Now let's ask: would it be possible to build a thermal engine that takes some energy in the form of heat at an inlet, and releases energy in the form of work, say by lifting an object?
+\subsection{An impossible thermal engine}
+\label{sec:heat_engine1}
 
-The operation of such an engine is completely captured in the side picture. Imagine to wrap such an engine, no matter how complex it could be, in a control volume. A part (\textcolor{purple}{red}) of the surface of such a control volume delimits the inlet through which the engine receives heat $\yQ$. Let's say that the engine has temperature $\yte$ at the inlet. Another part (\textcolor{blue}{blue}) of the surface delimits the movable components through which the engine is releasing mechanical power $-\yF\cdot\yv$, where $\yF$ is the influx of momentum through that part, and $\yv$ is the velocity of the matter set into motion. This expression has a minus sign because this is the mechanical power that \emph{we} receive, so it's an \emph{ef}flux for the engine.
-
-Now imagine the engine starting
+Would it be possible to build a thermal engine that takes some energy in the form of heat  from an inlet at constant temperature, and releases energy in the form of work, say by lifting an object?
 
 %
-\marginpar{\vspace{6\baselineskip}\centering%
+\marginpar{\vspace{\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/engine_1temp.jpg}%
 }%
+The operation of such an engine is captured in the side picture. Imagine to wrap the engine, no matter how complex it could be, in a control volume. A part (\textcolor{purple}{red}) of the surface of the control volume delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. There is a \emph{constant} temperature $\yte$ at the inlet. Another part (\textcolor{blue}{blue}) of the surface delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive, so it's an \emph{ef}flux for the engine.
+
+The engine starts at time $\yti$ and operates until time $\ytf$, at which time its state is exactly the same as at the initial one, and is ready to continue to another operation cycle. In a cycle, the total amount of heat $\yhe$ we provide to the engine and the total amount of work $\yW$ we \emph{receive} from it are given, with a shorter notation, by
+\begin{equation*}
+  \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t \ ,
+  \qquad\qquad
+  \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+\end{equation*}
+The net amount of energy flowing into the control volume between $\yti$ and $\ytf$ is therefore
+\begin{equation*}
+  \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\di t =
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
+  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+  \equiv \yhe -\yW
+\end{equation*}
+
+Let's see what the balance of energy says about such an engine. We have
+\begin{equation*}
+  \begin{aligned}
+    \yU(\ytf) &= \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\di t
+    \\
+    &= \yU(\yti) + \yhe - \yW
+  \end{aligned}
+\end{equation*}
+But the state of the engine at $\ytf$ is the same as at $\yti$, therefore the energy content at these two times must be the same: $\yU(\ytf)=\yU(\yti)$. The equation above simplifies to
+\begin{equation}\label{eq:engine1_heatwork}
+  \yW = \yhe
+\end{equation}
+that is, the mechanical work produced in a cycle must be equal to the total amount of heat provided in a cycle, as expected. The balance of energy doesn't require more than this.
+
+According to the balance of energy this engine is therefore admissible.
+
+Let's see what the balance of entropy says. We have
+\begin{equation*}
+  \begin{aligned}
+    \yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
+    \\
+    &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\frac{\yQ(t)}{\yte}\,\di t
+    \\
+    &\ge \yS(\yti) + \frac{\yhe}{\yte}
+  \end{aligned}
+\end{equation*}
+The last step, where the temperature $\yte$ goes out of the time integral, is possible because the temperature is constant, according to our engine design. Also in this case the initial and final entropy content must be the same: $\yS(\ytf)=\yS(\yti)$. The equation above simplifies to
+\begin{equation}\label{eq:engine1_heatminus}
+  \frac{\yhe}{\yte} \le 0
+  \qquad\underbracket[0pt]{\Longrightarrow}_{\text{\color{midgrey}because $\yte>0$}}\qquad
+  \yhe \le 0
+\end{equation}
+This is a remarkable result: \emph{it's impossible to give a positive net amount of heat, in a cycle, to such an engine}; otherwise the entropy-balance law would be broken.
+
+Together with the conclusion~\eqref{eq:engine1_heatwork} from the balance of energy, we also obtain
+\begin{equation}
+  \label{eq:engine1_noposwork}
+  \yW \le 0
+\end{equation}
+that is, \emph{it's impossible to receive a positive net amount of work, in a cycle, from such an engine}.
+
+We conclude that an engine designed in this way is physically impossible. No matter which kind of ingenious technology or materials we tried to use, we would never be able to cyclically gain positive mechanical work from it.
+
+Note that the opposite use, though, is physically possible: we can, cyclically, provide positive work to the engine and get heat out at a constant temperature. Indeed this is how most heating systems operate.
+
+\medskip
+
+It's important to understand correctly what's possible and what's not. We \emph{can} of course provide positive heat to the device, at a constant temperature, as much as we please. The result above says that \emph{we won't be able to return the device to its initial state} as long as we do so. The incompatibility is between:
+\begin{itemize}[nosep]
+\item positive net amount of heat
+\item constant temperature
+\item cyclic operation
+\end{itemize}
+
+But note that the converse is possible: we can \emph{absorb} a net amount of heat from the device, at constant temperature, as much as we please, and return the device to its initial state.
+
+\smallskip
+
+We can therefore try a different design, where one of the conditions above is dropped. The ability to operate cyclically is very convenient, so let's try to keep it. What happens if we let heat be exchanged at different temperatures?
+
+% \subsection{A possible thermal engine, with limitations}
+% \label{sec:heat_engine2}
+% 
+% Let modify our original design
 
 
 
