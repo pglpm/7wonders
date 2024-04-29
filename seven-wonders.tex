@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-29T15:50:54+0200
+%% Last-Updated: 2024-04-29T19:09:05+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -767,7 +767,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 }
 
 %\date{Draft of \today\ (first drafted \firstdraft)}
-\date{Version \version, updated \updated}
+\date{Working draft version \version, updated \updated}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Macros @@@
@@ -8066,16 +8066,18 @@ Under the same conditions of validity for the constitutive relations above, we a
 \section{Examples of applications}
 \label{sec:entropy_applications}
 
-\subsection{Impossible and possible thermal engines}
+\subsection{Thermal engines}
 \label{sec:heat_engine}
 
-Recall that we are completely free in our choice of a \autoref{sec:choice_surfaces}{control volume}: it can have any size and shape, and can move and deform in any way. This freedom is extremely powerful: we can for example imagine a control volume that wraps a very complex engine having moving parts. Through the surface of this control volume we can keep track of any exchanges of energy between the engine and its exterior; in particular exchanges of heat and of mechanical power. And whatever happens in the engine, that is, in our imaginary control volume, must obey the seven universal balance laws.
+Recall that we are completely free in our choice of a \autoref{sec:choice_surfaces}{control volume}: it can have any size and shape, and can move and deform in any way. This freedom is extremely powerful: we can for example imagine a control volume that wraps a very complex engine having moving parts. Through the surface of this control volume we can keep track of any exchanges of matter, momentum, energy between the engine and its exterior; in particular exchanges of heat and of mechanical power. And whatever happens within the engine, that is, within our imaginary control volume, must obey the seven universal balance laws.
 
-This powerful freedom in choosing a control volume, when combined with the balances of entropy and energy, can lead to results that have an amazing generality. Thanks to these results we can for example prevent the waste of efforts in technological ideas that would eventually turn out to be unfeasible. Let us see a couple of examples of this kind of results.
+This powerful freedom in choosing a control volume, when combined with the balances of entropy and energy, can lead to amazingly general physical results. Thanks to these results we can for example prevent waste of efforts in technological ideas that would eventually turn out to be unfeasible. Let us see a couple of examples.
 
 \smallskip
 
-First of all let's define what we mean by \enquote*{thermal engine}: a device that can absorb or emit both heat and mechanical work, operating forever at least in principle. A device operated by an electric battery, for instance, is not an engine, because it will cease operating once the battery is exhausted. The ability to operate forever means that at recurring points in time the device must be find itself in the same state, so as to start over.
+First of all let's define what we mean by \enquote*{thermal engine}: a device that can absorb or emit both heat and mechanical work, and that can operate repeatedly, in principle forever. A device operated by an electric battery, for instance, is not an engine, because it will cease operating once the battery is exhausted. The ability to operate forever means that at recurring points in time the device must be find itself in the same state, so as to start over.
+
+A thermal engine can also receive or release matter, momentum, angular momentum, and electromagnetic quantities.
 
 \subsection{An impossible thermal engine}
 \label{sec:heat_engine1}
@@ -8086,9 +8088,9 @@ Would it be possible to build a thermal engine that takes some energy in the for
 \marginpar{\vspace{\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/engine_1temp.jpg}%
 }%
-The operation of such an engine is captured in the side picture. Imagine to wrap the engine, no matter how complex it could be, in a control volume. A part (\textcolor{purple}{red}) of the surface of the control volume delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. There is a \emph{constant} temperature $\yte$ at the inlet. Another part (\textcolor{blue}{blue}) of the surface delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive, so it's an \emph{ef}flux for the engine.
+The operation of such an engine is captured in the side picture. Imagine to wrap the engine, no matter how complex it could be, in a closed control surface, defining a control volume. A part (\textcolor{purple}{red}) of the control surface delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. The temperature $\yte$ at the inlet is \emph{constant} in time. Another part (\textcolor{blue}{blue}) of the control surface delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive, so it's an \emph{ef}flux for the engine. Through the rest (\textcolor{midgrey}{grey}) of the control surface there are \emph{no exchanges of heat}, but there may be fluxes of matter, momentum, angular momentum, and electromagnetic quantities; but we require that over an operation cycle the overall amount of each such flow be zero. Only the fluxes $yQ$ and $-\yF\cdot\yv$ can have a non-zero net amount over an operation cycle.
 
-The engine starts at time $\yti$ and operates until time $\ytf$, at which time its state is exactly the same as at the initial one, and is ready to continue to another operation cycle. In a cycle, the total amount of heat $\yhe$ we provide to the engine and the total amount of work $\yW$ we \emph{receive} from it are given, with a shorter notation, by
+The engine starts a cycle at time $\yti$ and operates until time $\ytf$, at which time its state is exactly the same as at the initial one, the cycle is complete, and the engine is ready to start a new operation cycle. In a cycle, the total amount of heat $\yhe$ we provide to the engine and the total amount of work $\yW$ we \emph{receive} from it are given, with a shorter notation, by
 \begin{equation*}
   \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
   \qquad\qquad
@@ -8167,17 +8169,17 @@ We can therefore try a different design, where one of the conditions above is dr
 
 Let modify our original design. Now we allow the exchange of heat to happen at two different temperatures. This could be done by changing the temperature of one part of the surface over time (within a cycle), or by allowing heat to be exchanged at two different inlets, having constant but different temperatures. We choose the second option as it's easier to analyse and lead to the same results as the first.
 
+The new engine design is represented in the side picture. An influx of heat $\yQp(t)$ occurs through a part (\textcolor{purple}{dark red}) of the closed control surface at constant temperature $\ytep$; another influx of heat $\yQm(t)$ occurs through another part (\textcolor{red}{light red}) of the surface at constant temperature $\ytem$. We assume
 %
-\marginpar{\vspace{\baselineskip}\centering%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/engine_2temp.jpg}%
 }%
-The new engine design is represented in the side picture. An influx of heat $\yQp(t)$ occurs through a part (\textcolor{purple}{dark red}) of the control surface at constant temperature $\ytep$; another influx of heat $\yQm(t)$ occurs through another part (\textcolor{red}{light red})  at constant temperature $\ytem$. We assume
 \begin{equation*}
   \ytep > \ytem
 \end{equation*}
-but for the moment we are not making assumptions about $\yQp()$ and $\yQm(t)$; we only require that the net amount of heat provided to the engine in a cycle be positive. Across another, movable part (\textcolor{blue}{blue}) of the control surface, the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$.
+but for the moment we are not making assumptions about $\yQp()$ and $\yQm(t)$; we only require that the net amount of heat provided to the engine in a cycle be positive. Through another, movable part (\textcolor{blue}{blue}) of the control surface the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$. Through the rest (\textcolor{midgrey}{grey}) of the surface there may be fluxes of matter and other quantities, except heat; but the net flow of such quantities is zero over an operation cycle.
 
-We consider an operation cycle of the engine between times $\yti$, $\ytf$. Employ again the shorter notation for the time-integrated fluxes:
+We consider a cycle of the engine between times $\yti$, $\ytf$. Employ again the shorter notation for the time-integrated fluxes:
 \begin{equation*}
   \begin{gathered}
     \yhep \defd \int_{\yti}^{\ytf}\!\!\yQp(t)\,\di t
@@ -8250,9 +8252,9 @@ It turns out that the balance of entropy also tells us what's the maximal amount
 %  =  \biggl(1-\frac{\ytem}{\ytep}\biggr)\,\yhep
 \end{equation*}
 by using a little algebra we finally find the maximal work obtainable:
-\begin{equation*}
+\begin{equation}\label{eq:thermal_efficiency}
   \yW \le \biggl(1-\frac{\ytem}{\ytep}\biggr)\,\yhep
-\end{equation*}
+\end{equation}
 The factor $1-\ytem/\ytep$ is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature is positive, the efficiency cannot be greater than $1$.
 
 In order to maximize the amount of work $\yW$ obtained and minimize the amount of heat $\yhem$ received back from the engine, we must try to make the efficiency as close to $1$ as possible. Looking at the fraction $\ytem/\ytep$ we see that there are two main ways, both of which can be pursued:
@@ -8263,7 +8265,17 @@ In order to maximize the amount of work $\yW$ obtained and minimize the amount o
 
 \medskip
 
-It is amazing that we can say, beforehand, how much work we can at most get from such an engine -- without even knowing or needing to specify what kind of technology, materials, and way of operation it could be based upon. You see the strength of the consequences that the little \enquote{$\ge$} sign in the balance of entropy can have.
+It is amazing that we can say, beforehand, how much work we can at most get from such an engine, without even knowing or needing to specify what kind of technology, materials, and way of operation it could be based upon. You see the strength of the consequences that the little \enquote{$\ge$} sign in the balance of entropy can have.
+
+The thermal-engine example above also hints at the role of the balance of entropy as a meta-law about constitutive relations. In a real application and construction of an engine, the heat flux $\yQ$ and momentum flux $\yF$ will be concretely specified by constitutive relations; think for instance of \autoref{sec:int_energy_idealgas}{Newton's law of cooling for $\yQ$ or the ideal-gas law for $\yF$}. But if a limitation such as the maximal work efficiency~\eqref{eq:thermal_efficiency}, which we can rewrite in full as
+\begin{equation*}
+  -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+  \le
+  \biggl(1-\frac{\ytem}{\ytep}\biggr)\,
+  \int_{\yti}^{\ytf}\!\!\yQp(t)\,\di t \ ,
+\end{equation*}
+is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be whatever. In fact they turn out to have severe restrictions.
+
 
 %% \mynotew{add note about allowed flux of matter}
 
