@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-04-30T18:44:13+0200
+%% Last-Updated: 2024-04-30T18:51:55+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1058,7 +1058,7 @@ reply%
 % {\setlength{\rightskip}{-\marginparsep}\addtolength{\rightskip}{-\marginparwidth}}{\par}
 
 
-\usepackage[print-unity-mantissa=false,retain-explicit-plus,quantity-product=\:]{siunitx}
+\usepackage[print-unity-mantissa=true,retain-explicit-plus,quantity-product=\:]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
 \usepackage{listings}
@@ -1482,9 +1482,9 @@ This makes sense, because we wouldn't know how to interpret the argument otherwi
 \begin{equation*}
   \cos(\qty{60}{s}) \stackrel{?}{=} \cos(60) \approx -0.95
 \end{equation*}
-but wait: $\qty{60}{s}\equiv\qty[print-unity-mantissa=true]{1}{min}$, so we could equivalently write \enquote{$\cos(\qty[print-unity-mantissa=true]{1}{min})$}. Then, according to the hypothetical rule \enquote{just discard the unit}, we would have
+but wait: $\qty{60}{s}\equiv\qty{1}{min}$, so we could equivalently write \enquote{$\cos(\qty{1}{min})$}. Then, according to the hypothetical rule \enquote{just discard the unit}, we would have
 \begin{equation*}
-  \cos(\qty{60}{s}) \equiv \cos(\qty[print-unity-mantissa=true]{1}{min})\stackrel{?}{=} \cos(1) \approx +0.54
+  \cos(\qty{60}{s}) \equiv \cos(\qty{1}{min})\stackrel{?}{=} \cos(1) \approx +0.54
 \end{equation*}
 a completely different result!
 
@@ -1492,17 +1492,17 @@ For this reason an expression like \enquote*{$\cos(t)$}, with $t$ denoting time,
 \begin{equation*}
   \cos\biggl(\frac{t}{T}\biggr)
 \end{equation*}
-where $T$ is the period of the oscillation, a symbol which also includes a time unit, which simplifies with the one in $t$. If the period of the oscillation is $T=\qty[print-unity-mantissa=true]{1}{s}$ then we can also simply write
+where $T$ is the period of the oscillation, a symbol which also includes a time unit, which simplifies with the one in $t$. If the period of the oscillation is $T=\qty{1}{s}$ then we can also simply write
 \begin{equation*}
   \cos(t/\unit{s})
 \end{equation*}
-This expression is now unambiguous: suppose that $t=\qty{60}{s}\equiv\qty[print-unity-mantissa=true]{1}{min}$, then
+This expression is now unambiguous: suppose that $t=\qty{60}{s}\equiv\qty{1}{min}$, then
 \begin{equation*}
   \begin{aligned}
     \cos(t/\unit{s})
     &= \cos(\qty{60}{s}/\unit{s}) =\cos(60) \approx -0.95
     \\
-    &= \cos(\qty[print-unity-mantissa=true]{1}{min}/\unit{s}) =\cos(1\cdot 60\:\mathcolor{red}{\not}\!\unit{s}/\mathcolor{red}{\not}\!\unit{s}\bigr)
+    &= \cos(\qty{1}{min}/\unit{s}) =\cos(1\cdot 60\:\mathcolor{red}{\not}\!\unit{s}/\mathcolor{red}{\not}\!\unit{s}\bigr)
 =\cos(60) \approx -0.95
   \end{aligned}
 \end{equation*}
@@ -1652,7 +1652,7 @@ The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS
 In most everyday situations for us, who live on or nearby Earth and move at speeds much smaller than $c$ with respect to one another, the discrepancies between our proper times are so small that cannot be
 measured with ordinary clocks or with our internal clocks. Consider a
 person walking \qty{10}{m} away from you and then immediately walking back
-to you, at \qty[print-unity-mantissa=true]{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
+to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
 will be \qty{19.999999999999999889}{s}, a difference of \qty{e-16}{s}, which is the error of an atomic clock. %%***add ref
 If human beings still exist in some decades or centuries, with space travel they will probably have to deal more and more with proper-time discrepancies also in everyday life.
 
@@ -2090,7 +2090,7 @@ Let's see some examples of why it is impossible to make a real distinction betwe
 
 \paragraph{Heated gas.}
 
-Imagine we have a box with a given amount of gas, say \qty[print-unity-mantissa=true]{1}{mol} of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Oxygen}{oxygen} molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
+Imagine we have a box with a given amount of gas, say \qty{1}{mol} of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Oxygen}{oxygen} molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
 \begin{equation*}
   \qty{0.031999540000000000}{kg} \ .
 \end{equation*}
@@ -2156,9 +2156,9 @@ we are led to the more general conclusion: The mass of a body is a measure of it
 The equivalence between energy and mass is given by the famous formula $E=m c^{2}$, where $c$ is the speed of light, \eqn~\eqref{eq:c}. In their respective units this gives
 \begin{equation*}
   \begin{gathered}
-    \qty[print-unity-mantissa=true]{1}{kg} = \qty{89875517873681764}{J}\quad\text{(exactly)}
+    \qty{1}{kg} = \qty{89875517873681764}{J}\quad\text{(exactly)}
     \\
-    \qty[print-unity-mantissa=true]{1}{J} \approx \qty{0.0000000000000000111265}{kg}
+    \qty{1}{J} \approx \qty{0.0000000000000000111265}{kg}
   \end{gathered}
 \end{equation*}
 To grasp these numbers, consider that the mass of the rubber band in the example above, \qty{0.5}{g}, is comparable to the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
@@ -2938,7 +2938,7 @@ After our discussion about the peculiarity of fluxes it's quite easy to work wit
 \subsection{Matter flux}
 \label{sec:matter_flux}
 
-Remember that \emph{anti}matter \enquote{counts as \num{-1}} for calculating amounts of matter. If \qty[print-unity-mantissa=true]{1}{mol} of positrons (anti-electrons) crosses a surface from left to right in \qty[print-unity-mantissa=true]{1}{s}, the left-to-right flux equals \qty{-1}{mol/s} -- note the minus sign. The fact that antimatter is given special names can lead to ambiguities. For instance, if someone asks \enquote{what's the left-to-right flux of \emph{positrons}?}, maybe we should answer \enquote{\qty[print-unity-mantissa=true]{1}{mol/s}}, since the question concerned specifically positrons. It's somewhat like asking \enquote{what's the flux of \emph{negative} electric charge?}. In these ambiguous situations is best to add some explanatory words.
+Remember that \emph{anti}matter \enquote{counts as \num{-1}} for calculating amounts of matter. If \qty{1}{mol} of positrons (anti-electrons) crosses a surface from left to right in \qty{1}{s}, the left-to-right flux equals \qty{-1}{mol/s} -- note the minus sign. The fact that antimatter is given special names can lead to ambiguities. For instance, if someone asks \enquote{what's the left-to-right flux of \emph{positrons}?}, maybe we should answer \enquote{\qty{1}{mol/s}}, since the question concerned specifically positrons. It's somewhat like asking \enquote{what's the flux of \emph{negative} electric charge?}. In these ambiguous situations is best to add some explanatory words.
 
 \subsection{Energy flux}
 \label{sec:energy_flux}
@@ -2952,7 +2952,7 @@ We already mentioned that \autoref{sec:forms_energy}{energy flux can be categori
   \item The two sides of a particular surface are called \enquote*{up} and \enquote*{down}. During \qty{0.2}{s}, an energy of \qty{+3}{J} flows from the up-side to the down-side, and an energy of \qty{-4}{J} flows from the down-side to the up-side. How much is the flux of energy through the surface?
   \item Through the same surface, at a later time, \qty{2}{mol} of neutrons flow from the up- to the down- side in \qty{0.01}{s}, and \qty{2}{mol} of neutrons flow from the down- to the up-side during the same time. How much is the flux of matter through the surface?
   \item The two sides of a surface are called \enquote*{in} and \enquote*{out}. During \qty{0.01}{s} there is a flow of \num{1000} electrons from the in-side to the out-side, and also a flow of \num{1000} \emph{positrons} (anti-electrons) in the same direction. How much is the flux of matter through the surface?
-  \item The side picture shows a \textcolor{green}{surface} moving from left to right at a (constant) velocity of \qty[print-unity-mantissa=true]{1}{m/s}. The space to its right has two static regions with some amount of \textcolor{blue}{energy} as shown (there's no energy behind to the left of the surface). How much is the flux of energy through the surface in \qty[print-unity-mantissa=true]{1}{s}?
+  \item The side picture shows a \textcolor{green}{surface} moving from left to right at a (constant) velocity of \qty{1}{m/s}. The space to its right has two static regions with some amount of \textcolor{blue}{energy} as shown (there's no energy behind to the left of the surface). How much is the flux of energy through the surface in \qty{1}{s}?
   \end{enumerate}
 \end{exercise}
 \marginpar{\vspace{-7\baselineskip}\centering\includegraphics[width=\linewidth]{images/surfacemoving_J.pdf}
@@ -3718,7 +3718,7 @@ We see that the fact that air satisfies a conservation law allows us to determin
 }%
 In the previous example we chose a closed control surface that moved and deformed with some object of interest (the tyre tube). But we can also choose a different control surface, for instance a static one.
 
-Consider a block of \qty{53.4}{mol} of ice having cylindrical shape with \qty[print-unity-mantissa=true]{1}{m} diameter and \qty{1.226}{m} height. It is falling downward owing to gravity (and in a vacuum). At a particular time it occupies a particular position; after \qty{0.5}{s} it is situated, for an instant, immediately underneath the initial position, as illustrated in the side picture.
+Consider a block of \qty{53.4}{mol} of ice having cylindrical shape with \qty{1}{m} diameter and \qty{1.226}{m} height. It is falling downward owing to gravity (and in a vacuum). At a particular time it occupies a particular position; after \qty{0.5}{s} it is situated, for an instant, immediately underneath the initial position, as illustrated in the side picture.
 
 Suppose we want to know the net quantity of ice that passed, in a downward direction, across the circular surface separating the initial and final positions. We can calculate this quantity by assuming that ice (as matter) satisfies a conservation law.
 
@@ -4979,7 +4979,7 @@ In other circumstances, however, conservation of these individual kinds of matte
 
 The most common constitutive relation used  together with conservation of matter is the one relating an amount of matter $\yN$ with an amount of \masse\ $\yM$.
 
-As far as we know, if a control volume contains an amount of matter $\yN$, then it always also contains an amount of \masse\ $\yM$ (but the opposite is not always true: a control volume can contain \masse\ and no matter). This amount of \masse\ is typically huge when measured in joules. For instance, a volume with $\yN=\qty[print-unity-mantissa=true]{1}{mol}$ of water (roughly \qty{2e-5}{m^3} for liquid water) contains approximately $\yM = \qty{1.62e15}{J}$ of \masse.
+As far as we know, if a control volume contains an amount of matter $\yN$, then it always also contains an amount of \masse\ $\yM$ (but the opposite is not always true: a control volume can contain \masse\ and no matter). This amount of \masse\ is typically huge when measured in joules. For instance, a volume with $\yN=\qty{1}{mol}$ of water (roughly \qty{2e-5}{m^3} for liquid water) contains approximately $\yM = \qty{1.62e15}{J}$ of \masse.
 
 The amount of \masse\ depends on the kind of matter and on other quantities in that volume, and usually changes with time. These changes, however, are typically \autoref{sec:dist_mass_energy}{extremely small compared to the total amount} -- say much less than \qty{0.00000001}{\percent} in the example above with water! So, as a very good approximation, we can consider this amount as practically constant. The amount of \masse\ $\yM$ is therefore proportional to the amount of matter $\yN$, and we write
 \begin{definition}{Mass-energy of matter,label={def:molarmass}}
@@ -5001,7 +5001,7 @@ For instance, in many physical phenomena involving water we assume the constitut
 \end{equation*}
 
 % For instance, the
-% \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{molar-mass of water} is  $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, which means that \qty[print-unity-mantissa=true]{1}{mol} of water has a \masse\ of \qty{0.0180}{kg}, or equivalently \qty{1.62e15}{J}.
+% \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{molar-mass of water} is  $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$, which means that \qty{1}{mol} of water has a \masse\ of \qty{0.0180}{kg}, or equivalently \qty{1.62e15}{J}.
 
 The exact value of the molar-mass constant depends not only on the substance but also on the context and application: the substance may actually consist of a mixture of different kinds of matter. \enquote*{Air} for example is a mixture of different chemical elements, and their proportion in the mixture may depend on physical conditions such as temperature, and on geographical position.
 \marginpar{\vspace{-4\baselineskip}\centering%
@@ -5129,12 +5129,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 % \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 % }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
 \end{exercise}
 
 
@@ -5520,8 +5520,8 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
 \begin{itemize}
 \item It is always \autoref{sec:pressure}{\emph{compressive}}, that is, its direction is always orthogonal to the surface, and its orientation is the same as the crossing orientation.
-\item Its magnitude, for a surface of \qty[print-unity-mantissa=true]{1}{m^2} at sea level, is approximately equal to \qty{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
-\item Its magnitude slowly decreases with altitude; that is, a \qty[print-unity-mantissa=true]{1}{m^2} surface \qty[print-unity-mantissa=true]{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty[print-unity-mantissa=true]{1}{m^2} surface close to the ground.
+\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty[print-unity-mantissa=false]{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
+\item Its magnitude slowly decreases with altitude; that is, a \qty{1}{m^2} surface \qty{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty{1}{m^2} surface close to the ground.
 \end{itemize}
 
 In examining momentum fluxes for objects on Earth we often neglect the presence of air and atmospheric pressure. We did so in the previous example about a book on a table. The reason is that the \emph{total} momentum flux from atmospheric pressure around an object is usually approximately zero. This happens on account of three factors:
@@ -5539,7 +5539,7 @@ For example you may sometimes have made the mistake of laying a wide slab of gla
 \marginpar{\centering%
 \includegraphics[align=t,width=\linewidth]{images/glassslabs.png}%
 }%
-The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So the total momentum flux from air to the upper slab does no longer sum up to zero: there's only a compressive flux of downward momentum from air to the slab across its upper surface. As mentioned, for a \qty[print-unity-mantissa=true]{1}{m^2} slab this flux is equivalent to a weight of \qty{10000}{kg}! You can't lift the upper slab, not because it's \enquote{stuck} to the lower one, but because it suddenly has a net force of 10\:tonnes on top (which presses the two glass slabs together even more, and therefore drives out more air between them). The only thing you can do is to try to let air again between the two slabs, for instance moving them to a vertical position, so that there will again be atmospheric pressure on both sides of each slab.
+The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So the total momentum flux from air to the upper slab does no longer sum up to zero: there's only a compressive flux of downward momentum from air to the slab across its upper surface. As mentioned, for a \qty{1}{m^2} slab this flux is equivalent to a weight of \qty{10000}{kg}! You can't lift the upper slab, not because it's \enquote{stuck} to the lower one, but because it suddenly has a net force of 10\:tonnes on top (which presses the two glass slabs together even more, and therefore drives out more air between them). The only thing you can do is to try to let air again between the two slabs, for instance moving them to a vertical position, so that there will again be atmospheric pressure on both sides of each slab.
 
 %
 \marginpar{\centering%
@@ -6456,7 +6456,7 @@ A small mathematical change in a constitutive relation can lead to a much richer
         \qquad
         \Dt = \qty{0.001}{s}
         \\
-        \yMa=\qty[print-unity-mantissa=true]{1}{kg}
+        \yMa=\qty{1}{kg}
         \qquad
         \yMb=\qty{5000}{kg}
         \qquad
@@ -6487,7 +6487,7 @@ A small mathematical change in a constitutive relation can lead to a much richer
         \qquad
         \Dt = \qty{0.001}{s}
         \\
-        \yMa=\qty[print-unity-mantissa=true]{1}{kg}
+        \yMa=\qty{1}{kg}
         \qquad
         \yMb=\qty{5000}{kg}
         \qquad
@@ -6815,7 +6815,7 @@ In the sum $\yM c^{2} + \yU$ there actually isn't a clear-cut separation between
 \end{equation*}
 The change in $\yM$ is usually negligible, beyond its 9th decimal digit. But the change in $\yU$ can be quite large. This means that we can arbitrarily redefine the \enquote{zero} of the thermodynamic internal energy $\yU$. For water and steam, for instance, $\yU$ is decreed to be zero at a particular physical condition called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/thermo/pvtsur.html\#c1}{triple point} \parencites{wagneretal1998_r2008}.
 \begin{exercise}
-  Consider a control volume containing water, with $\yM = \qty[print-unity-mantissa=true]{1}{kg}$ and internal energy $\yU=\qty{100000}{J}$. Suppose we want to redefine the internal energy so that it is zero instead. By how much should we redefine $\yM$, so that the sum $\yM c^{2}+\yU$ stays the same?
+  Consider a control volume containing water, with $\yM = \qty{1}{kg}$ and internal energy $\yU=\qty{100000}{J}$. Suppose we want to redefine the internal energy so that it is zero instead. By how much should we redefine $\yM$, so that the sum $\yM c^{2}+\yU$ stays the same?
 \end{exercise}
 
 \begin{warning}[Zero-point of internal energy and conservation of matter]
@@ -6971,7 +6971,7 @@ The heat flux $\yQ$ can be controlled in some situations, and in that case it is
 
 We have discussed the fact that the total energy content in a control volume doesn't depend on our manner of description and measuring instruments, but the separation into internal and kinetic energy does. A completely analogous situation, and for analogous reasons, occurs for the flux of total energy through a control surface, and its separation into heat flux and mechanical power.
 
-Consider two bodies of matter in contact. For one researcher, who observes these bodies macroscopically, there may be a flux of total energy $\yH=\qty[print-unity-mantissa=true]{1}{J/s}$ through the contact surface, and no visible motion of matter. This researcher therefore consider this energy flux to consist completely in a heat flux $\yQ=\qty[print-unity-mantissa=true]{1}{J/s}$, and no mechanical power $\yF\cdot\yv$ since the velocity $\yv$ is zero. For another researcher, who can keep track of molecular motions and velocities, the total-energy flux is still $\yH=\qty[print-unity-mantissa=true]{1}{J/s}$; but this flux consists completely in \qty[print-unity-mantissa=true]{1}{J/s} of mechanical power, obtained by summing up $\yF\cdot\yv$ for all molecules at the contact surface; the heat flux $\yQ$ is zero.
+Consider two bodies of matter in contact. For one researcher, who observes these bodies macroscopically, there may be a flux of total energy $\yH=\qty{1}{J/s}$ through the contact surface, and no visible motion of matter. This researcher therefore consider this energy flux to consist completely in a heat flux $\yQ=\qty{1}{J/s}$, and no mechanical power $\yF\cdot\yv$ since the velocity $\yv$ is zero. For another researcher, who can keep track of molecular motions and velocities, the total-energy flux is still $\yH=\qty{1}{J/s}$; but this flux consists completely in \qty{1}{J/s} of mechanical power, obtained by summing up $\yF\cdot\yv$ for all molecules at the contact surface; the heat flux $\yQ$ is zero.
 
 \subsection{Examples of constitutive relations for energy flux}
 \label{sec:energy_constitutive_flux}
@@ -7335,10 +7335,10 @@ Even more interesting examples, in which Fourier's law does not apply, occur for
 
 Besides the particular constitutive relations for momentum flux, internal energy, and heat flux just discussed, it is typically assumed that a not-too-large volume of ideal gas has a negligible mass. This is usually a reasonable assumption.
 \begin{exercise}
-  Calculate the mass of a litre, that is \qty{1e-3}{m^3}, of air. Use the following information:
+  Calculate the mass of a litre, that is \qty[print-unity-mantissa=false]{1e-3}{m^3}, of air. Use the following information:
   \begin{itemize}[nosep]
   \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\yM\approx\yrho\yN$
-  \item the pressure $p$ of air is around \qty{1e5}{N/m^2}
+  \item the pressure $p$ of air is around \qty[print-unity-mantissa=false]{1e5}{N/m^2}
   \item take a thermodynamic temperature of air $\yte=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
   \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
   \end{itemize}
@@ -7480,7 +7480,7 @@ The \emph{total} momentum influx $F(t)$ is the sum of the fluxes through three m
 \item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$ approximately constant and equal to
   \begin{equation}
     \label{eq:gas_piston_Fatm}
-    \yFatm = - A\cdot\qty{1e5}{N/m^{2}}
+    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
   \end{equation}
 
 \item[Bottom:] The momentum flux through this surface is particularly important, because it's momentum exchanged between the piston and the gas. Denote by $\yFpg(t)$ the flux of momentum from the gas to the piston, and $\yFgp(t)$ the flux of momentum from the piston into the gas. Again by the symmetry of fluxes we have
@@ -7526,7 +7526,7 @@ The equations governing the motion of the piston are therefore
     \qquad
     G = -\yM\,g
     \\[\jot]
-    \yFatm = - A\cdot\qty{1e5}{N/m^{2}}
+    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
   \end{gathered}
 \end{equation}
 together with the relation between momentum influxes for piston and gas at the common surface:
@@ -7690,7 +7690,7 @@ We finally have all the equations to describe and numerically time-integrate our
         \\
         \yti = \qty{0}{s}
         \qquad
-        \ytf = \qty[print-unity-mantissa=true]{1}{s}
+        \ytf = \qty{1}{s}
         \qquad
         \Dt = \qty{0.0001}{s}
         \\
@@ -8704,7 +8704,7 @@ In particular, according to the Newtonian constitutive relation, \emph{momentum 
 
 In the previous section we saw a constitutive relation between matter and \emph{flux} of momentum, which we called \enquote*{convective flux}. It is a flux that's always present whenever there's matter in motion.
 
-In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}. The most cogent example is the air around us, which has a continuous flux of momentum, of approximately \qty{1e5}{N} on every square-metre of surface, called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. This flux is always {\emph{compressive}} and occurs through any surface: any imaginary surface within the body of air itself, and any real surface between air and any other object.
+In some circumstances, matter gives rise to a flux of momentum even when it is not in (visible) motion. In such cases it is said to be in a \furl{https://www.britannica.com/science/gas-state-of-matter}{\emph{gaseous} state}. The most cogent example is the air around us, which has a continuous flux of momentum, of approximately \qty[print-unity-mantissa=false]{1e5}{N} on every square-metre of surface, called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}}. This flux is always {\emph{compressive}} and occurs through any surface: any imaginary surface within the body of air itself, and any real surface between air and any other object.
 
 \smallskip
 
@@ -8810,12 +8810,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\:\unit{yr}$.
 \end{exercise}
 
 
