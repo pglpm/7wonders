@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2024-05-03">
 
-<title>The Seven Wonders of the World 0.1</title>
+<title>The Seven Wonders of the World 0.1 - Code</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -66,7 +68,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-filename','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-filename","listing-file-modified"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="ing175styles.css">
 </head>
@@ -89,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">The Seven Wonders of the World<br>Notes on 21st-century physics</span></a>
   </li>  
 </ul>
@@ -116,6 +176,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
+<h1 class="title">Code</h1>
 </div>
 
 
@@ -138,25 +199,302 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="the-seven-wonders-of-the-world-notes-on-21st-century-physics" class="level1">
-<h1>The Seven Wonders of the World<br>Notes on 21st-century physics</h1>
-<section id="main-text" class="level2">
-<h2 class="anchored" data-anchor-id="main-text"><a href="seven-wonders.pdf">Main text</a></h2>
-<p><br>
-<br>
-</p>
-</section>
-<section id="media" class="level2">
-<h2 class="anchored" data-anchor-id="media"><a href="media">Media</a></h2>
-</section>
-<section id="code" class="level2">
-<h2 class="anchored" data-anchor-id="code"><a href="code">Code</a></h2>
 
 
-</section>
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1712089522000" data-listing-file-modified-sort="1712089522555" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/fluid.m" class="no-external"></a></p><a href="./code/fluid.m" class="no-external">
+<div class="metadata-value listing-filename">
+fluid.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-02
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1713109492000" data-listing-file-modified-sort="1713109492716" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/hooke_spring.m" class="no-external"></a></p><a href="./code/hooke_spring.m" class="no-external">
+<div class="metadata-value listing-filename">
+hooke_spring.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-14
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1712122700000" data-listing-file-modified-sort="1712122700206" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/idealgas1.m" class="no-external"></a></p><a href="./code/idealgas1.m" class="no-external">
+<div class="metadata-value listing-filename">
+idealgas1.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-03
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1712731390000" data-listing-file-modified-sort="1712731390616" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/idealgas2.m" class="no-external"></a></p><a href="./code/idealgas2.m" class="no-external">
+<div class="metadata-value listing-filename">
+idealgas2.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-10
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1712730717000" data-listing-file-modified-sort="1712730717954" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/idealgas_nomass.m" class="no-external"></a></p><a href="./code/idealgas_nomass.m" class="no-external">
+<div class="metadata-value listing-filename">
+idealgas_nomass.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-10
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1713467164000" data-listing-file-modified-sort="1713467164657" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/idealgas_piston.m" class="no-external"></a></p><a href="./code/idealgas_piston.m" class="no-external">
+<div class="metadata-value listing-filename">
+idealgas_piston.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-18
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1712240910000" data-listing-file-modified-sort="1712240910098" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/idealgas_r.m" class="no-external"></a></p><a href="./code/idealgas_r.m" class="no-external">
+<div class="metadata-value listing-filename">
+idealgas_r.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-04
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1713514957000" data-listing-file-modified-sort="1713514957790" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/idealgas_tests.m" class="no-external"></a></p><a href="./code/idealgas_tests.m" class="no-external">
+<div class="metadata-value listing-filename">
+idealgas_tests.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-19
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-listing-date-sort="1713301703000" data-listing-file-modified-sort="1713301703263" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/igp0.m" class="no-external"></a></p><a href="./code/igp0.m" class="no-external">
+<div class="metadata-value listing-filename">
+igp0.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-16
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-listing-date-sort="1713301750000" data-listing-file-modified-sort="1713301750991" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/igp1.m" class="no-external"></a></p><a href="./code/igp1.m" class="no-external">
+<div class="metadata-value listing-filename">
+igp1.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-16
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-listing-date-sort="1713301989000" data-listing-file-modified-sort="1713301989486" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/igp2.m" class="no-external"></a></p><a href="./code/igp2.m" class="no-external">
+<div class="metadata-value listing-filename">
+igp2.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-16
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-listing-date-sort="1713302398000" data-listing-file-modified-sort="1713302398251" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/igp3.m" class="no-external"></a></p><a href="./code/igp3.m" class="no-external">
+<div class="metadata-value listing-filename">
+igp3.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-16
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-listing-date-sort="1713345141000" data-listing-file-modified-sort="1713345141389" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/rubberband2D.m" class="no-external"></a></p><a href="./code/rubberband2D.m" class="no-external">
+<div class="metadata-value listing-filename">
+rubberband2D.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-17
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-listing-date-sort="1713107963000" data-listing-file-modified-sort="1713107963938" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/rubberband2D_back.m" class="no-external"></a></p><a href="./code/rubberband2D_back.m" class="no-external">
+<div class="metadata-value listing-filename">
+rubberband2D_back.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-14
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-listing-date-sort="1712259619000" data-listing-file-modified-sort="1712259619572" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/rubberband2D_temp.m" class="no-external"></a></p><a href="./code/rubberband2D_temp.m" class="no-external">
+<div class="metadata-value listing-filename">
+rubberband2D_temp.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-04
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="15" data-listing-date-sort="1711400201000" data-listing-file-modified-sort="1711400201951" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/spring2D.m" class="no-external"></a></p><a href="./code/spring2D.m" class="no-external">
+<div class="metadata-value listing-filename">
+spring2D.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-03-25
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="16" data-listing-date-sort="1714469212000" data-listing-file-modified-sort="1714469212765" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/spring_floor.m" class="no-external"></a></p><a href="./code/spring_floor.m" class="no-external">
+<div class="metadata-value listing-filename">
+spring_floor.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-30
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="17" data-listing-date-sort="1713109479000" data-listing-file-modified-sort="1713109479032" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/tennisball.m" class="no-external"></a></p><a href="./code/tennisball.m" class="no-external">
+<div class="metadata-value listing-filename">
+tennisball.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-14
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="18" data-listing-date-sort="1713003855000" data-listing-file-modified-sort="1713003855468" data-listing-date-modified-sort="NaN">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="./code/tennisball_backward.m" class="no-external"></a></p><a href="./code/tennisball_backward.m" class="no-external">
+<div class="metadata-value listing-filename">
+tennisball_backward.m
+</div>
+<div class="metadata-value listing-file-modified">
+2024-04-13
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
