@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-04T21:03:05+0200
+%% Last-Updated: 2024-05-04T21:28:36+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -5614,9 +5614,20 @@ Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$
 
   \item Consider the following Octave/MATLAB function to calculate the friction in a numerical simulation in two dimensions with coordinates $(x,z)$:
     \lstinputlisting[style=mycode]{code/friction.m}
-Check that it correctly covers and represents both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
+Check that this function correctly covers and represents both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
   \end{enumerate}
 \end{exercise}
+%
+\marginpar{\vspace{-10\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
+\texttt{\color{blue}sign()} is defined as
+    \begin{equation*}
+      \texttt{sign}(x)   \defd   \begin{cases}
+        +1 &\text{if } x>0\\
+        0 &\text{if } x=0\\
+        -1 &\text{if } x<0
+      \end{cases}
+    \end{equation*}
+}%
 
 % You may wonder: why are we going to speak about a new kind of momentum flux now, in a separate section, rather than in the previous section on \autoref{sec:momentum_constitutive}{constitutive relations for momentum fluxes}? It's because contact forces are often not given by constitutive relations, used in predicting how the system will behave. Instead, their expression is in some cases calculated as a consequence of particular \autoref{sec:boundary_conds}{boundary conditions}; and in other cases is a mixture of constitutive relations and boundary conditions. Here is an example of this complex state of affairs.
 

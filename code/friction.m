@@ -1,6 +1,6 @@
 function F_fr = friction(Fother_x, Fother_z, v_x, mu_s, mu_k)
   if v_x == 0 % static friction
-    threshold = mu_s*abs(Fother_z); % max magnitude
+    threshold = mu_s * abs(Fother_z); % max magnitude
     if abs(Fother_x) <= threshold
       F_fr = -Fother_x;
     else
