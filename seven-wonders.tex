@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-04T13:24:05+0200
+%% Last-Updated: 2024-05-04T20:59:52+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1013,8 +1013,17 @@ reply%
 \newcommand*{\yFpg}{F_{\text{pg}}}
 \newcommand*{\yFgp}{F_{\text{gp}}}
 \newcommand*{\yFatm}{F_{\text{atm}}}
-\newcommand*{\yFn}{\yF_{\text{n}}}
-\newcommand*{\yFt}{\yF_{\text{s}}}
+\newcommand*{\yFc}{\yF_{\text{c}}}
+\newcommand*{\yFn}{F_{\text{n}}}
+\newcommand*{\yFs}{F_{\text{s}}}
+\newcommand*{\yFk}{\yF_{\text{k}}}
+\newcommand*{\yFr}{\yF_{\text{other}}}
+\newcommand*{\yFrx}{F_{\text{other},x}}
+\newcommand*{\yFrz}{F_{\text{other},z}}
+\newcommand*{\yfri}{\mu}%
+\newcommand*{\yfris}{\mu_{\text{s}}}%
+\newcommand*{\yfrik}{\mu_{\text{k}}}%
+\newcommand*{\ye}{e}
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
@@ -5449,6 +5458,169 @@ When we consider physical phenomena that happen close to a planet's surface and 
 \end{definition}
 
 
+\subsection{Contact forces}
+\label{sec:contact_force}
+
+Many physical phenomena involve contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor, or a layer of vegetable oil floating above water. The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces} and have several peculiar features. In some cases they are mathematically quite difficult to describe.
+
+We here discuss some particular constitutive relations for contact forces between rigid bodies, with the following simplifications:
+\begin{itemize}[nosep]
+\item one of the bodies is at rest in the chosen coordinate system; typically this \enquote*{body} is the ground, floor, or the surface of a table;
+\item the contact surface is horizontal, orthogonal to the force of gravity.
+\end{itemize}
+
+A contact force in this kind of situations typically has both a component orthogonal to the surface (vertical component), and a component parallel to the surface (horizontal component), so its direction is oblique with respect to the surface. The surface-orthogonal component of a contact force is called \textbf{normal force}, and the surface-parallel component is called \textbf{friction}.
+
+If we simplify the problem to two dimensions with coordinates $(x,z)$, where $x$ is horizontal and $z$ is vertical, upward, then the $z$-component of the contact force is the normal force, and the $x$-component is the friction. Informally we can write
+\begin{equation*}
+  \textbf{\footnotesize contact force}
+  =
+  \begin{bmatrix}
+    \text{\footnotesize contact force}_{x}
+    \\
+    \text{\footnotesize contact force}_{z}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \text{\footnotesize friction}
+    \\
+    \text{\footnotesize normal force}
+  \end{bmatrix}
+\end{equation*}
+
+In many cases, a contact force $\yFc$ has a constitutive equation of this type:
+\begin{equation}\label{eq:contact_force_2D}
+  \yFc =
+  \begin{bmatrix}
+    \pm\yfri\, \yFn \\
+    \yFn 
+  \end{bmatrix}
+\end{equation}
+where $\yFn$ is the normal force and $\yfri$ is approximately a constant, called \textbf{friction coefficient}. The normal force $\yFn$ has in turn a special expression. Let us examine it first.
+
+\paragraph{Normal force}
+\label{sec:normal_force}
+
+The normal components of contact forces are peculiar: their mathematical expression can be said to be determined by the balance of momentum, rather than vice versa.
+
+Consider an object such a book lying on a table, possibly pushed along the table. We \emph{observe} that the vertical position of the book does not change: the book doesn't suddenly sink into the table, nor does it suddenly levitate upwards. Its vertical velocity component is therefore always zero:\enspace$v_{z} = \qty{0}{m/s}$\,.\enspace Using Newton's constitutive relation for momentum $\yP=\yM\yv$, where $\yM$ is the mass of the book, we see that the vertical momentum component is also always zero:\enspace$P_{z}=\yM v_{z} = \qty{0}{N\,s}$\,.\enspace Its time derivative is therefore also zero.
+
+Now consider the sum of all momentum fluxes through the whole surface of the book \emph{except the contact surface}: top surface, side surfaces; call this sum $\yFr$. Consider also the gravitational supply of momentum $\yG=-\yM\,g\,[0,-1]$. Taking the vertical, $z$-component of the balance of momentum we have
+\begin{equation*}
+  \qty{0}{N} = 
+  \frac{\di P_{z}}{\di t}
+  = \yFn + \yFrz + G_{z}
+\qquad  \Longrightarrow\qquad
+  \yFn = - \yFrz - G_{z}
+\end{equation*}
+That is, the normal force is equal to \emph{minus} the sum of all $z$-components of the other momentum fluxes and of the momentum supply:
+\begin{definition}{Normal force (horizontal case),label={def:normalforce}}
+  In many situations of horizontal contact between two solid bodies, the \textbf{normal force} $\yFn$ is given by
+  \begin{equation*}
+    \yFn = -\Bigl(\parbox{0.8\linewidth}{\footnotesize sum of $z$-components of momentum fluxes through all other surfaces and of momentum supply}\Bigr)
+  \end{equation*}
+\end{definition}
+
+The normal force is therefore never needed to predict the behaviour of the vertical momentum of a body. Rather, its mathematical expression comes from the fact that we already know that such momentum is zero and constant. But the value of this force is needed to determine the \emph{horizontal component} of the contact force: the friction, as formula~\eqref{eq:contact_force_2D} shows.
+
+\paragraph{Friction}
+
+When we want to push or drag an object such as a table or large box across the floor, it's a common experience that exerting a small force (say, pushing with a finger) won't move the object. We need to exert a minimal amount of force to set it into motion; and usually this minimal force is the larger, the heavier is the object. It's also a common experience that once we manage to set the object into motion, the force we need to exert to keep it moving with a constant speed can be smaller than the force initially needed to set it into motion.
+
+In both these experiences the total momentum content of the object is not changing (and it is zero in the first experience). In particular, the fact that the \emph{horizontal} component of momentum is not changing, even if we are providing a horizontal momentum flux, means that there is a horizontal momentum flux coming from somewhere else. Obviously it is the horizontal component of the contact force exerted on the object by the floor: the \emph{friction} between object and floor.
+
+Our two experiences illustrate that this friction may be different depending on whether the object is at rest or in motion with respect to the floor. We call it \textbf{static friction} when the object's velocity is zero, and \textbf{kinetic} or \textbf{sliding friction} when the object's velocity is non-zero. Let's see their mathematical expressions.
+
+\paragraph{Static friction}
+
+In our first experience, with the object at rest on the floor, we noticed that the (zero) horizontal momentum does not change if we exert any amount of force smaller than a particular threshold. Reasoning as we did for the normal force, consider again the sum $\yFr$ of all momentum fluxes through the whole surface of the object except the contact surface. Even if not necessary in this specific case, consider also the gravitational supply of momentum $\yG=-\yM\,g\,[0,-1]$. Finally, call $\yFs$ the static friction. Taking the horizontal, $x$-component of the balance of momentum we find
+\begin{equation*}
+  \qty{0}{N} = 
+  \frac{\di P_{x}}{\di t}
+  = \yFs + \yFrx + G_{x}
+\qquad  \Longrightarrow\qquad
+  \yFs = - \yFrx - G_{x}
+\end{equation*}
+Note how it is the balance of momentum that determines the amount of static friction, rather than vice versa, just like it happened for the normal force.
+
+We also said that this friction occurs only as long as the total horizontal force is less that a particular threshold. This threshold turns out to be, approximately:
+\begin{itemize}[nosep]
+\item independent of the area of the contact surface
+\item dependent on the nature of the two materials in contact
+\item proportional to the normal force exerted on the object
+\end{itemize}
+We can express this threshold with the equation
+\begin{equation*}
+  (\yFs)_{\text{threshold}} = \yfris\, \abs{\yFn} \ .
+\end{equation*}
+
+\begin{definition}{Static friction (horizontal case),label={def:staticfriction}}
+  In many situations of horizontal contact between two solid bodies, the \textbf{static friction} $\yFs$ is given by
+  \begin{equation}\label{eq:staticfriction}
+    \yFs =
+    \begin{dcases}
+      -\yFr
+      &\text{if } \abs{\yFr} \le \yfris\, \abs{\yFn}
+      \\
+      -\ye_{\yFr}\,\yfris\,\abs{\yFn}
+      &\text{if } \abs{\yFr} \ge \yfris\, \abs{\yFn}
+    \end{dcases}
+  \end{equation}
+  where
+  \begin{equation*}
+    \yFr \defd \Bigl(\parbox{0.6\linewidth}{\footnotesize sum of horizontal components of momentum fluxes through all other surfaces}\Bigr) \ ,
+  \end{equation*}
+  $\yFn$ is the normal force, $\yfris$ is called the \textbf{coefficient of static friction}, and $\ye_{\yFr}$ is a \emph{unit vector} having the same direction as $\yFr$.
+\end{definition}
+
+\paragraph{Kinetic friction}
+
+In our second experience, with the object in motion, we noticed that the kinetic friction $\yFk$ exerted by the floor on the object is, approximately:
+\begin{itemize}[nosep]
+\item constant
+\item independent of the area of the contact surface
+\item dependent on the nature of the two materials in contact
+\item proportional to the normal force exerted on the object
+\item opposite to the velocity $\yv$ of the object
+\end{itemize}
+
+
+\begin{definition}{Kinetic friction (horizontal case),label={def:kineticfriction}}
+  In many situations of horizontal contact between two solid bodies, the \textbf{kinetic friction} $\yFk$ is given by
+  \begin{equation}\label{eq:kineticfriction}
+\yFk = -\ye_{\yv}\,\yfrik\,\abs{\yFn}
+  \end{equation}
+  where $\yfrik$ is the \textbf{coefficient of kinetic friction}, and $\ye_{\yv}$ is a \emph{unit vector} having the same direction as the velocity $\yv$; the minus sign indicates that the kinetic friction $\yFk$ has opposite direction.
+
+  \smallskip
+
+  The formula above is valid only as long as the velocity of the object is not zero.
+\end{definition}
+
+Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$, need not have the same value; in many cases the coefficient of kinetic friction is smaller than the other.
+
+
+%
+\marginpar{\vspace{6\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/carpush.jpg}%
+}%
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item The normal force has physical dimensions of force, SI units \unit{N}. From formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction} find the physical dimensions and units of the coefficients of static and kinetic friction.
+
+  \item Two persons are pushing a parked car (side figure). The car rests on a thin layer of ice that formed on the tarmac. Each person is exerting a horizontal force of \qty{600}{N}. The car has mass \qty{1200}{kg}, and the acceleration of gravity is \qty{9.8}{N/kg}. The coefficient of static friction between the wheel's rubber and ice is $\yfris=0.1$.
+
+    Will the two persons manage to move the car?
+
+  \item Consider the following Octave/MATLAB function to calculate the friction in a numerical simulation in two dimensions with coordinates $(x,z)$:
+    \lstinputlisting[style=mycode]{code/friction.m}
+Check that it correctly covers and represent both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
+  \end{enumerate}
+\end{exercise}
+
+% You may wonder: why are we going to speak about a new kind of momentum flux now, in a separate section, rather than in the previous section on \autoref{sec:momentum_constitutive}{constitutive relations for momentum fluxes}? It's because contact forces are often not given by constitutive relations, used in predicting how the system will behave. Instead, their expression is in some cases calculated as a consequence of particular \autoref{sec:boundary_conds}{boundary conditions}; and in other cases is a mixture of constitutive relations and boundary conditions. Here is an example of this complex state of affairs.
+
+
 
 
 
@@ -5817,7 +5989,7 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 
 \item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\yMb$, total momentum $\yPb=\yMb\,\yvb$.
 %
-\marginpar{\vspace{-3\baselineskip}\centering%
+\marginpar{\vspace{-7\baselineskip}\centering%
 \includegraphics[height=15em]{images/hooke_controls.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
@@ -6539,19 +6711,6 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 }%
 \lstinputlisting[style=mycode]{code/rubberband2D.m}
 
-\section{Contact forces}
-\label{sec:contact_force}
-
-Many physical phenomena involve a contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor for example. The fluxes of momentum that occur through contact surfaces of this kind have several peculiarities, and in some cases may be quite difficult to describe mathematically.
-
-You may wonder: why are we going to speak about a new kind of momentum flux now in a separate section, rather than in the previous section on \autoref{sec:momentum_constitutive}{examples of constitutive relations for momentum fluxes}? It's because contact forces often play a different role in the description and simulation of a physical system: they are not quite given by constitutive relations, but are instead examples of \autoref{sec:boundary_conds}{boundary conditions}, or a combination of the two.
-
-\subsection{Normal force}
-\label{sec:normal_force}
-
-
-\subsection{Friction}
-\label{sec:friction}
 
 
 
