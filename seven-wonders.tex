@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-04T22:32:12+0200
+%% Last-Updated: 2024-05-04T22:38:28+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -7418,7 +7418,7 @@ Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{
 Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
 
 \begin{definition}{Ideal-gas law with viscosity,label={def:idealgas_law}}
-  If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yte$, and the momentum flux is orthogonal to the surface and uniform throughout, then the pressure $p$ is given by
+  If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yte$, and the momentum flux is orthogonal to the surface and uniform throughout, and there is no matter flux through the surface, then the pressure $p$ is given by
   \begin{equation}
     \label{eq:ideal_gas_p}
     p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
@@ -7442,6 +7442,7 @@ The equation above is called the \textbf{ideal-gas law with viscosity}.
   % \end{equation}
   % where $\eta$ and $\zeta$ are called the \emph{shear} and \emph{bulk} \furl{https://www.britannica.com/science/fluid-mechanics/Viscosity}{viscosity coefficients}. These coefficients are always positive, and usually depend on the temperature.
 \end{definition}
+Note that the formula above for pressure and momentum flux is only valid for surfaces through which no matter flux occurs.
 
 In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
 %
@@ -7609,14 +7610,17 @@ The masslessness assumption is of course inadequate in some conditions like extr
 \subsection{Setup}
 \label{sec:idealgas_ex_setup}
 
+One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
+To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$.
 %
-\marginpar{\vspace{-4\baselineskip}\centering%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
-One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
-To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$. The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
+The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
 
-Since the piston has mass $\yM$, it also has momentum $\yP=\yM\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yG = -\yM\,g$. You may wonder why we need to consider a piston having mass. There are two main reasons. First, in a real situation a piston does have a mass that is non-negligible, compared with the mass of the gas. Second, the assumption that the gas has no mass makes \autoref{sec:further_idealgas}{the balance of momentum become singular}, as discussed in the previous section, and any description and prediction of motion becomes therefore impossible -- unless we add mass somewhere else. The piston is effectively also a proxy for the mass of the gas. We encountered an analogous situation with the spring-and-bodies system.
+Since the piston has mass $\yM$, it also has momentum $\yP=\yM\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yG = -\yM\,g$.
+
+You may wonder why we need to consider a piston having mass. There are two main reasons. First, in a real situation a piston does have a mass that is non-negligible, compared with the mass of the gas. Second, the assumption that the gas has no mass makes \autoref{sec:further_idealgas}{the balance of momentum become singular}, as discussed in the previous section, and any description and prediction of motion becomes therefore impossible -- unless we add mass somewhere else. The piston is effectively also a proxy for the mass of the gas. We encountered an analogous situation with the spring-and-bodies system.
 
 \subsection{Control volumes \amp\ surfaces}
 \label{sec:idealgas_ex_control}
