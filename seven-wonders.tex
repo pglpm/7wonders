@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-03T10:53:29+0200
+%% Last-Updated: 2024-05-04T11:45:58+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1544,7 +1544,6 @@ The \autoref{sec:velocity}{velocity} of the object is given by the derivative of
 \end{equation*}
 and you see that the correct units for velocity have automatically appeared.
 
-\clearpage
 
 \section{What is \enquote{fundamental} physics?}
 \label{sec:fundamental_physics}
@@ -2706,7 +2705,7 @@ The fact that we can choose control volumes and control surfaces arbitrarily giv
 
 When we study some solid object, like a football, a rocket, or a planet, we typically choose a control volume that tightly encloses the object. When we study something flowing or moving, like a fluid material or an electromagnetic field, we typically divide the space of interest into small control volumes and surfaces, constructing a \emph{mesh}; this mesh can even be refined in regions that are of special interest.
 
-\section{Volume contents}
+\section{Volume content}
 \label{sec:intuition_volume}
 
 \subsection{Scalar quantities}
@@ -2801,7 +2800,7 @@ We have a region consisting of two subregions; the amounts of momentum in each s
 \end{extra}
 
 
-\section{Fluxes of scalar quantities}
+\section{Flux: scalar quantities}
 \label{sec:intuition_fluxes_scalar}
 
 \subsection{The direction, reckoning, and representation of scalar fluxes}
@@ -2960,7 +2959,7 @@ We already mentioned that \autoref{sec:forms_energy}{energy flux can be categori
 
 
 
-\section{Fluxes of vector quantities}
+\section{Flux: vector quantities}
 \label{sec:intuition_fluxes_vector}
 
 \subsection{The direction, reckoning, and representation of vector fluxes}
@@ -3228,10 +3227,10 @@ In general, a momentum flux won't have any of the three special directions above
 
 
 
-\section{Closed surfaces, influxes, effluxes}
+\section{Closed control surfaces, influxes, effluxes}
 \label{sec:in_out_flux}
 
-We shall often consider \textbf{closed} surfaces, that is, surfaces that don't have a rim or border or holes, like the surface of a sphere or of a cube. A closed surface delimits a specific three-dimensional volume, and we can naturally speak of its \textbf{interior} and its \textbf{exterior}. An example (simplified by removing one dimension as usual) is the surface in the side picture.
+We shall often consider \textbf{closed} control surfaces, that is, control surfaces that don't have a rim or border or holes, like the surface of a sphere or of a cube. A closed surface delimits a specific three-dimensional volume, and we can naturally speak of its \textbf{interior} and its \textbf{exterior}. An example (simplified by removing one dimension as usual) is the surface in the side picture.
 \marginpar{\centering%
 \includegraphics[height=6em]{images/closed_surface.pdf}
 }
@@ -3337,7 +3336,7 @@ The individual fluxes and the total efflux are consistent, since
 % 3e18 enter
 
 
-\section{Integrated fluxes}
+\section{Time-integrated fluxes}
 \label{sec:total_flow}
 
 A flux is defined as the amount of a quantity crossing a surface in a short time lapse $\Dt$, divided by that time lapse. Denoting the flux by, say, $\yJ$, this definition also means that the amount of quantity crossing the surface in a short time $\Dt$ is equal to $\yJ\,\Dt$.
@@ -3345,8 +3344,8 @@ A flux is defined as the amount of a quantity crossing a surface in a short time
 Take now a surface that exists between two time instants $\yti$ and $\ytf$; during this time lapse it could also be moving and changing shape. Choose a crossing direction through the surface. At each intermediate time instant $t$ we can then measure the flux of a quantity crossing the surface in that direction, at that instant; denote it by $\yJ(t)$.
 
 The total amount of quantity that crosses the surface between times $\yti$ and $\ytf$ can be found by integrating $\yJ(t)$. That is, we divide the time interval into very short time lapses of length $\Dt$; for each short time lapse we know that the amount that crosses the surface is $\yJ(t)\,\Dt$. The total is obtained by adding these small amounts. As $\Dt$ is considered shorter and shorter, this sum is by definition an integral:
-\begin{definition}{Integrated flux of a quantity through a surface between two times}
-The total amount of quantity crossing a surface (relative to a specified crossing direction) between times $\yti$ and $\ytf$ is given by
+\begin{definition}{Time-integrated flux of a quantity through a surface between two times}
+The total amount of quantity crossing a surface (relative to a specified crossing direction) between times $\yti$ and $\ytf$ is called the \textbf{time-integrated flux} and is given by
   \begin{equation}
     \label{eq:total_flow_integral}
      \int_{\yti}^{\ytf}\!\! \yJ(t)\,\di t\ .
@@ -4453,7 +4452,7 @@ If you want to learn more about differential forms take a look at the books by B
 
 
 
-\section[Roles of the seven balances]{Roles of the seven balances in description and prediction}
+\subsection[Roles of the seven balances]{Roles of the seven balances in description and prediction}
 \label{sec:role_seven_laws}
 
 The seven universal balances govern every physical phenomenon. Yet this doesn't mean that all of them are always used explicitly in the description or prediction of physical phenomena.
@@ -4719,7 +4718,7 @@ In order to do the numerical time integration above, you notice that we need to 
 In fact, the evolution equation from a balance or conservation law always gives us the \emph{volume content} at a new time. So it would seem that we have no ways to predict a \emph{flux} or a \emph{supply}. Where do we get these from? There are two possibilities:
 \begin{itemize}[para]
 \item They are simply assigned at every time step, completely or in part. This may be possible because they are known, measured, or controlled.
-  \begin{definition}{Boundary conditions}
+  \begin{definition}{Boundary conditions, label={def:boundary_condition}}
     The quantities that we need to specify \emph{at each time} for the prediction or simulation of a physical phenomenon are called \textbf{boundary conditions}, and their values \emph{boundary values}.
   \end{definition}
 
@@ -6535,10 +6534,20 @@ Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\
 }%
 \lstinputlisting[style=mycode]{code/rubberband2D.m}
 
-\section{Normal forces}
+\section{Contact forces}
+\label{sec:contact_force}
+
+Many physical phenomena involve a contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor for example. The fluxes of momentum that occur through contact surfaces of this kind have several peculiarities, and in some cases may be quite difficult to describe mathematically.
+
+You may wonder: why are we going to speak about a new kind of momentum flux now in a separate section, rather than in the previous section on \autoref{sec:momentum_constitutive}{examples of constitutive relations for momentum fluxes}? It's because contact forces often play a different role in the description and simulation of a physical system: they are not quite given by constitutive relations, but are instead examples of \autoref{sec:boundary_conds}{boundary conditions}, or a combination of the two.
+
+\subsection{Normal force}
 \label{sec:normal_force}
 
-In many physical phenomena there appear two or more bulks of matter of different kinds, or in different states of motion, that are in contact with each other; think of a book resting on a table, or a wooden crate pushed across the floor. The fluxes of momentum that occur through contact surfaces of this kind have several peculiarities, and in some cases may be quite difficult to describe mathematically.
+
+\subsection{Friction}
+\label{sec:friction}
+
 
 
 \printpagenotes*
@@ -6771,7 +6780,7 @@ that is, a redefinition of the \enquote{zero} value; for instance\enspace$\qty{2
 
 Temperature generally depends on the place and the time, so it can be a function of the coordinates: $\yte(t, x,y,z)$.
 
-\section{Examples of constitutive relations}
+\section{Constitutive relations for energy content}
 \label{sec:energy_constitutive}
 
 Energy probably has the greatest variety of constitutive relations for its content and its flux. Whole books are dedicated to the discussion of constitutive relations for energy.
@@ -6852,7 +6861,7 @@ But the separation of this total energy into internal, kinetic, gravitational do
 The reason of this difference is that the first researcher does not measure any \emph{visible} velocity in the gas: the measuring instruments average it out to zero. This researcher therefore attributes the total energy completely to internal energy, and indeed still detects the atomic motion indirectly, as a \emph{temperature} possessed by the gas. The second researcher, on the other hand, can measure the velocities of the individual atoms, and therefore attributes all the total energy to kinetic energy. For this researcher the gas has no temperature and no internal energy.
 
 
-\subsection{Examples of constitutive relations for energy content}
+\subsection{Examples of the exchange between internal, kinetic, gravitational potential energies}
 \label{sec:energy_constitutive_content}
 
 Of importance in physics and engineering applications are not only changes in the total energy $\yE$, but also exchanges among its internal, kinetic, and gravitational terms, even when the total energy is constant. Here are some examples.
@@ -6886,10 +6895,14 @@ Matter in a gaseous state is also often modelled as having negligible mass. All 
 
 In modelling extended matter in a solid and fluid state, usually all three forms of energy must be taken into account. They can moreover be quite variable from one small control volume to another. This is why their modelling and simulation can be extremely complex.
 
+\section{Constitutive relations for energy flux}
+\label{sec:energy_constitutive_flux}
+
+
 \subsection{Comments about movement of matter at a surface}
 \label{sec:matter_move_surface}
 
-In the next section we shall discuss constitutive relations for energy fluxes through a control surface. These relations are valid under two requirements:
+We shall now discuss constitutive relations for energy fluxes through a control surface. These relations are valid under two requirements:
 \begin{itemize}[nosep]
 \item matter in contact with the control surface has velocity $\yv$
 \item there is no flux of matter through the control surface.
@@ -6898,9 +6911,6 @@ In the next section we shall discuss constitutive relations for energy fluxes th
 These two requirements sometimes appear as contradictory at first sight: if there's no flux of matter, then how can matter have a non-zero velocity?
 
 Both conditions can actually coexist, and there are two main ways in which they do. Let's discuss them briefly so that you can at least understand them intuitively.
-
-
-
 
 
 \subsection{Heat flux and power}
@@ -6977,10 +6987,10 @@ We have discussed the fact that the total energy content in a control volume doe
 
 Consider two bodies of matter in contact. For one researcher, who observes these bodies macroscopically, there may be a flux of total energy $\yH=\qty{1}{J/s}$ through the contact surface, and no visible motion of matter. This researcher therefore consider this energy flux to consist completely in a heat flux $\yQ=\qty{1}{J/s}$, and no mechanical power $\yF\cdot\yv$ since the velocity $\yv$ is zero. For another researcher, who can keep track of molecular motions and velocities, the total-energy flux is still $\yH=\qty{1}{J/s}$; but this flux consists completely in \qty{1}{J/s} of mechanical power, obtained by summing up $\yF\cdot\yv$ for all molecules at the contact surface; the heat flux $\yQ$ is zero.
 
-\subsection{Examples of constitutive relations for energy flux}
+\subsection{Examples of heat and mechanical-power fluxes}
 \label{sec:energy_constitutive_flux}
 
-Let us see some examples of constitutive equations of energy flux, and heat flux in particular.
+Let us see some examples in which energy flux appears as heat flux, flux of mechanical-power, or both.
 
 \paragraph{Holding a cup of hot tea.}
 When we hold a cup of hot tea or coffee,
@@ -7124,7 +7134,7 @@ So the description is somewhat more complicated; you see why we choose to avoid 
 
 Rigid bodies have very peculiar properties in respect of the balance of energy. A \textbf{rigid body} is a body (of matter) that has constant volume and \emph{shape}; or in other words a body that cannot deform. It can of course move, and in general its amount of matter, \masse, and velocity can be different in different parts of the body;
 %
-\marginpar{\vspace{-9\baselineskip}\centering%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/boomerang.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 \furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
@@ -7418,7 +7428,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 %
 % \bigskip
 
-\section{Example: ideal gas and piston}
+\section{Example applications: ideal gas and piston}
 \label{sec:idealgas_ex}
 
 \subsection{Setup}
@@ -8282,7 +8292,7 @@ is to be universally valid, then the specific mathematical formulae for $\yQ$ an
 
 
 \subsection{Friction}
-\label{sec:friction}
+\label{sec:friction_entropy}
 
 
 
