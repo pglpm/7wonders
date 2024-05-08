@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-06T09:56:25+0200
+%% Last-Updated: 2024-05-08T15:48:06+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -967,6 +967,8 @@ reply%
 \newcommand*{\yvb}{\yv_{b}}
 \newcommand*{\yvs}{\bm{v}_{\text{s}}}
 \newcommand*{\yns}{\bm{n}_{\text{s}}}
+\newcommand*{\ypr}{p}
+\newcommand*{\ypv}{\bm{\ypr}}
 \newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
@@ -7298,12 +7300,13 @@ So the description is somewhat more complicated; you see why we choose to avoid 
     \begin{aligned}
       \yJ &= \frac{A}{V}\,\yN\, \yns\cdot(\yv - \yvs)
       \\
-      \yF &= \yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
+%      \yF &= A\,\yns\cdot\yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
+      \yF &= A\,\yns\cdot\yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
       \\
-      \yH &= \yQ + \yst\cdot \yv + \frac{A}{V}\,\yE\, \yns\cdot(\yv - \yvs)
+      \yH &= \yQ + A\,\yns\cdot\yst\cdot \yv + \frac{A}{V}\,\yE\, \yns\cdot(\yv - \yvs)
     \end{aligned}
   \end{equation*}
-  In these formulae, $\yst$ is called the \emph{stress vector}. The terms containing the expression\enspace$\yns\cdot(\yv-\yvs)$\enspace are called \emph{transport terms}, because they originate from the transport of matter through the surface.
+  In these formulae, $\yst$ is a 3-by-3 matrix called the \emph{stress tensor} or \emph{pressure tensor}. The terms containing the expression\enspace$\yns\cdot(\yv-\yvs)$\enspace are called \emph{transport terms}, because they originate from the transport of matter through the surface.
 
   If the flux of matter is zero, $\yJ=0$, then the expression $\yns\cdot(\yv-\yvs)$ must be zero too, and the analogous expressions in the fluxes of momentum and energy are zero as well; all fluxes become much simpler.
 \end{extra}
@@ -7393,15 +7396,15 @@ We start with a constitutive relation that connects:
 \end{itemize}
 
 This constitutive relation is more easily expressed in terms of the momentum flux through a surface, \emph{divided by the area} of the surface:
-\begin{definition}{Stress vector and pressure}
-  For a control surface of area $A$ where the momentum flux $\yF$ is uniform throughout, and through which there is no matter flux, we call \textbf{stress vector} the momentum flux divided by the area: $\yF/A$.
+\begin{definition}{{Pressure vector, stress vector, pressure}}
+  For a control surface of area $A$ where the momentum flux $\yF$ is uniform throughout, and through which \emph{there is no matter flux}, we call \textbf{pressure vector} or \textbf{stress vector} $\ypv$ the momentum flux divided by the area: $\ypv \defd \yF/A$.
 
   \smallskip
 
-If the momentum flux $\yF$, and therefore the stress vector, are orthogonal to the surface and point \emph{away from the surface}, then we call \textbf{pressure} the magnitude of the stress vector, and usually denote it $p$:
+If the momentum flux $\yF$, and therefore the pressure vector, are orthogonal to the surface and point \emph{away from the surface}, then we call \textbf{pressure} the magnitude of the pressure vector, and usually denote it $\ypr$:
 \begin{equation}
   \label{eq:pressure_def}
-  p \defd \frac{\abs{\yF}}{A}
+  \ypr \defd \abs{\ypv} \equiv \frac{\abs{\yF}}{A}
 \end{equation}
 The name \emph{tension} is used instead of \emph{pressure} if the momentum flux points towards the surface. Compare our discussion about \autoref{sec:pressure_tension_shear}{compressive and tensile momentum fluxes}.
 
@@ -7411,7 +7414,7 @@ Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{
 \end{definition}
 
 \begin{warning}[\enquote*{Pressure} can have many different meanings]
-  Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the stress vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
+  Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the pressure vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
 
   So when you read a text that uses or discusses \enquote*{pressure}, make sure to get correctly in which sense the text is using this word.
 
@@ -7425,7 +7428,7 @@ Now that the notion of pressure is introduced, we can formulate a particular con
   If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yte$, and the momentum flux is orthogonal to the surface and uniform throughout, and there is no matter flux through the surface, then the pressure $p$ is given by
   \begin{equation}
     \label{eq:ideal_gas_p}
-    p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
+    \ypr = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
   \end{equation}
   where $\frac{\di V}{\di t}$ is the rate of change of volume, $\lambda$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
   \begin{equation*}
@@ -7435,7 +7438,7 @@ The equation above is called the \textbf{ideal-gas law with viscosity}.
 
   \smallskip
 
-  If the surface has area $A$, the magnitude of the momentum flux is therefore $\abs{\yF} = p A$.
+  If the surface has area $A$, the magnitude of the momentum flux is therefore $\abs{\yF} = \ypr A$.
 
   % \medskip
   % 
@@ -7532,7 +7535,7 @@ Besides the particular constitutive relations for momentum flux, internal energy
   Calculate the mass of a litre, that is \qty[print-unity-mantissa=false]{1e-3}{m^3}, of air. Use the following information:
   \begin{itemize}[nosep]
   \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\yM\approx\yrho\yN$
-  \item the pressure $p$ of air is around \qty[print-unity-mantissa=false]{1e5}{N/m^2}
+  \item the pressure $\ypr$ of air is around \qty[print-unity-mantissa=false]{1e5}{N/m^2}
   \item take a thermodynamic temperature of air $\yte=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
   \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
   \end{itemize}
@@ -7565,7 +7568,7 @@ it only means that the momentum influxes of opposite parts of the surface cancel
 
 Remember that when we use the ideal-gas law~\eqref{eq:ideal_gas_p}, we are assuming that \textbf{any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude}
 \begin{equation*}
-  F_{A} = A\,p = A\,\frac{R \yN \yte}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\di t}
+  F_{A} = A\,\ypr = A\,\frac{R \yN \yte}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\di t}
 \end{equation*}
 \textbf{and directed \emph{inwards}}, according to the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
 
@@ -7754,9 +7757,9 @@ The total momentum influx for the gas takes places through three main surfaces:
   We have a constitutive relation for the pressure corresponding to this influx: the \autoref{def:idealgas_law}{ideal-gas law}:
   \begin{equation*}
 %    \label{eq:gas_top_F}
-    \yFgp(t) = -A\,p(t)
+    \yFgp(t) = -A\,\ypr(t)
     \quad\text{with}\quad
-    p(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+    \ypr(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
   \end{equation*}
   The first equation has a minus sign because the influx always points inward, therefore downward in our case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yte(t)$ of the ideal gas, both of which can change with time.
 
@@ -7768,9 +7771,9 @@ The total momentum influx for the gas takes places through three main surfaces:
 The only equations relevant to the momentum of the gas are therefore
 \begin{equation}
   \label{eq:gas_top_F}
-  \yFgp(t) = -A\,p(t)
+  \yFgp(t) = -A\,\ypr(t)
   \qquad
-  p(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+  \ypr(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
 \end{equation}
 together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
 
@@ -7838,7 +7841,7 @@ where $\yFgp(t)$ is given by formula~\eqref{eq:gas_top_F}.
   % \begin{equation*}
   %   \begin{aligned}
   %     \yH_{\text{top}} = 0 + \yFgp(t)\cdot v(t) &=
-  %     -A\,p(t)\cdot v(t)
+  %     -A\,\ypr(t)\cdot v(t)
   %     \\
   %     &= -A\biggl[\frac{R \yN \yte(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]\cdot v(t)
   %   \end{aligned}
@@ -8241,9 +8244,9 @@ This relation has wide applicability, but pay close attention to the conditions 
 \subsection{Entropy of an ideal gas}
 \label{sec:entropy_ideal_gas}
 
-In \chap~\ref{cha:bal_energy} we discussed constitutive relations for \autoref{sec:int_energy_idealgas}{the pressure $p$ and the internal energy $\yU$} of an control volume containing an ideal gas:
+In \chap~\ref{cha:bal_energy} we discussed constitutive relations for \autoref{sec:int_energy_idealgas}{the pressure $\ypr$ and the internal energy $\yU$} of an control volume containing an ideal gas:
 \begin{equation*}
-  p = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t} \ ,
+  \ypr = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t} \ ,
   \qquad\qquad
   \yU = C\,\yN\,\yte
 \end{equation*}
