@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-09T11:24:15+0200
+%% Last-Updated: 2024-05-18T19:58:55+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -355,26 +355,16 @@ british%
 
 \usepackage[usenames]{xcolor}
 % Tol (2012) colour-blind-, print-, screen-friendly colours, alternative scheme; Munsell terminology
-\definecolor{blue}{RGB}{68,119,170}
-\definecolor{cyan}{RGB}{102,204,238}
-\definecolor{green}{RGB}{34,136,51}
-\definecolor{yellow}{RGB}{204,187,68}
-\definecolor{red}{RGB}{238,102,119}
-\definecolor{purple}{RGB}{170,51,119}
-\definecolor{grey}{RGB}{187,187,187}
-\definecolor{midgrey}{RGB}{119,119,119}
+\definecolor{blue}{HTML}{4477AA}
+\definecolor{cyan}{HTML}{66CCEE}
+\definecolor{green}{HTML}{228833}
+\definecolor{yellow}{HTML}{CCBB44}
+\definecolor{red}{HTML}{EE6677}
+\definecolor{purple}{HTML}{AA3377}
+\definecolor{grey}{HTML}{BBBBBB}
+\definecolor{midgrey}{HTML}{888888}
 \definecolor{darkgrey}{HTML}{555555}
-% Tol (2012) colour-blind-, print-, screen-friendly colours; Munsell terminology
-% \definecolor{lbpurple}{RGB}{51,34,136}
-% \definecolor{lblue}{RGB}{136,204,238}
-% \definecolor{lbgreen}{RGB}{68,170,153}
-% \definecolor{lgreen}{RGB}{17,119,51}
-% \definecolor{lgyellow}{RGB}{153,153,51}
-% \definecolor{lyellow}{RGB}{221,204,119}
-% \definecolor{lred}{RGB}{204,102,119}
-% \definecolor{lpred}{RGB}{136,34,85}
-% \definecolor{lrpurple}{RGB}{170,68,153}
-\definecolor{lgrey}{RGB}{221,221,221}
+\definecolor{lgrey}{HTML}{DDDDDD}
 %\newcommand*\mycolourbox[1]{%
 %\colorbox{grey}{\hspace{1em}#1\hspace{1em}}}
 \colorlet{shadecolor}{lgrey}
@@ -7384,6 +7374,44 @@ If we want to model a body of gas accurately, however, we generally need to use 
 
 % The constitutive relations that we now discuss apply, strictly speaking, to small control volumes, where all quantities within may be considered to have just one value everywhere. Later on we shall nevertheless apply them, as approximations, to larger volumes. It also goes without saying that these constitutive relations are only valid in Newtonian approximation: for small velocities and weak gravitation.
 
+\subsection{Momentum flux in gases}
+\label{sec:momentumflux_gas}
+
+Imagine a rigid box at rest containing an amount of gas, and vacuum outside the box; let gravity be negligible. It is common knowledge that if we open one side of the box, the gas within gets out. The gas's behaviour is to be contrasted with that of a solid: if the box contained, say, a brick, the brick would simply stay where it is upon opening one side of the box.
+
+This peculiar behaviour of gases makes us understand what kind of momentum fluxes must occur at the boundaries of a control volume containing some gas.
+%
+\marginpar{\vspace{-2\baselineskip}\centering%
+\includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
+}
+\begin{exercise}
+  Before continuing reading, try to figure out by yourself how the momentum fluxes in a gas should be. Formulate some hypotheses at least. For instance, think of what kind of momentum flux there could be through a control surface (\textcolor{purple}{red dashed lines} in the side illustration):
+  \begin{enumerate*}[label=(\alph*)]
+  \item at that opened side itself;
+  \item closer to the middle of the box, parallel to the box side that can be opened.
+  \end{enumerate*}
+\end{exercise}
+
+The situation can be described as follows:
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=0.45\linewidth]{images/gasbox_open.jpg}%
+\hfill\includegraphics[width=0.45\linewidth]{images/gasbox_closed.jpg}%
+\\\footnotesize\color{mpcolor}\makebox[0.45\linewidth]{box opened}%
+\hfill\makebox[0.45\linewidth]{box closed}%
+}
+\begin{itemize}
+\item Since the gas gets out upon opening the box, the portion of gas close to the opening must be receiving outward-oriented momentum. This momentum cannot come from the gravitational momentum supply, because the latter is always oriented downward. It must be the result of a momentum flux. This flux cannot be through the surface separating the gas from the vacuum. Intuitively we understand that it is a flux coming from the gas further within the box (side picture, left).
+\item Since the gas does not get out as long as the box is closed, the outward-oriented flux coming from the gas further in must be compensated by an inward-oriented momentum flux coming from the wall of the box that closes the opening (side picture, right).
+\end{itemize}
+
+\mynotew{To be continued}
+
+
+
+
+
+
 \subsection{Pressure (momentum flux) of an ideal gas}
 \label{sec:pressure_ideal_gas}
 
@@ -10305,16 +10333,25 @@ The equation above is very peculiar. On the left side, within the time derivativ
 $$\yFn = \frac{\di P_{z}}{\di t} - \bigl(F_{z}\bigr)_{\text{other}} - G_{z}$$
 
 %% TODOs:
-%% add explanation of "body" as control volume with no matter flux
-%% also of point mass
-%% example with bullet in wooden block?
+%% - add explanation of "body" as control volume with no matter flux
+%% - also of point mass
+%% - example with bullet in wooden block?
+%% - treat conservation of matter with N as sum of different kinds
+%% and rephrase the "balance"
+%% - quote Carter
 %%
 %% Motivation:
+%% force of matter on EM field
 %% Quote about JPL using post-Newtonian
-%% "Newton's law" means two very different maths
+%% "Newton's law" means two very different maths formulae
+
+% \begin{figure}
+% \centering
+% \hspace*{\fill}{ILLUSTRATION 1} \hfill {ILLUSTRATION 2}\hspace*{\fill}
+% \end{figure}
 
 %%% Local Variables: 
 %%% mode: LaTeX
 %%% TeX-PDF-mode: t
 %%% TeX-master: t
-%%% End: 
+%%% End:
