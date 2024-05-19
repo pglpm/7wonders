@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-18T19:58:55+0200
+%% Last-Updated: 2024-05-19T10:09:59+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -5943,6 +5943,65 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \end{itemize}
 
 
+\subsection{Momentum fluxes in a gas}
+\label{sec:momentumflux_gas}
+
+Imagine a rigid box at rest containing an amount of gas, and vacuum outside the box. Let gravity be negligible. It is common knowledge that if we open one side of the box, the gas within gets out. The gas's behaviour is to be contrasted with that of a solid: if the box contained, say, a brick, then the brick would simply stay where it is upon opening one side of the box.
+
+This peculiar behaviour of gases gives us an idea of what kind of momentum fluxes must occur at the boundaries of a control volume containing some gas.
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
+}
+\begin{exercise}
+  Before continuing to read, try to figure out by yourself how the momentum fluxes in a gas should be. Formulate some hypotheses at least. Remember that you must first choose some control surfaces first. For instance, think of what kind of momentum flux there could be through control surfaces like the \textcolor{purple}{red dashed lines} in the side illustration:
+  \begin{enumerate*}[label=(\alph*)]
+  \item at the opened side;
+  \item in between the opened side and the middle of the box, parallel to opened side.
+  \end{enumerate*}
+\end{exercise}
+
+Let us try to infer what are the momentum fluxes through the two horizontal control surfaces depicted in the previous illustration.
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=0.45\linewidth]{images/gasbox_open.jpg}%
+\hfill\includegraphics[width=0.45\linewidth]{images/gasbox_closed.jpg}%
+\\\footnotesize\color{mpcolor}\makebox[0.45\linewidth]{box opened}%
+\hfill\makebox[0.45\linewidth]{box closed}%
+}
+\begin{itemize}
+\item The portion of gas between the two surfaces gets out as soon as we open the upper side of the box. This portion of gas must therefore be receiving outward-oriented momentum. This momentum cannot come from the gravitational momentum supply, because the latter is oriented downward. It must therefore be the result of a momentum flux. This flux cannot be through the surface separating the gas from the vacuum, and it seems implausible that it is a flux through the contact surface with the box. Intuitively we understand that it is a flux coming from the gas further within the box (side picture, left).
+\item As long as the upper side of the box is closed, however, portion of gas between the two surfaces stays at rest. The flux of outward-oriented momentum coming from the gas further within the box must therefore be compensated by a flux of inward-oriented momentum that comes from the closed side of the box (side picture, right).
+\end{itemize}
+
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=0.75\linewidth]{images/gas_fluxes.jpg}%
+}
+Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small control surface delimiting some gas \emph{at rest} there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
+\begin{definition}{Internal pressure,label={def:internal_pressure}}
+  The compressive momentum flux that occurs through any control surface that we may choose within a gas is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is the flux divided by the area through which it occurs.
+\end{definition}
+In \chap\,\ref{cha:bal_energy} we shall discuss a constitutive relation for the internal pressure of particular kinds of gas.
+
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=0.45\linewidth]{images/gas_updownfluxes.jpg}%
+}
+If we consider a collection of parallel control surfaces within a gas, we see that there is a flux of momentum across all of them; this momentum has the same orientation as the chosen crossing direction. In the side illustration, for instance, if we cross the horizontal control surfaces (\textcolor{purple}{red dashed lines}) from bottom to top, we'll measure a flux of upward momentum. By flux symmetry, if we choose the opposite crossing direction, from top to bottom, then we'll measure a flux of downward momentum.
+
+From a molecular point of view, this momentum flux mainly comes from the momentum transported by the molecules that make up the gas. Some molecules are moving with an upward velocity, and therefore each of them has an upward momentum; this upward momentum travels upward, transported by the molecule. Other molecules are moving with a downward velocity, and therefore each of them has a downward momentum, which is also transported downward.
+
+\medskip
+
+At the surface where the gas is in contact with its container, the momentum gets transferred to the container. An interesting question then arises. When the container is also at rest, the momentum contained in each portion of it is zero and remains zero. Where does the momentum that it receives from the gas go?
+%
+\marginpar{\vspace{-2\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/gasbox_fluxes.jpg}%
+}
+The answer is that an opposite circulation of momentum takes places through the whole container: the momentum that one side of the container receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of fluxes, this circulation can also be visualized in the opposite direction. The flux of momentum along the container is therefore tensile, or partially tensile and partially shearing. The side picture gives a \emph{qualitative} illustration of the momentum fluxes that occur through various control surfaces at the corner of a container (\textcolor{midgrey}{grey}) that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the container occur not because of transport by molecules, but because of transport by the electromagnetic field that exists with the molecules.
+
+
 \subsection{Hookean spring and harmonic oscillator}
 \label{sec:hooke_oscillator}
 
@@ -5999,7 +6058,7 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 
 \item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\yMb$, total momentum $\yPb=\yMb\,\yvb$.
 %
-\marginpar{\vspace{-7\baselineskip}\centering%
+\marginpar{\vspace{-11\baselineskip}\centering%
 \includegraphics[height=15em]{images/hooke_controls.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
@@ -6078,7 +6137,7 @@ The set of equations above is usually solved analytically by introducing two alt
   \yww \defd \yra - \yrb
 \end{equation*}
 %
-\marginpar{\vspace{-6\baselineskip}\centering%
+\marginpar{\vspace{-12\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/uplot.pdf}%
 \\\includegraphics[width=\linewidth]{images/wplot.pdf}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
@@ -6167,7 +6226,7 @@ We wrote our \autoref{sec:applicable_numericintegration}{first time-integration 
 
 In trying to reach a systematic way we shall also realize again the importance of the universal balance laws.
 
-\subsection{Summary of the relevant equations}
+\subsection{Overview of the relevant equations}
 \label{sec:summary_equations_strategy_script}
 
 First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case} they are
@@ -6695,7 +6754,7 @@ A small mathematical change in a constitutive relation can lead to a much richer
 
   Play with other parameters and initial values!
 \end{exercise}
-\marginpar{\vspace{-23\baselineskip}\centering%
+\marginpar{\vspace{-33\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
@@ -7374,48 +7433,10 @@ If we want to model a body of gas accurately, however, we generally need to use 
 
 % The constitutive relations that we now discuss apply, strictly speaking, to small control volumes, where all quantities within may be considered to have just one value everywhere. Later on we shall nevertheless apply them, as approximations, to larger volumes. It also goes without saying that these constitutive relations are only valid in Newtonian approximation: for small velocities and weak gravitation.
 
-\subsection{Momentum flux in gases}
-\label{sec:momentumflux_gas}
-
-Imagine a rigid box at rest containing an amount of gas, and vacuum outside the box; let gravity be negligible. It is common knowledge that if we open one side of the box, the gas within gets out. The gas's behaviour is to be contrasted with that of a solid: if the box contained, say, a brick, the brick would simply stay where it is upon opening one side of the box.
-
-This peculiar behaviour of gases makes us understand what kind of momentum fluxes must occur at the boundaries of a control volume containing some gas.
-%
-\marginpar{\vspace{-2\baselineskip}\centering%
-\includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
-}
-\begin{exercise}
-  Before continuing reading, try to figure out by yourself how the momentum fluxes in a gas should be. Formulate some hypotheses at least. For instance, think of what kind of momentum flux there could be through a control surface (\textcolor{purple}{red dashed lines} in the side illustration):
-  \begin{enumerate*}[label=(\alph*)]
-  \item at that opened side itself;
-  \item closer to the middle of the box, parallel to the box side that can be opened.
-  \end{enumerate*}
-\end{exercise}
-
-The situation can be described as follows:
-%
-\marginpar{\vspace{0\baselineskip}\centering%
-\includegraphics[width=0.45\linewidth]{images/gasbox_open.jpg}%
-\hfill\includegraphics[width=0.45\linewidth]{images/gasbox_closed.jpg}%
-\\\footnotesize\color{mpcolor}\makebox[0.45\linewidth]{box opened}%
-\hfill\makebox[0.45\linewidth]{box closed}%
-}
-\begin{itemize}
-\item Since the gas gets out upon opening the box, the portion of gas close to the opening must be receiving outward-oriented momentum. This momentum cannot come from the gravitational momentum supply, because the latter is always oriented downward. It must be the result of a momentum flux. This flux cannot be through the surface separating the gas from the vacuum. Intuitively we understand that it is a flux coming from the gas further within the box (side picture, left).
-\item Since the gas does not get out as long as the box is closed, the outward-oriented flux coming from the gas further in must be compensated by an inward-oriented momentum flux coming from the wall of the box that closes the opening (side picture, right).
-\end{itemize}
-
-\mynotew{To be continued}
-
-
-
-
-
-
 \subsection{Pressure (momentum flux) of an ideal gas}
 \label{sec:pressure_ideal_gas}
 
-We start with a constitutive relation that connects:
+We previously discussed the peculiar fluxes of momentum that take place in a gas, which we generally call the \autoref{def:internal_pressure}{internal pressure} of the gas. Now we discuss a constitutive relation that connects:
 \begin{itemize}[nosep]
 \item the flux of momentum $\yF$ through the closed control surface containing an ideal gas
 \item the amount of ideal gas within
@@ -7481,7 +7502,7 @@ Note that the formula above for pressure and momentum flux is only valid for sur
 
 In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
 %
-\marginpar{\vspace{-2\baselineskip}\centering%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/idealgas_mug.jpg}%
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % The famous \enquote{$pV=NRT$} formula}%
@@ -7587,8 +7608,8 @@ This assumption has an important consequence for the balance of momentum of a co
 \end{equation*}
 that is, the \emph{total} momentum influx is always zero. But note that \emph{this does not mean that the momentum influx is zero everywhere} across the closed control surface;
 %
-\marginpar{\vspace{-7\baselineskip}\centering%
-\includegraphics[width=0.3\linewidth]{images/idealgas_mominflux.pdf}%
+\marginpar{\vspace{-10\baselineskip}\centering%
+\includegraphics[width=0.45\linewidth]{images/idealgas_mominflux.pdf}%
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 % NB: if $\yteb >\ytea$, then $\yQ<0$%
 }%
@@ -7648,7 +7669,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
 To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\yM$ and constant surface area $A$.
 %
-\marginpar{\vspace{-2\baselineskip}\centering%
+\marginpar{\vspace{-4\baselineskip}\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
 The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upwards.
