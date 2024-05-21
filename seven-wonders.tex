@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-20T13:04:42+0200
+%% Last-Updated: 2024-05-21T19:47:17+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1012,6 +1012,14 @@ reply%
 \newcommand*{\yFr}{\yF_{\text{other}}}
 \newcommand*{\yFrx}{F_{\text{other},x}}
 \newcommand*{\yFrz}{F_{\text{other},z}}
+\newcommand*{\yFp}{F_{\text{p}}}
+\newcommand*{\yFf}{F_{\text{f}}}
+% \newcommand*{\yEp}{\yE_{\text{p}}}
+\newcommand*{\yEf}{\yE_{\text{f}}}
+\newcommand*{\yEfl}{\yE_{\text{floor}}}
+\newcommand*{\yEc}{\yE_{\text{crate}}}
+\newcommand*{\yQc}{\yQ_{\text{crate}}}
+\newcommand*{\yQfl}{\yQ_{\text{floor}}}
 \newcommand*{\yfri}{\mu}%
 \newcommand*{\yfris}{\mu_{\text{s}}}%
 \newcommand*{\yfrik}{\mu_{\text{k}}}%
@@ -4424,7 +4432,7 @@ In general relativity, for instance, the conservation of matter, electric charge
 
 It is therefore extremely useful to learn these universal balances, no matter what kind of specialized theory and physical phenomena you may end up working with in the future. You can apply these balances to any kind of physical phenomenon or problem: construction of bridges, control of chemical reactions, operation of GPS navigation and satellites, monitoring of nuclear power plants, sending robots to Mars, collisions of subatomic particles, cosmology. Every physical phenomenon involves at least one of these seven balances in its physical description.
 
-\section{General form of the universal laws}
+\section{General form of the universal balance laws}
 \label{sec:common_formulation}
 
 It is important to always keep in mind the setup that lies behind each universal balance law.
@@ -8018,6 +8026,89 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 \lstinputlisting[style=mycode]{code/idealgas_piston.m}
 
 
+\section{Surfaces of discontinuity}
+\label{sec:jumps}
+
+From our discussion about \autoref{sec:contact_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing a horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person has same magnitude as the friction, $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $v$, because its time-rate change of horizontal momentum is zero:
+\begin{equation*}
+  \frac{\di P_{x}(t)}{\di t} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
+\end{equation*}
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/person_friction.jpg}%
+}%
+
+
+Let us consider what happens from the point of view of energy. Through the control surface where the person pushes the crate there's an influx of mechanical power $\yFp\cdot\yv$. Let's say that there's no heat flux, so the energy influx through that surface is
+\begin{equation*}
+  \yEp = \yFp\cdot v > 0 \ .
+\end{equation*}
+This energy influx is positive because the force exerted by the person and the velocity have the same orientation.
+
+What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, there must be one if the internal energy $\yU$ of the crate is constant in time: because the crate's kinetic energy $\tfrac12\yM v^{2}$ and gravitational potential energy are also constant, so the total energy content is constant, and therefore the energy flowing in from the push must flow out from somewhere else in this case. Obviously its flowing through the surface between crate and floor. What kind of energy flux occurs there? is it heat? or is it mechanical power?
+
+We don't have a constitutive relation for the energy flux $\yH$ between crate and floor. The relation $\yH = \yQ + \yF\cdot v$ does \emph{not} apply there, because the velocity of matter $v$ is not the same in the proximity of the surface. On the upper side, the matter of the crate is moving with velocity $v$; but on the lower side, the matter of the floor is at rest, with velocity zero.
+
+This contact surface is an example of \emph{surface of discontinuity}
+\begin{definition}{Surface of discontinuity}
+If the value of a physical quantity $Q$ has two different values as we consider points closer and closer to the two sides of a small control surface, then the latter is called a \textbf{surface of discontinuity for the quantity $Q$}.
+\end{definition}
+A control surface may be one of discontinuity for some quantity but not for another. In our present example, for instance, we might have the same temperature on the floor and at the bottom of the crate; the contact surface between them is then a surface of discontinuity for the velocity, but not for the temperature.
+
+\smallskip
+
+We shall now learn a technique to deal with surfaces of discontinuity. This technique allows us to extend the application of some constitutive relations also to cases where they at first cannot be applied. Our discussion of the technique is largely intuitive, but it could be made mathematically rigorous.
+
+Imagine to zoom in on the imaginary control surface that separates the crate and the floor. Replace this surface with a very thin imaginary control volume; see side picture. Two sides (\textcolor{red}{light-red dashed lines}) of this control volume have the same extension as the original surface and are parallel to it; but one of the lies completely within the crate, and the other completely within the floor. The lateral sides (\textcolor{purple}{dark-red dashed lines}) of the control volume have a very small height $h$.
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/hsurface.jpg}%
+}%
+
+Consider the fluxes of momentum for this control volume. They can be separated (thanks to extensivity) into three contributions:
+\begin{description}
+\item[\textcolor{red}{Surface within crate:}] Horizontal momentum, as friction (having leftward orientation in the illustration), is coming from the floor, and is passed on to the upper parts. Through this surface there is therefore an \emph{ef}flux of momentum equal to $\yFf$.
+
+All matter close to this surface has velocity $v$, on both sides, because this surface is completely within the crate. For the energy \emph{ef}flux  $\yEc$ through this surface we can therefore use the constitutive relation
+\begin{equation*}
+  \yEc = \yQc +\yFf\cdot v
+\end{equation*}
+where $\yQc$ is a possible upward heat flux.
+
+\item[\textcolor{red}{Surface within floor:}] Horizontal momentum, as friction (having rightward orientation in the illustration), is coming from the crate, and is passed on to the lower parts. Through this surface there is therefore an \emph{ef}flux of momentum equal to $-\yFf$.
+
+  All matter close to this surface has zero velocity, on both sides, because this surface is completely within the floor. For the energy \emph{ef}flux $\yEfl$ through this surface we can therefore use the constitutive relation
+\begin{equation*}
+  \yEfl = \yQfl
+\end{equation*}
+where $\yQfl$ is a possible downward heat flux, and there is no mechanical power owing to the zero velocity.
+
+\item[\textcolor{purple}{Side surfaces:}] We imagine to take the height $h$ to be extremely small, so small that the area of the side control surfaces is negligible. All fluxes through these surfaces are, intuitively, negligible.
+\end{description}
+
+Now let's examine the balance of energy for this thin control volume. Owing to the very small height $h$, the volume is extremely small. Therefore the energy content $\yE$ and its time-rate of change $\di\yE/\di t$ are, intuitively, negligible. The balance of energy then yields
+\begin{equation*}
+  \begin{aligned}
+    \frac{\di\yE}{\di t} &= \yEc + \yEfl
+    \\[2\jot]
+    \qty{0}{J/s}&= - (\yQc + \yFf\cdot v) - \yQfl
+  \end{aligned}
+\end{equation*}
+from which we find
+\begin{equation*}
+  \begin{aligned}
+    \yEc &= -\yEfl \\[\jot]  \yQc + \yFf \cdot v &= -\yQfl
+  \end{aligned}
+\end{equation*}
+
+This is a very interesting result. Zoom out from the thin control volume, so that it looks like the initial control surface between crate and floor. What happens at this control surface is the following:
+\begin{itemize}
+\item The \emph{symmetry of fluxes} is still valid: the energy flux from floor to crate, $\yEc$, and the energy flux from crate to floor, $\yEfl$, are equal in magnitude but opposite: $\yEc = -\yEfl$.
+\item However, the energy flux appears \emph{on one side (crate) of the surface as heat flux plus mechanical power}, whereas \emph{on the other side (floor) only as heat flux}.
+\end{itemize}
+
+This makes sense from a molecular point of view: roughly speaking, the kinetic energy of the visible, coordinated motion of the molecules that make up the crate, is transformed into kinetic energy of the microscopic uncoordinated motion of the molecules that make up the floor. But note the amazing fact that we obtained this result by applying the balance laws, without invoking any molecular picture. In \chap\,\ref{cha:bal_entropy}, about the balance of entropy, we'll also discover that at this kind of surfaces of discontinuity, positive influx of mechanical power on one side can be converted to positive outflux of heat on the other side -- but the opposite conversion cannot happen.
+
 \printpagenotes*
 \clearpage
 \chapter{Balance of angular momentum}
@@ -8576,9 +8667,9 @@ The thermal-engine example above also hints at the role of the balance of entrop
 is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be whatever. In fact they turn out to have severe restrictions.
 
 
-\subsection{Friction}
+\subsection{Constraints on constitutive relations for friction}
 \label{sec:friction_entropy}
-
+\mynotew{To be written}
 
 
 
