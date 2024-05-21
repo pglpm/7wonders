@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-05-21T19:47:17+0200
+%% Last-Updated: 2024-05-21T20:54:56+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -1015,9 +1015,8 @@ reply%
 \newcommand*{\yFp}{F_{\text{p}}}
 \newcommand*{\yFf}{F_{\text{f}}}
 % \newcommand*{\yEp}{\yE_{\text{p}}}
-\newcommand*{\yEf}{\yE_{\text{f}}}
-\newcommand*{\yEfl}{\yE_{\text{floor}}}
-\newcommand*{\yEc}{\yE_{\text{crate}}}
+\newcommand*{\yHfl}{\yH_{\text{floor}}}
+\newcommand*{\yHc}{\yH_{\text{crate}}}
 \newcommand*{\yQc}{\yQ_{\text{crate}}}
 \newcommand*{\yQfl}{\yQ_{\text{floor}}}
 \newcommand*{\yfri}{\mu}%
@@ -8069,17 +8068,17 @@ Consider the fluxes of momentum for this control volume. They can be separated (
 \begin{description}
 \item[\textcolor{red}{Surface within crate:}] Horizontal momentum, as friction (having leftward orientation in the illustration), is coming from the floor, and is passed on to the upper parts. Through this surface there is therefore an \emph{ef}flux of momentum equal to $\yFf$.
 
-All matter close to this surface has velocity $v$, on both sides, because this surface is completely within the crate. For the energy \emph{ef}flux  $\yEc$ through this surface we can therefore use the constitutive relation
+All matter close to this surface has velocity $v$, on both sides, because this surface is completely within the crate. For the energy \emph{ef}flux  $\yHc$ through this surface we can therefore use the constitutive relation
 \begin{equation*}
-  \yEc = \yQc +\yFf\cdot v
+  \yHc = \yQc +\yFf\cdot v
 \end{equation*}
 where $\yQc$ is a possible upward heat flux.
 
 \item[\textcolor{red}{Surface within floor:}] Horizontal momentum, as friction (having rightward orientation in the illustration), is coming from the crate, and is passed on to the lower parts. Through this surface there is therefore an \emph{ef}flux of momentum equal to $-\yFf$.
 
-  All matter close to this surface has zero velocity, on both sides, because this surface is completely within the floor. For the energy \emph{ef}flux $\yEfl$ through this surface we can therefore use the constitutive relation
+  All matter close to this surface has zero velocity, on both sides, because this surface is completely within the floor. For the energy \emph{ef}flux $\yHfl$ through this surface we can therefore use the constitutive relation
 \begin{equation*}
-  \yEfl = \yQfl
+  \yHfl = \yQfl
 \end{equation*}
 where $\yQfl$ is a possible downward heat flux, and there is no mechanical power owing to the zero velocity.
 
@@ -8089,7 +8088,7 @@ where $\yQfl$ is a possible downward heat flux, and there is no mechanical power
 Now let's examine the balance of energy for this thin control volume. Owing to the very small height $h$, the volume is extremely small. Therefore the energy content $\yE$ and its time-rate of change $\di\yE/\di t$ are, intuitively, negligible. The balance of energy then yields
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yE}{\di t} &= \yEc + \yEfl
+    \frac{\di\yE}{\di t} &= -\yHc -\yHfl
     \\[2\jot]
     \qty{0}{J/s}&= - (\yQc + \yFf\cdot v) - \yQfl
   \end{aligned}
@@ -8097,13 +8096,13 @@ Now let's examine the balance of energy for this thin control volume. Owing to t
 from which we find
 \begin{equation*}
   \begin{aligned}
-    \yEc &= -\yEfl \\[\jot]  \yQc + \yFf \cdot v &= -\yQfl
+    \yHc &= -\yHfl \\[\jot]  \yQc + \yFf \cdot v &= -\yQfl
   \end{aligned}
 \end{equation*}
 
 This is a very interesting result. Zoom out from the thin control volume, so that it looks like the initial control surface between crate and floor. What happens at this control surface is the following:
 \begin{itemize}
-\item The \emph{symmetry of fluxes} is still valid: the energy flux from floor to crate, $\yEc$, and the energy flux from crate to floor, $\yEfl$, are equal in magnitude but opposite: $\yEc = -\yEfl$.
+\item The \emph{symmetry of fluxes} is still valid: the energy flux from floor to crate, $\yHc$, and the energy flux from crate to floor, $\yHfl$, are equal in magnitude but opposite: $\yHc = -\yHfl$.
 \item However, the energy flux appears \emph{on one side (crate) of the surface as heat flux plus mechanical power}, whereas \emph{on the other side (floor) only as heat flux}.
 \end{itemize}
 
