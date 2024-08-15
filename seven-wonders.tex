@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-08-14T11:25:12+0200
+%% Last-Updated: 2024-08-15T07:03:54+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -943,6 +943,8 @@ reply%
 %history%
 }\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
 
+\newcommand*{\yc}{c_{0}}
+
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
 
@@ -1635,21 +1637,26 @@ The experience just described will occur again any time two or more of them meet
 \end{figure}
 %\clearpage
 
-Consider for a moment an imaginary world in which these experiments had given a different kind of result. According to Newtonian mechanics, whenever two or more initially synchronized observers like Alice, Bob, Charlie were to meet again, their clocks would always show identical times. If one year, 23 days, 8 hours, 9 minutes, and \num{3.04539928324099266302} seconds had passed for Bob since he last met Alice, he would see that exactly the same amount of time had passed for Alice since their previous meeting. If you think about it, in this case it would have beeen somewhat natural for them to think \enquote{right now, the clocks of far-away Charlie must show the same time as ours} (even though they have no real experimental way of confirming that).
+Consider for a moment an imaginary world in which these experiments had given a different kind of result. According to Newtonian mechanics, whenever two or more initially synchronized observers like Alice, Bob, Charlie were to meet again, their clocks would always show identical times. If one year, 23 days, 8 hours, 9 minutes, and \num{3.04539928324099266302} seconds had passed for Bob since he last met Alice, he would see that exactly the same amount of time had passed for Alice since their previous meeting. If you think about it, in this case it would have beeen somewhat natural for them to think \enquote{right now, the clock of far-away Charlie must show the same time as ours} (even though they have no real experimental way of confirming that).
 
 \marginpar{\footnotesize%
 \color{mpcolor}\enquote{\emph{%
         In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\\{\cites{kovalevskyetal2004}}
 }
-But that's an imaginary world. In our world, what happens is the more complicated situation described initially. Only one conclusion can be drawn from these experimental results: \textbf{Time is not some sort of universal quantity. It is, so to speak, \enquote{local} to a person or clock, or to a group of persons or clocks that stick together.} This also means that \emph{it does not make sense} to ask questions like \enquote{what can be the time for far-away Charlie, right now?}. % \emph{Now} only applies to you, or to anything that is in your immediate vicinity.
+But that's an imaginary world. In our world, what occurs is the more complicated situation with time discrepancies described initially. Only one conclusion can be drawn from these experimental results: \textbf{Time is not some sort of universal quantity. It is, so to speak, \enquote{local} to a person or clock, or to a group of persons or clocks that stick together.} This also means that \emph{it does not make sense} to ask questions like \enquote{what can be the time for far-away Charlie, \emph{right now}?}, or \enquote{what is happening at some other place \emph{right now}?}. The notion of \emph{now} is also local.
 
 
-The time measured by a specific observer is called the \textbf{proper time} of that observer. Luckily we know more about how the proper times of separated observers can differ when they meet again. According to our current understanding, it turns out that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and with respect to matter around the universe, and on how much energy is contained in the regions they travel across. The general theory of relativity gives us the equations determining any such proper-time differences.
+The time measured by a specific observer is called the \textbf{proper time} of that observer. Luckily we know more about how much the proper times of separated observers can differ when the observers meet again. According to our current understanding, it turns out that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and with respect to the distribution of energy in the universe, and on how much energy is contained in the regions they travel across. The general theory of relativity gives us the equations determining any such proper-time differences. The more an observer's speed is close to the speed of light in vacuum $\yc$, a universal physical constant:
+\begin{equation}
+  \label{eq:c}
+  \yc = \qty{299792458}{m/s}\quad\text{(exactly).}
+\end{equation}
 
-The situation depicted in the thought-experiment above is real. It can be measured, for example, comparing initially synchronized clocks that have been put in aeroplanes flying in different directions. Most importantly, it affects everyday relevant technologies such as the Global Positioning System. Formulae from general relativity appear in your phone's GPS software; see for instance \sect\,20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. It must also be taken into account in the establishment and synchronization of time in our everyday equipments:
+The situation depicted in our initial thought-experiment is real. Time discrepancies can be measured, for example, comparing initially synchronized clocks that have been put in aeroplanes flying in different directions. Most importantly, these time discrepancies affect everyday technologies such as the Global Positioning System. Formulae from general relativity appear in your phone's GPS software; see for instance \sect\,20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. Time discrepancies must also be taken into account in the establishment and synchronization of time in our everyday equipments:
 %\autocites[]{icwg1983_r2022}
 \begin{quote}\footnotesize
   International Atomic Time (TAI) is based on more than 250 atomic clocks distributed worldwide that provide its stability, whereas a small number of primary frequency standards provide its accuracy. Universal Coordinated Time, which is the basis of all legal time scales, is derived from TAI. To allow the construction of TAI and the general dissemination of time, clocks separated by thousands of kilometres must be compared and synchronized. \textelp{} The achieved performances of atomic clocks and time transfer techniques imply that the definition of time scales and the clock comparison procedures must be considered within the framework of general relativity. \sourceatright{\parencites{petitetal2005}}
+  We shall return to Universal Coordinated Time, mentioned in the above quotation, in a couple of sections.
 %\mbox{}\hfill (\cites{petitetal2005})
 \end{quote}
 % \begin{figure}[h!]\footnotesize\centering%
@@ -1661,14 +1668,11 @@ The situation depicted in the thought-experiment above is real. It can be measur
 \marginpar{\footnotesize\color{mpcolor}\enquote{\emph{%
 The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} 4~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}
 }
-In most everyday situations for us, who live on or nearby Earth and move at speeds much smaller than $c$ with respect to one another, the discrepancies between our proper times are so small that cannot be
-measured with ordinary clocks or with our internal clocks. Consider a
-person walking \qty{10}{m} away from you and then immediately walking back
-to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person
-will be \qty{19.999999999999999889}{s}, a difference of \qty{e-16}{s}, which is the error of an atomic clock. %%***add ref
-If human beings still exist in some decades or centuries, with space travel they will probably have to deal more and more with proper-time discrepancies also in everyday life.
+%
+In most everyday situations for us, who live on or nearby Earth's surface and move at speeds much smaller than $\yc$ with respect to one another, the discrepancies between our proper times are so small that they cannot be measured with ordinary clocks or with our internal clocks. Consider a person walking \qty{10}{m} away from you and then immediately walking back to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person will be \qty{19.999999999999999889}{s}, a difference of \qty{e-16}{s}, which is the error of an atomic clock. %%***add ref
+If human beings will still exist in some decades or centuries, in space travel they will have to deal with proper-time discrepancies also in everyday life.
 
-For the most part of the rest of these notes, we won't need to deal with differences in proper time. But I recommend that you keep present how time really works, and that these small time discrepancies exist and occur all the time along your \emph{worldline}.
+For the most part of the rest of these notes, we won't need to deal with differences in proper time. But I recommend that you keep in mind how time really works, and the small time discrepancies that exist and occur all the time along your \emph{worldline}.
 
 \smallskip
 
@@ -1679,16 +1683,11 @@ Time has physical dimension of \textsf{time} and we shall for the most part meas
 \section{Space}
 \label{sec:space}
 
-Together with the notion of time, also the notion of space loses some of its traditional intuition. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid object in their vicinity. For objects that are far away from an observer, the very notion of \enquote{distance} becomes tricky has different and non-equivalent definitions; one must be very careful on which definition is being used.
+Together with the notion of time, also the notion of space loses some of its traditional intuition. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid object in their vicinity. For objects that are far away from an observer, the very notion of \enquote{distance} becomes tricky and has different and non-equivalent definitions; one must be very careful on which definition is being used.
 
 \smallskip
 
-We shall not delve further into these peculiarities of time and space. Keep simply in mind that phenomena happen in \textbf{spacetime}, and that there's no way to attribute a universal time, nor a universal position in space, to a physical event. There is one absolute: whoever locally measures the speed of light, will find the value
-\begin{equation}
-  \label{eq:c}
-  c\defd \qty{299792458}{m/s}
-\end{equation}
-This value is exact by definition, and serves as a way to define a local notion of space and distance.
+We shall not delve further into these peculiarities of time and space. Keep simply in mind that phenomena happen in \textbf{spacetime}, and that there's no way to attribute a universal time, nor a universal position in space, to a physical event. There is one absolute: whoever locally measures the speed of light, will find \autoref{eq:c}{the value $\yc$}. This value, exact by definition, serves as a way to define a local notion of space and distance.
 
 \smallskip
 
@@ -1824,7 +1823,7 @@ Taking the time derivative once more we obtain the coordinate acceleration, also
 which is also a vector.
 
 \begin{extra}{Acceleration in relativity theory}
-  In relativity theory, acceleration acquires a special physical significance, because it includes the effect of gravity, and its calculation does not involve just a time derivative. For instance, let's say that you are standing still on the ground, and let's use a coordinate system where $x$ points in front of view, $y$ to your left, and $z$ points upwards. Then your coordinate velocity is $\yv=(0,0,0)\:\unit{m/s}$ also according to relativity theory. But the spatial part of your acceleration is approximately $(0,0,9.8)\:\unit{m/s^{2}}$, not zero!
+  In relativity theory, acceleration acquires a special physical significance, because it includes the effect of gravity, and its calculation does not involve just a time derivative. For instance, let's say that you are standing still on the ground, and let's use a coordinate system where $x$ points in front of you, $y$ to your left, and $z$ points upwards. Then your coordinate velocity is $\yv=(0,0,0)\:\unit{m/s}$ also according to relativity theory. But the spatial part of your acceleration is approximately $(0,0,9.8)\:\unit{m/s^{2}}$, not zero!
 
   The definitions and values of acceleration according to relativity theory and according to Newtonian mechanics are therefore quite different even in everyday situations. In these notes we'll mean the Newtonian definition of acceleration, unless stated otherwise.
 \end{extra}
