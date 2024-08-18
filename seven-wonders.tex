@@ -2,8 +2,10 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-08-17T10:46:05+0200
+%% Last-Updated: 2024-08-18T09:54:02+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifanon
+\anonfalse
 \newif\ifarxiv
 \arxivfalse
 %\iftrue\pdfmapfile{+classico.map}\fi
@@ -578,7 +580,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \chapterstyle{bianchi}
 \setsecnumdepth{subsection}
 \setsecnumformat{\upshape\csname the#1\endcsname\quad}
-\setsecheadstyle{\large\bfseries\sffamily%
+\setsecheadstyle{\Large\bfseries\sffamily%
 \centering}
 % \setsecheadstyle{\bfseries\sffamily%
 % \raggedright}
@@ -734,7 +736,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %%% Paper's details
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{\propertitle}
-\author{%
+\ifanon\else\author{%
 \hspace*{\stretch{1}}%
 %% uncomment if additional authors present
 % \parbox{0.5\linewidth}%\makebox[0pt][c]%
@@ -754,7 +756,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % {\protect\centering ***\\%
 % \footnotesize\epost{\email{***}{***}}}%
 \hspace*{\stretch{1}}%
-}
+}\fi
 
 %\date{Draft of \today\ (first drafted \firstdraft)}
 \date{\textbf{Working draft} version \version, updated \updated\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.io/7wonders}}
@@ -943,12 +945,26 @@ reply%
 %history%
 }\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
 
-\newcommand*{\yc}{c_{0}}
+%% auxiliary
+\newcommand*{\energym}{energy-mass}
+\newcommand*{\masse}{mass-energy}
+\newcommand*{\tot}{_{\textrm{tot}}}
 
+%% constants
+%% R % molar gas constant
+\newcommand*{\yc}{c_{0}} % lightspeed, according to SI
+\newcommand*{\yfri}{\mu} % friction coeff
+\newcommand*{\yfris}{\mu_{\text{s}}}
+\newcommand*{\yfrik}{\mu_{\text{k}}}
+\newcommand*{\yvis}{\mu} % viscosity coeff
+\newcommand*{\yhea}{h} % heat-transfer coeff
+\newcommand*{\yg}{\bm{g}} % gravitational acceleration
+
+
+%% time and space
+\newcommand*{\ye}{\bm{e}} % unit vector
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
-
-
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
@@ -959,21 +975,34 @@ reply%
 \newcommand*{\yvb}{\yv_{b}}
 \newcommand*{\yvs}{\bm{v}_{\text{s}}}
 \newcommand*{\yns}{\bm{n}_{\text{s}}}
-\newcommand*{\ypr}{p}
-\newcommand*{\ypv}{\bm{\ypr}}
 \newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
 \newcommand*{\ydl}{\incr\bm{l}}
 \newcommand*{\ydlm}{\incr l}
-\newcommand*{\tot}{_{\textrm{tot}}}
-%
+\newcommand*{\yti}{t_{0}}
+\newcommand*{\ytf}{t_{1}}
+\newcommand*{\yxi}{x_{0}}
+\newcommand*{\yyi}{y_{0}}
+\newcommand*{\yzi}{z_{0}}
+\newcommand*{\Dt}{\incr t}
+\newcommand*{\Dx}{\incr x}
+\newcommand*{\Dy}{\incr y}
+\newcommand*{\Dz}{\incr z}
+\newcommand*{\Dth}{\tfrac{\incr t}{2}}
+\newcommand*{\Dxh}{\tfrac{\incr x}{2}}
+\newcommand*{\Dyh}{\tfrac{\incr y}{2}}
+\newcommand*{\Dzh}{\tfrac{\incr z}{2}}
+
+%% matter
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
 \newcommand*{\yn}{n}
 \newcommand*{\yj}{\bm{j}}
 \newcommand*{\ya}{\varAlpha}
 \newcommand*{\yrho}{\rho}
+
+%% energy
 \newcommand*{\yM}{m}% m, and q_m for mass flow
 \newcommand*{\yMa}{\yM_{a}}
 \newcommand*{\yMb}{\yM_{b}}
@@ -986,17 +1015,22 @@ reply%
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
 \newcommand*{\yHs}{\yH_{s}}%
+% \newcommand*{\yEp}{\yE_{\text{p}}}
+\newcommand*{\yHfl}{\yH_{\text{floor}}}
+\newcommand*{\yHc}{\yH_{\text{crate}}}
 \newcommand*{\yQ}{Q}% Q really for time-integral
 \newcommand*{\yQb}{Q_{\text{bot}}}%
 \newcommand*{\yQp}{Q^{+}}%
 \newcommand*{\yQm}{Q^{-}}%
+\newcommand*{\yQc}{\yQ_{\text{crate}}}
+\newcommand*{\yQfl}{\yQ_{\text{floor}}}
 \newcommand*{\yhe}{\incr H}% integrated heat flux
 \newcommand*{\yhep}{\incr H^{+}}%
 \newcommand*{\yhem}{\incr H^{-}}%
 \newcommand*{\yW}{\incr W}% work
 \newcommand*{\yR}{R}% for energy source
-\newcommand*{\yg}{\bm{g}}% gravitational acceleration
-\newcommand*{\ypo}{A}% gravitational potential energy
+
+%% momentum
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yPa}{\yP_{a}}
 \newcommand*{\yPb}{\yP_{b}}
@@ -1016,51 +1050,29 @@ reply%
 \newcommand*{\yFrz}{F_{\text{other},z}}
 \newcommand*{\yFp}{F_{\text{p}}}
 \newcommand*{\yFf}{F_{\text{f}}}
-% \newcommand*{\yEp}{\yE_{\text{p}}}
-\newcommand*{\yHfl}{\yH_{\text{floor}}}
-\newcommand*{\yHc}{\yH_{\text{crate}}}
-\newcommand*{\yQc}{\yQ_{\text{crate}}}
-\newcommand*{\yQfl}{\yQ_{\text{floor}}}
-\newcommand*{\yfri}{\mu}%
-\newcommand*{\yfris}{\mu_{\text{s}}}%
-\newcommand*{\yfrik}{\mu_{\text{k}}}%
-\newcommand*{\ye}{e}
+\newcommand*{\ypr}{p} % pressure
+\newcommand*{\ypv}{\bm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
-\newcommand*{\yf}{\bm{f}}
+
+%% angular momentum
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
-\newcommand*{\yT}{\bm{\tau}}% M or T or M_Q
+\newcommand*{\yto}{\bm{\tau}}% M or T or M_Q
 \newcommand*{\ym}{\bm{M}}% M or T or M_Q
 %\newcommand*{\yt}{\bm{\tau}}
+
+%% entropy and temperature
 \newcommand*{\yS}{S}
 \newcommand*{\yB}{\varPi}
-\newcommand*{\yvis}{\mu}%
-\newcommand*{\yhea}{h}%heat-transfer coefficient
-\newcommand*{\yte}{T}%temperature
-\newcommand*{\ytece}{T_{\text{C}}}%
-\newcommand*{\ytep}{\yte^{+}}%
-\newcommand*{\ytem}{\yte^{-}}%
-\newcommand*{\ytea}{\yte_{a}}%
-\newcommand*{\yteb}{\yte_{b}}%
-\newcommand*{\ytee}{\yte_{\text(ext)}}%
-%
-\newcommand*{\yti}{t_{0}}
-\newcommand*{\ytf}{t_{1}}
-\newcommand*{\yxi}{x_{0}}
-\newcommand*{\yyi}{y_{0}}
-\newcommand*{\yzi}{z_{0}}
-\newcommand*{\Dt}{\incr t}
-\newcommand*{\Dx}{\incr x}
-\newcommand*{\Dy}{\incr y}
-\newcommand*{\Dz}{\incr z}
-\newcommand*{\Dth}{\tfrac{\incr t}{2}}
-\newcommand*{\Dxh}{\tfrac{\incr x}{2}}
-\newcommand*{\Dyh}{\tfrac{\incr y}{2}}
-\newcommand*{\Dzh}{\tfrac{\incr z}{2}}
-\newcommand*{\energym}{energy-mass}
-\newcommand*{\masse}{mass-energy}
+\newcommand*{\yT}{T}%temperature
+\newcommand*{\yTce}{T_{\text{C}}}%
+\newcommand*{\yTp}{\yT^{+}}%
+\newcommand*{\yTm}{\yT^{-}}%
+\newcommand*{\yTa}{\yT_{a}}%
+\newcommand*{\yTb}{\yT_{b}}%
+\newcommand*{\yTe}{\yT_{\text(ext)}}%
 %%% Custom macros end @@@
 
 % % https://latex.org/forum/viewtopic.php?t=878
@@ -1231,17 +1243,183 @@ Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
 \tableofcontents*
 \label{sec:toc}
 
-\setcounter{chapter}{-1}
+\setcounter{chapter}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Preface
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifanon\else
+\printpagenotes*
+\clearpage
+\addchap{Preface}
+\label{cha:preface}
+
+These notes are aimed at undergraduate students in Physics and in Engineering programmes, but graduate students may also find them useful.
+
+You are probably aware of the variety of physics branches, such as mechanics, thermodynamics, chemistry, electromagnetics, fluid mechanics, statics, nuclear physics, and many others. Maybe you are acquainted with some of them. Probably you are also aware of the existence of different physical theories, like Newtonian Mechanics, General Relativity, Quantum Theory, which give different explanations and formulae for the same physical phenomena. Some physical theories are said to be more exact or more approximate than others; Newtonian mechanics, for instance, is an approximation of General Relativity. Does this wild variety of branches and theories also mean a wild variety of principles, methods, mathematical formulae -- which you'll have to learn if you want or need to study any particular branch or theory?
+
+Yes, it does. But there is also a core of very few principles and one method that apply \emph{universally} to every branch and every theory known today, be it mechanics or thermodynamics, Newtonian Mechanics or General Relativity. If you learn these principles and this method, you'll be able to \emph{immediately} work with, and understand, at least the general features of \emph{every} new physical discipline, phenomenon, or technology that you might meet.
+
+\medskip
+
+The main goal of these notes is to make you acquainted with this core of few physical principles and this method.
+
+How few are these principles? Around \emph{seven} (the exact number depends on how we arbitrarily group or separate them). This is the reason for the title of these notes. These seven principles are quite amazing for various reasons:
+\begin{itemize}
+\item They apply to \emph{every} physical phenomenon, as already mentioned.
+\item Their meaning is very intuitive: each of them expresses a sort of budget.
+\item They are responsible for, so to speak, \enquote{driving the universe forward in time}. More precisely, they are the basic principles that allow us to make predictions about physical phenomena.
+\item Their mathematical formulation is \emph{exactly the same} in all our main approximate and exact theories, like Newtonian mechanics and General Relativity. This means that if you learn how to apply them to a tennis ball, then you are also able to apply them to a black hole.
+\end{itemize}
+
+\medskip
+
+These universal principles are obviously expressed mathematically. Their consequences and applications can be studied, to some degree, by using analytical methods; that is, by methods involving mathematical operations that we can do by hand. But their most fascinating and practical applications need numerical methods, that is, methods involving some programming and computer simulation.
+
+In my opinion, if you learn how to apply these universal principles in simple simulations, then you also better understand their meaning and the way they work. For this reason these notes mainly take a computational approach. We shall learn how to implement these universal principles in simple computer code, and see the fun variety of physical phenomena they lead to. Programs that accompany these notes can be found at
+\begin{center}
+  \url{https://pglpm.github.io/7wonders/}
+\end{center}
+
+
+% \addsec{Guide to the text}
+% \label{sec:guide}
+%
+% \addsubsec{Physics prerequisites}
+% \label{sec:guide_physics}
+%
+% Just some vague reminiscences of secondary/high-school physics should be enough.
+%
+% It can be beneficial if you are familiar with basic physics notions like \emph{velocity}, \emph{mass}, \emph{force}, and similar ones.
+%
+% \addsubsec{Maths prerequisites}
+% \label{sec:guide_maths}
+%
+% \begin{itemize}
+% \item Working familiarity with algebra, its operations and their properties.
+% \item Working familiarity with solving equations and inequalities, linear and non-linear.
+% \item Working familiarity with the study of functions of one real variable.
+% \item Working familiarity with derivatives.
+% \item Understanding of what an integral is, even if you won't be required to solve integrals.
+% \item Working familiarity with vector calculus.
+% \item Some familiarity with functions of many variables.
+% \item Understanding of what partial derivatives are.
+% \end{itemize}
+%
+%
+% \addsubsec{Programming prerequisites}
+% \label{sec:guide_program}
+%
+% \begin{itemize}
+% \item Knowing what a computer program is.
+% \item Working familiarity with variables in a computer program.
+% \item Working familiarity with \texttt{for}- and \texttt{while}-loops.
+% \item Working familiarity with outputting and plotting the results of a computer program.
+% \end{itemize}
+%
+%
+% \addsubsec{Structure of this text}
+% \label{sec:guide_text}
+%
+% \subsubsection{\faIcon{hand-point-right}\enspace Graphical devices}
+%
+% The text includes the following graphical devices:
+% \begin{itemize}[para]
+% \item Important notions and definitions are also given in \textbf{boldface}.
+%
+% \item\label{sec:self-reference}
+%   % \subsection*{\faIcon{hand-point-right}\enspace References to previous topics}
+%
+% The side margins often report clickable references to \autoref{sec:self-reference}{previous topics, emphasized in blue}.
+%
+% \item Important-notion boxes:
+%   \begin{definition}{Some important notion or definition}
+%     This is a definition or explanation of Something.
+%   \end{definition}
+% \item Warnings and important points that require careful thinking:
+%   % \colorlet{shadecolor}{red}
+%   % \begin{shaded}
+%   %   Something you must be careful about.
+%   % \end{shaded}
+%   \begin{warning}[Careful!]
+%     Something you must be careful about.
+%   \end{warning}
+% \item Exercises:
+%   \begin{exercise}
+%     This isn't really an exercise
+%   \end{exercise}
+% % \item Possible objections you might be thinking about:
+% %   \begin{critique}[This isn't right!]
+% %     I have an objection here.
+% %   \end{critique}
+% \item Discussions and connections with more advanced physics:
+%   \begin{extra}{How things really are in quantum physics}
+%     Just for your curiosity.
+%   \end{extra}
+% \end{itemize}
+%
+% \subsubsection{\faIcon{hand-point-right}\enspace Side pictures and quotes}
+%
+% \marginpar{\centering%
+% \includegraphics[align=c,width=0.5\linewidth]{images/saitama_image.png}%
+% \\[\jot]\footnotesize\flushleftright{\color{green}%
+% This is an image of Saitama, which actually has nothing to do with the text on the left.}
+% }%
+% Pictures, graphs, or quotes related to the material are displayed on the right.
+%
+%
+% \subsubsection{\faIcon{hand-point-right}\enspace Hyperlinks and bibliography}
+%
+% Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}; you also recognize them because they have a little footnote number. The links' URLs are listed at the end of each chapter, just in case you're reading a printed copy and wonder what the link was.
+%
+% \medskip
+%
+% The text gives bibliographic references, like \enquote{\cites{einstein1905c}}, to scientific literature. The references are listed in the final Bibliography on page~\pageref{sec:biblio}.
+%
+% These references are given for two reasons:
+% \begin{itemize}
+% \item For your own curiosity.
+%
+% \item
+% \marginpar{\vspace{-3\baselineskip}\raggedright\footnotesize\color{mpcolor}\emph{%
+% \enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}}
+% \\[\jot](attributed to Gautama Buddha)
+% }%
+% To back up what's written in the text.
+% In science you should not believe something just because you've read it somewhere. You should, as much as possible, \emph{go and check for yourself how the logic behind the statement is proved and what is the experimental evidence behind the statement}.
+% \end{itemize}
+%
+% \subsubsection{\faIcon{hand-point-right}\enspace Notation and terminology}
+%
+% Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
+
+
+
+
+
+
+
+
+
+
 
 \clearpage
-\chapter{Guide to the text}
+\addchap{Guide to the text}
 \label{cha:guide}
+
+\addsec{Physics prerequisites}
+\label{sec:guide_physics}
+
+Just some vague reminiscences of secondary/high-school physics should be enough.
+
+It can be beneficial if you are familiar with basic physics notions like \emph{velocity}, \emph{mass}, \emph{force}, and similar ones.
 
 \addsec{Maths prerequisites}
 \label{sec:guide_maths}
 
 \begin{itemize}
-\item Working familiarity with algebra, its operations, and their properties, including square roots; knowledge of exponentials and logarithms is useful.
+\item Working familiarity with algebra, its operations and their properties.
 \item Working familiarity with solving equations and inequalities, linear and non-linear.
 \item Working familiarity with the study of functions of one real variable.
 \item Working familiarity with derivatives.
@@ -1252,24 +1430,28 @@ Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
 \end{itemize}
 
 
-\addsec{Physics prerequisites}
-\label{sec:guide_physics}
+\addsec{Programming prerequisites}
+\label{sec:guide_program}
 
-Just some vague reminiscences of secondary/high-school physics should be enough.
+\begin{itemize}
+\item Knowing what a computer program is.
+\item Working familiarity with variables in a computer program.
+\item Working familiarity with \texttt{for}- and \texttt{while}-loops.
+\item Working familiarity with outputting and plotting the results of a computer program.
+\end{itemize}
 
-It can be beneficial if you are familiar with basic physics notions like \emph{velocity}, \emph{mass}, \emph{force}, and similar ones; and if you vaguely remember about Newton's laws.
 
 \addsec{Structure of this text}
 \label{sec:guide_text}
 
-\subsection{\faIcon{hand-point-right}\enspace Graphical devices}
+\subsubsection{\faIcon{hand-point-right}\enspace Graphical devices}
 
 The text includes the following graphical devices:
 \begin{itemize}[para]
 \item Important notions and definitions are also given in \textbf{boldface}.
 
 \item\label{sec:self-reference}
-  % \subsection{\faIcon{hand-point-right}\enspace References to previous topics}
+  % \subsubsection{\faIcon{hand-point-right}\enspace References to previous topics}
 
 The side margins often report clickable references to \autoref{sec:self-reference}{previous topics, emphasized in blue}.
 
@@ -1295,13 +1477,13 @@ The side margins often report clickable references to \autoref{sec:self-referenc
 %   \end{critique}
 \item Discussions and connections with more advanced physics:
   \begin{extra}{How things really are in quantum physics}
-    Just for your curiosity. You don't need to remember any of this.
+    Just for your curiosity.
   \end{extra}
 \end{itemize}
 
-\subsection{\faIcon{hand-point-right}\enspace Side pictures and quotes}
+\subsubsection{\faIcon{hand-point-right}\enspace Side pictures and quotes}
 
-\marginpar{\centering%
+\marginpar{\vspace{-4\baselineskip}\centering%
 \includegraphics[align=c,width=0.5\linewidth]{images/saitama_image.png}%
 \\[\jot]\footnotesize\flushleftright{\color{green}%
 This is an image of Saitama, which actually has nothing to do with the text on the left.}
@@ -1309,7 +1491,7 @@ This is an image of Saitama, which actually has nothing to do with the text on t
 Pictures, graphs, or quotes related to the material are displayed on the right.
 
 
-\subsection{\faIcon{hand-point-right}\enspace Hyperlinks and bibliography}
+\subsubsection{\faIcon{hand-point-right}\enspace Hyperlinks and bibliography}
 
 Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}; you also recognize them because they have a little footnote number. The links' URLs are listed at the end of each chapter, just in case you're reading a printed copy and wonder what the link was.
 
@@ -1317,12 +1499,12 @@ Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.
 
 The text gives bibliographic references, like \enquote{\cites{einstein1905c}}, to scientific literature. The references are listed in the final Bibliography on page~\pageref{sec:biblio}.
 
-These references are not part of the course and don't need to be \enquote{studied}. They are given for two reasons:
+These references are given for two reasons:
 \begin{itemize}
 \item For your own curiosity.
 
 \item
-\marginpar{\raggedright\footnotesize\color{mpcolor}\emph{%
+\marginpar{\vspace{-1\baselineskip}\raggedright\footnotesize\color{mpcolor}\emph{%
 \enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}}
 \\[\jot](attributed to Gautama Buddha)
 }%
@@ -1330,7 +1512,7 @@ To back up what's written in the text.
 In science you should not believe something just because you've read it somewhere. You should, as much as possible, \emph{go and check for yourself how the logic behind the statement is proved and what is the experimental evidence behind the statement}.
 \end{itemize}
 
-\subsection{\faIcon{hand-point-right}\enspace Notation and terminology}
+\subsubsection{\faIcon{hand-point-right}\enspace Notation and terminology}
 
 Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
 
@@ -2073,21 +2255,18 @@ Electric charge is a quantity that is easily grasped in our everyday experience,
 
 \bigskip
 
-\marginpar{\footnotesize%
+\marginpar{\vspace{-3\baselineskip}\centering%
 %\includegraphics[align=t,width=\linewidth]{images/magnflux1.png}
 \includegraphics[align=t,width=\linewidth]{images/magnflux2.png}
-\\\color{mpcolor}\enquote{\emph{%
+\\[\jot]\flushleftright\color{mpcolor}\enquote{\emph{%
 sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}%
 }
-Magnetic flux is a \emph{vector} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
+Magnetic flux is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
+However, this flux is usually calculated by means of a \emph{vector} quantity called \enquote{magnetic-flux density}, measured in units of \furl{https://doi.org/10.1351/goldbook.T06283}{\emph{teslas} (\unit{T})}.
 
+The electromagnetic field is most commonly represented by vectors associated to each point in space. But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}). From this point of view, the \emph{voltage} turns out to be the flux of the magnetic flux; it is indeed measured in \emph{volts} (\unit{V}), equivalent to \emph{webers/second}.
 
-The electromagnetic field
-is most commonly represented by vectors associated to each point in space.
-But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension.
-This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}). From this point of view, the \emph{voltage} turns out to be the flux of the magnetic flux; it is indeed measured in \emph{volts} (\unit{V}), equivalent to \emph{webers/second}.
-
-Electromagnetism and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
+Electromagnetics and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
 
 
 \section{Energy}
@@ -2407,7 +2586,7 @@ If the momentum in a \emph{small} volume is denoted by the vector $\yP=(P_{x},P_
 Choose whichever you prefer.
 
 %
-\marginpar{\vspace{-3\baselineskip}\centering\includegraphics[align=t,width=\linewidth]{images/cube_Nms_coords.jpg}%
+\marginpar{\vspace{-5\baselineskip}\centering\includegraphics[align=t,width=\linewidth]{images/cube_Nms_coords.jpg}%
   \\[\jot]\footnotesize\flushleftright\color{mpcolor}The amount of angular momentum within a volume at a given instant is represented by a \textcolor{purple}{3D vector} (curious about the little circulation symbol around the vector? then read on). The magnitude and direction of this vector depend on the coordinate system we're using.%
 }%
 Angular momentum is something that is associated not only with ordinary bodies (matter), but also with electromagnetic fields. Just like momentum, also angular momentum can be visualized as a \enquote{fluid of vectors}.
@@ -2423,11 +2602,11 @@ Given a particular volume at a particular instant in time, and given a coordinat
 
 \smallskip
 
-The flux of angular momentum is also called the \emph{torque}, and bears a relation to the flux of momentum similar to the formula above. If the force -- flux of momentum -- is denoted by the vector $\yF=(F_{x},F_{y},F_{z})$ and the position vector by $\yr=(x,y,z)$, then the flux of angular momentum, or torque, $\yT=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
+The flux of angular momentum is also called the \emph{torque}, and bears a relation to the flux of momentum similar to the formula above. If the force -- flux of momentum -- is denoted by the vector $\yF=(F_{x},F_{y},F_{z})$ and the position vector by $\yr=(x,y,z)$, then the flux of angular momentum, or torque, $\yto=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
   \begin{equation}
     \label{eq:torque_def}
     \begin{gathered}
-      \yT = \yr \times \yF
+      \yto = \yr \times \yF
       \\[\jot]
       \text{or equivalently}\qquad\left\{\enspace
         \begin{aligned}
@@ -2467,7 +2646,7 @@ elementary particles, or electromagnetic radiation, the angular momentum include
 \smallskip
 
 \begin{definition}{Angular momentum: notation}
-  The amount of angular momentum in a region is usually denoted with $\yL$. The torque or flux of angular momentum is denoted with $\yT$.
+  The amount of angular momentum in a region is usually denoted with $\yL$. The torque or flux of angular momentum is denoted with $\yto$.
 \end{definition}
 
 
@@ -3032,7 +3211,7 @@ Obviously these two changes have equal magnitude but are opposite.
 \medskip
 
 %
-\marginpar{\vspace{-6\baselineskip}\centering\includegraphics[width=0.5\linewidth]{images/vectorfluxanim.png}%
+\marginpar{\vspace{-8\baselineskip}\centering\includegraphics[width=0.5\linewidth]{images/vectorfluxanim.png}%
 \\[\jot]\flushleftright\footnotesize\color{mpcolor}Imagine the \textcolor{blue}{blue upper arrows} moving from left to right, and the \textcolor{purple}{red lower arrows} moving from right to left. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{Animated version here}.%
 }%
 As a mental image of a vector flux, you can imagine a moving collection of identical arrows crossing the surface in one direction, together with a moving collection of opposite arrows crossing the surface in the opposite direction. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{See this link} as an example.
@@ -3478,7 +3657,7 @@ Let us summarize the symbols for volume contents and fluxes of the seven quantit
     \\[2\jot]
     momentum&& $\yP$\enspace[\unit{N\,s}] & $\yF$\enspace[\unit{N}]
     \\[2\jot]
-    angular momentum&& $\yL$\enspace[\unit{N\,m\,s}] & $\yT$\enspace[\unit{N\,m}]
+    angular momentum&& $\yL$\enspace[\unit{N\,m\,s}] & $\yto$\enspace[\unit{N\,m}]
     \\[3\jot]
     entropy&& $\yS$\enspace[\unit{J/K}] & $\yB$\enspace[\unit{J/(K\,s)}]
     \\[2\jot]
@@ -4501,9 +4680,9 @@ The individual balances and symbols for matter, momentum, energy, angular moment
       &\quad
       \frac{\di\yE(t)}{\di t} &= \yH(t) + \yR(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t
       &\quad
-      \frac{\di\yL(t)}{\di t} &= \yT(t) + \ym(t)
+      \frac{\di\yL(t)}{\di t} &= \yto(t) + \ym(t)
       \\[2\jot]
 \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
 &\quad
@@ -5265,7 +5444,7 @@ where $A_{1}, A_{2}$ are  the areas  of the top and bottom surfaces, and $v_{1},
 \end{equation*}
 that is, if the area through which the flux occur decreases, then the velocity of the fluid through it increases, and vice versa.
 %
-\marginpar{\vspace{-2\baselineskip}\centering%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[width=0.75\linewidth]{images/tap_water.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
   The thickness and velocity variations of tap water are a consequence of the law of conservation of matter%
@@ -5339,13 +5518,13 @@ The importance of the balance of momentum comes to a great extent from two kinds
 
 Through this balance we can therefore describe and predict motions. We saw a concrete example of this application in the \autoref{sec:example_falling_object_timestep}{numerical time integration of the motion of a falling object}.
 
+But this balance is also essential in the opposite problem: when we need to study things that \emph{don't and shouldn't move}, like a building or a bridge. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume content $\yP$ of momentum is constantly zero.
 %
-\marginpar{\vspace{-6\baselineskip}\centering%
+\marginpar{\vspace{-4\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/bryggen.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Momentum balance keeps buildings from collapsing (photo: \emph{Bryggen}, Bergen, from \furl{https://whc.unesco.org/en/list/59}{UNESCO World Heritage Centre})%
 }%
-But this balance is also essential in the opposite problem: when we need to study things that \emph{don't and shouldn't move}, like a building or a bridge. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume content $\yP$ of momentum is constantly zero.
 
 \section{Examples of constitutive relations}
 \label{sec:momentum_constitutive}
@@ -5755,6 +5934,11 @@ From the last three equations we finally find
 \end{equation*}
 In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This is the \textbf{normal force} discussed in the previous section.
 
+\marginpar{\vspace{+4\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
+\\\includegraphics[width=3em]{images/axes.pdf}%
+  % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+}%
 \begin{exercise}[label={ex:twobooks}]
   Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces of cuboid shape, each wrapping one book, and having one side in common (where the two books touch). Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-2}]\:\unit{N}$, constant in time, and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
 
@@ -5765,11 +5949,6 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 \end{enumerate}
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
-\marginpar{\vspace{-11\baselineskip}\centering%
-\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
-\\\includegraphics[width=3em]{images/axes.pdf}%
-  % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
-}%
 
 \subsection{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
@@ -5791,9 +5970,9 @@ Together, these factors lead to a zero total when we sum up all the atmospheric-
 
 Indeed we suddenly feel the heavy presence of atmospheric pressure when the first or the last of those factors doesn't hold anymore.
 
-For example you may sometimes have made the mistake of laying a wide slab of glass, say from a window, upon another, only to find out that you couldn't easily lift it up anymore: the two slabs were sort of \enquote{stuck} together.
+For example you may sometime have made the mistake of laying a wide slab of glass, say from a window, upon another, only to find out that you couldn't easily lift it up anymore: the two slabs were sort of \enquote{stuck} together.
 %
-\marginpar{\centering%
+\marginpar{\vspace{-3\baselineskip}\centering%
 \includegraphics[align=t,width=\linewidth]{images/glassslabs.png}%
 }%
 The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So the total momentum flux from air to the upper slab does no longer sum up to zero: there's only a compressive flux of downward momentum from air to the slab across its upper surface. As mentioned, for a \qty{1}{m^2} slab this flux is equivalent to a weight of \qty{10000}{kg}! You can't lift the upper slab, not because it's \enquote{stuck} to the lower one, but because it suddenly has a net force of 10\:tonnes on top (which presses the two glass slabs together even more, and therefore drives out more air between them). The only thing you can do is to try to let air again between the two slabs, for instance moving them to a vertical position, so that there will again be atmospheric pressure on both sides of each slab.
@@ -6020,10 +6199,7 @@ In solving the cable-car problem above we used the balance of momentum, but note
 Imagine a rigid box at rest containing an amount of gas, and vacuum outside the box. Let gravity be negligible. It is common knowledge that if we open one side of the box, the gas within gets out. The gas's behaviour is to be contrasted with that of a solid: if the box contained, say, a brick, then the brick would simply stay where it is upon opening one side of the box.
 
 This peculiar behaviour of gases gives us an idea of what kind of momentum fluxes must occur at the boundaries of a control volume containing some gas.
-%
-\marginpar{\vspace{0\baselineskip}\centering%
-\includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
-}
+
 \begin{exercise}
   Before continuing to read, try to figure out by yourself how the momentum fluxes in a gas should be. Formulate some hypotheses at least. Remember that you must first choose some control surfaces first. For instance, think of what kind of momentum flux there could be through control surfaces like the \textcolor{purple}{red dashed lines} in the side illustration:
   \begin{enumerate*}[label=(\alph*)]
@@ -6031,10 +6207,14 @@ This peculiar behaviour of gases gives us an idea of what kind of momentum fluxe
   \item in between the opened side and the middle of the box, parallel to opened side.
   \end{enumerate*}
 \end{exercise}
+%
+\marginpar{\vspace{-11\baselineskip}\centering%
+\includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
+}
 
 Let us try to infer what are the momentum fluxes through the two horizontal control surfaces depicted in the previous illustration.
 %
-\marginpar{\vspace{0\baselineskip}\centering%
+\marginpar{\vspace{1\baselineskip}\centering%
 \includegraphics[width=0.45\linewidth]{images/gasbox_open.jpg}%
 \hfill\includegraphics[width=0.45\linewidth]{images/gasbox_closed.jpg}%
 \\\footnotesize\color{mpcolor}\makebox[0.45\linewidth]{box opened}%
@@ -6046,7 +6226,7 @@ Let us try to infer what are the momentum fluxes through the two horizontal cont
 \end{itemize}
 
 %
-\marginpar{\vspace{0\baselineskip}\centering%
+\marginpar{\vspace{2\baselineskip}\centering%
 \includegraphics[width=0.75\linewidth]{images/gas_fluxes.jpg}%
 }
 Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small control surface delimiting some gas \emph{at rest} there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
@@ -6129,7 +6309,7 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 
 \item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\yMb$, total momentum $\yPb=\yMb\,\yvb$.
 %
-\marginpar{\vspace{-11\baselineskip}\centering%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[height=15em]{images/hooke_controls.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
@@ -6208,7 +6388,7 @@ The set of equations above is usually solved analytically by introducing two alt
   \yww \defd \yra - \yrb
 \end{equation*}
 %
-\marginpar{\vspace{-12\baselineskip}\centering%
+\marginpar{\vspace{-8\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/uplot.pdf}%
 \\\includegraphics[width=\linewidth]{images/wplot.pdf}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
@@ -6991,7 +7171,7 @@ In general it is not possible to separate the dependence of total energy on othe
 and say \enquote{this is the energy contributed by matter}, \enquote{this is the energy contributed by the electromagnetic field}, and so on. % So it does not really make sense to speak of \enquote*{energy of matter}, \enquote*{energy of electromagnetic field}, and similar distinctions.
 \emph{Energy is a property of the other quantities taken as a whole}.
 %
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-7\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/disc-pickup-guitar.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 The functioning of a guitar pickup is based on the fact that energy cannot be clearly separated into \enquote*{mechanical} and \enquote*{electromagnetic} (\furl{https://commons.wikimedia.org/wiki/images/File:Piezoelectric_pickup1.jpg}{image by Georg Feitscher})%
@@ -7072,14 +7252,14 @@ Temperature is useful because it enters in many constitutive relations involving
 
 There are several scales of temperature measurement; of special importance is \furl{https://www.iso.org/obp/ui/\#iso:std:iso:80000:-5:ed-2:v1:en:tab:1}{\textbf{thermodynamic temperature}}, also called \emph{absolute temperature}, which is measured in \emph{kelvins} (\unit{K}). Thermodynamic temperature has the special property of being always positive in most physical phenomena (there are exceptions, especially in some phenomena where \furl{https://www.britannica.com/science/statistical-mechanics}{statistical mechanics} becomes relevant).
 
-In these notes we shall use thermodynamic temperature, denoting it $\yte$. Its relation with Celsius temperature $\ytece$ (measured in \emph{degrees Celsius}, \unit{\degreeCelsius}) is given by
+In these notes we shall use thermodynamic temperature, denoting it $\yT$. Its relation with Celsius temperature $\yTce$ (measured in \emph{degrees Celsius}, \unit{\degreeCelsius}) is given by
 \begin{equation}
   \label{eq:kelvin_celsius}
-  \ytece = \yte - \qty{273.15}{K}
+  \yTce = \yT - \qty{273.15}{K}
 \end{equation}
-that is, a redefinition of the \enquote{zero} value; for instance\enspace$\qty{25.00}{\degreeCelsius} = \qty{298.15}{K}$\,.\enspace Note that temperature \emph{differences} are the same for the two temperatures: $\incr\ytece = \incr\yte$, because the constant zero-value cancels out.
+that is, a redefinition of the \enquote{zero} value; for instance\enspace$\qty{25.00}{\degreeCelsius} = \qty{298.15}{K}$\,.\enspace Note that temperature \emph{differences} are the same for the two temperatures: $\incr\yTce = \incr\yT$, because the constant zero-value cancels out.
 
-Temperature generally depends on the place and the time, so it can be a function of the coordinates: $\yte(t, x,y,z)$.
+Temperature generally depends on the place and the time, so it can be a function of the coordinates: $\yT(t, x,y,z)$.
 
 \section{Constitutive relations for energy content}
 \label{sec:energy_constitutive}
@@ -7545,12 +7725,12 @@ Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{
 Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
 
 \begin{definition}{Ideal-gas law with viscosity,label={def:idealgas_law}}
-  If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yte$, and the momentum flux is orthogonal to the surface and uniform throughout, and there is no matter flux through the surface, then the pressure $p$ is given by
+  If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yT$, and the momentum flux is orthogonal to the surface and uniform throughout, and there is no matter flux through the surface, then the pressure $\ypr$ is given by
   \begin{equation}
     \label{eq:ideal_gas_p}
-    \ypr = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
+    \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
   \end{equation}
-  where $\frac{\di V}{\di t}$ is the rate of change of volume, $\lambda$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
+  where $\frac{\di V}{\di t}$ is the rate of change of volume, $\yvis$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
   \begin{equation*}
     R = \qty{8.31446261815324}{J/(mol\cdot K)}\quad\text{(exactly)}
   \end{equation*}
@@ -7590,10 +7770,10 @@ The fact that the viscosity coefficients must be positive is a consequence of th
 Next we discuss a constitutive relation that connects the amount of internal energy in the control volume with the amount of ideal gas and its temperature:
 
 \begin{definition}{Internal energy of an ideal gas,label={def:internalenergy_gas}}
-  If a small control volume contains an amount $\yN$ of ideal gas at uniform temperature $\yte$, then it also contains an amount of internal energy $\yU$ given by
+  If a small control volume contains an amount $\yN$ of ideal gas at uniform temperature $\yT$, then it also contains an amount of internal energy $\yU$ given by
   \begin{equation}
     \label{eq:int_energy_idealgas}
-    \yU = C\,\yN\,\yte
+    \yU = C\,\yN\,\yT
   \end{equation}
   where the constant $C$ depends on the kind of ideal gas and is called \emph{molar heat capacity}.
 \end{definition}
@@ -7612,10 +7792,10 @@ This formula is very important: for an ideal gas, the absolute temperature is a 
 
 Lastly we discuss a constitutive relation that connects heat flux and temperature. This relation applies to many physical phenomena and materials: not only to ideal gases, but to many other fluids and solids as well.
 \begin{definition}{Newton's law of cooling,label={def:newton_cooling}}
-  Consider a control surface of area $A$ and call its two sides $a$ and $b$. If the matter on side $a$ has approximately uniform temperature $\ytea$, and the matter on side $b$ has approximately uniform temperature $\yteb$, then the heat flux $\yQ$ in the $a\to b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
+  Consider a control surface of area $A$ and call its two sides $a$ and $b$. If the matter on side $a$ has approximately uniform temperature $\yTa$, and the matter on side $b$ has approximately uniform temperature $\yTb$, then the heat flux $\yQ$ in the $a\to b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
 \begin{equation}
   \label{eq:newton_cooling}
-  \yQ = A \yhea\, (\ytea-\yteb)
+  \yQ = A \yhea\, (\yTa-\yTb)
 \end{equation}
 where $\yhea$ is called the \emph{coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
 \end{definition}
@@ -7623,16 +7803,16 @@ where $\yhea$ is called the \emph{coefficient of heat transfer} and depends on t
 \marginpar{\vspace{-10\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/newton_cooling.jpg}%
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-% NB: if $\yteb >\ytea$, then $\yQ<0$%
+% NB: if $\yTb >\yTa$, then $\yQ<0$%
 }%
 The constitutive formula above with $\yhea>0$ says that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
 % The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy} (second law of thermodynamics), as in the case of the viscosity coefficients.
 
 Newton's law of cooling implies that we can approximately consider temperature as having a jump or discontinuity between the two sides of the surface. In situations where this approximation is too gross, another constitutive equation is often used: \textbf{Fourier's law of heat conduction}, which we can write as
 \begin{equation*}
-  \yQ = -A k \frac{\de\yte}{\de x}
+  \yQ = -A k \frac{\de\yT}{\de x}
 \end{equation*}
-In this expression we imagine the surface to be orthogonal to the $yz$ directions, and the crossing direction to be the positive $x$-direction. The derivative $\frac{\de\yte}{\de x}$ is the gradient of the temperature, expressing how much the temperature changes from one point to another very close one.
+In this expression we imagine the surface to be orthogonal to the $yz$ directions, and the crossing direction to be the positive $x$-direction. The derivative $\frac{\de\yT}{\de x}$ is the gradient of the temperature, expressing how much the temperature changes from one point to another very close one.
 
 Let's make clear that Newton's law of cooling and Fourier's law \emph{are not universal}. There are physical situations and materials for which the heat flux is connected to temperature in more complex ways; and not only to temperature, but also to momentum flux, matter flux, electromagnetic quantities. \furl{https://www.energy.gov/energysaver/thermoelectric-coolers}{Thermoelectric coolers} are an example application of these more complex constitutive relations for the heat flux.
 
@@ -7656,7 +7836,7 @@ Besides the particular constitutive relations for momentum flux, internal energy
   \begin{itemize}[nosep]
   \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\yM\approx\yrho\yN$
   \item the pressure $\ypr$ of air is around \qty[print-unity-mantissa=false]{1e5}{N/m^2}
-  \item take a thermodynamic temperature of air $\yte=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
+  \item take a thermodynamic temperature of air $\yT=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
   \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
   \end{itemize}
 \end{exercise}%1.2e-3
@@ -7682,13 +7862,13 @@ that is, the \emph{total} momentum influx is always zero. But note that \emph{th
 \marginpar{\vspace{-10\baselineskip}\centering%
 \includegraphics[width=0.45\linewidth]{images/idealgas_mominflux.pdf}%
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-% NB: if $\yteb >\ytea$, then $\yQ<0$%
+% NB: if $\yTb >\yTa$, then $\yQ<0$%
 }%
 it only means that the momentum influxes of opposite parts of the surface cancel out perfectly, as schematized in the side figure.
 
 Remember that when we use the ideal-gas law~\eqref{eq:ideal_gas_p}, we are assuming that \textbf{any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude}
 \begin{equation*}
-  F_{A} = A\,\ypr = A\,\frac{R \yN \yte}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\di t}
+  F_{A} = A\,\ypr = A\,\frac{R \yN \yT}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\di t}
 \end{equation*}
 \textbf{and directed \emph{inwards}}, according to the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
 
@@ -7697,10 +7877,10 @@ Remember that when we use the ideal-gas law~\eqref{eq:ideal_gas_p}, we are assum
 Another important consequence of assuming that a volume of ideal gas has zero mass is that \textbf{its total energy is purely internal energy}:
 \begin{equation*}
   \yE =
- \underbracket[0pt]{\yU}_{\mathcolor{midgrey}{{}=C N \yte}}
+ \underbracket[0pt]{\yU}_{\mathcolor{midgrey}{{}=C N \yT}}
   + \underbracket[0pt]{\tfrac12\yM\yv^{2}}_{\mathcolor{midgrey}{{}=0}}
   + \underbracket[0pt]{\yM g z}_{\mathcolor{midgrey}{{}=0}}
-  = C N \yte
+  = C N \yT
 \end{equation*}
 which also means that any energy influx or efflux only changes the internal energy of the gas.
 
@@ -7879,9 +8059,9 @@ The total momentum influx for the gas takes places through three main surfaces:
 %    \label{eq:gas_top_F}
     \yFgp(t) = -A\,\ypr(t)
     \quad\text{with}\quad
-    \ypr(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+    \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
   \end{equation*}
-  The first equation has a minus sign because the influx always points inward, therefore downward in our case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yte(t)$ of the ideal gas, both of which can change with time.
+  The first equation has a minus sign because the influx always points inward, therefore downward in our case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yT(t)$ of the ideal gas, both of which can change with time.
 
 \item[Bottom:] It is usually assumed that the chamber containing the ideal gas rests on some support or on the ground. Through the corresponding surface there is therefore an efflux of downward-pointing momentum, as it happened in our analysis of the \autoref{sec:bal_momentum_statics}{books on a table}. The momentum influx at the bottom is opposite to the influx at the top surface. We therefore don't need to keep track of the momentum flux at the bottom.
 \end{description}
@@ -7893,7 +8073,7 @@ The only equations relevant to the momentum of the gas are therefore
   \label{eq:gas_top_F}
   \yFgp(t) = -A\,\ypr(t)
   \qquad
-  \ypr(t) = \frac{R \yN \yte(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+  \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
 \end{equation}
 together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
 
@@ -7914,10 +8094,10 @@ You may object: \enquote{but we expect the gas to exchange heat, possibly with t
 
 \paragraph{Ideal gas.}
 
-The energy content $\yE(t)$ of the control volume containing the ideal gas \ref{sec:further_idealgas}{amounts only to its internal energy} $\yU(t)$ -- no kinetic or potential energies -- owing to the zero-mass assumption. And we do have a \autoref{def:internalenergy_gas}{constitutive relation for internal energy}, which connects the latter to the amount $\yN$ of gas and to its thermodynamic temperature $\yte(t)$. The energy content is therefore given by
+The energy content $\yE(t)$ of the control volume containing the ideal gas \ref{sec:further_idealgas}{amounts only to its internal energy} $\yU(t)$ -- no kinetic or potential energies -- owing to the zero-mass assumption. And we do have a \autoref{def:internalenergy_gas}{constitutive relation for internal energy}, which connects the latter to the amount $\yN$ of gas and to its thermodynamic temperature $\yT(t)$. The energy content is therefore given by
 \begin{equation}
   \label{eq:gas_ex_energy}
-  \yE(t) = \yU(t) = C\yN\yte(t)
+  \yE(t) = \yU(t) = C\yN\yT(t)
 \end{equation}
 Keep in mind that this constitutive relation can only be used when the temperature and the amount of matter per volume are approximately the same in every sub-volume.
 
@@ -7927,9 +8107,9 @@ Recall that the energy influx $\yH$ through a surface of area $a$ that satisfies
 \begin{equation*}
   \yH(t) = \yQ(t) + \yF(t)\cdot \yv(t)
   \quad\text{with}\quad
-  \yQ(t) = a\,\yhea\, [\ytee-\yte(t)]
+  \yQ(t) = a\,\yhea\, [\yTe-\yT(t)]
 \end{equation*}
-We are calling $\ytee$ the temperature of the walls and piston enclosing the ideal gas, and assuming it to be constant.
+We are calling $\yTe$ the temperature of the walls and piston enclosing the ideal gas, and assuming it to be constant.
 
 The \emph{total} energy influx $\yH(t)$ is the sum of fluxes through two main surfaces:
 \begin{description}
@@ -7941,7 +8121,7 @@ The \emph{total} energy influx $\yH(t)$ is the sum of fluxes through two main su
 
 \item[Bottom:] Let's consider the possibility of a heat flux $\yQb$ through the bottom surface. Since the area $A$ of this surface is constant, this flux is
   \begin{equation*}
-    \yQb(t) = A\,\yhea\,[\ytee-\yte(t)]
+    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)]
   \end{equation*}
 
   The momentum influx $\yF_{\text{bottom}}$ through the bottom wall is directed upward. The velocity of the gas is approximately assumed to be vertical, and we also assume that it is zero at the bottom surface, because the bottom surface is not moving. Otherwise it would mean either that a vacuum is forming right above the surface, or that some gas is passing through it. Neither of these possibilities are contemplated in the present case; they would require different constitutive relations. If the gas velocity at this surface is zero, then the mechanical power is also zero.
@@ -7963,7 +8143,7 @@ where $\yFgp(t)$ is given by formula~\eqref{eq:gas_top_F}.
   %     \yH_{\text{top}} = 0 + \yFgp(t)\cdot v(t) &=
   %     -A\,\ypr(t)\cdot v(t)
   %     \\
-  %     &= -A\biggl[\frac{R \yN \yte(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]\cdot v(t)
+  %     &= -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]\cdot v(t)
   %   \end{aligned}
   % \end{equation*}
 \end{description}
@@ -7975,9 +8155,9 @@ The total energy influx into the control volume enclosing the ideal gas is there
     \yH(t) = \yQb(t) + \yFgp(t) \,v(t)
     \\[\jot]\text{with}\hfill
     \\[\jot]
-    \yQb(t) = A\,\yhea\,[\ytee-\yte(t)]
+    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)]
     \\
-    \yFgp(t) = -A\biggl[\frac{R \yN \yte(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]
+    \yFgp(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]
   \end{gathered}
 \end{equation}
 
@@ -7996,7 +8176,7 @@ We finally have all the equations to describe and numerically time-integrate our
         \qquad
         A = \qty{0.01}{m^{2}}
         \qquad
-        \ytee = \qty{296.15}{K}
+        \yTe = \qty{296.15}{K}
         \\
         C = \qty{20}{J/(mol\cdot K)}
         \quad
@@ -8021,7 +8201,7 @@ We finally have all the equations to describe and numerically time-integrate our
         T(\yti) = \qty{296.15}{m/s}
       \end{gathered}
     \end{equation*}
-    Plot the position $z(t)$ of the piston and the temperature $\yte(t)$ of the ideal gas as functions of time. What do you observe?
+    Plot the position $z(t)$ of the piston and the temperature $\yT(t)$ of the ideal gas as functions of time. What do you observe?
   \item Simulate again with the same values as before but a coefficient of heat transfer $\yhea=\qty{0}{J/(K\,s\,m^{2})}$, that is, assuming that all energy fluxes are adiabatic. Plot again position and temperature against time. What do you observe?
   \item Keeping all energy fluxes adiabatic, simulate now by setting the viscosity coefficient $\yvis = \qty{400}{N\,s/m^{2}}$. What do you observe?
 
@@ -8031,7 +8211,7 @@ We finally have all the equations to describe and numerically time-integrate our
 
 \bigskip
 
-Here is an example of Octave/MATLAB script for simulating the system of ideal gas and piston and plotting $z(t)$ and $\yte(t)$:
+Here is an example of Octave/MATLAB script for simulating the system of ideal gas and piston and plotting $z(t)$ and $\yT(t)$:
 
 \marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
 \furl{https://pglpm.github.io/7wonders/code/idealgas_piston.m}{Download \texttt{idealgas\_piston.m}}%
@@ -8131,14 +8311,14 @@ This makes sense from a molecular point of view: roughly speaking, the kinetic e
 
 
 \begin{definition}{Balance of angular momentum}
-      Volume content: $\yL$\qquad Flux: $\yT$\qquad Supply: $\ym$
+      Volume content: $\yL$\qquad Flux: $\yto$\qquad Supply: $\ym$
 
   \begin{equation}
     \label{eq:bal_ang_momentum}
-      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yT(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\di t + \int_{\yti}^{\ytf}\!\!\ym(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yT(t) + \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yto(t) + \ym(t)}_{\mathclap{\text{\color{grey}differential form}}}
   \end{equation}
 \end{definition}
 
@@ -8397,7 +8577,7 @@ We have emphasized that the balance of entropy (together with the other balances
 \subsection{Entropy flux, heat, temperature}
 \label{sec:entropyflux_const}
 
-The most important constitutive relation for entropy is the one that relates its flux $\yB$ with the \autoref{sec:heating_power}{heat flux} $\yQ$ and the thermodynamic temperature $\yte$.
+The most important constitutive relation for entropy is the one that relates its flux $\yB$ with the \autoref{sec:heating_power}{heat flux} $\yQ$ and the thermodynamic temperature $\yT$.
 \begin{definition}{Entropy flux,label={def:entropyflux}}
   Consider a control surface, possibly moving, with an assigned crossing direction, and satisfying the following conditions:
   \begin{itemize}[shift,nosep]
@@ -8405,7 +8585,7 @@ The most important constitutive relation for entropy is the one that relates its
   \item no flux of matter through the surface
   \item no chemical reactions (transformations between matter types) occur across the surface
   \item no electromagnetic phenomena involved
-  \item the temperature $\yte$ is the same on every part of the surface
+  \item the temperature $\yT$ is the same on every part of the surface
   \item the heat flux through the surface is $\yQ$
   \end{itemize}
 
@@ -8414,7 +8594,7 @@ The most important constitutive relation for entropy is the one that relates its
   Then across the control surface there is an entropy flux $\yB$ given by
   \begin{equation}
     \label{eq:entropy_flux}
-    \yB = \frac{\yQ}{\yte}
+    \yB = \frac{\yQ}{\yT}
   \end{equation}
 \end{definition}
 This relation has wide applicability, but pay close attention to the conditions for its validity. In particular, it is not correct if there is a net flux of matter through the surface. Nor is it correct if there are opposite fluxes of \emph{different kinds} of matter that cancel each one out -- so the \emph{net} flux is zero -- but chemical reactions are occurring between these different matter kinds. It is also important that the temperature be well-defined and be uniform, that is, have the same value, on the surface and at least in a small spatial region on each side of the surface. If the temperature is not uniform, the surface is usually divided into smaller parts, so that the temperature can be considered uniform in each part separately, and then the total flux is obtained by summation, thanks to \autoref{def:extensivity}{extensivity}.
@@ -8449,20 +8629,20 @@ This relation has wide applicability, but pay close attention to the conditions 
 
 In \chap~\ref{cha:bal_energy} we discussed constitutive relations for \autoref{sec:int_energy_idealgas}{the pressure $\ypr$ and the internal energy $\yU$} of an control volume containing an ideal gas:
 \begin{equation*}
-  \ypr = \frac{R \yN \yte}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t} \ ,
+  \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t} \ ,
   \qquad\qquad
-  \yU = C\,\yN\,\yte
+  \yU = C\,\yN\,\yT
 \end{equation*}
-where $\yN$ is the amount of gas, $\yte$ the temperature of the gas, assumed uniform, $V$ is the volume, and $R$, $C$, $\yvis$ are the molar gas constant, molar heat capacity, and viscosity coefficient.
+where $\yN$ is the amount of gas, $\yT$ the temperature of the gas, assumed uniform, $V$ is the volume, and $R$, $C$, $\yvis$ are the molar gas constant, molar heat capacity, and viscosity coefficient.
 
 Under the same conditions of validity for the constitutive relations above, we also have a constitutive relation for the entropy content $\yS$ of the volume of ideal gas:
 \begin{definition}{Entropy of an ideal gas}
-  If a small control volume contains an amount $\yN$ of ideal gas at uniform temperature $\yte$, then it also contains an amount of entropy $\yS$ given by
+  If a small control volume contains an amount $\yN$ of ideal gas at uniform temperature $\yT$, then it also contains an amount of entropy $\yS$ given by
   \begin{equation}
     \label{eq:entropy_idealgas}
-    \yS = C \yN \ln\frac{\yte}{\yte_{0}} - R \yN \ln\frac{\yN/V}{\yN_{0}/V_{0}}
+    \yS = C \yN \ln\frac{\yT}{\yT_{0}} - R \yN \ln\frac{\yN/V}{\yN_{0}/V_{0}}
   \end{equation}
-  where $\yte_{0}, \yN_{0}, V_{0}$ are arbitrary reference temperature, amount of matter, and volume.
+  where $\yT_{0}, \yN_{0}, V_{0}$ are arbitrary reference temperature, amount of matter, and volume.
 \end{definition}
 
 
@@ -8491,7 +8671,7 @@ Would it be possible to build a thermal engine that takes some energy in the for
 \marginpar{\vspace{\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/engine_1temp.jpg}%
 }%
-The operation of such an engine is captured in the side picture. Imagine to wrap the engine, no matter how complex it could be, in a closed control surface, defining a control volume. A part (\textcolor{purple}{red}) of the control surface delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. The temperature $\yte$ at the inlet is \emph{constant} in time. Another part (\textcolor{blue}{blue}) of the control surface delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive, so it's an \emph{ef}flux for the engine. Through the rest (\textcolor{midgrey}{grey}) of the control surface there are \emph{no exchanges of heat}, but there may be fluxes of matter, momentum, angular momentum, and electromagnetic quantities; but we require that over an operation cycle the overall amount of each such flow be zero. Only the fluxes $yQ$ and $-\yF\cdot\yv$ can have a non-zero net amount over an operation cycle.
+The operation of such an engine is captured in the side picture. Imagine to wrap the engine, no matter how complex it could be, in a closed control surface, defining a control volume. A part (\textcolor{purple}{red}) of the control surface delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. The temperature $\yT$ at the inlet is \emph{constant} in time. Another part (\textcolor{blue}{blue}) of the control surface delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive, so it's an \emph{ef}flux for the engine. Through the rest (\textcolor{midgrey}{grey}) of the control surface there are \emph{no exchanges of heat}, but there may be fluxes of matter, momentum, angular momentum, and electromagnetic quantities; but we require that over an operation cycle the overall amount of each such flow be zero. Only the fluxes $yQ$ and $-\yF\cdot\yv$ can have a non-zero net amount over an operation cycle.
 
 The engine starts a cycle at time $\yti$ and operates until time $\ytf$, at which time its state is exactly the same as at the initial one, the cycle is complete, and the engine is ready to start a new operation cycle. In a cycle, the total amount of heat $\yhe$ we provide to the engine and the total amount of work $\yW$ we \emph{receive} from it are given, with a shorter notation, by
 \begin{equation*}
@@ -8528,15 +8708,15 @@ Let's see what the balance of entropy says. We have
   \begin{aligned}
     \yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
     \\
-    &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\frac{\yQ(t)}{\yte}\,\di t
+    &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\frac{\yQ(t)}{\yT}\,\di t
     \\
-    &\ge \yS(\yti) + \frac{\yhe}{\yte}
+    &\ge \yS(\yti) + \frac{\yhe}{\yT}
   \end{aligned}
 \end{equation*}
-The last step, where the temperature $\yte$ goes out of the time integral, is possible because the temperature is constant, according to our engine design. Also in this case the initial and final entropy content must be the same: $\yS(\ytf)=\yS(\yti)$. The equation above simplifies to
+The last step, where the temperature $\yT$ goes out of the time integral, is possible because the temperature is constant, according to our engine design. Also in this case the initial and final entropy content must be the same: $\yS(\ytf)=\yS(\yti)$. The equation above simplifies to
 \begin{equation}\label{eq:engine1_heatminus}
-  \frac{\yhe}{\yte} \le 0
-  \qquad\underbracket[0pt]{\Longrightarrow}_{\text{\color{midgrey}because $\yte>0$}}\qquad
+  \frac{\yhe}{\yT} \le 0
+  \qquad\underbracket[0pt]{\Longrightarrow}_{\text{\color{midgrey}because $\yT>0$}}\qquad
   \yhe \le 0
 \end{equation}
 This is a remarkable result: \emph{it's impossible to give a positive net amount of heat, in a cycle, to such an engine}; otherwise the entropy-balance law would be broken.
@@ -8572,13 +8752,13 @@ We can therefore try a different design, where one of the conditions above is dr
 
 Let modify our original design. Now we allow the exchange of heat to happen at two different temperatures. This could be done by changing the temperature of one part of the surface over time (within a cycle), or by allowing heat to be exchanged at two different inlets, having constant but different temperatures. We choose the second option as it's easier to analyse and lead to the same results as the first.
 
-The new engine design is represented in the side picture. An influx of heat $\yQp(t)$ occurs through a part (\textcolor{purple}{dark red}) of the closed control surface at constant temperature $\ytep$; another influx of heat $\yQm(t)$ occurs through another part (\textcolor{red}{light red}) of the surface at constant temperature $\ytem$. We assume
+The new engine design is represented in the side picture. An influx of heat $\yQp(t)$ occurs through a part (\textcolor{purple}{dark red}) of the closed control surface at constant temperature $\yTp$; another influx of heat $\yQm(t)$ occurs through another part (\textcolor{red}{light red}) of the surface at constant temperature $\yTm$. We assume
 %
 \marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/engine_2temp.jpg}%
 }%
 \begin{equation*}
-  \ytep > \ytem
+  \yTp > \yTm
 \end{equation*}
 but for the moment we are not making assumptions about $\yQp()$ and $\yQm(t)$; we only require that the net amount of heat provided to the engine in a cycle be positive. Through another, movable part (\textcolor{blue}{blue}) of the control surface the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$. Through the rest (\textcolor{midgrey}{grey}) of the surface there may be fluxes of matter and other quantities, except heat; but the net flow of such quantities is zero over an operation cycle.
 
@@ -8611,31 +8791,31 @@ That is, the net work released in a cycle must be equal to the net heat provided
 The flux of entropy for the engine's control volume is
 \begin{equation*}
     \int_{\yti}^{\ytf}\!\!\yB_{\text{tot}}(t)\,\di t =
-    \int_{\yti}^{\ytf}\!\frac{\yQp(t)}{\ytep}\,\di t +
-    \int_{\yti}^{\ytf}\!\frac{\yQm(t)}{\ytem}\,\di t
-\equiv \frac{\yhep}{\ytep} + \frac{\yhem}{\ytem}
+    \int_{\yti}^{\ytf}\!\frac{\yQp(t)}{\yTp}\,\di t +
+    \int_{\yti}^{\ytf}\!\frac{\yQm(t)}{\yTm}\,\di t
+\equiv \frac{\yhep}{\yTp} + \frac{\yhem}{\yTm}
 \end{equation*}
 The balance of entropy applied to the control volume therefore says
 \begin{equation*}
-    \yS(\ytf) \ge \yS(\yti) + \frac{\yhep}{\ytep} + \frac{\yhem}{\ytem}
+    \yS(\ytf) \ge \yS(\yti) + \frac{\yhep}{\yTp} + \frac{\yhem}{\yTm}
 \end{equation*}
 and since $\yS(\ytf)=\yS(\yti)$ in this operation cycle we finally find
 \begin{equation*}
-  \frac{\yhep}{\ytep} + \frac{\yhem}{\ytem}  \le 0
+  \frac{\yhep}{\yTp} + \frac{\yhem}{\yTm}  \le 0
 \end{equation*}
 For this new engine, the entropy balance is not saying that the net amount of heat provided in a cycle cannot be positive. It looks like the new engine design might work.
 
-With a little algebra, and recalling that a thermodynamic temperature $\ytem >0$, we can rewrite the inequality above as follows:
+With a little algebra, and recalling that a thermodynamic temperature $\yTm >0$, we can rewrite the inequality above as follows:
 \begin{equation}\label{eq:engine2_heatminus}
-  \yhem \le -\frac{\ytem}{\ytep}\yhep
+  \yhem \le -\frac{\yTm}{\yTp}\yhep
 \end{equation}
-The fraction $\ytem/\ytep$ is positive; so if $\yhep$ is positive, $\yhem$ must be negative, or vice versa. The entropy balance is therefore saying that \emph{in a cycle, if the net amount of heat exchanged at one inlet is positive, then the net amount exchanged at the other inlet must be negative}.
+The fraction $\yTm/\yTp$ is positive; so if $\yhep$ is positive, $\yhem$ must be negative, or vice versa. The entropy balance is therefore saying that \emph{in a cycle, if the net amount of heat exchanged at one inlet is positive, then the net amount exchanged at the other inlet must be negative}.
 
 We wished to have a positive net amount of heat provided to the engine in a cycle, that is,
 \begin{equation*}
   \yhep + \yhem > 0
 \end{equation*}
-This \emph{is} indeed feasible! If $\yhep$ is positive, then $\yhem$ is negative, but its absolute value is less than $\yhep$, because in formula~\eqref{eq:engine2_heatminus} the fraction $\ytem/\ytep$ is less than $1$. Suppose for instance that $\yhep=\qty{8000}{J}$, $\ytep=\qty{400}{K}$, $\ytem=\qty{100}{K}$. Formula~\eqref{eq:engine2_heatminus} then requires
+This \emph{is} indeed feasible! If $\yhep$ is positive, then $\yhem$ is negative, but its absolute value is less than $\yhep$, because in formula~\eqref{eq:engine2_heatminus} the fraction $\yTm/\yTp$ is less than $1$. Suppose for instance that $\yhep=\qty{8000}{J}$, $\yTp=\qty{400}{K}$, $\yTm=\qty{100}{K}$. Formula~\eqref{eq:engine2_heatminus} then requires
 \begin{equation*}
   \yhem \le -\frac{\qty{100}{K}}{\qty{400}{K}}\cdot\qty{8000}{J} = -\qty{2000}{J}
 \end{equation*}
@@ -8649,21 +8829,21 @@ It turns out that the balance of entropy also tells us what's the maximal amount
 \begin{equation*}
   \yW = \yhep + \yhem
   \enspace\text{\footnotesize and}\enspace
-  \yhem \le -\frac{\ytem}{\ytep}\yhep
+  \yhem \le -\frac{\yTm}{\yTp}\yhep
 \quad\Longrightarrow\quad
-  \yW \le \yhep -\frac{\ytem}{\ytep}\yhep
-%  =  \biggl(1-\frac{\ytem}{\ytep}\biggr)\,\yhep
+  \yW \le \yhep -\frac{\yTm}{\yTp}\yhep
+%  =  \biggl(1-\frac{\yTm}{\yTp}\biggr)\,\yhep
 \end{equation*}
 by using a little algebra we finally find the maximal work obtainable:
 \begin{equation}\label{eq:thermal_efficiency}
-  \yW \le \biggl(1-\frac{\ytem}{\ytep}\biggr)\,\yhep
+  \yW \le \biggl(1-\frac{\yTm}{\yTp}\biggr)\,\yhep
 \end{equation}
-The factor $1-\ytem/\ytep$ is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature is positive, the efficiency cannot be greater than $1$.
+The factor $1-\yTm/\yTp$ is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature is positive, the efficiency cannot be greater than $1$.
 
-In order to maximize the amount of work $\yW$ obtained and minimize the amount of heat $\yhem$ received back from the engine, we must try to make the efficiency as close to $1$ as possible. Looking at the fraction $\ytem/\ytep$ we see that there are two main ways, both of which can be pursued:
+In order to maximize the amount of work $\yW$ obtained and minimize the amount of heat $\yhem$ received back from the engine, we must try to make the efficiency as close to $1$ as possible. Looking at the fraction $\yTm/\yTp$ we see that there are two main ways, both of which can be pursued:
 \begin{itemize}
-\item Lower as much as possible, close to \qty{0}{K}, the temperature $\ytem$ at which heat is received back from the engine
-\item Increase as much as possible the temperature $\ytep$ at which heat is provided to the engine.
+\item Lower as much as possible, close to \qty{0}{K}, the temperature $\yTm$ at which heat is received back from the engine
+\item Increase as much as possible the temperature $\yTp$ at which heat is provided to the engine.
 \end{itemize}
 
 \medskip
@@ -8674,7 +8854,7 @@ The thermal-engine example above also hints at the role of the balance of entrop
 \begin{equation*}
   -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
   \le
-  \biggl(1-\frac{\ytem}{\ytep}\biggr)\,
+  \biggl(1-\frac{\yTm}{\yTp}\biggr)\,
   \int_{\yti}^{\ytf}\!\!\yQp(t)\,\di t \ ,
 \end{equation*}
 is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be whatever. In fact they turn out to have severe restrictions.
@@ -8787,6 +8967,13 @@ Notes for \enquote{postfaction}:
 \fi
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Postface
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printpagenotes*
+\clearpage
+\addchap{Postface for teachers and physicists}
+\label{cha:postface}
 
 
 
@@ -9140,9 +9327,9 @@ For some kinds of matter in a gaseous state, the magnitude of their compressive 
 % }%
 \begin{definition}{Ideal-gas law}
   \begin{equation*}
-    \frac{F_{\text{press}}}{A} = R\,\yte\,\frac{\yN}{V}
+    \frac{F_{\text{press}}}{A} = R\,\yT\,\frac{\yN}{V}
   \end{equation*}
-  called the \textbf{ideal-gas law}, where $A$ is the area through which the momentum flux occurs, $V$ is the volume of a small region adjacent to the area, $\yN$ is the amount of matter in that volume, $\yte$ is its temperature, and $$R = \qty{8.31446261815324}{N\,m/(K\,mol)}\qquad\text{(exactly)}$$ is the \furl{https://www.britannica.com/science/universal-gas-constant}{molar gas constant}. The ratio $\yF_{\text{press}}/A$ of force and area is called \emph{pressure}.
+  called the \textbf{ideal-gas law}, where $A$ is the area through which the momentum flux occurs, $V$ is the volume of a small region adjacent to the area, $\yN$ is the amount of matter in that volume, $\yT$ is its temperature, and $$R = \qty{8.31446261815324}{N\,m/(K\,mol)}\qquad\text{(exactly)}$$ is the \furl{https://www.britannica.com/science/universal-gas-constant}{molar gas constant}. The ratio $\yF_{\text{press}}/A$ of force and area is called \emph{pressure}.
 \end{definition}
 \marginpar{\vspace{-13\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/barometer.jpg}%
@@ -9879,7 +10066,7 @@ Under the last three conditions we have in general that $\mathrm{d}S \ge Q/T$; w
 \end{equation*}
 
 \begin{equation*}
-      \frac{\di\yL(t)}{\di t}- \yT(t) = \ym(t)
+      \frac{\di\yL(t)}{\di t}- \yto(t) = \ym(t)
 \end{equation*}
 
 % \begin{equation*}
@@ -10538,6 +10725,122 @@ In \chap\,\ref{cha:stuff} we introduced seven main quantities in terms of which 
 
 This distinction it's important. The fundamental laws can be applied with some confidence to every new phenomenon we observe, and often allow us to make predictions of at least a qualitative character. As far as we know there is a very small number of fundamental laws. We only modify them as a last resort (and so far this has rarely or never been necessary). We have a lot of freedom in modifying constitutive relations instead, and in proposing new ones to account for newly observed physical phenomena.
 
+%%%% symbols
+
+matter_supply
+momentum_supply
+energy_flux
+energy_supply
+entropy_flux
+entropy_supply
+magneticflux_flux
+area
+length
+heat
+
+
+
+a
+A
+b
+B
+c
+C
+d
+D
+e
+E energy_content
+f
+F momentum_flux
+g
+G
+h
+H
+i
+I charge_flux
+j
+J matter_flux
+k
+K
+l
+L
+m
+M
+n
+N matter_content
+o
+O
+p pressure
+P momentum_content
+q
+Q charge_content
+r
+R
+s
+S entropy_content
+t time
+T temperature
+u
+U
+v
+V volume
+w
+W
+x position
+X
+y position
+Y
+z position
+Z
+
+α
+Α XX
+β
+Β XX
+γ
+Γ
+δ
+Δ
+ε
+Ε XX
+ζ
+Ζ XX
+η
+Η XX
+θ
+Θ
+ι
+Ι XX
+κ
+Κ XX
+λ
+Λ
+μ
+Μ XX
+ν
+Ν XX
+ξ
+Ξ
+ο
+Ο XX
+π
+Π
+ρ
+Ρ XX
+σ
+Σ
+τ
+Τ XX
+υ
+Υ XX
+φ
+Φ magneticflux_content
+χ
+Χ XX
+ψ
+Ψ
+ω
+Ω
 
 
 %% TODOs:
