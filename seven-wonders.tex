@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-08-18T10:02:46+0200
+%% Last-Updated: 2024-08-20T07:56:14+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -21,7 +21,7 @@ onecolumn,oneside,titlepage,%french,italian,german,swedish,latin,
 british%
 ]{memoir}
 \newcommand*{\firstdraft}{26 May 2023}
-\newcommand*{\version}{0.1}
+\newcommand*{\version}{0.2}
 \newcommand*{\updated}{\ifarxiv***\else\today\fi}
 \newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Notes on 21st-century physics}
 %\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Lecture notes for ING\,175}
@@ -1243,7 +1243,7 @@ Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
 \tableofcontents*
 \label{sec:toc}
 
-\setcounter{chapter}{0}
+\setcounter{chapter}{-1}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1281,6 +1281,35 @@ In my opinion, if you learn how to apply these universal principles in simple si
   \url{https://pglpm.github.io/7wonders/}
 \end{center}
 
+\iffalse
+\addsec{Thanks}
+\label{sec:thanks}
+
+I am deeply indebted to the students attending the ING\,175 course, Spring-term 2024, at the Western Norway University of Applied Sciences (HVL) in Bergen. They allowed me to experiment presenting physics as done in these notes, and gave invaluable feedback about what's easy and what's difficult, what's clear and what's unclear, with many suggestions for improvement, and also moral support with their curiosity and enthusiasm. In particular, in alphabetic order: %
+Amalie Solberg Magnussen Rege, %
+% Azzat Ammar Kouzi, %
+Bodil Markhus, %
+% Cristopher Gerald Rojas, %
+% Dag Åsmund Ørnes, %
+% Erlend Vitsø, %
+Iver Thoresen Malme, %
+% Jonas Pytte, %
+% Josefine Björk Jarlesdottir Gjerde, %
+Leonard Rogardt Heldal, %
+% Nicolai Lindløkken, %
+% Nikolai Ringereide, %
+Oda Skagsoset Kristiansen, %
+% Rebecca Sahlem, %
+% Rudi Nathaniel Stødle, %
+% Severin Johannessen, %
+% Sondre Moa Risnes, %
+% Stein Olav Løset Frey, %
+Vegard Aa Albretsen, %
+William Sæther. %
+Mats Øinas deserves a special thank for his thorough feedback, questions, suggestions, and encouragement.
+
+A heartfelt thank goes to Yu-Chung Wang for his assistance in teaching and his feedback and continuous moral support.
+\fi
 
 % \addsec{Guide to the text}
 % \label{sec:guide}
@@ -1516,17 +1545,29 @@ In science you should not believe something just because you've read it somewher
 Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
 
 
-
-
-
-
 \printpagenotes*
 \clearpage
-\chapter{Physics?}
-\label{cha:physics_general}
+\chapter{Overview}
+\label{cha:overview}
 
-\epigraph{Philosophy is written in this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the letters in which it is composed. It is written in the language of mathematics, and its characters are triangles, circles, and other geometric figures without which it is humanly impossible to understand a single word of it.}{G. Galilei \cites*{galilei1623}}
+\addsec{The plan of these notes}
 
+After some very general remarks about physics, we recall the notions of \textbf{physical quantity}, unit, and physical dimension. This is really just a reminder; it's assumed that you are already familiar with these general notions.
+
+We then survey two cardinal physical notions: \textbf{time} and \textbf{space}. We briefly examine their fascinating nature as we today understand it. The notion of \textbf{coordinate system} is also introduced.
+
+Thereafter we take an overview of the main seven physical quantities we shall work with: \textbf{matter}, \textbf{energy-mass}, \textbf{momentum}, \textbf{angular momentum}, \textbf{entropy},  \textbf{electric charge}, \textbf{magnetic flux}, discussing some features common to all of them. Other important quantities such as \textbf{temperature} are also introduced.
+
+The most important feature of the main seven quantities is that we can measure their amount within any volume, and the amount that passes through any surface. We therefore study the intuitive ideas of \textbf{control volume} and \textbf{volume content}, \textbf{control surface} and \textbf{flux}, and \textbf{supply}.
+
+At this point the stage is ready for the introduction of seven physical laws which are just expressions of \textbf{balances} of volume contents, fluxes, and supplies of the seven quantities introduced earlier. These seven balance laws are universal. They are connected by mathematical expressions called \textbf{constitutive relations}, which are not universal but depend on the particular physical phenomenon, and on the particular physical theory we use to describe it.
+
+The balance laws are the ones that allow us to predict how the values of different quantities change with time. We show this by exploiting them to build simple computer code that can in principle be applied to any physical system. The role that constitutive relations have in connecting the seven balances also becomes quite clear in the code.
+
+Five of the seven universal balances are then examined in turn. For each balance, we study some constitutive relations that are often used together with it, as well as some of its physical applications.
+
+\addsec{Physics?}
+\label{sec:physics_general}
 
 % \section{Magic}
 % \label{sec:magic}
@@ -1539,11 +1580,50 @@ We can do these astonishing things thanks to our understanding of how the world 
 
 Many things can be said and have been said about science and physics. Rather than repeating what's been already written in many excellent books, I invite you to take a break here and go read their introductions. Choose as you please; compare what they say; don't limit yourself to popular books.
 
-\begin{center}
-  \textellipsis
-  \textellipsis
-  \textellipsis
-\end{center}
+% \begin{center}
+%   \textellipsis
+%   \textellipsis
+%   \textellipsis
+% \end{center}
+
+
+
+\addsec{What is \enquote{fundamental} physics?}
+\label{sec:fundamental_physics}
+
+But what's the \enquote{ultimate} goal of physics? What's \enquote{fundamental} physics? The answer to this question is again subjective -- also in this case physics lets you express your proclivities and personality. In the history of physics one can probably identify two main conceptions of \enquote{fundamental} physics.
+
+For some physicists it is about finding the ultimate building blocks, so that one day we can say \enquote{\textellipsis and these are the constituents, and they obey these equations}. The history of physics seems to show that this goal is overturned every few generations. And yet every generation says \enquote{\emph{Now} we almost have the complete picture -- it's right behind the corner. It's true that previous generations thought they almost had it, and turned out to be wrong. But \emph{this time} is different, this time we have the real deal!}. The theoretical and particle physicist \furl{https://www.physics.lbl.gov/rememberinggeoffreychew/}{Geffrey Chew} depicted this situation as in \fig\,\ref{fig:chew1}. For this reason some physicists are a little sceptical about this goal; maybe it's a never-ending structure, with surprises at every deeper look.
+
+So for other physicists fundamental physics is about finding some point of view or mathematical structure that is rich enough to make useful predictions, and yet flexible enough to accommodate any new patterns or objects that we might discover. In a manner of speaking, it is about finding \enquote{patterns of patterns} or \enquote{laws about physical laws}.
+
+The two conceptions above are not mutually exclusive, and both are always pursued, even if time-changing fashions may emphasize the one or the other.
+
+In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between physical laws that we'll draw in \chap\,\ref{cha:laws}.
+
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=1.2\textwidth]{images/chew1.png}
+  \\[1em]  \includegraphics[width=1.2\textwidth]{images/chew2.png}
+  \caption{(Continues on p.\,\pageref{fig:chew2}) \emph{The progress of \enquote{fundamental} physics}, from \cites{chew1970} as reproduced in \cites{truesdell1984_r1987}}
+  \label{fig:chew1}
+\end{figure}
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=1.2\linewidth]{images/chew3.png}
+\\[1em]  \includegraphics[width=1.2\linewidth]{images/chew4.png}
+  % \caption{\emph{\enquote{The progress of \enquote*{fundamental} physics, conceived by Berkeley Chew, published in 1970 by his father, Professor Geoffrey F. Chew.}} Reproduced from  \cites{truesdell1984_r1987}}
+  \label{fig:chew2}
+\end{figure}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Physical quantities}
+\label{cha:physical_quantities}
+
+\epigraph{Philosophy is written in this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the letters in which it is composed. It is written in the language of mathematics, and its characters are triangles, circles, and other geometric figures without which it is humanly impossible to understand a single word of it.}{G. Galilei \cites*{galilei1623}}
 
 
 \section{Several possible formalisms or \enquote{languages}}
@@ -1740,35 +1820,6 @@ The \autoref{sec:velocity}{velocity} of the object is given by the derivative of
 \end{equation*}
 and you see that the correct units for velocity have automatically appeared.
 
-
-\section{What is \enquote{fundamental} physics?}
-\label{sec:fundamental_physics}
-
-But what's the \enquote{ultimate} goal of physics? What's \enquote{fundamental} physics? The answer to this question is again subjective -- also in this case physics lets you express your proclivities and personality. In the history of physics one can probably identify two main conceptions of \enquote{fundamental} physics.
-
-For some physicists it is about finding the ultimate building blocks, so that one day we can say \enquote{\textellipsis and these are the constituents, and they obey these equations}. The history of physics seems to show that this goal is overturned every few generations. And yet every generation says \enquote{\emph{Now} we almost have the complete picture -- it's right behind the corner. It's true that previous generations thought they almost had it, and turned out to be wrong. But \emph{this time} is different, this time we have the real deal!}. The theoretical and particle physicist \furl{https://www.physics.lbl.gov/rememberinggeoffreychew/}{Geffrey Chew} depicted this situation as in \fig\,\ref{fig:chew1}. For this reason some physicists are a little sceptical about this goal; maybe it's a never-ending structure, with surprises at every deeper look.
-
-So for other physicists fundamental physics is about finding some point of view or mathematical structure that is rich enough to make useful predictions, and yet flexible enough to accommodate any new patterns or objects that we might discover. In a manner of speaking, it is about finding \enquote{patterns of patterns} or \enquote{laws about physical laws}.
-
-The two conceptions above are not mutually exclusive, and both are always pursued, even if time-changing fashions may emphasize the one or the other.
-
-In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between physical laws that we'll draw in \chap\,\ref{cha:laws}.
-
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=1.2\textwidth]{images/chew1.png}
-  \\[1em]  \includegraphics[width=1.2\textwidth]{images/chew2.png}
-  \caption{(Continues on p.\,\pageref{fig:chew2}) \emph{The progress of \enquote{fundamental} physics}, from \cites{chew1970} as reproduced in \cites{truesdell1984_r1987}}
-  \label{fig:chew1}
-\end{figure}
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=1.2\linewidth]{images/chew3.png}
-\\[1em]  \includegraphics[width=1.2\linewidth]{images/chew4.png}
-  % \caption{\emph{\enquote{The progress of \enquote*{fundamental} physics, conceived by Berkeley Chew, published in 1970 by his father, Professor Geoffrey F. Chew.}} Reproduced from  \cites{truesdell1984_r1987}}
-  \label{fig:chew2}
-\end{figure}
 
 
 % ** 7
