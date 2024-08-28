@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-08-20T08:04:03+0200
+%% Last-Updated: 2024-08-28T10:20:12+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -938,10 +938,11 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 \renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{%
+angle-right%
 %hand-point-right%
 %undo%
 %undo-alt%
-reply%
+%reply%
 %history%
 }\enspace\sect\,\ref{#1} page\,\pageref{#1}}}\textcolor{blue}{#2}}
 
@@ -1281,7 +1282,7 @@ In my opinion, if you learn how to apply these universal principles in simple si
   \url{https://pglpm.github.io/7wonders/}
 \end{center}
 
-\iffalse
+\ifanon\else
 \addsec{Thanks}
 \label{sec:thanks}
 
@@ -1290,18 +1291,18 @@ Amalie Solberg Magnussen Rege, %
 % Azzat Ammar Kouzi, %
 Bodil Markhus, %
 % Cristopher Gerald Rojas, %
-% Dag Åsmund Ørnes, %
+Dag Åsmund Ørnes, %
 % Erlend Vitsø, %
 Iver Thoresen Malme, %
 % Jonas Pytte, %
-% Josefine Björk Jarlesdottir Gjerde, %
+Josefine Björk Jarlesdottir Gjerde, %
 Leonard Rogardt Heldal, %
-% Nicolai Lindløkken, %
-% Nikolai Ringereide, %
+Nicolai Lindløkken, %
+Nikolai Ringereide, %
 Oda Skagsoset Kristiansen, %
-% Rebecca Sahlem, %
-% Rudi Nathaniel Stødle, %
-% Severin Johannessen, %
+Rebecca Sahlem, %
+Rudi Nathaniel Stødle, %
+Severin Johannessen, %
 % Sondre Moa Risnes, %
 % Stein Olav Løset Frey, %
 Vegard Aa Albretsen, %
@@ -1519,9 +1520,14 @@ This is an image of Saitama, which actually has nothing to do with the text on t
 Pictures, graphs, or quotes related to the material are displayed on the right.
 
 
+\subsubsection{\faIcon{hand-point-right}\enspace Cross-references}
+
+The text gives cross-references to the main section where a topic was discussed or will be discussed. Cross-references appear as section number and page listed on the margin, like this cross-reference to \autoref{sec:conservation_laws}{conservation laws}.
+
+
 \subsubsection{\faIcon{hand-point-right}\enspace Hyperlinks and bibliography}
 
-Some words are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}; you also recognize them because they have a little footnote number. The links' URLs are listed at the end of each chapter, just in case you're reading a printed copy and wonder what the link was.
+Some pieces of text are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}. You recognize them from their different colour and from the little footnote number that follows them. The links' URLs are also listed at the end of each chapter, in case you're reading a printed copy of these notes.
 
 \medskip
 
@@ -2161,7 +2167,7 @@ which is also a vector.
 \section[Seven primitive quantities]{Seven primitive quantities: basic properties}
 \label{sec:stuff}
 
-Besides time and space, our physics formalism includes around seven more quantities that we take as primitive:
+Besides time and space, our physics formalism includes seven more quantities that we take as primitive:
 \begin{definition}{Seven primitive quantities}
   \begin{center}\bfseries
     matter
@@ -2173,11 +2179,13 @@ Besides time and space, our physics formalism includes around seven more quantit
     \\ entropy
   \end{center}
 \end{definition}
-Technically they are called \emph{fields}, for reasons we shall shortly see.
+% Technically they are called \emph{fields}, for reasons we shall shortly see.
 
 \medskip
 
-Recall that primitive quantities cannot be defined: we can only try to understand them intuitively, for example through their properties. Some of the seven primitive quantities are easier to grasp intuitively than others. But all seven primitive quantities have three basic properties in common. First of all, of each we can ask, or rather, measure:
+Recall that primitive quantities cannot be defined: we can only try to understand them intuitively. Some of the seven primitive quantities are easier to grasp intuitively than others. But all seven primitive quantities have three basic properties in common:
+
+First of all, for each quantity we can ask or measure:
 \begin{definition}{The two basic measurements that can be made on the seven quantities}
   \begin{enumerate}[shift,label=\arabic*.]\bfseries
   \item How much of this quantity is in a particular three-dimensional region of space at a particular time instant?
@@ -2185,12 +2193,10 @@ Recall that primitive quantities cannot be defined: we can only try to understan
   \item How much of this quantity flows through a particular two-dimensional surface during a particular time lapse?
   \end{enumerate}
 \end{definition}
-We can ask these questions of any region of space and any time lapse, and the surface in the second question can be moving and deforming.
-% \mynotew{densities and fluxes?}
-The results of the two measurements above are numbers, which in general can be positive or negative, for scalar quantities; or vectors for vector quantities.
+We can ask these questions of any region of space and any time lapse, and the surface in the second question can be moving and deforming. The results of the two measurements above are either (positive or negative) numbers, for scalar quantities; or vectors, for vector quantities.
 % This number depends only on the chosen region, surfaces, and times.
 
-Often we consider the second question, about the flow through a surface, in the case of a very short lapse of time, and divide the total flow by that time lapse. So we have an alternative form of the second measurement:
+We can consider the question about the flow through a surface in the case of a very short lapse of time, and divide the total flow by that lapse. This way we have an alternative form of the second measurement, as flow per unit time:
 \begin{definition}{Flux of a substance through a surface}
   \begin{enumerate}[shift,label=\arabic*.]\bfseries
   \item[2b.] How much of this quantity is flowing through a particular two-dimensional surface per unit time, at a particular time instant?
@@ -2198,28 +2204,30 @@ Often we consider the second question, about the flow through a surface, in the 
 \end{definition}
 This is called the \textbf{flux} of the quantity through that surface.
 
-The third  property common to the seven quantities regards the two measurements above.
+The third property common to the seven quantities tells how the measurements above combine for several regions of space and several surfaces: by simple addition:
 \begin{definition}{Extensivity of the seven quantities,label={def:extensivity}}
-  If we consider two or more separate volumes, the amount of quantity in the total volume is equal to the sum of the amounts in the separate volumes.
+\begin{enumerate}[shift,label=\arabic*.]\bfseries
+  \item[3.]  If we consider two or more non-overlapping volumes, the amount of quantity in the total volume is equal to the sum of the amounts in the separate volumes.
 
-  Analogously for the flux through separate surfaces.
+    If we consider two or more non-overlapping surfaces, the amount of quantity flowing through the total surface is equal to the sum of the amounts flowing through the separate surfaces.
+  \end{enumerate}
 \end{definition}
-We say that each of the seven quantities is an \textbf{extensive} quantity
+We say that each of the seven quantities is an \textbf{extensive} quantity.
 
 \smallskip
 
-The basic measurements above can't in general be made, and don't even make sense, for some other quantities. For instance, we cannot ask \enquote{what's the total amount of \emph{temperature} in this region?}, or \enquote{how much velocity is flowing through this surface?}.
+The basic measurements above can't in general be made, and don't even make sense, for some other quantities. For instance, we cannot ask \enquote{what's the total amount of temperature in this region?}, or \enquote{how much velocity is flowing through this surface?}.
 
 \smallskip
 
-Thanks to the three properties above, each of the seven quantities can be intuitively visualized as some kind of \enquote{stuff} that can be present at each spacetime point, fills regions of space, and flows through surfaces. This visualization is useful, but also comes with some warnings which we'll discuss later.
+Thanks to the three properties above, each of the seven quantities can be intuitively visualized as some kind of \enquote{stuff} that may be present at each spacetime point, fills regions of space, and flows through surfaces. This visualization is useful, but also comes with some warnings which we shall discuss later.
 % But don't take the word \enquote*{stuff} too literally: I don't necessarily mean concrete objects like a ball, or substances like water.
 
 % For each quantity, we can speak of its \emph{density}, in relation to the question \enquote{how much of it is in a particular region?}; and of its \emph{flux}, in relation to the question \enquote{how much of it flows through a surface during some time?}. The density tells us how much quantity there's in a unit of volume. The flux tells us how much quantity is flowing through a unit of surface in a unit of time. Density and flux can change from spacetime point to spacetime point. We shall discuss them more in detail for each quantity later on. One important aspect to keep in mind is that \emph{the density and flux of each quantity depend on the coordinate system}.
 
-\smallskip
+\medskip
 
-What's remarkable about matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy, is that \emph{they are common to all our main physical theories}, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are really universal to our present way of doing physics and of describing physical phenomena around and within us.
+What's remarkable about matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy, is that \emph{they are common to all our main physical theories}, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. And in all these theories they possess the three basic properties discussed above. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and spatial or temporal scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are universal in our present way of doing physics and of describing and understanding physical phenomena all around and within us.
 
 % \begin{critique}
 %   \emph{Wait! what about \emph{force}? isn't this a primitive quantity? or maybe it isn't included because it's defined as mass${}\times{}$acceleration?}
@@ -2230,38 +2238,52 @@ What's remarkable about matter, electric charge, magnetic flux, energy, momentum
 % \end{critique}
 
 Let us make a first acquaintance with these seven quantities. The discussion that follows is meant as an introduction; we shall repeat and say more about each quantity in later chapters.
-
+%
 \marginpar{\centering%
 \href{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{\includegraphics[align=c,width=\linewidth]{images/feynman_why2.png}}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Richard Feynman explains the difficulty of \enquote{why} questions in a \furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{funny and insightful video}.%
 }%
-Keep in mind that it is very difficult, if not impossible, to answer questions like \enquote{what \emph{really} is\textellipsis?} or \enquote{why \emph{really} does\textellipsis?}.
+But keep in mind that it is very difficult, if not impossible, to answer questions like \enquote{what \emph{really} is the quantity\textellipsis?}
 
 \section{Matter}
 \label{sec:intro_matter}
 
-Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}. Its flux is therefore measured in units of \emph{moles per second} (\unit{mol/s}). In statistical mechanics and particle physics, matter is often simply counted and so measured in dimensionless units, rather than moles.
+Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}. Its flux is therefore measured in \emph{moles per second} (\unit{mol/s}). In statistical mechanics and particle physics, matter is often simply counted and so measured in dimensionless units, rather than moles.
 
-Matter is probably the easiest quantity to grasp intuitively; what we ordinarily call \enquote{stuff} is matter. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
-It is usually classified into several kinds; the classification depends on the physical phenomena and physical theory one works with, and is related to whether the kinds of matter can be considered separately conserved, as we'll discuss in \chap\,\ref{cha:cons_matter}.
+Matter is probably the easiest quantity to grasp intuitively: it is what we ordinarily call \enquote{stuff}. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
+It is usually classified into several kinds. The classification depends on the physical phenomena and theory one works with.
 
-In everyday phenomena not involving \furl{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}{radioactivity}
+A building engineer, for instance, could classify \enquote{matter} into different kinds of \emph{materials} -- such as wood, concrete, steel, sand, plastic, and so on -- keeping track of the amount of each material in different regions of space, its movement, its rate of production and transformation. Each material has different physical properties.
+
+A chemist could classify matter into different \emph{substances} -- such as water, hydrogen, oxygen, carbon dioxide, and so on -- again keeping track of their amounts, movements, production. According to this classification, the \enquote{materials} of the building engineer would be mixtures of the different substances. But note that there is no clear boundary between one classification and the other.
+
+A chemist could also classify matter into different kinds of \emph{atoms} -- such as \furl{https://pubchem.ncbi.nlm.nih.gov/element/Hydrogen}{hydrogen}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Helium}{helium}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Lithium}{lithium}, and the other kinds that appear in the \furl{https://iupac.org/what-we-do/periodic-table-of-elements/}{periodic table} -- and seeing substances and materials as combinations of these different atomic kinds of matter. This classification is special because these different kinds have, at least approximately, the property of being \autoref{sec:balance_intro}{conserved}: their amounts in a container or in a region of space can only change if these kinds are entering through an opening in the container or through the boundary of the region of space. In other words, they cannot be created or destroyed.
+
+This conservation property is only approximate, however. \furl{https://www.ciaaw.org/radioactive-elements.htm}{Radioactive atoms} can transmute from one kind to another. This possibility is crucial and must be taken into account in phenomena involving \furl{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}{radioactivity}
 % \url{https://www.britannica.com/science/radioactivity}
-or \furl{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}{nuclear energy},
-% \url{https://www.britannica.com/science/nuclear-fission}
-the different kinds of matter approximately correspond to the non-\furl{https://www.ciaaw.org/radioactive-elements.htm}{radioactive chemical elements}: \furl{https://pubchem.ncbi.nlm.nih.gov/element/Hydrogen}{hydrogen}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Helium}{helium}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Lithium}{lithium}, and so on. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
-Note that some common everyday devices, such as smoke detectors, do involve radioactivity.
+and \furl{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}{nuclear energy}.
 
-In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}{\emph{baryons}},
+A chemist or a particle physicist may classify matter into fewer different kinds: protons, neutrons, electrons, anti-protons, anti-neutrons, anti-electrons (also called \emph{positrons}), seeing the different atomic kinds as being made of these six basic ones. These kinds may be conserved even when kinds of atoms are not.
+
+But a nuclear or particle physicist knows that the conservation properties of the six kinds above is also only approximate, and there are also other kinds, produced only in special circumstances.
+
+We therefore go down into more and more subtle classifications. This kind of research is still open, but it seems that the total amount of \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}{\emph{baryonic}},
 % \url{https://www.britannica.com/science/baryon}},
-like protons and neutrons; and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}{\emph{leptons}},
+(including protons and neutrons) and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}{\emph{leptonic}} (including electrons) matter is always conserved.
 % \url{https://www.britannica.com/science/lepton}},
-such as electrons. In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved, like electronic-leptons, muonic-leptons, and others. This kind of research is still open, but it seems that the total amount of baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved. Note that we're using the term \enquote*{matter} in a sense that includes anti-matter, such as positrons.
 
-The total amount of matter in a region \emph{can be negative}. \enquote{Negative matter} is what's usually called \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans.
+\begin{warning}[Ambiguity of the term \enquote*{matter}]
+In these notes we use the term \enquote*{matter} in a the generic sense discussed above. But be aware that in specialized applications, this term may have a much more specialized and slightly different meaning. It may even \emph{not} be used at all. In chemical applications, for instance, one typically speaks specifically of \enquote*{compounds}, \enquote*{mixtures}, \enquote*{substances}, \enquote*{elements}, rather than \enquote*{matter}. A particle physicists speaks of \emph{matter} and \emph{anti-matter}, but in the present notes the term \enquote*{matter} refers to both.
+\end{warning}
 
-In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
+\medskip
+
+According to the definition of matter that we're adopting, the total amount of matter in a region can in principle be \emph{negative}. \enquote{Negative matter} is what's usually called \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans.
+
+In ordinary chemical applications, however, all amounts of matter within a region are usually positive or zero.
+
+% In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
 
 % There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena like nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
@@ -2465,11 +2487,11 @@ This coordinate-dependence is not a problem: we must always specify our coordina
 
 Also the distinction among different forms of energy is coordinate-dependent. For instance, in one coordinate system we can say that a given volume contains only internal energy; but in another coordinate system that same volume can be said to contain internal and kinetic energy.
 
-\marginpar{%
-\includegraphics[align=t,width=\linewidth]{images/molecules_20nmb.png}
-\\[\jot]\footnotesize\color{mpcolor}\furl{https://doi.org/10.4209/aaqr.2019.04.0177}{Hydrocarbon fuel particles}. The small blobs have size of around \qty{2e-8}{m}.%
-}
 The distinction among different forms of energy also depends on the observation scale and on the theory used. For instance, we can observe and model the gas in a container on a scale of metres, seeing it as a uniform flux; in this case we say that there's internal energy in the container. But if we observe and model the gas as a collection of molecules, on a microscopic scale, then we say that there's internal energy (of the single molecules) and kinetic energy in the container (the total energy being the same, unless we have changed coordinate system).
+%
+\marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=\linewidth]{images/molecules_20nmb.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}\furl{https://doi.org/10.4209/aaqr.2019.04.0177}{Hydrocarbon fuel particles}. The small blobs have size of around \qty{2e-8}{m}.%
+}%
 
 The same is true of energy flux: what we call \enquote*{heat} on one observation scale is \enquote*{work} on a finer scale. % In phenomena that involve matter and electromagnetic fields, any separation between \enquote*{energy of matter} and \enquote*{energy of electromagnetic field} is often arbitrary.
 
@@ -10774,6 +10796,29 @@ In \chap\,\ref{cha:stuff} we introduced seven main quantities in terms of which 
 \end{definition}
 
 This distinction it's important. The fundamental laws can be applied with some confidence to every new phenomenon we observe, and often allow us to make predictions of at least a qualitative character. As far as we know there is a very small number of fundamental laws. We only modify them as a last resort (and so far this has rarely or never been necessary). We have a lot of freedom in modifying constitutive relations instead, and in proposing new ones to account for newly observed physical phenomena.
+
+------
+
+baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved.
+
+
+Often the classification is related to whether the different kinds of matter under consideration are at least approximately \autoref{sec:balance_intro}{conserved}, as we'll discuss later.
+
+In everyday phenomena not involving \furl{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}{radioactivity}
+% \url{https://www.britannica.com/science/radioactivity}
+or \furl{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}{nuclear energy},
+% \url{https://www.britannica.com/science/nuclear-fission}
+matter is classified into different kinds, approximately corresponding to the non-\furl{https://www.ciaaw.org/radioactive-elements.htm}{radioactive} chemical elements: \furl{https://pubchem.ncbi.nlm.nih.gov/element/Hydrogen}{hydrogen}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Helium}{helium}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Lithium}{lithium}, and so on. %\furl{https://doi.org/10.1351/goldbook.C01022}{}.
+Note that some common everyday devices, such as smoke detectors, do involve radioactivity.
+
+In phenomena involving radioactivity or nuclear energy, the different kinds of matter correspond approximately to \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/hadron.html\#c6}{\emph{baryons}},
+% \url{https://www.britannica.com/science/baryon}},
+like protons and neutrons; and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}{\emph{leptons}},
+% \url{https://www.britannica.com/science/lepton}},
+such as electrons. In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved, like electronic-leptons, muonic-leptons, and others. This kind of research is still open, but it seems that the total amount of baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved. Note that we're using the term \enquote*{matter} in a sense that includes anti-matter, such as positrons.
+
+
+
 
 %%%% symbols
 
