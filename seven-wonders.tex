@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-08-28T10:20:12+0200
+%% Last-Updated: 2024-08-29T07:24:34+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1282,7 +1282,7 @@ In my opinion, if you learn how to apply these universal principles in simple si
   \url{https://pglpm.github.io/7wonders/}
 \end{center}
 
-\ifanon\else
+\iftrue
 \addsec{Thanks}
 \label{sec:thanks}
 
@@ -2239,8 +2239,7 @@ What's remarkable about matter, electric charge, magnetic flux, energy, momentum
 
 Let us make a first acquaintance with these seven quantities. The discussion that follows is meant as an introduction; we shall repeat and say more about each quantity in later chapters.
 %
-\marginpar{\centering%
-\href{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{\includegraphics[align=c,width=\linewidth]{images/feynman_why2.png}}%
+\marginpar{\vspace{-6\baselineskip}\centering\includegraphics[width=\linewidth]{images/feynman_why2.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Richard Feynman explains the difficulty of \enquote{why} questions in a \furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{funny and insightful video}.%
 }%
@@ -2251,6 +2250,8 @@ But keep in mind that it is very difficult, if not impossible, to answer questio
 
 Matter is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.A00297}{\textsf{amount of substance}}, and measured in \furl{https://doi.org/10.1351/goldbook.M03980}{\emph{moles} (\unit{mol})}. Its flux is therefore measured in \emph{moles per second} (\unit{mol/s}). In statistical mechanics and particle physics, matter is often simply counted and so measured in dimensionless units, rather than moles.
 
+\smallskip
+
 Matter is probably the easiest quantity to grasp intuitively: it is what we ordinarily call \enquote{stuff}. % It is called \furl{https://doi.org/10.1351/goldbook.C01039}{\emph{chemical substance}} in chemistry, and \emph{baryons} and \emph{leptons} in particle physics.
 It is usually classified into several kinds. The classification depends on the physical phenomena and theory one works with.
 
@@ -2258,9 +2259,7 @@ A building engineer, for instance, could classify \enquote{matter} into differen
 
 A chemist could classify matter into different \emph{substances} -- such as water, hydrogen, oxygen, carbon dioxide, and so on -- again keeping track of their amounts, movements, production. According to this classification, the \enquote{materials} of the building engineer would be mixtures of the different substances. But note that there is no clear boundary between one classification and the other.
 
-A chemist could also classify matter into different kinds of \emph{atoms} -- such as \furl{https://pubchem.ncbi.nlm.nih.gov/element/Hydrogen}{hydrogen}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Helium}{helium}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Lithium}{lithium}, and the other kinds that appear in the \furl{https://iupac.org/what-we-do/periodic-table-of-elements/}{periodic table} -- and seeing substances and materials as combinations of these different atomic kinds of matter. This classification is special because these different kinds have, at least approximately, the property of being \autoref{sec:balance_intro}{conserved}: their amounts in a container or in a region of space can only change if these kinds are entering through an opening in the container or through the boundary of the region of space. In other words, they cannot be created or destroyed.
-
-This conservation property is only approximate, however. \furl{https://www.ciaaw.org/radioactive-elements.htm}{Radioactive atoms} can transmute from one kind to another. This possibility is crucial and must be taken into account in phenomena involving \furl{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}{radioactivity}
+A chemist could also classify matter into different kinds of \emph{atoms} -- such as \furl{https://pubchem.ncbi.nlm.nih.gov/element/Hydrogen}{hydrogen}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Helium}{helium}, \furl{https://pubchem.ncbi.nlm.nih.gov/element/Lithium}{lithium}, and the other kinds that appear in the \furl{https://iupac.org/what-we-do/periodic-table-of-elements/}{periodic table} -- and seeing substances and materials as combinations of these different atomic kinds of matter. This classification is special because these different kinds have, at least approximately, the property of being \autoref{sec:balance_intro}{conserved}: their amounts in a container or in a region of space can only change if these kinds are entering through an opening in the container or through the boundary of the region of space. In other words, they cannot be created or destroyed. This conservation property is only approximate, however. \furl{https://www.ciaaw.org/radioactive-elements.htm}{Radioactive atoms} can transmute from one kind to another. This possibility is crucial and must be taken into account in phenomena involving \furl{https://www.iaea.org/newscenter/news/what-are-radioactive-sources}{radioactivity}
 % \url{https://www.britannica.com/science/radioactivity}
 and \furl{https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power}{nuclear energy}.
 
@@ -2273,23 +2272,36 @@ We therefore go down into more and more subtle classifications. This kind of res
 (including protons and neutrons) and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/lepton.html\#c1}{\emph{leptonic}} (including electrons) matter is always conserved.
 % \url{https://www.britannica.com/science/lepton}},
 
-\begin{warning}[Ambiguity of the term \enquote*{matter}]
-In these notes we use the term \enquote*{matter} in a the generic sense discussed above. But be aware that in specialized applications, this term may have a much more specialized and slightly different meaning. It may even \emph{not} be used at all. In chemical applications, for instance, one typically speaks specifically of \enquote*{compounds}, \enquote*{mixtures}, \enquote*{substances}, \enquote*{elements}, rather than \enquote*{matter}. A particle physicists speaks of \emph{matter} and \emph{anti-matter}, but in the present notes the term \enquote*{matter} refers to both.
-\end{warning}
+\medskip
+
+According to the definition of matter that we're adopting, the total amount of some kind of matter in a region can in principle be \emph{negative}. A negative amount simply denotes the presence of \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans. In ordinary chemical applications, however, all amounts of matter within a region are usually positive or zero.
+%
+\marginpar{\vspace{-5\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/pet_scan_bergen.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+In positron-emission tomography there is creation of amounts of matter (leptonic matter) that can be considered negative: their \emph{lepton number} is negative (\furl{https://www.helse-bergen.no/avdelinger/radiologisk-avdeling/senter-for-nukleermedisin-og-pet/tilvising-til-pet}{image: Helse Bergen}).%
+}%
 
 \medskip
 
-According to the definition of matter that we're adopting, the total amount of matter in a region can in principle be \emph{negative}. \enquote{Negative matter} is what's usually called \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans.
+Why do we need to worry about how matter gets classified depending on the application? Because for describing a physical system and predicting its behaviour we usually have to use at least one physical law \emph{for each kind of matter}. So the more kinds of matter we have to keep track of, the more equations we will have.
 
-In ordinary chemical applications, however, all amounts of matter within a region are usually positive or zero.
 
-% In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
-
-% There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena like nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
 \begin{definition}{Matter: notation}
   The amount of matter in a region is usually denoted with $\yN$, and flux of matter with $\yJ$. In chemistry we usually specify what kind of matter we are speaking about, writing for instance $\yN_{\mathrm{Ca}}=\qty{5.3}{mol}$, to indicate an amount of $\qty{5.3}{mol}$ of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Calcium}{calcium} atoms.
 \end{definition}
+
+
+
+\begin{warning}[Ambiguity of the term \enquote*{matter}]
+In these notes we use the term \enquote*{matter} in a the generic sense discussed above. But be aware that in specialized applications, this term may have a much more specialized and slightly different meaning. It may even \emph{not} be used at all. In chemical applications, for instance, one typically speaks specifically of \enquote*{compounds}, \enquote*{mixtures}, \enquote*{substances}, \enquote*{elements}, rather than \enquote*{matter}. A particle physicists speaks of \emph{matter} and \emph{anti-matter}, but in the present notes the term \enquote*{matter} refers to both.
+\end{warning}
+
+
+% In these notes we shall usually not consider distinctions between different kinds of matter, making some exceptions for discussions about chemical reactions and nuclear phenomena.
+
+% There are different kinds of matter The distinction into different kinds depends on the physical theory. In most everyday situations, the distinction corresponds to different \furl{https://doi.org/10.1351/goldbook.C01022}{chemical elements}, and each satisfies its own balance. These balances are the basis of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}. If we observe phenomena like nuclear fission or fusion, however, we notice that the balances of chemical elements are not really satisfied. With such phenomena we make a different distinction of types of matter, for instance \emph{baryons} and \emph{leptons}, and each satisfies again its own balance. It is unclear whether these balances might be broken in other physical phenomena at smaller scales. In these notes we shall usually consider chemical elements as the different kinds of matter, making some exceptions in discussion of nuclear phenomena.
 
 \begin{warning}[Matter is different from mass or energy]
   It is important to clearly distinguish matter from \emph{mass} or \emph{energy}. Mass can be considered a property of matter, but the two are different. In nuclear reactions, for instance, the mass of some amount of matter may change, even if the amount of matter stays the same.
@@ -2336,6 +2348,8 @@ sketch of the magnetic lines of force in a magnetic filament extending up throug
 Magnetic flux is a \emph{scalar} quantity, with SI dimension \furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
 However, this flux is usually calculated by means of a \emph{vector} quantity called \enquote{magnetic-flux density}, measured in units of \furl{https://doi.org/10.1351/goldbook.T06283}{\emph{teslas} (\unit{T})}.
 
+\smallskip
+
 The electromagnetic field is most commonly represented by vectors associated to each point in space. But it can also be interpreted and visualized as a collection of moving, oriented tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}). From this point of view, the \emph{voltage} turns out to be the flux of the magnetic flux; it is indeed measured in \emph{volts} (\unit{V}), equivalent to \emph{webers/second}.
 
 Electromagnetics and this particular visualization of it are very fascinating topics, but we shall not discuss them in these notes.
@@ -2344,36 +2358,38 @@ Electromagnetics and this particular visualization of it are very fascinating to
 \section{Energy}
 \label{sec:intro_energy}
 
-Energy is a \emph{scalar} quantity, with SI dimension \textsf{energy}, and measured in units of \emph{joules} (\unit{J}); its flux is measured in units of \emph{watts} ($\unit{W}=\unit{J/s}$).
+Energy is a \emph{scalar} quantity, with SI dimension \textsf{energy}, and measured in units of \emph{joules} (\unit{J}). Its flux is measured in  joules per second, also called \emph{watts} ($\unit{W}=\unit{J/s}$).
 
 Equivalently we can speak of mass, with SI dimension \textsf{mass}, and measured in units of \furl{https://doi.org/10.1351/goldbook.K03391}{\emph{kilograms} (\unit{kg})}; its flux is measured in \emph{kilograms per second} (\unit{kg/s}).
 
-\marginpar{%
-\includegraphics[align=t,width=\linewidth]{images/batteries.png}
-}
-The notion of energy is extremely important today, and central in many world-wide important discussions and worries -- think of the \enquote{energy crisis}, \enquote{renewable energy}, and so on. It is somewhat funny that despite this importance it's actually difficult to answer \enquote*{what \emph{is} energy, really?}. Often we speak about energy as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will be enough in these notes. The notion of \emph{mass} is also very intuitive in our everyday life; we associate it with the difficulty in setting objects into motion, or with the weight of objects.
+\smallskip
+
+%
+\marginpar{\vspace{\baselineskip}\centering\includegraphics[width=\linewidth]{images/batteries.png}%
+}%
+The notion of energy is extremely important today, and central in many world-wide discussions and worries -- think of today's \enquote{energy crisis}, the need for \enquote{renewable energy}, and so on. It is somewhat funny that despite its importance it's actually difficult to answer \enquote*{what \emph{is} energy, really?}. Often we speak about energy as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will be enough in these notes. The notion of \emph{mass} is also very intuitive in our everyday life; we associate it with the \enquote{resistance} we feel when setting objects into motion, or with the weight of objects.
 % relativity says that there's a strong connection between these two associations.
 
-From Relativity Theory and experimentally we know that \emph{energy and mass are the same quantity}, and in these notes we shall emphasize this experimental fact.
+From Relativity Theory -- and experimentally -- we know that \emph{energy and mass are the same quantity}, and in these notes we shall emphasize this experimental fact.
 
 
 \subsection{Energy and mass are the same}
 \label{sec:mass_is_energy}
 
-Let's see some examples of why it is impossible to make a real distinction between energy and mass. The following examples have been simplified in some of their aspects, but their main point is valid.
+Let's see some examples of why it is impossible to make a distinction between energy and mass. The following examples have been simplified in some of their aspects, but their main point is valid.
 
 \paragraph{Heated gas.}
 
-Imagine we have a box with a given amount of gas, say \qty{1}{mol} of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Oxygen}{oxygen} molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
+Imagine we have a box with a given amount of gas, say \qty{1}{mol} of oxygen molecules. Using an extremely precise weighing scale, we observe that the mass of the gas is, say, exactly
 \begin{equation*}
   \qty{0.031999540000000000}{kg} \ .
 \end{equation*}
-Now we heat the gas, providing \qty{60}{J}, while making sure that not a single molecule of oxygen gets in or out of the box. The temperature of the gas increases by around \qty{3}{K}. We observe that the weight measured by the scale increases while we heat the gas, reaching the new value
+Now we heat the gas, providing \qty{60}{J} of energy, while making sure that not a single molecule of oxygen gets in or out of the box. The temperature of the gas increases by around \qty{3}{K}. We actually observe that the weight measured by the scale increases while we heat the gas, reaching the new value
 % cp= 29.4 J/mol/K  cv=21.1
 \begin{equation*}
   \qty{0.031999540000000668}{kg} \ .
 \end{equation*}
-Clearly the mass has increased, but no molecules were added! The additional mass is the \qty{60}{J} that we provided to the gas. Energy has weight, energy is mass.
+Clearly the mass has increased, but no molecules were added! The additional mass is the \qty{60}{J} of energy that we provided to the gas by heating. Energy has weight, energy is mass.
 
 % Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy in all its possible forms \emph{is} mass.
 
@@ -2383,10 +2399,10 @@ Take a common rubber band, and imagine again that we have an extremely precise w
 \begin{equation*}
   \qty{0.000500000000000000000}{kg}\ .
 \end{equation*}
-Now we stretch the band a little. According to Newtonian mechanics it acquires \enquote*{elastic energy}, which increases its initial internal energy by, say, \qty{0.3}{J}.
+Now we stretch the band a little. By doing so we are giving energy to the band, which is said to acquire \enquote*{elastic energy}, say \qty{0.3}{J}.
 % Refer later to elastic constant
 % 0.5 * 50 N/m * (0.1 m)^2 \approx 0.3 J
-Now we weigh the rubber band again, while stretched, and observe a mass of approximately
+Now we weigh the rubber band again, while stretched. We observe a mass of approximately
 \begin{equation*}
   \qty{0.000500000000000003338}{kg} \ .
 \end{equation*}
@@ -2399,9 +2415,11 @@ is exactly the elastic energy that we provided by stretching.
 }%
 Energy has weight; energy is mass.
 
-Now set the unstretched band in motion, so that according to Newtonian mechanics it acquires a kinetic energy of, say, \qty{0.2}{J}. If we could weigh the band while in motion (but without moving the weighing scale), we would measure a mass of approximately
+\smallskip
+
+Now set the unstretched band in motion. Owing to the motion, the band is said to have acquired a \enquote*{kinetic energy} of, say, \qty{0.2}{J}. If we could weigh the band while in motion (but without moving the weighing scale), we would actually observe a mass of approximately
 $$\qty{0.000500000000000002225}{kg} \ .$$
-The small difference from the initial mass is the new kinetic energy of the band.
+The small difference from the initial mass is the additional kinetic energy of the band. Energy has weight; energy is mass.
 
 This case is actually connected with the example of the gas above. If we observed the gas at a molecular level, we would interpret the energy of \qty{60}{J} provided to it as additional kinetic energy of its molecules. The increase in weight was exactly this additional kinetic energy.
 
