@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-09-10T10:44:18+0200
+%% Last-Updated: 2024-09-12T22:50:14+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4723,9 +4723,9 @@ The individual balances and symbols for matter, momentum, energy, angular moment
         &&&\hspace{1em}\text{\footnotesize\color{grey}integral form}
         &&\hspace{-1em}\text{\footnotesize\color{grey}differential form}
         \\[2\jot]
-      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  -\int_{\yti}^{\ytf}\!\!\ya(t)\,\di t
+      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  +\int_{\yti}^{\ytf}\!\!\ya(t)\,\di t
       &\quad
-      \frac{\di\yN(t)}{\di t} &= \yJ(t)  -\ya(t)
+      \frac{\di\yN(t)}{\di t} &= \yJ(t)  +\ya(t)
       \\[2\jot]
 \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}momentum}}&&\yP(\ytf) &= \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
       &\quad
@@ -4752,7 +4752,7 @@ The individual balances and symbols for matter, momentum, energy, angular moment
 \begin{extra}{Concise mathematical form of the universal balances}
 The seven balances can be expressed very concisely if we use the language of \furl{http://encyclopediaofmath.org/index.php?title=Differential_form}{\emph{differential forms}}. These are geometric objects that associate a number to any curve, surface, or volume of our choice. In terms of differential forms, even the difference between the \enquote*{integral} and \enquote*{differential} forms of the balance laws disappear. The balances for matter, momentum, energy, angular momentum, entropy then assume these very concise expressions:
 \begin{equation*}
-  \di\yN=-\ya
+  \di\yN=\ya
   \qquad
   \di\yE=\yR
   \qquad
@@ -5247,13 +5247,13 @@ For the moment, here is an example script, written in \furl{https://octave.org/}
 \label{sec:cons_matter_formulation}
 
 \begin{definition}{Balance and conservation of matter}
-  Volume content: $\yN$\qquad Flux: $\yJ$\qquad Supply: $-\ya$
+  Volume content: $\yN$\qquad Flux: $\yJ$\qquad Supply: $\ya$
 
   \begin{equation}
     \label{eq:cons_matter}
-      \underbracket[0pt]{\yN(\ytf) =\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  -\int_{\yti}^{\ytf}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yN(\ytf) =\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  \int_{\yti}^{\ytf}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad\quad
-      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} = \yJ(t)  -\ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} = \yJ(t)  \ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
   \end{equation}
   The supply $\ya$ is usually called \textbf{activity}, and $\ya(t)\equiv 0$ in case of conservation.
 \end{definition}
@@ -5356,12 +5356,12 @@ In applications where we can consider the molar mass as practically constant, we
 \subsection{Radioactive decay}
 \label{sec:matter_const_radioactive}
 
-For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $-\ya$ has a specific constitutive equation:
+For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\ya$ has a specific constitutive equation:
 \begin{definition}{Matter supply in radioactive decay}
   \begin{equation*}
-  -\ya(t) =  -\lambda\,\yN(t)
+  \ya(t) =  -\lambda\,\yN(t)
 \end{equation*}
-where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
+where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
 
 If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance then takes the form
   \begin{equation*}
@@ -9061,7 +9061,7 @@ The majority of everyday and forefront technologies is based on physical phenome
 
 How to prepare physics or engineering students for the myriad of possible physics specializations and applications lying ahead? The problem is not only that the students may not know yet which physics field they'll want to pursue, but also that they'll likely need some knowledge of all other fields anyway. I believe that the best approach would be to teach them physical notions and physical mathematical laws that are common to, and can be used in, as many physical phenomena as possible. Notions and laws that the students will always be able to use afterwards, and on which the students can build more specialized knowledge.
 
-As pointed out in the \hyperref[cha:preface]{Preface}, \emph{we do actually have such notions and laws}, although many texts seem almost to have forgotten about their existence.
+As pointed out in the \hyperref[cha:preface]{Preface}, \emph{we do actually have such notions and laws}, although some textbooks seem almost to forget their existence:
 % The notions and balances of
 % \begin{itemize}[nosep]
 % \item what we can call \enquote*{matter} or \enquote*{substance} or \enquote*{particle number}
@@ -9076,7 +9076,36 @@ As pointed out in the \hyperref[cha:preface]{Preface}, \emph{we do actually have
 % \item entropy
 % \end{itemize}
 % which can take on several forms and meanings in different fields.
-Besides being common to \emph{all} physical phenomena, they have outstanding pedagogical features:
+what we can call \enquote*{matter} or \enquote*{substance} or \enquote*{particle number}, energy, momentum, angular momentum, electric charge, magnetic flux, entropy; and their respective balance laws (including a balance about the centre of mass). These quantities and their balances are usually recognized and emphasized in books on continuum physics. The classic treatise \emph{The Classical Field Theories} \parencites*{truesdelletal1960} states this programme very clearly:
+\begin{quote}
+  \emph{Motion}, \emph{stress}, \emph{energy}, \emph{entropy}, and \emph{electromagnetism} are the concepts upon which field theories are constructed. Certain laws of \emph{conservation} or \emph{balance} are laid down as relating these quantities in all cases. These basic principles, which are in integral form, in regions where the variables change sufficiently smoothly are equivalent to differential \emph{field equations}; at surfaces of discontinuity, to \emph{jump conditions}. The field equations and jump conditions form an underdetermined system, insufficient to yield specific answers unless further equations are supplied. Within the embracing concept of the balanced fields, it is possible to define \emph{ideal materials} by certain further conditions. These defining conditions are called \emph{constitutive equations}.
+\end{quote}
+All six balance equations (as explained in \chap~\ref{cha:bal_entropy}, the balance of entropy is a metalaw rather than a law) are commonly used in numerical relativity for MagnetoHydroDynamical problems. Here's an example reproduced from the textbook by \cites{baumgarteetal2010}:
+\begin{center}
+  \includegraphics[width=\linewidth]{images/baumgartebox.jpg}%
+\end{center}
+where we have the balances of matter, momentum, energy, and magnetic flux (note the supply terms on the right in the balances of momentum and energy); the balance of angular momentum is satisfied implicitly by the symmetry of the four-stress tensor $T^{ab}$, and the balance of charge by the use of a specific constitutive relation. In another example, \cites{komissarov2005} merges together the balances of momentum and energy:
+\begin{center}
+  \includegraphics[width=0.75\linewidth]{images/komissarov.png}%
+\end{center}
+
+% %
+% \marginpar{\vspace{-\baselineskip}\centering%
+% \includegraphics[width=\linewidth]{images/komissarov.png}%
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% The equations of balance in numerical relativity.%
+% }%
+
+% %
+% \marginpar{\vspace{-\baselineskip}\centering%
+% \includegraphics[width=\linewidth]{images/baumgartebox.png}%
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% The equations of balance in numerical relativity.%
+% }%
+
+\medskip
+
+Besides being common to \emph{all} physical phenomena, these notions and laws have outstanding pedagogical features:
 \begin{itemize}
 \item They are few.
 \item They are easy to understand intuitively, being related to the idea of a \enquote{budget} or balance.
@@ -9092,6 +9121,9 @@ From a pedagogical point of view, one could hardly ask for a better internal sim
 \bigskip
 
 Many, if not most, physics textbooks seem to take a different approach. They introduce the students to a mixture of notions and laws that are common to all physical phenomena, and others that are specific to a physical field: the Newtonian mechanics of \emph{point-particles}, with its intuition of momentum as \enquote{mass times velocity}. This approach has in my opinion many important drawbacks.
+
+%% Add: Newton's 2nd is just 1 of seven, and not clear what its form is
+%% Newton's 3rd is not universal
 
 First, this mixture of general and field-specific notions is often not clearly separated, and this lack of separation leads to confusion. Momentum as \enquote{mass times velocity} is not universal. \enquote{$\bm{F}=m\bm{a}$} breaks down in many physical phenomena; which law, if any, is still valid then? The \enquote{law of action and reaction} is not universal either; can any similar law be universally extended then? And what happens to angular momentum and its balance then? If an electromagnetic field exerts a force on a mass, is the mass also exerting a force on the electromagnetic field? how can the latter sustain a force?
 
@@ -9521,7 +9553,7 @@ For radioactive substances, for which conservation of mass does not hold, we sti
   \begin{equation*}
   -\ya(t) =  -\lambda\,\yN(t)
 \end{equation*}
-where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
+where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
 
 If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance then takes the form
   \begin{equation*}
