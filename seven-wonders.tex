@@ -2,10 +2,10 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-09-15T14:22:01+0200
+%% Last-Updated: 2024-10-08T15:08:31+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
-\anonfalse
+\anontrue
 \newif\ifarxiv
 \arxivfalse
 %\iftrue\pdfmapfile{+classico.map}\fi
@@ -2358,7 +2358,7 @@ This flux is usually calculated by means of a \emph{vector} quantity called \tex
 
 As we shall see in more detail in \chap\,\ref{cha:cons_magnetic}, magnetic flux differs from the other six main quantities in that it answers the two \enquote{how much?} questions \emph{in one lower dimension}: \enquote{How much magnetic flux crosses this surface?} and \enquote{How much magnetic flux crosses this line?}. It also requires a slightly different notion of orientation of a surface.
 
-The \enquote{flux of magnetic flux} is therefore a flow connected to a line, and ordinarily called \textsf{electric potential difference}, measured in units of \furl{https://doi.org/10.1351/goldbook.V06634}{\emph{volts} ($\unit{V} = \unit{Wb/s}$)}. This \enquote{flux of a flux} is usually calculated by means of a vector quantity called \textsf{electric-field strength},  measured in units of \emph{volt per metre} (\unit{V/m}).
+The \enquote{flux of magnetic flux} is therefore a flow connected to a line, and ordinarily called \textsf{electric potential difference} or \textsf{electric tension}, measured in units of \furl{https://doi.org/10.1351/goldbook.V06634}{\emph{volts} ($\unit{V} = \unit{Wb/s}$)}. This \enquote{flux of a flux} is usually calculated by means of a vector quantity called \textsf{electric field strength}, measured in units of \emph{volt per metre} (\unit{V/m}).
 
 The magnetic flux density and the electric field strength together are usually called \enquote{electromagnetic field}, which is therefore commonly represented by vectors associated to each point in space. But it can also be interpreted and visualized as a collection of moving, oriented magnetic tubes or lines, either closed or extending indefinitely; somewhat analogously to how we visualize matter and charge, as moving blobs or points, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}).
 
@@ -3080,85 +3080,128 @@ We have a region consisting of two subregions; the amounts of momentum in each s
 \end{exercise}
 
 \begin{extra}{Adding vectors in General Relativity}
- We are used to the idea of adding vectors placed at different points in space: we only have to first move each -- keeping it parallel to itself -- to a common point, and then add them all at that point with the usual rule.
+  We are used to the idea of adding vectors placed at different points in space: we only have to move each vector, keeping it parallel to itself, to a common point; and then add them all at that point with the usual rule.
 
-  This operation \emph{cannot} be done in General Relativity: the notion of parallelism doesn't apply anymore in a simple way, owing to the curvature of spacetime. The addition would lead to different results depending on how we transported the vectors. So in General Relativity we can only sum vectors that are placed at the same spacetime point.
+  This operation \emph{cannot} be done so simply in General Relativity: the notion of parallelism doesn't apply anymore in a simple way, owing to the curvature of spacetime. The addition would lead to different results depending on how we transported the vectors.
 
-  How can this operation be possible in Newtonian mechanics and in practical applications, then? After all, General Relativity surely applies here! The answer is that the discrepancies of vector transportation are small enough in the neighbourhood of the Earth, as the curvature of spacetime is very small here.
+  But it is still possible to add the momentum of two different spatial regions, simply because \emph{momentum is defined with respect to a coordinate system}. This coordinate system selects, so to speak, a unique way to transport the momentum vectors to a common point. We are again reminded of the fact that \autoref{sec:energy_momentum_angmomentum_coords}{momentum is a coordinate-dependent quantity}.
+
+  In General Relativity momentum is not really a vector, but just a special triplet of quantities.
+
+  % How can this operation be possible in Newtonian mechanics and in practical applications, then? After all, General Relativity surely applies here! The answer is that the discrepancies of vector transportation are small enough in the neighbourhood of the Earth, as the curvature of spacetime is very small here.
 \end{extra}
 
 
 \section{Flux: scalar quantities}
 \label{sec:intuition_fluxes_scalar}
 
-\subsection{The direction, reckoning, and representation of scalar fluxes}
+\subsection{Direction and reckoning of scalar fluxes}
 \label{sec:flux_scalar_direction}
 
-Earlier we took the intuitive example of a flow of people through an open door; we might ask, for instance, how many people crossed the door in a minute. But one more detail about this flow is important: in which direction did the persons crossed the door? For example, if the door leads to a classroom, we may need to know whether the people who crossed the door got in or out, so as to know if there are seats left in the classroom.
+Earlier we considered the intuitive example of a \autoref{sec:choice_surfaces}{flow of people through an open door}. We may ask how many people crossed the door in a minute, but one more detail about this flow is important: \emph{in which direction did the people cross the door?} This detail is important because, for example, the door leads to a classroom and we need to keep track of how many seats are free. Then we need to know whether each person who crossed the door was \emph{entering} or \emph{leaving} the classroom, keeping track of how many additional people are in the classroom.
 
 In order to do this we can:
-\begin{enumerate*}[label=\arabic*.]
-\item Assign a crossing direction to the door, calling for instance \enquote*{positive} the direction from outside to inside the classroom.
-\item Count as \enquote*{positive} each person who crosses the door in the positive direction, and count as \enquote*{negative} each person who crosses the door in the opposite direction.
-\end{enumerate*}
-The total tells us the \emph{net} number of people who \emph{entered} the classroom.
-If the total is positive, then more people got in than out; if the total is negative, then more people got out than in.
+%
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=0.5\linewidth]{images/wiggly_arrow.pdf}
+\\[\jot]\flushleftright\footnotesize\color{mpcolor}We'll use wiggly arrows like this one  to indicate a \emph{crossing direction} through a surface. Keep in mind that these arrows \emph{are not vectors}! They don't have a \enquote*{magnitude} or \enquote*{components}.%
+}
+%
+\begin{enumerate}[label=\arabic*.]
+\item Assign a crossing direction to the door, for instance the direction from outside to inside the classroom. We shall often depict a crossing direction with a wiggly arrow as in the side picture.
+\item Count as \enquote*{positive} each person who crosses the door in the chosen crossing direction, and count as \enquote*{negative} each person who crosses the door in the opposite direction.
+\end{enumerate}
+The total of this counting tells us the \emph{net} number of people who crossed the door in the chosen direction. If we chose a crossing direction \emph{from outside to inside} the classroom, then this total is the net number of people who
+\emph{entered} the classroom. If we chose a crossing direction \emph{from inside to outside} the classroom, then this total is the net number of people who
+\emph{left} the classroom.
 
-One important aspect of this example and terminology is the following symmetry:
+A flux therefore represents only a \emph{net} amount. Note also that this net amount could be \emph{negative}. For instance if we chose a crossing direction from outside to inside the classroom, and the total is $\num{-3}$, then it means that \emph{more people got out than in}. For instance, 9~persons may have entered the room during that minute, and 8~persons left. Or no person may have entered the room, and 3~persons left. In either case, the final situation is that those who got out in that minute were three more than those who got in.
+
+One important aspect of this example and terminology is the following \emph{symmetry}:
 \begin{itemize}
-\item What crossing direction is called \enquote*{positive} is fully arbitrary, just a matter of agreement.
-\item If we decide to call \enquote*{positive} the other crossing direction, then the total will change sign. But the physical situation is of course still the same.
+\item It is completely arbitrary which crossing direction we choose.
+\item If we choose the other crossing direction, then the net amount will switch sign.
 \end{itemize}
-Therefore the sentences \enquote{\qty{+5}{persons} entered the room} and \enquote{\qty{-5}{persons} exited the room}
+But the physical situation is still the same of course. Therefore the sentences
+\begin{center}
+  \enquote{\qty{+5}{persons} \emph{entered} the room}
+\end{center}
+and
+\begin{center}
+  \enquote{\qty{-5}{persons} \emph{left} the room}
+\end{center}
 % \begin{itemize}[nosep]
 % \item \qty{+5}{persons} entered the room
 % \item \qty{-5}{persons} entered the room
 % \item \qty{-5}{persons} exited the room
 % \item \qty{+5}{persons} exited the room
 % \end{itemize}
-are saying exactly the same thing. This somewhat trivial fact about fluxes will, later on, turn out to be connected with a famous law.
-So let's remember:
-%
-\begin{definition}{Every flux is equivalent to a flux of opposite amount in the opposite direction}\label{def:symmetryflux}
-  A flux in a particular surface-crossing direction is equivalent to a flux of \emph{opposite} sign in the \emph{opposite} crossing direction.
-\end{definition}
-\marginpar{\vspace{-7em}\label{fig:newtonIII}%
-\footnotesize\raggedright\color{mpcolor}\enquote{\emph{\langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
-    \\\sourceatright{\cites{newton1687}}%\cites{newton1687_t1974}
-}%
+are saying exactly the same thing.
+% \marginpar{\vspace{-7em}\label{fig:newtonIII}%
+% \footnotesize\raggedright\color{mpcolor}\enquote{\emph{\langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
+%     \\\sourceatright{\cites{newton1687}}%\cites{newton1687_t1974}
+% }%
 
-Another important aspect of the example above is that if we're told \enquote{\qty{-5}{persons} exited the room}, we don't know how exactly this happened: it could be that 5~persons got into the room during that minute; or that 10~persons got in and 5~got out; and so on. This is why we call \enquote*{\num{-5}} the \emph{net} amount.
+\medskip
 
-Finally, consider a similar example but with a quantity that can ordinarily also be negative, such as electric charge. Call \enquote*{positive} the crossing direction from outside to inside the room. If we're told that a net charge amount of \qty{-5} crossed the door in the positive direction in one minute, then this could have happened in several ways:
+Consider a similar example, but instead of people, think of a quantity that can ordinarily also be \emph{negative}, such as electric charge. Let's choose the door-crossing direction from outside to inside the room. If we're told that a net amount \qty{-5}{C} of charge crossed the door in the chosen direction in one minute, then this could have happened in several ways:\noprelistbreak
 \begin{itemize}[nosep]
-\item a charge of \num{-5} was brought into the room
-\item a charge of \num{+5} was brought out of the room
-\item a charge of \num{-2} was brought into the room during the first \qty{30}{s}, and a charge of \num{+3} was brought out in the remaining \qty{30}{s}
-\item a charge of \num{-2} was brought into the room during the whole minute, and a charge of \num{+3} was brought out at the same time
+\item a charge of \qty{-5}{C} was brought into the room
+\item a charge of \qty{+5}{C} was brought out of the room
+\item a charge of \qty{-2}{C} was brought into the room during the first \qty{30}{s}, and a charge of \qty{+3}{C} was brought out in the remaining \qty{30}{s}
+\item a charge of \qty{-2}{C} was brought into the room during the whole minute, and a charge of \qty{+3}{C} was brought out at the same time
 \item \textellipsis and many other possible combinations.
 \end{itemize}
-\marginpar{\footnotesize\color{mpcolor}\enquote{\emph{%
-Fechner [in 1845] supposed every current to consist in a streaming of electric charges, the vitreous charges travelling in one direction, and the resinous charges, equal to them in magnitude and number, travelling in the opposite direction with equal velocity.}}\sourceatright{\cites{whittaker1910_r1951}}%
+So the statement that \enquote{the flux of electric charge into the room was \qty{-5}{C} in one minute} does not tell us which of the situations above occurred.
+
+\marginpar{\vspace{-3\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
+      Fechner [in 1845] supposed every current to consist in a streaming of electric charges, the vitreous charges travelling in one direction, and the resinous charges, equal to them in magnitude and number, travelling in the opposite direction with equal velocity.}}\sourceatright{\cites{whittaker1910_r1951}}%
 }%
-Indeed, ordinary electricity was  thought for some time to be associated with movements of negative \emph{and} positive charges in opposite directions.
+In fact, ordinary electricity in wires was thought for some time to be associated with movements of negative \emph{and} positive charges in opposite directions. Today we know that it consists in the movement of negative charges only.
 
-\smallskip
+\medskip
 
-The purpose of the examples and scenarios above is just to make you aware of some  aspects of what we shall call \enquote{flux}, which are trivial but important when considering fluxes of physical quantities.
+The purpose of the previous examples is to make you aware of some fundamental aspects of what we call \enquote{flux}. These aspects are trivial but important when considering fluxes of physical quantities:
+%
+\begin{definition}{Fundamental aspects of flux}\label{def:symmetryflux}
+  \begin{itemize}[nosep]
+  \item A flux in a particular surface-crossing direction only tells us the \emph{net} amount of substance that crosses the surface in that direction in the unit of time. A flux does not tell us the amount that crossed during shorter times or through different parts of the surface.
 
-How can we graphically represent the flux of a quantity, in such a way as to take care of these aspects? Consider these three representations:
+  \item A flux can be \emph{negative}.
+
+  \item A flux in a particular surface-crossing direction is equivalent to a flux of \emph{opposite} sign in the \emph{opposite} crossing direction.
+  \end{itemize}
+\end{definition}
+
+
+
+\subsection{Representation of scalar fluxes}
+\label{sec:flux_scalar_representation}
+
+
+How can we graphically represent the flux of a quantity, in a way that takes care of all its fundamental aspects? Consider these two representations:\noprelistbreak
 \begin{center}\label{fig:scalar_fluxes}
+  \bigskip
 \hspace*{\fill}\includegraphics[height=6em]{images/flux_plus5c.pdf}
 \hfill\includegraphics[height=6em]{images/flux_minus5c.pdf}
-\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
+%\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
 \hspace*{\fill}
 \end{center}
-The \textcolor{midgrey}{grey straight line} represents a surface (simplified to two dimensions) through which we're measuring a flux. In the first and second picture, the wavy arrows represent arbitrary crossing directions called \enquote*{positive}. The \textcolor{blue}{blue arrow} represents that we're calling \enquote*{positive} the left-to-right direction; the \textcolor{purple}{red arrow} represents that we're calling \enquote*{positive} the right-to-left direction. The signed number represents the net amount according to the positive direction -- so the first and second picture represent the same thing. One possible drawback of these two pictures is that they may suggest that a given amount is actually moving from left to right or vice versa; but we have seen that in general we don't know this.
-The third picture tries to avoid this misleading suggestion by not showing any arrows; it is meant to represent that on the left side the amount of quantity has changed by \textcolor{purple}{\num{-5}}, and on the right side by \textcolor{blue}{\num{+5}}.
+In both pictures, the \textcolor{midgrey}{grey straight line} represents a surface (simplified to two dimensions) through which we're measuring a flux. The \textcolor{cyan}{light-blue wiggly arrows $\rightsquigarrow$} represent the chosen crossing direction: left-to-right in the first picture, right-to-left in the second. Note that it doesn't matter whether we draw one wiggly arrow (as in the pictures above), or one, or three or more. The signed number in \textcolor{blue}{blue} represents the net amount crossing the surface according to the chosen direction. \emph{Both pictures therefore represent the same flux}:\noprelistbreak
+\begin{center}\label{fig:scalar_fluxes}
+  \bigskip
+\hspace*{\fill}\includegraphics[align=c,height=6em]{images/flux_plus5c.pdf}
+\qquad{\small is exactly the same as}\qquad
+\includegraphics[align=c,height=6em]{images/flux_minus5c.pdf}
+%\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
+\hspace*{\fill}
+\end{center}
+So keep in mind that either picture does \emph{not} say that a given amount is \emph{only} moving from left to right or vice versa; we have seen that in general we don't know this. Both pictures say that on the left side the amount of quantity has changed by \num{-5}, and on the right side by \num{+5}.
+% The third picture tries to avoid this misleading interpretation by not showing any arrows; it is meant to represent that on the left side the amount of quantity has changed by \textcolor{purple}{\num{-5}}, and on the right side by \textcolor{blue}{\num{+5}}. But also this picture may be misleading in suggesting that \num{+5} crossed left-to-right \emph{and} \num{-5} crossed right-to-left, for a total of \num{+10} left-to-right. Or vice versa it may lead you to sum up the two numbers, in which case you'll always obtain zero! % *****
 
-The third representation above has one more advantage. Remember that \autoref{sec:choice_surfaces}{a flux through a surface may occur because the surface itself is moving}. The wavy arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
+% The third representation above has one more advantage. Remember that \autoref{sec:choice_surfaces}{a flux through a surface may occur because the surface itself is moving}. The wiggly arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
 
-In these notes we shall settle on the third representation above, but feel free to use the one you prefer -- as long as you are aware of all the important aspects of a flux.
+In these notes we shall usually display only one of these two equivalent representations. But remember that you can always mentally switch from one to the other: the two mean exactly the same.
 \begin{warning}[What a flux does and doesn't tell]
   A flux tells us the net change in the amounts of a quantity on the two sides of a surface. These two amounts are equal in magnitude but have opposite signs.
 
@@ -3175,24 +3218,24 @@ In these notes we shall settle on the third representation above, but feel free 
 \subsection{How does a scalar flux change, if we change the surface?}
 \label{sec:surface_change_scalar}
 
-We know that the flux through a surface consisting of two smaller surfaces is the sum of the fluxes through the smaller surfaces. But what if we consider a \emph{different} surface, maybe intersecting the original one? It's important to keep in mind that \textbf{a flux refers to a particular surface, and can be very different if we consider a different surface, even if it's close to the original one}.
+We know that the flux through a surface consisting of two smaller surfaces is the sum of the fluxes through the smaller surfaces. But what if we consider a \emph{different} surface, maybe intersecting the original one? It's important to keep in mind that \textbf{a flux refers to a particular surface, and can be very different if we consider a different surface, even if it's close to the original one; or if we consider a surface with a different motion}.
 
 
 Consider for instance the first picture on the side.
 %
-\marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=\linewidth]{images/two_surfaces_flux.pdf}%
+\marginpar{\vspace{-5\baselineskip}\centering\includegraphics[width=\linewidth]{images/two_surfaces_flux.pdf}%
 }%
 We have two intersecting surfaces (as usual simplified by removing one dimension), both almost horizontal. The energy flux through the \textcolor{blue}{solid blue surface}, in a roughly upward direction, is \textcolor{blue}{\qty{+5}{J/s}}. The energy flux through the \textcolor{purple}{dashed red surface}, again in a roughly upward direction, is instead \textcolor{purple}{\qty{-1}{J/s}}.
 
-\smallskip
-
 As another example,
-%
-\marginpar{\vspace{-2\baselineskip}\centering\includegraphics[align=t,width=0.67\linewidth]{images/two_surfaces_flux_eq.pdf}%
-}%
+% %
+% \marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/two_surfaces_flux_eq.pdf}%
+% }%
 the second side picture shows two similar intersecting surfaces, one fully vertical in \textcolor{blue}{solid blue}, and one fully horizontal in \textcolor{purple}{dashed red}. The energy flux through the first in a rightward direction is \textcolor{blue}{\qty{+3}{J/s}}, and so is the energy flux in an upward direction through the second surface.
 
+\smallskip
 
+There is, however, a relation between the fluxes through surfaces that share a common point. If we know the flux through \emph{three different, small, static} surfaces having a common point, then we can find the flux through any other small, static surface passing through that same point. This possibility leads to the representation of flux through a small surface as a \emph{vector}, called \enquote*{flux-density vector}.
 
 \subsection{Flux units: scalar quantities}
 
@@ -3204,11 +3247,19 @@ and its units will be the units of the quantity divided by seconds:
 \begin{definition}{units of fluxes of the four scalar quantities}
   \centering
   \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc}
-    \textbf{quantity}&& matter & electric charge & energy & entropy
+    \textbf{quantity}& matter & energy &
+    \begin{minipage}{3em}
+      \centering electric\\charge
+    \end{minipage}
+    &
+        \begin{minipage}{4em}
+      \centering magnetic\\field
+    \end{minipage}
+ & entropy
+    \\[3\jot]
+    \textbf{flux units}& \unit{mol/s} & \unit{J/s} & \unit{C/s} & \unit{Wb/s} & \unit{J/(K\cdot s)}
     \\[2\jot]
-    \textbf{flux units}&& \unit{mol/s} & \unit{C/s} & \unit{J/s} & \unit{J/(K\cdot s)}
-    \\[2\jot]
-    \textbf{equivalent units}&& & \emph{ampere} \unit{A} & \emph{watt} \unit{W} &
+    \textbf{equivalent units}& \emph{watt} & \emph{ampere} \unit{A} & \unit{W} & \emph{volt} \unit{V} &
   \end{tabular*}
 %  \caption{Units of scalar fluxes}
   \label{tab:fluxes_scalar_units}
@@ -3222,16 +3273,13 @@ After our discussion about the peculiarity of fluxes it's quite easy to work wit
 \subsection{Matter flux}
 \label{sec:matter_flux}
 
-Remember that \emph{anti}matter \enquote{counts as \num{-1}} for calculating amounts of matter. If \qty{1}{mol} of positrons (anti-electrons) crosses a surface from left to right in \qty{1}{s}, the left-to-right flux equals \qty{-1}{mol/s} -- note the minus sign. The fact that antimatter is given special names can lead to ambiguities. For instance, if someone asks \enquote{what's the left-to-right flux of \emph{positrons}?}, maybe we should answer \enquote{\qty{1}{mol/s}}, since the question concerned specifically positrons. It's somewhat like asking \enquote{what's the flux of \emph{negative} electric charge?}. In these ambiguous situations is best to add some explanatory words.
+Remember that \emph{anti}matter \enquote{counts as \num{-1}} for calculating amounts of matter. If \qty{1}{mol} of positrons (anti-electrons) crosses a surface from left to right in \qty{1}{s}, the left-to-right flux of electrons equals \qty{-1}{mol/s} -- note the minus sign. The fact that antimatter is given special names can lead to ambiguities. For instance, if someone asks \enquote{what's the left-to-right flux of \emph{positrons}?}, maybe we should answer \enquote{\qty{1}{mol/s}}, since the question concerned specifically positrons. It's somewhat like asking \enquote{what's the flux of \emph{negative} electric charge?}. In these ambiguous situations it's best to add some explanatory words.
 
 \subsection{Energy flux}
 \label{sec:energy_flux}
 We already mentioned that \autoref{sec:forms_energy}{energy flux can be categorized into different kinds}, depending on whether there are fluxes of other quantities through the same surface. We study the exact definitions and formulae later on. The total flux is given by the sum of all these kinds. For instance, through a horizontal surface we can have a downward energy flux of \qty{3}{J/s} as \emph{heat}, and a downward flux of \qty{-1}{J/s} as \emph{work}. The total downward flux is then \qty{2}{J/s}. The energy flux that you will calculate in the fourth exercise below is called \emph{energy convection}.
 
 
-%
-\marginpar{\vspace{17\baselineskip}\centering\includegraphics[width=\linewidth]{images/surfacemoving_J.pdf}
-}%
 \begin{exercise}
     For each question, answer in an \emph{unambiguous} way and sketch a picture representing the flux.
   \begin{enumerate}[exerc]
@@ -3241,6 +3289,9 @@ We already mentioned that \autoref{sec:forms_energy}{energy flux can be categori
   \item The side picture shows a \textcolor{green}{surface} moving from left to right at a (constant) velocity of \qty{1}{m/s}. The space to its right has two static regions with some amount of \textcolor{blue}{energy} as shown (there's no energy behind to the left of the surface). How much is the flux of energy through the surface in \qty{1}{s}?
   \end{enumerate}
 \end{exercise}
+%
+\marginpar{\vspace{-6\baselineskip}\centering\includegraphics[width=\linewidth]{images/surfacemoving_J.pdf}
+}%
 
 
 
@@ -3252,45 +3303,69 @@ We already mentioned that \autoref{sec:forms_energy}{energy flux can be categori
 
 The flux of a vector quantity is also a vector, because it is given by an amount of that quantity, which is a vector, divided by time, which is a scalar.
 
-The discussion about the \autoref{sec:flux_scalar_direction}{arbitrary choice of a crossing direction and the minus signs that appear when we reverse it} also applies, in an analogous way, to vector fluxes. Also the discussion about the minus sign remains the same; we must only remember that a minus sign changes the sense or orientation of a vector:
+The discussion about the \autoref{sec:flux_scalar_direction}{arbitrary choice of a crossing direction, and the minus signs} that appear if we reverse this crossing direction, also applies in an analogous way to vector fluxes. We must only remember that a minus sign changes the sense or orientation of a vector:
 \begin{equation*}
   \mathord{\nwarrow} \mathrel{\enspace=\enspace} -1\cdot\mathord{\searrow}
 \end{equation*}
-Take for instance a horizontal surface. Suppose that we call \enquote*{positive} the \emph{upward} crossing direction, and that with this convection the flux is represented by the vector
+
+Take for instance an approximately vertical surface:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/surface_tilted_nocross.pdf}
+\end{center}
+Suppose that we choose the \emph{rightward} crossing direction:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/surface_tilted_crossright.pdf}
+\end{center}
+and suppose that with this convention the flux is represented by the vector\noprelistbreak
 \begin{center}
   \includegraphics[height=4em]{images/vec_NW.pdf}
 \end{center}
-Then if we decide to call \enquote*{positive} the \emph{downward} crossing direction instead, the same flux is represented by the opposite vector
+Then if we instead choose the \emph{lefward} crossing direction:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/surface_tilted_crossleft.pdf}
+\end{center}
+the same flux is represented by the opposite vector\noprelistbreak
 \begin{center}
   \includegraphics[height=4em]{images/vec_SE.pdf}
 \end{center}
 
-The situation in the case of vector fluxes can require a little more thinking and attention, because it's easy to get confused between the crossing direction for the surface, and the direction suggested by the vector flux -- which are completely separate things. For this reason a good graphical representation of a vector flux is this, analogous to \autoref{fig:scalar_fluxes}{the third representation for scalar fluxes}:
+The situation in the case of vector fluxes can require a little more thinking and attention, because it's easy to get confused between the crossing direction for the surface, and the direction suggested by the vector flux -- which are completely separate things. For this reason a good graphical representation of a vector flux is this, analogous to \autoref{fig:scalar_fluxes}{the third representation for scalar fluxes}:\noprelistbreak
 \begin{center}
-  \includegraphics[height=6em]{images/flux_vec_minusplus.pdf}
+\hspace*{\fill}
+\includegraphics[height=6em]{images/flux_vec_right.pdf}%
+\hfill
+\includegraphics[height=6em]{images/flux_vec_left.pdf}%
+\hspace*{\fill}
 \end{center}
-The \textcolor{midgrey}{grey straight line} represents a surface through which we're measuring the flux of a vector quantity; on the left side of the surface, the amount of quantity has changed by\enspace\includegraphics[align=c,height=1.5em]{images/vec_flux_left.pdf}\enspace and on the right side by\enspace\includegraphics[align=c,height=1.5em]{images/vec_flux_right.pdf}\:.
+The \textcolor{midgrey}{grey straight line} represents a surface through which we're measuring the flux of a vector quantity; on the left side of the surface, the amount of quantity has changed by plus\enspace\includegraphics[align=c,height=1.5em]{images/vec_NW.pdf}\enspace and on the right side by plus\enspace\includegraphics[align=c,height=1.5em]{images/vec_SE.pdf}\:.
 Obviously these two changes have equal magnitude but are opposite.
 
 \medskip
 
-%
-\marginpar{\vspace{-8\baselineskip}\centering\includegraphics[width=0.5\linewidth]{images/vectorfluxanim.png}%
-\\[\jot]\flushleftright\footnotesize\color{mpcolor}Imagine the \textcolor{blue}{blue upper arrows} moving from left to right, and the \textcolor{purple}{red lower arrows} moving from right to left. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{Animated version here}.%
-}%
-As a mental image of a vector flux, you can imagine a moving collection of identical arrows crossing the surface in one direction, together with a moving collection of opposite arrows crossing the surface in the opposite direction. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{See this link} as an example.
+% %
+% \marginpar{\vspace{-8\baselineskip}\centering\includegraphics[width=0.5\linewidth]{images/vectorfluxanim.png}%
+% \\[\jot]\flushleftright\footnotesize\color{mpcolor}Imagine the \textcolor{blue}{blue upper arrows} moving from left to right, and the \textcolor{purple}{red lower arrows} moving from right to left. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{Animated version here}.%
+% }%
+As a mental image of a vector flux, you can imagine a moving collection of identical arrows crossing the surface in one direction, together with a moving collection of opposite arrows crossing the surface in the opposite direction. % \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{See this link} as an example.
 
 \smallskip
 
-Since a vector is represented by three numbers (which can be positive or negative), a vector flux can also be interpreted as the collection of three distinct numerical fluxes:
+Since a vector is represented by three numbers (which can be positive or negative), a vector flux can also be interpreted as the collection of three distinct numerical fluxes:\noprelistbreak
 \begin{center}
-  \includegraphics[height=6em]{images/flux_vec_minusplus_num.pdf}
+\hspace*{\fill}
+\includegraphics[height=6em]{images/flux_vec_right_num.pdf}%
+\hfill
+\includegraphics[height=6em]{images/flux_vec_left_num.pdf}%
+\hspace*{\fill}
 \end{center}
-the picture says that the $x$-component of the quantity has changed on the right side of the surface by \textcolor{blue}{\num{-21}}, and on the left side by \textcolor{purple}{\num{+21}}; the $y$-component  has changed on the right side by \textcolor{blue}{\num{+25}}, and on the left side by \textcolor{purple}{\num{-25}}; and the $z$-component hasn't changed on either side.
+the pictures say that the $x$-component of the quantity has changed on the right side of the surface by \num{-21}, and on the left side by \num{+21}; the $y$-component  has changed on the right side by \num{+25}, and on the left side by \num{-25}; and the $z$-component has not changed on either side.
 
 \medskip
 
-Another aspect of vector fluxes that we must try not to get confused about is the application point of the vector representing the flux (the base point of the arrow). This is a time snapshot. Just like in \autoref{item:applicationpoint}{the case of vector volume contents}, \textbf{the application point of the vector representing the flux is unimportant. The vector refers to one side of the surface as a whole.}
+Another aspect of vector fluxes that we must try not to get confused about is the application point of the vector representing the flux (the base point of the arrow). Just as for \autoref{item:applicationpoint}{vector volume contents}, \textbf{the application point of the vector representing the flux is unimportant. The vector refers to one side of the surface as a whole.}
 
 \medskip
 
@@ -3314,22 +3389,22 @@ We saw that the flux of a scalar quantity can be very different if we take a sli
 Here is an example. Take a fixed point $P$. Now take a small vertical surface passing through $P$. The flux of a vector quantity (momentum for example) through this quantity can be as in this picture:
 \begin{center}
   \includegraphics[align=c,scale=0.08]{images/skewfluxPx.pdf}
-\makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux1.webp}{animated version})}
+% \makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux1.webp}{animated version})}
 \end{center}
-it has components $\mathcolor{blue}{(9,-6,0)}$, with magnitude around \num{10.8}, if we take the rightward crossing direction as positive.
+this flux has components $\mathcolor{blue}{(9,-6,0)}$, with magnitude around \num{10.8}, if we take the rightward crossing direction as positive.
 
-Now forget about that surface, and take instead a small horizontal surface passing through the same point $P$. The flux -- of the same quantity -- through this surface can be as in this picture:
+Now forget about that surface, and take instead a small horizontal surface passing through the same point $P$. The flux of the same quantity through this new surface can be as in this picture:
 \begin{center}
   \includegraphics[align=c,scale=0.08]{images/skewfluxPy.pdf}
-\makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux2.webp}{animated version})}
+% \makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux2.webp}{animated version})}
 \end{center}
 it has components $\mathcolor{blue}{(-6,-3,0)}$, with magnitude around \num{6.7}, if we take the upward crossing direction as positive.
 
-Clearly the vectors representing the fluxes through these two surfaces are different: they point in different directions, and have even different magnitudes.
+Clearly the vectors representing the fluxes through these two surfaces are completely different: they point in different directions and have different magnitudes.
 
-If we have a vector flux through a particular surface, and we're asked about the flux through a different surface, we might be tempted to \enquote{move} through the new surface the vectors representing the flux through the old one. \emph{We must fully resist this temptation}. It only leads to mistakes.
+% If we have a vector flux through a particular surface, and we're asked about the flux through a different surface, we might be tempted to \enquote{move} through the new surface the vectors representing the flux through the old one. \emph{We must fully resist this temptation}. It only leads to mistakes.
 \begin{warning}[Each surface has a unique flux]
-  A flux, scalar or vector, through a particular surface, in general doesn't tell you anything about the flux though another surface, even if the other surface is only slightly different from the first one.
+  A flux, scalar or vector, through a particular surface, in general doesn't tell us anything about the flux though another surface, even if the other surface is only slightly different from the first one.
 \end{warning}
 
 \subsection{Flux units: vector quantities}
@@ -3341,12 +3416,12 @@ Also for vector quantities the physical dimension of the flux is
 and its units will be the units of the quantity divided by seconds:
 \begin{definition}{units of fluxes of the three vector quantities}
   \centering
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
-    \textbf{quantity}&& momentum & ang. momentum & magnetic field
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+    \textbf{quantity}& momentum & ang. momentum
     \\[2\jot]
-    \textbf{flux units}&& \unit{N} & \unit{N\,m} & \unit{Wb/s}
+    \textbf{flux units}& \unit{N} & \unit{N\,m}
     \\[2\jot]
-    \textbf{equivalent units}&& &  & \emph{volt} \unit{V}
+    \textbf{equivalent units}& \unit{kg\,m/s}  & \unit{kg\,m^2/s}
   \end{tabular*}
 %  \caption{Units of scalar fluxes}
   \label{tab:fluxes_vector_units}
@@ -3366,63 +3441,95 @@ Recall that \autoref{sec:intro_momentum}{momentum can be measured in newton-seco
 \subsection{Visualizing force as flux of momentum}
 \label{sec:visualize_force}
 
-The notion of force is very intuitive. We associate it to the sensations that we feel in our skin, flesh, and even bones when, for instance, we push against a wall, twist a door knob, push backwards on the ground with our feet to run, or other similar actions. This force is typically represented by a vector, having the direction and orientation of the \enquote{push} or \enquote{pull}, and magnitude expressing its intensity. \emph{Such a force vector is exactly the vector expressing the flux of momentum}. The two are the same. A force can therefore also be visualized as a flow of momentum. This mental representation can be illuminating in some physical problems.
+The notion of force is very intuitive. We associate it to the sensations that we feel in our skin, flesh, bones when, for instance, we push against a wall, twist a door knob, push backwards on the ground with our feet to run or jump, or other similar actions. Force is typically represented by a vector, having the direction and orientation of the \enquote{push} or \enquote{pull}, and a magnitude expressing its intensity. \emph{Such a force vector is exactly the vector expressing the flux of momentum}. The two are the same. A force can therefore be also visualized as a flow of momentum. This representation can be illuminating in some physical problems.
 
-As a concrete example, imagine a person pushing against a wall. In terms of force, we say that \emph{the person is exerting a force on the wall,
-  and the force vector on the wall has a person$\rightarrow$wall orientation}. This is usually depicted, for example, like this:%\noprelistbreak
-\begin{center}
-    \includegraphics[height=8em]{images/person_push_force.pdf}
-\end{center}
+As a concrete example, imagine a person pushing against a wall, as in the side picture. In terms of force, we say that \emph{the person's head is exerting a force on the wall}; the vector that represents this pushing force, the \textcolor{purple}{purple arrow} in the picture, has a person$\to$wall orientation.
+%
+\marginpar{\vspace{-8\baselineskip}\centering\includegraphics[width=0.75\linewidth]{images/person_push_force.pdf}%
+}%
+% \begin{center}
+%     \includegraphics[height=8em]{images/person_push_force.pdf}
+% \end{center}
 
-In terms of momentum flux, we imagine a surface separating the person and the wall. If we take a person$\rightarrow$wall crossing direction, the flux vector also has a person$\rightarrow$wall orientation. Because of the symmetry of flux, if we take a wall$\rightarrow$person crossing direction instead, then the flux vector also changes direction. This momentum flux can be depicted (zooming in) like this:\noprelistbreak
+To understand force in terms of momentum flux, let's consider an imaginary surface separating the person and the wall; the \textcolor{yellow}{yellow line} in the pictures below. If we choose a person$\rightsquigarrow$wall crossing direction, indicated by the \textcolor{red}{wiggly red arrow} in the following picture, then the momentum flux has a person$\rightarrow$wall orientation:\noprelistbreak
 \begin{center}
-  \includegraphics[height=6em]{images/person_push_flux.pdf}
+  \includegraphics[height=6em]{images/person_push_flux_right.pdf}
 \end{center}
-The picture says: on the side of the wall, momentum is changing by an amount having \textcolor{blue}{person$\rightarrow$wall orientation}; and, by symmetry of the flux,  on the side of the person's head, momentum is changing by an amount having opposite, \textcolor{red}{wall$\rightarrow$person orientation}.
+This picture says: on the side of the wall, an amount momentum is being added at a given rate; this momentum has a person$\rightarrow$wall orientation.
+
+Because of the symmetry of flux, if we instead choose a wall$\rightsquigarrow$person crossing direction for the separating surface, then the momentum flux has opposite orientation:\noprelistbreak
+\begin{center}
+  \includegraphics[height=6em]{images/person_push_flux_left.pdf}
+\end{center}
+This picture says: on the side of the person's head, momentum is being added at a given rate; this momentum has a wall$\rightarrow$person orientation.
+
+Since force and momentum flux are the same thing, the last picture tells us that \emph{the wall is exerting a force on the person's head}; the vector that represents this opposite pushing force has a wall$\to$person orientation. -- But this is \emph{Newton's Third Law}! This example therefore shows that Newton's third law is the expression of the symmetry of fluxes. We shall discuss this fact in the next section.
 
 \medskip
 
-Let's take an example involving pulling instead of pushing. Imagine a person pulling a rope fastened somewhere. In terms of force we say that
-\emph{the person is exerting a force on the rope,
-  and the force vector on the rope has a rope$\rightarrow$person orientation}. This can be depicted like this:\noprelistbreak
+Now let's consider an example involving pulling instead of pushing. Imagine a person pulling a rope fastened somewhere, as in the side picture. In terms of force we say that \emph{the person is exerting a force on the rope}; the vector that represents this force has a rope$\rightarrow$person orientation.
+%
+\marginpar{\vspace{-4\baselineskip}\centering\includegraphics[width=\linewidth]{images/person_pull_force.pdf}%
+}%
+% This can be depicted like this:\noprelistbreak
+% \begin{center}
+%     \includegraphics[height=6em]{images/person_pull_force.pdf}
+% \end{center}
+
+In terms of momentum flux, let's consider an imaginary vertical surface between the person's hand and the rope; the \textcolor{yellow}{yellow line} in the pictures below. If we choose an arm$\rightsquigarrow$rope crossing direction, indicated by the \textcolor{red}{wiggly red arrow}, then the momentum flux has a rope$\rightarrow$arm orientation; note the difference from the previous example:\noprelistbreak
 \begin{center}
-    \includegraphics[height=6em]{images/person_pull_force.pdf}
+  \includegraphics[height=6em]{images/person_pull_flux_right.pdf}
 \end{center}
+This picture says: on the side of the rope, an amount momentum is being added at a given rate; this momentum has a rope$\rightarrow$arm orientation.
 
-In terms of momentum flux, we imagine a vertical surface between the person's hand and the rope. If we take a hand$\rightarrow$rope crossing direction, the flux vector has a rope$\rightarrow$hand orientation -- note the difference from the previous example. Because of the symmetry of flux, if we take a rope$\rightarrow$hand crossing direction instead, then the flux vector has opposite direction: hand$\rightarrow$rope. This momentum flux can be depicted like this:\noprelistbreak
+But again this momentum flux and the previous picture are \emph{completely equivalent} to the following ones, by the symmetry of fluxes:\noprelistbreak
 \begin{center}
-  \includegraphics[height=6em]{images/person_pull_flux.pdf}
+  \includegraphics[height=6em]{images/person_pull_flux_left.pdf}
 \end{center}
-The picture says: on the side of the rope, momentum is changing by an amount having \textcolor{blue}{rope$\rightarrow$person orientation}; and, by symmetry of the flux,  on the side of the hand, momentum is changing by an amount having opposite, \textcolor{red}{hand$\rightarrow$rope orientation}.
+This picture says: on the side of the arm, an amount momentum is being added at a given rate; this momentum has an arm$\rightarrow$rope orientation. Again we find Newton's third law: the rope is exerting a force on the person's arm; the vector that represents this opposite pushing force has a rope$\to$arm orientation.
 
-\smallskip
+\medskip
 
-A final example illustrates a situation in between the previous two. Consider the foot of a running person, as it pushes on the ground. In terms of momentum flux,
-we imagine a horizontal surface between the runner's foot and the ground. If we take a downward crossing direction, the flux vector is oriented towards the back of the foot. Because of the symmetry of flux, if we take an upward crossing direction, then the flux vector has opposite direction, towards the front of the foot, the same as the running direction. This momentum flux can be depicted like this:\noprelistbreak
+A final example illustrates a situation in between the previous two. Consider the foot of a running person, as it pushes on the ground. In terms of momentum flux, consider an imaginary horizontal surface between the runner's foot and the ground; the horizontal \textcolor{yellow}{yellow line} in the pictures below. If we choose a downward crossing direction, the momentum flux is oriented diagonally, downward and backwards, towards the rear of the foot. Because of the symmetry of fluxes, if we choose an upward crossing direction, then the momentum flux has opposite diagonal direction, upward and forward, towards the front of the foo. This momentum flux can be depicted in these two equivalent ways:\noprelistbreak
 \begin{center}
   \medskip
-  \includegraphics[height=6em]{images/foot_shear_flux.pdf}
+\hspace*{\fill}
+  \includegraphics[height=6em]{images/foot_shear_flux_down.pdf}
+\hfill
+  \includegraphics[height=6em]{images/foot_shear_flux_up.pdf}
+\hspace*{\fill}
 \end{center}
-The picture says: on the side of the ground, momentum is changing by an amount having \textcolor{blue}{leftward orientation}; and, by symmetry of the flux, on the side of foot, momentum is changing by an amount having \textcolor{purple}{rightward orientation}.
-
+The pictures say: on the side of the ground, an amount momentum is being added at a given rate; this momentum has an diagonal, downward and backward orientation. On the side of the foot, an amount momentum is being added at a given rate; this momentum has an diagonal, upward and forward orientation. Both these are aspects of the same momentum flux.
 
 \subsection{Netwon's Third Law!}
 \label{sec:newton_3rd}
 
 %
-\marginpar{\vspace{-2\baselineskip}%
+\marginpar{\vspace{-\baselineskip}%
 \raggedright\footnotesize\color{mpcolor}%
-        % \enquote{\emph{%
-  %       \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
-  %       \\[\jot]
-        \enquote{\emph{LAW~III. To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}}
-        \\(Original Latin on p.~\pageref{fig:newtonIII})% \cites{newton1687_t1974}
-        \\\sourceatright{\cites{newton1687}}
+% \enquote{\emph{% \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
+% \\[\jot]
+\enquote{\emph{LAW~III. To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}}%
+\\(Original Latin on p.~\pageref{fig:newtonIII})% \cites{newton1687_t1974}
+\\\sourceatright{\cites{newton1687}}%
 }%
-From the examples above, we see that thinking of force as momentum flux automatically leads to \emph{Newton's third law}:
-if one side is gaining/losing momentum with a given orientation, by symmetry the other side is gaining/losing momentum with the opposite orientation. So if one side is experiencing a force with a given orientation, the other side must be experiencing a force with the opposite orientation.
+From the examples above, we see that thinking of force as momentum flux automatically leads to \emph{Newton's third law}: if one side is gaining momentum with a given orientation, the other side by symmetry is gaining momentum with the opposite orientation. In other words, if one side is experiencing a force with a given orientation, the other side is experiencing a force with the opposite orientation.
 
-We see that Newton's third law is the expression of the symmetry of fluxes \emph{for the specific case of the flux of momentum (force)}. But we realize that this property is more general: it applies not only to force, but also to the flux of all other quantities, even scalar ones.
+We thus see that Newton's third law is the expression of the symmetry of fluxes \emph{for the specific case of the flux of momentum}. We also realize that this \enquote{law} is more general: it applies not only to force, but also to the flux of all other quantities, even scalar ones.
+
+
+\subsection{But is force really \enquote{flowing momentum}?}
+\label{sec:momentum_flow_really}
+
+You may object: \enquote{OK we can call force a \enquote*{flux of momentum} through a surface; but there isn't any real \emph{flow} occurring, is there?}. A first answer is that this objection and question is partly unanswerable, because it isn't clear what \enquote{really} means.
+
+But we can also say that many phenomena where we speak about \enquote*{force} do involve a microscopic transport of momentum, in the sense that something that has momentum is moving from one side of the surface to the other.
+
+For instance, the \furl{https://www.britannica.com/science/viscosity}{viscous force} between two layers of a fluid principally consists, from a molecular point of view, in the movement of the fluid's molecules from one side of the surface to the other. These molecules have momentum, and so they bring their momentum with them from one side to the other, thus changing the total amount of momentum on either side. So this force \enquote{really} is a flow of momentum, the momentum brought about by the flow of molecules.
+
+% Even in situations where there is no flow of molecules, the force between two parts of a material microscopically turns out to be an electromagnetic force. And this force can be seen as the transport of momentum by moving magnetic lines.
+
+
 
 
 
@@ -3438,19 +3545,21 @@ We see that Newton's third law is the expression of the symmetry of fluxes \emph
 \section{Pressure, tension, shear force}
 \label{sec:pressure_tension_shear}
 
-The examples of the previous section demonstrated a variety of possible orientations of the momentum-flux vector with respect to the surface through which it occurs. Obviously all orientations are possible. Special names are given, however, to a momentum flux having three specific orientations: \emph{pressure}, \emph{tension}, and \emph{shear force}.
+The examples of the previous section demonstrated a variety of possible orientations of the momentum-flux vector with respect to the surface through which it occurs. Obviously all orientations are possible. Special names are given, however, to momentum flux having three specific orientations: \emph{pressure}, \emph{tension}, and \emph{shear force}.
 
-Take a surface and call its sides $A$ and $B$. Now consider a flux of momentum according to the crossing direction $A\rightarrow B$.
+Take a surface, it doesn't matter whether it's vertical, horizontal, or whether it has some other inclination. Call the surface's sides $A$ and $B$. Consider the crossing directions $A\!\rightsquigarrow\!B$ and $B\!\rightsquigarrow\!A$.
 
 \subsection{Pressure}
 \label{sec:pressure}
 
-If the momentum-flux \textcolor{blue}{from $A$ to $B$} is a vector also oriented from $A$ to $B$, then we call the momentum flux a \textbf{pressure}, or \emph{compressive momentum flux} or \emph{compressive force}. Here are two examples of pressure:
+\textbf{Pressure}, or \emph{compressive momentum flux} or \emph{compressive force}, is a flux of momentum through a surface, which points \emph{away from} the surface.
+
+So in the crossing direction $A\!\rightsquigarrow\!B$, pressure is represented by a vector oriented from $A$ to $B$. Equivalently, in the crossing direction $B\!\rightsquigarrow\!A$ pressure is represented by a vector oriented from $B$ to $A$:\noprelistbreak
 \begin{center}
   \hspace*{\fill}
-  \includegraphics[align=c,height=6em]{images/pressure.pdf}
-  \hfill
-  \includegraphics[align=c,width=6em]{images/pressure2.pdf}
+  \includegraphics[align=c,height=6em]{images/pressure_right.pdf}
+  \hfill{\small or equivalently}\hfill
+  \includegraphics[align=c,height=6em]{images/pressure_left.pdf}
   \hspace*{\fill}
 \makebox[0pt][c]{\hspace*{0.4\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/pressure.webp}{animated version})}
 \end{center}
@@ -3468,12 +3577,14 @@ Pressure is the kind of momentum flux that we exert when we \emph{push} on an ob
 \subsection{Tension}
 \label{sec:tension}
 
-If the momentum-flux \textcolor{blue}{from $A$ to $B$} is a vector oriented from $B$ to $A$, then we call the momentum flux a \textbf{tension}, or \emph{tensile momentum flux} or \emph{tensile force}. Here are two examples of tension:
+\textbf{Tension}, or \emph{tensile momentum flux} or \emph{tensile force}, is a flux of momentum through a surface, which points \emph{towards} the surface.
+
+So in the crossing direction $A\!\rightsquigarrow\!B$, tension is represented by a vector oriented from $B$ to $A$. Equivalently, in the crossing direction $B\!\rightsquigarrow\!A$ tension is represented by a vector oriented from $A$ to $B$:\noprelistbreak
 \begin{center}
   \hspace*{\fill}
-  \includegraphics[align=c,height=6em]{images/tension.pdf}
-  \hfill
-  \includegraphics[align=c,width=6em]{images/tension2.pdf}
+  \includegraphics[align=c,height=6em]{images/tension_right.pdf}
+  \hfill{\small or equivalently}\hfill
+  \includegraphics[align=c,height=6em]{images/tension_left.pdf}
   \hspace*{\fill}
 \makebox[0pt][c]{\hspace*{0.4\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/tension.webp}{animated version})}
 \end{center}
@@ -3484,14 +3595,16 @@ Tension is the kind of momentum flux that we experience in our bones when we \em
 \subsection{Shear force}
 \label{sec:shear}
 
-If the momentum-flux \textcolor{blue}{from $A$ to $B$} is a vector oriented transversally, along the surface itself, then we call the momentum flux a \textbf{shear force}, or \emph{shearing momentum flux}. Here are two examples of shear force:
+\textbf{Shear force}, or \emph{shearing momentum flux}, is a flux of momentum through a surface, which is \emph{parallel} to the surface.
+
+So in the crossing direction $A\!\rightsquigarrow\!B$ or in the crossing direction $B\!\rightsquigarrow\!A$, shear force is represented by a vector oriented \emph{parallel} to the surface. Obviously the orientation is opposite on the two sides, owing to the symmetry of fluxes:\noprelistbreak
 \begin{center}
   \hspace*{\fill}
-  \includegraphics[align=c,height=6em]{images/shearforce.pdf}
-  \hfill
-  \includegraphics[align=c,width=6em]{images/shearforce2.pdf}
+  \includegraphics[align=c,height=6em]{images/shearforce_right.pdf}
+  \hfill{\small or equivalently}\hfill
+  \includegraphics[align=c,height=6em]{images/shearforce_left.pdf}
   \hspace*{\fill}
-\makebox[0pt][c]{\hspace*{0.4\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/shearforce.webp}{animated version})}
+% \makebox[0pt][c]{\hspace*{0.4\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/shearforce.webp}{animated version})}
 \end{center}
 
 Shear force is the kind of momentum flux that we experience under our feet when we walk or run, and that occurs between a car's wheels and the ground.
@@ -4792,9 +4905,9 @@ The seven universal balances govern every physical phenomenon. Yet this doesn't 
 The description of how a common lighter works, thanks to \furl{https://www.britannica.com/science/piezoelectricity}{piezoelectricity}, requires more or less all seven universal laws to be explicitly accounted for.%
 }%
 
-\item For other physical phenomena, some of the seven balances do not appear \emph{explicitly} in our calculations; yet they still enter \emph{implicitly} in the way we choose to set up or describe the phenomenon.
+\item For other physical phenomena, some of the seven balances do not appear \emph{explicitly} in our calculations. But they still enter \emph{implicitly} in the way we choose to set up or describe the phenomenon.
 
-  For example, we may choose control volumes or control surfaces in such a way that some conservation laws are automatically satisfied. A typical case is the choice of control surface around a given object (amount of matter), which guarantees that the law of conservation of matter is automatically satisfied. As another example, sometimes we simplify a physical phenomenon to one spatial dimension only; think of when we throw a ball vertically in the air, and only consider its height from the ground. In such a case we can make some predictions using only the balance of energy, apparently avoiding the balance of momentum. But in reality, the fact that the ball can be considered as moving vertically is possible because momentum is balanced in the horizontal directions. The balance of momentum is therefore still necessary for this prediction, but it has been silently taken care of.
+  For example, we may choose control volumes or control surfaces in such a way that some conservation laws are automatically satisfied. A typical case is the choice of control surface around a given object (amount of matter), which guarantees that the law of conservation of matter is automatically satisfied. As another example, sometimes we simplify a physical phenomenon to one spatial dimension only. Think of when we throw a ball vertically in the air, and only consider its height from the ground. In such a case we can make some predictions using only the balance of energy, apparently avoiding the balance of momentum. But in reality, the fact that the ball can be considered as moving vertically is possible because momentum is balanced in the horizontal directions. The balance of momentum is therefore still necessary for this prediction, but it has been silently taken care of.
 
 \item For still other physical phenomena, some of the seven balances may not be required because we do not need the kind of physical information they provide. We saw an example of this with the \autoref{sec:example_conservation_moving}{flat-tyre problem}, where we only used the conservation of matter but we weren't interested in what happened to other quantities like energy or momentum, or in how the tyre was moving.
 
@@ -4809,9 +4922,9 @@ But the fact that the seven universal balances govern every physical phenomenon 
 
 \bigskip
 
-In the next chapters we shall discuss the seven universal balance laws in more detail. For almost each of them we shall give its mathematical expression, discuss some constitutive relations that are commonly used with it, and examine some example applications.
+In the next chapters we shall discuss the seven universal balance laws in more detail. For each of them we shall give its mathematical expression, discuss some constitutive relations that are commonly used with it, and examine some example applications.
 
-Note that some constitutive relations will reappear again and again in different chapters, because they connect different quantities, and so must be discussed in connection of each of the quantities they connect.
+Note that some constitutive relations will reappear again and again in different chapters, because they connect different quantities, and so must be discussed for each of the quantities they connect.
 
 
 
@@ -4823,40 +4936,37 @@ Note that some constitutive relations will reappear again and again in different
 \subsection{Prediction and forecast}
 \label{sec:forecast}
 
-We have mentioned \enquote*{prediction} several times in the present notes: predicting the value of a quantity, predicting a physical behaviour, and so on. What do we mean by \enquote*{prediction}, more exactly?
+We have mentioned \enquote*{prediction} several times in the present notes: predicting the value of a quantity, predicting a physical behaviour, and so on. What do we mean by \enquote*{prediction}, more exactly? This word is used in mainly two ways in physics; one more general and the other more specific.
 
-This word is used in mainly two ways in physics; one more general and the other more specific.
+In the general sense, \enquote*{predicting} something means managing to find out some piece of information, not by direct observation or measurement, but somehow arriving at it from other information available. For example we can predict that there's a person in a particular room because the light in that room is on, and is never on when it's empty. So we know there's a person there, not because we have taken a look inside and seen the person, but thanks to other information.
 
-In the general sense, predicting something means managing to find out some piece of information, not by direct observation or measurement, but somehow arriving at it from other information available. For example we can predict that there's a person in a particular room because the light in that room is on, and is never on when it's empty. So we know there's a person not because we have taken a look inside and seen the person, but thanks to other information instead.
+As a more physical example, we may be able to predict that the pressure inside a bike tyre has a particular value, just from knowing the volume of the tyre, the amount of air in it, and the air's temperature -- but without directly measuring the pressure with a manometer. Another example is what you did in Exercise~\ref{ex:clocks}-~\ref{item:gps_clock}: you predicted the time lapse of a GPS satellite's clock, by using the time lapse of your own clock and the laws of general relativity.
 
-As a more physical example, we may be able to predict that the pressure inside a bike tyre has a particular value, just from knowing the volume of the tyre, the amount of air in it, and the air's temperature -- without directly measuring the pressure with a manometer. Another example is what you did in Exercise~\ref{ex:clocks}-~\ref{item:gps_clock}: you predicted the time lapse of a GPS satellite's clock, by using the time lapse of your own clock and the laws of general relativity.
-
-In these two examples, the predictions are about a piece of information -- pressure, time lapse -- that occurs at the same time as the information we have -- volume, your time lapse, and so on. (We are speaking about \emph{coordinate} time; recall that \autoref{sec:time}{it doesn't make sense to say that two events occur at the same \emph{physical} time}, unless they occur at the same place.)
+In the two examples above, the predictions are about a piece of information -- pressure, time lapse -- that occurs at the same time as the information we have. (We are speaking about \emph{coordinate} time; recall that \autoref{sec:time}{it doesn't make sense to say that two events occur at the same \emph{physical} time}, unless they occur at the same place.)
 
 \smallskip
 
-In the more specific sense, we use \enquote*{prediction} to mean that we find out some piece of information occurring at a \emph{later} coordinate time, arriving at it from information occurring at \emph{earlier} coordinate times. Often this means that it would even be impossible to observe that piece of information, because it hasn't happened yet! In this case we can also use the more precise and less pretentious term \emph{forecast}.
+In a more specific (and technically more correct) sense, we use \enquote*{prediction} to mean that we find out some piece of information occurring at a \emph{later} coordinate time, arriving at it from information occurring at \emph{earlier} coordinate times. Often this means that it would even be impossible to observe that piece of information, because it hasn't happened yet! In this case we can also use the less pretentious term \emph{forecast}.
 
 %
-\marginpar{\vspace{0\baselineskip}\centering%
+\marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/perseverance_trajectory.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of their trajectory (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
+Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of the planet's and the probe's trajectories (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
 }%
-\enquote*{Prediction} in this sense, or forecast, is extremely important in our technologies and in human activity in general. We often wish to forecast tomorrow's weather. In designing a bridge, we want to forecast whether it will be able to sustain certain loads.
-In sending a probe to Mars, we want to predict where Mars will be, and what trajectory our probe will follow.
+\enquote*{Prediction} in this sense, or forecast, is extremely important in our technologies and in human activity in general. We often wish to forecast tomorrow's weather. In designing a bridge, we want to forecast whether it will be able to sustain certain loads. In order to send a probe to Mars, we need to predict where Mars will be, and what trajectory our probe will follow.
 
 \subsection{The special role of the universal balance laws, and finite-difference approximations}
 \label{sec:forecast_balances}
 
-When we look at physics from the point of view of forecasting, we realize the very special position and role of the universal balance laws. They state that a budget holds among several quantities, and these quantities \emph{refer to different times}. With enough information about some quantities at some earlier times, they therefore determine the values of some quantities at later times.
+When we look at physics from the point of view of prediction, we realize the very special position and role of the universal balance laws. They state that a budget holds among several quantities, and these quantities \emph{refer to different times}. With enough information about some quantities at some earlier times, they therefore determine the values of some quantities at later times.
 
 We shall now discuss the basics of how the universal balances can be applied, together with constitutive relations, to make concrete numerical predictions in actual physical situations.
 
 \smallskip
 
 
-Recall again the integral and differential forms of a balance law; we use the symbols for energy here, but the reasoning is valid for any other quantity:
+Recall again the integral and differential forms of a balance law. In the following discussion we shall use the symbols for energy, but the reasoning is valid for any other quantity:
 \begin{equation*}
       \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
       \qquad%\text{\footnotesize\color{grey}or}
@@ -4868,14 +4978,14 @@ If $\yR=0$, then this is a conservation law.
 
 From either of these forms we can find an approximate mathematical expression to make predictions about a short instant of time ahead. Let's see how this is done from the integral form.
 
-Suppose that the lapse of time between $\yti$ and $\ytf$:
+Suppose that the lapse of time $\Dt$ between $\yti$ and $\ytf$,
 \begin{equation*}
   \Dt = \ytf - \yti
 \end{equation*}
-is extremely short. So short that the flux $\yH(t)$ and the supply $\yR(t)$ can't change appreciably during this time lapse, and we can take them as constant:
+is extremely short. So short that the flux $\yH(t)$ and the supply $\yR(t)$ don't change appreciably during this time lapse, and we can take them as approximately constant in time:
 \begin{equation*}
   \yH(t) \approx \yH(\yti) \qquad
-  \yR(t) \approx \yR(\yti)
+  \yR(t) \approx \yR(\yti) \qquad\text{for all $t$ between $\yti$ and $\ytf$}
 \end{equation*}
 (if they do change appreciably, then we consider an even shorter $\Dt$). If they are practically constant, then their integrals become
 \marginpar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
@@ -4904,25 +5014,26 @@ Factoring $\Dt$ we obtain:
 \end{definition}
 This equation says that if we know the value of the volume content $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $\yti$, then we can predict the value of the volume content a short time later, $\yE(\yti+\Dt)$.
 
-For example, suppose that the total amount of energy in a given control volume, at time\enspace$\yti=\qty{20}{s}$\enspace is\enspace$\yE(\yti)=\qty{500}{J}$\,.\enspace At that same time there's a net influx of\enspace$\yH(\yti)= \qty{-30}{J/s}$\enspace into the control volume. And let's suppose that the supply is zero,\enspace$\yR(\yti)=\qty{0}{J/s}$\,.\enspace The amount of energy in the control volume \qty{0.1}{s} later, that is, at time\enspace$\yti+\Dt = \qty{20}{s} + \qty{0.1}{s} = \qty{20.1}{s}$\,,\enspace is then
+For example, suppose that the total amount of energy in a given control volume at time\enspace$\yti=\qty{20}{s}$\enspace is\enspace$\yE(\yti)=\qty{500}{J}$\,.\enspace At that same time there's a net influx of\enspace$\yH(\yti)= \qty{-30}{J/s}$\enspace into the control volume, and the supply is zero,\enspace$\yR(\yti)=\qty{0}{J/s}$\,.\enspace The amount of energy in the control volume \qty{0.01}{s} later, that is, at time\enspace$\yti+\Dt = \qty{20}{s} + \qty{0.01}{s} = \qty{20.01}{s}$\,,\enspace is then approximately
 \begin{equation*}
   \begin{split}
-    \yE(\qty{20.1}{s}) &\approx \yE(\yti) + [\yH(\yti) + \yR(\yti)]\,\Dt
+    \yE(\qty{20.01}{s}) &\approx \yE(\yti) + [\yH(\yti) + \yR(\yti)]\,\Dt
     \\
-    &\approx \yE(\qty{20}{s}) + [\yH(\qty{20}{s}) + \yR(\qty{20}{s})]\cdot\qty{0.1}{s}
+    &\approx \yE(\qty{20}{s}) + [\yH(\qty{20}{s}) +
+    \yR(\qty{20}{s})]\cdot\qty{0.01}{s}
     \\
-    &\approx \qty{500}{J} + [\qty{-30}{J/s} + \qty{0}{J/s}]\cdot\qty{0.1}{s}
+    &\approx \qty{500}{J} + [\qty{-30}{J/s} + \qty{0}{J/s}]\cdot\qty{0.01}{s}
     \\
-    &\approx \qty{497}{J} \,.
+    &\approx \qty{499.7}{J} \,.
   \end{split}
 \end{equation*}
 This basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}.
 
 \begin{warning}[A control-surface sequence is understood]
-As you recall from the \autoref{eq:conserved}{definition of conservation and balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must be either clearly stated or understood from the context. If this sequence is not specified, the volume contents and fluxes above don't have any clear meaning.
+  As you recall from the \autoref{eq:conserved}{definition of a conservation or balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must either be clearly stated, or be understood from the context. If this sequence is not specified, the volume contents and fluxes above don't have any clear meaning.
 \end{warning}
 
-Keep in mind that the finite-difference approximation~\eqref{eq:finite_diff} that we derived is not the only possible one. They key step in our derivation was the approximation of the integrals appearing in the integral form of the balance law. Other approximating approaches are possible for them, and they lead to  finite-difference approximations of slightly different forms. Entire books are devoted on these approximation schemes, and if you'll work in some physics or engineering fields you'll learn several of them in more detail. Some of these alternative forms lead in fact to improved approximations and numerical predictions; they are, however, more complicated and therefore we don't discuss them here.
+Keep in mind that the finite-difference approximation~\eqref{eq:finite_diff} that we derived is not the only possible one. They key step in our derivation was the approximation of the integrals appearing in the integral form of the balance law. Other approximation approaches are possible, and they lead to finite-difference approximations of slightly different forms. Entire books are devoted to these approximation schemes, and if you'll work in some physics or engineering fields you'll learn several of them in more detail. Some of these alternative forms lead much better approximations and numerical predictions; but they are more complicated and therefore we don't discuss them here.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
@@ -4992,8 +5103,7 @@ The finite-difference approximation is also valid for the balance law of a vecto
 \subsection{Iterating: numerical time integration and boundary conditions}
 \label{sec:timestep_iterate}
 
-The evolution equation~\eqref{eq:finite_diff} can obviously be used iteratively:
-once we have the volume content $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
+The evolution equation~\eqref{eq:finite_diff} can be used iteratively: once we have the volume content $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
 \begin{equation}\label{eq:timestepped_evolution}
   % \begin{aligned}
   %   \mathcolor{blue}{\yE(t+\Dt)} &
@@ -5040,20 +5150,20 @@ once we have the volume content $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to f
 \subsection{Boundary conditions and constitutive equations}
 \label{sec:boundary_conds}
 
-In order to do the numerical time integration above, you notice that we need to know the new values of influx $\yH$ and supply $\yR$ at all subsequent time steps. These values are \emph{not} given by the evolution equation~\eqref{eq:finite_diff}.
+In order to perform the numerical time integration above, we need to know the new values of influx $\yH$ and supply $\yR$ at all subsequent time steps. These values are \emph{not} given by the evolution equation~\eqref{eq:finite_diff}.
 
 In fact, the evolution equation from a balance or conservation law always gives us the \emph{volume content} at a new time. So it would seem that we have no ways to predict a \emph{flux} or a \emph{supply}. Where do we get these from? There are two possibilities:
 \begin{itemize}[para]
-\item They are simply assigned at every time step, completely or in part. This may be possible because they are known, measured, or controlled.
+\item They are simply assigned at every time step. This may be possible because they are known, measured, or controlled.
   \begin{definition}{Boundary conditions, label={def:boundary_condition}}
     The quantities that we need to specify \emph{at each time} for the prediction or simulation of a physical phenomenon are called \textbf{boundary conditions}, and their values \emph{boundary values}.
   \end{definition}
 
-  For example, for isolated moving objects such as the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or sometimes negligible when moving through air; and the constant value of the momentum supply (the gravitational force) is also known. They are both given as boundary conditions for that specific problems.
+  For example, for isolated moving objects such as the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or negligible when moving through air; and the constant value of the momentum supply (the gravitational force) is also known. They are both given as boundary conditions for that specific problem.
 
-\item They can be calculated, thanks to \emph{constitutive relations}, from the values of volume contents of other quantities -- which are in turn predicted with an evolution equation.
+\item They can be calculated, by means of \emph{constitutive relations}, from the values of volume contents of other quantities, which are in turn predicted with an evolution equation.
 
-  An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \yM\yv$, briefly discussed previously. It actually relates the \emph{flux} of matter (\autoref{sec:fluxes_velocities}{which determines the velocity $\yv$}) to the \emph{volume content} of momentum. We shall see this relationship more clearly later in \sect\,\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
+  An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \yM\yv$, briefly discussed previously. It relates the \emph{flux} of matter (\autoref{sec:fluxes_velocities}{which determines the velocity $\yv$}) to the \emph{volume content} of momentum. We shall discuss this relationship more clearly in \sect\,\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
 \end{itemize}
 
 \begin{exercise}[label={ex:tennisball2}]
@@ -5098,7 +5208,7 @@ In fact, the evolution equation from a balance or conservation law always gives 
 \subsection{Numerical time integration of position}
 \label{sec:position_integration}
 
-In many applications we are interested in how the position $\yr$ of a small object, or of a small portion of an object, changes in time. The numerical time integration that we have discussed for the volume contents of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
+In many applications we are interested in how the position $\yr$ of a small object, or of a small part of an object, or of a small volume or surface, changes in time. The numerical time integration that we have discussed for the volume contents of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
 
 The velocity $\yv$ of a point is the time derivative of its position:
 $\yv(t) = \frac{\di\yr(t)}{\di t}$.
@@ -5116,7 +5226,7 @@ For a small time step $\Dt$ we can approximately write
   \yv(t) \approx
   \frac{\yr(t+\Dt) - \yr(t)}{\Dt}
 \end{equation*}
-Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. We obtain
+Multiply by $\Dt$ and keep on the right side only the terms that refer to time $t$. We obtain
 \begin{definition}{Time-stepped evolution equation for position}
   \begin{equation}\label{eq:finite_diff}
     \yr(\yti+\Dt)  \approx \yr(\yti) + \yv(\yti)\,\Dt
@@ -5128,11 +5238,11 @@ Multiply by $\Dt$ and bring to the right side all terms that refer to time $t$. 
       \end{aligned}\right.
   \end{equation}
 \end{definition}
-This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iteraded \autoref{sec:timestep_iterate}{as we did with a general balance law}. This way we numerically time-integrate the position $\yr(t)$ and can therefore keep track and predict the motion of an object.
+This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iterated as we did with a general balance law. This way we numerically time-integrate the position $\yr(t)$ and can therefore keep track of and predict the motion of an object.
 
 \smallskip
 
-The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\yM\yv$, knowledge of the momentum at a later timestep allows us to also know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial $\yr(t)$ and  $\yP(t)$ are given, and also the influx $\yF$ and supply $\yG$ are known at all times:
+The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\yM\yv$, knowledge of the momentum at a later timestep allows us to know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial position $\yr$ and momentum $\yP$ are given, and that the influx $\yF$ and supply $\yG$ are known at all times:
 \begin{equation}\label{eq:timestep_momentum_position}
   \begin{aligned}[b]
     \yv\tikzmark{va}(\yti)&= \yP(\yti)/\yM
@@ -5167,7 +5277,7 @@ For some physical phenomena -- such as planets orbiting around a star or satelli
 \subsection{Numerical time integration of position: example}
 \label{sec:example_falling_object_timestep}
 
-Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward, the other two coordinates having some constant value. Assume these conditions:
+Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward. The other two coordinates have constant values. Assume these conditions:
 \begin{itemize}[nosep]
 \item initial time is $\yti=\qty{0}{s}$
 \item initial position is $z(\yti)=\qty{5}{m}$
@@ -5176,7 +5286,7 @@ Let's see an example with a falling object. For simplicity we only consider the 
 \item momentum supply, gravity, is $G_{z}=-\yM\cdot\qty{9.81}{N/kg} = \qty{-39.23}{N}$
 \item timestep is $\Dt = \qty{0.1}{s}$
 \end{itemize}
-Then numerical integration up to $t=\qty{0.2}{s}$ would look as follows:\noprelistbreak
+Then numerical integration up to $t=\qty{0.2}{s}$ looks as follows:\noprelistbreak
 \marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/plot_tennisball_z.pdf}\\
 \includegraphics[width=\linewidth]{images/plot_tennisball_P.pdf}%
@@ -5215,7 +5325,7 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
 
   Redo the numerical simulation you did for that exercise, with the same numerical parameters, and with an initial position for the tennis ball $\yr(\yti) = [0,0,2]\:\unit{m}$.
 
-  Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the two margin plots above.
+  Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the plots in the margin.
 \end{exercise}
 
 
@@ -5224,16 +5334,16 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
 
 We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timestepped_evolution} and~\eqref{eq:timestep_momentum_position}, focusing on momentum and position. But obviously this procedure can be applied to any quantities that satisfy balance laws.% : it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
 
-The time-stepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors; see for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
+The time-stepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors. See for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
 
 Yet, the simple time-stepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
 
 \subsection{Example script for numerical time integration}
 \label{sec:tennisball_script}
 
-We shall come back to numerical time integration in a later chapter, and approach in a more systematic way the problem of writing a simulation script.
+We shall come back to numerical time integration in a later chapter, and will approach the problem of writing a simulation script in a more systematic way.
 
-For the moment, here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB), that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data. You can use this script as a starting point for exercises that require scripting in the next chapters.
+For the moment, here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB), that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting the results. You can use this script as a starting point for exercises that require scripting in the next chapters.
 
 \smallskip
 
@@ -10488,7 +10598,7 @@ In the rest of these notes we shall use the terms \enquote*{momentum flux} and \
 % \end{center}
 % It conveys the correct information, but it's also misleading in several respects:
 % \begin{itemize}[para]
-% \item This is a snapshot at a given time instant. An instant earlier or later, the surface might be at a different position and with a different shape. The \textcolor{blue}{blue wavy arrow} might suggest that the surface is at rest, while something crosses it.
+% \item This is a snapshot at a given time instant. An instant earlier or later, the surface might be at a different position and with a different shape. The \textcolor{blue}{blue wiggly arrow} might suggest that the surface is at rest, while something crosses it.
 %
 % \item A flux, properly speaking,
 % \marginpar{\footnotesize%
@@ -11106,6 +11216,22 @@ Z
 Ψ
 ω
 Ω
+
+Approx. pointwise const. relations between energy-momentum and matter:
+
+E = c^2 \rho N + \eps N + \rho (|J|^2)/(2N) - \rho N W
+
+Hx = c^2 \rho Jx + qx + Jx.Sx/N + Jx/N (\eps N + \rho |J|^2/(2N) - \rho N W)
+   = qx + Jx.Sx/N + Jx/N E
+
+Px = \rho Jx
+Fx = Sxx + \rho Jx^2/N
+   = Sxx + Jx/N Px
+Fy = Sxy + \rho Jx Jy/N
+   = Sxy + Jy/N Px
+Fz = Sxz + \rho Jx Jz/N
+   = Sxz + Jz/N Px
+
 
 
 %% TODOs:
