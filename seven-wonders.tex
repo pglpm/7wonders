@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-10-08T15:08:31+0200
+%% Last-Updated: 2024-10-08T21:06:28+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3095,27 +3095,31 @@ We have a region consisting of two subregions; the amounts of momentum in each s
 \section{Flux: scalar quantities}
 \label{sec:intuition_fluxes_scalar}
 
-\subsection{Direction and reckoning of scalar fluxes}
+\subsection{Crossing direction and reckoning of scalar fluxes}
 \label{sec:flux_scalar_direction}
 
 Earlier we considered the intuitive example of a \autoref{sec:choice_surfaces}{flow of people through an open door}. We may ask how many people crossed the door in a minute, but one more detail about this flow is important: \emph{in which direction did the people cross the door?} This detail is important because, for example, the door leads to a classroom and we need to keep track of how many seats are free. Then we need to know whether each person who crossed the door was \emph{entering} or \emph{leaving} the classroom, keeping track of how many additional people are in the classroom.
 
+\marginpar{\vspace{-4\baselineskip}\centering%
+\includegraphics[width=0.5\linewidth]{images/person_enter.pdf}
+\\\flushleftright\footnotesize\color{mpcolor}According to the crossing direction indicated by the \textcolor{cyan}{blue wiggly arrow}, the person crossing the door counts as\enspace\enquote*{$+1$}.%
+
+\bigskip
+
+\centering%
+\includegraphics[width=0.5\linewidth]{images/person_leave.pdf}
+\\\flushleftright\footnotesize\color{mpcolor}According to the crossing direction indicated by the \textcolor{cyan}{blue wiggly arrow}, the person crossing the door counts as\enspace\enquote*{$-1$}.%
+}%
 In order to do this we can:
-%
-\marginpar{\vspace{\baselineskip}\centering%
-\includegraphics[width=0.5\linewidth]{images/wiggly_arrow.pdf}
-\\[\jot]\flushleftright\footnotesize\color{mpcolor}We'll use wiggly arrows like this one  to indicate a \emph{crossing direction} through a surface. Keep in mind that these arrows \emph{are not vectors}! They don't have a \enquote*{magnitude} or \enquote*{components}.%
-}
-%
 \begin{enumerate}[label=\arabic*.]
-\item Assign a crossing direction to the door, for instance the direction from outside to inside the classroom. We shall often depict a crossing direction with a wiggly arrow as in the side picture.
-\item Count as \enquote*{positive} each person who crosses the door in the chosen crossing direction, and count as \enquote*{negative} each person who crosses the door in the opposite direction.
+\item Assign a crossing direction to the door, for instance the direction from outside to inside the classroom.
+\item Count as \enquote*{positive} each person who crosses the door in the chosen crossing direction, and as \enquote*{negative} each person who crosses the door in the opposite direction.
 \end{enumerate}
 The total of this counting tells us the \emph{net} number of people who crossed the door in the chosen direction. If we chose a crossing direction \emph{from outside to inside} the classroom, then this total is the net number of people who
 \emph{entered} the classroom. If we chose a crossing direction \emph{from inside to outside} the classroom, then this total is the net number of people who
 \emph{left} the classroom.
 
-A flux therefore represents only a \emph{net} amount. Note also that this net amount could be \emph{negative}. For instance if we chose a crossing direction from outside to inside the classroom, and the total is $\num{-3}$, then it means that \emph{more people got out than in}. For instance, 9~persons may have entered the room during that minute, and 8~persons left. Or no person may have entered the room, and 3~persons left. In either case, the final situation is that those who got out in that minute were three more than those who got in.
+A flux therefore represents only a \emph{net} amount. Note also that this net amount can be \emph{negative}. For instance if we chose a crossing direction from outside to inside the classroom, and the net amount is $\num{-3}$, then it means that \emph{more people got out than in}. For instance, 9~persons may have entered the room during that minute, and 8~persons left. Or no person may have entered the room, and 3~persons left. In either case, the final situation is that those who got out in that minute were three more than those who got in.
 
 One important aspect of this example and terminology is the following \emph{symmetry}:
 \begin{itemize}
@@ -3154,7 +3158,7 @@ Consider a similar example, but instead of people, think of a quantity that can 
 \end{itemize}
 So the statement that \enquote{the flux of electric charge into the room was \qty{-5}{C} in one minute} does not tell us which of the situations above occurred.
 
-\marginpar{\vspace{-3\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
+\marginpar{\vspace{\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
       Fechner [in 1845] supposed every current to consist in a streaming of electric charges, the vitreous charges travelling in one direction, and the resinous charges, equal to them in magnitude and number, travelling in the opposite direction with equal velocity.}}\sourceatright{\cites{whittaker1910_r1951}}%
 }%
 In fact, ordinary electricity in wires was thought for some time to be associated with movements of negative \emph{and} positive charges in opposite directions. Today we know that it consists in the movement of negative charges only.
@@ -3164,8 +3168,8 @@ In fact, ordinary electricity in wires was thought for some time to be associate
 The purpose of the previous examples is to make you aware of some fundamental aspects of what we call \enquote{flux}. These aspects are trivial but important when considering fluxes of physical quantities:
 %
 \begin{definition}{Fundamental aspects of flux}\label{def:symmetryflux}
-  \begin{itemize}[nosep]
-  \item A flux in a particular surface-crossing direction only tells us the \emph{net} amount of substance that crosses the surface in that direction in the unit of time. A flux does not tell us the amount that crossed during shorter times or through different parts of the surface.
+  \begin{itemize}[nosep,shift]
+  \item A flux in a particular surface-crossing direction only tells us the \emph{net} amount of substance that crosses the surface in that direction in a unit of time.
 
   \item A flux can be \emph{negative}.
 
@@ -3173,69 +3177,112 @@ The purpose of the previous examples is to make you aware of some fundamental as
   \end{itemize}
 \end{definition}
 
+\begin{warning}[What a flux value does not tell]
+  \begin{itemize}[nosep,shift]
+  \item A flux value does not tell us the amount that crossed during shorter times or through different parts of the surface.
+
+\item A flux value does not tell us whether the transfer of the quantity through the surface occurs because the quantity is flowing, or because the surface is moving, or both.
+  \end{itemize}
+\end{warning}
+
+
 
 
 \subsection{Representation of scalar fluxes}
 \label{sec:flux_scalar_representation}
 
+% %
+% \marginpar{\vspace{\baselineskip}\centering%
+% \includegraphics[width=0.5\linewidth]{images/wiggly_arrow.pdf}
+% \\[\jot]\flushleftright\footnotesize\color{mpcolor}We'll use wiggly arrows like this one  to indicate a \emph{crossing direction} through a surface. Keep in mind that these arrows \emph{are not vectors}! They don't have a \enquote*{magnitude} or \enquote*{components}.%
+% }
+% %
 
-How can we graphically represent the flux of a quantity, in a way that takes care of all its fundamental aspects? Consider these two representations:\noprelistbreak
-\begin{center}\label{fig:scalar_fluxes}
-  \bigskip
-\hspace*{\fill}\includegraphics[height=6em]{images/flux_plus5c.pdf}
-\hfill\includegraphics[height=6em]{images/flux_minus5c.pdf}
-%\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
-\hspace*{\fill}
+How can we graphically represent the flux of a quantity, in a way that takes care of all its fundamental aspects?
+
+First let's consider a surface through which we're measuring a flux, at a particular instant of time. Here it is represented as line, removing one spatial dimension to simplify the drawing:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/surface_tilted_nocross.pdf}
 \end{center}
-In both pictures, the \textcolor{midgrey}{grey straight line} represents a surface (simplified to two dimensions) through which we're measuring a flux. The \textcolor{cyan}{light-blue wiggly arrows $\rightsquigarrow$} represent the chosen crossing direction: left-to-right in the first picture, right-to-left in the second. Note that it doesn't matter whether we draw one wiggly arrow (as in the pictures above), or one, or three or more. The signed number in \textcolor{blue}{blue} represents the net amount crossing the surface according to the chosen direction. \emph{Both pictures therefore represent the same flux}:\noprelistbreak
+Keep in mind that the surface could have any other shape, and could also be in motion.
+
+Let's indicate a crossing direction through the surface by one or more wiggly arrows:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/surface_tilted_crossright.pdf}
+\end{center}
+Keep in mind that these arrows \emph{are not vectors}! They don't have a \enquote*{magnitude} or \enquote*{components}. They simply indicate a sense in which we imagine the surface to be crossed. We could also have used only one wiggly arrow or three instead of two.
+
+A flux of \num{+5} of some scalar quantity through the surface, in the first crossing direction, can then be depicted as follows:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/flux_plus5c.pdf}
+\end{center}
+This picture says that a net amount of \num{5} has crossed the surface from the left to the right side, in a unit of time. This also means that in a unit of time a net amount of \num{5} has \enquote{disappeared} from the left side of the surface and \enquote{appeared} on the right side.
+
+\medskip
+
+Now consider the opposite crossing direction, depicted like this:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/surface_tilted_crossleft.pdf}
+\end{center}
+Because of the symmetry of fluxes, we can say that the flux equals \num{-5} in this opposite direction. We depict this as follows:\noprelistbreak
+\begin{center}
+  \medskip
+  \includegraphics[height=5em]{images/flux_minus5c.pdf}
+\end{center}
+This picture says that a net amount of \num{-5} has crossed the surface from the right to the left side, in a unit of time. This also means that a net amount of \num{-5} has \enquote{disappeared} from the left side of the surface and \enquote{appeared} on the right side, in a unit of time.
+
+But this is indeed exactly the same situation as before. \emph{Both pictures therefore represent the same flux}:\noprelistbreak
 \begin{center}\label{fig:scalar_fluxes}
   \bigskip
-\hspace*{\fill}\includegraphics[align=c,height=6em]{images/flux_plus5c.pdf}
+  \hspace*{\fill}
+  \includegraphics[align=c,height=6em]{images/flux_plus5c.pdf}
 \qquad{\small is exactly the same as}\qquad
 \includegraphics[align=c,height=6em]{images/flux_minus5c.pdf}
 %\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
 \hspace*{\fill}
 \end{center}
-So keep in mind that either picture does \emph{not} say that a given amount is \emph{only} moving from left to right or vice versa; we have seen that in general we don't know this. Both pictures say that on the left side the amount of quantity has changed by \num{-5}, and on the right side by \num{+5}.
+
+\textbf{It is extremely important that you remember that the two kinds of picture above are completely equivalent}. You can always mentally switch from one to the other. A flux in one crossing direction is exactly the same as a flux with opposite sign in the opposite direction.
+
+The two equivalent pictures do \emph{not} say that a given amount is \emph{only} moving from left to right, or vice versa; we have seen that in general we don't know this. Both pictures say that on the left side the amount of quantity has changed by \num{-5}, and on the right side by \num{+5}. In these notes we shall usually display only one of these two equivalent representations.
+
 % The third picture tries to avoid this misleading interpretation by not showing any arrows; it is meant to represent that on the left side the amount of quantity has changed by \textcolor{purple}{\num{-5}}, and on the right side by \textcolor{blue}{\num{+5}}. But also this picture may be misleading in suggesting that \num{+5} crossed left-to-right \emph{and} \num{-5} crossed right-to-left, for a total of \num{+10} left-to-right. Or vice versa it may lead you to sum up the two numbers, in which case you'll always obtain zero! % *****
 
 % The third representation above has one more advantage. Remember that \autoref{sec:choice_surfaces}{a flux through a surface may occur because the surface itself is moving}. The wiggly arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
 
-In these notes we shall usually display only one of these two equivalent representations. But remember that you can always mentally switch from one to the other: the two mean exactly the same.
-\begin{warning}[What a flux does and doesn't tell]
-  A flux tells us the net change in the amounts of a quantity on the two sides of a surface. These two amounts are equal in magnitude but have opposite signs.
 
-  \smallskip
-
-  A flux does \emph{not} tell us:
-  \begin{itemize}[nosep]
-  \item whether the quantity \enquote{was in motion}
-  \item \textellipsis and if the quantity was in motion, what was its sign
-  \item whether the surface was in motion
-  \end{itemize}
-\end{warning}
-
-\subsection{How does a scalar flux change, if we change the surface?}
+\subsection{Scalar fluxes through different surfaces}
 \label{sec:surface_change_scalar}
 
-We know that the flux through a surface consisting of two smaller surfaces is the sum of the fluxes through the smaller surfaces. But what if we consider a \emph{different} surface, maybe intersecting the original one? It's important to keep in mind that \textbf{a flux refers to a particular surface, and can be very different if we consider a different surface, even if it's close to the original one; or if we consider a surface with a different motion}.
+What happens to the value of a flux through a surface, if we consider a \emph{different} surface, maybe intersecting the original one? It's important to keep in mind that
+\begin{itemize}[nosep]
+\item A flux refers only to a specific surface.
+\item The fluxes through two distinct surfaces can be very different, even if the two surfaces are quite close.
+\item The flux depends on the motion of the surface. So if we consider the same surface but with a different instantaneous motion, then the flux may be very different.
+\end{itemize}
 
 
-Consider for instance the first picture on the side.
+Consider for instance the picture on the side.
 %
 \marginpar{\vspace{-5\baselineskip}\centering\includegraphics[width=\linewidth]{images/two_surfaces_flux.pdf}%
 }%
-We have two intersecting surfaces (as usual simplified by removing one dimension), both almost horizontal. The energy flux through the \textcolor{blue}{solid blue surface}, in a roughly upward direction, is \textcolor{blue}{\qty{+5}{J/s}}. The energy flux through the \textcolor{purple}{dashed red surface}, again in a roughly upward direction, is instead \textcolor{purple}{\qty{-1}{J/s}}.
+It depicts two intersecting surfaces (as usual simplified by removing one dimension) and two chosen crossing directions on them. The crossing directions are both roughly rightward. Yet the energy flux through the \textcolor{blue}{solid blue surface} is \textcolor{blue}{\qty{+5}{J/s}}, whereas the energy flux through the \textcolor{purple}{dashed red surface} is \textcolor{purple}{\qty{-1}{J/s}}.
 
-As another example,
-% %
-% \marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/two_surfaces_flux_eq.pdf}%
-% }%
-the second side picture shows two similar intersecting surfaces, one fully vertical in \textcolor{blue}{solid blue}, and one fully horizontal in \textcolor{purple}{dashed red}. The energy flux through the first in a rightward direction is \textcolor{blue}{\qty{+3}{J/s}}, and so is the energy flux in an upward direction through the second surface.
+% As another example,
+% % %
+% % \marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/two_surfaces_flux_eq.pdf}%
+% % }%
+% the second side picture shows two similar intersecting surfaces, one fully vertical in \textcolor{blue}{solid blue}, and one fully horizontal in \textcolor{purple}{dashed red}. The energy flux through the first in a rightward direction is \textcolor{blue}{\qty{+3}{J/s}}, and so is the energy flux in an upward direction through the second surface.
 
 \smallskip
 
-There is, however, a relation between the fluxes through surfaces that share a common point. If we know the flux through \emph{three different, small, static} surfaces having a common point, then we can find the flux through any other small, static surface passing through that same point. This possibility leads to the representation of flux through a small surface as a \emph{vector}, called \enquote*{flux-density vector}.
+There is, however, a relation between the fluxes through surfaces that share a common point. If we know the flux through \emph{three different, small, static} surfaces having a common point, then we can find the flux through any other \emph{small, static} surface passing through that same point. This possibility leads to the representation of flux through a small surface as a \emph{vector}, called \enquote*{flux-density vector}. In these notes we shall not consider flux densities and their vector representation.
+% ***** change this if they are added in an "advanced" part.
+
 
 \subsection{Flux units: scalar quantities}
 
@@ -3270,12 +3317,12 @@ and its units will be the units of the quantity divided by seconds:
 After our discussion about the peculiarity of fluxes it's quite easy to work with the fluxes of the four main scalar quantities: matter, electric charge, energy, entropy. Let us add some reminders and remarks about the fluxes of matter and energy.
 
 
-\subsection{Matter flux}
+\subsubsection{Matter flux}
 \label{sec:matter_flux}
 
 Remember that \emph{anti}matter \enquote{counts as \num{-1}} for calculating amounts of matter. If \qty{1}{mol} of positrons (anti-electrons) crosses a surface from left to right in \qty{1}{s}, the left-to-right flux of electrons equals \qty{-1}{mol/s} -- note the minus sign. The fact that antimatter is given special names can lead to ambiguities. For instance, if someone asks \enquote{what's the left-to-right flux of \emph{positrons}?}, maybe we should answer \enquote{\qty{1}{mol/s}}, since the question concerned specifically positrons. It's somewhat like asking \enquote{what's the flux of \emph{negative} electric charge?}. In these ambiguous situations it's best to add some explanatory words.
 
-\subsection{Energy flux}
+\subsubsection{Energy flux}
 \label{sec:energy_flux}
 We already mentioned that \autoref{sec:forms_energy}{energy flux can be categorized into different kinds}, depending on whether there are fluxes of other quantities through the same surface. We study the exact definitions and formulae later on. The total flux is given by the sum of all these kinds. For instance, through a horizontal surface we can have a downward energy flux of \qty{3}{J/s} as \emph{heat}, and a downward flux of \qty{-1}{J/s} as \emph{work}. The total downward flux is then \qty{2}{J/s}. The energy flux that you will calculate in the fourth exercise below is called \emph{energy convection}.
 
@@ -3298,74 +3345,109 @@ We already mentioned that \autoref{sec:forms_energy}{energy flux can be categori
 \section{Flux: vector quantities}
 \label{sec:intuition_fluxes_vector}
 
-\subsection{Representation of vector fluxes}
+\subsection{Crossing direction and reckoning of vector fluxes}
 \label{sec:flux_vector_direction}
 
-The flux of a vector quantity is also a vector, because it is given by an amount of that quantity, which is a vector, divided by time, which is a scalar.
+The flux of a vector quantity is also a vector, because it is given by an amount of that quantity, which is a vector, divided by time, which is a scalar. We can see it as three fluxes of three scalar quantities.
 
-The discussion about the \autoref{sec:flux_scalar_direction}{arbitrary choice of a crossing direction, and the minus signs} that appear if we reverse this crossing direction, also applies in an analogous way to vector fluxes. We must only remember that a minus sign changes the sense or orientation of a vector:
+The discussion about the \autoref{sec:flux_scalar_direction}{choice of crossing direction and the symmetry of fluxes} that we made in the case of the flux of a scalar quantity, also applies in an analogous way to the flux of a vector quantity. For instance, if the flux of momentum through a surface in a particular crossing direction is
+\begin{equation*}
+  (-21, 25, 0)\unit{N} \ ,
+\end{equation*}
+then if we choose the opposite crossing direction the flux is
+\begin{equation*}
+  -(-21, 25, 0)\unit{N} = (+21, -25, 0)\unit{N}\ .
+\end{equation*}
+
+If we think of vectors as arrows, we must only remember that a minus sign changes their orientation:\noprelistbreak
 \begin{equation*}
   \mathord{\nwarrow} \mathrel{\enspace=\enspace} -1\cdot\mathord{\searrow}
 \end{equation*}
 
-Take for instance an approximately vertical surface:\noprelistbreak
-\begin{center}
-  \medskip
-  \includegraphics[height=5em]{images/surface_tilted_nocross.pdf}
-\end{center}
-Suppose that we choose the \emph{rightward} crossing direction:\noprelistbreak
+
+\subsection{Representation of vector fluxes}
+\label{sec:flux_vector_representation}
+
+The graphical representation of the flux of a vector quantity is also analogous to \autoref{sec:flux_scalar_representation}{that for the flux of a scalar quantity}.
+
+
+Take for instance the following surface with a specified crossing direction:\noprelistbreak
 \begin{center}
   \medskip
   \includegraphics[height=5em]{images/surface_tilted_crossright.pdf}
 \end{center}
-and suppose that with this convention the flux is represented by the vector\noprelistbreak
+Suppose that with respect to this crossing direction the flux the vector of components\enspace$\mathcolor{blue}{(21, -25, 0)}$:\noprelistbreak
 \begin{center}
+  \medskip
   \includegraphics[height=4em]{images/vec_NW.pdf}
 \end{center}
-Then if we instead choose the \emph{lefward} crossing direction:\noprelistbreak
+Then we can depict this flux as follows:\noprelistbreak
+\begin{center}
+  \medskip
+\includegraphics[height=6em]{images/flux_vec_right.pdf}%
+\end{center}
+This picture says that a net vector amount\enspace\includegraphics[align=c,height=1.5em]{images/vec_NW.pdf}\enspace
+has crossed the surface from the left to the right side, in a unit of time. This also means that in a unit of time a net vector amount\enspace\includegraphics[align=c,height=1.5em]{images/vec_NW.pdf}\enspace has \enquote{disappeared} from the left side of the surface and \enquote{appeared} on the right side. (Remember that the \textcolor{cyan}{wavy arrows} are \emph{not} vectors: they only represent a crossing direction.)
+
+If we instead choose the opposite crossing direction:\noprelistbreak
 \begin{center}
   \medskip
   \includegraphics[height=5em]{images/surface_tilted_crossleft.pdf}
 \end{center}
-the same flux is represented by the opposite vector\noprelistbreak
+then the same flux is represented by the opposite vector:\noprelistbreak
 \begin{center}
-  \includegraphics[height=4em]{images/vec_SE.pdf}
+  \medskip
+  \includegraphics[height=4em]{images/flux_vec_left.pdf}
 \end{center}
+This picture says that a net vector amount\enspace\includegraphics[align=c,height=1.5em]{images/vec_SE.pdf}\enspace
+has crossed the surface from the right to the left side, in a unit of time. This also means that in a unit of time a net vector amount\enspace\includegraphics[align=c,height=1.5em]{images/vec_SE.pdf}\enspace has \enquote{disappeared} from the right side of the surface and \enquote{appeared} on the left side. But this is the same flux as before, because\enspace\includegraphics[align=c,height=1.5em]{images/vec_SE.pdf}${}= -{}$\includegraphics[align=c,height=1.5em]{images/vec_NW.pdf}.
 
-The situation in the case of vector fluxes can require a little more thinking and attention, because it's easy to get confused between the crossing direction for the surface, and the direction suggested by the vector flux -- which are completely separate things. For this reason a good graphical representation of a vector flux is this, analogous to \autoref{fig:scalar_fluxes}{the third representation for scalar fluxes}:\noprelistbreak
-\begin{center}
-\hspace*{\fill}
-\includegraphics[height=6em]{images/flux_vec_right.pdf}%
-\hfill
-\includegraphics[height=6em]{images/flux_vec_left.pdf}%
+\emph{Both pictures therefore represent the same flux}:\noprelistbreak
+\begin{center}\label{fig:scalar_fluxes}
+  \bigskip
+\hspace*{\fill}\includegraphics[align=c,height=6em]{images/flux_vec_right.pdf}
+\qquad{\small is exactly the same as}\qquad
+\includegraphics[align=c,height=6em]{images/flux_vec_left.pdf}
+%\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
 \hspace*{\fill}
 \end{center}
-The \textcolor{midgrey}{grey straight line} represents a surface through which we're measuring the flux of a vector quantity; on the left side of the surface, the amount of quantity has changed by plus\enspace\includegraphics[align=c,height=1.5em]{images/vec_NW.pdf}\enspace and on the right side by plus\enspace\includegraphics[align=c,height=1.5em]{images/vec_SE.pdf}\:.
-Obviously these two changes have equal magnitude but are opposite.
-
-\medskip
 
 % %
 % \marginpar{\vspace{-8\baselineskip}\centering\includegraphics[width=0.5\linewidth]{images/vectorfluxanim.png}%
 % \\[\jot]\flushleftright\footnotesize\color{mpcolor}Imagine the \textcolor{blue}{blue upper arrows} moving from left to right, and the \textcolor{purple}{red lower arrows} moving from right to left. \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{Animated version here}.%
 % }%
-As a mental image of a vector flux, you can imagine a moving collection of identical arrows crossing the surface in one direction, together with a moving collection of opposite arrows crossing the surface in the opposite direction. % \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{See this link} as an example.
+% As a mental image of a vector flux, you can imagine a moving collection of identical arrows crossing the surface in one direction, together with a moving collection of opposite arrows crossing the surface in the opposite direction.
+% \furl{https://pglpm.github.io/7wonders/media/vectorfluxanimsin.webp}{See this link} as an example.
 
 \smallskip
 
-Since a vector is represented by three numbers (which can be positive or negative), a vector flux can also be interpreted as the collection of three distinct numerical fluxes:\noprelistbreak
-\begin{center}
-\hspace*{\fill}
-\includegraphics[height=6em]{images/flux_vec_right_num.pdf}%
-\hfill
-\includegraphics[height=6em]{images/flux_vec_left_num.pdf}%
+We can of course also explicitly write the numerical values of the vector components:\noprelistbreak
+\begin{center}\label{fig:scalar_fluxes}
+  \bigskip
+  \hspace*{\fill}
+  \includegraphics[align=c,height=6em]{images/flux_vec_right_num.pdf}
+\qquad{\small is exactly the same as}\qquad
+\includegraphics[align=c,height=6em]{images/flux_vec_left_num.pdf}
+%\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
 \hspace*{\fill}
 \end{center}
-the pictures say that the $x$-component of the quantity has changed on the right side of the surface by \num{-21}, and on the left side by \num{+21}; the $y$-component  has changed on the right side by \num{+25}, and on the left side by \num{-25}; and the $z$-component has not changed on either side.
+Both pictures say that the $x$-component of the quantity has changed on the right side of the surface by \num{-21}, and on the left side by \num{+21}; the $y$-component  has changed on the right side by \num{+25}, and on the left side by \num{-25}; and the $z$-component has not changed on either side.
 
 \medskip
 
-Another aspect of vector fluxes that we must try not to get confused about is the application point of the vector representing the flux (the base point of the arrow). Just as for \autoref{item:applicationpoint}{vector volume contents}, \textbf{the application point of the vector representing the flux is unimportant. The vector refers to one side of the surface as a whole.}
+An important aspect of vector fluxes that we must try not to get confused about is the application point of the vector (the base point of the arrow). Just as for \autoref{item:applicationpoint}{vector volume contents}, \textbf{the application point of the vector representing the flux is unimportant. The vector refers to one side of the surface as a whole.} So the following four pictures represent exactly the same flux:\noprelistbreak
+\begin{center}\label{fig:scalar_fluxes}
+  \bigskip
+  \hspace*{\fill}
+  \includegraphics[align=c,height=6em]{images/flux_vec_right.pdf}
+\hfill
+\includegraphics[align=c,height=6em]{images/flux_vec_right_alt.pdf}
+\hfill
+\includegraphics[align=c,height=6em]{images/flux_vec_left.pdf}
+\hfill
+\includegraphics[align=c,height=6em]{images/flux_vec_left_alt.pdf}
+\hspace*{\fill}
+\end{center}
 
 \medskip
 
@@ -3381,30 +3463,30 @@ Another aspect of vector fluxes that we must try not to get confused about is th
 
 \medskip
 
-\subsection{Changes of vector flux upon changes of surface}
-\label{sec:surface_change_scalar}
+\subsection{Vector fluxes through different surfaces}
+\label{sec:surface_change_vector}
 
-We saw that the flux of a scalar quantity can be very different if we take a slightly different surface. The same is true of the flux of a vector quantity: in particular, \textbf{the vectors representing the fluxes through two slightly different surfaces can point in completely different directions}.
+We saw that the flux of a scalar quantity can be very different if we take a slightly different surface, or the same surface with a different motion. The same is true of the flux of a vector quantity: in particular, \textbf{the vectors representing the fluxes through two slightly different surfaces can point in completely different directions}.
 
-Here is an example. Take a fixed point $P$. Now take a small vertical surface passing through $P$. The flux of a vector quantity (momentum for example) through this quantity can be as in this picture:
+Here is an example. Take a fixed point $P$. Now take a small vertical surface passing through $P$, and choose a crossing direction from left to right. The flux of a vector quantity (momentum for example) through this quantity could be as in this picture:
 \begin{center}
   \includegraphics[align=c,scale=0.08]{images/skewfluxPx.pdf}
 % \makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux1.webp}{animated version})}
 \end{center}
-this flux has components $\mathcolor{blue}{(9,-6,0)}$, with magnitude around \num{10.8}, if we take the rightward crossing direction as positive.
+this flux has components $\mathcolor{blue}{(9,-6,0)}$, with magnitude around \num{10.8}.
 
-Now forget about that surface, and take instead a small horizontal surface passing through the same point $P$. The flux of the same quantity through this new surface can be as in this picture:
+Now forget about that surface, and take instead a small horizontal surface passing through the same point $P$, and upward crossing direction. The flux of the same quantity through this new surface could be as in this picture:
 \begin{center}
   \includegraphics[align=c,scale=0.08]{images/skewfluxPy.pdf}
 % \makebox[0pt][c]{\hspace*{0.5\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/skewflux2.webp}{animated version})}
 \end{center}
-it has components $\mathcolor{blue}{(-6,-3,0)}$, with magnitude around \num{6.7}, if we take the upward crossing direction as positive.
+it has components $\mathcolor{blue}{(-6,-3,0)}$, with magnitude around \num{6.7}.
 
-Clearly the vectors representing the fluxes through these two surfaces are completely different: they point in different directions and have different magnitudes.
+Clearly the two vector fluxes through these two surfaces are completely different: they point in different directions and have different magnitudes.
 
 % If we have a vector flux through a particular surface, and we're asked about the flux through a different surface, we might be tempted to \enquote{move} through the new surface the vectors representing the flux through the old one. \emph{We must fully resist this temptation}. It only leads to mistakes.
 \begin{warning}[Each surface has a unique flux]
-  A flux, scalar or vector, through a particular surface, in general doesn't tell us anything about the flux though another surface, even if the other surface is only slightly different from the first one.
+  A flux, scalar or vector, through a particular surface, in general doesn't tell us anything about the flux though another surface, nor about the flux through the same surface but with a different instantaneous motion.
 \end{warning}
 
 \subsection{Flux units: vector quantities}
@@ -3510,7 +3592,7 @@ The pictures say: on the side of the ground, an amount momentum is being added a
 % \enquote{\emph{% \langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
 % \\[\jot]
 \enquote{\emph{LAW~III. To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}}%
-\\(Original Latin on p.~\pageref{fig:newtonIII})% \cites{newton1687_t1974}
+%\\(Original Latin on p.~\pageref{fig:newtonIII})% \cites{newton1687_t1974}
 \\\sourceatright{\cites{newton1687}}%
 }%
 From the examples above, we see that thinking of force as momentum flux automatically leads to \emph{Newton's third law}: if one side is gaining momentum with a given orientation, the other side by symmetry is gaining momentum with the opposite orientation. In other words, if one side is experiencing a force with a given orientation, the other side is experiencing a force with the opposite orientation.
@@ -11097,6 +11179,40 @@ like protons and neutrons; and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/
 % \url{https://www.britannica.com/science/lepton}},
 such as electrons. In particle physics, even more subtle classifications of matter are made, into kinds that seem to be conserved, like electronic-leptons, muonic-leptons, and others. This kind of research is still open, but it seems that the total amount of baryonic and leptonic matter, independently of the kinds into which it can be classified, is always conserved. Note that we're using the term \enquote*{matter} in a sense that includes anti-matter, such as positrons.
 
+----
+
+Consider these two representations:\noprelistbreak
+\begin{center}\label{fig:scalar_fluxes}
+  \bigskip
+\hspace*{\fill}\includegraphics[height=6em]{images/flux_plus5c.pdf}
+\hfill\includegraphics[height=6em]{images/flux_minus5c.pdf}
+%\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
+\hspace*{\fill}
+\end{center}
+In both pictures, the \textcolor{midgrey}{grey straight line} represents a surface (simplified to two dimensions) through which we're measuring a flux. The \textcolor{cyan}{light-blue wiggly arrows $\rightsquigarrow$} represent the chosen crossing direction: left-to-right in the first picture, right-to-left in the second. Note that it doesn't matter whether we draw one wiggly arrow (as in the pictures above), or one, or three or more. The signed number in \textcolor{blue}{blue} represents the net amount crossing the surface according to the chosen direction. \emph{Both pictures therefore represent the same flux}:\noprelistbreak
+\begin{center}\label{fig:scalar_fluxes}
+  \bigskip
+\hspace*{\fill}\includegraphics[align=c,height=6em]{images/flux_plus5c.pdf}
+\qquad{\small is exactly the same as}\qquad
+\includegraphics[align=c,height=6em]{images/flux_minus5c.pdf}
+%\hfill\includegraphics[height=6em]{images/flux_minusplus5.pdf}
+\hspace*{\fill}
+\end{center}
+
+-----
+
+(Remember that the \textcolor{cyan}{wavy arrows} are \emph{not} vectors: they only represent a crossing direction.)
+
+The situation in the case of vector fluxes can require a little more thinking and attention, because it's easy to get confused between the crossing direction for the surface, and the direction suggested by the vector flux -- which are completely separate things. For this reason a good graphical representation of a vector flux is this, analogous to \autoref{fig:scalar_fluxes}{the third representation for scalar fluxes}:\noprelistbreak
+\begin{center}
+\hspace*{\fill}
+\includegraphics[height=6em]{images/flux_vec_right.pdf}%
+\hfill
+\includegraphics[height=6em]{images/flux_vec_left.pdf}%
+\hspace*{\fill}
+\end{center}
+The \textcolor{midgrey}{grey straight line} represents a surface through which we're measuring the flux of a vector quantity; on the left side of the surface, the amount of quantity has changed by plus\enspace\includegraphics[align=c,height=1.5em]{images/vec_NW.pdf}\enspace and on the right side by plus\enspace\includegraphics[align=c,height=1.5em]{images/vec_SE.pdf}\:.
+Obviously these two changes have equal magnitude but are opposite.
 
 
 
