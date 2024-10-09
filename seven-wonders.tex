@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-10-08T22:43:33+0200
+%% Last-Updated: 2024-10-09T06:55:37+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -1074,6 +1074,14 @@ angle-right%
 \newcommand*{\yTa}{\yT_{a}}%
 \newcommand*{\yTb}{\yT_{b}}%
 \newcommand*{\yTe}{\yT_{\text(ext)}}%
+
+%% electric charge and magnetic flux
+\newcommand*{\yC}{\mathcal{Q}}
+\newcommand*{\yI}{\mathcal{I}}
+\newcommand*{\yBf}{\mathcal{B}}
+\newcommand*{\yEv}{\mathcal{E}}
+
+
 %%% Custom macros end @@@
 
 % % https://latex.org/forum/viewtopic.php?t=878
@@ -1725,7 +1733,7 @@ The topics of measurement and physical dimensions, which are studied in \emph{me
 
 The measurement of some physical quantities consists in just one number with associated physical dimension; we shall call such quantity a \textbf{scalar}. The measurement of other physical quantities consists instead in a triplet of numbers with associated physical dimension; we shall call such quantity a \textbf{vector}.
 \begin{warning}[What's scalar or vector depends on the theory]
-  \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definitions used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in general relativity it cannot be called a scalar.
+  \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definitions used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in General Relativity it cannot be called a scalar.
 \end{warning}
 
 \section{Informal tips about units and maths}
@@ -1891,7 +1899,7 @@ The time measured by a specific observer is called the \textbf{proper time} of t
   \yc = \qty{299792458}{m/s}\quad\text{(exactly).}
 \end{equation}
 
-The situation depicted in our initial thought-experiment is real. Time discrepancies can be measured, for example, comparing initially synchronized clocks that have been put in aeroplanes flying in different directions. Most importantly, these time discrepancies affect everyday technologies such as the Global Positioning System. Formulae from general relativity appear in your phone's GPS software; see for instance \sect\,20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. Time discrepancies must also be taken into account in the establishment and synchronization of time in our everyday equipment:
+The situation depicted in our initial thought-experiment is real. Time discrepancies can be measured, for example, comparing initially synchronized clocks that have been put in aeroplanes flying in different directions. Most importantly, these time discrepancies affect everyday technologies such as the Global Positioning System. Formulae from General Relativity appear in your phone's GPS software; see for instance \sect\,20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. Time discrepancies must also be taken into account in the establishment and synchronization of time in our everyday equipment:
 \begin{quote}\footnotesize
   In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.
   %
@@ -1902,7 +1910,7 @@ The situation depicted in our initial thought-experiment is real. Time discrepan
 % \color{mpcolor}\enquote{\emph{In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.}}\\{\cites{kovalevskyetal2004}}
 % }
 
-Note therefore the following curious situation. In setting up a time to meet a friend, you don't need to worry about the discrepancies between your and your friend's proper times: if your friend walks \qty{1000}{m} away from you and then immediately back to you, at \qty{1}{m/s}, then the time elapsed for you will be \qty{1000}{s} (around \qty{17}{min}), but the time elapsed for your friend will be \qty{999.999999999999994437}{s}. That's a difference of less than \qty{e-14}{s}, clearly negligible for the two of you, so you don't need to worry with General Relativity formulae in setting up your meeting time. Yet, if you set up a meeting place via GPS, then the true nature of time and General relativity formulae become important: if they were not accounted for, you and your friend might end up off your meeting place by \qty{100}{m}.
+Note therefore the following curious situation. In setting up a time to meet a friend, you don't need to worry about the discrepancies between your and your friend's proper times: if your friend walks \qty{1000}{m} away from you and then immediately back to you, at \qty{1}{m/s}, then the time elapsed for you will be \qty{1000}{s} (around \qty{17}{min}), but the time elapsed for your friend will be \qty{999.999999999999994437}{s}. That's a difference of less than \qty{e-14}{s}, clearly negligible for the two of you, so you don't need to worry with General Relativity formulae in setting up your meeting time. Yet, if you set up a meeting place via GPS, then the true nature of time and General Relativity formulae become important: if they were not accounted for, you and your friend might end up off your meeting place by \qty{100}{m}.
 % In most everyday situations for us, who live on or nearby Earth's surface and move at speeds much smaller than $\yc$ with respect to one another, the discrepancies between our proper times are so small that they cannot be measured with ordinary clocks or with our internal clocks. Consider a person walking \qty{10}{m} away from you and then immediately walking back to you, at \qty{1}{m/s}. The time elapsed for you will be \qty{20}{s}, but for that person will be \qty{19.999999999999999889}{s}, a difference of \qty{e-16}{s}, which is the error of an atomic clock. %%***add ref
 % If human beings will still exist in some decades or centuries, in space travel they will have to deal with large proper-time discrepancies also in everyday life.
 
@@ -1962,7 +1970,7 @@ Often these labels have some kind of physical meaning -- like the proper time el
 A coordinate system solves the problem of proper-time and space discrepancies among different observers. To every physical event we assign, by agreement, a \emph{coordinate time} and a \emph{coordinate spatial position}. These coordinates are obviously the same for all observers, because they are decided by agreement. Coordinate time does not have a strict physical meaning, and will generally be different from the proper times measured by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. A coordinate time commonly used for Earth-physics purposes is \furl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time (UTC)}:
 %\autocites[]{icwg1983_r2022}
 \begin{quote}\footnotesize
-  International Atomic Time (TAI) is based on more than 250 atomic clocks distributed worldwide that provide its stability, whereas a small number of primary frequency standards provide its accuracy. Universal Coordinated Time, which is the basis of all legal time scales, is derived from TAI. To allow the construction of TAI and the general dissemination of time, clocks separated by thousands of kilometres must be compared and synchronized. \textelp{} The achieved performances of atomic clocks and time transfer techniques imply that the definition of time scales and the clock comparison procedures must be considered within the framework of general relativity. \sourceatright{\parencites{petitetal2005}}
+  International Atomic Time (TAI) is based on more than 250 atomic clocks distributed worldwide that provide its stability, whereas a small number of primary frequency standards provide its accuracy. Universal Coordinated Time, which is the basis of all legal time scales, is derived from TAI. To allow the construction of TAI and the general dissemination of time, clocks separated by thousands of kilometres must be compared and synchronized. \textelp{} The achieved performances of atomic clocks and time transfer techniques imply that the definition of time scales and the clock comparison procedures must be considered within the framework of General Relativity. \sourceatright{\parencites{petitetal2005}}
 %\mbox{}\hfill (\cites{petitetal2005})
 \end{quote}
 % \begin{figure}[h!]\footnotesize\centering%
@@ -2229,7 +2237,7 @@ Thanks to the three properties above, each of the seven quantities can be intuit
 
 \medskip
 
-What's remarkable about matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy, is that \emph{they are common to all our main physical theories}, approximate or not: from Newtonian mechanics to general relativity and quantum theory; from subatomic scales to cosmological scales. And in all these theories they possess the three basic properties discussed above. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and spatial or temporal scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are universal in our present way of doing physics and of describing and understanding physical phenomena all around and within us.
+What's remarkable about matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy, is that \emph{they are common to all our main physical theories}, approximate or not: from Newtonian mechanics to General Relativity and quantum theory; from subatomic scales to cosmological scales. And in all these theories they possess the three basic properties discussed above. The physical meaning and mathematical characterization of these quantities can be slightly different depending on the physical theory and spatial or temporal scale. For example, in quantum theory they are mathematically represented by so-called operators rather than functions; and at molecular scales entropy has a meaning connected with probability theory. Yet, these seven quantities are universal in our present way of doing physics and of describing and understanding physical phenomena all around and within us.
 
 % \begin{critique}
 %   \emph{Wait! what about \emph{force}? isn't this a primitive quantity? or maybe it isn't included because it's defined as mass${}\times{}$acceleration?}
@@ -3895,10 +3903,10 @@ The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive 
 \medskip
 
 
-\begin{extra}{Velocities of objects in general relativity}
+\begin{extra}{Velocities of objects in General Relativity}
   One consequence of the relationship between velocities and fluxes is that we can define such a velocity for any extensive quantity. So we have a velocity matter from the flux of matter, but also a \enquote{velocity of energy} from the flux of energy.
 
-  In Newtonian approximation these two velocities are equal, so we do not need to distinguish them. In situations where the Newtonian approximation is not valid, on the other hand, we have to take into account the \enquote{velocity of matter} and the \enquote{velocity of energy} separately. This difference is important for instance in the study of plasma in stars and in numerical general relativity. There is an ongoing discussion as to which of the two velocities is more convenient to use; see for instance \cites{kandusetal2008}, especially the section \emph{Eckart frame versus Landau frame}, which refers to the choice between these two velocities.
+  In Newtonian approximation these two velocities are equal, so we do not need to distinguish them. In situations where the Newtonian approximation is not valid, on the other hand, we have to take into account the \enquote{velocity of matter} and the \enquote{velocity of energy} separately. This difference is important for instance in the study of plasma in stars and in numerical General Relativity. There is an ongoing discussion as to which of the two velocities is more convenient to use; see for instance \cites{kandusetal2008}, especially the section \emph{Eckart frame versus Landau frame}, which refers to the choice between these two velocities.
 \end{extra}
 
 \section{Symbols for volume contents and fluxes}
@@ -3920,9 +3928,9 @@ Let us summarize the symbols for volume contents and fluxes of the seven quantit
     \\[3\jot]
     entropy&& $\yS$\enspace[\unit{J/K}] & $\yB$\enspace[\unit{J/(K\,s)}]
     \\[2\jot]
-    \color{grey}\footnotesize electric charge&&\color{grey}\footnotesize (not used)\enspace[\unit{C}] &\color{grey}\footnotesize (not used)\enspace[\unit{C/s} \textcolor{grey}{\footnotesize or} \unit{A}]
+    electric charge&&$\yC$\enspace[\unit{C}] &$\yI$\enspace[\unit{C/s} \textcolor{grey}{\footnotesize or} \unit{A}]
     \\[2\jot]
-    \color{grey}\footnotesize magnetic field&&\color{grey}\footnotesize (not used)\enspace[\unit{Wb}] &\color{grey}\footnotesize (not used)\enspace[\unit{Wb/s} \textcolor{grey}{\footnotesize or} \unit{V}]
+    magnetic field&&$\yBf$\enspace[\unit{Wb}] &$\yEv$\enspace[\unit{Wb/s} \textcolor{grey}{\footnotesize or} \unit{V}]
   \end{tabular*}
 %  \caption{Units of scalar fluxes}
   \label{tab:symbols_volint_fluxes}
@@ -4751,7 +4759,7 @@ Four states of matter (\furl{https://commons.wikimedia.org/wiki/images/File:Four
 The differences between states of matter
 -- solid, liquid, gas, plasma, and there are others -- arise from different constitutive relations.
 
-Constitutive relations also mark the difference between specialized or approximate physical theories; for example between Newtonian mechanics, which applies only for low speeds and low energy concentrations (hence weak gravitational fields and small spacetime curvature), and general relativity, which applies on all scales, including cosmological scales.
+Constitutive relations also mark the difference between specialized or approximate physical theories; for example between Newtonian mechanics, which applies only for low speeds and low energy concentrations (hence weak gravitational fields and small spacetime curvature), and General Relativity, which applies on all scales, including cosmological scales.
 
 When we read that a new physical phenomenon has been discovered, usually that means that a new \emph{constitutive relation} has been discovered. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
@@ -4843,7 +4851,7 @@ The reason for introducing the \autoref{sec:stuff}{seven primitive quantities}, 
 What's remarkable about these seven balance laws?
 \begin{itemize}[para]
 \item They are known, so far, to be satisfied by \emph{all} physical phenomena, from subatomic scales to cosmological scales. No exceptions are known.
-\item They are satisfied in \emph{all} our main physical theories, approximate or not: from Newtonian mechanics to special relativity, from general relativity to quantum theory.
+\item They are satisfied in \emph{all} our main physical theories, approximate or not: from Newtonian mechanics to special relativity, from General Relativity to quantum theory.
 \item Each one can be expressed by the \emph{same} mathematical equation in all of these theories.
 \end{itemize}
 In other words they are, as far as we know, \autoref{sec:universal_constitutive}{universal}. These balances are truly the Seven Wonders of the World, even more long-lasting than the \furl{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}{traditional \enquote{seven wonders}} or the \furl{https://www.britannica.com/list/new-seven-wonders-of-the-world}{\enquote{new seven wonders}}:
@@ -4877,7 +4885,7 @@ The Einstein equations, which can be deceivingly simply written as
     $$\bm{G}= \tfrac{8\pu\, G}{c^{4}}\bm{T}\ ,$$
     include the balances of energy, momentum, angular momentum as special consequences.%
 }%
-In general relativity, for instance, the conservation of matter, electric charge, magnetic flux, and the balance of entropy are taken as fundamental, but the balances of energy, momentum, angular momentum are a \emph{consequence} of the so-called Einstein equations.
+In General Relativity, for instance, the conservation of matter, electric charge, magnetic flux, and the balance of entropy are taken as fundamental, but the balances of energy, momentum, angular momentum are a \emph{consequence} of the so-called Einstein equations.
 
 \smallskip
 
@@ -4916,11 +4924,11 @@ The budget is expressed in the following general forms:
 
       \smallskip
 
-  \emph{The expressions above are valid in any system of coordinates, and in Newtonian mechanics, general relativity, and even quantum theory if the symbols are interpreted as so-called statistical operators, which encode probabilistic properties.}
+  \emph{The expressions above are valid in any system of coordinates, and in Newtonian mechanics, General Relativity, and even quantum theory if the symbols are interpreted as so-called statistical operators, which encode probabilistic properties.}
 \end{definition}
 
-The individual balances and symbols for matter, momentum, energy, angular momentum, entropy are also presented in table\,\ref{tab:balances} p.\,\pageref{tab:balances}.
-\begin{table}[hbt]
+The individual balances and symbols for matter, momentum, energy, angular momentum, electric charge, magnetic flux, entropy are also presented in table\,\ref{tab:balances} p.\,\pageref{tab:balances}.
+\begin{table}[t]
   \centering
     \begin{equation*}
       \begin{aligned}[t]
@@ -4943,38 +4951,49 @@ The individual balances and symbols for matter, momentum, energy, angular moment
       &\quad
       \frac{\di\yL(t)}{\di t} &= \yto(t) + \ym(t)
       \\[2\jot]
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\,\di t
+      &\quad
+      \frac{\di\yC(t)}{\di t} &= \yI(t)
+      \\[2\jot]
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering magnetic\\flux}}}&&\yBf(\ytf) &= \yBf(\yti) - \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t
+      &\quad
+      \frac{\di\yBf(t)}{\di t} &= -\yE(t)
+      \\[2\jot]
 \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
 &\quad
       \frac{\di\yS(t)}{\di t} &\ge \yB(t)
     \end{aligned}
 \end{equation*}
-\caption{Five of the seven universal balance laws. These formulae are valid in Newtonian mechanics, general relativity, and even quantum theory if their symbols are interpreted as \enquote*{statistical operators}.}\label{tab:balances}
+\caption{Five of the seven universal balance laws. These formulae are valid in Newtonian mechanics, General Relativity, and even quantum theory if their symbols are interpreted as \enquote*{statistical operators}.}\label{tab:balances}
 \end{table}
 
 \bigskip
 
 \begin{extra}{Concise mathematical form of the universal balances}
-The seven balances can be expressed very concisely if we use the language of \furl{http://encyclopediaofmath.org/index.php?title=Differential_form}{\emph{differential forms}}. These are geometric objects that associate a number to any curve, surface, or volume of our choice. In terms of differential forms, even the difference between the \enquote*{integral} and \enquote*{differential} forms of the balance laws disappear. The balances for matter, momentum, energy, angular momentum, entropy then assume these very concise expressions:
+The seven balances can be expressed very concisely if we use the language of \furl{http://encyclopediaofmath.org/index.php?title=Differential_form}{\emph{differential forms}}. These are geometric objects that associate a number to any curve, surface, or volume of our choice. In terms of differential forms, even the difference between the \enquote*{integral} and \enquote*{differential} forms of the balance laws disappear. The balances for matter, momentum, energy, angular momentum, electri charge, magnetic flux, entropy then assume these very concise expressions:
 \begin{equation*}
   \di\yN=\ya
-  \qquad
+  \quad
   \di\yE=\yR
-  \qquad
+  \quad
   \di\yP=\yG
-  \qquad
+  \quad
   \di\yL=\ym
-  \qquad
+  \quad
+  \di\yC=\yI
+  \quad
+  \di\yBf=-\yEv
+  \quad
   \di\yS\ge0
 \end{equation*}
-similarly for the conservation of electric charge and magnetic flux.
 
-If you want to learn more about differential forms take a look at the books by Burke \cites*{burke1985_r1987,burke1995} and Bossavit \cites*{bossavit1991}.
+If you want to learn more about differential forms, take a look at the books by Burke \cites*{burke1985_r1987,burke1995} and Bossavit \cites*{bossavit1991}.
 \end{extra}
 
 
 
 
-\subsection[Roles of the seven balances]{Roles of the seven balances in description and prediction}
+\subsection[Roles of the seven balances]{The seven balances for description and prediction}
 \label{sec:role_seven_laws}
 
 The seven universal balances govern every physical phenomenon. Yet this doesn't mean that all of them are always used explicitly in the description or prediction of physical phenomena.
@@ -5022,7 +5041,7 @@ We have mentioned \enquote*{prediction} several times in the present notes: pred
 
 In the general sense, \enquote*{predicting} something means managing to find out some piece of information, not by direct observation or measurement, but somehow arriving at it from other information available. For example we can predict that there's a person in a particular room because the light in that room is on, and is never on when it's empty. So we know there's a person there, not because we have taken a look inside and seen the person, but thanks to other information.
 
-As a more physical example, we may be able to predict that the pressure inside a bike tyre has a particular value, just from knowing the volume of the tyre, the amount of air in it, and the air's temperature -- but without directly measuring the pressure with a manometer. Another example is what you did in Exercise~\ref{ex:clocks}-~\ref{item:gps_clock}: you predicted the time lapse of a GPS satellite's clock, by using the time lapse of your own clock and the laws of general relativity.
+As a more physical example, we may be able to predict that the pressure inside a bike tyre has a particular value, just from knowing the volume of the tyre, the amount of air in it, and the air's temperature -- but without directly measuring the pressure with a manometer. Another example is what you did in Exercise~\ref{ex:clocks}-~\ref{item:gps_clock}: you predicted the time lapse of a GPS satellite's clock, by using the time lapse of your own clock and the laws of General Relativity.
 
 In the two examples above, the predictions are about a piece of information -- pressure, time lapse -- that occurs at the same time as the information we have. (We are speaking about \emph{coordinate} time; recall that \autoref{sec:time}{it doesn't make sense to say that two events occur at the same \emph{physical} time}, unless they occur at the same place.)
 
@@ -5930,12 +5949,12 @@ Which is often used to model the flux of momentum among molecules of some fluids
 
 \smallskip
 
-According to general relativity there cannot be an \emph{instantaneous} transfer of momentum between two spatially separate control volumes. The momentum transfer modelled by pairwise forces actually occurs in a lapse of time, mediated by matter or electromagnetic field present between the two control volumes.
+According to General Relativity there cannot be an \emph{instantaneous} transfer of momentum between two spatially separate control volumes. The momentum transfer modelled by pairwise forces actually occurs in a lapse of time, mediated by matter or electromagnetic field present between the two control volumes.
 
 \subsection{Gravity and momentum supply near a planet's surface}
 \label{sec:gravity}
 
-According to general relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we measure a supply of momentum $\yG$ in a very small region, it could be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply to be zero \emph{in a small region} -- but in general not everywhere.
+According to General Relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General Relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we measure a supply of momentum $\yG$ in a very small region, it could be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply to be zero \emph{in a small region} -- but in general not everywhere.
 
 Examples of these kinds of supplies are the \enquote*{gravitational force}, the \enquote*{centrifugal force}, and other forces called \enquote*{inertial}. For example, when we're travelling in a car that speeds up or slows down, we feel a horizontal force pushing us against our seat or pulling us away from it.
 %
@@ -7463,7 +7482,7 @@ Depiction of change of spacetime metric on cosmological scales, in three differe
 }%
 The reason is that the metric of the universe is not constant along the time direction -- the so-called \furl{https://www.jpl.nasa.gov/edu/news/2023/7/24/exploring-the-mystery-of-our-expanding-universe/}{expansion of the universe} -- and an energy that is strictly conserved can only be defined if the metric is constant along some time direction:
 \begin{quote}\footnotesize
-cosmologists have not done a very good job of spreading the word about something that's been well-understood since at least the 1920's: energy is not conserved in general relativity \sourceatright{\furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll 2010}}
+cosmologists have not done a very good job of spreading the word about something that's been well-understood since at least the 1920's: energy is not conserved in General Relativity \sourceatright{\furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll 2010}}
 \end{quote}
 See \furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll's} and \furl{https://math.ucr.edu/home/baez/physics/Relativity/GR/energy_gr.html}{Baez's} interesting posts about this topic.
 
@@ -7925,7 +7944,7 @@ This fact explain why we were able to solve many problems of motion in the previ
 
 \smallskip
 
-Rigidity is obviously only an approximation. In fact, general relativity makes this notion strictly speaking impossible. But in situations where Newtonian approximations apply, the approximation of rigidity makes many physical phenomena much easier to describe.
+Rigidity is obviously only an approximation. In fact, General Relativity makes this notion strictly speaking impossible. But in situations where Newtonian approximations apply, the approximation of rigidity makes many physical phenomena much easier to describe.
 
 \section{Constitutive relations for ideal gases}
 \label{sec:int_energy_idealgas}
@@ -9358,20 +9377,20 @@ Many physics textbooks take a different approach. They introduce the students to
 
 \item The approach unnecessarily suppresses some useful intuitions that many students have from everyday life, such as the distinction between contact forces and body forces. The students will later have to recover these intuitions as they study more general phenomena.
 
-\item This particular mixture of notions and laws is today used almost only in textbooks, and very little in physical and engineering applications. Students who will research and work in actual mechanics -- buildings, bridges, aeroplanes, fluid flow, and generally extended bodies -- will need to amend their \emph{point-particle} intuitions to a \emph{continuum} one. Students who will research and work in electromagnetics will need to amend their intuition of momentum as \enquote{mass times velocity}. Students who will research in particle physics will also need to amend their intuition of momentum in several different ways. Students who will work in general relativity will need all these amendments at once. The increasing importance of amending our Newtonian intuition of space and time was discussed in Chapter~\ref{cha:time_space}.
+\item This particular mixture of notions and laws is today used almost only in textbooks, and very little in physical and engineering applications. Students who will research and work in actual mechanics -- buildings, bridges, aeroplanes, fluid flow, and generally extended bodies -- will need to amend their \emph{point-particle} intuitions to a \emph{continuum} one. Students who will research and work in electromagnetics will need to amend their intuition of momentum as \enquote{mass times velocity}. Students who will research in particle physics will also need to amend their intuition of momentum in several different ways. Students who will work in General Relativity will need all these amendments at once. The increasing importance of amending our Newtonian intuition of space and time was discussed in Chapter~\ref{cha:time_space}.
   % 
   \marginpar{\vspace{-6\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
         The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} 4~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}
   }
   % 
 
-  Newtonian point-mass mechanics is less and less used in astronomy as well. Ephemerides use post-Newtonian approximations of general relativity \parencites{parketal2021}. NASA and the \furl{https://www.jpl.nasa.gov}{Jet Propulsion Laboratory} by default include relativistic effects \parencites{moyer2000} when they plan or calculate trajectories for Earth, Moon, and beyond. The same general-relativistic formulae are used to calculate and plan spacecraft dynamics, for navigating in \furl{https://csps.aerospace.org/papers/cislunar-development-what-build-and-why}{cis-lunar} or geocentric space as well as for interplanetary missions: the same software is used for navigating in both regimes \parencites{parketal2024}.
+  Newtonian point-mass mechanics is less and less used in astronomy as well. Ephemerides use post-Newtonian approximations of General Relativity \parencites{parketal2021}. NASA and the \furl{https://www.jpl.nasa.gov}{Jet Propulsion Laboratory} by default include relativistic effects \parencites{moyer2000} when they plan or calculate trajectories for Earth, Moon, and beyond. The same general-relativistic formulae are used to calculate and plan spacecraft dynamics, for navigating in \furl{https://csps.aerospace.org/papers/cislunar-development-what-build-and-why}{cis-lunar} or geocentric space as well as for interplanetary missions: the same software is used for navigating in both regimes \parencites{parketal2024}.
 
 \item The students typically end up with the understanding that \enquote{every phenomenon is just a consequence of Newton's laws} and of the second law in particular. This is clearly false: this law is just one out of the six that determine the evolution of physical phenomena.
 
 \item A fault, not of this approach per se, but of the way it is taught, is that students often remain confused about what this all-powerful second law \emph{exactly} say, and about what its precise mathematical expression. Is it \enquote{$\bm{F}=m\bm{a}$} or is it \enquote{$\bm{F}=\di\bm{P}/\di t$}? Why do many extra added terms suddenly appear when this \enquote{second law} is used in continuum mechanics? is it still the same law?
 
-\item Science and education have had the noble tradition of founding their teachings on the notions of the theories that proved to be most correct. That is how we got Newtonian mechanics and electromagnetics in our schools. Today we know that Newtonian mechanics and some of its intuitions are only approximate; whereas the predictions and explanations offered by general relativity (and quantum theory) keep on being beautifully confirmed. It's time we continue our noble tradition and replace those Newtonian notions that are only approximate with more exact ones.
+\item Science and education have had the noble tradition of founding their teachings on the notions of the theories that proved to be most correct. That is how we got Newtonian mechanics and electromagnetics in our schools. Today we know that Newtonian mechanics and some of its intuitions are only approximate; whereas the predictions and explanations offered by General Relativity (and quantum theory) keep on being beautifully confirmed. It's time we continue our noble tradition and replace those Newtonian notions that are only approximate with more exact ones.
 
   % "Yes, NASA/JPL include relativistic effects when we plan or calculate trajectories for Earth, Moon, and beyond.  The same PPN (parameterized post-Newtonian) metric is used to calculate and plan spacecraft dynamics.  For example, if we don’t include the relativistic effect, GPS orbits will be not as good as what we have now." Ryan Park, Group Supervisor of JPL's Solar System Dynamics Group
   % 
@@ -9385,7 +9404,7 @@ Many physics textbooks take a different approach. They introduce the students to
 
 One might hear the argument that the teaching approach via Newtonian point-mass mechanics is closer to \enquote{everyday intuition}. But that's a topsy-turvy argument: Our everyday intuition comes from that teaching approach. As an analogy, someone in the 16th century could have said that it's better to teach the \furl{https://www.britannica.com/science/geocentric-model}{geocentric model} of the solar system, than the heliocentric one, because the former is closer to everyday intuition. Yet our children today quickly develop a heliocentric intuition, simply because it's the one that enters our education from the start. Similar arguments could be made for other concepts, such as energy or the electromagnetic field, that once were not part of everyday intuition, but today are.
 
-\addsec{Validity of the mathematical form of the balance laws in general relativity}
+\addsec{Validity of the mathematical form of the balance laws in General Relativity}
 \label{sec:balances_GR}
 
 These notes state several times that the mathematical form of the equation for balance, for instance
@@ -9393,7 +9412,7 @@ These notes state several times that the mathematical form of the equation for b
   \label{eq:balance_post}
   \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
 \end{equation}
-or its integral form, is also valid in general relativity. I would like to give a brief explanation, if not a proof, of this fact for those who are not familiar with general relativity.
+or its integral form, is also valid in General Relativity. I would like to give a brief explanation, if not a proof, of this fact for those who are not familiar with General Relativity.
 
 %% Mention densities
 
@@ -9474,7 +9493,7 @@ Until some decades ago, the 18th-century physical notions typically taught in in
 % {\color{mpcolor}\enquote{\emph{The achieved performances of atomic clocks and time
 % transfer techniques imply that the definition of time scales
 % and the clock comparison procedures must be considered
-% within the framework of general relativity}}\sourceatright{\cites{petitetal2005}}}
+% within the framework of General Relativity}}\sourceatright{\cites{petitetal2005}}}
 % }
 \marginpar{%
 \color{mpcolor}\footnotesize%
@@ -9711,7 +9730,7 @@ Through the $yz$-surface above there's a flux of momentum
 
 These constitutive relations are only approximate and become incorrect when the speeds involved are close to the speed of light or the energy concentrations are so high to create strong gravitational fields (high spacetime curvature), or when some kind of electromagnetic phenomena are also involved.
 
-In particular, according to the Newtonian constitutive relation, \emph{momentum and velocity of matter are always parallel}, because they are two vectors that differ by a multiplicative scalar. In general this is not exactly true: momentum can have a different direction from velocity. In general relativity one must often take this fact into account.
+In particular, according to the Newtonian constitutive relation, \emph{momentum and velocity of matter are always parallel}, because they are two vectors that differ by a multiplicative scalar. In general this is not exactly true: momentum can have a different direction from velocity. In General Relativity one must often take this fact into account.
 
 \begin{extra}{More symmetric relation between mass \amp\ momentum and matter}
   When we work with \emph{densities}, which express the amounts of a quantity per unit volume or per unit surface, the relation between \masse\ \amp\ momentum on one side, and matter \amp\ its flux on the other, becomes more explicit and symmetric. We have
@@ -10821,7 +10840,7 @@ It turns out, however, that there are physical laws which \emph{relate the densi
 
 Physical laws of this kind turn out not to be universal: they depend on, or are \furl{https://www.merriam-webster.com/dictionary/constitutive}{\enquote*{constitutive}} of, the particular physical phenomenon and the physical theory being used. For this reason they are called \textbf{constitutive relations} or \textbf{constitutive equations}. In some fields they are called \textbf{closure equations}, because they allow us to \enquote{close} the system of balance equations in such a way that it can be used for future predictions without knowing in advance the future value of some quantities.
 
-Constitutive relations express the diversity that we observe around us, for example the different behaviours of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and general relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
+Constitutive relations express the diversity that we observe around us, for example the different behaviours of a drop of water, which obeys some constitutive relations, as compared with a block of wood, which obeys others. They also mark the difference between specialized or approximate physical theories, for example between Newtonian mechanics, which is based on particular approximate constitutive relations, and General Relativity, which is based on different and more exact constitutive relations. Depending on the specific scientific field you'll work in, you'll learn some constitutive relations in more detail than others.
 
 Constitutive relations come in a great variety of mathematical forms. Some of them are simple algebraic relations between the density of one quantity and the flux of another. Others involve spatial or time derivatives. Other still involve integrals in space or in time.% ; the latter give rise to physical phenomena that posses \enquote{memory}.
 
