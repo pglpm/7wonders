@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-10-17T19:48:58+0200
+%% Last-Updated: 2024-10-29T12:04:09+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -953,7 +953,8 @@ angle-right%
 
 %% constants
 %% R % molar gas constant
-\newcommand*{\yc}{c_{0}} % lightspeed, according to SI
+\newcommand*{\yc}{c} % lightspeed, according to SI
+% \newcommand*{\yc}{c_{0}} % lightspeed, according to SI
 \newcommand*{\yfri}{\mu} % friction coeff
 \newcommand*{\yfris}{\mu_{\text{s}}}
 \newcommand*{\yfrik}{\mu_{\text{k}}}
@@ -1080,6 +1081,8 @@ angle-right%
 \newcommand*{\yI}{\mathcal{I}}
 \newcommand*{\yBf}{\mathcal{B}}
 \newcommand*{\yEv}{\mathcal{E}}
+\newcommand*{\yBB}{\bm{B}}
+\newcommand*{\yEE}{\bm{E}}
 
 
 %%% Custom macros end @@@
@@ -1894,6 +1897,10 @@ But that's an imaginary world. In our world, what occurs is the more complicated
 
 
 The time measured by a specific observer is called the \textbf{proper time} of that observer. Luckily we know more about how much the proper times of separated observers can differ when the observers meet again. According to our current understanding, it turns out that the time differences depend, roughly speaking, on how fast the observers are moving with respect to one another and with respect to the distribution of energy in the universe, and on how much energy is contained in the regions they travel across. The general theory of relativity gives us the equations determining any such proper-time differences. The more an observer's speed is close to the speed of light in vacuum $\yc$, a universal physical constant:
+%
+\marginpar{\vspace{-2\baselineskip}%
+  \footnotesize\color{mpcolor}The SI symbol for the speed of light in vacuum is \enquote{$c_{0}$} \parencites[item~6-35.2]{iso2008}. For simplicity we shall omit the subscript \enquote{${}_{0}$} in these notes.%
+}%
 \begin{equation}
   \label{eq:c}
   \yc = \qty{299792458}{m/s}\quad\text{(exactly).}
@@ -2575,13 +2582,13 @@ Momentum, also called \emph{linear momentum} or \emph{translational momentum} to
 Since it is a vector quantity, it is usually expressed with three numbers, typically the $x$-, $y$-, and $z$-components. In simplified problems where only one or two dimensions are relevant, only the relevant components are reported.
 % \mynotew{use \unit{N\cdot s}}
 
-Momentum is a subtle quantity, even subtler than energy. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass and the velocity of a body, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only valid in special circumstances, and cannot be used in many everyday technological applications, especially when electromagnetism is involved. And that relation is actually only an approximation even in the circumstances where it's used.
+Momentum is a subtle quantity, even subtler than energy. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass and the velocity of a body, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only valid in special circumstances, and cannot be used in many everyday technological applications, especially when electromagnetism or high speeds are involved. And that relation is actually only an approximation even in the circumstances where it's used. For example, in a small region where there are matter and electromagnetic fields, momentum is approximately given by $\yP=\yM\yv + \yEE\times\bm{H}/\yc^{2}$, where the quantities $\yEE$ (electric field) and $\bm{H}$ (free-current potential) are related to the electromagnetic properties of matter; and at high speeds, the momentum of matter is better approximated by $\yP = (\yM + \yE/\yc^{2})\,\yv$, where $\yE$ is the total energy of matter.
 
 % First, it is true that where there's matter in motion there's also momentum; but this momentum is given by \enquote*{mass${}\times{}$velocity} only as an approximation. Second, there can be momentum also where there is no matter; for instance where there is magnetic flux. If you prepare a sealed glass box which is completely empty of matter within (you create a vacuum), there still is momentum within the box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
 
 It is therefore convenient to separate our idea of momentum from the idea of \enquote{objects} moving, keeping in mind that the latter idea is just a particular case of momentum. Yet, \emph{momentum is indeed associated with translational motion} of matter and of electromagnetic fields. \emph{Translational} motion is the kind of motion that leads to a \emph{new position} in space. For instance, when you walk from one place to a different one, you have performed translational motion (note that translational motion doesn't need to be in a straight line).% We shall moreover see that there is an important connection between momentum and our intuitive idea of \enquote*{force}.
 
-Just as energy can be mentally visualized as a sort of fluid (although this visualization comes with many warnings), also momentum can actually be visualized as a sort fluid; but you must imagine it as a \enquote{fluid of vectors}.
+Just as energy can be mentally visualized as a sort of fluid (although this visualization comes with many warnings), also momentum can be visualized as a sort fluid; but you must imagine it as a \enquote{fluid of vectors}.
 % \marginpar{%
 % \includegraphics[align=t,width=\linewidth]{images/cubearrow.pdf}
 % \\[\jot]\footnotesize\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{cyan}{(3D) vector}%
@@ -2605,13 +2612,14 @@ Flux of momentum is what we call \textbf{force}. A static force, like the one yo
 
 
 
-\begin{extra}{Momentum and energy flux are the same}
-  According to Relativity Theory, momentum \emph{is} energy flux (such as heat), and energy flux \emph{is} momentum. If we represent momentum with the symbol $\bm{P}$, and energy flux with the symbol $\bm{Q}$, the equivalence between them is given by
+\begin{extra}{Momentum and energy flux are proportional}
+  According to Relativity Theory, momentum is always proportional to energy flux, such as heat; and energy flux is always proportional to momentum. If we represent momentum with the symbol $\yP$, and energy flux with the symbol $\yH$, the equivalence between them is given by
   \begin{equation}
     \label{eq:momentum_heat}
-    \bm{Q} = \bm{P}c^{2}
+    \yH = \yP\,\yc^{2}
   \end{equation}
-  Compare this formula with $E=mc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy. On a sunny day, if you close your eyes and feel the Sun's heat on your face, what you are feeling is actually a flow of momentum. And when you kick a ball, you're setting a huge bundle of energy in motion, and that's why the ball has acquired momentum.
+  Compare this formula with $\yE=\yM\,\yc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. % This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy. 
+  On a sunny day, if you close your eyes and feel the Sun's heat on your face, what you are feeling is also a flow of momentum. And when you kick a football, giving it momentum, you've also set a huge bundle of energy in motion.
 \end{extra}
 
 
@@ -2710,7 +2718,7 @@ The flux of angular momentum is also called the \emph{torque}, and bears a relat
 
   \bigskip
 
-\marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/polymer.png}%
+\marginpar{\vspace{-6\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/polymer.png}%
 \\\includegraphics[width=\linewidth]{images/polymer2.png}%
 \\[\jot]\flushleftright\footnotesize\color{mpcolor}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).%
 }%
