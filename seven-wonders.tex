@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-11-15T22:05:48+0100
+%% Last-Updated: 2024-11-18T00:09:35+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11,8 +11,8 @@
 %\iftrue\pdfmapfile{+classico.map}\fi
 \newif\ifafour
 \afourtrue% true = A4, false = A5
-\newif\iftypodisclaim % typographical disclaim on the side
-\typodisclaimfalse
+% \newif\iftypodisclaim % typographical disclaim on the side
+% \typodisclaimfalse
 \newcommand*{\memfontfamily}{zpl}
 %\newcommand*{\memfontenc}{T1}
 \newcommand*{\memfontpack}{newpx}
@@ -577,7 +577,58 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
   \gdef\thesection{\@Alph\c@section}%
   \anappendixtrue}\makeatother
 % \counterwithout{section}{chapter}
-\chapterstyle{bianchi}
+
+\openany
+% \makeatletter
+% \renewcommand{\@chapapp}{}
+% \makeatother
+% \makeatletter
+\makechapterstyle{manacha}{%
+   \setlength{\afterchapskip}{40pt}
+  \renewcommand*{\chapterheadstart}{\vspace*{40pt}}
+  \renewcommand*{\afterchapternum}{\par\nobreak\vskip -34pt}
+   % \renewcommand*{\chapnamefont}{\normalfont\LARGE\flushright}
+   \renewcommand*{\chapnumfont}{\normalfont\HUGE}
+\renewcommand*{\chaptitlefont}{\normalfont\huge\sffamily\bfseries}
+   % \renewcommand*{\chaptitlefont}{\normalfont\HUGE\bfseries\flushright}
+\renewcommand*{\printchaptername}{}%
+   % \renewcommand*{\printchaptername}{%
+   %   \chapnamefont\MakeTextUppercase{\@chapapp}}
+   \renewcommand*{\chapternamenum}{}
+  \setlength{\beforechapskip}{18mm}%  \numberheight
+  \setlength{\midchapskip}{\paperwidth}% \barlength
+  \addtolength{\midchapskip}{-\textwidth}
+  \addtolength{\midchapskip}{-\spinemargin}
+   \renewcommand*{\printchapternum}{%
+\flushright\makebox[0pt][l]{%
+       \hspace{1em}%
+       \resizebox{!}{\beforechapskip}{\chapnumfont \thechapter}%
+       \hspace{1em}%
+       \rule{\midchapskip}{\beforechapskip}%
+     }%
+   }%
+   \renewcommand*{\printchapternonum}{%
+\flushright\makebox[0pt][l]{%
+  % \hspace{1em}%
+  % \resizebox{!}{\beforechapskip}{\chapnumfont \thechapter}%
+  % \hspace{1em}%
+  \makebox[0.5\midchapskip][c]{}%
+  \rule{0.5\midchapskip}{\beforechapskip}%
+}%
+\afterchapternum%
+}%
+% \makeoddfoot{plain}{}{}{\thepage}
+}
+% \makeatother
+\chapterstyle{manacha}
+% \chapterstyle{veelo}
+
+%\renewcommand*{\chapterheadstart}{\vspace*{40pt}\color{midgrey}}
+%\renewcommand*{\afterchapternum}{\par\nobreak\vskip -34pt}
+%\renewcommand*{\chaptitlefont}{\normalfont\huge\sffamily\bfseries}
+%\chapterstyle{veelo}
+%\chapterstyle{pedersen}
+%\chapterstyle{ell}
 \setsecnumdepth{subsection}
 \setsecnumformat{\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\Large\bfseries\sffamily%
@@ -594,7 +645,6 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \centering}
 \setparaheadstyle{\itshape\bfseries\sffamily%
 \raggedright}
-\setlength{\headwidth}{\textwidth}
 \newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
 \newcommand{\addsec}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
 \newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
@@ -606,11 +656,16 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect\,#1}}
 
 %%% Headers, footers, pagestyle
+%% \newlength{\newheadwidth}
+\setlength{\headwidth}{\textwidth}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{\marginparwidth}
+\makerunningwidth{plain}{\headwidth}
+\makeheadposition{plain}{flushleft}{flushleft}{flushleft}{flushleft}
+\makeoddhead{plain}{\scriptsize\reporthead}{}{}
+\makeoddfoot{plain}{}{\thepage}{}
+
 \copypagestyle{manaart}{plain}
-% \newlength{\newheadwidth}
-% \setlength{\newheadwidth}{\headwidth}
-% \addtolength{\newheadwidth}{\marginparsep}
-% \addtolength{\newheadwidth}{\marginparwidth}
 \makeheadrule{manaart}{\headwidth}{0.5\normalrulethickness}
 \makeoddhead{manaart}{%
 {\footnotesize%
@@ -619,22 +674,22 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \makeoddfoot{manaart}{}{\thepage}{}
 %\newcommand*\autanet{\includegraphics[height=\heightof{M}]{autanet.pdf}}
 \definecolor{mygray}{gray}{0.333}
-\iftypodisclaim%
-\ifafour\newcommand\addprintnote{\begin{picture}(0,0)%
-\put(245,149){\makebox(0,0){\rotatebox{90}{\tiny\color{mygray}\textsf{This
-            document is designed for screen reading and
-            two-up printing on A4 or Letter paper}}}}%
-\end{picture}}% A4
-\else\newcommand\addprintnote{\begin{picture}(0,0)%
-\put(176,112){\makebox(0,0){\rotatebox{90}{\tiny\color{mygray}\textsf{This
-            document is designed for screen reading and
-            two-up printing on A4 or Letter paper}}}}%
-\end{picture}}\fi%afourtrue
-\makeoddfoot{plain}{}{\makebox[0pt]{\thepage}\addprintnote}{}
-\else
-\makeoddfoot{plain}{}{\makebox[0pt]{\thepage}}{}
-\fi%typodisclaimtrue
-\makeoddhead{plain}{\scriptsize\reporthead}{}{}
+% \iftypodisclaim%
+% \ifafour\newcommand\addprintnote{\begin{picture}(0,0)%
+% \put(245,149){\makebox(0,0){\rotatebox{90}{\tiny\color{mygray}\textsf{This
+%             document is designed for screen reading and
+%             two-up printing on A4 or Letter paper}}}}%
+% \end{picture}}% A4
+% \else\newcommand\addprintnote{\begin{picture}(0,0)%
+% \put(176,112){\makebox(0,0){\rotatebox{90}{\tiny\color{mygray}\textsf{This
+%             document is designed for screen reading and
+%             two-up printing on A4 or Letter paper}}}}%
+% \end{picture}}\fi%afourtrue
+% \makeoddfoot{plain}{}{\makebox[0pt]{\thepage}\addprintnote}{}
+% \else
+% \makeoddfoot{plain}{}{\makebox[0pt]{\thepage}}{}
+% \fi%typodisclaimtrue
+%\makeheadposition{manaart}{flushleft}{flushleft}{flushleft}{flushleft}
 
 %\setmpjustification{\flushleftright}{\flushleftright}
 \setfloatadjustment{marginfigure}{\flushleftright}
@@ -1435,25 +1490,32 @@ A heartfelt thank goes to Yu-Chung Wang for his assistance in teaching and his f
 % Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
 
 
-
-
-
-
-
-
-
-
-
+\printpagenotes*
 \clearpage
-\addchap{Guide to the text}
-\label{cha:guide}
+\chapter{Overview}
+\label{cha:overview}
+
+\addsec{The plan of these notes}
+
+After some very general remarks about physics, we recall the notions of \textbf{physical quantity}, unit, and physical dimension. This is really just a reminder; it's assumed that you are already familiar with these general notions.
+
+We then survey two cardinal physical notions: \textbf{time} and \textbf{space}. We briefly examine their fascinating nature as we today understand it. The notion of \textbf{coordinate system} is also introduced.
+
+Thereafter we take an overview of the main seven physical quantities we shall work with: \textbf{matter}, \textbf{energy-mass}, \textbf{momentum}, \textbf{angular momentum}, \textbf{entropy},  \textbf{electric charge}, \textbf{magnetic flux}, discussing some features common to all of them. Other important quantities such as \textbf{temperature} are also introduced.
+
+The most important feature of the main seven quantities is that we can measure their amount within any volume, and the amount that passes through any surface. We therefore study the intuitive ideas of \textbf{control volume} and \textbf{volume content}, \textbf{control surface} and \textbf{flux}, and \textbf{supply}.
+
+At this point the stage is ready for the introduction of seven physical laws which are just expressions of \textbf{balances} of volume contents, fluxes, and supplies of the seven quantities introduced earlier. These seven balance laws are universal. They are connected by mathematical expressions called \textbf{constitutive relations}, which are not universal but depend on the particular physical phenomenon, and on the particular physical theory we use to describe it.
+
+The balance laws are the ones that allow us to predict how the values of different quantities change with time. We show this by exploiting them to build simple computer code that can in principle be applied to any physical system. The role that constitutive relations have in connecting the seven balances also becomes quite clear in the code.
+
+Five of the seven universal balances are then examined in turn. For each balance, we study some constitutive relations that are often used together with it, as well as some of its physical applications.
+
 
 \addsec{Physics prerequisites}
 \label{sec:guide_physics}
 
-Just some vague reminiscences of secondary/high-school physics should be enough.
-
-It can be beneficial if you are familiar with basic physics notions like \emph{velocity}, \emph{mass}, \emph{force}, and similar ones.
+Just some vague reminiscences of secondary/high-school physics should be enough. It can be beneficial if you are familiar with basic physics notions like \emph{velocity}, \emph{mass}, \emph{force}, and similar ones.
 
 \addsec{Maths prerequisites}
 \label{sec:guide_maths}
@@ -1481,7 +1543,7 @@ It can be beneficial if you are familiar with basic physics notions like \emph{v
 \end{itemize}
 
 
-\addsec{Structure of this text}
+\addsec{Structure of the text}
 \label{sec:guide_text}
 
 \subsubsection{\faIcon{hand-point-right}\enspace Graphical devices}
@@ -1562,28 +1624,16 @@ In science you should not believe something just because you've read it somewher
 Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
 
 
+
+
 \printpagenotes*
 \clearpage
-\chapter{Overview}
-\label{cha:overview}
+\chapter{Physics, quantities, units}
+\label{cha:physics_quantities_units}
 
-\addsec{The plan of these notes}
+\epigraph{Philosophy is written in this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the letters in which it is composed. It is written in the language of mathematics, and its characters are triangles, circles, and other geometric figures without which it is humanly impossible to understand a single word of it.}{G. Galilei \cites*{galilei1623}}
 
-After some very general remarks about physics, we recall the notions of \textbf{physical quantity}, unit, and physical dimension. This is really just a reminder; it's assumed that you are already familiar with these general notions.
-
-We then survey two cardinal physical notions: \textbf{time} and \textbf{space}. We briefly examine their fascinating nature as we today understand it. The notion of \textbf{coordinate system} is also introduced.
-
-Thereafter we take an overview of the main seven physical quantities we shall work with: \textbf{matter}, \textbf{energy-mass}, \textbf{momentum}, \textbf{angular momentum}, \textbf{entropy},  \textbf{electric charge}, \textbf{magnetic flux}, discussing some features common to all of them. Other important quantities such as \textbf{temperature} are also introduced.
-
-The most important feature of the main seven quantities is that we can measure their amount within any volume, and the amount that passes through any surface. We therefore study the intuitive ideas of \textbf{control volume} and \textbf{volume content}, \textbf{control surface} and \textbf{flux}, and \textbf{supply}.
-
-At this point the stage is ready for the introduction of seven physical laws which are just expressions of \textbf{balances} of volume contents, fluxes, and supplies of the seven quantities introduced earlier. These seven balance laws are universal. They are connected by mathematical expressions called \textbf{constitutive relations}, which are not universal but depend on the particular physical phenomenon, and on the particular physical theory we use to describe it.
-
-The balance laws are the ones that allow us to predict how the values of different quantities change with time. We show this by exploiting them to build simple computer code that can in principle be applied to any physical system. The role that constitutive relations have in connecting the seven balances also becomes quite clear in the code.
-
-Five of the seven universal balances are then examined in turn. For each balance, we study some constitutive relations that are often used together with it, as well as some of its physical applications.
-
-\addsec{Physics?}
+\section{Physics?}
 \label{sec:physics_general}
 
 % \section{Magic}
@@ -1605,7 +1655,7 @@ Many things can be said and have been said about science and physics. Rather tha
 
 
 
-\addsec{What is \enquote{fundamental} physics?}
+\section{What is \enquote{fundamental} physics?}
 \label{sec:fundamental_physics}
 
 But what's the \enquote{ultimate} goal of physics? What's \enquote{fundamental} physics? The answer to this question is again subjective -- also in this case physics lets you express your proclivities and personality. In the history of physics one can probably identify two main conceptions of \enquote{fundamental} physics.
@@ -1634,15 +1684,7 @@ In these notes we take a point of view slightly closer to the second conception.
   \label{fig:chew2}
 \end{figure}
 
-
-\printpagenotes*
-\clearpage
-\chapter{Physical quantities}
-\label{cha:physical_quantities}
-
-\epigraph{Philosophy is written in this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the letters in which it is composed. It is written in the language of mathematics, and its characters are triangles, circles, and other geometric figures without which it is humanly impossible to understand a single word of it.}{G. Galilei \cites*{galilei1623}}
-
-
+\newpage
 \section{Several possible formalisms or \enquote{languages}}
 \label{sec:languages}
 
@@ -1681,7 +1723,7 @@ Bergen, where in Bergen you are right now, to within 10\,m. You can do that with
 And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
 But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way.
-\marginpar{\footnotesize%
+\marginpar{\vspace{-3\baselineskip}\footnotesize%
 \color{mpcolor}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}
 }
 All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
@@ -1695,21 +1737,20 @@ One topic must be briefly discussed because it's important for understanding the
 
 I shall assume that you already know what a \textbf{physical quantity} is. Examples are: position, duration, velocity, pressure, energy, temperature.
 
-A \textbf{derived quantity} is one that is defined in terms of other quantities. For example, velocity $\bm{v}$ (more precisely: average velocity) is defined as the ratio between a distance $\bm{d}$ (a vector) and a time duration $\bm{t}$:
+A \textbf{derived quantity} is one that is defined in terms of other quantities. For example, speed $v$ (more precisely: average speed) is defined as the ratio between a distance $d$ and a time duration $t$:
 \begin{equation*}
-  \bm{v} \defd \frac{\bm{d}}{t}
+  v \defd \frac{d}{t}
 \end{equation*}
-where the symbol \enquote{$\defd$} means \enquote{is defined as} or \enquote{is defined by}. This means that in principle we could avoid using the word \enquote{velocity} and the symbol \enquote{$\bm{v}$} altogether, and instead always speak about distance and duration, using their symbols. It would lead to very long sentences and formulae and would be extremely inconvenient, but it could be done. The definition of a derived quantity often tells us how that quantity can be measured.
+where the symbol \enquote{$\defd$} means \enquote{is defined as} or \enquote{is defined by}. This means that in principle we could avoid using the word \enquote{speed} and the symbol \enquote{$v$} altogether, and instead always speak about distance and duration, using the symbols \enquote{$d$} and \enquote{$t$}. Doing so would lead to very long sentences and formulae, and therefore be extremely inconvenient; but it could be done. The definition of a derived quantity often tells us how that quantity can be measured.
 
 A derived quantity is defined in terms of other quantities, and these may in turn be derived quantities, that is, defined in terms of still other quantities, and so on. But at some point this chain of definitions must come to an end, otherwise we would go around in circles.
-\marginpar{\vspace{-\baselineskip}\centering%
-\href{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{\includegraphics[width=\linewidth]{images/feynman_why2.png}}%
+\marginpar{\vspace{-5\baselineskip}%
+\includegraphics[width=\linewidth]{images/feynman_why2.png}%
 \\[\jot]%
-\flushleftright\footnotesize\color{mpcolor}%
+\footnotesize\color{mpcolor}%
 \emph{\enquote{you have to be in some framework that you allow something to be true. Otherwise you're perpetually asking \enquote*{why}}.}
 (\furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{see video}).%
 }%
-
 A \textbf{primitive quantity} is one that we do not define in terms of other quantities. Primitive quantities are the building blocks from which we define all others. That they are not defined in terms of others doesn't mean that we cannot try to explain them. But such explanations must be taken as informal and heuristic. Primitive quantities are often explained through metaphors and by appealing to intuition. You must always be wary of such explanations, because they may fail you spectacularly in some situations.
 
 Often we have a choice about which quantities should be primitive and which should be derived. For instance, \emph{energy} can be defined, in a somewhat complicated way, in terms of quantities like \emph{work} and \emph{heat}, which would then need to be taken as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it. This second choice can be more convenient to develop a physical theory. It often happens that a quantity is very convenient for building a theory, if used as primitive; but difficult to understand intuitively. Vice versa,  a quantity can be very intuitive but lead to a complicated theory.
@@ -1962,6 +2003,8 @@ Space has physical dimension of \textsf{length} and we shall for the most part m
 
 \section{Coordinate systems and events}
 \label{sec:coords}
+
+\mynotew{To be expanded}
 
 We still need a way for distinguishing physical events and phenomena, and for locating them in spacetime. This is achieved through a \textbf{coordinate system}.
 
@@ -2289,13 +2332,13 @@ We therefore go down into more and more subtle classifications. This kind of res
 
 \medskip
 
-According to the definition of matter that we're adopting, the total amount of some kind of matter in a region can in principle be \emph{negative}. A negative amount simply denotes the presence of \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans. In ordinary chemical applications, however, all amounts of matter within a region are usually positive or zero.
 %
 \marginpar{\vspace{-5\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/pet_scan_bergen.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 In positron-emission tomography there is creation of amounts of matter (leptonic matter) that can be considered negative: their \emph{lepton number} is negative (\furl{https://www.helse-bergen.no/avdelinger/radiologisk-avdeling/senter-for-nukleermedisin-og-pet/tilvising-til-pet}{image: Helse Bergen}).%
 }%
+According to the definition of matter that we're adopting, the total amount of some kind of matter in a region can in principle be \emph{negative}. A negative amount simply denotes the presence of \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans. In ordinary chemical applications, however, all amounts of matter within a region are usually positive or zero.
 
 \medskip
 
@@ -3007,11 +3050,11 @@ In the case of a control surface the situation is different. The flux through a 
 \end{definition}
 
 
-The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in making predictions. Typically they are chosen so as to simplify the equations that describe the physical situation, to simulate physical phenomena in a more precise way, and to focus on details of interest.
 %
 \marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}Clever choice of control volumes and surfaces allow us to model and predict complex motions of fluids; \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{see also animation} (\cites{wojtanetal2009})%
 }%
+The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in making predictions. Typically they are chosen so as to simplify the equations that describe the physical situation, to simulate physical phenomena in a more precise way, and to focus on details of interest.
 
 When we study some solid object, like a football, a rocket, or a planet, we typically choose a control volume that tightly encloses the object. When we study something flowing or moving, like a fluid material or an electromagnetic field, we typically divide the space of interest into small control volumes and surfaces, constructing a \emph{mesh}; this mesh can even be refined in regions that are of special interest.
 
@@ -3072,11 +3115,13 @@ The visual representation above is useful, if we keep in mind remarks analogous 
 \item\label{item:applicationpoint}The application point of the vector representing the volume content is unimportant: for instance, it doesn't need to be placed at the centre of the volume. The vector refers to the volume as a whole, not to some specific point within.
 \item Different subvolumes could have amounts represented by different vectors; only the total vector is represented above.
 \end{itemize}
-This last remark is especially important when we discuss momentum and angular momentum. As an example, look at the side picture:%\fig~\ref{fig:nonzero_vector_subregions}:
-\marginpar{\vspace{-3\baselineskip}\centering%
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
 \includegraphics[width=0.5\linewidth]{images/volumeintegral_N_divided.pdf}
 \\[\jot]\flushleftright\footnotesize\color{mpcolor}The whole region has zero volume content. The left and right subregions have non-zero and opposite volume contents.%
-}
+}%
+%
+This last remark is especially important when we discuss momentum and angular momentum. As an example, look at the side picture:
 the volume content for the whole region is \emph{zero}, but its left and right subregions have \emph{non-zero and opposite} volume contents.
 % \begin{figure}[h]\centering
 %   \includegraphics[height=7em]{images/volumeintegral_N_divided.pdf}
@@ -4870,7 +4915,7 @@ In other words they are, as far as we know, \autoref{sec:universal_constitutive}
 
 % \calccentering{\unitlength}
 % \begin{adjustwidth}{\unitlength}{-\unitlength}
-\begin{definition}{The seven universal balance laws, width=\linewidth+\marginparwidth+\marginparsep}
+\begin{definition}{The seven universal balance laws} %{width=\linewidth+\marginparwidth+\marginparsep}
   \centering\large\bfseries\sffamily%\color{blue}
 %     \textcolor{green}{Conservation of matter}
 % \\ \textcolor{purple}{Conservation of electric charge}
@@ -4940,12 +4985,20 @@ The budget is expressed in the following general forms:
 \end{definition}
 
 The individual balances and symbols for matter, momentum, energy, angular momentum, electric charge, magnetic flux, entropy are also presented in table\,\ref{tab:balances} p.\,\pageref{tab:balances}.
-\begin{table}[t]
+\begin{table}[p]
   \centering
     \begin{equation*}
       \begin{aligned}[t]
         &&&\hspace{1em}\text{\footnotesize\color{grey}integral form}
         &&\hspace{-1em}\text{\footnotesize\color{grey}differential form}
+      \\[2\jot]
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\,\di t
+      &\quad
+      \frac{\di\yC(t)}{\di t} &= \yI(t)
+      \\[2\jot]
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering magnetic\\flux}}}&&\yBf(\ytf) &= \yBf(\yti) - \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t
+      &\quad
+      \frac{\di\yBf(t)}{\di t} &= -\yEv(t)
         \\[2\jot]
       \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  +\int_{\yti}^{\ytf}\!\!\ya(t)\,\di t
       &\quad
@@ -4963,20 +5016,12 @@ The individual balances and symbols for matter, momentum, energy, angular moment
       &\quad
       \frac{\di\yL(t)}{\di t} &= \yto(t) + \ym(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\,\di t
-      &\quad
-      \frac{\di\yC(t)}{\di t} &= \yI(t)
-      \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering magnetic\\flux}}}&&\yBf(\ytf) &= \yBf(\yti) - \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t
-      &\quad
-      \frac{\di\yBf(t)}{\di t} &= -\yEv(t)
-      \\[2\jot]
 \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
 &\quad
       \frac{\di\yS(t)}{\di t} &\ge \yB(t)
     \end{aligned}
 \end{equation*}
-\caption{Five of the seven universal balance laws. These formulae are valid in Newtonian mechanics, General Relativity, and even quantum theory if their symbols are interpreted as \enquote*{statistical operators}.}\label{tab:balances}
+\caption{The seven universal balance laws. These formulae are valid in Newtonian mechanics, General Relativity, and even quantum theory if their symbols are interpreted as \enquote*{statistical operators}.}\label{tab:balances}
 \end{table}
 
 \bigskip
@@ -5279,6 +5324,11 @@ In fact, the evolution equation from a balance or conservation law always gives 
   An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \yM\yv$, briefly discussed previously. It relates the \emph{flux} of matter (\autoref{sec:fluxes_velocities}{which determines the velocity $\yv$}) to the \emph{volume content} of momentum. We shall discuss this relationship more clearly in \sect\,\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
 \end{itemize}
 
+\marginpar{\vspace{3\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/tennisball.jpg}
+% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+}%
 \begin{exercise}[label={ex:tennisball2}]
   In Exercise~\ref{ex:tennisball} you calculated the evolution of the tennis ball's momentum -- all its three components -- for one timestep of \qty{0.01}{s}.
 
@@ -5312,11 +5362,6 @@ In fact, the evolution equation from a balance or conservation law always gives 
     \end{equation*}
   \end{enumerate}
 \end{exercise}
-\marginpar{\vspace{-23\baselineskip}\centering%
-\includegraphics[width=\linewidth]{images/tennisball.jpg}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
 
 \subsection{Numerical time integration of position}
 \label{sec:position_integration}
@@ -5512,11 +5557,12 @@ Conservation of matter is a law that we intuitively take for granted and use con
 \subsection{Balance vs conservation of matter}
 \label{sec:matter_balances}
 
-The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{when considered together}. \marginpar{\vspace{-\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-    \emph{\enquote{All these operators conserve \mbox{$B-L$} \textins{number of baryons $B$ minus number of leptons $L$}, so in any superunified theory we expect \mbox{$B-L$} to be conserved\textellipsis}}%
-  \sourceatright{\cites{wilczeketal1979}%
-}}%
+The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{when considered together}.
 More specifically it seems to hold, even in extreme physical conditions, if we count baryonic and \emph{anti}-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as \enquote*{negative}. As an example, consider a closed surface containing two neutrons (baryon number \num{+1}), and some energy, in such a way that the total electric charge, momentum, and angular momentum are zero. Then it's today considered impossible that the two neutrons could just disappear, and two protons (baryon number \num{+1} each) plus two electrons (lepton number \num{+1} each) appear in their stead, even if energy, momentum, and so on were exactly the same. This is because otherwise we would have first $\yN(\yti) = \num{+2}$ and then $\yN(\ytf) = \num{+2}-\num{2}=0$, without any flux of matter: $\yJ(t)=0$; conservation of matter would be broken.
+%
+\marginpar{\vspace{-9\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+    \emph{\enquote{All these operators conserve \mbox{$B-L$} \textins{number of baryons $B$ minus number of leptons $L$}, so in any superunified theory we expect \mbox{$B-L$} to be conserved\textellipsis}}\sourceatright{\cites{wilczeketal1979}}%
+}%
 
 \smallskip
 
@@ -5592,6 +5638,12 @@ In applications where we can consider the molar mass as practically constant, we
 \subsection{Radioactive decay}
 \label{sec:matter_const_radioactive}
 
+%
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=0.75\linewidth]{images/radioactive.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+When we see this symbol we know that there's matter that's only balanced, not conserved -- which involves danger%
+}%
 For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\ya$ has a specific constitutive equation:
 \begin{definition}{Matter supply in radioactive decay}
   \begin{equation*}
@@ -5605,11 +5657,6 @@ If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance t
 \end{equation*}
 called the \furl{https://www.britannica.com/science/radioactivity/Rates-of-radioactive-transitions\#ref496415}{\emph{law of radioactive decay}}.
 \end{definition}
-\marginpar{\vspace{-7\baselineskip}\centering%
-\includegraphics[width=0.75\linewidth]{images/radioactive.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-When we see this symbol we know that there's matter that's only balanced, not conserved -- which involves danger%
-}%
 
 
 \section{Examples of applications}
@@ -5733,14 +5780,13 @@ where $A_{1}, A_{2}$ are  the areas  of the top and bottom surfaces, and $v_{1},
 \begin{equation*}
   v_{1}\,A_{1} = v_{2}\,A_{2}
 \end{equation*}
-that is, if the area through which the flux occur decreases, then the velocity of the fluid through it increases, and vice versa.
+that is, if the area through which the flux occur decreases, then the velocity of the fluid through it increases, and vice versa. This is what we often observe in water running from our taps. We can feel with our fingers that the water stream is slightly faster at the bottom, right before it hits the basin; and at this point the stream usually also thinner than at the top (the presence of an aerator or of turbulence can mask this effect).
 %
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-4\baselineskip}\centering%
 \includegraphics[width=0.75\linewidth]{images/tap_water.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
   The thickness and velocity variations of tap water are a consequence of the law of conservation of matter%
 }%
-This is what we often observe in water running from our taps. We can feel with our fingers that the water stream is slightly faster at the bottom, right before it hits the basin; and at this point the stream usually also thinner than at the top (the presence of an aerator or of turbulence can mask this effect).
 
 
 \printpagenotes*
@@ -5825,22 +5871,39 @@ Momentum balance keeps buildings from collapsing (photo: \emph{Bryggen}, Bergen,
 
 One of the most important constitutive relations is the one connecting momentum with the flux of matter. We have mentioned it several times in the previous chapters, and used it in \autoref{ex:tennisball}{examples of numerical integration}.
 
-Consider a \emph{small} control volume containing an amount of matter $\yN$. From the \autoref{sec:const_matter_mass}{constitutive equation between matter and \masse} we know that this volume also contains an amount of \masse\ $\yM=\yrho\yN$. The matter in this volume also has a velocity $\yv$ (possibly zero), \autoref{sec:fluxes_velocities}{related to its flux}. The \textbf{Newtonian formula for the momentum of matter} then says that the control volume also contains an amount of momentum $\yP$ that is proportional to the \masse\ and the velocity:
+Consider a \emph{small} control volume containing an amount of matter $\yN$. From the \autoref{sec:const_matter_mass}{constitutive equation between matter and \masse} we know that this volume also contains an amount of \masse\ $\yM=\yrho\yN$. The matter in this volume also has a velocity $\yv$, possibly zero, \autoref{sec:fluxes_velocities}{related to its flux}. The \textbf{Newtonian formula for the momentum of matter} then says that this control volume also contains an amount of momentum $\yP$ that is proportional to the \masse\ and the velocity:
 \begin{definition}{Newtonian constitutive relation for momentum}
 If a control volume contains an amount of matter $\yN$ having \masse\ $\yM$ and velocity $\yv$, then it also contains an amount of momentum
-  \begin{equation}
-    \label{eq:matter_momentum_Newton}
-    \yP = \yM\yv = \yrho\, \frac{V}{A}\,
+\begin{equation}
+  \label{eq:matter_momentum_Newton}
+  \yP = \yM \yv
+  \qquad\text{\small or in components}\qquad
   \begin{bmatrix}
-    J_{x}\\J_{y}\\J_{z}
+    P_{x}\\P_{y}\\P_{z}
   \end{bmatrix}
-    % \qquad\text{with}\qquad
-    % \yM=\yrho\yN
+  = \yM
+  \begin{bmatrix}
+    v_{x}\\v_{y}\\v_{z}
+  \end{bmatrix}
 \end{equation}
-This relation is only valid for very small areas and volumes (we should take the limit).
+This relation is only valid if the matter's velocity $\yv$ is the same throughout the volume. This is usually the case if the volume is small enough.
 \end{definition}
 
-You are probably familiar with the first equality above; old textbook present it as the \emph{definition} of momentum. We know today that this equality is only approximate: it's only valid for small speeds compared to the speed of light, in weak gravitational fields, and when changes in \energym\ are small compared to the total.
+You are probably familiar with the first equality above; old textbook present it as the \emph{definition} of momentum. Today we know today that this equality only holds for matter but not, for instance, for the electromagnetic field. And even for matter it is only approximate: it's only valid when the velocity's magnitude $v$ is small compared to the speed of light, only in weak gravitational fields, and only when changes in \energym\ are small compared to the total \masse.
+
+% Equivalently
+% 
+% \\
+% \intertext{or equivalently} \yP &= \yrho\, \frac{V}{A}\,
+%     \begin{bmatrix}
+%       J_{x}\\J_{y}\\J_{z}
+%     \end{bmatrix}
+%     % \qquad\text{with}\qquad
+%     % \yM=\yrho\yN
+%   \end{aligned}
+% \end{equation}
+%
+% \autoref{sec:fluxes_velocities}{connection between flux and velocity}
 
 \subsection{Hookean spring: relation between momentum flux and distance}
 \label{sec:hooke}
@@ -7390,7 +7453,7 @@ One can show that all these points of view have mathematically the same conseque
 % Not so for energy, nor for momentum.
 Relativity shows that \emph{the definition of \enquote{total energy} depends on the choice of a reference velocity and a reference clock}. This choice of velocity \amp\ clock can even be different at each spacetime point. Furthermore, this choice is \emph{independent from the choice of a coordinate system}. That is, once we have chosen coordinates $(t,x,y,z)$, we can still choose arbitrary reference velocities and reference clocks to define \enquote*{total energy}.
 %
-\marginpar{\vspace{-3\baselineskip}\centering%
+\marginpar{\vspace{-2\baselineskip}\centering%
 \includegraphics[width=0.75\linewidth]{images/4vector.pdf}%
 \\\footnotesize\flushleftright\color{mpcolor}%
 A reference \enquote*{velocity \amp\ clock} is simply a vector with four components in four-dimensional spacetime%
@@ -7409,7 +7472,7 @@ Given a coordinate system $(t,x,y,z)$, one of the following three choices is usu
 Note that this energy \emph{cannot} be defined if matter is not present. This definition of energy is often adopted in the description of fluids.
 
 
-\item[\faIcon{clock}\faIcon{globe}] We may choose a zero coordinate velocity, as in the first case, but measure time according to \autoref{sec:time}{\emph{proper time}} rather than coordinate time $t$. % Energy defined with respect to this reference velocity \amp\ clock is usually different from the previous two definitions. The difference between this energy and internal energy is called \emph{kinetic energy}.% ; we denote its volume content by $\yEk$.
+\item[\faIcon{clock}] We may choose a zero coordinate velocity, as in the first case, but measure time according to \autoref{sec:time}{\emph{proper time}} rather than coordinate time $t$. % Energy defined with respect to this reference velocity \amp\ clock is usually different from the previous two definitions. The difference between this energy and internal energy is called \emph{kinetic energy}.% ; we denote its volume content by $\yEk$.
   % The difference between total energy and this energy is called \emph{potential gravitational energy}.% ; we denote its volume content by $\yEp$.
 
   In Newtonian approximation, the total energy content defined by this choice includes internal-energy and kinetic-energy terms, but no terms related to gravity (this is the choice underlying the formula snippet in the previous side picture).
@@ -7428,7 +7491,7 @@ In these notes we shall use the \enquote*{total} or \enquote*{coordinate} energy
 
 \item\label{item:energy_no_supply} Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, this energy practically \emph{satisfies a conservation law} in these common coordinate systems.
 %
-\marginpar{\vspace{-6\baselineskip}\centering%
+\marginpar{\vspace{-3\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/icrf3sx.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}})
@@ -8778,13 +8841,13 @@ Many texts and media try to summarize the meaning of the entropy balance and its
 This should not be surprising. Take the %\autoref{sec:bal_momentum_formulation}{}
 balance of momentum for example. It leads to all sorts of motions and deformations of objects, but also to the stability of objects: from the extremely complicated motion of the atmosphere to the stillness of a pen resting on a table. This balance law could not be summarized in some simple sentence, like \enquote{objects spontaneously fall downward}. First, such a sentence would be false in many situations: just look at the motion of rocks expelled by a volcano, or at cosmological expansion. Second, it would be useless for precise predictions and numerical simulations.
 
-The same remark holds true for the balance of entropy. This balance also leads to a wild variety of very different physical consequences. The mixing of two liquids can be said to be a consequence of the balance of entropy (together with the other balances).
-\marginpar{\vspace{-2\baselineskip}\centering%
+%
+\marginpar{\vspace{-7\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/mixing.jpg}\\%
 \includegraphics[width=\linewidth]{images/life_plant.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 The mixing of two liquids and the growing of life are both consequences of the second law of thermodynamics.}%
-But also the appearance of life on Earth is a consequence of the balance of entropy; and all complex physical mechanisms underlying life are consequences of the balance of entropy, too (together with the other balances). Any simplistic summaries, like common ones mentioning \enquote{tendency to disorder} or \enquote{spontaneously doing this or that} or similar, are
+The same remark holds true for the balance of entropy. This balance also leads to a wild variety of physical consequences. The mixing of two liquids can be said to be a consequence of the balance of entropy (together with the other balances). But also the appearance of life on Earth is a consequence of the balance of entropy; and all complex physical mechanisms underlying life are consequences of the balance of entropy, too (together with the other balances). Any simplistic summaries, like common ones mentioning \enquote{tendency to disorder} or \enquote{spontaneously doing this or that} or similar, are
 \begin{enumerate*}[label=(\alph*)]
 \item simply \emph{false} in many physical situations; \item vague: what does \enquote*{to tend} mean? how is \enquote*{disorder} defined and quantified? to what initial values of position, velocity, and so on, does \enquote*{spontaneous} refer to? what's \enquote*{spontaneous} and what's not? \item useless for quantitative predictions.
 \end{enumerate*}
@@ -9313,7 +9376,7 @@ is to be universally valid, then the specific mathematical formulae for $\yQ$ an
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \printpagenotes*
 \clearpage
-\addchap{Postface for engineers, physicists, teachers}
+\addchap{Postface to the teacher}
 \label{cha:postface}
 
 \epigraph{}{\includegraphics[height=2em]{images/jijimuge.pdf}}
@@ -9366,12 +9429,12 @@ Many current physics textbooks take a different approach. They introduce the stu
 
 \item This approach unnecessarily suppresses some useful intuitions that many students have from everyday life, such as the distinction between contact forces and body forces. The students will later have to recover these intuitions as they study more general phenomena.
 
-\item This particular mixture of notions and laws is today used almost only in textbooks; very little in physical and engineering applications. Students who will research and work in actual mechanics -- buildings, bridges, aeroplanes, fluid flow, and generally extended bodies -- will need to amend their \emph{point-particle} intuitions to a \emph{continuum} one. Students who will research and work in electromagnetics will need to amend their intuition of momentum as \enquote{mass times velocity}. Students who will research in particle physics will also need to amend their intuition of momentum in several different ways. Students who will work in General Relativity will need all these amendments at once. The increasing importance of amending our Newtonian intuition of space and time was discussed in Chapter~\ref{cha:time_space}.
   % 
-  \marginpar{\vspace{-6\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
+  \marginpar{\vspace{3\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
         The plot for Cesium \textelp{} characterizes the best orbiting clocks in the GPS system. What this means is that after initializing a Cesium clock, and leaving it alone for a day, it should be correct to within \textelp{} 4~nanoseconds. Relativistic effects are huge compared to this.}}\sourceatright{\cites{ashby2003}}
   }
   % 
+\item This particular mixture of notions and laws is today used almost only in textbooks; very little in physical and engineering applications. Students who will research and work in actual mechanics -- buildings, bridges, aeroplanes, fluid flow, and generally extended bodies -- will need to amend their \emph{point-particle} intuitions to a \emph{continuum} one. Students who will research and work in electromagnetics will need to amend their intuition of momentum as \enquote{mass times velocity}. Students who will research in particle physics will also need to amend their intuition of momentum in several different ways. Students who will work in General Relativity will need all these amendments at once. The increasing importance of amending our Newtonian intuition of space and time was discussed in Chapter~\ref{cha:time_space}.
 
   Newtonian point-mass mechanics is less and less used in astronomy as well. Ephemerides use post-Newtonian approximations of General Relativity \parencites{parketal2021}. NASA and the \furl{https://www.jpl.nasa.gov}{Jet Propulsion Laboratory} by default include relativistic effects \parencites{moyer2000} when they plan or calculate trajectories for Earth, Moon, and beyond. The same general-relativistic formulae are used to calculate and plan spacecraft dynamics, for navigating in \furl{https://csps.aerospace.org/papers/cislunar-development-what-build-and-why}{cis-lunar} or geocentric space as well as for interplanetary missions: the same software is used for navigating in both regimes \parencites{parketal2024}.
 
@@ -9417,6 +9480,8 @@ the balance of angular momentum is satisfied implicitly by the symmetry of the f
 \begin{center}
   \includegraphics[width=0.75\linewidth]{images/komissarov.png}%
 \end{center}
+
+\mynotew{To be continued}
 
 % %
 % \marginpar{\vspace{-\baselineskip}\centering%
