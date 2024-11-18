@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-11-18T10:39:52+0100
+%% Last-Updated: 2024-11-18T13:36:09+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1304,6 +1304,10 @@ Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BEGINNING OF MAIN TEXT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \renewcommand{\cftchapterfont}{\hfill\bfseries}
+% \renewcommand{\cftchapterleader}{}
+% \renewcommand{\cftsectionfont}{\hfill\normalfont}
+% \renewcommand{\cftcsectionleader}{}
 
 \clearpage
 \phantomsection\pdfbookmark{\contentsname}{toc}
@@ -8736,7 +8740,52 @@ This makes sense from a molecular point of view: roughly speaking, the kinetic e
   \end{equation}
 \end{definition}
 
-\mynotew{To be written in a later version}
+The balance of angular momentum -- or rotational momentum or moment of momentum -- is no less important and no less present in everyday phenomena than the balances of momentum or energy. Like the balance of momentum, it is at the core of applications where motion and stability are important. It is crucial in studying, predicting, and planning the motion of artificial satellites around Earth and of celestial bodies, from planets to galaxies.
+
+Yet the balance of angular momentum is mentioned less often, and may \emph{seem} less often, used than the balance of momentum. This happens because of several related reasons. The most important constitutive relations involving angular momentum require slightly more complicated mathematics, in particular they need explicit integration of functions and the use of vector cross-products or bivectors. Because of this, the consequences of the balance of angular momentum are often pre-emptively baked-in into constitutive relations; we shall soon see an example with the Hookean spring.
+
+It moreover turns out that \emph{the balance of angular momentum can be expressed without the time derivative of a volume content, or without the time-integrals of a flux and of a supply}. It can instead be expressed as a sort of symmetry condition:
+
+%
+\marginpar{\vspace{\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/stress_symm.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{black}%
+The $x$-component of the \textcolor{red}{momentum flux crossing in the $z$-direction} must equal the $z$-component of the \textcolor{blue}{momentum flux crossing in the $x$-direction}. In this picture they both equal \textcolor{green}{\qty{2}{N}}.}%
+\begin{definition}{Balance of angular momentum (tensorial form)}
+  Take a small control surface passing through some point $P$, of area $A$, parallel to the $zx$ directions, and with a positive-$y$ crossing direction. Take another small control surface also passing through $P$ and of area $A$, parallel to the $xy$ directions, and with a positive-$z$ crossing direction.
+
+  Then the flux of $z$-momentum $F_{z}$ through the $zx$ control surface must be equal to the flux of $y$-momentum $F_{y}$ through the $xy$ control surface.
+
+  Two more analogous laws hold by exchanging $y$ \amp\ $x$ or $z$ \amp\ $x$ in the statement above:
+  \begin{equation}
+    \label{eq:bal_ang_momentum_symmetry}
+    \begin{aligned}
+      \underbracket[0pt]{\smash{F_{z}}}_{\text{$y$-crossing}}
+      &=
+      \underbracket[0pt]{\smash{F_{y}}}_{\text{$z$-crossing}}
+&\qquad
+      \underbracket[0pt]{\smash{F_{z}}}_{\text{$x$-crossing}}
+      &=
+      \underbracket[0pt]{\smash{F_{x}}}_{\text{$z$-crossing}}
+&\qquad
+      \underbracket[0pt]{\smash{F_{x}}}_{\text{$y$-crossing}}
+      &=
+      \underbracket[0pt]{\smash{F_{y}}}_{\text{$x$-crossing}}
+    \end{aligned}
+  \end{equation}
+\end{definition}
+
+You notice that in this alternative formulation we don't even need to speak of a volume content, flux, or supply of angular momentum.
+
+We may therefore try to formulate a constitutive equation for the momentum flux $\yF$ in such a way that the laws above are automatically satisfied. When this is possible, the balance of angular momentum appears invisibly, automatically satisfied. This is often happens with the equations typically used in material science and fluid dynamics.
+
+\section{Examples of constitutive relations}
+\label{sec:angmomentum_constitutive}
+
+\subsection{Standard constitutive equation for angular momentum}
+\label{sec:constitutive_angmomentum_standard}
+
+\mynotew{To be continued.}
 
 \section{Angular momentum as a twisted vector}
 \label{sec:twisted_vec}
