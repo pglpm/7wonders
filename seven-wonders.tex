@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-11-18T13:36:09+0100
+%% Last-Updated: 2024-11-18T15:34:09+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7488,7 +7488,7 @@ In discussing the \autoref{sec:bal_momentum_formulation}{balance of momentum} we
 The balance of energy is therefore also very important for numerical time integration. Recall that balance laws, if used alone, allow us to predict \emph{volume contents} at a later time, but not fluxes or supplies. Fluxes and supplies must \autoref{sec:boundary_conds}{either be given as boundary conditions, or predicted by constitutive relations} that connect them to the volume contents of other quantities. The balance and constitutive equations for energy often have this particular \enquote{gluing} role.
 
 
-\subsection{Definitions of \enquote*{total energy}}
+\subsection{Definitions of total energy}
 \label{sec:energy_defs}
 
 In the physics literature we can read about energies and energy fluxes having all sorts of names -- \enquote*{internal}, \enquote*{kinetic}, \enquote*{potential}, \enquote*{elastic}, \enquote*{electromagnetic}, and others. We can also read about different kinds of energy balances, which can be related to one another through particular sequences of mathematical steps.
@@ -8744,13 +8744,13 @@ The balance of angular momentum -- or rotational momentum or moment of momentum 
 
 Yet the balance of angular momentum is mentioned less often, and may \emph{seem} less often, used than the balance of momentum. This happens because of several related reasons. The most important constitutive relations involving angular momentum require slightly more complicated mathematics, in particular they need explicit integration of functions and the use of vector cross-products or bivectors. Because of this, the consequences of the balance of angular momentum are often pre-emptively baked-in into constitutive relations; we shall soon see an example with the Hookean spring.
 
-It moreover turns out that \emph{the balance of angular momentum can be expressed without the time derivative of a volume content, or without the time-integrals of a flux and of a supply}. It can instead be expressed as a sort of symmetry condition:
+It moreover turns out that \emph{the balance of angular momentum can be expressed without the time derivative of a volume content, or without the time-integrals of a flux and of a supply}. It can instead be expressed as a sort of symmetry condition, we can call this the \enquote{tensorial expression} of this balance:
 
 %
 \marginpar{\vspace{\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/stress_symm.pdf}%
 \\[\jot]\footnotesize\flushleftright\color{black}%
-The $x$-component of the \textcolor{red}{momentum flux crossing in the $z$-direction} must equal the $z$-component of the \textcolor{blue}{momentum flux crossing in the $x$-direction}. In this picture they both equal \textcolor{green}{\qty{2}{N}}.}%
+The \textcolor{green}{$x$-component} of the \textcolor{red}{momentum flux crossing in the $z$-direction} must equal the \textcolor{green}{$z$-component} of the \textcolor{blue}{momentum flux crossing in the $x$-direction}. In this picture they both equal \textcolor{green}{\qty{2}{N}}.}%
 \begin{definition}{Balance of angular momentum (tensorial form)}
   Take a small control surface passing through some point $P$, of area $A$, parallel to the $zx$ directions, and with a positive-$y$ crossing direction. Take another small control surface also passing through $P$ and of area $A$, parallel to the $xy$ directions, and with a positive-$z$ crossing direction.
 
@@ -8773,11 +8773,21 @@ The $x$-component of the \textcolor{red}{momentum flux crossing in the $z$-direc
       \underbracket[0pt]{\smash{F_{y}}}_{\text{$x$-crossing}}
     \end{aligned}
   \end{equation}
-\end{definition}
 
+  These equations only hold if the momentum fluxes are uniform throughout the surfaces.
+\end{definition}
 You notice that in this alternative formulation we don't even need to speak of a volume content, flux, or supply of angular momentum.
 
-We may therefore try to formulate a constitutive equation for the momentum flux $\yF$ in such a way that the laws above are automatically satisfied. When this is possible, the balance of angular momentum appears invisibly, automatically satisfied. This is often happens with the equations typically used in material science and fluid dynamics.
+The two expressions of the balance of angular momentum are completely equivalent, as we shall prove later on. Each one has some advantages and some disadvantages. The integral and differential expressions~\eqref{eq:bal_ang_momentum} involve time-integration or time-differentiation, but they apply to control volumes of arbitrary shape, size, motion. The tensorial expression~\eqref{eq:bal_ang_momentum_symmetry} does not involve integration or differentiation in time, but it can usually only be applied to very small control surfaces.
+
+Each expression is used in particular applications and disciplines. The integral and differential expressions are typically used in applications with small bodies or approximately rigid bodies, or applications where forces are given explicitly, rather than via constitutive relations. The tensorial expression is typically used in material science and fluid dynamics, where constitutive relations for the momentum flux $\yF$ are given in such a way that the tensorial law is automatically satisfied. This is again one case in which the balance of angular momentum plays its role invisibly, automatically satisfied.
+
+\subsection{Definitions of angular momentum}
+\label{sec:angmomentum_defs}
+
+Just like total energy, also angular momentum can be defined in different ways; in fact, the freedom we have in its definition is more visible than the one we have in defining total energy.
+
+\mynotew{To be continued.}
 
 \section{Examples of constitutive relations}
 \label{sec:angmomentum_constitutive}
@@ -8785,7 +8795,12 @@ We may therefore try to formulate a constitutive equation for the momentum flux 
 \subsection{Standard constitutive equation for angular momentum}
 \label{sec:constitutive_angmomentum_standard}
 
+
+
 \mynotew{To be continued.}
+
+
+\mynotew{Add discussion: the fact that the forces exerted by a Hookean spring are parallel to the spring is a consequence of the balance of angular momentum.}
 
 \section{Angular momentum as a twisted vector}
 \label{sec:twisted_vec}
