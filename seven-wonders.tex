@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-11-27T16:28:33+0100
+%% Last-Updated: 2024-11-27T18:07:44+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1167,7 +1167,7 @@ angle-right%
 
 \newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, no shadow, sharp corners, parbox=false, colback=yellow!5!white, colframe=yellow, boxrule=1pt, breakable,
   % fontupper=\small,
-  fonttitle=\bfseries, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+  fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
 \newtcolorbox{warning}[1][]{enhanced, no shadow, parbox=false, colback=red!5!white, colframe=red, left=1ex, right=1ex, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt, breakable,
 % fontupper=\small, fonttitle=\bfseries\small,
@@ -1180,7 +1180,10 @@ after={\smallskip}, title=\hspace{0ex}\faIcon{exclamation-circle}\enspace#1}
 \newtcolorbox{definition}[1]{enhanced, no shadow, colback=green!5!white, colframe=green, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt, breakable, fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox{extra}[1]{enhanced, no shadow, parbox=false,width=0.975\linewidth, center, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{user-astronaut}\enspace#1}
+\newtcolorbox{extra}[1]{enhanced, no shadow, parbox=false, %width=0.975\linewidth,
+  center, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable,
+   fontupper=\footnotesize,
+  fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\hspace{-2ex}\faIcon{user-astronaut}\enspace#1}
 % \newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2589,13 +2592,11 @@ In these notes we shall often use the expressions \enquote*{\energym} and \enquo
 \subsection{Different \enquote*{forms} of energy}
 \label{sec:forms_energy}
 
-We often speak of different \emph{forms} of \energym. The most important forms for us will be \textbf{internal energy}, \textbf{kinetic energy}, \textbf{gravitational potential energy}, to be discussed later. Another important one is \emph{electromagnetic energy}.
+We often speak of different \emph{forms} of \energym. The most important forms for us will be \textbf{internal energy}, \textbf{kinetic energy}, \textbf{gravitational potential energy}, \textbf{electromagnetic energy} to be discussed later.
 
-Later on we shall see that the differences among these energy forms come from the way they are calculated from other quantities, like matter or magnetic flux and electric charge. For example, if we know that in a volume there's an amount of a particular kind of matter, then we know that there must also be an amount of energy, given by a particular formula. And if that matter is moving, then we have to add to the energy an extra amount given by another formula. And if in that volume there's a gravitational field (that is, a particular kind of spacetime curvature), then another extra amount must be added, given by yet another formula. Similarly if we know that an electromagnetic field is in that volume.
+The differences among these energy forms arise from the way they are calculated from other quantities, like matter or magnetic flux and electric charge. For example, if we know that in a volume there's an amount of a particular kind of matter, then we know that there must also be an amount of energy, given by a particular formula. And if that matter is moving, then we have to add to the energy an extra amount given by another formula. And if in that volume there's a gravitational field (that is, a particular kind of spacetime curvature), then another extra amount must be added, given by yet another formula. Similarly if we know that an electromagnetic field is in that volume.
 
 We also speak of different forms of flux of energy. The most important for us will be \textbf{heat} and \textbf{mechanical power}. The difference is again in how these fluxes are calculated depending on whether there are also fluxes of matter and of other quantities.
-
-\medskip
 
 The distinctions between different forms of energy also depend on the observation scale and the theory used. For instance, we can observe and describe the water in a glass resting on table, on a scale of centimetres. We see it as a still, uniform fluid. In this description we say that the water has internal energy (or that there's internal energy in the glass). But if we observe and model that same water as a collection of molecules, on a microscopic scale, then we say that it has internal energy \emph{and} kinetic energy, because the molecules are in constant motion. The total amount of energy is the same on the centimetre-scale the  microscopic scale, but its partition into different \enquote{forms} depends on the scale.
 %
@@ -2625,8 +2626,6 @@ The same is true of energy flux: what we call \enquote*{heat} on one observation
   The total flux of energy will be denoted by $\yH$.% ; the flux in the form of heat, by $\yQ$; and in the form of work, by $\yW$.
 \end{definition}
 
-
-\medskip
 
 \begin{exercise}
   In an hour, 14 people exit through a door. Taking the average human weight to be \qty{62}{kg} \parencites{walpoleetal2012}, what's the average \emph{energy} flux, in \unit{J/s}, through that door?
@@ -2692,22 +2691,23 @@ Flux of momentum, or more generally production of momentum, is what we call \tex
 
 % Force is a notion that we understand intuitively and that we can \enquote{feel} with our own bodies. In Newtonian mechanics it's often taken as primitive, and is represented by a vector. But it can also be defined and interpreted as a \emph{flux of momentum}. This point of view can be very useful and even more intuitive in some situations. We shall discuss it more in depth in \chap~\ref{cha:contents_fluxes}
 
+\begin{extra}{Momentum and energy flux are proportional}
+  According to Relativity Theory, momentum is always proportional to energy flux, and energy flux is always proportional to momentum. If we represent the magnitude of momentum in a volume $V$ with $P$, and the flux of total-energy through an area $A$ with  $\yH$, their proportionality can be approximately expressed as
+  \begin{equation}
+    \label{eq:momentum_heat}
+    \yH/A \approx P\,\yc^{2}/V \ .
+  \end{equation}
+  Compare this formula with $\yE=\yM\,\yc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. % This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy. 
+  % On a sunny day, if you close your eyes and feel the Sun's heat on your face, what you are feeling is also a flow of momentum. And when you kick a football, giving it momentum, you've also set a huge bundle of energy in motion.
+\end{extra}
 
 \begin{definition}{Momentum: notation}
   The amount of momentum in a region is usually denoted with $\yP$. The flux of momentum is also called force and denoted with $\yF$.
 \end{definition}
 
-
-
-\begin{extra}{Momentum and energy flux are proportional}
-  According to Relativity Theory, momentum is always proportional to energy flux, such as heat; and energy flux is always proportional to momentum. If we represent the magnitude of momentum with the symbol $P$, and total-energy flux with the symbol $\yH$, the equivalence between their magnitudes is given by
-  \begin{equation}
-    \label{eq:momentum_heat}
-    \yH = P\,\yc^{2}
-  \end{equation}
-  Compare this formula with $\yE=\yM\,\yc^{2}$. From this point of view, you can think of momentum as \enquote{energy in motion}. % This is consistent with our discussion about \masse: since mass is energy, the Newtonian expression \enquote{$m\bm{v}$} indicates energy in motion, or a flux of energy. 
-  % On a sunny day, if you close your eyes and feel the Sun's heat on your face, what you are feeling is also a flow of momentum. And when you kick a football, giving it momentum, you've also set a huge bundle of energy in motion.
-\end{extra}
+\begin{exercise}
+  Assume the relation $P = \yM v$ between the magnitude of momentum $P$, \masse\ $\yM$, and its speed $v$. When you're walking with a speed of \qty{1}{m/s}, how much momentum does your body contain?
+\end{exercise}
 
 
 
@@ -2734,15 +2734,22 @@ Angular momentum, also called \emph{moment of momentum} or \emph{rotational mome
 % , with SI dimension $\textsf{energy}\times\textsf{time}$, and accordingly measured in units of $\emph{joules}\times\emph{seconds}$ (\unit{J\cdot s}), or equivalently with SI dimension $\textsf{mass}\times\textsf{length}^{2}/\textsf{time}$, and accordingly measured in units of $\emph{kilograms}\times\emph{metres}^{2}/\emph{seconds}$ (\unit{kg\cdot m^2/s}).
 Being a vector quantity, angular momentum is usually expressed with three numbers, its $x$-, $y$-, and $z$-components. The flux of angular momentum, or more generally the production of angular momentum, is called \textbf{torque}.
 
+%
+\marginpar{\vspace{-12\baselineskip}\centering\includegraphics[width=\linewidth]{images/cube_Nms_coords.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}The amount of angular momentum within a volume at a given instant is represented by a \textcolor{purple}{vector} (curious about the little circulation symbol around the vector? see \sect~\ref{sec:twisted_vec})%
+}%
+Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of angular momentum within that volume. This amount is represented by a vector.
+
+
 \medskip
 
 Just as momentum is associated with translational motion, angular momentum is \emph{something associated with rotational motion} of matter and of electromagnetic fields. Rotational motion is the kind of motion that leads to a \emph{new orientation} in space, rather than to a new position. For instance, if you turn to your left or to your right while standing in place, you have performed a rotational motion.
 
 %
-\marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/wristroller.jpg}%
-\\[2\jot]\includegraphics[width=\linewidth]{images/fourseasons.jpg}%
+\marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/wristroller.jpg}%
+\\[3\jot]\includegraphics[width=\linewidth]{images/fourseasons.jpg}%
 }%
-You can get a feeling of angular momentum and torque by playing with one of those hand-held gyroscopes that can be used for wrist exercise and training. But the physical role of angular momentum is actually in front of us every day: its balance is the chief reason of such important phenomena as the alternation of day and night and the alternation of the seasons.
+You can get a feeling of angular momentum and torque by playing with one of those hand-held gyroscopes that can be used for wrist exercise and training (side picture). But the physical role of angular momentum is actually in front of us every day: its balance is the chief reason of such important phenomena as the alternation of day and night and the alternation of the seasons.
 
 \smallskip
 
@@ -2751,9 +2758,8 @@ Yet, angular momentum is seen as an even subtler quantity than momentum, and usu
 One reason is that the distinction between momentum and angular momentum is not clear-cut, and depends on our choice of coordinates. For instance, what can be considered as a component of momentum in one coordinate system, can also be considered as a component of angular momentum in another coordinate system. This reflects the fact that there isn't a clear-cut distinction between translational and rotational motion; usually they involve each other to some degree. A translational motion can be interpreted as a rotation around a point that is very far away; and a rotation of an extended object can be interpreted as a collection of small translational motions of its parts.
 
 Another, very important reason is that the physical laws that involve angular momentum can be expressed in a different way, as sorts of symmetries between momentum fluxes and between energy flux and momentum. With this alternative approach we don't even need to introduce the quantity \enquote*{angular momentum} at all! This approach is indeed followed for many physical phenomena and applications, for example those that involve fluid motion. But for other phenomena it's much more convenient to speak of angular momentum and to use its balance law.
-
 %
-\marginpar{\vspace{-13\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/polymer.png}%
+\marginpar{\vspace{-9\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/polymer.png}%
   \\\includegraphics[width=\linewidth]{images/polymer2.png}%
   \\[\jot]\flushleftright\footnotesize\color{mpcolor}Some liquid polymers (\textbf{top:} Liquid Diethoxymethane Polysulfide) need to be described with a special kind of angular momentum, owing to their molecular structure (\textbf{bottom}).%
 }%
@@ -2766,28 +2772,28 @@ In phenomena involving liquid \furl{https://www.britannica.com/science/polymer}{
 % https://www.britannica.com/science/polymer
 elementary particles, or electromagnetic radiation, for example, it's convenient to use angular momentum and to let it include an additional part, called \emph{spin} or \emph{intrinsic angular momentum}, which is associated with rotational motion that is invisible to the naked eye or the particular instruments used to measure motion.
 
-\medskip
+\smallskip
 
 We shall further discuss these topics in \chap~\ref{cha:bal_ang_momentum}. In any case keep in mind that \emph{there is} a universal law that is \emph{independent} from the one obeyed by momentum. Even if we can in principle omit the notion of angular momentum, we \emph{cannot} avoid the use of this additional universal law.
 
-
-\medskip
-
-
-%
-\marginpar{\vspace{\baselineskip}\centering\includegraphics[width=\linewidth]{images/cube_Nms_coords.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}The amount of angular momentum within a volume at a given instant is represented by a \textcolor{purple}{vector} (curious about the little circulation symbol around the vector? see \sect~\ref{sec:twisted_vec})%
-}%
-Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of angular momentum within that volume. This amount is represented by a vector.
 
 %\cites{truesdell1963b_r1968} tells some of the story of how this was discovered). % \mynotew{rephrase this}
 
 \smallskip
 
 \begin{definition}{Angular momentum: notation}
-  The amount of angular momentum in a region is usually denoted with $\yL$. The torque or flux of angular momentum is denoted with $\yto$.
+  The amount of angular momentum in a region will be denoted with $\yL$. The torque or flux of angular momentum will be denoted with $\yto$.
 \end{definition}
 
+\begin{exercise}
+  Assume the relation $L = \yM v R$ between the angular-momentum magnitude $L$, \masse\ $\yM$, speed $v$, and orbital radius $R$ of a planet. \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{For the Earth} we have approximately
+  \begin{equation*}
+    \yM = \qty{6.0e24}{kg} \qquad
+    v = \qty{3.0e4}{m/s} \qquad
+    R = \qty{1.5e11}{m}
+  \end{equation*}
+How much is the Earth's angular momentum? (Note that we are neglecting the angular momentum coming from its own rotation.)
+\end{exercise}
 
 
 \subsection{Amounts of energy, momentum, angular momentum are coordinate-dependent}
@@ -2820,7 +2826,7 @@ From the discussions and formulae above, it seems that \energym, momentum, angul
 
   General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}. They express how spacetime is curved in different directions. So whenever we measure, say, the energy or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. % We shall discuss further connections between these three quantities and spacetime in \sect~\mynotew{}.
 \end{extra}
-\marginpar{\vspace{-11em}\centering\includegraphics[width=\linewidth]{images/curvature1.png}%
+\marginpar{\vspace{-12\baselineskip}\centering\includegraphics[width=\linewidth]{images/curvature1.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}Energy, momentum, angular momentum are measures of particular curvatures of spacetime.%
 }%
 
@@ -2830,13 +2836,13 @@ From the discussions and formulae above, it seems that \energym, momentum, angul
 Entropy is a \emph{scalar} quantity, with SI dimension \textsf{energy$/$temperature}, and measured in units of \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{joules}$/$\emph{kelvins} (\unit{J/K})}. From this definition it would seem that entropy is derived from temperature. However, although \textsf{temperature} is taken as primitive by the SI, the \furl{https://doi.org/10.1351/goldbook.K03374}{definition of temperature} actually depends on a fixed value of \furl{https://doi.org/10.1351/goldbook.B00695}{\emph{Boltzmann's constant}}, which has the dimension of \textsf{entropy}.
 
 Entropy is probably the most difficult quantity to grasp intuitively. Many seemingly intuitive descriptions given in some textbooks are, unfortunately, unhelpful and even misleading.
-
-One particularly misleading intuition is that entropy would be a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example with \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
-\marginpar{\vspace{-3\baselineskip}\centering%
-\includegraphics[width=\linewidth]{images/entropy_low.png}\\%
-\includegraphics[width=\linewidth]{images/entropy_high.png}
-\\[\jot]\flushleftright\footnotesize\color{mpcolor}Microscopic configurations of a lattice gas. \textbf{Left}: a configuration coming from a \emph{low}-entropy state. \textbf{Right}: a configuration coming from a \emph{high}-entropy state \parencites{styer2000}.%
-}
+%
+\marginpar{\vspace{0\baselineskip}\centering%
+\includegraphics[width=0.495\linewidth]{images/entropy_low.png}\hfill%\\%
+\includegraphics[width=0.495\linewidth]{images/entropy_high.png}
+\\[\jot]\flushleftright\footnotesize\color{mpcolor}Two microscopic configurations of a lattice gas. \textbf{Left}: configuration coming from a \emph{low}-entropy state. \textbf{Right}: configuration coming from a \emph{high}-entropy state \parencites{styer2000}.%
+}%
+One particularly \emph{misleading} description is to say that entropy is a \enquote{measure of disorder}. Besides the fact that \enquote{disorder} is very vague and subjective, it turns out that some physical phenomena, for example involving \furl{https://www.britannica.com/science/liquid-crystal}{liquid crystals}, can be considered more \enquote{disordered}, and yet have \emph{lower} entropy, than others. See also the example in the side figure. We shall discuss more about such phenomena later on.
 
 In these notes we shall rely on the idea that \emph{entropy expresses a limit on the flux of energy into matter}. Said in simpler but more imprecise words, entropy is a bound on how fast we can heat up a body. We shall develop this idea further later.
 
