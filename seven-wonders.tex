@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-12-07T10:26:18+0100
+%% Last-Updated: 2024-12-10T15:22:28+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1374,6 +1374,7 @@ Dag Åsmund Ørnes, %
 Iver Thoresen Malme, %
 % Jonas Pytte, %
 Josefine Björk Jarlesdottir Gjerde, %
+% Kamil Krzysztof Zak, % <- ask
 Leonard Rogardt Heldal, %
 Nicolai Lindløkken, %
 Nikolai Ringereide, %
@@ -2999,11 +3000,19 @@ In General Relativity the metric is a dynamic object instead: it can change in t
 \label{cha:contents_fluxes}
 
 
-\epigraph{For the sake of persons of these different types, scientific truth should be presented in different forms, and should be regarded as equally scientific, whether it appears in the robust form and the vivid colouring of a physical illustration, or in the tenuity and paleness of a symbolical expression.%
-}{J. Clerk Maxwell \cites*{maxwell1870}}
+\epigraph{The other method of investigation, in which we consider what passes through the walls of an element of volume, is applicable to electric current, and is perhaps preferable in point of form to that which we have given, but as it may be found in any treatise on Hydrodynamics we need not repeat it here.%
+}{J. Clerk Maxwell \cites*{maxwell1873}}
+% \epigraph{For the sake of persons of these different types, scientific truth should be presented in different forms, and should be regarded as equally scientific, whether it appears in the robust form and the vivid colouring of a physical illustration, or in the tenuity and paleness of a symbolical expression.%
+% }{J. Clerk Maxwell \cites*{maxwell1870}}
 
+%mynotew{add intro about the general idea, how we apply physical laws}
 
-Recall that the \autoref{cha:stuff}{main seven quantities} -- matter, electric charge, magnetic flux, energy, momentum, angular momentum, and entropy -- have three common properties related to their measurement:
+\mynotew{Under modification}
+
+\section{Contents and fluxes}
+\label{sec:contentflux}
+
+Recall that the \autoref{cha:stuff}{seven main quantities} -- matter, electric charge, magnetic flux, energy, momentum, angular momentum, entropy -- have three common properties related to their measurement:
 \begin{enumerate}
 \item[(1)] We can measure the amount of quantity within a three-dimensional region, at a specific time instant
 \item[(2a)] We can measure the amount of quantity flowing through a two-dimensional surface during a time lapse\textellipsis
@@ -3022,7 +3031,7 @@ Let's give definite names to the measurements~(1) and~(2b):
 
 \smallskip
 
-These two notions and measurements are very intuitive. It is therefore convenient to base our physics upon them. In this chapter we straighten out some details about their definition and also about our intuition.
+These two notions and measurements are very intuitive. It is therefore convenient to base our physics upon them. In this chapter we straighten out some details about their definition and about our intuition for them. Later on we shall introduce the additional notion of \emph{supply}, related to these two.
 
 \section{Control volumes and control surfaces}
 \label{sec:choice_surfaces}
@@ -3686,6 +3695,14 @@ The pictures say: on the side of the ground, an amount momentum is being added a
 From the examples above, we see that thinking of force as momentum flux automatically leads to \emph{Newton's third law}: if one side is gaining momentum with a given orientation, the other side by symmetry is gaining momentum with the opposite orientation. In other words, if one side is experiencing a force with a given orientation, the other side is experiencing a force with the opposite orientation.
 
 We thus see that \emph{Newton's third law is the expression of the \autoref{def:symmetryflux}{symmetry of flux} for the specific case of the flux of momentum}. We also realize that this \enquote{law} is more general: it applies not only to force, but also to the flux of all other quantities, even scalar ones.
+
+% \begin{warning}[Newton's Third Law is not valid for supply forces]
+%   The term \enquote*{force} is also used for the \emph{supply} of momentum; in this case it is more specifically called \textbf{body force} or \textbf{volume force}.
+% 
+%   We shall later see that 
+%   A flux, scalar or vector, through a particular surface, in general doesn't tell us anything about the flux though another surface, nor about the flux through the same surface but with a different instantaneous motion.
+% \end{warning}
+%% ***newton's 3rd
 
 
 % \subsection{But is force really \enquote{flowing momentum}?}
@@ -4454,6 +4471,8 @@ A conservation law is therefore powerful also because it allows us to predict th
 \smallskip
 
 Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the supply $\yR$, on the other hand, involves what's happening \emph{within the control volumes, at each time}. A conservation law instead does \emph{not} require us to know what's happening within the control volumes, except at the initial and final time.
+
+One more important reason to keep fluxes and supplies separated is that \autoref{def:symmetryflux}{fluxes always satisfy a symmetry principle}, but \emph{supplies in general do not satisfy any symmetry principle}.
 % Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yR(t)\,\di t$ is not an integrated flux.
 \end{warning}
 
@@ -8728,6 +8747,8 @@ This makes sense from a molecular point of view: roughly speaking, the kinetic e
 The balance of angular momentum -- or rotational momentum or moment of momentum -- is no less important and no less present in everyday phenomena than the balances of momentum or energy. Like the balance of momentum, it is at the core of applications where motion and stability are important. It is crucial in studying, predicting, and planning the motion of artificial satellites around Earth and of celestial bodies, from planets to galaxies.
 
 Yet the balance of angular momentum is mentioned less often, and may \emph{seem} less often, used than the balance of momentum. This happens because of several related reasons. The most important constitutive relations involving angular momentum require slightly more complicated mathematics, in particular they need explicit integration of functions and the use of vector cross-products or bivectors. Because of this, the consequences of the balance of angular momentum are often pre-emptively baked-in into constitutive relations; we shall soon see an example with the Hookean spring.
+
+
 
 It moreover turns out that \emph{the balance of angular momentum can be expressed without the time derivative of a volume content, or without the time-integrals of a flux and of a supply}. It can instead be expressed as a sort of symmetry condition, we can call this the \enquote{tensorial expression} of this balance:
 
