@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-12-27T18:06:36+0100
+%% Last-Updated: 2024-12-27T19:11:27+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -135,15 +135,15 @@ british%
 
 \usepackage[shortlabels,inline]{enumitem}
 \SetEnumitemKey{para}{itemindent=\parindent,leftmargin=0pt,listparindent=\parindent,parsep=0pt,itemsep=\topsep}
-\SetEnumitemKey{shift}{leftmargin=1em}
-\SetEnumitemKey{exerc}{leftmargin=1em,label=\bfseries\arabic*.}
+% \SetEnumitemKey{shift}{leftmargin=8.81pt}
+\SetEnumitemKey{exerc}{leftmargin=17.62pt,label=\bfseries\arabic*.}
 % \begin{asparaenum} = \begin{enumerate}[para]
 % \begin{inparaenum} = \begin{enumerate*}
 \setlist{itemsep=0pt,topsep=\parsep}
 \setlist[enumerate,2]{label=(\roman*)}
-\setlist[enumerate]{label=(\alph*),leftmargin=1.5\parindent}
-\setlist[itemize]{leftmargin=1.5\parindent}
-\setlist[description]{leftmargin=1.5\parindent,font=\sffamily\bfseries}
+\setlist[enumerate]{label=(\alph*),leftmargin=26.44pt}
+\setlist[itemize]{leftmargin=26.44pt}% parindent is 17.62482pt
+\setlist[description]{leftmargin=26.44pt,font=\sffamily\bfseries}
 % old alternative:
 % \setlist[enumerate,2]{label=\alph*.}
 % \setlist[enumerate]{leftmargin=\parindent}
@@ -1163,29 +1163,32 @@ angle-right%
 % \usepackage{multimedia}
 \usepackage[breakable,skins]{tcolorbox}
 
-\newtcolorbox{myframe}{enhanced, no shadow, colback=white, colframe=midgrey, boxrule=1pt, breakable, after={\smallskip}}
+% \newtcolorbox{myframe}{enhanced, no shadow, colback=white, colframe=midgrey, boxrule=1pt, breakable, after={\smallskip}}
 
 \newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced,
   no shadow,
-  %sharp corners,
-  parbox=false,
+  %parbox=false,
   % colback=yellow!5!white, colframe=yellow, boxrule=1pt,
   interior hidden,
-  borderline west={2pt}{0pt}{yellow},
+  borderline west={1pt}{0pt}{yellow},
+  borderline south={1pt}{0pt}{yellow!25!white},
   frame hidden,
-  left=1ex, right=0ex,
+  left=1ex, right=0ex, bottom=1ex,
   breakable,
   % fontupper=\small,
-  fonttitle=\bfseries\sffamily, after={\smallskip}, title=\color{yellow}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+  fonttitle=\bfseries\sffamily,
+  after={\smallskip},
+  title=\color{yellow}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
 \newtcolorbox{warning}[1][]{enhanced, no shadow,
-  parbox=false,
+  %parbox=false,
   % colback=red!5!white,
   % colframe=red, left=1ex, right=1ex, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
   interior hidden,
-  borderline west={2pt}{0pt}{red},
+  borderline west={1pt}{0pt}{red},
+  borderline south={1pt}{0pt}{red!25!white},
   frame hidden,
-  left=1ex, right=0ex,
+  left=1ex, right=0ex, bottom=1ex,
   breakable,
 % fontupper=\small, fonttitle=\bfseries\small,
 fonttitle=\bfseries,
@@ -1198,21 +1201,23 @@ title=\color{red}\faIcon{exclamation-circle}\enspace#1}
 \newtcolorbox{definition}[1]{enhanced, no shadow,
   %colback=green!5!white,
   interior hidden,
-  borderline west={2pt}{0pt}{green},
+  borderline west={1pt}{0pt}{green},
+  borderline south={1pt}{0pt}{green!25!white},
   frame hidden,
-  left=1ex, right=0ex,
+  left=1ex, right=0ex, bottom=1ex,
   %colframe=green,
   %leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
   breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\color{green}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
 \newtcolorbox{extra}[1]{enhanced, no shadow,
-  parbox=false, %width=0.975\linewidth,
+  %parbox=false, %width=0.975\linewidth,
   % center, colback=blue!5!white, colframe=blue, boxrule=0.5pt,
   interior hidden,
-  borderline west={2pt}{0pt}{blue},
+  borderline west={1pt}{0pt}{blue},
+  borderline south={1pt}{0pt}{blue!25!white},
   frame hidden,
-  left=1ex, right=0ex,
+  left=1ex, right=0ex, bottom=1ex,
   breakable,
    fontupper=\footnotesize,
   fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\color{blue}\faIcon{user-astronaut}\enspace#1}
@@ -2321,7 +2326,7 @@ Recall that \autoref{sec:primitives}{primitive quantities cannot be defined}: we
 
 First of all, for each quantity -- with a slight change for the magnetic flux -- we can ask or measure:
 \begin{definition}{The two basic measurements that can be made on the seven quantities}
-  \begin{enumerate}[shift,label=\arabic*.]\bfseries
+  \begin{enumerate}[label=\arabic*.]\bfseries
   \item How much of this quantity is contained in a particular three-dimensional region of space at a particular time instant?
 
   \item How much of this quantity flows through a particular two-dimensional surface during a particular time lapse?
@@ -2342,7 +2347,7 @@ We can ask these questions of any region of space and any time lapse, and the su
 
 We can consider the question about the flow through a surface in the case of a very short lapse of time, and divide the total flow by that time lapse. This way we have an alternative form of the second measurement, as flow per unit time:
 \begin{definition}{Flux of a substance through a surface}
-  \begin{enumerate}[shift,label=\arabic*.]\bfseries
+  \begin{enumerate}[label=\arabic*.]\bfseries
   \item[2b.] How much of this quantity is flowing through a particular two-dimensional surface per unit time, at a particular time instant?
   \end{enumerate}
 \end{definition}
@@ -2350,7 +2355,7 @@ This is called the \textbf{flux} of the quantity through that surface.
 
 The third property common to all seven quantities tells how the measurements above combine for several regions of space and several surfaces. They combine by simple addition:
 \begin{definition}{Extensivity or additivity of the seven quantities,label={def:extensivity}}
-\begin{enumerate}[shift,label=\arabic*.]\bfseries
+\begin{enumerate}[label=\arabic*.]\bfseries
   \item[3.]  If we consider two or more non-overlapping volumes, the amount of quantity in the total volume is equal to the sum of the amounts in the separate volumes.
 
     If we consider two or more non-overlapping surfaces, the amount of quantity flowing through the total surface is equal to the sum of the amounts flowing through the separate surfaces.
@@ -3356,7 +3361,7 @@ In fact, ordinary electricity in wires was thought for some time to be associate
 The purpose of the previous examples is to make you aware of some fundamental aspects of what we call \enquote{flux}. These aspects are trivial but important when considering fluxes of physical quantities:
 %
 \begin{definition}{Fundamental aspects and symmetry of flux}\label{def:symmetryflux}
-  \begin{itemize}[nosep,shift]
+  \begin{itemize}[nosep]
   \item A flux in a particular surface-crossing direction only tells us the \emph{net} amount of substance that crosses the surface in that direction in a unit of time.
 
   \item A flux can be \emph{negative}.
@@ -3369,7 +3374,7 @@ The purpose of the previous examples is to make you aware of some fundamental as
 }%
 
 \begin{warning}[What a flux value does not tell]
-  \begin{itemize}[nosep,shift]
+  \begin{itemize}[nosep]
   \item A flux value does not tell us the amount that crossed during shorter times or through different parts of the surface.
 
 \item A flux value does not tell us whether the transfer of the quantity through the surface occurs because the quantity is flowing, or because the surface is moving, or both.
@@ -6114,7 +6119,7 @@ We know that \autoref{sec:pressure_tension_shear}{tension and compression are pa
 We can approximately treat these objects as control volumes for which the following constitutive properties apply:
 \begin{definition}{Hookean spring,label={def:hooke}}
   A \textbf{Hookean spring} is a control volume with the following properties:
-  \begin{itemize}[shift]
+  \begin{itemize}
   \item One dimension has a natural length $\ylo$ that is much larger than the other two, which are usually neglected.
   \item The total amount and supply of momentum $\yP$ within the control volume are negligible.
   \item Across the (small) surfaces orthogonal to main dimension there is an \textbf{ef}flux of momentum equal to
@@ -6179,7 +6184,7 @@ A Hookean or non-Hookean \enquote{spring} is modelled as having no \masse\ or mo
 We can clearly employ this general idea to model other, wildly different, physical phenomena:
 \begin{definition}{Pairwise forces}
   Consider a phenomenon where these three main conditions are met:
-  \begin{itemize}[shift,noitemsep]
+  \begin{itemize}[noitemsep]
   \item a transfer of momentum occurs between two \emph{separate} control volumes
   \item this transfer can approximately be treated as \emph{instantaneous}
   \item \masse\ and momentum involved in the transfer can be neglected (just like the mass and momentum of a real spring)
@@ -6746,16 +6751,18 @@ Imagine a rigid box at rest containing an amount of gas, and vacuum outside the 
 This peculiar behaviour of gases gives us an idea of what kind of momentum fluxes must occur at the boundaries of a control volume containing some gas.
 
 %
-\marginpar{\vspace{\baselineskip}\centering%
+\marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
 }
 \begin{exercise}
-  Before continuing to read, try to figure out by yourself how the momentum fluxes in a gas should be. Formulate some hypotheses at least. Remember that you must first choose some control surfaces first. For instance, think of what kind of momentum flux there could be through control surfaces like the \textcolor{purple}{red dashed lines} in the side illustration:
+  Before continuing to read, try to figure out by yourself how the momentum fluxes in a gas should be; formulate some hypotheses at least. Remember that you must first choose control surfaces. For instance, think of what kind of momentum flux there could be through control surfaces like the \textcolor{purple}{red dashed lines} in the side figure:
   \begin{enumerate*}[label=(\alph*)]
   \item at the opened side;
-  \item in between the opened side and the middle of the box, parallel to opened side.
+  \item in between the opened side and the middle of the box, parallel to the opened side.
   \end{enumerate*}
 \end{exercise}
+
+\medskip
 
 Let us try to infer what are the momentum fluxes through the two horizontal control surfaces depicted in the previous illustration.
 %
@@ -6770,11 +6777,11 @@ Let us try to infer what are the momentum fluxes through the two horizontal cont
 \item As long as the upper side of the box is closed, however, portion of gas between the two surfaces stays at rest. The flux of outward-oriented momentum coming from the gas further within the box must therefore be compensated by a flux of inward-oriented momentum that comes from the closed side of the box (side picture, right).
 \end{itemize}
 
+Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small control surface delimiting some gas \emph{at rest} there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
 %
-\marginpar{\vspace{2\baselineskip}\centering%
+\marginpar{\vspace{-3\baselineskip}\centering%
 \includegraphics[width=0.75\linewidth]{images/gas_fluxes.jpg}%
 }
-Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small control surface delimiting some gas \emph{at rest} there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
 \begin{definition}{Internal pressure,label={def:internal_pressure}}
   The compressive momentum flux that occurs through any control surface that we may choose within a gas is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is the flux divided by the area through which it occurs.
 \end{definition}
@@ -6812,7 +6819,7 @@ In these notes, instead, I'd like to discuss  more in detail the role of the bal
 \begin{exercise}
   Before continuing, try to do on your own the analysis of two small bodies connected by a Hookean spring, as %\autoref{sec:hooke}{}
   previously defined. Consider in particular:
-  \begin{itemize}[shift]
+  \begin{itemize}
   \item How would you set up a coordinate system and closed control surfaces to describe this physical phenomenon? how many control volumes?
   \item How many applications of the balance of momentum would you need to make?
   \item What would be the volume contents, fluxes, and supplies in these balances?
@@ -7423,7 +7430,7 @@ A small mathematical change in a constitutive relation can lead to a much richer
   Modify the script you wrote for Exercise~\ref{ex:hooke} so that the spring is modelled by the non-Hookean constitutive relation~\eqref{eq:nonhooke}. This constitutive relation can be implemented with an \texttt{if}-statement, for instance.
 
   Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the side plots:
-\begin{description}[shift,itemsep=\baselineskip]
+\begin{description}[itemsep=\baselineskip]
       \item[Set 1:]
         \begin{equation*}
       \begin{gathered}
@@ -8093,7 +8100,7 @@ We shall now focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ w
   is only valid when there isn't any flux of matter through that surface. What if there \emph{is} a flux of matter? how does that constitutive relation change?
 
   There is indeed a more general formula that can be used even when there is a flux of matter through the control surface. To understand it, however, we must:
-  \begin{itemize}[shift,nosep]
+  \begin{itemize}[nosep]
   \item give the formulae for the fluxes of matter, momentum, energy at the same time
   \item take into account the contents of matter, momentum, energy in a thin control volume connected to the surface
   \item take into account the velocity of the control surface itself.
@@ -8101,7 +8108,7 @@ We shall now focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ w
 So the description is somewhat more complicated; you see why we choose to avoid this more general situation in the notes. But here are the fully general formulae, in case you're curious.
 
   Choose a crossing direction for the surface, and
-  \begin{itemize}[shift,nosep]
+  \begin{itemize}[nosep]
   \item $\yvs$ is the velocity of the surface
   \item $\yns$ is a \emph{unit} vector orthogonal to the surface, having the same direction as the crossing direction
   \item $A$ is the area of the surface
@@ -8293,7 +8300,7 @@ Next we discuss a constitutive relation that connects the amount of internal ene
 This formula is very important: for an ideal gas, the absolute temperature is a direct measure of the internal energy, so it can often be used as a proxy for the latter.
 
 \begin{warning}[Validity of the internal-energy formula]
-  \begin{itemize}[shift]
+  \begin{itemize}
   \item Keep in mind that the particular constitutive relation~\eqref{eq:int_energy_idealgas} is valid for an ideal gas only. The internal energy of a generic material is related to other quantities besides amount of matter and temperature.
 
   \item Some books express the formula above saying \enquote{the internal energy of an ideal gas depends only on temperature}. This statement is somewhat vague and easy to misunderstand. First, the internal energy clearly \enquote{depends} also on the amount of matter $\yN$. Second, if in some application we express the amount of matter or the temperature as functions of other quantities, such as volume, then the internal energy also becomes a function of those quantities. The formula above can be simply expressed as follow: if we know the amount (and kind) of matter in a volume, and the temperature in that volume, then we also know the amount of internal energy therein.
@@ -9294,7 +9301,7 @@ We have emphasized that the balance of entropy (together with the other balances
 The most important constitutive relation for entropy is the one that relates its flux $\yB$ with the \autoref{sec:heating_power}{heat flux} $\yQ$ and the thermodynamic temperature $\yT$.
 \begin{definition}{Entropy flux,label={def:entropyflux}}
   Consider a control surface, possibly moving, with an assigned crossing direction, and satisfying the following conditions:
-  \begin{itemize}[shift,nosep]
+  \begin{itemize}[nosep]
   \item the surface is in contact with matter on both sides
   \item no flux of matter through the surface
   \item no chemical reactions (transformations between matter types) occur across the surface
@@ -9319,7 +9326,7 @@ This relation has wide applicability, but pay close attention to the conditions 
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item At a particular time instant, across a closed control surface there is a flux of energy as illustrated in the side picture:
-    \begin{itemize}[shift]
+    \begin{itemize}
     \item \textcolor{purple}{through one part} of the surface there is a heat influx of \qty{200}{J/s} and no flux of mechanical power; the temperature around that part is \qty{400}{K}
     \item \textcolor{green}{through one part} there is a \qty{40}{J/s} heat efflux and a \qty{50}{J/s} efflux of mechanical power; the temperature around that part is \qty{150}{K}
     \item \textcolor{blue}{through one part} there is a  \qty{10}{J/s} heat efflux and no flux mechanical power; the temperature around that part is \qty{100}{K}
