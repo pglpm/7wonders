@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2024-12-15T13:02:25+0100
+%% Last-Updated: 2024-12-27T18:06:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -472,8 +472,8 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 \PassOptionsToPackage{hyphens}{url}\usepackage[hypertexnames=false,pdfencoding=unicode,psdextra]{hyperref}
 
 \usepackage{pdfrender}
-\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\textbf{#1}}}
-\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.3pt}{\boldsymbol{#1}}}
+\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
+\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\boldsymbol{#1}}}
 
 
 \usepackage[depth=3]{bookmark}
@@ -1165,25 +1165,57 @@ angle-right%
 
 \newtcolorbox{myframe}{enhanced, no shadow, colback=white, colframe=midgrey, boxrule=1pt, breakable, after={\smallskip}}
 
-\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced, no shadow, sharp corners, parbox=false, colback=yellow!5!white, colframe=yellow, boxrule=1pt, breakable,
+\newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced,
+  no shadow,
+  %sharp corners,
+  parbox=false,
+  % colback=yellow!5!white, colframe=yellow, boxrule=1pt,
+  interior hidden,
+  borderline west={2pt}{0pt}{yellow},
+  frame hidden,
+  left=1ex, right=0ex,
+  breakable,
   % fontupper=\small,
-  fonttitle=\bfseries\sffamily, after={\smallskip}, title=\hspace{-2ex}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+  fonttitle=\bfseries\sffamily, after={\smallskip}, title=\color{yellow}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
 
-\newtcolorbox{warning}[1][]{enhanced, no shadow, parbox=false, colback=red!5!white, colframe=red, left=1ex, right=1ex, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt, breakable,
+\newtcolorbox{warning}[1][]{enhanced, no shadow,
+  parbox=false,
+  % colback=red!5!white,
+  % colframe=red, left=1ex, right=1ex, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
+  interior hidden,
+  borderline west={2pt}{0pt}{red},
+  frame hidden,
+  left=1ex, right=0ex,
+  breakable,
 % fontupper=\small, fonttitle=\bfseries\small,
-fonttitle=\bfseries\footnotesize,
-after={\smallskip}, title=\hspace{0ex}\faIcon{exclamation-circle}\enspace#1}
+fonttitle=\bfseries,
+after={\smallskip},
+title=\color{red}\faIcon{exclamation-circle}\enspace#1}
 
 % \newtcolorbox{critique}[1][Critique]{enhanced, no shadow,parbox=false,center,
 % width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
 
-\newtcolorbox{definition}[1]{enhanced, no shadow, colback=green!5!white, colframe=green, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt, breakable, fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\hspace{-2ex}\faIcon{bookmark}\enspace#1}
+\newtcolorbox{definition}[1]{enhanced, no shadow,
+  %colback=green!5!white,
+  interior hidden,
+  borderline west={2pt}{0pt}{green},
+  frame hidden,
+  left=1ex, right=0ex,
+  %colframe=green,
+  %leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
+  breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\color{green}\faIcon{bookmark}\enspace#1}
 %map-marker-alt
 
-\newtcolorbox{extra}[1]{enhanced, no shadow, parbox=false, %width=0.975\linewidth,
-  center, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable,
+\newtcolorbox{extra}[1]{enhanced, no shadow,
+  parbox=false, %width=0.975\linewidth,
+  % center, colback=blue!5!white, colframe=blue, boxrule=0.5pt,
+  interior hidden,
+  borderline west={2pt}{0pt}{blue},
+  frame hidden,
+  left=1ex, right=0ex,
+  breakable,
    fontupper=\footnotesize,
-  fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\hspace{-2ex}\faIcon{user-astronaut}\enspace#1}
+  fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\color{blue}\faIcon{user-astronaut}\enspace#1}
 % \newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3065,22 +3097,38 @@ Therefore it does make sense to speak about, and to quantify, such increase or d
 
 In this chapter we straighten out some details about the definition and our intuition of contents, fluxes, and supplies.
 
+
+
+
 \section{Control volumes and control surfaces}
-\label{sec:choice_surfaces}
+\label{sec_controlvolumes_surfaces}
 
 For six main quantities we can therefore say how much of that quantity is in a given volume, how much is flowing through a given surface in the unit of time, and how much is being created in a given volume in the unit of time.
 
-But how should we choose such volumes and surfaces? Are we constrained in their choice? Do they need to have particular shapes or sizes or positions? Do they need to follow the contours of particular physical objects? Since these volumes and surfaces will play an important role in formulating our main physical laws, one might think that they must be chosen in very special way.
-
-But that's not the case!
+But how should we choose such volumes and surfaces? Are we constrained in their choice? Do they need to have particular shapes or sizes or positions? Do they need to follow the contours of particular physical objects? Since these volumes and surfaces will play an important role in formulating our main physical laws, one might think that they must be chosen in very special way. But that isn't the case!
 
 What's surprising and extremely powerful is that \emph{the choice of volume} for a volume content, \emph{and the choice of surface} for a flux \emph{are completely arbitrary}. Moreover, \emph{these volumes and surfaces can be completely imaginary}.
 
-Since they are under our control, and they allow us to control how the amounts of the seven quantities change, we call them \textbf{control volumes} and \textbf{control surfaces}.
+Since they are under our control, and since they allow us to keep under control how the amounts of our main quantities change, we call them \textbf{control volumes} and \textbf{control surfaces}.
 
-For example, consider a classroom and the people in it. In your imagination you can divide the classroom into two halves, say the front and the rear half. You can then ask or measure simply by counting:\enspace
+Up to now our discussion has been somewhat abstract. This abstractness reflects the amazing flexibility of the notions of control volumes and control surfaces. We now explore some more concrete examples, discuss how we can choose them.
+
+\subsection{Examples and choices of control volume}
+\label{sec:control_volumes}
+
+Let's start with an informal example of control volumes.
+
+Consider a classroom, with some people within. In your imagination you can divide the classroom into two halves, say the front half and the rear half. You effect this division by imagining a two-dimensional immaterial wall, going from the floor to the ceiling, and from one wall to the opposite one. The exact position is up to you, but it must be as precise as possible; for example, you should be able to explain to another person where the corners of your imagined wall are.
+
+You can then simply measure how many people are in the rear half at a particular time instant, say 11:43:27 of a specific date. This measurement could be done for instance by taking a photograph at exactly that instant and then counting the people on the photograph.
+
+What you just did was to choose a control volume at a given time, and also to measure its \enquote{volume content} of people. Note how the volume was defined by real objects -- part of the ceiling and floor, part of the side walls, the rear wall -- and by an imaginary object.
+
+There can be obvious complications. What if a person is partly on one side of your imaginary division wall, and partly on the other side? In this case we must count \enquote{fractions of a person} as being in the control volume, so there could be \num{5.3} people in the control volume at that instant.
+
+:\enspace
 \begin{enumerate*}[label=(\arabic*)]
-\item how many people are, right now, in the rear half;\enspace
+\item how many people are in the rear half, right now;\enspace
 \item how many people are crossing the imaginary division between the front and rear half during one minute, starting from now.
 \end{enumerate*}
 
@@ -3127,6 +3175,11 @@ In the case of a control surface the situation is different. The flux through a 
 The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in making predictions. Typically they are chosen so as to simplify the equations that describe the physical situation, to simulate physical phenomena in a more precise way, and to focus on details of interest.
 
 When we study some solid object, like a football, a rocket, or a planet, we typically choose a control volume that tightly encloses the object. When we study something flowing or moving, like a fluid material or an electromagnetic field, we typically divide the space of interest into small control volumes and surfaces, constructing a \emph{mesh}; this mesh can even be refined in regions that are of special interest.
+
+\subsection{Examples and choices of control surface}
+\label{sec:control_surfaces}
+
+
 
 \section{Volume content}
 \label{sec:intuition_volume}
@@ -3233,7 +3286,7 @@ We have a region consisting of two subregions; the amounts of momentum in each s
 \subsection{Crossing direction and reckoning of scalar fluxes}
 \label{sec:flux_scalar_direction}
 
-Earlier we considered the intuitive example of a \autoref{sec:choice_surfaces}{flow of people through an open door}. We may ask how many people crossed the door in a minute, but one more detail about this flow is important: \emph{in which direction did the people cross the door?} This detail is important because, for example, the door leads to a classroom and we need to keep track of how many seats are free. Then we need to know whether each person who crossed the door was \emph{entering} or \emph{leaving} the classroom, keeping track of how many additional people are in the classroom.
+Earlier we considered the intuitive example of a \autoref{sec_controlvolumes_surfaces}{flow of people through an open door}. We may ask how many people crossed the door in a minute, but one more detail about this flow is important: \emph{in which direction did the people cross the door?} This detail is important because, for example, the door leads to a classroom and we need to keep track of how many seats are free. Then we need to know whether each person who crossed the door was \emph{entering} or \emph{leaving} the classroom, keeping track of how many additional people are in the classroom.
 
 \marginpar{\vspace{-4\baselineskip}\centering%
 \includegraphics[width=0.5\linewidth]{images/person_enter.pdf}
@@ -3311,6 +3364,9 @@ The purpose of the previous examples is to make you aware of some fundamental as
   \item \textbf{Symmetry of flux}: A flux in a particular surface-crossing direction is equivalent to a flux of \emph{opposite} sign in the \emph{opposite} crossing direction.
   \end{itemize}
 \end{definition}
+%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\color{mpcolor}This is called \emph{Cauchy's fundamental lemma} in the technical literature.%
+}%
 
 \begin{warning}[What a flux value does not tell]
   \begin{itemize}[nosep,shift]
@@ -3387,7 +3443,7 @@ The two equivalent pictures do \emph{not} say that a given amount is \emph{only}
 
 % The third picture tries to avoid this misleading interpretation by not showing any arrows; it is meant to represent that on the left side the amount of quantity has changed by \textcolor{purple}{\num{-5}}, and on the right side by \textcolor{blue}{\num{+5}}. But also this picture may be misleading in suggesting that \num{+5} crossed left-to-right \emph{and} \num{-5} crossed right-to-left, for a total of \num{+10} left-to-right. Or vice versa it may lead you to sum up the two numbers, in which case you'll always obtain zero! % *****
 
-% The third representation above has one more advantage. Remember that \autoref{sec:choice_surfaces}{a flux through a surface may occur because the surface itself is moving}. The wiggly arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
+% The third representation above has one more advantage. Remember that \autoref{sec_controlvolumes_surfaces}{a flux through a surface may occur because the surface itself is moving}. The wiggly arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
 
 
 \subsection{Scalar fluxes through different surfaces}
@@ -8171,7 +8227,7 @@ The name \emph{tension} is used instead of \emph{pressure} if the momentum flux 
 Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
 \end{definition}
 
-\begin{warning}[\enquote*{Pressure} can have many different meanings]
+\begin{warning}[\enquote*{Pressure} has many different meanings]
   Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the pressure vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
 
   So when you read a text that uses or discusses \enquote*{pressure}, make sure to get correctly in which sense the text is using this word.
@@ -8181,7 +8237,6 @@ Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{
 
 
 Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
-
 \begin{definition}{Ideal-gas law with viscosity,label={def:idealgas_law}}
   If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yT$, and the momentum flux is orthogonal to the surface and uniform throughout, and there is no matter flux through the surface, then the pressure $\ypr$ is given by
   \begin{equation}
@@ -8760,6 +8815,9 @@ This is a very interesting result. Zoom out from the thin control volume, so tha
 
 This makes sense from a molecular point of view: roughly speaking, the kinetic energy of the visible, coordinated motion of the molecules that make up the crate, is transformed into kinetic energy of the microscopic uncoordinated motion of the molecules that make up the floor. But note the amazing fact that we obtained this result by applying the balance laws, without invoking any molecular picture. In \chap~\ref{cha:bal_entropy}, about the balance of entropy, we'll also discover that at this kind of surfaces of discontinuity, positive influx of mechanical power on one side can be converted to positive outflux of heat on the other side -- but the opposite conversion cannot happen.
 
+
+
+
 \printpagenotes*
 \clearpage
 \chapter{Balance of angular momentum}
@@ -9308,7 +9366,7 @@ Under the same conditions of validity for the constitutive relations above, we a
 \subsection{Thermal engines}
 \label{sec:heat_engine}
 
-Recall that we are completely free in our choice of a \autoref{sec:choice_surfaces}{control volume}: it can have any size and shape, and can move and deform in any way. This freedom is extremely powerful: we can for example imagine a control volume that wraps a very complex engine having moving parts. Through the surface of this control volume we can keep track of any exchanges of matter, momentum, energy between the engine and its exterior; in particular exchanges of heat and of mechanical power. And whatever happens within the engine, that is, within our imaginary control volume, must obey the seven universal balance laws.
+Recall that we are completely free in our choice of a \autoref{sec_controlvolumes_surfaces}{control volume}: it can have any size and shape, and can move and deform in any way. This freedom is extremely powerful: we can for example imagine a control volume that wraps a very complex engine having moving parts. Through the surface of this control volume we can keep track of any exchanges of matter, momentum, energy between the engine and its exterior; in particular exchanges of heat and of mechanical power. And whatever happens within the engine, that is, within our imaginary control volume, must obey the seven universal balance laws.
 
 This powerful freedom in choosing a control volume, when combined with the balances of entropy and energy, can lead to amazingly general physical results. Thanks to these results we can for example prevent waste of efforts in technological ideas that would eventually turn out to be unfeasible. Let us see a couple of examples.
 
