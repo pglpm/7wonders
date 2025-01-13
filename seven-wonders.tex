@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-12T22:40:51+0100
+%% Last-Updated: 2025-01-13T10:46:14+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1832,10 +1832,7 @@ The measurement of some physical quantities consists in just one number with ass
   \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definitions used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in General Relativity it cannot be called a scalar.
 \end{warning}
 
-\section{Informal tips about units and maths}
-\label{sec:units_maths}
-
-\subsection{Importance of units}
+\section{Importance of units}
 \label{sec:importance_units}
 
 Units are very important and must always be written for several reasons.
@@ -1846,7 +1843,7 @@ Second, units give us useful information about mathematical objects and their ph
 
 Third, because of the previous reason, keeping track of units often allows us to quickly catch errors in solving a physical problem.
 
-\subsection{Variables and units}
+\section{Variables and units}
 \label{sec:variables_units}
 
 When a physical quantity is denoted by a symbol or variable, keep in mind that a unit is \enquote{contained} in the symbol, so to speak. For example if the variable $t$ denotes a time, then it includes some time unit, say seconds. This becomes apparent when we write the value of the symbol, for instance \enquote{$t=\qty{120}{s}$}. The unit is not predetermined, but it must correspond to the dimension of that quantity. We could for instance write \enquote{$t=\qty{2}{min}$} instead; the two expressions are completely equivalent.
@@ -1859,7 +1856,7 @@ Units otherwise behave just like \emph{literal constants} for all mathematical p
   \num{3}\:\frac{\unit{mol}}{\mathcolor{red}{\not}\!\unit{s}} \cdot \num{5}\:\mathcolor{red}{\not}\!\unit{s} = \qty{15}{mol} \ .
 \end{equation*}
 
-\subsection{Mathematical functions and units}
+\section{Mathematical functions and units}
 \label{sec:functions_units}
 
 Particular care must be taken with trigonometric and exponential functions, like $\sin()$, $\cos()$, $\tan()$, $\exp()$, $\log()$; \textbf{these functions only admit a dimensionless argument} (which for the trigonometric ones corresponds to \emph{radians}). So there cannot be units like \enquote*{\unit{s}} or \enquote*{\unit{m}} within these functions: we must make sure that any units present within cancel out.
@@ -1904,7 +1901,7 @@ where $L$ is a length, and therefore includes some kind of length unit such as \
   2\,\cos(\dotso)\:\unit{m}
 \end{equation*}
 
-\subsection{Units and derivatives}
+\section{Units and derivatives}
 \label{sec:units_derivatives}
 
 When we follow the rules above, all other mathematical operations automatically take care of everything. The derivative, for instance, is calculated in the usual way, treating any visible units as literal constants. Let's see a concrete example. This expression
@@ -1939,7 +1936,10 @@ and you see that the correct units for velocity have automatically appeared.
 
 \epigraph{If we want to describe the \emph{motion} of a material point, we give the values of its coordinates as a function of time. However, we should keep in mind that for such a mathematical description to have physical meaning, we first have to clarify what is to be understood here by \enquote{time}. We have to bear in mind that all our propositions involving time are always propositions about \emph{simultaneous events}. If, for example, I say that \enquote{the train arrives here at 7 o'clock}, that means, more or less, \enquote{the pointing of the small hand of my clock to~7 and the arrival of the train are simultaneous events}.}{A. Einstein \cites*{einstein1905c}}
 
-\section{Time}
+
+
+
+\section{Time and proper time}
 \label{sec:time}
 
 % \subsection{Proper time: what's \enquote{now}?}
@@ -2052,12 +2052,41 @@ where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the E
 \end{enumerate}
 \end{exercise}
 
+\section{Coordinate time}
+\label{sec:coord_time}
+
+The fact that the time elapsed for you can be different from that elapsed for a satellite can therefore make it difficult to coordinate activities and to operate some technologies.
+
+But luckily there's a way to bypass proper-time discrepancies. Instead of referring to my proper time or to your proper time, we can agree on assigning a somewhat arbitrary numerical time label to every event: this is called a \textbf{coordinate time}.
+
+\medskip
+
+Coordinate time is generally different from the proper times measured by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. The coordinate time commonly used for Earth-physics purposes is \furl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time UTC}, or the \furl{https://gssc.esa.int/navipedia/index.php?title=Atomic_Time}{International Atomic Time TAI} for astronomy purposes:
+%\autocites[]{icwg1983_r2022}
+\begin{quote}\footnotesize
+  International Atomic Time (TAI) is based on more than 250 atomic clocks distributed worldwide that provide its stability, whereas a small number of primary frequency standards provide its accuracy. Universal Coordinated Time, which is the basis of all legal time scales, is derived from TAI. To allow the construction of TAI and the general dissemination of time, clocks separated by thousands of kilometres must be compared and synchronized. \textelp{} The achieved performances of atomic clocks and time transfer techniques imply that the definition of time scales and the clock comparison procedures must be considered within the framework of General Relativity. \sourceatright{\parencites{petitetal2005}}
+%\mbox{}\hfill (\cites{petitetal2005})
+\end{quote}
+% \begin{figure}[h!]\footnotesize\centering%
+% \includegraphics[align=t,width=0.75\linewidth]{images/datetime_2x.png}
+% \\%
+% \url{https://xkcd.com/2867}
+% \end{figure}
+UTC and TAI have the same time lapse, but UTC differ by irregular readjustments of its \enquote{zero}, the \furl{https://webtai.bipm.org/ftp/pub/tai/Circular-T/cirthtm/cirt.442.html}{leap seconds}.
+
+The clock on your phone, and on devices synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper-time lapse equal to UTC or TAI (besides small variations coming from the irregularity and internal motions of the Earth). But observers at other altitudes and observers moving with respect to Earth's surface can measure that their proper-times lapses are slightly different from UTC and TAI.
+
+\medskip
+
+In applications related to interplanetary spacecraft navigation and cosmological observations, the Barycentric Coordinate Time TCB is used. Its time lapse is slightly faster than the one of UTC: for each second that passes in UTC, \qty{1.0000000148}{s} pass in TCB on average. Two coordinate times to be used around an on the Moon, \furl{https://doi.org/10.1103/Physics.17.140}{Lunar Coordinate Time TCL} and Lunar Time LT, are on the making in the year 2025. Lunar Time will lapse faster by \qty{5.6e-5}{s} per day compared to our UTC. The establishment of all these kinds of coordinate times shows how important the difference between coordinate and proper time is for our current technology.
+
+\medskip
+
+When we use coordinate time, some important physics formulae turn out to be the same no matter whether we use General Relativity or an approximate theory such as Newtonian Mechanics. Thanks to this fact, for the most part of these notes we will not need to deal with proper-time details. But it is important for you to keep in mind how time really works, and the small time discrepancies that exist and occur all the time along your \emph{worldline}.
 
 
-\section{Space}
-\label{sec:space}
 
-\subsection{Difficulties in defining distance and length}
+\section{Space, length, distance}
 \label{sec:difficulties_distance}
 
 Together with the notion of time, also the notions of space, length, distance lose some of their traditional intuition. Traditionally when we speak of the distance or the length of a moving object at a given time, we mean the distance \enquote*{at the same instant of time}. But we have seen that it does not make sense to ask \enquote{what is the time for the object, right now?}. And when we speak of lengths or distances, we mean measurements \enquote*{on a straight line}. But spacetime is curved.
@@ -2086,72 +2115,6 @@ Similar problems appear if we ask questions about \emph{lengths}. Suppose there 
 
 \medskip
 
-As a consequence of these difficulties and of the curvature of spacetime, we can actually define and measure \emph{several} notions of distances and length, which are \emph{not} equivalent to one another. And there may be different paths having shortest distance; therefore saying \enquote{the path of shortest distance} may be ambiguous.
-
-
-\subsection{Radar distance}
-\label{sec:radar_distance}
-
-The definition of distance that's regarded as the most \enquote{physical} is \emph{radar distance}, defined as follows.
-
-Consider again a situation in which an object B is moving with respect to you, but is not too far away from you. Yours and B's motion in spacetime, around the time when your clock displays time $t$, is illustrated in the side figure.
-%
-\marginpar{\vspace{-\baselineskip}\centering\includegraphics[width=0.9\linewidth]{images/radar_distance.jpg}%
-  % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-}%
-Your \emph{worldline} in spacetime is the \textcolor{blue}{blue} one on the left; the worldline of object~B is the \textcolor{green}{green} one on the right. At your proper time $\yti$ you send a light pulse towards object~B. The pulse travels in empty space, and upon hitting object~B it immediately bounces back to you. It reaches you at your proper time $\ytf$. The worldline of the light pulse is shown in \textcolor{yellow}{dashed yellow} in the figure.
-
-A proper time $\Dt = \ytf - \yti$ has elapsed for you between emission and reception of the light pulse, and the time exactly in between emission and reception is $t = (\ytf + \yti)/2$. The \textbf{radar distance} $d$ of object~B from you at time $t$ is defined as
-\begin{equation}
-  \label{eq:physical_distance}
-  d \defd \tfrac12 c\, \Dt
-\end{equation}
-where $\yc$ is the speed of light in vacuum, a universal physical constant:
-% %
-% \marginpar{\vspace{-\baselineskip}%
-%   \footnotesize\color{mpcolor}The SI symbol for the speed of light in vacuum is \enquote{$c_{0}$} \parencites[item~6-35.2]{iso2008}. For simplicity we shall omit the subscript \enquote{${}_{0}$} in these notes.%
-% }%
-\begin{equation}
-  \label{eq:c}
-  \yc = \qty{299792458}{m/s}\quad\text{(exactly).}
-\end{equation}
-
-The SI unit of length, the \furl{https://www.nist.gov/si-redefinition/meter}{metre}, , is based on the measuring procedure above. Common laser distance meters also work by the same procedure, and therefore yield radar distance. When we speak of \enquote*{physical} distance, we typically mean radar distance.
-%
-\marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=0.75\linewidth]{images/laser_meter.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}A laser distance meter (the light beam is not visible in reality).%
-}%
-
-Radar distance, however, makes sense only if the time lapse $\Dt$ is small enough, so that the relative motion between you and the object is approximately uniform. For this reason this distance cannot be used if the object is too far away: the farther away it is, the longer it takes for a light beam to travel to and fro. Radar distances can be used between the Earth and other Solar System planets; but they cannot be used for galaxies or other distant cosmological objects.
-
-The value of the radar distance \emph{depends on the relative motion} between you and the object. Imagine that a friend of yours is located very close to you at time $t$, but is moving with respect to you. Upon measuring object~B's radar distance, your friend will generally find a value different from yours. The discrepancy between you and your friend's measured values will be the larger, the higher is the relative velocity between you two. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid objects in their vicinity.
-
-
-%
-\marginpar{\vspace{-5\baselineskip}\centering\includegraphics[width=\linewidth]{images/tuebingen.jpg}%
-  \\[\jot]\footnotesize\flushleftright\color{mpcolor}How a street in T{\"u}bingen would look like (except for colour and some other features) if we travelled through it at around \qty{240000000}{m/s} (from \textit{\furl{https://www.spacetimetravel.org/}{Relativity visualized}})%
-}%
-The dependence on relative motion also affects, at high speeds, how we \emph{see} objects, which appears more and more deformed. You can find beautiful visualizations, both static and animated, at \textit{\furl{https://www.spacetimetravel.org/}{Relativity visualized}}.
-
-
-\medskip
-
-Given a coordinate time it is possible to define an alternative distance, which we can call \textbf{spatial coordinate distance} or just \enquote*{coordinate distance} for short. It is the length of the path joining you and the object at coordinate time $t$ for both; all points of the path are also understood to be at coordinate time $t$ as well. The path should be a \emph{straight line} between you and the object; but we must remember that spacetime is curved. The notion closest to a \enquote*{straight line} in a curved space is that of a \furl{https://mathworld.wolfram.com/Geodesic.html}{\emph{geodesic}}. It turns out that there may be several geodesics connecting you and the object at coordinate time $t$. This fact may lead to some complications. For instance there may be different paths having shortest distance; therefore saying \enquote{the path of shortest distance} may be ambiguous.
-
-Coordinate distance has two advantages. First, it does \emph{not} depend on the relative motion between you and the object. Second, it can also be defined for very faraway objects. It is often difficult to measure directly, however, and often can only be extrapolated.
-
-Note also that the speed of light defined with respect to coordinate distance need not have the value $\yc$ or even be constant! You might have heard or read about  distant cosmological objects, like \furl{https://esahubble.org/wordbank/quasar}{quasars}, that are said to be receding from us at speeds faster than light's. How is that possible? The reason is that the \enquote*{speeds} they're talking about are defined with respect to \emph{coordinate distance}, not radar distance.
-
-\medskip
-
-Many other distances -- and corresponding speeds -- can be defined; \furl{https://doi.org/10.48550/arXiv.astro-ph/9905116}{cosmology uses a plethora of them}. One must therefore be careful about which definition of distance is being used.
-
-Luckily, for objects and events that are not too far away, and for observers whose relative speeds are not too high compared to the speed of light, all differently defined distances have very small discrepancies. In many everyday situations we can therefore speak of \enquote*{distance} without specify exactly which distance we're using. As an example, consider a car moving on a road at \qty{100}{km/h}, that is around \qty{28}{m/s}. The car's driver measures the length of the car to be \qty{4}{m} by radar distance. A pedestrian that sees the car passing by instead measures its length to be \qty{3.99999999999998}{m} by radar distance, which in this case is also equal to coordinate distance. This is a negligible measurement discrepancy in many ordinary situations.
-
-The distances we'll use in these notes can be interpreted either as coordinate distances or as radar distances.
-
-\medskip
-
 % %
 % \marginpar{\vspace{0\baselineskip}\centering%
 % %\includegraphics[width=\linewidth]{images/gravitational_lens3.jpg}%
@@ -2176,6 +2139,62 @@ A spectacular case of the effect of spacetime curvature is the phenomenon of \fu
 
 \medskip
 
+A consequence of these peculiar situations and of the curvature of spacetime is that many notions of distances and length can be defined and measured, which are generally \emph{not} equivalent to one another. Cosmology, for example, uses a \furl{https://doi.org/10.48550/arXiv.astro-ph/9905116}{plethora of different distances}. One must therefore be careful about which definition of distance is being used. In the next sections we shall focus on two of them: \emph{radar distance} and \emph{coordinate distance}.
+
+% And there may be different paths having shortest distance; therefore saying \enquote{the path of shortest distance} may be ambiguous.
+
+
+\subsection{Radar distance}
+\label{sec:radar_distance}
+
+The definition of distance that's regarded as the most \enquote{physical} is \emph{radar distance}, defined as follows.
+
+Consider again a situation in which an object B is moving with respect to you. Yours and B's motions in spacetime, around the time when your clock displays time $t$, are illustrated in the next side figure.
+Your \emph{worldline} in spacetime is the \textcolor{blue}{blue} one on the left; the worldline of object~B is the \textcolor{green}{green} one on the right. At your proper time $\yti$ you send a light pulse towards object~B. The pulse travels in empty space, and upon hitting object~B it immediately bounces back to you. It reaches you at your proper time $\ytf$. The worldline of the light pulse is shown in \textcolor{yellow}{dashed yellow} in the figure.
+%
+\marginpar{\vspace{-8\baselineskip}\centering\includegraphics[width=0.9\linewidth]{images/radar_distance.jpg}%
+  % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+}%
+
+A proper time $\Dt = \ytf - \yti$ has elapsed for you between emission and reception of the light pulse, and the time exactly in between emission and reception is $t = (\ytf + \yti)/2$. The \textbf{radar distance} $d$ of object~B from you at time $t$ is defined as
+\begin{equation}
+  \label{eq:physical_distance}
+  d \defd \tfrac12 c\, \Dt
+\end{equation}
+where $\yc$ is the speed of light in vacuum, a universal physical constant:
+% %
+% \marginpar{\vspace{-\baselineskip}%
+%   \footnotesize\color{mpcolor}The SI symbol for the speed of light in vacuum is \enquote{$c_{0}$} \parencites[item~6-35.2]{iso2008}. For simplicity we shall omit the subscript \enquote{${}_{0}$} in these notes.%
+% }%
+\begin{equation}
+  \label{eq:c}
+  \yc = \qty{299792458}{m/s}\quad\text{(exactly).}
+\end{equation}
+
+The SI unit of length, the \furl{https://www.nist.gov/si-redefinition/meter}{metre}, , is based on the measuring procedure above. Common laser distance meters also work by the same procedure, and therefore yield radar distance. As the name indicates, this is also the distance measured by radars.
+%
+\marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=0.75\linewidth]{images/laser_meter.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}A laser distance meter (the light beam is not visible in reality).%
+}%
+
+Radar distance, however, makes sense only if the time lapse $\Dt$ is small enough compared to variations in the relative motion of the observer and the object, so that this motion is approximately uniform. For this reason this distance cannot be used if the object is too far away: the farther away it is, the longer it takes for a light beam to travel to and fro. Radar distance can be used between the Earth and other Solar System planets; but it cannot be used for galaxies or other distant cosmological objects.
+
+Most important, \textbf{the value of radar distance depends on the relative motion} between you and the object. Imagine that a friend of yours is located very close to you at time $t$, but is moving with respect to you. Upon measuring object~B's radar distance, your friend will generally find a value different from yours. The discrepancy between you and your friend's measured values will be the larger, the higher is the relative velocity between you two. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid objects in their vicinity.
+
+
+%
+\marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=\linewidth]{images/tuebingen.jpg}%
+  \\[\jot]\footnotesize\flushleftright\color{mpcolor}How a street in T{\"u}bingen would look like (except for colour and some other features) if we travelled through it at around \qty{240000000}{m/s} (from \textit{\furl{https://www.spacetimetravel.org/}{Relativity visualized}})%
+}%
+The dependence on relative motion also affects, at high speeds, how we \emph{see} objects, which appears more and more deformed. You can find beautiful visualizations, both static and animated, at \textit{\furl{https://www.spacetimetravel.org/}{Relativity visualized}}.
+
+
+\medskip
+
+Luckily, for relative speeds that are not too high compared to the speed of light, the radar distances measured by different observers differ by amounts that are negligible in everyday circumstances. As an example, consider a car moving on a road at \qty{100}{km/h}, that is around \qty{28}{m/s}. The car's driver measures the length of the car to be \qty{4}{m} by radar distance. A pedestrian that sees the car passing by instead measures its length to be \qty{3.99999999999998}{m} by radar distance. This is obviously a negligible difference.
+
+\medskip
+
 Length and distance have SI dimension \enquote*{\textsf{length}}, and we shall usually measure them using the unit \emph{metre}, symbol \enquote*{$\unit{m}$}.
 
 \begin{exercise}[label={ex:distance}]
@@ -2196,6 +2215,39 @@ Length and distance have SI dimension \enquote*{\textsf{length}}, and we shall u
 \item\label{item:velocity_friend} Now instead suppose you find that the distance of the wall from you is \qty{500}{m}. Your friend measured (when right beside you) a distance of \qty{499}{m}. How fast was your friend moving?
 \end{enumerate}
 \end{exercise}
+
+\section{Coordinate systems}
+\label{sec:coords}
+
+\marginpar{\vspace{\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
+% The views of space and time which I wish to lay before you have sprung from the soil of experimental physics, and therein lies their strength. They are radical.
+Henceforth, space by itself, and time by itself, are doomed to fade away into mere shadows, and only a kind of union of the two will preserve an independent reality.}}\sourceatright{\cites{minkowski1908b}}
+}
+%
+From our discussion about time and space we conclude that physical events happen in spacetime, and there is no unique way to attribute a universal time or a universal position in space to a physical event.
+% There is one absolute: whoever locally measures the physical speed of light in empty space, will find the value $\yc$. This value, exact by definition, serves as a way to define a local notion of space and distance.
+
+In the previous sections we used the word \enquote*{event}, informally taking its meaning for granted. Let's be more precise now. We call \textbf{event} or \textbf{spacetime point} a very small region of space that lasts for a very short lapse of time, so  that it can be considered as a point in a four-dimensional space. When we say \enquote*{small region} or \enquote*{short time lapse}, it doesn't matter which definition of distance or time lapse we're using.
+
+The word \enquote*{event} is used because typically we identify such a spacetime point by means of a physical phenomenon of limited spatial extension and duration. How \enquote{limited} should these extension and duration be? It depends on the kind of physical phenomenon we're interested in. The sudden burst of a soap bubble can be considered as an event in comparison to geological distances and times; but it cannot be considered as an event if we're studying subatomic particles.
+
+% An object like a tennis ball can in some circumstances be considered as a point \emph{in space}; but it cannot be considered as an event because it persists for quite a long time, not just for a short instant. From the point of view of four-dimensional spacetime, such an object can be characterized as a line: a \textbf{worldline}.
+
+\medskip
+
+We solved the problem of communicating and coordinating temporal information by introducing a \autoref{sec:coord_time}{coordinate time}, by which we give an arbitrary but agreed-upon time label to each event.
+
+We can solve in an analogous way the problem of communicating the position of events, by introducing a \textbf{coordinate system}.
+
+A coordinate system assigns, by agreement, four numerical labels to every point in spacetime: a \emph{coordinate time} and three \emph{spatial coordinates}. These four coordinates are obviously the same for all observers, because they are decided by agreement. Often these labels have physical meaning -- like the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to.
+% %
+% \marginpar{\vspace{-\baselineskip}\centering%
+% \includegraphics[width=\linewidth]{images/lattice_meters_clocks2.png}
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% A lattice of clocks and meters, defining a spacetime coordinate system (from \cites{tayloretal2000})%
+% }%
+
+
 
 \subsection{Spatial coordinates}
 \label{sec:coord_space}
@@ -2243,77 +2295,18 @@ The assignment of coordinates on and around Earth depends on nominal values assi
 }%
 \mynotew{to be continued}
 
+\medskip
+
+Given a coordinate time it is possible to define an alternative distance, which we can call \textbf{spatial coordinate distance} or just \enquote*{coordinate distance} for short. It is the length of the path joining you and the object at coordinate time $t$ for both; all points of the path are also understood to be at coordinate time $t$ as well. The path should be a \emph{straight line} between you and the object; but we must remember that spacetime is curved. The notion closest to a \enquote*{straight line} in a curved space is that of a \furl{https://mathworld.wolfram.com/Geodesic.html}{\emph{geodesic}}. It turns out that there may be several geodesics connecting you and the object at coordinate time $t$. This fact may lead to some complications. For instance there may be different paths having shortest distance; therefore saying \enquote{the path of shortest distance} may be ambiguous.
+
+Coordinate distance has two advantages. First, it does \emph{not} depend on the relative motion between you and the object. Second, it can also be defined for very faraway objects. It is often difficult to measure directly, however, and often can only be extrapolated.
+
+Note also that the speed of light defined with respect to coordinate distance need not have the value $\yc$ or even be constant! You might have heard or read about  distant cosmological objects, like \furl{https://esahubble.org/wordbank/quasar}{quasars}, that are said to be receding from us at speeds faster than light's. How is that possible? The reason is that the \enquote*{speeds} they're talking about are defined with respect to \emph{coordinate distance}, not radar distance.
 
 
 
 % In Bergen, a distance of 10\,m corresponds to a difference of 0.000\,1\,degree in latitude or longitude
 
-\clearpage
-
-\section{Coordinates, velocity, acceleration}
-\label{sec:coords}
-
-\subsection{Spacetime}
-\label{sec:spacetime}
-
-\marginpar{\vspace{\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
-% The views of space and time which I wish to lay before you have sprung from the soil of experimental physics, and therein lies their strength. They are radical.
-Henceforth, space by itself, and time by itself, are doomed to fade away into mere shadows, and only a kind of union of the two will preserve an independent reality.}}\sourceatright{\cites{minkowski1908b}}
-}
-%
-From our discussion about time and space we conclude that physical events happen in spacetime, and there is no unique way to attribute a universal time and a universal position in space to a physical event.
-% There is one absolute: whoever locally measures the physical speed of light in empty space, will find the value $\yc$. This value, exact by definition, serves as a way to define a local notion of space and distance.
-
-In the previous sections we used the word \enquote*{event}, informally taking its meaning for granted. Let's be more precise now. We call \textbf{event} or \textbf{spacetime point} a very small region of space that lasts for a very short lapse of time, so  that it can be considered as a point in a four-dimensional space. Note that it doesn't matter which definitions of time or distance we're using: a short lapse of time coordinate means also a short lapse of proper time, and similarly for short radar distance or coordinate distance.
-
-The word \enquote*{event} is used because typically we identify such a spacetime point by means of a physical phenomenon of limited spatial extension and duration. How \enquote{limited} should these extension and duration  be? It depends on the kinds of physical phenomena we're interested in. The sudden burst of a soap bubble can be considered as an event in comparison to geological distances and times; but it cannot be considered as an event if we're studying subatomic particles.
-
-An object like a tennis ball can in some circumstances be considered as a point \emph{in space}; but it cannot be considered as an event because it persists for quite a long time, not just for a short instant. From the point of view of four-dimensional spacetime, such an object can be characterized as a line: a \textbf{worldline}.
-
-
-
-We still need a way for locating physical events and phenomena in spacetime, and for communicating about them in an unambiguous way. This is achieved through a \textbf{coordinate system}.
-
-A coordinate system assigns, by agreement, four numerical labels to every point in spacetime: usually one \emph{coordinate time} and three \emph{spatial coordinates}. These four coordinates are obviously the same for all observers, because they are decided by agreement. Often these labels have physical meaning -- like the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to.
-% %
-% \marginpar{\vspace{-\baselineskip}\centering%
-% \includegraphics[width=\linewidth]{images/lattice_meters_clocks2.png}
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-% A lattice of clocks and meters, defining a spacetime coordinate system (from \cites{tayloretal2000})%
-% }%
-
-
-\subsection{Coordinate time}
-\label{sec:coord_time}
-
-The fact that the time elapsed for you can be different from that elapsed for a satellite can therefore make it difficult to coordinate activities and to operate some technologies.
-
-But luckily there's a way to bypass proper-time discrepancies. Instead of referring to my proper time or to your proper time, we can agree on assigning a somewhat arbitrary numerical time label to every event: this is called a \textbf{coordinate time}.
-
-\medskip
-
-Coordinate time is generally different from the proper times measured by different observers. It can nevertheless be used for \enquote{doing physics}, and it is the time we shall most often use in our equations. The coordinate time commonly used for Earth-physics purposes is \furl{https://www.nist.gov/pml/time-and-frequency-division/time-realization/utcnist-time-scale-0/}{Universal Coordinated Time UTC}, or the \furl{https://gssc.esa.int/navipedia/index.php?title=Atomic_Time}{International Atomic Time TAI} for astronomy purposes:
-%\autocites[]{icwg1983_r2022}
-\begin{quote}\footnotesize
-  International Atomic Time (TAI) is based on more than 250 atomic clocks distributed worldwide that provide its stability, whereas a small number of primary frequency standards provide its accuracy. Universal Coordinated Time, which is the basis of all legal time scales, is derived from TAI. To allow the construction of TAI and the general dissemination of time, clocks separated by thousands of kilometres must be compared and synchronized. \textelp{} The achieved performances of atomic clocks and time transfer techniques imply that the definition of time scales and the clock comparison procedures must be considered within the framework of General Relativity. \sourceatright{\parencites{petitetal2005}}
-%\mbox{}\hfill (\cites{petitetal2005})
-\end{quote}
-% \begin{figure}[h!]\footnotesize\centering%
-% \includegraphics[align=t,width=0.75\linewidth]{images/datetime_2x.png}
-% \\%
-% \url{https://xkcd.com/2867}
-% \end{figure}
-UTC and TAI have the same time lapse, but UTC differ by irregular readjustments of its \enquote{zero}, the \furl{https://webtai.bipm.org/ftp/pub/tai/Circular-T/cirthtm/cirt.442.html}{leap seconds}.
-
-The clock on your phone, and on devices synchronized via internet, shows UTC, not your proper time. An observer on Earth at \qty{0}{m} over sea level, and not moving, measures a proper-time lapse equal to UTC or TAI (besides small variations coming from the irregularity and internal motions of the Earth). But observers at other altitudes and observers moving with respect to Earth's surface can measure that their proper-times lapses are slightly different from UTC and TAI.
-
-\medskip
-
-In applications related to interplanetary spacecraft navigation and cosmological observations, the Barycentric Coordinate Time TCB is used. Its time lapse is slightly faster than the one of UTC: for each second that passes in UTC, \qty{1.0000000148}{s} pass in TCB on average. Two coordinate times to be used around an on the Moon, \furl{https://doi.org/10.1103/Physics.17.140}{Lunar Coordinate Time TCL} and Lunar Time LT, are on the making in the year 2025. Lunar Time will lapse faster by \qty{5.6e-5}{s} per day compared to our UTC. The establishment of all these kinds of coordinate times shows how important the difference between coordinate and proper time is for our current technology.
-
-\medskip
-
-When we use coordinate time, some important physics formulae turn out to be the same no matter whether we use General Relativity or an approximate theory such as Newtonian Mechanics. Thanks to this fact, for the most part of these notes we will not need to deal with proper-time details. But it is important for you to keep in mind how time really works, and the small time discrepancies that exist and occur all the time along your \emph{worldline}.
 
 
 
