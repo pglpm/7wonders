@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-13T14:12:24+0100
+%% Last-Updated: 2025-01-13T15:26:18+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2240,13 +2240,26 @@ The peculiarities of spacetime can make it difficult to communicate the position
 
 In the case of time, we bypassed the problem that time lapse depends on the observer's motion by introducing a \autoref{sec:coord_time}{coordinate time}. This way each event gets an arbitrary but agreed-upon time label. We can bypass the analogous problem that length and distance depend on the observer's motion, by introducing a set of arbitrary \emph{spatial coordinates} for each coordinate time.
 
-All these coordinates together form a \textbf{coordinate system}. Thus a coordinate system assigns, by agreement, four numerical labels to every point in spacetime: one \emph{coordinate time} and three \emph{spatial coordinates}. We use symbols such as $(t,x,y,z)$ or $(t, r, \theta,\phi)$ or others for these labels. These four coordinates are obviously the same for all observers, because they are decided by agreement. Often these labels have physical meaning -- like the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to. Typically we use three spatial coordinates. In special situations, such as locating points on the Earth's surface neglecting altitude, only two or even one spatial coordinate can be enough. Note that a coordinate system is usually defined on a limited region of spacetime.
-% %
+All these coordinates together form a \emph{coordinate system}, also called \emph{reference system}:
+\begin{definition}{Coordinate system or reference system,label={def:coordinates}}
+  A \textbf{coordinate system}, also called \textbf{reference system}, is the assignment, by agreement, of four numerical labels to every point in spacetime: one \emph{coordinate time} and three \emph{spatial coordinates}. We use symbols such as $(t,x,y,z)$, or $(t, r, \theta,\phi)$, or others, for these coordinates. These four coordinates are obviously the same for all observers, because they are decided by agreement.
+
+  \smallskip
+  
+   A coordinate system is usually defined on a limited region of spacetime.
+
+  \smallskip
+
+  The location where all spatial coordinates have value zero is called the \textbf{origin} of the spatial coordinates.
+\end{definition}
+% % 
 % \marginpar{\vspace{-\baselineskip}\centering%
 % \includegraphics[width=\linewidth]{images/lattice_meters_clocks2.png}
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 % A lattice of clocks and meters, defining a spacetime coordinate system (from \cites{tayloretal2000})%
 % }%
+
+  Often the coordinates have physical meaning -- like the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to. Typically we use three spatial coordinates. In special situations, such as locating points on the Earth's surface neglecting altitude, only two or even one spatial coordinate can be enough.
 
 
 %
@@ -2265,32 +2278,55 @@ The spatial coordinates may be chosen so as to have particular physical properti
 
 If the spatial coordinate lines are \emph{orthogonal} to one another at every point, that is, they intersect at $\pi/2\:\unit{rad}$, then we call them \textbf{orthogonal coordinates}. This is a very useful property, which simplifies many physics formulae. In these notes we shall always use orthogonal coordinates. Note that a coordinate system can be curvilinear \emph{and} orthogonal.
 
+\medskip
+
+In astronomy, in space and satellite communication, and in \furl{https://oceanservice.noaa.gov/geodesy}{geodesy} (the science of accurately measuring and understanding the Earth's geometric shape, orientation in space, and gravity field), \furl{https://gssc.esa.int/navipedia/index.php?title=Reference_Systems_and_Frames}{several important coordinate systems} are used. For example:
+
+\begin{itemize}
+\item The \emph{International Celestial Reference System} (ICRS) is a coordinate system with orthogonal spatial coordinates, which are almost rectilinear, whose origin is close to the centre of the Sun. Several distant cosmological objects, like \furl{https://esahubble.org/wordbank/quasar}{quasars}, have fixed spatial coordinates in this reference system. Its coordinate time is called Barycentric Coordinate Time (TCB).
+
+
+\item The \emph{Geocentric Celestial Reference System} (CGRS) is a coordinate system with orthogonal spatial coordinates, which are almost rectilinear, whose origin is close to the centre of the Earth. Distant cosmological objects have almost constant spatial coordinates in this reference system; this means that the Earth rotates with respect to it. Its coordinate time is called Geocentric Coordinate Time (TGB), which is very similar to the TAI.
+  % 
+  \marginpar{\vspace{-7\baselineskip}\centering%
+    \includegraphics[width=\linewidth]{images/gcrf.jpg}
+    \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+    The assignment of coordinates on and around Earth depends on nominal values assigned to distant astronomical objects (from \cites{capitaine2010})%
+  }%
+
+\item   The \emph{International Terrestrial Reference System} (ITRS) is a coordinate system similar to the CGRS, but with the important difference that the Earth is approximately static in this reference system; which means that distant cosmological objects rotate with respect to it. It has the same coordinate time as the ICRS.
+
+\item The\emph{\furl{https://earth-info.nga.mil/?dir=wgs84\&action=wgs84}{World Geodetic System 1984}} (WGS 84) is very similar to the ITRS, besides a discrepancy of some centimetres. It is used by the system of GPS satellites.
+\end{itemize}
+
+
 \begin{exercise}[label={ex:latlong}]
   % **** Add figure
-  On Earth's surface we often use the system of two coordinates called \emph{latitude} and \emph{longitude}. Coordinate lines of constant latitude are called \emph{parallels}; those of constant longitude are called \emph{meridians}.
+  On Earth's surface we often use the system of two coordinates called \emph{latitude} $\lambda$ and \emph{longitude} $\phi$, measured in degrees. Coordinate lines of constant latitude are called \emph{parallels}; those of constant longitude are called \emph{meridians}.
   % Earth's surface is curved, and the \enquote{straight lines} in this space are maximal circles. All the meridians are maximal circles; therefore longitude is \emph{not} a curvilinear coordinate.
 
- % \item\label{item:latitude_curvilinear} Is latitude a curvilinear coordinate? Explain why or why not.
-\smallskip
+  \begin{enumerate}[exerc]
+  % \item\label{item:latitude_curvilinear} Is latitude a curvilinear coordinate? Explain why or why not.
+  \item Find what's at these three coordinate pairs:
+    \begin{equation*}
+      \begin{aligned}
+        (\lambda, \phi) &= (\qty{60.369002}{\degree}, \qty{5.350336}{\degree})
+        \\
+        (\lambda, \phi) &= (\qty{35.658587}{\degree}, \qty{139.745424}{\degree})
+        \\
+        (\lambda, \phi) &= (\qty{-13.163069}{\degree}, \qty{-72.545265}{\degree})
+      \end{aligned}
+    \end{equation*}
 
- Are latitude and longitude orthogonal coordinates? Explain why or why not.
+  \item Are latitude and longitude \emph{orthogonal} coordinates? Explain why or why not.
+  \end{enumerate}
 \end{exercise}
 
 
+\section{Spatial coordinate distance}
+\label{sec:coord_distance}
 
-
-
-%
-\marginpar{\vspace{\baselineskip}\centering%
-\includegraphics[width=\linewidth]{images/gcrf.jpg}
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-The assignment of coordinates on and around Earth depends on nominal values assigned to distant astronomical objects (from \cites{capitaine2010})%
-}%
-\mynotew{to be continued}
-
-\medskip
-
-Given a coordinate time it is possible to define an alternative distance, which we can call \textbf{spatial coordinate distance} or just \enquote*{coordinate distance} for short. It is the length of the path joining you and the object at coordinate time $t$ for both; all points of the path are also understood to be at coordinate time $t$ as well. The path should be a \emph{straight line} between you and the object; but we must remember that spacetime is curved. The notion closest to a \enquote*{straight line} in a curved space is that of a \furl{https://mathworld.wolfram.com/Geodesic.html}{\emph{geodesic}}. It turns out that there may be several geodesics connecting you and the object at coordinate time $t$. This fact may lead to some complications. For instance there may be different paths having shortest distance; therefore saying \enquote{the path of shortest distance} may be ambiguous.
+Given a coordinate time it is possible to define an alternative distance, which we can call \textbf{spatial coordinate distance} or just \enquote*{coordinate distance} for short. It is the length of the path joining you and the object at coordinate time $t$ for both; all points of the path are also understood to be at coordinate time $t$ as well. The path should be a \emph{straight line} (geodesic) between you and the object. As mentioned before, there may be several geodesics connecting you and the object at coordinate time $t$. This fact may lead to some complications. For instance there may be different paths having shortest distance; therefore saying \enquote{the path of shortest distance} may be ambiguous.
 
 Coordinate distance has two advantages. First, it does \emph{not} depend on the relative motion between you and the object. Second, it can also be defined for very faraway objects. It is often difficult to measure directly, however, and often can only be extrapolated.
 
@@ -2299,8 +2335,6 @@ Note also that the speed of light defined with respect to coordinate distance ne
 
 
 % In Bergen, a distance of 10\,m corresponds to a difference of 0.000\,1\,degree in latitude or longitude
-
-
 
 
 \subsection{Coordinate notation}
