@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-13T15:26:18+0100
+%% Last-Updated: 2025-01-13T16:01:10+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -629,7 +629,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\chapterstyle{veelo}
 %\chapterstyle{pedersen}
 %\chapterstyle{ell}
-\setsecnumdepth{subsection}
+\setsecnumdepth{section}
 \setsecnumformat{\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\Large\bfseries\sffamily%
 \centering}
@@ -642,7 +642,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex}
 \setsecindent{0pt}%0ex plus 1ex minus .2ex}
 \setsubsecheadstyle{\large\bfseries\sffamily%
-\centering}
+\raggedright}
 \setparaheadstyle{\itshape\bfseries\sffamily%
 \raggedright}
 \newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
@@ -2296,7 +2296,7 @@ In astronomy, in space and satellite communication, and in \furl{https://oceanse
 
 \item   The \emph{International Terrestrial Reference System} (ITRS) is a coordinate system similar to the CGRS, but with the important difference that the Earth is approximately static in this reference system; which means that distant cosmological objects rotate with respect to it. It has the same coordinate time as the ICRS.
 
-\item The\emph{\furl{https://earth-info.nga.mil/?dir=wgs84\&action=wgs84}{World Geodetic System 1984}} (WGS 84) is very similar to the ITRS, besides a discrepancy of some centimetres. It is used by the system of GPS satellites.
+\item The \furl{https://earth-info.nga.mil/?dir=wgs84\&action=wgs84}{\emph{World Geodetic System 1984} (WGS 84)} is very similar to the ITRS, besides a discrepancy of some centimetres. It is used by the system of GPS satellites.
 \end{itemize}
 
 
@@ -2323,7 +2323,7 @@ In astronomy, in space and satellite communication, and in \furl{https://oceanse
 \end{exercise}
 
 
-\section{Spatial coordinate distance}
+\section{Spatial coordinate distance and length}
 \label{sec:coord_distance}
 
 Given a coordinate time it is possible to define an alternative distance, which we can call \textbf{spatial coordinate distance} or just \enquote*{coordinate distance} for short. It is the length of the path joining you and the object at coordinate time $t$ for both; all points of the path are also understood to be at coordinate time $t$ as well. The path should be a \emph{straight line} (geodesic) between you and the object. As mentioned before, there may be several geodesics connecting you and the object at coordinate time $t$. This fact may lead to some complications. For instance there may be different paths having shortest distance; therefore saying \enquote{the path of shortest distance} may be ambiguous.
@@ -2337,7 +2337,7 @@ Note also that the speed of light defined with respect to coordinate distance ne
 % In Bergen, a distance of 10\,m corresponds to a difference of 0.000\,1\,degree in latitude or longitude
 
 
-\subsection{Coordinate notation}
+\section{Coordinate notation}
 \label{sec:coord_notation}
 
 
@@ -2370,7 +2370,7 @@ Some physical phenomena happen approximately along a line, in one dimension; thi
 
 
 
-\subsection{Velocity and acceleration}
+\section{Velocity and acceleration}
 \label{sec:velocity}
 
 In some situations the spatial coordinates $\yr=(x,y,z)$ may turn out to be functions of the time coordinate $t$; the typical example is when we describe how the spatial position of a small body changes with coordinate time. We can write this functional dependence in different ways, for instance
@@ -2614,13 +2614,13 @@ We therefore go down into more and more subtle classifications. This kind of res
 
 \medskip
 
+According to the definition of matter that we're adopting, the total amount of some kind of matter in a region can in principle be \emph{negative}. A negative amount simply denotes the presence of \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans. In ordinary chemical applications, however, all amounts of matter within a region are usually positive or zero.
 %
-\marginpar{\vspace{-5\baselineskip}\centering%
+\marginpar{\vspace{-8\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/pet_scan_bergen.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 In positron-emission tomography there is creation of amounts of matter (leptonic matter) that can be considered negative: their \emph{lepton number} is negative (\furl{https://www.helse-bergen.no/avdelinger/radiologisk-avdeling/senter-for-nukleermedisin-og-pet/tilvising-til-pet}{image: Helse Bergen}).%
 }%
-According to the definition of matter that we're adopting, the total amount of some kind of matter in a region can in principle be \emph{negative}. A negative amount simply denotes the presence of \furl{https://www.britannica.com/science/antimatter}{anti-matter}. Anti-matter appears in small amounts in everyday life, for example in connection with common radioactivity processes. It is also created and used in medicine, in \furl{https://www.britannica.com/topic/positron-emission-tomography}{positron-emission tomography (PET)} scans. In ordinary chemical applications, however, all amounts of matter within a region are usually positive or zero.
 
 \medskip
 
@@ -2685,20 +2685,21 @@ Electric charge is a quantity that is easily grasped in our everyday experience,
 \label{sec:intro_magneticflux}
 
 
-\marginpar{\vspace{-\baselineskip}\centering%
-%\includegraphics[align=t,width=\linewidth]{images/magnflux1.png}
-\includegraphics[width=\linewidth]{images/magnetic-flux_lines.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}\enquote{\emph{%
-magnetic-flux lines emerging from the surface of a Type~II superconductor}}\sourceatright{\cites{essmannetal1971}}%
-}
 Magnetic flux is a \emph{scalar} quantity, with SI dimension \enquote*{\furl{https://doi.org/10.1351/goldbook.M03684}{\textsf{magnetic flux}}}, and measured in units of \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{webers} (\unit{Wb})}.
 This flux is usually calculated by means of a \emph{vector} quantity called \emph{magnetic flux density}, measured in units of \furl{https://doi.org/10.1351/goldbook.T06283}{\emph{teslas} ($\unit{T} = \unit{Wb/m^{2}}$)}.
 
 As we shall see in more detail in \chap~\ref{cha:cons_magneticflux}, magnetic flux differs from the other six main quantities in that it answers the two \enquote{how much?} questions \emph{in one lower dimension}: \enquote{How much magnetic flux is in this surface?} and \enquote{How much magnetic flux crosses this line in the unit of time?}. It also requires a slightly different notion of orientation of a surface.
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
+%\includegraphics[align=t,width=\linewidth]{images/magnflux1.png}
+\includegraphics[width=\linewidth]{images/magnetic-flux_lines.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}\enquote{\emph{%
+magnetic-flux lines emerging from the surface of a Type~II superconductor}}\sourceatright{\cites{essmannetal1971}}%
+}%
 
 The \enquote{flux of magnetic flux} is therefore a flow connected to a line. It is ordinarily called \emph{electric potential difference} or \emph{electric tension}, measured in units of \furl{https://doi.org/10.1351/goldbook.V06634}{\emph{volts} ($\unit{V} = \unit{Wb/s}$)}. This \enquote{flux of a flux} is usually calculated by means of a vector quantity called \emph{electric field strength}, measured in units of \emph{volt per metre} (\unit{V/m}).
 
-\marginpar{\vspace{-4\baselineskip}\centering%
+\marginpar{\vspace{\baselineskip}\centering%
 %\includegraphics[align=t,width=\linewidth]{images/magnflux1.png}
 \includegraphics[width=\linewidth]{images/magnflux2.png}%
 \\[\jot]\flushleftright\color{mpcolor}\enquote{\emph{%
@@ -2858,7 +2859,7 @@ We also speak of different forms of flux of energy. The most important for us wi
 
 The distinctions between different forms of energy also depend on the observation scale and the theory used. For instance, we can observe and describe the water in a glass resting on table, on a scale of centimetres. We see it as a still, uniform fluid. In this description we say that the water has internal energy (or that there's internal energy in the glass). But if we observe and model that same water as a collection of molecules, on a microscopic scale, then we say that it has internal energy \emph{and} kinetic energy, because the molecules are in constant motion. The total amount of energy is the same on the centimetre-scale the  microscopic scale, but its partition into different \enquote{forms} depends on the scale.
 %
-\marginpar{\vspace{-5\baselineskip}\centering\includegraphics[width=\linewidth]{images/molecules_20nmb.png}%
+\marginpar{\vspace{-9\baselineskip}\centering\includegraphics[width=\linewidth]{images/molecules_20nmb.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}\furl{https://doi.org/10.4209/aaqr.2019.04.0177}{Hydrocarbon fuel particles}. The small blobs have size of around \qty{2e-8}{m}.%
 }%
 
@@ -3002,11 +3003,11 @@ Given a particular volume at a particular instant in time, and given a coordinat
 
 Just as momentum is associated with translational motion, angular momentum is \emph{something associated with rotational motion} of matter and of electromagnetic fields. Rotational motion is the kind of motion that leads to a \emph{new orientation} in space, rather than to a new position. For instance, if you turn to your left or to your right while standing in place, you have performed a rotational motion.
 
+You can get a feeling of angular momentum and torque by playing with one of those hand-held gyroscopes that can be used for wrist exercise and training (side picture). But the physical role of angular momentum is actually in front of us every day: its balance is the chief reason of such important phenomena as the alternation of day and night and the alternation of the seasons.
 %
-\marginpar{\vspace{1\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/wristroller.jpg}%
+\marginpar{\vspace{-6\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/wristroller.jpg}%
 \\[3\jot]\includegraphics[width=\linewidth]{images/fourseasons.jpg}%
 }%
-You can get a feeling of angular momentum and torque by playing with one of those hand-held gyroscopes that can be used for wrist exercise and training (side picture). But the physical role of angular momentum is actually in front of us every day: its balance is the chief reason of such important phenomena as the alternation of day and night and the alternation of the seasons.
 
 \medskip
 
@@ -3058,12 +3059,12 @@ How much is the Earth's angular momentum? (Note that we are neglecting the angul
 
 
 An aspect of energy, momentum, angular momentum that must always be kept in mind is that \textbf{their amounts depends on the coordinate system we're using}. If someone points at a specific region of space at a particular instant, and asks \enquote{how much energy is there?}, we \emph{cannot} give an answer until a coordinate system is specified. Once the coordinate system has been chosen, then a precise and unambiguous answer can be given. The same is true for the flux of energy through a surface, and for the contents and fluxes of momentum and of angular momentum. This coordinate-dependence also means that observers using different coordinates will usually assign different amounts of energy, momentum, angular momentum to the same regions of spacetime.
-
-This is an important difference between energy, momentum, angular momentum on one side, and matter, electric charge, magnetic flux on the other side. \emph{For matter, electric charge, magnetic flux, the questions about their contents and fluxes can be answered unambiguously independently of any spatial coordinate system}.
 %
 \marginpar{\vspace{-5\baselineskip}\centering\includegraphics[width=\linewidth]{images/cube_J_coords.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}\enquote{How much energy is there in this volume at this instant?} This question cannot be answered until we have specified which coordinate system we're using.%
 }
+
+This is an important difference between energy, momentum, angular momentum on one side, and matter, electric charge, magnetic flux on the other side. \emph{For matter, electric charge, magnetic flux, the questions about their contents and fluxes can be answered unambiguously independently of any spatial coordinate system}.
 
 This coordinate-dependence is not a problem: we must in practice always specify our coordinate system anyway, in order to agree on the time and position of physical events. But it can cause problems if we calculate or measure some amount of energy at a given time and place using a coordinate system, and we calculate or measure some amount at another time or place using a \emph{different} coordinate system. Combining these two amounts, or using them in the same physical law, has no meaning whatsoever.
 
@@ -3202,8 +3203,11 @@ The dimensions, units, and scalar or vector character of all quantities mentione
 \label{sec:temperature}
 
 We have an intuitive understanding of the notion of \emph{hotness} and \emph{coldness}. Temperature quantifies these notions.
+The physical bases and measurement procedures for this quantification are far from trivial, but we shall take them for granted in the present notes.
+
+For some physical phenomena, especially those involving gases, we know that temperature is related to the invisible motion of microscopic parts of matter, such as molecules. But there are also physical phenomena for which our microscopic understanding of temperature is more complex, and in some cases  still unclear.
 %
-\marginpar{\vspace{-\baselineskip}% \centering%
+\marginpar{\vspace{-5\baselineskip}% \centering%
 % \includegraphics[width=\linewidth]{images/universeexpansion2.jpg}%
 % \\[\jot]
 \footnotesize\flushleftright\color{mpcolor}%
@@ -3213,9 +3217,6 @@ We have an intuitive understanding of the notion of \emph{hotness} and \emph{col
 
 \emph{Is There a Temperature?} by T.\,S.~Bir{\'o} \parencites*{biro2011} discusses fascinating physical phenomena for which our microscopic understanding of temperature is still incomplete.%
 }%
-The physical bases and measurement procedures for this quantification are far from trivial, but we shall take them for granted in the present notes.
-
-For some physical phenomena, especially those involving gases, we know that temperature is related to the invisible motion of microscopic parts of matter, such as molecules. But there are also physical phenomena for which our microscopic understanding of temperature is more complex, and in some cases  still unclear.
 
 
 There are several scales of temperature measurement; of special importance is \furl{https://www.iso.org/obp/ui/\#iso:std:iso:80000:-5:ed-2:v1:en:tab:1}{\textbf{thermodynamic temperature}}, also called \emph{absolute temperature}, which is measured in \emph{kelvins} (\unit{K}). Thermodynamic temperature has the special property of being always positive in most physical phenomena (there are exceptions, especially in some phenomena where \furl{https://www.britannica.com/science/statistical-mechanics}{statistical mechanics} becomes relevant).
