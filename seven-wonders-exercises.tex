@@ -1,0 +1,1981 @@
+\pdfoutput=1
+\pdfinclusioncopyfonts=1
+%% Author: PGL  Porta Mana
+%% Created: 2015-05-01T20:53:34+0200
+%% Last-Updated: 2025-01-15T16:04:10+0100
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifanon
+\anonfalse
+\newif\ifarxiv
+\arxivfalse
+%\iftrue\pdfmapfile{+classico.map}\fi
+\newif\ifafour
+\afourtrue% true = A4, false = A5
+% \newif\iftypodisclaim % typographical disclaim on the side
+% \typodisclaimfalse
+\newcommand*{\memfontfamily}{zpl}
+%\newcommand*{\memfontenc}{T1}
+\newcommand*{\memfontpack}{newpx}
+\documentclass[a4paper,12pt,%extrafontsizes,%
+onecolumn,oneside,%titlepage,%french,italian,german,swedish,latin,
+british%
+]{memoir}
+\newcommand*{\firstdraft}{26 May 2023}
+\newcommand*{\version}{0.2}
+\newcommand*{\updated}{\ifarxiv***\else\today\fi}
+\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Notes on 21st-century physics\\[3\jot]\LARGE\itshape Exercises}
+%\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Lecture notes for ING\,175}
+\newcommand*{\pdftitle}{The Seven Wonders of the World: Exercises}
+\newcommand*{\pdfauthor}{P.G.L.  Porta Mana}
+\newcommand*{\headauthor}{\nameref}
+\newcommand*{\reporthead}{\iftrue\else Open Science Framework \href{https://doi.org/10.31219/osf.io/***}{\textsc{doi}:10.31219/osf.io/***}\fi}% Report number
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Calls to packages (uncomment as needed)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{pifont}
+
+%\usepackage{fontawesome}
+\PassOptionsToPackage{obeyspaces}{url}
+\usepackage[T1]{fontenc}
+\input{glyphtounicode} \pdfgentounicode=1
+
+\usepackage[utf8]{inputenx}
+
+%\usepackage{newunicodechar}
+% \newunicodechar{Ĕ}{\u{E}}
+% \newunicodechar{ĕ}{\u{e}}
+% \newunicodechar{Ĭ}{\u{I}}
+% \newunicodechar{ĭ}{\u{\i}}
+% \newunicodechar{Ŏ}{\u{O}}
+% \newunicodechar{ŏ}{\u{o}}
+% \newunicodechar{Ŭ}{\u{U}}
+% \newunicodechar{ŭ}{\u{u}}
+% \newunicodechar{Ā}{\=A}
+% \newunicodechar{ā}{\=a}
+% \newunicodechar{Ē}{\=E}
+% \newunicodechar{ē}{\=e}
+% \newunicodechar{Ī}{\=I}
+% \newunicodechar{ī}{\={\i}}
+% \newunicodechar{Ō}{\=O}
+% \newunicodechar{ō}{\=o}
+% \newunicodechar{Ū}{\=U}
+% \newunicodechar{ū}{\=u}
+% \newunicodechar{Ȳ}{\=Y}
+% \newunicodechar{ȳ}{\=y}
+
+\newcommand*{\bmmax}{3} % reduce number of bold fonts, before font packages
+\newcommand*{\hmmax}{0} % reduce number of heavy fonts, before font packages
+
+\usepackage{textcomp}
+
+%\usepackage[normalem]{ulem}% package for underlining
+% \makeatletter
+% \def\ssout{\bgroup \ULdepth=-.35ex%\UL@setULdepth
+%  \markoverwith{\lower\ULdepth\hbox
+%    {\kern-.03em\vbox{\hrule width.2em\kern1.2\p@\hrule}\kern-.03em}}%
+%  \ULon}
+% \makeatother
+
+\usepackage{amsmath}
+
+\usepackage{mathtools}
+%\addtolength{\jot}{\jot} % increase spacing in multiline formulae
+\setlength{\multlinegap}{0pt}
+
+%\usepackage{empheq}% automatically calls amsmath and mathtools
+%\newcommand*{\widefbox}[1]{\fbox{\hspace{1em}#1\hspace{1em}}}
+
+%%%% empheq above seems more versatile than these:
+%\usepackage{fancybox}
+%\usepackage{framed}
+
+% \usepackage[misc]{ifsym} % for dice
+% \newcommand*{\diceone}{{\scriptsize\Cube{1}}}
+
+\usepackage{amssymb}
+
+\usepackage{amsxtra}
+
+\usepackage[main=british]{babel}\selectlanguage{british}
+%\newcommand*{\langnohyph}{\foreignlanguage{nohyphenation}}
+\newcommand{\langnohyph}[1]{\begin{hyphenrules}{nohyphenation}#1\end{hyphenrules}}
+
+\usepackage[autostyle=false,autopunct=false,english=british]{csquotes}
+\setquotestyle{american}
+\newcommand*{\defquote}[1]{`\,#1\,'}
+
+% \makeatletter
+% \renewenvironment{quotation}%
+%                {\list{}{\listparindent 1.5em%
+%                         \itemindent    \listparindent
+%                         \rightmargin=1em   \leftmargin=1em
+%                         \parsep        \z@ \@plus\p@}%
+%                 \item[]\footnotesize}%
+%                 {\endlist}
+% \makeatother
+
+
+% \usepackage{amsthm}
+% %% from https://tex.stackexchange.com/a/404680/97039
+% \makeatletter
+% \def\@endtheorem{\endtrivlist}
+% \makeatother
+
+% \newcommand*{\QED}{\textsc{q.e.d.}}
+% \renewcommand*{\qedsymbol}{\QED}
+% \theoremstyle{remark}
+% \newtheorem{note}{Note}
+% \newtheorem*{remark}{Note}
+% \newtheoremstyle{innote}{\parsep}{\parsep}{\footnotesize}{}{}{}{0pt}{}
+% \theoremstyle{innote}
+% \newtheorem*{innote}{}
+
+\usepackage[shortlabels,inline]{enumitem}
+\SetEnumitemKey{para}{itemindent=\parindent,leftmargin=0pt,listparindent=\parindent,parsep=0pt,itemsep=\topsep}
+% \SetEnumitemKey{shift}{leftmargin=8.81pt}
+\SetEnumitemKey{exerc}{leftmargin=17.62pt,label=\bfseries\arabic*.}
+% \begin{asparaenum} = \begin{enumerate}[para]
+% \begin{inparaenum} = \begin{enumerate*}
+\setlist{itemsep=0pt,topsep=\parsep}
+\setlist[enumerate,2]{label=(\roman*)}
+\setlist[enumerate]{label=(\alph*),leftmargin=26.44pt}
+\setlist[itemize]{leftmargin=26.44pt}% parindent is 17.62482pt
+\setlist[description]{leftmargin=26.44pt,font=\sffamily\bfseries}
+% old alternative:
+% \setlist[enumerate,2]{label=\alph*.}
+% \setlist[enumerate]{leftmargin=\parindent}
+% \setlist[itemize]{leftmargin=\parindent}
+% \setlist[description]{leftmargin=\parindent}
+
+\usepackage[babel,theoremfont,largesc,smallerops,nosymbolsc]{newpx}
+
+% For Baskerville see https://ctan.org/tex-archive/fonts/baskervillef?lang=en
+% and http://mirrors.ctan.org/fonts/baskervillef/doc/baskervillef-doc.pdf
+% \usepackage[p]{baskervillef}
+% \usepackage[varqu,varl,var0]{inconsolata}
+% \usepackage[scale=.95,type1]{cabin}
+% \usepackage[baskerville,vvarbb]{newtxmath}
+% \usepackage[cal=boondoxo]{mathalfa}
+
+
+% \usepackage[bigdelims,nosymbolsc%,smallerops % probably arXiv doesn't have it
+% ]{newpxmath}
+%\useosf
+%\linespread{1.083}%
+%\linespread{1.05}% widely used
+\linespread{1.1}% best for text with maths
+%% smaller operators for old version of newpxmath
+\makeatletter
+\def\re@DeclareMathSymbol#1#2#3#4{%
+    \let#1=\undefined
+    \DeclareMathSymbol{#1}{#2}{#3}{#4}}
+%\re@DeclareMathSymbol{\bigsqcupop}{\mathop}{largesymbols}{"46}
+%\re@DeclareMathSymbol{\bigodotop}{\mathop}{largesymbols}{"4A}
+\re@DeclareMathSymbol{\bigoplusop}{\mathop}{largesymbols}{"4C}
+\re@DeclareMathSymbol{\bigotimesop}{\mathop}{largesymbols}{"4E}
+\re@DeclareMathSymbol{\sumop}{\mathop}{largesymbols}{"50}
+\re@DeclareMathSymbol{\prodop}{\mathop}{largesymbols}{"51}
+\re@DeclareMathSymbol{\bigcupop}{\mathop}{largesymbols}{"53}
+\re@DeclareMathSymbol{\bigcapop}{\mathop}{largesymbols}{"54}
+%\re@DeclareMathSymbol{\biguplusop}{\mathop}{largesymbols}{"55}
+\re@DeclareMathSymbol{\bigwedgeop}{\mathop}{largesymbols}{"56}
+\re@DeclareMathSymbol{\bigveeop}{\mathop}{largesymbols}{"57}
+%\re@DeclareMathSymbol{\bigcupdotop}{\mathop}{largesymbols}{"DF}
+%\re@DeclareMathSymbol{\bigcapplusop}{\mathop}{largesymbolsPXA}{"00}
+%\re@DeclareMathSymbol{\bigsqcupplusop}{\mathop}{largesymbolsPXA}{"02}
+%\re@DeclareMathSymbol{\bigsqcapplusop}{\mathop}{largesymbolsPXA}{"04}
+%\re@DeclareMathSymbol{\bigsqcapop}{\mathop}{largesymbolsPXA}{"06}
+\re@DeclareMathSymbol{\bigtimesop}{\mathop}{largesymbolsPXA}{"10}
+%\re@DeclareMathSymbol{\coprodop}{\mathop}{largesymbols}{"60}
+%\re@DeclareMathSymbol{\varprod}{\mathop}{largesymbolsPXA}{16}
+\makeatother
+%%
+%% With euler font cursive for Greek letters - the [1] means 100% scaling
+\DeclareFontFamily{U}{egreek}{\skewchar\font'177}%
+\DeclareFontShape{U}{egreek}{m}{n}{<-6>s*[1]eurm5 <6-8>s*[1]eurm7 <8->s*[1]eurm10}{}%
+\DeclareFontShape{U}{egreek}{m}{it}{<->s*[1]eurmo10}{}%
+\DeclareFontShape{U}{egreek}{b}{n}{<-6>s*[1]eurb5 <6-8>s*[1]eurb7 <8->s*[1]eurb10}{}%
+\DeclareFontShape{U}{egreek}{b}{it}{<->s*[1]eurbo10}{}%
+\DeclareSymbolFont{egreeki}{U}{egreek}{m}{it}%
+\SetSymbolFont{egreeki}{bold}{U}{egreek}{b}{it}% from the amsfonts package
+\DeclareSymbolFont{egreekr}{U}{egreek}{m}{n}%
+\SetSymbolFont{egreekr}{bold}{U}{egreek}{b}{n}% from the amsfonts package
+% Take also \sum, \prod, \coprod symbols from Euler fonts
+\DeclareFontFamily{U}{egreekx}{\skewchar\font'177}
+\DeclareFontShape{U}{egreekx}{m}{n}{%
+       <-7.5>s*[0.9]euex7%
+    <7.5-8.5>s*[0.9]euex8%
+    <8.5-9.5>s*[0.9]euex9%
+    <9.5->s*[0.9]euex10%
+}{}
+\DeclareSymbolFont{egreekx}{U}{egreekx}{m}{n}
+\DeclareMathSymbol{\sumop}{\mathop}{egreekx}{"50}
+\DeclareMathSymbol{\prodop}{\mathop}{egreekx}{"51}
+\DeclareMathSymbol{\coprodop}{\mathop}{egreekx}{"60}
+\makeatletter
+\def\sum{\DOTSI\sumop\slimits@}
+\def\prod{\DOTSI\prodop\slimits@}
+\def\coprod{\DOTSI\coprodop\slimits@}
+\makeatother
+%%%% Greek letters not usually given in LaTeX
+%%%% best to uncomment only the ones needed
+%% %% \input{definegreek.tex} % originally in a separate file
+\DeclareMathSymbol{\varpartial}{\mathalpha}{egreeki}{"40}
+%\DeclareMathSymbol{\partialup}{\mathalpha}{egreekr}{"40}
+% \DeclareMathSymbol{\alpha}{\mathalpha}{egreeki}{"0B}
+% \DeclareMathSymbol{\beta}{\mathalpha}{egreeki}{"0C}
+% \DeclareMathSymbol{\gamma}{\mathalpha}{egreeki}{"0D}
+% \DeclareMathSymbol{\delta}{\mathalpha}{egreeki}{"0E}
+% \DeclareMathSymbol{\epsilon}{\mathalpha}{egreeki}{"0F}
+% \DeclareMathSymbol{\zeta}{\mathalpha}{egreeki}{"10}
+% \DeclareMathSymbol{\eta}{\mathalpha}{egreeki}{"11}
+% \DeclareMathSymbol{\theta}{\mathalpha}{egreeki}{"12}
+% \DeclareMathSymbol{\iota}{\mathalpha}{egreeki}{"13}
+% \DeclareMathSymbol{\kappa}{\mathalpha}{egreeki}{"14}
+% \DeclareMathSymbol{\lambda}{\mathalpha}{egreeki}{"15}
+% \DeclareMathSymbol{\mu}{\mathalpha}{egreeki}{"16}
+% \DeclareMathSymbol{\nu}{\mathalpha}{egreeki}{"17}
+% \DeclareMathSymbol{\xi}{\mathalpha}{egreeki}{"18}
+% \DeclareMathSymbol{\omicron}{\mathalpha}{egreeki}{"6F}
+% \DeclareMathSymbol{\pi}{\mathalpha}{egreeki}{"19}
+% \DeclareMathSymbol{\rho}{\mathalpha}{egreeki}{"1A}
+% \DeclareMathSymbol{\sigma}{\mathalpha}{egreeki}{"1B}
+% \DeclareMathSymbol{\tau}{\mathalpha}{egreeki}{"1C}
+% \DeclareMathSymbol{\upsilon}{\mathalpha}{egreeki}{"1D}
+% \DeclareMathSymbol{\phi}{\mathalpha}{egreeki}{"1E}
+% \DeclareMathSymbol{\chi}{\mathalpha}{egreeki}{"1F}
+% \DeclareMathSymbol{\psi}{\mathalpha}{egreeki}{"20}
+% \DeclareMathSymbol{\omega}{\mathalpha}{egreeki}{"21}
+% \DeclareMathSymbol{\varepsilon}{\mathalpha}{egreeki}{"22}
+% \DeclareMathSymbol{\vartheta}{\mathalpha}{egreeki}{"23}
+% \DeclareMathSymbol{\varpi}{\mathalpha}{egreeki}{"24}
+% \let\varrho\rho
+% \let\varsigma\sigma
+% \let\varkappa\kappa
+% \DeclareMathSymbol{\varphi}{\mathalpha}{egreeki}{"27}
+% %
+\DeclareMathSymbol{\varAlpha}{\mathalpha}{egreeki}{"41}
+% \DeclareMathSymbol{\varBeta}{\mathalpha}{egreeki}{"42}
+% \DeclareMathSymbol{\varGamma}{\mathalpha}{egreeki}{"00}
+% \DeclareMathSymbol{\varDelta}{\mathalpha}{egreeki}{"01}
+% \DeclareMathSymbol{\varEpsilon}{\mathalpha}{egreeki}{"45}
+% \DeclareMathSymbol{\varZeta}{\mathalpha}{egreeki}{"5A}
+% \DeclareMathSymbol{\varEta}{\mathalpha}{egreeki}{"48}
+% \DeclareMathSymbol{\varTheta}{\mathalpha}{egreeki}{"02}
+% \DeclareMathSymbol{\varIota}{\mathalpha}{egreeki}{"49}
+% \DeclareMathSymbol{\varKappa}{\mathalpha}{egreeki}{"4B}
+% \DeclareMathSymbol{\varLambda}{\mathalpha}{egreeki}{"03}
+% \DeclareMathSymbol{\varMu}{\mathalpha}{egreeki}{"4D}
+% \DeclareMathSymbol{\varNu}{\mathalpha}{egreeki}{"4E}
+% \DeclareMathSymbol{\varXi}{\mathalpha}{egreeki}{"04}
+% \DeclareMathSymbol{\varOmicron}{\mathalpha}{egreeki}{"4F}
+% \DeclareMathSymbol{\varPi}{\mathalpha}{egreeki}{"05}
+% \DeclareMathSymbol{\varRho}{\mathalpha}{egreeki}{"50}
+% \DeclareMathSymbol{\varSigma}{\mathalpha}{egreeki}{"06}
+% \DeclareMathSymbol{\varTau}{\mathalpha}{egreeki}{"54}
+% \DeclareMathSymbol{\varUpsilon}{\mathalpha}{egreeki}{"07}
+% \DeclareMathSymbol{\varPhi}{\mathalpha}{egreeki}{"08}
+% \DeclareMathSymbol{\varChi}{\mathalpha}{egreeki}{"58}
+% \DeclareMathSymbol{\varPsi}{\mathalpha}{egreeki}{"09}
+% \DeclareMathSymbol{\varOmega}{\mathalpha}{egreeki}{"0A}
+% %
+% \DeclareMathSymbol{\Alpha}{\mathalpha}{egreekr}{"41}
+% \DeclareMathSymbol{\Beta}{\mathalpha}{egreekr}{"42}
+% \DeclareMathSymbol{\Gamma}{\mathalpha}{egreekr}{"00}
+% \DeclareMathSymbol{\Delta}{\mathalpha}{egreekr}{"01}
+% \DeclareMathSymbol{\Epsilon}{\mathalpha}{egreekr}{"45}
+% \DeclareMathSymbol{\Zeta}{\mathalpha}{egreekr}{"5A}
+% \DeclareMathSymbol{\Eta}{\mathalpha}{egreekr}{"48}
+% \DeclareMathSymbol{\Theta}{\mathalpha}{egreekr}{"02}
+% \DeclareMathSymbol{\Iota}{\mathalpha}{egreekr}{"49}
+% \DeclareMathSymbol{\Kappa}{\mathalpha}{egreekr}{"4B}
+% \DeclareMathSymbol{\Lambda}{\mathalpha}{egreekr}{"03}
+% \DeclareMathSymbol{\Mu}{\mathalpha}{egreekr}{"4D}
+% \DeclareMathSymbol{\Nu}{\mathalpha}{egreekr}{"4E}
+% \DeclareMathSymbol{\Xi}{\mathalpha}{egreekr}{"04}
+% \DeclareMathSymbol{\Omicron}{\mathalpha}{egreekr}{"4F}
+% \DeclareMathSymbol{\Pi}{\mathalpha}{egreekr}{"05}
+% \DeclareMathSymbol{\Rho}{\mathalpha}{egreekr}{"50}
+% \DeclareMathSymbol{\Sigma}{\mathalpha}{egreekr}{"06}
+% \DeclareMathSymbol{\Tau}{\mathalpha}{egreekr}{"54}
+% \DeclareMathSymbol{\Upsilon}{\mathalpha}{egreekr}{"07}
+% \DeclareMathSymbol{\Phi}{\mathalpha}{egreekr}{"08}
+% \DeclareMathSymbol{\Chi}{\mathalpha}{egreekr}{"58}
+% \DeclareMathSymbol{\Psi}{\mathalpha}{egreekr}{"09}
+% \DeclareMathSymbol{\Omega}{\mathalpha}{egreekr}{"0A}
+% %
+% \DeclareMathSymbol{\alphaup}{\mathalpha}{egreekr}{"0B}
+% \DeclareMathSymbol{\betaup}{\mathalpha}{egreekr}{"0C}
+% \DeclareMathSymbol{\gammaup}{\mathalpha}{egreekr}{"0D}
+\DeclareMathSymbol{\deltaup}{\mathalpha}{egreekr}{"0E}
+% \DeclareMathSymbol{\epsilonup}{\mathalpha}{egreekr}{"0F}
+% \DeclareMathSymbol{\zetaup}{\mathalpha}{egreekr}{"10}
+% \DeclareMathSymbol{\etaup}{\mathalpha}{egreekr}{"11}
+% \DeclareMathSymbol{\thetaup}{\mathalpha}{egreekr}{"12}
+% \DeclareMathSymbol{\iotaup}{\mathalpha}{egreekr}{"13}
+% \DeclareMathSymbol{\kappaup}{\mathalpha}{egreekr}{"14}
+% \DeclareMathSymbol{\lambdaup}{\mathalpha}{egreekr}{"15}
+% \DeclareMathSymbol{\muup}{\mathalpha}{egreekr}{"16}
+% \DeclareMathSymbol{\nuup}{\mathalpha}{egreekr}{"17}
+% \DeclareMathSymbol{\xiup}{\mathalpha}{egreekr}{"18}
+% \DeclareMathSymbol{\omicronup}{\mathalpha}{egreekr}{"6F}
+\DeclareMathSymbol{\piup}{\mathalpha}{egreekr}{"19}
+% \DeclareMathSymbol{\rhoup}{\mathalpha}{egreekr}{"1A}
+% \DeclareMathSymbol{\sigmaup}{\mathalpha}{egreekr}{"1B}
+% \DeclareMathSymbol{\tauup}{\mathalpha}{egreekr}{"1C}
+% \DeclareMathSymbol{\upsilonup}{\mathalpha}{egreekr}{"1D}
+% \DeclareMathSymbol{\phiup}{\mathalpha}{egreekr}{"1E}
+% \DeclareMathSymbol{\chiup}{\mathalpha}{egreekr}{"1F}
+% \DeclareMathSymbol{\psiup}{\mathalpha}{egreekr}{"20}
+% \DeclareMathSymbol{\omegaup}{\mathalpha}{egreekr}{"21}
+% \DeclareMathSymbol{\varepsilonup}{\mathalpha}{egreekr}{"22}
+% \DeclareMathSymbol{\varthetaup}{\mathalpha}{egreekr}{"23}
+% \DeclareMathSymbol{\varpiup}{\mathalpha}{egreekr}{"24}
+% \let\varrhoup\rhoup
+% \let\varsigmaup\sigmaup
+% \let\varkappaup\kappaup
+% \DeclareMathSymbol{\varphiup}{\mathalpha}{egreekr}{"27}
+
+
+% \usepackage%[scaled=0.9]%
+% {classico}%  Optima as sans-serif font
+\renewcommand\sfdefault{uop}
+\DeclareMathAlphabet{\mathsf}  {T1}{\sfdefault}{m}{sl}
+\SetMathAlphabet{\mathsf}{bold}{T1}{\sfdefault}{b}{sl}
+%\newcommand*{\mathte}[1]{\textbf{\textit{\textsf{#1}}}}
+% Upright sans-serif math alphabet
+% \DeclareMathAlphabet{\mathsu}  {T1}{\sfdefault}{m}{n}
+% \SetMathAlphabet{\mathsu}{bold}{T1}{\sfdefault}{b}{n}
+
+% DejaVu Mono as typewriter text
+\usepackage[scaled=0.83]{DejaVuSansMono}
+
+\usepackage{mathdots}
+
+\usepackage[usenames]{xcolor}
+% Tol (2012) colour-blind-, print-, screen-friendly colours, alternative scheme; Munsell terminology
+\definecolor{blue}{HTML}{4477AA}
+\definecolor{cyan}{HTML}{66CCEE}
+\definecolor{green}{HTML}{228833}
+\definecolor{yellow}{HTML}{CCBB44}
+\definecolor{red}{HTML}{EE6677}
+\definecolor{purple}{HTML}{AA3377}
+\definecolor{grey}{HTML}{BBBBBB}
+\definecolor{midgrey}{HTML}{888888}
+\definecolor{darkgrey}{HTML}{555555}
+\definecolor{lgrey}{HTML}{DDDDDD}
+%\newcommand*\mycolourbox[1]{%
+%\colorbox{grey}{\hspace{1em}#1\hspace{1em}}}
+\colorlet{shadecolor}{lgrey}
+
+\usepackage{bm}
+
+
+\usepackage{microtype}
+
+\usepackage[backend=biber,mcite,%subentry,
+citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,sorting=ny,sortcites=false,natbib=false,maxcitenames=2,maxbibnames=8,minbibnames=8,giveninits=true,uniquename=false,uniquelist=false,maxalphanames=1,block=space,hyperref=true,defernumbers=false,useprefix=true,sortupper=false,language=british,parentracker=false,autocite=inline,dashed=false]{biblatex}
+\DeclareSortingTemplate{ny}{\sort{\field{sortname}\field{author}\field{editor}}\sort{\field{year}}}
+\DeclareFieldFormat{postnote}{#1}
+\iffalse\makeatletter%%% replace parenthesis with brackets
+\newrobustcmd*{\parentexttrack}[1]{%
+  \begingroup
+  \blx@blxinit
+  \blx@setsfcodes
+  \blx@bibopenparen#1\blx@bibcloseparen
+  \endgroup}
+\AtEveryCite{%
+  \let\parentext=\parentexttrack%
+  \let\bibopenparen=\bibopenbracket%
+  \let\bibcloseparen=\bibclosebracket}
+\makeatother\fi
+\DefineBibliographyExtras{british}{\def\finalandcomma{\addcomma}}
+\renewcommand*{\finalnamedelim}{\addspace\amp\space}
+% \renewcommand*{\finalnamedelim}{\addcomma\space}
+\renewcommand*{\textcitedelim}{\addcomma\space}
+% \setcounter{biburlnumpenalty}{1} % to allow url breaks anywhere
+% \setcounter{biburlucpenalty}{0}
+% \setcounter{biburllcpenalty}{1}
+\setcounter{biburlucpenalty}{1}  %break URL after uppercase character
+\setcounter{biburlnumpenalty}{1} %break URL after number
+\setcounter{biburllcpenalty}{1}  %break URL after lowercase character
+\DeclareDelimFormat{multicitedelim}{\addsemicolon\addspace\space}
+\DeclareDelimFormat{compcitedelim}{\addsemicolon\addspace\space}
+\DeclareDelimFormat{postnotedelim}{\addspace}
+\ifarxiv\else\addbibresource{portamanabib.bib}\fi
+\renewcommand{\nameyeardelim}{~}
+\renewcommand{\bibfont}{\footnotesize}
+%\appto{\citesetup}{\footnotesize}% smaller font for citations
+\defbibheading{bibliography}[\bibname]{\chapter*{#1}\label{sec:biblio}\addcontentsline{toc}{chapter}{#1}%\markboth{#1}{#1}
+}
+\newcommand*{\citep}{\footcites}
+\newcommand*{\citey}{\footcites}%{\parencites*}
+\newcommand*{\ibid}{\unspace\addtocounter{footnote}{-1}\footnotemark{}}
+%\renewcommand*{\cite}{\parencite}
+%\renewcommand*{\cites}{\parencites}
+\providecommand{\href}[2]{#2}
+\providecommand{\eprint}[2]{\texttt{\href{#1}{#2}}}
+\newcommand*{\amp}{\&}
+% \newcommand*{\citein}[2][]{\textnormal{\textcite[#1]{#2}}%\addtocategory{extras}{#2}
+% }
+\newcommand*{\citein}[2][]{\textnormal{\textcite[#1]{#2}}%\addtocategory{extras}{#2}
+}
+\newcommand*{\citebi}[2][]{\textcite[#1]{#2}%\addtocategory{extras}{#2}
+}
+\newcommand*{\subtitleproc}[1]{}
+\newcommand*{\chapb}{ch.}
+%
+%\def\UrlOrds{\do\*\do\-\do\~\do\'\do\"\do\-}%
+% \def\myUrlOrds{\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}%
+\makeatletter
+%\g@addto@macro\UrlSpecials{\do={\newline}}
+\g@addto@macro{\UrlBreaks}{%
+\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
+}
+% \g@addto@macro\UrlSpecials{%
+% \do\/{\mbox{\UrlFont/}\hskip 0pt plus 10pt}%
+% }
+\makeatother
+\newcommand*{\arxiveprint}[1]{%
+arXiv \doi{10.48550/arXiv.#1}%
+}
+\newcommand*{\mparceprint}[1]{%
+\href{http://www.ma.utexas.edu/mp_arc-bin/mpa?yn=#1}{mp_arc:\allowbreak\nolinkurl{#1}}%
+}
+\newcommand*{\haleprint}[1]{%
+\href{https://hal.archives-ouvertes.fr/#1}{\textsc{hal}:\allowbreak\nolinkurl{#1}}%
+}
+\newcommand*{\philscieprint}[1]{%
+\href{http://philsci-archive.pitt.edu/archive/#1}{PhilSci:\allowbreak\nolinkurl{#1}}%
+}
+\newcommand*{\doi}[1]{%
+\href{https://doi.org/#1}{\textsc{doi}:\allowbreak\nolinkurl{#1}}%
+}
+\newcommand*{\biorxiveprint}[1]{%
+bioRxiv \doi{10.1101/#1}%
+}
+\newcommand*{\osfeprint}[1]{%
+Open Science Framework \doi{10.31219/osf.io/#1}%
+}
+\newcommand*{\osfproj}[1]{%
+Open Science Framework \doi{10.17605/osf.io/#1}%
+}
+
+\usepackage{graphicx}
+\usepackage{graphbox}
+
+%\usepackage{tikz-cd}
+
+\PassOptionsToPackage{hyphens}{url}\usepackage[hypertexnames=false,pdfencoding=unicode,psdextra]{hyperref}
+
+\usepackage{pdfrender}
+\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
+\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\boldsymbol{#1}}}
+
+
+\usepackage[depth=3]{bookmark}
+\hypersetup{%
+colorlinks=true,
+%pdfborderstyle={/S/U/W 0.5},
+bookmarksnumbered,pdfborder={0 0 0.25},
+citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlbordercolor=cyan,urlcolor=cyan,breaklinks=true,pdftitle={\pdftitle},pdfauthor={\pdfauthor}}
+% \usepackage[vertfit=local]{breakurl}% only for arXiv
+\providecommand*{\urlalt}{\href}
+% \makeatletter
+% \DeclareUrlCommand\ULurl@@{%
+%   \def\UrlFont{\ttfamily\color{cyan}}%
+%   \def\UrlLeft{\uline\bgroup}%
+%   \def\UrlRight{\egroup}}
+% \def\ULurl@#1{\hyper@linkurl{\ULurl@@{#1}}{#1}}
+% \DeclareRobustCommand*\ULurl{\hyper@normalise\ULurl@}
+% \makeatother
+
+\usepackage{tensor}
+
+\usepackage[british]{datetime2}
+\DTMnewdatestyle{mydate}%
+{% definitions
+\renewcommand*{\DTMdisplaydate}[4]{%
+\number##3\ \DTMenglishmonthname{##2} ##1}%
+\renewcommand*{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+\DTMsetdatestyle{mydate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Layout. I do not know on which kind of paper the reader will print the
+%%% paper on (A4? letter? one-sided? double-sided?). So I choose A5, which
+%%% provides a good layout for reading on screen and save paper if printed
+%%% two pages per sheet. Average length line is 66 characters and page
+%%% numbers are centred.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifafour\setstocksize{297mm}{210mm}%{*}% A4
+\else\setstocksize{210mm}{5.5in}%{*}% 210x139.7
+%\else\setstocksize{210mm}{148mm}%{*}% A5
+\fi
+\settrimmedsize{\stockheight}{\stockwidth}{*}
+% \newlength{\mylen} % a length
+% \newcommand{\alphabet}{abcdefghijklmnopqrstuvwxyz} % the lowercase alphabet
+% \begingroup % keep font change local
+% \normalfont% font specification e.g., \Large\sffamily
+% \settowidth{\mylen}{\alphabet}
+% %The length of this alphabet is \the\mylen. % print in document
+% \typeout{The length of the normal alphabet is \the\mylen} % put in log file
+% \endgroup  % end the grouping
+%     66       70
+% 10 {26.1408, 27.872}, 133.05988pt
+% 11 {28.1023, 29.9307}, 145.70042pt
+% 12 {30.3586, 32.2944}, 159.6719pt
+% % alphabet 133.05988pt, 66 ch/line = 26.1408pc
+% % alphabet 133.05988pt, 69 ch/line = 27.431pc
+% % alphabet 133.05988pt, 70 ch/line = 27.872pc
+% % alphabet 133.05988pt, 71 ch/line = 28.3186pc
+%
+%\setlxvchars[\normalfont] %313.3632pt for a 66-characters line
+% \setxlvchars[\normalfont]
+% \setlength{\lxvchars}{28pc}
+% \typeout{lxvchars is \the\lxvchars}
+% \setlength{\trimtop}{0pt}
+% \setlength{\trimedge}{\stockwidth}
+% \addtolength{\trimedge}{-\paperwidth}
+% \settrims{0pt}{0pt}
+% The length of the normalsize alphabet is 133.05988pt - 10 pt = 26.1408pc
+% The length of the normalsize alphabet is 159.6719pt - 12pt = 30.3586pc
+% Bringhurst gives 32pc as boundary optimal with 69 ch per line
+% The length of the normalsize alphabet is 191.60612pt - 14pt = 35.8634pc
+%\ifafour\settypeblocksize{*}{32pc}{1.618} % A4
+%\setulmargins{*}{*}{1.667}%gives 5/3 margins % 2 or 1.667
+%\settypeblocksize{*}{\lxvchars}{2}% nearer to a 66-line newpx and preserves GR
+%\settypeblocksize{*}{32pc}{2}% nearer to a 66-line newpx and preserves GR
+\settypeblocksize{*}{32pc}{1.618}% nearer to a 66-line newpx and preserves GR
+%\settypeblocksize{*}{27pc}{1.414}% nearer to a 70-line newpx and preserves sqrt2
+%\fi
+\setulmargins{*}{*}{1}%gives equal margins
+\setlrmargins{*}{*}{4}
+\setheadfoot{\onelineskip}{2.5\onelineskip}
+\setheaderspaces{*}{2\onelineskip}{*}
+\setmarginnotes{\parindent}{0.33\textwidth}{1em}
+\checkandfixthelayout[nearest]
+%%% End layout
+%% this fixes missing white spaces
+%\pdfmapline{+dummy-space <dummy-space.pfb}
+%\pdfinterwordspaceon% seems to add a white margin to Sumatrapdf
+
+%%% Sectioning
+% \newcommand*{\asudedication}[1]{%
+% {\par\centering\textit{#1}\par}}
+% \newenvironment{acknowledgements}{\section*{Thanks}\addcontentsline{toc}{section}{Thanks}}{\par}
+\makeatletter\renewcommand{\appendix}{\par
+  \bigskip{\centering
+   \interlinepenalty \@M
+   \normalfont
+   \printchaptertitle{\sffamily\appendixpagename}\par}
+  \setcounter{chapter}{0}%
+  \gdef\@chapapp{\appendixname}%
+  \gdef\thesection{\@Alph\c@section}%
+  \anappendixtrue}\makeatother
+% \counterwithout{section}{chapter}
+
+\openany
+% \makeatletter
+% \renewcommand{\@chapapp}{}
+% \makeatother
+% \makeatletter
+\makechapterstyle{manacha}{%
+   \setlength{\afterchapskip}{40pt}
+  \renewcommand*{\chapterheadstart}{\vspace*{40pt}}
+  \renewcommand*{\afterchapternum}{\par\nobreak\vskip -34pt}
+   % \renewcommand*{\chapnamefont}{\normalfont\LARGE\flushright}
+   \renewcommand*{\chapnumfont}{\normalfont\HUGE}
+\renewcommand*{\chaptitlefont}{\normalfont\huge\sffamily\bfseries}
+   % \renewcommand*{\chaptitlefont}{\normalfont\HUGE\bfseries\flushright}
+\renewcommand*{\printchaptername}{}%
+   % \renewcommand*{\printchaptername}{%
+   %   \chapnamefont\MakeTextUppercase{\@chapapp}}
+   \renewcommand*{\chapternamenum}{}
+  \setlength{\beforechapskip}{18mm}%  \numberheight
+  \setlength{\midchapskip}{\paperwidth}% \barlength
+  \addtolength{\midchapskip}{-\textwidth}
+  \addtolength{\midchapskip}{-\spinemargin}
+   \renewcommand*{\printchapternum}{%
+\flushright\makebox[0pt][l]{%
+       \hspace{1em}%
+       \resizebox{!}{\beforechapskip}{\chapnumfont \thechapter}%
+       \hspace{1em}%
+       \rule{\midchapskip}{\beforechapskip}%
+     }%
+   }%
+   \renewcommand*{\printchapternonum}{%
+\flushright\makebox[0pt][l]{%
+  % \hspace{1em}%
+  % \resizebox{!}{\beforechapskip}{\chapnumfont \thechapter}%
+  % \hspace{1em}%
+  \makebox[0.5\midchapskip][c]{}%
+  \rule{0.5\midchapskip}{\beforechapskip}%
+}%
+\afterchapternum%
+}%
+% \makeoddfoot{plain}{}{}{\thepage}
+}
+% \makeatother
+\chapterstyle{manacha}
+% \chapterstyle{veelo}
+
+%\renewcommand*{\chapterheadstart}{\vspace*{40pt}\color{midgrey}}
+%\renewcommand*{\afterchapternum}{\par\nobreak\vskip -34pt}
+%\renewcommand*{\chaptitlefont}{\normalfont\huge\sffamily\bfseries}
+%\chapterstyle{veelo}
+%\chapterstyle{pedersen}
+%\chapterstyle{ell}
+\setsecnumdepth{section}
+\setsecnumformat{\faIcon{puzzle-piece}\enspace\upshape\csname the#1\endcsname\quad}
+\setsecheadstyle{\Large\bfseries\sffamily%
+\raggedright}
+% \setsecheadstyle{\bfseries\sffamily%
+% \raggedright}
+%\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex}
+%\setaftersecskip{1.3ex plus .2ex }% plus 1ex minus .2ex}
+%\setsubsubsecheadstyle{\bfseries\sffamily\slshape\raggedright}
+%\setbeforesubsecskip{1.25ex plus 1ex minus .2ex }% plus 1ex minus .2ex}
+%\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex}
+\setsecindent{0pt}%0ex plus 1ex minus .2ex}
+\setsubsecheadstyle{\large\bfseries\sffamily%
+\raggedright}
+\setparaheadstyle{\itshape\bfseries\sffamily%
+\raggedright}
+\newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
+\newcommand{\addsec}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
+
+% \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect~#1}}
+
+% \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect~#1}}
+
+%%% Headers, footers, pagestyle
+%% \newlength{\newheadwidth}
+\setlength{\headwidth}{\textwidth}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{\marginparwidth}
+\makerunningwidth{plain}{\headwidth}
+\makeheadposition{plain}{flushleft}{flushleft}{flushleft}{flushleft}
+\makeoddhead{plain}{\scriptsize\reporthead}{}{}
+\makeoddfoot{plain}{}{\thepage}{}
+
+\copypagestyle{manaart}{plain}
+\makeheadrule{manaart}{\headwidth}{0.5\normalrulethickness}
+\makeoddhead{manaart}{%
+{\footnotesize%
+\sffamily\leftmark}}{}{{\footnotesize\sffamily\itshape%
+\rightmark}}
+\makeoddfoot{manaart}{}{\thepage}{}
+%\newcommand*\autanet{\includegraphics[height=\heightof{M}]{autanet.pdf}}
+\definecolor{mygray}{gray}{0.333}
+% \iftypodisclaim%
+% \ifafour\newcommand\addprintnote{\begin{picture}(0,0)%
+% \put(245,149){\makebox(0,0){\rotatebox{90}{\tiny\color{mygray}\textsf{This
+%             document is designed for screen reading and
+%             two-up printing on A4 or Letter paper}}}}%
+% \end{picture}}% A4
+% \else\newcommand\addprintnote{\begin{picture}(0,0)%
+% \put(176,112){\makebox(0,0){\rotatebox{90}{\tiny\color{mygray}\textsf{This
+%             document is designed for screen reading and
+%             two-up printing on A4 or Letter paper}}}}%
+% \end{picture}}\fi%afourtrue
+% \makeoddfoot{plain}{}{\makebox[0pt]{\thepage}\addprintnote}{}
+% \else
+% \makeoddfoot{plain}{}{\makebox[0pt]{\thepage}}{}
+% \fi%typodisclaimtrue
+%\makeheadposition{manaart}{flushleft}{flushleft}{flushleft}{flushleft}
+
+%\setmpjustification{\flushleftright}{\flushleftright}
+\setfloatadjustment{marginfigure}{\flushleftright}
+
+% \copypagestyle{manainitial}{plain}
+% \makeheadrule{manainitial}{\headwidth}{0.5\normalrulethickness}
+% \makeoddhead{manainitial}{%
+% \footnotesize\sffamily%
+% \scshape\headauthor}{}{\footnotesize\sffamily%
+% \headtitle}
+% \makeoddfoot{manaart}{}{\thepage}{}
+
+% \makepsmarks{headings}{%
+% \createmark{section}{both}{shownumber}{}{. }
+% %\createmark{subsection}{both}{shownumber}{}{. \ }
+% % \createplainmark{toc}{both}{\contentsname}
+% % \createplainmark{lof}{both}{\listfigurename}
+% % \createplainmark{lot}{both}{\listtablename}
+% \createplainmark{bib}{both}{\bibname}
+% % \createplainmark{index}{both}{\indexname}
+% % \createplainmark{glossary}{both}{\glossaryname}
+% }
+% \nouppercaseheads
+% \makeheadrule{headings}{\headwidth}{0.5\normalrulethickness}
+% \makeoddfoot{headings}{}{\thepage}{}
+\makepsmarks{manaart}{%
+\createmark{chapter}{left}{shownumber}{}{. }
+\createmark{section}{right}{shownumber}{}{ }
+}
+\nouppercaseheads
+\pagestyle{manaart}
+
+%\setlength{\droptitle}{-3.9\onelineskip}
+\pretitle{\begin{center}
+% \smash{\includegraphics[align=t,width=\textwidth]{images/palebluedot2.png}}
+\huge\sffamily%
+\bfseries%\color{white}%
+}
+\posttitle{\par\end{center}\bigskip}
+
+\makeatletter\newcommand*{\atf}{\includegraphics[totalheight=\heightof{@}]{pglpm_latex/atblack.png}}\makeatother
+% \providecommand{\affiliation}[1]{\textsl{\textsf{\footnotesize #1}}}
+\providecommand{\epost}[1]{\texttt{\footnotesize\textless#1\textgreater}}
+\providecommand{\email}[2]{\href{mailto:#1ZZ@#2 ((remove ZZ))}{#1\protect\atf#2}}
+%\providecommand{\email}[2]{\href{mailto:#1@#2}{#1@#2}}
+
+\preauthor{\begin{center}%\color{white}%
+\Large\sffamily%
+}
+\postauthor{\par\end{center}}
+\predate{\DTMsetdatestyle{mydate}\begin{center}\footnotesize%\color{white}%
+}
+\postdate{\par\end{center}}
+
+\setfloatadjustment{figure}{\footnotesize}
+\captiondelim{\quad}
+\captionnamefont{\footnotesize\sffamily%
+}
+\captiontitlefont{\footnotesize}
+%\firmlists*
+\midsloppy
+% handling orphan/widow lines, memman.pdf
+% \clubpenalty=10000
+% \widowpenalty=10000
+% \raggedbottom
+% Downes, memman.pdf
+\clubpenalty=9996
+\widowpenalty=9999
+\brokenpenalty=4991
+\predisplaypenalty=10000
+\postdisplaypenalty=1549
+\displaywidowpenalty=1602
+\raggedbottom
+
+\paragraphfootnotes
+\setlength{\footmarkwidth}{2ex}
+% \threecolumnfootnotes
+%\setlength{\footmarksep}{0em}
+\footmarkstyle{\textsuperscript{%\color{red}
+\scriptsize\bfseries#1}~}
+%\footmarkstyle{\textsuperscript{\color{red}\scriptsize\bfseries#1}~}
+%\footmarkstyle{\textsuperscript{[#1]}~}
+
+\selectlanguage{british}\frenchspacing
+\usepackage{fontawesome5}
+
+% \usepackage{wrapfig2}
+% \newlength{\wfwidth}
+% \setlength{\wfwidth}{0.4\linewidth}
+
+\colorlet{mpcolor}{green}
+%\newcommand*{\puzzle}{\maltese}
+% \newcommand*{\puzzle}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{225}}}
+% \newcommand*{\wrench}{{\fontencoding{U}\fontfamily{fontawesomethree}\selectfont\symbol{114}}}
+% \newcommand*{\pencil}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{210}}}
+\newcommand{\mynotew}[1]{{\footnotesize\color{midgrey}\faIcon{tools}\ #1}}
+% \newcommand{\mynotep}[1]{{\footnotesize\color{notecolour}\pencil\ #1}}
+% \newcommand{\mynotez}[1]{{\footnotesize\color{notecolour}\puzzle\ #1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Paper's details
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\propertitle}
+\ifanon\else\author{%
+\hspace*{\stretch{1}}%
+%% uncomment if additional authors present
+% \parbox{0.5\linewidth}%\makebox[0pt][c]%
+% {\protect\centering ***\\%
+% \footnotesize\epost{\email{***}{***}}}%
+% \hspace*{\stretch{1}}%
+\parbox{1\linewidth}%\makebox[0pt][c]%
+{\protect\centering P.G.L.  Porta\,Mana
+ %\href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}%
+% \\\footnotesize
+% Western Norway University of Applied Sciences%
+% \quad\epost{\email{pgl}{portamana.org}}%
+}%
+%% uncomment if additional authors present
+% \hspace*{\stretch{1}}%
+% \parbox{0.5\linewidth}%\makebox[0pt][c]%
+% {\protect\centering ***\\%
+% \footnotesize\epost{\email{***}{***}}}%
+\hspace*{\stretch{1}}%
+}\fi
+
+%\date{Draft of \today\ (first drafted \firstdraft)}
+\date{\textbf{Working draft} version \version, updated \updated\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.io/7wonders}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Macros @@@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Common ones - uncomment as needed
+%\providecommand{\nequiv}{\not\equiv}
+%\providecommand{\coloneqq}{\mathrel{\mathop:}=}
+%\providecommand{\eqqcolon}{=\mathrel{\mathop:}}
+%\providecommand{\varprod}{\prod}
+\newcommand*{\de}{\uppartial}%partial diff
+\newcommand*{\pu}{\piup}%constant pi
+\newcommand*{\delt}{\deltaup}%Kronecker, Dirac
+%\newcommand*{\eps}{\varepsilonup}%Levi-Civita, Heaviside
+%\newcommand*{\riem}{\zetaup}%Riemann zeta
+%\providecommand{\degree}{\textdegree}% degree
+%\newcommand*{\celsius}{\textcelsius}% degree Celsius
+%\newcommand*{\micro}{\textmu}% degree Celsius
+% \newcommand*{\I}{\mathrm{i}}%imaginary unit
+\newcommand*{\I}{\ensuremath{\mathrm{i}}}
+% \newcommand*{\e}{\mathrm{e}}%Neper
+\newcommand*{\e}{\ensuremath{\mathrm{e}}}
+\newcommand*{\di}{\mathrm{d}}%differential
+% \newcommand*{\dii}{\ensuremath{\mathrm{d}}}
+% %% From TUGboat 18 (1997) 1 - leads to very strange spacing
+% \makeatletter
+% \providecommand*{\di}%
+% {\@ifnextchar^{\DIfF}{\DIfF^{}}}
+% \def\DIfF^#1{%
+% \mathop{\mathrm{\mathstrut d}}%
+% \nolimits^{#1}\gobblespace}
+% \def\gobblespace{%
+% \futurelet\diffarg\opspace}
+% \def\opspace{%
+% \let\DiffSpace\!%
+% \ifx\diffarg(%
+% \let\DiffSpace\relax
+% \else
+% \ifx\diffarg[%
+% \let\DiffSpace\relax
+% \else
+% \ifx\diffarg\{%
+% \let\DiffSpace\relax
+% \fi\fi\fi\DiffSpace}
+% \makeatother
+
+% \newcommand*{\Di}{\mathrm{D}}%capital differential
+%\newcommand*{\Li}{\mathrm{L}}%Lie derivative
+%\newcommand*{\planckc}{\hslash}
+%\newcommand*{\avogn}{N_{\textrm{A}}}
+%\newcommand*{\NN}{\bm{\mathrm{N}}}
+%\newcommand*{\ZZ}{\bm{\mathrm{Z}}}
+%\newcommand*{\QQ}{\bm{\mathrm{Q}}}
+\newcommand*{\RR}{\bm{\mathrm{R}}}
+%\newcommand*{\CC}{\bm{\mathrm{C}}}
+%\newcommand*{\nabl}{\bm{\nabla}}%nabla
+%\DeclareMathOperator{\lb}{lb}%base 2 log
+%\DeclareMathOperator{\tr}{tr}%trace
+%\DeclareMathOperator{\card}{card}%cardinality
+%% From TUGboat 18 (1997) 1
+% \renewoperator{\Re}{\mathrm{Re}}{\nolimits}
+% \renewoperator{\Im}{\mathrm{Im}}{\nolimits}
+\DeclareMathOperator{\im}{Im}%im part
+\DeclareMathOperator{\re}{Re}%re part
+%\DeclareMathOperator{\sgn}{sgn}%signum
+%\DeclareMathOperator{\ent}{ent}%integer less or equal to
+%\DeclareMathOperator{\Ord}{O}%same order as
+%\DeclareMathOperator{\ord}{o}%lower order than
+% \newcommand*{\incr}{\triangle}%finite increment
+\newcommand*{\incr}{\Delta}%finite increment
+\newcommand*{\defd}{\coloneqq}
+\newcommand*{\defs}{\eqqcolon}
+%\newcommand*{\Land}{\bigwedge}
+%\newcommand*{\Lor}{\bigvee}
+%\newcommand*{\lland}{\DOTSB\;\land\;}
+%\newcommand*{\llor}{\DOTSB\;\lor\;}
+\newcommand*{\limplies}{\mathbin{\Rightarrow}}%implies
+%\newcommand*{\suchthat}{\mid}%{\mathpunct{|}}%such that (eg in sets)
+%\newcommand*{\with}{\colon}%with (list of indices)
+%\newcommand*{\mul}{\times}%multiplication
+%\newcommand*{\inn}{\cdot}%inner product
+%\newcommand*{\dotv}{\mathord{\,\cdot\,}}%variable place
+%\newcommand*{\comp}{\circ}%composition of functions
+%\newcommand*{\con}{\mathbin{:}}%scal prod of tensors
+%\newcommand*{\equi}{\sim}%equivalent to
+\renewcommand*{\asymp}{\simeq}%equivalent to
+%\newcommand*{\corr}{\mathrel{\hat{=}}}%corresponds to
+%\providecommand{\varparallel}{\ensuremath{\mathbin{/\mkern-7mu/}}}%parallel (tentative symbol)
+% \renewcommand*{\le}{\leqslant}%less or equal
+% \renewcommand*{\ge}{\geqslant}%greater or equal
+%\DeclarePairedDelimiter\clcl{[}{]}
+%\DeclarePairedDelimiter\clop{[}{[}
+%\DeclarePairedDelimiter\opcl{]}{]}
+%\DeclarePairedDelimiter\opop{]}{[}%}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+%\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\set{\{}{\}} %}
+%\DeclareMathOperator{\pr}{P}%probability
+\newcommand*{\p}{\mathrm{p}}%probability
+\renewcommand*{\P}{\mathrm{P}}%probability
+%\newcommand*{\E}{\mathrm{E}}
+%% The "\:" space is chosen to correctly separate inner binary and external rels
+\renewcommand*{\|}[1][]{\nonscript\:#1\vert\nonscript\:\mathopen{}}
+%\DeclarePairedDelimiterX{\cp}[2]{(}{)}{#1\nonscript\:\delimsize\vert\nonscript\:\mathopen{}#2}
+%\DeclarePairedDelimiterX{\ct}[2]{[}{]}{#1\nonscript\;\delimsize\vert\nonscript\:\mathopen{}#2}
+%\DeclarePairedDelimiterX{\cs}[2]{\{}{\}}{#1\nonscript\:\delimsize\vert\nonscript\:\mathopen{}#2}
+%\newcommand*{\+}{\lor}
+%\renewcommand{\*}{\land}
+%% symbol = for equality statements within probabilities
+%% from https://tex.stackexchange.com/a/484142/97039
+% \newcommand*{\eq}{\mathrel{\!=\!}}
+% \let\texteq\=
+% \renewcommand*{\=}{\TextOrMath\texteq\eq}
+% \newcommand*{\eq}[1][=]{\mathrel{\!#1\!}}
+\newcommand*{\mo}[1][=]{\mathclose{}\mathord{\nonscript\mkern0.5mu#1\nonscript\mkern0.5mu}\mathopen{}}
+%%
+\newcommand*{\sect}{\S}% Sect.~
+\newcommand*{\sects}{\S\S}% Sect.~
+\newcommand*{\chap}{Chapter}%
+\newcommand*{\chaps}{chs}%
+\newcommand*{\bref}{ref.}%
+\newcommand*{\brefs}{refs}%
+%\newcommand*{\fn}{fn}%
+\newcommand*{\eqn}{eq.}%
+\newcommand*{\eqns}{eqs}%
+\newcommand*{\fig}{fig.}%
+\newcommand*{\figs}{figs}%
+\newcommand*{\vs}{{vs}}
+\newcommand*{\eg}{{e.g.}}
+\newcommand*{\etc}{{etc.}}
+\newcommand*{\ie}{{i.e.}}
+%\newcommand*{\ca}{{c.}}
+\newcommand*{\foll}{{ff.}}
+%\newcommand*{\viz}{{viz}}
+\newcommand*{\cf}{{cf.}}
+%\newcommand*{\Cf}{{Cf.}}
+%\newcommand*{\vd}{{v.}}
+\newcommand*{\etal}{{et al.}}
+%\newcommand*{\etsim}{{et sim.}}
+%\newcommand*{\ibid}{{ibid.}}
+%\newcommand*{\sic}{{sic}}
+%\newcommand*{\id}{\mathte{I}}%id matrix
+%\newcommand*{\nbd}{\nobreakdash}%
+%\newcommand*{\bd}{\hspace{0pt}}%
+%\def\hy{-\penalty0\hskip0pt\relax}
+%\newcommand*{\labelbis}[1]{\tag*{(\ref{#1})$_\text{r}$}}
+%\newcommand*{\mathbox}[2][.8]{\parbox[t]{#1\columnwidth}{#2}}
+\newcommand*{\zerob}[1]{\makebox[0pt][c]{#1}}
+\newcommand*{\tprod}{\mathop{\textstyle\prod}\nolimits}
+\newcommand*{\tsum}{\mathop{\textstyle\sum}\nolimits}
+%\newcommand*{\tint}{\begingroup\textstyle\int\endgroup\nolimits}
+%\newcommand*{\tland}{\mathop{\textstyle\bigwedge}\nolimits}
+%\newcommand*{\tlor}{\mathop{\textstyle\bigvee}\nolimits}
+%\newcommand*{\sprod}{\mathop{\textstyle\prod}}
+%\newcommand*{\ssum}{\mathop{\textstyle\sum}}
+%\newcommand*{\sint}{\begingroup\textstyle\int\endgroup}
+%\newcommand*{\sland}{\mathop{\textstyle\bigwedge}}
+%\newcommand*{\slor}{\mathop{\textstyle\bigvee}}
+%\newcommand*{\T}{^\transp}%transpose
+%%\newcommand*{\QEM}%{\textnormal{$\Box$}}%{\ding{167}}
+%\newcommand*{\qem}{\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+%\quad\hbox{\QEM}}
+%% from TUGboat 18 (1997) 1:
+%\providecommand*{\unit}[1]{\ensuremath{\mathrm{\,#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Custom macros for this file @@@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\widebar}[1]{{\mkern1.5mu\skew{2}\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}}
+
+% \newcommand{\explanation}[4][t]{%\setlength{\tabcolsep}{-1ex}
+% %\smash{
+% \begin{tabular}[#1]{c}#2\\[0.5\jot]\rule{1pt}{#3}\\#4\end{tabular}}%}
+% \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
+% \DeclareMathOperator*{\argsup}{arg\,sup}
+\newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
+\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{%
+angle-right%
+%hand-point-right%
+%undo%
+%undo-alt%
+%reply%
+%history%
+}\enspace\sect~\ref{#1} page~\pageref{#1}}}\textcolor{blue}{#2}}
+
+%% auxiliary
+\newcommand*{\energym}{energy-mass}
+\newcommand*{\masse}{mass-energy}
+\newcommand*{\tot}{_{\textrm{tot}}}
+
+%% constants
+%% R % molar gas constant
+\newcommand*{\yc}{c} % lightspeed, according to SI
+% \newcommand*{\yc}{c_{0}} % lightspeed, according to SI
+\newcommand*{\yfri}{\mu} % friction coeff
+\newcommand*{\yfris}{\mu_{\text{s}}}
+\newcommand*{\yfrik}{\mu_{\text{k}}}
+\newcommand*{\yvis}{\mu} % viscosity coeff
+\newcommand*{\yhea}{h} % heat-transfer coeff
+\newcommand*{\yg}{\bm{g}} % gravitational acceleration
+
+
+%% time and space
+\newcommand*{\ye}{\bm{e}} % unit vector
+\newcommand*{\yuu}{\bm{u}}
+\newcommand*{\yww}{\bm{w}}
+\newcommand*{\yr}{\bm{r}}
+\newcommand*{\yra}{\yr_{a}}
+\newcommand*{\yrb}{\yr_{b}}
+\newcommand*{\yxa}{x_{a}}%
+\newcommand*{\yxb}{x_{b}}%
+\newcommand*{\yv}{\bm{v}}
+\newcommand*{\yva}{\yv_{a}}
+\newcommand*{\yvb}{\yv_{b}}
+\newcommand*{\yvs}{\bm{v}_{\text{s}}}
+\newcommand*{\yns}{\bm{n}_{\text{s}}}
+\newcommand*{\yst}{\bm{\sigma}}
+\newcommand*{\ylo}{l_{\textrm{n}}}
+\newcommand*{\yle}{l}
+\newcommand*{\ydl}{\incr\bm{l}}
+\newcommand*{\ydlm}{\incr l}
+\newcommand*{\yti}{t_{0}}
+\newcommand*{\ytf}{t_{1}}
+\newcommand*{\yxi}{x_{0}}
+\newcommand*{\yyi}{y_{0}}
+\newcommand*{\yzi}{z_{0}}
+\newcommand*{\Dt}{\incr t}
+\newcommand*{\Dx}{\incr x}
+\newcommand*{\Dy}{\incr y}
+\newcommand*{\Dz}{\incr z}
+\newcommand*{\Dth}{\tfrac{\incr t}{2}}
+\newcommand*{\Dxh}{\tfrac{\incr x}{2}}
+\newcommand*{\Dyh}{\tfrac{\incr y}{2}}
+\newcommand*{\Dzh}{\tfrac{\incr z}{2}}
+
+%% matter
+\newcommand*{\yN}{N}
+\newcommand*{\yJ}{J}
+\newcommand*{\yn}{n}
+\newcommand*{\yj}{\bm{j}}
+\newcommand*{\ya}{\varAlpha}
+\newcommand*{\yrho}{\rho}
+
+%% energy
+\newcommand*{\yM}{m}% m, and q_m for mass flow
+\newcommand*{\yMa}{\yM_{a}}
+\newcommand*{\yMb}{\yM_{b}}
+\newcommand*{\yE}{E}
+\newcommand*{\yU}{U}
+\newcommand*{\yUd}{u}
+\newcommand*{\yUr}{U_{\text{new}}}
+\newcommand*{\yUo}{\yU_{0}}
+\newcommand*{\yEk}{\yE_{\textrm{k}}}%T
+\newcommand*{\yEp}{\yE_{\textrm{p}}}%V
+\newcommand*{\yH}{\varPhi}% really used for heat-flow
+\newcommand*{\yHs}{\yH_{s}}%
+% \newcommand*{\yEp}{\yE_{\text{p}}}
+\newcommand*{\yHfl}{\yH_{\text{floor}}}
+\newcommand*{\yHc}{\yH_{\text{crate}}}
+\newcommand*{\yQ}{Q}% Q really for time-integral
+\newcommand*{\yQb}{Q_{\text{bot}}}%
+\newcommand*{\yQp}{Q^{+}}%
+\newcommand*{\yQm}{Q^{-}}%
+\newcommand*{\yQc}{\yQ_{\text{crate}}}
+\newcommand*{\yQfl}{\yQ_{\text{floor}}}
+\newcommand*{\yhe}{\incr H}% integrated heat flux
+\newcommand*{\yhep}{\incr H^{+}}%
+\newcommand*{\yhem}{\incr H^{-}}%
+\newcommand*{\yW}{\incr W}% work
+\newcommand*{\yR}{R}% for energy source
+
+%% momentum
+\newcommand*{\yP}{\bm{P}}
+\newcommand*{\yPa}{\yP_{a}}
+\newcommand*{\yPb}{\yP_{b}}
+\newcommand*{\yp}{\bm{p}}
+\newcommand*{\yF}{\bm{F}}
+\newcommand*{\yFab}{\yF_{as}}
+\newcommand*{\yFba}{\yF_{bs}}
+\newcommand*{\yFpg}{F_{\text{pg}}}
+\newcommand*{\yFgp}{F_{\text{gp}}}
+\newcommand*{\yFatm}{F_{\text{atm}}}
+\newcommand*{\yFc}{\yF_{\text{c}}}
+\newcommand*{\yFn}{F_{\text{n}}}
+\newcommand*{\yFs}{F_{\text{s}}}
+\newcommand*{\yFk}{\yF_{\text{k}}}
+\newcommand*{\yFr}{\yF_{\text{other}}}
+\newcommand*{\yFrx}{F_{\text{other},x}}
+\newcommand*{\yFrz}{F_{\text{other},z}}
+\newcommand*{\yFp}{F_{\text{p}}}
+\newcommand*{\yFf}{F_{\text{f}}}
+\newcommand*{\ypr}{p} % pressure
+\newcommand*{\ypv}{\bm{\ypr}} % pressure vector
+\newcommand*{\yG}{\bm{G}}
+\newcommand*{\yGa}{\yG_{a}}
+\newcommand*{\yGb}{\yG_{b}}
+
+%% angular momentum
+\newcommand*{\yL}{\bm{L}}% L or H
+%\newcommand*{\yl}{\bm{L}}
+\newcommand*{\yto}{\bm{\tau}}% M or T or M_Q
+\newcommand*{\ym}{\bm{M}}% M or T or M_Q
+%\newcommand*{\yt}{\bm{\tau}}
+
+%% entropy and temperature
+\newcommand*{\yS}{S}
+\newcommand*{\yB}{\varPi}
+\newcommand*{\yT}{T}%temperature
+\newcommand*{\yTce}{T_{\text{C}}}%
+\newcommand*{\yTp}{\yT^{+}}%
+\newcommand*{\yTm}{\yT^{-}}%
+\newcommand*{\yTa}{\yT_{a}}%
+\newcommand*{\yTb}{\yT_{b}}%
+\newcommand*{\yTe}{\yT_{\text(ext)}}%
+
+%% electric charge and magnetic flux
+\newcommand*{\yC}{\mathcal{Q}}
+\newcommand*{\yI}{\mathcal{I}}
+\newcommand*{\yBf}{\mathcal{B}}
+\newcommand*{\yEv}{\mathcal{E}}
+\newcommand*{\yBB}{\bm{B}}
+\newcommand*{\yEE}{\bm{E}}
+
+
+%%% Custom macros end @@@
+
+% % https://latex.org/forum/viewtopic.php?t=878
+% \newenvironment{widepar}%
+% {\setlength{\rightskip}{-\marginparsep}\addtolength{\rightskip}{-\marginparwidth}}{\par}
+
+
+\usepackage[print-unity-mantissa=true,retain-explicit-plus,quantity-product=\:]{siunitx}
+%\sisetup{input-digits = 0123456789\piup}
+
+\usepackage{listings}
+\lstdefinestyle{mycode}{
+  basicstyle=\ttfamily\footnotesize\color{blue},
+  moredelim=**[is][\color{grey}]{\%@}{\%@},
+  frame=single,
+  numbers=left,
+  numberstyle=\sffamily\scriptsize,
+  xleftmargin=\parindent
+}
+
+% \usepackage{multimedia}
+\usepackage[breakable,skins]{tcolorbox}
+
+% \newtcolorbox{myframe}{enhanced, no shadow, colback=white, colframe=midgrey, boxrule=1pt, breakable, after={\smallskip}}
+
+\newtcolorbox{solution}{enhanced, no shadow,
+  %colback=green!5!white,
+  interior hidden,
+  borderline west={1pt}{0pt}{midgrey},
+  borderline south={1pt}{0pt}{midgrey!25!white},
+  frame hidden,
+  left=1ex, right=0ex, bottom=1ex,
+  fontupper=\color{midgrey},
+  %colframe=green,
+  %leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
+  breakable, fonttitle=\bfseries\sffamily, after={\smallskip},
+  title=\color{midgrey}Example solution}
+%map-marker-alt
+
+
+% \newtcolorbox[auto counter, number within=chapter]{exercise}[1][]{enhanced,
+%   no shadow,
+%   %parbox=false,
+%   % colback=yellow!5!white, colframe=yellow, boxrule=1pt,
+%   interior hidden,
+%   borderline west={1pt}{0pt}{yellow},
+%   borderline south={1pt}{0pt}{yellow!25!white},
+%   frame hidden,
+%   left=1ex, right=0ex, bottom=1ex,
+%   breakable,
+%   % fontupper=\small,
+%   fonttitle=\bfseries\sffamily,
+%   after={\smallskip},
+%   title=\color{yellow}\faIcon{puzzle-piece}\enspace Exercise~\thetcbcounter,#1}
+% 
+% \newtcolorbox{warning}[1][]{enhanced, no shadow,
+%   %parbox=false,
+%   % colback=red!5!white,
+%   % colframe=red, left=1ex, right=1ex, leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
+%   interior hidden,
+%   borderline west={1pt}{0pt}{red},
+%   borderline south={1pt}{0pt}{red!25!white},
+%   frame hidden,
+%   left=1ex, right=0ex, bottom=1ex,
+%   breakable,
+% % fontupper=\small, fonttitle=\bfseries\small,
+% fonttitle=\bfseries,
+% after={\smallskip},
+% title=\color{red}\faIcon{exclamation-circle}\enspace#1}
+% 
+% % \newtcolorbox{critique}[1][Critique]{enhanced, no shadow,parbox=false,center,
+% % width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enspace#1}
+% 
+% \newtcolorbox{definition}[1]{enhanced, no shadow,
+%   %colback=green!5!white,
+%   interior hidden,
+%   borderline west={1pt}{0pt}{green},
+%   borderline south={1pt}{0pt}{green!25!white},
+%   frame hidden,
+%   left=1ex, right=0ex, bottom=1ex,
+%   %colframe=green,
+%   %leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
+%   breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\color{green}\faIcon{bookmark}\enspace#1}
+% %map-marker-alt
+% 
+% \newtcolorbox{extra}[1]{enhanced, no shadow,
+%   %parbox=false, %width=0.975\linewidth,
+%   % center, colback=blue!5!white, colframe=blue, boxrule=0.5pt,
+%   interior hidden,
+%   borderline west={1pt}{0pt}{blue},
+%   borderline south={1pt}{0pt}{blue!25!white},
+%   frame hidden,
+%   left=1ex, right=0ex, bottom=1ex,
+%   breakable,
+%    fontupper=\footnotesize,
+%   fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\color{blue}\faIcon{user-astronaut}\enspace#1}
+% \newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enspace Curiosity~\thetcbcounter\enspace#2,#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Beginning of document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \firmlists
+
+% \setlength{\wrapoverhang}{\parindent}
+% \setlength{\intextsep}{1ex}% with wrapfigure
+% % \setlength{\columnsep}{2em}% with wrapfigure
+
+\makepagenote
+\renewcommand*{\notedivision}{}
+\renewcommand*{\pagenotesubhead}[3]{\clearpage\addsec{URLs for chapter #2}}
+\renewcommand*{\pagenotesubheadstarred}[3]{\clearpage\addsec{URLs for chapter \textit{#3}}}
+\renewcommand*{\notenuminnotes}[1]{\footnotesize #1.\space}
+% \renewcommand{\prenotetext}{\begingroup\footnotesize}
+% \renewcommand{\postnotetext}{\endgroup}
+\sideparmargin{right}
+
+% \newlength{\pagewidth}
+% \setlength{\pagewidth}{\linewidth}
+% \addtolength{\pagewidth}{\marginparsep}
+% \addtolength{\pagewidth}{\marginparwidth}
+
+%\usepackage{cancel}
+
+% \usepackage{eso-pic}
+% \newcommand\BackgroundPic{%
+% \put(0,0){%
+% \parbox[b][\paperheight]{\paperwidth}{%
+% \vfill
+% \centering
+% \includegraphics[width=\paperwidth,height=\paperheight,%
+% keepaspectratio]{images/palebluedotA4s.png}%
+% \vfill
+% }}}
+
+%\usepackage[6-73,105-107]{pagesel}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{arrows.meta}
+% \usetikzlibrary{positioning}
+% \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+
+\begin{document}
+%\AddToShipoutPicture*{\BackgroundPic}
+\captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
+\selectlanguage{british}\frenchspacing
+
+\begin{titlingpage}
+\calccentering{\unitlength}
+\begin{adjustwidth}{\unitlength}{-\unitlength}
+  \centering
+  % c6ddff % color of Earth in the Pale Blue Dot picture
+% \color[HTML]{C6DDFF}
+ \color[HTML]{354055}
+  \maketitle
+\end{adjustwidth}
+\end{titlingpage}
+\killtitle
+
+\calccentering{\unitlength}
+\begin{adjustwidth*}{\unitlength}{-\unitlength}\thispagestyle{empty}
+  \centering
+  \includegraphics[align=c,height=1em]{images/cc_by_sa.png} Licence
+
+  \smallskip
+
+  %%% ***%%% Luca\enspace\href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}{\footnotesize\url{https://orcid.org/0000-0002-6070-0784}}
+
+\smallskip
+
+Typeset with \LaTeX%\ using 12\,pt Palatino and Optima fonts
+
+\bigskip
+
+% Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
+% \\from right outside Pluto's orbit\\
+% \url{https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/}
+\end{adjustwidth*}
+\setcounter{page}{2}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \abstractrunin
+% \abslabeldelim{}
+% \renewcommand*{\abstractname}{}
+% \setlength{\absleftindent}{0pt}
+% \setlength{\absrightindent}{0pt}
+% \setlength{\abstitleskip}{-\absparindent}
+% \begin{abstract}\labelsep 0pt%
+%   \noindent Lecture notes on introductory mechanics and thermodynamics (ING175)
+% % \\\noindent\emph{\footnotesize Note: Dear Reader
+% %     \amp\ Peer, this manuscript is being peer-reviewed by you. Thank you.}
+% % \par%\\[\jot]
+% % \noindent
+% % {\footnotesize PACS: ***}\qquad%
+% % {\footnotesize MSC: ***}%
+% %\qquad{\footnotesize Keywords: ***}
+% \end{abstract}
+\selectlanguage{british}\frenchspacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Epigraph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \asudedication{\small ***}
+% \vspace{\bigskipamount}
+\setlength{\epigraphwidth}{0.67\linewidth}
+% \epigraphtextposition{flushright}
+% %\epigraphsourceposition{flushright}
+\epigraphfontsize{\footnotesize}
+\setlength{\epigraphrule}{0pt}
+% % \epigraphposition{flushright}
+% %\setlength{\beforeepigraphskip}{0pt}
+%\setlength{\afterepigraphskip}{2em}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BEGINNING OF MAIN TEXT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \renewcommand{\cftchapterfont}{\hfill\bfseries}
+% \renewcommand{\cftchapterleader}{}
+% \renewcommand{\cftsectionfont}{\hfill\normalfont}
+% \renewcommand{\cftcsectionleader}{}
+
+\clearpage
+\phantomsection\pdfbookmark{\contentsname}{toc}
+\tableofcontents*
+\label{sec:toc}
+
+\setcounter{chapter}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Preface
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \printpagenotes*
+% \clearpage
+% \addchap{Preface}
+% \label{cha:preface}
+
+
+
+% \printpagenotes*
+% \clearpage
+% \chapter{Overview}
+% \label{cha:overview}
+
+
+
+\printpagenotes*
+\clearpage
+\chapter{Physics, quantities, units}
+\label{cha:physics_quantities_units}
+
+
+\section{}\label{sec:time_vel_primitive}
+
+Take \emph{time} and \emph{velocity} as primitive quantities.
+\begin{enumerate}[exerc]
+\item Try to define \emph{distance} as a derived quantity
+
+\item Try to define \emph{acceleration} as a derived quantity.
+\end{enumerate}
+
+\section{}
+\label{sec:scalar_vect_quants}
+
+Figure out which of the following quantities are \emph{scalars} and which are \emph{vectors}:
+\begin{itemize}[noitemsep]
+\item Time
+\item Distance
+\item Position
+\item Energy
+\item Velocity
+\item Speed
+\item Momentum
+\item Entropy
+\item Angular momentum
+\item Force
+\item Temperature
+\item Magnetic flux
+\item Electric charge
+\item Electric current
+\item Heat
+\item Power
+\item Volume
+\item Pressure
+\end{itemize}
+
+\section{}
+\label{sec:correct_units}
+
+Find the correct units for the following quantities; refer to tables~3.1 and~4.12 in the main text.
+\begin{itemize}[noitemsep]
+\item \emph{Volumic energy} or \emph{energy density}, defined as energy divided by volume
+\item \emph{Energy flux}, defined as energy divided by time.
+\item \emph{Power}, defined as energy divided by time.
+\item \emph{Heating}, defined as energy divided by time.
+\item \emph{Magnetic flux}, which we take as a primitive quantity.
+\item \emph{Electric potential difference}, defined as magnetic flux divided by time.
+\item \emph{Force}, defined as momentum divided by time.
+\item \emph{Momentum flux}, defined as momentum divided by time.
+\item \emph{Momentum supply}, defined as momentum divided by time.
+\item \emph{Pressure}, defined as force divided by area.
+\item \emph{Amount of substance (or of matter)}, which we take as primitive.
+\item \emph{Molar mass}, defined as mass divided by amount of substance.
+\item \emph{Specific momentum}, defined as momentum divided by mass.
+\item \emph{Volumic charge} or \emph{charge density}, defined as charge divided by volume.
+\item \emph{Entropy}, which we take as primitive, has dimension of energy divided by temperature.
+\item \emph{Matter density}, defined as amount of substance divided by volume.
+\item \emph{Matter flux}, defined as amount of substance divided by time.
+\end{itemize}
+
+\section{}
+\label{sec:explain_primitive}
+
+\emph{With a friend or colleague:}
+
+\begin{enumerate}[exerc]
+\item Try to explain to your friend the difference between a \emph{primitive quantity} and a \emph{derived quantity}; then let your friend criticize unclear or incorrect points in your explanation, and comment on the good points. Then invert your roles: your friend tries to explain to you, and you criticize and comment.
+
+\item Similarly as the previous exercise, but explaining the difference between a \emph{scalar quantity} and a \emph{vector quantity}.
+
+\item If you have some large-language-model service (such as ChatGPT), ask it to explain the difference between primitive and derive quantity, and between scalar and vector quantity. Find out weak or unsure points in its answer, given what you've learned so far.
+\end{enumerate}
+
+\section{}
+\label{sec:units_functions}
+
+Find which of the following mathematical expressions and equalities are dimensionally incorrect; feel free to modify them so that they become correct:
+\begin{itemize}
+\item $\displaystyle\qty{299792458}{m/s}$
+\item $\displaystyle\frac{3}{\unit{s}}$
+\item $\displaystyle\cos(\num{3.14})\:\unit{m}$
+\item $\displaystyle\tan\biggl(\frac{\qty{10}{m}}{\qty{5}{m}}\biggr)$
+\item $\displaystyle\exp\biggl(\frac{\qty{71}{s}}{\qty{3}{s}}\biggr)$
+\item $\displaystyle\e^{-8}\:\unit{J}$
+\item $\displaystyle\frac{\qty{15}{J}}{\qty{5}{kg/s^{2}}} = \qty{3}{m^{2}}$
+\item $\displaystyle \qty{10}{N\, s}-\qty{2}{kg\, m/s} = \qty{8}{J\, s/m}$
+\item $\displaystyle$
+\item $\displaystyle$
+\item $\displaystyle$
+\item $\displaystyle$
+\item $\displaystyle$
+\item $\displaystyle$
+\item $\displaystyle$
+\item $\displaystyle$
+\item $\displaystyle$
+\end{itemize}
+
+
+
+\clearpage
+\addsec{Example solutions}
+
+\addsubsec{\ref{sec:time_vel_primitive}}
+
+\begin{enumerate}[exerc]
+\item  \enquote{Distance is the product of a time lapse and a particular velocity}. See the section about \emph{Radar distance} in the main text.
+
+\item \enquote{Acceleration is the ratio between a change in the product of a time lapse and a particular velocity, and the time taken by that change}.
+\end{enumerate}
+
+
+\addsubsec{\ref{sec:scalar_vect_quants}}
+
+These quantities are scalars:
+\begin{itemize}[noitemsep]
+\item Time
+\item Distance
+\item Energy
+\item Speed
+\item Entropy
+\item Temperature
+\item Magnetic flux
+\item Electric charge
+\item Electric current
+\item Heat
+\item Power
+\item Volume
+\end{itemize}
+
+These quantities are vectors:
+\begin{itemize}[noitemsep]
+\item Position
+\item Velocity
+\item Momentum
+\item Angular momentum
+\item Force
+\end{itemize}
+
+For \emph{pressure}, it depends on the context. In some applications it is considered a scalar, but in other applications it is considered a vector -- or actually a generalized kind of vector, called \emph{tensor}, which can be represented by a matrix.
+
+
+\addsubsec{\ref{sec:correct_units}}
+
+\begin{itemize}[noitemsep]
+\item \emph{Volumic energy}: \unit{J/m^3}
+\item \emph{Energy flux}: \unit{J/s}
+\item \emph{Power}: \unit{J/s}
+\item \emph{Heating}: \unit{J/s}
+\item \emph{Magnetic flux}: \unit{Wb}
+\item \emph{Electric potential difference}: \unit{Wb/s}
+\item \emph{Force}: \unit{N}
+\item \emph{Momentum flux}: \unit{N}
+\item \emph{Momentum supply}: \unit{N}
+\item \emph{Pressure}: \unit{N/m^2}
+\item \emph{Amount of substance}: \unit{mol}
+\item \emph{Molar mass}: \unit{kg/mol}
+\item \emph{Specific momentum}: $\unit{N\cdot s/kg} \equiv \unit{m/s}$
+\item \emph{Volumic charge}: \unit{C/m^3}
+\item \emph{Entropy}: \unit{J/K}
+\item \emph{Matter density}: \unit{mol/m^3}
+\item \emph{Matter flux}: \unit{mol/s}
+\end{itemize}
+
+% \section{Physics?}
+% \label{sec:physics_general}
+
+% \section{What is \enquote{fundamental} physics?}
+% \label{sec:fundamental_physics}
+
+% \section{Several possible formalisms or \enquote{languages}}
+% \label{sec:languages}
+
+
+% \section{Quantities: primitive and derived}
+% \label{sec:primitives}
+
+
+% \section{Physical dimensions and units}
+% \label{sec:units}
+
+
+% \section{Importance of units}
+% \label{sec:importance_units}
+
+
+% \section{Variables and units}
+% \label{sec:variables_units}
+
+
+% \section{Mathematical functions and units}
+% \label{sec:functions_units}
+
+
+% \section{Units and derivatives}
+% \label{sec:units_derivatives}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Time and space}
+\label{cha:time_space}
+
+% \section{Time and proper time}
+% \label{sec:time}
+
+
+% \section{Coordinate time}
+% \label{sec:coord_time}
+
+
+% \section{Space, length, distance}
+% \label{sec:difficulties_distance}
+
+
+% \section{Coordinate systems}
+% \label{sec:coords}
+
+
+% \section{Spatial coordinate distance and length}
+% \label{sec:coord_distance}
+
+
+% \section{Coordinate notation}
+% \label{sec:coord_notation}
+
+
+% \section{Velocity and acceleration}
+% \label{sec:velocity}
+
+
+% \section{Matter}
+% \label{sec:intro_matter}
+
+
+% \section{Electric charge}
+% \label{sec:intro_charge}
+
+
+% \section{Magnetic flux}
+% \label{sec:intro_magneticflux}
+
+
+% \section{Energy-mass}
+% \label{sec:intro_energy}
+
+
+% \section{Momentum}
+% \label{sec:intro_momentum}
+
+
+% \section{Angular momentum}
+% \label{sec:intro_angmomentum}
+
+
+% \section{Entropy}
+% \label{sec:intro_entropy}
+
+
+% \section{Auxiliary quantities}
+% \label{sec:aux_quantities}
+
+
+% \section{Temperature}
+% \label{sec:temperature}
+
+
+% \section{Metric}
+% \label{sec:metric}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Volume contents, fluxes, supplies}
+\label{cha:contents_fluxes}
+
+
+% \section{Content in a volume and flux through a surface}
+% \label{sec:contentflux}
+
+
+% \section{Supply in a volume}
+% \label{sec:supply}
+
+
+% \section{Control volumes and control surfaces}
+% \label{sec_controlvolumes_surfaces}
+
+
+% \section{Volume content}
+% \label{sec:intuition_volume}
+
+
+% \section{Flux: scalar quantities}
+% \label{sec:intuition_fluxes_scalar}
+
+
+% \section{Flux: vector quantities}
+% \label{sec:intuition_fluxes_vector}
+
+
+% \section{Flux of momentum: force}
+% \label{sec:force_is_flux}
+
+
+% \section{Pressure, tension, shear force}
+% \label{sec:pressure_tension_shear}
+
+
+% \section{Closed control surfaces, influxes, effluxes}
+% \label{sec:in_out_flux}
+
+
+% \section{Time-integrated fluxes}
+% \label{sec:total_flow}
+
+
+% \section{Fluxes and velocities}
+% \label{sec:fluxes_velocities}
+
+
+% \section{Symbols for volume contents and fluxes}
+% \label{sec:symbols_volint_flux}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Physical laws}
+\label{cha:laws}
+
+
+% \section{Fundamental vs derived laws}
+% \label{sec:fundamental_derived}
+
+
+% \section{Universal vs constitutive laws}
+% \label{sec:universal_constitutive}
+
+
+% \section{Balance and conservation laws}
+% \label{sec:balance_intro}
+
+
+% \section{Conservation laws}
+% \label{sec:conservation_laws}
+
+
+% \section{Balance laws}
+% \label{sec:balance_laws}
+
+
+% \section{Constitutive relations}
+% \label{sec:constitutive}
+
+
+\printpagenotes*
+\clearpage
+\chapter{The Seven Wonders of the world}
+\label{cha:seven_wonders}
+
+
+% \section{Seven universal balance laws}
+% \label{sec:seven_universal}
+
+
+% \section{General form of the universal balance laws}
+% \label{sec:common_formulation}
+
+
+% \section{Numerical time integration and simulations}
+% \label{sec:numeric_simulation}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Conservation \amp\ balances of matter}
+\label{cha:cons_matter}
+
+
+% \section{Formulation and generalities}
+% \label{sec:cons_matter_formulation}
+
+
+% \section{Examples of constitutive relations}
+% \label{sec:matter_constitutive}
+
+
+% \section{Examples of applications}
+% \label{sec:matter_applic}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Conservation of electric charge}
+\label{cha:cons_charge}
+
+% \section{Formulation and generalities}
+% \label{sec:cons_charge_formulation}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Conservation of magnetic flux}
+\label{cha:cons_magneticflux}
+
+% \section{Formulation and generalities}
+% \label{sec:cons_magneticflux_formulation}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of momentum}
+\label{cha:bal_momentum}
+
+
+% \section{Formulation and generalities}
+% \label{sec:bal_momentum_formulation}
+
+% \section{Examples of constitutive relations}
+% \label{sec:momentum_constitutive}
+
+
+% \section{Examples of applications}
+% \label{sec:momentum_applic}
+
+
+% \section{Choice of control surfaces and volumes}
+% \label{sec:momentum_choice_control}
+
+
+% \section{Numerical time integration: a strategy}
+% \label{sec:strategy_simulation}
+
+
+% \section{Example script for non-Hookean spring }
+% \label{sec:nonhooke_script}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of energy}
+\label{cha:bal_energy}
+
+
+% \section{Formulation and generalities}
+% \label{sec:bal_energy_formulation}
+
+
+% \section{Constitutive relations for energy content}
+% \label{sec:energy_constitutive}
+
+
+% \section{Constitutive relations for energy flux}
+% \label{sec:energy_constitutive_flux}
+
+
+% \section{Rigid bodies}
+% \label{sec:rigid_bodies}
+
+
+% \section{Constitutive relations for ideal gases}
+% \label{sec:int_energy_idealgas}
+
+
+% \section{Example applications: ideal gas and piston}
+% \label{sec:idealgas_ex}
+
+
+% \section{Surfaces of discontinuity}
+% \label{sec:jumps}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of angular momentum}
+\label{cha:bal_ang_momentum}
+
+
+% \section{Formulation and generalities}
+% \label{sec:bal_angmomentum_formulation}
+
+
+% \section{Examples of constitutive relations}
+% \label{sec:angmomentum_constitutive}
+
+
+% \section{Angular momentum as a twisted vector}
+% \label{sec:twisted_vec}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Remarks on momentum and energy}
+\label{cha:energymomentum}
+
+
+% \section{Common misunderstandings on momentum, energy, angular momentum}
+% \label{sec:pitfalls_energy_momentum}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Balance of entropy}
+\label{cha:bal_entropy}
+
+
+% \section{Formulation and generalities}
+% \label{sec:bal_entropy_formulation}
+
+
+% \section{The physical role of the balance of entropy}
+% \label{sec:entropy_balance_role}
+
+
+% \section{Examples of constitutive relations}
+% \label{sec:entropy_constitutive}
+
+
+% \section{Examples of applications}
+% \label{sec:entropy_applications}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Constitutive relations}
+\label{cha:constitutive}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printpagenotes*
+\clearpage
+\renewcommand*{\bibmark}{\markboth{\bibname}{}}
+\bibmark
+\renewcommand*{\finalnamedelim}{\addcomma\space}
+\defbibnote{prenote}{
+\epigraph{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}{(Attributed to Gautama Buddha)}
+
+  {\footnotesize (\enquote{de $X$} is listed under D,
+    \enquote{van $X$} under V, and so on, regardless of national
+    conventions.)\par}}
+% \defbibnote{postnote}{\par\medskip\noindent{\footnotesize% Note:
+%     \arxivp \mparcp \philscip \biorxivp}}
+
+
+\printbibliography[prenote=prenote%,postnote=postnote
+]
+
+\end{document}
+
+
+
+%% TODOs:
+%% - Postface: discuss advantage of control-volume viewpoint
+%%
+%% - add section on "energy, momentum of what?" with emphasis on volumes
+%% - Explain spring properties from balances of momentum & ang. momentum
+%% - energy and entropy const. relations for chemical reactions (endo/exothermic etc)
+%% - add section on change of coordinates
+%% - analysis of car in motion, from two frames
+%% - more diverse examples of control volume: heat engines, cars
+%% - point out that matter can move along a control surface,
+%%   example with car's wheels
+%% - add explanation of "body" as control volume with no matter flux
+%% - also of point mass
+%% - stoichiometry examples
+%% - point out that momenta of different kinds of matter may not add
+%% - treat conservation of matter with N as sum of different kinds
+%% and rephrase the "balance"
+%% - quote Carter
+%% - reference to articles on notion of state
+%% - example with bullet in wooden block?
+%%
+%% Motivation:
+%% force of matter on EM field
+%% Quote about JPL using post-Newtonian
+%% "Newton's law" means two very different maths formulae
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-PDF-mode: t
+%%% TeX-master: t
+%%% End:

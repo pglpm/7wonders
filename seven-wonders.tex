@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-15T07:08:06+0100
+%% Last-Updated: 2025-01-15T15:08:46+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -26,7 +26,6 @@ british%
 \newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Notes on 21st-century physics}
 %\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Lecture notes for ING\,175}
 \newcommand*{\pdftitle}{The Seven Wonders of the World: Notes on 21st-century physics}
-\newcommand*{\headtitle}{21st-century physics (ING\,175)}
 \newcommand*{\pdfauthor}{P.G.L.  Porta Mana}
 \newcommand*{\headauthor}{\nameref}
 \newcommand*{\reporthead}{\iftrue\else Open Science Framework \href{https://doi.org/10.31219/osf.io/***}{\textsc{doi}:10.31219/osf.io/***}\fi}% Report number
@@ -1811,6 +1810,17 @@ Among quantities which we'll take as primitive are:
 % , \emph{rotational momentum},
 \emph{entropy}, \emph{temperature}, and several others. All will be discussed soon.
 
+\medskip
+
+Some physical quantities can be specified by giving only one number, together with a unit. Such a quantity is called a \textbf{scalar}. Other physical quantities instead require the specification of several numbers, often three, with associated units. Such a quantity is called a \textbf{vector}. There are also quantities that must be specified by several numbers and units, collected together into a sort of matrix. Such a quantity is called a \textbf{tensor}.
+\begin{warning}[What's scalar or vector or tensor depends on the theory]
+  \emph{Scalar}, \emph{vector}, \emph{tensor} have specific and slightly different meanings in different theories. It is therefore important that you don't take the definitions often used in these notes as universal.
+
+  \smallskip
+
+  For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in General Relativity it isn't a scalar: it is one component of a vector, or even of a tensor.
+\end{warning}
+
  \section{Physical dimensions and units}
 \label{sec:units}
 
@@ -1818,24 +1828,11 @@ Among quantities which we'll take as primitive are:
 
 To each quantity we associate a \textbf{physical dimension}. The term \enquote*{dimension} here has nothing to do with physical extension, as in \enquote{the dimensions of this box}; be careful not to confuse the two. Usually it's clear which one is meant from the context. Physical dimensions help us avoid making operations that don't make sense with some quantities. For example, it doesn't make sense to sum up the volume of a body of water with its temperature; and indeed the volume has dimension $\mathsf{length^{3}}$, whereas temperature has dimension $\mathsf{temperature}$, and quantities with different dimensions cannot be added up.
 
+\medskip
+
 With each physical dimension we can associate a measurement \textbf{unit}, which expresses a basic standard for comparing the measurement results of similar quantities. For example, we could use the \emph{minute} or the \emph{second} as units to measure $\mathsf{time}$.
 
-One can choose a basic set of physical dimensions from which to define all others, and for these a set of standard units. Here we shall follow the
-\furl{https://www.nist.gov/pml/owm/metric-si/si-units}{International System of Units (SI)} (see also \furl{https://www.nist.gov/pml/special-publication-811}{NIST Special Publication 811}).
-
-The topics of measurement and physical dimensions, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves. I shall assume that you already know their basics notions and that you read about the SI.
-
-\smallskip
-
-The measurement of some physical quantities consists in just one number with associated physical dimension; we shall call such quantity a \textbf{scalar}. The measurement of other physical quantities consists instead in a triplet of numbers with associated physical dimension; we shall call such quantity a \textbf{vector}.
-\begin{warning}[What's scalar or vector depends on the theory]
-  \emph{Scalar} and \emph{vector} have very specific and slightly different meanings in different theories, so don't take the definitions used here as universal. For example, in these notes and in Newtonian mechanics we call \emph{energy density} a scalar, but in General Relativity it cannot be called a scalar.
-\end{warning}
-
-\section{Importance of units}
-\label{sec:importance_units}
-
-Units are very important and must always be written for several reasons.
+Units are very important and must always be written, for several reasons.
 
 First, a number without units doesn't tell us anything. If I tell you \enquote{the place is at a distance 100 from here}, you have no idea how far the place is. \enquote{100} what? 100~metres? 100~kilometres? These are completely different distances.
 
@@ -1843,8 +1840,32 @@ Second, units give us useful information about mathematical objects and their ph
 
 Third, because of the previous reason, keeping track of units often allows us to quickly catch errors in solving a physical problem.
 
-\section{Variables and units}
+One can choose a basic set of physical dimensions from which to define all others, as well as a set of standard units for these base dimensions. Here we shall follow the
+\furl{https://www.nist.gov/pml/owm/metric-si/si-units}{International System of Units (SI)} (see also \furl{https://www.nist.gov/pml/special-publication-811}{NIST Special Publication 811}).
+
+If a physical quantity is defined in terms of other quantities, then its unit is usually given in terms of the defining quantities. For example, if we define \emph{speed} as \emph{length} divided by \emph{time}, then its unit is \enquote*{metres per second}, \enquote*{\unit{m/s}}.
+\begin{warning}[How to pronounce the quotient and the product of units]
+  According to the rules of the SI, the quotient of two units is pronounced \enquote*{per} in English; for instance \enquote*{\unit{m/s}} is pronounced \enquote*{metres per second}. The product of two units is simply pronounced by concatenating the names of the units; for instance \enquote*{\unit{N\cdot s}} is pronounced \enquote*{newton seconds}.
+
+  \smallskip
+
+  For other rules about printing and reporting units take a look at the \furl{  https://www.nist.gov/pml/special-publication-811/nist-guide-si-check-list-reviewing-manuscripts}{NIST Check List}.
+
+\end{warning}
+
+Some derived quantities receive special unit names, for practical reasons. For instance, \emph{power} is defined as an energy divided by time; its unit is therefore \enquote*{\unit{J/s}} (\enquote*{joules per second}). But this compound unit is usually called \enquote*{watt} and denoted by \enquote*{\unit{W}}. In other words, \enquote*{one watt} and \enquote*{one joule per second} are the same:
+\begin{equation*}
+  \qty{1}{W} \equiv \qty{1}{J/s} \ .
+\end{equation*}
+
+The topics of measurement, physical dimensions, and units, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves! I assume that you will look in the documents by the SI for more complicated details. We shall speak further about units in the next chapters. The main quantities and units used in the present notes are summarized in table~\ref{tab:units} on page~\pageref{tab:units} and table~\ref{tab:symbols_volint_fluxes} on page~\pageref{tab:symbols_volint_fluxes}.
+
+
+\section{Variables, mathematical functions, and units}
 \label{sec:variables_units}
+
+\subsection{Variables and functions}
+\label{sec:variables}
 
 When a physical quantity is denoted by a symbol or variable, keep in mind that a unit is \enquote{contained} in the symbol, so to speak. For example if the variable $t$ denotes a time, then it includes some time unit, say seconds. This becomes apparent when we write the value of the symbol, for instance \enquote{$t=\qty{120}{s}$}. The unit is not predetermined, but it must correspond to the dimension of that quantity. We could for instance write \enquote{$t=\qty{2}{min}$} instead; the two expressions are completely equivalent.
 
@@ -1856,8 +1877,7 @@ Units otherwise behave just like \emph{literal constants} for all mathematical p
   \num{3}\:\frac{\unit{mol}}{\mathcolor{red}{\not}\!\unit{s}} \cdot \num{5}\:\mathcolor{red}{\not}\!\unit{s} = \qty{15}{mol} \ .
 \end{equation*}
 
-\section{Mathematical functions and units}
-\label{sec:functions_units}
+\medskip
 
 Particular care must be taken with trigonometric and exponential functions, like $\sin()$, $\cos()$, $\tan()$, $\exp()$, $\log()$; \textbf{these functions only admit a dimensionless argument} (which for the trigonometric ones corresponds to \emph{radians}). So there cannot be units like \enquote*{\unit{s}} or \enquote*{\unit{m}} within these functions: we must make sure that any units present within cancel out.
 
@@ -1890,9 +1910,9 @@ This expression is now unambiguous: suppose that $t=\qty{60}{s}\equiv\qty{1}{min
   \end{aligned}
 \end{equation*}
 
-\smallskip
+\medskip
 
-Also remember that \textbf{the results of trigonometric and exponential functions are dimensionless numbers}, so an expression like \enquote*{$3\,\cos(\dotso)$} denotes a pure number, with no units. If you want to express that the result is a length, the appropriate units must appear. We can for instance write
+Also remember that \textbf{the results of trigonometric and exponential functions are dimensionless numbers} as well, so an expression like \enquote*{$3\,\cos(\dotso)$} denotes a pure number, with no units. If you want to express that the result is a length, the appropriate units must appear. We can for instance write
 \begin{equation*}
   L\,\cos(\dotso)
 \end{equation*}
@@ -1901,7 +1921,7 @@ where $L$ is a length, and therefore includes some kind of length unit such as \
   2\,\cos(\dotso)\:\unit{m}
 \end{equation*}
 
-\section{Units and derivatives}
+\subsection{Derivatives}
 \label{sec:units_derivatives}
 
 When we follow the rules above, all other mathematical operations automatically take care of everything. The derivative, for instance, is calculated in the usual way, treating any visible units as literal constants. Let's see a concrete example. This expression
@@ -2558,10 +2578,10 @@ For six main quantities we can ask: how much of it is flowing through a given su
 We can ask these questions of any region of space and any time lapse, and the surface in the second question can be moving and deforming. The results of the two measurements above are either (positive or negative) numbers, for scalar quantities; or vectors, for vector quantities. In the case of magnetic flux we can ask the two questions above in 2 and 1 dimensions, rather than in 3 and 2 dimensions, as we shall see in \chap~\ref{cha:cons_magneticflux}.
 % This number depends only on the chosen region, surfaces, and times.
 
-We can consider the question about the flow through a surface in the case of a very short lapse of time, and divide the total flow by that time lapse. This way we have an alternative form of the second measurement, as flow per unit time:
+We can consider the question about the flow through a surface in the case of a very short lapse of time, and divide the total flow by that time lapse. This way we have an alternative form of the second measurement, as flow divided by time:
 \begin{definition}{Flux of a substance through a surface}
   \begin{enumerate}[label=\arabic*.]\bfseries
-  \item[2b.] How much of this quantity is flowing through a particular two-dimensional surface per unit time, at a particular time instant?
+  \item[2b.] How much of this quantity is flowing through a particular two-dimensional surface per time, at a particular time instant?
   \end{enumerate}
 \end{definition}
 This is called the \textbf{flux} of the quantity through that surface.
@@ -3294,7 +3314,7 @@ Recall that six of the \autoref{cha:stuff}{seven main quantities} -- matter, ele
 \begin{enumerate}
 \item[(1)] We can speak about the amount of quantity contained within a three-dimensional region, at a specific time instant.
 \item[(2a)] We can speak about the amount of quantity flowing through a two-dimensional surface during a time lapse\textellipsis
-\item[(2b)] \textellipsis or alternatively we can speak about the amount of quantity flowing through a two-dimensional surface \emph{per unit time}, at a particular time instant.
+\item[(2b)] \textellipsis or alternatively we can speak about the amount of quantity flowing through a two-dimensional surface \emph{per time}, at a particular time instant.
 \item[(3)]\label{item:extensivity}The net amount contained in a volume consisting of separate volumes is equal to the total of the separate amounts. Analogously for the flux through separate surfaces.
 \end{enumerate}
 
@@ -3940,7 +3960,7 @@ We already mentioned that \autoref{sec:intro_momentum}{\textbf{flux of momentum 
 \subsection{Units}
 \label{sec:units_momflux}
 
-Recall that \autoref{sec:intro_momentum}{momentum can be measured in newton-seconds, \enquote*{\unit{N\cdot s}}}. Its flux, being a momentum per unit time, is therefore measured in newtons, \enquote*{\unit{N}}.
+Recall that \autoref{sec:intro_momentum}{momentum can be measured in newton-seconds, \enquote*{\unit{N\cdot s}}}. Its flux, being a momentum divided by time, is therefore measured in newtons, \enquote*{\unit{N}}.
 
 \subsection{Visualizing force as flux of momentum}
 \label{sec:visualize_force}
@@ -4334,11 +4354,12 @@ The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive 
 \section{Symbols for volume contents and fluxes}
 \label{sec:symbols_volint_flux}
 
-Let us summarize the symbols for volume contents and fluxes of the seven quantities, together with their units, that are used in these notes:
-\begin{definition}{Symbols and units of volume contents and fluxes}
+table~\ref{tab:symbols_volint_fluxes} on page~\pageref{tab:symbols_volint_fluxes} summarizes the symbols for volume contents and fluxes of the seven quantities, together with their units, as used in these notes.
+\begin{table}
   \centering
   \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcll}
-    \textbf{quantity}&& \textbf{vol. content}\enspace[unit] & \textbf{flux}\enspace[unit]
+    \hline\\
+    \textbf{Quantity}&& \textbf{Volume content}\enspace[unit] & \textbf{Flux}\enspace[unit]
     \\[2\jot]
     matter&& $\yN$\enspace[\unit{mol}] & $\yJ$\enspace[\unit{mol/s}]
     \\[2\jot]
@@ -4353,11 +4374,12 @@ Let us summarize the symbols for volume contents and fluxes of the seven quantit
     angular momentum&& $\yL$\enspace[\unit{N\,m\,s}] & $\yto$\enspace[\unit{N\,m}]
     \\[3\jot]
     entropy&& $\yS$\enspace[\unit{J/K}] & $\yB$\enspace[\unit{J/(K\,s)}]
+    \\[2\jot]
+    \hline
   \end{tabular*}
 %  \caption{Units of scalar fluxes}
   \label{tab:symbols_volint_fluxes}
-\end{definition}
-
+\end{table}
 
 
 % \begin{equation*}
@@ -4766,7 +4788,7 @@ The setup is just like before: consider an initial and final closed control surf
     \label{eq:balanced}
     \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
   \end{equation}
-  where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per unit time within the closed control surface at time $t$.
+  where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per time within the closed control surface at time $t$.
 \end{definition}
 \marginpar{\vspace{-10\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/tennisball_boundary.png}%
@@ -4845,7 +4867,7 @@ where the supply
     G_{z}(t)
   \end{bmatrix}
 \end{equation*}
-is the amount of momentum created per unit time within the control volume at time $t$. This balance corresponds to three equations, one per component:
+is the amount of momentum created per time within the control volume at time $t$. This balance corresponds to three equations, one per component:
 \begin{equation}
   \label{eq:balanced_momentum_components}
 \left\{\   \begin{aligned}
@@ -5329,8 +5351,8 @@ Also recall that we are free to choose this sequence of closed control surfaces 
 The \enquote{budget} involves three amounts:
 \begin{description}
 \item[volume content:] how much of a quantity is within a control volume;
-\item[influx:] how much of a quantity is flowing in through a closed control surface per unit time;
-\item[supply:] how much of a quantity is being created or destroyed within a control volume per unit time; this is zero for a conservation law.
+\item[influx:] how much of a quantity is flowing in through a closed control surface per time;
+\item[supply:] how much of a quantity is being created or destroyed within a control volume per time; this is zero for a conservation law.
 \end{description}
 
 The budget is expressed in the following general forms:
@@ -6774,7 +6796,7 @@ In some cases the magnitude of the atmospheric pressure is different because of 
   Assume that the momentum flux on the lateral surface of the volume is zero.
   \begin{enumerate}[exerc]
   \item Apply the momentum balance, and extensivity of momentum, to find the \textbf{difference in magnitude} between the momentum influx through the bottom of the cuboid and the momentum influx through the top of the cuboid.
-    \item Pressure is defined as momentum flux \emph{per unit area}. How much is the pressure difference between the bottom and top of the cuboid of air?
+    \item Pressure is defined as momentum flux \emph{divided by area}. How much is the pressure difference between the bottom and top of the cuboid of air?
     \item Try to generalize and write an approximate formula of how pressure changes with altitude.
     \end{enumerate}
 
@@ -6796,8 +6818,7 @@ The ways in which such a momentum flux between object and air is realized can be
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
 }%
-  In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height.
-So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per unit volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
+In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
 
 \item[Soaring]
 %
@@ -8419,7 +8440,7 @@ Rigidity is obviously only an approximation. In fact, General Relativity makes t
 \section{Constitutive relations for ideal gases}
 \label{sec:int_energy_idealgas}
 
-There is a set of simple constitutive relations which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per unit volume $\yN/V$ is low. We say that these constitutive relations apply to \textbf{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation using these relations.
+There is a set of simple constitutive relations which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per volume $\yN/V$ is low. We say that these constitutive relations apply to \textbf{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation using these relations.
 
 The constitutive relations for ideal gases involve constants and a couple of functions that can be different depending on the kind of gas. So there isn't just one ideal gas, but a family of them. Some texts speak of \emph{the} ideal gas, as if there was only one; but they do so because they discuss properties that are common to all ideal gases.
 
@@ -8457,7 +8478,7 @@ The name \emph{tension} is used instead of \emph{pressure} if the momentum flux 
 
 \medskip
 
-Pressure has physical dimensions of force per unit area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
+Pressure has physical dimensions of force per area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
 \end{definition}
 
 \begin{warning}[\enquote*{Pressure} has many different meanings]
@@ -8639,7 +8660,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 % \subsection{Application of the constitutive relations for ideal gases}
 % \label{sec:application_constit_idealgas}
 %
-% Even if the mathematical form of the ideal-gas constitutive relations above is simple, their application can be extremely complex. As already mentioned, these relations only apply to control volumes where the physical characteristics of the gas, like temperature and amount of matter per unit volume, are uniform; that is, they are the same in any sub-volume. If we want to model a body of gas accurately, and simulate phenomena such as turbulence, we therefore need to use a large number of such control volumes.
+% Even if the mathematical form of the ideal-gas constitutive relations above is simple, their application can be extremely complex. As already mentioned, these relations only apply to control volumes where the physical characteristics of the gas, like temperature and amount of matter per volume, are uniform; that is, they are the same in any sub-volume. If we want to model a body of gas accurately, and simulate phenomena such as turbulence, we therefore need to use a large number of such control volumes.
 %
 % %
 % \marginpar{\vspace{-6\baselineskip}\centering%
