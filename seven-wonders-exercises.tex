@@ -2,10 +2,10 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-15T16:04:10+0100
+%% Last-Updated: 2025-01-15T21:24:27+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
-\anonfalse
+\anontrue
 \newif\ifarxiv
 \arxivfalse
 %\iftrue\pdfmapfile{+classico.map}\fi
@@ -1148,7 +1148,8 @@ angle-right%
 % {\setlength{\rightskip}{-\marginparsep}\addtolength{\rightskip}{-\marginparwidth}}{\par}
 
 
-\usepackage[print-unity-mantissa=true,retain-explicit-plus,quantity-product=\:]{siunitx}
+\usepackage[print-unity-mantissa=true,retain-explicit-plus%,quantity-product=\:%
+]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
 \usepackage{listings}
@@ -1299,25 +1300,25 @@ angle-right%
 \end{titlingpage}
 \killtitle
 
-\calccentering{\unitlength}
-\begin{adjustwidth*}{\unitlength}{-\unitlength}\thispagestyle{empty}
-  \centering
-  \includegraphics[align=c,height=1em]{images/cc_by_sa.png} Licence
-
-  \smallskip
-
-  %%% ***%%% Luca\enspace\href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}{\footnotesize\url{https://orcid.org/0000-0002-6070-0784}}
-
-\smallskip
-
-Typeset with \LaTeX%\ using 12\,pt Palatino and Optima fonts
-
-\bigskip
-
-% Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
-% \\from right outside Pluto's orbit\\
-% \url{https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/}
-\end{adjustwidth*}
+% \calccentering{\unitlength}
+% \begin{adjustwidth*}{\unitlength}{-\unitlength}\thispagestyle{empty}
+%   \centering
+%   \includegraphics[align=c,height=1em]{images/cc_by_sa.png} Licence
+% 
+%   \smallskip
+% 
+%   %%% ***%%% Luca\enspace\href{https://orcid.org/0000-0002-6070-0784}{\raisebox{0.5ex}{\protect\includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}}}{\footnotesize\url{https://orcid.org/0000-0002-6070-0784}}
+% 
+% \smallskip
+% 
+% Typeset with \LaTeX%\ using 12\,pt Palatino and Optima fonts
+% 
+% \bigskip
+% 
+% % Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
+% % \\from right outside Pluto's orbit\\
+% % \url{https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/}
+% \end{adjustwidth*}
 \setcounter{page}{2}
 
 
@@ -1409,7 +1410,7 @@ Take \emph{time} and \emph{velocity} as primitive quantities.
 \section{}
 \label{sec:scalar_vect_quants}
 
-Figure out which of the following quantities are \emph{scalars} and which are \emph{vectors}:
+Which of the following quantities are \emph{scalars}, and which are \emph{vectors}?
 \begin{itemize}[noitemsep]
 \item Time
 \item Distance
@@ -1430,6 +1431,18 @@ Figure out which of the following quantities are \emph{scalars} and which are \e
 \item Volume
 \item Pressure
 \end{itemize}
+
+\section{}
+\label{sec:chatgpt_laws}
+
+\emph{Preferably together with a friend or colleague:}
+
+If you have some large-language-model service (such as ChatGPT), ask it which physical laws are universally valid in Newtonian Mechanics and in General Relativity and in Thermodynamics and in Chemistry and in Electromagnetics.
+
+Discuss the answer you get, based on what you have learned so far. (Note: if the answer mention a \enquote*{balance of boost momentum}, that's actually correct.)
+
+Argue with the LLM and see where the discussion goes.
+
 
 \section{}
 \label{sec:correct_units}
@@ -1471,25 +1484,27 @@ Find the correct units for the following quantities; refer to tables~3.1 and~4.1
 \section{}
 \label{sec:units_functions}
 
-Find which of the following mathematical expressions and equalities are dimensionally incorrect; feel free to modify them so that they become correct:
-\begin{itemize}
+Find which of the following mathematical expressions and equalities are dimensionally incorrect, and explain why they are incorrect:
+\begin{itemize}[label=$\triangleright$\enspace,itemsep=1ex]
+\item $\displaystyle\qty{11}{J} + \qty{4}{kg}$%%
+\item $\displaystyle\tan\biggl(\frac{a}{b}\biggr)$, where $a$ dimension \textsf{length} and $b$ has dimension \textsf{time}%%
 \item $\displaystyle\qty{299792458}{m/s}$
-\item $\displaystyle\frac{3}{\unit{s}}$
-\item $\displaystyle\cos(\num{3.14})\:\unit{m}$
-\item $\displaystyle\tan\biggl(\frac{\qty{10}{m}}{\qty{5}{m}}\biggr)$
 \item $\displaystyle\exp\biggl(\frac{\qty{71}{s}}{\qty{3}{s}}\biggr)$
+\item $\displaystyle\cos(\num{3.14})\:\unit{m}$
+\item $\displaystyle m - v$, where $m$ has dimension of \textsf{mass} and $v$ of \textsf{velocity}%%
+\item $\displaystyle \qty{10}{N\, s}-\qty{2}{kg\, m/s} = \qty{8}{J\, s/m}$
+\item $\displaystyle\exp(-8\,\unit{J})$%%
+\item $\displaystyle\bigl(\qty{9}{m},\, \qty{0.1}{rad},\, -\qty{0.5}{rad}\bigr)$
+\item $\displaystyle\qty{8}{J/s}=\qty{12}{N\,m}-\qty{4}{N\,m}$%%
 \item $\displaystyle\e^{-8}\:\unit{J}$
 \item $\displaystyle\frac{\qty{15}{J}}{\qty{5}{kg/s^{2}}} = \qty{3}{m^{2}}$
-\item $\displaystyle \qty{10}{N\, s}-\qty{2}{kg\, m/s} = \qty{8}{J\, s/m}$
-\item $\displaystyle$
-\item $\displaystyle$
-\item $\displaystyle$
-\item $\displaystyle$
-\item $\displaystyle$
-\item $\displaystyle$
-\item $\displaystyle$
-\item $\displaystyle$
-\item $\displaystyle$
+\item $\displaystyle \sqrt{25}\,\unit{K} = 5$%%
+\item $\displaystyle\bigl(\e^{7}\bigr)^{\unit{s}}$%%
+\item $\displaystyle\tan\biggl(\frac{\qty{10}{m}}{\qty{5}{m}}\biggr)$
+\item $\displaystyle\sqrt{\qty{300}{K}\,}$
+\item $\displaystyle\sin(t/\unit{s})$, where $t$ has dimension of \textsf{time}
+\item $\displaystyle\frac{3}{\unit{s}}$
+\item $\displaystyle\sin(\qty{10}{s})$%%
 \end{itemize}
 
 
@@ -1557,6 +1572,40 @@ For \emph{pressure}, it depends on the context. In some applications it is consi
 \item \emph{Matter density}: \unit{mol/m^3}
 \item \emph{Matter flux}: \unit{mol/s}
 \end{itemize}
+
+
+\addsubsec{\ref{sec:units_functions}}
+
+\begin{itemize}[label=$\triangleright$\enspace,itemsep=1ex]
+\item $\displaystyle\qty{11}{J} + \qty{4}{kg}$\\%%
+  \textbf{Incorrect}: cannot sum quantities of different dimension
+\item $\displaystyle\tan\biggl(\frac{a}{b}\biggr)$, where $a$ dimension \textsf{length} and $b$ has dimension \textsf{time}\\%%
+  \textbf{Incorrect}: trigonometric function must have a dimensionless argument, but $a/b$ has dimension \textsf{length}/\textsf{time}
+\item $\displaystyle\qty{299792458}{m/s}$
+\item $\displaystyle\exp\biggl(\frac{\qty{71}{s}}{\qty{3}{s}}\biggr)$
+\item $\displaystyle\cos(\num{3.14})\:\unit{m}$
+\item $\displaystyle m - v$, where $m$ has dimension of \textsf{mass} and $v$ of \textsf{velocity}\\%%
+  \textbf{Incorrect}: cannot subtract quantities of different dimension
+\item $\displaystyle \qty{10}{N\, s}-\qty{2}{kg\, m/s} = \qty{8}{J\, s/m}$
+\item $\displaystyle\exp(-8\,\unit{J})$\\%%
+  \textbf{Incorrect}: exponential function must have a dimensionless argument, but this argument has dimension \textsf{energy}
+\item $\displaystyle\bigl(\qty{9}{m},\, \qty{0.1}{rad},\, -\qty{0.5}{rad}\bigr)$
+\item $\displaystyle\qty{8}{J/s}=\qty{12}{N\,m}-\qty{4}{N\,m}$\\%%
+  \textbf{Incorrect}: $\unit{J/s} \ne \unit{N\,m}$ (correct is $\unit{J} = \unit{N\,m}$)
+\item $\displaystyle\e^{-8}\:\unit{J}$
+\item $\displaystyle\frac{\qty{15}{J}}{\qty{5}{kg/s^{2}}} = \qty{3}{m^{2}}$
+\item $\displaystyle \sqrt{25}\,\unit{K} = 5$\\%%
+  \textbf{Incorrect}: both sides of an equation must have the same dimension; here the left side has dimension \textsf{length}${}^{1/2}$, right side is dimensionless
+\item $\displaystyle\bigl(\e^{7}\bigr)^{\unit{s}}$\\%%
+  \textbf{Incorrect}: cannot raise to a dimensional power
+\item $\displaystyle\tan\biggl(\frac{\qty{10}{m}}{\qty{5}{m}}\biggr)$
+\item $\displaystyle\sqrt{\qty{300}{K}\,}$
+\item $\displaystyle\sin(t/\unit{s})$, where $t$ has dimension of \textsf{time}
+\item $\displaystyle\frac{3}{\unit{s}}$
+\item $\displaystyle\sin(\qty{10}{s})$\\%%
+  \textbf{Incorrect}: trigonometric function must have a dimensionless argument
+\end{itemize}
+
 
 % \section{Physics?}
 % \label{sec:physics_general}
