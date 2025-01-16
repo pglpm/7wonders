@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-15T15:08:46+0100
+%% Last-Updated: 2025-01-16T10:19:37+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -395,12 +395,10 @@ citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,
 \renewcommand*{\finalnamedelim}{\addspace\amp\space}
 % \renewcommand*{\finalnamedelim}{\addcomma\space}
 \renewcommand*{\textcitedelim}{\addcomma\space}
-% \setcounter{biburlnumpenalty}{1} % to allow url breaks anywhere
-% \setcounter{biburlucpenalty}{0}
-% \setcounter{biburllcpenalty}{1}
-\setcounter{biburlucpenalty}{1}  %break URL after uppercase character
-\setcounter{biburlnumpenalty}{1} %break URL after number
-\setcounter{biburllcpenalty}{1}  %break URL after lowercase character
+% % These penalties are not needed with xurl loaded
+% \setcounter{biburlucpenalty}{1}  %break URL after uppercase character
+% \setcounter{biburlnumpenalty}{1} %break URL after number
+% \setcounter{biburllcpenalty}{1}  %break URL after lowercase character
 \DeclareDelimFormat{multicitedelim}{\addsemicolon\addspace\space}
 \DeclareDelimFormat{compcitedelim}{\addsemicolon\addspace\space}
 \DeclareDelimFormat{postnotedelim}{\addspace}
@@ -410,6 +408,21 @@ citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,
 %\appto{\citesetup}{\footnotesize}% smaller font for citations
 \defbibheading{bibliography}[\bibname]{\chapter*{#1}\label{sec:biblio}\addcontentsline{toc}{chapter}{#1}%\markboth{#1}{#1}
 }
+
+\usepackage{xurl}
+\PassOptionsToPackage{hyphens}{url}\usepackage[hypertexnames=false,pdfencoding=unicode,psdextra]{hyperref}
+% % Not needed with xurl
+% %\def\UrlOrds{\do\*\do\-\do\~\do\'\do\"\do\-}%
+% % \def\myUrlOrds{\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}%
+% \makeatletter
+% %\g@addto@macro\UrlSpecials{\do={\newline}}
+% \g@addto@macro{\UrlBreaks}{%
+% \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
+% }
+% % \g@addto@macro\UrlSpecials{%
+% % \do\/{\mbox{\UrlFont/}\hskip 0pt plus 10pt}%
+% % }
+% \makeatother
 \newcommand*{\citep}{\footcites}
 \newcommand*{\citey}{\footcites}%{\parencites*}
 \newcommand*{\ibid}{\unspace\addtocounter{footnote}{-1}\footnotemark{}}
@@ -426,18 +439,6 @@ citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,
 }
 \newcommand*{\subtitleproc}[1]{}
 \newcommand*{\chapb}{ch.}
-%
-%\def\UrlOrds{\do\*\do\-\do\~\do\'\do\"\do\-}%
-% \def\myUrlOrds{\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}%
-\makeatletter
-%\g@addto@macro\UrlSpecials{\do={\newline}}
-\g@addto@macro{\UrlBreaks}{%
-\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
-}
-% \g@addto@macro\UrlSpecials{%
-% \do\/{\mbox{\UrlFont/}\hskip 0pt plus 10pt}%
-% }
-\makeatother
 \newcommand*{\arxiveprint}[1]{%
 arXiv \doi{10.48550/arXiv.#1}%
 }
@@ -468,8 +469,6 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 %\usepackage{tikz-cd}
 
-\PassOptionsToPackage{hyphens}{url}\usepackage[hypertexnames=false,pdfencoding=unicode,psdextra]{hyperref}
-
 \usepackage{pdfrender}
 \newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
 \renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\boldsymbol{#1}}}
@@ -477,9 +476,9 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 
 \usepackage[depth=3]{bookmark}
 \hypersetup{%
-colorlinks=true,
+colorlinks=true,%
 %pdfborderstyle={/S/U/W 0.5},
-bookmarksnumbered,pdfborder={0 0 0.25},
+bookmarksnumbered,pdfborder={0 0 0.25},%
 citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlbordercolor=cyan,urlcolor=cyan,breaklinks=true,pdftitle={\pdftitle},pdfauthor={\pdfauthor}}
 % \usepackage[vertfit=local]{breakurl}% only for arXiv
 \providecommand*{\urlalt}{\href}
@@ -1849,7 +1848,7 @@ If a physical quantity is defined in terms of other quantities, then its unit is
 
   \smallskip
 
-  For other rules about printing and reporting units take a look at the \furl{  https://www.nist.gov/pml/special-publication-811/nist-guide-si-check-list-reviewing-manuscripts}{NIST Check List}.
+  For other rules about printing and reporting units take a look at the \furl{https://www.nist.gov/pml/special-publication-811/nist-guide-si-check-list-reviewing-manuscripts}{NIST Check List}.
 
 \end{warning}
 
