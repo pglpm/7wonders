@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-17T15:20:34+0100
+%% Last-Updated: 2025-01-18T13:19:15+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1399,18 +1399,20 @@ In my opinion, if you learn how to apply these universal principles in simple si
 \addsec{Thanks}
 \label{sec:thanks}
 
-I am deeply indebted to the students attending the ING\,175 course, Spring-term 2024, at the Western Norway University of Applied Sciences (HVL) in Bergen. They allowed me to experiment presenting physics as done in these notes, and gave invaluable feedback about what's easy and what's difficult, what's clear and what's unclear, with many suggestions for improvement, and also moral support with their curiosity and enthusiasm. In particular, in alphabetic order: %
+I am deeply indebted to the students attending the courses ING\,175 and ING\,174 in 2024 at the Western Norway University of Applied Sciences (HVL) in Bergen. They allowed me to experiment presenting physics as done in these notes, and gave invaluable feedback about what's difficult and what's easy, what's unclear and what's clear, with many suggestions for improvement, and also moral support with their curiosity and enthusiasm. In particular I'd like to thank, in alphabetic order: %
 Amalie Solberg Magnussen Rege, %
 % Azzat Ammar Kouzi, %
 Bodil Markhus, %
+Carl Jakob Lis Sterner, %
 % Cristopher Gerald Rojas, %
 Dag Åsmund Ørnes, %
 % Erlend Vitsø, %
 Iver Thoresen Malme, %
-% Jonas Pytte, %
+Jonas Pytte, %
 Josefine Björk Jarlesdottir Gjerde, %
-% Kamil Krzysztof Zak, % <- ask
+Lars Magnus Birketveit, %
 Leonard Rogardt Heldal, %
+Miriam Osland, %
 Nicolai Lindløkken, %
 Nikolai Ringereide, %
 Oda Skagsoset Kristiansen, %
@@ -1419,6 +1421,8 @@ Rudi Nathaniel Stødle, %
 Severin Johannessen, %
 % Sondre Moa Risnes, %
 % Stein Olav Løset Frey, %
+Thea Tyssøy Jensen, %
+Tim August Birkeland Christiansen, %
 Vegard Aa Albretsen, %
 William Sæther. %
 Mats Øinas deserves a special thank for his thorough feedback, questions, suggestions, and encouragement.
@@ -2403,21 +2407,24 @@ where $g \approx \qty{9.8}{m/s^{2}}$ is the gravitational accelaration, $R \appr
 \end{enumerate}
 \end{exercise}
 
-\section{Angles}
-\label{sec:angles}
-
-\mynotew{To be written.}
-
-
-\section{Coordinate notation}
+\section{Coordinate position, velocity, acceleration}
 \label{sec:coord_notation}
 
+\subsection{Position}
+\label{sec:position_vector}
+
+Let us agree on some notation and terminology that will be used in these notes.
+
+\medskip
 
 We shall often denote the four coordinates of a coordinate system by the letters
 \begin{equation*}
-  (t, x, y, z)
+  (t, x, y, z) \ .
 \end{equation*}
-where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial position. The triplet of spatial coordinates is often denoted by the vector $\yr$:
+Unless stated otherwise, the coordinate time $t$ will be taken to be \autoref{sec:coord_time}{UTC}, and the spatial coordinates $(x,y,r)$ will be taken to be \autoref{def:cartesian_coords}{Cartesian}. As mentioned in the previous section, the definition of the spatial coordinates is usually different from problem to problem; so it is always important to specify how the coordinate system you're using is defined.
+
+\begin{definition}{Position or location vector,label={def:position_vect}}
+The triplet of spatial coordinates is called the \textbf{position} or \textbf{location} vector and is often denoted by $\yr$:
 \begin{equation*}
   \yr \defd (x,y,z)
   \qquad\text{or}\qquad
@@ -2428,53 +2435,62 @@ where $t$ is a coordinate time, usually UTC, and $(x,y,r)$ determine a spatial p
     x\\y\\z
   \end{bmatrix}
 \end{equation*}
+\end{definition}
 use round brackets \enquote*{$()$} or square brackets \enquote*{$[]$}, and horizontal or vertical notation as you prefer.
-
-It is always important to specify how the coordinate system you're using is defined.
-The definition of the spatial coordinates $(x,y,z)$ is usually different from problem to problem. We shall typically use \emph{rectangular} coordinates, that is, with coordinate lines forming $\frac{\pu}{2}\,\unit{rad} \equiv \ang{90}$ angles with one another; but their directions and their origin always depend on the problem, so make sure you always specify them.
 
 Whenever we speak of a \enquote{region of space} or of a \enquote{surface in space}, we mean a 3D or 2D region at some specific coordinate time $t$.
 
-\medskip
-
 Some physical phenomena happen approximately along a line, in one dimension; think for instance of a small falling object. Other phenomena happen approximately on a surface, in two dimensions; think for instance of a swinging pendulum. In these cases we can omit two or one of the spatial coordinates, and simply assume that the omitted ones have some constant, unimportant values. In such cases we can simply write, for instance, $(t,x)$ or $(t,x,y)$ as our coordinates.
 
-
-
-
-\section{Velocity and acceleration}
+\subsection{Velocity and acceleration}
 \label{sec:velocity}
 
-In some situations the spatial coordinates $\yr=(x,y,z)$ may turn out to be functions of the time coordinate $t$; the typical example is when we describe how the spatial position of a small body changes with coordinate time. We can write this functional dependence in different ways, for instance
+In some situations the spatial coordinates $\yr = (x,y,z)$ may be functions of the time coordinate $t$. A typical example is when we describe how the spatial position of a small volume or body changes with coordinate time. We can write this functional dependence in different ways, for instance
 \begin{equation*}
   \yr(t)\quad\text{or}\quad
-  \bigl[x(t),\ y(t),\ z(t)\bigr] \ .
+  \bigl[x(t)\ ,\ y(t)\ ,\ z(t)\bigr] \ .
 \end{equation*}
 So $\yr$ is a vector function of time, which simply means that we have a collection of three functions of time.
 
-If we take the derivative of each coordinate with respect to the time $t$, we obtain the \textbf{coordinate velocity}
-\begin{equation*}
-  \yv(t) \defd \frac{\di}{\di t}\yr(t) = \biggl[\frac{\di}{\di t} x(t),\ \frac{\di}{\di t} y(t),\ \frac{\di}{\di t} z(t)\biggr]
-\end{equation*}
-which is also a vector.
 
-\begin{definition}{Dot-notation for time derivative}
-  The derivative of some quantity with respect to coordinate time is often denoted by a \textbf{dot} over the quantity. So we can also write
+If we take the derivative of each coordinate with respect to the time $t$, we obtain the \emph{coordinate velocity}:
+
+\begin{definition}{Coordinate velocity,label={def:coord_velocity}}
+  The \textbf{coordinate velocity} is a vector defined as the derivative of the position vector $\yr(t)$ with respect to coordinate time $t$:
   \begin{equation*}
-    \yv(t) = \dot{\yr}(t) = \bigl[\dot{x}(t),\ \dot{y}(t),\ \dot{z}(t)\bigr]
+    \yv(t) %= \bigl[v_{x}(t)\ ,\ v_{y}(t) \ ,\ v_{z}(t) \bigr]
+    \defd \frac{\di}{\di t}\yr(t) = \biggl[\frac{\di}{\di t} x(t)\ ,\ \frac{\di}{\di t} y(t)\ ,\ \frac{\di}{\di t} z(t)\biggr] \ .
   \end{equation*}
-\end{definition}
 
-The coordinate velocity is usually different from the \emph{physical velocity}, which an observer would measure using proper time and space, for instance using bouncing light rays. In many everyday situations the difference between coordinate and physical velocity is so small that it can be neglected. But in situations involving subatomic particles at high speed, for example, one must take into account that the two velocities are different.
+  \smallskip
+
+  The word \textbf{speed} means the \emph{magnitude} of the velocity:
+  \begin{equation*}
+    \abs{\yv} \equiv \sqrt{{v_{x}}^{2} + {v_{y}}^{2} + {v_{z}}^{2}} \ .
+  \end{equation*}
+
+  \smallskip
+
+    The derivative of some quantity with respect to coordinate time is often denoted by a \textbf{dot} over the quantity. So we can also write
+    \begin{equation*}
+      \yv(t) = \dot{\yr}(t) = \bigl[\dot{x}(t),\ \dot{y}(t),\ \dot{z}(t)\bigr]
+    \end{equation*}
+  \end{definition}
+The coordinate velocity is usually different from the \emph{physical velocity}, which an observer would measure using proper time and space, for instance using bouncing light rays. In many everyday situations the difference between coordinate and physical velocity is so small that it can be neglected, so we shall simply use the word \enquote*{velocity}. But in situations involving subatomic particles at high speed, for example, one must take into account that the two velocities are different.
 
 \medskip
 
-Taking the time derivative once more we obtain the coordinate acceleration, also a vector:
+Taking the derivative of the velocity with respect to coordinate time, that is, the second derivative of position, we obtain the \emph{coordinate acceleration}:
+\begin{definition}{Coordinate acceleration,label={def:coord_acceleration}}
+  The \textbf{coordinate acceleration} is a vector defined as the derivative of the velocity vector $\yv(t)$ with respect to coordinate time $t$:
 \begin{equation*}
   \bm{a}(t) \defd \frac{\di}{\di t}\yv(t) =
-  \frac{\di^{2}}{\di t^{2}}\yr(t) = \biggl[\frac{\di^{2}}{\di t^{2}} x(t),\ \frac{\di^{2}}{\di t^{2}} y(t),\ \frac{\di^{2}}{\di t^{2}} z(t)\biggr]
+  \frac{\di^{2}}{\di t^{2}}\yr(t) =
+  \biggl[\frac{\di^{2}}{\di t^{2}} x(t)\ ,\
+  \frac{\di^{2}}{\di t^{2}} y(t)\ ,\
+  \frac{\di^{2}}{\di t^{2}} z(t)\biggr] \ .
 \end{equation*}
-which is also a vector.
+\end{definition}
 
 \begin{extra}{Acceleration in relativity theory}
   In relativity theory, acceleration has a special physical significance because it includes the effect of gravity. We distinguish between \emph{physical acceleration} and \emph{coordinate acceleration}. The calculation of physical acceleration  requires more than a time derivative.
@@ -2509,6 +2525,13 @@ which is also a vector.
   \item What is the satellite's velocity at $t=\qty{6875}{s}$? What is the magnitude of the velocity (that is, the speed)?
   \end{enumerate}
 \end{exercise}
+
+\section{Angles}
+\label{sec:angles}
+
+\mynotew{To be written.}
+
+
 
 
 % \begin{subappendices}
