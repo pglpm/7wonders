@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-20T07:15:26+0100
+%% Last-Updated: 2025-01-20T14:30:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2122,7 +2122,7 @@ To see the complications in defining \enquote*{distance} and \enquote*{length}, 
 % \\[\jot]%
 % \footnotesize\color{mpcolor}%
 }%
-We can represent the motions of A and B as \emph{worldlines} in spacetime, as in the side figure (similarly to what we did in \fig~\ref{fig:ABC_spacetime}). The figure shows the points in spacetime where your clock and the clock on B display the times 07:50, 08:00, and 08:10. Note in particular that you and B touch each other when your clock displays 08:10 and B's clock displays 08:00.
+We can represent the motions of A and B as \emph{worldlines} in spacetime, as in the side figure (similarly to what we did in \fig~\ref{fig:ABC_spacetime}). The figure shows the points in spacetime where your clock displays the times 06:00, 08:00, and 08:10, and where B's clock displays 06:00 and 08:00. Note in particular that you and B touch each other and are synchronized at 06:00; then you touch each other again later, when your clock displays 08:10 and B's clock displays 08:00.
 
 \medskip
 
@@ -2194,16 +2194,20 @@ where $\yc$ is the speed of light in vacuum, a universal physical constant:
   \yc = \qty{299792458}{m/s}\quad\text{(exactly).}
 \end{equation}
 
-The SI unit of length, the \furl{https://www.nist.gov/si-redefinition/meter}{metre}, , is based on the measuring procedure above. Common laser distance meters also work by the same procedure, and therefore yield radar distance. As the name indicates, this is also the distance measured by radars.
+The SI unit of length, the \furl{https://www.nist.gov/si-redefinition/meter}{metre}, is based on the measuring procedure above. Common laser distance meters also work by the same procedure, and therefore yield radar distance. As the name indicates, this is also the distance measured by radars.
 %
 \marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=0.75\linewidth]{images/laser_meter.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}A laser distance meter (the light beam is not visible in reality).%
 }%
 
-Radar distance, however, makes sense only if the time lapse $\Dt$ is small enough compared to variations in the relative motion of the observer and the object, so that this motion is approximately uniform. For this reason this distance cannot be used if the object is too far away: the farther away it is, the longer it takes for a light beam to travel to and fro. Radar distance can be used between the Earth and other Solar System planets; but it cannot be used for galaxies or other distant cosmological objects.
+In using radar distance, however, we must be wary of the following peculiarities:
+\begin{itemize}[wide]
+\item Radar distance makes sense only if the time lapse $\Dt$ is small enough compared to variations in the relative motion of the observer and the object, so that this motion is approximately uniform. For this reason this distance cannot be used if the object is too far away: the farther away it is, the longer it takes for a light beam to travel to and fro. Radar distance can be used between the Earth and other Solar System planets; but it cannot be used for galaxies or other distant cosmological objects.
 
-Most important, \textbf{the value of radar distance depends on the relative motion} between you and the object. Imagine that a friend of yours is located very close to you at time $t$, but is moving with respect to you. Upon measuring object~B's radar distance, your friend will generally find a value different from yours. The discrepancy between you and your friend's measured values will be the larger, the higher is the relative velocity between you two. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid objects in their vicinity.
+\item \textbf{Radar distance is not symmetric}: the radar distance of B from A at A's time $t$ is generally different from the radar distance of A from B at B's time $t$.
 
+\item \textbf{The value of radar distance depends on the relative motion} between A and B. Imagine that a friend of yours is located very close to you at time $t$, but is moving with respect to you. Upon measuring object~B's radar distance, your friend will generally find a value different from yours. The discrepancy between you and your friend's measured values will be the larger, the higher is the relative velocity between you two. Several observers in motion with respect to one another will generally disagree on the dimensions of an approximately rigid objects in their vicinity.
+\end{itemize}
 
 %
 \marginpar{\vspace{-3\baselineskip}\centering\includegraphics[width=\linewidth]{images/tuebingen.jpg}%
@@ -2316,13 +2320,13 @@ In astronomy, in space and satellite communication, and in \furl{https://oceanse
 \item The \furl{https://earth-info.nga.mil/?dir=wgs84\&action=wgs84}{\emph{World Geodetic System 1984} (WGS~84)} is very similar to the ITRS, besides a discrepancy of some centimetres. It is used by the system of GPS satellites.
 \end{itemize}
 
-  %
-\marginpar{\vspace{-8\baselineskip}\centering%
+But how do we determine the position and time of an event in these coordinate systems? The procedure can be extremely complicated in fact. The starting point is the assignment of some predefined coordinates to objects that seem to have fixed spatial coordinates in the coordinate system; for instance distant cosmological objects like \furl{https://esahubble.org/wordbank/quasar}{quasars} in the case of the ICRS and CGRS, or \furl{https://itrf.ign.fr/en/solutions/ITRF2020-u2023\#frame-definition}{particular reference stations} on Earth's surface in the case of the ITRS and WGS~84. The coordinate of other events are then calculated from measurements of proper times, radar distances, and angles from the reference objects, using formulae from general relativity. As we mentioned in \sect~\ref{sec:time}, even your mobile phone participates in these complex calculations.
+%
+\marginpar{\vspace{-10\baselineskip}\centering%
   \includegraphics[width=\linewidth]{images/gcrf.jpg}
   \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
   The assignment of coordinates on and around Earth depends on nominal values assigned to distant astronomical objects (from \cites{capitaine2010})%
 }%
-But how do we determine the position and time of an event in these coordinate systems? The procedure can be extremely complicated in fact. The starting point is the assignment of some predefined coordinates to objects that seem to have fixed spatial coordinates in the coordinate system; for instance distant cosmological objects like \furl{https://esahubble.org/wordbank/quasar}{quasars} in the case of the ICRS and CGRS, or \furl{https://itrf.ign.fr/en/solutions/ITRF2020-u2023\#frame-definition}{particular reference stations} on Earth's surface in the case of the ITRS and WGS~84. The coordinate of other events are then calculated from measurements of proper times, radar distances, and angles from the reference objects, using formulae from general relativity. As we mentioned in \sect~\ref{sec:time}, even your mobile phone participates in these complex calculations.
 
 \begin{exercise}[label={ex:latlong}]
   % **** Add figure
