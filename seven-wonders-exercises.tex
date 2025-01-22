@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-22T20:04:41+0100
+%% Last-Updated: 2025-01-22T21:03:13+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -22,7 +22,7 @@ british%
 ]{memoir}
 \newcommand*{\firstdraft}{26 May 2023}
 \newcommand*{\version}{0.2}
-\newcommand*{\updated}{\ifarxiv***\else\today\fi}
+\newcommand*{\updated}{\ifarxiv***\else\today\enspace\DTMsetstyle{iso}\DTMcurrenttime\fi}
 \newcommand*{\propertitle}{The Seven Wonders of the World%\\[\jot]\Large Notes on 21st-century physics
 \\[3\jot]\LARGE\itshape Exercises}
 %\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Lecture notes for ING\,175}
@@ -494,7 +494,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 \usepackage{tensor}
 
-\usepackage[british]{datetime2}
+\usepackage[british,showseconds=false]{datetime2}
 \DTMnewdatestyle{mydate}%
 {% definitions
 \renewcommand*{\DTMdisplaydate}[4]{%
@@ -1744,6 +1744,10 @@ For \emph{pressure}, it depends on the context. In some applications it is consi
 \section{}
 \label{sec:veritasium_lightspeed}
 
+\emph{Preferably together with a friend or colleague:}
+
+\smallskip
+
 The \furl{https://www.youtube.com/c/veritasium/videos}{\emph{Veritasium}} channel has many informative and entertaining videos on diverse scientific topics. Most of these videos are accurate and pedagogically very useful. But a couple of them contain some inaccuracies or partially faulty reasoning.
 
 One example of partially inaccurate video is \furl{https://www.youtube.com/watch?v=pTn6Ewhb27k}{\emph{Why no one has measured the speed of light}}. It contains many correct and insightful statements and explanations, but also some faulty reasoning.
@@ -1774,6 +1778,10 @@ Watch the video and
 
 \section{}
 \label{sec:personal_coords}
+
+\emph{Preferably together with a friend or colleague:}
+
+\smallskip
 
 A particular coordinate system $(t,x,y,z)$ with spatial Cartesian coordinates is defined as follows:
 \begin{itemize}
@@ -1869,7 +1877,22 @@ We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates hav
 \end{enumerate}
 
 
+\section{}
+\label{sec:1Dintegration}
 
+We have a coordinate system $(t,z)$ with one spatial dimension only. The coordinate velocity $v_{z}(t)$ of a small pulse of light travelling in a particular material is given by
+\begin{equation*}
+  v_{z}(t) = c \exp(-t/\tau)
+  \qquad\text{with}\quad
+  c = \qty{299792458}{m/s} \,,\
+  \tau = \qty{0.08}{s} \ ,
+\end{equation*}
+and the pulse is located at $z=\qty{-2}{m}$ at $t=\qty{1}{s}$.
+
+\begin{enumerate}[exerc]
+\item Find the expression for the position $z(t)$ of the pulse as a function of coordinate time.
+\item Find the location of the pulse at time $t=\qty{1.01}{s}$.
+\end{enumerate}
 
 \clearpage
 \addsec{Example solutions}
@@ -1952,6 +1975,30 @@ which is not what we want. Trying next $\omega \ytf = \pu$, which means $\ytf = 
 \item No, the expression is not dimensionally correct, because the $z$ component of $\yr_{\text{S}}$ is \enquote{$0$}, which is a dimensionless number, whereas $z$ has dimension \textsf{length}. The $z$ component should be \enquote{\qty{0}{m}}.
 \item See exercises~\ref{sec:1D_motion} and \ref{sec:1D_motion_b}\enspace\faIcon{smile}
 \end{enumerate}
+
+\addsubsecref{sec:1Dintegration}
+
+\begin{enumerate}[exerc]
+\item Let's call the specific position $z_{0} \defd \qty{-2}{m}$ at $\yti\qty{1}{s}$. The expression for $z(t)$ is found integrating $v_{z}(t)$ between $\yti$ and $t$, and adding the position at $\yti$:
+  \begin{equation*}
+    \begin{split}
+      z(t) &= z_{0} + \int_{\yti}^{t} c \exp(-t/\tau) \, \di t
+      \\[\jot]
+      &= z_{0} - c \tau \exp(-t/\tau)\bigr\rvert_{\yti}^{t}
+      \\[\jot]
+      &= z_{0} - c \tau \bigl[\exp(-t/\tau) - \exp(-\yti/\tau)\bigr]
+      \\[2\jot]
+      &\qquad\text{with}\quad
+  c = \qty{299792458}{m/s} \,,\
+  \tau = \qty{0.08}{s} \,,\
+  z_{0} = \qty{-2}{m}\,,\
+  \yti = \qty{1}{s} \ .
+    \end{split}
+  \end{equation*}
+
+\item Substituting in the expression above, $z(\qty{1.01}{s}) = \qty{8.50}{m}$\,.
+\end{enumerate}
+
 
 %% **** add exercise on Veritasium's \furl{https://www.youtube.com/watch?v=pTn6Ewhb27k}{\emph{Why No One Has Measured The Speed Of Light}}
 
