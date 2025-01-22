@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-22T12:29:55+0100
+%% Last-Updated: 2025-01-22T14:02:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2525,6 +2525,58 @@ Taking the derivative of the velocity with respect to coordinate time, that is, 
 \end{extra}
 
 
+\subsection{Integration of velocity and acceleration}
+\label{sec:integration_velocity}
+
+Since velocity is the time derivative of position, we can find the position from the velocity by the inverse operation of integration. So we have
+\begin{equation*}
+  \yr(t) %= \bigl[v_{x}(t)\ ,\ v_{y}(t) \ ,\ v_{z}(t) \bigr]
+  =  \yr(\yti) + \int_{\yti}^{t}\yv(t)\,\di t
+  \qquad\text{or}\qquad
+  \begin{bmatrix}
+    x(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    y(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    z(t)\vphantom{\int_{\yti}^{t}}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    x(\yti)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    y(\yti)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    z(\yti)\vphantom{\int_{\yti}^{t}}
+  \end{bmatrix} +
+  \begin{bmatrix}
+    \int_{\yti}^{t}v_{x}(t)\,\di t\\[3\jot]
+    \int_{\yti}^{t}v_{y}(t)\,\di t\\[3\jot]
+    \int_{\yti}^{t}v_{z}(t)\,\di t
+  \end{bmatrix} \ .
+\end{equation*}
+Note from the formulae above that if we know the expression of the velocity $\yv(t)$, we still cannot know the position $\yr(t)$ unless we \emph{also} know the value $\yr(\yti)$ of the position at some particular time $\yti$.
+
+  \medskip
+
+In a analogous way we can find the velocity $\yv(t)$ from the acceleration $\bm{a}(t)$ by integration, provided we also know the value $\yv(\yti)$ of the velocity at some particular time $\yti$:
+\begin{equation*}
+  \yv(t) %= \bigl[a_{x}(t)\ ,\ a_{y}(t) \ ,\ a_{z}(t) \bigr]
+  =  \yv(\yti) + \int_{\yti}^{t}\bm{a}(t)\,\di t
+  \qquad\text{or}\qquad
+  \begin{bmatrix}
+    v_{x}(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    v_{y}(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    v_{z}(t)\vphantom{\int_{\yti}^{t}}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    v_{x}(\yti)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    v_{y}(\yti)\vphantom{\int_{\yti}^{t}}\\[3\jot]
+    v_{z}(\yti)\vphantom{\int_{\yti}^{t}}
+  \end{bmatrix} +
+  \begin{bmatrix}
+    \int_{\yti}^{t}a_{x}(t)\,\di t\\[3\jot]
+    \int_{\yti}^{t}a_{y}(t)\,\di t\\[3\jot]
+    \int_{\yti}^{t}a_{z}(t)\,\di t
+  \end{bmatrix} \ .
+\end{equation*}
+
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Here are the three components of a time-dependent velocity vector The variable $t$ is the time, and therefore has dimension \textsf{time}. Introduce units \enquote*{\unit{s}} and \enquote*{\unit{m}}  in such a way that the expression is dimensionally correct:
@@ -2543,8 +2595,12 @@ Taking the derivative of the velocity with respect to coordinate time, that is, 
       \end{bmatrix}\:\unit{m}
     \end{equation*}
   \item What is the satellite's velocity at $t=\qty{6875}{s}$? What is the magnitude of the velocity (that is, the speed)?
+
+  \item Suppose you know the expression of the \emph{speed} $v(t) \equiv \abs{\yv(t)}$ of an object, and also the object's position $\yr(\yti)$ at time $\yti$. From this information, can you find the position $\yr(t)$ at any other time $t$?
   \end{enumerate}
 \end{exercise}
+
+
 
 \section{Angles}
 \label{sec:angles}

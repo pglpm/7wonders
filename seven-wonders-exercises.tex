@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-22T12:57:53+0100
+%% Last-Updated: 2025-01-22T15:38:32+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -1768,13 +1768,33 @@ Watch the video and
 \item Find parts in which the reasoning offered in the video is inconsistent. For instance, find discussions where Derek says \enquote{right now}: does \enquote{right now} make sense in those discussions?
 \end{enumerate}
 
+\section{}
+\label{sec:personal_coords}
+
+A particular coordinate system $(t,x,y,z)$ with spatial Cartesian coordinates is defined as follows:
+\begin{itemize}
+\item The time coordinate $t$ is your proper time.
+\item The origin of the coordinates is your navel
+\item The $x$-axis points in front of you, the $y$-axis to your left, the $z$-axis upwards (through the top of your head).
+\item The unit coordinate is \qty{1}{m}, measured as usual.
+\end{itemize}
+
+Answer the following questions:
+\begin{enumerate}[exerc]
+\item What are your position $\yr(t)$ and velocity $\yv(t)$ in this coordinate system while you sleep? (Let's say that by \enquote{your position} we mean the position of your navel.)
+\item What are your position $\yr(t)$ and velocity $\yv(t)$ while you run or bike or drive to school?
+\item What is your acceleration $\bm{a}(t)$ in different situations?
+\item Determine the $z$ coordinate of the floor in this coordinate system, when you are standing still.
+  \item Determine the spatial coordinates of the tip of the index finger of your right hand, when it is extended horizontally outwards.
+\end{enumerate}
+
 
 \section{}
 \label{sec:1D_motion}
 
 We have a coordinate system $(t,x)$ with one spatial dimension only. A small object S has position $\cx{S}(t)$ which changes with the coordinate time $t$. The time dependence of the position is given by
 \begin{equation*}
-  \cx{S}(t) = a\,t + b
+  \cx{S}(t) = a t + b
   \qquad\text{with}\quad
   a = \qty{-3}{m/s} \,,\ 
   b = \qty{7}{m} \ .
@@ -1788,6 +1808,24 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \item What is the cooordinate velocity of S at time $t=\qty{5}{s}$?
 \item What is the \emph{speed} of S at time $t=\qty{5}{s}$?
 \item Calculate the time dependence of the coordinate acceleration of S.
+\end{enumerate}
+
+\section{}
+\label{sec:1D_motion_b}
+
+We have a coordinate system $(t,x)$ with one spatial dimension only. A small object S has position $\cx{S}(t)$ given by
+\begin{equation*}
+  \cx{S}(t) = L \sin(\omega t) + b
+  \qquad\text{with}\quad
+  L = \qty{2}{m} \,,\
+  \omega = \frac{\pu}{3}\,\unit{s^{-1}} \,,\
+  b = \qty{7}{m/s}  \ .
+\end{equation*}
+\begin{enumerate}[exerc]
+\item Verify that the equation above is dimensionally consistent.
+\item Calculate the expressions for velocity $\vx{S}(t)$ and acceleration $\ax{S}(t)$.
+\item Find a time $\yti$ in which the velocity is \qty{0}{m/s} and the acceleration is approximately \qty{-2.2}{m/s^2}.
+\item Find a time $\ytf$ in which the velocity is approximately \qty{-2.1}{m/s} and the acceleration is \qty{0}{m/s^2}.
 \end{enumerate}
 
 
@@ -1813,6 +1851,44 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \item Denoting with $\ax{S}$ the coordinate acceleration of S, then $\ax{S}(t) = \qty{0}{m/s^{2}}$, which is zero at all times.
 \end{enumerate}
 
+
+\addsubsec{\ref{sec:1D_motion_b}}
+\begin{enumerate}[exerc]
+\item The expression is dimensionally correct, provided $t$ has dimension \textsf{time} and $x$ has dimension \textsf{length}. The argument of the sine function is dimensionless, and the two terms on the right have dimension \textsf{length}.
+
+\item From the rules for the derivative,
+  \begin{equation*}
+    \vx{S}(t) = \omega L \cos(\omega t) \ , \qquad
+    \ax{S}(t) = -\omega^{2} L \sin(\omega t) \ .
+  \end{equation*}
+
+\item The time $\yti$ must satisfy the system of equations
+  \begin{equation*}
+    \omega L \cos(\omega t) = \qty{0}{m/s}
+    \qquad
+    -\omega^{2} L \sin(\omega t) \approx \qty{-2.2}{m/s^{2}} \ .
+  \end{equation*}
+The cosine is zero when its argument is $\pu/2$, $3\pu/2$, and so on. Let's try taking $\omega \yti = \pu/2$, which means $\yti = \pu/(2\omega)$. We find indeed
+\begin{equation*}
+    \vx{S}(\yti) = \omega L \cos(\omega \yti) = \qty{0}{m/s}
+    \qquad
+    \ax{S}(\yti) = -\omega^{2} L \sin(\omega \yti) \approx \qty{-2.19}{m/s^{2}} \ .
+\end{equation*}
+
+\item The time $\ytf$ must satisfy the system of equations
+  \begin{equation*}
+    \omega L \cos(\omega t) = \qty{-2.1}{m/s}
+    \qquad
+    -\omega^{2} L \sin(\omega t) \approx \qty{0}{m/s^{2}} \ .
+  \end{equation*}
+The sine is zero when its argument is $0$, $\pu$, and so on. Let's try taking $\omega \ytf = 0$, which means $\ytf = \qty{0}{s}$. We find
+\begin{equation*}
+  \omega L \cos(\omega \ytf) \approx \qty{2.09}{m/s}
+  \qquad
+  -\omega^{2} L \sin(\omega \ytf) = \qty{0}{m/s^{2}} \ ,
+\end{equation*}
+which is not what we want. Trying next $\omega \ytf = \pu$, which means $\ytf = \pu/\omega$, leads to the desired result.
+\end{enumerate}
 
 %% **** add exercise on Veritasium's \furl{https://www.youtube.com/watch?v=pTn6Ewhb27k}{\emph{Why No One Has Measured The Speed Of Light}}
 
