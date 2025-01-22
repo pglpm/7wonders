@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-22T15:38:32+0100
+%% Last-Updated: 2025-01-22T20:01:30+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -649,7 +649,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
 \newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
 \newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
-
+\newcommand{\addsubsecref}[1]{\addsubsec{\faIcon[regular]{lightbulb}\enspace\ref{#1}}}
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect~#1}}
 
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect~#1}}
@@ -907,10 +907,10 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 %\providecommand{\varparallel}{\ensuremath{\mathbin{/\mkern-7mu/}}}%parallel (tentative symbol)
 % \renewcommand*{\le}{\leqslant}%less or equal
 % \renewcommand*{\ge}{\geqslant}%greater or equal
-%\DeclarePairedDelimiter\clcl{[}{]}
-%\DeclarePairedDelimiter\clop{[}{[}
-%\DeclarePairedDelimiter\opcl{]}{]}
-%\DeclarePairedDelimiter\opop{]}{[}%}
+\DeclarePairedDelimiter\clcl{[}{]}
+\DeclarePairedDelimiter\clop{[}{[}
+\DeclarePairedDelimiter\opcl{]}{]}
+\DeclarePairedDelimiter\opop{]}{[}%}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 %\DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\set{\{}{\}} %}
@@ -1599,7 +1599,7 @@ Find which of the following mathematical expressions and equalities are dimensio
 \clearpage
 \addsec{Example solutions}
 
-\addsubsec{\ref{sec:time_vel_primitive}}
+\addsubsecref{sec:time_vel_primitive}
 
 \begin{enumerate}[exerc]
 \item  \enquote{Distance is the product of a time lapse and a particular velocity}. See section~2.3 about \emph{Radar distance} in our lecture notes.
@@ -1608,7 +1608,7 @@ Find which of the following mathematical expressions and equalities are dimensio
 \end{enumerate}
 
 
-\addsubsec{\ref{sec:scalar_vect_quants}}
+\addsubsecref{sec:scalar_vect_quants}
 
 These quantities are scalars:
 \begin{itemize}[noitemsep]
@@ -1638,7 +1638,7 @@ These quantities are vectors:
 For \emph{pressure}, it depends on the context. In some applications it is considered a scalar, but in other applications it is considered a vector -- or actually a generalized kind of vector, called \emph{tensor}, which can be represented by a matrix.
 
 
-\addsubsec{\ref{sec:correct_units}}
+\addsubsecref{sec:correct_units}
 
 \begin{itemize}[noitemsep]
 \item \emph{Volumic energy}: \unit{J/m^3}
@@ -1661,7 +1661,7 @@ For \emph{pressure}, it depends on the context. In some applications it is consi
 \end{itemize}
 
 
-\addsubsec{\ref{sec:units_functions}}
+\addsubsecref{sec:units_functions}
 
 \begin{itemize}[label=$\triangleright$\enspace,itemsep=1ex]
 \item $\displaystyle\qty{11}{J} + \qty{4}{kg}$\\%%
@@ -1734,6 +1734,10 @@ For \emph{pressure}, it depends on the context. In some applications it is consi
 \label{cha:time_space}
 \setcounter{section}{-1}
 
+\emph{Make sure you're familiar with the \enquote*{dot-notation} explained in \sect~2.8 of our text.}
+
+
+
 \section{}
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
@@ -1790,6 +1794,16 @@ Answer the following questions:
 
 
 \section{}
+\label{sec:vel_accel}
+
+\begin{enumerate}[exerc]
+\item You're told that the position $\yr(t)$ of an object is constant in time $t$. How much is the velocity $\yv(t)$?
+\item If the velocity $\yv(\yti)$ is zero at a time $\yti$, must also the acceleration $\bm{a}(\yti)$ be zero at time $\yti$?
+\item Is it possible for a coordinate velocity $v_{x}(\ytf)$ to be positive at a time $\ytf$, and the acceleration $a_{x}(\ytf)$ negative at the same time? If not, explain why not. If yes, show by constructing a concrete example and explain what this situation means physically.
+\end{enumerate}
+
+
+\section{}
 \label{sec:1D_motion}
 
 We have a coordinate system $(t,x)$ with one spatial dimension only. A small object S has position $\cx{S}(t)$ which changes with the coordinate time $t$. The time dependence of the position is given by
@@ -1826,15 +1840,49 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \item Calculate the expressions for velocity $\vx{S}(t)$ and acceleration $\ax{S}(t)$.
 \item Find a time $\yti$ in which the velocity is \qty{0}{m/s} and the acceleration is approximately \qty{-2.2}{m/s^2}.
 \item Find a time $\ytf$ in which the velocity is approximately \qty{-2.1}{m/s} and the acceleration is \qty{0}{m/s^2}.
+\item Plot $\cx{S}(t)$ and $\vx{S}(t)$ as functions of time for $t \in \clcl{-4, 4}\,\unit{s}$.
 \end{enumerate}
+
+
+\section{}
+\label{sec:3Dmotion_simple}
+We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates have each dimension \textsf{length}. A small object S has position $\yr_{\text{S}}(t)$ given by
+\begin{equation*}
+  \yr_{\text{S}}(t) =
+  \begin{bmatrix}
+ a t + b
+    \\
+    L \sin(\omega t) + b
+    \\
+    0
+  \end{bmatrix}
+  \qquad\text{with}\quad
+  L = \qty{2}{m} \,,\
+  \omega = \frac{\pu}{3}\,\unit{s^{-1}} \,,\
+  a = \qty{-3}{m/s} \,,\ 
+  b = \qty{7}{m/s}  \ .
+\end{equation*}
+\begin{enumerate}[exerc]
+\item Verify that the equation above is dimensionally consistent.
+\item Calculate the expressions for velocity $\dot{\yr}_{\text{S}}(t)$ and acceleration $\ddot{\yr}_{\text{S}}(t)$.
+\item Plot the three components of the velocity as functions of time for $t \in \clcl{-4, 4}\,\unit{s}$.
+\end{enumerate}
+
+
 
 
 \clearpage
 \addsec{Example solutions}
 
-\addsec{\ref{sec:1D_motion}}
+\addsubsecref{sec:vel_accel}
 
-\emph{For the notation used in this solution, see \sect~2.8 in our main text.}
+\begin{enumerate}[exerc]
+\item The derivative of a constant is zero, so the velocity is $\yv(t)=\qty{0}{m/s}$. We must not forget the correct units!
+\item No, we can have zero velocity and non-zero acceleration at a given time. See exercise~\ref{sec:1D_motion_b} as an example.
+\item No, we can have positive velocity and negative acceleration at a given time. See exercise~\ref{sec:1D_motion_b} as an example. It means that, at that time, the movement is in the positive-$x$ direction (positive $x$-velocity), and the $x$-velocity is decreasing -- that is, it will be positive but smaller a very short time later.
+\end{enumerate}
+
+\addsubsecref{sec:1D_motion}
 
 \begin{enumerate}[exerc]
 \item It is, provided that $t$ has dimension \textsf{time} and $x$ has dimension \textsf{length}. In this case, since $a$ has dimension \textsf{length}/\textsf{time}, then $a\,t$ has dimension \textsf{length}, which is added to $b$ which also has dimension \textsf{length}; the left and right side have then both dimension \textsf{length}.
@@ -1852,7 +1900,7 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \end{enumerate}
 
 
-\addsubsec{\ref{sec:1D_motion_b}}
+\addsubsecref{sec:1D_motion_b}
 \begin{enumerate}[exerc]
 \item The expression is dimensionally correct, provided $t$ has dimension \textsf{time} and $x$ has dimension \textsf{length}. The argument of the sine function is dimensionless, and the two terms on the right have dimension \textsf{length}.
 
@@ -1888,6 +1936,21 @@ The sine is zero when its argument is $0$, $\pu$, and so on. Let's try taking $\
   -\omega^{2} L \sin(\omega \ytf) = \qty{0}{m/s^{2}} \ ,
 \end{equation*}
 which is not what we want. Trying next $\omega \ytf = \pu$, which means $\ytf = \pu/\omega$, leads to the desired result.
+
+\item We can plot $\cx{S}$ and $\vx{S}$ in two separate graphs:
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{xs.pdf}\hfill%
+    \includegraphics[width=0.49\linewidth]{vs.pdf}%
+  \end{center}
+  Or we could plot them on the same graph -- but only if we indicate separately the vertical axis for $\cx{S}$ and the one for $\vx{S}$ (for instance one on the left and one on the right), because these quantities have different dimensions.
+\end{enumerate}
+
+
+\addsubsecref{sec:3Dmotion_simple}
+
+\begin{enumerate}[exerc]
+\item No, the expression is not dimensionally correct, because the $z$ component of $\yr_{\text{S}}$ is \enquote{$0$}, which is a dimensionless number, whereas $z$ has dimension \textsf{length}. The $z$ component should be \enquote{\qty{0}{m}}.
+\item See exercises~\ref{sec:1D_motion} and \ref{sec:1D_motion_b}\enspace\faIcon{smile}
 \end{enumerate}
 
 %% **** add exercise on Veritasium's \furl{https://www.youtube.com/watch?v=pTn6Ewhb27k}{\emph{Why No One Has Measured The Speed Of Light}}
