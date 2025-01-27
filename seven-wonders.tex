@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-27T16:43:08+0100
+%% Last-Updated: 2025-01-27T21:53:21+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -3599,18 +3599,14 @@ As explicitly stated in the definitions above, control volumes and control surfa
 
 \medskip
 
-%
-\marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
-  \\[\jot]\footnotesize\flushleftright\color{mpcolor}Clever choice of control volumes and surfaces allow us to model and predict complex motions of fluids; \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{see also animation} (\cites{wojtanetal2009})%
-}%
 The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in simulating and predicting the behaviour of physical phenomena. Control volumes and surfaces are typically chosen so as to simplify the equations that describe the physical situation and to focus on details of interest.
 
 Up to now our discussion has been somewhat abstract. This abstractness reflects the amazing flexibility of the notions of control volumes and control surfaces. We now explore some more concrete examples.
 
 
 
-\subsection{Examples and choices of control volume}
-\label{sec:control_volumes}
+\subsection{Examples}
+\label{sec:control_volumes_examples}
 
 Let's start with an informal example of control volume and control surface.
 
@@ -3638,29 +3634,44 @@ What you just did was to consider a \emph{control surface}, and to measure the \
 \medskip
 
 %
-\marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=\linewidth]{images/kettle_CV.jpg}%
-\\[\jot]\flushleftright\footnotesize\color{mpcolor}Simplified section of a kettle, with an imaginary control volume and control surface (in \textcolor{purple}{red}).%
+\marginpar{\vspace{-4\baselineskip}\centering\includegraphics[width=\linewidth]{images/kettle_CV.jpg}%
+  \\[\jot]\flushleftright\footnotesize\color{mpcolor}Simplified section of a kettle, with a control volume (in \textcolor{purple}{red}) delimited by a closed control surface (\textcolor{purple}{dashed red line}).%
 }%
-In the previous example the control volume and control surfaces considered had very simple shapes. We can choose more complex shapes if needed. Take for instance a water kettle, and imagine a control surface that wraps its interior, as illustrated in the side picture.
+In the previous example the control volume and control surfaces had very simple shapes. We can choose more complex shapes if needed. Take for instance a kettle, and suppose we want to keep track of how much water, steam, air, and maybe energy go into or out of it. The interior of the kettle is our control volume. It is delimited by the interior surface of the metal that makes up the kettle, and also by an imaginary surface at the end of the spout. Note that as we move the kettle around, so do these control volume and control surface. If we make a dent on the kettle with a hammer, then the control volume and control surface will follow that dent.
 
+%
+\marginpar{\vspace{2\baselineskip}\centering%\includegraphics[width=0.75\linewidth]{images/piston_CV2.jpg}\\%
+\includegraphics[width=\linewidth]{images/locomotive.jpg}%
+\\[\jot]\flushleftright\footnotesize\color{mpcolor}From \furl{http://www.009.cd2.com}{009 Lynton and Barnstaple Railway County Gate}%
+}%
+In a similar way we can consider as control volumes more complicated objects and spaces -- like a car, a rocket, a bacterium, a planet, the chamber in a piston -- with appropriate control surfaces that \enquote{wrap} them. Keep in mind that these control volumes and surfaces bend and move as needed. The locomotive system illustrated on the side can be considered as a control volume, with a complex movable control surface that perfectly wraps every element of it.
 
+\section{Choices of control volumes and surfaces}
+\label{sec:choice_control_volumes}
 
-\mynotew{To be continued.}
+The powerful freedom in choosing control volumes and surfaces can be overwhelming. Let's discuss two particular choices that are often made in two kinds of physical situations, and that we shall also often use in these notes.
 
+\medskip
 
-When we study some solid object, like a football, a rocket, or a planet, we typically choose a control volume that tightly encloses the object. When we study something flowing or moving, like a fluid material or an electromagnetic field, we typically divide the space of interest into small control volumes and surfaces, constructing a \emph{mesh}; this mesh can even be refined in regions that are of special interest.
+First choice. When we study solid objects, or objects made of solid parts -- like a football, a book, a car, an aeroplane, a rocket, and in some situations a human being or a planet -- then we use the object itself as a control volume. The control surface tightly \enquote{wraps} the object.
 
-\mynotew{To be continued.}
+Because of this particular choice, we often say, for instance, \enquote*{the momentum of the tennis ball}, but what it's meant is \enquote*{the momentum in the volume that encloses the tennis ball}.
 
+There are two main reasons for this choice. First, this choice makes one particular physical law, the \autoref{cha:cons_matter}{balance of matter}, automatically satisfied. So we don't need to consider it when describing the physical phenomenon of interest. Second, the movement and deformation of control volumes and surfaces so chosen are not too complicated to represent mathematically; because the object is solid, so its kinds of movement are limited.
 
-% The results of the two measurements above are numbers, which in general can be positive or negative, for scalar quantities; or vectors for vector quantities.
-% % This number depends only on the chosen region, surfaces, and times.
+\medskip
 
+Second choice. When we study something flowing or moving in a more fluid way -- like a body of water, the atmosphere, fuel or gas in a cylinder, plasma, or an electromagnetic field -- then we divide the space of interest into small, \emph{static} control volumes and surfaces. We essentially construct a \emph{mesh}.
 
-\subsection{Examples and choices of control surface}
-\label{sec:control_surfaces}
+With this choice we do have to explicitly consider the physical law for the balance of matter, making the equations a little more complicated. But at the same time the mathematical representation of these control volumes and surfaces is extremely simple, because they're static.
 
-\mynotew{To be continued.}
+\medskip
+
+There are also hybrid choices between the two special choices above, with some control volumes and surfaces that are static, and others that move and deform in a more fluid way. These hybrid choices are used for instance in simulations of fluids where the behaviour of their surface -- waves, detaching drops, and similar -- are important.
+%
+\marginpar{\vspace{-5\baselineskip}\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
+  \\[\jot]\footnotesize\flushleftright\color{mpcolor}Clever hybrid choices of control volumes and surfaces allow us to simulate and predict complex motions of fluid surfaces; \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{see also animation} (\cites{wojtanetal2009})%
+}%
 
 
 \section{Volume content}
