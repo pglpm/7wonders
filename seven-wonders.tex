@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-22T20:36:27+0100
+%% Last-Updated: 2025-01-27T07:13:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2715,7 +2715,6 @@ We can ask these questions of any region of space, any time instant, and any tim
 % This number depends only on the chosen region, surfaces, and times.
 
 The second and third questions can also be asked in a slightly different way. We can consider a very short lapse of time, and divide the net flow and the net production by that time lapse. This way we have an alternative form of the second and third measurements, as flow or production divided by time:
-\begin{definition}{Flux through a surface and supply in a region}
   \begin{enumerate}[label=\arabic*.,leftmargin=17.62pt]
   \item[2b.] How much of this quantity is flowing through a particular two-dimensional surface, per time, at a particular time instant?
 
@@ -2725,7 +2724,6 @@ This is called the \textbf{flux} of the quantity through that surface at that ti
 
   This is called the \textbf{supply} of the quantity in that region at that time instant.
 \end{enumerate}
-\end{definition}
 
 \medskip
 
@@ -3530,115 +3528,99 @@ In General Relativity the metric is a dynamic object instead: it can change with
 
 Recall that six of the \autoref{cha:stuff}{seven main quantities} -- matter, electric charge, energy, momentum, angular momentum, entropy -- have two common features.
 
-The first feature is that we can define three kinds of amount for each quantity:
-\begin{enumerate}[noitemsep]
-\item[(1)] We can speak about the amount of quantity contained within a three-dimensional region, at a specific time instant.
+The first feature is that we can define and measure three kinds of amount for each quantity. Let's give them definite names:
+
+\begin{definition}{Volume content}
+  \textbf{Volume content} or \textbf{volume integral} is the amount of a quantity contained within a three-dimensional region, at a specific time instant.
 
   \smallskip
 
-\item[(2a)] We can speak about the amount of quantity flowing through a two-dimensional surface during a time lapse\textellipsis
-\item[(2b)] \textellipsis or alternatively we can speak about the amount of quantity flowing through a two-dimensional surface \emph{per time}, at a particular time instant.
-
-  \smallskip
-
-\item[(3a)] We can speak about the amount of quantity produced within a three-dimensional region during a time lapse\textellipsis
-\item[(3b)] \textellipsis or alternatively we can speak about the amount of quantity being produced within a three-dimensional region \emph{per time}, at a particular time instant.
-\end{enumerate}
-Let's give definite names to these three measurements:
-\begin{definition}{{Volume content, flux, supply}}
-  Measurement~(1) is called the \textbf{volume content} or \textbf{volume integral} of the quantity. This measurement has the same unit as the quantity.
-
-  \smallskip
-
-  Measurement~(2b) is called the \textbf{flux} of the quantity through the given surface. This measurement has the unit of the quantity divided by time. Remember that the flux through a surface depends on how that surface is moving.
-
-  \smallskip
-
-  Measurement~(3b) is called the \textbf{supply} or \textbf{source} of the quantity in the given volume. This measurement has the unit of the quantity divided by time. The supply can be \emph{negative}, in which case it means that the quantity is being destroyed.
+  The volume content of a quantity does \emph{not} depend on how the volume is moving. The volume content has the same physical dimension as the quantity.
 \end{definition}
 
+\begin{definition}{Flux}
+  \textbf{Flux} is the amount of a quantity flowing through a two-dimensional surface \emph{per time}, at a particular time instant.
+
+  \smallskip
+
+  The flux of a quantity through a surface depends on how that surface is moving and deforming. The flux has the physical dimension of that quantity divided by time.
+\end{definition}
+
+\begin{definition}{Supply}
+  \textbf{Supply} or \textbf{source} is the amount of quantity being produced within a three-dimensional region \emph{per time}, at a particular time instant.
+
+  \smallskip
+
+  The supply of a quantity in a region depends on how that region is moving and deforming. The supply has the physical dimension of that quantity divided by time.
+\end{definition}
+
+
 \medskip
 
-The second feature is \emph{extensivity} or \emph{additivity}:
-\begin{enumerate}
-\item[(1)] The content in a volume consisting of non-overlapping volumes is equal to the \emph{sum} of the contents in the individual volumes.
-\item[(2)] The flux through a surface consisting of non-overlapping surfaces is equal to the \emph{sum} of the fluxes through the individual surfaces.
-\item[(3)] The supply in a volume consisting of non-overlapping volumes is equal to the \emph{sum} of the supplies in the individual volumes.
-\end{enumerate}
+The second feature is \autoref{def:extensivity}{\emph{extensivity} or \emph{additivity}}:
+\begin{itemize}
+\item The content in a volume consisting of non-overlapping volumes is equal to the \emph{sum} of the contents in the individual volumes.
+\item The flux through a surface consisting of non-overlapping surfaces is equal to the \emph{sum} of the fluxes through the individual surfaces.
+\item The supply in a volume consisting of non-overlapping volumes is equal to the \emph{sum} of the supplies in the individual volumes.
+\end{itemize}
 
 \medskip
 
-These features and the three kinds of measurement are very intuitive. We shall see that our main physical laws are based upon them. In the present chapter we straighten out some details about the definition and our intuition of contents, fluxes, and supplies.
+The three kinds of amount and the property of extensivity are very intuitive. We shall see that our main physical laws are based upon them. In the present chapter we straighten out some details about the definition and our intuition of contents, fluxes, and supplies.
 
 \section{Control volumes and control surfaces}
 \label{sec_controlvolumes_surfaces}
 
-For six main quantities we can therefore say how much of that quantity is in a given volume, how much is flowing through a given surface in the unit of time, and how much is being created in a given volume in the unit of time.
+For each of the six main quantities we can therefore say how much of that quantity is in a given volume, how much is flowing through a given surface per time, and how much is being created in a given volume per time. But how should we choose such volumes and surfaces? Are we constrained in their choice? Do they need to have particular shapes or sizes or positions? Do they need to follow the contours of particular physical objects?
 
-But how should we choose such volumes and surfaces? Are we constrained in their choice? Do they need to have particular shapes or sizes or positions? Do they need to follow the contours of particular physical objects?
+These volumes and surfaces will play an important role in formulating our main physical laws; so one might think that they must be chosen in very special ways. But that isn't the case!
 
-Since these volumes and surfaces will play an important role in formulating our main physical laws, one might think that they must be chosen in very special way. But that isn't the case!
+What's surprising and extremely useful is that \textbf{the choice of volume} for a volume content or supply, \textbf{and the choice of surface} for a flux, \textbf{are completely arbitrary}. Moreover, \textbf{these volumes and surfaces can be completely imaginary}.
 
-What's surprising and extremely powerful is that \emph{the choice of volume} for a volume content, \emph{and the choice of surface} for a flux \emph{are completely arbitrary}. Moreover, \emph{these volumes and surfaces can be completely imaginary}.
-
-Since they are under our control, and since they allow us to keep under control how the amounts of our main quantities change, we call them \textbf{control volumes} and \textbf{control surfaces}.
+Since they are under our control, and since they allow us to keep under control how the amounts of our main quantities change, we call them \emph{control volumes} and \emph{control surfaces}:
 
 \begin{definition}{Control volume}
-  A \textbf{control volume} is an arbitrary three-dimensional region of space at a given (coordinate) time. This region can have any position, shape, and size; it can even consist of several disconnected three-dimensional regions. This region does not need to exist before or after the given time.
+  A \textbf{control volume} is an arbitrary three-dimensional region of space. This region can have any position, shape, and size, and these can change smoothly in time.
 
   \smallskip
 
-  We can also consider a \emph{temporal sequence} of control volumes, one for each instant of time. They can have positions, shapes, sizes that change smoothly from one time instant to the next. This sequence is often also called \enquote*{control volume} for short (but note the difference from the original meaning, which refers to only one time instant).
+  A control volume can also consist of several disconnected three-dimensional regions, and it can be completely imaginary.
 \end{definition}
+
 \begin{definition}{Control surface}
-  A \textbf{control surface} is an arbitrary two-dimensional region of space at a given (coordinate) time. This region can have any position, shape, and size; it can even consist of several disconnected two-dimensional regions.
+  A \textbf{control surface} is an arbitrary two-dimensional surface. This surface can have any position, shape, and size, and these can change smoothly in time.
 
   \smallskip
 
-  The instantaneous movement and velocity of such a region is important; therefore this region must, intuitively speaking, exist also an instant right before and right after the given time.
-
-  \smallskip
-
-  We can also consider a \emph{temporal sequence} of control surfaces, one for each instant of time. They can have positions, shapes, sizes that change smoothly from one time instant to the next. This sequence is often also called \enquote*{control surface} for short (but note the difference from the original meaning, which refers to only one time instant).
+  A control surface can also consist of several disconnected surfaces, and it can be completely imaginary.
 \end{definition}
 
-\medskip
-
-A control volume and a control surface don't need to be static: they can move and deform.
-
-In the case of a control volume, movement does not matter: \emph{the volume content in a control volume does not depend on the instantaneous motion of the volume}. In fact we can even imagine a control volume that exists for just one time instant.
-
-% 
-\marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/ball_wall.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}The golf ball is moving leftwards. Will it hit the metal surface? We don't know unless we know how the surface is moving.%
-}%
-In the case of a control surface the situation is different. The flux through a control surface \emph{depends also on the motion of the surface}. As a trivial example, consider a glass surface, and a person on one side of it, moving with a high velocity directed towards the surface. Will the person crash on the glass? We can't say for sure. The glass surface could be a glass wall in a building, which is not moving with respect to the person. In this case the person will likely crash on it. Or the glass surface could be the windscreen of a car, and the person could be the car's driver. In this case the person won't crash on the glass surface, because they're moving together with the same motion. Therefore we can't just imagine a surface that exists for one time instant: we need to imagine it at least for a very short time lapse, and be able to say how it's moving. If someone asks us what's the flux through a control surface at a given instant, but we are not told what's the motion of the surface, then the flux is unknown.
-
+As explicitly stated in the definitions above, control volumes and control surfaces don't need to be static: they can move and deform.
 
 \medskip
 
 %
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}Clever choice of control volumes and surfaces allow us to model and predict complex motions of fluids; \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{see also animation} (\cites{wojtanetal2009})%
+  \\[\jot]\footnotesize\flushleftright\color{mpcolor}Clever choice of control volumes and surfaces allow us to model and predict complex motions of fluids; \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{see also animation} (\cites{wojtanetal2009})%
 }%
-The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in making predictions. Typically they are chosen so as to simplify the equations that describe the physical situation, to simulate physical phenomena in a more precise way, and to focus on details of interest.
+The fact that we can choose control volumes and control surfaces arbitrarily gives us a lot of power in solving physics problems and in simulating and predicting the behaviour of physical phenomena. Control volumes and surfaces are typically chosen so as to simplify the equations that describe the physical situation and to focus on details of interest.
 
-Up to now our discussion has been somewhat abstract. This abstractness reflects the amazing flexibility of the notions of control volumes and control surfaces. We now explore some more concrete examples, discuss how we can choose them.
+Up to now our discussion has been somewhat abstract. This abstractness reflects the amazing flexibility of the notions of control volumes and control surfaces. We now explore some more concrete examples.
 
 
 
 \subsection{Examples and choices of control volume}
 \label{sec:control_volumes}
 
-Let's start with an informal example of a control volume.
+Let's start with an informal example of control volume.
 
-Consider a classroom, with some people within. In your imagination you can divide the classroom into two halves, say the front half and the rear half. You effect this division by imagining a two-dimensional, immaterial surface, going from the floor to the ceiling, and from one wall to the opposite one. The exact position of this imaginary surface is up to you, but it must be as precise as possible.
+Consider a classroom with some people within. In your imagination you can divide the classroom into two halves, say the front half and the rear half. You effect this division by imagining a two-dimensional, immaterial surface, going from the floor to the ceiling, and from one side wall to the opposite one. The exact position of this imaginary surface is up to you, but it must be as precise as possible.
 
 You can then simply measure how many people are in the rear half at a particular time instant, say time 14:43:27 of a specific date. This measurement could be done for instance by taking a photograph at exactly that instant, and then counting the people in the rear half on the photograph.
 
-What you just did was to choose a \emph{control volume} at a given time, and also to measure its \enquote{volume content} of people. Note how the volume in this case was defined partly by real objects (half of the ceiling and floor, half of the side walls, the rear wall) and partly by an imaginary object (your imagined surface in the middle of the room).
+What you just did was to choose a \emph{control volume} at a given time, and also to measure its \enquote{volume content} of people. Note how the volume in this case was defined partly by real objects (half of the ceiling and floor, half of the side walls, the rear wall) and partly by an imaginary object (your imagined surface dividing the classroom).
 
-There can be obvious complications. What if a person is entering the room from the rear door exactly at 14:43:27, and so is partly within the room, partly outside? In this case we must count \enquote{fractions of a person} as being in the control volume; so there could be \num{5.3} people in the control volume at that instant.
+% There can be obvious complications. What if a person is entering the room from the rear door exactly at 14:43:27, and so is partly within the room, partly outside? In this case we must count \enquote{fractions of a person} as being in the control volume; so there could be \num{5.3} people in the control volume at that instant.
 
 \medskip
 
@@ -3836,7 +3818,7 @@ The purpose of the previous examples is to make you aware of some fundamental as
 %
 \begin{definition}{Fundamental aspects and symmetry of flux}\label{def:symmetryflux}
   \begin{itemize}[nosep]
-  \item A flux in a particular surface-crossing direction only tells us the \emph{net} amount of substance that crosses the surface in that direction in a unit of time.
+  \item A flux in a particular surface-crossing direction only tells us the \emph{net} amount of substance that crosses the surface in that direction per time.
 
   \item A flux can be \emph{negative}.
 
