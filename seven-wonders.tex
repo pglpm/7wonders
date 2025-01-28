@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-27T21:53:21+0100
+%% Last-Updated: 2025-01-28T09:59:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -640,7 +640,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex}
 \setsecindent{0pt}%0ex plus 1ex minus .2ex}
 \setsubsecheadstyle{\large\bfseries\sffamily%
-\centering}
+\raggedright}
 \setparaheadstyle{\itshape\bfseries\sffamily%
 \raggedright}
 \newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
@@ -3554,19 +3554,54 @@ The first feature is that we can define and measure three kinds of amount for ea
   The supply of a quantity in a region depends on how that region is moving and deforming. The supply has the physical dimension of that quantity divided by time.
 \end{definition}
 
+Recall that some quantities -- matter, electric charge, magnetic flux, energy, entropy -- are \emph{scalars}: they can be expressed by just one number and a unit. This means that their volume contents, fluxes, and supplies are also scalars, expressed by one number each.
+Other quantities -- momentum and angular momentum -- are \emph{vectors}: they need to be expressed by usually three numbers and a unit. This means that their volume contents, fluxes, and supplies are also vectors, expressed by three numbers each.
+
+Table~\ref{tab:symbols_volint_fluxes} on page~\pageref{tab:symbols_volint_fluxes}
+summarizes the symbols, units, and scalar or vector character for the volume content, flux, supply of the seven quantities, as used in these notes.
 
 \medskip
 
-The second feature is \autoref{def:extensivity}{\emph{extensivity} or \emph{additivity}}:
+The second feature shared by the seven main quantities is \autoref{def:extensivity}{\emph{extensivity} or \emph{additivity}}:
 \begin{itemize}
 \item The content in a volume consisting of non-overlapping volumes is equal to the \emph{sum} of the contents in the individual volumes.
 \item The flux through a surface consisting of non-overlapping surfaces is equal to the \emph{sum} of the fluxes through the individual surfaces.
 \item The supply in a volume consisting of non-overlapping volumes is equal to the \emph{sum} of the supplies in the individual volumes.
 \end{itemize}
 
+When we speak of \emph{sum}, we mean an ordinary sum for scalar quantities, and a vector sum for vector quantities.
+
 \medskip
 
 The three kinds of amount and the property of extensivity are very intuitive. We shall see that our main physical laws are based upon them. In the present chapter we straighten out some details about the definition and our intuition of contents, fluxes, and supplies.
+
+\begin{table}[p]
+  \centering
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lclll}
+    \hline\\
+    \textit{Quantity}&& \textit{Vol. content\enspace[unit]} & \textit{Flux\enspace[unit]} & \textit{Supply}
+    \\[4\jot]
+    matter&& $\yN$\enspace[\unit{mol}] & $\yJ$\enspace[\unit{mol/s}]
+    & $\ya$
+    \\[2\jot]
+    electric charge&&$\yC$\enspace[\unit{C}] &$\yI$\enspace[\unit{C/s} \textcolor{grey}{\footnotesize or} \unit{A}] &
+    \\[2\jot]
+    magnetic flux&&$\yBf$\enspace[\unit{Wb}] &$\yEv$\enspace[\unit{Wb/s} \textcolor{grey}{\footnotesize or} \unit{V}] &
+    \\[2\jot]
+    energy&& $\yE$\enspace[\unit{J}] & $\yH$\enspace[\unit{J/s} \textcolor{grey}{\footnotesize or} \unit{W}] & $\yR$
+    \\[2\jot]
+    \textbf{momentum}&& $\yP$\enspace[\unit{N\,s}] & $\yF$\enspace[\unit{N}]  & $\yG$
+    \\[2\jot]
+    \parbox[c]{5em}{\textbf{angular\\momentum}}&& $\yL$\enspace[\unit{N\,m\,s}] & $\yto$\enspace[\unit{N\,m}] & $\ym$
+    \\[4\jot]
+    entropy&& $\yS$\enspace[\unit{J/K}] & $\yB$\enspace[\unit{J/(K\,s)}]
+    \\[2\jot]
+    \hline
+  \end{tabular*}
+  \caption{Symbols and units for volume contents, fluxes, supplies of the seven main quantities. Vector quantities are in \textbf{boldface}. Supplies have the same units as fluxes.}
+  \label{tab:symbols_volint_fluxes}
+\end{table}
+\clearpage
 
 \section{Control volumes and control surfaces}
 \label{sec_controlvolumes_surfaces}
@@ -3634,13 +3669,13 @@ What you just did was to consider a \emph{control surface}, and to measure the \
 \medskip
 
 %
-\marginpar{\vspace{-4\baselineskip}\centering\includegraphics[width=\linewidth]{images/kettle_CV.jpg}%
+\marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=\linewidth]{images/kettle_CV.jpg}%
   \\[\jot]\flushleftright\footnotesize\color{mpcolor}Simplified section of a kettle, with a control volume (in \textcolor{purple}{red}) delimited by a closed control surface (\textcolor{purple}{dashed red line}).%
 }%
 In the previous example the control volume and control surfaces had very simple shapes. We can choose more complex shapes if needed. Take for instance a kettle, and suppose we want to keep track of how much water, steam, air, and maybe energy go into or out of it. The interior of the kettle is our control volume. It is delimited by the interior surface of the metal that makes up the kettle, and also by an imaginary surface at the end of the spout. Note that as we move the kettle around, so do these control volume and control surface. If we make a dent on the kettle with a hammer, then the control volume and control surface will follow that dent.
 
 %
-\marginpar{\vspace{2\baselineskip}\centering%\includegraphics[width=0.75\linewidth]{images/piston_CV2.jpg}\\%
+\marginpar{\vspace{3\baselineskip}\centering%\includegraphics[width=0.75\linewidth]{images/piston_CV2.jpg}\\%
 \includegraphics[width=\linewidth]{images/locomotive.jpg}%
 \\[\jot]\flushleftright\footnotesize\color{mpcolor}From \furl{http://www.009.cd2.com}{009 Lynton and Barnstaple Railway County Gate}%
 }%
@@ -3669,7 +3704,7 @@ With this choice we do have to explicitly consider the physical law for the bala
 
 There are also hybrid choices between the two special choices above, with some control volumes and surfaces that are static, and others that move and deform in a more fluid way. These hybrid choices are used for instance in simulations of fluids where the behaviour of their surface -- waves, detaching drops, and similar -- are important.
 %
-\marginpar{\vspace{-5\baselineskip}\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
+\marginpar{\vspace{-10\baselineskip}\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
   \\[\jot]\footnotesize\flushleftright\color{mpcolor}Clever hybrid choices of control volumes and surfaces allow us to simulate and predict complex motions of fluid surfaces; \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{see also animation} (\cites{wojtanetal2009})%
 }%
 
@@ -3773,18 +3808,15 @@ We have a region consisting of two subregions; the amounts of momentum in each s
 \end{extra}
 
 
-\section{Flux: scalar quantities}
-\label{sec:intuition_fluxes_scalar}
-
-\subsection{Crossing direction and reckoning of scalar fluxes}
+\section{Flux of scalar quantities}
 \label{sec:flux_scalar_direction}
 
-Earlier we considered the intuitive example of a %
+To get an intuitive grip of the notion of flux, consider a %
 % \autoref{sec_controlvolumes_surfaces}{flow of people through an open door}.
-flow of people through an open door. %
-We may ask how many people crossed the door in a minute, but one more detail about this flow is important: \emph{in which direction did the people cross the door?} This detail is important because, for example, the door leads to a classroom and we need to keep track of how many seats are free. Then we need to know whether each person who crossed the door was \emph{entering} or \emph{leaving} the classroom, keeping track of how many additional people are in the classroom.
+flow of people through an open door. The door is our control surface. %
+We can ask how many people crossed the door during a minute. But one more detail about this flow is important: \emph{in which direction did the people cross the door?} This detail is important because, for example, the door leads to a classroom and we need to keep track of how many seats are free. We therefore need to know whether each person who crossed the door was actually \emph{entering} or \emph{leaving} the classroom.
 
-\marginpar{\vspace{-12\baselineskip}\centering%
+\marginpar{\vspace{-7\baselineskip}\centering%
 \includegraphics[width=0.5\linewidth]{images/person_enter.pdf}
 \\\flushleftright\footnotesize\color{mpcolor}According to the crossing direction indicated by the \textcolor{cyan}{blue wiggly arrow}, the person crossing the door counts as\enspace\enquote*{$+1$}.%
 
@@ -3794,7 +3826,7 @@ We may ask how many people crossed the door in a minute, but one more detail abo
 \includegraphics[width=0.5\linewidth]{images/person_leave.pdf}
 \\\flushleftright\footnotesize\color{mpcolor}According to the crossing direction indicated by the \textcolor{cyan}{blue wiggly arrow}, the person crossing the door counts as\enspace\enquote*{$-1$}.%
 }%
-In order to do this we can:
+In order to do this we can proceed as follows:
 \begin{enumerate}[label=\arabic*.]
 \item Assign a crossing direction to the door, for instance the direction from outside to inside the classroom.
 \item Count as \enquote*{positive} each person who crosses the door in the chosen crossing direction, and as \enquote*{negative} each person who crosses the door in the opposite direction.
@@ -3803,14 +3835,14 @@ The total of this counting tells us the \emph{net} number of people who crossed 
 \emph{entered} the classroom. If we chose a crossing direction \emph{from inside to outside} the classroom, then this total is the net number of people who
 \emph{left} the classroom.
 
-A flux therefore represents only a \emph{net} amount. Note also that this net amount can be \emph{negative}. For instance if we chose a crossing direction from outside to inside the classroom, and the net amount is $\num{-3}$, then it means that \emph{more people got out than in}. For instance, 9~persons may have entered the room during that minute, and 8~persons left. Or no person may have entered the room, and 3~persons left. In either case, the final situation is that those who got out in that minute were three more than those who got in.
+Therefore \textbf{a flux represents only a \emph{net} amount crossing a control surface}. Note also that this net amount can be \emph{negative}. For instance if we chose a crossing direction from outside to inside the classroom, and the net amount is $\num{-3}$, then it means that \emph{more people got out than in}: 9~persons may have entered the room during that minute, and 12~persons left. Or maybe no person entered the room, and 3~persons left. In either case, the final situation is that those who got out during that minute were three more than those who got in.
 
 One important aspect of this example and terminology is the following \emph{symmetry}:
 \begin{itemize}
 \item It is completely arbitrary which crossing direction we choose.
 \item If we choose the other crossing direction, then the net amount will switch sign.
 \end{itemize}
-But the physical situation is still the same of course. Therefore the sentences
+The physical situation is of course the same. The sentences
 \begin{center}
   \enquote{\qty{+5}{persons} \emph{entered} the room}
 \end{center}
@@ -3832,8 +3864,8 @@ are saying exactly the same thing.
 
 \medskip
 
-Consider a similar example, but instead of people, think of a quantity that can ordinarily also be \emph{negative}, such as electric charge. Let's choose the door-crossing direction from outside to inside the room. If we're told that a net amount \qty{-5}{C} of charge crossed the door in the chosen direction in one minute, then this could have happened in several ways:\noprelistbreak
-\begin{itemize}[nosep]
+Now consider a similar example, but instead of people, think of a quantity that can ordinarily also be \emph{negative}, such as electric charge. Let's choose the door-crossing direction from outside to inside the room. If we're told that a net amount \qty{-5}{C} of charge crossed the door in the chosen direction in one minute, then this could have happened in several ways:\noprelistbreak
+\begin{itemize}
 \item a charge of \qty{-5}{C} was brought into the room
 \item a charge of \qty{+5}{C} was brought out of the room
 \item a charge of \qty{-2}{C} was brought into the room during the first \qty{30}{s}, and a charge of \qty{+3}{C} was brought out in the remaining \qty{30}{s}
@@ -3842,7 +3874,7 @@ Consider a similar example, but instead of people, think of a quantity that can 
 \end{itemize}
 So the statement that \enquote{the flux of electric charge into the room was \qty{-5}{C} in one minute} does not tell us which of the situations above occurred.
 
-\marginpar{\vspace{\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
+\marginpar{\vspace{0\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
       Fechner [in 1845] supposed every current to consist in a streaming of electric charges, the vitreous charges travelling in one direction, and the resinous charges, equal to them in magnitude and number, travelling in the opposite direction with equal velocity.}}\sourceatright{\cites{whittaker1910_r1951}}%
 }%
 In fact, ordinary electricity in wires was thought for some time to be associated with movements of negative \emph{and} positive charges in opposite directions. Today we know that it consists in the movement of negative charges only.
@@ -3851,7 +3883,7 @@ In fact, ordinary electricity in wires was thought for some time to be associate
 
 The purpose of the previous examples is to make you aware of some fundamental aspects of what we call \enquote{flux}. These aspects are trivial but important when considering fluxes of physical quantities:
 %
-\begin{definition}{Fundamental aspects and symmetry of flux}\label{def:symmetryflux}
+\begin{definition}{Fundamental aspects and symmetry of flux,label={def:symmetryflux}}
   \begin{itemize}[nosep]
   \item A flux in a particular surface-crossing direction only tells us the \emph{net} amount of substance that crosses the surface in that direction per time.
 
@@ -3859,7 +3891,7 @@ The purpose of the previous examples is to make you aware of some fundamental as
 
   \item \textbf{Symmetry of flux}: A flux in a particular surface-crossing direction is equivalent to a flux of \emph{opposite} sign in the \emph{opposite} crossing direction.
   \end{itemize}
-\end{definition}
+\end{definition}%\label{def:symmetryflux2}
 %
 \marginpar{\vspace{-4\baselineskip}\footnotesize\color{mpcolor}This is called \emph{Cauchy's fundamental lemma} in the technical literature.%
 }%
@@ -3875,7 +3907,7 @@ The purpose of the previous examples is to make you aware of some fundamental as
 
 
 
-\subsection{Representation of scalar fluxes}
+\section{Representation of scalar fluxes}
 \label{sec:flux_scalar_representation}
 
 % %
@@ -3942,76 +3974,6 @@ The two equivalent pictures do \emph{not} say that a given amount is \emph{only}
 % The third representation above has one more advantage. Remember that \autoref{sec_controlvolumes_surfaces}{a flux through a surface may occur because the surface itself is moving}. The wiggly arrows in the first two representations above may misleadingly suggest that some amount of quantity is \enquote{moving} in their direction, or that the surface itself is moving in that direction. The third, arrow-less representation is less misleading.
 
 
-\subsection{Scalar fluxes through different surfaces}
-\label{sec:surface_change_scalar}
-
-What happens to the value of a flux through a surface, if we consider a \emph{different} surface, maybe intersecting the original one? It's important to keep in mind that
-\begin{itemize}[nosep]
-\item A flux refers only to a specific surface.
-\item The fluxes through two distinct surfaces can be very different, even if the two surfaces are quite close.
-\item The flux depends on the motion of the surface. So if we consider the same surface but with a different instantaneous motion, then the flux may be very different.
-\end{itemize}
-
-
-Consider for instance the picture on the side.
-%
-\marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/two_surfaces_flux.pdf}%
-}%
-It depicts two intersecting surfaces (as usual simplified by removing one dimension) and two chosen crossing directions on them. The crossing directions are both roughly rightward. Yet the energy flux through the \textcolor{blue}{solid blue surface} is \textcolor{blue}{\qty{+5}{J/s}}, whereas the energy flux through the \textcolor{purple}{dashed red surface} is \textcolor{purple}{\qty{-1}{J/s}}.
-
-% As another example,
-% % %
-% % \marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/two_surfaces_flux_eq.pdf}%
-% % }%
-% the second side picture shows two similar intersecting surfaces, one fully vertical in \textcolor{blue}{solid blue}, and one fully horizontal in \textcolor{purple}{dashed red}. The energy flux through the first in a rightward direction is \textcolor{blue}{\qty{+3}{J/s}}, and so is the energy flux in an upward direction through the second surface.
-
-\medskip
-
-There is, however, a relation between the fluxes through surfaces that share a common point. If we know the flux through \emph{three different, small, static} surfaces having a common point, then we can find the flux through any other \emph{small, static} surface passing through that same point. This possibility leads to the representation of flux through a small surface as a \emph{vector}, called \enquote*{flux-density vector}. In these notes we shall not consider flux densities and their vector representation.
-% ***** change this if they are added in an "advanced" part.
-
-
-\subsection{Flux units: scalar quantities}
-
-Remember that the flux of a quantity is defined as an amount of that quantity \emph{per time lapse}. Therefore the physical dimension of the flux is
-\begin{equation*}
-  \frac{\textsf{quantity}}{\textsf{time}}
-\end{equation*}
-and its units will be the units of the quantity divided by seconds:
-\begin{definition}{units of fluxes of the four scalar quantities}
-  \centering
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc}
-    \textbf{quantity}& matter & energy &
-    \begin{minipage}{3em}
-      \centering electric\\charge
-    \end{minipage}
-    &
-        \begin{minipage}{4em}
-      \centering magnetic\\field
-    \end{minipage}
- & entropy
-    \\[3\jot]
-    \textbf{flux units}& \unit{mol/s} & \unit{J/s} & \unit{C/s} & \unit{Wb/s} & \unit{J/(K\cdot s)}
-    \\[2\jot]
-    \textbf{equivalent units}& \emph{watt} & \emph{ampere} \unit{A} & \unit{W} & \emph{volt} \unit{V} &
-  \end{tabular*}
-%  \caption{Units of scalar fluxes}
-  \label{tab:fluxes_scalar_units}
-\end{definition}
-
-\bigskip
-
-After our discussion about the peculiarity of fluxes it's quite easy to work with the fluxes of the four main scalar quantities: matter, electric charge, energy, entropy. Let us add some reminders and remarks about the fluxes of matter and energy.
-
-
-\subsubsection{Matter flux}
-\label{sec:matter_flux}
-
-Remember that \emph{anti}matter \enquote{counts as \num{-1}} for calculating amounts of matter. If \qty{1}{mol} of positrons (anti-electrons) crosses a surface from left to right in \qty{1}{s}, the left-to-right flux of electrons equals \qty{-1}{mol/s} -- note the minus sign. The fact that antimatter is given special names can lead to ambiguities. For instance, if someone asks \enquote{what's the left-to-right flux of \emph{positrons}?}, maybe we should answer \enquote{\qty{1}{mol/s}}, since the question concerned specifically positrons. It's somewhat like asking \enquote{what's the flux of \emph{negative} electric charge?}. In these ambiguous situations it's best to add some explanatory words.
-
-\subsubsection{Energy flux}
-\label{sec:energy_flux}
-We already mentioned that \autoref{sec:forms_energy}{energy flux can be categorized into different kinds}, depending on whether there are fluxes of other quantities through the same surface. We study the exact definitions and formulae later on. The total flux is given by the sum of all these kinds. For instance, through a horizontal surface we can have a downward energy flux of \qty{3}{J/s} as \emph{heat}, and a downward flux of \qty{-1}{J/s} as \emph{work}. The total downward flux is then \qty{2}{J/s}. The energy flux that you will calculate in the fourth exercise below is called \emph{energy convection}.
 
 %
 \marginpar{\vspace{15\baselineskip}\centering\includegraphics[width=\linewidth]{images/surfacemoving_J.pdf}
@@ -4028,15 +3990,21 @@ We already mentioned that \autoref{sec:forms_energy}{energy flux can be categori
 
 
 
-\section{Flux: vector quantities}
+\section{Flux of vector quantities}
 \label{sec:intuition_fluxes_vector}
 
-\subsection{Crossing direction and reckoning of vector fluxes}
-\label{sec:flux_vector_direction}
+The flux of a vector quantity is also a vector, because it is given by an amount of that quantity, which is a vector, divided by time, which is a scalar. We can think of it as three fluxes of three scalar quantities.
 
-The flux of a vector quantity is also a vector, because it is given by an amount of that quantity, which is a vector, divided by time, which is a scalar. We can see it as three fluxes of three scalar quantities.
+The intuition and mental representation of the flux of a vector quantity through a control surface is less straightforward than for a scalar quantity. Think again of the previous examples with people or electric charges crossing a door or control surface. In the case of flux of a vector quantity, we may imagine that what's crossing the control surface are vectors. You can watch an animated representation \furl{https://pglpm.github.io/7wonders/media/vectorfluxanim.webp}{at this link}.
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
+\includegraphics[width=0.75\linewidth]{images/vectorfluxanim_static.jpg}
+\\\flushleftright\footnotesize\color{mpcolor}Imagine the \textcolor{blue}{blue vector} moving across the  \textcolor{grey}{grey vertical control surface}, as indicated by the \textcolor{yellow}{yellow wiggly arrow}. This motion can give a visual intuition of the flux of a vector quantity. (\furl{https://pglpm.github.io/7wonders/media/vectorfluxanim.webp}{Link to animated representation}.)%
+}%
 
-The discussion about the \autoref{sec:flux_scalar_direction}{choice of crossing direction and the symmetry of flux} that we made in the case of the flux of a scalar quantity, also applies in an analogous way to the flux of a vector quantity. For instance, if the flux of momentum through a surface in a particular crossing direction is
+\medskip
+
+The discussion about the choice of crossing direction and the symmetry of flux for a scalar quantity, also applies in an analogous way to the flux of a vector quantity. For instance, if the flux of momentum through a surface in a particular crossing direction is
 \begin{equation*}
   (-21, 25, 0)\:\unit{N} \ ,
 \end{equation*}
@@ -4051,7 +4019,7 @@ If we think of vectors as arrows, we must only remember that a minus sign change
 \end{equation*}
 
 
-\subsection{Representation of vector fluxes}
+\section{Representation of vector fluxes}
 \label{sec:flux_vector_representation}
 
 The graphical representation of the flux of a vector quantity is also analogous to \autoref{sec:flux_scalar_representation}{that for the flux of a scalar quantity}.
@@ -4149,8 +4117,38 @@ An important aspect of vector fluxes that we must try not to get confused about 
 
 \medskip
 
-\subsection{Vector fluxes through different surfaces}
-\label{sec:surface_change_vector}
+
+\section{Fluxes through different surfaces}
+\label{sec:surface_change_scalar}
+
+What happens to the value of a flux through a surface, if we consider a \emph{different} surface, maybe intersecting the original one? It's important to keep in mind that
+\begin{itemize}[nosep]
+\item A flux refers only to a specific surface.
+\item The fluxes through two distinct surfaces can be very different, even if the two surfaces are quite close.
+\item The flux depends on the motion of the surface. So if we consider the same surface but with a different instantaneous motion, then the flux may be very different.
+\end{itemize}
+
+
+Consider for instance the picture on the side.
+%
+\marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/two_surfaces_flux.pdf}%
+}%
+It depicts two intersecting surfaces (as usual simplified by removing one dimension) and two chosen crossing directions on them. The crossing directions are both roughly rightward. Yet the energy flux through the \textcolor{blue}{solid blue surface} is \textcolor{blue}{\qty{+5}{J/s}}, whereas the energy flux through the \textcolor{purple}{dashed red surface} is \textcolor{purple}{\qty{-1}{J/s}}.
+
+% As another example,
+% % %
+% % \marginpar{\vspace{-2\baselineskip}\centering\includegraphics[width=0.67\linewidth]{images/two_surfaces_flux_eq.pdf}%
+% % }%
+% the second side picture shows two similar intersecting surfaces, one fully vertical in \textcolor{blue}{solid blue}, and one fully horizontal in \textcolor{purple}{dashed red}. The energy flux through the first in a rightward direction is \textcolor{blue}{\qty{+3}{J/s}}, and so is the energy flux in an upward direction through the second surface.
+
+\medskip
+
+There is, however, a relation between the fluxes through surfaces that share a common point. If we know the flux through \emph{three different, small, static} surfaces having a common point, then we can find the flux through any other \emph{small, static} surface passing through that same point. This possibility leads to the representation of flux through a small surface as a \emph{vector}, called \enquote*{flux-density vector}. In these notes we shall not consider flux densities and their vector representation.
+% ***** change this if they are added in an "advanced" part.
+
+\medskip
+% \subsection{Vector fluxes through different surfaces}
+% \label{sec:surface_change_vector}
 
 We saw that the flux of a scalar quantity can be very different if we take a slightly different surface, or the same surface with a different motion. The same is true of the flux of a vector quantity: in particular, \textbf{the vectors representing the fluxes through two slightly different surfaces can point in completely different directions}.
 
@@ -4175,67 +4173,59 @@ Clearly the two vector fluxes through these two surfaces are completely differen
   A flux, scalar or vector, through a particular surface, in general doesn't tell us anything about the flux though another surface, nor about the flux through the same surface but with a different instantaneous motion.
 \end{warning}
 
-\subsection{Flux units: vector quantities}
-
-Also for vector quantities the physical dimension of the flux is
-\begin{equation*}
-  \frac{\textsf{quantity}}{\textsf{time}}
-\end{equation*}
-and its units will be the units of the quantity divided by seconds:
-\begin{definition}{units of fluxes of the three vector quantities}
-  \centering
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
-    \textbf{quantity}& momentum & ang. momentum
-    \\[2\jot]
-    \textbf{flux units}& \unit{N} & \unit{N\,m}
-    \\[2\jot]
-    \textbf{equivalent units}& \unit{kg\,m/s}  & \unit{kg\,m^2/s}
-  \end{tabular*}
-%  \caption{Units of scalar fluxes}
-  \label{tab:fluxes_vector_units}
-\end{definition}
-
 
 \section{Flux of momentum: contact force}
 \label{sec:force_is_flux}
 
-We already mentioned that \autoref{sec:intro_momentum}{\textbf{flux of momentum is what we call \enquote*{force}}}. Owing to the importance of the notion of \emph{force} in the many branches of physics which rely on Newtonian mechanics, we must discuss this connection in depth. This connection, as well as the connection to Newton's laws, will become even clearer when we discuss the balance of momentum in \chap~\ref{cha:bal_momentum}.
-
-\subsection{Units}
-\label{sec:units_momflux}
+We already mentioned that \autoref{sec:intro_momentum}{\textbf{production of momentum is what we call \enquote*{force}}}. Owing to the importance of the notion of \emph{force} in the many branches of physics which rely on Newtonian mechanics, we must discuss this connection in depth. This connection, as well as the connection to Newton's laws, will become even clearer when we discuss the balance of momentum in \chap~\ref{cha:bal_momentum}.
 
 Recall that \autoref{sec:intro_momentum}{momentum can be measured in newton-seconds, \enquote*{\unit{N\cdot s}}}. Its flux, being a momentum divided by time, is therefore measured in newtons, \enquote*{\unit{N}}.
 
-\subsection{Visualizing force as flux of momentum}
+\subsection{Surface forces and volume forces}
+\label{sec:contact_volume_forces}
+
+The notion of force is very intuitive. We associate it to the sensations that we feel in our skin, flesh, bones when, for instance, we push against a wall, twist a door knob, push backwards on the ground with our feet to run or jump. This is what we call a \textbf{surface force} or \textbf{contact force}.
+
+We also associate force to the sensation we feel in our whole body when we sit in an accelerating car, or go forth and back in a swing, or sit on an aeroplane that's taking off; in these cases the sensation is not limited to a surface. This is what we call a \textbf{volume force} or \textbf{body force}.
+
+Surface forces and volume forces have some properties in common, because they both are production of momentum. Both are represented by a vector having the direction and orientation of the \enquote{push} or \enquote{pull}, and a magnitude expressing its intensity, which is the rate at which momentum is produced.
+
+But they also differ in important respects: surface forces are \emph{flux} of momentum through a surface, whereas volume forces are \emph{supply} of momentum in a volume. Surface forces therefore satisfy the principle of \autoref{def:symmetryflux}{symmetry of flux}, whereas volume forces do not always do, or do so only approximately.
+
+% The notion of force is very intuitive. We associate it to the sensations that we feel in our skin, flesh, bones when, for instance, we push against a wall, twist a door knob, push backwards on the ground with our feet to run or jump, or other similar actions. Force is typically represented by a vector, having the direction and orientation of the \enquote{push} or \enquote{pull}, and a magnitude expressing its intensity. \emph{Such a force vector is exactly the vector expressing the flux of momentum}. The two are the same. A force can therefore be also visualized as a flow of momentum. This representation can be illuminating in some physical problems.
+
+
+
+\subsection{Visualizing a surface force as flux of momentum}
 \label{sec:visualize_force}
 
-The notion of force is very intuitive. We associate it to the sensations that we feel in our skin, flesh, bones when, for instance, we push against a wall, twist a door knob, push backwards on the ground with our feet to run or jump, or other similar actions. Force is typically represented by a vector, having the direction and orientation of the \enquote{push} or \enquote{pull}, and a magnitude expressing its intensity. \emph{Such a force vector is exactly the vector expressing the flux of momentum}. The two are the same. A force can therefore be also visualized as a flow of momentum. This representation can be illuminating in some physical problems.
+A surface force can therefore be visualized as a flux of momentum. This representation can be illuminating in some physical problems.
 
 %
 \marginpar{\vspace{-\baselineskip}\centering\includegraphics[width=0.75\linewidth]{images/person_push_force.pdf}%
 }%
-As a concrete example, imagine a person pushing against a wall, as in the side picture. In terms of force, we say that \emph{the person's head is exerting a force on the wall}; the vector that represents this pushing force, the \textcolor{purple}{purple arrow} in the picture, has a person$\to$wall orientation.
+As a concrete example, imagine a person pushing against a wall, as in the side figure. In terms of force, we say that \emph{the person's head is exerting a surface force on the wall}. The vector that represents this pushing force, the \textcolor{purple}{purple arrow} in the figure, has a person$\to$wall orientation.
 % \begin{center}
 %     \includegraphics[height=8em]{images/person_push_force.pdf}
 % \end{center}
 
-To understand force in terms of momentum flux, let's consider an imaginary surface separating the person and the wall; the \textcolor{yellow}{yellow line} in the pictures below. If we choose a person$\rightsquigarrow$wall crossing direction, indicated by the \textcolor{red}{wiggly red arrow} in the following picture, then the momentum flux has a person$\rightarrow$wall orientation:\noprelistbreak
+To understand force in terms of momentum flux, let's consider an imaginary surface separating the person and the wall; the \textcolor{yellow}{yellow line} in the figures below. If we choose a person$\rightsquigarrow$wall crossing direction, indicated by the \textcolor{red}{wiggly red arrows} in the following figure, then the momentum flux indicated by the the \textcolor{purple}{purple arrow} has a person$\rightarrow$wall orientation:\noprelistbreak
 \begin{center}
   \includegraphics[height=6em]{images/person_push_flux_right.pdf}
 \end{center}
-This picture says: on the side of the wall, an amount momentum is being added at a given rate; this momentum has a person$\rightarrow$wall orientation.
+This figure says: on the side of the wall, an amount momentum is being added at a given rate; this momentum has a person$\rightarrow$wall orientation.
 
 Because of the \autoref{def:symmetryflux}{symmetry of flux}, if we instead choose a wall$\rightsquigarrow$person crossing direction for the separating surface, then the momentum flux has opposite orientation:\noprelistbreak
 \begin{center}
   \includegraphics[height=6em]{images/person_push_flux_left.pdf}
 \end{center}
-This picture says: on the side of the person's head, momentum is being added at a given rate; this momentum has a wall$\rightarrow$person orientation.
+This figure says: on the side of the person's head, momentum is being added at a given rate; this momentum has a wall$\rightarrow$person orientation.
 
-Since force and momentum flux are the same thing, the last picture tells us that \emph{the wall is exerting a force on the person's head}; the vector that represents this opposite pushing force has a wall$\to$person orientation. -- But this is \emph{Newton's Third Law}! This example therefore shows that Newton's third law is the expression of the symmetry of flux. We shall discuss this fact in the next section.
+Since contact force and momentum flux are the same thing, the last figure tells us that \emph{the wall is exerting a surface force on the person's head}. The vector that represents this opposite pushing force has a wall$\to$person orientation. -- But this is \emph{Newton's Third Law}! This example therefore shows that Newton's third law is the expression of the symmetry of flux. We shall discuss this fact again soon.
 
 \medskip
 
-Now let's consider an example involving pulling instead of pushing. Imagine a person pulling a rope fastened somewhere, as in the side picture. In terms of force we say that \emph{the person is exerting a force on the rope}; the vector that represents this force has a rope$\rightarrow$person orientation.
+Now let's consider an example involving pulling instead of pushing. Imagine a person pulling a rope fastened somewhere, as in the side figure. In terms of force we say that \emph{the person is exerting a surface force on the rope}; the vector that represents this force has a rope$\rightarrow$person orientation.
 %
 \marginpar{\vspace{-4\baselineskip}\centering\includegraphics[width=\linewidth]{images/person_pull_force.pdf}%
 }%
@@ -4244,21 +4234,21 @@ Now let's consider an example involving pulling instead of pushing. Imagine a pe
 %     \includegraphics[height=6em]{images/person_pull_force.pdf}
 % \end{center}
 
-In terms of momentum flux, let's consider an imaginary vertical surface between the person's hand and the rope; the \textcolor{yellow}{yellow line} in the pictures below. If we choose an arm$\rightsquigarrow$rope crossing direction, indicated by the \textcolor{red}{wiggly red arrow}, then the momentum flux has a rope$\rightarrow$arm orientation; note the difference from the previous example:\noprelistbreak
+In terms of momentum flux, let's consider an imaginary vertical surface between the person's hand and the rope; the \textcolor{yellow}{yellow line} in the figures below. If we choose an arm$\rightsquigarrow$rope crossing direction, indicated by the \textcolor{red}{wiggly red arrow}, then the momentum flux has a rope$\rightarrow$arm orientation; note the difference from the previous example:\noprelistbreak
 \begin{center}
   \includegraphics[height=6em]{images/person_pull_flux_right.pdf}
 \end{center}
-This picture says: on the side of the rope, an amount momentum is being added at a given rate; this momentum has a rope$\rightarrow$arm orientation.
+This figure says: on the side of the rope, an amount momentum is being added at a given rate; this momentum has a rope$\rightarrow$arm orientation.
 
-But again this momentum flux and the previous picture are \emph{completely equivalent} to the following ones, by the symmetry of flux:\noprelistbreak
+But again this momentum flux and the previous figure are \emph{completely equivalent} to the following ones, by the symmetry of flux:\noprelistbreak
 \begin{center}
   \includegraphics[height=6em]{images/person_pull_flux_left.pdf}
 \end{center}
-This picture says: on the side of the arm, an amount momentum is being added at a given rate; this momentum has an arm$\rightarrow$rope orientation. Again we find Newton's third law: the rope is exerting a force on the person's arm; the vector that represents this opposite pushing force has a rope$\to$arm orientation.
+This figure says: on the side of the arm, an amount momentum is being added at a given rate; this momentum has an arm$\rightarrow$rope orientation. Again we find Newton's third law: the rope is exerting a surface force on the person's arm; the vector that represents this opposite pushing force has a rope$\to$arm orientation.
 
 \medskip
 
-A final example illustrates a situation in between the previous two. Consider the foot of a running person, as it pushes on the ground. In terms of momentum flux, consider an imaginary horizontal surface between the runner's foot and the ground; the horizontal \textcolor{yellow}{yellow line} in the pictures below. If we choose a downward crossing direction, the momentum flux is oriented diagonally, downward and backwards, towards the rear of the foot. Because of the symmetry of flux, if we choose an upward crossing direction, then the momentum flux has opposite diagonal direction, upward and forward, towards the front of the foo. This momentum flux can be depicted in these two equivalent ways:\noprelistbreak
+A final example illustrates a situation in between the previous two. Consider the foot of a running person, as it pushes on the ground. In terms of momentum flux, consider an imaginary horizontal surface between the runner's foot and the ground; the horizontal \textcolor{yellow}{yellow line} in the figures below. If we choose a downward crossing direction, the momentum flux is oriented diagonally, downward and backwards, towards the rear of the foot. Because of the symmetry of flux, if we choose an upward crossing direction, then the momentum flux has opposite diagonal direction, upward and forward, towards the front of the foo. This momentum flux can be depicted in these two equivalent ways:\noprelistbreak
 \begin{center}
   \medskip
 \hspace*{\fill}
@@ -4267,7 +4257,7 @@ A final example illustrates a situation in between the previous two. Consider th
   \includegraphics[height=6em]{images/foot_shear_flux_up.pdf}
 \hspace*{\fill}
 \end{center}
-The pictures say: on the side of the ground, an amount momentum is being added at a given rate; this momentum has an diagonal, downward and backward orientation. On the side of the foot, an amount momentum is being added at a given rate; this momentum has an diagonal, upward and forward orientation. Both these are aspects of the same momentum flux.
+The figures say: on the side of the ground, an amount momentum is being added at a given rate; this momentum has an diagonal, downward and backward orientation. On the side of the foot, an amount momentum is being added at a given rate; this momentum has an diagonal, upward and forward orientation. Both these are aspects of the same momentum flux.
 
 \subsection{Netwon's Third Law!}
 \label{sec:newton_3rd}
@@ -4281,9 +4271,9 @@ The pictures say: on the side of the ground, an amount momentum is being added a
 %\\(Original Latin on p.~\pageref{fig:newtonIII})% \cites{newton1687_t1974}
 \\\sourceatright{\cites{newton1687}}%
 }%
-From the examples above, we see that thinking of force as momentum flux automatically leads to \emph{Newton's third law}: if one side is gaining momentum with a given orientation, the other side by symmetry is gaining momentum with the opposite orientation. In other words, if one side is experiencing a force with a given orientation, the other side is experiencing a force with the opposite orientation.
+From the examples above, we see that thinking of surface force as momentum flux automatically leads to \emph{Newton's third law}: if one side is gaining momentum with a given orientation, the other side by symmetry is gaining momentum with the opposite orientation. In other words, if one side is experiencing a surface force with a given orientation, the other side is experiencing a surface force with the opposite orientation.
 
-We thus see that \emph{Newton's third law is the expression of the \autoref{def:symmetryflux}{symmetry of flux} for the specific case of the flux of momentum}. We also realize that this \enquote{law} is more general: it applies not only to force, but also to the flux of all other quantities, even scalar ones.
+We thus see that \emph{Newton's third law is the expression of the \autoref{def:symmetryflux}{symmetry of flux} for the specific case of the flux of momentum}. We also realize that this \enquote{law} is more general: it applies not only to surface force, but also to the flux of all other quantities, even scalar ones.
 
 % \begin{warning}[Newton's Third Law is not valid for supply forces]
 %   The term \enquote*{force} is also used for the \emph{supply} of momentum; in this case it is more specifically called \textbf{body force} or \textbf{volume force}.
@@ -4459,7 +4449,7 @@ The individual fluxes and the total efflux are consistent, since
 \bigskip
 
 \begin{exercise}
-  \begin{enumerate}[para,label=\bfseries\arabic*.]
+  \begin{enumerate}[exerc]
   \item Are the \textcolor{purple}{four partial effluxes} shown on the left consistent with the \textcolor{blue}{total efflux} shown on the right? Why?:\noprelistbreak
     \begin{center}
   \hspace*{\fill}
@@ -4594,36 +4584,6 @@ The velocity $\yv=(v_{x}, v_{y}, v_{z})$ so defined has the following intuitive 
 
   In Newtonian approximation these two velocities are equal, so we do not need to distinguish them. In situations where the Newtonian approximation is not valid, on the other hand, we have to take into account the \enquote{velocity of matter} and the \enquote{velocity of energy} separately. This difference is important for instance in the study of plasma in stars and in numerical General Relativity. There is an ongoing discussion as to which of the two velocities is more convenient to use; see for instance \cites{kandusetal2008}, especially the section \emph{Eckart frame versus Landau frame}, which refers to the choice between these two velocities.
 \end{extra}
-
-\section{Symbols for volume contents and fluxes}
-\label{sec:symbols_volint_flux}
-
-table~\ref{tab:symbols_volint_fluxes} on page~\pageref{tab:symbols_volint_fluxes} summarizes the symbols for volume contents and fluxes of the seven quantities, together with their units, as used in these notes.
-\begin{table}
-  \centering
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcll}
-    \hline\\
-    \textbf{Quantity}&& \textbf{Volume content}\enspace[unit] & \textbf{Flux}\enspace[unit]
-    \\[2\jot]
-    matter&& $\yN$\enspace[\unit{mol}] & $\yJ$\enspace[\unit{mol/s}]
-    \\[2\jot]
-    electric charge&&$\yC$\enspace[\unit{C}] &$\yI$\enspace[\unit{C/s} \textcolor{grey}{\footnotesize or} \unit{A}]
-    \\[2\jot]
-    magnetic flux&&$\yBf$\enspace[\unit{Wb}] &$\yEv$\enspace[\unit{Wb/s} \textcolor{grey}{\footnotesize or} \unit{V}]
-    \\[2\jot]
-    energy&& $\yE$\enspace[\unit{J}] & $\yH$\enspace[\unit{J/s} \textcolor{grey}{\footnotesize or} \unit{W}]
-    \\[2\jot]
-    momentum&& $\yP$\enspace[\unit{N\,s}] & $\yF$\enspace[\unit{N}]
-    \\[2\jot]
-    angular momentum&& $\yL$\enspace[\unit{N\,m\,s}] & $\yto$\enspace[\unit{N\,m}]
-    \\[3\jot]
-    entropy&& $\yS$\enspace[\unit{J/K}] & $\yB$\enspace[\unit{J/(K\,s)}]
-    \\[2\jot]
-    \hline
-  \end{tabular*}
-\caption{Units for volume contents and fluxes of the main seven quantities.}
-  \label{tab:symbols_volint_fluxes}
-\end{table}
 
 
 % \begin{equation*}
