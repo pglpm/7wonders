@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-28T09:59:38+0100
+%% Last-Updated: 2025-01-29T11:20:12+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -932,7 +932,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\sect}{\S}% Sect.~
 \newcommand*{\sects}{\S\S}% Sect.~
 \newcommand*{\chap}{Chapter}%
-\newcommand*{\chaps}{chs}%
+\newcommand*{\chaps}{Chapters}%
 \newcommand*{\bref}{ref.}%
 \newcommand*{\brefs}{refs}%
 %\newcommand*{\fn}{fn}%
@@ -1720,7 +1720,7 @@ So for other physicists fundamental physics is about finding some point of view 
 
 The two conceptions above are not mutually exclusive, and both are always pursued, even if time-changing fashions may emphasize the one or the other.
 
-In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between physical laws that we'll draw in \chap~\ref{cha:laws}.
+In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between two kinds of physical laws that we'll draw in \chap~\ref{cha:laws}.
 
 
 \begin{figure}[p]
@@ -1739,11 +1739,41 @@ In these notes we take a point of view slightly closer to the second conception.
 \end{figure}
 
 \newpage
-\section{Several possible formalisms or \enquote{languages}}
+
+\section{Physical laws}
+\label{sec:phys_laws0}
+
+What's a physical law?
+
+Our lives rely on many kinds of patterns and regular experiences -- so common that we take them for granted and don't even think about them most of the time. If you leave an object in your room in the morning, say a book or a pair of keys, and go out, then when you come back you expect the object to be exactly were you saw it, if you know that nobody entered your room in the meantime. While you go on the street you don't expect to suddenly levitate or flay away. While you write on your notepad, you're not afraid that it might suddenly disappear into thin air. The way we use everyday devices of all kinds relies on predictable behaviours and responses on their part.
+
+All these patterns are regular behaviours that we observe and use are the essential core of physical laws.
+
+A \textbf{physical law}, in the more technical meaning of this term, goes beyond the simple observation or use of such experiences in at least two ways:
+
+First, a physical law goes from qualitative to \textbf{quantitative} observations. Instead of saying \enquote{the book is still on the table, where I left it}, it might state \enquote{the mass-centre of the book was at position\enspace$(x,y,z)=(0.6,3.1,1.2)\,\unit{m}$\enspace at times $\yti = \text{07:50:31}$ and $\ytf = \text{17:14:40}$}. The use of numbers allow us to convey information in a concise and precise way. Imagine you have to tell someone, who doesn't know Bergen, where in Bergen you are right now, to within \qty{10}{m}. You can do that with a description: \enquote{\textellipsis\ and there's a building called so-and-so which looks like so-and-so\textellipsis}, which would be lengthy and tricky. Or you can just give two numbers: latitude and longitude
+\begin{equation*}
+  \num{60.36940},\ \num{5.3518} \ .
+\end{equation*}
+And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}. The use of mathematics leads to amazing precision and predictive powers. It is this precision, which increases every day, that allows for the operation of technologies so important in our everyday lives: from mobile phones to aeroplanes, from laptops to cars.
+%
+\marginpar{\vspace{-7\baselineskip}\footnotesize%
+\color{mpcolor}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}
+}%
+
+Second, a physical law goes from very specific experiences to more \textbf{general} patterns, which may encompass seemingly very diverse phenomena. Instead of saying \enquote{this book is still here} it might say \enquote{this kind of matter is conserved in any volume and for any amount of time}. Instead of seeing the falling of an apple and the reciprocal movement of planets and sun as two different kinds of phenomena, it summarizes both together as examples of only one physical phenomenon. This generalization leads to the recognition and understanding of many new patterns.
+
+\medskip
+
+In being more quantitative and general, physical laws often become more \textbf{abstract} than everyday observations. Objects like a book and a body of water get included into the more abstract notion of \enquote*{matter}. The movement of different kinds of objects and the propagation of light get included into the more abstract notion of \enquote*{momentum}.
+
+To study and use physical laws we must therefore become familiar with and proficient in seeing and describing  physical situations in a more abstract way, and to translate them into mathematical terms. This is what we shall learn in the next \chaps~\ref{cha:time_space}, \ref{cha:stuff}, \ref{cha:contents_fluxes}, so that in \chap~\ref{cha:laws} we shall finally learn and start to use physical laws.
+
+
+\section{Different possible mathematical formalisms}
 \label{sec:languages}
 
-% Welcome back! The only thing about physics that I need to say here is that
-Physics can be expressed and written from wildly different points of view, using wildly different principles. Let's call these \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms.
+The mathematics used to express physical laws can come in wildly diverse forms, using wildly diverse principles. This leads to what we may call \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms.
 \marginpar{\normalsize%
   \begin{gather*}
     \color{red}\delt\!\!\int\!\!L\,\di t = 0 \quad L=\frac12 m v^{2}
@@ -1754,38 +1784,29 @@ Physics can be expressed and written from wildly different points of view, using
 \footnotesize\color{mpcolor}%
 Example of two different formalisms (\textcolor{red}{red}, \textcolor{cyan}{blue}) expressing the same physical phenomenon.%
 }
-These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, one may jump among formalisms, because some ideas may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. You see that in \enquote{doing} physics you can express your personality and put your own artistic touch; this is why it's such a cool subject (and other scientific subjects are like this too).
+These formalisms or languages are not completely separated; we know how to translate among them. In \enquote{doing} physics, we may jump among formalisms, because some physical situations may be easier to express, or some results easier to find, in one formalism than another. No matter which physics formalism you choose, the results and the concrete applications are still the same. The choice is to a great extent subjective, based on your aesthetic tastes. In \enquote{doing} physics you can actually express your personality and put your own artistic touch; this is why it's such a cool subject; and other scientific subjects are like this too.
 
-In these notes I'm choosing one particular formalism: the one that for me is the most easily \emph{visualizable}; because I believe that visualization can be beneficial in learning new things. Or maybe I'm choosing it just because I like it best. I encourage you to explore how the physics you've learned is expressed in other physics formalisms; maybe you'll like another physics formalism better.
+In these notes I choose one particular formalism: the one that for me is the most easily \emph{visualizable}; because I believe that visualization can be beneficial in learning new things. Or maybe I choose it just because I like it best. I encourage you to explore how the physics you've learned is expressed in other physics formalisms; maybe you'll like another physics formalism better.
 
-The formalism we'll be using might be called \enquote{field theory}. Roughly speaking it takes as starting point the ideas of space and time, or better spacetime, in which there are different kinds of \enquote{stuff}. It expresses the regularity and patterns that we observe in physical phenomena as \enquote{budgets} about the different kinds of stuff, and of relations between these kinds. Please don't take the description just given too literally; it's just meant to give you a very vague idea of the field-theoretical viewpoint.
-
-\medskip
+The formalism we'll use might be called \enquote{field theory}. Roughly speaking it takes as starting point the ideas of space and time, or better spacetime, in which there are different kinds of \enquote{stuff}. It expresses the regularity and patterns that we observe in physical phenomena as \enquote{budgets} about the different kinds of stuff, and as relations between them. Please don't take the description just given too literally; it's just meant to give you a very vague idea of the field-theoretical viewpoint.
 
 % \marginpar{\footnotesize%
 % \color{mpcolor}\enquote{\emph{this grand book, the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and read the
 % letters in which it is composed. It is written in the language of
 % mathematics}}\sourceatright{\cites{galilei1623}}
 % }
-It goes without saying that all these \enquote{physics languages} are to a great extent mathematical.
 
-One reason is that numbers allow us to convey information in a concise and precise way. Imagine you have to tell someone, who doesn't know
-Bergen, where in Bergen you are right now, to within 10\,m. You can do that with a description, \enquote{\textellipsis\ and there's a building called so-and-so which looks like so-and-so\textellipsis}, which would be lengthy and tricky. Or you can just give two numbers: latitude and longitude:
-\begin{equation*}
-  \num{60.36940},\ \num{5.3518} \ .
-\end{equation*}
-And in these two numbers all digits are important; for instance, the latitude is not \ensuremath{60.369\,4\bm{7}}.
 
-But the most important reason is that mathematics allows us to describe and follow the patters and variety of physical phenomena in a greatly concise and precise way. And to develop their relationships in a rigorous way.
-\marginpar{\vspace{-3\baselineskip}\footnotesize%
-\color{mpcolor}\enquote{\emph{There is nothing that can be said by mathematical symbols and relations which cannot also be said by words. The converse, however, is false. Much that can be and is said by words cannot successfully be put into equations, because it is nonsense.}}\sourceatright{\cites{truesdell1966}}
-}
-All our present technology would have been impossible to discover, and would be impossible to realize, without the mathematical language of physics.
-
-I invite you again to read what many good texts say about the relationship between physics and mathematics. No point repeating here what is said better elsewhere.
-
-\section{Quantities: primitive and derived}
+\section{Physical quantities}
 \label{sec:primitives}
+
+As discussed in \sect~\ref{sec:phys_laws0}, to formulate and use physical laws we need to view all physical phenomena in and around us from a more abstract point of view, which lends itself more easily to quantification. This is done by introducing the concept of \textbf{physical quantity}.
+
+The \furl{Joint Committee for Guides in Metrology (JCGM)}{Joint Committee for Guides in Metrology (JCGM)} defines \enquote*{quantity} \furl{https://jcgm.bipm.org/vim/en/1.1.html}{as follows}:
+\begin{quote}
+  property of a phenomenon, body, or substance, where the property has a magnitude that can be expressed by means of a number and a reference.
+\end{quote}
+As you see it's a somewhat vague definition, but it clearly refers to possibility of quantification. Some physical quantities are tightly connected with concepts that we use everyday, such as time, position, distance, velocity, temperature, energy.
 
 One topic must be briefly discussed because it's important for understanding the notes that follow. It's the distinction between \emph{primitive} and \emph{derived} quantities.
 
