@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-01-29T11:20:12+0100
+%% Last-Updated: 2025-01-29T13:08:27+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1800,37 +1800,48 @@ The formalism we'll use might be called \enquote{field theory}. Roughly speaking
 \section{Physical quantities}
 \label{sec:primitives}
 
-As discussed in \sect~\ref{sec:phys_laws0}, to formulate and use physical laws we need to view all physical phenomena in and around us from a more abstract point of view, which lends itself more easily to quantification. This is done by introducing the concept of \textbf{physical quantity}.
+As discussed in \sect~\ref{sec:phys_laws0}, in order to formulate and use physical laws we need to view all physical phenomena in and around us from a more abstract point of view, which more easily lends itself to quantification. This is done by using the concept of \textbf{physical quantity}.
 
 The \furl{Joint Committee for Guides in Metrology (JCGM)}{Joint Committee for Guides in Metrology (JCGM)} defines \enquote*{quantity} \furl{https://jcgm.bipm.org/vim/en/1.1.html}{as follows}:
 \begin{quote}
   property of a phenomenon, body, or substance, where the property has a magnitude that can be expressed by means of a number and a reference.
 \end{quote}
-As you see it's a somewhat vague definition, but it clearly refers to possibility of quantification. Some physical quantities are tightly connected with concepts that we use everyday, such as time, position, distance, velocity, temperature, energy.
+As you see it's a somewhat vague definition, but it clearly refers to possibility of quantification. Some physical quantities are connected with familiar concepts that we use every day, like time, position, distance, velocity, temperature, energy -- but we must be careful because their use in physics is more rigorous and often has technical features that the everyday familiar use has not. Other physical quantities, like momentum, magnetic flux, entropy, are more abstract and disconnected with everyday concepts. Their intuition and use therefore require practice and carefulness.
 
-One topic must be briefly discussed because it's important for understanding the notes that follow. It's the distinction between \emph{primitive} and \emph{derived} quantities.
+As stated in the definition above, all physical quantities are expressed as a number together with a \emph{reference}, also called a \textbf{unit of measurement} or simply \emph{unit}. The unit is a basic standard for comparing the measurement of a quantity. For example, when we say that a table has a \emph{length} of two metres, written \enquote*{\qty{2}{m}}, we mean that is it as long as two of those standard lengths that we call \enquote*{metre}. We shall further discuss units of measurement in \sect~\ref{sec:units}. The number and unit together are handled by usual mathematical rules; so we can for example add or multiply physical quantities. Not all mathematical operations are allowed on all quantities, though.
 
-I shall assume that you already know what a \textbf{physical quantity} is. Examples are: position, duration, velocity, pressure, energy, temperature.
+\subsection{Derived and primitive quantities}
+\label{sec:derived_primitive_quant}
 
-A \textbf{derived quantity} is one that is defined in terms of other quantities. For example, speed $v$ (more precisely: average speed) is defined as the ratio between a distance $d$ and a time duration $t$:
+We must briefly discuss a way of categorizing physical quantities which is important for understanding our approach to study physical laws. It's the distinction between \emph{derived} and \emph{primitive} quantities. This is an arbitrary distinction; that is, we can decide, within some bounds, which quantities we consider as \enquote*{derived} and which as \enquote*{primitive}.
+
+A \textbf{derived quantity} is one that we decide to define in terms of other quantities. For example, we can define \emph{speed} $v$ (more precisely: average speed) as the ratio between a \emph{distance} $d$ and a \emph{time duration} $t$:
 \begin{equation*}
   v \defd \frac{d}{t}
 \end{equation*}
-where the symbol \enquote{$\defd$} means \enquote{is defined as} or \enquote{is defined by}. This means that in principle we could avoid using the word \enquote{speed} and the symbol \enquote{$v$} altogether, and instead always speak about distance and duration, using the symbols \enquote{$d$} and \enquote{$t$}. Doing so would lead to very long sentences and formulae, and therefore be extremely inconvenient; but it could be done. The definition of a derived quantity often tells us how that quantity can be measured.
+where the symbol \enquote{$\defd$} means \enquote{is defined as} or \enquote{is defined by}. Note how we are already treating and representing \enquote*{speed}, \enquote*{distance}, \enquote*{time duration} as mathematical objects, and doing mathematical operations on them.
 
-A derived quantity is defined in terms of other quantities, and these may in turn be derived quantities, that is, defined in terms of still other quantities, and so on. But at some point this chain of definitions must come to an end, otherwise we would go around in circles.
+Treating \emph{speed} as a derived quantity means that we could in principle avoid using the word \enquote*{speed} and the symbol \enquote{$v$} altogether, and instead always speak about \enquote*{distance} and \enquote*{duration}, always using the symbols \enquote*{$d$} and \enquote*{$t$} in the combination \enquote*{$d/v$}, instead of using $v$. Doing so would probably lead to very long sentences and formulae, and therefore be extremely inconvenient; but in principle it could be done. The definition of a derived quantity often tells us how that quantity can be measured.
+
+A derived quantity is defined in terms of other quantities, and these may in turn be derived quantities, defined in terms of still other quantities, and so on. But at some point this chain of definitions must come to an end, otherwise we would go around in circles.
 \marginpar{\vspace{-5\baselineskip}%
 \includegraphics[width=\linewidth]{images/feynman_why2.png}%
 \\[\jot]%
 \footnotesize\color{mpcolor}%
-\emph{\enquote{you have to be in some framework that you allow something to be true. Otherwise you're perpetually asking \enquote*{why}}.}
-(\furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{see video}).%
+\emph{\enquote{you have to be in some framework that you allow something to be true. Otherwise you're perpetually asking \enquote*{why}}.} (\furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{see video}).%
 }%
-A \textbf{primitive quantity} is one that we do not define in terms of other quantities. Primitive quantities are the building blocks from which we define all others. That they are not defined in terms of others doesn't mean that we cannot try to explain them. But such explanations must be taken as informal and heuristic. Primitive quantities are often explained through metaphors and by appealing to intuition. You must always be wary of such explanations, because they may fail you spectacularly in some situations.
+A \textbf{primitive quantity} is one that we decide \emph{not} to define in terms of other quantities. That it is not defined in terms of other quantities doesn't mean that we cannot try to explain it. But such explanation must be taken as informal and heuristic. Primitive quantities are often explained through metaphors or by appealing to intuition; but you must always be a little wary of such explanations, because they may fail you spectacularly in some situations. Primitive quantities are the building blocks from which we define all other quantities.
 
-Often we have a choice about which quantities should be primitive and which should be derived. For instance, \emph{energy} can be defined, in a somewhat complicated way, in terms of quantities like \emph{work} and \emph{heat}, which would then need to be taken as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it. This second choice can be more convenient to develop a physical theory. It often happens that a quantity is very convenient for building a theory, if used as primitive; but difficult to understand intuitively. Vice versa,  a quantity can be very intuitive but lead to a complicated theory.
-Among quantities which we'll take as primitive are:
-\emph{time}, \emph{space} and \emph{length}, \emph{matter}, \emph{energy}, \emph{momentum},
+We have therefore a choice about which quantities to take as primitive and which to take as derived. For instance we can define \emph{energy}, in a somewhat complicated way, in terms of quantities like \emph{work} and \emph{heat}, which we then need to define in terms of others, or to take as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it and of other quantities. This second choice can be more convenient for stating a physical law and for developing a physical theory. It often happens that a quantity is very convenient for building a theory, if used as primitive; but difficult to understand intuitively. Vice versa, a quantity can be very intuitive, and therefore would be convenient to take as primitive; but it can lead to a complicated theory.
+
+
+
+
+
+
+
+
+Among quantities which we'll take as primitive are: \emph{time}, \emph{space} and \emph{length}, \emph{matter}, \emph{energy}, \emph{momentum},
 % , \emph{rotational momentum},
 \emph{entropy}, \emph{temperature}, and several others. All will be discussed soon.
 
