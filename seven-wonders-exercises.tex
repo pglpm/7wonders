@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-06T06:37:37+0100
+%% Last-Updated: 2025-02-06T07:55:50+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2236,6 +2236,18 @@ In the following figures, \textcolor{blue}{region A is indicated in blue and a s
 
 
 \section{}
+\label{sec:P_ball_light}
+
+\marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/ex_AB_light_ball.jpg}%
+}%
+In the side figure, consider \textcolor{cyan}{volume~A}, which contains the ball, and \textcolor{red}{volume~B}, occupied by the light beam. Imagine there's no air (although in reality if there were no air we wouldn't be able to see the light beam).
+
+In a given coordinate system, the momentum content of volume A is $\yP_{\text{A}} = [1, 0,0 ]\,\unit{N\,s}$, and that of volume B is $\yP_{\text{B}} = [2, -2, 1]\times\qty[print-unity-mantissa=false]{1e-16}{N\,s}$.
+
+Does it really make sense to speak of the momentum in volume B (remember there's no air there)? If it does make sense, how much is the net momentum content of volumes A and B considered together?
+
+
+\section{}
 \label{sec:flux_sense}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[height=7em]{images/Jflux_main.jpg}%
@@ -2259,15 +2271,74 @@ Take a look at the energy flux through a surface represented in the side figure.
 
 
 \section{}
-\label{sec:P_ball_light}
+\label{sec:sum_fluxes}
 
-\marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/ex_AB_light_ball.jpg}%
-}%
-In the side figure, consider \textcolor{cyan}{volume~A}, which contains the ball, and \textcolor{red}{volume~B}, occupied by the light beam. Imagine there's no air (although in reality if there were no air we wouldn't be able to see the light beam).
+A cuboid region is delimited by a closed control surface that can be divided into six parts; call them \enquote*{up}, \enquote*{down}, \enquote*{front}, \enquote*{back}, \enquote*{left}, \enquote*{right}. They are all have an inward crossing direction, except for \enquote*{back} which has an outward crossing direction.
 
-In a given coordinate system, the momentum content of volume A is $\yP_{\text{A}} = [1, 0,0 ]\,\unit{N\,s}$, and that of volume B is $\yP_{\text{B}} = [2, -2, 1]\times\qty[print-unity-mantissa=false]{1e-16}{N\,s}$.
+Here are the fluxes of various quantities through the six surfaces in the given crossing directions. Calculate the total net \textbf{in}fluxes.\noprelistbreak
 
-Does it really make sense to speak of the momentum in volume B (remember there's no air there)? If it does make sense, how much is the net momentum content of volumes A and B considered together?
+\smallskip
+
+\begin{enumerate}[exerc,itemsep=1em]
+\item
+  $
+  \begin{aligned}[t]
+    \yJ_{\text{u}} &= \qty{23.9}{mol/s}&\quad
+    \yJ_{\text{d}} &= \qty{-8.1}{mol/s}&\quad
+    \yJ_{\text{f}} &= \qty{0.9}{mol/s}\\
+    \yJ_{\text{b}} &= \qty{-30.5}{mol/s}&\quad
+    \yJ_{\text{l}} &= \qty{2.3}{mol/s}&\quad
+    \yJ_{\text{r}} &= \qty{37.6}{mol/s}
+  \end{aligned}
+  $
+
+\item
+  $\begin{aligned}[t]
+    \yH_{\text{u}} &= \qty{-24.6}{J/s} &\quad
+    \yH_{\text{d}} &= \qty{2.4}{J/s} &\quad
+    \yH_{\text{f}} &= \qty{1.3}{J/s} \\
+    \yH_{\text{b}} &= \qty{10.8}{J/s} &\quad
+    \yH_{\text{l}} &= \qty{15.4}{J/s} &\quad
+    \yH_{\text{r}} &= \qty{-2.1}{J/s}
+  \end{aligned}$
+
+\item
+  $
+  \begin{aligned}[t]
+    \yI_{\text{u}} &= \qty{-9.7}{C/s} &\quad
+    \yI_{\text{d}} &= \qty{27.4}{C/s} &\quad
+    \yI_{\text{f}} &= \qty{-6.3}{C/s} \\
+    \yI_{\text{b}} &= \qty{16.4}{C/s} &\quad
+    \yI_{\text{l}} &= \qty{-25.1}{C/s} &\quad
+    \yI_{\text{r}} &= \qty{-20.0}{C/s} 
+  \end{aligned}
+  $
+
+\item
+  $
+  \begin{aligned}[t]
+    \yB_{\text{u}} &= \qty{31.7}{J/(K\,s)} &\quad
+    \yB_{\text{d}} &= \qty{17.9}{J/(K\,s)} &\quad
+    \yB_{\text{f}} &= \qty{7.2}{J/(K\,s)} \\
+    \yB_{\text{b}} &= \qty{-20.4}{J/(K\,s)} &\quad
+    \yB_{\text{l}} &= \qty{-16.5}{J/(K\,s)} &\quad
+    \yB_{\text{r}} &= \qty{-4.8}{J/(K\,s)}
+  \end{aligned}
+  $
+
+\item
+  $
+  \begin{aligned}[t]
+    \yF_{\text{u}} &= [25.2, -42.7, 4.1]\,\unit{N} &\quad
+    \yF_{\text{d}} &= [-46.3, -5.9, -33.3]\,\unit{N} \\
+    \yF_{\text{f}} &= [10.2, -16.2, -36.7]\,\unit{N} &\quad
+    \yF_{\text{b}} &= [-9.8, 19.5, -60.0]\,\unit{N} \\ 
+    \yF_{\text{l}} &= [29.5, 18.3, 58.4]\,\unit{N} &\quad
+    \yF_{\text{r}} &= [16.0, 1.2, -3.2]\,\unit{N}
+  \end{aligned}
+  $
+\end{enumerate}
+
 
 
 \section{}
@@ -2301,8 +2372,12 @@ Which of the following graphical representations of fluxes do make sense? Which 
 \section{}
 \label{sec:surface_moves_if_flux}
 
-Suppose that through a control surface, in a given crossing direction, there is a non-zero flux of momentum. Momentum is a quantity related to movement. Does this mean that the control surface must be in motion?
+\begin{enumerate}[exerc]
+\item Suppose that through a control surface, in a given crossing direction, there is a non-zero flux of momentum. Momentum is a quantity related to movement. Does this mean that the control surface must be in motion?
+\item If through a control surface there's a non-zero flux of some quantity, does it mean that the fluxes of all other quantities must be zero?
 
+\item Can there be a flux of temperature through a control surface?
+\end{enumerate}
 
 \section{}
 \label{sec:fluxes_vector}
@@ -2343,7 +2418,7 @@ Do you manage to choose a definite crossing direction on this surface? Do you th
 
 
 \section{}
-\label{sec:moebius}
+\label{sec:netflux}
 
 For each figure, calculate and draw, or describe precisely, the net total flux through the composite control surface. (The different parts are differentiated by different colours and thicknesses.) Don't forget to specify the crossing direction when you speak about a flux.\noprelistbreak
 
@@ -2390,6 +2465,14 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sumC.jpg}
 \end{enumerate}
 
 
+\sollabel{sec:P_ball_light}
+
+Yes, it does make sense. First of all, we can \emph{always} speak of the momentum content in \emph{any} 3D region; it isn't important whether there's matter or electromagnetic fields or not in that region. If it's completely empty, its momentum content is simply zero. Second, in volume B in the figure there's an electromagnetic field, which does have momentum just like matter.
+
+The net momentum content in the volumes A and B considered together is $\yP_{\text{A}} + \yP_{\text{B}} \approx [1, \qty{-2e-16}, \qty{1e-16}]\,\unit{N\,s}$.
+
+
+
 \sollabel{sec:flux_sense}
 
 \renewcommand{\tabularxcolumn}[1]{>{\bfseries}w{c}{0.3\linewidth}}
@@ -2416,12 +2499,36 @@ Same \faIcon{thumbs-up}
 \end{tabularx}
 
 
-\sollabel{sec:P_ball_light}
+\sollabel{sec:sum_fluxes}
 
-Yes, it does make sense. First of all, we can \emph{always} speak of the momentum content in \emph{any} 3D region; it isn't important whether there's matter or electromagnetic fields or not in that region. If it's completely empty, its momentum content is simply zero. Second, in volume B in the figure there's an electromagnetic field, which does have momentum just like matter.
+Because of extensivity:
+\begin{enumerate}[exerc]
+\item $\yJ_{\text{tot}} =
+  \yJ_{\text{u}} + \yJ_{\text{d}} + \yJ_{\text{f}}
+  - \yJ_{\text{b}} + \yJ_{\text{l}} + \yJ_{\text{r}} =
+ \qty{87.1}{mol/s}$
 
-The net momentum content in the volumes A and B considered together is $\yP_{\text{A}} + \yP_{\text{B}} \approx [1, \qty{-2e-16}, \qty{1e-16}]\,\unit{N\,s}$.
+\item $\yH_{\text{tot}} =
+  \yH_{\text{u}} + \yH_{\text{d}} + \yH_{\text{f}}
+  - \yH_{\text{b}} + \yH_{\text{l}} + \yH_{\text{r}} =
+ \qty{-18.4}{J/s}$
 
+\item $\yI_{\text{tot}} =
+  \yI_{\text{u}} + \yI_{\text{d}} + \yI_{\text{f}}
+  - \yI_{\text{b}} + \yI_{\text{l}} + \yI_{\text{r}} =
+ \qty{-50.1}{C/s}$
+
+\item $\yB_{\text{tot}} =
+  \yB_{\text{u}} + \yB_{\text{d}} + \yB_{\text{f}}
+  - \yB_{\text{b}} + \yB_{\text{l}} + \yB_{\text{r}} =
+ \qty{-50.1}{C/s}$
+
+\item $\yF_{\text{tot}} =
+  \yF_{\text{u}} + \yF_{\text{d}} + \yF_{\text{f}}
+  - \yF_{\text{b}} + \yF_{\text{l}} + \yF_{\text{r}} =
+ [44.4, -64.8, 49.3]\,\unit{C/s}$
+
+\end{enumerate}
 
 \sollabel{sec:fluxes_scalar}
 
@@ -2460,12 +2567,17 @@ Makes sense \faIcon{thumbs-up}
 
 \sollabel{sec:surface_moves_if_flux}
 
-No, the control surface may also be completely still (in that coordinate system). For several reasons:
-\begin{itemize}[nosep]
-\item \emph{Volume content} of momentum means that something (matter or electromagnetic field) inside the volume must be moving.
-\item A control surface may be completely imaginary, so it doesn't need to be something that is affected by any physical influence.
-\end{itemize}
+\begin{enumerate}[exerc]
+\item No, the control surface may also be completely still (in that coordinate system). For several reasons:
+  \begin{itemize}[nosep]
+  \item \emph{Volume content} of momentum means that something (matter or electromagnetic field) inside the volume must be moving.
+  \item A control surface may be completely imaginary, so it doesn't need to be something that is affected by any physical influence.
+  \end{itemize}
 
+\item No: \emph{in principle} the fluxes of the seven quantities are independent and can all be non-zero. In fact, in many physical situations they are connected by particular physical laws.
+
+\item No: we can speak of the temperature at a point at a given time, but we cannot speak of volume content or flux or supply of temperature. Temperature is not an extensive quantity.
+\end{enumerate}
 
 
 \sollabel{sec:fluxes_vector}
@@ -2511,7 +2623,7 @@ You have noticed that if you try to choose consistently a crossing direction on 
 If we clip a part of the Möbius band, that part can be used as a control surface. Or if we clip the band so that it gets an extra border, then it becomes the same as a twisted rectangle, and so it can be used as a control surface.
 
 
-\sollabel{sec:moebius}
+\sollabel{sec:netflux}
 
 \renewcommand{\tabularxcolumn}[1]{>{\bfseries}w{c}{0.45\linewidth}}
 \begin{tabularx}{\linewidth}[h]{XX}
