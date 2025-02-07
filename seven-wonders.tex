@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-06T06:34:03+0100
+%% Last-Updated: 2025-02-07T15:18:55+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2752,7 +2752,7 @@ Our seven primitive quantities have two basic properties in common:
 \label{sec:sevenquantities_property1}
 
 For each quantity -- with a slight change for the magnetic flux -- we can ask about or measure three kinds of amount:
-\begin{definition}{Three basic measurements of the seven quantities}
+\begin{definition}{Three basic measurements of the seven quantities,label={def:volumecontent}}
   \begin{enumerate}[label={M\arabic*}.,leftmargin=3em]
   \item\label{item:meas1}How much of this quantity is \textbf{contained} in a particular three-dimensional region of space at a particular time instant?
 
@@ -2774,7 +2774,7 @@ We can ask these questions for any region of space, any time instant, any time l
 % This number depends only on the chosen region, surfaces, and times.
 
 Questions~\ref{item:meas2a} and \ref{item:meas3a} can also be asked in a different way. Consider a very short lapse of time, and divide the net flow and the net production by that lapse of time. This way we have an alternative form of the second and third measurements, as flow or production divided by time:
-\begin{definition}{Second and third measurement: new version}
+\begin{definition}{Second and third measurement: new version,label={def:fluxsupply}}
   \begin{enumerate}[label={M\arabic*b}.,start=2,leftmargin=3em]
   % \item\label{item:meas1}How much of this quantity is \textbf{contained} in a particular three-dimensional region of space at a particular time instant?
 
@@ -4774,108 +4774,115 @@ The velocity $\yv=[v_{x}, v_{y}, v_{z}]$ so defined has the following intuitive 
 
 \epigraph{Every branch of physical science is based on two sets of fundamental equations. The first set is that of basic laws of physics, which are postulated to hold valid for all bodies under all conceivable circumstances \textelp{}. The second set of fundamental equations are the constitutive equations: these are relationships which are not supposed to hold for all bodies, but only to describe the behavior of some restricted class of bodies, or possibly of a larger class of bodies for a more restricted class of phenomena.}{G. Astarita \cites*{astarita1989_r1990}}
 
-\section{Fundamental vs derived laws}
+\section{Some classifications of physical laws}
 \label{sec:fundamental_derived}
 
-Physical laws, very generally speaking, are mathematical relations between physical quantities. They express that the values of some physical quantities must have particular relationships with the values of others, at least in some circumstances. These values may also refer to different places and different times. We use many physical laws every day without even thinking about them. For example, if in the morning we pack a backpack that ends up weighing \qty{10}{kg}, and we don't open it for the whole day and doesn't have any holes or leaks, then in the evening we expect the backpack to still weigh \qty{10}{kg}. We really have a physical law here: \emph{the weigh at an earlier time must be equal to the weigh at a later time, unless the backpack had holes or leaks}. The \enquote*{weigh at an earlier time} and the \enquote*{weigh at a later time} are two physical quantities; \enquote*{must be equal} is a mathematical relationship; and \enquote*{unless holes or leaks} are the circumstances in which this law applies.
+Physical laws, very generally speaking, are mathematical relations between physical quantities. Given information about some quantities, physical laws allow us to deduce information about other quantities, or about the same quantities at other times or spatial regions. As \autoref{sec:phys_laws0}{previously discussed}, we use many physical laws every day, in a qualitative and approximate way, without even thinking about them.
 
-Physical laws can be classified or categorized in many different ways; for instance by the quantities they involve or by the mathematical formulae they contain.
-
-One classification distinguishes between \emph{fundamental} vs \emph{derived} physical laws. This distinction is similar to the one between \autoref{sec:primitives}{primitive and derived quantities}. A law is \enquote*{fundamental} if it is taken as empirically valid, and as the starting point to make predictions or calculate other kinds of consequences. A law is \enquote*{derived} if it can be deduced from other fundamental laws; in a manner of speaking, it doesn't really say anything new that wasn't already a consequence of the fundamental laws. But it may still be very useful. Here is an informal example. Suppose that in particular driving conditions an electric car consumes \qty{6.5}{J} every metre; we express this with a mathematical formula relating consumed \energym\ and travelled distance:
-\begin{equation*}
-  \text{\footnotesize \energym} = \qty{6.5}{J/m} \cdot \text{\footnotesize distance}
-\end{equation*}
-In the same driving conditions, the car travels \qty{108}{km} every hour; we express this with another mathematical formula relating travelled distance and travel time:
-\begin{equation*}
-  \text{\footnotesize distance} = \qty{3}{m/s} \cdot \text{\footnotesize time} \ .
-\end{equation*}
-We consider these two formulae as \enquote{fundamental} because each one give us new information and allow us to make prediction. If we travel \qty{1}{km}, the first formula tells us we'll consume \qty{650}{J}; but it doesn't tells us how long our trip will last. The second formula tells us this: around $\qty{1000}{m}/(\qty{3}{m/s}) \approx \qty{333}{s}$ or \qty{5.5} minutes. We may wonder, however, how much is the \energym\ consumption \emph{per travel time}. This is given by a new formula obtained by combining the two above:
-\begin{equation*}
-  \text{\footnotesize \energym} = \qty{19.5}{J/s}\cdot \text{\footnotesize time}
-\end{equation*}
-This formula is \enquote*{derived} because we obtained it by combining the previous two. It doesn't tell us anything new that we couldn't find by using the previous two. Yet it is very useful, because it gives us some particular information in a faster way.
+Physical laws can be classified or categorized in many different ways; for instance by the quantities they involve, or by the kind of mathematics they use. So we speak of \enquote*{laws of mechanics} and \enquote*{electromagnetic laws}; or of \enquote*{differential laws} and \enquote*{integral laws}; and so on.
 
 \medskip
 
-The distinction between fundamental and derived physical laws is not objective, but mostly a matter of personal choice and convenience. We can often promote a derived law to fundamental, demoting a fundamental to a derived status.
-\begin{exercise}
-  \begin{enumerate}[exerc]
-  \item Take the energy-distance and energy-time relations from the previous electric-car example as fundamental. Show how the distance-time relation can be derived from them.
-  \item Now take the distance-time and energy-time relations as fundamental. Show how the energy-distance relation can be derived from them.
-  \end{enumerate}
-\end{exercise}
-It is important to be aware of this, because you'll find texts that present a physical theory as consisting in a collection of fundamental laws, and other texts that present the same physical theory as consisting in a collection of slightly different fundamental laws. There is no contradiction there: it means that some derived laws in one text will be fundamental in another, and vice versa. So to speak, one text may describe the characteristic of the electric car starting from the energy-distance and distance-time relations, while another text starts from the energy-distance and energy-time relations, and another text might start from the distance-time and energy-time relations.
+One classification distinguishes between \emph{fundamental} vs \emph{derived} physical laws. This distinction is similar to the one between \autoref{sec:primitives}{primitive and derived quantities}. A physical law is \enquote*{fundamental} if it is taken as empirically valid, and as the starting point to make predictions or calculate other kinds of consequences. A physical law is \enquote*{derived} if it can be deduced from other fundamental laws; in a manner of speaking, it doesn't really say anything new that wasn't already a consequence of the fundamental laws. But it may still be a very useful shortcut.
 
-Yet the choice of which laws to take as fundamental is not without consequence. The choice of a particular set of fundamental laws rather than another may suggest new physical ideas and generalizations, leading to the discovery of new physical phenomena.
+Here is an extremely simple imaginary example. Suppose we have three different physical quantities denoted by $a$, $b$, $c$. One fundamental physical law states that $a$ and $b$ are equal; another fundamental law states that $b$ and $c$ are equal too:
+\begin{equation*}
+  a=b \ , \quad b=c \qquad\text{\footnotesize(fundamental laws)}
+\end{equation*}
+Combining these two fundamental laws we obtain a further law: $a$ is equal to $c$:
+\begin{equation*}
+  a=b\,,\enspace b=c \quad\implies\quad a=c\qquad\text{\footnotesize(derived law)}
+\end{equation*}
+This latter physical law doesn't tell us anything new that wasn't already implicit in the first two together. But in some situations it is useful to simply remember that $a=c$.
+
+%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/fundamental_forces.png}
+\\\footnotesize\color{mpcolor}\url{https://xkcd.com/1489}%
+}%
+The distinction between fundamental and derived physical laws is not objective, but mostly a matter of convenience and even of personal taste. We can often promote a derived law to fundamental law, demoting some other fundamental law to a derived-law status. In the example above, we could take \enquote*{$a=b$} and \enquote*{$a=c$} as fundamental laws; then \enquote*{$b=c$} becomes a derived law, because it can be obtained from the other two.
+It is important to be aware of this flexibility in what's fundamental and what's derived. You'll find physics and engineering texts that present a physical theory as consisting in a particular collection of fundamental laws, and other texts that present the same physical theory as consisting in a collection of slightly different fundamental laws. There is no contradiction there: it means that some  laws taken as derived in one text, are taken as fundamental in another, and vice versa.
+
+Yet the choice fundamental laws is not without consequence. The choice of a particular set of fundamental laws rather than another may cover more physical situations, and also suggest new physical ideas and generalizations, leading to the discovery of new physical phenomena.
 
 
 \section{Universal vs constitutive laws}
 \label{sec:universal_constitutive}
 
-A much more important distinction can be made between \emph{universal} physical laws and \emph{constitutive} physical laws. This distinction is more important because it  is determined not by personal choice and convenience, but by experiment:
+Another important and more objective distinction can be made between \textbf{universal} physical laws and \textbf{constitutive} physical laws. This distinction is more objective because it's determined not by convenience and personal taste, but by experiment:
 \begin{definition}{Universal vs constitutive physical laws}
   \begin{itemize}
   \item\textbf{Universal laws} represent universal physical patterns that we observe in all possible physical phenomena, or at least in a very wide range of physical phenomena.
     % We shall see that there is a set of seven fundamental laws that apply on every known scale of space and time, and also across different physical theories.
 
-  \item\textbf{Constitutive relations} are physical laws and physical properties that only apply to particular phenomena, or only on particular scales of time and space, or only in particular approximate physical theories. Constitutive relations express the diversity of physical phenomena that we observe around us, as well as different kinds of approximations that we use in describing physical phenomena. Other names used for this kind of laws are \emph{constitutive equations} and \emph{closure equations}.
+  \item\textbf{Constitutive relations} are physical laws and physical properties that only apply to particular phenomena, or only on particular scales of time and space, or only in particular approximate physical theories. Constitutive relations express the diversity of physical phenomena that we observe around us, as well as different kinds of approximations that we use in describing physical phenomena. \emph{Constitutive relations} are also called \emph{constitutive equations} or \emph{closure equations}.
   \end{itemize}
 \end{definition}
 
-This distinction is very different from the one previously discussed between \enquote*{fundamental} and \enquote*{derived}, from several points of view. First of all, the difference is not a matter of personal choice and convenience: for example, we experimentally see that some physical relation gives correct results when applied to phenomenon \enquote*{$A$} but wrong results when applied to phenomenon \enquote*{$B$}; that relation cannot therefore be a universal law. Second, whereas a derived laws are optional -- a sort of convenient calculation shortcuts, which we can avoid using if we want -- we instead cannot avoid using constitutive relations. Some constitutive relations are always needed, together with universal laws, for the description or prediction of a physical phenomenon.
+This distinction is different from the one between \enquote*{fundamental} and \enquote*{derived}. Continuing with our previous example, we may know that the law \enquote*{$a=b$} is always valid in all physical phenomena, and that \enquote*{$b=c$} is only valid in specific physical phenomena but not in others. The first is universal, the second is constitutive. But both are fundamental, because we cannot deduce \enquote*{$b=c$} from \enquote*{$a=b$}: the law about $b$ and $c$ says something new, although something that is only true in some circumstances. In concrete applications we may therefore need to use both \enquote*{$a=b$} and \enquote*{$b=c$}.
 
+
+\medskip
 % The distinction above is simplified as a binary one, but there is really a hierarchy of physical laws that have broader and broader ranges of application. A particular physical law may only be applied to physical phenomenon \enquote*{$A$} but not to phenomenon \enquote*{$B$}; another physical law may be applied to physical phenomena \enquote*{$A$}, \enquote*{$B$}, \enquote*{$C$}, but not to \enquote*{$D$}, and so on.
 
 But are there really universal physical laws, which can be applied to \emph{every} physical phenomenon, without exclusions or exceptions?
 
-The answer is \emph{yes}. We shall meet them in \chap~\ref{cha:seven_wonders}. Our discussion of physics will indeed completely hinge on them. These universal laws can be applied with some confidence to every new phenomenon we observe, and often allow us to make predictions of at least a qualitative character. We would modify universal laws only as a last resort; so far this has rarely or never been necessary. On the other hand we have a large freedom in modifying constitutive relations, and in proposing new ones to account for newly observed physical phenomena.
+The answer is \emph{yes}. We shall meet them in \chap~\ref{cha:seven_wonders}, and we shall see that they are tightly connected with the seven primitive quantities discussed in \chap~\ref{cha:stuff}. Our study of physics will indeed completely hinge on these universal laws. They are applied with extreme confidence to every new phenomenon we observe, and they often allow us to make predictions of at least a qualitative character without the need of constitutive relations. We would modify these universal laws only as a last resort; so far this has rarely or never been necessary. On the other hand, we have a large freedom in modifying constitutive relations, and in proposing new ones to account for newly observed physical phenomena.
 
 \begin{warning}[\enquote*{Fundamental} vs \enquote*{universal} in other texts]
-  Be aware that the terms \enquote*{fundamental} and \enquote*{universal} are typically not used in a technically precise sense. Some texts may use \enquote*{fundamental} in the sense of \enquote*{universal} as done here. What is important for you to remember is that there are physical laws that are used in \emph{all} situations, and physical laws that can be used only in a restricted range of situations.
+  Be aware that the terms \enquote*{fundamental} and \enquote*{universal} are typically not used in a technically precise sense. Some texts may even use \enquote*{fundamental} in the sense of \enquote*{universal} as done here. What is important for you to remember is that there are physical laws that are used in \emph{all} situations, and physical laws that can be used only in a restricted range of situations.
 \end{warning}
+
+\begin{exercise}
+  In our imaginary example, the law \enquote*{$a=b$} is fundamental and universal, and the law \enquote*{$b=c$} is fundamental and constitutive. Is the derived law \enquote*{$a=c$} universal? or is it constitutive?
+\end{exercise}
 
 \section{Balance and conservation laws}
 \label{sec:balance_intro}
 
-If we examine the mathematical form and physical meaning of physical laws, it is also possible to distinguish a particular kind of laws, called \emph{balance and conservation laws}. This kind of laws has a special connection with \emph{extensive} quantities, like the \ref{sec:stuff}{seven main quantities} in terms of which we describe physical phenomena.
+% \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+% \includegraphics[width=\linewidth]{images/physics_vs_magic.png}
+% \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2904}%
+% }%
+There are physical laws which have a special connection with \emph{extensive} quantities, like our \ref{sec:stuff}{seven main quantities}. They are called \textbf{balance laws}, and a special subgroud of the are called \textbf{conservation laws}. Recall that for extensive quantities we may ask how much of a quantity is there in a particular control volume, how much is flowing through a particular control surface, and how much is being produced in a control volume. Balance and conservation laws express a trade-off between such amounts:
 % How do we describe the patterns, regularities, and diversities that we observe in these phenomena?
 % There is a small set of laws that either are fundamental laws or can be derived from fundamental laws, and that have a special mathematical form and physical meaning. They are called \emph{balance laws}:
 \begin{definition}{Balance and conservation laws}
   \textbf{Balance laws}, or simply \emph{balances}, have this name because they express a sort of trade-off or \enquote{budget} about extensive physical quantities.
 
+  \smallskip
+
   \textbf{Conservation laws} are a special and important kind of balance laws.
 \end{definition}
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/physics_vs_magic.png}
-\\\footnotesize\color{mpcolor}\url{https://xkcd.com/2904}%
-}%
 
-Recall that for extensive quantities we may ask how much of a quantity is there in a particular control volume, or how much is flowing through a particular control surface. Balance and conservation laws express a trade-off between such amounts; for instance they may say how much the amount in a given volume must be, if there is a particular amount in another volume and a particular amount flowing through some surface. Let us study them in detail, starting with conservation laws.
+It turns out that we can formulate almost all known universal laws as balance laws. For this reason we now study them in detail, starting with conservation laws.
 
 
 \begin{warning}[\enquote*{Conservation} vs \enquote*{balance} in other texts,label={wa:conservation}]
-  Be aware that many texts do \emph{not} distinguish between \enquote*{conservation law} and \enquote*{balance law}, and often use \enquote*{conservation} to mean both; which is unfortunate, since balance is the most general of the two. Always try to infer from the context how these two terms are used.
+  Be aware that many texts do \emph{not} distinguish between \enquote*{conservation law} and \enquote*{balance law}, and often use \enquote{conservation} to mean both. This use is unfortunate, because balance is the most general of the two. Always try to infer from the context how these two terms are used.
 \end{warning}
 
-In this chapter we shall see how to mathematically express balance and conservation laws, as well as some kinds of constitutive relations.
 
 
 
-\section{Conservation laws}
+\section{Conservation laws: integral expression}
 \label{sec:conservation_laws}
 
 Conservation laws tightly connect \autoref{cha:contents_fluxes}{\emph{volume contents} and \emph{fluxes}}. They are intuitively and visually easy to grasp. The archetype is as follows:
 
-Consider a \autoref{sec:in_out_flux}{\emph{closed} control surface} at a (coordinate) time $\yti$, which delimits a control volume. A spherical surface, delimiting a ball-shaped region, is an example. Actually the closed control surface doesn't need to be connected: it could consist of several separate closed control surfaces, each delimiting a different volume.
+Consider a \autoref{sec:in_out_flux}{\emph{closed} control surface} that exists between coordinate times $\yti$ and $\ytf$. Being closed, this control surface delimits a control volume. This surface and volume can move and deform arbitrarily in between the two times; what's important is that the control surface remains closed: no holes or cuts can form. At the final time $\ytf$ the closed control surface and volume can be very different from how they were at the initial time $\yti$, and even at different positions.
 
-Starting from time $\yti$, imagine the closed control surface moving and deforming \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.245\linewidth]{images/cs1.png}\hfill%
 \includegraphics[width=0.245\linewidth]{images/cs2.png}\hfill%
 \includegraphics[width=0.245\linewidth]{images/cs3.png}\hfill%
 \includegraphics[width=0.245\linewidth]{images/cs4.png}%
+\\\hspace{\stretch{1}}$\yti$\hspace{\stretch{6}}$\ytf$\hspace{\stretch{1}}\mbox{}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Four snapshots of a moving and deforming closed control surface (\furl{https://pglpm.github.io/7wonders/media/volume_moving.gif}{click here for animated version})%
 }%
+A very simple example is a spherical surface delimiting a ball-shaped region. But we  could as well consider a surface that initially is spherical and delimits a region the size of a tennis ball, and at the end is cubical and delimits a region the size of our galaxy. The closed control surface doesn't even need to be connected: it could consist of several separate closed control surfaces, each delimiting a separate volume.
+
 % \marginpar{\vspace{10\baselineskip}\footnotesize\centering%
 % \includegraphics[width=\linewidth]{images/surfacemotion1.png}
 % \\\includegraphics[width=\linewidth]{images/surfacemotion2.png}
@@ -4884,60 +4891,63 @@ Four snapshots of a moving and deforming closed control surface (\furl{https://p
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 %   Temporal sequence of closed control surfaces, represented by the golf ball's surface (\furl{https://pglpm.github.io/7wonders/media/surfacemotion.mp4}{click here for an animated version})}%
 % }%
-through time, changing shape and size but remaining closed -- no holes or cuts -- until a later time $\ytf$. At this final time we have a final closed control surface that can be different from the initial one, and at a different position. If we wanted, we could start with a spherical surface delimiting a region the size of a tennis ball, and end with a cubical surface delimiting a region the size of the Sun. The temporal sequence of closed control surfaces delimits a sequence of control volumes; see the sequence on the side picture below as an example.
 
-% The initial and final control volumes and the sequence of control surfaces in between are completely arbitrary. We choose them depending on the phenomenon that we want to study. They do not need to be the surfaces of real objects. For instance we can consider an imaginary cubical surface in the middle of a room, enclosing the air within; or in the middle of a river, enclosing, for an instant, the water within. But sometimes these arbitrary surfaces do coincide with the boundaries of objects. For instance we can consider the outer surface of a tennis ball, and follow it as the ball moves.
+\medskip
 
-Now consider any one of the \autoref{sec:stuff}{seven primitive quantities}, except magnetic flux. Recall that these quantities are \emph{extensive}: we can measure the amount of this quantity in any control volume, and its flux across any control surface. For concreteness let's take \emph{matter}, for which we denote volume contents by $\yN$ and flux by $\yJ$. We make the following measurements:
+Now consider any one of our \autoref{sec:stuff}{primitive quantities}, except magnetic flux. For concreteness let's take \emph{matter}. We make the following measurements:
 \begin{itemize}
-\item $N(\yti)$: total amount of matter contained within the control volume at time $\yti$.
+\item $N(\yti)$: total amount of matter in the control volume at time $\yti$.
 
-\item $\yJ(t)$: \emph{\textbf{in}}flux (\autoref{sec:in_out_flux}{flux crossing inwards}) of matter (and antimatter!) through the closed surface at any particular time $t$ between $\yti$ and $\ytf$.
+\item $\int_{\yti}^{\ytf}\!\yJ(t)\, \di t$: time-integrated \textbf{in}flux of matter through the closed control surface between times $\yti$ and $\ytf$.
 
-\item $\yN(\ytf)$: total amount of matter contained within the control volume at time $\ytf$.
+\item $\yN(\ytf)$: total amount of matter in the control volume at time $\ytf$.
 \end{itemize}
 
 Each of the three amounts above is, in this example, a scalar that can be positive, negative, or zero. For instance we could have:
 \begin{equation*}
   \begin{gathered}
-    \yti = \text{00:00:00}
-    \qquad \ytf = \text{00:00:18}
-    \\ \yN(\yti) = \qty{3.50}{mol}
-    \qquad \yJ(t) = -0.06\,t\:\unit{mol/s^{2}}
-    \qquad \yN(\ytf) = \qty{-6.22}{mol}
+    \yti = \qty{0}{s} \qquad \yN(\yti) = \qty{3.5}{mol}
+    \\
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t = \qty{-9.7}{mol}
+    \\
+    \ytf = \qty{18}{s} \qquad \yN(\ytf) = \qty{-6.2}{mol}
   \end{gathered}
 \end{equation*}
-note that $\yJ(t)$ is given as a function of the time $t$.
 % The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
 
 % ; or a vector. For instance, for matter we could have $\yN(\yti)=\qty{3.5}{mol}$; for energy we could have $\yJ=\qty{-600}{J}$; for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
 
 \medskip
 
-With this setup we can introduce two kinds of balance laws.
+With this setup we can introduce a special kind of balance law, which can be written in two different but equivalent mathematical ways.
 
+% \marginpar{\vspace{\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{%
+% % The views of space and time which I wish to lay before you have sprung from the soil of experimental physics, and therein lies their strength. They are radical.
+% And in the end the love you take is equal to the love you make}}\sourceatright{\cites{beatles}}
+% }
+% %
 \begin{definition}{Conservation law in integral form}
-  An extensive quantity with volume content $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds \emph{always}:
+  The quantity with volume content $\yN(t)$ and influx $\yJ(t)$ is said to satisfy a \textbf{conservation law}, or to be \textbf{conserved}, if the following equality holds for any closed control surface and volume, and any coordinate times $\yti$ and $\ytf$:
   \begin{equation}
     \label{eq:conserved}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
   \end{equation}
 \end{definition}
-The meaning of the equation above is intuitive: the amount of quantity in the final control volume, $\yN(\ytf)$, must be equal to the amount in the initial control volume, $\yN(\yti)$, plus the total amount (which could be negative) that flowed in through the surface between those times, that is, the integrated flux $\int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t$. Said otherwise, any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear or disappear out of nowhere.
+The meaning of a conservation law is intuitive: the amount of quantity in the final control volume, $\yN(\ytf)$, must be equal to the amount in the initial control volume, $\yN(\yti)$, plus the total amount that flowed in through the surface between those times, the integrated flux $\int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t$. Said otherwise: any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear or disappear out of nowhere. Note that these amounts can be positive, negative, or zero.
 
-A conservation law allows us to make several kinds of predictions or deductions. For example:
+A conservation law allows us to make several kinds of deductions and predictions. For example:
 \begin{itemize}
-\item If we know the amount of quantity within the control surface at $\yti$ and the net amount that crossed the surface between $\yti$ and $\ytf$, then we can predict the amount within the control surface at $\ytf$: this is given by the equation above.
+\item If we know the amount of quantity in the control volume at $\yti$, and the net amount that entered through the control surface between $\yti$ and $\ytf$, then we can predict the amount in the control volume at $\ytf$: this is given by the equation above.
   % \begin{equation*}
   %   \yN(\ytf) = \yN(\yti) + \yJ \ .
   % \end{equation*}
 
-\item If we know the amount of quantity within the control surface at $\yti$ and the one at $\ytf$, then we can deduce the net amount that crossed the surface between the times $\yti$ and $\ytf$:
+\item If we know the amount of quantity in the control volume at $\yti$, and the one at $\ytf$, then we can deduce the net amount that entered through the control surface between the times $\yti$ and $\ytf$:
   \begin{equation*}
     \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t = \yN(\ytf) - \yN(\yti) \ .
   \end{equation*}
 
-\item If we know the amount of quantity within the surface at $\ytf$ and the net amount that crossed the surface between $\yti$ and $\ytf$, we can deduce the amount initially within the surface, at $\yti$:
+\item If we know the amount of quantity in the control volume at $\ytf$, and the net amount that entered through the control surface between $\yti$ and $\ytf$, we can deduce the initial amount in the control volume at time $\yti$:
   \begin{equation*}
     \yN(\yti) = \yN(\ytf) - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t \ .
   \end{equation*}
@@ -4945,8 +4955,7 @@ A conservation law allows us to make several kinds of predictions or deductions.
 
 These kinds of predictions and deductions are very powerful because we are fully free to decide the shape and motion of the control surface and volume, as well as the times $\yti$ and $\ytf$.
 
-We unconsciously use
-several conservation laws all the time in our everyday life. If a bike tyre is suddenly deflated, we conclude that that air must have got out of it through it surface, which must therefore have a hole or a defective valve; we don't conclude that air \enquote{just disappeared}.
+We unconsciously use several conservation laws all the time in our everyday life. If a bike tyre is suddenly deflated, we conclude that that air must have got out of it through its surface, which must therefore have a hole or a defective valve; we don't conclude that air \enquote{just disappeared}.
 % If you seal a glass in a box, and upon dropping the box you hear that the glass shatters, and see that no holes were formed in the box, then you are sure that all the glass pieces now in the box could be glued together to form the original glass in its entirety.
 
 % \begin{itemize}
@@ -4959,66 +4968,21 @@ several conservation laws all the time in our everyday life. If a bike tyre is s
 
 \medskip
 
-Note that the discussion so far is equally valid for a scalar or a vector quantity (we shall consider vector quantities more in detail in a moment).
+Note that the discussion so far is equally valid for a scalar or a vector quantity. We shall consider vector quantities more in detail in later sections.
 
-
-
-
-\subsection{Differential form of conservation laws}
-\label{sec:conservation_laws_diff}
-
-The conservation law
-\begin{equation*}
-  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-\end{equation*}
-is said to be written in \emph{integral form}, because it contains the integrated flux, necessary to calculate the net amount of quantity that crosses the control surface.
-
-Change the symbol for time $\yti$ simply into $t$, and take $\ytf$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
-\begin{equation*}
-  \yti\ \text{becomes}\ t\ ,\quad \ytf\ \text{becomes}\ t+\Dt
-\end{equation*}
-Then the integrated flux can be approximated by $\int_{t}^{t+\Dt}\!\!\yJ(t)\, \di t \approx \yJ(t)\, \Dt$ (because the flux $\yJ(t)$ is approximately constant in the short time lapse $\Dt$).
-
-\marginpar{%
-\footnotesize\flushleftright%
-\begin{warning}
-  Some mathematical conditions must be satisfied to make these steps; otherwise the derivative below must be carefully defined in a generalized sense.
-\end{warning}\par
-}%
-The conservation law can then be approximated as
-\begin{equation*}
-  \yN(t+\Dt) \approx \yN(t) + \yJ(t)\, \Dt
-\end{equation*}
-Now bring the term $\yN(t)$ to the left side, and divide the whole expression by $\Dt$:
-\begin{equation*}
-  \frac{\yN(t+\Dt) - \yN(t)}{\Dt} \approx \yJ(t)\, \Dt
-\end{equation*}
-Consider smaller and smaller $\Dt$: then the fraction\enspace$\frac{\yN(t+\Dt)-\yN(t)}{\Dt}$\enspace becomes, by definition, a derivative, and we obtain a new form for the conservation law:
-\begin{definition}{Conservation law in differential form}
-  A quantity is said to satisfy a \textbf{conservation law} if the following equality holds always:
-  \begin{equation}
-    \label{eq:conserved_diff}
-    \frac{\di\yN(t)}{\di t} = \yJ(t)
-  \end{equation}
-\end{definition}
-This form says that the rate of change of the volume content of a quantity must equal \emph{\textbf{in}}flux of that quantity, that is, the rate at which the quantity is coming in through the control surface.
-
-Both forms, integral and differential, of a conservation law are useful, in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and make predictions.
 
 \subsection{Example with a moving control surface}
 \label{sec:example_conservation_moving}
 
-\marginpar{\centering%
-\includegraphics[align=t,width=\linewidth]{images/deflated_tyre.jpg}
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/deflated_tyre.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 %   Deflated tyre: did the air within just vanish out of existence?}%
 }%
 The tube within the tyre of a bicycle has, at a given time, \qty{12.6}{mol} of air.
 The bicycle and its tyres moves around, and thirty minutes later the tyre is flat, the inner tube having only \qty{0.5}{mol} of air.
 
-We consider an imaginary, closed control surface wrapping the tube. The control surface deforms just like the tube deforms. The initial control surface has therefore a tubular shape, but the final control surface doesn't.
-
-We assume that air satisfies a conservation law. From the description above we have
+We consider an imaginary, closed control surface wrapping the tube. The control surface deforms just like the tube deforms. We assume that air satisfies a conservation law. From the description above we have
 \begin{equation*}
   \yti=\qty{0}{s} \ ,\quad
   \ytf=\qty{1800}{s} \ ,\quad
@@ -5034,40 +4998,35 @@ The conservation law~\eqref{eq:conserved} allows us to calculate the integrated 
   \end{split}
 \end{equation*}
 
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/tyre_hole.jpg}
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube%
 }%
-The negative-signed result says that \qty{12.1}{mol} of air have crossed the moving control surface, in an outward direction, during thirty minutes. Obviously this happened because the tyre tube must have a hole.
-Note that this is a physical hole in the physical tube; our control surface is imaginary and doesn't have any holes. It's just a sort of \enquote{border checkpoint} where anything can in principle move through; we only keep count of what's crossing, how much, and how fast.
+The result, with a negative sign, says that \qty{12.1}{mol} of air have crossed the moving control surface in an \emph{outward} direction, during the thirty minutes. Obviously this happened because the tyre tube has a hole somewhere. Note that this is a physical hole in the physical tube; our control surface is imaginary and doesn't have any holes. It's just a sort of \enquote{border checkpoint} where anything can in principle move through; we only keep track of what's crossing it, how much, and how fast.
 
-We see that the fact that air satisfies a conservation law allows us to determine the integrated flux through the control surface. But it doesn't allow us to determine the flux $\yJ(t)$ at every individual time between $\yti$ and $\ytf$. For example, we don't know if there was a larger flux at the beginning than at the end; the tyre may have gone completely flat just after \qty{60}{s}; in that case the flux $\yJ(t)$ was zero for $t>\qty{60}{s}$.
+We see that the fact that air satisfies a conservation law allows us to determine the integrated flux through the control surface. But it doesn't allow us to determine the flux $\yJ(t)$ at every time between $\yti$ and $\ytf$. For example, we don't know if there was a larger flux at the beginning than at the end; the tyre may have gone completely flat just after \qty{60}{s}; in that case the flux $\yJ(t)$ was zero for $t>\qty{60}{s}$.
 
 \subsection{Example with a static control surface}
 \label{sec:example_conservation_static}
 
-In the previous example we chose a closed control surface that moved and deformed with some object of interest (the tyre tube). But we can also choose a different control surface, for instance a static one.
+In the previous example we chose a closed control surface that moved and deformed with some object of interest (the tyre tube). But we can also choose a closed control surface that is static and doesn't follow or wrap any object.
 
-Consider a block of \qty{53.4}{mol} of ice having cylindrical shape with \qty{1}{m} diameter and \qty{1.226}{m} height. It is falling downward owing to gravity (and in a vacuum). At a particular time it occupies a particular position; after \qty{0.5}{s} it is situated, for an instant, immediately underneath the initial position, as illustrated in the side picture.
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/waterblock.pdf}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
+Consider a block of \qty{53.4}{mol} of ice having cylindrical shape with \qty{1}{m} diameter and \qty{1.226}{m} height. It is falling downward, in a vacuum, owing to gravity. At a particular time $\yti$ it occupies a particular position. At a time $\ytf$, \qty{0.5}{s} later, it is situated for an instant immediately underneath the initial position, as illustrated in the side figure. \marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/waterblock.jpg}
+% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 }%
 
-Suppose we want to know the net quantity of ice that passed, in a downward direction, across the circular surface separating the initial and final positions. We can calculate this quantity by assuming that ice (as matter) satisfies a conservation law.
-
-We choose a \emph{static} closed control surface of cylindrical shape.
-This control surface is located in such a way that it wraps the block of ice at the final time; at the initial time, therefore, the control surface is empty. See the next side picture, where the control surface is represented by the \textcolor{yellow}{dashed yellow line}.
+Let's arbitrarily choose a static, closed control surface of cylindrical shape, located in such a way that it wraps the block of ice at the final time. At the initial time this control surface is therefore empty. See the side figure below, where this imaginary control surface is represented by the \textcolor{yellow}{dashed yellow line}.
 %
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/waterblock_control2.pdf}
+\includegraphics[width=\linewidth]{images/waterblock_control.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
-This static control surface consists of three parts: a circular surface at the bottom, a side surface, and a circular surface at the top, which is the one that interests us.
 
+Suppose we want to know the net amount of ice that entered this control surface between times $\yti$ and $\ytf$. We can calculate this quantity by assuming that ice -- as matter -- satisfies a conservation law.
+% This imaginary, static control surface can be divided into three parts: a circular surface at the bottom, a side surface, and a circular surface at the top.
 According to the description above we have
 \begin{equation*}
   \yti=\qty{0}{s} \ ,\quad
@@ -5075,7 +5034,7 @@ According to the description above we have
   \yN(\yti)=\qty{0}{mol} \ ,\quad
   \yN(\ytf)=\qty{53.4}{mol} \ .
 \end{equation*}
-From the conservation law~\eqref{eq:conserved} we calculate the integrated \textbf{in}flux:
+From the conservation law~\eqref{eq:conserved} we calculate the time-integrated \textbf{in}flux:
 \begin{equation*}
   \begin{split}
     \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t &= \yN(\ytf) - \yN(\yti)
@@ -5083,7 +5042,9 @@ From the conservation law~\eqref{eq:conserved} we calculate the integrated \text
     \\&= \qty{53.4}{mol}
   \end{split}
 \end{equation*}
-Note that this is the integrated influx through the \emph{whole} cylindrical surface. The conservation law doesn't tell us anything about the integrated influx through \emph{parts} of the surface. In the present case we provide the extra knowledge that the fluxes through the side and bottom surfaces are zero, between $\yti$ and $\yti$. Then, by the \autoref{def:extensivity}{extensivity property},
+and this is the net amount of ice that entered the control surface during the \qty{0.5}{s}.
+
+Note that what we found is the time-integrated influx through the \emph{whole} closed control surface. The conservation law doesn't tell us anything about the integrated influx through \emph{parts} of the surface. In the present case we can divide the surface into three parts: a circular surface at the bottom, a side surface, and a circular surface at the top. If we provide the extra knowledge that the fluxes through the side and bottom surfaces are zero, then by the \autoref{def:extensivity}{extensivity property} we have
 \begin{equation*}
   \begin{split}
     \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t &=
@@ -5099,20 +5060,71 @@ Note that this is the integrated influx through the \emph{whole} cylindrical sur
 \end{equation*}
 from which we find, as was intuitively clear, that the net amount of ice that crossed the top surface in a downward direction is \qty{53.4}{mol}.
 
+
+\section{Conservation laws: differential expression}
+\label{sec:conservation_laws_diff}
+
+The conservation law
+\begin{equation*}
+  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+\end{equation*}
+is said to be written in \emph{integral form} because it contains the time-integrated flux, necessary to calculate the net amount of quantity that enters through the control surface. We can rewrite it in a different mathematical form, without time integrals but with time derivatives.
+
+This rewriting is simply an expression of the \furl{https://encyclopediaofmath.org/wiki/Newton-Leibniz_formula}{fundamental theorem of calculus}. If $\yN$ is a function of $t$, and we call $\yJ$ its derivative with respect to $t$, then we can also say that $\yN$ is a primitive function for $\yJ$, and the definite integral of $\yJ$ is given by a difference with $\yN$. In symbols,
+\begin{equation*}
+  \frac{\di\yN(t)}{\di t} = \yJ(t)
+  \qquad\iff\qquad
+  \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t = \yN(\ytf) - \yN(\yti) \ .
+\end{equation*}
+But the equation on the right is just a conservation law written in a different way! This means that it can equivalently be expressed by the equation on the left.
+
+\marginpar{%
+\footnotesize\flushleftright%
+\begin{warning}
+  Some mathematical conditions must be satisfied to make these steps; otherwise the derivative below must be carefully defined in a generalized sense.
+\end{warning}\par
+}%
+Let's interpret this relation from the point of view of the physical measurement of volume content and flux.
+
+Change the symbol for the time $\yti$ into $t$, and take $\ytf$ to come after a \emph{very short} lapse of time $\Dt$ after $t$:
+\begin{equation*}
+  \yti\ \text{becomes}\ t\ ,\quad \ytf\ \text{becomes}\ t+\Dt
+\end{equation*}
+Then the integrated flux can be approximated by
+\begin{equation*}
+  \int_{t}^{t+\Dt}\!\!\yJ(t)\, \di t \approx \yJ(t)\, \Dt
+\end{equation*}
+because the flux $\yJ(t)$ is approximately constant in the short time lapse $\Dt$. The conservation law~\eqref{eq:conserved} can then be approximated as follows:
+\begin{equation*}
+  \yN(t+\Dt) \approx \yN(t) + \yJ(t)\, \Dt
+\end{equation*}
+Now bring the term $\yN(t)$ to the left side, and divide the whole expression by $\Dt$:
+\begin{equation*}
+  \frac{\yN(t+\Dt) - \yN(t)}{\Dt} \approx \yJ(t)\
+\end{equation*}
+Finally, consider smaller and smaller $\Dt$: in the limit, the fraction\enspace$\frac{\yN(t+\Dt)-\yN(t)}{\Dt}$\enspace becomes, by definition, a derivative. So we find:
+\begin{definition}{Conservation law in differential form}
+  A quantity is said to satisfy a \textbf{conservation law} if the following equality holds for any closed control surface and volume, and any coordinate time $t$:
+  \begin{equation}
+    \label{eq:conserved_diff}
+    \frac{\di\yN(t)}{\di t} = \yJ(t)
+  \end{equation}
+\end{definition}
+This mathematical form says that the rate of change of the volume content of a quantity must equal the \textbf{in}flux of that quantity through the control surface.
+
+\medskip
+
+Both forms, integral and differential, of a conservation law are useful in different situations. The integral form is obviously useful if we know the total flow during a time lapse but we don't know the flux at each instant. The differential form is often useful for simulating physical processes and for making predictions.
+
+
 \bigskip
 
-\marginpar{\vspace{14\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/room_heater_window.jpg}
-}
-\marginpar{\vspace{5\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/distillation_column.jpg}
-}
 \begin{exercise}
 {\itshape Solve the following exercises not just by using intuition, but \textbf{by explaining step-by-step how you use a conservation law}, in integral or differential form, to obtain the result:
 \begin{itemize}[nosep]
-\item what is the relevant time interval (if using the integral form)
-\item how you define the closed control surfaces and their movement, as well as any subdivisions of the surfaces
-\item what are the volume content and integrated-flux values you know, and which you want to find
+\item What is the relevant time interval (if using the integral form)?
+\item How do you define the closed control surface and and its movement, as well as any subdivisions of the surface?
+\item What are the values of volume content and of time-integrated flux  known to you? Which ones do you want to find?
 \end{itemize}}
 
 \medskip
@@ -5120,7 +5132,7 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 \begin{enumerate}[exerc]
 \item For the present exercise we assume that \energym\ satisfies a conservation law.
 
-  An apartment's room has two identical electric heaters along a wall. An electric heater can be considered as a piece of surface across which \energym\ flows into the room: the \energym\ is entering (in proximity of the electric wires) in the form of electromagnetic \energym, and is converted into internal \energym\ (mainly of the room's air) by means of the heater. Suppose that each heater corresponds to an influx of \qty{200}{J/s}.
+  An apartment's room has two identical electric heaters along a wall. An electric heater can be considered as a piece of surface across which \energym\ flows into the room: the \energym\ is entering around the electric wires in the form of electromagnetic \energym, and is converted into internal \energym\ (mainly of the room's air) by means of the heater. Suppose that each heater corresponds to an influx of \qty{200}{J/s}.
 
     The room also has a window, which is the only other part of the room's boundary where \energym\ can flow in or out.
 
@@ -5131,9 +5143,15 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 %% *** check realistic values
   \item For the present exercise we assume that \furl{https://pubchem.ncbi.nlm.nih.gov/element/Argon}{argon} atoms satisfy a conservation law.
 
-    A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has a constant influx of \qty{2}{mol/s} of argon atoms at one inlet, and a constant outflux of argon atoms, possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the argon \emph{\textbf{out}}flux (\emph{not} the integrated outflux) at the outlet?
+    A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distillation column} in a chemical plant has an influx of \qty{2}{mol/s} of argon atoms constant in time at one inlet, and an efflux of argon atoms, constant in time but possibly at a different rate, at an outlet. An amount of \qty{500}{mol} of argon is measured in the chamber at a given time, and one minute later the amount is measured to be \qty{620}{mol}. How much is the argon efflux at the outlet, at any time?
   \end{enumerate}
 \end{exercise}
+\marginpar{\vspace{-22\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/room_heater_window.jpg}
+}
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/distillation_column.jpg}
+}
 
 
 
@@ -5141,9 +5159,9 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 \section{Balance laws}
 \label{sec:balance_laws}
 
-Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law where this condition is not necessarily satisfied.
+Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law where this condition is not necessarily satisfied: a quantity could be produced or disappear in a control volume. Recall that we do have a term and measurement for this production: the \autoref{def:fluxsupply}{\emph{supply}}.
 
-The setup is just like before: consider an initial and final closed control surfaces and volumes at $\yti$, $\ytf$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume content $\yE(\yti)$, final volume content $\yE(\ytf)$, and influx $\yH(t)$.
+The setup is just like before: consider an initial and final closed control surfaces and control volumes at $\yti$, $\ytf$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume content $\yE(\yti)$, final volume content $\yE(\ytf)$, and influx $\yH(t)$.
 
 \begin{definition}{Balance law}
   A quantity with volume content $\yE(t)$ and influx $\yH(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds \emph{always}:
@@ -5153,16 +5171,16 @@ The setup is just like before: consider an initial and final closed control surf
   \end{equation}
   where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per time within the closed control surface at time $t$.
 \end{definition}
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/tennisball_boundary.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} contours), but not what happens within the control volumes in between. A balance law instead also involves what happens within the control volumes in between.%
-}%
 If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
 
 The meaning of the equation above is intuitive: the amount of quantity in the final control volume, $\yE(\ytf)$, must be equal to the amount in the initial control volume, $\yE(\yti)$, plus the total amount that flowed in through the surface between those times,  $\int_{\yti}^{\ytf}\!\!\yH(t)\, \di t$, plus the total amount that was created in the volume, $\int_{\yti}^{\ytf}\!\!\yR(t)\, \di t$.
 
 According to the definition above, a \emph{conservation} law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}. That is, there never are sources or sinks of the quantity: the quantity cannot be \emph{created} or \emph{destroyed}: it can only \enquote{move around}.
+\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/tennisball_boundary.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} contours), but not what happens within the control volumes in between. A balance law instead also involves what happens within the control volumes in between.%
+}%
 
 A conservation law is powerful because the supply $\yR(t)$ is already known and has an extremely simple value (zero). It is also powerful because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse: we must do this to check whether some quantity was created or destroyed within the volume.
 
@@ -5390,7 +5408,7 @@ Let's try using a strategy analogous to that adopted in the previous example wit
 At the initial time $\yti$ the there's no momentum within the control volume, because it's empty. At the final time we are told that the control volume contains a fully downward momentum of magnitude \qty{4.72}{N\,s}.
 
 Unfortunately we can't yet find the integrated flux of momentum: the problem is that we don't have enough data to apply the balance law~\eqref{eq:balanced_momentum}. It is also necessary to know the supply of momentum $\yG(t)$, or at least its time integral. This is an example of what we said previously: \autoref{sec:balance_laws}{balance laws in general require more information} than conservation laws. \marginpar{\vspace{2\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/waterblock_control2.pdf}
+\includegraphics[width=\linewidth]{images/waterblock_control.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
@@ -5514,16 +5532,16 @@ and also the integrated supply is different:
 
 \bigskip
 
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/worlddiagram.jpg}%
+\\\footnotesize\flushleftright\color{mpcolor}%
+Spacetime representation of the evolution of a closed control surface, containing some pointlike objects (adapted from \cites{misneretal1970_r2017})%
+}%
 \begin{extra}{Balance laws in General Relativity}
   Conservation and balance laws appear simpler from the point of view of Relativity Theory. From a four-dimensional spacetime perspective, a 3D volume is a region, called \emph{hypersurface}, having one less dimension than spacetime. But a sequence of 2D surfaces through time is also just a region having one less dimension than spacetime -- two spatial dimensions and one temporal one. Thus the distinction between the 3D region at $\yti$, the sequence of 2D surfaces between $\yti$ and $\ytf$, and the 3D region at $\ytf$ disappear: they are seen to be just different parts of the same three-dimensional hypersurface. We perceive some parts of this hypersurface as belonging \enquote{to the same time}, showing their three dimensions all at once; and other parts as extending through time, showing only two dimensions at any time. In fact, different observers make this division in different ways.
 
   And from a spacetime perspective, the amount of a quantity $\yE(\yti)$ or $\yE(\ytf)$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
 \end{extra}
-\marginpar{\vspace{-15\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/worlddiagram.jpg}%
-\\\footnotesize\flushleftright\color{mpcolor}%
-Spacetime representation of the evolution of a closed control surface, containing some pointlike objects (adapted from \cites{misneretal1970_r2017})%
-}%
 
 
 \begin{extra}{What about the magnetic flux?}
