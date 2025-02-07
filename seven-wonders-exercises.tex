@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-06T13:47:47+0100
+%% Last-Updated: 2025-02-07T07:19:08+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2456,7 +2456,7 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sumC.jpg}
 
 \item Imagine a closed control surface around the planet Mercury. The energy $\yH(t)$ influx through this control surface is approximately given by
   \begin{multline*}
-    \yH(t) = W + u\, \sin(\sigma t) \\
+    \yH(t) = W + u\, \cos(\sigma t) \\
     \text{with}\quad  W = \qty{2e17}{J/s}\ ,\quad
     u = \qty{8e16}{J/s}\ ,\quad
     \sigma = \qty{8e-7}{s^{-1}} \ .
@@ -2466,7 +2466,7 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sumC.jpg}
 
 \item A football has a \masse\ $\ym = \qty{0.4}{kg}$. The football has a continuous supply of momentum $\yG(t)$ from the Earth's gravitational field. This supply is constant in time and given by
   \begin{equation*}
-    \yG(t) = \ym\, \yg
+    \yG(t) = \ym \yg
     \begin{bmatrix}
       0\\0\\-1
     \end{bmatrix}
@@ -2678,6 +2678,77 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 &  \includegraphics[align=c, height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumN3.jpg}
 \end{tabularx}
 
+
+\sollabel{sec:integrated_flux}
+
+\begin{enumerate}[exerc]
+\item The time-integrated flux of charge is found with a time integral. Note that the result has a dimension of electric charge: this is the net amount of charge that flowed through the control surface, in the given crossing direction, between the two times:
+  \begin{equation*}
+    \begin{aligned}
+      \int_{\yti}^{\ytf}\yI(t)\,\di t =
+      \int_{\yti}^{\ytf}A \sin(\omega t)\, \di t
+      &=
+      -\frac{A}{\omega}\, \cos(\omega t)\Bigr\rvert_{\yti}^{\ytf}
+      \\&\approx -\qty{796}{C}\cdot (1-1) = \qty{0}{C} \ .
+    \end{aligned}
+  \end{equation*}
+  So even if the flux of charge most of the time is non-zero, reaching a maximum of $\pm\qty{30}{C/s}$, the \emph{net} amount of charge crossing the surface in the given direction during the \qty{30}{s} is zero. This is because the flux is sometimes positive, sometimes negative.
+
+\item 88 Earth-days are approximately equal to $88\cdot 24\cdot 60\cdot \qty{60}{s} \approx \qty{7600000}{s}$. So we time-integrate between $\yti=\qty{0}{s}$ and $\ytf=\qty{7600000}{s}$:
+  \begin{equation*}
+    \begin{aligned}
+      \int_{\yti}^{\ytf}\yH(t)\, \di t =
+      \int_{\yti}^{\ytf}\bigl[W + u\, \cos(\sigma t)\bigr]\,\di t &=
+      W t\Bigr\rvert_{\yti}^{\ytf} +
+      \frac{u}{\sigma}\, \sin(\sigma t)\Bigr\rvert_{\yti}^{\ytf}
+      \\[1ex]
+      &\approx \qty{1.5e24}{J} +
+      \qty{1e23}{J}\cdot (-0.2 - 0)
+      \\&\approx \qty{1.5e24}{J} \ .
+    \end{aligned}
+  \end{equation*}
+
+\item Recall that time-integrating a vector simply means time-integrating each component. In this case the supply is constant, so integration is easy:
+  \begin{equation*}
+    \begin{aligned}
+      \int_{\yti}^{\ytf} \yG(t)\,\di t &=
+      \int_{\yti}^{\ytf} \ym \yg
+    \begin{bmatrix}
+      0\\0\\-1
+    \end{bmatrix}\,\di t
+    \\[1ex]
+    &= \ym \yg
+    \begin{bmatrix}
+      \int_{\yti}^{\ytf}0\,\di t\\[2\jot]
+      \int_{\yti}^{\ytf}0\,\di t\\[2\jot]
+      -\int_{\yti}^{\ytf}1\,\di t
+    \end{bmatrix} =
+      \ym \yg
+    \begin{bmatrix}
+      \qty{0}{s}\\\qty{0}{s}\\-t
+    \end{bmatrix}\Biggr\rvert_{\yti}^{\ytf}
+    =\ym \yg \left(
+\begin{bmatrix}
+      \qty{0}{s}\\\qty{0}{s}\\-\ytf
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+      \qty{0}{s}\\\qty{0}{s}\\-\yti
+    \end{bmatrix}
+    \right)
+    \\[1ex]
+    &\approx \qty{3.9}{N}\cdot
+    \begin{bmatrix}
+      0\\0\\-\num{3600}
+    \end{bmatrix}\,\unit{s}
+\approx
+    \begin{bmatrix}
+      0\\0\\-\num{1.4e4}
+    \end{bmatrix}\,\unit{N\,s} \ .
+    \end{aligned}
+  \end{equation*}
+  This net amount of momentum is vertical, pointing downward. But note that we don't know whether the football contains this much momentum after \qty{3600}{s}, because we don't know how much the flux of momentum into the football was. It's possible that the flux of momentum completely balanced this supply of momentum.
+\end{enumerate}
 
 
 % \section{Content in a volume and flux through a surface}
