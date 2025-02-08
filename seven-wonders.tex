@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-08T16:39:50+0100
+%% Last-Updated: 2025-02-08T18:17:25+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4883,7 +4883,7 @@ A very simple example is a spherical surface delimiting a ball-shaped region. Bu
 
 Now consider any one of our \autoref{sec:stuff}{primitive quantities}, except magnetic flux. For concreteness let's take \emph{matter}. We make the following measurements:
 \begin{itemize}
-\item $N(\yti)$: total amount of matter in the control volume at time $\yti$.
+\item $\yN(\yti)$: total amount of matter in the control volume at time $\yti$.
 
 \item $\int_{\yti}^{\ytf}\!\yJ(t)\, \di t$: time-integrated \textbf{in}flux of matter through the closed control surface between times $\yti$ and $\ytf$.
 
@@ -5146,36 +5146,46 @@ Both forms, integral and differential, of a conservation law are useful in diffe
 \section{Balance laws}
 \label{sec:balance_laws}
 
-Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. This leads to the definition of a more general law where this condition is not necessarily satisfied: a quantity could be produced or disappear in a control volume. Recall that we do have a term and measurement for this production: the \autoref{def:fluxsupply}{\emph{supply}}.
+Our intuitive understanding of a conserved quantity is that it cannot be \enquote{created} or \enquote{destroyed}. But there are quantities that are not conserved. A \emph{balance} law, as discussed in a previous section, is a law where conservation is not necessarily satisfied: a quantity could be produced or disappear in a control volume. Recall that we do have a term and measurement for this kind of production or disappearance: the \autoref{def:fluxsupply}{\emph{supply}}.
 
-The setup is just like before: consider an initial and final closed control surfaces and control volumes at $\yti$, $\ytf$, and a sequence of closed control surfaces in between. This time let's take \emph{\energym} as a concrete example, with initial volume content $\yE(\yti)$, final volume content $\yE(\ytf)$, and influx $\yH(t)$.
+***
+The setup for formulating a general balance law is the same as for a conservation law.
+We take a closed control surface, delimiting a control volume, that exists between coordinate times $\yti$ and $\ytf$. This surface and volume can move and deform arbitrarily. We can then consider any one of our primitive quantities, except magnetic flux. Let's take \emph{\energym} as a concrete example. We make the following measurements:
+\begin{itemize}
+\item $\yE(\yti)$: total amount of \energym\ in the control volume at time $\yti$.
 
+\item $\int_{\yti}^{\ytf}\!\yH(t)\, \di t$: time-integrated influx of \energym\ through the closed control surface between times $\yti$ and $\ytf$.
+
+\item $\int_{\yti}^{\ytf}\!\yR(t)\, \di t$: time-integrated \emph{supply} of \energym\ through the closed control surface between times $\yti$ and $\ytf$.
+
+\item $\yE(\ytf)$: total amount of \energym\ in the control volume at time $\ytf$.
+\end{itemize}
+Note how in this case we are also keeping track of the \emph{supply} of the quantity.
+
+We can now formulate a balance law in its full generality:
 \begin{definition}{Balance law}
-  A quantity with volume content $\yE(t)$ and influx $\yH(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds \emph{always}:
+  A quantity with volume content $\yE(t)$, influx $\yH(t)$, supply $\yR(t)$ is said to satisfy a \textbf{balance law}, or to be \textbf{balanced}, if the following equality holds for any closed control surface and volume, and any coordinate times $\yti$ and $\ytf$:
   \begin{equation}
     \label{eq:balanced}
-    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
+    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
   \end{equation}
-  where $\yR(t)$, called the \textbf{supply} or \textbf{source}, is the amount of quantity created per time within the closed control surface at time $t$.
 \end{definition}
-If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
+The meaning of a balance law is intuitive: the amount of quantity in the final control volume, $\yE(\ytf)$, must be equal to the amount in the initial control volume, $\yE(\yti)$, plus the total amount that flowed in through the surface between those times,  $\int_{\yti}^{\ytf}\!\!\yH(t)\, \di t$, plus the total amount that was created in the volume, $\int_{\yti}^{\ytf}\!\!\yR(t)\, \di t$.
 
-The meaning of the equation above is intuitive: the amount of quantity in the final control volume, $\yE(\ytf)$, must be equal to the amount in the initial control volume, $\yE(\yti)$, plus the total amount that flowed in through the surface between those times,  $\int_{\yti}^{\ytf}\!\!\yH(t)\, \di t$, plus the total amount that was created in the volume, $\int_{\yti}^{\ytf}\!\!\yR(t)\, \di t$.
-
-According to the definition above, a \emph{conservation} law is a \emph{special, powerful case} of a balance law: one for which $\yR(t)=0$ \emph{always and everywhere}. That is, there never are sources or sinks of the quantity: the quantity cannot be \emph{created} or \emph{destroyed}: it can only \enquote{move around}.
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/tennisball_boundary.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-A conservation law only involves what happens within the initial and final control volume (represented by the \textcolor{red}{red hatched} disks), and on the sequence of control surfaces in between (represented by the curved \textcolor{red}{red} contours), but not what happens within the control volumes in between. A balance law instead also involves what happens within the control volumes in between.%
-}%
-
-A conservation law is powerful because the supply $\yR(t)$ is already known and has an extremely simple value (zero). It is also powerful because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse: we must do this to check whether some quantity was created or destroyed within the volume.
+We see that a \emph{conservation} law is a special, powerful case of a balance law. Mathematically it says that $\yR(t)=0$ \emph{always and everywhere}: the supply of the quantity is always zero. So the quantity cannot be created or destroyed; it can only \enquote{move around}. A conservation law is powerful because it means that the supply $\yR(t)$ is always known and has an extremely simple value: zero. But this fact means that we can predict the amount of quantity in a final volume by knowing what happens\emph{only on the boundary of the volume} during the time lapse. A general balance law, instead, requires us to know also what happens at every point \emph{within the volume} during the time lapse: we need to know whether some quantity was created or destroyed within the volume.
 
 \medskip
 
-For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enspace$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enspace An extensive quantity can therefore always be said to satisfy a balance. A balance is not trivial, however, if we have some specific physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+For these reasons a balance law is in some respects more trivial than a conservation law.
+%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/tennisball_boundary.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+A conservation law involves only knowledge about the initial and final control volumes (represented by the \textcolor{red}{red hatched} disks), and about the closed control surface during the time lapse (curved \textcolor{red}{red} contours); but not about the control volume during the time lapse. A balance law instead involves also this additional information.%
+}%
+If we measure that\enspace$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\, \di t$\enspace is not zero (so there's no conservation law), we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enspace An extensive quantity can therefore always be said to satisfy a balance law. A balance is not trivial, however, if we have some other physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
-A conservation law is therefore powerful also because it allows us to predict the amount of quantity in the final volume by making measurements \emph{only on the surface} during the time lapse. A general balance law, instead, requires us to also make measurements at every point \emph{within the volume} during the time lapse.
 \begin{warning}[Supplies are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
@@ -5185,9 +5195,11 @@ A conservation law is therefore powerful also because it allows us to predict th
 
 \medskip
 
-Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the supply $\yR$, on the other hand, involves what's happening \emph{within the control volumes, at each time}. A conservation law instead does \emph{not} require us to know what's happening within the control volumes, except at the initial and final time.
+Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the supply $\yR$, instead, involves what's happening \emph{within the control volume, at each time}. A conservation law does \emph{not} require us to know what's happening within the control volumes, except at the initial and final time.
 
-One more important reason to keep fluxes and supplies separated is that \autoref{def:symmetryflux}{fluxes always satisfy a symmetry principle}, but \emph{supplies in general do not satisfy any symmetry principle}.
+\smallskip
+
+Remember, moreover, that \autoref{def:symmetryflux}{fluxes always satisfy a symmetry principle}, but \emph{supplies in general do not satisfy any analogous symmetry principle}.
 % Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yR(t)\,\di t$ is not an integrated flux.
 \end{warning}
 
