@@ -8,6 +8,98 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+By considering a very short time lapse $\Dt$, with reasoning analogous to the case of a conservation law~\eqref{eq:conserved_diff}, we can write a balance law in a different form:
+\begin{definition}{Balance law in differential form}
+  A quantity is said to satisfy a \textbf{balance law} if the following equality holds \emph{always}:
+  \begin{equation}
+    \label{eq:balance_diff}
+    \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
+  \end{equation}
+
+  For a vector quantity such as momentum, the differential form again corresponds to three equations, one per component:
+\begin{equation}
+      \label{eq:balance_diff_components}
+\left\{\   \begin{aligned}
+    \frac{\di P_{x}(t)}{\di t} &= F_{x}(t) + G_{x}(t)
+\\
+    \frac{\di P_{y}(t)}{\di t} &= F_{y}(t) + G_{y}(t)
+\\
+    \frac{\di P_{z}(t)}{\di t} &= F_{z}(t) + G_{z}(t)
+  \end{aligned}\right.
+\end{equation}
+\end{definition}
+
+
+----
+
+
+Now consider any one of our \autoref{sec:stuff}{primitive quantities}, except magnetic flux. For concreteness let's take \emph{\energym}. We make the following measurements:
+\begin{itemize}[itemsep=1ex]
+\item $\yE(\yti)$: total \emph{content} of \energym\ in the control volume at time $\yti$.
+
+\item $\int_{\yti}^{\ytf}\!\yH(t)\, \di t$: time-integrated \emph{\textbf{in}flux} of \energym\ through the closed control surface between times $\yti$ and $\ytf$.
+
+\item $\int_{\yti}^{\ytf}\!\yR(t)\, \di t$: time-integrated \emph{supply} of \energym\ through the closed control surface between times $\yti$ and $\ytf$.
+
+\item $\yE(\ytf)$: total \emph{content} of \energym\ in the control volume at time $\ytf$.
+\end{itemize}
+Note that in the second measurement we measure the \textbf{in}flux, not the efflux, through the closed control surface. We must therefore pay close attention to the crossing direction and sign of this flux.
+
+Each of the three amounts above is, in this example, a scalar that can be positive, negative, or zero. For instance we could have:
+\begin{equation*}
+  \begin{gathered}
+    \yti = \qty{0}{s} \qquad \yE(\yti) = \qty{10.5}{J}\ ,
+    \\
+    \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t = \qty{-9.7}{J} \ ,
+    \qquad
+    \int_{\yti}^{\ytf}\!\!\yR(t)\, \di t = \qty{0}{J} \ ,
+    \\
+    \ytf = \qty{18}{s} \qquad \yE(\ytf) = \qty{0.8}{J} \ .
+  \end{gathered}
+\end{equation*}
+
+
+----
+
+
+\begin{itemize}
+\item $\yE(\yti)$: total amount of \energym\ in the control volume at time $\yti$.
+
+\item $\int_{\yti}^{\ytf}\!\yH(t)\, \di t$: time-integrated influx of \energym\ through the closed control surface between times $\yti$ and $\ytf$.
+
+\item $\int_{\yti}^{\ytf}\!\yR(t)\, \di t$: time-integrated \emph{supply} of \energym\ through the closed control surface between times $\yti$ and $\ytf$.
+
+\item $\yE(\ytf)$: total amount of \energym\ in the control volume at time $\ytf$.
+\item $\yN(\yti)$: total amount of matter in the control volume at time $\yti$.
+
+\item $\int_{\yti}^{\ytf}\!\yJ(t)\, \di t$: time-integrated \textbf{in}flux of matter through the closed control surface between times $\yti$ and $\ytf$.
+
+\item $\yN(\ytf)$: total amount of matter in the control volume at time $\ytf$.
+\end{itemize}
+
+Each of the three amounts above is, in this example, a scalar that can be positive, negative, or zero. For instance we could have:
+\begin{equation*}
+  \begin{gathered}
+    \yti = \qty{0}{s} \qquad \yN(\yti) = \qty{3.5}{mol}
+    \\
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t = \qty{-9.7}{mol}
+    \\
+    \ytf = \qty{18}{s} \qquad \yN(\ytf) = \qty{-6.2}{mol}
+  \end{gathered}
+\end{equation*}
+% The reason for changing the sign in the third measurement is that the surface is the final one through which we make the measurement; so, in a manner of speaking, this surface \enquote{points inwards through time} from a spacetime perspective.
+
+% ; or a vector. For instance, for matter we could have $\yN(\yti)=\qty{3.5}{mol}$; for energy we could have $\yJ=\qty{-600}{J}$; for momentum we could have $\bm{N}_{2} = (-3.4,0,+5)\,\unit{kg\cdot m/s}$.
+
+\medskip
+
+With this setup we can introduce a special kind of balance law, which can be written in two different but equivalent mathematical ways.
+
+
+----
+
+
 If the quantity is a scalar, then $\yR(t)$ can also be negative, in which case we may call it a \emph{sink} and we say that some of the quantity is being destroyed at time $t$.
 
 
