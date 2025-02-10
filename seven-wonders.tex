@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-09T22:53:22+0100
+%% Last-Updated: 2025-02-10T07:09:13+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5770,63 +5770,69 @@ then we see that the three relations above, taken together, connect volume conte
 \item[Constitutive relation for supply of momentum.]\label{sec:supply_momentum_gravity}
   If a small control volume contains an amount of rest \masse\ $\ym$, then it also has a supply of momentum
   \begin{equation*}
-    \yG = \ym g % = \yrho\yN\yg
+    \yG = \ym g % = \yrho\yN\yg \ .
   \end{equation*}
-where $\yg$ is a vector that expresses the gravitational field, an therefore spacetime curvature; it may depend on time and space. This constitutive relation expresses the \emph{gravitational volume force}.
+  This constitutive relation expresses the \emph{gravitational volume force}. The vector $\yg$ is called the \textbf{acceleration of free fall}. It expresses the gravitational field, that is, spacetime curvature. It generally depends on time, position, and the motion of the matter or electromagnetic field having \masse\ $\ym$, and the coordinate system.
 
-For physical phenomena on the Earth's surface, the vector $\yg$ is approximately constant: it points towards the ground and has magnitude $g\defd\abs{\yg}\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}}$. In a coordinate system $(x,y,z)$ where $z$ points upward, it can be written
+  For physical phenomena close to Earth's surface, in a coordinate system $(t,x,y,z)$ fixed the ground and with $z$ pointing upwards, the vector $\yg$ can be taken to be approximately constant; it points towards the ground:
 \begin{equation*}
-  \yg = - g \begin{bmatrix}0\\0\\1\end{bmatrix} \ .
+  \yg = - g \begin{bmatrix}0\\0\\1\end{bmatrix}
+  \qquad\text{with}\quad
+  g\approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}} \ .
 \end{equation*}
-
+In more precise applications in \furl{https://oceanservice.noaa.gov/geodesy}{geodesy} this vector may depend on latitude, longitude, and even time, owing to Earth's internal motion. Further away from Earth's, the expression of $\yg$ becomes more complex.
 %
-\marginpar{\vspace{-\baselineskip}\centering%
-\includegraphics[width=\linewidth]{images/earth_nasa.png}%
-\\[\jot]\footnotesize\color{mpcolor}%
-(\furl{https://nssdc.gsfc.nasa.gov/imgcat/html/group_page/ER.html}{image: NASA})%
+\marginpar{\vspace{-10\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/g_moyer0.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+The expression for $\yg$ used at NASA for satellite and spacecraft motion (\cites{moyer2000}).%
 }%
-  For physical phenomena further away from Earth, for instance when dealing with satellite motion, the vector $\yg$ points towards the Earth's centre and has magnitude
-  \begin{equation*}
-    g = \frac{G M_{\textrm{E}}}{r^{2}}
-  \end{equation*}
-  where $G=\qty{6.67}{N\,m^{2}/kg^{2}}$ is the gravitational constant, $M_{\textrm{E}}=\qty{5.97e24}{kg}$ is \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{Earth's \masse}, and $r$ is the distance of the control volume from the Earth's centre.
+% %
+% \marginpar{\vspace{-\baselineskip}\centering%
+% \includegraphics[width=\linewidth]{images/earth_nasa.png}%
+% \\[\jot]\footnotesize\color{mpcolor}%
+% (\furl{https://nssdc.gsfc.nasa.gov/imgcat/html/group_page/ER.html}{image: NASA})%
+% }%
 
 \item[Constitutive relation for \energym\ of matter.]
   Take a small control volume on Earth's surface containing an amount of matter $\yN$, and such that there is no flux of matter $\yJ$ across its surface. In a coordinate system $(t,x,y,z)$ where $z$ points upward, this control volume also contains an amount of \energym
   \begin{equation*}
     \yE = \ym \yc^{2} + \yU + \frac12 \ym v^{2} + \ym g z \ .
   \end{equation*}
-  The first term in this sum is called the \emph{rest \energym} (\autoref{sec:intro_energy}{a huge amount in ordinary situations}), the second term $\yU$ is called \emph{internal energy}, the third is called \emph{kinetic energy}, the fourth \emph{gravitational potential energy}. The rest \masse\ $\ym$ and the internal energy $\yU$ depend on the amount of matter $\yN$.
+  The first term in this sum is called \emph{rest \energym} (a \autoref{sec:intro_energy}{huge amount}) of energy in ordinary situations), the second term $\yU$ is called \emph{internal energy}, the third is called \emph{kinetic energy}, the fourth \emph{gravitational potential energy}. The rest \masse\ $\ym$ and the internal energy $\yU$ depend on the amount of matter $\yN$.
 \end{description}
 
 \section{Summary of differences between main balance laws and constitutive relations}
 \label{sec:diff_balance_constitutive}
 
-Let's summarize the most important differences between the balance laws for our seven primitive quantities on one side, and constitutive relations on the other side:
+Let's summarize the most important typical differences between the balance laws for our seven primitive quantities on one side, and constitutive relations on the other side:
 
 \bigskip
 
 \begin{center}\footnotesize
 \begin{tabular*}{\linewidth}[h]{@{\extracolsep{\fill}}>{\centering}p{0.45\linewidth}>{\centering}p{0.45\linewidth}@{\extracolsep{\fill}}p{0pt}}
 % \begin{tabularx}{\linewidth}[h]{w{c}{0.49\linewidth}w{c}{0.49\linewidth}}
-    \textbf{Balance laws}
-    & \textbf{Constitutive relations}
-    &\\[1ex]
-    Seven
-    &A virtually infinite number
-    &\\[2ex]
-    Each valid for every phenomenon
-    & Each valid for a specific phenomenon
-    &\\[2ex]
-    Each valid for any control volume and surface
-    & Each valid for control volumes or surfaces of specific size, shape, or location
-    &\\[7ex]
-    Connect contents, fluxes, supplies of the same quantity
-    & Connect contents, fluxes, supplies of different quantities
-    &\\[5ex]
-    Connect contents, fluxes, supplies at different times
-    & Connect contents, fluxes, supplies at the same times
-    &
+  \textbf{Balance law}
+  & \textbf{Constitutive relation}
+  &\\[1ex]
+  Seven
+  &A virtually infinite number
+  &\\[2ex]
+  Valid for every phenomenon
+  & Valid for a specific phenomenon
+  &\\[2ex]
+  Valid for any control volume and surface
+  & Often valid only for control volumes or surfaces of specific size, shape, location
+  &\\[7ex]
+  Connects contents, fluxes, supplies of the same quantity
+  & Often connects contents, fluxes, supplies of different quantities
+  &\\[5ex]
+  Connects contents, fluxes, supplies at different times
+  & Often connects contents, fluxes, supplies at the same times
+  &\\[5ex]
+  Used in all modern theories
+  & Used in specific approximate theories
+  &
   \end{tabular*}
 \end{center}
 
@@ -7054,6 +7060,16 @@ When we consider physical phenomena that happen close to a planet's surface and 
   \end{equation}
   This supply of momentum is approximately constant in time.
 \end{definition}
+
+% % *** add this:
+%   For physical phenomena further away from Earth's surface, for instance when dealing with satellite motion, the vector $\yg$ approximately points towards the Earth's centre and has magnitude
+%   \begin{equation*}
+%     g = \frac{G M_{\textrm{E}}}{r^{2}}
+%   \end{equation*}
+%   where $G=\qty{6.67}{N\,m^{2}/kg^{2}}$ is the gravitational constant, $M_{\textrm{E}}=\qty{5.97e24}{kg}$ is \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{Earth's \masse}, and $r$ is the distance of the control volume from the Earth's centre.
+% 
+%   Current satellite and astronomical applications use complex expressions for $\yg$, which can also depend on the time coordinate, and on the motion of matter.
+
 
 
 \subsection{Contact forces}
