@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-09T18:40:08+0100
+%% Last-Updated: 2025-02-10T10:44:26+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -1496,7 +1496,7 @@ Find the correct units for the following quantities:
 
 \item Similarly as the previous exercise, but explaining the difference between a \emph{scalar quantity} and a \emph{vector quantity}.
 
-\item If you have some large-language-model service (such as ChatGPT), ask it to explain the difference between primitive and derived quantity, and between scalar and vector quantity. Find out weak or unsure points in its answer, given what you've learned so far.
+\item If you have some large-language-model service (such as ChatGPT or DeepSeek), ask it to explain the difference between primitive and derived quantity, and between scalar and vector quantity. Find out weak or unsure points in its answer, given what you've learned so far.
 \end{enumerate}
 
 \section{}
@@ -2277,8 +2277,6 @@ Take a look at the energy flux through a surface represented in the side figure.
 }%
 An ordinary battery is attached to wires and is powering some device. This means that there is a flow of electromagnetic energy from the battery to the device. Imagine a control surface around the battery, as illustrated in the side figure. Can you guess across which parts of the control surface is the flux of energy? Is it across the whole surface? or only across the parts where the wire is? Do a little research to find out.
 
-
-
 \section{}
 \label{sec:sum_fluxes}
 
@@ -2382,7 +2380,8 @@ Which of the following graphical representations of fluxes do make sense? Which 
 \label{sec:surface_moves_if_flux}
 
 \begin{enumerate}[exerc]
-\item Suppose that through a control surface, in a given crossing direction, there is a non-zero flux of momentum. Momentum is a quantity related to movement. Does this mean that the control surface must be in motion?
+\item A control volume contains $[2,-3,1]\,\unit{N\,s}$ of momentum. Momentum is a quantity related to movement. Does this mean that the control volume is moving?
+\item Suppose that through a control surface, in a given crossing direction, there is a non-zero flux of momentum. Does this mean that the control surface must be in motion?
 \item If through a control surface there's a non-zero flux of some quantity, does it mean that the fluxes of all other quantities must be zero?
 
 \item Can there be a flux of temperature through a control surface?
@@ -2553,6 +2552,7 @@ In general the flow of electromagnetic energy occurs especially around wires, wh
 Two good videos for learning more about this are \emph{Veritasium}'s \furl{https://www.youtube.com/watch?v=bHIhgxav9LY}{\emph{The big misconception about electricity}} and \furl{https://www.youtube.com/watch?v=oI_X2cMHNe0}{\emph{How electricity actually works}}. More detailed examples, calculations, and figures can be found for example in \cites{jackson1996} (see especially \fig~4), \cites{davisetal2011},  \cites{harbola2010}, \cites{boyer2019b}.
 
 
+
 \sollabel{sec:sum_fluxes}
 
 To calculate the efflux across the whole surface we use the principle of extensivity. The fluxes across the \enquote*{back} surface get a minus sign, because that surface had an inward crossing direction.
@@ -2622,13 +2622,11 @@ Makes sense \faIcon{thumbs-up}
 \sollabel{sec:surface_moves_if_flux}
 
 \begin{enumerate}[exerc]
-\item No, the control surface may also be completely still (in that coordinate system). For several reasons:
-  \begin{itemize}[nosep]
-  \item \emph{Volume content} of momentum means that something (matter or electromagnetic field) inside the volume must be moving.
-  \item A control surface may be completely imaginary, so it doesn't need to be something that is affected by any physical influence.
-  \end{itemize}
+\item No. If a control volume contains momentum, then something like matter or electromagnetic field is moving within the volume; but the volume itself may be static. This is because a control volume is just an imaginary delimitation of a region of space, not a physical object; we decide how it moves. In some situations we may decide that it should move together with the matter or electromagnetic field it contains, but in other situations we may keep it static.
 
-\item No: \emph{in principle} the fluxes of the seven quantities are independent and can all be non-zero. In fact, in many physical situations they are connected by particular physical laws.
+\item No, for analogous reasons as in the answer above.
+
+\item No: \emph{in principle} the fluxes of the seven quantities are independent and can all be non-zero; or some can be zero and others non-zero.
 
 \item No: we can speak of the temperature at a point at a given time, but we cannot speak of volume content or flux or supply of temperature. Temperature is not an extensive quantity.
 \end{enumerate}
@@ -2829,18 +2827,60 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
 
-\section{}
-\label{sec:conservation_onlyalways}
-%% Observed conserved only in an instance: does it obey conservation law?
+% \section{}
+% \label{sec:conservation_onlyalways}
+% %% Observed conserved only in an instance: does it obey conservation law?
 
 
 \section{}
 \label{sec:diff_bal_cons_llm}
-%% ask/discuss difference between balance and conservation, and why conservation is more powerful
+\emph{With a friend or colleague or a large language model:}
 
+\begin{enumerate}[exerc]
+\item Explain to a colleague the difference between a balance law and a conservation law. Let your colleague criticize unclear or incorrect points in your explanation, and comment on the good points. Then exchange roles.
+\item If you have a large-language-model service, ask it what's the definition of a balance law, and then what's the difference between a balance law and a conservation law. Compare its answer with what you learned so far. Argue with it and see where the discussion goes.
+
+  Keep in mind that there exist many slightly different definitions of \enquote*{balance law} and \enquote*{conservation law}.  Large language models are trained on texts containing many different definitions -- including erroneous ones!
+\end{enumerate}
+
+\clearpage
 \section{}
 \label{sec:change_bal_or_const}
-%% new discovery; should one change balance or constitutive
+
+Imagine you're supervising a research team. Your team is developing and exploring a new kind of material \emph{super-energium}, studying its characteristics about energy and temperature.
+
+\emph{Super-energium} is supposed to be somewhat similar to the better known \emph{energium}, which is therefore used as a comparison in your team's investigations. The energy flux $\yH$ of a block of \emph{energium} satisfies the differential conservation law
+\begin{equation}\label{eq:energy_block}
+  \frac{\di\yE(t)}{\di t} = \yH(t)
+\end{equation}
+where $\yE$ is the energy of the block. For this material, the energy is connected with the temperature $\yT$ of the block by the constitutive relation
+\begin{equation}\label{eq:const_block}
+  \yU(t) = a \yT(t)^{4}
+\end{equation}
+where $a$ is a constant.
+
+Your team performs experiments on blocks of \emph{super-energium}, but finds that the equations above don't match the experimental results. The equations that describe \emph{super-energium} must therefore be different. The engineers in your team propose and test different modifications, and finally find two different modifications that work:
+\begin{enumerate}[label=(\Alph*)]
+\item\label{item:team_A} Some engineers show that if the conservation law~\eqref{eq:energy_block} is modified as follows:
+  \begin{equation}
+    \label{eq:energy_block_new}
+    \biggl[\frac{\di\yE(t)}{\di t}\biggr]^{2} = \yH(t)
+  \end{equation}
+then together with the original constitutive law~\eqref{eq:const_block} it perfectly describes and predicts all experimental results.
+
+\item\label{item:team_B} Some other engineers show that if the constitutive law~\eqref{eq:const_block} is modified as follows:
+  \begin{equation}
+    \label{eq:const_block_new}
+    \yU(t) = \frac{16}{7} a^{2} \yT(t)^{7}
+  \end{equation}
+  then together with the conservation law~\eqref{eq:energy_block} it perfectly describes and predicts all experimental results.
+\end{enumerate}
+%
+\marginpar{\vspace{-4\baselineskip}\centering\includegraphics[height=7\baselineskip]{images/modify_balance.jpg}%
+}%
+
+You must decide whether to continue experiments and development using the modifications proposed by engineers~\ref{item:team_A}, or those proposed by engineers~\ref{item:team_B} (you can't pursue both). Which do you choose, and why?
+
 
 \section{}
 \label{sec:ideal_gas_const}
