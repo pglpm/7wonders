@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-11T08:24:59+0100
+%% Last-Updated: 2025-02-11T10:24:51+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2850,11 +2850,11 @@ For each question:
 
 \item In \qty{30}{min} a battery has emitted \qty{4300}{J} of electromagnetic energy. At the end of this time there is no energy in the battery (with respect to a given zero of energy). Assume that energy satisfies a conservation law in this example. How much energy was in the battery at the beginning of the \qty{30}{min}?
 
-\item A small block of \furl{https://pubchem.ncbi.nlm.nih.gov/compound/Thorium-231}{thorium-231} contains \qty{8.49e25}{mol} of neutrons. The thorium undergoes \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/beta.html}{beta decay}. After \qty{9.2e4}{s}, the number of neutrons in the block is \qty{8.46e25}{mol}. No neutrons were emitted. Assume that neutrons satisfy a balance law. How much was the time-integrated supply of neutron during that time lapse? (Be careful about the signs.)
+\item A small block of \furl{https://pubchem.ncbi.nlm.nih.gov/compound/Thorium-231}{thorium-231} contains \qty{141.0}{mol} of neutrons. The thorium undergoes \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/beta.html}{beta decay}. After \qty{9.2e4}{s}, the number of neutrons in the block is \qty{140.5}{mol}. No neutrons were emitted. Assume that neutrons satisfy a balance law. How much was the time-integrated supply of neutron during that time lapse? (Be careful about the signs.)
 
 \item A bowling ball, at a given time and in a given coordinate system, has momentum $[11.6,0,0.6]\,\unit{N\,s}$. Three seconds later the ball is completely at rest, with momentum $[0,0,0]\,\unit{N\,s}$. How much was the time-integrated influx of momentum during the three seconds?
 
-\item 
+\item A small laser beam, of given width and length, contains a net angular momentum $[0, 2.1e-36,0]\,\unit{N\,m\,s}$, in a given coordinate system. The same region of space, \qty{0.1}{s} later, does not contain any electromagnetic field anymore, and therefore contains zero angular momentum. Assume that angular momentum satisfies a conservation law. How much was the time-integrated efflux of angular momentum through the control surface that contained the beam?
 \end{enumerate}
 
 \section{}
@@ -2961,6 +2961,144 @@ Find a constitutive relation that directly connects the volume content of \energ
 
 \clearpage
 \addsec{Example solutions}
+
+\sollabel{sec:calc_from_bal}
+
+\begin{enumerate}[exerc]
+\item We consider an imaginary closed control surface corresponding to the inner surface of the tank.
+
+  The problem gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti=\qty{0}{s}$, final time $\ytf=\qty{20}{s}$.
+  \item Volume content of water $\yN(\yti)=\qty{10}{mol}$ at time $\yti$.
+  \item Time-integrated supply of water in control volume $\int_{\yti}^{\ytf}\!\yJ(t)\,\di t = \qty{3}{mol}$.
+  \item Time-integrated influx of water is \qty{0}{mol} (\enquote{the tank is sealed}).
+  \end{itemize}
+  Unknown:
+  \begin{itemize}[nosep]
+  \item Volume content of water $\yN(\ytf)$ at time $\ytf$.
+  \end{itemize}
+
+  If water obeys a balance law, the quantities above are related by
+  \begin{equation*}
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+  \end{equation*}
+of which three are known. We can find the unknown:
+\begin{equation*}
+  \begin{split}
+    \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+    \\&= \qty{10}{mol} + \qty{0}{mol} + \qty{3}{mol}
+    = \qty{13}{mol} \ .
+  \end{split}
+\end{equation*}
+
+\item We consider an imaginary closed control surface perfectly wrapping the battery.
+
+  The problem gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti$, final time $\ytf=\yti + \qty{1800}{s}$.
+  \item Time-integrated \textbf{in}flux of energy $\int_{\yti}^{\ytf}\!\yH(t)\,\di t = -\qty{4300}{J}$; minus sign because the text specifies the efflux.
+  \item Volume content of energy $\yE(\ytf)=\qty{0}{mol}$ at time $\ytf$.
+  \end{itemize}
+  Unknown:
+  \begin{itemize}[nosep]
+  \item Volume content of energy $\yE(\yti)$ at time $\yti$.
+  \end{itemize}
+
+  If energy obeys a conservation law, the quantities above are related by
+  \begin{equation*}
+    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
+  \end{equation*}
+of which two are known. We can find the unknown by simple algebra:
+\begin{equation*}
+  \begin{split}
+    \yE(\yti) &= \yE(\ytf) - \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
+    \\&= \qty{0}{J} + \qty{4300}{J} 
+    = \qty{4300}{J} \ .
+  \end{split}
+\end{equation*}
+
+\item We consider an imaginary closed control surface perfectly wrapping the block of material.
+
+  The problem gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti$, final time $\ytf=\yti + \qty{9.2e4}{s}$.
+  \item Volume content of neutrons $\yN(\yti)=\qty{141.0}{mol}$ at time $\yti$.
+  \item Volume content of neutrons $\yN(\ytf)=\qty{140.5}{mol}$ at time $\ytf$.
+  \item Time-integrated \textbf{in}flux of neutrons $\int_{\yti}^{\ytf}\!\yJ(t)\,\di t = \qty{0}{mol}$ (\enquote{no neutrons were emitted}).
+  \end{itemize}
+  Unknown:
+  \begin{itemize}[nosep]
+  \item Time-integrated supply of neutrons $\int_{\yti}^{\ytf}\!\ya(t)\,\di t$.
+  \end{itemize}
+
+  If the amount of neutrons obeys a balance law, the quantities above are related by
+  \begin{equation*}
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+  \end{equation*}
+of which three are known. We can find the unknown by algebra:
+\begin{equation*}
+  \begin{split}
+    \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t &=    \yN(\ytf) - yN(\yti)
+    - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    \\&= \qty{141.0}{mol} - \qty{140.5}{mol} - \qty{0}{mol}
+    = -\qty{0.5}{mol} \ .
+  \end{split}
+\end{equation*}
+The negative sign for the supply makes sense, because the number of neutrons has decreased.
+
+\item We consider an imaginary closed control surface perfectly wrapping the bowling ball (note that this control volume and surface are not static).
+
+  The problem gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti$, final time $\ytf=\yti + \qty{3}{s}$.
+  \item Volume content of momentum $\yP(\yti)=[11.6,0,0.6]\,\unit{N\,s}$ at time $\yti$.
+  \item Volume content of momentum $\yP(\ytf)=[0,0,0]\,\unit{N\,s}$ at time $\ytf$.
+  \end{itemize}
+  Unknown:
+  \begin{itemize}[nosep]
+  \item Time-integrated influx of momentum $\int_{\yti}^{\ytf}\!\yF(t)\,\di t$.
+  \end{itemize}
+
+  Momentum obeys a balance law, so the quantities above are related by
+  \begin{equation*}
+    \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t \ .
+  \end{equation*}
+  Only two of these four quantities are given in the problem, so we can't find the influx of momentum.
+
+  One could, intelligently, think of maybe using the constitutive relation for the supply of momentum: $\yG = \ym g\,[0,0,-1]$. But unfortunately the mass $\ym$ of the bowling ball is not given in the problem.
+
+\item  We consider an imaginary and static closed control surface enclosing the region where the laser beam (the electromagnetic field) was initially.
+
+  The problem gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti$, final time $\ytf=\yti + \qty{0.1}{s}$.
+  \item Angular-momentum content $\yL(\yti)=[0, 2.1e-36,0]\,\unit{N\,m\,s}$ at time $\yti$.
+  \item Angular-momentum content $\yL(\ytf)=[0,0,0]\,\unit{N\,m\,s}$ at time $\ytf$.
+  \end{itemize}
+  Unknown:
+  \begin{itemize}[nosep]
+  \item Time-integrated \textbf{ef}flux of angular momentum $-\int_{\yti}^{\ytf}\!\yto(t)\,\di t$; the minus sign is because $\yto$ denotes the influx.
+  \end{itemize}
+
+  Assuming angular momentum to obey a conservation law, the quantities above are related by
+  \begin{equation*}
+    \yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\, \di t 
+  \end{equation*}
+of which two are known. We can find the \textbf{ef}flux by algebra:
+\begin{equation*}
+  \begin{split}
+   - \int_{\yti}^{\ytf}\!\!\yto(t)\, \di t &=    \yL(\yti) - yL(\ytf)
+   \\&= [0, 2.1e-36,0]\,\unit{N\,m\,s} - [0,0,0]\,\unit{N\,m\,s}
+    = [0, 2.1e-36,0]\,\unit{N\,m\,s} \ .
+  \end{split}
+\end{equation*}
+It makes sense that the efflux is positive, because all angular momentum left the control volume.
+\end{enumerate}
 
 
 \sollabel{sec:ideal_gas_const}
