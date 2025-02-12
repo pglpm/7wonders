@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-12T13:50:07+0100
+%% Last-Updated: 2025-02-12T16:24:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2878,16 +2878,19 @@ For each question:
 For each question, find the requested quantity if possible, by using any combination of:
 \begin{itemize}[nosep]
 \item data given in the question,
-\item balance or conservation law (as specified),
+\item balance or conservation law (specified in the question), in integral or differential expression,
 \item principle of extensivity,
 \item principle of symmetry of flux,
 \item calculus.
 \end{itemize}
 In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.
 
-\begin{enumerate}[exerc]
+\begin{enumerate}[exerc,itemsep=1em]
 \item Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
 
+\item 
+
+  
 \item A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
 
   At time $\qty{0}{s}$, the driver starts to break. While slowing down, the car receives from the road a contact force given by
@@ -3154,7 +3157,7 @@ It makes sense that the efflux is positive, because all angular momentum left th
 
 \sollabel{sec:calc_from_bal2}
 
-\begin{enumerate}[exerc]
+\begin{enumerate}[exerc,itemsep=1em]
 \item Let's choose a closed control surface corresponding to the tank's inner wall (if it had no hole). The question gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti$, final time $\ytf= \yti + \qty{10}{s}$.
@@ -3163,7 +3166,7 @@ It makes sense that the efflux is positive, because all angular momentum left th
   \item Influx of water $\yJ(t) = -\qty{0.1}{mol}$ (\enquote{water is leaking out}), constant in time.
   \end{itemize}
 
-  Since water obeys a balance law, the quantities above are related by
+  Water obeys a balance law. The fluxes and supplies reported in the question are constant in time, and so they could be easily used in the differential expression of the balance law. But the problem also involves a specific lapse of time; this suggests to use the integral expression of the balance law instead:
   \begin{equation*}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
     + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t \ .
@@ -3197,7 +3200,8 @@ Using the balance law we finally find the amount of water after \qty{10}{s}:
     \end{split}
   \end{equation*}
 
-\item  Let's choose a closed control surface wrapping the car. The question gives:
+  
+\item Let's choose a closed control surface wrapping the car. The question gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti=\qty{0}{s}$, final time $\ytf= \qty{30}{s}$.
   \item Volume content of momentum $\yP(\ytf)=\begin{bsmallmatrix}
@@ -3221,7 +3225,7 @@ Using the balance law we finally find the amount of water after \qty{10}{s}:
     \end{bmatrix}\,\unit{N}$$ (\enquote{gravitational body force}), constant in time.
   \end{itemize}
 
-    Momentum obeys a balance law, so the quantities above are related by
+Momentum obeys a balance law. The question specifies a lapse of time, so the integral expression of the balance seems most convenient:
   \begin{equation*}
     \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t
     + \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t \ .
@@ -3361,7 +3365,7 @@ with a minus sign because the question gives the efflux; it's convenient to intr
 \item   Volume content of free neutrons $\yN(\yti)=\qty{4e19}{pt}$ at time $\ytf$ (which we \emph{don't} want to reach).
   \end{itemize}
 
-  Since free neutrons obeys a balance law, the quantities above are related by
+  Free neutrons obey a balance law. The question asks about a lapse of time, so the integral expression seems most convenient. The quantities above are therefore related by
   \begin{equation*}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
     + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t \ .
