@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-12T16:24:33+0100
+%% Last-Updated: 2025-02-12T21:44:14+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2888,9 +2888,18 @@ In your solution, explain which control surfaces and volumes you're using, and s
 \begin{enumerate}[exerc,itemsep=1em]
 \item Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
 
-\item 
+\item \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize\includegraphics[width=0.55\linewidth]{images/capacitors.jpg}%
+\\\flushleftright\color{mpcolor}%
+Capacitors: \textcolor{blue}{blue}, wires: \textcolor{midgrey}{grey}. Wires on the left connect to other components, not shown.
+}%
+Two electronic components that can store electric charge, called \emph{capacitors}, are connected by one wire; each is also connected to some other components by another wire; see side figure. Let's call them the \enquote*{top} and \enquote*{bottom} capacitor.
 
-  
+The top capacitor is \emph{receiving} from other components an electric current (that is, a flux of electric charge), of \qty{5}{C/s}. Its electric-charge content is increasing at a rate of \qty{2}{C/s}.
+
+The bottom capacitor is \emph{delivering} an electric current of \qty{1}{C/s} to other components.
+
+Electric charge satisfies a conservation law. \textbf{How fast is the electric-charge content in the bottom capacitor increasing or decreasing?}
+
 \item A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
 
   At time $\qty{0}{s}$, the driver starts to break. While slowing down, the car receives from the road a contact force given by
@@ -3007,8 +3016,8 @@ says that the magnitude of the surface force (momentum influx) on the small area
 
 Find a constitutive relation that directly connects the volume content of \energym\ and the magnitude of the magnitude of flux of momentum, without involving any auxiliary quantities; constants and geometric quantities such as areas and volumes are allowed.
 
-\section{}
-\label{sec:wave_eq}
+% \section{}
+% \label{sec:wave_eq}
 %% show const rel determine full time dependence of quantity. Is it universal?
 
 
@@ -3200,7 +3209,137 @@ Using the balance law we finally find the amount of water after \qty{10}{s}:
     \end{split}
   \end{equation*}
 
-  
+
+\item First of all, the problem asks about quantities at a given instant of time, and mentions rates of change of volume contents. Therefore the differential form of conservation law for electric charge seems most convenient here:
+  \begin{equation*}
+    \frac{\di\yQ(t)}{\di t} = \yI(t) \ .
+  \end{equation*}
+
+  For the choice of control volumes and surfaces, this problem can be approached in two different ways, which obviously lead to identical physical results:
+  \begin{enumerate}[label=(\arabic*)]
+  \item Choose two control volumes, one for each capacitor. The closed surfaces of these control volumes have one part in common.
+  \item Choose one control volume only, containing both capacitors.
+  \end{enumerate}
+  Let's pursue both approaches in order to compare them.
+
+  \medskip
+  \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/capacitors_CS.jpg}%
+  }%
+  \textbf{(1)} The closed control surface of the top control volume can be divided into three parts: one called $A$ through which there's an electric current to or from other components; one called $S$ through which there's an electric current to or from the other capacitor; and one without name through which there's no current.
+
+  Analogously for the bottom control volume: $B$ is the part of surface with current to or from other components; $S$ isthe part with current to or from the other capacitor; the remaining, current-free part has no name.
+
+  For the top control volume, the problem gives these data:
+  \begin{itemize}[nosep]
+  \item Rate of change of electric-charge content: $\frac{\di\yQ_{\text{t}}}{\di t} = \qty{2}{C/s}$.
+  \item Influx of electric charge through partial surface $A$: $\yI_{A} = \qty{5}{C/s}$.
+  \end{itemize}
+  The influx of electric charge $\yI_{S}$ through $S$ is not given. The influx through the rest of the surface is zero, and we shall simply omit it.
+
+  To apply the conservation law we need the total influx into this control volume; let's call it $\yI_{\text{t}}$. By \textbf{extensivity} it is
+  \begin{equation*}
+    \yI_{\text{t}} = \yI_{A} + \yI_{S} \ .
+  \end{equation*}
+
+  The balance law of electric current for this control volume is therefore
+  \begin{equation*}
+        \frac{\di\yQ_{\text{t}}}{\di t} = \yI_{A} + \yI_{S} \ ,
+  \end{equation*}
+  where all quantities except $\yI_{S}$ are known.
+
+  \smallskip
+
+  For the bottom control volume, the problem gives:
+    \begin{itemize}[nosep]
+  \item Influx of electric charge through partial surface $B$: $\yI_{B} = -\qty{1}{C/s}$; minus sign because \enquote{it's delivering}.
+  \end{itemize}
+  The influx through $S$ is unknown, as well as the rate of change of electric-charge content, which is what we want to know.
+
+  To apply the conservation law we need the total influx into this control volume; let's call it $\yI_{\text{b}}$. By \textbf{extensivity} it is
+  \begin{equation*}
+    \yI_{\text{b}} = \yI_{B} - \yI_{S}
+  \end{equation*}
+  and the minus sign for $\yI_{S}$ comes from the \textbf{principle of symmetry of flux}.
+  The balance law of electric current for this control volume is therefore
+  \begin{equation*}
+        \frac{\di\yQ_{\text{b}}}{\di t} = \yI_{B} - \yI_{S} \ ,
+  \end{equation*}
+  where only $\yI_{A}$ is known.
+
+  \smallskip
+
+  We now take together the balances for the two control volumes:
+  \begin{equation}\label{eq:approach1}
+    \left\{
+      \begin{aligned}
+        \frac{\di\yQ_{\text{t}}}{\di t} &= \yI_{A} + \yI_{S}
+        \\
+        \frac{\di\yQ_{\text{b}}}{\di t} &= \yI_{B} - \yI_{S}
+      \end{aligned}
+    \right.
+    \qquad\implies\qquad
+    \left\{
+      \begin{aligned}
+        \qty{2}{C/s} &= \qty{5}{C/s} + \yI_{S}
+        \\
+        \frac{\di\yQ_{\text{b}}}{\di t} &= -\qty{1}{C/s} - \yI_{S}
+      \end{aligned}
+    \right.
+  \end{equation}
+This is a system of two equations, with two unknowns: $\yI_{S}$ and $\di\yQ_{\text{b}}/\di t$. We can solve it with several methods, like substitution. The result is
+\begin{equation*}
+  \yI = -\qty{3}{C/s} \ ,\qquad \boxed{\frac{\di\yQ_{\text{b}}}{\di t} = \qty{2}{C/s}} \ .
+\end{equation*}
+Besides the required answer, we also found that positive current is flowing from the top to the bottom capacitor.
+
+  \medskip
+  \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/capacitors_CS2.jpg}%
+  }%
+  \textbf{(2)} We have one closed control surface, which can be divided into three parts: one called $A$ through which there's an electric current to or from other components; one called $S$ through which there's an electric current to or from the other capacitor; and one without name through which there's no current.
+
+  The partial surface $S$ from the previous approach is not considered here. It's within the control volume, so it doesn't matter.
+
+  Let's call $\yQ$ the total content of electric charge in this control volume, and $\yI$ the total influx of electric charge through its control surface. They obey the conservation law
+  \begin{equation*}
+    \frac{\di\yQ}{\di t} = \yI \ .
+  \end{equation*}
+
+  In order to find the total content and the total influx we must apply the principle of \textbf{extensivity} to both.
+
+  The total content $\yQ$ is given by
+  \begin{equation*}
+    \yQ = \yQ_{\text{t}} + \yQ_{\text{b}}
+  \end{equation*}
+where $\yQ_{\text{t}}$ and $\yQ_{\text{b}}$ are the contents in the top and bottom partial volumes. Te total influx is given by
+\begin{equation*}
+  \yI = \yI_{A} + \yI_{B} \ ,
+\end{equation*}
+neglecting the zero influx through the remaining surface.
+
+Our conservation law therefore becomes
+  \begin{equation}\label{eq:approach2}
+    \frac{\di\yQ_{\text{t}}}{\di t} + \frac{\di\yQ_{\text{b}}}{\di t}
+    = \yI_{A} + \yI_{B} \ .
+  \end{equation}
+  In this equation we know all quantities except $\di\yQ_{\text{b}}/\di t$, which is easily found:
+  \begin{equation*}
+    \begin{split}
+      \frac{\di\yQ_{\text{b}}}{\di t}
+      & = - \frac{\di\yQ_{\text{t}}}{\di t} + \yI_{A} + \yI_{B}
+\\
+& = - \qty{2}{C/s} + \qty{5}{C/s} - \qty{1}{C/s}
+= \qty{2}{C/s} \ .
+    \end{split}
+  \end{equation*}
+
+  \medskip
+
+  The approaches \textbf{(1)} and \textbf{(2)} obviously leads to the same physical answer. They are an example of our freedom in choosing control surfaces and volumes. If you compare formula~\eqref{eq:approach1} obtained with the first approach, and formula~\eqref{eq:approach2} obtained with the second, you notice that the second is obtained from the first, by elimination of $\yI_{S}$ from the system of equations.
+
+  Therefore the choice of a single control volume performed this mathematical elimination for us, so to speak.
+
+\medskip
+
 \item Let's choose a closed control surface wrapping the car. The question gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti=\qty{0}{s}$, final time $\ytf= \qty{30}{s}$.
