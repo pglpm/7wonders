@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-11T10:27:25+0100
+%% Last-Updated: 2025-02-12T07:28:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2839,7 +2839,7 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 \label{sec:calc_from_bal}
 
 For each question:
-\begin{itemize}[nosep]
+\begin{itemize}[nosep,label=\faIcon{hand-point-right}]
 \item Identify and describe the closed control surface and control volume used.
 \item Identify which among volume content, flux, supply, are given, and how much they are; identify which are unknown.
 \item Find the requested quantity, if possible, by using a balance or conservation law as specified in the question, showing all mathematical steps. If not possible, explain why.
@@ -2852,28 +2852,10 @@ For each question:
 
 \item A small block of \furl{https://pubchem.ncbi.nlm.nih.gov/compound/Thorium-231}{thorium-231} contains \qty{141.0}{mol} of neutrons. The thorium undergoes \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/beta.html}{beta decay}. After \qty{9.2e4}{s}, the number of neutrons in the block is \qty{140.5}{mol}. No neutrons were emitted. Assume that neutrons satisfy a balance law. How much was the time-integrated supply of neutron during that time lapse? (Be careful about the signs.)
 
-\item A bowling ball, at a given time and in a given coordinate system, has momentum $[11.6,0,0.6]\,\unit{N\,s}$. Three seconds later the ball is completely at rest, with momentum $[0,0,0]\,\unit{N\,s}$. How much was the time-integrated influx of momentum during the three seconds?
+\item A bowling ball, at a given time and in a given coordinate system, has momentum $[\num{11.6},0,\num{0.6}]\,\unit{N\,s}$. Three seconds later the ball is completely at rest, with momentum $[0,0,0]\,\unit{N\,s}$. How much was the time-integrated influx of momentum during the three seconds?
 
-\item A small laser beam, of given width and length, contains a net angular momentum $[0, 2.1e-36,0]\,\unit{N\,m\,s}$, in a given coordinate system. The same region of space, \qty{0.1}{s} later, does not contain any electromagnetic field anymore, and therefore contains zero angular momentum. Assume that angular momentum satisfies a conservation law. How much was the time-integrated efflux of angular momentum through the control surface that contained the beam?
+\item A small laser beam, of given width and length, contains a net angular momentum $[0, \num{2.1e-36},0]\,\unit{N\,m\,s}$, in a given coordinate system. The same region of space, \qty{0.1}{s} later, does not contain any electromagnetic field anymore, and therefore contains zero angular momentum. Assume that angular momentum satisfies a conservation law. How much was the time-integrated efflux of angular momentum through the control surface that contained the beam?
 \end{enumerate}
-
-\section{}
-\label{sec:calc_from_bal}
-
-Find the requested quantity, if possible, by using any combination of:
-\begin{itemize}[nosep]
-\item given data,
-\item balance or conservation law (as specified),
-\item principle of extensivity,
-\item principle of symmetry of flux,
-\item calculus.
-\end{itemize}
-If not possible, explain why.
-
-\begin{enumerate}[exerc]
-\item Water is produced in a tank at a rate of \qty{2}{mol/s}
-\end{enumerate}
-
 
 
 \section{}
@@ -2884,10 +2866,35 @@ If not possible, explain why.
 
 \begin{enumerate}[exerc]
 \item Explain to a colleague the difference between a balance law and a conservation law. Let your colleague criticize unclear or incorrect points in your explanation, and comment on the good points. Then exchange roles.
-\item If you have a large-language-model service, ask it what's the definition of a balance law, and then what's the difference between a balance law and a conservation law. Compare its answer with what you learned so far. Argue with it and see where the discussion goes.
+\item If you have a large-language-model service, ask it what's the definition of a balance law, and then what's the difference between a balance law and a conservation law. Compare its answer with what you learned so far. Argue with it and see where the discussion goes.\nopagebreak
 
   Keep in mind that there exist many slightly different definitions of \enquote*{balance law} and \enquote*{conservation law}.  Large language models are trained on texts containing many different definitions -- including erroneous ones!
 \end{enumerate}
+
+
+\section{}
+\label{sec:calc_from_bal}
+
+For each question, find the requested quantity if possible, by using any combination of:
+\begin{itemize}[nosep]
+\item data given in the question,
+\item balance or conservation law (as specified),
+\item principle of extensivity,
+\item principle of symmetry of flux,
+\item calculus.
+\end{itemize}
+In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.
+
+\begin{enumerate}[exerc]
+\item Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
+
+\item 
+\end{enumerate}
+
+
+
+
+
 
 \section{}
 \label{sec:change_bal_or_const}
@@ -2904,7 +2911,7 @@ Imagine you're supervising a research team. Your team is exploring and developin
 \end{equation}
 where $\yE$ is the energy of the block. For this material, the energy is connected with the temperature $\yT$ of the block by the constitutive relation
 \begin{equation}\label{eq:const_block}
-  \yU(t) = a \yT(t)^{4}
+  \yE(t) = a \yT(t)^{4}
 \end{equation}
 where $a$ is a constant.
 
@@ -2913,19 +2920,19 @@ Your team performs experiments on blocks of \emph{super-energium}, and finds tha
 \marginpar{\vspace{\baselineskip}\centering\includegraphics[height=7\baselineskip]{images/modify_balance.jpg}%
 }%
 \begin{enumerate}[label=(\Alph*)]
-\item\label{item:team_A} One group of engineers show that if we keep the original constitutive relation~\eqref{eq:const_block}, but modify the conservation law~\eqref{eq:energy_block} as follows:
+\item\label{item:team_A} One group of engineers show that if you keep the original constitutive relation~\eqref{eq:const_block}, but modify the conservation law~\eqref{eq:energy_block} as follows:
   \begin{equation}
     \label{eq:energy_block_new}
     \biggl[\frac{\di\yE(t)}{\di t}\biggr]^{2} = \yH(t)
   \end{equation}
-then we can perfectly describe and predict all experimental results.
+then you can perfectly describe and predict all experimental results.
 
-\item\label{item:team_B} Another group of engineers show that if we keep the original conservation law~\eqref{eq:energy_block}, but modify the constitutive relation~\eqref{eq:const_block} as follows:
+\item\label{item:team_B} Another group of engineers show that if you keep the original conservation law~\eqref{eq:energy_block}, but modify the constitutive relation~\eqref{eq:const_block} as follows:
   \begin{equation}
     \label{eq:const_block_new}
-    \yU(t) = \frac{16}{7} a^{2} \yT(t)^{7}
+    \yE(t) = \frac{16}{7} a^{2} \yT(t)^{7}
   \end{equation}
-  then we can also perfectly describe and predict all experimental results.
+  then you can also perfectly describe and predict all experimental results.
 \end{enumerate}
 
 You must decide whether to continue experiments and development using the modifications proposed by engineers~\ref{item:team_A}, or those proposed by engineers~\ref{item:team_B} (you can't pursue both). \textbf{Which do you choose, and why?}
@@ -3041,7 +3048,7 @@ of which two are known. We can find the unknown by simple algebra:
 of which three are known. We can find the unknown by algebra:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t &=    \yN(\ytf) - yN(\yti)
+    \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t &=    \yN(\ytf) - \yN(\yti)
     - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
     \\&= \qty{141.0}{mol} - \qty{140.5}{mol} - \qty{0}{mol}
     = -\qty{0.5}{mol} \ .
@@ -3054,7 +3061,7 @@ The negative sign for the supply makes sense, because the number of neutrons has
   The problem gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti$, final time $\ytf=\yti + \qty{3}{s}$.
-  \item Volume content of momentum $\yP(\yti)=[11.6,0,0.6]\,\unit{N\,s}$ at time $\yti$.
+  \item Volume content of momentum $\yP(\yti)=[\num{11.6},0,\num{0.6}]\,\unit{N\,s}$ at time $\yti$.
   \item Volume content of momentum $\yP(\ytf)=[0,0,0]\,\unit{N\,s}$ at time $\ytf$.
   \end{itemize}
   Unknown:
@@ -3076,7 +3083,7 @@ The negative sign for the supply makes sense, because the number of neutrons has
   The problem gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti$, final time $\ytf=\yti + \qty{0.1}{s}$.
-  \item Angular-momentum content $\yL(\yti)=[0, 2.1e-36,0]\,\unit{N\,m\,s}$ at time $\yti$.
+  \item Angular-momentum content $\yL(\yti)=[0, \num{2.1e-36},0]\,\unit{N\,m\,s}$ at time $\yti$.
   \item Angular-momentum content $\yL(\ytf)=[0,0,0]\,\unit{N\,m\,s}$ at time $\ytf$.
   \end{itemize}
   Unknown:
@@ -3092,12 +3099,63 @@ of which two are known. We can find the \textbf{ef}flux by algebra:
 \begin{equation*}
   \begin{split}
    - \int_{\yti}^{\ytf}\!\!\yto(t)\, \di t &=    \yL(\yti) - yL(\ytf)
-   \\&= [0, 2.1e-36,0]\,\unit{N\,m\,s} - [0,0,0]\,\unit{N\,m\,s}
-    = [0, 2.1e-36,0]\,\unit{N\,m\,s} \ .
+   \\&= [0, \num{2.1e-36},0]\,\unit{N\,m\,s} - [0,0,0]\,\unit{N\,m\,s}
+    = [0, \num{2.1e-36},0]\,\unit{N\,m\,s} \ .
   \end{split}
 \end{equation*}
 It makes sense that the efflux is positive, because all angular momentum left the control volume.
 \end{enumerate}
+
+
+\sollabel{sec:calc_from_bal}
+
+\begin{enumerate}[exerc]
+\item Let's choose a closed control surface corresponding to the tank's inner wall (if it had no hole). The question gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti=\qty{0}{s}$, final time $\ytf=\qty{10}{s}$.
+  \item Volume content of water $\yN(\yti)=\qty{0}{mol}$ at time $\yti$.
+  \item Supply of water in control volume $\ya(t) = \qty{2.0}{mol}$, constant in time.
+  \item Influx of water $\yJ(t) = -\qty{0.1}{mol}$ (\enquote{water is leaking out}), constant in time.
+  \end{itemize}
+
+  Since water obeys a balance law, the quantities above are related by
+  \begin{equation*}
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t \ .
+  \end{equation*}
+We can use it to find $\yN(\ytf)$ if we have the other three terms. $\yN(\yti)$ is known, and the time-integrated flux and supply can be found by integration:
+\begin{equation*}
+  \begin{gathered}
+    \begin{aligned}
+      \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t =
+      -\int_{\yti}^{\ytf}\!\!\qty{0.1}{mol/s}\, \di t
+      &= -\qty{0.1}{mol/s}\cdot (\ytf-\yti)
+      \\&= -\qty{0.1}{mol/s} \cdot \qty{10}{s} = -\qty{1}{mol} \ ,
+    \end{aligned}
+    \\
+    \begin{aligned}
+      \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t =
+      \int_{\yti}^{\ytf}\!\!\qty{2.0}{mol/s}\, \di t
+      &= \qty{2.0}{mol/s}\cdot (\ytf-\yti)
+      \\&=\qty{2.0}{mol/s} \cdot \qty{10}{s} = \qty{20}{mol} \ .
+    \end{aligned}
+  \end{gathered}
+\end{equation*}
+
+Using the balance law we finally find:
+  \begin{equation*}
+    \begin{split}
+      \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+      + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+      \\&= \qty{0}{\mol} -\qty{1}{mol} + \qty{20}{mol}
+      = \qty{19}{mol} \ .
+    \end{split}
+  \end{equation*}
+
+\item 
+
+\end{enumerate}
+
 
 
 \sollabel{sec:ideal_gas_const}
