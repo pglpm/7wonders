@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-12T10:59:38+0100
+%% Last-Updated: 2025-02-12T13:44:17+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2919,6 +2919,21 @@ and is subjected to the gravitational body force, constant in time,
 
   Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
 
+\item \marginpar{\vspace{1.5\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
+    We're measuring amounts in \enquote*{particles} rather than \enquote*{moles}.%
+  }%
+  You are overseeing a nuclear-fission reactor. The reactor has a supply of \emph{free neutrons} equal to \qty{5.00e19}{particles/s}, constant in time. Free neutrons obey a balance law.
+
+  Up to now the amount of free neutrons inside the reactor has been constant, at \qty{1.67e19}{particles}. This is because the reactor has an efflux of free neutrons, into control rods, equal to \qty{5.00e19}{particles/s}, constant in time.
+
+  Suddenly -- let's call this time \qty{0}{s} -- you receive a warning on the red communication channel. The warning says that the efflux of neutrons now appears to be decreasing linearly, according to the formula
+  \begin{equation*}
+    \qty{5.00e19}{particles/s} - t\cdot\qty{1.40e12}{particles/s^{2}} \ .
+  \end{equation*}
+  This is dangerous: if the amount of free neutrons in the reactor reaches \qty{4.00e19}{particles}, the reactor will explode.
+
+  You send a team to check and fix the problem. The team asks you how much time they have, at most, to fix it. \textbf{How much time do they have to fix the problem, before the reactor explodes?} (Neglect the interaction time with the team, that is, start counting from \qty{0}{s}.)
+
 \end{enumerate}
 
 
@@ -3321,6 +3336,84 @@ From calculus,\begin{multline*}
     \end{bmatrix}\,\unit{N\,s} \ .
   \end{split}
 \end{equation*}
+
+
+\item  We choose a control volume corresponding to the space occupied by the fissile material. This volume is a little like a piece of Emmental cheese: it has an outer surface, corresponding to the boundary of the reactor, and a lot of  cylindrical boundary surfaces within: they correspond to the space occupied by the control rods, which don't count as control volume because they don't have fissile material. The total control surface of this control volume consists in the outer surface and the inner surfaces, together. Despite this complex shape of control volume and surface, the reasoning for the balance law works as usual.
+
+  Let's abbreviate the unit \enquote*{particles} to \enquote*{pt}.
+
+  The question gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti=\qty{0}{s}$, final time $\ytf$ \emph{unknown}.
+  \item Volume content of free neutrons $\yN(\yti)=\qty{1.67e19}{pt}$ at time $\yti$.
+  \item Supply of free neutrons in control volume $\ya(t) = \qty{5.00e19}{pt/s}$, constant in time.
+  \item Influx of free neutrons
+    \begin{equation*}
+      \begin{gathered}
+     \yJ(t) = -(r - a t)
+     \\
+     \text{with}\quad
+     r= \qty{5.00e19}{pt/s} \ ,\quad
+     a = \qty{1.40e12}{pt/s^{2}} \ ,
+      \end{gathered}
+    \end{equation*}
+with a minus sign because the question gives the efflux; it's convenient to introduce the constants $r$ an $a$ rather than writing the explicit numbers all the time.
+\item   Volume content of free neutrons $\yN(\yti)=\qty{4e19}{pt}$ at time $\ytf$ (which we \emph{don't} want to reach).
+  \end{itemize}
+
+  Since free neutrons obeys a balance law, the quantities above are related by
+  \begin{equation*}
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t \ .
+  \end{equation*}
+  The unkwnown is the integration end-time $\ytf$; all the other quantities and functions are known.
+
+  Let's substitute the explicit time-dependence of influx and supply in the balance law, and then integrate:
+  \begin{equation*}
+    \begin{gathered}
+      \yN(\ytf) = \yN(\yti)
+      -\int_{\yti}^{\ytf} (r-at)\, \di t
+      + \int_{\yti}^{\ytf}\ya \di t
+      \\
+      \implies\qquad
+      \yN(\ytf) = \yN(\yti)
+      -\Bigl(rt-\frac{1}{2}at^{2}\Bigr)\Bigr\rvert_{\yti}^{\ytf}
+      + \ya\,(\ytf-\yti)
+      \\
+      \implies\qquad
+      \yN(\ytf) = \yN(\yti)
+      -\Bigl(r\ytf-\frac{1}{2}a{\ytf}^{2}\Bigr)
+      +
+      \Bigl(r\yti-\frac{1}{2}a{\yti}^{2}\Bigr)
+      + \ya\,(\ytf-\yti)
+    \end{gathered}
+  \end{equation*}
+  in this last expression, $\yti$, $\yN(\yti)$, $\yN(\ytf)$, $\ya$, $r$, $a$ are known values. We can therefore solve for $\ytf$; note that we have a second-degree equation:
+  \begin{equation*}
+      \frac{1}{2}a{\ytf}^{2}
+      +(\ya-r)\, r\ytf
+      +\biggl(
+      \yN(\yti) - \yN(\ytf)
+      +r\yti-\frac{1}{2}a{\yti}^{2}
+      -\ya\yti
+      \biggr)
+      = \qty{0}{pt}
+    \end{equation*}
+    Now we can substitute all values. Many things simplify because $\yti=\qty{0}{s}$, and $r=\ya$:
+    \begin{equation*}
+      \begin{gathered}
+        (\qty{0.70e12}{pt/s^{2}})\, {\ytf}^{2}
+        +(\qty{0}{pt/s})\, \ytf
+        -(\qty{2.33e19}{pt})
+        \approx \qty{0}{pt}
+        \\
+        \implies\qquad
+        \ytf \approx \qty{5769}{s}
+      \end{gathered}
+    \end{equation*}
+    where we have discarded the negative-time solution.
+
+    The team has around \qty{96}{min} to fix the problem!
 
 \end{enumerate}
 
