@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-12T07:28:38+0100
+%% Last-Updated: 2025-02-12T10:59:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2888,7 +2888,37 @@ In your solution, explain which control surfaces and volumes you're using, and s
 \begin{enumerate}[exerc]
 \item Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
 
-\item 
+\item A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
+
+  At time $\qty{0}{s}$, the driver starts to break. While slowing down, the car receives from the road a contact force given by
+  \begin{equation*}
+    \yF(t) =
+    \begin{bmatrix}
+      -\num{1800}\exp\bigl(-\frac{t}{\qty{20}{s}}\bigr)
+      \\
+      0
+      \\
+      \num{17640}
+    \end{bmatrix}\,\unit{N} \ ,
+  \end{equation*}
+and is subjected to the gravitational body force, constant in time,
+\begin{equation*}
+  \yG(t) = \begin{bmatrix}
+    0
+      \\
+      0
+      \\
+      -\num{17640}
+    \end{bmatrix}\,\unit{N} \ .
+  \end{equation*}
+  At time \qty{30}{s}, the car has a momentum\enspace$
+  \begin{bsmallmatrix}
+    1\\0\\0
+  \end{bsmallmatrix}\,\unit{N\,s}
+  $.
+
+  Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
+
 \end{enumerate}
 
 
@@ -3112,7 +3142,7 @@ It makes sense that the efflux is positive, because all angular momentum left th
 \begin{enumerate}[exerc]
 \item Let's choose a closed control surface corresponding to the tank's inner wall (if it had no hole). The question gives:
   \begin{itemize}[nosep]
-  \item Initial time $\yti=\qty{0}{s}$, final time $\ytf=\qty{10}{s}$.
+  \item Initial time $\yti$, final time $\ytf= \yti + \qty{10}{s}$.
   \item Volume content of water $\yN(\yti)=\qty{0}{mol}$ at time $\yti$.
   \item Supply of water in control volume $\ya(t) = \qty{2.0}{mol}$, constant in time.
   \item Influx of water $\yJ(t) = -\qty{0.1}{mol}$ (\enquote{water is leaking out}), constant in time.
@@ -3142,7 +3172,7 @@ We can use it to find $\yN(\ytf)$ if we have the other three terms. $\yN(\yti)$ 
   \end{gathered}
 \end{equation*}
 
-Using the balance law we finally find:
+Using the balance law we finally find the amount of water after \qty{10}{s}:
   \begin{equation*}
     \begin{split}
       \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
@@ -3152,7 +3182,145 @@ Using the balance law we finally find:
     \end{split}
   \end{equation*}
 
-\item 
+\item  Let's choose a closed control surface wrapping the car. The question gives:
+  \begin{itemize}[nosep]
+  \item Initial time $\yti=\qty{0}{s}$, final time $\ytf= \qty{30}{s}$.
+  \item Volume content of momentum $\yP(\ytf)=\begin{bsmallmatrix}
+    1\\0\\0
+  \end{bsmallmatrix}\,\unit{N\,s}$ at time $\ytf$.
+\item Influx of momentum $$\yF(t) =
+    \begin{bmatrix}
+      -\num{1800}\exp\bigl(\frac{t}{\qty{20}{s}}\bigr)
+      \\
+      0
+      \\
+      0
+    \end{bmatrix}\,\unit{N}$$ (\enquote{car receives from the road a contact force}).
+\item Supply of momentum $$\yG(t) =
+\begin{bmatrix}
+    0
+      \\
+      0
+      \\
+      -\num{17640}
+    \end{bmatrix}\,\unit{N}$$ (\enquote{gravitational body force}), constant in time.
+  \end{itemize}
+
+    Momentum obeys a balance law, so the quantities above are related by
+  \begin{equation*}
+    \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t \ .
+  \end{equation*}
+We can use it to find $\yP(\yti)$ if we have the other three terms. $\yP(\ytf)$ is known. The time-integrated flux and supply of momentum can be found by integration:
+\begin{equation*}
+      \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t =
+      \int_{\yti}^{\ytf}
+    \begin{bmatrix}
+      -\num{1800}\exp\bigl(-\frac{t}{\qty{20}{s}}\bigr)
+      \\
+      0
+      \\
+      \num{17640}
+    \end{bmatrix}\,\unit{N}\, \di t \ .
+  \end{equation*}
+  The time-integral of a vector is simply a vector of the integrals of the components. Let's calculate the integral of the $x$-component:
+%
+\marginpar{\vspace{0\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
+From calculus,\begin{multline*}
+      \int \exp(-t/a)\,\di t ={}\\
+      -a\,\exp(-t/a) + \text{const.}
+    \end{multline*}
+}%
+  \begin{multline*}
+      - \int_{\yti}^{\ytf}
+      \num{1800}\exp\Bigl(-\frac{t}{\qty{20}{s}}\Bigr)\,\unit{N}\, \di t
+      =
+      +\num{1800}\cdot \qty{20}{N\,s}\cdot
+      \exp\Bigl(-\frac{t}{\qty{20}{s}}\Bigr)
+      \Bigr\rvert_{\qty{0}{s}}^{\qty{30}{s}}
+      \\
+      \begin{aligned}
+        &=\num{1800}\cdot \qty{20}{N\,s}\cdot
+        \Bigl[
+        \exp\Bigl(-\frac{\qty{30}{s}}{\qty{20}{s}}\Bigr)
+        - \exp\Bigl(-\frac{\qty{0}{s}}{\qty{20}{s}}\Bigr)
+        \Bigr]
+        \\
+        & \approx \qty{36000}{N\,s}\cdot
+        (\num{0.223} - 1)
+        \\
+        &\approx -\qty{28000}{N\,s} \ .
+      \end{aligned}
+    \end{multline*}
+
+    The $y$-component is zero, so it's definite integral is zero too. For the $z$-component we do an analogous but much simpler integration:
+  \begin{equation*}
+      - \int_{\yti}^{\ytf}
+      \qty{17640}{N}\, \di t
+      =
+      \qty{17640}{N}\cdot (\qty{30}{s} - \qty{0}{s})
+      = \qty{529200}{N\,s} \ .
+    \end{equation*}
+
+    Putting all three integrals together we have
+\begin{equation*}
+      \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t =
+    \begin{bmatrix}
+      -\num{28000}
+      \\
+      0
+      \\
+      \num{529200}
+    \end{bmatrix}\,\unit{N\,s} \ .
+  \end{equation*}
+
+  The time-integrated supply is found in an analogous way; we have already calculated the relevant integral:
+\begin{equation*}
+      \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t =
+    \begin{bmatrix}
+      0
+      \\
+      0
+      \\
+      -\num{529200}
+    \end{bmatrix}\,\unit{N\,s} \ .
+  \end{equation*}
+
+  We can finally find the initial momentum content:
+  \begin{equation*}
+    \begin{split}
+      \yP(\yti) &= \yP(\ytf) - \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t
+      - \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t
+      \\&=
+      \begin{bmatrix}
+    1\\0\\0
+  \end{bmatrix}\,\unit{N\,s}
+  -
+      \begin{bmatrix}
+      -\num{28000}
+      \\
+      0
+      \\
+      \num{529200}
+    \end{bmatrix}\,\unit{N\,s}
+    -
+    \begin{bmatrix}
+      0
+      \\
+      0
+      \\
+      -\num{529200}
+    \end{bmatrix}\,\unit{N\,s}
+    \\&\approx
+          \begin{bmatrix}
+      \num{28000}
+      \\
+      0
+      \\
+      0
+    \end{bmatrix}\,\unit{N\,s} \ .
+  \end{split}
+\end{equation*}
 
 \end{enumerate}
 
