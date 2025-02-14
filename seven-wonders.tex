@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-13T21:31:13+0100
+%% Last-Updated: 2025-02-14T07:59:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4684,18 +4684,16 @@ Take the case of momentum, whose flux (force) we denote $\yF=[F_{x}, F_{y}, F_{z
 
 The idea of flux evokes the idea of movement, and therefore of \emph{velocity}. Is there a relationship between flux and velocity?
 
-The answer is yes: velocity is in fact essentially defined from a flux and a volume content. Consider for example how we measure the velocity of an object: we are actually keeping track of a flow of matter -- the matter that makes up the object -- from a region of space to another.
+The answer is yes: the velocity of a quantity is essentially defined its flux and its volume content. Consider for example how we measure the velocity of an object: we are actually keeping track of a flow of matter -- the matter that makes up the object -- from a region of space to another.
 
 The rigorous definition of velocity from flux is somewhat involved, so here we'll just see a simplified and approximate example of how this definition works.
 
 Take a scalar extensive quantity like matter, electric charge, \energym, or entropy. For concreteness let's take matter. Choose a coordinate system $(t,x,y,z)$ and consider a point in space at a specific coordinate time.
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/flux_velocity.pdf}
-% \\[\jot]\footnotesize\flushleftright%
-% {\color{mpcolor}A region with a negative amount of charge}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/flux_velocity.pdf}%
+\\[\jot]\flushleftright\color{mpcolor}This control volume is small, static, and with sides parallel to the coordinate axes.%
 }%
-Around this point, choose a very small cuboid region, as in the side figure, delimited by six small rectangular surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one. The cuboid has volume $V$, and the volume content of matter in it is $\yN$. The two $yz$ surfaces (one of them is in \textcolor{purple}{dark red} in the picture) have area $A$, approximately the same for both; and there is a flux of matter $\yJ_{x}$ crossing either of these two surfaces in the positive-$x$ direction. These two parallel surfaces have approximately the same area and the same flux because the cuboid region is very small.
+Around this point, choose a very small static cuboid region, as in the side figure, delimited by six small rectangular static surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one. The cuboid has volume $V$, and the volume content of matter in it is $\yN$. The two $yz$ surfaces (one of them is in \textcolor{purple}{dark red} in the picture) have area $A$, approximately the same for both; and there is a flux of matter $\yJ_{x}$ crossing either of these two surfaces in the positive-$x$ direction. These two parallel surfaces have approximately the same area and the same flux because the cuboid region is very small.
 
 The $x$-component of the coordinate velocity of matter in this region is then \emph{defined} as
 \begin{equation}
@@ -5899,8 +5897,7 @@ A very powerful characteristic of many constitutive relations is that they conne
 \subsection{Examples}
 \label{sec:example_constitutive}
 
-Let us briefly reveal some constitutive equations that have tacitly been used in examples of the previous sections. This is only an overview, because we shall study the constitutive relations below at length in the next chapters. All these constitutive relations are valid only in \enquote{Newtonian approximation}, that is, when speeds are much lower than the speed of light and gravitation is weak, as it is on Earth.
-
+Let us briefly reveal some constitutive equations that have tacitly been used in examples of the previous sections. This is only an overview; we shall study these constitutive relations at length in the next chapters. All these constitutive relations are valid only in \enquote{Newtonian approximation}, that is, when speeds are much lower than the speed of light; gravitation is weak, as it is on Earth; and any present electromagnetic fields are enough weak. Note how all relations are only valid for particular kinds of control volumes or surfaces.
 
 \begin{description}[itemsep=1em,wide]
 \item[Constitutive relation for \masse\ and matter.]
@@ -5910,23 +5907,23 @@ If a small control volume contains an amount of matter $\yN$, then it also conta
 \end{equation*}
 where $\yrho$, called \emph{molar mass}, is approximately a constant that depends on the kind of matter. This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
 
-\item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity} Take a small control volume containing an amount of matter $\yN$ moving with velocity $\yv$. Then this control volume also contains, to a very good approximation, an amount of momentum
+\item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity} One of the most used constitutive relations connects the amount of matter in a small control volume, or the flux of matter through its surface, with the amount of momentum in the volume. It can be stated in several ways. Here are two alternatives: the first valid for a \emph{moving} control volume, the second for a \emph{static} one.
+
+
+  First formulation. Take a small control volume moving with velocity $\yv$, with speed much smaller than light's. If this control volume contains an amount of matter $\yN$ and there's \emph{no flux} of matter through its surface, then it also contains, to a very good approximation, an amount of momentum
 \begin{equation*}
-  \yP = \ym\yv %\equiv \yrho\,\yN\,\yv
+  \yP = \ym\yv \ .%\equiv \yrho\,\yN\,\yv
 \end{equation*}
 %
 \marginpar{\vspace{-3\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
   Old textbooks take this formula as the \emph{definition} of momentum.}%
 
-If you recall that there's a \autoref{sec:fluxes_velocities}{connection between velocity and flux of matter}, which is valid for a small control volume of cubical shape:
+\vspace{-\baselineskip}
+Second formulation. Take a small \emph{static} cuboid control volume of cubical shape and sides parallel to the coordinate axes. The volume has size $V$ and each of its sides area $A$. If the fluxes of matter through the sides orthogonal to the three coordinates, in a positive direction, are $[J_{x}, J_{y}, J_{z}]$, then the control volume contains momentum
 \begin{equation*}
-  \yv = [J_{x}, J_{y}, J_{z}]\,\frac{V}{\yN\,A}
+  \yP = \yrho\,[J_{x}, J_{y}, J_{z}]\,\frac{V}{A}
 \end{equation*}
-then we see that the three relations above, taken together, connect volume content of momentum $\yP$ with the flux of matter $\yJ$ across three different surfaces:
-\begin{equation*}
-  \yP = \yrho\,[J_{x}, J_{y}, J_{z}]\,\frac{V}{A} \ .
-\end{equation*}
-
+again only if weak electromagnetic fields are present. This relation is connected to the one \autoref{sec:fluxes_velocities}{between velocity and the flux of matter}.
 
 
 \item[Constitutive relation for supply of momentum.]\label{sec:supply_momentum_gravity}
@@ -5964,17 +5961,17 @@ The expression for $\yg$ used at NASA for satellite and spacecraft motion (\cite
   The first term in this sum is called \emph{rest \energym} (a \autoref{sec:intro_energy}{huge amount}) of energy in ordinary situations), the second term $\yU$ is called \emph{internal energy}, the third is called \emph{kinetic energy}, the fourth \emph{gravitational potential energy}. The rest \masse\ $\ym$ and the internal energy $\yU$ depend on the amount of matter $\yN$.
 \end{description}
 
-\section{Summary of differences between main balance laws and constitutive relations}
+\section{Summary of differences between the seven balance laws and constitutive relations}
 \label{sec:diff_balance_constitutive}
 
-Let's summarize the most important typical differences between the balance laws for our seven primitive quantities on one side, and constitutive relations on the other side:
+Let's summarize the most important typical differences between the seven universal balance laws for our seven primitive quantities on one side, and constitutive relations on the other side:
 
 \bigskip
 
 \begin{center}\footnotesize
 \begin{tabular*}{\linewidth}[h]{@{\extracolsep{\fill}}>{\centering}p{0.45\linewidth}>{\centering}p{0.45\linewidth}@{\extracolsep{\fill}}p{0pt}}
 % \begin{tabularx}{\linewidth}[h]{w{c}{0.49\linewidth}w{c}{0.49\linewidth}}
-  \textbf{Balance law}
+  \textbf{Universal balance law}
   & \textbf{Constitutive relation}
   &\\[1ex]
   Seven
