@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-14T14:43:47+0100
+%% Last-Updated: 2025-02-14T18:50:06+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6113,6 +6113,120 @@ If you simply translate \enquote*{\emph{force exerted on\textellipsis}} and simi
 \textins{Kublai Khan:} \enquote{Or the question it asks you, forcing you to answer, like Thebes through the mouth of the Sphinx.}}{I. Calvino \cites*{calvino1972_t1979}}
 
 
+\section{General inference of physical quantities}
+\label{sec:general_inference}
+
+Whole books can be filled with discussion on how physical laws are used to get insight on physical phenomena; and vice versa, on how the exploration of physical phenomena can lead to new physical laws or modifications of existing ones. It can even lead to the invention of new mathematics to express new physical laws.
+% add about derivative and Newton, differential equations and Euler, differential geometry and Einstein.
+
+In this chapter we shall focus on how physical laws can be used to find information about physical situations, or predict the outcomes of an evolving physical situation. These tasks are at the heart of many technologies and are the starting point for the invention of new ones.
+
+\medskip
+
+In general terms, the use of physical laws is one of \emph{inference}: to find the values of some physical quantities, given known values of other quantities. Both the quantities that we know, and the one we want to find, may be of different kinds and may refer to several different locations and times. We may also have an \emph{infinite} number of quantities that we know, for example the values of the amount of matter $\yN(t)$ in a volume for \emph{all} times $t$ between \qty{0}{s} and \qty{3600}{s}. Or we may need to find  an infinite number of quantities, for instance the momentum $\yP(t)$ of a rocket for \emph{all} times $t$ between \qty{0}{s} and \qty{3600}{s}.
+
+\medskip
+
+The universal balance laws and constitutive equations can both be used for such purposes. We saw some \autoref{sec:example_balance_vect}{examples} in our introductory discussion about balance laws. For instance, given the initial momentum of a tennis ball, and the momentum influx and supply to it during a time lapse of \qty{2}{s}, we found its momentum at the end of the time lapse.
+
+Constitutive relations can also be used for inference. If we know the velocity $\yv$ of a small control volume, and the amount $\ym$ of rest \masse\ in it (all at a given coordinate time $t$), then we can find the momentum $\yP$ in the volume by means of the constitutive relation
+\begin{equation*}
+  \yP = \ym\yv \ .
+\end{equation*}
+Or we might know the rest \masse\ and the momentum, and need to find the velocity. This could also be done by means of the same constitutive relation:
+\begin{equation*}
+  \yv = \frac{\yP}{\ym} \ .
+\end{equation*}
+
+Note an important difference, though, between the example with the balance law and the one with the constitutive relation:
+%
+\begin{warning}[Necessity of validation of constitutive relations]
+  If we want to use a \emph{balance law} to draw a physical inference, we may use it in any kinds of circumstances.
+
+  \smallskip
+
+  If we want to use a \emph{constitutive relation} to draw a physical inference, we must first \textbf{make certain that it applies} to the specific phenomenon and control volumes and surfaces involved.
+\end{warning}
+%
+For instance, in the example above we would not be allowed to use the constitutive relation $\yP = \ym\yv$  if the speed involved were close to the speed of light; or if the control volume contained not matter but electromagnetic field; or if it were visibly deforming and therefore have an ambiguous velocity.
+
+\subsection{Use of multiple balances or constitutive relations}
+\label{sec:multiple_laws}
+
+We can obviously also combine different balance laws or constitutive relations to arrive at the desired information.
+
+\mynotew{To be completed. As examples, please see exercises 5.3 and 5.4 in the \furl{https://github.com/pglpm/7wonders/raw/master/seven-wonders-exercises.pdf}{exercise text}, checking the provided solutions if necessary.}
+
+\section{Prediction and forecast}
+\label{sec:prediction}
+
+The term \emph{prediction} has many related everyday meanings. Here we shall use it in the specific sense of \emph{finding physical information about a future time, given physical information at an earlier time or times}. Another and perhaps better term is \emph{forecast}.
+
+%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/perseverance_trajectory.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of the planet's and the probe's trajectories (image: \furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{NASA})%
+}%
+For example we may need to predict where on Mars a probe will land, 200 days from now, given its current launch position and velocity, and given trajectory corrections that will be performed later. Often these kinds of prediction are made in order to choose appropriate initial conditions that allow us to reach a desired final condition.
+
+When it comes to prediction we notice a critical difference between the universal balance laws and constitutive relations: \textbf{most constitutive relations, used alone, do not allow us to make predictions}. This is because most, if not all, of them connect quantities at the same coordinate time. We must therefore always use at least one or more balance laws whenever we want to make predictions.
+
+But we have also seen that balance laws only connect amounts of the same quantity at different times. Therefore if we need to predict the value of one quantity later, given the value of a different quantity now, we must perforce use both balance laws and constitutive relations. Each kind of law by itself would be useless for this kind of prediction.
+
+\medskip
+
+The combination of balance laws and constitutive relations can have amazing predictive capabilities. Let's see a simple but not too unrealistic example.
+
+Suppose in a control volume we have two substances called $\mathrm{u}$ and $\mathrm{v}$. Let's say that the control volume corresponds to a sealed container, so the fluxes $\yJ_{\mathrm{u}}$ and $\yJ_{\mathrm{v}}$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
+\begin{equation*}
+  \begin{aligned}
+    \frac{\di\yN_{\mathrm{u}}}{\di t} &= \ya_{\mathrm{u}}
+    &\qquad\text{or}\qquad
+    \yN_{\mathrm{u}}(\ytf) &= \yN_{\mathrm{u}}(\yti) +
+    \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{u}}\,\di t \ ,
+    \\
+    \frac{\di\yN_{\mathrm{v}}}{\di t} &= \ya_{\mathrm{v}}
+    &\qquad\text{or}\qquad
+    \yN_{\mathrm{v}}(\ytf) &= \yN_{\mathrm{v}}(\yti) +
+    \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{v}}\,\di t \ .
+  \end{aligned}
+\end{equation*}
+From the integral expression it is clear that if we know $\yN_{\mathrm{u}}(\yti)$ and we want to predict $\yN_{\mathrm{u}}(\ytf)$ at the later time, then we need to know how $\ya_{\mathrm{u}}(t)$ depends on time, for all times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $\mathrm{v}$ substance.
+
+Now suppose that in these specific physical conditions two constitutive relations are known to be valid:
+\begin{equation*}
+  \ya_{\mathrm{v}}(t) = \lambda \yN_{\mathrm{u}}(t) \ ,
+  \qquad
+  \ya_{\mathrm{u}}(t) = -\lambda \yN_{\mathrm{v}}(t) \ ,
+\end{equation*}
+for some positive physical constant $\lambda$. The first constitutive relation says that the supply of substance $\mathrm{v}$ is always proportional to the volume content of substance $\mathrm{u}$. The second relation says that the sink (negative supply) of substance $\mathrm{u}$ is always proportional to the volume content of substance $\mathrm{v}$. Intuitively, a large amount of $\mathrm{u}$ favours the production of $\mathrm{v}$, and a large amount of $\mathrm{v}$ disfavours the production of $\mathrm{u}$.
+
+Combine these two constitutive relations with the balance laws in their differential expression:
+\begin{equation*}
+    \begin{aligned}
+      \frac{\di\yN_{\mathrm{u}}}{\di t} &= \ya_{\mathrm{u}} = -\lambda\yN_{\mathrm{v}}
+      \qquad&
+      \frac{\di\yN_{\mathrm{v}}}{\di t} &= \ya_{\mathrm{v}} = \lambda\yN_{\mathrm{u}}
+  \end{aligned}
+\end{equation*}
+Finally, take $\yN_{\mathrm{v}}$ from the right side of first expression and substitute it in the derivative of the second; and vice versa for $\yN_{\mathrm{u}}$. We find these two equations with second derivatives:
+\begin{equation*}
+    \begin{aligned}
+      \frac{\di^{2}\yN_{\mathrm{u}}}{\di t^{2}} &=
+      -\lambda^{2}\frac{\di\yN_{\mathrm{u}}}{\di t}
+      \qquad&
+      \frac{\di^{2}\yN_{\mathrm{v}}}{\di t^{2}} &=
+      -\lambda^{2}\frac{\di\yN_{\mathrm{v}}}{\di t}
+  \end{aligned}
+\end{equation*}
+
+Something amazing has happened. It turns out that the equations above are only true if each of the respective amounts have this specific time dependence:
+\begin{equation*}
+  \yN = C\sin(\lambda t + \phi)
+\end{equation*}
+
+
 
 \section{Numerical time integration and simulations}
 \label{sec:numeric_simulation}
@@ -6134,12 +6248,6 @@ In the two examples above, the predictions are about a piece of information -- p
 
 In a more specific (and technically more correct) sense, we use \enquote*{prediction} to mean that we find out some piece of information occurring at a \emph{later} coordinate time, arriving at it from information occurring at \emph{earlier} coordinate times. Often this means that it would even be impossible to observe that piece of information, because it hasn't happened yet! In this case we can also use the less pretentious term \emph{forecast}.
 
-%
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/perseverance_trajectory.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of the planet's and the probe's trajectories (\furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{image: NASA})%
-}%
 \enquote*{Prediction} in this sense, or forecast, is extremely important in our technologies and in human activity in general. We often wish to forecast tomorrow's weather. In designing a bridge, we want to forecast whether it will be able to sustain certain loads. In order to send a probe to Mars, we need to predict where Mars will be, and what trajectory our probe will follow.
 
 \subsection{The special role of the universal balance laws, and finite-difference approximations}
