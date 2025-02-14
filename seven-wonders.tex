@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-14T07:59:36+0100
+%% Last-Updated: 2025-02-14T13:54:17+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5982,7 +5982,7 @@ Let's summarize the most important typical differences between the seven univers
   &\\[2ex]
   Valid for any control volume and surface
   & Often valid only for control volumes or surfaces of specific size, shape, location
-  &\\[7ex]
+  &\\[5ex]
   Connects contents, fluxes, supplies of the same quantity
   & Often connects contents, fluxes, supplies of different quantities
   &\\[5ex]
@@ -6002,6 +6002,93 @@ Let's summarize the most important typical differences between the seven univers
 \section{Newton's laws}
 \label{sec:newton_laws}
 
+Many books present, mainly out of tradition, a view of physical laws based on Newton's three axioms, or laws of motion, stated in his \emph{\langnohyph{Philosophi{\ae} naturalis principia mathematica}}. It is therefore convenient to get acquainted with their statements. In the present section we examine Newton's laws and discuss their limitations as a foundations of today's physical theories.
+
+The statements below are from the translation by Cajori \parencites{newton1687_t1974}; the original Latin, from the third edition of Newton's \emph{Principia} \parencites{newton1687_r1726}, is reported on the side. We must keep in mind that these statements are inextricably connected with the rest of definitions and reasoning given in the \emph{Principia}, and with the knowledge of the time in which they were written. This makes it difficult, or maybe even meaningless, to fully interpret them. See for instance the analysis by Smith \cites*{smith2007_r2024}.
+
+\subsection{First law}
+\marginpar{\vspace{0\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+  \emph{\langnohyph{LEX~I. Corpus omne perseverare in statu suo quiescendi vel movendi uniformiter in directum, nisi quatenus illud a viribus impressis cogitur statum suum mutare.}}}
+%
+\emph{LAW~I. Every body continues in its state of rest, or of uniform motion in a right line, unless it is compelled to change that state by forces impressed upon it.}
+
+This is usually called the \enquote*{law of inertia}, and it was accepted already sometime before Newton. Today this law is often viewed as a consequence of the second law below, together with Newton's definition of momentum: if there are no forces, then there is no change in \enquote*{motion}, and if \enquote*{motion} is mass times velocity, then the velocity is constant, in magnitude and direction. But there are also differing views, which see it as an independent statement about the properties of space or of absolute motion, or about the differences between \enquote{real} and \enquote{fictitious} forces.
+
+From a 21st-century point of view, centred on the relativity of motion to coordinate systems and frames, these debates about the first law lose some of their physical importance.
+
+
+\subsection{Second law}
+\marginpar{\vspace{0\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+  \emph{\langnohyph{LEX~II. Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secundum lineam rectam qua vis illa imprimitur.}}}
+%
+\emph{LAW~II. The change of motion is proportional to the motive force impressed; and is made in the direction of the right line in which that force is impressed.}
+
+This law will be further discussed in \chap~\ref{cha:bal_momentum}. It is sometimes mathematically reported as \enquote*{$\bm{F} = m \bm{a}$}, but Newton never wrote this formula, which moreover may not fully represent the second law.
+
+With some liberty we may interpret this law as the balance of momentum, but with two important warnings.
+
+First, as far as I know, Newton did not make any distinction between surface forces and volume forces. The absence of this important distinction caused some difficulties in applying Newton's laws to bodies capable of deformation, like fluids. These difficulties were solved when the Bernoullis and especially Euler in the 1700s introduced more clearly the concept of control surface and surface force, eventually developed in full generality by Cauchy in the 1800s. Modern mechanical engineering and fluid mechanics would have been impossible without this conceptual distinction.
+%
+\marginpar{\vspace{-6\baselineskip}\centering%
+\includegraphics[width=0.75\linewidth]{images/euler_surface.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Imaginary surface $EIiF$ in a fluid, conceived by Euler to describe pressure.
+% to introduce the concept of internal pressure.
+From \cites{euler1752_r1761}.
+}%
+
+
+Second, in the \emph{Principia} Newton defines \enquote*{quantity of motion} as \enquote{arising from the velocity and quantity of matter conjointly}, that is, as \enquote*{$m\bm{v}$}, so in this context the second law is specific to matter. But we know today that the exact expression for matter is different, and that electromagnetic fields have momentum as well.
+
+
+\subsection{Third law}
+\marginpar{\vspace{0\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\emph{\langnohyph{LEX~III. Actioni contrariam semper \amp\ {\ae}qualem esse reactionem\,: sive corporum duorum actiones in se mutuo semper esse {\ae}quales \amp\ in partes contrarias dirigi.}}}
+%
+\emph{LAW~III. To every action there is always opposed an equal reaction: or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.}
+
+This is usually called the law of \emph{action and reaction}.
+% \mynotew{add brief discussion about this later:} Newton meant it to be valid for \enquote{real} forces as opposed to \enquote{apparent} forces.
+We already mentioned that \autoref{sec:newton_3rd}{this law can be viewed as the principle of symmetry of flux for momentum}. Therefore an analogous law is true for the fluxes of all other quantities, not only of momentum.
+
+This law is only valid for momentum \emph{flux}, that is, for \emph{surface} forces. For volume forces it is generally not true, or true only in special approximations and coordinate choices.
+
+%
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\includegraphics[scale=0.43]{images/actionreaction2.jpg}%
+\\[4ex]%
+\includegraphics[scale=0.43]{images/actionreaction1.jpg}%
+}%
+In 1900s literature there was a discussion on whether the third law could allow pairs of \emph{volume} forces on two bodies as in the top side figure: equal and opposite but with a direction that doesn't necessarily align with a line connecting the two bodies. Or whether the third law would only allow for a direction as depicted in the bottom side figure.
+
+Today we know that this discussion is somewhat pointless: as already said, the third law is in generally not true for supplies of momentum. Moreover in a curved spacetime it becomes unclear what a \enquote*{line} connecting two bodies is. For \emph{surface} forces -- momentum flux -- this situation doesn't arise, because the flux concerns the surface as a whole, so there is no \enquote{application point}.
+
+\subsection{Further limitations}
+
+Besides the shortcomings mentioned in the comments above, there are further limitations that make Newton's laws insufficient today as a general basis to understand physical phenomena.
+
+One basic limitation is that they do not cover all balances necessary to describe most mechanical phenomena. The balances of angular momentum and of energy are separate laws, \emph{independent} of Newton's laws. The need for a separate balance of angular momentum was definitively recognized again by the Bernoullis and Euler in the 1600--1700s. The recognition of the balance of energy as a separate law led to modern thermomechanics. General relativity later showed that a further set of three balance equations must be taken into account in considering relativistic mechanical phenomena. So Newton's laws account for three out of ten universal equations necessary in mechanics.
+
+The other obvious limitation is that Newton's laws are about \enquote*{bodies}, that is, \emph{matter}. The idea of an electromagnetic field was unknown to Newton and until the 1800s. The combination of mechanical and electromagnetic phenomena leads to conceptual difficulties with Newton's laws. For instance, if a charged body experiences an electromagnetic force or \enquote*{action}, then \emph{what} is experiencing the \enquote*{reaction}?
+
+Another unfortunate limitation, not of Newton's laws per se but of the way they are often presented, is their mathematical vagueness. You can find Newton's second law variously written as
+\begin{equation*}
+  \bm{F}=m\bm{a}\,,
+  \quad
+  \frac{\di m\bm{v}}{\di t} = \bm{F}\,,
+\quad
+  \frac{m\\,di\bm{v}}{\di t} = \bm{F}\,,
+\quad
+  \frac{\di\bm{P}}{\di t} = \bm{F}\,,
+\quad
+\frac{\de \rho\bm{v}}{\de t} = -\nabla\cdot\bm{T} + \rho \bm{g}\,,
+% \rho\biggl(\frac{\de\bm{v}}{\de t} +\bm{v}\cdot\nabla\bm{v}\biggr)
+\end{equation*}
+and other variations, some of which are more general than others. The reason of this variety is that equations like the ones above come from the combinations of one law -- the balance of momentum -- with different constitutive relations.
+
+\medskip
+
+If you simply translate \enquote*{\emph{force exerted on\textellipsis}} and similar expressions to \enquote*{\emph{influx into\textellipsis}} or \enquote*{\emph{supply into\textellipsis}}, paying attention on whether they're surface or volume forces, then you'll be able to frame any physical problems in terms of control volumes, control surfaces, and balances.
 
 
 \printpagenotes*
