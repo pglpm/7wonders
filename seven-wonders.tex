@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-14T18:50:06+0100
+%% Last-Updated: 2025-02-15T11:32:51+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6170,11 +6170,11 @@ Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance 
 }%
 For example we may need to predict where on Mars a probe will land, 200 days from now, given its current launch position and velocity, and given trajectory corrections that will be performed later. Often these kinds of prediction are made in order to choose appropriate initial conditions that allow us to reach a desired final condition.
 
-When it comes to prediction we notice a critical difference between the universal balance laws and constitutive relations: \textbf{most constitutive relations, used alone, do not allow us to make predictions}. This is because most, if not all, of them connect quantities at the same coordinate time. We must therefore always use at least one or more balance laws whenever we want to make predictions.
+When it comes to prediction we notice a critical difference between the universal balance laws and constitutive relations: \emph{most constitutive relations, used alone, do not allow us to make predictions}. This is because most, if not all, of them connect quantities at the same coordinate time. We must therefore always use at least one or more balance laws whenever we want to make predictions.
 
-But we have also seen that balance laws only connect amounts of the same quantity at different times. Therefore if we need to predict the value of one quantity later, given the value of a different quantity now, we must perforce use both balance laws and constitutive relations. Each kind of law by itself would be useless for this kind of prediction.
+But we have also seen that balance laws only connect amounts of the same quantity at different times. Therefore \emph{if we need to predict the value of one quantity later, given the value of a different quantity now, we must perforce use both balance laws and constitutive relations}. Each kind of law by itself would be useless for this kind of prediction.
 
-\medskip
+\subsection{Example}
 
 The combination of balance laws and constitutive relations can have amazing predictive capabilities. Let's see a simple but not too unrealistic example.
 
@@ -6203,13 +6203,13 @@ Now suppose that in these specific physical conditions two constitutive relation
 for some positive physical constant $\lambda$. The first constitutive relation says that the supply of substance $\mathrm{v}$ is always proportional to the volume content of substance $\mathrm{u}$. The second relation says that the sink (negative supply) of substance $\mathrm{u}$ is always proportional to the volume content of substance $\mathrm{v}$. Intuitively, a large amount of $\mathrm{u}$ favours the production of $\mathrm{v}$, and a large amount of $\mathrm{v}$ disfavours the production of $\mathrm{u}$.
 
 Combine these two constitutive relations with the balance laws in their differential expression:
-\begin{equation*}
+\begin{equation}\label{eq:1storder_uv}
     \begin{aligned}
       \frac{\di\yN_{\mathrm{u}}}{\di t} &= \ya_{\mathrm{u}} = -\lambda\yN_{\mathrm{v}}
       \qquad&
       \frac{\di\yN_{\mathrm{v}}}{\di t} &= \ya_{\mathrm{v}} = \lambda\yN_{\mathrm{u}}
   \end{aligned}
-\end{equation*}
+\end{equation}
 Finally, take $\yN_{\mathrm{v}}$ from the right side of first expression and substitute it in the derivative of the second; and vice versa for $\yN_{\mathrm{u}}$. We find these two equations with second derivatives:
 \begin{equation*}
     \begin{aligned}
@@ -6221,12 +6221,54 @@ Finally, take $\yN_{\mathrm{v}}$ from the right side of first expression and sub
   \end{aligned}
 \end{equation*}
 
-Something amazing has happened. It turns out that the equations above are only true if each of the respective amounts have this specific time dependence:
-\begin{equation*}
-  \yN = C\sin(\lambda t + \phi)
-\end{equation*}
+Something amazing now happens. It turns out that the the first equation above is only true if $\yN_{\mathrm{u}}$ has this specific time dependence:
+\begin{equation}\label{eq:solution_Nu}
+  \yN_{\mathrm{u}} = C\cos(\lambda t) + D\sin(\lambda t)
+\end{equation}
+where $C$, $D$ are two constants. Combining this expression with \eqn~\eqref{eq:1storder_uv} we eventually find
+\begin{equation}\label{eq:solution_N_A}
+  \begin{aligned}
+    \yN_{\mathrm{u}}(t) &= C\cos(\lambda t) + D\sin(\lambda t) \ ,
+    &\quad
+    \ya_{\mathrm{u}} &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \ ,
+    \\
+    \yN_{\mathrm{v}}(t) &= -D\cos(\lambda t) + C\sin(\lambda t) \ ,
+    &\quad
+    \ya_{\mathrm{v}} &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \ .
+  \end{aligned}
+\end{equation}
+The two constants $C$, $D$ can be found if we know $\yN_{\mathrm{u}}(\yti)$ and $\yN_{\mathrm{v}}(\yti)$ at the initial time $\yti$.
+
+\medskip
+
+Let's summarize what all this means. If we know:
+\begin{itemize}[nosep]
+\item that $\yN_{\mathrm{u}}$, $\yN_{\mathrm{v}}$ satisfy balance laws
+\item that the fluxes are zero
+\item that the constitutive relations $\ya_{\mathrm{v}}(t) = \lambda \yN_{\mathrm{u}}(t)$, $\ya_{\mathrm{u}}(t) = -\lambda \yN_{\mathrm{v}}(t)$ apply
+\item the $\yN_{\mathrm{u}}(\yti)$, $\yN_{\mathrm{v}}(\yti)$ at time $\yti$
+\end{itemize}
+then we know the values of the volume contents and of the supplies \emph{at all times}, or at least all times at which the conditions above are true.
 
 
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Prove the final solution~\eqref{eq:solution_N_A} by substituting the expression~\eqref{eq:solution_Nu} in the equations~\eqref{eq:1storder_uv} and completing the steps.
+  \item Find the concrete numerical expression of the solution~\eqref{eq:solution_N_A} in the case where
+    \begin{equation*}
+      \lambda = \qty{6.283}{s^{-1}} \ ,
+      \qquad
+      \yti = \qty{0}{s}\ :
+      \quad
+      \yN_{\mathrm{u}}(\yti) = \qty{2}{mol} \ ,
+      \quad
+      \yN_{\mathrm{v}}(\yti) = \qty{3}{mol}
+    \end{equation*}
+  and plot $\yN_{\mathrm{u}}(t)$ against time $t$ between $t=\qty{0}{s}$ and $t=\qty{5}{s}$.
+\item Try to explain the time behaviour of $\yN_{\mathrm{u}}(t)$, from the intuitive explanation of the constitutive relation given in the example above.
+\item Is there any generation of antimatter in this example?
+  \end{enumerate}
+\end{exercise}
 
 \section{Numerical time integration and simulations}
 \label{sec:numeric_simulation}
