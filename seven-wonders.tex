@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-15T14:20:05+0100
+%% Last-Updated: 2025-02-15T16:00:10+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -586,7 +586,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
   \renewcommand*{\chapterheadstart}{\vspace*{40pt}}
   \renewcommand*{\afterchapternum}{\par\nobreak\vskip -34pt}
    % \renewcommand*{\chapnamefont}{\normalfont\LARGE\flushright}
-   \renewcommand*{\chapnumfont}{\normalfont\HUGE}
+   \renewcommand*{\chapnumfont}{\normalfont\HUGE\color{midgrey}}
 \renewcommand*{\chaptitlefont}{\normalfont\huge\sffamily\bfseries}
    % \renewcommand*{\chaptitlefont}{\normalfont\HUGE\bfseries\flushright}
 \renewcommand*{\printchaptername}{}%
@@ -602,7 +602,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
        \hspace{1em}%
        \resizebox{!}{\beforechapskip}{\chapnumfont \thechapter}%
        \hspace{1em}%
-       \rule{\midchapskip}{\beforechapskip}%
+       \color{midgrey}\rule{\midchapskip}{\beforechapskip}%
      }%
    }%
    \renewcommand*{\printchapternonum}{%
@@ -1145,7 +1145,13 @@ angle-right%
 % {\setlength{\rightskip}{-\marginparsep}\addtolength{\rightskip}{-\marginparwidth}}{\par}
 
 
-\usepackage[print-unity-mantissa=true,retain-explicit-plus,quantity-product=\:]{siunitx}
+\usepackage[%
+print-unity-mantissa=true,%
+parse-units=false,%
+%exponent-product=\cdot,%
+%quantity-product=\:,%
+retain-explicit-plus,%
+]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
 \usepackage{listings}
@@ -6229,7 +6235,7 @@ which is a set of uncoupled \furl{https://mathworld.wolfram.com/Second-OrderOrdi
 \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/BZ_reaction.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-The \furl{https://ccl.northwestern.edu/netlogo/models/B-ZReaction}{Belousov-Zhabotinsky reaction} (above) and the \furl{https://chemistrytalk.org/briggs-rauscher-reaction}{Briggs-Rauscher reaction} are two kinds of real oscillating chemical reactions that present the main features of our simplified example. See also the videos and interactive applets in the links above (image: \furl{https://www.rit.edu/spotlights/chemical-waves-belousov-zhabotinsky-bz-reaction}{Rochester Institute of Technology}).%
+The \furl{https://ccl.northwestern.edu/netlogo/models/B-ZReaction}{Belousov-Zhabotinsky reaction} (above) and the \furl{https://chemistrytalk.org/briggs-rauscher-reaction}{Briggs-Rauscher reaction} are two kinds of real oscillating chemical reactions that have the main features of our simplified example; see the videos and interactive applets in the links above (image: \furl{https://www.rit.edu/spotlights/chemical-waves-belousov-zhabotinsky-bz-reaction}{Rochester Institute of Technology}).%
 }%
 Something amazing has actually happened. It turns out that the differential equations above are satisfied if $\yN_{\mathrm{u}}$ has this specific time dependence:
 \begin{equation}\label{eq:solution_Nu}
@@ -7047,13 +7053,14 @@ that is, if the area through which the flux occur decreases, then the velocity o
 %  \end{enumerate}
 % }{W. K. Clifford \cites*{clifford1876}}
 
-\epigraph{\centering\langnohyph{LEX~II.\\
+\epigraph{\language=0
+\langnohyph{LEX~II.\\
 Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secundum lineam rectam qua vis illa imprimitur.}}{I. Newton \cites*{newton1687}}
 
 \marginpar{\vspace{-5\baselineskip}\footnotesize\raggedright\color{mpcolor}%
 % \enquote{\emph{\langnohyph{LEX~II.
 % Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secundum lineam rectam qua vis illa imprimitur.}}}%
-\enquote{\emph{LAW~II. The change of motion is proportional to the motive force impressed; and is made in the direction of the right line in which that force is impressed.}}%
+\emph{LAW~II. The change of motion is proportional to the motive force impressed; and is made in the direction of the right line in which that force is impressed.}%
 %\\\sourceatright{\cites{newton1687}}\par %\cites{newton1687_t1974}
 }%
 
