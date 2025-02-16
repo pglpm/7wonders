@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-15T16:00:10+0100
+%% Last-Updated: 2025-02-16T19:18:05+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5786,8 +5786,8 @@ If you want to learn more about differential forms, take a look at the books by 
   \centering
     \begin{equation*}
       \begin{aligned}[t]
-        &&&\hspace{1em}\text{\footnotesize\color{grey}integral form}
-        &&\hspace{-1em}\text{\footnotesize\color{grey}differential form}
+        &&&\hspace{1em}\text{\footnotesize\color{grey}integral expression}
+        &&\hspace{-1em}\text{\footnotesize\color{grey}differential expression}
         \\[2\jot]
       \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  +\int_{\yti}^{\ytf}\!\!\ya(t)\,\di t
       &\quad
@@ -6207,7 +6207,7 @@ Now suppose that in these specific physical conditions two constitutive relation
   \qquad
   \ya_{\mathrm{u}}(t) = -\lambda \yN_{\mathrm{v}}(t) \,,
 \end{equation*}
-for some positive physical constant $\lambda$. The first constitutive relation says that the supply of substance $\mathrm{v}$ is always proportional to the volume content of substance $\mathrm{u}$. The second relation says that the sink (negative supply) of substance $\mathrm{u}$ is always proportional to the volume content of substance $\mathrm{v}$. Intuitively, a large amount of $\mathrm{u}$ favours the production of $\mathrm{v}$, and a large amount of $\mathrm{v}$ disfavours the production of $\mathrm{u}$.
+for some positive physical constant $\lambda$. These constitutive relations express chemical reactions. The first constitutive relation says that the supply of substance $\mathrm{v}$ is always proportional to the volume content of substance $\mathrm{u}$. The second relation says that the sink (negative supply) of substance $\mathrm{u}$ is always proportional to the volume content of substance $\mathrm{v}$. Intuitively, a large amount of $\mathrm{u}$ favours the production of $\mathrm{v}$, and a large amount of $\mathrm{v}$ disfavours the production of $\mathrm{u}$.
 
 Combine these two constitutive relations with the balance laws in their differential expression: take each $\ya$ and replace its expression in the balance laws, so that all $\ya$s disappear (we're omitting the time argument, for brevity):
 \begin{equation}\label{eq:1storder_uv}
@@ -6292,56 +6292,44 @@ then we can predict the values of the volume contents and of the supplies \emph{
 
 % \epigraph{A theory is a mathematical model for an aspect of nature. One good theory extracts and exaggerates some facets of the truth. Another good theory may idealize other facets. A theory cannot duplicate nature, for if it did so in all respects, it would be isomorphic to nature itself and hence useless, a mere repetition of all the complexity which nature presents to us, that very complexity we frame theories to penetrate and set aside.}{C.\,A. Truesdell, III \cites*{truesdelletal1980}}
 
-\subsection{Prediction and forecast}
-\label{sec:forecast}
+The example with the imaginary chemical reaction of the previous section shows the powerful predictive powers that can be achieved by combining balance laws and constitutive relations. In that example we were able to find the whole time-dependence of the contents and production rates of the two substances, and to express this time dependence with an \emph{analytical formula}.
 
-We have mentioned \enquote*{prediction} several times in the present notes: predicting the value of a quantity, predicting a physical behaviour, and so on. What do we mean by \enquote*{prediction}, more exactly? This word is used in mainly two ways in physics; one more general and the other more specific.
+An analytical formula is a combination of \furl{https://mathworld.wolfram.com/ElementaryFunction.html}{elementary functions}, like \enquote*{$\cos$} and \enquote*{$\sin$}, and sometimes also of some \furl{https://mathworld.wolfram.com/SpecialFunction.html}{special functions}, in which we can plug the time $t$ and read out the result almost immediately, with the help of a calculator. Having an analytical formula is extremely useful, because it often allows us to immediately grasp important properties of the physical phenomenon. For instance, if a volume content is given by $\yN(t) = C \cos(\lambda t)$, then we automatically know that its values can only change between $-C$ and $C$, owing to the properties of the cosine function.
 
-In the general sense, \enquote*{predicting} something means managing to find out some piece of information, not by direct observation or measurement, but somehow arriving at it from other information available. For example we can predict that there's a person in a particular room because the light in that room is on, and is never on when it's empty. So we know there's a person there, not because we have taken a look inside and seen the person, but thanks to other information.
+Unfortunately, however, the \emph{vast majority} of combinations of balance laws and constitutive relations lead to time-dependencies that \emph{cannot be expressed by analytical formulae}. In these cases we can't simply plug in the time $t$ and quickly calculate what the result is. We must instead resort to \textbf{numerical time integration}, a computation that in some situations can be very time- and energy-consuming. It is often also called \textbf{simulation}, because it essentially reproduces, step by step, the evolution of the physical phenomenon.
 
-As a more physical example, we may be able to predict that the pressure inside a bike tyre has a particular value, just from knowing the volume of the tyre, the amount of air in it, and the air's temperature -- but without directly measuring the pressure with a manometer. Another example is what you did in Exercise~\ref{ex:clocks}-~\ref{item:gps_clock}: you predicted the time lapse of a GPS satellite's clock, by using the time lapse of your own clock and the laws of General Relativity.
+Numerical time integration is essential for present-day engineering and physical applications and research. But it also offers a point of view from which we can see quite clearly the roles that diverse physical laws have in physical phenomena; thus it has pedagogical value. In the next sections we shall study its basics.
 
-In the two examples above, the predictions are about a piece of information -- pressure, time lapse -- that occurs at the same time as the information we have. (We are speaking about \emph{coordinate} time; recall that \autoref{sec:time}{it doesn't make sense to say that two events occur at the same \emph{physical} time}, unless they occur at the same place.)
 
-\medskip
-
-In a more specific (and technically more correct) sense, we use \enquote*{prediction} to mean that we find out some piece of information occurring at a \emph{later} coordinate time, arriving at it from information occurring at \emph{earlier} coordinate times. Often this means that it would even be impossible to observe that piece of information, because it hasn't happened yet! In this case we can also use the less pretentious term \emph{forecast}.
-
-\enquote*{Prediction} in this sense, or forecast, is extremely important in our technologies and in human activity in general. We often wish to forecast tomorrow's weather. In designing a bridge, we want to forecast whether it will be able to sustain certain loads. In order to send a probe to Mars, we need to predict where Mars will be, and what trajectory our probe will follow.
-
-\subsection{The special role of the universal balance laws, and finite-difference approximations}
+\subsection{Finite-difference approximation}
 \label{sec:forecast_balances}
 
-When we look at physics from the point of view of prediction, we realize the very special position and role of the universal balance laws. They state that a budget holds among several quantities, and these quantities \emph{refer to different times}. With enough information about some quantities at some earlier times, they therefore determine the values of some quantities at later times.
-
-We shall now discuss the basics of how the universal balances can be applied, together with constitutive relations, to make concrete numerical predictions in actual physical situations.
-
-\medskip
-
-
-Recall again the integral and differential forms of a balance law. In the following discussion we shall use the symbols for energy, but the reasoning is valid for any other quantity:
+Recall again the integral and differential expressions of a balance law. In the following discussion we shall use the symbols for energy, but the reasoning is valid for any other quantity:
 \begin{equation*}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   % \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
 \end{equation*}
-If $\yR=0$, then this is a conservation law.
+This is a conservation law if $\yR(t)=0$ in all circumstances.
 
-From either of these forms we can find an approximate mathematical expression to make predictions about a short instant of time ahead. Let's see how this is done from the integral form.
+From either of these expressions we can find an approximate mathematical procedure to make predictions about a short instant of time ahead. Let's see how to do this from the integral expression.
 
 Suppose that the lapse of time $\Dt$ between $\yti$ and $\ytf$,
 \begin{equation*}
   \Dt = \ytf - \yti
 \end{equation*}
-is extremely short. So short that the flux $\yH(t)$ and the supply $\yR(t)$ don't change appreciably during this time lapse, and we can take them as approximately constant in time:
+is extremely short. So short that the flux $\yH(t)$ and the supply $\yR(t)$ don't change appreciably during this time lapse. We can take their values as approximately constant in time, equal to their initial values:
 \begin{equation*}
   \yH(t) \approx \yH(\yti) \qquad
-  \yR(t) \approx \yR(\yti) \qquad\text{for all $t$ between $\yti$ and $\ytf$}
+  \yR(t) \approx \yR(\yti) \qquad\text{for all $t$ between $\yti$ and $\ytf$} \ .
 \end{equation*}
-(if they do change appreciably, then we consider an even shorter $\Dt$). If they are practically constant, then their integrals become
-\marginpar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+If they do change appreciably, then we take an even shorter $\Dt$.
+
+Since they are approximately constant, their integrals can also be approximated as follows:
+%
+\marginpar{\vspace{2\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
 Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\,\di x = \text{const}\cdot(b-a)$$%
 }%
 \begin{equation*}
@@ -6354,52 +6342,55 @@ Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\,\di x = \text{const}\cdot(
     \yR(\yti)\,(\ytf-\yti) = \yR(\yti)\,\Dt
   \end{aligned}
 \end{equation*}
-And finally, considering that $\ytf = \yti + \Dt$, the balance law in integral form can be written approximately as
+
+Now let's replace these approximations in the balance law, also taking $\ytf = \yti + \Dt$. We find:
 \begin{equation*}
   \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\,\di t}} + \underbracket[0pt]{\yR(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}}
 \end{equation*}
-Factoring $\Dt$ we obtain:
+Factoring $\Dt$, and replacing the symbol \enquote*{$\yti$} with \enquote*{$t$} (since we don't need to distinguish initial and final time), we obtain:
 \begin{definition}{Finite-difference approximation,label={def:finitedifference}}
   \begin{equation}\label{eq:finite_diff}
-    \yE(\yti+\Dt)  \approx \yE(\yti) + [\yH(\yti) + \yR(\yti)]\,\Dt
+    \yE(t+\Dt)  \approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
   \end{equation}
-  called a \textbf{finite-difference approximation}.
+  is a \textbf{finite-difference approximation} of a balance law.
 \end{definition}
-This equation says that if we know the value of the volume content $\yE$, the influx $\yH$, and the supply $\yR$ (which is zero for a conservation law) at time $\yti$, then we can predict the value of the volume content a short time later, $\yE(\yti+\Dt)$.
+This formula says that if we know the value of the volume content $\yE(t)$, the total influx $\yH(t)$, and the total supply $\yR(t)$ at time $\yti$, then we can \emph{approximately} predict the value of the volume content $\yE(\yti+\Dt)$ a short lapse $\Dt$ later. This basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}.
 
-For example, suppose that the total amount of energy in a given control volume at time\enskip$\yti=\qty{20}{s}$\enskip is\enskip$\yE(\yti)=\qty{500}{J}$\,.\enskip At that same time there's a net influx of\enskip$\yH(\yti)= \qty{-30}{J/s}$\enskip into the control volume, and the supply is zero,\enskip$\yR(\yti)=\qty{0}{J/s}$\,.\enskip The amount of energy in the control volume \qty{0.01}{s} later, that is, at time\enskip$\yti+\Dt = \qty{20}{s} + \qty{0.01}{s} = \qty{20.01}{s}$\,,\enskip is then approximately
+\subsection{Example}
+
+Suppose that the total amount of energy in a given control volume at time\enskip$t=\qty{20}{s}$\enskip is\enskip$\yE(t)=\qty{500}{J}$\,.\enskip At that same time there's a net influx of\enskip$\yH(t)= \qty{-30}{J/s}$\,,\enskip and the supply is zero,\enskip$\yR(t)=\qty{0}{J/s}$\,.
+
+Then the amount of energy in the control volume \qty{0.01}{s} later, at time\enskip$t+\Dt = \qty{20}{s} + \qty{0.01}{s} = \qty{20.01}{s}$\,,\enskip is approximately
 \begin{equation*}
   \begin{split}
-    \yE(\qty{20.01}{s}) &\approx \yE(\yti) + [\yH(\yti) + \yR(\yti)]\,\Dt
+    \yE(t + \Dt) &\approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
     \\
-    &\approx \yE(\qty{20}{s}) + [\yH(\qty{20}{s}) +
-    \yR(\qty{20}{s})]\cdot\qty{0.01}{s}
+    \yE(\qty{20.01}{s}) &\approx \yE(\qty{20}{s})
+    + [\yH(\qty{20}{s}) + \yR(\qty{20}{s})]\cdot\qty{0.01}{s}
     \\
     &\approx \qty{500}{J} + [\qty{-30}{J/s} + \qty{0}{J/s}]\cdot\qty{0.01}{s}
     \\
     &\approx \qty{499.7}{J} \,.
   \end{split}
 \end{equation*}
-This basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}.
 
-\begin{warning}[A control-surface sequence is understood]
-  As you recall from the \autoref{eq:conserved}{definition of a conservation or balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must either be clearly stated, or be understood from the context. If this sequence is not specified, the volume contents and fluxes above don't have any clear meaning.
-\end{warning}
+% \begin{warning}[A control-surface sequence is understood]
+%   As you recall from the \autoref{eq:conserved}{definition of a conservation or balance law}, we must have chosen a \emph{sequence of closed control surfaces}. How this sequence is chosen must either be clearly stated, or be understood from the context. If this sequence is not specified, the volume contents and fluxes above don't have any clear meaning.
+% \end{warning}
 
-Keep in mind that the finite-difference approximation~\eqref{eq:finite_diff} that we derived is not the only possible one. They key step in our derivation was the approximation of the integrals appearing in the integral form of the balance law. Other approximation approaches are possible, and they lead to finite-difference approximations of slightly different forms. Entire books are devoted to these approximation schemes, and if you'll work in some physics or engineering fields you'll learn several of them in more detail. Some of these alternative forms lead much better approximations and numerical predictions; but they are more complicated and therefore we don't discuss them here.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item At time\enskip$t=\qty{0}{s}$\enskip the amount of oxygen in a control volume is \qty{0}{mol}, and at that instant there is an influx of \qty{8}{mol/s}. Assume that oxygen satisfies a conservation law, and calculate its amount in the control volume at time\enskip$t'=\qty{0.01}{s}$\,.
 
-  \item Try to obtain the finite-difference approximation starting from the differential form of the balance law instead:
+  \item Try to obtain the finite-difference approximation starting from the differential expression of the balance law instead:
     \begin{equation*}
-      \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
+      \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t) \ .
     \end{equation*}
-Use the fact that the derivative at a given time $\yti$ can be approximately calculated as
+Use the fact that the derivative at a time $t$ can be approximately calculated as
     \begin{equation*}
-      \frac{\di\yE(\yti)}{\di t} \approx
-      \frac{\yE(\yti+\Dt) - \yE(\yti)}{\Dt} \ .
+      \frac{\di\yE(t)}{\di t} \approx
+      \frac{\yE(t+\Dt) - \yE(t)}{\Dt} \ .
     \end{equation*}
   \end{enumerate}
 \end{exercise}
@@ -6407,24 +6398,30 @@ Use the fact that the derivative at a given time $\yti$ can be approximately cal
 \subsection{Vector quantities}
 \label{sec:timestep_vector}
 
-The finite-difference approximation is also valid for the balance law of a vector quantity like momentum. We only have to remember that we have three equations -- one per vector component -- instead of one:
+The finite-difference approximation is also valid for the balance law of a vector quantity like momentum. We only have to remember that a vector equation is a collection of three equations, one per vector component:
 \begin{equation}\label{eq:finite_diff_vect}
   \begin{gathered}
-    \yP(\yti+\Dt)  \approx \yP(\yti) + [\yF(\yti) + \yG(\yti)]\,\Dt
+    \yP(t+\Dt)  \approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
     \\[2\jot]
 \mathclap{\text{or}\qquad}    \left\{\   \begin{aligned}
-        P_{x}(\yti+\Dt)  &\approx P_{x}(\yti) + [F_{x}(\yti) + G_{x}(\yti)]\,\Dt\\
-        P_{y}(\yti+\Dt)  &\approx P_{y}(\yti) + [F_{y}(\yti) + G_{y}(\yti)]\,\Dt\\
-        P_{z}(\yti+\Dt)  &\approx P_{z}(\yti) + [F_{z}(\yti) + G_{z}(\yti)]\,\Dt
+        P_{x}(t+\Dt)  &\approx P_{x}(t) + [F_{x}(t) + G_{x}(t)]\,\Dt\\
+        P_{y}(t+\Dt)  &\approx P_{y}(t) + [F_{y}(t) + G_{y}(t)]\,\Dt\\
+        P_{z}(t+\Dt)  &\approx P_{z}(t) + [F_{z}(t) + G_{z}(t)]\,\Dt
       \end{aligned}\right.
   \end{gathered}
 \end{equation}
 
+%
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/tennisball.jpg}
+}%
 \begin{exercise}[label={ex:tennisball}]
   \begin{enumerate}[exerc]
-  \item Let's follow the flight of a tennis ball by choosing a sequence of closed control surfaces, with corresponding control volumes, that tightly wrap it.
+  \item Let's follow the flight of a tennis ball by choosing a control volume coinciding with the ball, as we did in previous similar examples.
 
-    At time\enskip$\yti=\qty{0}{s}$\enskip the amount of momentum and the supply of momentum in the tennis ball are
+    \smallskip
+
+    At time $\yti=\qty{0}{s}$ the amount of momentum and the supply of momentum in the tennis ball are
     \begin{equation*}
       \yP(\yti) =
       \begin{bmatrix}
@@ -6434,26 +6431,20 @@ The finite-difference approximation is also valid for the balance law of a vecto
       \yG(\yti) =
       \begin{bmatrix}
         0\\0\\-0.579
-      \end{bmatrix}\,\unit{N}
+      \end{bmatrix}\,\unit{N} \ .
     \end{equation*}
-    and the influx of momentum is zero. Calculate the momentum within the control volume\enskip$\qty{0.01}{s}$\enskip later.
+    The total influx of momentum is zero. Calculate the momentum within the control volume $\qty{0.01}{s}$ later.
 
-  \item The tennis ball has a \masse\enskip$\ym = \qty{0.059}{kg}$\,.\enskip Assume the \autoref{item:momentum_mass_velocity}{constitutive relation for momentum}:
+  \item The tennis ball has a \masse\ $\ym = \qty{0.059}{kg}$. Assume the \autoref{item:momentum_mass_velocity}{constitutive relation for momentum}:
     \begin{equation*}
       \yP = \ym\,\yv
     \end{equation*}
-    What was the velocity of the tennis ball at time $\yti$? How much is it \enskip$\qty{0.01}{s}$\enskip later?
+    What was the velocity of the tennis ball at time $\yti$? How much is it $\qty{0.01}{s}$ later?
   \end{enumerate}
 \end{exercise}
-\marginpar{\vspace{-15\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/tennisball.jpg}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
 
-\medskip
 
-\subsection{Iterating: numerical time integration and boundary conditions}
+\section{Iteration and the special role of balance laws}
 \label{sec:timestep_iterate}
 
 The evolution equation~\eqref{eq:finite_diff} can be used iteratively: once we have the volume content $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
@@ -6494,10 +6485,14 @@ The evolution equation~\eqref{eq:finite_diff} can be used iteratively: once we h
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/momentum_timestep2.png}
 \\[2\jot]\footnotesize\flushleftright\color{mpcolor}%
-\furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage} iterating an evolution equation for momentum%
+\furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage} iterating an evolution equation for momentum.%
 }%
 \begin{definition}{Numerical time integration}
-  The numerical calculation of a quantity at successive time steps, with algorithms similar to the one illustrated above, is called \textbf{numerical time integration}, often simply shortened to \emph{integration}.
+  The numerical calculation of one or more quantities at successive time steps, with algorithms similar to that illustrated above, is called \textbf{numerical time integration}, often simply shortened to \emph{integration}.
+
+  \smallskip
+
+  In some circumstances this procedure is also called \textbf{simulation}, especially when we visually follow, for instance by means of graphs or animated pictures, the time evolution of some of the quantities.
 \end{definition}
 
 \subsection{Boundary conditions and constitutive equations}
@@ -6685,6 +6680,10 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
 \subsection{Applicability of numerical time integration}
 \label{sec:applicable_numericintegration}
 
+Keep in mind that the finite-difference approximation~\eqref{eq:finite_diff} that we derived is not the only possible one. They key step in our derivation was the approximation of the integrals appearing in the integral expression of the balance law. Other approximation approaches are possible, and they lead to finite-difference approximations of slightly different forms. Entire books are devoted to these approximation schemes, and if you'll work in some physics or engineering fields you'll learn several of them in more detail. Some of these alternative forms lead much better approximations and numerical predictions; but they are more complicated and therefore we don't discuss them here.
+
+
+
 We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timestepped_evolution} and~\eqref{eq:timestep_momentum_position}, focusing on momentum and position. But obviously this procedure can be applied to any quantities that satisfy balance laws.% : it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
 
 The time-stepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors. See for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
@@ -6713,7 +6712,7 @@ For the moment, here is an example script, written in \furl{https://octave.org/}
 \chapter{Conservation \amp\ balance of matter}
 \label{cha:cons_matter}
 
-\epigraph{It is shown that the inertia of energy does not obviate the necessity for assuming the conservation of matter. \emph{Matter} is to be interpreted as number of molecules, therefore, and not as inertia.}{C. Eckart \cites*{eckart1940c}}
+\epigraph{\textins*{T}he inertia of energy does not obviate the necessity for assuming the conservation of matter. \emph{Matter} is to be interpreted as number of molecules, therefore, and not as inertia.}{C. Eckart \cites*{eckart1940c}}
 
 \section{Formulation and generalities}
 \label{sec:cons_matter_formulation}
@@ -6726,10 +6725,10 @@ For the moment, here is an example script, written in \furl{https://octave.org/}
     \underbracket[0pt]{\yN(\ytf) =
       \yN(\yti) +
       \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  +
-      \int_{\yti}^{\ytf}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \int_{\yti}^{\ytf}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yN(t)}{\di t} = \yJ(t) +
-        \ya(t)}_{\mathclap{\text{\color{grey}differential form}}}
+        \ya(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
   The supply $\ya$ is usually called \textbf{activity}, and $\ya(t)\equiv 0$ in case of conservation.
 \end{definition}
@@ -7001,10 +7000,10 @@ that is, if the area through which the flux occur decreases, then the velocity o
     \label{eq:cons_charge}
     \underbracket[0pt]{\yC(\ytf) =
       \yC(\yti) +
-      \int_{\yti}^{\ytf}\!\!\yI(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \int_{\yti}^{\ytf}\!\!\yI(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yC(t)}{\di t} =
-        \yI(t)}_{\mathclap{\text{\color{grey}differential form}}}
+        \yI(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -7027,10 +7026,10 @@ that is, if the area through which the flux occur decreases, then the velocity o
     \label{eq:cons_magneticflux}
     \underbracket[0pt]{\yBf(\ytf) =
       \yBf(\yti) +
-      \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yBf(t)}{\di t} =
-        \yEv(t)}_{\mathclap{\text{\color{grey}differential form}}}
+        \yEv(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -7072,9 +7071,9 @@ Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secund
 
   \begin{equation}
     \label{eq:bal_momentum}
-      \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
-      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -7524,7 +7523,7 @@ has a constant \emph{supply} of momentum, proportional to the \masse\ it contain
 \end{equation*}
 Then \emph{what can the momentum fluxes across different parts of the control surface be?}
 
-A straightforward application of momentum balance in differential form tells us that the \emph{net} \textbf{in}flux of momentum must be
+A straightforward application of momentum balance in differential expression tells us that the \emph{net} \textbf{in}flux of momentum must be
 \begin{equation*}
   \begin{split}
     \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-2}]\,\unit{N}}
@@ -8671,10 +8670,10 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
 
   \begin{equation}
     \label{eq:bal_energy}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -9213,7 +9212,7 @@ The constitutive equations for the energy of a rigid body take on a peculiar for
 \item \textbf{kinetic \amp\ potential gravitational energy can only change through mechanical power}
 \end{itemize}
 
-Let's express these conditions mathematically. Consider a control volume containing all or part of a rigid body, and over which the velocity $\yv$ is the same in different sub-volumes, even if it can change with time. The mass and internal energy contained in the control volume are $\ym$ and $\yU$, the total momentum influx and heat flux across the closed control surface are $\yF$ and $\yQ$. Use a vertical coordinate $z$. Then, in integral form:
+Let's express these conditions mathematically. Consider a control volume containing all or part of a rigid body, and over which the velocity $\yv$ is the same in different sub-volumes, even if it can change with time. The mass and internal energy contained in the control volume are $\ym$ and $\yU$, the total momentum influx and heat flux across the closed control surface are $\yF$ and $\yQ$. Use a vertical coordinate $z$. Then, in integral expression:
 \begin{subequations}
   \label{eq:rigid_body_energy_int}
   \begin{gather}
@@ -9225,7 +9224,7 @@ Let's express these conditions mathematically. Consider a control volume contain
     \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
   \end{gather}
 \end{subequations}
-or equivalently in differential form:
+or equivalently in differential expression:
 \begin{subequations}
 \label{eq:rigid_body_energy_diff}
   \begin{gather}
@@ -9901,10 +9900,10 @@ This makes sense from a molecular point of view: roughly speaking, the kinetic e
 
   \begin{equation}
     \label{eq:bal_ang_momentum}
-      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yM(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yM(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yto(t) + \yM(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yto(t) + \yM(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -10127,10 +10126,10 @@ I hold in fact
 
   \begin{equation}
     \label{eq:bal_entropy}
-      \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t}_{\mathclap{\text{\color{grey}integral form}}}
+      \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yS(t)}{\di t} \ge \yB(t)}_{\mathclap{\text{\color{grey}differential form}}}
+      \underbracket[0pt]{\frac{\di\yS(t)}{\di t} \ge \yB(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -10833,7 +10832,7 @@ These notes state several times that the mathematical form of the equation for b
   \label{eq:balance_post}
   \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
 \end{equation}
-or its integral form, is also valid in General Relativity. I would like to give a brief explanation, if not a proof, of this fact for those who are not familiar with General Relativity.
+or its integral expression, is also valid in General Relativity. I would like to give a brief explanation, if not a proof, of this fact for those who are not familiar with General Relativity.
 
 %% Mention densities
 
