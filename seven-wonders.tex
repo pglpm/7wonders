@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-16T19:18:05+0100
+%% Last-Updated: 2025-02-16T22:51:54+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6444,10 +6444,10 @@ The finite-difference approximation is also valid for the balance law of a vecto
 \end{exercise}
 
 
-\section{Iteration and the special role of balance laws}
+\section{Iteration: the special role of balance laws}
 \label{sec:timestep_iterate}
 
-The evolution equation~\eqref{eq:finite_diff} can be used iteratively: once we have the volume content $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
+The finite-difference approximation~\eqref{eq:finite_diff} can be used iteratively: once we have the volume content $\yE(t+\Dt)$ at time $t+\Dt$, we can use it to find the value at a slightly later time $t+\Dt+\Dt$, and so on:
 \begin{equation}\label{eq:timestepped_evolution}
   % \begin{aligned}
   %   \mathcolor{blue}{\yE(t+\Dt)} &
@@ -6484,9 +6484,12 @@ The evolution equation~\eqref{eq:finite_diff} can be used iteratively: once we h
 \end{tikzpicture}
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/momentum_timestep2.png}
-\\[2\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[2\jot]\flushleftright\color{mpcolor}%
 \furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage} iterating an evolution equation for momentum.%
 }%
+And an analogous iteration could be used for a vector quantity such as momentum.
+
+This iteration is what we more precisely mean by \enquote*{numerical time integration}:
 \begin{definition}{Numerical time integration}
   The numerical calculation of one or more quantities at successive time steps, with algorithms similar to that illustrated above, is called \textbf{numerical time integration}, often simply shortened to \emph{integration}.
 
@@ -6495,65 +6498,92 @@ The evolution equation~\eqref{eq:finite_diff} can be used iteratively: once we h
   In some circumstances this procedure is also called \textbf{simulation}, especially when we visually follow, for instance by means of graphs or animated pictures, the time evolution of some of the quantities.
 \end{definition}
 
-\subsection{Boundary conditions and constitutive equations}
+\medskip
+
+It is apparent that each of the lines in the iteration~\eqref{eq:timestepped_evolution} above is an just application of the balance law in its approximate form, at each time step. This is again a consequence of the fact that balance laws relate different times. The iterative expression above makes it even clearer that \emph{balance laws are the physical laws that \enquote*{drive} physical systems forward in time}.
+
+\begin{exercise}[label={ex:script1}]
+  Try to write a script, in your preferred programming language, that implements the time-stepped evolution algorithm~\eqref{eq:timestepped_evolution} and evolves the energy content $\yE$ in a control volume.
+
+  \smallskip
+  
+  Assume:
+    \begin{itemize}[nosep]
+    \item the initial time is $\yti = \qty{0}{s}$,
+    \item the energy content at the initial time is $\yE(\yti) = \qty{3.0}{J}$,
+    \item the energy influx is constant in time: $\yH(t) = \qty{0.5}{J/s}$,
+    \item the energy supply is zero: $\yR = \qty{0}{J/s}$
+    \item total duration of simulation is \qty{300}{s}
+    \item timestep is $\Dt={0.1}{s}$
+    \end{itemize}
+    The script should output the energy content at the final time.
+\end{exercise}
+
+\section{Iteration: the role of constitutive equations and boundary conditions}
 \label{sec:boundary_conds}
 
-In order to perform the numerical time integration above, we need to know the new values of influx $\yH$ and supply $\yR$ at all subsequent time steps. These values are \emph{not} given by the evolution equation~\eqref{eq:finite_diff}.
+In order to perform the numerical time integration~\eqref{eq:timestepped_evolution}, we need to know the new values of influx $\yH$ and supply $\yR$ at the initial time and at \emph{all} subsequent time steps. The finite-difference equation updates only the volume content $\yE$, not the influx or the supply.
 
-In fact, the evolution equation from a balance or conservation law always gives us the \emph{volume content} at a new time. So it would seem that we have no ways to predict a \emph{flux} or a \emph{supply}. Where do we get these from? There are two possibilities:
-\begin{itemize}[para]
-\item They are simply assigned at every time step. This may be possible because they are known, measured, or controlled.
-  \begin{definition}{Boundary conditions, label={def:boundary_condition}}
-    The quantities that we need to specify \emph{at each time} for the prediction or simulation of a physical phenomenon are called \textbf{boundary conditions}, and their values \emph{boundary values}.
-  \end{definition}
-
-  For example, for isolated moving objects such as the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or negligible when moving through air; and the constant value of the momentum supply (the gravitational force) is also known. They are both given as boundary conditions for that specific problem.
-
-\item They can be calculated, by means of \emph{constitutive relations}, from the values of volume contents of other quantities, which are in turn predicted with an evolution equation.
-
-  An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \ym\yv$, briefly discussed previously. It relates the \emph{flux} of matter (\autoref{sec:fluxes_velocities}{which determines the velocity $\yv$}) to the \emph{volume content} of momentum. We shall discuss this relationship more clearly in \sect~\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
+From where can we get the values of influx and supply at later times? There are two possibilities:
+\begin{itemize}
+\item They are calculated, from the volume contents of physical quantities which are in turn predicted by means of numerical time integration.
+\item They are acquired at every time step.
 \end{itemize}
 
-\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/tennisball.jpg}
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
-% There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
-}%
-\begin{exercise}[label={ex:tennisball2}]
-  In Exercise~\ref{ex:tennisball} you calculated the evolution of the tennis ball's momentum -- all its three components -- for one timestep of \qty{0.01}{s}.
+\medskip
 
+The first possibility can be achieved by means of \emph{constitutive relations}, which, as we know well by now, relate contents, fluxes, supplies of different physical quantities at the same time instant.
+
+An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \ym\yv$, briefly discussed previously. It relates the \emph{flux} of matter to the \emph{volume content} of momentum. We shall discuss this relationship more clearly in \sect~\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
+
+
+\medskip
+
+The second possibility occurs when we actually \emph{control} the influxes or supplies; or when we \emph{monitor} them; or when we simply know them in advance out of acquaintance with previous instances of the same phenomenon.
+
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/control_room.jpg}
+\\[\jot]\flushleftright\color{mpcolor}%
+Old power-grid control room in Frøland, Norway (image: \furl{https://digitaltmuseum.no/nvim}{Kraftmuseet}).%
+}%
+For example, in a reaction chamber we may control the influx and efflux of different substances through valves and similar devices. In a power grid control centre the effluxes of electric charge and energy -- the power demand -- are continuously monitored. In the case of the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or negligible when moving through air.
+
+The set of values known for all future times thanks to control, monitoring, or early knowledge has a special name:
+\begin{definition}{Boundary conditions, label={def:boundary_condition}}
+  The quantities that are set or known in advance \emph{at every time} for the prediction or simulation of a physical phenomenon are called \textbf{boundary conditions}, and their values \emph{boundary values}. Boundary conditions are typically fluxes or supplies.
+\end{definition}
+
+\medskip
+
+\begin{exercise}[label={ex:script2}]
   \begin{enumerate}[exerc]
-  \item Write a script, in your preferred programming language, that implements the time-stepped evolution algorithm~\eqref{eq:timestepped_evolution} and evolves all three components of momentum. Assume:
+  \item Modify your script from Exercise~\ref{ex:script1}, now assuming that the energy influx depends on time as follows:
+    \begin{equation*}
+      \yH(t) = C \exp[-2\sin(\lambda t)]
+      \qquad\text{with}\quad
+      C = \qty{10}{J/s}\quad \lambda = \qty{0.157}{s^{-1}} \ .
+    \end{equation*}
+
+
+  \item Try to add to your script the possibility of plotting the energy content $\yE$ as it evolves in time.
+
+    \medskip
+
+  \item In Exercise~\ref{ex:tennisball} you calculated the evolution of the tennis ball's momentum -- all its three components -- for one timestep of \qty{0.01}{s}. Try to write a script that implements the time-stepped evolution algorithm~\eqref{eq:timestepped_evolution} and evolves all three components of the tennis ball's momentum. Assume:
     \begin{itemize}[nosep]
+    \item the initial time is $\yti = \qty{0}{s}$,
+    \item the momentum at the initial time is $\yP(\yti) = [3,0,3]\,\unit{N\,s}$,
+    \item the momentum influx is zero at all times,
+    \item the momentum supply is constant in time: $\yG=[0,0,\num{-0.579}]\,\unit{N}$,
     \item total duration of simulation is \qty{2}{s}
     \item timestep is $\Dt={0.01}{s}$
-    \item momentum at initial time $\yti=\qty{0}{s}$ is $\yP(\yti) = [3,0,3]\,\unit{N\,s}$
-    \item momentum influx is zero at all times
-    \item  momentum supply is $\yG=[0,0,\num{-0.579}]\,\unit{N}$ at all times
     \end{itemize}
-    The script should output the values of the three momentum components of the tennis ball at all times; plot each of them against time.
 
-    \smallskip
-
-  \item Recall the constitutive relation $\yP=\ym\yv$ for the tennis ball, with $\ym = \qty{0.059}{kg}$. Use the results of your script to plot the three components of the velocity $\yv$ against time.
-
-    \smallskip
-
-  \item Make your script more general: it should initially ask for (or require as arguments, if implemented as a function):
-    \begin{itemize}[nosep]
-    \item the desired total simulation time
-    \item the timestep $\Dt$ to be used in the algorithm
-    \item the initial momentum $\yP(\yti)$
-    \item the mass $\ym$ of the tennis ball (or other flying object)
-    \end{itemize}
-    and then use the constant momentum supply
-    \begin{equation*}
-      \yG = \ym\cdot [0,0,-9.81]\,\unit{N/kg}
-    \end{equation*}
+    Try to plot the values of the three momentum components of the tennis ball against time.
   \end{enumerate}
 \end{exercise}
 
-\subsection{Numerical time integration of position}
+\section{Numerical time integration of position}
 \label{sec:position_integration}
 
 In many applications we are interested in how the position $\yr$ of a small object, or of a small part of an object, or of a small volume or surface, changes in time. The numerical time integration that we have discussed for the volume contents of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
@@ -6622,7 +6652,7 @@ Keep in mind that these are vector equations, so each one corresponds to three c
 
 For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
 
-\subsection{Numerical time integration of position: example}
+\subsection{Example}
 \label{sec:example_falling_object_timestep}
 
 Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward. The other two coordinates have constant values. Assume these conditions:
@@ -6669,15 +6699,19 @@ Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integ
 \end{equation*}
 
 \begin{exercise}[label={ex:tennisball3}]
-  Modify the script you made for part \textbf{1.} of Exercise~\ref{ex:tennisball2}, so that it also evolves the position $\yr(t)$ of the tennis ball.
+  Modify the script you made for part \textbf{3.} of Exercise~\ref{ex:script2}, so that it also evolves the position $\yr(t)$ of the tennis ball. Use the constitutive relation $\yP=\ym\yv$ for the tennis ball, with $\ym = \qty{0.059}{kg}$.
+
+  \smallskip
 
   Redo the numerical simulation you did for that exercise, with the same numerical parameters, and with an initial position for the tennis ball $\yr(\yti) = [0,0,2]\,\unit{m}$.
+
+  \smallskip
 
   Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the plots in the margin.
 \end{exercise}
 
 
-\subsection{Applicability of numerical time integration}
+\section{Applicability of numerical time integration}
 \label{sec:applicable_numericintegration}
 
 Keep in mind that the finite-difference approximation~\eqref{eq:finite_diff} that we derived is not the only possible one. They key step in our derivation was the approximation of the integrals appearing in the integral expression of the balance law. Other approximation approaches are possible, and they lead to finite-difference approximations of slightly different forms. Entire books are devoted to these approximation schemes, and if you'll work in some physics or engineering fields you'll learn several of them in more detail. Some of these alternative forms lead much better approximations and numerical predictions; but they are more complicated and therefore we don't discuss them here.
@@ -6690,7 +6724,7 @@ The time-stepping scheme discussed in the previous sections is very crude and qu
 
 Yet, the simple time-stepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
 
-\subsection{Example script for numerical time integration}
+\section{Example script for numerical time integration}
 \label{sec:tennisball_script}
 
 We shall come back to numerical time integration in a later chapter, and will approach the problem of writing a simulation script in a more systematic way.
