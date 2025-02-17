@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-16T22:51:54+0100
+%% Last-Updated: 2025-02-18T00:06:32+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1056,6 +1056,12 @@ angle-right%
 \newcommand*{\yj}{\bm{j}}
 \newcommand*{\ya}{\varAlpha}
 \newcommand*{\yrho}{\rho}
+\newcommand*{\yNu}{\yN_{\text{u}}}
+\newcommand*{\yNv}{\yN_{\text{v}}}
+\newcommand*{\yJu}{\yJ_{\text{u}}}
+\newcommand*{\yJv}{\yJ_{\text{v}}}
+\newcommand*{\yau}{\ya_{\text{u}}}
+\newcommand*{\yav}{\ya_{\text{v}}}
 
 %% energy
 \newcommand*{\ym}{m}% m, and q_m for mass flow
@@ -4699,7 +4705,7 @@ Take a scalar extensive quantity like matter, electric charge, \energym, or entr
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/flux_velocity.pdf}%
 \\[\jot]\flushleftright\color{mpcolor}This control volume is small, static, and with sides parallel to the coordinate axes.%
 }%
-Around this point, choose a very small static cuboid region, as in the side figure, delimited by six small rectangular static surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one. The cuboid has volume $V$, and the volume content of matter in it is $\yN$. The two $yz$ surfaces (one of them is in \textcolor{purple}{dark red} in the picture) have area $A$, approximately the same for both; and there is a flux of matter $\yJ_{x}$ crossing either of these two surfaces in the positive-$x$ direction. These two parallel surfaces have approximately the same area and the same flux because the cuboid region is very small.
+Around this point, choose a very small \emph{static} cuboid region, as in the side figure, delimited by six small rectangular \emph{static} surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one. The cuboid has volume $V$, and the volume content of matter in it is $\yN$. The two $yz$ surfaces (one of them is in \textcolor{purple}{dark red} in the picture) have area $A$, approximately the same for both; and there is a flux of matter $\yJ_{x}$ crossing either of these two surfaces in the positive-$x$ direction. These two parallel surfaces have approximately the same area and the same flux because the cuboid region is very small.
 
 The $x$-component of the coordinate velocity of matter in this region is then \emph{defined} as
 \begin{equation}
@@ -6181,50 +6187,50 @@ When it comes to prediction we notice a critical difference between the universa
 
 But we have also seen that balance laws only connect amounts of the same quantity at different times. Therefore \emph{if we need to predict the value of one quantity later, given the value of a different quantity now, we must perforce use both balance laws and constitutive relations}. Each kind of law by itself would be useless for this kind of prediction.
 
-\subsection{Example}
+\subsection{Example: oscillating reaction}
 
 The combination of balance laws and constitutive relations can have amazing predictive capabilities. Let's see a simple but not too unrealistic example.
 
-Suppose in a control volume we have two substances called $\mathrm{u}$ and $\mathrm{v}$. Let's say that the control volume corresponds to a sealed container, so the net influxes $\yJ_{\mathrm{u}}$ and $\yJ_{\mathrm{v}}$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
+Suppose in a control volume we have two substances called $\mathrm{u}$ and $\mathrm{v}$. Let's say that the control volume corresponds to a sealed container, so the net influxes $\yJu$ and $\yJv$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yN_{\mathrm{u}}(t)}{\di t} &= \ya_{\mathrm{u}}(t)
+    \frac{\di\yNu(t)}{\di t} &= \yau(t)
     &\qquad\text{or}\qquad
-    \yN_{\mathrm{u}}(\ytf) &= \yN_{\mathrm{u}}(\yti) +
-    \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{u}}(t)\,\di t \,,
+    \yNu(\ytf) &= \yNu(\yti) +
+    \int_{\yti}^{\ytf}\!\!\yau(t)\,\di t \,,
     \\
-    \frac{\di\yN_{\mathrm{v}}(t)}{\di t} &= \ya_{\mathrm{v}}(t)
+    \frac{\di\yNv(t)}{\di t} &= \yav(t)
     &\qquad\text{or}\qquad
-    \yN_{\mathrm{v}}(\ytf) &= \yN_{\mathrm{v}}(\yti) +
-    \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{v}}(t)\,\di t \,.
+    \yNv(\ytf) &= \yNv(\yti) +
+    \int_{\yti}^{\ytf}\!\!\yav(t)\,\di t \,.
   \end{aligned}
 \end{equation*}
-From the integral expression it is clear that if we know $\yN_{\mathrm{u}}(\yti)$ and we want to predict $\yN_{\mathrm{u}}(\ytf)$ at the later time, then we need to know how $\ya_{\mathrm{u}}(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $\mathrm{v}$ substance.
+From the integral expression it is clear that if we know $\yNu(\yti)$ and we want to predict $\yNu(\ytf)$ at the later time, then we need to know how $\yau(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $\mathrm{v}$ substance.
 
 Now suppose that in these specific physical conditions two constitutive relations are known to be valid:
 \begin{equation*}
-  \ya_{\mathrm{v}}(t) = \lambda \yN_{\mathrm{u}}(t) \,,
+  \yav(t) = \lambda \yNu(t) \,,
   \qquad
-  \ya_{\mathrm{u}}(t) = -\lambda \yN_{\mathrm{v}}(t) \,,
+  \yau(t) = -\lambda \yNv(t) \,,
 \end{equation*}
 for some positive physical constant $\lambda$. These constitutive relations express chemical reactions. The first constitutive relation says that the supply of substance $\mathrm{v}$ is always proportional to the volume content of substance $\mathrm{u}$. The second relation says that the sink (negative supply) of substance $\mathrm{u}$ is always proportional to the volume content of substance $\mathrm{v}$. Intuitively, a large amount of $\mathrm{u}$ favours the production of $\mathrm{v}$, and a large amount of $\mathrm{v}$ disfavours the production of $\mathrm{u}$.
 
 Combine these two constitutive relations with the balance laws in their differential expression: take each $\ya$ and replace its expression in the balance laws, so that all $\ya$s disappear (we're omitting the time argument, for brevity):
 \begin{equation}\label{eq:1storder_uv}
     \begin{aligned}
-      \frac{\di\yN_{\mathrm{u}}}{\di t} &= -\lambda\yN_{\mathrm{v}} \,.
+      \frac{\di\yNu}{\di t} &= -\lambda\yNv \,.
       \qquad&
-      \frac{\di\yN_{\mathrm{v}}}{\di t} &= \lambda\yN_{\mathrm{u}} \,.
+      \frac{\di\yNv}{\di t} &= \lambda\yNu \,.
   \end{aligned}
 \end{equation}
-This is called a \emph{system of coupled, \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order ordinary differential equations}}. It is \enquote*{coupled} because each equation contains both $\yN_{\mathrm{u}(t)}$ and $\yN_{\mathrm{v}}(t)$. We can also substitute $\yN_{\mathrm{u}(t)}$ from the second equation into the derivative of the first, and vice versa. We find
+This is called a \emph{system of coupled, \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order ordinary differential equations}}. It is \enquote*{coupled} because each equation contains both $\yN_{\mathrm{u}(t)}$ and $\yNv(t)$. We can also substitute $\yN_{\mathrm{u}(t)}$ from the second equation into the derivative of the first, and vice versa. We find
 \begin{equation*}
     \begin{aligned}
-      \frac{\di^{2}\yN_{\mathrm{u}}}{\di t^{2}} &=
-      -\lambda^{2}\frac{\di\yN_{\mathrm{u}}}{\di t} \,,
+      \frac{\di^{2}\yNu}{\di t^{2}} &=
+      -\lambda^{2}\frac{\di\yNu}{\di t} \,,
       \qquad&
-      \frac{\di^{2}\yN_{\mathrm{v}}}{\di t^{2}} &=
-      -\lambda^{2}\frac{\di\yN_{\mathrm{v}}}{\di t} \,,
+      \frac{\di^{2}\yNv}{\di t^{2}} &=
+      -\lambda^{2}\frac{\di\yNv}{\di t} \,,
   \end{aligned}
 \end{equation*}
 which is a set of uncoupled \furl{https://mathworld.wolfram.com/Second-OrderOrdinaryDifferentialEquation.html}{second-order ordinary differential equations}. Each one is the equation for \furl{https://mathworld.wolfram.com/SimpleHarmonicMotion.html}{simple harmonic motion}.
@@ -6237,39 +6243,39 @@ which is a set of uncoupled \furl{https://mathworld.wolfram.com/Second-OrderOrdi
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 The \furl{https://ccl.northwestern.edu/netlogo/models/B-ZReaction}{Belousov-Zhabotinsky reaction} (above) and the \furl{https://chemistrytalk.org/briggs-rauscher-reaction}{Briggs-Rauscher reaction} are two kinds of real oscillating chemical reactions that have the main features of our simplified example; see the videos and interactive applets in the links above (image: \furl{https://www.rit.edu/spotlights/chemical-waves-belousov-zhabotinsky-bz-reaction}{Rochester Institute of Technology}).%
 }%
-Something amazing has actually happened. It turns out that the differential equations above are satisfied if $\yN_{\mathrm{u}}$ has this specific time dependence:
+Something amazing has actually happened. It turns out that the differential equations above are satisfied if $\yNu$ has this specific time dependence:
 \begin{equation}\label{eq:solution_Nu}
-  \yN_{\mathrm{u}}(t) = C\cos(\lambda t) + D\sin(\lambda t)
+  \yNu(t) = C\cos(\lambda t) + D\sin(\lambda t)
 \end{equation}
 where $C$, $D$ are two constants. If we substitute this expression in the system~\eqref{eq:1storder_uv}, and thereafter in the constitutive relations, we finally find
 \begin{equation}\label{eq:solution_N_A}
   \begin{aligned}
-    \yN_{\mathrm{u}}(t) &= C\cos(\lambda t) + D\sin(\lambda t) \,,
+    \yNu(t) &= C\cos(\lambda t) + D\sin(\lambda t) \,,
     &\quad
-    \ya_{\mathrm{u}} &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \,,
+    \yau &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \,,
     \\
-    \yN_{\mathrm{v}}(t) &= -D\cos(\lambda t) + C\sin(\lambda t) \,,
+    \yNv(t) &= -D\cos(\lambda t) + C\sin(\lambda t) \,,
     &\quad
-    \ya_{\mathrm{v}} &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \,.
+    \yav &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \,.
   \end{aligned}
 \end{equation}
-The two constants $C$, $D$ can be found if we know $\yN_{\mathrm{u}}(\yti)$ and $\yN_{\mathrm{v}}(\yti)$ at the initial time $\yti$.
+The two constants $C$, $D$ can be found if we know $\yNu(\yti)$ and $\yNv(\yti)$ at the initial time $\yti$.
 
 \medskip
 
 Let's summarize what all this means. If we know:
 \begin{itemize}
-\item that $\yN_{\mathrm{u}}$ and $\yN_{\mathrm{v}}$ satisfy balance laws,
+\item that $\yNu$ and $\yNv$ satisfy balance laws,
 \item that the net influxes are zero,
-\item that the constitutive relations $\ya_{\mathrm{v}} = \lambda \yN_{\mathrm{u}}$ and $\ya_{\mathrm{u}} = -\lambda \yN_{\mathrm{v}}$ are valid,
-\item the values $\yN_{\mathrm{u}}(\yti)$, $\yN_{\mathrm{v}}(\yti)$ at time $\yti$,
+\item that the constitutive relations $\yav = \lambda \yNu$ and $\yau = -\lambda \yNv$ are valid,
+\item the values $\yNu(\yti)$, $\yNv(\yti)$ at time $\yti$,
 \end{itemize}
 then we can predict the values of the volume contents and of the supplies \emph{at all times}, or at least all times at which the conditions above are true!
 
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item Find the final solutions~\eqref{eq:solution_N_A}, by substituting the expression~\eqref{eq:solution_Nu} in the equations~\eqref{eq:1storder_uv} to find $\yN_{\mathrm{v}}(t)$, and then finding the supplies $\ya$ from the constitutive relations.
+  \item Find the final solutions~\eqref{eq:solution_N_A}, by substituting the expression~\eqref{eq:solution_Nu} in the equations~\eqref{eq:1storder_uv} to find $\yNv(t)$, and then finding the supplies $\ya$ from the constitutive relations.
 \item What are physical dimensions of $\lambda$?
 \item Find the concrete numerical expression of the solution~\eqref{eq:solution_N_A} in the case where
     \begin{equation*}
@@ -6277,12 +6283,12 @@ then we can predict the values of the volume contents and of the supplies \emph{
       \qquad
       \yti = \qty{0}{s}\,,
       \quad
-      \yN_{\mathrm{u}}(\yti) = \qty{2}{mol} \,,
+      \yNu(\yti) = \qty{2}{mol} \,,
       \quad
-      \yN_{\mathrm{v}}(\yti) = \qty{3}{mol} \,,
+      \yNv(\yti) = \qty{3}{mol} \,,
     \end{equation*}
-  and plot the graph of $\yN_{\mathrm{u}}(t)$ against time $t$ between $t=\qty{0}{s}$ and $t=\qty{5}{s}$.
-\item Try to explain the time behaviour of $\yN_{\mathrm{u}}(t)$, from the intuitive explanation of the constitutive relation given in the example above.
+  and plot the graph of $\yNu(t)$ against time $t$ between $t=\qty{0}{s}$ and $t=\qty{5}{s}$.
+\item Try to explain the time behaviour of $\yNu(t)$, from the intuitive explanation of the constitutive relation given in the example above.
 \item Is there any generation of antimatter in this imaginary example?
   \end{enumerate}
 \end{exercise}
@@ -6519,39 +6525,35 @@ It is apparent that each of the lines in the iteration~\eqref{eq:timestepped_evo
     The script should output the energy content at the final time.
 \end{exercise}
 
-\section{Iteration: the role of constitutive equations and boundary conditions}
+\section{Iteration: the roles of boundary conditions and constitutive relations}
 \label{sec:boundary_conds}
 
 In order to perform the numerical time integration~\eqref{eq:timestepped_evolution}, we need to know the new values of influx $\yH$ and supply $\yR$ at the initial time and at \emph{all} subsequent time steps. The finite-difference equation updates only the volume content $\yE$, not the influx or the supply.
 
 From where can we get the values of influx and supply at later times? There are two possibilities:
 \begin{itemize}
-\item They are calculated, from the volume contents of physical quantities which are in turn predicted by means of numerical time integration.
-\item They are acquired at every time step.
+\item They are \emph{acquired} at every time step.
+\item They are \emph{calculated}, by means of constitutive relations, from the volume contents of physical quantities which are in turn predicted by means of numerical time integration.
 \end{itemize}
+Let's discuss them in turn.
 
 \medskip
 
-The first possibility can be achieved by means of \emph{constitutive relations}, which, as we know well by now, relate contents, fluxes, supplies of different physical quantities at the same time instant.
+The first possibility occurs when we actually \emph{control} the influxes or supplies; or when we \emph{monitor} them; or when we simply know them in advance out of acquaintance with previous instances of the same phenomenon.
 
-An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \ym\yv$, briefly discussed previously. It relates the \emph{flux} of matter to the \emph{volume content} of momentum. We shall discuss this relationship more clearly in \sect~\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
-
-
-\medskip
-
-The second possibility occurs when we actually \emph{control} the influxes or supplies; or when we \emph{monitor} them; or when we simply know them in advance out of acquaintance with previous instances of the same phenomenon.
-
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+For example, in a reaction chamber we may control the influx and efflux of different substances through valves and similar devices. In a power grid control centre the effluxes of electric charge and energy -- the power demand -- are continuously monitored. In the case of the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or negligible when moving through air.
+%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/control_room.jpg}
 \\[\jot]\flushleftright\color{mpcolor}%
 Old power-grid control room in Frøland, Norway (image: \furl{https://digitaltmuseum.no/nvim}{Kraftmuseet}).%
 }%
-For example, in a reaction chamber we may control the influx and efflux of different substances through valves and similar devices. In a power grid control centre the effluxes of electric charge and energy -- the power demand -- are continuously monitored. In the case of the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or negligible when moving through air.
 
 The set of values known for all future times thanks to control, monitoring, or early knowledge has a special name:
 \begin{definition}{Boundary conditions, label={def:boundary_condition}}
   The quantities that are set or known in advance \emph{at every time} for the prediction or simulation of a physical phenomenon are called \textbf{boundary conditions}, and their values \emph{boundary values}. Boundary conditions are typically fluxes or supplies.
 \end{definition}
+A common and useful case is when we know that some flux or some supply is zero for all relevant times.
 
 \medskip
 
@@ -6583,13 +6585,159 @@ The set of values known for all future times thanks to control, monitoring, or e
   \end{enumerate}
 \end{exercise}
 
+\medskip
+
+The second possibility is achieved by means of \emph{constitutive relations}, which, as we know well by now, relate contents, fluxes, supplies of different physical quantities at the same time instant. Let's see by means of an example how they are used in the iteration for time integration.
+
+\subsection{Example: oscillating reaction again}
+
+Let's consider again the \autoref{sec:prediction}{oscillating reaction}, which we studied with analytical methods. This time we shall approach it by numerical time integration.
+
+We have two balance laws for matter that drive the physical system forward in time. Their iteration is therefore
+\begin{equation}\label{eq:timestepped_evolution_N}
+  \begin{aligned}
+   \yNu\tikzmark{Nua}(t+\Dt) &\approx
+   \yNu(t)
+   + [\yJu(t) + \yau(t)]\,\Dt
+    \\[2\jot]
+   \yNv\tikzmark{Nva}(t+\Dt) &\approx
+   \yNv(t)
+   + [\yJv(t) + \yav(t)]\,\Dt
+    \\[3\jot]
+    \yNu\tikzmark{bNua}(t+2\Dt)  &\approx
+    \tikzmark{Nub}\yNu(t+\Dt)
+    + [\yJu(t+\Dt) + \yau(t+\Dt)]\,\Dt
+    \\[2\jot]
+    \yNv\tikzmark{bNva}(t+2\Dt)  &\approx
+    \tikzmark{Nvb}\yNv(t+\Dt)
+    + [\yJv(t+\Dt) + \yav(t+\Dt)]\,\Dt
+    % \\[3\jot]
+    % \yNu\tikzmark{cNua}(t+3\Dt)  &\approx
+    % \tikzmark{bNub}\yNu(t+2\Dt)
+    % + [\yJu(t+2\Dt) + \yau(t+2\Dt)]\,\Dt
+    % \\[2\jot]
+    % \yNv\tikzmark{cNva}(t+3\Dt)  &\approx
+    % \tikzmark{bNvb}\yNv(t+2\Dt)
+    % + [\yJv(t+2\Dt) + \yav(t+2\Dt)]\,\Dt
+    \\[3\jot]
+    &\dotso\tikzmark{bNub}
+    \\[2\jot]
+    &\dotso\tikzmark{bNvb}
+  \end{aligned}
+\end{equation}
+\begin{tikzpicture}[remember picture]
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:Nua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:Nub);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bNub);
+% \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:cNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:cNub);
+%%
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:Nva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:Nvb);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bNvb);
+% \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:cNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:cNvb);
+\end{tikzpicture}
+
+We apply the \emph{boundary conditions} from that example: the two influxes $\yJu(t)$, $\yJv(t)$ are always zero. For simplicity we shall therefore simply omit them.
+
+Now we use the constitutive relations between the contents and the supply: $\yav(t) = \lambda \yNu(t)$, $\yau(t) = -\lambda \yNv(t)$. At every time step, after calculating the volume contents $\yNu$, $\yNv$ from the balance laws, we can used their new values to calculate the supplies $\yav$, $\yau$ at that same time step. These supplies can then be used for the next time step:
+\begin{equation}\label{eq:timestepped_evolution_N}
+  \begin{aligned}
+    \yau\tikzmark{aua}(t) &= -\lambda \yNv(t)
+    \\[2\jot]
+    \yav\tikzmark{ava}(t) &= \lambda \yNu(t)
+    \\[3\jot]
+   \yNu\tikzmark{NNua}(t+\Dt) &\approx
+   \yNu(t)
+   +\tikzmark{aub}\yau(t)]\,\Dt
+    \\[2\jot]
+   \yNv\tikzmark{NNva}(t+\Dt) &\approx
+   \yNv(t)
+   +\tikzmark{avb}\yav(t)]\,\Dt
+    \\[4\jot]
+    \yau\tikzmark{naua}(t + \Dt) &= -\lambda \tikzmark{NNvc}\yNv(t + \Dt)
+    \\[2\jot]
+    \yav\tikzmark{nava}(t + \Dt) &= \lambda \tikzmark{NNuc}\yNu(t + \Dt)
+    \\[3\jot]
+    \yNu\tikzmark{bNNua}(t+2\Dt)  &\approx
+    \tikzmark{NNub}\yNu(t+\Dt)
+    +\tikzmark{naub}\yau(t+\Dt)]\,\Dt
+    \\[2\jot]
+    \yNv\tikzmark{bNNva}(t+2\Dt)  &\approx
+    \tikzmark{NNvb}\yNv(t+\Dt)
+    +\tikzmark{navb}\yav(t+\Dt)]\,\Dt
+    % \\[4\jot]
+    % \yau(t + 2\Dt) &= -\lambda \yNv(t + 2\Dt)
+    % \\[2\jot]
+    % \yav(t + 2\Dt) &= \lambda \yNu(t + 2\Dt)
+    % \\[3\jot]
+    % \yNu\tikzmark{cNNua}(t+3\Dt)  &\approx
+    % \tikzmark{bNNub}\yNu(t+2\Dt)
+    % +\yau(t+2\Dt)]\,\Dt
+    % \\[2\jot]
+    % \yNv\tikzmark{cNNva}(t+3\Dt)  &\approx
+    % \tikzmark{bNNvb}\yNv(t+2\Dt)
+    % +\yav(t+2\Dt)]\,\Dt
+    \\[4\jot]
+    &\dotso\tikzmark{bNNub}
+    \\[2\jot]
+    &\dotso\tikzmark{bNNvb}
+  \end{aligned}
+\end{equation}
+\begin{tikzpicture}[remember picture]
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:NNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:NNub);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:NNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:NNuc);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bNNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bNNub);
+% \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:cNNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:cNNub);
+%%
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:NNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:NNvb);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:NNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:NNvc);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bNNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bNNvb);
+% \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:cNNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:cNNvb);
+%%
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:ava) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:avb);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:aua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:aub);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:nava) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:navb);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:naua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:naub);
+\end{tikzpicture}
+
+In the iteration above, note how after specifying the initial  $\yNu(t)$, $\yNv(t)$ we don't need to worry about anything else: the iteration can proceed indefinitely without any new input from us.
+
+\section{Computer code for numerical time integration}
+\label{sec:code_integration}
+
+The iteration at the core of numerical time integration lends itself well to calculation by a computer. Here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB; Python version linked below), that implements the numerical time integration of the oscillating reaction \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of plotting the results.
+
+Pay attention to these main elements in such a script:
+\begin{itemize}
+\item Declaration of physical constants relevant to the physical system.
+\item Declaration of the initial values of the quantities to be time-integrated.
+\item Declaration of the boundary conditions.
+\item Declaration of the duration and time step of the time integration.
+\item Time-loop iteration, which contains two kinds of lines:
+  \begin{itemize}
+  \item uses of constitutive relations for same-time calculation
+  \item uses of balance laws for timestepping
+  \end{itemize}
+\end{itemize}
+
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.m}{Download Octave version \texttt{oscillatingreaction.m}}%
+\\[2ex]
+\furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.py}{Download Python version \texttt{oscillatingreaction.py}}%
+}%
+\lstinputlisting[style=mycode]{code/oscillatingreaction.m}
+
+
 \section{Numerical time integration of position}
 \label{sec:position_integration}
 
-In many applications we are interested in how the position $\yr$ of a small object, or of a small part of an object, or of a small volume or surface, changes in time. The numerical time integration that we have discussed for the volume contents of physical quantities can be applied in an analogous way to the position vector $\yr$ and its velocity.
+In many applications we are interested in how the time-varying position $\yr(t)$ of a small control volume, coinciding with an object (matter) or with part of an object, changes in time. Such a control volume must be small -- compared to the spatial dimensions of the physical phenomenon under study -- because otherwise it wouldn't make sense to represent its position with just one vector.
+% Compare asking \enquote{what's the position of the Earth in the Solar System?}
 
-The velocity $\yv$ of a point is the time derivative of its position:
-$\yv(t) = \frac{\di\yr(t)}{\di t}$.
+The numerical time integration that we discussed for the volume contents of physical quantities can be formulated in an similar way to the position vector $\yr$ of a small control volume.
+
+The \autoref{sec:velocity}{coordinate velocity} $\yv(t)$ of such a control volume at time $t$ is the time derivative of its position:
+\begin{equation*}
+  \yv(t) = \frac{\di\yr(t)}{\di t} \ .
+\end{equation*}
 % \begin{equation*}
 %   \yv(t) = \frac{\di\yr(t)}{\di t}
 %   \qquad\text{or}\qquad
@@ -6599,116 +6747,47 @@ $\yv(t) = \frac{\di\yr(t)}{\di t}$.
 %   v_{z}(t) &= \frac{\di z(t)}{\di t}
 %       \end{aligned}\right.
 % \end{equation*}
-For a small time step $\Dt$ we can approximately write
+For a small time step $\Dt$ we can approximate this derivative with
 \begin{equation*}
   \yv(t) \approx
   \frac{\yr(t+\Dt) - \yr(t)}{\Dt}
 \end{equation*}
-Multiply by $\Dt$ and keep on the right side only the terms that refer to time $t$. We obtain
-\begin{definition}{Time-stepped evolution equation for position}
+Multiply by $\Dt$ and keep on the right side only the terms that refer to time $t$. We obtain the following approximate formula:
+\begin{definition}{Finite-difference approximation for position}
   \begin{equation}\label{eq:finite_diff_position}
-    \yr(\yti+\Dt)  \approx \yr(\yti) + \yv(\yti)\,\Dt
+    \yr(t+\Dt)  \approx \yr(t) + \yv(t)\,\Dt
   \qquad\text{or}\qquad
 \left\{\   \begin{aligned}
-    x(\yti+\Dt)  &\approx x(\yti) + v_{x}(\yti)\,\Dt\\[\jot]
-    y(\yti+\Dt)  &\approx y(\yti) + v_{y}(\yti)\,\Dt\\[\jot]
-    z(\yti+\Dt)  &\approx z(\yti) + v_{z}(\yti)\,\Dt
+    x(t+\Dt)  &\approx x(t) + v_{x}(t)\,\Dt\\[\jot]
+    y(t+\Dt)  &\approx y(t) + v_{y}(t)\,\Dt\\[\jot]
+    z(t+\Dt)  &\approx z(t) + v_{z}(t)\,\Dt
       \end{aligned}\right.
   \end{equation}
 \end{definition}
-This formula says that if we know the position and the velocity at some time, we can approximately predict the position a short time later. This formula can also be iterated as we did with a general balance law. This way we numerically time-integrate the position $\yr(t)$ and can therefore keep track of and predict the motion of an object.
+This formula says that if we know the position $\yr(t)$ and the velocity $\yv(t)$ at time $t$, then we can approximately predict the position $\yr(t+\Dt)$ a short lapse $\Dt$ later.
 
-\medskip
+This formula can also be iterated as we did with a balance law. This way we can numerically time-integrate the position $\yr(t)$ and therefore keep track of and predict the motion of a small control volume.
 
-The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\ym\yv$, knowledge of the momentum at a later timestep allows us to know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial position $\yr$ and momentum $\yP$ are given, and that the influx $\yF$ and supply $\yG$ are known at all times:
-\begin{equation}\label{eq:timestep_momentum_position}
-  \begin{aligned}[b]
-    \yv\tikzmark{va}(\yti)&= \yP(\yti)/\ym
-    \\[2\jot]
-    \yr\tikzmark{ra}(\yti+\Dt)  &\approx \yr(\yti) + \tikzmark{vb}\yv(\yti)\,\Dt\\
-    \yP\tikzmark{pa}(\yti+\Dt)  &\approx \yP(\yti) + [\yF(\yti) + \yG(\yti)]\,\Dt
-    \\[4\jot]
-    \yv\tikzmark{vva}(\yti+\Dt) &= \tikzmark{pb}\yP(\yti+\Dt)/\ym
-     \\[2\jot]
-    \yr(\yti+2\Dt)  &\approx \tikzmark{rb}\yr(\yti+\Dt) + \tikzmark{vvb}\yv(\yti+\Dt)\,\Dt\\
-    \yP(\yti+2\Dt)  &\approx \tikzmark{pc}\yP(\yti+\Dt) + [\yF(\yti+\Dt) + \yG(\yti+\Dt)]\,\Dt
-    \\[4\jot]
-    \yv(\yti+2\Dt) &= \yP(\yti+2\Dt)/\ym
-    \\[2\jot]
-    \yr(\yti+3\Dt)  &\approx \yr(\yti+2\Dt) + \yv(\yti+2\Dt)\,\Dt\\
-    \yP(\yti+3\Dt)  &\approx \yP(\yti+2\Dt) + [\yF(\yti+2\Dt) + \yG(\yti+2\Dt)]\,\Dt
-    \\[4\jot]
-    &\dotso
-  \end{aligned}
-\end{equation}
-\begin{tikzpicture}[remember picture]
-\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vb);
-\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:vva) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vvb);
-\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:ra) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:rb);
-\draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pb);
-\draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pc);
-\end{tikzpicture}
-Keep in mind that these are vector equations, so each one corresponds to three components.
+\subsection{Connection with the balance of matter}
 
-For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
-
-\subsection{Example}
-\label{sec:example_falling_object_timestep}
-
-Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward. The other two coordinates have constant values. Assume these conditions:
-\begin{itemize}[nosep]
-\item initial time is $\yti=\qty{0}{s}$
-\item initial position is $z(\yti)=\qty{5}{m}$
-\item initial momentum is $P_{z}(\yti)=\qty{30}{N\,s}$
-\item \masse\ of object is $\ym=\qty{4}{kg}$
-\item momentum supply, gravity, is $G_{z}=-\ym\cdot\qty{9.81}{N/kg} = \qty{-39.23}{N}$
-\item timestep is $\Dt = \qty{0.1}{s}$
-\end{itemize}
-Then numerical integration up to $t=\qty{0.2}{s}$ looks as follows:\noprelistbreak
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/plot_tennisball_z.pdf}\\
-\includegraphics[width=\linewidth]{images/plot_tennisball_P.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integration for \qty{2}{s}%
-}%
+If the small control volume having position $\yr(t)$ contains matter, then we know that there's a \autoref{sec:fluxes_velocities}{connection} between its velocity $\yv(t)$ at time $t$ and the fluxes of that matter through three \emph{static} surfaces orthogonal to the coordinate axes:
+\begin{equation*}
+[v_{x}, v_{y}, v_{z}] = [J_{x}, J_{y}, J_{z}]\,\frac{V}{A\yN} \ .
+\end{equation*}
+The appearance of the matter content $\yN$ and flux $\yJ$ suggests that there may be a connection between the finite-difference formulae for position and for matter balance:
 \begin{equation*}
   \begin{aligned}
-    v_{z}(\qty{0}{s}) &= P_{z}(\qty{0}{s})/\ym\\
-    &=\qty{30}{N\,s}/\qty{4}{kg} = \qty{7.50}{m/s}
-    \\[2\jot]
-    z(\qty{0.1}{s})  &\approx z(\qty{0}{s}) + v_{z}(\qty{0}{s})\,\Dt\\
-    &\approx \qty{5}{m} + \qty{7.50}{m/s}\cdot\qty{0.1}{s} = \qty{5.75}{m}
-    \\[0.5\jot]
-    P_{z}(\qty{0.1}{s})  &\approx P_{z}(\qty{0}{s}) + [F_{z}(\qty{0}{s}) + G_{z}(\qty{0}{s})]\,\Dt \\
-    &\approx\qty{30}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{26.08}{N\,s}
-    \\[4\jot]
-    v_{z}(\qty{0.1}{s}) &= P_{z}(\qty{0.1}{s})/\ym\\
-    &=\qty{26.08}{N\,s}/\qty{4}{kg} = \qty{6.52}{m/s}
-    \\[2\jot]
-    z(\qty{0.2}{s})  &\approx z(\qty{0.1}{s}) + v_{z}(\qty{0.1}{s})\,\Dt\\
-    &\approx \qty{5.75}{m} + \qty{6.52}{m/s}\cdot\qty{0.1}{s} = \qty{6.40}{m}
-    \\[0.5\jot]
-    P_{z}(\qty{0.2}{s})  &\approx P_{z}(\qty{0.1}{s}) + [F_{z}(\qty{0.1}{s}) + G_{z}(\qty{0.1}{s})]\,\Dt\\
-    &\approx\qty{26.08}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{22.15}{N\,s}
-    \\[3\jot]
-    % v_{z}(\qty{0.2}{s}) &= P_{z}(\qty{0.2}{s})/\ym\\
-    % &=\qty{22.15}{N\,s}/\qty{4}{kg} = \qty{5.54}{m/s}
-    % \\[2\jot]
-    &\dotso
+    \yr(t+\Dt)  &\approx \yr(t) + \yv(t)\,\Dt
+    \\
+    \yN(t+\Dt)  &\approx \yN(t) + \yJ(t)\,\Dt \ .
   \end{aligned}
 \end{equation*}
 
-\begin{exercise}[label={ex:tennisball3}]
-  Modify the script you made for part \textbf{3.} of Exercise~\ref{ex:script2}, so that it also evolves the position $\yr(t)$ of the tennis ball. Use the constitutive relation $\yP=\ym\yv$ for the tennis ball, with $\ym = \qty{0.059}{kg}$.
+Indeed such a connection exists; but its discussion is somewhat involved, as can be suspected from the fact that the first relation above is vectorial, while the second is scalar. In these notes you won't need to make use of this mathematical connection, but it may be useful to keep in mind that such a connection exists.
 
-  \smallskip
+In physics simulations where the finite-difference formula for the position of a control volume is used, you typically won't see the finite-difference formula for the matter content of that volume; and vice versa. This will be a consequence of the connection above: the evolution equation for position is often a \enquote{proxy} for the balance of matter.
+%% Add references to examples
 
-  Redo the numerical simulation you did for that exercise, with the same numerical parameters, and with an initial position for the tennis ball $\yr(\yti) = [0,0,2]\,\unit{m}$.
-
-  \smallskip
-
-  Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the plots in the margin.
-\end{exercise}
 
 
 \section{Applicability of numerical time integration}
@@ -7059,11 +7138,11 @@ that is, if the area through which the flux occur decreases, then the velocity o
   \begin{equation}
     \label{eq:cons_magneticflux}
     \underbracket[0pt]{\yBf(\ytf) =
-      \yBf(\yti) +
+      \yBf(\yti) -
       \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yBf(t)}{\di t} =
-        \yEv(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+        -\yEv(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -7143,10 +7222,12 @@ But this balance is also essential in the opposite problem: when we need to stud
   Remember that the amount of momentum $\yP$ in a volume, the flux $\yF$ through a surface, and the supply $\yG$ in a volume \textbf{all depend on the specific coordinate system $(t,x,y,z)$}. If we use a different coordinate system, these amounts will be different \emph{for the same volume and surface}. For example, a tennis ball can contain a huge amount of momentum with respect to one coordinate system, and \emph{zero} momentum with respect to another!
 \end{warning}
 
-\section{Examples of constitutive relations}
-\label{sec:momentum_constitutive}
+\medskip
 
-\subsection{Newtonian relation between momentum and matter}
+In the rest of this chapter we shall explore several common constitutive relations that involve momentum, and their use together with the balance law for momentum.
+
+
+\section{Newton's approximate relation between momentum and matter}
 \label{sec:bal_momentum_Newton}
 
 One of the most important constitutive relations is the one connecting momentum with the flux of matter. We have mentioned it several times in the previous chapters, and used it in \autoref{ex:tennisball}{examples of numerical integration}.
@@ -7185,7 +7266,104 @@ You are probably familiar with the first equality above; old textbook present it
 %
 % \autoref{sec:fluxes_velocities}{connection between flux and velocity}
 
-\subsection{Hookean spring: relation between momentum flux and distance}
+
+\subsection{Example with numerical time integration of position}
+
+
+
+The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\ym\yv$, knowledge of the momentum at a later timestep allows us to know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial position $\yr$ and momentum $\yP$ are given, and that the influx $\yF$ and supply $\yG$ are known at all times:
+\begin{equation}\label{eq:timestep_momentum_position}
+  \begin{aligned}[b]
+    \yv\tikzmark{va}(\yti)&= \yP(\yti)/\ym
+    \\[2\jot]
+    \yr\tikzmark{ra}(\yti+\Dt)  &\approx \yr(\yti) + \tikzmark{vb}\yv(\yti)\,\Dt\\
+    \yP\tikzmark{pa}(\yti+\Dt)  &\approx \yP(\yti) + [\yF(\yti) + \yG(\yti)]\,\Dt
+    \\[4\jot]
+    \yv\tikzmark{vva}(\yti+\Dt) &= \tikzmark{pb}\yP(\yti+\Dt)/\ym
+     \\[2\jot]
+    \yr(\yti+2\Dt)  &\approx \tikzmark{rb}\yr(\yti+\Dt) + \tikzmark{vvb}\yv(\yti+\Dt)\,\Dt\\
+    \yP(\yti+2\Dt)  &\approx \tikzmark{pc}\yP(\yti+\Dt) + [\yF(\yti+\Dt) + \yG(\yti+\Dt)]\,\Dt
+    \\[4\jot]
+    \yv(\yti+2\Dt) &= \yP(\yti+2\Dt)/\ym
+    \\[2\jot]
+    \yr(\yti+3\Dt)  &\approx \yr(\yti+2\Dt) + \yv(\yti+2\Dt)\,\Dt\\
+    \yP(\yti+3\Dt)  &\approx \yP(\yti+2\Dt) + [\yF(\yti+2\Dt) + \yG(\yti+2\Dt)]\,\Dt
+    \\[4\jot]
+    &\dotso
+  \end{aligned}
+\end{equation}
+\begin{tikzpicture}[remember picture]
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vb);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:vva) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vvb);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:ra) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:rb);
+\draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pb);
+\draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pc);
+\end{tikzpicture}
+Keep in mind that these are vector equations, so each one corresponds to three components.
+
+For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
+
+\subsection{Example}
+\label{sec:example_falling_object_timestep}
+
+Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward. The other two coordinates have constant values. Assume these conditions:
+\begin{itemize}[nosep]
+\item initial time is $\yti=\qty{0}{s}$
+\item initial position is $z(\yti)=\qty{5}{m}$
+\item initial momentum is $P_{z}(\yti)=\qty{30}{N\,s}$
+\item \masse\ of object is $\ym=\qty{4}{kg}$
+\item momentum supply, gravity, is $G_{z}=-\ym\cdot\qty{9.81}{N/kg} = \qty{-39.23}{N}$
+\item timestep is $\Dt = \qty{0.1}{s}$
+\end{itemize}
+Then numerical integration up to $t=\qty{0.2}{s}$ looks as follows:\noprelistbreak
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/plot_tennisball_z.pdf}\\
+\includegraphics[width=\linewidth]{images/plot_tennisball_P.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integration for \qty{2}{s}%
+}%
+\begin{equation*}
+  \begin{aligned}
+    v_{z}(\qty{0}{s}) &= P_{z}(\qty{0}{s})/\ym\\
+    &=\qty{30}{N\,s}/\qty{4}{kg} = \qty{7.50}{m/s}
+    \\[2\jot]
+    z(\qty{0.1}{s})  &\approx z(\qty{0}{s}) + v_{z}(\qty{0}{s})\,\Dt\\
+    &\approx \qty{5}{m} + \qty{7.50}{m/s}\cdot\qty{0.1}{s} = \qty{5.75}{m}
+    \\[0.5\jot]
+    P_{z}(\qty{0.1}{s})  &\approx P_{z}(\qty{0}{s}) + [F_{z}(\qty{0}{s}) + G_{z}(\qty{0}{s})]\,\Dt \\
+    &\approx\qty{30}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{26.08}{N\,s}
+    \\[4\jot]
+    v_{z}(\qty{0.1}{s}) &= P_{z}(\qty{0.1}{s})/\ym\\
+    &=\qty{26.08}{N\,s}/\qty{4}{kg} = \qty{6.52}{m/s}
+    \\[2\jot]
+    z(\qty{0.2}{s})  &\approx z(\qty{0.1}{s}) + v_{z}(\qty{0.1}{s})\,\Dt\\
+    &\approx \qty{5.75}{m} + \qty{6.52}{m/s}\cdot\qty{0.1}{s} = \qty{6.40}{m}
+    \\[0.5\jot]
+    P_{z}(\qty{0.2}{s})  &\approx P_{z}(\qty{0.1}{s}) + [F_{z}(\qty{0.1}{s}) + G_{z}(\qty{0.1}{s})]\,\Dt\\
+    &\approx\qty{26.08}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{22.15}{N\,s}
+    \\[3\jot]
+    % v_{z}(\qty{0.2}{s}) &= P_{z}(\qty{0.2}{s})/\ym\\
+    % &=\qty{22.15}{N\,s}/\qty{4}{kg} = \qty{5.54}{m/s}
+    % \\[2\jot]
+    &\dotso
+  \end{aligned}
+\end{equation*}
+
+\begin{exercise}[label={ex:tennisball3}]
+  Modify the script you made for part \textbf{3.} of Exercise~\ref{ex:script2}, so that it also evolves the position $\yr(t)$ of the tennis ball. Use the constitutive relation $\yP=\ym\yv$ for the tennis ball, with $\ym = \qty{0.059}{kg}$.
+
+  \smallskip
+
+  Redo the numerical simulation you did for that exercise, with the same numerical parameters, and with an initial position for the tennis ball $\yr(\yti) = [0,0,2]\,\unit{m}$.
+
+  \smallskip
+
+  Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the plots in the margin.
+\end{exercise}
+
+
+
+\section{Hookean spring}
 \label{sec:hooke}
 
 \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
@@ -7232,7 +7410,7 @@ In modelling some physical problems we can put $\ylo=\qty{0}{m}$: this represent
   What are the physical dimensions of the elastic constant $k$? in which units could we measure it?
 \end{exercise}
 
-\subsection{Non-hookean springs}
+\section{Non-hookean springs}
 \label{sec:nonhooke}
 
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
@@ -7262,7 +7440,7 @@ A string can be approximately modelled by such a constitutive equation with a la
 
 This constitutive equation is difficult to be used with analytical methods, but can be amenable to numerical time integration
 
-\subsection{Pairwise forces}
+\section{Pairwise forces}
 \label{sec:pairwise_forces}
 
 A Hookean or non-Hookean \enquote{spring} is modelled as having no \masse\ or momentum of its own. It is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities.% , and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple, \emph{linear} relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
@@ -7310,7 +7488,7 @@ Which is often used to model the flux of momentum among molecules of some fluids
 
 According to General Relativity there cannot be an \emph{instantaneous} transfer of momentum between two spatially separate control volumes. The momentum transfer modelled by pairwise forces actually occurs in a lapse of time, mediated by matter or electromagnetic field present between the two control volumes.
 
-\subsection{Gravity and momentum supply near a planet's surface}
+\section{Gravity and momentum supply near a planet's surface}
 \label{sec:gravity}
 
 According to General Relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General Relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we measure a supply of momentum $\yG$ in a very small region, it could be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply to be zero \emph{in a small region} -- but in general not everywhere.
@@ -7351,7 +7529,7 @@ When we consider physical phenomena that happen close to a planet's surface and 
 
 
 
-\subsection{Contact forces}
+\section{Contact forces}
 \label{sec:contact_force}
 
 Many physical phenomena involve contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor, or a layer of vegetable oil floating above water. The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces} and have several peculiar features. In some cases they are mathematically quite difficult to describe.
@@ -7528,10 +7706,7 @@ Check that this function correctly covers and represents both formulae~\eqref{eq
 
 
 
-\section{Examples of applications}
-\label{sec:momentum_applic}
-
-\subsection{Statics}
+\section{Application: statics}
 \label{sec:bal_momentum_statics}
 
 As previously mentioned there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \furl{https://www.britannica.com/science/statics}{statics}. Let's see a couple of concrete examples.
@@ -7594,7 +7769,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
 
-\subsection{Atmospheric pressure}
+\section{Application: Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
 
 There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
@@ -7651,7 +7826,7 @@ In some cases the magnitude of the atmospheric pressure is different because of 
     {\color{red}\footnotesize\faIcon{exclamation-circle}\enskip The results obtained in this exercise are approximate, because the supply of momentum $\yG$ actually changes with altitude as well, and depends on other quantities such as temperature. But they do have the correct order of magnitude.\par}
 \end{exercise}
 
-\subsection{Airborne flight}
+\section{Application: Airborne flight}
 \label{sec:bal_momentum_flight}
 
 Airborne flight is a conceptually extremely simple application of momentum balance.
@@ -7680,21 +7855,22 @@ Air is not always at rest (with respect to the Earth's surface). Owing to energy
 \item[Propelled flight] We can try to create a flow of downward momentum from an object to the surrounding air, even if air is initially at rest. As a result, a body of air surrounding the object will acquire a net, partially downward movement. By the \autoref{def:symmetryflux}{symmetry of flux} this also means that momentum with an upward component flows from the air to the object, and this component can compensate the object's weight. This is achieved by birds by flapping their wings, and by aeroplanes and helicopters through horizontally moving wings or blades.
 \end{description}
 
-\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}%
-}%
 \begin{extra}{It's not the difference in air pressure}
   Some texts say that wings can sustain an aeroplane because their cross-section has an asymmetric shape, slightly more bulged upward than downward, leading to a difference in the air pressure between the top and bottom of the wing. This is not true. In fact, aeroplanes with symmetric wings fly as well.
 \begin{quote}\footnotesize
 the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
 \end{quote}
 \end{extra}
+%
+\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
+}%
 
 % In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{def:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
 
-\subsection{Rockets}
+\section{Application: Rockets}
 \label{sec:bal_momentum_rockets}
 
 The flight mechanisms discussed in the previous section rely on the presence of air or some kind of atmosphere around the object, with which a momentum flux can occur. This is not possible in outer space, and such flux may not be enough to lift an object even if air is surrounding it.
@@ -7718,7 +7894,7 @@ Obviously the amount of matter in the control volume defining the object will be
 
 
 
-\subsection{Statics again: cable cars}
+\section{Application: Statics again and cable cars}
 \label{sec:bal_momentum_cablecar}
 
 %
@@ -7838,7 +8014,7 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \end{itemize}
 
 
-\subsection{Momentum fluxes in a gas}
+\section{Application: Momentum fluxes in a gas}
 \label{sec:momentumflux_gas}
 
 Imagine a rigid box at rest containing an amount of gas, and vacuum outside the box. Let gravity be negligible. It is common knowledge that if we open one side of the box, the gas within gets out. The gas's behaviour is to be contrasted with that of a solid: if the box contained, say, a brick, then the brick would simply stay where it is upon opening one side of the box.
@@ -7901,7 +8077,7 @@ At the surface where the gas is in contact with its containing box, the momentum
 The answer is that an opposite circulation of momentum takes places through the walls of the box: the momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore tensile, or partially tensile and partially shearing. The side picture gives a \emph{qualitative} illustration of the momentum fluxes that occur through various control surfaces at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs not because of transport by molecules, but because of transport by the electromagnetic field that exists with the box's molecules.
 
 
-\subsection{Hookean spring and harmonic oscillator}
+\section{Application: Hookean spring and harmonic oscillator}
 \label{sec:hooke_oscillator}
 
 The physical system composed of two bodies of matter connected by a spring, with the spring modelled by the \autoref{sec:hooke}{Hookean constitutive properties}, is one of particular importance in physics, for several reasons. Its equations can be solved analytically and describe a \furl{https://www.britannica.com/science/mechanics/Simple-harmonic-oscillations\#ref612067}{\emph{harmonic oscillator}}, with a behaviour that can be predicted without numerical time-integration methods. The \emph{mathematical form} of its equations can also be applied to many other physical phenomena involving quantities other than momentum. Hooke's law can sometimes be used as a linear approximation in more complicated systems. And if we consider particular additional forces applied to one or both of the two bodies, we can study simple examples of the important phenomena of \furl{https://www.britannica.com/science/resonance-vibration}{\emph{resonance}} and \furl{https://www.britannica.com/science/damping}{\emph{damping}}.
@@ -7956,12 +8132,6 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
   \end{equation*}
 
 \item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\ymb$, total momentum $\yPb=\ymb\,\yvb$.
-%
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
-\includegraphics[height=15em]{images/hooke_controls.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
-}%
 
   The only momentum flux occurs across the portion of control surface in common with that of the spring; there we have an \textbf{in}flux $\yFba$.
 
@@ -7977,6 +8147,12 @@ Schematics of the analysis. The control volumes are indicated by \textcolor{yell
 &\text{\footnotesize const. relation} &\quad&\yGb(t) = -\ymb\,g\,[0,1]
     \end{aligned}
   \end{equation*}
+%
+\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\includegraphics[height=15em]{images/hooke_controls.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
+}%
 
 \item[Spring:]
   The control volume for the spring, %\autoref{sec:hooke}{}
@@ -8055,7 +8231,7 @@ that can be solved analytically.
 \end{exercise}
 
 
-\subsection{Many-body systems}
+\section{Many-body systems}
 \label{sec:many-body}
 
 We can obviously consider more than two objects connected by a number of springs or other \autoref{sec:pairwise_forces}{pairwise forces}. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
@@ -8513,7 +8689,7 @@ end
   \end{enumerate}
 \end{exercise}
 
-\subsection{Non-Hookean spring: numerical time integration}
+\section{Non-Hookean spring: numerical time integration}
 \label{sec:nonHooke_simulation}
 
 The system of two masses connected by a \autoref{sec:nonhooke}{\emph{non-Hookean} spring} with constitutive relation~\eqref{eq:nonhooke} is analytically challenging.
@@ -9073,7 +9249,7 @@ In applying the formula above, keep always in mind the following:
 \end{itemize}
 \end{warning}
 
-The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in \autoref{sec:momentum_constitutive}{many examples} from the previous chapter.
+The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in many examples from the previous chapter.
 
 
 \subsection{The separation between heat and power depends on the observation scale}
@@ -9534,7 +9710,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
 To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\ym$ and constant surface area $A$.
 %
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
 The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upward.
