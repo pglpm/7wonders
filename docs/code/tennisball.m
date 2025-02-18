@@ -1,80 +1,62 @@
-%%% tennisball.m
-%% Numerical simulation of object motion in 2D with gravity
-%% (base SI units used throughout)
-%% Coordinates (y,z)
-%% Parameters
-m = 0.059; % tennis ball's mass
-%%
-%% Initial values
-t0 = 0; % initial time
-y0 = 0; z0 = 2; % initial position
-Py0 = 3; Pz0 = 0.75; % initial momentum
-%%
-t1 = t0 + 2; % final time
-dt = 0.01; % time step
-%%
-%% Initialize values for loop
-t = t0;
-y = y0; z = z0;
-Py = Py0; Pz = Pz0;
-%%
-Fy = 0; Fz = 0; % momentum influx (constant)
-Gy = 0; Gz = -0.579; % momentum supply (constant)
-%% %@
-%% Plot & saving
-%% adjust final time if not multiple of timestep
-t1 = t1 + mod(t1-t0,dt);
-%% Save values of all quantities at some steps during the simulation,
-%% for subsequente analysis or plotting
-%% (saving at all timesteps could be too costly)
-Nsaves = 200; % number of timepoints to save during the simulation
-%% Calculate time interval for saving
-dsave = (t1-t0)/(Nsaves-1);
-if abs(dsave) < abs(dt)
-  error('time interval between saves is smaller than timestep')
-end
-%% Initialize vectors to contain saved values
-tSave = nan(Nsaves,1);
-ySave = nan(Nsaves,1); zSave = nan(Nsaves,1);
-PySave = nan(Nsaves,1); PzSave = nan(Nsaves,1);
-%% Save initial values
-i = 1; % index that keeps count of savepoints
-tSave(i) = t;
-ySave(i) = y; zSave(i) = z;
-PySave(i) = Py; PzSave(i) = Pz;
-%% Initialize plot
-cols = get(0, 'DefaultAxesColorOrder');
-plot(ySave(1), zSave(1), '.', 'Color', cols(1,:)); axis('tight');
-xlabel('y/m'); ylabel('z/m'); hold on;
-%% %@
+%%% Numerical simulation of object motion in 2D with gravity
+%% Coordinates (y, z)
+
+%% Constants
+m = 0.059; % kg: tennis ball's mass
+g = 9.8; % N/kg: gravitational acceleration
+
+%% Initial conditions
+t = 0; % s: initial time
+y = 0; % m: initial position
+z = 2; % m
+Py = 3; % N s: initial momentum
+Pz = 0.75; % N s
+
+%% Boundary conditions
+Fy = 0; % N: momentum influx
+Fz = 0; % N
+Gy = 0; % N: momentum supply
+Gz = -m * g;
+
+%% Time-iteration parameters
+t1 = 2; % s: final time
+dt = 0.01; % s: time step %@
+
+%% Plotting
+dtplot = t1/360; % time interval between plots
+tplot = dtplot; % time for next plot
+clf;
+plot(y, z, 'b.')
+xlim([0, 110]);
+ylim([0, 15]);
+xlabel('position y/m');
+ylabel('position z/m');
+grid on;
+hold on; %@
+
 %% Numerical time integration
-%% loop
 while t < t1
-  %% We need Py,Px,y,z,vy,vz
-  %% we have y,z,Py,Pz
-  %% find vy,vz using constitutive relations
-  vy = Py/m; vz = Pz/m;
-  %%
-  %% Drive forward in time
-  %% update momentum
-  Py = Py + (Fy + Gy)*dt;
-  Pz = Pz + (Fz + Gz)*dt;
-  %% update position
-  y = y + vy*dt;
-  z = z + vz*dt;
-  %% update time
-  t = t + dt;
-  %% %@
-  %% Check whether to save & plot at this step
-  if min(abs([0 dsave] - mod(t-t0, dsave))) <= abs(dt)/2
-    i = i+1;
-    tSave(i) = t;
-    ySave(i) = y; zSave(i) = z;
-    vySave(i) = vy; vzSave(i) = vz;
-    PySave(i) = Py; PzSave(i) = Pz;
-    plot(y, z, '.', 'Color', cols(1,:));
-    pause(0.001);
+  %% constitutive relations
+  vy = Py/m;
+  vz = Pz/m;
+
+  %% balances
+  Py = Py + (Fy + Gy) * dt;
+  Pz = Pz + (Fz + Gz) * dt;
+  y = y + vy * dt;
+  z = z + vz * dt;
+  t = t + dt; %@
+
+  %% plot
+  if t > tplot;
+    plot(y, z, '.b')
+    pause(0)
+    tplot = tplot + dtplot;
   end %@
-end %@
-%% Plot full trajectory
-plot(ySave, zSave, 'Color', cols(1,:)); axis('tight'); %@
+end
+
+%% Print final values
+print(y)
+print(z)
+print(Py)
+print(Pz)

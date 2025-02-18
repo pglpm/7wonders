@@ -1,8 +1,8 @@
-\pdfoutput=1
+%@\pdfoutput=1
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-18T08:07:22+0100
+%% Last-Updated: 2025-02-18T22:21:10+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -364,7 +364,8 @@ british%
 \definecolor{purple}{HTML}{AA3377}
 \definecolor{grey}{HTML}{BBBBBB}
 \definecolor{midgrey}{HTML}{888888}
-\definecolor{darkgrey}{HTML}{555555}
+% \definecolor{darkgrey}{HTML}{555555}
+\definecolor{darkgrey}{HTML}{333333}
 \definecolor{lgrey}{HTML}{DDDDDD}
 %\newcommand*\mycolourbox[1]{%
 %\colorbox{grey}{\hspace{1em}#1\hspace{1em}}}
@@ -1160,9 +1161,10 @@ retain-explicit-plus,%
 ]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
 
+\colorlet{codecolour}{blue}
 \usepackage{listings}
 \lstdefinestyle{mycode}{
-  basicstyle=\ttfamily\footnotesize\color{blue},
+  basicstyle=\ttfamily\footnotesize\bfseries\color{codecolour},
   moredelim=**[is][\color{grey}]{\%@}{\%@},
   frame=single,
   numbers=left,
@@ -6590,6 +6592,7 @@ A common and useful case is when we know that some flux or some supply is zero f
 The second possibility is achieved by means of \emph{constitutive relations}, which, as we know well by now, relate contents, fluxes, supplies of different physical quantities at the same time instant. Let's see by means of an example how they are used in the iteration for time integration.
 
 \subsection{Example: oscillating reaction again}
+\label{sec:oscillatingreact2}
 
 Let's consider again the \autoref{sec:prediction}{oscillating reaction}, which we studied with analytical methods. This time we shall approach it by numerical time integration.
 
@@ -6703,20 +6706,30 @@ In the iteration above, note how after specifying the initial  $\yNu(t)$, $\yNv(
 \section{Computer code for numerical time integration}
 \label{sec:code_integration}
 
-The iteration at the core of numerical time integration lends itself well to calculation by a computer. Here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB; Python version linked below), that implements the numerical time integration of the oscillating reaction \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of plotting the results.
+The iteration at the core of numerical time integration lends itself well to calculation by a computer. Here are example scripts that implement the numerical time integration of the oscillating reaction and of the tennis ball from a previous exercise.
 
-Pay attention to these main elements in such a script:
-\begin{itemize}
-\item Declaration of physical constants relevant to the physical system.
-\item Declaration of the initial values of the quantities to be time-integrated.
-\item Declaration of the boundary conditions.
-\item Declaration of the duration and time step of the time integration.
-\item Time-loop iteration, which contains two kinds of lines:
-  \begin{itemize}
-  \item uses of constitutive relations for same-time calculation
-  \item uses of balance laws for timestepping
-  \end{itemize}
-\end{itemize}
+The scripts are written in \furl{https://octave.org/}{Octave}; they should also work in MATLAB. Python versions are also linked on the sides of the scripts; they should work on \furl{https://matplotlib.online}{\texttt{matplotlib.online}}. \textcolor{codecolour}{Blue lines} are strictly related to numerical time integration. \textcolor{grey}{Grey lines} take care of plotting the results. Keep in mind that in Octave the trailing semicolon in a line \textcolor{codecolour}{\texttt{;}} prevents the result of the operation to be printed to the console or to output.
+
+
+
+\subsection{Script for oscillating reaction}
+
+This is a realization of the iteration for the \autoref{sec:oscillatingreact2}{oscillating reaction}. The script has the following main blocks, each one with a clear physical significance:
+\begin{description}
+\item[Line 4: constants.] The values of known physical constants relevant to the physical laws are given here, so that we don't need to write decimal numbers all over the script.
+
+\item[Lines 7--9: initial conditions.] The initial values of the quantities to be time-integrated are given here. They will be used to start the iteration loop, but may also be necessary in other parts of the script, for instance in setting up the boundary conditions.
+
+\item[Lines 12--13: boundary conditions.] Here are given the values of fluxes, supplies, and sometimes even volume contents that are known beforehand to be constant throughout the iteration. In some cases the time dependence of some quantities may be not constant, but still known beforehand. In such cases this known dependence is given directly in the iteration loop.
+
+\item[Lines 16--17: Time-iteration parameters.] The chosen duration of the simulation and the time step are given here.
+
+\item[Lines 32--49: iteration.] This is the heart of the physical evolution of the physical system.
+  \begin{description}
+  \item[Lines 34--35:] the \emph{constitutive relations} first allow us to calculate, at the present time, the values necessary for using the balance laws.
+  \item[Lines 38--40:] then the \emph{balance laws} allow us to calculate the volume contents at the next time instant; the time is updated accordingly.
+  \end{description}
+\end{description}
 
 \marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
 \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.m}{Download Octave version \texttt{oscillatingreaction.m}}%
@@ -6724,6 +6737,23 @@ Pay attention to these main elements in such a script:
 \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.py}{Download Python version \texttt{oscillatingreaction.py}}%
 }%
 \lstinputlisting[style=mycode]{code/oscillatingreaction.m}
+%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/oscillatingreaction_plot.jpg}
+}%
+
+\subsection{Script for the tennis ball}
+
+This is a realization of the iteration for the \autoref{sec:oscillatingreact2}{tennis ball} of Exercise~\ref{ex:tennisball3} on page~\pageref{ex:tennisball3}. This script has the same general structure as the previous one. We are dealing with vector quantities in the present case, and we take care of each component separately.
+
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.m}{Download Octave version \texttt{tennisball.m}}%
+\\[2ex]
+\furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.py}{Download Python version \texttt{tennisball.py}}%
+}%
+\lstinputlisting[style=mycode]{code/tennisball.m}
+
+
 
 
 \section{Numerical time integration of position}
@@ -6802,20 +6832,6 @@ We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timest
 The time-stepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors. See for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
 
 Yet, the simple time-stepping scheme that we have explored remains the core of most numerical-evolution procedures, and allows us to understand how they essentially work.
-
-\section{Example script for numerical time integration}
-\label{sec:tennisball_script}
-
-We shall come back to numerical time integration in a later chapter, and will approach the problem of writing a simulation script in a more systematic way.
-
-For the moment, here is an example script, written in \furl{https://octave.org/}{Octave} (should also work in MATLAB), that is a solution for Exercise~\ref{ex:tennisball3} p.~\pageref{ex:tennisball3}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting the results. You can use this script as a starting point for exercises that require scripting in the next chapters.
-
-\medskip
-
-\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-\furl{https://pglpm.github.io/7wonders/code/tennisball.m}{Download \texttt{tennisball.m}}%
-}%
-\lstinputlisting[style=mycode]{code/tennisball.m}
 
 
 
@@ -8612,7 +8628,7 @@ end
 \begin{exercise}[label={ex:hooke}]
   % We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $y$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
   \begin{enumerate}[exerc]
-  \item Examine our previous \autoref{sec:tennisball_script}{script \texttt{tennisball.m}} for numerically integrating the motion of a tennis ball, and pinpoint where the six building steps above are implemented.
+  \item Examine our \autoref{sec:code_integration}{previous scripts} for numerical time integration, and pinpoint where the six building steps above are implemented.
 
     Which quantities constitute the \emph{state} in that script?
 
@@ -8843,7 +8859,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 \section{Example script for non-Hookean spring }
 \label{sec:nonhooke_script}
 
-Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\pageref{ex:nonhooke}. It is a generalization of the \autoref{sec:tennisball_script}{\texttt{tennisball.m} script}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data.
+Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\pageref{ex:nonhooke}. It is a generalization of the \autoref{sec:code_integration}{\texttt{tennisball.m} script}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data.
 
 \medskip
 
