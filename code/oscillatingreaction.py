@@ -7,20 +7,20 @@ import matplotlib.pyplot as plt
 ## Numerical time integration of imaginary chemical reaction
 
 ## Constants
-lambd = 6.283 # s^-1 # conversion rate
+lambd = 6.283 # s^-1 : conversion rate
 
 ## Initial values
-t = 0 # s # initial time
-Nu = 2 # mol # volume content substance u
-Nv = 3 # mol # volume content substance v
+t = 0 # s : initial time
+Nu = 2 # mol : volume content substance u
+Nv = 3 # mol : volume content substance v
 
 ## Boundary conditions
-Ju = 0 # mol/s # influx substance u
-Jv = 0 # mol/s # influx substance v
+Ju = 0 # mol/s : influx substance u
+Jv = 0 # mol/s : influx substance v
 
 ## Parameters for time loop
-t1 = 5 # s # duration of time integration
-dt = 0.0001 # s # time step #@
+t1 = 5 # s : duration of time integration
+dt = 0.0001 # s : time step #@
 
 ## Plotting
 tplot = 0 # time since last plot
@@ -50,7 +50,6 @@ while t < t1:
   else:
     plot(t, Nu, '.b')
     plot(t, Nv, '.r')
-    plt.pause(0.001)
     tplot = 0
 
 plt.show()
