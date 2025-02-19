@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-19T07:04:55+0100
+%% Last-Updated: 2025-02-19T09:02:28+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -1061,6 +1061,12 @@ angle-right%
 \newcommand*{\yj}{\bm{j}}
 \newcommand*{\ya}{\varAlpha}
 \newcommand*{\yrho}{\rho}
+\newcommand*{\yNu}{\yN_{\text{u}}}
+\newcommand*{\yNv}{\yN_{\text{v}}}
+\newcommand*{\yJu}{\yJ_{\text{u}}}
+\newcommand*{\yJv}{\yJ_{\text{v}}}
+\newcommand*{\yau}{\ya_{\text{u}}}
+\newcommand*{\yav}{\ya_{\text{v}}}
 
 %% energy
 \newcommand*{\ym}{m}% m, and q_m for mass flow
@@ -3155,14 +3161,14 @@ This is the desired constitutive relation. It says that the energy content $\yE$
 \bigskip
 
 \emph{For Exercises~\ref{sec:calc_from_bal2-watertank}--\ref{sec:calc_from_bal2-capacitors-nuclearplant}, find the requested quantity if possible, by using any combination of:
-\begin{itemize}[nosep]
-\item data given in the question,
-\item balance or conservation law (specified in the question), in integral or differential expression,
-\item principle of extensivity,
-\item principle of symmetry of flux,
-\item calculus.
-\end{itemize}
-In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.}
+  \begin{itemize}[nosep]
+  \item data given in the question,
+  \item balance or conservation law (specified in the question), in integral or differential expression,
+  \item principle of extensivity,
+  \item principle of symmetry of flux,
+  \item calculus.
+  \end{itemize}
+  In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.}
 
 \section{}
 \label{sec:calc_from_bal2-watertank}
@@ -3174,8 +3180,8 @@ Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in 
 Two electronic components that can store electric charge, called \emph{capacitors}, are connected by one wire; each is also connected to some other components by another wire; see side figure. Let's call them the \enquote*{top} and \enquote*{bottom} capacitor.
 
 \marginpar{\vspace{-2\baselineskip}\centering\footnotesize\includegraphics[width=0.55\linewidth]{images/capacitors.jpg}%
-\\\flushleftright\color{mpcolor}%
-Capacitors: \textcolor{blue}{blue}, wires: \textcolor{midgrey}{grey}. Wires on the left connect to other components, not shown.
+  \\\flushleftright\color{mpcolor}%
+  Capacitors: \textcolor{blue}{blue}, wires: \textcolor{midgrey}{grey}. Wires on the left connect to other components, not shown.
 }%
 The top capacitor is \emph{receiving} from other components an electric current (that is, a flux of electric charge), of \qty{5}{C/s}. Its electric-charge content is increasing at a rate of \qty{2}{C/s}.
 
@@ -3189,51 +3195,72 @@ Electric charge satisfies a conservation law. \textbf{How fast is the electric-c
 
 A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
 
-  At time $\qty{0}{s}$, the driver starts to break. While slowing down, the car receives from the road a contact force given by
-  \begin{equation*}
-    \yF(t) =
-    \begin{bmatrix}
-      -\num{1800}\exp\bigl(-\frac{t}{\qty{20}{s}}\bigr)
-      \\
-      0
-      \\
-      \num{17640}
-    \end{bmatrix}\,\unit{N} \ ,
-  \end{equation*}
+At time $\qty{0}{s}$, the driver starts to break. While slowing down, the car receives from the road a contact force given by
+\begin{equation*}
+  \yF(t) =
+  \begin{bmatrix}
+    -\num{1800}\exp\bigl(-\frac{t}{\qty{20}{s}}\bigr)
+    \\
+    0
+    \\
+    \num{17640}
+  \end{bmatrix}\,\unit{N} \ ,
+\end{equation*}
 and is subjected to the gravitational body force, constant in time,
 \begin{equation*}
   \yG(t) = \begin{bmatrix}
     0
-      \\
-      0
-      \\
-      -\num{17640}
-    \end{bmatrix}\,\unit{N} \ .
-  \end{equation*}
-  At time \qty{30}{s}, the car has a momentum\enskip$
-  \begin{bsmallmatrix}
-    1\\0\\0
-  \end{bsmallmatrix}\,\unit{N\,s}
-  $.
+    \\
+    0
+    \\
+    -\num{17640}
+  \end{bmatrix}\,\unit{N} \ .
+\end{equation*}
+At time \qty{30}{s}, the car has a momentum\enskip$
+\begin{bsmallmatrix}
+  1\\0\\0
+\end{bsmallmatrix}\,\unit{N\,s}
+$.
 
-  Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
+Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
 
 \section{}
 \label{sec:calc_from_bal2-capacitors-nuclearplant}
 \marginpar{\vspace{1.5\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
-    We're measuring amounts in \enquote*{particles} rather than \enquote*{moles}.%
-  }%
-  You are overseeing a nuclear-fission reactor. The reactor has a supply of \emph{free neutrons} equal to \qty{5.00e19}{particles/s}, constant in time. Free neutrons obey a balance law.
+  We're measuring amounts in \enquote*{particles} rather than \enquote*{moles}.%
+}%
+You are overseeing a nuclear-fission reactor. The reactor has a supply of \emph{free neutrons} equal to \qty{5.00e19}{particles/s}, constant in time. Free neutrons obey a balance law.
 
-  Up to now the amount of free neutrons inside the reactor has been constant, at \qty{1.67e19}{particles}. This is because the reactor has an efflux of free neutrons, into control rods, equal to \qty{5.00e19}{particles/s}, constant in time.
+Up to now the amount of free neutrons inside the reactor has been constant, at \qty{1.67e19}{particles}. This is because the reactor has an efflux of free neutrons, into control rods, equal to \qty{5.00e19}{particles/s}, constant in time.
 
-  Suddenly -- let's call this time \qty{0}{s} -- you receive a warning on the red communication channel. The warning says that the efflux of neutrons now appears to be decreasing linearly, according to the formula
-  \begin{equation*}
-    \qty{5.00e19}{particles/s} - t\cdot\qty{1.40e12}{particles/s^{2}} \ .
-  \end{equation*}
-  This is dangerous: if the amount of free neutrons in the reactor reaches \qty{4.00e19}{particles}, the reactor will explode.
+Suddenly -- let's call this time \qty{0}{s} -- you receive a warning on the red communication channel. The warning says that the efflux of neutrons now appears to be decreasing linearly, according to the formula
+\begin{equation*}
+  \qty{5.00e19}{particles/s} - t\cdot\qty{1.40e12}{particles/s^{2}} \ .
+\end{equation*}
+This is dangerous: if the amount of free neutrons in the reactor reaches \qty{4.00e19}{particles}, the reactor will explode.
 
-  You send a team to check and fix the problem. The team asks you how much time they have, at most, to fix it. \textbf{How much time do they have to fix the problem, before the reactor explodes?} (Neglect the interaction time with the team, that is, start counting from \qty{0}{s}.)
+You send a team to check and fix the problem. The team asks you how much time they have, at most, to fix it. \textbf{How much time do they have to fix the problem, before the reactor explodes?} (Neglect the interaction time with the team, that is, start counting from \qty{0}{s}.)
+
+
+\section{}
+\label{sec:play_oscillating_reaction}
+
+\emph{Feel free to do this with a colleague:}
+
+\smallskip
+
+Start from script for the imaginary oscillating reaction discussed in \sects~6.2 and~6.5 of the main text (Octave: \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.m}{\texttt{oscillatingreaction.m}}, Python: \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.py}{\texttt{oscillatingreaction.py}}), and modify it to simulate different constitutive relations, or change the chemical system a little. Describe what happens, and try to explain why that happens from the mathematical form of the constitutive relations. Keep in mind that in some situations the simulation may become numerically unstable and even crash. Also check what are the correct dimensions of the constants that appear in your physical laws.
+
+Here are some possibilities:
+\begin{itemize}
+\item $\yav(t) = \lambda_{\text{u}} \yNu(t)\,, \quad\yau(t) = -\lambda_{\text{v}} \yNv(t)$\\ with different positive values for $\lambda_{\text{u}}$ and $\lambda_{\text{v}}$.
+
+\item $\yav(t) = \lambda \yNu(t)\, \yNv(t)\,, \quad\yau(t) = -\lambda \yNu(t)\, \yNv(t)$\,.
+
+\item $\yav(t) = \lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]\,, \quad\yau(t) = -\lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]$\,.
+
+\item Introduce a third substance.
+\end{itemize}
 
 
 \section{}
