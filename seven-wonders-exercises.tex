@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-18T21:35:11+0100
+%% Last-Updated: 2025-02-19T07:04:55+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -2878,81 +2878,6 @@ For each question:
 \end{enumerate}
 
 
-\section{}
-\label{sec:calc_from_bal2}
-
-For each question, find the requested quantity if possible, by using any combination of:
-\begin{itemize}[nosep]
-\item data given in the question,
-\item balance or conservation law (specified in the question), in integral or differential expression,
-\item principle of extensivity,
-\item principle of symmetry of flux,
-\item calculus.
-\end{itemize}
-In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.
-
-\begin{enumerate}[exerc,itemsep=1em]
-\item Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
-
-\item \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize\includegraphics[width=0.55\linewidth]{images/capacitors.jpg}%
-\\\flushleftright\color{mpcolor}%
-Capacitors: \textcolor{blue}{blue}, wires: \textcolor{midgrey}{grey}. Wires on the left connect to other components, not shown.
-}%
-Two electronic components that can store electric charge, called \emph{capacitors}, are connected by one wire; each is also connected to some other components by another wire; see side figure. Let's call them the \enquote*{top} and \enquote*{bottom} capacitor.
-
-The top capacitor is \emph{receiving} from other components an electric current (that is, a flux of electric charge), of \qty{5}{C/s}. Its electric-charge content is increasing at a rate of \qty{2}{C/s}.
-
-The bottom capacitor is \emph{delivering} an electric current of \qty{1}{C/s} to other components.
-
-Electric charge satisfies a conservation law. \textbf{How fast is the electric-charge content in the bottom capacitor increasing or decreasing?}
-
-\item A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
-
-  At time $\qty{0}{s}$, the driver starts to break. While slowing down, the car receives from the road a contact force given by
-  \begin{equation*}
-    \yF(t) =
-    \begin{bmatrix}
-      -\num{1800}\exp\bigl(-\frac{t}{\qty{20}{s}}\bigr)
-      \\
-      0
-      \\
-      \num{17640}
-    \end{bmatrix}\,\unit{N} \ ,
-  \end{equation*}
-and is subjected to the gravitational body force, constant in time,
-\begin{equation*}
-  \yG(t) = \begin{bmatrix}
-    0
-      \\
-      0
-      \\
-      -\num{17640}
-    \end{bmatrix}\,\unit{N} \ .
-  \end{equation*}
-  At time \qty{30}{s}, the car has a momentum\enskip$
-  \begin{bsmallmatrix}
-    1\\0\\0
-  \end{bsmallmatrix}\,\unit{N\,s}
-  $.
-
-  Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
-
-\item \marginpar{\vspace{1.5\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
-    We're measuring amounts in \enquote*{particles} rather than \enquote*{moles}.%
-  }%
-  You are overseeing a nuclear-fission reactor. The reactor has a supply of \emph{free neutrons} equal to \qty{5.00e19}{particles/s}, constant in time. Free neutrons obey a balance law.
-
-  Up to now the amount of free neutrons inside the reactor has been constant, at \qty{1.67e19}{particles}. This is because the reactor has an efflux of free neutrons, into control rods, equal to \qty{5.00e19}{particles/s}, constant in time.
-
-  Suddenly -- let's call this time \qty{0}{s} -- you receive a warning on the red communication channel. The warning says that the efflux of neutrons now appears to be decreasing linearly, according to the formula
-  \begin{equation*}
-    \qty{5.00e19}{particles/s} - t\cdot\qty{1.40e12}{particles/s^{2}} \ .
-  \end{equation*}
-  This is dangerous: if the amount of free neutrons in the reactor reaches \qty{4.00e19}{particles}, the reactor will explode.
-
-  You send a team to check and fix the problem. The team asks you how much time they have, at most, to fix it. \textbf{How much time do they have to fix the problem, before the reactor explodes?} (Neglect the interaction time with the team, that is, start counting from \qty{0}{s}.)
-
-\end{enumerate}
 
 
 
@@ -3170,10 +3095,161 @@ It makes sense that the efflux is positive, because all angular momentum left th
 \end{enumerate}
 
 
-\sollabel{sec:calc_from_bal2}
 
-\begin{enumerate}[exerc,itemsep=1em]
-\item Let's choose a closed control surface corresponding to the tank's inner wall (if it had no hole). The question gives:
+
+
+\sollabel{sec:ideal_gas_const}
+
+We want to find a relation that gets rid of the auxiliary quantity $\yT$, the temperature. This can be done with several equivalent algebraic manipulations; here's one. Solve the ideal-gas law for the temperature:
+\begin{equation*}
+  \yT = \frac{V}{A} \frac{F}{R\yN}
+\end{equation*}
+then substitute this expression into the energy equation:
+\begin{equation*}
+  \yE = \yU_{0} + C\yN \biggl(\frac{V}{A} \frac{F}{R\yN}\biggr)
+  \qquad\implies\qquad
+    \boxed{\yE= \yU_{0} + \frac{V}{A} \frac{C}{R}\, F}
+  \ .
+\end{equation*}
+
+This is the desired constitutive relation. It says that the energy content $\yE$ is directly proportional to the magnitude of the momentum influx $F$, with some proportionality constants that also involve the size of the control volume and the area of the control surface.
+
+
+% \section{Fundamental vs derived laws}
+% \label{sec:fundamental_derived}
+
+
+% \section{Universal vs constitutive laws}
+% \label{sec:universal_constitutive}
+
+
+% \section{Balance and conservation laws}
+% \label{sec:balance_intro}
+
+
+% \section{Conservation laws}
+% \label{sec:conservation_laws}
+
+
+% \section{Balance laws}
+% \label{sec:balance_laws}
+
+
+% \section{Constitutive relations}
+% \label{sec:constitutive}
+
+
+\printpagenotes*
+\clearpage
+\chapter{Inference, prediction, simulation}
+\label{cha:inference}
+\setcounter{section}{-1}
+
+\section{}
+(Do the \textcolor{yellow}{exercises} in the main text.)
+
+\vspace{3em}
+
+\hrule
+
+\bigskip
+
+\emph{For Exercises~\ref{sec:calc_from_bal2-watertank}--\ref{sec:calc_from_bal2-capacitors-nuclearplant}, find the requested quantity if possible, by using any combination of:
+\begin{itemize}[nosep]
+\item data given in the question,
+\item balance or conservation law (specified in the question), in integral or differential expression,
+\item principle of extensivity,
+\item principle of symmetry of flux,
+\item calculus.
+\end{itemize}
+In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.}
+
+\section{}
+\label{sec:calc_from_bal2-watertank}
+
+Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
+
+\section{}
+\label{sec:calc_from_bal2-capacitors}
+Two electronic components that can store electric charge, called \emph{capacitors}, are connected by one wire; each is also connected to some other components by another wire; see side figure. Let's call them the \enquote*{top} and \enquote*{bottom} capacitor.
+
+\marginpar{\vspace{-2\baselineskip}\centering\footnotesize\includegraphics[width=0.55\linewidth]{images/capacitors.jpg}%
+\\\flushleftright\color{mpcolor}%
+Capacitors: \textcolor{blue}{blue}, wires: \textcolor{midgrey}{grey}. Wires on the left connect to other components, not shown.
+}%
+The top capacitor is \emph{receiving} from other components an electric current (that is, a flux of electric charge), of \qty{5}{C/s}. Its electric-charge content is increasing at a rate of \qty{2}{C/s}.
+
+The bottom capacitor is \emph{delivering} an electric current of \qty{1}{C/s} to other components.
+
+Electric charge satisfies a conservation law. \textbf{How fast is the electric-charge content in the bottom capacitor increasing or decreasing?}
+
+
+\section{}
+\label{sec:calc_from_bal2-capacitors-carbreak}
+
+A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
+
+  At time $\qty{0}{s}$, the driver starts to break. While slowing down, the car receives from the road a contact force given by
+  \begin{equation*}
+    \yF(t) =
+    \begin{bmatrix}
+      -\num{1800}\exp\bigl(-\frac{t}{\qty{20}{s}}\bigr)
+      \\
+      0
+      \\
+      \num{17640}
+    \end{bmatrix}\,\unit{N} \ ,
+  \end{equation*}
+and is subjected to the gravitational body force, constant in time,
+\begin{equation*}
+  \yG(t) = \begin{bmatrix}
+    0
+      \\
+      0
+      \\
+      -\num{17640}
+    \end{bmatrix}\,\unit{N} \ .
+  \end{equation*}
+  At time \qty{30}{s}, the car has a momentum\enskip$
+  \begin{bsmallmatrix}
+    1\\0\\0
+  \end{bsmallmatrix}\,\unit{N\,s}
+  $.
+
+  Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
+
+\section{}
+\label{sec:calc_from_bal2-capacitors-nuclearplant}
+\marginpar{\vspace{1.5\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
+    We're measuring amounts in \enquote*{particles} rather than \enquote*{moles}.%
+  }%
+  You are overseeing a nuclear-fission reactor. The reactor has a supply of \emph{free neutrons} equal to \qty{5.00e19}{particles/s}, constant in time. Free neutrons obey a balance law.
+
+  Up to now the amount of free neutrons inside the reactor has been constant, at \qty{1.67e19}{particles}. This is because the reactor has an efflux of free neutrons, into control rods, equal to \qty{5.00e19}{particles/s}, constant in time.
+
+  Suddenly -- let's call this time \qty{0}{s} -- you receive a warning on the red communication channel. The warning says that the efflux of neutrons now appears to be decreasing linearly, according to the formula
+  \begin{equation*}
+    \qty{5.00e19}{particles/s} - t\cdot\qty{1.40e12}{particles/s^{2}} \ .
+  \end{equation*}
+  This is dangerous: if the amount of free neutrons in the reactor reaches \qty{4.00e19}{particles}, the reactor will explode.
+
+  You send a team to check and fix the problem. The team asks you how much time they have, at most, to fix it. \textbf{How much time do they have to fix the problem, before the reactor explodes?} (Neglect the interaction time with the team, that is, start counting from \qty{0}{s}.)
+
+
+\section{}
+\label{sec:calc_from_bal2-scripts}
+
+Write scripts to solve Exercises~\ref{sec:calc_from_bal2-watertank}--\ref{sec:calc_from_bal2-capacitors-nuclearplant} numerically.
+
+
+
+
+\clearpage
+\addsec{Example solutions}
+
+\sollabel{sec:calc_from_bal2-watertank}
+
+Let's choose a closed control surface corresponding to the tank's inner wall (if it had no hole). The question gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti$, final time $\ytf= \yti + \qty{10}{s}$.
   \item Volume content of water $\yN(\yti)=\qty{0}{mol}$ at time $\yti$.
@@ -3206,17 +3282,19 @@ We can use it to find $\yN(\ytf)$ if we have the other three terms. $\yN(\yti)$ 
 \end{equation*}
 
 Using the balance law we finally find the amount of water after \qty{10}{s}:
-  \begin{equation*}
-    \begin{split}
-      \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-      + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
-      \\&= \qty{0}{\mol} -\qty{1}{mol} + \qty{20}{mol}
-      = \qty{19}{mol} \ .
-    \end{split}
-  \end{equation*}
+\begin{equation*}
+  \begin{split}
+    \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+    \\&= \qty{0}{\mol} -\qty{1}{mol} + \qty{20}{mol}
+    = \qty{19}{mol} \ .
+  \end{split}
+\end{equation*}
 
 
-\item First of all, the problem asks about quantities at a given instant of time, and mentions rates of change of volume contents. Therefore the differential form of conservation law for electric charge seems most convenient here:
+\sollabel{sec:calc_from_bal2-capacitors}
+
+First of all, the problem asks about quantities at a given instant of time, and mentions rates of change of volume contents. Therefore the differential form of conservation law for electric charge seems most convenient here:
   \begin{equation*}
     \frac{\di\yQ(t)}{\di t} = \yI(t) \ .
   \end{equation*}
@@ -3344,9 +3422,10 @@ Our conservation law therefore becomes
 
   Therefore the choice of a single control volume performed this mathematical elimination for us, so to speak.
 
-\medskip
 
-\item Let's choose a closed control surface wrapping the car. The question gives:
+
+\sollabel{sec:calc_from_bal2-capacitors-carbreak}
+Let's choose a closed control surface wrapping the car. The question gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti=\qty{0}{s}$, final time $\ytf= \qty{30}{s}$.
   \item Volume content of momentum $\yP(\ytf)=\begin{bsmallmatrix}
@@ -3487,7 +3566,8 @@ From calculus,\begin{multline*}
 \end{equation*}
 
 
-\item  We choose a control volume corresponding to the space occupied by the fissile material. This volume is a little like a piece of Emmental cheese: it has an outer surface, corresponding to the boundary of the reactor, and a lot of  cylindrical boundary surfaces within: they correspond to the space occupied by the control rods, which don't count as control volume because they don't have fissile material. The total control surface of this control volume consists in the outer surface and the inner surfaces, together. Despite this complex shape of control volume and surface, the reasoning for the balance law works as usual.
+\sollabel{sec:calc_from_bal2-capacitors-nuclearplant}
+We choose a control volume corresponding to the space occupied by the fissile material. This volume is a little like a piece of Emmental cheese: it has an outer surface, corresponding to the boundary of the reactor, and a lot of  cylindrical boundary surfaces within: they correspond to the space occupied by the control rods, which don't count as control volume because they don't have fissile material. The total control surface of this control volume consists in the outer surface and the inner surfaces, together. Despite this complex shape of control volume and surface, the reasoning for the balance law works as usual.
 
   Let's abbreviate the unit \enquote*{particles} to \enquote*{pt}.
 
@@ -3564,62 +3644,10 @@ with a minus sign because the question gives the efflux; it's convenient to intr
 
     The team has around \qty{96}{min} to fix the problem!
 
-\end{enumerate}
 
+\sollabel{sec:calc_from_bal2-scripts}
 
-
-\sollabel{sec:ideal_gas_const}
-
-We want to find a relation that gets rid of the auxiliary quantity $\yT$, the temperature. This can be done with several equivalent algebraic manipulations; here's one. Solve the ideal-gas law for the temperature:
-\begin{equation*}
-  \yT = \frac{V}{A} \frac{F}{R\yN}
-\end{equation*}
-then substitute this expression into the energy equation:
-\begin{equation*}
-  \yE = \yU_{0} + C\yN \biggl(\frac{V}{A} \frac{F}{R\yN}\biggr)
-  \qquad\implies\qquad
-    \boxed{\yE= \yU_{0} + \frac{V}{A} \frac{C}{R}\, F}
-  \ .
-\end{equation*}
-
-This is the desired constitutive relation. It says that the energy content $\yE$ is directly proportional to the magnitude of the momentum influx $F$, with some proportionality constants that also involve the size of the control volume and the area of the control surface.
-
-
-% \section{Fundamental vs derived laws}
-% \label{sec:fundamental_derived}
-
-
-% \section{Universal vs constitutive laws}
-% \label{sec:universal_constitutive}
-
-
-% \section{Balance and conservation laws}
-% \label{sec:balance_intro}
-
-
-% \section{Conservation laws}
-% \label{sec:conservation_laws}
-
-
-% \section{Balance laws}
-% \label{sec:balance_laws}
-
-
-% \section{Constitutive relations}
-% \label{sec:constitutive}
-
-
-\printpagenotes*
-\clearpage
-\chapter{The Seven Wonders of the world}
-\label{cha:seven_wonders}
-\setcounter{section}{-1}
-
-\section{}
-(Do the \textcolor{yellow}{exercises} in the main text.)
-
-\clearpage
-\addsec{Example solutions}
+\mynotew{An example script will be added soon.}
 
 
 % \section{Seven universal balance laws}
@@ -3636,7 +3664,7 @@ This is the desired constitutive relation. It says that the energy content $\yE$
 
 \printpagenotes*
 \clearpage
-\chapter{Conservation \amp\ balances of matter}
+\chapter{Conservation \amp\ balance of matter}
 \label{cha:cons_matter}
 \setcounter{section}{-1}
 
