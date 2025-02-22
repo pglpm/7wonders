@@ -38,10 +38,10 @@ while t < t1:
   Au = -lambd * Nv
   Av = lambd * Nu
   
-  ## balances: step forward in time
+  ## step forward in time with balance laws
+  t = t + dt
   Nu = Nu + (Ju + Au) * dt
   Nv = Nv + (Jv + Av) * dt
-  t = t + dt
   
   ## plot
   if t > tplot:

@@ -1,6 +1,6 @@
 %%% Numerical simulation for amount of substance in volume
 
-%% Initial values
+%% Initial conditions
 t = 0; % s: initial time
 N = 10; % mol: amount of substance
 
@@ -10,7 +10,7 @@ A = 0; % net/s: net supply, constant
 
 %% Parameters for time loop
 t1 = 2; % s: final time
-dt = 0.01; % s: time step
+dt = 0.01; % s: time step %@
 
 %% Plotting
 dtplot = t1/360; % time interval between plots
@@ -22,15 +22,16 @@ ylim([5, 20]);
 xlabel('time t/s');
 ylabel('amount N/mol');
 grid on;
-hold on;
+hold on; %@
 
 %% numerical time integration
 while t < t1
-    N = N + (J + A) * dt;
-    t = t + dt;
+  %% step forward in time with balance laws
+  t = t + dt;
+  N = N + (J + A) * dt; %Q
 
   %% plot
-  if t > tplot;
+  if t > tplot
     plot(t, N, '.b')
     pause(0)
     tplot = tplot + dtplot;

@@ -34,13 +34,13 @@ while t < t1
   Au = -lambda * Nv;
   Av = lambda * Nu;
 
-  %% balances
+  %% step forward in time with balance laws
+  t = t + dt;
   Nu = Nu + (Ju + Au) * dt;
-  Nv = Nv + (Jv + Av) * dt;
-  t = t + dt; %@
+  Nv = Nv + (Jv + Av) * dt; %@
 
   %% plot
-  if t > tplot;
+  if t > tplot
     plot(t, Nu, 'ob')
     plot(t, Nv, 'sr')
     pause(0)

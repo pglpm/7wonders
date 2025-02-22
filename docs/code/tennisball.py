@@ -44,12 +44,12 @@ while t < t1:
   vy = Py/m
   vz = Pz/m
   
-  ## balances
+  ## step forward in time with balance laws
+  t = t + dt
   Py = Py + (Fy + Gy) * dt
   Pz = Pz + (Fz + Gz) * dt
   y = y + vy * dt
   z = z + vz * dt
-  t = t + dt
   
   ## plot
   if t > tplot:

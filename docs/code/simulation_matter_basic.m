@@ -1,6 +1,6 @@
 %%% Numerical simulation for amount of substance in volume
 
-%% Initial values
+%% Initial conditions
 t = 0; % s: initial time
 N = 10; % mol: amount of substance
 
@@ -14,8 +14,9 @@ dt = 0.01; % s: time step
 
 %% numerical time integration
 while t < t1
-    N = N + (J + A) * dt;
-    t = t + dt;
+  %% step forward in time with balance laws
+  t = t + dt;
+  N = N + (J + A) * dt;
 end
 
 %% print final value

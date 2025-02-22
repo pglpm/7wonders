@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 ### Numerical simulation for amount of substance in volume
 
-## Initial values
+## Initial conditions
 t = 0 # s: initial time
 N = 10 # mol: amount of substance
 
@@ -19,9 +19,9 @@ dt = 0.01 # s: time step
 
 ## Numerical time integration
 while t < t1:
-    ## balances: step forward in time
-    N = N + (J + A) * dt
+    ## step forward in time with balance laws
     t = t + dt
+    N = N + (J + A) * dt
 
 ## Print final value
 print(N)
