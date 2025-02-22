@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-22T10:52:28+0100
+%% Last-Updated: 2025-02-22T13:20:18+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6909,12 +6909,14 @@ In other circumstances, however, conservation of these individual kinds of matte
 \subsection{Relation between matter and \masse}
 \label{sec:const_matter_mass}
 
-The most common constitutive relation used  together with conservation of matter is the one relating an amount of matter $\yN$ with an amount of \masse\ $\ym$.
+The most common constitutive relation used  together with conservation of matter is the one relating the volume content of matter with that  of \masse.
 
-As far as we know, if a control volume contains an amount of matter $\yN$, then it always also contains an amount of \masse\ $\ym$ (but the opposite is not always true: a control volume can contain \masse\ and no matter). This amount of \masse\ is typically huge when measured in joules. For instance, a volume with $\yN=\qty{1}{mol}$ of water (roughly \qty{2e-5}{m^3} for liquid water) contains approximately $\ym = \qty{1.62e15}{J}$ of \masse.
+According to our present physical knowledge, if a control volume contains an amount of matter $\yN$, and negligible electromagnetic fields, then it always also contains an amount of \masse\ $\ym$. This amount is typically huge when measured in joules. For instance, a volume with $\yN=\qty{1}{mol}$ of water (which occupies roughly \qty{2e-5}{m^3} in everyday conditions) contains approximately $\ym = \qty{1.62e15}{J}$ of \masse. Note that the opposite is not true: a control volume can contain \masse\ but no matter.
 
-The amount of \masse\ depends on the kind of matter and on other quantities in that volume, and usually changes with time. These changes, however, are typically \autoref{sec:dist_mass_energy}{extremely small compared to the total amount} -- say much less than \qty{0.00000001}{\percent} in the example above with water! So, as a very good approximation, we can consider this amount as practically constant. The amount of \masse\ $\ym$ is therefore proportional to the amount of matter $\yN$, and we write
+The amount of \masse\ is different depending on whether matter is moving or not, and on its internal conditions, for instance as reflected by temperature. But in many circumstances these differences are \autoref{sec:dist_mass_energy}{so small as to be completely negligible}, say much less than \qty{0.00000001}{\percent} in the example above with water! Then the \masse\ $\ym$ is practically equal to the amount that matter has when not in motion and at low temperatures; we call this amount \textbf{rest \masse}, and is practically constant.
+%
 \begin{definition}{Mass-energy of matter,label={def:molarmass}}
+  The amount of rest \masse\ $\ym$ in a control volume containing an amount $\yN$ of matter, and in which electromagnetic fields are weak enough, is
   \begin{equation*}
 \ym =  \yrho\yN
 \end{equation*}
@@ -7122,6 +7124,7 @@ that is, if the area through which the flux occur decreases, then the velocity o
 }%
 
 
+\bigskip
 \mynotew{Sections on chemical reactions and stoichiometry to be added.}
 
 \printpagenotes*
@@ -7216,7 +7219,7 @@ Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secund
   \end{equation}
 \end{definition}
 
-Among the seven universal balances, the balance of momentum is probably the most used in applications where motion or stability are important. Newton's famous \enquote{second law} is included in this balance as a special case, if we disregard the specific association that Newton made between momentum and velocity.
+Among the seven universal balances, the balance of momentum is probably the most used in applications where motion or stability are important. Newton's famous \enquote{second law} is included in this balance as a special case, \autoref{sec:newton_laws}{provided we disregard} Newton's specific association between momentum, mass, and velocity, and lack of the important distinction between surface forces and volume forces.
 % %
 % \marginpar{\vspace{-2\baselineskip}\footnotesize\raggedright\color{mpcolor}%
 %   \enquote{\emph{%
@@ -7234,8 +7237,8 @@ The importance of the balance of momentum comes to a great extent from two kinds
 \item an amazingly wide variety of constitutive relations that connect, in the most diverse ways, the flux $\yF$ of momentum with many properties of matter, like its extension, deformation, motion, temperature, and the simultaneous presence of charge and electromagnetic field.
 \end{itemize}
 
-Through this balance we can therefore describe and predict motions. We saw a concrete example of this application in the \autoref{sec:example_falling_object_timestep}{numerical time integration of the motion of a falling object}.
-
+Through this balance we can therefore describe and predict motions.
+% We saw a concrete example of this application in the \autoref{sec:example_falling_object_timestep}{numerical time integration of the motion of a falling object}.
 %
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/bryggen.jpg}%
@@ -7245,22 +7248,25 @@ Momentum balance keeps buildings from collapsing (photo: \emph{Bryggen}, Bergen,
 But this balance is also essential in the opposite problem: when we need to study things that \emph{don't and shouldn't move}, like a building or a bridge. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume content $\yP$ of momentum is constantly zero.
 
 \begin{warning}[Amounts of momentum depend on the coordinate system]
-  Remember that the amount of momentum $\yP$ in a volume, the flux $\yF$ through a surface, and the supply $\yG$ in a volume \textbf{all depend on the specific coordinate system $(t,x,y,z)$}. If we use a different coordinate system, these amounts will be different \emph{for the same volume and surface}. For example, a tennis ball can contain a huge amount of momentum with respect to one coordinate system, and \emph{zero} momentum with respect to another!
+  Remember that the amount of momentum $\yP$ in a control volume, the flux $\yF$ through a control surface, and the supply $\yG$ in a control volume \textbf{all depend on the specific coordinate system $(t,x,y,z)$}. If we use a different coordinate system, these amounts will be different \emph{for the same volume and surface}. For example, a tennis ball can contain a huge amount of momentum with respect to one coordinate system, and \emph{zero} momentum with respect to another! The supply of momentum, or gravitational-inertial force, can also be zero or non-zero, in the same physical situation, depending on the coordinate system.
 \end{warning}
 
 \medskip
 
-In the rest of this chapter we shall explore several common constitutive relations that involve momentum, and their use together with the balance law for momentum.
+In the rest of this chapter we shall explore several common constitutive relations that involve momentum, and some of their applications together with the balance law for momentum.
 
 
 \section{Newton's approximate relation between momentum and matter}
 \label{sec:bal_momentum_Newton}
 
-One of the most important constitutive relations is the one connecting momentum with the flux of matter. We have mentioned it several times in the previous chapters, and used it in \autoref{ex:tennisball}{examples of numerical integration}.
+One of the most important constitutive relations is the one \ref{sec:example_constitutive}{connecting momentum with the flux of matter}, briefly mentioned in previous chapters.
 
-Consider a \emph{small} control volume containing an amount of matter $\yN$. From the \autoref{sec:const_matter_mass}{constitutive equation between matter and \masse} we know that this volume also contains an amount of \masse\ $\ym=\yrho\yN$. The matter in this volume also has a velocity $\yv$, possibly zero, \autoref{sec:fluxes_velocities}{related to its flux}. The \textbf{Newtonian formula for the momentum of matter} then says that this control volume also contains an amount of momentum $\yP$ that is proportional to the \masse\ and the velocity:
+% This constitutive relation is based on the \autoref{def:molarmass}{relation between matter and \masse}: $\ym = \yrho\yN$, where $\yN$ and $\ym$ are the amounts of matter and \masse\ in a control volume.
+
+Choose a coordinate system $(t,x,y,z)$, and consider a control volume containing an amount of matter $\yN$, and where electromagnetic fields are negligible. From the \autoref{sec:const_matter_mass}{constitutive relation between matter and \masse} we then know that this volume also contains an amount of \masse\ $\ym=\yrho\yN$. If this control volume is small enough, the matter in it has also a unique velocity $\yv$, possibly zero, \autoref{sec:fluxes_velocities}{related to its flux}. The \textbf{Newtonian formula for the momentum of matter} then says that this control volume also contains an amount of momentum $\yP$ that is proportional to the \masse\ and the velocity:
+%
 \begin{definition}{Newtonian constitutive relation for momentum}
-If a control volume contains an amount of matter $\yN$ having \masse\ $\ym$ and velocity $\yv$, then it also contains an amount of momentum
+If a control volume contains an amount of matter $\yN$ having rest \masse\ $\ym$ and velocity $\yv$, then it also contains an amount of momentum
 \begin{equation}
   \label{eq:matter_momentum_Newton}
   \yP = \ym \yv
@@ -7273,10 +7279,23 @@ If a control volume contains an amount of matter $\yN$ having \masse\ $\ym$ and 
     v_{x}\\v_{y}\\v_{z}
   \end{bmatrix}
 \end{equation}
-This relation is only valid if the matter's velocity $\yv$ is the same throughout the volume. This is usually the case if the volume is small enough.
+This relation is only valid if the matter's velocity $\yv$ is the same throughout the volume. This is usually the case if the volume is \emph{small} enough.
 \end{definition}
 
-You are probably familiar with the first equality above; old textbook present it as the \emph{definition} of momentum. Today we know today that this equality only holds for matter but not, for instance, for the electromagnetic field. And even for matter it is only approximate: it's only valid when the velocity's magnitude $v$ is small compared to the speed of light, only in weak gravitational fields, and only when changes in \energym\ are small compared to the total \masse.
+You are probably familiar with the first equality above; old textbook present it as the definition of momentum. Today we know today  this equality only holds for matter but not, for instance, for the electromagnetic field. And even for matter it is only approximate: only valid when the speed $v$ is small compared to the speed of light, only in weak gravitational fields, and only when changes in \energym\ are small compared to the total \energym.
+
+In particle physics the following expression is ordinarily used instead:
+\begin{equation*}
+  \yP = \frac{\ym \yv}{\sqrt{1-v^{2}/c^{2}}}
+  \approx \ym \yv + \frac{1}{2\yc^{2}}  v^{2}\,\ym \yv + \dotsb
+\end{equation*}
+where $\yc$ is the speed of light. This constitutive relation is valid at high speeds, but only with weak gravitational fields and particular coordinates. A more general expression, used for instance in astrophysics, is
+\begin{equation*}
+  \yP \approx \ym \yv + \frac{1}{\yc^{2}}\bm{\varPhi}
+  + \frac{1}{\yc^{2}}  \bigl(\tfrac12 v^{2} + \yU/V + 3\, g\bigr)\,\ym \yv
+  + \dotsb
+\end{equation*}
+in which, for instance, the term $\bm{\Phi}$  represents fluxes of heat and mechanical energy; the term $\yU$ represents internal energy; and the term $g$ comes from gravitational effects.
 
 % Equivalently
 % 
@@ -7293,9 +7312,8 @@ You are probably familiar with the first equality above; old textbook present it
 % \autoref{sec:fluxes_velocities}{connection between flux and velocity}
 
 
-\subsection{Example with numerical time integration of position}
-
-
+\section{Numerical time integration of position}
+\label{sec:integration_P_r}
 
 The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\ym\yv$, knowledge of the momentum at a later timestep allows us to know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial position $\yr$ and momentum $\yP$ are given, and that the influx $\yF$ and supply $\yG$ are known at all times:
 \begin{equation}\label{eq:timestep_momentum_position}
