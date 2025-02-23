@@ -8,6 +8,57 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
+
+\subsection{Example}
+\label{sec:example_falling_object_timestep}
+
+Let's see an example with a falling object. For simplicity we only consider a $z$-coordinate, pointing upward; the other two coordinates have constant values. Assume these conditions:
+\begin{itemize}[nosep]
+\item initial time is $\yti=\qty{0}{s}$
+\item initial position is $z(\yti)=\qty{5}{m}$
+\item initial momentum is $P_{z}(\yti)=\qty{30}{N\,s}$
+\item \masse\ of object is $\ym=\qty{4}{kg}$
+\item momentum supply, from gravity, is $G_{z}=-\ym\cdot(\qty{9.81}{N/kg}) \equiv \qty{-39.23}{N}$
+\item timestep is $\Dt = \qty{0.1}{s}$
+\end{itemize}
+Then numerical integration up to $t=\qty{0.2}{s}$ looks as follows:\noprelistbreak
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/plot_tennisball_z.pdf}\\
+\includegraphics[width=\linewidth]{images/plot_tennisball_P.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integration for \qty{2}{s}%
+}%
+\begin{equation*}
+  \begin{aligned}
+    v_{z}(\qty{0}{s}) &= P_{z}(\qty{0}{s})/\ym\\
+    &=\qty{30}{N\,s}/\qty{4}{kg} = \qty{7.50}{m/s}
+    \\[2\jot]
+    z(\qty{0.1}{s})  &\approx z(\qty{0}{s}) + v_{z}(\qty{0}{s})\,\Dt\\
+    &\approx \qty{5}{m} + \qty{7.50}{m/s}\cdot\qty{0.1}{s} = \qty{5.75}{m}
+    \\[0.5\jot]
+    P_{z}(\qty{0.1}{s})  &\approx P_{z}(\qty{0}{s}) + [F_{z}(\qty{0}{s}) + G_{z}(\qty{0}{s})]\,\Dt \\
+    &\approx\qty{30}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{26.08}{N\,s}
+    \\[4\jot]
+    v_{z}(\qty{0.1}{s}) &= P_{z}(\qty{0.1}{s})/\ym\\
+    &=\qty{26.08}{N\,s}/\qty{4}{kg} = \qty{6.52}{m/s}
+    \\[2\jot]
+    z(\qty{0.2}{s})  &\approx z(\qty{0.1}{s}) + v_{z}(\qty{0.1}{s})\,\Dt\\
+    &\approx \qty{5.75}{m} + \qty{6.52}{m/s}\cdot\qty{0.1}{s} = \qty{6.40}{m}
+    \\[0.5\jot]
+    P_{z}(\qty{0.2}{s})  &\approx P_{z}(\qty{0.1}{s}) + [F_{z}(\qty{0.1}{s}) + G_{z}(\qty{0.1}{s})]\,\Dt\\
+    &\approx\qty{26.08}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{22.15}{N\,s}
+    \\[3\jot]
+    % v_{z}(\qty{0.2}{s}) &= P_{z}(\qty{0.2}{s})/\ym\\
+    % &=\qty{22.15}{N\,s}/\qty{4}{kg} = \qty{5.54}{m/s}
+    % \\[2\jot]
+    &\dotso
+  \end{aligned}
+\end{equation*}
+
+
+
+-----
 
 An example is the \autoref{item:momentum_mass_velocity}{Newtonian constitutive relation for momentum and matter} $\yP = \ym\yv$, briefly discussed previously. It relates the \emph{flux} of matter to the \emph{volume content} of momentum. We shall discuss this relationship more clearly in \sect~\ref{sec:matter_constitutive}, and explore and use more examples of constitutive relations for the purpose of simulating physical systems.
 

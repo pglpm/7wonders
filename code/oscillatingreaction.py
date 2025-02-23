@@ -27,8 +27,7 @@ tplot = dtplot; # time for next plot
 clf()
 plot(t, Nu, '.b')
 xlim([0, t1])
-xlabel('time t/s')
-ylabel('amount N/mol')
+xlabel('time t/s'); ylabel('amount N/mol')
 grid(True)
 plot(t, Nv, '.r')
 

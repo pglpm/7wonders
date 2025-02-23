@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-22T13:20:18+0100
+%% Last-Updated: 2025-02-23T11:07:28+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -991,14 +991,14 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
-\renewcommand*{\autoref}[2]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{%
+\renewcommand*{\autoref}[3][\sect~\ref]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{%
 angle-right%
 %hand-point-right%
 %undo%
 %undo-alt%
 %reply%
 %history%
-}\enskip\sect~\ref{#1} page~\pageref{#1}}}\textcolor{blue}{#2}}
+}\enskip#1{#2} page~\pageref{#2}}}\textcolor{blue}{#3}}
 
 %% auxiliary
 \newcommand*{\energym}{energy-mass}
@@ -6724,45 +6724,36 @@ The scripts are written in \furl{https://octave.org/}{Octave}; they should also 
 
 \subsection{Script for oscillating reaction}
 
-This is a realization of the iteration for the \autoref{sec:oscillatingreact2}{oscillating reaction}. The script has the following main blocks, each one with a clear physical significance:
+The script shown in table~\ref{tab:oscillatingreaction} on page~\pageref{tab:oscillatingreaction} is a realization of the iteration for the \autoref{sec:oscillatingreact2}{oscillating reaction}. The script has the following main blocks, each one with a clear physical meaning:
 \begin{description}
-\item[Line 4: constants.] The values of known physical constants relevant to the physical laws are given here, so that we don't need to write decimal numbers all over the script.
+\item[Line 4:] \textbf{constants}. The values of known physical constants relevant to the physical laws are given here, so that we don't need to write decimal numbers all over the script.
 
-\item[Lines 7--9: initial conditions.] The initial values of the quantities to be time-integrated are given here. They will be used to start the iteration loop, but may also be necessary in other parts of the script, for instance in setting up the boundary conditions.
+\item[Lines 7--9:] \textbf{initial conditions}. The initial values of the quantities to be time-integrated are given here. They will be used to start the iteration loop, but may also be necessary in other parts of the script, for instance in setting up the boundary conditions.
 
-\item[Lines 12--13: boundary conditions.] Here are given the values of fluxes, supplies, and sometimes even volume contents that are known beforehand to be constant throughout the iteration. In some cases the time dependence of some quantities may be not constant, but still known beforehand. In such cases this known dependence is given directly in the iteration loop.
+\item[Lines 12--13:] \textbf{boundary conditions}. Here are given the values of fluxes, supplies, and sometimes even volume contents that are known beforehand to be constant throughout the iteration. In some cases the time dependence of some quantities may be not constant, but still known beforehand. In such cases this known dependence is given directly in the iteration loop.
 
-\item[Lines 16--17: Time-iteration parameters.] The chosen duration of the simulation and the time step are given here.
+\item[Lines 16--17:] \textbf{time-iteration parameters}. The chosen duration of the simulation and the time step are given here.
 
-\item[Lines 32--49: iteration.] This is the heart of the physical evolution of the physical system.
+\item[Lines 30--47:] \emph{iteration}. This is the heart of the physical evolution of the physical system.
   \begin{description}
-  \item[Lines 34--35:] the \emph{constitutive relations} first allow us to calculate, at the present time, the values necessary for using the balance laws.
-  \item[Lines 38--40:] then the \emph{balance laws} allow us to calculate the volume contents at the next time instant; the time is updated accordingly.
+  \item[Lines 32--33:] the \emph{constitutive relations} first allow us to calculate, at the present time, the values necessary for using the balance laws.
+  \item[Lines 36--38:] then the \emph{balance laws} allow us to calculate the volume contents at the next time instant; the time is updated accordingly.
   \end{description}
 \end{description}
 
-\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\begin{table}[p]%\vspace{-4ex}
+  \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
 Download Octave version \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.m}{\texttt{oscillatingreaction.m}}%
 \\[2ex]
 Download Python version \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.py}{\texttt{oscillatingreaction.py}}%
 }%
 \lstinputlisting[style=mycode]{code/oscillatingreaction.m}
 %
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\sidepar{\vspace{-9\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/oscillatingreaction_plot.jpg}
 }%
-
-\subsection{Script for the tennis ball}
-
-This is a realization of the iteration for the \autoref{sec:oscillatingreact2}{tennis ball} of Exercise~\ref{ex:tennisball3} on page~\pageref{ex:tennisball3}. This script has the same general structure as the previous one. We are dealing with vector quantities in the present case, and we take care of each component separately.
-
-\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-Download Octave version \furl{https://pglpm.github.io/7wonders/code/tennisball.m}{ \texttt{tennisball.m}}%
-\\[2ex]
-Download Python version \furl{https://pglpm.github.io/7wonders/code/tennisball.py}{\texttt{tennisball.py}}%
-}%
-\lstinputlisting[style=mycode]{code/tennisball.m}
-
+  \caption{Script for the oscillating reaction}\label{tab:oscillatingreaction}
+\end{table}
 
 
 
@@ -6809,6 +6800,7 @@ This formula says that if we know the position $\yr(t)$ and the velocity $\yv(t)
 This formula can also be iterated as we did with a balance law. This way we can numerically time-integrate the position $\yr(t)$ and therefore keep track of and predict the motion of a small control volume.
 
 \subsection{Connection with the balance of matter}
+\label{sec:connection_velocity_matter}
 
 If the small control volume having position $\yr(t)$ contains matter, then we know that there's a \autoref{sec:fluxes_velocities}{connection} between its velocity $\yv(t)$ at time $t$ and the fluxes of that matter through three \emph{static} surfaces orthogonal to the coordinate axes:
 \begin{equation*}
@@ -7007,14 +6999,14 @@ This happens when we choose closed control surfaces through which there is no fl
 % In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is \emph{automatically} satisfied.
 % This is achieved by choosing a sequence of closed control surfaces for which the net flux of matter is zero: $\yJ(t)=0$, and therefore the amount of matter in the control volumes is constant. In other words, the control surfaces tightly wrap and follow the moving object of interest. % This procedure is often carried without many comments -- to the point of being almost forgotten at times.
 
-We saw an example of this procedure in the \autoref{sec:example_falling_object_timestep}{numerical evolution of the motion of a falling object}.
+We shall see an example of this procedure in the \autoref{sec:numeric_integration_P_r}{numerical time integration of the motion of a tennis ball}.
 % \marginpar{\centering%
 % \includegraphics[align=t,width=\linewidth]{images/timesteps.png}%
 % \\[2\jot]\footnotesize{\color{mpcolor}%
 % Snippet of formula~\eqref{eq:timestep_momentum_position}}%
 % }%
-Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}:
-at each timestep  the mass $\ym$ was assumed to be constant, not changing with time. But  as explained above, \autoref{sec:mass_proxy_matter}{this mass is proportional to the amount of matter}: $\ym = \yrho \yN$. So this assumption was guaranteed, implicitly, by the law of conservation of matter.
+% Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}:
+At each timestep the \masse\ $\ym$ of the tennis ball is assumed to be constant in time. But as explained above, \autoref{sec:mass_proxy_matter}{this mass is proportional to the amount of matter}: $\ym = \yrho \yN$. So this assumption is implicitly guaranteed by the law of conservation of matter.
 
 % you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\ym$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\ym = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\di t = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
 
@@ -7284,18 +7276,18 @@ This relation is only valid if the matter's velocity $\yv$ is the same throughou
 
 You are probably familiar with the first equality above; old textbook present it as the definition of momentum. Today we know today  this equality only holds for matter but not, for instance, for the electromagnetic field. And even for matter it is only approximate: only valid when the speed $v$ is small compared to the speed of light, only in weak gravitational fields, and only when changes in \energym\ are small compared to the total \energym.
 
-In particle physics the following expression is ordinarily used instead:
+In \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Relativ/relmom.html\#c1}{particle physics} the following constitutive relation between momentum, \masse, and velocity of matter is ordinarily used instead:
 \begin{equation*}
   \yP = \frac{\ym \yv}{\sqrt{1-v^{2}/c^{2}}}
   \approx \ym \yv + \frac{1}{2\yc^{2}}  v^{2}\,\ym \yv + \dotsb
 \end{equation*}
-where $\yc$ is the speed of light. This constitutive relation is valid at high speeds, but only with weak gravitational fields and particular coordinates. A more general expression, used for instance in astrophysics, is
+where $\yc$ is the speed of light. This relation is also valid at high speeds, but only with weak gravitational fields and only in particular coordinates. A more general expression is
 \begin{equation*}
-  \yP \approx \ym \yv + \frac{1}{\yc^{2}}\bm{\varPhi}
+  \yP \approx \ym \yv 
   + \frac{1}{\yc^{2}}  \bigl(\tfrac12 v^{2} + \yU/V + 3\, g\bigr)\,\ym \yv
-  + \dotsb
+  + \frac{1}{\yc^{2}}\bm{\varPhi} + \dotsb
 \end{equation*}
-in which, for instance, the term $\bm{\Phi}$  represents fluxes of heat and mechanical energy; the term $\yU$ represents internal energy; and the term $g$ comes from gravitational effects.
+in which the term $\yU$ represents internal energy; the term $g$ comes from gravitational effects, and the term $\bm{\Phi}$ represents fluxes of heat and mechanical energy; we shall say more about these quantities in \chap~\ref{cha:bal_energy}. Relations among momentum, matter, velocity of this kind are used for instance in astrophysics, to describe and predict the behaviour of stars and planets. They are also used for our Earth in some applications of geodesy.
 
 % Equivalently
 % 
@@ -7312,10 +7304,158 @@ in which, for instance, the term $\bm{\Phi}$  represents fluxes of heat and mech
 % \autoref{sec:fluxes_velocities}{connection between flux and velocity}
 
 
-\section{Numerical time integration of position}
+\section{Analytical time integration of position and momentum}
 \label{sec:integration_P_r}
 
-The numerical time integration of a position vector $\yr(t)$ is often done together with that of momentum $\yP(t)$. Thanks to the constitutive relation $\yP=\ym\yv$, knowledge of the momentum at a later timestep allows us to know the velocity at that timestep. Here is how such an iteration might look like. Suppose that the initial position $\yr$ and momentum $\yP$ are given, and that the influx $\yF$ and supply $\yG$ are known at all times:
+In many situations we want to track the position $\yn(t)$ of a small control volume containing an amount of matter, together with its momentum content. Think about tracking the motion of a tennis ball for instance.
+
+We must therefore use the balance of momentum together with the relation between position and velocity (which is often a \autoref{sec:connection_velocity_matter}{proxy for the balance of matter}):
+\begin{equation*}
+  \begin{aligned}
+    \frac{\di\yP(t)}{\di t} &= \yF(t) + \yG(t)
+    &\quad\text{or}\quad
+    \yP(\ytf) &= \yP(\yti) +
+    \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t
+    +\int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+    \,,
+    \\
+    \frac{\di\yr(t)}{\di t} &= \yv(t)
+    &\quad\text{or}\quad
+    \yr(\ytf) &= \yr(\yti) +
+    \int_{\yti}^{\ytf}\!\!\yv(t)\,\di t \,.
+  \end{aligned}
+\end{equation*}
+Even if we have the influx $\yF$ and supply $\yG$ of momentum are given as \autoref{sec:boundary_conds}{boundary conditions}, and therefore we can find the momentum at future times, we would still need to specify the velocity $\yv(t)$ at all times in order to find the future position $\yr$ at future times.
+
+Thanks to the constitutive relation $\yP=\ym\yv$, knowledge of the momentum at a later timestep allows us to know the velocity at that timestep, or vice versa:
+\begin{equation*}
+  \yv(t) = \yP(t)/\ym \,.
+\end{equation*}
+In simple cases this allows us to find the time dependence of momentum $\yP(t)$ and position $\yr(t)$ for all time by means of \autoref{sec:prediction}{analytical methods}.
+
+\subsection{Example: motion of tennis ball}
+\label{sec:motion_tennis_ball}
+
+Let's see a simple example with a flying tennis ball. As usual we consider a control volume coinciding with the tennis ball, and which can be localized just by a position vector $\yr(t)$ in some coordinate system $(t,x,y,z)$. Suppose the \masse\ of the ball is $\ym = \qty{0.06}{kg}$. Suppose that we know the following boundary conditions:
+\begin{itemize}[nosep]
+\item Momentum flux is zero: $\yF(t) = \qty{0}{N}$.
+\item Momentum supply, owing to gravity, is $\yG =-\ym g
+  -\begin{bsmallmatrix}
+    0\\0\\1
+  \end{bsmallmatrix}$, constant in time.
+\end{itemize}
+Insert these two boundary conditions into the integral expression of the balance of momentum, and solve the simple integrals. If we say that the initial time is $\yti = \qty{0}{s}$, and call the final time $\ytf$ simply $t$, we find
+\begin{equation*}
+  \yP(t) = \yP(\qty{0}{s}) - \ym g \begin{bsmallmatrix}
+      0\\0\\1
+    \end{bsmallmatrix}\, t \,.
+\end{equation*}
+The initial momentum is $\yP(\qty{0}{s})$, and thanks to the Newtonian relation between momentum and velocity we also find the initial velocity:
+\begin{equation*}
+  \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
+\end{equation*}
+With the same relation we can also find the velocity at any time $t$:
+\begin{equation*}
+  \begin{aligned}
+    \yv(t) = \yP(t)/ \ym
+    &= \yP(\qty{0}{s})/\ym - (\ym g/\ym) \begin{bsmallmatrix}
+      0\\0\\1
+    \end{bsmallmatrix}\, t
+    \\&= \yv(\qty{0}{s}) - g \begin{bsmallmatrix}
+      0\\0\\1
+    \end{bsmallmatrix}\,t
+  \end{aligned}
+\end{equation*}
+Note that this is simply a linear function of the variable $t$, of the kind \enquote*{$C + D\,t$}.
+
+Finally replace the expression for $\yv(t)$ above in the integral formula for the position $\yr(t)$, and integrate. The result is
+\begin{equation*}
+  \yr(t) = \yr(\qty{0}{s}) +
+  \yv(\qty{0}{s})\,t - \frac12 g \begin{bsmallmatrix}
+      0\\0\\1
+    \end{bsmallmatrix}\,t^{2}
+\,.
+\end{equation*}
+
+Let's put together the time dependence for momentum and position that we found, writing explicitly all components:
+\begin{equation*}
+  \begin{aligned}
+    \begin{bmatrix}
+      P_{x}(t) \\ P_{y}(t) \\ P_{z}(t)
+    \end{bmatrix}
+    &=
+    \begin{bmatrix}
+      P_{x}(\qty{0}{s}) \\ P_{y}(\qty{0}{s}) \\ P_{z}(\qty{0}{s})
+    \end{bmatrix}
+    - \ym g \begin{bmatrix}
+      0\\0\\1
+    \end{bmatrix}\, t \,,
+    \\[\jot]
+    \begin{bmatrix}
+      x(t)\\y(t)\\z(t)
+    \end{bmatrix}
+    &=
+    \begin{bmatrix}
+      x(\qty{0}{s})\\y(\qty{0}{s})\\z(\qty{0}{s})
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+      v_{x}(\qty{0}{s}) \\ v_{y}(\qty{0}{s}) \\ v_{z}(\qty{0}{s})
+    \end{bmatrix}\, t
+    - \frac12 g \begin{bmatrix}
+      0\\0\\1
+    \end{bmatrix}\,t^{2}
+    \,,
+  \end{aligned}
+  \quad\text{with}\quad
+  \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
+\end{equation*}
+%
+\marginpar{\vspace{-20\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/tball_Pz.jpg}\\
+\includegraphics[width=\linewidth]{images/tball_z.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Plots of $P_{z}(t)$ and $z(t)$ vs $t$ with initial conditions
+$P_{z}(\qty{0}{s}) = \qty{0.42}{N\,s}$ and 
+$z(\qty{0}{s}) = \qty{5}{m}$.
+}%
+
+\medskip
+
+Therefore if we know the initial position $\yr(\qty{0}{s}$, and the initial momentum $\yP(\qty{0}{s})$ or equivalently the initial velocity $\yv(\qty{0}{s})$, then we can predict the position and momentum for all future times. In particular:
+\begin{itemize}
+\item The $x$- and $y$-components of momentum are constant.
+\item The $z$-component of momentum decreases linearly with time.
+\item The $x$ and $y$ position coordinates are constant.
+\item The $z$ coordinate is a \emph{quadratic} function of time.
+\end{itemize}
+
+Note again how the analytic method manages to tell us beforehand about important features of the time behaviour, as \autoref{sec:numeric_simulation}{remarked previously}. In the present example it tells us for instance that there are no periodic oscillations, and that the $z$-component of position and momentum can increase or decrease indefinitely.
+
+\begin{exercise}
+  Prove the time dependence of $\yr(t)$ and $\yP(t)$ found above, but start from the differential expressions of the balance law of momentum and of the relation between position and velocity:
+  \begin{equation*}
+    \frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)
+    \,,
+    \qquad
+    \frac{\di\yr(t)}{\di t} = \yv(t)
+    \,,
+    \qquad
+    \yP(t) = \ym\yv(t)\,,
+\end{equation*}
+instead of the integral expressions. Assume that the position vector has the quadratic dependence
+\begin{equation*}
+  \yr(t) = B + C\,t + D\,t^{2} \,,
+\end{equation*}
+where $B$, $C$, $D$ are generic coefficients. Calculate its time derivative and substituting it in the various equations, find out what the coefficients should be so that the equations are identically satisfied.
+\end{exercise}
+
+\section{Numerical time integration of position and momentum}
+\label{sec:numeric_integration_P_r}
+
+The previous example with the tennis ball was simple enough for the analytic method to be available. But as soon as we introduce more constitutive relations between momentum $\yP$ and velocity $\yv$ that are more precise than the Newtonian one, or new constitutive relations that connect momentum flux and supply to position or velocity, then finding an analytical solution might be mathematically impossible. We shall therefore have to use \autoref{sec:numeric_simulation}{numerical time-integration} methods instead.
+
+Let us study the tennis-ball example with numerical time integration. We already discussed in \chap~\ref{cha:inference} the  \autoref[\eqn~\eqref]{eq:finite_diff_vect}{finite-difference approximation of the balance law for momentum} and \autoref[\eqn~\eqref]{eq:finite_diff_position}{that for position}. Thanks to the constitutive relation $\yP(t)=\ym\yv(t)$, knowledge of the momentum at every timestep allows us to calculate the velocity at that same timestep, or vice versa. The time iteration therefore looks as follows:
 \begin{equation}\label{eq:timestep_momentum_position}
   \begin{aligned}[b]
     \yv\tikzmark{va}(\yti)&= \yP(\yti)/\ym
@@ -7327,11 +7467,11 @@ The numerical time integration of a position vector $\yr(t)$ is often done toget
      \\[2\jot]
     \yr(\yti+2\Dt)  &\approx \tikzmark{rb}\yr(\yti+\Dt) + \tikzmark{vvb}\yv(\yti+\Dt)\,\Dt\\
     \yP(\yti+2\Dt)  &\approx \tikzmark{pc}\yP(\yti+\Dt) + [\yF(\yti+\Dt) + \yG(\yti+\Dt)]\,\Dt
-    \\[4\jot]
-    \yv(\yti+2\Dt) &= \yP(\yti+2\Dt)/\ym
-    \\[2\jot]
-    \yr(\yti+3\Dt)  &\approx \yr(\yti+2\Dt) + \yv(\yti+2\Dt)\,\Dt\\
-    \yP(\yti+3\Dt)  &\approx \yP(\yti+2\Dt) + [\yF(\yti+2\Dt) + \yG(\yti+2\Dt)]\,\Dt
+    % \\[4\jot]
+    % \yv(\yti+2\Dt) &= \yP(\yti+2\Dt)/\ym
+    % \\[2\jot]
+    % \yr(\yti+3\Dt)  &\approx \yr(\yti+2\Dt) + \yv(\yti+2\Dt)\,\Dt\\
+    % \yP(\yti+3\Dt)  &\approx \yP(\yti+2\Dt) + [\yF(\yti+2\Dt) + \yG(\yti+2\Dt)]\,\Dt
     \\[4\jot]
     &\dotso
   \end{aligned}
@@ -7343,69 +7483,56 @@ The numerical time integration of a position vector $\yr(t)$ is often done toget
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pb);
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pc);
 \end{tikzpicture}
-Keep in mind that these are vector equations, so each one corresponds to three components.
+These are vector equations; each one corresponds to three components. Note one more time how constitutive relations, in this case Newton's formula for momentum, connect quantities at the same time instant; whereas the balance laws drive the physical phenomenon forward in time (the update of position is a proxy of the balance of matter).
 
-For some physical phenomena -- such as planets orbiting around a star or satellites around a planet -- the momentum influx $\yF$ or supply $\yG$ may also depend on the position $\yr$. The scheme above works also in these cases.
+\medskip
 
-\subsection{Example}
-\label{sec:example_falling_object_timestep}
+A script implementing the numerical time integration based on the iteration above is shown in table~\ref{tab:tennisball_rP} on page~\pageref{tab:tennisball_rP}. \textcolor{codecolour}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} draw the plots of $\yP_{z}(t)$ and $z(t)$ against time $t$.
 
-Let's see an example with a falling object. For simplicity we only consider the $z$-coordinate, pointing upward. The other two coordinates have constant values. Assume these conditions:
-\begin{itemize}[nosep]
-\item initial time is $\yti=\qty{0}{s}$
-\item initial position is $z(\yti)=\qty{5}{m}$
-\item initial momentum is $P_{z}(\yti)=\qty{30}{N\,s}$
-\item \masse\ of object is $\ym=\qty{4}{kg}$
-\item momentum supply, gravity, is $G_{z}=-\ym\cdot\qty{9.81}{N/kg} = \qty{-39.23}{N}$
-\item timestep is $\Dt = \qty{0.1}{s}$
-\end{itemize}
-Then numerical integration up to $t=\qty{0.2}{s}$ looks as follows:\noprelistbreak
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/plot_tennisball_z.pdf}\\
-\includegraphics[width=\linewidth]{images/plot_tennisball_P.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Plots of $z(t)$ and $P_{z}(t)$ vs $t$ obtained by continuing the numerical integration for \qty{2}{s}%
-}%
-\begin{equation*}
-  \begin{aligned}
-    v_{z}(\qty{0}{s}) &= P_{z}(\qty{0}{s})/\ym\\
-    &=\qty{30}{N\,s}/\qty{4}{kg} = \qty{7.50}{m/s}
-    \\[2\jot]
-    z(\qty{0.1}{s})  &\approx z(\qty{0}{s}) + v_{z}(\qty{0}{s})\,\Dt\\
-    &\approx \qty{5}{m} + \qty{7.50}{m/s}\cdot\qty{0.1}{s} = \qty{5.75}{m}
-    \\[0.5\jot]
-    P_{z}(\qty{0.1}{s})  &\approx P_{z}(\qty{0}{s}) + [F_{z}(\qty{0}{s}) + G_{z}(\qty{0}{s})]\,\Dt \\
-    &\approx\qty{30}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{26.08}{N\,s}
-    \\[4\jot]
-    v_{z}(\qty{0.1}{s}) &= P_{z}(\qty{0.1}{s})/\ym\\
-    &=\qty{26.08}{N\,s}/\qty{4}{kg} = \qty{6.52}{m/s}
-    \\[2\jot]
-    z(\qty{0.2}{s})  &\approx z(\qty{0.1}{s}) + v_{z}(\qty{0.1}{s})\,\Dt\\
-    &\approx \qty{5.75}{m} + \qty{6.52}{m/s}\cdot\qty{0.1}{s} = \qty{6.40}{m}
-    \\[0.5\jot]
-    P_{z}(\qty{0.2}{s})  &\approx P_{z}(\qty{0.1}{s}) + [F_{z}(\qty{0.1}{s}) + G_{z}(\qty{0.1}{s})]\,\Dt\\
-    &\approx\qty{26.08}{N\,s} -\qty{39.23}{N}\cdot\qty{0.1}{s} = \qty{22.15}{N\,s}
-    \\[3\jot]
-    % v_{z}(\qty{0.2}{s}) &= P_{z}(\qty{0.2}{s})/\ym\\
-    % &=\qty{22.15}{N\,s}/\qty{4}{kg} = \qty{5.54}{m/s}
-    % \\[2\jot]
-    &\dotso
-  \end{aligned}
-\end{equation*}
+Let's examine the structure of this script, starting from the bottom, and omitting the lines for plotting, which are physically irrelevant:
+\begin{description}
+\item[Lines 35--51:] \textbf{iteration}. At each time step the velocity is calculated from the momentum in \textbf{line 37}, using Newton's constitutive relation. Then the momentum content and the position vector at the next timestep are calculated in \textbf{lines 41--42}, using the approximate form of the balance law of momentum and of the relation between position and velocity.
+\item[Lines 18--19:] \textbf{time-iteration parameters}. We decide to time-integrate the system until time $\ytf = \qty{2}{s}$, with a timestep $\Dt = \qty{0.01}{s}$.
+\item[Lines 14--15:] \textbf{boundary conditions}. We assume that the flux of momentum is zero, and the supply of momentum is the gravitational force, constant in time.
+\item[Lines 9--11:] \textbf{initial conditions}. We decide to start the time integration from $\yti = \qty{0}{s}$, with the initial values $\yr(\yti) = [0,0,5]\,\unit{m}$ and $\yP = [0,0,\num{0.42}]\,unit{N\,s}$.
+\item[Lines 5--6:] \textbf{constants}. Our equations use the constant \masse\ of the tennis ball $\ym = \qty{0.06}{kg}$, and the magnitude of free-fall acceleration of  $g = \qty{9.8}{N/kg}$.
+\end{description}
+
+\begin{table}[p]\vspace{-4ex}
+  \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+    Download Octave version \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.m}{\texttt{tennisball\_rP.m}}%
+    \\[2ex]
+    Download Python version \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.py}{\texttt{tennisball\_rP.py}}%
+    \\[5ex]
+    \flushleftright\color{black}\emph{Note:} In Octave, vectors are simply represented by square brackets, as in \textcolor{codecolour}{lines 10--11}, similar to the maths notation. The 1st component of a vector \textcolor{codecolour}{\texttt{P}} is retrieved with \enquote*{\textcolor{codecolour}{\texttt{P[1]}}}.
+  }%
+  \lstinputlisting[style=mycode]{code/tennisball_rP.m}
+  \caption{Script for the example of a flying tennis ball}\label{tab:tennisball_rP}
+\end{table}
+
+
+\medskip
 
 \begin{exercise}[label={ex:tennisball3}]
-  Modify the script you made for part \textbf{3.} of Exercise~\ref{ex:script2}, so that it also evolves the position $\yr(t)$ of the tennis ball. Use the constitutive relation $\yP=\ym\yv$ for the tennis ball, with $\ym = \qty{0.059}{kg}$.
-
-  \smallskip
-
-  Redo the numerical simulation you did for that exercise, with the same numerical parameters, and with an initial position for the tennis ball $\yr(\yti) = [0,0,2]\,\unit{m}$.
-
-  \smallskip
-
-  Plot $z(t)$ and $P_{z}(t)$ against the time $t$, similarly to the plots in the margin.
+  Modify and play around with the script for the tennis ball of table~\ref{tab:tennisball_rP} on page~\pageref{tab:tennisball_rP}, changing the various parameters in the script and changing the physical situation a little. For example you can try the following:
+  \begin{itemize}
+  \item Change the mass $\ym$, so that the script describes not a tennis ball, but a golf ball or a bowling ball. How does this modify the time behaviour of the vertical position and of the vertical momentum?
+  \item Change the initial momentum $\yP$. What happens if the object initially has a downward momentum? What if there is a horizontal component of momentum? Note that you can plot the $x$-component of momentum or position by changing \textcolor{codecolour}{\texttt{P(3)}} into \textcolor{codecolour}{\texttt{P(1)}} and \textcolor{codecolour}{\texttt{r(3)}} into \textcolor{codecolour}{\texttt{r(1)}}.
+  \item Change the boundary condition for the momentum influx. You can approximately represent the effect of wind by using a horizontal influx of momentum, constant in time; for instance
+    \begin{equation*}
+      \yF(t) = [2, 0, 0]\,\unit{N} \,.
+    \end{equation*}
+    How does this affect the horizontal and the vertical motion of the object?
+  \end{itemize}
 \end{exercise}
 
+\clearpage
+\section{Constitutive relations for momentum flux: material science}
+\label{sec:material_science}
 
+\furl{https://www.britannica.com/technology/materials-science}{\textbf{materials science}}
+
+\mynotew{Under construction}
 
 \section{Hookean spring}
 \label{sec:hooke}

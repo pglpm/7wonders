@@ -19,13 +19,11 @@ dt = 0.0001; % s: time step %@
 %% Plotting
 dtplot = t1/360; % time interval between plots
 tplot = dtplot; % time for next plot
-clf;
+clf
 plot(t, Nu, 'ob')
-xlim([0, t1]);
-xlabel('time t/s');
-ylabel('amount N/mol');
-grid on;
-hold on;
+xlim([0, t1])
+xlabel('time t/s'); ylabel('amount N/mol')
+grid on; hold on
 plot(t, Nv, 'sr') %@
 
 %% Numerical time integration
