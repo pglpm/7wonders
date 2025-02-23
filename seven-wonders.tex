@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-23T15:33:04+0100
+%% Last-Updated: 2025-02-23T16:45:00+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1022,6 +1022,8 @@ angle-right%
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
 \newcommand*{\yr}{\bm{r}}
+\newcommand*{\yraa}{\yr_{\textrm{a}}}
+\newcommand*{\yrbb}{\yr_{\textrm{b}}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
 \newcommand*{\yxa}{x_{a}}%
@@ -1100,18 +1102,20 @@ angle-right%
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{as}}
 \newcommand*{\yFba}{\yF_{bs}}
-\newcommand*{\yFpg}{F_{\text{pg}}}
-\newcommand*{\yFgp}{F_{\text{gp}}}
-\newcommand*{\yFatm}{F_{\text{atm}}}
-\newcommand*{\yFc}{\yF_{\text{c}}}
-\newcommand*{\yFn}{F_{\text{n}}}
-\newcommand*{\yFs}{F_{\text{s}}}
-\newcommand*{\yFk}{\yF_{\text{k}}}
-\newcommand*{\yFr}{\yF_{\text{other}}}
-\newcommand*{\yFrx}{F_{\text{other},x}}
-\newcommand*{\yFrz}{F_{\text{other},z}}
-\newcommand*{\yFp}{F_{\text{p}}}
-\newcommand*{\yFf}{F_{\text{f}}}
+\newcommand*{\yFpg}{F_{\textrm{pg}}}
+\newcommand*{\yFgp}{F_{\textrm{gp}}}
+\newcommand*{\yFatm}{F_{\textrm{atm}}}
+\newcommand*{\yFa}{\yF_{\textrm{a}}}
+\newcommand*{\yFb}{\yF_{\textrm{b}}}
+\newcommand*{\yFc}{\yF_{\textrm{c}}}
+\newcommand*{\yFn}{F_{\textrm{n}}}
+\newcommand*{\yFs}{F_{\textrm{s}}}
+\newcommand*{\yFk}{\yF_{\textrm{k}}}
+\newcommand*{\yFr}{\yF_{\textrm{other}}}
+\newcommand*{\yFrx}{F_{\textrm{other},x}}
+\newcommand*{\yFrz}{F_{\textrm{other},z}}
+\newcommand*{\yFp}{F_{\textrm{p}}}
+\newcommand*{\yFf}{F_{\textrm{f}}}
 \newcommand*{\ypr}{p} % pressure
 \newcommand*{\ypv}{\bm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
@@ -7544,22 +7548,56 @@ Let's examine the structure of this script, starting from the bottom, and omitti
 
 In everyday situations we can experimentally observe that the constitutive relation between \emph{volume content} of momentum $\yP$ and matter is essentially the Newtonian one, when electromagnetic fields can be neglected.
 
-When it comes to \emph{flux} of momentum we instead observe an astounding, seemingly endless variety of constitutive relations which connect it to matter content and flux, and to the shape and dimensions of the control volumes and surfaces involved. These constitutive relations reflect the spectacular variety in the phyisical behaviour of objects and materials that surround us and that make up our bodies.
+When it comes to \emph{flux} of momentum, that is, \emph{surface force} through the boundary of a control volume, we instead observe an astounding, seemingly endless variety of constitutive relations which connect momentum flux to matter content and flux, and to the shape and dimensions of the control volumes and surfaces involved. These constitutive relations reflect the spectacular variety of physical behaviour offered by objects and materials that surround us and that make up our bodies.
 
-Consider for instance what happens if you hold and squeeze different kinds of materials between your fingers. A block of metal or hard wood may not deform at all as you squeeze it; it is a \emph{rigid} material or body. A piece of rubber may deform and return to its initial shape as you release it; it is an \emph{elastic} material. A piece of plastic or wax may deform and thereafter keep the deformed shape; it is a \emph{plastic} material. With water, it's even impossible to hold it between your fingers! We have \emph{liquid} and \emph{gaseous} materials, which in turn can also have an \emph{elastic} (in a slightly different sense than the solid case) or \emph{viscous} behaviour, or many other kinds of behaviour.
+Consider for instance what happens if you hold and squeeze different kinds of materials between your fingers; the ensuing behaviour is called the \textbf{response} of the material. A block of metal or hard wood may not deform at all as you squeeze it; it is a \emph{rigid} response. A piece of rubber may deform and return to its initial shape as you release it; it has an \emph{elastic} response. A piece of plastic or wax may deform and thereafter keep the deformed shape; it has a \emph{plastic} response. With water, it's even impossible to hold it between your fingers! We have \emph{liquid} and \emph{gaseous} materials, which in turn can also have \emph{elastic} (in a slightly different sense than the solid case) or \emph{viscous} responses, or many other kinds of behaviour.
 
-The exploration of these physical behaviours and their constitutive relations goes under the umbrella field of \furl{https://www.britannica.com/technology/materials-science}{\textbf{materials science}}. The study of these constitutive relations via time integration -- typically numerical -- goes in two opposite directions. We perform it to check whether a particular candidate constitutive relation really reflects the physical behaviour that we experimentally observe. And when we know that a constitutive relation is valid, we may use it to predict physical behaviour in situations where experimentation would be too difficult or costly.
+The exploration of these physical behaviours and responses, and of their constitutive relations, goes under the umbrella field of \furl{https://www.britannica.com/technology/materials-science}{\textbf{materials science}}. The study of these constitutive relations via time integration -- typically numerical -- has two complementary goals. We perform it to check whether a candidate constitutive relation really reflects the physical behaviour that we experimentally observe. And when we know that a constitutive relation is valid, we may use it to predict physical behaviour in situations where experimentation would be too difficult or costly.
 
 \medskip
 
-In the following sections we shall study several extremely simplified examples of constitutive relations between momentum flux and various other quantities, and in particular between the momentum flux through a closed control surface, and the dimension and shape of the corresponding control volume. The goal is to simply give you a glimpse of how this study can be performed and of the physical behaviours that we can observe.
+In the following sections we shall study several extremely simplified examples of constitutive relations between the momentum flux through a closed control surface and several other quantities, in particular the dimension and shape of the corresponding control volume. The goal is to simply give you a glimpse of how this kind of studies can be performed, and of the physical responses that we can observe.
 
 To start with, we shall simplify the situation as follows:
 \begin{itemize}
 \item We consider a control volume where momentum influx only occurs through two separate parts, usually diametrically opposed, of the closed control surface.
-\item We simplify the shape and dimensions of the control volume to the distance between the two parts of the control surface
+\item We summarize the shape and dimensions of the control volume with just the distance between the two parts of the control surface.
 \item We often assume that the matter within the control volume has negligible \masse, and therefore a momentum content that is practically zero at all times.
 \end{itemize}
+
+%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/material_piece.jpg}%
+}%
+These simplification are illustrated in the side figure. The closed control surface is represented by the \textcolor{yellow}{dashed yellow line}. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be elliptical or round, or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
+
+We assume that momentum influxes, that is, surface forces, only occur at the two parts represented by the \textcolor{red}{solid red lines}, which we may call \enquote*{a} and \enquote*{b}, or \enquote*{1} and \enquote*{2}, or with other symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $L$, or $\ydlm$, or some other symbol.
+
+The momentum \textbf{in}fluxes through the partial surfaces are $\yFa$ and $\yFb$, represented by the \textcolor{blue}{blue} arrows. In the figure, these momentum influxes are compressive (\faIcon{angle-right}\enskip page~\pageref{sec:pressure}), but note that they might also be tensile (\faIcon{angle-right}\enskip page~\pageref{sec:tension}).
+
+\medskip
+
+%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.49\linewidth]{images/elasticband.jpg}%
+\includegraphics[width=0.49\linewidth]{images/spring.jpg}%
+}%
+With the simplified setup just described we can approximately represent the response of objects like an elastic band, or a spring, or a piece of rope. In \chap~\ref{cha:bal_energy} a very similar setup will also be used to represent the response of a body of gaseous substance.
+
+\subsection{Special consequences of negligible momentum content}
+
+The simplification of having influxes through two separate partial control surfaces, together with the simplification of negligible \masse\ content and momentum content, have two important consequences. These consequences follow from \emph{the balances of momentum and of \autoref{cha:bal_ang_momentum}{angular momentum}}:
+\begin{enumerate}[label=(C\arabic*)]
+\item The influxes $\yFa$ and $\yFb$ must have equal magnitudes and directions, and opposite orientations, that is,
+  \begin{equation*}
+    \yFa = - \yFb \,.
+  \end{equation*}
+
+\item If the partial control surfaces \enquote*{a} and \enquote*{b} are enough small, then the influxes $\yFa$ and $\yFb$ must each have the same direction as the line connecting the two partial surfaces:
+  \begin{equation*}
+    \yFa \,, \yFb\,, \yraa-\yrbb \quad \text{are parallel}
+  \end{equation*}
+\end{enumerate}
 
 \mynotew{Under construction}
 
