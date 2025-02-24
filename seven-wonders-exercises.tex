@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-20T21:14:40+0100
+%% Last-Updated: 2025-02-24T22:54:20+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -1045,6 +1045,7 @@ angle-right%
 \newcommand*{\yxi}{x_{0}}
 \newcommand*{\yyi}{y_{0}}
 \newcommand*{\yzi}{z_{0}}
+\newcommand*{\dt}{\di t}
 \newcommand*{\Dt}{\incr t}
 \newcommand*{\Dx}{\incr x}
 \newcommand*{\Dy}{\incr y}
@@ -1997,7 +1998,7 @@ which is not what we want. Trying next $\omega \ytf = \pu$, which means $\ytf = 
 \item Let's call the specific position $z_{0} \defd \qty{-2}{m}$ at $\yti\qty{1}{s}$. The expression for $z(t)$ is found integrating $v_{z}(t)$ between $\yti$ and $t$, and adding the position at $\yti$:
   \begin{equation*}
     \begin{split}
-      z(t) &= z_{0} + \int_{\yti}^{t} c \exp(-t/\tau) \, \di t
+      z(t) &= z_{0} + \int_{\yti}^{t} c \exp(-t/\tau) \, \dt
       \\[\jot]
       &= z_{0} - c \tau \exp(-t/\tau)\bigr\rvert_{\yti}^{t}
       \\[\jot]
@@ -2720,8 +2721,8 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 \item The time-integrated flux of charge is found with a time integral. Note that the result has a dimension of electric charge: this is the net amount of charge that flowed through the control surface, in the given crossing direction, between the two times:
   \begin{equation*}
     \begin{aligned}
-      \int_{\yti}^{\ytf}\yI(t)\,\di t =
-      \int_{\yti}^{\ytf}A \sin(\omega t)\, \di t
+      \int_{\yti}^{\ytf}\yI(t)\,\dt =
+      \int_{\yti}^{\ytf}A \sin(\omega t)\, \dt
       &=
       -\frac{A}{\omega}\, \cos(\omega t)\Bigr\rvert_{\yti}^{\ytf}
       \\&\approx -\qty{796}{C}\cdot (1-1) = \qty{0}{C} \ .
@@ -2732,8 +2733,8 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 \item 88 Earth-days are approximately equal to $88\cdot 24\cdot 60\cdot \qty{60}{s} \approx \qty{7600000}{s}$. So we time-integrate between $\yti=\qty{0}{s}$ and $\ytf=\qty{7600000}{s}$:
   \begin{equation*}
     \begin{aligned}
-      \int_{\yti}^{\ytf}\yH(t)\, \di t =
-      \int_{\yti}^{\ytf}\bigl[W + u\, \cos(\sigma t)\bigr]\,\di t &=
+      \int_{\yti}^{\ytf}\yH(t)\, \dt =
+      \int_{\yti}^{\ytf}\bigl[W + u\, \cos(\sigma t)\bigr]\,\dt &=
       W t\Bigr\rvert_{\yti}^{\ytf} +
       \frac{u}{\sigma}\, \sin(\sigma t)\Bigr\rvert_{\yti}^{\ytf}
       \\[1ex]
@@ -2746,17 +2747,17 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 \item Recall that time-integrating a vector simply means time-integrating each component. In this case the supply is constant, so integration is easy:
   \begin{equation*}
     \begin{aligned}
-      \int_{\yti}^{\ytf} \yG(t)\,\di t &=
+      \int_{\yti}^{\ytf} \yG(t)\,\dt &=
       \int_{\yti}^{\ytf} \ym \yg
     \begin{bmatrix}
       0\\0\\-1
-    \end{bmatrix}\,\di t
+    \end{bmatrix}\,\dt
     \\[1ex]
     &= \ym \yg
     \begin{bmatrix}
-      \int_{\yti}^{\ytf}0\,\di t\\[2\jot]
-      \int_{\yti}^{\ytf}0\,\di t\\[2\jot]
-      -\int_{\yti}^{\ytf}1\,\di t
+      \int_{\yti}^{\ytf}0\,\dt\\[2\jot]
+      \int_{\yti}^{\ytf}0\,\dt\\[2\jot]
+      -\int_{\yti}^{\ytf}1\,\dt
     \end{bmatrix} =
       \ym \yg
     \begin{bmatrix}
@@ -2902,7 +2903,7 @@ Imagine you're supervising a research team. Your team is exploring and developin
 
 \emph{Super-energium} is supposed to be somewhat similar to the better known \emph{energium}, which is therefore used as a comparison in your team's investigations. The energy flux $\yH$ of a block of \emph{energium} satisfies the differential conservation law
 \begin{equation}\label{eq:energy_block}
-  \frac{\di\yE(t)}{\di t} = \yH(t)
+  \frac{\di\yE(t)}{\dt} = \yH(t)
 \end{equation}
 where $\yE$ is the energy of the block. For this material, the energy is connected with the temperature $\yT$ of the block by the constitutive relation
 \begin{equation}\label{eq:const_block}
@@ -2918,7 +2919,7 @@ Your team performs experiments on blocks of \emph{super-energium}, and finds tha
 \item\label{item:team_A} One group of engineers show that if you keep the original constitutive relation~\eqref{eq:const_block}, but modify the conservation law~\eqref{eq:energy_block} as follows:
   \begin{equation}
     \label{eq:energy_block_new}
-    \biggl[\frac{\di\yE(t)}{\di t}\biggr]^{2} = \yH(t)
+    \biggl[\frac{\di\yE(t)}{\dt}\biggr]^{2} = \yH(t)
   \end{equation}
 then you can perfectly describe and predict all experimental results.
 
@@ -2972,7 +2973,7 @@ Find a constitutive relation that directly connects the volume content of \energ
   \begin{itemize}[nosep]
   \item Initial time $\yti=\qty{0}{s}$, final time $\ytf=\qty{20}{s}$.
   \item Volume content of water $\yN(\yti)=\qty{10}{mol}$ at time $\yti$.
-  \item Time-integrated supply of water in control volume $\int_{\yti}^{\ytf}\!\yJ(t)\,\di t = \qty{3}{mol}$.
+  \item Time-integrated supply of water in control volume $\int_{\yti}^{\ytf}\!\yJ(t)\,\dt = \qty{3}{mol}$.
   \item Time-integrated influx of water is \qty{0}{mol} (\enquote{the tank is sealed}).
   \end{itemize}
   Unknown:
@@ -2982,14 +2983,14 @@ Find a constitutive relation that directly connects the volume content of \energ
 
   If water obeys a balance law, the quantities above are related by
   \begin{equation*}
-    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt
   \end{equation*}
 of which three are known. We can find the unknown:
 \begin{equation*}
   \begin{split}
-    \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+    \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt
     \\&= \qty{10}{mol} + \qty{0}{mol} + \qty{3}{mol}
     = \qty{13}{mol} \ .
   \end{split}
@@ -3000,7 +3001,7 @@ of which three are known. We can find the unknown:
   The problem gives:
   \begin{itemize}[nosep]
   \item Initial time $\yti$, final time $\ytf=\yti + \qty{1800}{s}$.
-  \item Time-integrated \textbf{in}flux of energy $\int_{\yti}^{\ytf}\!\yH(t)\,\di t = -\qty{4300}{J}$; minus sign because the text specifies the efflux.
+  \item Time-integrated \textbf{in}flux of energy $\int_{\yti}^{\ytf}\!\yH(t)\,\dt = -\qty{4300}{J}$; minus sign because the text specifies the efflux.
   \item Volume content of energy $\yE(\ytf)=\qty{0}{mol}$ at time $\ytf$.
   \end{itemize}
   Unknown:
@@ -3010,12 +3011,12 @@ of which three are known. We can find the unknown:
 
   If energy obeys a conservation law, the quantities above are related by
   \begin{equation*}
-    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
+    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
   \end{equation*}
 of which two are known. We can find the unknown by simple algebra:
 \begin{equation*}
   \begin{split}
-    \yE(\yti) &= \yE(\ytf) - \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
+    \yE(\yti) &= \yE(\ytf) - \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
     \\&= \qty{0}{J} + \qty{4300}{J} 
     = \qty{4300}{J} \ .
   \end{split}
@@ -3028,23 +3029,23 @@ of which two are known. We can find the unknown by simple algebra:
   \item Initial time $\yti$, final time $\ytf=\yti + \qty{9.2e4}{s}$.
   \item Volume content of neutrons $\yN(\yti)=\qty{141.0}{mol}$ at time $\yti$.
   \item Volume content of neutrons $\yN(\ytf)=\qty{140.5}{mol}$ at time $\ytf$.
-  \item Time-integrated \textbf{in}flux of neutrons $\int_{\yti}^{\ytf}\!\yJ(t)\,\di t = \qty{0}{mol}$ (\enquote{no neutrons were emitted}).
+  \item Time-integrated \textbf{in}flux of neutrons $\int_{\yti}^{\ytf}\!\yJ(t)\,\dt = \qty{0}{mol}$ (\enquote{no neutrons were emitted}).
   \end{itemize}
   Unknown:
   \begin{itemize}[nosep]
-  \item Time-integrated supply of neutrons $\int_{\yti}^{\ytf}\!\ya(t)\,\di t$.
+  \item Time-integrated supply of neutrons $\int_{\yti}^{\ytf}\!\ya(t)\,\dt$.
   \end{itemize}
 
   If the amount of neutrons obeys a balance law, the quantities above are related by
   \begin{equation*}
-    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt
   \end{equation*}
 of which three are known. We can find the unknown by algebra:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t &=    \yN(\ytf) - \yN(\yti)
-    - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt &=    \yN(\ytf) - \yN(\yti)
+    - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
     \\&= \qty{141.0}{mol} - \qty{140.5}{mol} - \qty{0}{mol}
     = -\qty{0.5}{mol} \ .
   \end{split}
@@ -3061,13 +3062,13 @@ The negative sign for the supply makes sense, because the number of neutrons has
   \end{itemize}
   Unknown:
   \begin{itemize}[nosep]
-  \item Time-integrated influx of momentum $\int_{\yti}^{\ytf}\!\yF(t)\,\di t$.
+  \item Time-integrated influx of momentum $\int_{\yti}^{\ytf}\!\yF(t)\,\dt$.
   \end{itemize}
 
   Momentum obeys a balance law, so the quantities above are related by
   \begin{equation*}
-    \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t \ .
+    \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\yG(t)\, \dt \ .
   \end{equation*}
   Only two of these four quantities are given in the problem, so we can't find the influx of momentum.
 
@@ -3083,17 +3084,17 @@ The negative sign for the supply makes sense, because the number of neutrons has
   \end{itemize}
   Unknown:
   \begin{itemize}[nosep]
-  \item Time-integrated \textbf{ef}flux of angular momentum $-\int_{\yti}^{\ytf}\!\yto(t)\,\di t$; the minus sign is because $\yto$ denotes the influx.
+  \item Time-integrated \textbf{ef}flux of angular momentum $-\int_{\yti}^{\ytf}\!\yto(t)\,\dt$; the minus sign is because $\yto$ denotes the influx.
   \end{itemize}
 
   Assuming angular momentum to obey a conservation law, the quantities above are related by
   \begin{equation*}
-    \yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\, \di t 
+    \yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\, \dt 
   \end{equation*}
 of which two are known. We can find the \textbf{ef}flux by algebra:
 \begin{equation*}
   \begin{split}
-   - \int_{\yti}^{\ytf}\!\!\yto(t)\, \di t &=    \yL(\yti) - yL(\ytf)
+   - \int_{\yti}^{\ytf}\!\!\yto(t)\, \dt &=    \yL(\yti) - yL(\ytf)
    \\&= [0, \num{2.1e-36},0]\,\unit{N\,m\,s} - [0,0,0]\,\unit{N\,m\,s}
     = [0, \num{2.1e-36},0]\,\unit{N\,m\,s} \ .
   \end{split}
@@ -3287,22 +3288,22 @@ Let's choose a closed control surface corresponding to the tank's inner wall (if
 
   Water obeys a balance law. The fluxes and supplies reported in the question are constant in time, and so they could be easily used in the differential expression of the balance law. But the problem also involves a specific lapse of time; this suggests to use the integral expression of the balance law instead:
   \begin{equation*}
-    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t \ .
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt \ .
   \end{equation*}
 We can use it to find $\yN(\ytf)$ if we have the other three terms. $\yN(\yti)$ is known, and the time-integrated flux and supply can be found by integration:
 \begin{equation*}
   \begin{gathered}
     \begin{aligned}
-      \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t =
-      -\int_{\yti}^{\ytf}\!\!\qty{0.1}{mol/s}\, \di t
+      \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt =
+      -\int_{\yti}^{\ytf}\!\!\qty{0.1}{mol/s}\, \dt
       &= -\qty{0.1}{mol/s}\cdot (\ytf-\yti)
       \\&= -\qty{0.1}{mol/s} \cdot \qty{10}{s} = -\qty{1}{mol} \ ,
     \end{aligned}
     \\
     \begin{aligned}
-      \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t =
-      \int_{\yti}^{\ytf}\!\!\qty{2.0}{mol/s}\, \di t
+      \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt =
+      \int_{\yti}^{\ytf}\!\!\qty{2.0}{mol/s}\, \dt
       &= \qty{2.0}{mol/s}\cdot (\ytf-\yti)
       \\&=\qty{2.0}{mol/s} \cdot \qty{10}{s} = \qty{20}{mol} \ .
     \end{aligned}
@@ -3312,8 +3313,8 @@ We can use it to find $\yN(\ytf)$ if we have the other three terms. $\yN(\yti)$ 
 Using the balance law we finally find the amount of water after \qty{10}{s}:
 \begin{equation*}
   \begin{split}
-    \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t
+    \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt
     \\&= \qty{0}{\mol} -\qty{1}{mol} + \qty{20}{mol}
     = \qty{19}{mol} \ .
   \end{split}
@@ -3324,7 +3325,7 @@ Using the balance law we finally find the amount of water after \qty{10}{s}:
 
 First of all, the problem asks about quantities at a given instant of time, and mentions rates of change of volume contents. Therefore the differential form of conservation law for electric charge seems most convenient here:
   \begin{equation*}
-    \frac{\di\yQ(t)}{\di t} = \yI(t) \ .
+    \frac{\di\yQ(t)}{\dt} = \yI(t) \ .
   \end{equation*}
 
   For the choice of control volumes and surfaces, this problem can be approached in two different ways, which obviously lead to identical physical results:
@@ -3343,7 +3344,7 @@ First of all, the problem asks about quantities at a given instant of time, and 
 
   For the top control volume, the problem gives these data:
   \begin{itemize}[nosep]
-  \item Rate of change of electric-charge content: $\frac{\di\yQ_{\text{t}}}{\di t} = \qty{2}{C/s}$.
+  \item Rate of change of electric-charge content: $\frac{\di\yQ_{\text{t}}}{\dt} = \qty{2}{C/s}$.
   \item Influx of electric charge through partial surface $A$: $\yI_{A} = \qty{5}{C/s}$.
   \end{itemize}
   The influx of electric charge $\yI_{S}$ through $S$ is not given. The influx through the rest of the surface is zero, and we shall simply omit it.
@@ -3355,7 +3356,7 @@ First of all, the problem asks about quantities at a given instant of time, and 
 
   The balance law of electric current for this control volume is therefore
   \begin{equation*}
-        \frac{\di\yQ_{\text{t}}}{\di t} = \yI_{A} + \yI_{S} \ ,
+        \frac{\di\yQ_{\text{t}}}{\dt} = \yI_{A} + \yI_{S} \ ,
   \end{equation*}
   where all quantities except $\yI_{S}$ are known.
 
@@ -3374,7 +3375,7 @@ First of all, the problem asks about quantities at a given instant of time, and 
   and the minus sign for $\yI_{S}$ comes from the \textbf{principle of symmetry of flux}.
   The balance law of electric current for this control volume is therefore
   \begin{equation*}
-        \frac{\di\yQ_{\text{b}}}{\di t} = \yI_{B} - \yI_{S} \ ,
+        \frac{\di\yQ_{\text{b}}}{\dt} = \yI_{B} - \yI_{S} \ ,
   \end{equation*}
   where only $\yI_{A}$ is known.
 
@@ -3384,9 +3385,9 @@ First of all, the problem asks about quantities at a given instant of time, and 
   \begin{equation}\label{eq:approach1}
     \left\{
       \begin{aligned}
-        \frac{\di\yQ_{\text{t}}}{\di t} &= \yI_{A} + \yI_{S}
+        \frac{\di\yQ_{\text{t}}}{\dt} &= \yI_{A} + \yI_{S}
         \\
-        \frac{\di\yQ_{\text{b}}}{\di t} &= \yI_{B} - \yI_{S}
+        \frac{\di\yQ_{\text{b}}}{\dt} &= \yI_{B} - \yI_{S}
       \end{aligned}
     \right.
     \qquad\implies\qquad
@@ -3394,13 +3395,13 @@ First of all, the problem asks about quantities at a given instant of time, and 
       \begin{aligned}
         \qty{2}{C/s} &= \qty{5}{C/s} + \yI_{S}
         \\
-        \frac{\di\yQ_{\text{b}}}{\di t} &= -\qty{1}{C/s} - \yI_{S}
+        \frac{\di\yQ_{\text{b}}}{\dt} &= -\qty{1}{C/s} - \yI_{S}
       \end{aligned}
     \right.
   \end{equation}
-This is a system of two equations, with two unknowns: $\yI_{S}$ and $\di\yQ_{\text{b}}/\di t$. We can solve it with several methods, like substitution. The result is
+This is a system of two equations, with two unknowns: $\yI_{S}$ and $\di\yQ_{\text{b}}/\dt$. We can solve it with several methods, like substitution. The result is
 \begin{equation*}
-  \yI = -\qty{3}{C/s} \ ,\qquad \boxed{\frac{\di\yQ_{\text{b}}}{\di t} = \qty{2}{C/s}} \ .
+  \yI = -\qty{3}{C/s} \ ,\qquad \boxed{\frac{\di\yQ_{\text{b}}}{\dt} = \qty{2}{C/s}} \ .
 \end{equation*}
 Besides the required answer, we also found that positive current is flowing from the top to the bottom capacitor.
 
@@ -3413,7 +3414,7 @@ Besides the required answer, we also found that positive current is flowing from
 
   Let's call $\yQ$ the total content of electric charge in this control volume, and $\yI$ the total influx of electric charge through its control surface. They obey the conservation law
   \begin{equation*}
-    \frac{\di\yQ}{\di t} = \yI \ .
+    \frac{\di\yQ}{\dt} = \yI \ .
   \end{equation*}
 
   In order to find the total content and the total influx we must apply the principle of \textbf{extensivity} to both.
@@ -3430,14 +3431,14 @@ neglecting the zero influx through the remaining surface.
 
 Our conservation law therefore becomes
   \begin{equation}\label{eq:approach2}
-    \frac{\di\yQ_{\text{t}}}{\di t} + \frac{\di\yQ_{\text{b}}}{\di t}
+    \frac{\di\yQ_{\text{t}}}{\dt} + \frac{\di\yQ_{\text{b}}}{\dt}
     = \yI_{A} + \yI_{B} \ .
   \end{equation}
-  In this equation we know all quantities except $\di\yQ_{\text{b}}/\di t$, which is easily found:
+  In this equation we know all quantities except $\di\yQ_{\text{b}}/\dt$, which is easily found:
   \begin{equation*}
     \begin{split}
-      \frac{\di\yQ_{\text{b}}}{\di t}
-      & = - \frac{\di\yQ_{\text{t}}}{\di t} + \yI_{A} + \yI_{B}
+      \frac{\di\yQ_{\text{b}}}{\dt}
+      & = - \frac{\di\yQ_{\text{t}}}{\dt} + \yI_{A} + \yI_{B}
 \\
 & = - \qty{2}{C/s} + \qty{5}{C/s} - \qty{1}{C/s}
 = \qty{2}{C/s} \ .
@@ -3479,12 +3480,12 @@ Let's choose a closed control surface wrapping the car. The question gives:
 
 Momentum obeys a balance law. The question specifies a lapse of time, so the integral expression of the balance seems most convenient:
   \begin{equation*}
-    \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t \ .
+    \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\yG(t)\, \dt \ .
   \end{equation*}
 We can use it to find $\yP(\yti)$ if we have the other three terms. $\yP(\ytf)$ is known. The time-integrated flux and supply of momentum can be found by integration:
 \begin{equation*}
-      \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t =
+      \int_{\yti}^{\ytf}\!\!\yF(t)\, \dt =
       \int_{\yti}^{\ytf}
     \begin{bmatrix}
       -\num{1800}\exp\bigl(-\frac{t}{\qty{20}{s}}\bigr)
@@ -3492,19 +3493,19 @@ We can use it to find $\yP(\yti)$ if we have the other three terms. $\yP(\ytf)$ 
       0
       \\
       \num{17640}
-    \end{bmatrix}\,\unit{N}\, \di t \ .
+    \end{bmatrix}\,\unit{N}\, \dt \ .
   \end{equation*}
   The time-integral of a vector is simply a vector of the integrals of the components. Let's calculate the integral of the $x$-component:
 %
 \marginpar{\vspace{0\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
 From calculus,\begin{multline*}
-      \int \exp(-t/a)\,\di t ={}\\
+      \int \exp(-t/a)\,\dt ={}\\
       -a\,\exp(-t/a) + \text{const.}
     \end{multline*}
 }%
   \begin{multline*}
       - \int_{\yti}^{\ytf}
-      \num{1800}\exp\Bigl(-\frac{t}{\qty{20}{s}}\Bigr)\,\unit{N}\, \di t
+      \num{1800}\exp\Bigl(-\frac{t}{\qty{20}{s}}\Bigr)\,\unit{N}\, \dt
       =
       +\num{1800}\cdot \qty{20}{N\,s}\cdot
       \exp\Bigl(-\frac{t}{\qty{20}{s}}\Bigr)
@@ -3527,7 +3528,7 @@ From calculus,\begin{multline*}
     The $y$-component is zero, so it's definite integral is zero too. For the $z$-component we do an analogous but much simpler integration:
   \begin{equation*}
       - \int_{\yti}^{\ytf}
-      \qty{17640}{N}\, \di t
+      \qty{17640}{N}\, \dt
       =
       \qty{17640}{N}\cdot (\qty{30}{s} - \qty{0}{s})
       = \qty{529200}{N\,s} \ .
@@ -3535,7 +3536,7 @@ From calculus,\begin{multline*}
 
     Putting all three integrals together we have
 \begin{equation*}
-      \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t =
+      \int_{\yti}^{\ytf}\!\!\yF(t)\, \dt =
     \begin{bmatrix}
       -\num{28000}
       \\
@@ -3547,7 +3548,7 @@ From calculus,\begin{multline*}
 
   The time-integrated supply is found in an analogous way; we have already calculated the relevant integral:
 \begin{equation*}
-      \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t =
+      \int_{\yti}^{\ytf}\!\!\yG(t)\, \dt =
     \begin{bmatrix}
       0
       \\
@@ -3560,8 +3561,8 @@ From calculus,\begin{multline*}
   We can finally find the initial momentum content:
   \begin{equation*}
     \begin{split}
-      \yP(\yti) &= \yP(\ytf) - \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t
-      - \int_{\yti}^{\ytf}\!\!\yG(t)\, \di t
+      \yP(\yti) &= \yP(\ytf) - \int_{\yti}^{\ytf}\!\!\yF(t)\, \dt
+      - \int_{\yti}^{\ytf}\!\!\yG(t)\, \dt
       \\&=
       \begin{bmatrix}
     1\\0\\0
@@ -3620,8 +3621,8 @@ with a minus sign because the question gives the efflux; it's convenient to intr
 
   Free neutrons obey a balance law. The question asks about a lapse of time, so the integral expression seems most convenient. The quantities above are therefore related by
   \begin{equation*}
-    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t \ .
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+    + \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt \ .
   \end{equation*}
   The unkwnown is the integration end-time $\ytf$; all the other quantities and functions are known.
 
@@ -3629,8 +3630,8 @@ with a minus sign because the question gives the efflux; it's convenient to intr
   \begin{equation*}
     \begin{gathered}
       \yN(\ytf) = \yN(\yti)
-      -\int_{\yti}^{\ytf} (r-at)\, \di t
-      + \int_{\yti}^{\ytf}\ya \di t
+      -\int_{\yti}^{\ytf} (r-at)\, \dt
+      + \int_{\yti}^{\ytf}\ya \dt
       \\
       \implies\qquad
       \yN(\ytf) = \yN(\yti)

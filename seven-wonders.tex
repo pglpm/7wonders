@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-24T21:39:53+0100
+%% Last-Updated: 2025-02-24T23:32:15+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1041,6 +1041,7 @@ angle-right%
 \newcommand*{\yxi}{x_{0}}
 \newcommand*{\yyi}{y_{0}}
 \newcommand*{\yzi}{z_{0}}
+\newcommand*{\dt}{\di t}
 \newcommand*{\Dt}{\incr t}
 \newcommand*{\Dx}{\incr x}
 \newcommand*{\Dy}{\incr y}
@@ -1797,9 +1798,9 @@ To study and use physical laws we must therefore become familiar with and profic
 The mathematics used to express physical laws can come in wildly diverse forms, using wildly diverse principles. This leads to what we may call \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms.
 \marginpar{\normalsize%
   \begin{gather*}
-    \color{red}\delt\!\!\int\!\!L\,\di t = 0 \quad L=\frac12 m v^{2}
+    \color{red}\delt\!\!\int\!\!L\,\dt = 0 \quad L=\frac12 m v^{2}
     \\
-    \color{cyan}\bm{F}=\frac{\di}{\di t}m\bm{v} \quad \bm{F}=0
+    \color{cyan}\bm{F}=\frac{\di}{\dt}m\bm{v} \quad \bm{F}=0
   \end{gather*}
 %\includegraphics[align=t,width=\linewidth]{images/eg_languages.png}
 \footnotesize\color{mpcolor}%
@@ -1999,7 +2000,7 @@ says that the position of some object oscillates with time, between the values \
 
 The \autoref{sec:velocity}{velocity} of the object is given by the derivative of this expression with respect to $t$. Let's calculate it treating all unit symbols as literal constants:
 \begin{equation*}
-  \frac{\di x(t)}{\di t} = \frac{\di}{\di t}\Bigl(
+  \frac{\di x(t)}{\dt} = \frac{\di}{\dt}\Bigl(
   2\,\cos(t/\unit{s})\,\unit{m}
   \Bigr)
   =
@@ -2528,18 +2529,18 @@ If we take the derivative of each coordinate with respect to the time $t$, we ob
   The \textbf{coordinate velocity} is a vector defined as the derivative of the position vector $\yr(t)$ with respect to coordinate time $t$:
   \begin{equation*}
     \yv(t) %= \bigl[v_{x}(t)\ ,\ v_{y}(t) \ ,\ v_{z}(t) \bigr]
-    \defd \frac{\di}{\di t}\yr(t)
+    \defd \frac{\di}{\dt}\yr(t)
     \quad\text{or}\quad
     \begin{bmatrix}
-      v_{x}(t)\vphantom{\dfrac{\di}{\di t}}\\[3\jot]
-      v_{y}(t)\vphantom{\dfrac{\di}{\di t}}\\[3\jot]
-      v_{z}(t)\vphantom{\dfrac{\di}{\di t}}
+      v_{x}(t)\vphantom{\dfrac{\di}{\dt}}\\[3\jot]
+      v_{y}(t)\vphantom{\dfrac{\di}{\dt}}\\[3\jot]
+      v_{z}(t)\vphantom{\dfrac{\di}{\dt}}
     \end{bmatrix}
     \defd
     \begin{bmatrix}
-      \dfrac{\di}{\di t} x(t)\\[3\jot]
-      \dfrac{\di}{\di t} y(t)\\[3\jot]
-      \dfrac{\di}{\di t} z(t)
+      \dfrac{\di}{\dt} x(t)\\[3\jot]
+      \dfrac{\di}{\dt} y(t)\\[3\jot]
+      \dfrac{\di}{\dt} z(t)
     \end{bmatrix} \ .
   \end{equation*}
 
@@ -2565,11 +2566,11 @@ Taking the derivative of the velocity with respect to coordinate time, that is, 
 \begin{definition}{Coordinate acceleration,label={def:coord_acceleration}}
   The \textbf{coordinate acceleration} is a vector defined as the derivative of the velocity vector $\yv(t)$ with respect to coordinate time $t$:
 \begin{equation*}
-  \bm{a}(t) \defd \frac{\di}{\di t}\yv(t) =
-  \frac{\di^{2}}{\di t^{2}}\yr(t) =
-  \biggl[\frac{\di^{2}}{\di t^{2}} x(t)\,,\
-  \frac{\di^{2}}{\di t^{2}} y(t)\,,\
-  \frac{\di^{2}}{\di t^{2}} z(t)\biggr] \ .
+  \bm{a}(t) \defd \frac{\di}{\dt}\yv(t) =
+  \frac{\di^{2}}{\dt^{2}}\yr(t) =
+  \biggl[\frac{\di^{2}}{\dt^{2}} x(t)\,,\
+  \frac{\di^{2}}{\dt^{2}} y(t)\,,\
+  \frac{\di^{2}}{\dt^{2}} z(t)\biggr] \ .
 \end{equation*}
 \end{definition}
 
@@ -2592,7 +2593,7 @@ Taking the derivative of the velocity with respect to coordinate time, that is, 
 Since velocity is the time derivative of position, we can find the position from the velocity by the inverse operation of integration. So we have
 \begin{equation*}
   \yr(t) %= \bigl[v_{x}(t)\ ,\ v_{y}(t) \ ,\ v_{z}(t) \bigr]
-  =  \yr(\yti) + \int_{\yti}^{t}\yv(t)\,\di t
+  =  \yr(\yti) + \int_{\yti}^{t}\yv(t)\,\dt
   \qquad\text{or}\qquad
   \begin{bmatrix}
     x(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
@@ -2606,9 +2607,9 @@ Since velocity is the time derivative of position, we can find the position from
     z(\yti)\vphantom{\int_{\yti}^{t}}
   \end{bmatrix} +
   \begin{bmatrix}
-    \int_{\yti}^{t}v_{x}(t)\,\di t\\[3\jot]
-    \int_{\yti}^{t}v_{y}(t)\,\di t\\[3\jot]
-    \int_{\yti}^{t}v_{z}(t)\,\di t
+    \int_{\yti}^{t}v_{x}(t)\,\dt\\[3\jot]
+    \int_{\yti}^{t}v_{y}(t)\,\dt\\[3\jot]
+    \int_{\yti}^{t}v_{z}(t)\,\dt
   \end{bmatrix} \ .
 \end{equation*}
 Note from the formulae above that if we know the expression of the velocity $\yv(t)$, we still cannot know the position $\yr(t)$ unless we \emph{also} know the value $\yr(\yti)$ of the position at some particular time $\yti$.
@@ -2618,7 +2619,7 @@ Note from the formulae above that if we know the expression of the velocity $\yv
 In a analogous way we can find the velocity $\yv(t)$ from the acceleration $\bm{a}(t)$ by integration, provided we also know the value $\yv(\yti)$ of the velocity at some particular time $\yti$:
 \begin{equation*}
   \yv(t) %= \bigl[a_{x}(t)\ ,\ a_{y}(t) \ ,\ a_{z}(t) \bigr]
-  =  \yv(\yti) + \int_{\yti}^{t}\bm{a}(t)\,\di t
+  =  \yv(\yti) + \int_{\yti}^{t}\bm{a}(t)\,\dt
   \qquad\text{or}\qquad
   \begin{bmatrix}
     v_{x}(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
@@ -2632,9 +2633,9 @@ In a analogous way we can find the velocity $\yv(t)$ from the acceleration $\bm{
     v_{z}(\yti)\vphantom{\int_{\yti}^{t}}
   \end{bmatrix} +
   \begin{bmatrix}
-    \int_{\yti}^{t}a_{x}(t)\,\di t\\[3\jot]
-    \int_{\yti}^{t}a_{y}(t)\,\di t\\[3\jot]
-    \int_{\yti}^{t}a_{z}(t)\,\di t
+    \int_{\yti}^{t}a_{x}(t)\,\dt\\[3\jot]
+    \int_{\yti}^{t}a_{y}(t)\,\dt\\[3\jot]
+    \int_{\yti}^{t}a_{z}(t)\,\dt
   \end{bmatrix} \ .
 \end{equation*}
 
@@ -4661,7 +4662,7 @@ The total amount of quantity that crosses the surface between times $\yti$ and $
 The total amount of quantity flowing through a control surface in a specified crossing direction, between times $\yti$ and $\ytf$, is called the \textbf{time-integrated flux} and is given by
   \begin{equation}
     \label{eq:total_flow_integral}
-     \int_{\yti}^{\ytf}\!\! \yJ(t)\,\di t\ ,
+     \int_{\yti}^{\ytf}\!\! \yJ(t)\,\dt\ ,
    \end{equation}
    where $\yJ(t)$ is the flux of the quantity at time $t$.
 \end{definition}
@@ -4671,11 +4672,11 @@ The meaning of the integral above should be clear for any scalar quantity, for w
 Take the case of momentum, whose flux (force) we denote $\yF=[F_{x}, F_{y}, F_{z}]$. The time integral of this flux is then
 \begin{equation}
   \label{eq:total_flow_integral_vector}
-  \int_{\yti}^{\ytf}\!\! \yF(t)\,\di t \defd
+  \int_{\yti}^{\ytf}\!\! \yF(t)\,\dt \defd
   \Biggl[
-  \int_{\yti}^{\ytf}\!\! F_{x}(t)\,\di t \ ,\enskip
-  \int_{\yti}^{\ytf}\!\! F_{y}(t)\,\di t \ ,\enskip
-  \int_{\yti}^{\ytf}\!\! F_{z}(t)\,\di t
+  \int_{\yti}^{\ytf}\!\! F_{x}(t)\,\dt \ ,\enskip
+  \int_{\yti}^{\ytf}\!\! F_{y}(t)\,\dt \ ,\enskip
+  \int_{\yti}^{\ytf}\!\! F_{z}(t)\,\dt
   \Biggr] \ .
 \end{equation}
 
@@ -4691,7 +4692,7 @@ Take the case of momentum, whose flux (force) we denote $\yF=[F_{x}, F_{y}, F_{z
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item What is the physical dimension of the integrated flux of a quantity?
-  \item Suppose that we calculate the integral above for a particular control surface in the case of matter, finding a total of $\int_{\yti}^{\ytf}\!\! \yJ(t)\,\di t = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
+  \item Suppose that we calculate the integral above for a particular control surface in the case of matter, finding a total of $\int_{\yti}^{\ytf}\!\! \yJ(t)\,\dt = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
   \end{enumerate}
 \end{exercise}
 
@@ -4837,7 +4838,7 @@ The answer is \emph{yes}. \autoref{sec:seven_universal}{We shall soon meet them}
 
 As real examples, the \autoref{sec:bal_momentum_formulation}{\emph{balance of momentum}}
 \begin{equation*}
-  \frac{\di \yP(t)}{\di t} = \yF(t) + \yG(t)
+  \frac{\di \yP(t)}{\dt} = \yF(t) + \yG(t)
 \end{equation*}
 is a universal physical law: it applies -- exactly as written -- to any control volume, small as an atom or large as a group of galaxies; to all objects and to electromagnetic fields; to General Relativity and to Newtonian mechanics, and with some reinterpretation of the symbols also to Quantum Theory. Instead the \autoref{sec:bal_momentum_Newton}{\emph{Newtonian relation between momentum content and matter flux}}
 \begin{equation*}
@@ -4921,9 +4922,9 @@ Make the following measurements:
 \begin{itemize}[itemsep=1ex]
 \item $\yN(\yti)$: total \emph{volume content} of the quantity in the control volume at time $\yti$.
 
-\item $\int_{\yti}^{\ytf}\!\yJ(t)\, \di t$: total \emph{time-integrated \textbf{in}flux} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
+\item $\int_{\yti}^{\ytf}\!\yJ(t)\, \dt$: total \emph{time-integrated \textbf{in}flux} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
 
-\item $\int_{\yti}^{\ytf}\!\ya(t)\, \di t$: total \emph{time-integrated supply} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
+\item $\int_{\yti}^{\ytf}\!\ya(t)\, \dt$: total \emph{time-integrated supply} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
 
 \item $\yN(\ytf)$: total \emph{volume content} of this quantity in the control volume at time $\ytf$.
 \end{itemize}
@@ -4934,9 +4935,9 @@ Each of the three amounts above is, in this example, a scalar that can be positi
   \begin{gathered}
     \yti = \qty{0}{s} \qquad \yN(\yti) = \qty{10.5}{mol}\ ,
     \\[1ex]
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t = \qty{-9.7}{mol} \ ,
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt = \qty{-9.7}{mol} \ ,
     \\[1ex]
-    \int_{\yti}^{\ytf}\!\!\ya(t)\, \di t = \qty{0}{mol} \ ,
+    \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt = \qty{0}{mol} \ ,
     \\[1ex]
     \ytf = \qty{18}{s} \qquad \yN(\ytf) = \qty{0.8}{mol} \ .
   \end{gathered}
@@ -4965,15 +4966,15 @@ Conservation laws tightly connect \autoref{cha:contents_fluxes}{\emph{volume con
     \label{eq:conserved}
     \textsf{\footnotesize volume\,content}(\ytf) =
     \textsf{\footnotesize volume\,content}(\yti) +
-    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\di t
+    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\dt
   \end{equation}
 \end{definition}
 For example, in the case of matter with volume content $\yN$ and influx $\yJ$, the conservation law would be
 \begin{equation*}
-  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t \ .
+  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt \ .
 \end{equation*}
 
-The meaning of a conservation law is intuitive. Let's take again the example of some kind of matter. The amount of quantity in the final control volume, $\yN(\ytf)$, must be equal to the amount in the initial control volume, $\yN(\yti)$, plus the total amount that flowed in through the surface between those times, the integrated flux $\int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t$. Said otherwise: any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear or disappear out of nowhere. Note that these amounts can be positive, negative, or zero.
+The meaning of a conservation law is intuitive. Let's take again the example of some kind of matter. The amount of quantity in the final control volume, $\yN(\ytf)$, must be equal to the amount in the initial control volume, $\yN(\yti)$, plus the total amount that flowed in through the surface between those times, the integrated flux $\int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt$. Said otherwise: any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear or disappear out of nowhere. Note that these amounts can be positive, negative, or zero.
 
 A conservation law allows us to make several kinds of deductions and predictions. For example:
 \begin{itemize}
@@ -4984,12 +4985,12 @@ A conservation law allows us to make several kinds of deductions and predictions
 
 \item If we know the amount of quantity in the control volume at $\yti$, and the one at $\ytf$, then we can deduce the net amount that entered through the control surface between the times $\yti$ and $\ytf$:
   \begin{equation*}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t = \yN(\ytf) - \yN(\yti) \ .
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt = \yN(\ytf) - \yN(\yti) \ .
   \end{equation*}
 
 \item If we know the amount of quantity in the control volume at $\ytf$, and the net amount that entered through the control surface between $\yti$ and $\ytf$, we can deduce the initial amount in the control volume at time $\yti$:
   \begin{equation*}
-    \yN(\yti) = \yN(\ytf) - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t \ .
+    \yN(\yti) = \yN(\ytf) - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt \ .
   \end{equation*}
 \end{itemize}
 
@@ -5034,7 +5035,7 @@ We consider an imaginary, closed control surface wrapping the tube. The control 
 The conservation law~\eqref{eq:conserved} allows us to calculate the integrated \textbf{in}flux:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t &= \yN(\ytf) - \yN(\yti)
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt &= \yN(\ytf) - \yN(\yti)
     \\&= \qty{0.5}{mol} - \qty{12.6}{mol}
     \\&= \qty{-12.1}{mol}
   \end{split}
@@ -5079,7 +5080,7 @@ According to the description above we have
 From the conservation law~\eqref{eq:conserved} we calculate the time-integrated \textbf{in}flux:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t &= \yN(\ytf) - \yN(\yti)
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt &= \yN(\ytf) - \yN(\yti)
     \\&= \qty{53.4}{mol} - \qty{0}{mol}
     \\&= \qty{53.4}{mol}
   \end{split}
@@ -5089,15 +5090,15 @@ and this is the net amount of ice that entered the control surface during the \q
 Note that what we found is the time-integrated influx through the \emph{whole} closed control surface. The conservation law doesn't tell us anything about the integrated influx through \emph{parts} of the surface. In the present case we can divide the surface into three parts: a circular surface at the bottom, a side surface, and a circular surface at the top. If we provide the extra knowledge that the fluxes through the side and bottom surfaces are zero, then by the \autoref{def:extensivity}{extensivity property} we have
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t &=
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt &=
     \int_{\yti}^{\ytf}\!\bigl[\yJ_{\text{top}}(t) +
     \yJ_{\text{side}}(t) +
-    \yJ_{\text{bot}}(t)\bigr]\,\di t
+    \yJ_{\text{bot}}(t)\bigr]\,\dt
     \\
       \qty{53.4}{mol} &=
       \int_{\yti}^{\ytf}\!\bigl[\yJ_{\text{top}}(t) +
       \qty{0}{mol/s} +
-      \qty{0}{mol/s}\bigr]\,\di t
+      \qty{0}{mol/s}\bigr]\,\dt
   \end{split}
 \end{equation*}
 from which we find, as was intuitively clear, that the net amount of ice that crossed the top surface in a downward direction is \qty{53.4}{mol}.
@@ -5151,18 +5152,18 @@ and its \emph{volume content} at time $\ytf$.
     \label{eq:balanced}
     \textsf{\footnotesize volume\,content}(\ytf) =
     \textsf{\footnotesize volume\,content}(\yti) +
-    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\di t +
-    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize supply}(t)\,\di t
+    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\dt +
+    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize supply}(t)\,\dt
   \end{equation}
 \end{definition}
 For example, in the case of \energym\ with volume content $\yE$, influx $\yH$, supply $\yR$, the balance law would be
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t \ .
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt \ .
 \end{equation*}
 
-The meaning of a balance law is intuitive: the amount of quantity in the final control volume: $\yE(\ytf)$, must be equal to the amount in the initial control volume: $\yE(\yti)$, plus the total amount that flowed in through the surface between those times:  $\int_{\yti}^{\ytf}\!\!\yH(t)\, \di t$, plus the total amount that was created in the volume: $\int_{\yti}^{\ytf}\!\!\yR(t)\, \di t$.
+The meaning of a balance law is intuitive: the amount of quantity in the final control volume: $\yE(\ytf)$, must be equal to the amount in the initial control volume: $\yE(\yti)$, plus the total amount that flowed in through the surface between those times:  $\int_{\yti}^{\ytf}\!\!\yH(t)\, \dt$, plus the total amount that was created in the volume: $\int_{\yti}^{\ytf}\!\!\yR(t)\, \dt$.
 
 \medskip
 
@@ -5178,12 +5179,12 @@ A conservation law is powerful because it means that the supply is always known 
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 A conservation law involves only knowledge about the initial and final control volumes (represented by the \textcolor{red}{red hatched} disks), and about the closed control surface during the time lapse (curved \textcolor{red}{red} contours); but not about the control volume during the time lapse. A balance law instead involves also this additional information.%
 }%
-For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enskip$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\, \di t$\enskip is not zero -- so there's no conservation law -- we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enskip An extensive quantity can therefore always be said to satisfy a balance law. A balance is not trivial, however, if we have some other physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enskip$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\, \dt$\enskip is not zero -- so there's no conservation law -- we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enskip An extensive quantity can therefore always be said to satisfy a balance law. A balance is not trivial, however, if we have some other physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
 \begin{warning}[Supplies are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
-    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \di t = 0
+    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \dt = 0
   \end{equation*}
   which looks like a conservation law?}
 
@@ -5194,7 +5195,7 @@ Unfortunately the mathematical expression above wouldn't be a conservation law, 
 \smallskip
 
 Remember, moreover, that \autoref{def:symmetryflux}{fluxes always satisfy a symmetry principle}, but \emph{supplies in general do not satisfy any analogous symmetry principle}.
-% Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yR(t)\,\di t$ is not an integrated flux.
+% Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yR(t)\,\dt$ is not an integrated flux.
 \end{warning}
 
 
@@ -5237,17 +5238,17 @@ Let us now consider an extensive vector quantity like \emph{momentum}, which wil
 The balance law for a vector quantity like momentum has exactly the same expression we already know:
 \begin{equation}
   \label{eq:balanced_momentum}
-  \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+  \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \dt + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
 \end{equation}
 with the only difference that the quantities involved are vectors. So it corresponds to a system of three balance equations, one per component:
 \begin{equation}
   \label{eq:balanced_momentum_components}
 \left\{\   \begin{aligned}
-    P_{x}(\ytf) &= P_{x}(\yti) + \int_{\yti}^{\ytf}\!\!F_{x}(t)\, \di t + \int_{\yti}^{\ytf}\!\!G_{x}(t)\,\di t
+    P_{x}(\ytf) &= P_{x}(\yti) + \int_{\yti}^{\ytf}\!\!F_{x}(t)\, \dt + \int_{\yti}^{\ytf}\!\!G_{x}(t)\,\dt
     \\
-    P_{y}(\ytf) &= P_{y}(\yti) + \int_{\yti}^{\ytf}\!\!F_{y}(t)\, \di t + \int_{\yti}^{\ytf}\!\!G_{y}(t)\,\di t
+    P_{y}(\ytf) &= P_{y}(\yti) + \int_{\yti}^{\ytf}\!\!F_{y}(t)\, \dt + \int_{\yti}^{\ytf}\!\!G_{y}(t)\,\dt
     \\
-    P_{z}(\ytf) &= P_{z}(\yti) + \int_{\yti}^{\ytf}\!\!F_{z}(t)\, \di t + \int_{\yti}^{\ytf}\!\!G_{z}(t)\,\di t
+    P_{z}(\ytf) &= P_{z}(\yti) + \int_{\yti}^{\ytf}\!\!F_{z}(t)\, \dt + \int_{\yti}^{\ytf}\!\!G_{z}(t)\,\dt
   \end{aligned}\right.
 \end{equation}
 
@@ -5320,8 +5321,8 @@ The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of mom
 %   \begin{split}
 %     \yP(\ytf)
 %     &= \yP(\yti)
-%     + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t
-%     + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+%     + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
+%     + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
 %     \\[\jot]
 %     &= \yP(\yti)
 %     + \yF\cdot (\ytf-\yti)
@@ -5336,8 +5337,8 @@ The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of mom
   \begin{split}
     \yP(\ytf)
     &= \yP(\yti)
-    + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t
-    + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+    + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
+    + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
     \\[2\jot]
     &= \yP(\yti)
     + \yF\cdot (\ytf-\yti)
@@ -5380,7 +5381,7 @@ Can we find the time-integrated influx or supply of momentum during the time lap
 
 Suppose we are told that the time-integrated supply of momentum \emph{within the control volume}, during the time lapse, is directed downward and has magnitude \qty{1.57}{N\,s}. That is,
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+  \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
   =
   \begin{bmatrix}
     0\\0\\\num{-1.57}
@@ -5392,9 +5393,9 @@ Suppose we are told that the time-integrated supply of momentum \emph{within the
 The influx through the top surface can now be found using the balance law~\eqref{eq:balanced_momentum}:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t
+    \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
     &=\yP(\ytf) - \yP(\yti)
-- \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+- \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\,\unit{N\,s}
     - \begin{bmatrix}0\\0\\0\end{bmatrix}\,\unit{N\,s}
@@ -5450,14 +5451,14 @@ We are told that the ice block initially has zero momentum (because it's release
 We have enough data to find the time-integrated supply of momentum generated within the moving control volume, using the balance of momentum:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\di t
+    \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\dt
     &=\underline{\yP}(\ytf) - \underline{\yP}(\yti)
-- \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\di t
+- \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\dt
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\,\unit{N\,s}
     - \begin{bmatrix}0\\0\\0\end{bmatrix}\,\unit{N\,s}
     -  \int_{\yti}^{\ytf}\!\begin{bmatrix}0\\0\\0\end{bmatrix}\,\unit{N}
-    \ \di t
+    \ \dt
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\,\unit{N\,s}
   \end{split}
@@ -5467,18 +5468,18 @@ We have enough data to find the time-integrated supply of momentum generated wit
 
 As we remarked above, even if the physical event is exactly the same, the momentum flux and supply in the present analysis are different from the previous analysis, because \emph{they refer to different imaginary control surfaces and volumes}. Compare the time-integrated influxes of the two analyses:
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t =
+  \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt =
   \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\,\unit{N\,s}
   \enskip\bm{\ne}\enskip
-  \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\di t =
+  \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\dt =
   \begin{bmatrix}0\\0\\0\end{bmatrix}\,\unit{N\,s} \ .
 \end{equation*}
 and the time-integrated supplies:
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t =
+  \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt =
   \begin{bmatrix}0\\0\\\num{-1.57}\end{bmatrix}\,\unit{N\,s}
   \enskip\bm{\ne}\enskip
-  \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\di t =
+  \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\dt =
   \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\,\unit{N\,s}
 \end{equation*}
 % \marginpar{\vspace{-8\baselineskip}\footnotesize%
@@ -5525,12 +5526,12 @@ and the time-integrated supplies:
 A balance law such as
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
 \end{equation*}
 or a conservation law such as
 \begin{equation*}
-    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
 \end{equation*}
 are said to be written in \emph{integral form} because they contain time-integrated fluxes or supplies. These time integrations are necessary for calculating the net amount of quantity that enters through the control surface or is generated in the volume during the time lapse considered.
 
@@ -5538,9 +5539,9 @@ We can rewrite these laws in a different mathematical form that doesn't show tim
 
 This rewriting is essentially an expression of the \furl{https://encyclopediaofmath.org/wiki/Newton-Leibniz_formula}{fundamental theorem of calculus}. Consider the case of the conservation law for simplicity. If $\yN$ is a function of $t$, and we call $\yJ$ its derivative with respect to $t$, then we can also say that $\yN$ is a \furl{https://encyclopediaofmath.org/wiki/Primitive_function}{primitive function} for $\yJ$, and the definite integral of $\yJ$ is given by a difference of $\yN$ at different arguments. In symbols:
 \begin{equation*}
-  \frac{\di\yN(t)}{\di t} = \yJ(t)
+  \frac{\di\yN(t)}{\dt} = \yJ(t)
   \qquad\iff\qquad
-  \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t = \yN(\ytf) - \yN(\yti) \ .
+  \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt = \yN(\ytf) - \yN(\yti) \ .
 \end{equation*}
 But the equation on the right is just a conservation law written in a slightly different way! This means that it can equivalently be expressed by the equation on the left.
 
@@ -5561,11 +5562,11 @@ Change the symbol for the time $\yti$ into $t$, and take $\ytf$ to come after a 
 }%
 Then the integrated flux can be approximated by
 \begin{equation*}
-  \int_{t}^{t+\Dt}\!\!\yH(t)\, \di t \approx \yH(t)\, \Dt
+  \int_{t}^{t+\Dt}\!\!\yH(t)\, \dt \approx \yH(t)\, \Dt
 \end{equation*}
 that is, the flux at time $t$ multiplied by the time lapse. The reason for this approximation is that the flux $\yH$ is approximately constant during the short time lapse $\Dt$, and equal to its initial value at time $t$. Similarly for the supply:
 \begin{equation*}
-  \int_{t}^{t+\Dt}\!\!\yR(t)\, \di t \approx \yR(t)\, \Dt \ .
+  \int_{t}^{t+\Dt}\!\!\yR(t)\, \dt \approx \yR(t)\, \Dt \ .
 \end{equation*}
 
 The balance law above can then be approximated as follows:
@@ -5583,7 +5584,7 @@ Finally, consider smaller and smaller $\Dt$: in the limit the ratio \enskip$\fra
   A quantity is said to satisfy a \textbf{balance law} if the following equality holds for any closed control surface and volume, and any coordinate time $t$:
   \begin{equation}
     \label{eq:balanced_diff}
-    \frac{\di\,\textsf{\footnotesize volume\,content}(t)}{\di t} =
+    \frac{\di\,\textsf{\footnotesize volume\,content}(t)}{\dt} =
     \textsf{\footnotesize influx}(t) +
     \textsf{\footnotesize supply}(t)
   \end{equation}
@@ -5593,7 +5594,7 @@ Finally, consider smaller and smaller $\Dt$: in the limit the ratio \enskip$\fra
   Analogously, a quantity is said to satisfy a \textbf{conservation law} if the following equality holds for any closed control surface and volume, and any coordinate time $t$:
   \begin{equation}
     \label{eq:conserved_diff}
-    \frac{\di\,\textsf{\footnotesize volume\,content}(t)}{\di t} =
+    \frac{\di\,\textsf{\footnotesize volume\,content}(t)}{\dt} =
     \textsf{\footnotesize influx}(t)
   \end{equation}
 \end{definition}
@@ -5601,14 +5602,14 @@ For instance, the balance and conservation laws written above can be re-expresse
   \begin{equation*}
     \begin{gathered}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
   \qquad\text{\color{grey}or}\qquad
-      \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
+      \frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)
       \\[\jot]
-      \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \di t
+      \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
   \qquad\text{\color{grey}or}\qquad
-    \frac{\di\yN(t)}{\di t} = \yJ(t) \ .
+    \frac{\di\yN(t)}{\dt} = \yJ(t) \ .
     \end{gathered}
   \end{equation*}
 This differential expression says that the \emph{rate of change of the volume content} of a quantity must equal the sum of influx of that quantity through the control surface and the supply of that quantity in the control volume.
@@ -5641,23 +5642,23 @@ As an example of use of the differential expression, let's consider again the \a
 }%
 We solved this problem using the integral expression of the balance law for momentum. But it can also be solved using its differential expression:
 \begin{equation*}
-  \frac{\di \yP(t)}{\di t} = \yF(t) + \yG(t)
+  \frac{\di \yP(t)}{\dt} = \yF(t) + \yG(t)
 \end{equation*}
 or explicitly in components
 \begin{equation*}
 \left\{\   \begin{aligned}
-    \frac{\di P_{x}(t)}{\di t} &= F_{x}(t) + G_{x}(t)
+    \frac{\di P_{x}(t)}{\dt} &= F_{x}(t) + G_{x}(t)
 \\
-    \frac{\di P_{y}(t)}{\di t} &= F_{y}(t) + G_{y}(t)
+    \frac{\di P_{y}(t)}{\dt} &= F_{y}(t) + G_{y}(t)
 \\
-    \frac{\di P_{z}(t)}{\di t} &= F_{z}(t) + G_{z}(t)
+    \frac{\di P_{z}(t)}{\dt} &= F_{z}(t) + G_{z}(t)
   \end{aligned}\right.
 \end{equation*}
 
 The differential expression can be convenient because the value of the influx $\yF$ and supply $\yG$ are constant, and zero, at every time $t$. Therefore the rate of change of momentum at any time $t$ between $\yti$ and $\ytf$ is
 \begin{equation*}
   \begin{split}
-    \frac{\di\yP(t)}{\di t}
+    \frac{\di\yP(t)}{\dt}
     &= \yF(t)
     + \yG(t)
     \\[2\jot]
@@ -5672,12 +5673,12 @@ We can find the momentum at any  time $t$ between and including $\yti$ and $\ytf
   \begin{split}
         \yP(\ytf)
     &= \yP(\yti)
-    + \int_{\yti}^{\ytf}\! \frac{\di\yP(t)}{\di t}\,\di t
+    + \int_{\yti}^{\ytf}\! \frac{\di\yP(t)}{\dt}\,\dt
     \\[2\jot]
     &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\,\unit{N\,s}
     + \int_{\yti}^{\ytf}
     \begin{bmatrix}0\\0\\\num{-0.579}\end{bmatrix}\,\unit{N}
-    \ \di t
+    \ \dt
     \\[2\jot]
     &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\,\unit{N\,s}
     +
@@ -5799,33 +5800,33 @@ If you want to learn more about differential forms, take a look at the books by 
         &&&\hspace{1em}\text{\footnotesize\color{grey}integral expression}
         &&\hspace{-1em}\text{\footnotesize\color{grey}differential expression}
         \\[2\jot]
-      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  +\int_{\yti}^{\ytf}\!\!\ya(t)\,\di t
+      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt  +\int_{\yti}^{\ytf}\!\!\ya(t)\,\dt
       &\quad
-      \frac{\di\yN(t)}{\di t} &= \yJ(t)  +\ya(t)
+      \frac{\di\yN(t)}{\dt} &= \yJ(t)  +\ya(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\,\di t
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\,\dt
       &\quad
-      \frac{\di\yC(t)}{\di t} &= \yI(t)
+      \frac{\di\yC(t)}{\dt} &= \yI(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering magnetic\\flux}}}&&\yBf(\ytf) &= \yBf(\yti) - \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering magnetic\\flux}}}&&\yBf(\ytf) &= \yBf(\yti) - \int_{\yti}^{\ytf}\!\!\yEv(t)\,\dt
       &\quad
-      \frac{\di\yBf(t)}{\di t} &= -\yEv(t)
+      \frac{\di\yBf(t)}{\dt} &= -\yEv(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}momentum}}&&\yP(\ytf) &= \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}momentum}}&&\yP(\ytf) &= \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
       &\quad
-      \frac{\di\yP(t)}{\di t} &= \yF(t) + \yG(t)
+      \frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}energy}}&&\yE(\ytf) &= \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}energy}}&&\yE(\ytf) &= \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
       &\quad
-      \frac{\di\yE(t)}{\di t} &= \yH(t) + \yR(t)
+      \frac{\di\yE(t)}{\dt} &= \yH(t) + \yR(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yM(t)\,\di t
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt
       &\quad
-      \frac{\di\yL(t)}{\di t} &= \yto(t) + \yM(t)
+      \frac{\di\yL(t)}{\dt} &= \yto(t) + \yM(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
 &\quad
-      \frac{\di\yS(t)}{\di t} &\ge \yB(t)
+      \frac{\di\yS(t)}{\dt} &\ge \yB(t)
     \end{aligned}
 \end{equation*}
 \caption{The seven universal balance laws. These formulae are valid in Newtonian mechanics, General Relativity, and even quantum theory if their symbols are interpreted as \enquote*{statistical operators}.}\label{tab:balances}
@@ -5873,8 +5874,8 @@ In the previous sections we studied the mathematical form of balance and conserv
 From their formulation and from the examples, you noticed that each balance law connects the volume content, flux, supply of one extensive quantity at different times. For instance, the balance law for energy
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \di t
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
 \end{equation*}
 connects the volume contents $\yE$ \emph{of energy}, the flux $\yH$ \emph{of energy}, the supply $\yR$ \emph{of energy}. It does not involve, say, the volume content $\yN$ of matter, or the flux $\yF$ of momentum.
 
@@ -6098,11 +6099,11 @@ Another unfortunate limitation, not of Newton's laws per se but of the way they 
 \begin{equation*}
   \bm{F}=m\bm{a}\,,
   \quad
-  \frac{\di m\bm{v}}{\di t} = \bm{F}\,,
+  \frac{\di m\bm{v}}{\dt} = \bm{F}\,,
 \quad
-  m\frac{\di\bm{v}}{\di t} = \bm{F}\,,
+  m\frac{\di\bm{v}}{\dt} = \bm{F}\,,
 \quad
-  \frac{\di\bm{P}}{\di t} = \bm{F}\,,
+  \frac{\di\bm{P}}{\dt} = \bm{F}\,,
 \quad
 \frac{\de \rho\bm{v}}{\de t} = -\nabla\cdot\bm{T} + \rho \bm{g}\,,
 % \rho\biggl(\frac{\de\bm{v}}{\de t} +\bm{v}\cdot\nabla\bm{v}\biggr)
@@ -6200,15 +6201,15 @@ The combination of balance laws and constitutive relations can have amazing pred
 Suppose in a control volume we have two substances called $\mathrm{u}$ and $\mathrm{v}$. Let's say that the control volume corresponds to a sealed container, so the net influxes $\yJu$ and $\yJv$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yNu(t)}{\di t} &= \yau(t)
+    \frac{\di\yNu(t)}{\dt} &= \yau(t)
     &\qquad\text{or}\qquad
     \yNu(\ytf) &= \yNu(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yau(t)\,\di t \,,
+    \int_{\yti}^{\ytf}\!\!\yau(t)\,\dt \,,
     \\
-    \frac{\di\yNv(t)}{\di t} &= \yav(t)
+    \frac{\di\yNv(t)}{\dt} &= \yav(t)
     &\qquad\text{or}\qquad
     \yNv(\ytf) &= \yNv(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yav(t)\,\di t \,.
+    \int_{\yti}^{\ytf}\!\!\yav(t)\,\dt \,.
   \end{aligned}
 \end{equation*}
 From the integral expression it is clear that if we know $\yNu(\yti)$ and we want to predict $\yNu(\ytf)$ at the later time, then we need to know how $\yau(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $\mathrm{v}$ substance.
@@ -6224,19 +6225,19 @@ for some positive physical constant $\lambda$. These constitutive relations expr
 Combine these two constitutive relations with the balance laws in their differential expression: take each $\ya$ and replace its expression in the balance laws, so that all $\ya$s disappear (we're omitting the time argument, for brevity):
 \begin{equation}\label{eq:1storder_uv}
     \begin{aligned}
-      \frac{\di\yNu}{\di t} &= -\lambda\yNv \,,
+      \frac{\di\yNu}{\dt} &= -\lambda\yNv \,,
       \qquad&
-      \frac{\di\yNv}{\di t} &= \lambda\yNu \,.
+      \frac{\di\yNv}{\dt} &= \lambda\yNu \,.
   \end{aligned}
 \end{equation}
 This is called a \emph{system of coupled, \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order ordinary differential equations}}. It is \enquote*{coupled} because each equation contains both $\yN_{\mathrm{u}(t)}$ and $\yNv(t)$. We can also substitute $\yN_{\mathrm{u}(t)}$ from the second equation into the derivative of the first, and vice versa. We find
 \begin{equation*}
     \begin{aligned}
-      \frac{\di^{2}\yNu}{\di t^{2}} &=
-      -\lambda^{2}\frac{\di\yNu}{\di t} \,,
+      \frac{\di^{2}\yNu}{\dt^{2}} &=
+      -\lambda^{2}\frac{\di\yNu}{\dt} \,,
       \qquad&
-      \frac{\di^{2}\yNv}{\di t^{2}} &=
-      -\lambda^{2}\frac{\di\yNv}{\di t} \,,
+      \frac{\di^{2}\yNv}{\dt^{2}} &=
+      -\lambda^{2}\frac{\di\yNv}{\dt} \,,
   \end{aligned}
 \end{equation*}
 which is a set of uncoupled \furl{https://mathworld.wolfram.com/Second-OrderOrdinaryDifferentialEquation.html}{second-order ordinary differential equations}. Each one is the equation for \furl{https://mathworld.wolfram.com/SimpleHarmonicMotion.html}{simple harmonic motion}.
@@ -6326,11 +6327,11 @@ Numerical time integration is essential for present-day engineering and physical
 
 Recall again the integral and differential expressions of a balance law. In the following discussion we shall use the symbols for energy, but the reasoning is valid for any other quantity:
 \begin{equation*}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
-  % \frac{\di\yE(t)}{\di t} - \yH(t) = \yR(t)
+      \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+  % \frac{\di\yE(t)}{\dt} - \yH(t) = \yR(t)
 \end{equation*}
 This is a conservation law if $\yR(t)=0$ in all circumstances.
 
@@ -6354,18 +6355,18 @@ Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\,\di x = \text{const}\cdot(
 }%
 \begin{equation*}
   \begin{aligned}
-    \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t &\approx
-\int_{\yti}^{\ytf}\!\!\yH(\yti)\,\di t =
+    \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt &\approx
+\int_{\yti}^{\ytf}\!\!\yH(\yti)\,\dt =
     \yH(\yti)\,(\ytf-\yti) = \yH(\yti)\,\Dt\\
-    \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t &\approx
-    \int_{\yti}^{\ytf}\!\!\yR(\yti)\,\di t =
+    \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt &\approx
+    \int_{\yti}^{\ytf}\!\!\yR(\yti)\,\dt =
     \yR(\yti)\,(\ytf-\yti) = \yR(\yti)\,\Dt
   \end{aligned}
 \end{equation*}
 
 Now let's replace these approximations in the balance law, also taking $\ytf = \yti + \Dt$. We find:
 \begin{equation*}
-  \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\,\di t}} + \underbracket[0pt]{\yR(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}}
+  \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\,\dt}} + \underbracket[0pt]{\yR(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yR(t)\,\dt}}
 \end{equation*}
 Factoring $\Dt$, and replacing the symbol \enquote*{$\yti$} with \enquote*{$t$} (since we don't need to distinguish initial and final time), we obtain:
 \begin{definition}{Finite-difference approximation,label={def:finitedifference}}
@@ -6405,11 +6406,11 @@ Then the amount of energy in the control volume \qty{0.01}{s} later, at time\ens
 
   \item Try to obtain the finite-difference approximation starting from the differential expression of the balance law instead:
     \begin{equation*}
-      \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t) \ .
+      \frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t) \ .
     \end{equation*}
 Use the fact that the derivative at a time $t$ can be approximately calculated as
     \begin{equation*}
-      \frac{\di\yE(t)}{\di t} \approx
+      \frac{\di\yE(t)}{\dt} \approx
       \frac{\yE(t+\Dt) - \yE(t)}{\Dt} \ .
     \end{equation*}
   \end{enumerate}
@@ -6769,15 +6770,15 @@ The numerical time integration that we discussed for the volume contents of phys
 
 The \autoref{sec:velocity}{coordinate velocity} $\yv(t)$ of such a control volume at time $t$ is the time derivative of its position:
 \begin{equation*}
-  \yv(t) = \frac{\di\yr(t)}{\di t} \ .
+  \yv(t) = \frac{\di\yr(t)}{\dt} \ .
 \end{equation*}
 % \begin{equation*}
-%   \yv(t) = \frac{\di\yr(t)}{\di t}
+%   \yv(t) = \frac{\di\yr(t)}{\dt}
 %   \qquad\text{or}\qquad
 % \left\{\   \begin{aligned}
-%   v_{x}(t) &= \frac{\di x(t)}{\di t}\\
-%   v_{y}(t) &= \frac{\di y(t)}{\di t}\\
-%   v_{z}(t) &= \frac{\di z(t)}{\di t}
+%   v_{x}(t) &= \frac{\di x(t)}{\dt}\\
+%   v_{y}(t) &= \frac{\di y(t)}{\dt}\\
+%   v_{z}(t) &= \frac{\di z(t)}{\dt}
 %       \end{aligned}\right.
 % \end{equation*}
 For a small time step $\Dt$ we can approximate this derivative with
@@ -6857,10 +6858,10 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
     \label{eq:cons_matter}
     \underbracket[0pt]{\yN(\ytf) =
       \yN(\yti) +
-      \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t  +
-      \int_{\yti}^{\ytf}\!\!\ya(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt  +
+      \int_{\yti}^{\ytf}\!\!\ya(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
-      \underbracket[0pt]{\frac{\di\yN(t)}{\di t} = \yJ(t) +
+      \underbracket[0pt]{\frac{\di\yN(t)}{\dt} = \yJ(t) +
         \ya(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
   The supply $\ya$ is usually called \textbf{activity}, and $\ya(t)\equiv 0$ in case of conservation.
@@ -6982,7 +6983,7 @@ where $\lambda$ is positive and called the \textbf{decay constant} of that parti
 
 If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance then takes the form
   \begin{equation*}
-  \frac{\di\yN(t)}{\di t} =  -\lambda\,\yN(t)
+  \frac{\di\yN(t)}{\dt} =  -\lambda\,\yN(t)
 \end{equation*}
 called the \furl{https://www.britannica.com/science/radioactivity/Rates-of-radioactive-transitions\#ref496415}{\emph{law of radioactive decay}}.
 \end{definition}
@@ -7010,7 +7011,7 @@ We shall see an example of this procedure in the \autoref{sec:numeric_integratio
 % Take again a look at the timesteps in formula~\eqref{eq:timestep_momentum_position}:
 At each timestep the \masse\ $\ym$ of the tennis ball is assumed to be constant in time. But as explained above, \autoref{sec:mass_proxy_matter}{this mass is proportional to the amount of matter}: $\ym = \yrho \yN$. So this assumption is implicitly guaranteed by the law of conservation of matter.
 
-% you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\ym$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\ym = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\di t = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
+% you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\ym$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\ym = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\dt = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
 
 
 \subsection{Chemistry}
@@ -7030,7 +7031,7 @@ For instance, the \furl{https://chem.washington.edu/lecture-demos/match-head-rea
 \end{equation*}
 expresses that if 30 moles of oxygen (O) atoms appear among the reactants, they must also appear among the products; same for the 12 moles of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Phosphorus}{phosphorus (P) atoms}, the 10 moles of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Potassium}{potassium (K) atoms}, and so on.
 
-This assumption is simply the statement of conservation of matter, \emph{separately} for each chemical element: since the reaction doesn't let any other matter go in or out, the flux $\yJ$ for each chemical element must be zero. Therefore the amount $\yN$ of each chemical element must be constant: $\di\yN(t)/\di t = \yJ = 0$.
+This assumption is simply the statement of conservation of matter, \emph{separately} for each chemical element: since the reaction doesn't let any other matter go in or out, the flux $\yJ$ for each chemical element must be zero. Therefore the amount $\yN$ of each chemical element must be constant: $\di\yN(t)/\dt = \yJ = 0$.
 
 % This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{sec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}.
 The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
@@ -7061,7 +7062,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
   Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
-  $$\frac{\di\yN(t)}{\di t} = -\lambda\,\yN(t)$$
+  $$\frac{\di\yN(t)}{\dt} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
   Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\,\unit{yr}$.
 \end{exercise}
@@ -7076,10 +7077,10 @@ The law of conservation of matter in its explicit form is at the heart of fluid-
 \marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
 \includegraphics[height=15em]{images/pipesection.pdf}%
 }%
-Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\di t}=0$. By the law of conservation of matter, the total influx must then be zero:
+Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\dt}=0$. By the law of conservation of matter, the total influx must then be zero:
 \begin{equation*}
-  0=\frac{\di\yN(t)}{\di t} = \yJ(t)
-  % {\color{grey}\underbrace{\color{black}\frac{\di\yN(t)}{\di t}}_{\color{grey}{}=0}\color{black}} = \yJ(t)
+  0=\frac{\di\yN(t)}{\dt} = \yJ(t)
+  % {\color{grey}\underbrace{\color{black}\frac{\di\yN(t)}{\dt}}_{\color{grey}{}=0}\color{black}} = \yJ(t)
   % \qquad\Longrightarrow\qquad
   % \yJ(t) = 0
 \end{equation*}
@@ -7136,9 +7137,9 @@ that is, if the area through which the flux occur decreases, then the velocity o
     \label{eq:cons_charge}
     \underbracket[0pt]{\yC(\ytf) =
       \yC(\yti) +
-      \int_{\yti}^{\ytf}\!\!\yI(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \int_{\yti}^{\ytf}\!\!\yI(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
-      \underbracket[0pt]{\frac{\di\yC(t)}{\di t} =
+      \underbracket[0pt]{\frac{\di\yC(t)}{\dt} =
         \yI(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
@@ -7162,9 +7163,9 @@ that is, if the area through which the flux occur decreases, then the velocity o
     \label{eq:cons_magneticflux}
     \underbracket[0pt]{\yBf(\ytf) =
       \yBf(\yti) -
-      \int_{\yti}^{\ytf}\!\!\yEv(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \int_{\yti}^{\ytf}\!\!\yEv(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
-      \underbracket[0pt]{\frac{\di\yBf(t)}{\di t} =
+      \underbracket[0pt]{\frac{\di\yBf(t)}{\dt} =
         -\yEv(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
@@ -7207,9 +7208,9 @@ Mutationem motus proportionalem esse vi motrici impress{\ae}, \amp\ fieri secund
 
   \begin{equation}
     \label{eq:bal_momentum}
-      \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
-      \underbracket[0pt]{\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+      \underbracket[0pt]{\frac{\di\yP(t)}{\dt} = \yF(t) + \yG(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -7266,9 +7267,9 @@ Examples of these kinds of supplies are the \emph{gravitational force}, the \emp
 You may have noticed a peculiar coincidence. When \emph{we} feel these \emph{body} forces, we also always feel some accompanying \emph{contact} forces. Examples: Most of the time we feel the force of gravity in our body, and also the contact force of the ground pressing upward against the soles of our feet. Sitting in an accelerating car, we feel the force pushing our body against the seat, but also the contact force from the seat pushing against our back. % Similarly when taking off on an aeroplane, the force pushing our body down is accompanied by an upward contact force from the seat.
 When we don't feel any body force, for instance when we reach the peak while going back and forth in a swing, and momentarily feel weightless, or if we fall from a height, then we don't feel any contact forces either.
 
-The reason for this concurrence is the balance of momentum, together with a peculiarity of each person's coordinate system. With respect to your own coordinate system, \emph{you are always at rest}: your momentum content is always zero. Therefore $\di\yP_{\text{you}}/\di t = \qty{0}{N}$ always. The balance of momentum for your control volume then becomes
+The reason for this concurrence is the balance of momentum, together with a peculiarity of each person's coordinate system. With respect to your own coordinate system, \emph{you are always at rest}: your momentum content is always zero. Therefore $\di\yP_{\text{you}}/\dt = \qty{0}{N}$ always. The balance of momentum for your control volume then becomes
 \begin{equation*}
-  \qty{0}{N} = \frac{\di\yP_{\text{you}}}{\di t} = \yF_{\text{you}} + \yG_{\text{you}}
+  \qty{0}{N} = \frac{\di\yP_{\text{you}}}{\dt} = \yF_{\text{you}} + \yG_{\text{you}}
   \qquad\implies\qquad
   \yF_{\text{you}} = - \yG_{\text{you}} \,.
 \end{equation*}
@@ -7410,17 +7411,17 @@ In many situations we want to track the position $\yn(t)$ of a small control vol
 We must therefore use the balance of momentum together with the relation between position and velocity (which is often a \autoref{sec:connection_velocity_matter}{proxy for the balance of matter}):
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yP(t)}{\di t} &= \yF(t) + \yG(t)
+    \frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
     &\quad\text{or}\quad
     \yP(\ytf) &= \yP(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yF(t)\,\di t
-    +\int_{\yti}^{\ytf}\!\!\yG(t)\,\di t
+    \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
+    +\int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
     \,,
     \\
-    \frac{\di\yr(t)}{\di t} &= \yv(t)
+    \frac{\di\yr(t)}{\dt} &= \yv(t)
     &\quad\text{or}\quad
     \yr(\ytf) &= \yr(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yv(t)\,\di t \,.
+    \int_{\yti}^{\ytf}\!\!\yv(t)\,\dt \,.
   \end{aligned}
 \end{equation*}
 Even if we have the influx $\yF$ and supply $\yG$ of momentum are given as \autoref{sec:boundary_conds}{boundary conditions}, and therefore we can find the momentum at future times, we would still need to specify the velocity $\yv(t)$ at all times in order to find the future position $\yr$ at future times.
@@ -7533,10 +7534,10 @@ Note again how the analytic method manages to tell us beforehand about important
 \begin{exercise}
   Prove the time dependence of $\yr(t)$ and $\yP(t)$ found above, but start from the differential expressions of the balance law of momentum and of the relation between position and velocity:
   \begin{equation*}
-    \frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)
+    \frac{\di\yP(t)}{\dt} = \yF(t) + \yG(t)
     \,,
     \qquad
-    \frac{\di\yr(t)}{\di t} = \yv(t)
+    \frac{\di\yr(t)}{\dt} = \yv(t)
     \,,
     \qquad
     \yP(t) = \ym\yv(t)\,,
@@ -7732,7 +7733,7 @@ Prove that condition~\ref{item:C1flux} follows from the balance of momentum. Pro
 \begin{itemize}[nosep]
 \item If the \masse\ content in the control volume is negligible, then  the momentum content $\yP$  is always zero, and its derivative is also always zero:
   \begin{equation*}
-    \frac{\di\yP}{\di t} = \qty{0}{N} \,.
+    \frac{\di\yP}{\dt} = \qty{0}{N} \,.
   \end{equation*}
 
 \item Likewise for the supply:
@@ -7751,11 +7752,11 @@ Combine the three formulae above with the \autoref[\eqn~\eqref]{eq:bal_momentum}
 
 % \subsection{Proof of condition~\ref{item:C1flux}}
 % 
-% It is easy to see how condition~\ref{item:C1flux} follows from the balance of momentum. If the \masse\ content in the control volume is negligible, then  the momentum content $\yP$  is always zero, and its derivative is also always zero: $\di\yP/\di t = \qty{0}{N}$. Likewise for the supply of momentum: $\yG = \qty{0}{N}$. The total momentum influx is equal to $\yF = \yFa + \yFb$ by the principle of flux symmetry. Then the balance of momentum requires that
+% It is easy to see how condition~\ref{item:C1flux} follows from the balance of momentum. If the \masse\ content in the control volume is negligible, then  the momentum content $\yP$  is always zero, and its derivative is also always zero: $\di\yP/\dt = \qty{0}{N}$. Likewise for the supply of momentum: $\yG = \qty{0}{N}$. The total momentum influx is equal to $\yF = \yFa + \yFb$ by the principle of flux symmetry. Then the balance of momentum requires that
 % \begin{equation*}
 %   \begin{gathered}
 %     \begin{aligned}
-%       \frac{\di\yP}{\di t} &= \yF + \yG \qquad\text{\footnotesize substitute:}
+%       \frac{\di\yP}{\dt} &= \yF + \yG \qquad\text{\footnotesize substitute:}
 %       \\
 %       \qty{0}{N} &= \yFa + \yFb + \qty{0}{N}
 %     \end{aligned}
@@ -7851,52 +7852,54 @@ Note that in this case the material always exerts a tension, never a pressure.
 \section{Application: Hookean spring and harmonic oscillator}
 \label{sec:hooke_oscillator}
 
+The zero-mass simplification that we're making to study the momentum fluxes of materials has a drawback: we cannot study the motion of such a piece of material \emph{alone}. By saying that its \masse\ is negligible, we're effectively saying that its momentum is too small to be measured. We're thus forfeiting exactly the quantity allows us to study its motion.
 
+This is apparent from the fact that the balance of momentum for this unrealistic physical system \autoref{sec:springs_consequences_balances}{degenerates} to the equation $\yFa(t) = -\yFb(t)$, which connects two quantities at the \emph{same} time instant $t$: we have lost the expression of the balance that \enquote{drives} the system forward in time.
 
-The physical system composed of two bodies of matter connected by a spring, with the spring modelled by the \autoref{sec:hooke}{Hookean constitutive properties}, is one of particular importance in physics, for several reasons. Its equations can be solved analytically and describe a \furl{https://www.britannica.com/science/mechanics/Simple-harmonic-oscillations\#ref612067}{\emph{harmonic oscillator}}, with a behaviour that can be predicted without numerical time-integration methods. The \emph{mathematical form} of its equations can also be applied to many other physical phenomena involving quantities other than momentum. Hooke's law can sometimes be used as a linear approximation in more complicated systems. And if we consider particular additional forces applied to one or both of the two bodies, we can study simple examples of the important phenomena of \furl{https://www.britannica.com/science/resonance-vibration}{\emph{resonance}} and \furl{https://www.britannica.com/science/damping}{\emph{damping}}.
-
-The Hookean spring and the harmonic oscillator are therefore discussed in detail in essentially all physics textbooks and in specialized treatises. For this reason I won't discuss them here. I recommend that you read the  \furl{https://www.feynmanlectures.caltech.edu/I_21.html}{chapter on the harmonic oscillator} and \furl{https://www.feynmanlectures.caltech.edu/I_23.html}{that on resonance} in Feynman's Lectures, for example.
+One way to bypass this situation and get a glimpse at the motion that the material under study leads to, is to connect the control volume of the material with two other control volumes containing matter with non-zero \masse. For example, to study the behaviour of a massless spring we attach two small bodies with non-zero masses at its ends. We can thus track the momenta and movement of these auxiliary bodies and, indirectly, the motion and the effects of the momentum fluxes of the material.
 
 \medskip
 
-In these notes, instead, I'd like to discuss  more in detail the role of the balance of momentum and of constitutive relations in this system, as these aspects are often quickly glossed over in other texts.
+In this section we study this three-body physical system step by step, in order to study its motion later, by numeric and if possible analytical methods.
+
 \begin{exercise}
-  Before continuing, try to do on your own the analysis of two small bodies connected by a Hookean spring, as %\autoref{sec:hooke}{}
-  previously defined. Consider in particular:
+  Before continuing, try to do on your own the analysis of two small bodies connected by a piece of Hookean material. Consider in particular:
   \begin{itemize}
   \item How would you set up a coordinate system and closed control surfaces to describe this physical phenomenon? how many control volumes?
   \item How many applications of the balance of momentum would you need to make?
   \item What would be the volume contents, fluxes, and supplies in these balances?
   \item What would be the relevant constitutive relations?
-  \item What would be the initial data and the \autoref{sec:boundary_conds}{boundary conditions}?
+  \item What would be the initial conditions and the boundary conditions?
   \end{itemize}
 \end{exercise}
 
 \medskip
 
-We consider two bodies of matter, call them $a$ and $b$, of small extension compared to the distance between them. We attach them at the two ends of a Hookean spring, which for simplicity here we take as having a negligible natural length; that is, $\ylo\approx\qty{0}{m}$. We choose a coordinate system at rest with the Earth's surface; let's denote it $(y,z)$, with $z$ pointing upward. The only momentum supply, if considered, is given by the constitutive equation for gravitational force.
+Consider two bodies of matter, call them $a$ and $b$, of small extension compared to the distance between them. Attach them at the two ends of a piece of Hookean material, such as a small spring. For simplicity, in this analysis we take the natural length of the piece to be negligible: $\ylo \approx \qty{0}{m}$.
 
-In terms of control surfaces, we have three of them: one tightly enveloping body $a$, one body $b$, and a third enveloping the spring. Let us analyse each one in turn, writing down its relevant balances. Note that all  quantities below, except the masses and the elastic constant $k$, depend on the time $t$.
+Choose a coordinate system $(t,x,y,z)$ at rest with the Earth's surface, with $z$ pointing upward. The only momentum supply, if considered, is given by the constitutive equation for \autoref{sec:gravity}{gravitational force}.
+
+In terms of control surfaces, we have three of them: one tightly enveloping body $a$, one body $b$, and a third enveloping the piece of Hookean material. Let us analyse each one in turn, writing down its relevant balances. Note that all quantities below, except the masses and the elastic constant $k$, depend on the time $t$.
 
 
 \begin{description}[itemsep=1ex]
 \item[Body $a$:]
-  The control volume for body $a$ is small and can be characterized simply by its position vector $\yra$. The mass-energy in this control volume is $\yma$.
+  The control volume for body $a$ is small and can be characterized simply by its position vector $\yra$. The \masse\ in this control volume is $\yma$.
 
-  By construction, \autoref{sec:cons_matter_particle}{conservation of matter automatically holds} for this control volume. It remains, hidden, in the relation between the position and velocity of the control volume: $\yva(t)=\di\yra(t)/\di t$.
+  By construction, \autoref{sec:cons_matter_particle}{conservation of matter automatically holds} for this control volume. It remains, hidden, in the relation between the position and velocity: $\yva(t) = \di\yra(t)/\dt$.
 
-  This control volume contains an amount of momentum $\yPa = \yma\,\yva$, according to the \autoref{sec:bal_momentum_Newton}{Newtonian constitutive equation}.
+  For the amount of momentum in this control volume, use the \autoref{sec:bal_momentum_Newton}{Newtonian constitutive equation for momentum} $\yPa = \yma\,\yva$.
 
-  We assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control surface for the spring (see \textcolor{purple}{thick red lines} in the side picture below).  Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} is the influx in body $a$ coming from the spring; analogously for $\yFba$ and body $b$.
+  Assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control volume of the Hookean material; this portion is represented by the \textcolor{purple}{thick red lines} in the side picture below. Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} is the influx in body $a$ coming from the Hookean material, the \enquote{spring}; analogously for $\yFba$ and body $b$.
 
-  If we consider gravity effects, this control volume also has a constant momentum supply $\yGa=-\yma\,g\,[0,1]$, according to the \autoref{def:gravity_surface}{constitutive equation for gravitational force}.
+  If we consider gravity effects, we can use the  \autoref{def:gravity_surface}{constitutive equation for gravitational force} $\yGa=-\yma\,g\,[0,0,1]$.
 
   For this control volume we have therefore the following momentum balance and constitutive relations:
   \begin{equation*}
  \begin{aligned}
-&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPa(t)}{\di t} = \yFab(t) + \yGa(t)
+&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPa(t)}{\dt} = \yFab(t) + \yGa(t)
       \\[\jot]
-&\text{\footnotesize velocity} &\quad&\frac{\di\yra(t)}{\di t} = \yva(t)
+&\text{\footnotesize velocity} &\quad&\frac{\di\yra(t)}{\dt} = \yva(t)
       \\[\jot]
 &\text{\footnotesize const. relation} &\quad&\yPa(t) = \yma\yva(t)
       \\[\jot]
@@ -7906,14 +7909,14 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 
 \item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\ymb$, total momentum $\yPb=\ymb\,\yvb$.
 
-  The only momentum flux occurs across the portion of control surface in common with that of the spring; there we have an \textbf{in}flux $\yFba$.
+  The only momentum flux occurs across the portion of control surface in common with the control volume of the Hookean material; the \textbf{in}flux there is $\yFba$.
 
   For this control volume we have the following momentum balance and constitutive relations:
   \begin{equation*}
  \begin{aligned}
-&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPb(t)}{\di t} = \yFba(t) + \yGb(t)
+&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPb(t)}{\dt} = \yFba(t) + \yGb(t)
       \\[\jot]
-&\text{\footnotesize velocity} &\quad&\frac{\di\yrb(t)}{\di t} = \yvb(t)
+&\text{\footnotesize velocity} &\quad&\frac{\di\yrb(t)}{\dt} = \yvb(t)
       \\[\jot]
 &\text{\footnotesize const. relation} &\quad&\yPb(t) = \ymb\yvb(t)
       \\[\jot]
@@ -7921,60 +7924,52 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
     \end{aligned}
   \end{equation*}
 %
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-20\baselineskip}\footnotesize\centering%
 \includegraphics[height=15em]{images/hooke_controls.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
+\\[\jot]\flushleftright\color{mpcolor}%
+Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between the Hookean material and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
 }%
 
-\item[Spring:]
-  The control volume for the spring, %\autoref{sec:hooke}{}
-  according to the simplifications typical of Hookean springs, has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with two surfaces of the control volumes for the bodies $a$ and $b$, one surface each. The amount of matter and matter flux in the control volume for the spring are considered to be zero, again according to the simplifications for Hookean springs. The same is true for the total momentum $\yP$ and supply $\yG$, also zero.
+\item[Spring:] The control volume for the piece of Hookean material has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with the control volumes for bodies $a$ and $b$. The amount of matter and matter flux in this control volume are considered to be zero. The same is true for the \masse\ and the  momentum content and supply.
 
-  At the surface where the spring is in contact with body $a$ (see side picture above), there is an \textbf{in}flux of momentum for the spring, equal to $-\yFab$. The minus sign comes from the \autoref{def:symmetryflux}{symmetry of flux}, because $\yFab$ is the influx for body $a$.
+  At the surface where the piece is in contact with body $a$ there is an \textbf{in}flux of momentum equal to $-\yFab$. The minus sign comes from the \autoref{def:symmetryflux}{symmetry of flux}, because $\yFab$ is the influx into body $a$.
 
-Analogously, at the surface where the spring is in contact with body $b$, there is a momentum influx for the spring equal to $-\yFba$.
+Analogously, at the surface of contact with body $b$, there is a momentum influx equal to $-\yFba$.
 
-  The total momentum influx for the spring is therefore $\yF=-\yFab-\yFba$ by extensivity.
-
-The Hookean constitutive relation~\eqref{eq:hooke} says that the momentum \textbf{ef}flux across one surface, say the one in contact with body $a$, must be
+The balance of momentum for this control volume degenerates into the equation
 \begin{equation*}
-  \yFab = -k\,(\yra-\yrb)
+  \yFab = - \yFba \,,
 \end{equation*}
-because $\yra-\yrb$ is the main length of the control volume for the spring.
+as already discussed. Note that the \emph{total} influx of momentum into this control volume is also zero.
 
-The momentum balance and constitutive relations for the control volume of the spring are therefore:
+The Hookean constitutive relation~\eqref{eq:hooke} says that the momentum \textbf{ef}flux across the surface of contact with body $a$ is
+\begin{equation*}
+  \yFab = = -k\,(\yra-\yrb) \,.
+\end{equation*}
+
+The momentum balance and constitutive relations for the control volume of the Hookean material are therefore:
   \begin{equation*}
  \begin{aligned}
-&\text{\footnotesize momentum balance} &\quad&\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)
+   &\text{\footnotesize momentum balance} &\quad& \yFab = -\yFba
+   %\frac{\di\yP(t)}{\dt} = \yF(t) + \yG(t)
       \\[\jot]
-&\text{\footnotesize total influx by extensivity} &\quad&\yF(t) = -\yFab(t) - \yFba(t)
+% &\text{\footnotesize total influx by extensivity} &\quad&\yF(t) = -\yFab(t) - \yFba(t)
+%       \\[\jot]
+&\text{\footnotesize simplification} &\quad&\yP(t) = 0
       \\[\jot]
-&\text{\footnotesize assumption for spring} &\quad&\yP(t) = 0
-      \\[\jot]
-&\text{\footnotesize assumption for spring} &\quad&\yG(t) = 0
+&\text{\footnotesize simplification} &\quad&\yG(t) = 0
       \\[\jot]
 &\text{\footnotesize Hooke const. relation} &\quad&\yFab(t) = -k\,[\yra(t)-\yrb(t)]
     \end{aligned}
   \end{equation*}
-
-  Something peculiar happens in the case of the spring: \textbf{the momentum balance for the spring reduces to a very simple equation:}
-  $$0 = \yF = -\yFab-\yFba$$
-  We thus find that the effluxes at the extremities of the spring must be opposite:
-\begin{equation*}
-  \yFab = -\yFba
-\end{equation*}
-this result is therefore a consequence of momentum balance, \emph{not} of the \enquote*{principle of action and reaction}.
-
-This is of course an approximation. In a more detailed description of this physical system, the momentum balance for the spring would tell us how momentum flows from one end to the other of the spring, over time. In our simplified system we are essentially assuming that this flow is \emph{instantaneous}. This is why we end up with an equation relating two momentum fluxes, $\yFab$ and $\yFba$, \emph{at the same time}.
 \end{description}
 
 
 \medskip
 
-The setup for the description of this physical system is thus complete. This setup was probably intuitively clear, but I'd like you to stop for a moment and note all the subtle steps and details that it involves. We often \emph{cannot} reason intuitively in the analysis of more complex physical systems, and need to spell out their description step by step, to avoid neglecting important details. It is therefore a good exercise to do this kind of analysis for a simpler system, as we just did.
+The setup for the description of this physical system is thus complete. This setup was maybe intuitively clear, but I'd like you to stop for a moment and note all the subtle steps and details that it involves. We often \emph{cannot} reason \emph{intuitively} in the analysis of more complex physical systems, and need to spell out their description step by step, to avoid neglecting important details. It is therefore a good exercise to do this kind of analysis for a simpler system, as we just did.
 
-In this analysis, note how some control volumes have parts of their control surfaces in common. These common surfaces are important because they connect the fluxes of momentum and other quantities between the various control volumes. In modelling extended solids and fluids we often use a \emph{grid} of control volumes, so that the surface of one control volume has regions in common with the surrounding control volumes.
+In this analysis, note how some control volumes have parts of their control surfaces in common. These common surfaces are important because they connect the fluxes of momentum and other quantities between the various control volumes, by means of the principle of symmetry of flux. In modelling extended solids and fluids we often use a \emph{grid} of control volumes, so that the surface of one control volume has regions in common with the surrounding control volumes.
 
 \medskip
 
@@ -7988,19 +7983,430 @@ The set of equations above is usually solved analytically by introducing two alt
 \marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/uplot.pdf}%
 \\\includegraphics[width=\linewidth]{images/wplot.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Every component of $\yuu(t)$ is a linear function of time, and every component of $\yww(t)$ has a harmonic dependence on time with period $\frac{1}{2\,\pu}\sqrt{\frac{\yma\,\ymb}{k\,(\yma+\ymb)}}$. The slopes and intercepts of $\yuu(t)$ and the amplitudes and phases of $\yww(t)$ depend on the initial conditions.}%
 the first, $\yuu$, is called the \emph{centre of mass} of this physical system. In terms of these variables the whole set of equations above reduces to these two linear differential equations with constant coefficients (each equation is a set of three, one for each component):
 \begin{equation*}
-  \frac{\di^{2}\yuu(t)}{\di t^{2}} = 0
+  \frac{\di^{2}\yuu(t)}{\dt^{2}} = 0
   \qquad\quad
-  \frac{\di^{2}\yww(t)}{\di t^{2}} + k\,\frac{\yma+\ymb}{\yma\,\ymb}\,\yww(t) = 0
+  \frac{\di^{2}\yww(t)}{\dt^{2}} + k\,\frac{\yma+\ymb}{\yma\,\ymb}\,\yww(t) = 0
 \end{equation*}
 that can be solved analytically.
 \begin{exercise}
   Try to refresh your knowledge of linear differential equations with constant coefficients, and find the general solution for the equations above.
 
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
+\end{exercise}
+
+\section{Numerical time integration and state of a system}
+\label{sec:strategy_simulation}
+
+The physical system of two masses connected by a Hookean spring can be solved, and its behaviour predicted, analytically. But finding analytical solutions becomes more difficult or even impossible as soon as we consider \autoref{sec:nonhooke}{non-Hookean springs} and more general constitutive relations, or more masses. We then resort to numerical time-integration methods to predict the behaviour of such systems.
+
+The \autoref{sec:numeric_simulation}{essential idea of such numerical methods} was introduced in an earlier chapter. Let us now apply it to the masses-and-spring system. If we write an algorithm that numerically simulates a Hookean spring, it is then very easy to generalize it to a non-Hookean spring and to even more complex constitutive relations.
+
+% We have now met with the balance of momentum, which is extremely important to predict the motion of objects, and with several examples of constitutive relations relating momentum, matter (its position and velocity), and \masse.
+
+We wrote our \autoref{sec:applicable_numericintegration}{first time-integration algorithm} by proceeding intuitively, without following any particular scheme. Our present physical system involves more quantities and more constitutive equations. It is therefore convenient to find a more systematic way to build a simulation algorithm. Let's see the main steps using the present physical system as an example.
+
+In trying to reach a systematic way we shall also realize again the importance of the universal balance laws.
+
+\subsection{Overview of the relevant equations}
+\label{sec:summary_equations_strategy_script}
+
+First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case} they are
+\begin{equation*}\label{eq:timestep_hooke}
+  \begin{aligned}[b]
+\frac{\di\yPa(t)}{\dt} &= \yFab(t) + \yGa(t)
+&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
+    \\
+\frac{\di\yPb(t)}{\dt} &= \yFba(t) + \yGb(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
+    \\[\jot]
+\frac{\di\yra(t)}{\dt} &= \yva(t)
+&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
+\\    \frac{\di\yrb(t)}{\dt} &= \yvb(t)
+&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
+\\[\jot]
+    \yFba(t)  &=-\yFab(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
+    \\[2\jot]
+    \yPa(t) &= \yma\yva(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
+\\        \yPb(t) &= \ymb\yvb(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+    \\[\jot]
+    \yGa(t) &= -\yma\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $a$}}
+\\      \yGb(t) &= -\ymb\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
+    \\[\jot]
+\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
+&&{\text{\footnotesize\color{midgrey}Hooke's law}}
+  \end{aligned}
+\end{equation*}
+where each vector equation represents two equations: one for component $y$, one for $z$. We could have written the balance laws in integral, rather than differential, form. The latter form is simply more compact. Recall the peculiarity about the momentum balance for the spring: since the spring is assumed to always have zero momentum, the balance simplified to the equation\enskip$\yFba(t) =-\yFab(t)$\,,\enskip without a time derivative.
+
+In order to do numerical time integration, we approximate the balance laws and the velocities with \autoref{def:finitedifference}{finite-difference approximations}. Our set of equations is therefore rewritten as follows:
+\begin{equation*}\label{eq:timestep_hooke_approx}
+  \begin{aligned}[b]
+    \yPa(t+\Dt)  &\approx \yPa(t) + [\yFab(t) + \yGa(t)]\,\Dt
+&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
+    \\
+    \yPb(t+\Dt)  &\approx \yPb(t) + [\yFba(t) + \yGb(t)]\,\Dt
+&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
+    \\[\jot]
+    \yra(t+\Dt)  &\approx \yra(t) + \yva(t)\,\Dt
+&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
+   \\    \yrb(t+\Dt)  &\approx \yrb(t) + \yvb(t)\,\Dt
+&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
+\\[\jot]
+    \yFba(t)  &=-\yFab(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
+    \\[2\jot]
+    \yPa(t) &= \yma\yva(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
+\\        \yPb(t) &= \ymb\yvb(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+    \\[\jot]
+    \yGa(t) &= -\yma\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentumsupply body $a$}}
+\\      \yGb(t) &= -\ymb\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
+    \\[\jot]
+\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
+&&{\text{\footnotesize\color{midgrey}Hooke's law}}
+  \end{aligned}
+\end{equation*}
+
+
+This is now our starting point. Let's see a reasoned set of steps to write a script that implements these equations.
+
+\bigskip
+
+
+\subsection{A strategy for writing a numerical time-integration algorithm}
+\label{sec:strategy_scheme}
+
+Our strategy can be divided into seven systematic steps, which we reason out now. The script can be written along, as we follow them. After each step, take a look at the example script of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy}, and locate the lines where that step was implemented.
+
+
+\paragraph{\color{yellow}0. Find any constants appearing in the equations.}
+
+Constitutive relations typically contain constant quantities, that is, quantities that don't change in time. These constants must be known in order to simulate the system. They are therefore \textbf{declared at the beginning of the script}. In our case the constants are the masses $\yma$, $\ymb$, the gravitational acceleration $g$, and the elastic constant $k$. Other examples could be fixed lengths, areas, volumes.
+
+\paragraph{\color{green}1. Find which equations drive the system forward in time.}
+
+Some equations must tell us the values of some quantities at the next time point $t+\Dt$, given quantities at the present time point $t$. They must therefore be written in the \textbf{core of the time-stepping loop}, together with the update of the time variable $t$.
+
+These driving equations easy to identify: \enquote*{$t+\Dt$} appears in them. In our case they are the balances for the momenta $\yPa$, $\yPb$, and the velocity equations for the two bodies, having two coordinate components each.
+
+  The fact that the forward-driving equations are fundamental balances is not a coincidence: as mentioned several times already, \emph{the universal balances are important because they relate later times to earlier times}. This fact becomes especially evident when we write a simulation algorithm.
+
+  In our case there's also one more balance, the momentum balance for the spring, but owing to the special assumptions about the spring (being massless), it simplifies to a same-time equation.
+\sidepar{\vspace{-1ex}\footnotesize{\color{green}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
+
+
+\paragraph{\color{red}2. Choose a \emph{state} for the physical system.}
+
+The driving equations in the core lines of the loop calculate later quantities from a particular set of present quantities. We must therefore make sure that the values of these quantities are defined before the core lines, and that they are known before the time-stepping loop begins as well. In our case we see that we need 8 quantities, underlined below, with two components each, for a total of 16 numbers:
+\begin{equation*}
+  \begin{aligned}[b]
+    \yPa(t+\Dt)  &\approx \underbracket[1pt]{\yPa(t)} + [\underbracket[1pt]{\yFab(t)} + \yGa(t)]\,\Dt
+    \\
+    \yPb(t+\Dt)  &\approx \underbracket[1pt]{\yPb(t)} + [\underbracket[1pt]{\yFba(t)} + \yGb(t)]\,\Dt
+    \\[\jot]
+    \yra(t+\Dt)  &\approx \underbracket[1pt]{\yra(t)} + \underbracket[1pt]{\yva(t)}\,\Dt
+   \\    \yrb(t+\Dt)  &\approx \underbracket[1pt]{\yrb(t)} + \underbracket[1pt]{\yvb(t)}\,\Dt
+ \end{aligned}
+\end{equation*}
+The supplies $\yGa$, $\yGb$ are constant and already declared, so we don't need to worry about them.
+  % \begin{equation*}
+  %   \begin{gathered}
+  %     \yPa\enskip \yFab\enskip \yGa\qquad
+  %     \yPb\enskip \yFba\enskip \yGb
+  %     \\
+  %     \yra\enskip \yva\qquad
+  %     \yrb\enskip \yvb\qquad
+  %   \end{gathered}
+  % \end{equation*}
+
+The eight quantities above are not all independent, thanks to constitutive relations that relate some of them. For instance, if we assign the velocity $\yva$, then the momentum $\yPa$ is  determined by the constitutive relation $\yPa=\yma\yva$; and if we assign the positions $\yra$, $\yrb$, then the force $\yFab$ is determined by the constitutive relation $\yFab  =-k\,(\yra-\yrb)$.
+
+Our task now is to find a \emph{minimum} set among these quantities, from which all others can be determined via constitutive relations. As a rule of thumb, the number of minimum quantities is given by
+\begin{equation*}
+  \text{\footnotesize(number needed in driving equations)} -
+  \text{\footnotesize(number of same-time relations)}
+\end{equation*}
+considering all vector components. In our case the same-time relations are four, with two components each:
+\begin{equation*}
+  \begin{gathered}
+    \yFba(t)  =-\yFab(t)
+    \\
+    \yPa(t) = \yma\yva(t) \qquad \yPb(t) = \ymb\yvb(t)
+    \\
+    % \yGa(t) = -\yma\,g\,[0,1] \qquad \yGb(t) = -\ymb\,g\,[0,1]
+    % \\
+\yFab(t)  =-k\,[\yra(t)-\yrb(t)]
+  \end{gathered}
+\end{equation*}
+so we should find a minimum set of $(2\times 8) - (2\times 4) = 8$ quantities.
+
+The choice is not unique. Convince yourself that this minimal set could be used:
+\begin{equation*}
+  \yra\,,\ \yva\,,\enskip\yrb\,,\ \yvb
+\end{equation*}
+or this:
+\begin{equation*}
+  \yra\,,\ \yPa\,,\enskip\yFab\,,\ \yvb
+\end{equation*}
+Usually we prefer a minimal set that consists of easily observable or measurable quantities, like positions, velocities, temperatures. In our case, let us agree to use $\yra, \yva, \yrb,\yrb$; note that each of these has two components: $y_{a},z_{a},y_{b},\dotsc$ and so on, for a total of four.
+
+This minimum set is called the \emph{state} of the physical system:
+\begin{definition}{State of a physical system,label={def:state}}
+  The \textbf{state} of a physical system is the minimal amount of information needed to drive the system from one time point to the next.
+
+  \smallskip
+
+  It is usually encoded in a minimal set of time-dependent quantities, but the choice of quantities is often not unique. In this case we say that different sets of quantities \emph{represent the same state}.
+
+  \smallskip
+
+  The values of a state at the beginning of a numerical time integration are called \textbf{initial conditions}.
+\end{definition}
+
+The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at the initial time, that is, the initial conditions, need to be \textbf{declared before the time-stepping loop}, together with the value of the initial time.
+\sidepar{\vspace{-1ex}\footnotesize{\color{red}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
+
+\paragraph{\color{purple}4. Determine the boundary conditions.}
+
+The time dependence of some fluxes, supplies, and volume contents may be known beforehand. These are what we call boundary conditions. We declare them before the time iteration. In our case the gravity supplies of the two bodies, $\yGa(t) = -\yma\,g\,[0,1]$ and $\yGb(t) = -\ymb\,g\,[0,1]$ are constant, because the masses, the gravitational acceleration, and the unit vector $[0,1]$ are constant. \sidepar{\vspace{-1ex}\footnotesize{\color{purple}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
+
+
+\paragraph{\color{blue}3. From the state, determine the quantities necessary for forward-driving.}
+
+Recall that the forward-driving equations require, at each time step, the $2\times 8$ quantities
+\begin{equation*}
+  \yPa(t)\,,\
+  \yFab(t)\,,\
+  \yPb(t)\,,\
+  \yFba(t)\,,\
+  \yra(t)\,,\
+  \yva(t)\,,\
+  \yrb(t)\,,\
+  \yvb(t)
+\end{equation*}
+We must therefore find these from our state, at each new time step, by using any necessary constitutive relations. In our case:
+\begin{equation*}
+  \begin{aligned}
+    \yPa(t) &= \yma\,\yva(t)\\
+    \yFab(t)& =-k\,[\yra(t)-\yrb(t)]\\
+    \yPb(t) &= \ymb\,\yvb(t)\\
+    \yFba(t) &= -\yFab(t) = -\Bigl(-k\,[\yra(t)-\yrb(t)]\Bigr) \\
+    \yra(t) &\quad\text{given}\\
+    \yva(t) &\quad\text{given}\\
+    \yrb(t) &\quad\text{given}\\
+    \yvb(t) &\quad\text{given}
+  \end{aligned}
+\end{equation*}
+Note that to find the force $\yFba$ from the state we needed to use two equations.
+
+In the code, the formulae that calculate the quantities necessary to the forward-driving lines from the state \textbf{need to be written within the time-stepping loop, right before the forward-driving lines}.
+\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
+
+
+\paragraph{\color{cyan}4. Find the new state from the time-updated quantities.}
+
+The time-stepping loop of our code is now able to determine quantities at a later time $t+\Dt$, given the state at the present time $t$. The quantities that we obtain at the later time are
+\begin{equation*}
+  \yPa(t+\Dt)\,,\enskip
+  \yPb(t+\Dt)\,,\enskip
+  \yra(t+\Dt)\,,\enskip
+  \yrb(t+\Dt)
+\end{equation*}
+
+We now want to be able to start the next loop iteration. The next iteration needs the new value of the state $\yra, \yva, \yrb,\yrb$; but we have $\yPa, \yPb, \yra, \yrb$. We need therefore to \textbf{convert the updated quantities back to the quantities that constitute the state, within the time loop}. This is again done by using same-time equations. In our case we use
+\sidepar{\vspace{12ex}\footnotesize{\color{cyan}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
+\begin{equation*}
+  \begin{aligned}
+    \yra(t+\Dt) &\quad\text{given}\\
+    \yrb(t+\Dt) &\quad\text{given}\\
+    \yva(t+\Dt) &= \yPa(t)/\yma\\
+    \yvb(t+\Dt) &= \yPb(t)/\ymb
+  \end{aligned}
+\end{equation*}
+% Now are ready to go back to the beginning of the loop!
+
+
+\paragraph{\color{midgrey}5. Decide the time-iteration parameters.}
+
+The discrete timestep $\Dt$ is a constant in our scripts. In more advanced techniques the timestep may be \emph{adaptive}, that is, it may change at every iteration, depending on particular conditions. This can lead to smaller numerical errors.
+
+For how long should our simulation run? This obviously depends on the application. We may want to run it for a given amount of time. Or we may want to stop it as soon as some condition is met; for instance, if the position or speed of a body reach particular values. The possibilities are endless.
+
+We set these conditions before the time-loop.
+\sidepar{\vspace{-1ex}\footnotesize{\color{midgrey}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
+
+\bigskip
+
+After these seven steps, the essential part of our numerical-time-integration script is ready. The script will probably need additional lines to perform tasks that depend on the specific problem. For example we may want to store the numerical values of some quantities at different times, for later analysis; or plot some of them as the simulation evolves. The ways these tasks are implemented are often heavily dependent on the programming language, and we therefore cannot discuss them in detail here.
+
+
+\begin{table}[p]
+  \caption{Example script for numerical time integration of the spring\,\amp\,bodies system. The \textcolor{yellow}{constants}, \textcolor{red}{initial conditions}, \textcolor{purple}{boundary conditions}, and the \textcolor{midgrey}{time-iteration parameters} can of course be different.}\label{tab:script_strategy}
+
+\small
+\begin{framed}
+\color{grey}\begin{verbatim}
+%%% Simulation of two bodies connected by Hookean material in 2D
+%% Coordinates (y, z)
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{yellow}\begin{verbatim}
+%% 0.  Constants
+ma = 2;    % kg: mass of object a
+mb = 2;    % kg: mass of object b
+g = 9.81;  % N/kg: gravitational acceleration
+k = 5;     % N/m: spring constant
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{red}\begin{verbatim}
+%% 2.  State and initial conditions
+t = 0;         % s: initial time
+ra = [-3, 0];  % m: initial position of object a
+rb = [3, 0];   % m: initial position of object b
+va = [0, 10];  % m/s: initial velocity of object a
+vb = [0, 0];   % m/s: initial velocity of object b
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{purple}\begin{verbatim}
+%% 3.  Boundary conditions
+Ga = -ma * g * [0, 1];  % N: gravity supply in object a
+Gb = -mb * g * [0, 1];  % N: gravity supply in object b
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{midgrey}\begin{verbatim}
+%% 5.  Parameters for time iteration
+t1 = 5;      % s: final time
+dt = 0.001;  % s: time step
+%% Numerical time integration
+while t < t1
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{blue}\begin{verbatim}
+    %% 4.  Calculate forward-driving quantities from state
+    Pa = ma * va;
+    Pb = ma * vb;
+    Fxa = -k * (ra - rb);
+    Fxb = -Fxa;   % balance of momentum for Hookean material
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{green}\begin{verbatim}
+    %% 1.  Balances drive forward in time
+    t = t + dt;
+    Pa = Pa + (Fxa + Ga) * dt;
+    Pb = Pb + (Fxb + Gb) * dt;
+    ra = ra + va * dt;
+    rb = rb + vb * dt;
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{cyan}\begin{verbatim}
+    %% 5.  Calculate new state from forward-driven quantities
+    va = Pa / ma;
+    vb = Pb / mb;
+\end{verbatim}
+\vspace{-1.5\baselineskip}
+\color{midgrey}\begin{verbatim}
+end
+\end{verbatim}
+%\end{verbatim}
+\end{framed}
+\end{table}
+
+% For such a scheme we need to \autoref{sec:timestep_vector}{step forward in time the momentum} of both masses using their momentum balances. The momentum balance of the spring is reduced to the equation\enskip$\yFba=-\yFab$\,,\enskip as discussed in the previous section.
+
+
+\clearpage
+\color{black}
+
+\begin{exercise}[label={ex:hooke}]
+  % We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $y$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
+  \begin{enumerate}[exerc]
+  \item Examine our \autoref{sec:code_integration}{previous scripts} for numerical time integration, and pinpoint where the seven building steps above are implemented.
+
+    Which quantities constitute the \emph{state} in that script?
+
+  \item Implement the pseudo-code of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} in your preferred programming language.
+
+    Your script should save all or some values of the state $\yra,\yrb,\yva,\yvb$, and their corresponding $t$ values, so that it's possible to plot their time evolution afterwards.
+
+    \smallskip
+
+    {\footnotesize\emph{(If you had difficulties writing your script, for the following exercises you can download and use \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{the script \texttt{hooke\_spring.m}}, written for \furl{https://octave.org/}{Octave}/MATLAB, as a starting point.)}\par}
+
+
+  \item Run your script with the following values:
+    \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yma=\ymb=\qty{2}{kg}
+        \qquad
+        k=\qty{5}{N/m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{3},\, \num{0}]\,\unit{m}
+        \\
+        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \\
+        \yGa(\yti)=[\num{0},\, \num{0}]\,\unit{N}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
+      \end{gathered}
+    \end{equation*}
+
+    Plot the $y$-coordinate of body $a$ against time $t$. What kind of time dependence do you observe? can you explain it intuitively?
+
+    Now plot the trajectories of the two bodies, that is, $z_{a}$ against $y_{a}$, and $z_{b}$ against $y_{b}$. What do you observe? can you explain it intuitively?
+
+    Plot, against time $t$, the $y$- and $z$-components of the \emph{total} momentum $\yPa+\yPb$ for the system composed by the two bodies and the spring. How do these component change? Why?
+
+  \item Run the script with the same parameter as before but the following initial velocity values:
+    \begin{equation*}
+      \begin{gathered}
+        \yva(\yti)=[\num{1},\, \num{1}]\,\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{-1},\, \num{-1}]\,\unit{m/s}
+      \end{gathered}
+    \end{equation*}
+
+    Plot again the $y$-coordinate of body $a$ against time $t$. Is the time dependence different from the previous simulation? How do the trajectories of the two bodies look like this time?
+
+    Plot again the components of the total momentum against time. How do they change? Why have they the same time dependence as before?
+
+
+      \item Run the script with the following initial velocity values:
+    \begin{equation*}
+      \begin{gathered}
+        \yva(\yti)=[\num{2},\, \num{2}]\,\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{1},\, \num{1}]\,\unit{m/s}
+      \end{gathered}
+    \end{equation*}
+
+    Plot the trajectories of the two bodies. What do you observe this time?
+
+    How do the components of the total momentum differ from the previous simulation? Try to explain why.
+
+  \item Play with all the parameter values and initial conditions, and see what happens. Before simulating, try to intuitively predict what the behaviour of the system will be.
+  \end{enumerate}
 \end{exercise}
 
 
@@ -8012,7 +8418,7 @@ We can obviously consider more than two objects connected by a number of springs
 %
 \marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/md_simulation.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics}}%
 }%
 This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
@@ -8148,7 +8554,7 @@ Consider an object such a book lying on a table, possibly pushed along the table
 Now consider the sum of all momentum fluxes through the whole surface of the book \emph{except the contact surface}: top surface, side surfaces; call this sum $\yFr$. Consider also the gravitational supply of momentum $\yG=-\ym\,g\,[0,-1]$. Taking the vertical, $z$-component of the balance of momentum we have
 \begin{equation*}
   \qty{0}{N} =
-  \frac{\di P_{z}}{\di t}
+  \frac{\di P_{z}}{\dt}
   = \yFn + \yFrz + G_{z}
 \qquad  \Longrightarrow\qquad
   \yFn = - \yFrz - G_{z}
@@ -8176,7 +8582,7 @@ Our two experiences illustrate that this friction may be different depending on 
 In our first experience, with the object at rest on the floor, we noticed that the (zero) horizontal momentum does not change if we exert any amount of force smaller than a particular threshold. Reasoning as we did for the normal force, consider again the sum $\yFr$ of all momentum fluxes through the whole surface of the object except the contact surface. Even if not necessary in this specific case, consider also the gravitational supply of momentum $\yG=-\ym\,g\,[0,-1]$. Finally, call $\yFs$ the static friction. Taking the horizontal, $x$-component of the balance of momentum we find
 \begin{equation*}
   \qty{0}{N} =
-  \frac{\di P_{x}}{\di t}
+  \frac{\di P_{x}}{\dt}
   = \yFs + \yFrx + G_{x}
 \qquad  \Longrightarrow\qquad
   \yFs = - \yFrx - G_{x}
@@ -8287,7 +8693,7 @@ An object, such as a book, is resting on a table. Which momentum fluxes occur in
 \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/opmvol1.jpg}%
 \\\includegraphics[width=3em]{images/axes.pdf}%
-  % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
 
 Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
@@ -8304,7 +8710,7 @@ Then \emph{what can the momentum fluxes across different parts of the control su
 A straightforward application of momentum balance in differential expression tells us that the \emph{net} \textbf{in}flux of momentum must be
 \begin{equation*}
   \begin{split}
-    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-2}]\,\unit{N}}
+    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-2}]\,\unit{N}}
 \\[2\jot]
  &=   [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
   \end{split}
@@ -8325,7 +8731,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 \marginpar{\vspace{+4\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/opmvol2.jpg}%
 \\\includegraphics[width=3em]{images/axes.pdf}%
-  % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
 \begin{exercise}[label={ex:twobooks}]
   Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces of cuboid shape, each wrapping one book, and having one side in common (where the two books touch). Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-2}]\,\unit{N}$, constant in time, and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
@@ -8407,7 +8813,7 @@ The ways in which such a momentum flux between object and air is realized can be
 % 
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/airlander.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
 }%
 In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
@@ -8416,7 +8822,7 @@ In the preceding section we saw that the magnitude of the compressive momentum f
 %
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/hangglider.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 A hang-glider (image from \furl{https://www.jaerenluftsport.no}{J{\ae}ren Luftsportsklubb})%
 }%
 Air is not always at rest (with respect to the Earth's surface). Owing to energy flow in the atmosphere and Earth's rotation, bodies of air -- air currents -- can be moving in different directions, including upward. An upward-moving body of air contains a net upward momentum. If an object stops the vertical motion of this air, for example deflecting it horizontally, then by the balance of momentum there must be a flux of upward momentum from the body of air to the object. This upward momentum can compensate the gravity supply of downward momentum, and therefore the object can float or rise. This mechanism is called \furl{https://www.britannica.com/topic/locomotion/Gravitational-gliding\#ref497010}{soaring or gliding} and is used by birds and gliders; it's also the mechanism that lifts a light object like a piece of paper or a feather.
@@ -8433,7 +8839,7 @@ the popular theory of lift generation found in many textbooks is completely wron
 %
 \marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
 }%
 
@@ -8469,7 +8875,7 @@ Obviously the amount of matter in the control volume defining the object will be
 %
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/cable-car3.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 \furl{https://www.scenicworld.com.au/experience/scenic-skyway}{\emph{Scenic Skyway}} cable car, Australia}%
 Consider a cable car suspended on a horizontal cable, and not moving. Which momentum fluxes occur in this situation?
 
@@ -8483,7 +8889,7 @@ This problem has some similarities with the previous one about the book on a tab
 \item By the balance of momentum, there must then be an influx of upward-momentum of the same magnitude as the supply:
   \begin{equation*}
   \begin{split}
-    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-8e4}]\,\unit{N}}
+    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-8e4}]\,\unit{N}}
 \\[2\jot]
  &=   [0\,,0\,,\num{8e4}]\,\unit{N}\enskip\text{(constant)}.
   \end{split}
@@ -8659,7 +9065,7 @@ Yet in other situations we may instead not even be interested in the relative mo
 %
 \marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/spring2Dplot_straight.pdf}%
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% \\[\jot]\flushleftright\color{mpcolor}%
 % Examples of trajectories of two masses connected by a non-Hookean spring (\textcolor{blue}{}), for different values of parameters and initial conditions.%
 }%
 For instance,
@@ -8670,7 +9076,7 @@ In such a situation we would have chosen just \emph{one} closed control surface 
 %
 \marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/hooke_control1.jpg}%
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% \\[\jot]\flushleftright\color{mpcolor}%
 }%
 \begin{equation*}
   \begin{gathered}
@@ -8684,412 +9090,12 @@ Note that the total momentum influx is zero:\enskip$\yF\tot=0$\,.\enskip Indeed 
 
 Momentum balance also applies to the total control volume:
 \begin{equation*}
-  \yP\tot(\ytf) = \yP\tot(\yti) + \int_{\yti}^{\ytf}\!\!\yF\tot(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yG\tot(t)\,\di t
+  \yP\tot(\ytf) = \yP\tot(\yti) + \int_{\yti}^{\ytf}\!\!\yF\tot(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yG\tot(t)\,\dt
 \end{equation*}
 If the total momentum influx and supplies are zero, then we find\enskip$\yP\tot(\ytf) = \yP\tot(\yti)$\,,\enskip which explains why we found that the velocity for the whole system could be considered as constant.
 
 
 
-\section{Numerical time integration: a strategy}
-\label{sec:strategy_simulation}
-
-The physical system of two masses connected by a Hookean spring can be solved, and its behaviour predicted, analytically. But finding analytical solutions becomes more difficult or even impossible as soon as we consider \autoref{sec:nonhooke}{non-Hookean springs} and more general constitutive relations, or more masses. We then resort to numerical time-integration methods to predict the behaviour of such systems.
-
-The \autoref{sec:numeric_simulation}{essential idea of such numerical methods} was introduced in an earlier chapter. Let us now apply it to the masses-and-spring system. If we write an algorithm that numerically simulates a Hookean spring, it is then very easy to generalize it to a non-Hookean spring and to even more complex constitutive relations.
-
-% We have now met with the balance of momentum, which is extremely important to predict the motion of objects, and with several examples of constitutive relations relating momentum, matter (its position and velocity), and \masse.
-
-We wrote our \autoref{sec:applicable_numericintegration}{first time-integration algorithm} by proceeding intuitively, without following any particular scheme. Our present physical system involves more quantities and more constitutive equations. It is therefore convenient to find a more systematic way to build a simulation algorithm. Let's see the main steps using the present physical system as an example.
-
-In trying to reach a systematic way we shall also realize again the importance of the universal balance laws.
-
-\subsection{Overview of the relevant equations}
-\label{sec:summary_equations_strategy_script}
-
-First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case} they are
-\begin{equation*}\label{eq:timestep_hooke}
-  \begin{aligned}[b]
-\frac{\di\yPa(t)}{\di t} &= \yFab(t) + \yGa(t)
-&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
-    \\
-\frac{\di\yPb(t)}{\di t} &= \yFba(t) + \yGb(t)
-&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
-    \\[\jot]
-\frac{\di\yra(t)}{\di t} &= \yva(t)
-&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
-\\    \frac{\di\yrb(t)}{\di t} &= \yvb(t)
-&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
-\\[\jot]
-    \yFba(t)  &=-\yFab(t)
-&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
-    \\[2\jot]
-    \yPa(t) &= \yma\yva(t)
-&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
-\\        \yPb(t) &= \ymb\yvb(t)
-&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
-    \\[\jot]
-    \yGa(t) &= -\yma\,g\,[0,1]
-&&{\text{\footnotesize\color{midgrey}momentum supply body $a$}}
-\\      \yGb(t) &= -\ymb\,g\,[0,1]
-&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
-    \\[\jot]
-\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
-&&{\text{\footnotesize\color{midgrey}Hooke's law}}
-  \end{aligned}
-\end{equation*}
-where each vector equation represents two equations: one for component $y$, one for $z$. We could have written the balance laws in integral, rather than differential, form. The latter form is simply more compact. Recall the peculiarity about the momentum balance for the spring: since the spring is assumed to always have zero momentum, the balance simplified to the equation\enskip$\yFba(t) =-\yFab(t)$\,,\enskip where no time derivative appear anymore.
-
-In order to do numerical time integration, we approximate the balance laws and the velocities with \autoref{def:finitedifference}{finite-difference approximations}. Our set of equations is therefore rewritten as follows:
-\begin{equation*}\label{eq:timestep_hooke_approx}
-  \begin{aligned}[b]
-    \yPa(t+\Dt)  &\approx \yPa(t) + [\yFab(t) + \yGa(t)]\,\Dt
-&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
-    \\
-    \yPb(t+\Dt)  &\approx \yPb(t) + [\yFba(t) + \yGb(t)]\,\Dt
-&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
-    \\[\jot]
-    \yra(t+\Dt)  &\approx \yra(t) + \yva(t)\,\Dt
-&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
-   \\    \yrb(t+\Dt)  &\approx \yrb(t) + \yvb(t)\,\Dt
-&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
-\\[\jot]
-    \yFba(t)  &=-\yFab(t)
-&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
-    \\[2\jot]
-    \yPa(t) &= \yma\yva(t)
-&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
-\\        \yPb(t) &= \ymb\yvb(t)
-&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
-    \\[\jot]
-    \yGa(t) &= -\yma\,g\,[0,1]
-&&{\text{\footnotesize\color{midgrey}momentumsupply body $a$}}
-\\      \yGb(t) &= -\ymb\,g\,[0,1]
-&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
-    \\[\jot]
-\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
-&&{\text{\footnotesize\color{midgrey}Hooke's law}}
-  \end{aligned}
-\end{equation*}
-
-
-This is now our starting point. Let's see a reasoned set of steps to write a script that implements these equations.
-
-\bigskip
-
-
-\subsection{A strategy for writing a numerical time-integration algorithm}
-\label{sec:strategy_scheme}
-
-Our strategy can be divided into six systematic steps, which we reason out now. The script can be written along, as we follow them. After each step, take a look at the example script of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy}, and locate the lines where that step was implemented.
-
-
-\paragraph{\color{red}0. Find any constants appearing in the equations.}
-
-Constitutive relations typically contain constant quantities, that is, quantities that don't change in time. These constants must be known in order to simulate the system. They are therefore \textbf{declared at the beginning of the script}. In our case the constants are the masses $\yma$, $\ymb$, the gravitational acceleration $g$, and the elastic constant $k$. Other examples could be fixed lengths, areas, volumes.
-
-The discrete timestep $\Dt$ is also a constant in our scripts. In more advanced techniques, however, the timestep may be \emph{adaptive}, that is, it may change at every iteration, depending on particular conditions. This can lead to smaller numerical errors.
-
-Volume contents, fluxes, and supplies usually depend on time; but in special situations some of them may turn out to be constant as well. In such situations it is computationally efficient to declare them before the time-stepping loop, rather than computing them anew (obtaining always the same value) at each time step. In our case we see that the gravity supplies of the two bodies, $\yGa(t) = -\yma\,g\,[0,1]$ and $\yGb(t) = -\ymb\,g\,[0,1]$ are constant, because the masses, the gravitational acceleration, and the unit vector $[0,1]$ are constant.
-\sidepar{\vspace{-1ex}\footnotesize{\color{red}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
-
-
-\paragraph{\color{green}1. Find which equations drive the system forward in time.}
-
-Some equations must tell us the values of some quantities at the next time point $t+\Dt$, given quantities at the present time point $t$. They must therefore be written in the \textbf{core of the time-stepping loop}, together with the update of the time variable $t$.
-
-These driving equations easy to identify: \enquote*{$t+\Dt$} appears in them. In our case they are the balances for the momenta $\yPa$, $\yPb$, and the velocity equations for the two bodies, having two coordinate components each.
-
-  The fact that the forward-driving equations are fundamental balances is not a coincidence: as mentioned several times already, \emph{the universal balances are important because they relate later times to earlier times}. This fact becomes especially evident when we write a simulation algorithm.
-
-  In our case there's also one more balance, the momentum balance for the spring, but owing to the special assumptions about the spring (being massless), it simplifies to a same-time equation.
-\sidepar{\vspace{-1ex}\footnotesize{\color{green}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
-
-
-\paragraph{\color{yellow}2. Choose a \emph{state} for the physical system.}
-
-The driving equations in the core lines of the loop calculate later quantities from a particular set of present quantities. We must therefore make sure that the values of these quantities are defined before the core lines, and that they are known before the time-stepping loop begins as well. In our case we see that we need 8 quantities, underlined below, with two components each, for a total of 16 numbers:
-\begin{equation*}
-  \begin{aligned}[b]
-    \yPa(t+\Dt)  &\approx \underbracket[1pt]{\yPa(t)} + [\underbracket[1pt]{\yFab(t)} + \yGa(t)]\,\Dt
-    \\
-    \yPb(t+\Dt)  &\approx \underbracket[1pt]{\yPb(t)} + [\underbracket[1pt]{\yFba(t)} + \yGb(t)]\,\Dt
-    \\[\jot]
-    \yra(t+\Dt)  &\approx \underbracket[1pt]{\yra(t)} + \underbracket[1pt]{\yva(t)}\,\Dt
-   \\    \yrb(t+\Dt)  &\approx \underbracket[1pt]{\yrb(t)} + \underbracket[1pt]{\yvb(t)}\,\Dt
- \end{aligned}
-\end{equation*}
-The supplies $\yGa$, $\yGb$ are constant and already declared, so we don't need to worry about them.
-  % \begin{equation*}
-  %   \begin{gathered}
-  %     \yPa\enskip \yFab\enskip \yGa\qquad
-  %     \yPb\enskip \yFba\enskip \yGb
-  %     \\
-  %     \yra\enskip \yva\qquad
-  %     \yrb\enskip \yvb\qquad
-  %   \end{gathered}
-  % \end{equation*}
-
-The eight quantities above are not all independent, thanks to constitutive relations that relate some of them. For instance, if we assign the velocity $\yva$, then the momentum $\yPa$ is  determined by the constitutive relation $\yPa=\yma\yva$; and if we assign the positions $\yra$, $\yrb$, then the force $\yFab$ is determined by the constitutive relation $\yFab  =-k\,(\yra-\yrb)$.
-
-Our task now is to find a \emph{minimum} set among these quantities, from which all others can be determined via constitutive relations. As a rule of thumb, the number of minimum quantities is given by
-\begin{equation*}
-  \text{\footnotesize(number needed in driving equations)} -
-  \text{\footnotesize(number of same-time relations)}
-\end{equation*}
-considering all vector components. In our case the same-time relations are four, with two components each:
-\begin{equation*}
-  \begin{gathered}
-    \yFba(t)  =-\yFab(t)
-    \\
-    \yPa(t) = \yma\yva(t) \qquad \yPb(t) = \ymb\yvb(t)
-    \\
-    % \yGa(t) = -\yma\,g\,[0,1] \qquad \yGb(t) = -\ymb\,g\,[0,1]
-    % \\
-\yFab(t)  =-k\,[\yra(t)-\yrb(t)]
-  \end{gathered}
-\end{equation*}
-so we should find a minimum set of $(2\times 8) - (2\times 4) = 8$ quantities.
-
-The choice is not unique. Convince yourself that this minimal set could be used:
-\begin{equation*}
-  \yra\,,\ \yva\,,\enskip\yrb\,,\ \yvb
-\end{equation*}
-or this:
-\begin{equation*}
-  \yra\,,\ \yPa\,,\enskip\yFab\,,\ \yvb
-\end{equation*}
-Usually we prefer a minimal set that consists of easily observable or measurable quantities, like positions, velocities, temperatures. In our case, let us agree to use $\yra, \yva, \yrb,\yrb$; note that each of these has two components: $y_{a},z_{a},y_{b},\dotsc$ and so on, for a total of four.
-
-This minimum set is called the \emph{state} of the physical system:
-\begin{definition}{State of a physical system,label={def:state}}
-  The \textbf{state} of a physical system is the minimal amount of information needed to drive the system from one time point to the next.
-
-  \smallskip
-
-  It is usually encoded in a minimal set of time-dependent quantities, but the choice of quantities is often not unique. In this case we say that different sets of quantities \emph{represent the same state}.
-
-  \smallskip
-
-  The values of a state at the beginning of a numerical time integration are called \textbf{initial conditions}.
-\end{definition}
-
-The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at the initial time, that is, the initial conditions, need to be \textbf{declared before the time-stepping loop}, together with the value of the initial time.
-\sidepar{\vspace{-1ex}\footnotesize{\color{yellow}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
-
-
-\paragraph{\color{blue}3. From the state, determine the quantities necessary for forward-driving.}
-
-Recall that the forward-driving equations require, at each time step, the $2\times 8$ quantities
-\begin{equation*}
-  \yPa(t)\,,\
-  \yFab(t)\,,\
-  \yPb(t)\,,\
-  \yFba(t)\,,\
-  \yra(t)\,,\
-  \yva(t)\,,\
-  \yrb(t)\,,\
-  \yvb(t)
-\end{equation*}
-We must therefore find these from our state, at each new time step, by using any necessary constitutive relations. In our case:
-\begin{equation*}
-  \begin{aligned}
-    \yPa(t) &= \yma\,\yva(t)\\
-    \yFab(t)& =-k\,[\yra(t)-\yrb(t)]\\
-    \yPb(t) &= \ymb\,\yvb(t)\\
-    \yFba(t) &= -\yFab(t) = -\Bigl(-k\,[\yra(t)-\yrb(t)]\Bigr) \\
-    \yra(t) &\quad\text{given}\\
-    \yva(t) &\quad\text{given}\\
-    \yrb(t) &\quad\text{given}\\
-    \yvb(t) &\quad\text{given}
-  \end{aligned}
-\end{equation*}
-Note that to find the force $\yFba$ from the state we needed to use two equations.
-
-In the code, the formulae that calculate the quantities necessary to the forward-driving lines from the state \textbf{need to be written within the time-stepping loop, right before the forward-driving lines}.
-\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
-
-
-\paragraph{\color{cyan}4. Find the new state from the time-updated quantities.}
-
-The time-stepping loop of our code is now able to determine quantities at a later time $t+\Dt$, given the state at the present time $t$. The quantities that we obtain at the later time are
-\begin{equation*}
-  \yPa(t+\Dt)\,,\enskip
-  \yPb(t+\Dt)\,,\enskip
-  \yra(t+\Dt)\,,\enskip
-  \yrb(t+\Dt)
-\end{equation*}
-
-We now want to be able to start the next loop iteration. The next iteration needs the new value of the state $\yra, \yva, \yrb,\yrb$; but we have $\yPa, \yPb, \yra, \yrb$. We need therefore to \textbf{convert the updated quantities back to the quantities that constitute the state, within the time loop}. This is again done by using same-time equations. In our case we use
-\begin{equation*}
-  \begin{aligned}
-    \yra(t+\Dt) &\quad\text{given}\\
-    \yrb(t+\Dt) &\quad\text{given}\\
-    \yva(t+\Dt) &= \yPa(t)/\yma\\
-    \yvb(t+\Dt) &= \yPb(t)/\ymb
-  \end{aligned}
-\end{equation*}
-
-Now are ready to go back to the beginning of the loop!
-\sidepar{\vspace{-1ex}\footnotesize{\color{cyan}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
-
-
-\paragraph{\color{midgrey}5. Decide the condition for stopping the time loop.}
-
-For how long should our simulation run? This obviously depends on the application. We may want to run it for a given amount of time. Or we may want to stop it as soon as some condition is met; for instance, if the position or speed of a body reach particular values. The possibilities are endless.
-
-We insert these conditions in the for- or while-loop, and initialize them as necessary.
-\sidepar{\vspace{-1ex}\footnotesize{\color{midgrey}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
-
-\bigskip
-
-After these six steps, the essential part of our numerical-time-integration script is ready. The script will probably need additional lines to perform tasks that depend on the specific problem. For example we may want to store the numerical values of some quantities at different times, for later analysis; or plot some of them as the simulation evolves. The ways these tasks are implemented are often heavily dependent on the programming language, and we therefore cannot discuss them in detail here.
-
-
-\begin{table}[p]
-  \caption{Example script for numerical time integration of the spring\,\amp\,bodies system. The \textcolor{red}{constants}, \textcolor{yellow}{initial values}, and the \textcolor{midgrey}{stop condition} (stop at \qty{10}{s}) can of course be different. Vector components are declared on one line.}\label{tab:script_strategy}
-
-\small
-\begin{framed}
-\color{red}\begin{verbatim}
-%%%% 0.  Constants and timestep
-ma = 1;
-mb = 1;
-g = 9.80665;
-k = 4;
-Gya = 0; Gza = -ma*g;
-Gyb = 0; Gzb = -mb*g;
-dt = 0.01;
-\end{verbatim}
-\vspace{-1.5\baselineskip}
-\color{yellow}\begin{verbatim}
-%%%% 2.  State: ya,za,vya,vza,yb,zb,vyb,vzb; initial conditions
-t = 0;
-ya = 0; za = 0;
-yb = 0.1; zb = 0.1;
-vya = 0; vza = 0;
-vyb = 0; vzb = 0.1;
-\end{verbatim}
-\vspace{-1.5\baselineskip}
-\color{midgrey}\begin{verbatim}
-%%%% 5.  Condition for stopping loop
-while t < 10
-\end{verbatim}
-\vspace{-1.5\baselineskip}
-\color{blue}\begin{verbatim}
-    %%%% 3.  Calculate forward-driving quantities from state
-    Pya = ma*vya;  Pza = ma*vza;
-    Fyab = -k*(ya-yb);  Fzab = -k*(za-zb);
-    Pyb = mb*vyb;  Pzb = mb*vzb;
-    Fyba = -Fyab;  Fzba = -Fzab;
-\end{verbatim}
-\vspace{-1.5\baselineskip}
-\color{green}\begin{verbatim}
-    %%%% 1.  Drive forward in time
-    Pya = Pya + (Fyab + Gya)*dt;  Pza = Pza + (Fzab + Gza)*dt;
-    Pyb = Pyb + (Fyba + Gyb)*dt;  Pzb = Pzb + (Fzba + Gzb)*dt;
-    ya = ya + vya*dt;  za = za + vza*dt;
-    yb = yb + vyb*dt;  zb = zb + vzb*dt;
-    t = t + dt;
-\end{verbatim}
-\vspace{-1.5\baselineskip}
-\color{cyan}\begin{verbatim}
-    %%%% 4.  Calculate new state from forward-driven quantities
-    vya = Pya/ma;  vza = Pza/ma;
-    vyb = Pyb/mb;  vzb = Pzb/mb;
-\end{verbatim}
-\vspace{-1.5\baselineskip}
-\color{midgrey}\begin{verbatim}
-end
-\end{verbatim}
-%\end{verbatim}
-\end{framed}
-\end{table}
-
-% For such a scheme we need to \autoref{sec:timestep_vector}{step forward in time the momentum} of both masses using their momentum balances. The momentum balance of the spring is reduced to the equation\enskip$\yFba=-\yFab$\,,\enskip as discussed in the previous section.
-
-
-\clearpage
-\color{black}
-
-\begin{exercise}[label={ex:hooke}]
-  % We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $y$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
-  \begin{enumerate}[exerc]
-  \item Examine our \autoref{sec:code_integration}{previous scripts} for numerical time integration, and pinpoint where the six building steps above are implemented.
-
-    Which quantities constitute the \emph{state} in that script?
-
-  \item Implement the pseudo-code of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} in your preferred programming language.
-
-    Your script should save all or some values of the state $\yra,\yrb,\yva,\yvb$, and their corresponding $t$ values, so that it's possible to plot their time evolution afterwards.
-
-    \smallskip
-
-    {\footnotesize\emph{(If you had difficulties writing your script, for the following exercises you can download and use \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{the script \texttt{hooke\_spring.m}}, written for \furl{https://octave.org/}{Octave}/MATLAB, as a starting point.)}\par}
-
-
-  \item Run your script with the following values:
-    \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
-        \\
-        \yma=\ymb=\qty{2}{kg}
-        \qquad
-        k=\qty{5}{N/m}
-        \\
-        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{3},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \\
-        \yGa(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
-
-    Plot the $y$-coordinate of body $a$ against time $t$. What kind of time dependence do you observe? can you explain it intuitively?
-
-    Now plot the trajectories of the two bodies, that is, $z_{a}$ against $y_{a}$, and $z_{b}$ against $y_{b}$. What do you observe? can you explain it intuitively?
-
-    Plot, against time $t$, the $y$- and $z$-components of the \emph{total} momentum $\yPa+\yPb$ for the system composed by the two bodies and the spring. How do these component change? Why?
-
-  \item Run the script with the same parameter as before but the following initial velocity values:
-    \begin{equation*}
-      \begin{gathered}
-        \yva(\yti)=[\num{1},\, \num{1}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{-1},\, \num{-1}]\,\unit{m/s}
-      \end{gathered}
-    \end{equation*}
-
-    Plot again the $y$-coordinate of body $a$ against time $t$. Is the time dependence different from the previous simulation? How do the trajectories of the two bodies look like this time?
-
-    Plot again the components of the total momentum against time. How do they change? Why have they the same time dependence as before?
-
-
-      \item Run the script with the following initial velocity values:
-    \begin{equation*}
-      \begin{gathered}
-        \yva(\yti)=[\num{2},\, \num{2}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{1},\, \num{1}]\,\unit{m/s}
-      \end{gathered}
-    \end{equation*}
-
-    Plot the trajectories of the two bodies. What do you observe this time?
-
-    How do the components of the total momentum differ from the previous simulation? Try to explain why.
-
-  \item Play with all the parameter values and initial conditions, and see what happens. Before simulating, try to intuitively predict what the behaviour of the system will be.
-  \end{enumerate}
-\end{exercise}
 
 \section{Non-Hookean spring: numerical time integration}
 \label{sec:nonHooke_simulation}
@@ -9235,7 +9241,7 @@ A small mathematical change in a constitutive relation can lead to a much richer
 \includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{Mass $b$ in red}%
 }%
 
@@ -9282,10 +9288,10 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
 
   \begin{equation}
     \label{eq:bal_energy}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yR(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+      \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -9309,7 +9315,7 @@ One confusing aspect of such variety is that it becomes unclear what is, and wha
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[align=c,width=0.495\linewidth]{images/birdetal1.jpg}%
 \hfill\includegraphics[align=c,width=0.495\linewidth]{images/birdetal2.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Snippets from a formula on p.~330 of %\eqn~(11.1-8) in
 \emph{Introductory Transport Phenomena} \parencites{birdetal2015}. This text does not consider gravitational potential energy to be part of the total energy. Compare the expression above on the right with \eqn~\eqref{eq:thermodynamic_energy} on page~\pageref{eq:thermodynamic_energy} below.%
 }%
@@ -9366,7 +9372,7 @@ In these notes we shall use the \enquote*{total} or \enquote*{coordinate} energy
 %
 \marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/icrf3sx.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}})
 }%
 
@@ -9402,7 +9408,7 @@ and say \enquote{this is the energy contributed by matter}, \enquote{this is the
 %
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/disc-pickup-guitar.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 The functioning of a guitar pickup is based on the fact that energy cannot be clearly separated into \enquote*{mechanical} and \enquote*{electromagnetic} (\furl{https://commons.wikimedia.org/wiki/images/File:Piezoelectric_pickup1.jpg}{image by Georg Feitscher})%
 }%
 The absence of such a separation is the origin of many interesting and useful physical phenomena like \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/piezo.html}{piezoelectricity} and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/magstrict.html}{magnetostriction}.
@@ -9417,7 +9423,7 @@ Energy is \emph{balanced}, but not \emph{conserved}, according to our \autoref{w
 %
 \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/batchelor_energy.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Balance of internal energy in a classic text on fluid dynamics (\cites{batchelor1967_r2000} \eqn\,(3.4.3)). The first summand on the right is the energy supply.%
 }%
 In fluid mechanics, for instance, the internal-energy definition is typically used, and as previously mentioned this energy definition satisfies a balance law, not a conservation law.
@@ -9429,7 +9435,7 @@ The answer to this question is also no. As far as we know, there is constant cre
 %
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/universeexpansion2.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Depiction of change of spacetime metric on cosmological scales, in three different coordinate systems (from \cites{davisetal2004})%
 }%
 The reason is that the metric of the universe is not constant along the time direction -- the so-called \furl{https://www.jpl.nasa.gov/edu/news/2023/7/24/exploring-the-mystery-of-our-expanding-universe/}{expansion of the universe} -- and an energy that is strictly conserved can only be defined if the metric is constant along some time direction:
@@ -9631,9 +9637,9 @@ If the heat flux vanishes, $\yQ=\qty{0}{J/s}$, then the energy flux is called \t
 
 We can also consider the \autoref{sec:total_flow}{integrated flux} of energy, that is, the total energy that flows through the surface between times $\yti$ and $\ytf$:
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yH(t)\,\di t =
-  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
-  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \di t
+  \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt =
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt
+  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \dt
 \end{equation*}
 The integrated heat flux is called the \textbf{heat} transferred through the surface, and the integrated mechanical power is called the \textbf{mechanical work} done by the force
 \end{definition}
@@ -9675,7 +9681,7 @@ Let's consider a control surface between our hands and the cup, and let's choose
 %
 \marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/handstea.jpg}%
-\\[\jot]\footnotesize\color{mpcolor}%
+\\[\jot]\color{mpcolor}%
 (Image from \furl{https://bunkajapan.com/blogs/japanese-tea-culture/how-to-hold-a-tea-cup}{\emph{Bunka Japan}})%
 }%
 There is obviously a momentum flux from our hands to the cup. The cup has a constant downward %\autoref{def:gravity_surface}
@@ -9811,7 +9817,7 @@ Rigid bodies have very peculiar properties in respect of the balance of energy. 
 %
 \marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/boomerang.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 \furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
 }%
 think of a boomerang for instance.
@@ -9828,22 +9834,22 @@ Let's express these conditions mathematically. Consider a control volume contain
 \begin{subequations}
   \label{eq:rigid_body_energy_int}
   \begin{gather}
-    \yU(\ytf) = \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yQ(t)\, \di t
+    \yU(\ytf) = \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yQ(t)\, \dt
     \\[\jot]
   \label{eq:rigid_body_energy_int_power}
     \tfrac12\ym\yv(\ytf) + \ym g z(\ytf) =
     \tfrac12\ym\yv(\yti) + \ym g z(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+    \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \end{gather}
 \end{subequations}
 or equivalently in differential expression:
 \begin{subequations}
 \label{eq:rigid_body_energy_diff}
   \begin{gather}
-    \frac{\di\yU(t)}{\di t} = \yQ(t)
+    \frac{\di\yU(t)}{\dt} = \yQ(t)
     \\[\jot]
 \label{eq:rigid_body_energy_diff_power}
-      \frac{\di\bigl[\tfrac12 \ym \yv(t)^{2} + \ym g z(t)\bigr]}{\di t} =
+      \frac{\di\bigl[\tfrac12 \ym \yv(t)^{2} + \ym g z(t)\bigr]}{\dt} =
   \yF(t)\cdot \yv(t)
 \end{gather}
 \end{subequations}
@@ -9920,9 +9926,9 @@ Now that the notion of pressure is introduced, we can formulate a particular con
   If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yT$, and the momentum flux is orthogonal to the surface and uniform throughout, and there is no matter flux through the surface, then the pressure $\ypr$ is given by
   \begin{equation}
     \label{eq:ideal_gas_p}
-    \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t}
+    \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\dt}
   \end{equation}
-  where $\frac{\di V}{\di t}$ is the rate of change of volume, $\yvis$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
+  where $\frac{\di V}{\dt}$ is the rate of change of volume, $\yvis$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
   \begin{equation*}
     R = \qty{8.31446261815324}{J/(mol\cdot K)}\quad\text{(exactly)}
   \end{equation*}
@@ -9943,11 +9949,11 @@ The equation above is called the \textbf{ideal-gas law with viscosity}.
 \end{definition}
 Note that the formula above for pressure and momentum flux is only valid for surfaces through which no matter flux occurs.
 
-In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\di t} = 0$.
+In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\dt} = 0$.
 %
 \marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/idealgas_mug.jpg}%
-% \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
+% \\[\jot]\flushleftright{\color{mpcolor}%
 % The famous \enquote{$pV=NRT$} formula}%
 }%
 
@@ -9994,7 +10000,7 @@ where $\yhea$ is called the \emph{coefficient of heat transfer} and depends on t
 %
 \marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/newton_cooling.jpg}%
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% \\[\jot]\flushleftright\color{mpcolor}%
 % NB: if $\yTb >\yTa$, then $\yQ<0$%
 }%
 The constitutive formula above with $\yhea>0$ says that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
@@ -10043,7 +10049,7 @@ If the mass $\ym$ of a volume of ideal gas is assumed to be zero, then four othe
 
 This assumption has an important consequence for the balance of momentum of a control volume containing an ideal gas: we have
 \begin{equation*}
-  \underbracket[0pt]{\frac{\di\yP(t)}{\di t}}_{\mathcolor{midgrey}{{}=0}} =
+  \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\mathcolor{midgrey}{{}=0}} =
 \yF(t) +
 \underbracket[0pt]{\yG(t)}_{\mathcolor{midgrey}{{}=0}}
 \qquad\Longrightarrow\qquad
@@ -10053,14 +10059,14 @@ that is, the \emph{total} momentum influx is always zero. But note that \emph{th
 %
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.45\linewidth]{images/idealgas_mominflux.pdf}%
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% \\[\jot]\flushleftright\color{mpcolor}%
 % NB: if $\yTb >\yTa$, then $\yQ<0$%
 }%
 it only means that the momentum influxes of opposite parts of the surface cancel out perfectly, as schematized in the side figure.
 
 Remember that when we use the ideal-gas law~\eqref{eq:ideal_gas_p}, we are assuming that \textbf{any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude}
 \begin{equation*}
-  F_{A} = A\,\ypr = A\,\frac{R \yN \yT}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\di t}
+  F_{A} = A\,\ypr = A\,\frac{R \yN \yT}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\dt}
 \end{equation*}
 \textbf{and directed \emph{inwards}}, according to the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
 
@@ -10090,7 +10096,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 % %
 % \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 % \includegraphics[width=0.3\linewidth]{images/piston_scenario.pdf}%
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% \\[\jot]\flushleftright\color{mpcolor}%
 % Depiction of our typical setup. The control volume is $V$. The \textcolor{yellow}{yellow} surface on the top has area $A$ and can move vertically with velocity $\yv$. There can be momentum fluxes at the top and bottom surfaces, and heat fluxes at the top, bottom, and side surfaces.%
 % }%
 % In the applications of the following sections we shall make these assumptions and simplifications:
@@ -10136,11 +10142,11 @@ Although this is a geometric relation, its deeper origin actually lies in the la
 
 The vertical velocity $v(t)$ of the piston is given by
 \begin{equation*}
-  v(t) = \frac{\di z(t)}{\di t}
+  v(t) = \frac{\di z(t)}{\dt}
 \end{equation*}
 and is positive if the piston is moving upward. We also define the rate of change of the volume $V(t)$, which turns out to be related to the velocity $v(t)$:
 \begin{equation}\label{eq:Vv_gas}
-  \frac{\di V(t)}{\di t} = \frac{\di A\, z(t)}{\di t} = A\,v(t)
+  \frac{\di V(t)}{\dt} = \frac{\di A\, z(t)}{\dt} = A\,v(t)
 \end{equation}
 
 \medskip
@@ -10210,7 +10216,7 @@ The equations governing the motion of the piston are therefore
 \begin{equation}
   \label{eq:piston_equations}
   \begin{gathered}
-    \frac{\di P(t)}{\di t} = F(t) + G(t)
+    \frac{\di P(t)}{\dt} = F(t) + G(t)
     \\[\jot]
     P(t) = \ym v(t)
     \qquad
@@ -10251,7 +10257,7 @@ The total momentum influx for the gas takes places through three main surfaces:
 %    \label{eq:gas_top_F}
     \yFgp(t) = -A\,\ypr(t)
     \quad\text{with}\quad
-    \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+    \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}
   \end{equation*}
   The first equation has a minus sign because the influx always points inward, therefore downward in our case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yT(t)$ of the ideal gas, both of which can change with time.
 
@@ -10265,7 +10271,7 @@ The only equations relevant to the momentum of the gas are therefore
   \label{eq:gas_top_F}
   \yFgp(t) = -A\,\ypr(t)
   \qquad
-  \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}
+  \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}
 \end{equation}
 together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
 
@@ -10335,7 +10341,7 @@ where $\yFgp(t)$ is given by formula~\eqref{eq:gas_top_F}.
   %     \yH_{\text{top}} = 0 + \yFgp(t)\cdot v(t) &=
   %     -A\,\ypr(t)\cdot v(t)
   %     \\
-  %     &= -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]\cdot v(t)
+  %     &= -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]\cdot v(t)
   %   \end{aligned}
   % \end{equation*}
 \end{description}
@@ -10349,7 +10355,7 @@ The total energy influx into the control volume enclosing the ideal gas is there
     \\[\jot]
     \yQb(t) = A\,\yhea\,[\yTe-\yT(t)]
     \\
-    \yFgp(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\di t}\biggr]
+    \yFgp(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]
   \end{gathered}
 \end{equation}
 
@@ -10416,7 +10422,7 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 
 From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing a horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person has same magnitude as the friction, $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $v$, because its time-rate change of horizontal momentum is zero:
 \begin{equation*}
-  \frac{\di P_{x}(t)}{\di t} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
+  \frac{\di P_{x}(t)}{\dt} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
 \end{equation*}
 %
 \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
@@ -10471,10 +10477,10 @@ where $\yQfl$ is a possible downward heat flux, and there is no mechanical power
 \item[\textcolor{purple}{Side surfaces:}] We imagine to take the height $h$ to be extremely small, so small that the area of the side control surfaces is negligible. All fluxes through these surfaces are, intuitively, negligible.
 \end{description}
 
-Now let's examine the balance of energy for this thin control volume. Owing to the very small height $h$, the volume is extremely small. Therefore the energy content $\yE$ and its time-rate of change $\di\yE/\di t$ are, intuitively, negligible. The balance of energy then yields
+Now let's examine the balance of energy for this thin control volume. Owing to the very small height $h$, the volume is extremely small. Therefore the energy content $\yE$ and its time-rate of change $\di\yE/\dt$ are, intuitively, negligible. The balance of energy then yields
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yE}{\di t} &= -\yHc -\yHfl
+    \frac{\di\yE}{\dt} &= -\yHc -\yHfl
     \\[2\jot]
     \qty{0}{J/s}&= - (\yQc + \yFf\cdot v) - \yQfl
   \end{aligned}
@@ -10512,10 +10518,10 @@ This makes sense from a molecular point of view: roughly speaking, the kinetic e
 
   \begin{equation}
     \label{eq:bal_ang_momentum}
-      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\di t + \int_{\yti}^{\ytf}\!\!\yM(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yL(t)}{\di t} = \yto(t) + \yM(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+      \underbracket[0pt]{\frac{\di\yL(t)}{\dt} = \yto(t) + \yM(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -10530,7 +10536,7 @@ It moreover turns out that \emph{the balance of angular momentum can be expresse
 %
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/stress_symm.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{black}%
+\\[\jot]\flushleftright\color{black}%
 The \textcolor{green}{$x$-component} of the \textcolor{red}{momentum flux crossing in the $z$-direction} must equal the \textcolor{green}{$z$-component} of the \textcolor{blue}{momentum flux crossing in the $x$-direction}. In this picture each equals \textcolor{green}{\qty{2}{N}}.}%
 \begin{definition}{Balance of angular momentum (tensorial form)}
   Take a small control surface passing through some point $P$, of area $A$, parallel to the $zx$ directions, and with a positive-$y$ crossing direction. Take another small control surface also passing through $P$ and of area $A$, parallel to the $xy$ directions, and with a positive-$z$ crossing direction.
@@ -10738,10 +10744,10 @@ I hold in fact
 
   \begin{equation}
     \label{eq:bal_entropy}
-      \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yS(t)}{\di t} \ge \yB(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+      \underbracket[0pt]{\frac{\di\yS(t)}{\dt} \ge \yB(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -10831,7 +10837,7 @@ balance of momentum for example. It leads to all sorts of motions and deformatio
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/mixing.jpg}\\%
 \includegraphics[width=\linewidth]{images/life_plant.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 The mixing of two liquids and the growing of life are both consequences of the second law of thermodynamics.}%
 The same remark holds true for the balance of entropy. This balance also leads to a wild variety of physical consequences. The mixing of two liquids can be said to be a consequence of the balance of entropy (together with the other balances). But also the appearance of life on Earth is a consequence of the balance of entropy; and all complex physical mechanisms underlying life are consequences of the balance of entropy, too (together with the other balances). Any simplistic summaries, like common ones mentioning \enquote{tendency to disorder} or \enquote{spontaneously doing this or that} or similar, are
 \begin{enumerate*}[label=(\alph*)]
@@ -10846,17 +10852,17 @@ From a qualitative point of view, the inequality sign in the balance of entropy 
 
 Consider first a generic balance or conservation law; let's take conservation of matter for instance:
 \begin{equation*}
-  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t
+  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt
 \end{equation*}
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/matter_content.jpg}}%
-Suppose a control volume contains an amount \qty{20}{mol} of matter. During an interval of time we provide a net flow of matter $\int_{\yti}^{\ytf}\!\!\yJ(t)\,\di t = \qty{3}{mol}$ into the control volume. By the conservation law, at the end we have an amount \qty{23}{mol} of matter in the control volume. This also means that in principle we could revert to an amount of \qty{20}{mol} by providing a \emph{negative} amount of the same flow as before, \qty{-3}{mol}. We can, in principle, change the matter content in the volume between \qty{20}{mol} and \qty{23}{mol} by providing a net flow of \qty{+3}{mol} or its opposite \qty{-3}{mol}. If we consider a balance with a supply, the conclusion remains the same, if we invert also the sign of the supply.
+Suppose a control volume contains an amount \qty{20}{mol} of matter. During an interval of time we provide a net flow of matter $\int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt = \qty{3}{mol}$ into the control volume. By the conservation law, at the end we have an amount \qty{23}{mol} of matter in the control volume. This also means that in principle we could revert to an amount of \qty{20}{mol} by providing a \emph{negative} amount of the same flow as before, \qty{-3}{mol}. We can, in principle, change the matter content in the volume between \qty{20}{mol} and \qty{23}{mol} by providing a net flow of \qty{+3}{mol} or its opposite \qty{-3}{mol}. If we consider a balance with a supply, the conclusion remains the same, if we invert also the sign of the supply.
 
 Now consider the balance of entropy with a strict inequality:
 \begin{equation*}
-  \yS(\ytf) > \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
+  \yS(\ytf) > \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
 \end{equation*}
-Suppose a control volume contains an amount \qty{20}{J/K} of entropy. During an interval of time we provide a net flow of entropy $\int_{\yti}^{\ytf}\!\!\yB(t)\,\di t = \qty{3}{J/K}$ into the control volume. By the inequality above, at the end we \emph{cannot} have an amount \qty{23}{J/K} of entropy in the control volume: it will be larger, say \qty{23.1}{J/K}. If we want to revert to an entropy content of \qty{20}{J/K}, then simply reversing the total flow to \qty{-3}{J/K} won't be enough.
+Suppose a control volume contains an amount \qty{20}{J/K} of entropy. During an interval of time we provide a net flow of entropy $\int_{\yti}^{\ytf}\!\!\yB(t)\,\dt = \qty{3}{J/K}$ into the control volume. By the inequality above, at the end we \emph{cannot} have an amount \qty{23}{J/K} of entropy in the control volume: it will be larger, say \qty{23.1}{J/K}. If we want to revert to an entropy content of \qty{20}{J/K}, then simply reversing the total flow to \qty{-3}{J/K} won't be enough.
 %
 \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/entropy_content.jpg}}%
@@ -10878,7 +10884,7 @@ Analogously, the example does \emph{not} imply that the entropy content of a con
 
 In cases where the balance of entropy holds with an equal sign:
 \begin{equation*}
-  \yS(\ytf) = \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
+  \yS(\ytf) = \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
 \end{equation*}
 then we can of course revert to a given entropy content by inverting the entropy flux.
 
@@ -10952,7 +10958,7 @@ Besides \autoref{sec:entropy_obsscale}{depending on the observation scale}, entr
 %
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/paperclip.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 The entropies that can be defined for an ordinary paper clip do not differ simply by a constant.}%
 For many physical phenomena and materials, a change of the reference state simply shifts all entropy values by a constant amount, so our entropy is defined except for a \enquote*{zero} of its measurement scale. But there are also important and quite common phenomena and materials for which a change of reference state leads to a \emph{different} entropy function -- not just the addition or subtraction of a constant. An ordinary paper clip is a simple example. The non-uniqueness of entropy is also a consequence of the peculiar inequality sign in the balance of entropy.
 %
@@ -11022,7 +11028,7 @@ This relation has wide applicability, but pay close attention to the conditions 
 
 In \chap~\ref{cha:bal_energy} we discussed constitutive relations for \autoref{sec:int_energy_idealgas}{the pressure $\ypr$ and the internal energy $\yU$} of an control volume containing an ideal gas:
 \begin{equation*}
-  \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\di t} \ ,
+  \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\dt} \ ,
   \qquad\qquad
   \yU = C\,\yN\,\yT
 \end{equation*}
@@ -11068,22 +11074,22 @@ The operation of such an engine is captured in the side picture. Imagine to wrap
 
 The engine starts a cycle at time $\yti$ and operates until time $\ytf$, at which time its state is exactly the same as at the initial one, the cycle is complete, and the engine is ready to start a new operation cycle. In a cycle, the total amount of heat $\yhe$ we provide to the engine and the total amount of work $\yW$ we \emph{receive} from it are given, with a shorter notation, by
 \begin{equation*}
-  \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
+  \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt
   \qquad\qquad
-  \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+  \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
 \end{equation*}
 The net amount of energy flowing into the control volume between $\yti$ and $\ytf$ is therefore
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\di t =
-  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\di t
-  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+  \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\dt =
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt
+  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \equiv \yhe -\yW
 \end{equation*}
 
 Let's see what the balance of energy says about such an engine. We have
 \begin{equation*}
   \begin{aligned}
-    \yU(\ytf) &= \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\di t
+    \yU(\ytf) &= \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\dt
     \\
     &= \yU(\yti) + \yhe - \yW
   \end{aligned}
@@ -11099,9 +11105,9 @@ According to the balance of energy this engine is therefore admissible.
 Let's see what the balance of entropy says. We have
 \begin{equation*}
   \begin{aligned}
-    \yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\di t
+    \yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
     \\
-    &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\frac{\yQ(t)}{\yT}\,\di t
+    &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\frac{\yQ(t)}{\yT}\,\dt
     \\
     &\ge \yS(\yti) + \frac{\yhe}{\yT}
   \end{aligned}
@@ -11158,16 +11164,16 @@ but for the moment we are not making assumptions about $\yQp()$ and $\yQm(t)$; w
 We consider a cycle of the engine between times $\yti$, $\ytf$. Employ again the shorter notation for the time-integrated fluxes:
 \begin{equation*}
   \begin{gathered}
-    \yhep \defd \int_{\yti}^{\ytf}\!\!\yQp(t)\,\di t
+    \yhep \defd \int_{\yti}^{\ytf}\!\!\yQp(t)\,\dt
     \qquad\qquad
-    \yhem \defd \int_{\yti}^{\ytf}\!\!\yQm(t)\,\di t
+    \yhem \defd \int_{\yti}^{\ytf}\!\!\yQm(t)\,\dt
     \\
-    \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+    \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \end{gathered}
 \end{equation*}
 so that the net amount of energy flowing into the control volume in this cycle is
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\di t =
+  \int_{\yti}^{\ytf}\!\!\yH_{\text{tot}}(t)\,\dt =
  \yhep + \yhem -\yW
 \end{equation*}
 
@@ -11183,9 +11189,9 @@ That is, the net work released in a cycle must be equal to the net heat provided
 
 The flux of entropy for the engine's control volume is
 \begin{equation*}
-    \int_{\yti}^{\ytf}\!\!\yB_{\text{tot}}(t)\,\di t =
-    \int_{\yti}^{\ytf}\!\frac{\yQp(t)}{\yTp}\,\di t +
-    \int_{\yti}^{\ytf}\!\frac{\yQm(t)}{\yTm}\,\di t
+    \int_{\yti}^{\ytf}\!\!\yB_{\text{tot}}(t)\,\dt =
+    \int_{\yti}^{\ytf}\!\frac{\yQp(t)}{\yTp}\,\dt +
+    \int_{\yti}^{\ytf}\!\frac{\yQm(t)}{\yTm}\,\dt
 \equiv \frac{\yhep}{\yTp} + \frac{\yhem}{\yTm}
 \end{equation*}
 The balance of entropy applied to the control volume therefore says
@@ -11245,10 +11251,10 @@ It is amazing that we can say, beforehand, how much work we can at most get from
 
 The thermal-engine example above also hints at the role of the balance of entropy as a meta-law about constitutive relations. In a real application and construction of an engine, the heat flux $\yQ$ and momentum flux $\yF$ will be concretely specified by constitutive relations; think for instance of \autoref{sec:int_energy_idealgas}{Newton's law of cooling for $\yQ$ or the ideal-gas law for $\yF$}. But if a limitation such as the maximal work efficiency~\eqref{eq:thermal_efficiency}, which we can rewrite in full as
 \begin{equation*}
-  -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \di t
+  -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \le
   \biggl(1-\frac{\yTm}{\yTp}\biggr)\,
-  \int_{\yti}^{\ytf}\!\!\yQp(t)\,\di t \ ,
+  \int_{\yti}^{\ytf}\!\!\yQp(t)\,\dt \ ,
 \end{equation*}
 is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be whatever. In fact they turn out to have severe restrictions.
 
@@ -11420,7 +11426,7 @@ Many current physics textbooks take a different approach. They introduce the stu
 
 \item The students typically end up with the understanding that \enquote{every phenomenon is just a consequence of Newton's laws}, of the second law in particular. This is clearly false: this law is just one out of six or seven that determine the evolution of physical phenomena.
 
-\item A fault, not of this approach per se, but of the way it is taught, is that students often remain confused about what this all-powerful second law \emph{exactly} say, and about its precise mathematical expression. Is it \enquote{$\bm{F}=m\bm{a}$}? or is it \enquote{$\bm{F}=\di\bm{P}/\di t$}? Why do many extra added terms suddenly appear when this \enquote{second law} of Newton's is used in continuum mechanics? is it still the same law?
+\item A fault, not of this approach per se, but of the way it is taught, is that students often remain confused about what this all-powerful second law \emph{exactly} say, and about its precise mathematical expression. Is it \enquote{$\bm{F}=m\bm{a}$}? or is it \enquote{$\bm{F}=\di\bm{P}/\dt$}? Why do many extra added terms suddenly appear when this \enquote{second law} of Newton's is used in continuum mechanics? is it still the same law?
 
 \item Science and education have had the noble tradition of founding their teachings on the notions of the theories that proved to be most correct. That is how we got Newtonian mechanics and electromagnetics in our schools. Today we know that Newtonian mechanics and some of its intuitions are only approximate; whereas the predictions and explanations offered by General Relativity (and quantum theory) keep on being beautifully confirmed. It's time we continue our noble tradition and replace those Newtonian notions that are only approximate with more exact ones.
 
@@ -11442,7 +11448,7 @@ One might hear the argument that the teaching approach via Newtonian point-mass 
 These notes state several times that the mathematical form of the equation for balance, for instance
 \begin{equation}
   \label{eq:balance_post}
-  \frac{\di\yE(t)}{\di t} = \yH(t) + \yR(t)
+  \frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)
 \end{equation}
 or its integral expression, is also valid in General Relativity. I would like to give a brief explanation, if not a proof, of this fact for those who are not familiar with General Relativity.
 
@@ -11466,14 +11472,14 @@ the balance of angular momentum is satisfied implicitly by the symmetry of the f
 % %
 % \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 % \includegraphics[width=\linewidth]{images/komissarov.png}%
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% \\[\jot]\flushleftright\color{mpcolor}%
 % The equations of balance in numerical relativity.%
 % }%
 
 % %
 % \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 % \includegraphics[width=\linewidth]{images/baumgartebox.png}%
-% \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+% \\[\jot]\flushleftright\color{mpcolor}%
 % The equations of balance in numerical relativity.%
 % }%
 
