@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-24T14:32:34+0100
+%% Last-Updated: 2025-02-24T21:39:53+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7236,7 +7236,7 @@ Through this balance we can therefore describe and predict motions.
 %
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/bryggen.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+\\[\jot]\flushleftright\color{mpcolor}%
 Momentum balance keeps buildings from collapsing (photo: \emph{Bryggen}, Bergen, from \furl{https://whc.unesco.org/en/list/59}{UNESCO World Heritage Centre})%
 }%
 But this balance is also essential in the opposite problem: when we need to study things that \emph{don't and shouldn't move}, like a building or a bridge. In this case the balance is used to study which momentum fluxes $\yF$ and supply $\yG$ are necessary to ensure that the volume content $\yP$ of momentum is constantly zero.
@@ -7248,6 +7248,90 @@ But this balance is also essential in the opposite problem: when we need to stud
 \medskip
 
 In the rest of this chapter we shall explore several common constitutive relations that involve momentum, and some of their applications together with the balance law for momentum.
+
+\section{Momentum supply: gravity and inertial forces}
+\label{sec:gravity}
+% \sidepar{\vspace{-4\baselineskip}\footnotesize\centering\sffamily(Constitutive relation)}%
+
+According to General Relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$, which we also call a \autoref{sec:contact_volume_forces}{\emph{volume force} or \emph{body force}}. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General Relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we find a non-zero supply of momentum $\yG$ in a very small region, it can be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply of momentum to be zero \emph{in a small region} -- but in general not everywhere.
+
+%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/crashtest.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+The supply of momentum appearing in a slowed-down car is deadly real.%
+}%
+Examples of these kinds of supplies are the \emph{gravitational force}, the \emph{centrifugal force}, and other forces called \emph{inertial}. For example, when we're travelling in a car that speeds up or slows down, we feel a horizontal force pushing us against our seat or pulling us away from it; we feel this force in all our body. This force is an example of supply of momentum.
+
+You may have noticed a peculiar coincidence. When \emph{we} feel these \emph{body} forces, we also always feel some accompanying \emph{contact} forces. Examples: Most of the time we feel the force of gravity in our body, and also the contact force of the ground pressing upward against the soles of our feet. Sitting in an accelerating car, we feel the force pushing our body against the seat, but also the contact force from the seat pushing against our back. % Similarly when taking off on an aeroplane, the force pushing our body down is accompanied by an upward contact force from the seat.
+When we don't feel any body force, for instance when we reach the peak while going back and forth in a swing, and momentarily feel weightless, or if we fall from a height, then we don't feel any contact forces either.
+
+The reason for this concurrence is the balance of momentum, together with a peculiarity of each person's coordinate system. With respect to your own coordinate system, \emph{you are always at rest}: your momentum content is always zero. Therefore $\di\yP_{\text{you}}/\di t = \qty{0}{N}$ always. The balance of momentum for your control volume then becomes
+\begin{equation*}
+  \qty{0}{N} = \frac{\di\yP_{\text{you}}}{\di t} = \yF_{\text{you}} + \yG_{\text{you}}
+  \qquad\implies\qquad
+  \yF_{\text{you}} = - \yG_{\text{you}} \,.
+\end{equation*}
+So whenever you feel a body force $\yG_{\text{you}}$, you must perforce also feel somewhere a contact force $\yF_{\text{you}}$ that is equal and opposite to the body force.
+
+In fact our \enquote*{feeling of gravity} comes from our \enquote{force-receptors}, \furl{https://openbooks.lib.msu.edu/neuroscience/chapter/touch-the-skin/}{mechanoreceptors} in our skin and bones. And these actually measure momentum \emph{fluxes}, that is, contact forces, among different parts of our bodies. They really measure \enquote{$\yF_{\text{you}}$}, which we interpret as \enquote{$\yG_{\text{you}}$}.
+
+\medskip
+
+How is the supply of momentum $\yG$ in a control volume related to other quantities?
+
+When we consider physical phenomena that happen close to a planet's surface and involve spatial extensions that are small compared to the planet's size, and we choose a coordinate system fixed with the planet's ground, then we have a simple constitutive relation for the supply of momentum:
+\begin{definition}{Gravitational force near a planet's surface}\label{def:gravity_surface}
+  Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ the vertical, upward coordinate. A control volume containing an amount of \masse\ $\ym$ also has a supply of downward momentum, the \textbf{gravitational force}, given by
+  \begin{equation}
+    \label{eq:gravity_surface}
+    \yG = \ym\,\yg\ ,\qquad\text{with}\qquad \yg= -g \begin{bmatrix}0\\0\\1\end{bmatrix} \ ,
+  \end{equation}
+  where $\yg$, the \textbf{acceleration of free fall}, depends on the planet. On Earth it is taken to have the standard magnitude
+  \begin{equation}
+    \label{eq:g_acc}
+    g = \qty{9.80665}{N/kg} \equiv \qty{9.80665}{m/s^{2}} \,,
+  \end{equation}
+  although it actually depends slightly on location and time.
+\end{definition}
+This constitutive relation is used in most of everyday applications of mechanical and building engineering and fluid mechanics.
+
+\medskip
+
+Further away from a planet's surface, an approximate expression for the supply of momentum is given by \textbf{Newton's law of gravitation}. Consider a small control volume $a$ at position $\yra$, containing an amount of \masse\ $\ym_{a}$; and a planet $b$ with centre at position $\yrb$, containing an amount of \masse\ $\ym_{b}$. We suppose that other amounts of \masse\ are negligible or far away. Then the  control volume $a$ has a supply of momentum approximately given by
+\begin{equation*}
+  \yG_{a} =
+  \kappa \frac{\ym_{a}\,\ym_{b}}{\abs{\yra - \yrb}^{3}} \, (\yrb - \yra) \,,
+\end{equation*}
+% %
+% \marginpar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+%   Usually this constant is denoted \enquote*{$G$}; we choose another slightly less common symbol to avoid confusion with the symbol for momentum supply.%
+% }%
+where $\kappa \approx \qty{6.67384e-11}{N\,m^{2}/kg^{2}}$ is the \emph{Newtonian constant of gravitation}, more often denoted \enquote*{$G$} (a symbol we don't use here to avoid confusion with momentum supply).
+
+%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/g_moyer0.jpg}%
+\\\flushleftright\color{mpcolor}%
+Expression for gravitational force used by JPL/NASA \autocites{moyer2000}.\par
+\vspace{1em}\centering\includegraphics[width=\linewidth]{images/g_geodesy.jpg}%
+\\\flushleftright\color{mpcolor}%
+Expression for gravitational force (to be added to Newton's) used by the International Earth Rotation and Reference Systems Service IERS \autocites{petitetal2010}.%
+}%
+Newton's law of gravitation is not used in present-day technologies that must account for gravitational forces on planetary scale, because it is too approximate for the precision of modern measuring instruments, also in \furl{https://oceanservice.noaa.gov/geodesy}{geodesy} \autocites{muelleretal2008}. But it is useful for pedagogical purposes and quick, approximate checks. On the side you can read the expression used at the \furl{https://www.jpl.nasa.gov}{Jet Propulsion Laboratory} at NASA for spacecraft, satellite, and planetary motions; and an expression used by the \furl{https://www.iers.org}{International Earth Rotation and Reference Systems Service (IERS)}. These more precise expressions show interesting features: for example, the force of gravity (besides the centrifugal force) depends on how fast a planet rotates.
+
+
+
+% % *** add this:
+%   For physical phenomena further away from Earth's surface, for instance when dealing with satellite motion, the vector $\yg$ approximately points towards the Earth's centre and has magnitude
+%   \begin{equation*}
+%     g = \frac{G M_{\textrm{E}}}{r^{2}}
+%   \end{equation*}
+%   where $G=\qty{6.67}{N\,m^{2}/kg^{2}}$ is the gravitational constant, $M_{\textrm{E}}=\qty{5.97e24}{kg}$ is \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{Earth's \masse}, and $r$ is the distance of the control volume from the Earth's centre.
+% 
+%   Current satellite and astronomical applications use complex expressions for $\yg$, which can also depend on the time coordinate, and on the motion of matter.
+
+
 
 
 \section{Newton's approximate relation between momentum and matter}
@@ -7425,7 +7509,7 @@ Let's put together the time dependence for momentum and position that we found, 
   \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
 \end{equation*}
 %
-\marginpar{\vspace{-27\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-22\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/tball_Pz.jpg}\\
 \includegraphics[width=\linewidth]{images/tball_z.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
@@ -7743,11 +7827,197 @@ The side figure illustrates these situations for the surface force $\yF_{\textrm
 }%
 
 
-In some physical situations the natural length of the piece of material is negligible compared to the amounts by which it is typically stretched, so we can put $\ylo=\qty{0}{m}$. Note that in this case the material always exerts a tension, never a pressure.
+In some physical situations the natural length of the piece of material is negligible compared to the amounts by which it is typically stretched, so we can put $\ylo=\qty{0}{m}$. Hooke's law then takes on the very simple form
+\begin{equation*}
+        \label{eq:hooke_simple}
+      \yFa = -\yFb = k\,(\yra - \yrb)\,.
+\end{equation*}
+Note that in this case the material always exerts a tension, never a pressure.
 
 \begin{exercise}
-  What are the physical dimensions of the elastic constant $k$? in which units could we measure it?
+  \begin{enumerate}[exerc]
+  \item What are the physical dimensions of the elastic constant $k$? in which units could we measure it?
+
+  \item What would happen if the elastic constant $k$ where negative? Examine Hooke's law~\eqref{eq:hooke}, and try to deduce what would happen if you stretched out such a bizarre kind of material starting from its natural length.
+
+  \item Hooke's law is usually stated for the surface forces \emph{exerted} by the material; in other words, for the \emph{ef}fluxes rather than for the influxes.
+
+    Denote by $\yF_{\textrm{e}}$ the efflux through the surface $a$. What is the relation between $\yF_{\textrm{e}}$ and $\yFa$, and what is the physical principle behind this relation?
+
+    Write Hooke's law for $\yF_{\textrm{e}}$ rather than for $\yFa$.
+  \end{enumerate}
 \end{exercise}
+
+\section{Application: Hookean spring and harmonic oscillator}
+\label{sec:hooke_oscillator}
+
+
+
+The physical system composed of two bodies of matter connected by a spring, with the spring modelled by the \autoref{sec:hooke}{Hookean constitutive properties}, is one of particular importance in physics, for several reasons. Its equations can be solved analytically and describe a \furl{https://www.britannica.com/science/mechanics/Simple-harmonic-oscillations\#ref612067}{\emph{harmonic oscillator}}, with a behaviour that can be predicted without numerical time-integration methods. The \emph{mathematical form} of its equations can also be applied to many other physical phenomena involving quantities other than momentum. Hooke's law can sometimes be used as a linear approximation in more complicated systems. And if we consider particular additional forces applied to one or both of the two bodies, we can study simple examples of the important phenomena of \furl{https://www.britannica.com/science/resonance-vibration}{\emph{resonance}} and \furl{https://www.britannica.com/science/damping}{\emph{damping}}.
+
+The Hookean spring and the harmonic oscillator are therefore discussed in detail in essentially all physics textbooks and in specialized treatises. For this reason I won't discuss them here. I recommend that you read the  \furl{https://www.feynmanlectures.caltech.edu/I_21.html}{chapter on the harmonic oscillator} and \furl{https://www.feynmanlectures.caltech.edu/I_23.html}{that on resonance} in Feynman's Lectures, for example.
+
+\medskip
+
+In these notes, instead, I'd like to discuss  more in detail the role of the balance of momentum and of constitutive relations in this system, as these aspects are often quickly glossed over in other texts.
+\begin{exercise}
+  Before continuing, try to do on your own the analysis of two small bodies connected by a Hookean spring, as %\autoref{sec:hooke}{}
+  previously defined. Consider in particular:
+  \begin{itemize}
+  \item How would you set up a coordinate system and closed control surfaces to describe this physical phenomenon? how many control volumes?
+  \item How many applications of the balance of momentum would you need to make?
+  \item What would be the volume contents, fluxes, and supplies in these balances?
+  \item What would be the relevant constitutive relations?
+  \item What would be the initial data and the \autoref{sec:boundary_conds}{boundary conditions}?
+  \end{itemize}
+\end{exercise}
+
+\medskip
+
+We consider two bodies of matter, call them $a$ and $b$, of small extension compared to the distance between them. We attach them at the two ends of a Hookean spring, which for simplicity here we take as having a negligible natural length; that is, $\ylo\approx\qty{0}{m}$. We choose a coordinate system at rest with the Earth's surface; let's denote it $(y,z)$, with $z$ pointing upward. The only momentum supply, if considered, is given by the constitutive equation for gravitational force.
+
+In terms of control surfaces, we have three of them: one tightly enveloping body $a$, one body $b$, and a third enveloping the spring. Let us analyse each one in turn, writing down its relevant balances. Note that all  quantities below, except the masses and the elastic constant $k$, depend on the time $t$.
+
+
+\begin{description}[itemsep=1ex]
+\item[Body $a$:]
+  The control volume for body $a$ is small and can be characterized simply by its position vector $\yra$. The mass-energy in this control volume is $\yma$.
+
+  By construction, \autoref{sec:cons_matter_particle}{conservation of matter automatically holds} for this control volume. It remains, hidden, in the relation between the position and velocity of the control volume: $\yva(t)=\di\yra(t)/\di t$.
+
+  This control volume contains an amount of momentum $\yPa = \yma\,\yva$, according to the \autoref{sec:bal_momentum_Newton}{Newtonian constitutive equation}.
+
+  We assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control surface for the spring (see \textcolor{purple}{thick red lines} in the side picture below).  Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} is the influx in body $a$ coming from the spring; analogously for $\yFba$ and body $b$.
+
+  If we consider gravity effects, this control volume also has a constant momentum supply $\yGa=-\yma\,g\,[0,1]$, according to the \autoref{def:gravity_surface}{constitutive equation for gravitational force}.
+
+  For this control volume we have therefore the following momentum balance and constitutive relations:
+  \begin{equation*}
+ \begin{aligned}
+&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPa(t)}{\di t} = \yFab(t) + \yGa(t)
+      \\[\jot]
+&\text{\footnotesize velocity} &\quad&\frac{\di\yra(t)}{\di t} = \yva(t)
+      \\[\jot]
+&\text{\footnotesize const. relation} &\quad&\yPa(t) = \yma\yva(t)
+      \\[\jot]
+&\text{\footnotesize const. relation} &\quad&\yGa(t) = -\yma\,g\,[0,1]
+    \end{aligned}
+  \end{equation*}
+
+\item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\ymb$, total momentum $\yPb=\ymb\,\yvb$.
+
+  The only momentum flux occurs across the portion of control surface in common with that of the spring; there we have an \textbf{in}flux $\yFba$.
+
+  For this control volume we have the following momentum balance and constitutive relations:
+  \begin{equation*}
+ \begin{aligned}
+&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPb(t)}{\di t} = \yFba(t) + \yGb(t)
+      \\[\jot]
+&\text{\footnotesize velocity} &\quad&\frac{\di\yrb(t)}{\di t} = \yvb(t)
+      \\[\jot]
+&\text{\footnotesize const. relation} &\quad&\yPb(t) = \ymb\yvb(t)
+      \\[\jot]
+&\text{\footnotesize const. relation} &\quad&\yGb(t) = -\ymb\,g\,[0,1]
+    \end{aligned}
+  \end{equation*}
+%
+\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\includegraphics[height=15em]{images/hooke_controls.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
+}%
+
+\item[Spring:]
+  The control volume for the spring, %\autoref{sec:hooke}{}
+  according to the simplifications typical of Hookean springs, has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with two surfaces of the control volumes for the bodies $a$ and $b$, one surface each. The amount of matter and matter flux in the control volume for the spring are considered to be zero, again according to the simplifications for Hookean springs. The same is true for the total momentum $\yP$ and supply $\yG$, also zero.
+
+  At the surface where the spring is in contact with body $a$ (see side picture above), there is an \textbf{in}flux of momentum for the spring, equal to $-\yFab$. The minus sign comes from the \autoref{def:symmetryflux}{symmetry of flux}, because $\yFab$ is the influx for body $a$.
+
+Analogously, at the surface where the spring is in contact with body $b$, there is a momentum influx for the spring equal to $-\yFba$.
+
+  The total momentum influx for the spring is therefore $\yF=-\yFab-\yFba$ by extensivity.
+
+The Hookean constitutive relation~\eqref{eq:hooke} says that the momentum \textbf{ef}flux across one surface, say the one in contact with body $a$, must be
+\begin{equation*}
+  \yFab = -k\,(\yra-\yrb)
+\end{equation*}
+because $\yra-\yrb$ is the main length of the control volume for the spring.
+
+The momentum balance and constitutive relations for the control volume of the spring are therefore:
+  \begin{equation*}
+ \begin{aligned}
+&\text{\footnotesize momentum balance} &\quad&\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)
+      \\[\jot]
+&\text{\footnotesize total influx by extensivity} &\quad&\yF(t) = -\yFab(t) - \yFba(t)
+      \\[\jot]
+&\text{\footnotesize assumption for spring} &\quad&\yP(t) = 0
+      \\[\jot]
+&\text{\footnotesize assumption for spring} &\quad&\yG(t) = 0
+      \\[\jot]
+&\text{\footnotesize Hooke const. relation} &\quad&\yFab(t) = -k\,[\yra(t)-\yrb(t)]
+    \end{aligned}
+  \end{equation*}
+
+  Something peculiar happens in the case of the spring: \textbf{the momentum balance for the spring reduces to a very simple equation:}
+  $$0 = \yF = -\yFab-\yFba$$
+  We thus find that the effluxes at the extremities of the spring must be opposite:
+\begin{equation*}
+  \yFab = -\yFba
+\end{equation*}
+this result is therefore a consequence of momentum balance, \emph{not} of the \enquote*{principle of action and reaction}.
+
+This is of course an approximation. In a more detailed description of this physical system, the momentum balance for the spring would tell us how momentum flows from one end to the other of the spring, over time. In our simplified system we are essentially assuming that this flow is \emph{instantaneous}. This is why we end up with an equation relating two momentum fluxes, $\yFab$ and $\yFba$, \emph{at the same time}.
+\end{description}
+
+
+\medskip
+
+The setup for the description of this physical system is thus complete. This setup was probably intuitively clear, but I'd like you to stop for a moment and note all the subtle steps and details that it involves. We often \emph{cannot} reason intuitively in the analysis of more complex physical systems, and need to spell out their description step by step, to avoid neglecting important details. It is therefore a good exercise to do this kind of analysis for a simpler system, as we just did.
+
+In this analysis, note how some control volumes have parts of their control surfaces in common. These common surfaces are important because they connect the fluxes of momentum and other quantities between the various control volumes. In modelling extended solids and fluids we often use a \emph{grid} of control volumes, so that the surface of one control volume has regions in common with the surrounding control volumes.
+
+\medskip
+
+The set of equations above is usually solved analytically by introducing two alternative vector variables:
+\begin{equation*}
+  \yuu \defd \frac{\yma\,\yra + \ymb\,\yrb}{\yma+\ymb}
+  \qquad
+  \yww \defd \yra - \yrb
+\end{equation*}
+%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/uplot.pdf}%
+\\\includegraphics[width=\linewidth]{images/wplot.pdf}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Every component of $\yuu(t)$ is a linear function of time, and every component of $\yww(t)$ has a harmonic dependence on time with period $\frac{1}{2\,\pu}\sqrt{\frac{\yma\,\ymb}{k\,(\yma+\ymb)}}$. The slopes and intercepts of $\yuu(t)$ and the amplitudes and phases of $\yww(t)$ depend on the initial conditions.}%
+the first, $\yuu$, is called the \emph{centre of mass} of this physical system. In terms of these variables the whole set of equations above reduces to these two linear differential equations with constant coefficients (each equation is a set of three, one for each component):
+\begin{equation*}
+  \frac{\di^{2}\yuu(t)}{\di t^{2}} = 0
+  \qquad\quad
+  \frac{\di^{2}\yww(t)}{\di t^{2}} + k\,\frac{\yma+\ymb}{\yma\,\ymb}\,\yww(t) = 0
+\end{equation*}
+that can be solved analytically.
+\begin{exercise}
+  Try to refresh your knowledge of linear differential equations with constant coefficients, and find the general solution for the equations above.
+
+  Then express this solution in terms of the positions $\yra$ and $\yrb$.
+\end{exercise}
+
+
+\section{Many-body systems}
+\label{sec:many-body}
+
+We can obviously consider more than two objects connected by a number of springs or other \autoref{sec:pairwise_forces}{pairwise forces}. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
+
+%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/md_simulation.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics}}%
+}%
+This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
+
+
 
 \section{Non-hookean springs}
 \label{sec:nonhooke}
@@ -7827,49 +8097,9 @@ Which is often used to model the flux of momentum among molecules of some fluids
 
 According to General Relativity there cannot be an \emph{instantaneous} transfer of momentum between two spatially separate control volumes. The momentum transfer modelled by pairwise forces actually occurs in a lapse of time, mediated by matter or electromagnetic field present between the two control volumes.
 
-\section{Gravity and momentum supply near a planet's surface}
-\label{sec:gravity}
 
-According to General Relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General Relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we measure a supply of momentum $\yG$ in a very small region, it could be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply to be zero \emph{in a small region} -- but in general not everywhere.
-
-Examples of these kinds of supplies are the \enquote*{gravitational force}, the \enquote*{centrifugal force}, and other forces called \enquote*{inertial}. For example, when we're travelling in a car that speeds up or slows down, we feel a horizontal force pushing us against our seat or pulling us away from it.
-%
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/crashtest.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-The supply of momentum appearing in a slowed-down car can be deadly real%
-}%
-That force is a supply of momentum. We feel that supply because our \enquote{force-receptors}, the \furl{https://openbooks.lib.msu.edu/neuroscience/chapter/touch-the-skin/}{mechanoreceptors} in our skin and bones, \emph{measure momentum flux with respect to a coordinate system that is at rest with respect to our body}, that is, a coordinate system where our body has constant coordinates, independent of time. A person on the street that sees us passing by would say that there's no momentum supply (besides the vertical one discussed below), simply because that person is using a different coordinate system.
-
-
-When we consider physical phenomena that happen close to a planet's surface and involve spatial extensions that are small compared to the planet's size, and we choose a coordinate system fixed with the planet's ground, then we have special supply of momentum:
-\begin{definition}{Gravitational force near a planet's surface}\label{def:gravity_surface}
-  Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ the vertical coordinate with an upward positive direction. A control volume containing an amount of \masse\ $\ym$ also has a supply of downward momentum, the \textbf{gravitational force}, given by
-  \begin{equation}
-    \label{eq:gravity_surface}
-    \yG = \ym\,\yg\ ,\qquad\text{with}\qquad \yg= -g \begin{bmatrix}0\\0\\1\end{bmatrix} \ ,
-  \end{equation}
-  where $g$, the \emph{gravitational acceleration}, depends on the planet. On Earth it is approximately
-  \begin{equation}
-    \label{eq:g_acc}
-    g \approx \qty{9.8}{N/kg} \equiv \qty{9.8}{m/s^{2}} \ .
-  \end{equation}
-  This supply of momentum is approximately constant in time.
-\end{definition}
-
-% % *** add this:
-%   For physical phenomena further away from Earth's surface, for instance when dealing with satellite motion, the vector $\yg$ approximately points towards the Earth's centre and has magnitude
-%   \begin{equation*}
-%     g = \frac{G M_{\textrm{E}}}{r^{2}}
-%   \end{equation*}
-%   where $G=\qty{6.67}{N\,m^{2}/kg^{2}}$ is the gravitational constant, $M_{\textrm{E}}=\qty{5.97e24}{kg}$ is \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{Earth's \masse}, and $r$ is the distance of the control volume from the Earth's centre.
-% 
-%   Current satellite and astronomical applications use complex expressions for $\yg$, which can also depend on the time coordinate, and on the motion of matter.
-
-
-
-\section{Contact forces}
-\label{sec:contact_force}
+\section{Friction and normal forces}
+\label{sec:friction_normal_force}
 
 Many physical phenomena involve contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor, or a layer of vegetable oil floating above water. The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces} and have several peculiar features. In some cases they are mathematically quite difficult to describe.
 
@@ -8083,7 +8313,7 @@ Note that this is the only piece of information that the balance of momentum, ap
 
 In the present case there's a constitutive relation about the force, through the \emph{whole} surface, exerted by air on the book, which says that such total force is approximately zero:
 \begin{equation*} \yF_{\text{air-book}}(t) \approx [0\,,0\,,0]\,\unit{N} \ .
-\end{equation*} The only remaining force must be the one between the book and the table: a \autoref{sec:contact_force}{contact force}. So the total influx $\yF(t)$ that appears in the momentum balance must be the sum of these two:
+\end{equation*} The only remaining force must be the one between the book and the table: a \autoref{sec:friction_normal_force}{contact force}. So the total influx $\yF(t)$ that appears in the momentum balance must be the sum of these two:
 \begin{equation*}
   \yF(t) = \yF_{\text{air-book}}(t) + \yF_{\text{table-book}}(t) \ .
 \end{equation*}
@@ -8415,173 +8645,6 @@ At the surface where the gas is in contact with its containing box, the momentum
 
 The answer is that an opposite circulation of momentum takes places through the walls of the box: the momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore tensile, or partially tensile and partially shearing. The side picture gives a \emph{qualitative} illustration of the momentum fluxes that occur through various control surfaces at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs not because of transport by molecules, but because of transport by the electromagnetic field that exists with the box's molecules.
 
-
-\section{Application: Hookean spring and harmonic oscillator}
-\label{sec:hooke_oscillator}
-
-The physical system composed of two bodies of matter connected by a spring, with the spring modelled by the \autoref{sec:hooke}{Hookean constitutive properties}, is one of particular importance in physics, for several reasons. Its equations can be solved analytically and describe a \furl{https://www.britannica.com/science/mechanics/Simple-harmonic-oscillations\#ref612067}{\emph{harmonic oscillator}}, with a behaviour that can be predicted without numerical time-integration methods. The \emph{mathematical form} of its equations can also be applied to many other physical phenomena involving quantities other than momentum. Hooke's law can sometimes be used as a linear approximation in more complicated systems. And if we consider particular additional forces applied to one or both of the two bodies, we can study simple examples of the important phenomena of \furl{https://www.britannica.com/science/resonance-vibration}{\emph{resonance}} and \furl{https://www.britannica.com/science/damping}{\emph{damping}}.
-
-The Hookean spring and the harmonic oscillator are therefore discussed in detail in essentially all physics textbooks and in specialized treatises. For this reason I won't discuss them here. I recommend that you read the  \furl{https://www.feynmanlectures.caltech.edu/I_21.html}{chapter on the harmonic oscillator} and \furl{https://www.feynmanlectures.caltech.edu/I_23.html}{that on resonance} in Feynman's Lectures, for example.
-
-\medskip
-
-In these notes, instead, I'd like to discuss  more in detail the role of the balance of momentum and of constitutive relations in this system, as these aspects are often quickly glossed over in other texts.
-\begin{exercise}
-  Before continuing, try to do on your own the analysis of two small bodies connected by a Hookean spring, as %\autoref{sec:hooke}{}
-  previously defined. Consider in particular:
-  \begin{itemize}
-  \item How would you set up a coordinate system and closed control surfaces to describe this physical phenomenon? how many control volumes?
-  \item How many applications of the balance of momentum would you need to make?
-  \item What would be the volume contents, fluxes, and supplies in these balances?
-  \item What would be the relevant constitutive relations?
-  \item What would be the initial data and the \autoref{sec:boundary_conds}{boundary conditions}?
-  \end{itemize}
-\end{exercise}
-
-\medskip
-
-We consider two bodies of matter, call them $a$ and $b$, of small extension compared to the distance between them. We attach them at the two ends of a Hookean spring, which for simplicity here we take as having a negligible natural length; that is, $\ylo\approx\qty{0}{m}$. We choose a coordinate system at rest with the Earth's surface; let's denote it $(y,z)$, with $z$ pointing upward. The only momentum supply, if considered, is given by the constitutive equation for gravitational force.
-
-In terms of control surfaces, we have three of them: one tightly enveloping body $a$, one body $b$, and a third enveloping the spring. Let us analyse each one in turn, writing down its relevant balances. Note that all  quantities below, except the masses and the elastic constant $k$, depend on the time $t$.
-
-
-\begin{description}[itemsep=1ex]
-\item[Body $a$:]
-  The control volume for body $a$ is small and can be characterized simply by its position vector $\yra$. The mass-energy in this control volume is $\yma$.
-
-  By construction, \autoref{sec:cons_matter_particle}{conservation of matter automatically holds} for this control volume. It remains, hidden, in the relation between the position and velocity of the control volume: $\yva(t)=\di\yra(t)/\di t$.
-
-  This control volume contains an amount of momentum $\yPa = \yma\,\yva$, according to the \autoref{sec:bal_momentum_Newton}{Newtonian constitutive equation}.
-
-  We assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control surface for the spring (see \textcolor{purple}{thick red lines} in the side picture below).  Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} is the influx in body $a$ coming from the spring; analogously for $\yFba$ and body $b$.
-
-  If we consider gravity effects, this control volume also has a constant momentum supply $\yGa=-\yma\,g\,[0,1]$, according to the \autoref{def:gravity_surface}{constitutive equation for gravitational force}.
-
-  For this control volume we have therefore the following momentum balance and constitutive relations:
-  \begin{equation*}
- \begin{aligned}
-&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPa(t)}{\di t} = \yFab(t) + \yGa(t)
-      \\[\jot]
-&\text{\footnotesize velocity} &\quad&\frac{\di\yra(t)}{\di t} = \yva(t)
-      \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yPa(t) = \yma\yva(t)
-      \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yGa(t) = -\yma\,g\,[0,1]
-    \end{aligned}
-  \end{equation*}
-
-\item[Body $b$:] An analogous analysis can be made for the control volume of body $b$. It has position $\yrb$, total \masse\ $\ymb$, total momentum $\yPb=\ymb\,\yvb$.
-
-  The only momentum flux occurs across the portion of control surface in common with that of the spring; there we have an \textbf{in}flux $\yFba$.
-
-  For this control volume we have the following momentum balance and constitutive relations:
-  \begin{equation*}
- \begin{aligned}
-&\text{\footnotesize momentum balance} &\quad&\frac{\di\yPb(t)}{\di t} = \yFba(t) + \yGb(t)
-      \\[\jot]
-&\text{\footnotesize velocity} &\quad&\frac{\di\yrb(t)}{\di t} = \yvb(t)
-      \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yPb(t) = \ymb\yvb(t)
-      \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yGb(t) = -\ymb\,g\,[0,1]
-    \end{aligned}
-  \end{equation*}
-%
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
-\includegraphics[height=15em]{images/hooke_controls.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between spring and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
-}%
-
-\item[Spring:]
-  The control volume for the spring, %\autoref{sec:hooke}{}
-  according to the simplifications typical of Hookean springs, has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with two surfaces of the control volumes for the bodies $a$ and $b$, one surface each. The amount of matter and matter flux in the control volume for the spring are considered to be zero, again according to the simplifications for Hookean springs. The same is true for the total momentum $\yP$ and supply $\yG$, also zero.
-
-  At the surface where the spring is in contact with body $a$ (see side picture above), there is an \textbf{in}flux of momentum for the spring, equal to $-\yFab$. The minus sign comes from the \autoref{def:symmetryflux}{symmetry of flux}, because $\yFab$ is the influx for body $a$.
-
-Analogously, at the surface where the spring is in contact with body $b$, there is a momentum influx for the spring equal to $-\yFba$.
-
-  The total momentum influx for the spring is therefore $\yF=-\yFab-\yFba$ by extensivity.
-
-The Hookean constitutive relation~\eqref{eq:hooke} says that the momentum \textbf{ef}flux across one surface, say the one in contact with body $a$, must be
-\begin{equation*}
-  \yFab = -k\,(\yra-\yrb)
-\end{equation*}
-because $\yra-\yrb$ is the main length of the control volume for the spring.
-
-The momentum balance and constitutive relations for the control volume of the spring are therefore:
-  \begin{equation*}
- \begin{aligned}
-&\text{\footnotesize momentum balance} &\quad&\frac{\di\yP(t)}{\di t} = \yF(t) + \yG(t)
-      \\[\jot]
-&\text{\footnotesize total influx by extensivity} &\quad&\yF(t) = -\yFab(t) - \yFba(t)
-      \\[\jot]
-&\text{\footnotesize assumption for spring} &\quad&\yP(t) = 0
-      \\[\jot]
-&\text{\footnotesize assumption for spring} &\quad&\yG(t) = 0
-      \\[\jot]
-&\text{\footnotesize Hooke const. relation} &\quad&\yFab(t) = -k\,[\yra(t)-\yrb(t)]
-    \end{aligned}
-  \end{equation*}
-
-  Something peculiar happens in the case of the spring: \textbf{the momentum balance for the spring reduces to a very simple equation:}
-  $$0 = \yF = -\yFab-\yFba$$
-  We thus find that the effluxes at the extremities of the spring must be opposite:
-\begin{equation*}
-  \yFab = -\yFba
-\end{equation*}
-this result is therefore a consequence of momentum balance, \emph{not} of the \enquote*{principle of action and reaction}.
-
-This is of course an approximation. In a more detailed description of this physical system, the momentum balance for the spring would tell us how momentum flows from one end to the other of the spring, over time. In our simplified system we are essentially assuming that this flow is \emph{instantaneous}. This is why we end up with an equation relating two momentum fluxes, $\yFab$ and $\yFba$, \emph{at the same time}.
-\end{description}
-
-
-\medskip
-
-The setup for the description of this physical system is thus complete. This setup was probably intuitively clear, but I'd like you to stop for a moment and note all the subtle steps and details that it involves. We often \emph{cannot} reason intuitively in the analysis of more complex physical systems, and need to spell out their description step by step, to avoid neglecting important details. It is therefore a good exercise to do this kind of analysis for a simpler system, as we just did.
-
-In this analysis, note how some control volumes have parts of their control surfaces in common. These common surfaces are important because they connect the fluxes of momentum and other quantities between the various control volumes. In modelling extended solids and fluids we often use a \emph{grid} of control volumes, so that the surface of one control volume has regions in common with the surrounding control volumes.
-
-\medskip
-
-The set of equations above is usually solved analytically by introducing two alternative vector variables:
-\begin{equation*}
-  \yuu \defd \frac{\yma\,\yra + \ymb\,\yrb}{\yma+\ymb}
-  \qquad
-  \yww \defd \yra - \yrb
-\end{equation*}
-%
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/uplot.pdf}%
-\\\includegraphics[width=\linewidth]{images/wplot.pdf}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Every component of $\yuu(t)$ is a linear function of time, and every component of $\yww(t)$ has a harmonic dependence on time with period $\frac{1}{2\,\pu}\sqrt{\frac{\yma\,\ymb}{k\,(\yma+\ymb)}}$. The slopes and intercepts of $\yuu(t)$ and the amplitudes and phases of $\yww(t)$ depend on the initial conditions.}%
-the first, $\yuu$, is called the \emph{centre of mass} of this physical system. In terms of these variables the whole set of equations above reduces to these two linear differential equations with constant coefficients (each equation is a set of three, one for each component):
-\begin{equation*}
-  \frac{\di^{2}\yuu(t)}{\di t^{2}} = 0
-  \qquad\quad
-  \frac{\di^{2}\yww(t)}{\di t^{2}} + k\,\frac{\yma+\ymb}{\yma\,\ymb}\,\yww(t) = 0
-\end{equation*}
-that can be solved analytically.
-\begin{exercise}
-  Try to refresh your knowledge of linear differential equations with constant coefficients, and find the general solution for the equations above.
-
-  Then express this solution in terms of the positions $\yra$ and $\yrb$.
-\end{exercise}
-
-
-\section{Many-body systems}
-\label{sec:many-body}
-
-We can obviously consider more than two objects connected by a number of springs or other \autoref{sec:pairwise_forces}{pairwise forces}. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
-
-%
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/md_simulation.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics}}%
-}%
-This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
 
 
 
@@ -10351,7 +10414,7 @@ Here is an example of Octave/MATLAB script for simulating the system of ideal ga
 \section{Surfaces of discontinuity}
 \label{sec:jumps}
 
-From our discussion about \autoref{sec:contact_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing a horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person has same magnitude as the friction, $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $v$, because its time-rate change of horizontal momentum is zero:
+From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing a horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person has same magnitude as the friction, $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $v$, because its time-rate change of horizontal momentum is zero:
 \begin{equation*}
   \frac{\di P_{x}(t)}{\di t} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
 \end{equation*}

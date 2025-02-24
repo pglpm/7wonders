@@ -1,28 +1,23 @@
-%%% Simulation of two bodies connected by Hookean spring in 2D
+%%% Simulation of two bodies connected by Hookean material in 2D
 %% Coordinates (y,z)
 
 %% Constants
 ma = 2; % kg: mass of object a
 mb = 2; % kg: mass of object b
-g = 9.80665; % N/kg: gravitational acceleration
+g = 9.81; % N/kg: gravitational acceleration
+ln = 1; % m: natural length
 k = 5; % N/m: spring constant
 
 %% Initial conditions
 t = 0; % s: initial time
-ya = -3; % m: initial position of object a
-za = 0; % m
-yb = 3; % m: initial position of object b
-zb = 0; % m
-vya = 0; % m/s: initial velocity of object a
-vza = 10; % m/s
-vyb = 0; % m/s: initial velocity of object b
-vzb = 0; % m/s
+ra = [-3, 0]; % m: initial position of object a
+rb = [3, 0]; % m: initial position of object b
+va = [0, 10]; % m/s: initial velocity of object a
+vb = [0, 0]; % m/s: initial velocity of object b
 
 %% Boundary conditions
-Gya = 0; % N: gravity supply on object a
-Gza = -ma * g; % N
-Gyb = 0; % N: gravity supply on object b
-Gzb = -mb * g; % N
+Ga = -ma * g * [0, 1]; % N: gravity supply on object a
+Gb = -mb * g * [0, 1]; % N: gravity supply on object b
 
 %% Parameters for time loop
 t1 = 5; % s: final time
@@ -31,51 +26,40 @@ dt = 0.001; % s: time step %@
 %% Plotting
 dtplot = t1/360; % time interval between plots
 tplot = dtplot; % time for next plot
-clf;
-plot(ya, za, 'sb')
-xlabel('position y/m');
-ylabel('position z/m');
-grid on;
-hold on;
-plot(yb, zb, 'or') %@
+clf
+plot(ra(1), ra(2), 'sb')
+hold on; grid on
+plot(rb(1), rb(2), 'or')
+xlabel('position y/m'); ylabel('position z/m') %@
 
-%% State: ya, za, yb, zb, vya, vza, vyb, vzb
+%% State: ra, rb, va, vb
 %% Numerical time integration
 while t < t1
   %% constitutive relations
-  Pya = ma * vya;
-  Pza = ma * vza;
-  Pyb = mb * vyb;
-  Pzb = mb * vzb;
+  Pa = ma * va;
+  Pb = ma * vb;
   %%
-  Fyab = -k * (ya - yb);
-  Fzab = -k * (za - zb);
-  Fyba = -Fyab;
-  Fzba = -Fzab;
+  l = norm(ra - rb); % calculation of present length
+  Fxa = -k * (l - ln) * (ra - rb)/l;
+  Fxb = -Fxa; % balance of momentum for Hookean material
 
   %% balances
-  Pya = Pya + (Fyab + Gya) * dt;
-  Pza = Pza + (Fzab + Gza) * dt;
-  Pyb = Pyb + (Fyba + Gyb) * dt;
-  Pzb = Pzb + (Fzba + Gzb) * dt;
-  %%
-  ya = ya + vya * dt;
-  za = za + vza * dt;
-  yb = yb + vyb * dt;
-  zb = zb + vzb * dt;
-  %%
   t = t + dt;
+  %%
+  Pa = Pa + (Fxa + Ga) * dt;
+  Pb = Pb + (Fxb + Gb) * dt;
+  %%
+  ra = ra + va * dt;
+  rb = rb + vb * dt;
 
   %% constitutive relations
-  vya = Pya / ma;
-  vza = Pza / ma;
-  vyb = Pyb / mb;
-  vzb = Pzb / mb; %@
+  va = Pa / ma;
+  vb = Pb / mb; %@
 
   %% plot
   if t > tplot
-    plot(ya, za, 'sb')
-    plot(yb, zb, 'or')
+    plot(ra(1), ra(2), 'sb')
+    plot(rb(1), rb(2), 'or')
     pause(0)
     tplot = tplot + dtplot;
   end %@
