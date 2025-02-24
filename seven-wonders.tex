@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-24T23:36:23+0100
+%% Last-Updated: 2025-02-24T23:41:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8120,7 +8120,7 @@ The driving equations in the core lines of the loop calculate later quantities f
    \\    \yrb(t+\Dt)  &\approx \underbracket[1pt]{\yrb(t)} + \underbracket[1pt]{\yvb(t)}\,\Dt
  \end{aligned}
 \end{equation*}
-The supplies $\yGa$, $\yGb$ are constant and already declared, so we don't need to worry about them.
+The supplies $\yGa$, $\yGb$ are given as boundary conditions, so we don't need to worry about them.
   % \begin{equation*}
   %   \begin{gathered}
   %     \yPa\enskip \yFab\enskip \yGa\qquad
@@ -8253,7 +8253,7 @@ After these seven steps, the essential part of our numerical-time-integration sc
 
 
 \begin{table}[p]
-  \caption{Example script for numerical time integration of the spring\,\amp\,bodies system. The \textcolor{yellow}{constants}, \textcolor{red}{initial conditions}, \textcolor{purple}{boundary conditions}, and the \textcolor{midgrey}{time-iteration parameters} can of course be different.}\label{tab:script_strategy}
+  \caption{Example script for numerical time integration of the spring\,\amp\,bodies system. The \textcolor{yellow}{constants}, \textcolor{red}{initial conditions}, and the \textcolor{midgrey}{time-iteration parameters} can of course be different.}\label{tab:script_strategy}
 
 \small
 \begin{framed}
@@ -8297,15 +8297,15 @@ while t < t1
     %% 4.  Calculate forward-driving quantities from state
     Pa = ma * va;
     Pb = ma * vb;
-    Fxa = -k * (ra - rb);
-    Fxb = -Fxa;   % balance of momentum for Hookean material
+    Fas = -k * (ra - rb);
+    Fbs = -Fas;   % balance of momentum for Hookean material
 \end{verbatim}
 \vspace{-1.5\baselineskip}
 \color{green}\begin{verbatim}
     %% 1.  Balances drive forward in time
     t = t + dt;
-    Pa = Pa + (Fxa + Ga) * dt;
-    Pb = Pb + (Fxb + Gb) * dt;
+    Pa = Pa + (Fas + Ga) * dt;
+    Pb = Pb + (Fbs + Gb) * dt;
     ra = ra + va * dt;
     rb = rb + vb * dt;
 \end{verbatim}
