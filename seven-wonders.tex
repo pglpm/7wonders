@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-23T16:53:01+0100
+%% Last-Updated: 2025-02-24T14:32:34+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1022,8 +1022,6 @@ angle-right%
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
 \newcommand*{\yr}{\bm{r}}
-\newcommand*{\yraa}{\yr_{\textrm{a}}}
-\newcommand*{\yrbb}{\yr_{\textrm{b}}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
 \newcommand*{\yxa}{x_{a}}%
@@ -1105,8 +1103,8 @@ angle-right%
 \newcommand*{\yFpg}{F_{\textrm{pg}}}
 \newcommand*{\yFgp}{F_{\textrm{gp}}}
 \newcommand*{\yFatm}{F_{\textrm{atm}}}
-\newcommand*{\yFa}{\yF_{\textrm{a}}}
-\newcommand*{\yFb}{\yF_{\textrm{b}}}
+\newcommand*{\yFa}{\yF_{a}}
+\newcommand*{\yFb}{\yF_{b}}
 \newcommand*{\yFc}{\yF_{\textrm{c}}}
 \newcommand*{\yFn}{F_{\textrm{n}}}
 \newcommand*{\yFs}{F_{\textrm{s}}}
@@ -7571,9 +7569,9 @@ To start with, we shall simplify the situation as follows:
 }%
 These simplification are illustrated in the side figure. The closed control surface is represented by the \textcolor{yellow}{dashed yellow line}. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be elliptical or round, or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
 
-We assume that momentum influxes, that is, surface forces, only occur at the two parts represented by the \textcolor{red}{solid red lines}, which we may call \enquote*{a} and \enquote*{b}, or \enquote*{1} and \enquote*{2}, or similar symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $L$, or $\ydlm$, or similar symbol.
+We assume that momentum fluxes, that is, surface forces, only occur at the two parts represented by the \textcolor{red}{solid red lines}, which we may call $a$ and $b$, or \enquote*{1} and \enquote*{2}, or similar symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$ or a similar symbol.
 
-If the partial surfaces \enquote*{a} and \enquote*{b} are enough small, we may identify their positions with position vectors $\yraa$ and $\yrbb$ (not indicated in the figure). In this case we have $L = \abs{\yraa - \yrbb}$.
+If the partial surfaces $a$ and $b$ are enough small, we may identify their positions with position vectors $\yra$ and $\yrb$ (not indicated in the figure). In this case we have $\yle = \abs{\yra - \yrb}$.
 
 The momentum \textbf{in}fluxes through the partial surfaces are $\yFa$ and $\yFb$, represented by the \textcolor{blue}{blue} arrows. In the figure, these momentum influxes are \emph{compressive} (\faIcon{angle-right}\enspace page~\pageref{sec:pressure}), but note that they might also be \emph{tensile} (\faIcon{angle-right}\enspace page~\pageref{sec:tension}).
 
@@ -7587,65 +7585,165 @@ The momentum \textbf{in}fluxes through the partial surfaces are $\yFa$ and $\yFb
 }%
 With the simplified setup just described we can approximately represent the response of objects like an elastic band, or a spring, or a piece of rope. In \chap~\ref{cha:bal_energy} a very similar setup will also be used to represent the response of a body of gaseous substance.
 
-\subsection{Special consequences of negligible momentum content}
+\begin{exercise}[label={ex:tensile_spring}]
+  Review \sect~\ref{sec:pressure_tension_shear} for this exercise.
 
-The simplification of having influxes through two separate partial control surfaces, together with the simplification of negligible \masse\ content and momentum content, have two important consequences. These consequences follow from \emph{the balances of momentum and of \autoref{cha:bal_ang_momentum}{angular momentum}}:
-\begin{enumerate}[label=(C\arabic*)]
-\item The influxes $\yFa$ and $\yFb$ must have equal magnitudes and directions, and opposite orientations, that is,
+  \smallskip
+  
+  In the side figure above, the influxes $\yFa$ and $\yFb$ are depicted as \emph{compressive} surface forces experienced by the material. Draw an analogous figure, but in which $\yFa$ and $\yFb$ are depicted as \emph{tensile} surface forces instead.
+\end{exercise}
+
+\section{Consequences of simplifying assumptions}
+\label{sec:springs_consequences_balances}
+
+The simplification of having influxes through two separate partial control surfaces, together with the simplification of negligible \masse\ content and momentum content, lead to two important conditions that must be satisfied by the influxes. These conditions are \emph{consequences of the balances of momentum and of \autoref{cha:bal_ang_momentum}{angular momentum}}:
+\begin{enumerate}[label=C\arabic*]
+\item\label{item:C1flux} The influxes $\yFa$ and $\yFb$ must have equal magnitudes and directions, and opposite orientations, that is,
   \begin{equation*}
     \yFa = - \yFb \,.
   \end{equation*}
 
-\item If the partial control surfaces \enquote*{a} and \enquote*{b} are enough small, then the influxes $\yFa$ and $\yFb$ must each have the same direction as the line connecting the two partial surfaces:
+\item\label{item:C2flux} If the partial control surfaces $a$ and $b$ are enough small, then the influxes $\yFa$ and $\yFb$ must each have the same direction as the line connecting the two partial surfaces:
   \begin{equation*}
-    \yFa \,, \yFb\,, \yraa-\yrbb \quad \text{are parallel}
+    \yFa \,,\enskip \yFb\,,\enskip \yra-\yrb \quad \text{are parallel}
+  \end{equation*}
+  this condition can equivalently be written as follows:
+  \begin{equation*}
+    \pm \frac{\yFa}{\abs{\yFa}} 
+   = \pm \frac{\yFb}{\abs{\yFb}} 
+   = \pm \frac{\yra - \yrb}{\abs{\yra - \yrb}} \,.
   \end{equation*}
 \end{enumerate}
 
-\mynotew{Under construction}
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\includegraphics[align=t,width=0.49\linewidth]{images/material_piece_C1.jpg}%
+\hfill\includegraphics[align=t,width=0.49\linewidth]{images/material_piece_C2.jpg}%
+}%
+The difference between these two conditions is illustrated in the two side figures. In the left figure the influxes $\yFa$ and $\yFb$ satisfy condition~\ref{item:C1flux} but break condition~\ref{item:C2flux}. In the right figure the influxes satisfy condition~\ref{item:C2flux} but break condition~\ref{item:C1flux}.
 
-\section{Hookean spring}
+\medskip
+
+In words, these two conditions say that the material in this control volume is a \emph{perfect conductor of momentum and of angular momentum}. The material, owing to its negligible \masse, cannot \enquote{store} momentum or angular momentum. Therefore any influx of either on one side is instantaneously transferred, unaltered, to the other side as an efflux.
+
+Note that the conditions above are not satisfied any longer, as soon as we consider the more realistic case of a control volume containing some amount of \masse. The two influxes $\yFa$ and $\yFb$ can then have different directions, orientations, and magnitudes.
+
+\medskip
+
+An important consequence of the two conditions above, is that the direction -- but not the magnitude or orientation -- of either influx $\yFa$ or $\yFb$ is completely determined by the positions $\yra$, $\yrb$ of the surfaces $a$, $b$: it must be parallel to their difference. Any constitutive relation for the influxes must therefore have the following mathematical expression:
+\begin{equation*}
+  \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle}
+\end{equation*}
+where $\yle \defd \abs{\yra -\yrb}$ and  $f(\dotso)$ is a \emph{scalar} function that may depend on other physical quantities, such as the length $\yle$. This function determines the magnitude and orientation of the vectors $\yFa$ and $\yFb$.
+
+\begin{warning}[{The condition {$\yFa = -\yFb$} is not Newton's third law}]
+  Condition~\ref{item:C1flux} is \textbf{not an expression of the principle of symmetry of momentum flux} (\autoref{sec:newton_3rd}{Newton's third law}), despite its mathematical similarity with that principle. It cannot be, because that principle expresses a property of the flux through \emph{one} surface; the condition above instead is a relation between the fluxes through \emph{two} different surfaces.
+
+  \smallskip
+
+  You shall now prove that this condition is a \emph{consequence of the balance of momentum}.
+\end{warning}
+
+\begin{exercise}[label={ex:proof_C1flux}]
+Prove that condition~\ref{item:C1flux} follows from the balance of momentum. Proceed by taking into consideration that:
+\begin{itemize}[nosep]
+\item If the \masse\ content in the control volume is negligible, then  the momentum content $\yP$  is always zero, and its derivative is also always zero:
+  \begin{equation*}
+    \frac{\di\yP}{\di t} = \qty{0}{N} \,.
+  \end{equation*}
+
+\item Likewise for the supply:
+  \begin{equation*}
+    \yG  = \qty{0}{N} \,.
+  \end{equation*}
+
+\item By the principle of symmetry of fluxes, the total momentum influx is equal to
+  \begin{equation*}
+    \yF = \yFa + \yFb \,.
+  \end{equation*}
+\end{itemize}
+Combine the three formulae above with the \autoref[\eqn~\eqref]{eq:bal_momentum}{balance of momentum} and derive condition~\ref{item:C1flux}.
+\end{exercise}
+
+
+% \subsection{Proof of condition~\ref{item:C1flux}}
+% 
+% It is easy to see how condition~\ref{item:C1flux} follows from the balance of momentum. If the \masse\ content in the control volume is negligible, then  the momentum content $\yP$  is always zero, and its derivative is also always zero: $\di\yP/\di t = \qty{0}{N}$. Likewise for the supply of momentum: $\yG = \qty{0}{N}$. The total momentum influx is equal to $\yF = \yFa + \yFb$ by the principle of flux symmetry. Then the balance of momentum requires that
+% \begin{equation*}
+%   \begin{gathered}
+%     \begin{aligned}
+%       \frac{\di\yP}{\di t} &= \yF + \yG \qquad\text{\footnotesize substitute:}
+%       \\
+%       \qty{0}{N} &= \yFa + \yFb + \qty{0}{N}
+%     \end{aligned}
+%     \\[\jot]
+%     \implies\qquad \yFa = -\yFb \,.
+%   \end{gathered}
+% \end{equation*}
+
+In \chap~\ref{cha:bal_ang_momentum} we shall prove how condition~\ref{item:C2flux} follows from the balance of angular momentum.
+
+\begin{extra}{Impossibility of perfect conductors of momentum}
+In physical situations where the speed of light becomes relevant, such as relativistic conditions or the presence of strong electromagnetic fields, we cannot make the simplifying assumptions above because they break other physical laws (the balance of \emph{boost momentum}, which can be seen as part of the balance of angular momentum). In such situations we cannot treat pieces of matter as rigid, or a perfect conductors of momentum. This impossibility became quite clear while researchers tried to model the propagation of light in material such as water or glass: contradictory results kept on appearing, until they realized that they were inadvertently making the simplifying assumptions above \autocites{pfeiferetal2007}.
+\end{extra}
+
+\section{Hookean materials}
 \label{sec:hooke}
+
+In the previous sections we discussed a simplified physical situation to study how momentum fluxes, that is, \autoref{sec:visualize_force}{surface forces}, can be connected with geometric quantities in a piece of some kind of material.
+
+We also found that, if the \masse\ of the piece of material is negligible, and if there are just two main momentum influxes $\yFa$ and $\yFb$ across two small surfaces $a$ and $b$, then these influxes must satisfy constitutive relations having mathematical form
+\begin{equation*}
+  \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle} \,,
+\end{equation*}
+where $\yra$, $\yrb$ are the positions of the small surfaces, which may of course change with time. The function $f(...)$ therefore characterizes how the magnitude and orientation of the surface forces depend on other quantities.
+
+\medskip
 
 \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.49\linewidth]{images/elasticband.jpg}%
 \includegraphics[width=0.49\linewidth]{images/spring.jpg}%
 }%
-We are all familiar with elastic bands, springs, and similar objects having the following approximate properties:
-\begin{enumerate*}[label=(\alph*)]
-\item one of their dimensions is somehow singled out, maybe because more extended, with respect to the other two;
-\item if we try to modify their length along that particular dimension, they exert a tension or, in some cases, a pressure;
-\item the tension or compression are stronger, the more the extension in that dimension is modified;
-\item these objects return to an initial configuration when we don't try to modify their extension.
-\end{enumerate*}
+We are all familiar with elastic bands, springs, and similar objects which approximately agree with our simplified setup:
+\begin{itemize}[nosep]
+\item one of their dimensions, which we may call their \emph{length}, is somehow singled out, maybe because more extended, with respect to the other two;
+\item if we try to modify their length along that particular dimension, they experience (and exert) a surface force.
+\end{itemize}
 
-We know that \autoref{sec:pressure_tension_shear}{tension and compression are particular kinds of forces, that is, momentum fluxes}. Objects like elastic bands and springs therefore create particular momentum fluxes that are related to their spatial extension. Their behaviour is therefore described by a \emph{constitutive relation about the flux of momentum $\yF$}.
+These objects often show two additional characteristics:
+\begin{itemize}
+\item the surface forces are proportional to the modification of the object's length;
+\item these objects return to a given length when we don't apply surface forces.
+\end{itemize}
+These two characteristics are reflected in a particular mathematical form of the constitutive function $f(\dotso)$:
 
-We can approximately treat these objects as control volumes for which the following constitutive properties apply:
-\begin{definition}{Hookean spring,label={def:hooke}}
-  A \textbf{Hookean spring} is a control volume with the following properties:
-  \begin{itemize}
-  \item One dimension has a natural length $\ylo$ that is much larger than the other two, which are usually neglected.
-  \item The total amount and supply of momentum $\yP$ within the control volume are negligible.
-  \item Across the (small) surfaces orthogonal to main dimension there is an \textbf{ef}flux of momentum equal to
+\begin{definition}{Hookean material,label={def:hooke}}
+  A \textbf{Hookean material} is characterized by momentum \textbf{in}fluxes related to its length $\yle \defd \abs{\yra - \yrb}$ by the constitutive relation
     \begin{equation}
       \label{eq:hooke}
-      \yF_{\textrm{e}} = -k\,\ydl
+      \yFa = -\yFb = k\,(\yle -\ylo)\,\frac{\yra - \yrb}{\yle} \,,
     \end{equation}
-    this formula is called \textbf{Hooke's law}.
-  \end{itemize}
-  $k$ is a constant, called the \textbf{elastic constant} of the spring; $\ydl$ is a vector along the main dimension, with magnitude\enskip$\ydlm = \abs{\yle-\ylo}$\enskip equal to difference between the present length $\yle$ and the natural length $\ylo$; it points \emph{away} from the control volume if $\yle>\ylo$, and \emph{toward} the control volume if $\yle<\ylo$.
-  \begin{center}
-\includegraphics[width=0.67\linewidth]{images/hooke3.jpg}%
-  \end{center}
-\end{definition}
-%
-% \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
-% \includegraphics[width=\linewidth]{images/hooke2.jpg}%
-% }%
-Note the minus sign in Hooke's law. It means that if the present length is larger than the natural one, $\yle > \ylo$, then there flux of momentum getting out of the spring is oriented towards the spring; that is, the spring exerts a \emph{tensile} force towards itself. And if the present length is smaller than the natural one, $\yle < \ylo$, then the flux of momentum getting out of the spring is oriented away from the spring; that is, the spring exerts a \emph{compressive} force away from itself.
+    where $\ylo$ and $k$ are positive constants. This formula is called \textbf{Hooke's law}.
 
-In modelling some physical problems we can put $\ylo=\qty{0}{m}$: this represents that the natural length of the spring is very small compared to usual amounts by which the spring is stretched. Note that in this case the spring always exerts a tension, never a pressure.
+\smallskip
+
+The constant $\ylo$ is the \emph{natural length} or \emph{unstretched length} of the piece of material;  $k$ is the \textbf{elastic constant} of the material.
+
+\smallskip
+
+Note the signs of the surface forces \emph{experienced} (momentum influxes) and \emph{exerted} (momentum effluxes) by the piece of material:
+\begin{itemize}[noitemsep]
+\item When $\yle > \ylo$, the surface forces are \emph{tensile}: the material experiences a force that stretches it, and exerts a force directed towards itself.
+\item When $\yle < \ylo$, the surface forces are \emph{compressive}: the material experiences a force that compresses it, and exerts a force directed away from itself.
+\item When $\yle = \ylo$, the material does not experience or exert any surface force.
+\end{itemize}
+The side figure illustrates these situations for the surface force $\yF_{\textrm{e}}$ \emph{exerted} (momentum efflux) by the piece of material.
+\end{definition}
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/hooke3b.jpg}%
+}%
+
+
+In some physical situations the natural length of the piece of material is negligible compared to the amounts by which it is typically stretched, so we can put $\ylo=\qty{0}{m}$. Note that in this case the material always exerts a tension, never a pressure.
 
 \begin{exercise}
   What are the physical dimensions of the elastic constant $k$? in which units could we measure it?
