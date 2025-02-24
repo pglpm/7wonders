@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-24T23:32:15+0100
+%% Last-Updated: 2025-02-24T23:36:23+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8178,12 +8178,12 @@ This minimum set is called the \emph{state} of the physical system:
 The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at the initial time, that is, the initial conditions, need to be \textbf{declared before the time-stepping loop}, together with the value of the initial time.
 \sidepar{\vspace{-1ex}\footnotesize{\color{red}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
-\paragraph{\color{purple}4. Determine the boundary conditions.}
+\paragraph{\color{purple}3. Determine the boundary conditions.}
 
 The time dependence of some fluxes, supplies, and volume contents may be known beforehand. These are what we call boundary conditions. We declare them before the time iteration. In our case the gravity supplies of the two bodies, $\yGa(t) = -\yma\,g\,[0,1]$ and $\yGb(t) = -\ymb\,g\,[0,1]$ are constant, because the masses, the gravitational acceleration, and the unit vector $[0,1]$ are constant. \sidepar{\vspace{-1ex}\footnotesize{\color{purple}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{blue}3. From the state, determine the quantities necessary for forward-driving.}
+\paragraph{\color{blue}4. From the state, determine the quantities necessary for forward-driving.}
 
 Recall that the forward-driving equations require, at each time step, the $2\times 8$ quantities
 \begin{equation*}
@@ -8215,7 +8215,7 @@ In the code, the formulae that calculate the quantities necessary to the forward
 \sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{cyan}4. Find the new state from the time-updated quantities.}
+\paragraph{\color{cyan}5. Find the new state from the time-updated quantities.}
 
 The time-stepping loop of our code is now able to determine quantities at a later time $t+\Dt$, given the state at the present time $t$. The quantities that we obtain at the later time are
 \begin{equation*}
@@ -8238,7 +8238,7 @@ We now want to be able to start the next loop iteration. The next iteration need
 % Now are ready to go back to the beginning of the loop!
 
 
-\paragraph{\color{midgrey}5. Decide the time-iteration parameters.}
+\paragraph{\color{midgrey}6. Set the time-iteration parameters.}
 
 The discrete timestep $\Dt$ is a constant in our scripts. In more advanced techniques the timestep may be \emph{adaptive}, that is, it may change at every iteration, depending on particular conditions. This can lead to smaller numerical errors.
 
@@ -8286,7 +8286,7 @@ Gb = -mb * g * [0, 1];  % N: gravity supply in object b
 \end{verbatim}
 \vspace{-1.5\baselineskip}
 \color{midgrey}\begin{verbatim}
-%% 5.  Parameters for time iteration
+%% 6.  Parameters for time iteration
 t1 = 5;      % s: final time
 dt = 0.001;  % s: time step
 %% Numerical time integration
