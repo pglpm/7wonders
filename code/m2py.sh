@@ -43,7 +43,7 @@ do
     new_line=$(echo "$line" | sed 's/%/#/g')
     
     # Remove semicolons at the end of lines or before inline comments, preserving trailing spaces
-    new_line=$(echo "$new_line" | sed 's/;\s*\(#.*\)/\1/' | sed 's/;[[:space:]]*$//')
+    new_line=$(echo "$new_line" | sed 's/;\(\s*#.*\)/\1/' | sed 's/;[[:space:]]*$//')
     
     # Change [content] to vector([content])
     new_line=$(convert_brackets <<< "$new_line")

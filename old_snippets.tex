@@ -8,6 +8,73 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\medskip
+
+\section{Example script for non-Hookean spring }
+\label{sec:nonhooke_script}
+
+Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\pageref{ex:nonhooke}. It is a generalization of the \autoref{sec:code_integration}{\texttt{tennisball.m} script}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data.
+
+\medskip
+
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\furl{https://pglpm.github.io/7wonders/code/rubberband2D.m}{Download \texttt{rubberband2D.m}}%
+}%
+\lstinputlisting[style=mycode]{code/rubberband2D.m}
+
+----
+
+\section{Pairwise forces}
+\label{sec:pairwise_forces}
+
+A Hookean or non-Hookean \enquote{spring} is modelled as having no \masse\ or momentum of its own. It is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities.% , and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple, \emph{linear} relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
+
+We can clearly employ this general idea to model other, wildly different, physical phenomena:
+\begin{definition}{Pairwise forces}
+  Consider a phenomenon where these three main conditions are met:
+  \begin{itemize}[noitemsep]
+  \item a transfer of momentum occurs between two \emph{separate} control volumes
+  \item this transfer can approximately be treated as \emph{instantaneous}
+  \item \masse\ and momentum involved in the transfer can be neglected (just like the mass and momentum of a real spring)
+  \end{itemize}
+
+  Under these conditions we have a constitutive relation of the general form
+  \begin{equation*}
+    \label{eq:pairwise}
+    \yFab =  f\bigl(\abs{\yra - \yrb}\bigr)\ \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
+  \end{equation*}
+  where $f()$ can in principle be any real function.
+
+  \smallskip
+
+  We call this a \textbf{pairwise long-distance force}.
+\end{definition}
+
+Among the most important examples of such a constitutive relation is \textbf{Newton's law of gravitation}:
+\begin{equation}
+  \label{eq:Newton_gravitation}
+  \yFab = -G\,\frac{\yma\,\ymb}{\abs{\yra - \yrb}^{2}}\
+  \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
+\end{equation}
+Another example is the force of the so-called \emph{Lennard-Jones potential}:
+\begin{equation}
+  \label{eq:LennardJones}
+  \yFab = \frac{\epsilon}{\abs{\yra - \yrb}}\,
+  \biggl[
+  12\,\biggl(\frac{\sigma}{\abs{\yra - \yrb}}\biggr)^{12}
+  -6\,\biggl(\frac{\sigma}{\abs{\yra - \yrb}}\biggr)^{6}
+  \biggr]\
+  \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
+\end{equation}
+Which is often used to model the flux of momentum among molecules of some fluids and solids.
+
+\medskip
+
+According to General Relativity there cannot be an \emph{instantaneous} transfer of momentum between two spatially separate control volumes. The momentum transfer modelled by pairwise forces actually occurs in a lapse of time, mediated by matter or electromagnetic field present between the two control volumes.
+
+----
+
+
 The physical system composed of two bodies of matter connected by a spring, with the spring modelled by the \autoref{sec:hooke}{Hookean constitutive properties}, is one of particular importance in physics, for several reasons. Its equations can be solved analytically and describe a \furl{https://www.britannica.com/science/mechanics/Simple-harmonic-oscillations\#ref612067}{\emph{harmonic oscillator}}, with a behaviour that can be predicted without numerical time-integration methods. The \emph{mathematical form} of its equations can also be applied to many other physical phenomena involving quantities other than momentum. Hooke's law can sometimes be used as a linear approximation in more complicated systems. And if we consider particular additional forces applied to one or both of the two bodies, we can study simple examples of the important phenomena of \furl{https://www.britannica.com/science/resonance-vibration}{\emph{resonance}} and \furl{https://www.britannica.com/science/damping}{\emph{damping}}.
 
 The Hookean spring and the harmonic oscillator are therefore discussed in detail in essentially all physics textbooks and in specialized treatises. For this reason I won't discuss them here. I recommend that you read the  \furl{https://www.feynmanlectures.caltech.edu/I_21.html}{chapter on the harmonic oscillator} and \furl{https://www.feynmanlectures.caltech.edu/I_23.html}{that on resonance} in Feynman's Lectures, for example.

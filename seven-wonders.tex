@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-24T23:41:59+0100
+%% Last-Updated: 2025-02-25T09:36:17+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1167,12 +1167,14 @@ retain-explicit-plus,%
 \colorlet{codecolour}{blue}
 \usepackage{listings}
 \lstdefinestyle{mycode}{
+  % morecomment=[l][\color{midgrey}]{\% },
   basicstyle=\ttfamily\footnotesize\bfseries\color{codecolour},
   moredelim=**[is][\color{grey}]{\%@}{\%@},
+  % escapeinside={\#}{\@},
   frame=single,
   numbers=left,
   numberstyle=\sffamily\scriptsize,
-  xleftmargin=\parindent
+  xleftmargin=17.625pt
 }
 
 % \usepackage{multimedia}
@@ -8088,7 +8090,7 @@ This is now our starting point. Let's see a reasoned set of steps to write a scr
 \subsection{A strategy for writing a numerical time-integration algorithm}
 \label{sec:strategy_scheme}
 
-Our strategy can be divided into seven systematic steps, which we reason out now. The script can be written along, as we follow them. After each step, take a look at the example script of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy}, and locate the lines where that step was implemented.
+Our strategy can be divided into seven systematic steps, which we reason out now. The script can be written along, as we follow them. After each step, take a look at the example script of table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy}, and locate the lines where that step was implemented.
 
 
 \paragraph{\color{yellow}0. Find any constants appearing in the equations.}
@@ -8202,7 +8204,7 @@ We must therefore find these from our state, at each new time step, by using any
     \yPa(t) &= \yma\,\yva(t)\\
     \yFab(t)& =-k\,[\yra(t)-\yrb(t)]\\
     \yPb(t) &= \ymb\,\yvb(t)\\
-    \yFba(t) &= -\yFab(t) = -\Bigl(-k\,[\yra(t)-\yrb(t)]\Bigr) \\
+    \yFba(t) &= -\yFab(t) \\
     \yra(t) &\quad\text{given}\\
     \yva(t) &\quad\text{given}\\
     \yrb(t) &\quad\text{given}\\
@@ -8249,19 +8251,27 @@ We set these conditions before the time-loop.
 
 \bigskip
 
-After these seven steps, the essential part of our numerical-time-integration script is ready. The script will probably need additional lines to perform tasks that depend on the specific problem. For example we may want to store the numerical values of some quantities at different times, for later analysis; or plot some of them as the simulation evolves. The ways these tasks are implemented are often heavily dependent on the programming language, and we therefore cannot discuss them in detail here.
+After these seven steps, the essential part of our numerical-time-integration script is ready. See table~\ref{tab:script_strategy} on the next page. The script will probably need additional lines to perform tasks that depend on the specific problem. For example we may want to store the numerical values of some quantities at different times, for later analysis; or plot some of them as the simulation evolves. The implementation of these tasks depend on the programming language, and we therefore cannot discuss them in detail here.
 
+It is also easy to generalize the script in various ways. For instance, we can use the more general version of Hooke's law with a non-zero natural length:
+\begin{equation*}
+  \yFab(t) = - k\,(\yle -\ylo)\,\frac{\yra - \yrb}{\yle} \,.
+\end{equation*}
+
+\medskip
+
+An example script that implements plotting and uses the general version of Hooke's law can be downloaded as an \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{Octave version \texttt{hooke\_spring.m}} and a \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{Python version \texttt{hooke\_spring.py}}.
 
 \begin{table}[p]
-  \caption{Example script for numerical time integration of the spring\,\amp\,bodies system. The \textcolor{yellow}{constants}, \textcolor{red}{initial conditions}, and the \textcolor{midgrey}{time-iteration parameters} can of course be different.}\label{tab:script_strategy}
+  \caption{Example script for numerical time integration of spring\,\amp\,bodies system.}\label{tab:script_strategy}
 
 \small
-\begin{framed}
+\begin{framed}\vspace{-1\baselineskip}
 \color{grey}\begin{verbatim}
 %%% Simulation of two bodies connected by Hookean material in 2D
 %% Coordinates (y, z)
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{yellow}\begin{verbatim}
 %% 0.  Constants
 ma = 2;    % kg: mass of object a
@@ -8269,7 +8279,7 @@ mb = 2;    % kg: mass of object b
 g = 9.81;  % N/kg: gravitational acceleration
 k = 5;     % N/m: spring constant
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{red}\begin{verbatim}
 %% 2.  State and initial conditions
 t = 0;         % s: initial time
@@ -8278,13 +8288,13 @@ rb = [3, 0];   % m: initial position of object b
 va = [0, 10];  % m/s: initial velocity of object a
 vb = [0, 0];   % m/s: initial velocity of object b
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{purple}\begin{verbatim}
 %% 3.  Boundary conditions
 Ga = -ma * g * [0, 1];  % N: gravity supply in object a
 Gb = -mb * g * [0, 1];  % N: gravity supply in object b
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{midgrey}\begin{verbatim}
 %% 6.  Parameters for time iteration
 t1 = 5;      % s: final time
@@ -8292,7 +8302,7 @@ dt = 0.001;  % s: time step
 %% Numerical time integration
 while t < t1
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{blue}\begin{verbatim}
     %% 4.  Calculate forward-driving quantities from state
     Pa = ma * va;
@@ -8300,7 +8310,7 @@ while t < t1
     Fas = -k * (ra - rb);
     Fbs = -Fas;   % balance of momentum for Hookean material
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{green}\begin{verbatim}
     %% 1.  Balances drive forward in time
     t = t + dt;
@@ -8309,21 +8319,19 @@ while t < t1
     ra = ra + va * dt;
     rb = rb + vb * dt;
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{cyan}\begin{verbatim}
     %% 5.  Calculate new state from forward-driven quantities
     va = Pa / ma;
     vb = Pb / mb;
 \end{verbatim}
-\vspace{-1.5\baselineskip}
+\vspace{-1.25\baselineskip}
 \color{midgrey}\begin{verbatim}
 end
 \end{verbatim}
 %\end{verbatim}
-\end{framed}
+\vspace{-1\baselineskip}\end{framed}
 \end{table}
-
-% For such a scheme we need to \autoref{sec:timestep_vector}{step forward in time the momentum} of both masses using their momentum balances. The momentum balance of the spring is reduced to the equation\enskip$\yFba=-\yFab$\,,\enskip as discussed in the previous section.
 
 
 \clearpage
@@ -8332,17 +8340,18 @@ end
 \begin{exercise}[label={ex:hooke}]
   % We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $y$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
   \begin{enumerate}[exerc]
-  \item Examine our \autoref{sec:code_integration}{previous scripts} for numerical time integration, and pinpoint where the seven building steps above are implemented.
+  \item Examine our \autoref{tab:oscillatingreaction}{previous script for the oscillating reaction}, and pinpoint where the seven building steps above are implemented.
 
-    Which quantities constitute the \emph{state} in that script?
+  \item Which quantities constitute the \emph{state} in that script?
 
   \item Implement the pseudo-code of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} in your preferred programming language.
 
-    Your script should save all or some values of the state $\yra,\yrb,\yva,\yvb$, and their corresponding $t$ values, so that it's possible to plot their time evolution afterwards.
+    Try to write your script so that some values of the state $\yra,\yrb,\yva,\yvb$, and their corresponding $t$ values are saved at regular intervals, and plot their time evolution afterwards.
 
     \smallskip
 
-    {\footnotesize\emph{(If you had difficulties writing your script, for the following exercises you can download and use \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{the script \texttt{hooke\_spring.m}}, written for \furl{https://octave.org/}{Octave}/MATLAB, as a starting point.)}\par}
+    {\footnotesize\emph{(If you had difficulties writing your script, for the following exercises you can download and use
+\furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
 
 
   \item Run your script with the following values:
@@ -8372,11 +8381,13 @@ end
       \end{gathered}
     \end{equation*}
 
-    Plot the $y$-coordinate of body $a$ against time $t$. What kind of time dependence do you observe? can you explain it intuitively?
+    \begin{itemize}
+    \item Plot the $y$-coordinate of body $a$ against time $t$. What kind of time dependence do you observe? can you explain it intuitively?
 
-    Now plot the trajectories of the two bodies, that is, $z_{a}$ against $y_{a}$, and $z_{b}$ against $y_{b}$. What do you observe? can you explain it intuitively?
+    \item Now plot the trajectories of the two bodies, that is, $z_{a}$ against $y_{a}$, and $z_{b}$ against $y_{b}$. What do you observe? can you explain it intuitively?
 
-    Plot, against time $t$, the $y$- and $z$-components of the \emph{total} momentum $\yPa+\yPb$ for the system composed by the two bodies and the spring. How do these component change? Why?
+    \item Plot, against time $t$, the $y$- and $z$-components of the \emph{total} momentum $\yPa+\yPb$ for the system composed by the two bodies and the spring. How do these component change? Why?
+    \end{itemize}
 
   \item Run the script with the same parameter as before but the following initial velocity values:
     \begin{equation*}
@@ -8387,10 +8398,11 @@ end
       \end{gathered}
     \end{equation*}
 
-    Plot again the $y$-coordinate of body $a$ against time $t$. Is the time dependence different from the previous simulation? How do the trajectories of the two bodies look like this time?
+    \begin{itemize}
+    \item Plot again the $y$-coordinate of body $a$ against time $t$. Is the time dependence different from the previous simulation? How do the trajectories of the two bodies look like this time?
 
-    Plot again the components of the total momentum against time. How do they change? Why have they the same time dependence as before?
-
+    \item Plot again the components of the total momentum against time. How do they change? Why have they the same time dependence as before?
+    \end{itemize}
 
       \item Run the script with the following initial velocity values:
     \begin{equation*}
@@ -8401,19 +8413,227 @@ end
       \end{gathered}
     \end{equation*}
 
-    Plot the trajectories of the two bodies. What do you observe this time?
+    \begin{itemize}
+    \item Plot the trajectories of the two bodies. What do you observe this time?
 
-    How do the components of the total momentum differ from the previous simulation? Try to explain why.
+    \item How do the components of the total momentum differ from the previous simulation? Try to explain why.
+    \end{itemize}
 
   \item Play with all the parameter values and initial conditions, and see what happens. Before simulating, try to intuitively predict what the behaviour of the system will be.
   \end{enumerate}
 \end{exercise}
 
 
+\section{Non-hookean and more general materials}
+\label{sec:nonhooke}
+
+\autoref{sec:hooke}{Hooke's law} is just a very simple example of how the magnitude and orientation of the momentum influx in our simplified piece of material can depend on other quantities:
+\begin{equation*}
+  \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle} \,.
+\end{equation*}
+
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/rubberbands.png}%
+}
+Items like rubber bands and strings deviate from Hooke's law in a notable way: they exert a purely tensile surface force, and they only exert it if they are stretched beyond their natural, relaxed length. Otherwise they don't exert any force.
+
+This kind of behaviour can of course be modelled, at least qualitatively, by a constitutive equation like the following:
+\begin{definition}{Constitutive equation for rubber bands and strings}
+  Suppose that the two extremities of a piece of material, such as a rubber band, have position vectors $\yra$ and $\yrb$. The natural length of the piece is $\ylo$. Then the momentum \textbf{ef}fluxes at the extremities $\yra$ and $\yrb$ are approximately given by
+  \begin{equation}
+    \label{eq:nonhooke}
+    \yFab =
+    \begin{dcases*}
+      0\ ,& if\enskip$\yle \le \ylo$
+      \\
+      -k\,
+      (\yle -\ylo \bigr)\,
+      \tfrac{\yra-\yrb}{\yle}\ ,
+      & if\enskip$\yle > \ylo$
+    \end{dcases*}
+  \end{equation}
+  with $\yle \defd \abs{\yra-\yrb}$.
+\end{definition}
+
+A string can be approximately modelled by such a constitutive equation with a large constant $k$. This constitutive equation is difficult to be used with analytical methods, but is easily time-integrated numerically. These small mathematical changes in the constitutive relation can lead to much richer sets of behaviours, as shown by the side figures in the exercise below.
+
+
+\subsection{Pairwise forces}
+
+By using peculiar functions $f(\dotso)$, we can also model control volumes that actually contain electromagnetic fields. These fields transport momentum almost instantaneously from some body of matter to another. We call them \emph{pairwise forces}. An example is the force of the so-called \emph{Lennard-Jones potential}:
+\begin{equation}
+  \label{eq:LennardJones}
+  \yFab = \frac{\epsilon}{\yle}\,
+  \Bigl[
+  12\,\Bigl(\frac{\sigma}{\yle}\Bigr)^{12}
+  -6\,\Bigl(\frac{\sigma}{\yle}\Bigr)^{6}
+  \Bigr]\
+  \tfrac{\yra-\yrb}{\yle}
+\end{equation}
+Which is often used to model the flux of momentum among molecules of some fluids and solids.
+
+
+\subsection{Fluids and gases}
+
+But the function $f(\dotso)$ does not even need to depend on the length $\yle$ of the piece of material. Fluids, for instance, are generically characterized by the fact that $f(\dotso)$ depends, not on the present value of the length $\yle(t)$, but on its \emph{rate of change}, that is, the time-derivative $\di\yle(t)/\dt$.
+
+Dependence on other, non-geometric quantities is also common. For instance $f(\dotso)$ could depend on the \emph{temperature} of the material. In \chap~\ref{cha:bal_energy} we shall explore and simulate \emph{gases}, whose momentum fluxes show this kind of temperature dependence in addition to a geometric one.
+
+
+
+\pagebreak[4]
+\marginpar{\vspace{12\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{Mass $b$ in red}%
+}%
+\begin{exercise}[label={ex:non_hooke}]
+  {\footnotesize\emph{(You can download \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
+
+  \smallskip
+
+  \begin{enumerate}[exerc]
+  \item Modify the script for the Hookean material in table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} so as to implement the non-Hookean constitutive relation~\eqref{eq:nonhooke}. This constitutive relation can be implemented with an \texttt{if}-statement.
+
+  Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the side plots:
+\begin{description}[itemsep=\baselineskip]
+      \item[Set 1:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yma=\qty{0.1}{kg}
+        \qquad
+        \ymb=\qty{0.1}{kg}
+        \qquad
+        k=\qty{0.5}{N/m}
+        \qquad
+        \ylo = \qty{0.5}{m}
+        \\
+        \yra(\yti)=[\num{-0.3},\, \num{0.3}]\,\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
+        \\
+        \yva(\yti)=[\num{1},\, \num{5}]\,\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{5}]\,\unit{m/s}
+        \\
+        \yGa(\yti)= \yma\cdot[\num{0},\, \num{0}]\,\unit{N/kg}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
+      \end{gathered}
+    \end{equation*}
+
+  \item[Set 2:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yma=\qty{2}{kg}
+        \qquad
+        \ymb=\qty{2}{kg}
+        \qquad
+        k=\qty{5}{N/m}
+        \qquad
+        \ylo = \qty{5}{m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{3},\, \num{0}]\,\unit{m}
+        \\
+        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \\
+        \yGa(\yti)= [\num{0},\, \num{0}]\,\unit{N}
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
+      \end{gathered}
+    \end{equation*}
+
+  \item[Set 3:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yma=\qty{1}{kg}
+        \qquad
+        \ymb=\qty{5000}{kg}
+        \qquad
+        k=\qty{5000}{N/m}
+        \qquad
+        \ylo = \qty{5}{m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
+        \\
+        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \\
+        \yGa(\yti)= -\yma\,g\,\cdot[0,\, 1]
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
+      \end{gathered}
+    \end{equation*}
+
+  \item[Set 4:]
+        \begin{equation*}
+      \begin{gathered}
+        \yti=\qty{0}{s}
+        \qquad
+        \ytf=\qty{10}{s}
+        \qquad
+        \Dt = \qty{0.001}{s}
+        \\
+        \yma=\qty{1}{kg}
+        \qquad
+        \ymb=\qty{5000}{kg}
+        \qquad
+        k=\qty{5}{N/m}
+        \qquad
+        \ylo = \qty{5}{m}
+        \\
+        \yra(\yti)=[\num{-3},\, \num{3}]\,\unit{m}
+        \qquad
+        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
+        \\
+        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \qquad
+        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
+        \\
+        \yGa(\yti)= \yma\,g\,\cdot[0,\, 1]
+        \qquad
+        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
+      \end{gathered}
+    \end{equation*}
+  \end{description}
+
+  Play with other parameters and initial values!
+
+\end{enumerate}
+\end{exercise}
+
+
 \section{Many-body systems}
 \label{sec:many-body}
 
-We can obviously consider more than two objects connected by a number of springs or other \autoref{sec:pairwise_forces}{pairwise forces}. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
+We can obviously consider more than two objects connected by a number of springs or other pairwise forces. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
 
 %
 \marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
@@ -8422,86 +8642,6 @@ We can obviously consider more than two objects connected by a number of springs
 Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics}}%
 }%
 This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
-
-
-
-\section{Non-hookean springs}
-\label{sec:nonhooke}
-
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/rubberbands.png}%
-}
-Items like rubber bands and strings deviate from Hooke's law in a notable way: they exert a purely tensile force, that is, they effect a tensile flux of momentum, only if they are stretched beyond their natural, relaxed length.
-
-This kind of behaviour can of course be modelled, at least qualitatively, by a constitutive equation like the following:
-\begin{definition}{Constitutive equation for rubber bands and strings}
-  Suppose that the two extremities of a rubber band have position vectors $\yra$ and $\yrb$, and that the natural length of the rubber band is $\ylo$. Then the momentum \textbf{ef}fluxes at the extremities $\yra$ and $\yrb$ are approximately given by
-  \begin{equation}
-    \label{eq:nonhooke}
-    \yFab =
-    \begin{dcases*}
-      0\ ,& if\enskip$\abs{\yra - \yrb} \le \ylo$
-      \\
-      -k\,
-      \bigl(\abs{\yra - \yrb} -\ylo \bigr)\,
-      \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}\ ,
-      & if\enskip$\abs{\yra - \yrb} > \ylo$
-    \end{dcases*}
-  \end{equation}
-  Note that $\tfrac{\yra-\yrb}{\abs{\yra - \yrb}}$ is just a \emph{unit vector} directed from the position $\yrb$ to the position $\yra$.
-\end{definition}
-
-A string can be approximately modelled by such a constitutive equation with a large constant $k$.
-
-This constitutive equation is difficult to be used with analytical methods, but can be amenable to numerical time integration
-
-\section{Pairwise forces}
-\label{sec:pairwise_forces}
-
-A Hookean or non-Hookean \enquote{spring} is modelled as having no \masse\ or momentum of its own. It is essentially a one-dimensional device that effects an \emph{instantaneous} flux of momentum between its two extremities.% , and offers a very simple relation between this flux and the distance between the extremities. This model of a physical object is quite crude but useful in some problems, at least for qualitative analyses. The simple, \emph{linear} relationship between $\yF_{\textrm{e}}$ and $\yle$ is usually only true if $\yle$ is not much different from the natural length $\ylo$.
-
-We can clearly employ this general idea to model other, wildly different, physical phenomena:
-\begin{definition}{Pairwise forces}
-  Consider a phenomenon where these three main conditions are met:
-  \begin{itemize}[noitemsep]
-  \item a transfer of momentum occurs between two \emph{separate} control volumes
-  \item this transfer can approximately be treated as \emph{instantaneous}
-  \item \masse\ and momentum involved in the transfer can be neglected (just like the mass and momentum of a real spring)
-  \end{itemize}
-
-  Under these conditions we have a constitutive relation of the general form
-  \begin{equation*}
-    \label{eq:pairwise}
-    \yFab =  f\bigl(\abs{\yra - \yrb}\bigr)\ \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
-  \end{equation*}
-  where $f()$ can in principle be any real function.
-
-  \smallskip
-
-  We call this a \textbf{pairwise long-distance force}.
-\end{definition}
-
-Among the most important examples of such a constitutive relation is \textbf{Newton's law of gravitation}:
-\begin{equation}
-  \label{eq:Newton_gravitation}
-  \yFab = -G\,\frac{\yma\,\ymb}{\abs{\yra - \yrb}^{2}}\
-  \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
-\end{equation}
-Another example is the force of the so-called \emph{Lennard-Jones potential}:
-\begin{equation}
-  \label{eq:LennardJones}
-  \yFab = \frac{\epsilon}{\abs{\yra - \yrb}}\,
-  \biggl[
-  12\,\biggl(\frac{\sigma}{\abs{\yra - \yrb}}\biggr)^{12}
-  -6\,\biggl(\frac{\sigma}{\abs{\yra - \yrb}}\biggr)^{6}
-  \biggr]\
-  \tfrac{\yra-\yrb}{\abs{\yra - \yrb}}
-\end{equation}
-Which is often used to model the flux of momentum among molecules of some fluids and solids.
-
-\medskip
-
-According to General Relativity there cannot be an \emph{instantaneous} transfer of momentum between two spatially separate control volumes. The momentum transfer modelled by pairwise forces actually occurs in a lapse of time, mediated by matter or electromagnetic field present between the two control volumes.
 
 
 \section{Friction and normal forces}
@@ -8728,11 +8868,6 @@ From the last three equations we finally find
 \end{equation*}
 In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This is the \textbf{normal force} discussed in the previous section.
 
-\marginpar{\vspace{+4\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
-\\\includegraphics[width=3em]{images/axes.pdf}%
-  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
-}%
 \begin{exercise}[label={ex:twobooks}]
   Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces of cuboid shape, each wrapping one book, and having one side in common (where the two books touch). Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-2}]\,\unit{N}$, constant in time, and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
 
@@ -8743,6 +8878,11 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 \end{enumerate}
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
+\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
+\\\includegraphics[width=3em]{images/axes.pdf}%
+  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+}%
 
 \section{Application: Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
@@ -8811,7 +8951,7 @@ The ways in which such a momentum flux between object and air is realized can be
 \begin{description}
 \item[Buoyancy]
 % 
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/airlander.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
@@ -8825,23 +8965,23 @@ In the preceding section we saw that the magnitude of the compressive momentum f
 \\[\jot]\flushleftright\color{mpcolor}%
 A hang-glider (image from \furl{https://www.jaerenluftsport.no}{J{\ae}ren Luftsportsklubb})%
 }%
-Air is not always at rest (with respect to the Earth's surface). Owing to energy flow in the atmosphere and Earth's rotation, bodies of air -- air currents -- can be moving in different directions, including upward. An upward-moving body of air contains a net upward momentum. If an object stops the vertical motion of this air, for example deflecting it horizontally, then by the balance of momentum there must be a flux of upward momentum from the body of air to the object. This upward momentum can compensate the gravity supply of downward momentum, and therefore the object can float or rise. This mechanism is called \furl{https://www.britannica.com/topic/locomotion/Gravitational-gliding\#ref497010}{soaring or gliding} and is used by birds and gliders; it's also the mechanism that lifts a light object like a piece of paper or a feather.
+Air is not always at rest (with respect to the Earth's surface). Owing to energy flow in the atmosphere and Earth's rotation, bodies of air -- air currents -- can be moving in different directions, including upward. An upward-moving body of air contains a net upward momentum. If an object stops the vertical motion of this air, for example deflecting it horizontally, then by the balance of momentum there must be a flux of upward momentum from the body of air to the object. This upward momentum can compensate the gravity supply of downward momentum, and therefore the object can float or rise. This mechanism is called \furl{https://www.britannica.com/topic/locomotion/Gravitational-gliding\#ref497010}{soaring or gliding} and is used by birds and gliders; it's also the mechanism that lifts light objects like paper or feathers.
 
 \item[Propelled flight] We can try to create a flow of downward momentum from an object to the surrounding air, even if air is initially at rest. As a result, a body of air surrounding the object will acquire a net, partially downward movement. By the \autoref{def:symmetryflux}{symmetry of flux} this also means that momentum with an upward component flows from the air to the object, and this component can compensate the object's weight. This is achieved by birds by flapping their wings, and by aeroplanes and helicopters through horizontally moving wings or blades.
 \end{description}
 
+%
+\marginpar{\vspace{4\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
+}%
 \begin{extra}{It's not the difference in air pressure}
   Some texts say that wings can sustain an aeroplane because their cross-section has an asymmetric shape, slightly more bulged upward than downward, leading to a difference in the air pressure between the top and bottom of the wing. This is not true. In fact, aeroplanes with symmetric wings fly as well.
 \begin{quote}\footnotesize
 the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
 \end{quote}
 \end{extra}
-%
-\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
-}%
 
 % In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{def:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
 
@@ -9025,7 +9165,7 @@ Let us try to infer what are the momentum fluxes through the two horizontal cont
 
 Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small control surface delimiting some gas \emph{at rest} there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
 %
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/gas_fluxes.jpg}%
 }
 \begin{definition}{Internal pressure,label={def:internal_pressure}}
@@ -9093,173 +9233,6 @@ Momentum balance also applies to the total control volume:
   \yP\tot(\ytf) = \yP\tot(\yti) + \int_{\yti}^{\ytf}\!\!\yF\tot(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yG\tot(t)\,\dt
 \end{equation*}
 If the total momentum influx and supplies are zero, then we find\enskip$\yP\tot(\ytf) = \yP\tot(\yti)$\,,\enskip which explains why we found that the velocity for the whole system could be considered as constant.
-
-
-
-
-\section{Non-Hookean spring: numerical time integration}
-\label{sec:nonHooke_simulation}
-
-The system of two masses connected by a \autoref{sec:nonhooke}{\emph{non-Hookean} spring} with constitutive relation~\eqref{eq:nonhooke} is analytically challenging.
-Its numerical solution, however, only involves a change of a couple of lines to the code that you wrote for Exercise~\ref{ex:hooke}.
-
-A small mathematical change in a constitutive relation can lead to a much richer set of behaviours, as the examples in the side plots below show.
-
-\begin{exercise}[label={ex:nonhooke}]
-  Modify the script you wrote for Exercise~\ref{ex:hooke} so that the spring is modelled by the non-Hookean constitutive relation~\eqref{eq:nonhooke}. This constitutive relation can be implemented with an \texttt{if}-statement, for instance.
-
-  Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the side plots:
-\begin{description}[itemsep=\baselineskip]
-      \item[Set 1:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
-        \\
-        \yma=\qty{0.1}{kg}
-        \qquad
-        \ymb=\qty{0.1}{kg}
-        \qquad
-        k=\qty{0.5}{N/m}
-        \qquad
-        \ylo = \qty{0.5}{m}
-        \\
-        \yra(\yti)=[\num{-0.3},\, \num{0.3}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{1},\, \num{5}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{5}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= \yma\cdot[\num{0},\, \num{0}]\,\unit{N/kg}
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
-
-  \item[Set 2:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
-        \\
-        \yma=\qty{2}{kg}
-        \qquad
-        \ymb=\qty{2}{kg}
-        \qquad
-        k=\qty{5}{N/m}
-        \qquad
-        \ylo = \qty{5}{m}
-        \\
-        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{3},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= [\num{0},\, \num{0}]\,\unit{N}
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
-
-  \item[Set 3:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
-        \\
-        \yma=\qty{1}{kg}
-        \qquad
-        \ymb=\qty{5000}{kg}
-        \qquad
-        k=\qty{5000}{N/m}
-        \qquad
-        \ylo = \qty{5}{m}
-        \\
-        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= -\yma\,g\,\cdot[0,\, 1]
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
-
-  \item[Set 4:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
-        \\
-        \yma=\qty{1}{kg}
-        \qquad
-        \ymb=\qty{5000}{kg}
-        \qquad
-        k=\qty{5}{N/m}
-        \qquad
-        \ylo = \qty{5}{m}
-        \\
-        \yra(\yti)=[\num{-3},\, \num{3}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= \yma\,g\,\cdot[0,\, 1]
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
-  \end{description}
-
-  Play with other parameters and initial values!
-\end{exercise}
-\marginpar{\vspace{-33\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{Mass $b$ in red}%
-}%
-
-
-\medskip
-
-\section{Example script for non-Hookean spring }
-\label{sec:nonhooke_script}
-
-Here is an example script that is a solution for Exercise~\ref{ex:nonhooke} p.~\pageref{ex:nonhooke}. It is a generalization of the \autoref{sec:code_integration}{\texttt{tennisball.m} script}. \textcolor{blue}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} take care of saving and plotting data.
-
-\medskip
-
-\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-\furl{https://pglpm.github.io/7wonders/code/rubberband2D.m}{Download \texttt{rubberband2D.m}}%
-}%
-\lstinputlisting[style=mycode]{code/rubberband2D.m}
-
 
 
 
