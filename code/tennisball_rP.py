@@ -41,7 +41,7 @@ grid(True)
 ## Numerical time integration
 while t < t1:
   ## constitutive relations
-  v = P/m
+  v = P / m
 
   ## step forward in time with balance laws
   t = t + dt
