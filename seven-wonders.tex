@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-26T10:59:07+0100
+%% Last-Updated: 2025-02-26T13:00:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7720,9 +7720,9 @@ Note that the conditions above are not satisfied any longer, as soon as we consi
 \medskip
 
 An important consequence of the two conditions above, is that the direction -- but not the magnitude or orientation -- of either influx $\yFa$ or $\yFb$ is completely determined by the positions $\yra$, $\yrb$ of the surfaces $a$, $b$: it must be parallel to their difference. Any constitutive relation for the influxes must therefore have the following mathematical expression:
-\begin{equation*}
+\begin{equation}\label{eq:simplified_material}
   \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle}
-\end{equation*}
+\end{equation}
 where $\yle \defd \abs{\yra -\yrb}$ and  $f(\dotso)$ is a \emph{scalar} function that may depend on other physical quantities, such as the length $\yle$. This function determines the magnitude and orientation of the vectors $\yFa$ and $\yFb$.
 
 \begin{warning}[{The condition {$\yFa = -\yFb$} is not Newton's third law}]
@@ -8656,6 +8656,30 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 }%
 
 
+
+\section{Beyond the no-mass simplification}
+% \section[What if the two masses are not attached? Beyond the no-mass simplification]{What if the two masses are not attached?\\Beyond the no-mass simplification}
+\label{sec:no_nomass}
+
+The physical phenomena that we explored in the previous sections involve two small bodies attached to the ends of a piece of material, for instance two tennis balls connected by a spring. The two bodies are assumed to always stay attached to the piece of material. So you may wonder: what if the two bodies are just touching the extremities of the material, without being \enquote{glued} to them? If we compress a spring by means of two tennis balls, these will be pushed apart, and at some point they will lose contact with the spring and continue moving. Otherwise pinball machines and other devices that rely on spring launchers wouldn't work.
+%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/pinball0.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Wooden pinball machine. Spring launcher on the bottom right (image: \furl{https://pin.it/5rsbVkSFf}{Thebigkegg})%
+}%
+
+Our simplified setup cannot handle this kind of situation: as soon as the two bodies are not in contact with the piece of material, we must again face the problem of its masslessness and its lack of momentum. The only way is therefore to remove the zero-mass simplification, and treat the material as having mass and momentum. This realistic step, however, leads to a host of complications.
+
+If the material can now accumulate momentum, then $\di\yP/\dt$ is non-zero, and therefore the influxes $\yFa$ and $\yFb$ don't need to satisfy condition~\ref{item:C1flux} (page~\pageref{item:C1flux}): $\yFa = -\yFb$.
+
+This in turn means that the influxes $\yFa$, $\yFb$ cannot have the same dependence on the geometric properties, apart from a sign. The constitutive function $f(\dotso)$ of formula~\eqref{eq:simplified_material}, page~\pageref{eq:simplified_material}, must
+be different for $\yFa$ and $\yFb$, and must depend on more geometric quantities than just the length $\yle$.
+
+Condition~\ref{item:C2flux} is no longer satisfied either, because angular momentum can be accumulated. The piece of material can in fact rotate, and therefore we must take care of the \emph{balance of angular momentum} for its control volume.
+
+For this reason we shall study this more realistic setup when we discuss the balance of angular momentum in \chap~\ref{cha:bal_ang_momentum}.
+
 \section{Many-body systems}
 \label{sec:many-body}
 
@@ -8663,15 +8687,11 @@ We can obviously consider more than two objects connected by a number of springs
 
 This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/md_simulation.png}%
 \\[\jot]\flushleftright\color{mpcolor}%
-Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics}}%
+Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md}{\emph{Interactive Molecular Dynamics}}%
 }%
-
-\section[What if the two masses are not attached? Beyond the no-mass simplification]{What if the two masses are not attached?\\Beyond the no-mass simplification}
-\label{sec:no_nomass}
-
 
 
 
@@ -8834,9 +8854,9 @@ Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$
     \lstinputlisting[style=mycode]{code/friction.m}
 Check that this function correctly covers and represents both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
   \end{enumerate}
-\end{exercise}
+\end{exercise}\noprelistbreak
 %
-\marginpar{\vspace{-10\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+\sidepar{\vspace{-10\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
 \texttt{\color{blue}sign()} is defined as
     \begin{equation*}
       \texttt{sign}(x)   \defd   \begin{cases}
@@ -8861,14 +8881,14 @@ As previously mentioned there are situations in which we must study or find whic
 \medskip
 
 An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation?
+
+Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
 %
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/opmvol1.jpg}%
 \\\includegraphics[width=3em]{images/axes.pdf}%
   % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
-
-Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
 \begin{equation*}
   \yP(t) = [0\,,0\,,0]\,\unit{N\,s}\enskip\text{(constant)}.
 \end{equation*}
@@ -8982,13 +9002,13 @@ In terms of momentum, the objective of flight is to compensate or over-compensat
 The ways in which such a momentum flux between object and air is realized can be very different:
 \begin{description}
 \item[Buoyancy]
+In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
 % 
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/airlander.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
 }%
-In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
 
 \item[Soaring]
 %
@@ -9003,7 +9023,7 @@ Air is not always at rest (with respect to the Earth's surface). Owing to energy
 \end{description}
 
 %
-\marginpar{\vspace{4\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
@@ -9011,7 +9031,7 @@ Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leish
 \begin{extra}{It's not the difference in air pressure}
   Some texts say that wings can sustain an aeroplane because their cross-section has an asymmetric shape, slightly more bulged upward than downward, leading to a difference in the air pressure between the top and bottom of the wing. This is not true. In fact, aeroplanes with symmetric wings fly as well.
 \begin{quote}\footnotesize
-the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
+\emph{the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.}\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
 \end{quote}
 \end{extra}
 
@@ -9217,7 +9237,7 @@ From a molecular point of view, this momentum flux mainly comes from the momentu
 
 At the surface where the gas is in contact with its containing box, the momentum gets transferred to the box. An interesting question then arises. When the box is also at rest, the momentum contained in each portion of it is zero and remains zero. Where does the momentum that it receives from the gas go?
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gasbox_fluxes.jpg}%
 }%
 
