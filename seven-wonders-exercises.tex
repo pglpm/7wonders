@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-24T22:54:20+0100
+%% Last-Updated: 2025-02-26T22:22:12+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3757,8 +3757,198 @@ with a minus sign because the question gives the efflux; it's convenient to intr
 \section{}
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
+
+\section{}
+\label{sec:OPM_boros}
+% https://onepunchman.fandom.com
+
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/saitama.jpg}%
+  \\\includegraphics[width=0.75\linewidth]{images/boros.jpg}%
+  \\\color{mpcolor}%
+  Saitama and Boros%
+}%
+Towards the end of season~1 of \furl{https://myanimelist.net/anime/30276/One_Punch_Man/}{\emph{One Punch Man}}, \furl{https://onepunchman.fandom.com/wiki/Saitama}{Saitama} has a fight with \furl{https://onepunchman.fandom.com/wiki/Boros}{Boros}, the \enquote{Dominator of the Universe}.
+
+For fun, let's roughly estimate the force of a punch by Saitama by analysing a punch scene.
+
+Here are three video frames with their number. The left frame is the first frame where Saitama's punch is in contact with Boros's stomach. The central frame is the first where we see Saitama's punch no longer in contact with Boros. The right frame shows Boros thrown away by the punch; note the shock wave.
+\begin{center}
+\includegraphics[width=0.333\linewidth]{images/opmb1.jpg}%
+\hfill\includegraphics[width=0.333\linewidth]{images/opmb5.jpg}%
+\hfill\includegraphics[width=0.333\linewidth]{images/opmb9.jpg}%
+\\[-\jot]\footnotesize\hfill%
+\makebox[0pt][c]{frame \texttt{30732}}\hfill\hfill%
+\makebox[0pt][c]{frame \texttt{30736}}\hfill\hfill%
+\makebox[0pt][c]{frame \texttt{30740}}%
+\hfill\mbox{}%
+\end{center}
+
+Estimate the force of Saitama's punch by means of the \emph{balance of momentum} in its approximate form and of \emph{Newton's constitutive formula for the momentum of matter}. Use the following information and hints:
+\begin{itemize}
+\item Boros looks like a heavy human wrestler, and is said to be the strongest being in the universe. In this scene he also wears a suit of armour.
+
+\item Boros is standing still right before Saitama punches him.
+
+\item The shock wave indicates that Boros's speed, after being punched, is at least as high as the \furl{https://webbook.nist.gov/chemistry/fluid}{speed of sound in air}, around \qty{340}{m/s}.
+
+\item In the video, each frame lasts \qty{0.042}{s}.
+
+\item We can consider this problem to be one-dimensional, and gravity is negligible since the motion is horizontal.
+\end{itemize}
+
+\medskip
+
+In everyday situations we often quantify force in \enquote*{kilograms}, or better \enquote*{kilograms-force}, that is, in terms of the mass that would have that force as its weight. This is done by dividing the force by $g \approx \qty{9.8}{N/kg}$.
+
+Express your estimate of the force of Saitama's punch in kilogram-force unit.
+
+
+
+\section{}
+\label{sec:tennisball_RT}
+
+\emph{Preferably together with one or more colleagues:}
+
+\smallskip
+
+For this exercise, download the script for the falling tennis ball (Octave: \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.py}{\texttt{tennisball\_rP.py}}), and make first sure it runs correctly.
+
+Now explore more extreme physical situations.
+
+\begin{enumerate}[exerc]
+\item Let's imagine to be in an much stronger and extended gravitational field: set the gravitational acceleration constant to \qty{9800}{N/kg}, the simulation end-time to $\ytf = \qty{100000}{s}$ (that's a little longer than one day), and the time step to $\Dt = \qty{100}{s}$.
+
+  Run the script and make sure to save the output plots of the ball's vertical momentum $P_{z}(t)$ and vertical position $z(t)$ against time $t$. (The resulting heights are unrealistic, but don't mind about that.)
+
+  \begin{itemize}
+  \item How does the vertical momentum $P_{z}$ change with time? Would you say its time dependence is \emph{linear} or \emph{parabolic}?
+  \item What about the vertical position $z$? linear or parabolic?
+  \end{itemize}
+
+\item Now use a more precise constitutive relation between momentum and velocity. Keep the same parameters as in the previous question, but instead of Newton's $\yv= \yP/\ym$, implement the more precise formula
+  \begin{equation*}
+    \yv = \yP \frac{\yc}{\sqrt{\ym^{2} \yc^{2} + \abs{\yP}^{2}\,}}
+  \end{equation*}
+  in the appropriate place of the script. You must also declare the speed of light $\yc = \qty{299792458}{m/s}$ among the constants.
+
+  Run the script and make again sure to save the output plots of $P_{z}(t)$ and  $z(t)$ against time $t$.
+
+    \begin{itemize}
+    \item How does the vertical momentum $P_{z}$ change with time? Would you say its time dependence is \emph{linear} or \emph{parabolic}? Do you notice a difference in shape from the previous question? If you don't, try to explain mathematically why there is no difference.
+
+  \item What about the vertical position $z$? linear or parabolic? Different from the previous question?
+
+  \item If we accelerate an object, its speed cannot become larger than light's, so at most it levels up at that value. Do you manage to see this behaviour from the plots? Explain how.
+  \end{itemize}
+
+\end{enumerate}
+
+
+
+
+
 \clearpage
 \addsec{Example solutions}
+
+
+\sollabel{sec:OPM_boros}
+
+The approximate form of the momentum balance, neglecting gravity, is
+\begin{equation*}
+  \yP(\yti + \Dt) \approx \yP(\yti) + \yF(\yti) \,\Dt \,.
+\end{equation*}
+In this case $\yP$ is the momentum content of Boros's control volume, and $\yF$ the contact force exerted on it by Saitama's punch while making contact with Boros. The time $\yti$ is the time at which contact is made, and $\Dt$ is the duration of the contact. All vectors are horizontal and parallel.
+
+Newton's constitutive formula for momentum says that Boros's momentum is
+\begin{equation*}
+  \yP = \ym \yv
+\end{equation*}
+where $\ym$ and $\yv$ are Boros's mass and velocity.
+
+Combining the two equations and solving for $\yF$ we find
+\begin{equation*}
+  \yF \approx \ym\,\frac{\yv(\yti + \Dt) - \yv(\yti)}{\Dt} \,.
+\end{equation*}
+So we can estimate the force of Saitama's punch if we can estimate the four quantities $\ym$, $\yv(\yti)$, $\yv(\yti+\Dt)$, $\Dt$.
+
+\begin{itemize}
+\item Boros's mass is probably the quantity most difficult  to estimate. Considering that a human heavy wrestler can have a mass of more than \qty{100}{kg}, and that Boros is also wearing an armour, let's estimate his mass at $\ym \approx \qty{200}{kg}$. Note that if we halve or double this amount, then the estimate of the force $\yF$ will be halved or doubled as well.
+
+\item Boros's initial velocity is zero, because he is initially standing still: $\yv(\yti) = \qty{0}{m/s}$.
+
+\item Boros's final velocity is larger than the speed of sound; it might be much larger: $\yv(\yti+\Dt) \gtrsim \qty{340}{m/s}$.
+
+\item From the frame numbers we see that the duration $\Dt$ of the contact between Saitama's punch and Boros lasts less than 4 frames. Each frame lasts \qty{0.042}{s}, so $\Dt \lesssim \qty{4}{frames}\cdot \qty{0.042}{s/frame} \approx \qty{0.17}{s}$.
+\end{itemize}
+
+Substituting these estimates we find
+\begin{equation*}
+  yF \approx \ym\,\frac{\yv(\yti + \Dt) - \yv(\yti)}{\Dt}
+  \gtrsim \qty{200}{kg} \cdot
+  \frac{\qty{340}{m/s}}{\qty{0.17}{s}} \approx
+  \qty{400000}{N} \,.
+\end{equation*}
+If we double or halve our estimate of Boros's mass, the force could be \qty{800000}{N} or \qty{200000}{N}.
+
+In terms of equivalent weight, this force is
+\begin{equation*}
+  \qty{400000}{N}/g = \qty{400000}{N}/\qty{9.8}{N/kg} \approx \qty{40000}{kg}
+\end{equation*}
+or \qty{40}{tonnes}. 
+
+So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentrated in less than half a second.
+
+
+
+\label{sec:tennisball_RT}
+
+\begin{enumerate}[exerc]
+\item Here are the plots from the modified script with high gravity $g$:
+  \begin{center}
+    \hfill\includegraphics[width=\linewidth]{images/tennisball_highg.pdf}%
+  \end{center}
+
+  The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time: its graph is a line. The vertical position $z(t)$ instead decreases \emph{quadratically} or parabolically with time: its graph is a parabola. This is indeed the behaviour we expect in a constant gravitational field (see \chap~10 of our lecture notes).
+
+\item The improved constitutive relations is implemented by replacing the line\\
+  \begin{tabular}{ll}
+    \verb|v = P / m;| & (Octave)
+    \\
+    \verb|v = P / m| & (Python)
+  \end{tabular}
+  \\ with\\
+  \begin{tabular}{ll}
+    \verb|v = c * P / sqrt(c^2 * m^2 + norm(P)^2);| & (Octave)
+    \\
+    \verb|v = c * P / sqrt(c**2 * m**2 + norm(P)**2)| & (Python)
+  \end{tabular}
+\\  and adding \\
+  \begin{tabular}{ll}
+    \verb|c = 299792458;| & (Octave)
+    \\
+    \verb|c = 299792458| & (Python)
+  \end{tabular}
+  in the \texttt{Constants} block.
+
+  The plots from this modified script are these:
+  \begin{center}
+    \hfill\includegraphics[width=\linewidth]{images/tennisball_highg_highv.pdf}%
+  \end{center}
+
+  The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time, as in the previous case. This happens because at every time step the momentum is increased by the amount $\yG$, which is constant.
+
+  The vertical position $z(t)$ at first has a curved graph, so it could be almost \emph{quadratic} there; but then it flattens out and becomes a line, so its dependence becomes \emph{linear}. This is unlike the previous case.
+
+If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t + B$, then its velocity is $\di z(t)/\dt = A$, a constant. This must be the speed of light: at some point the tennis ball approaches the speed of light, and it must stay at that value. In fact, the slope of $z(t)$ can be estimated from the graph above, and it is indeed around \qty{300000000}{m/s}.
+
+\end{enumerate}
+
+
+
+
+% 23.976/s : 0.0417 s/frame
+% 5.5e5 N : 4.2e4 kg = 42000 kg
+
 
 
 % \section{Formulation and generalities}
