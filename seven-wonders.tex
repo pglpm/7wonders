@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-25T22:14:10+0100
+%% Last-Updated: 2025-02-26T07:31:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7656,7 +7656,7 @@ To start with, we shall simplify the situation as follows:
 }%
 These simplification are illustrated in the side figure. The closed control surface is represented by the \textcolor{yellow}{dashed yellow line}. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be elliptical or round, or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
 
-We assume that momentum fluxes, that is, surface forces, only occur at the two parts represented by the \textcolor{red}{solid red lines}, which we may call $a$ and $b$, or \enquote*{1} and \enquote*{2}, or similar symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$ or a similar symbol.
+We assume that momentum fluxes, that is, surface forces, only occur at the two parts represented by the \textcolor{purple}{solid dark-red lines}, which we may call $a$ and $b$, or \enquote*{1} and \enquote*{2}, or similar symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$ or a similar symbol.
 
 If the partial surfaces $a$ and $b$ are enough small, we may identify their positions with position vectors $\yra$ and $\yrb$ (not indicated in the figure). In this case we have $\yle = \abs{\yra - \yrb}$.
 
@@ -7793,8 +7793,8 @@ where $\yra$, $\yrb$ are the positions of the small surfaces, which may of cours
 \includegraphics[width=0.75\linewidth]{images/spring.jpg}%
 }%
 We are all familiar with elastic springs, and similar objects which approximately agree with our simplified setup:
-\begin{itemize}[nosep]
-\item one of their dimensions, which we may call their \emph{length}, is somehow singled out, maybe because more extended, with respect to the other two;
+\begin{itemize}[noitemsep]
+\item one of their dimensions, which we may call their \emph{length}, is somehow singled out, for instance because more extended, with respect to the other two;
 \item if we try to modify their length along that particular dimension, they experience (and exert) a surface force.
 \end{itemize}
 
@@ -7838,6 +7838,8 @@ In some physical situations the natural length of the piece of material is negli
       \yFa = -\yFb = k\,(\yra - \yrb)\,.
 \end{equation*}
 Note that in this case the material always exerts a tension, never a pressure.
+
+The elastic constant $k$ determines the stiffness of the Hookean material. If $k$ is very large, the material is very stiff, because a small deformation $\yle-\ylo$ corresponds to a large contact force; that is, we need large forces to effect just a small deformation. This constant can never be negative; this is a consequence of the \emph{balance of entropy} which we'll discuss in \chap~\eqref{eq:bal_entropy}.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
@@ -7928,11 +7930,10 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
     \end{aligned}
   \end{equation*}
 %
-\marginpar{\vspace{-20\baselineskip}\footnotesize\centering%
-\includegraphics[height=15em]{images/hooke_controls.jpg}%
+\marginpar{\vspace{-25\baselineskip}\footnotesize\centering%
+\includegraphics[height=22em]{images/hooke_controls.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
-Schematics of the analysis. The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between the Hookean material and the two bodies are depicted by two \textcolor{purple}{thick red lines}. The fluxes $\yFab$, $\yFba$ happen across these surfaces, but their vectors are placed on the side in the illustration. The vectors representing the velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are omitted for clarity.
-}%
+The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between the Hookean material and the two bodies are indicated by two \textcolor{purple}{thick dark-red lines}. The fluxes $\yFab$, $\yFba$ occur across these surfaces, but their vectors are placed on the side in the illustration for clarity. The velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are not shown.}%
 
 \item[Spring:] The control volume for the piece of Hookean material has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with the control volumes for bodies $a$ and $b$. The amount of matter and matter flux in this control volume are considered to be zero. The same is true for the \masse\ and the  momentum content and supply.
 
@@ -8906,19 +8907,19 @@ Together, these factors lead to a zero total when we sum up all the atmospheric-
 
 Indeed we suddenly feel the heavy presence of atmospheric pressure when the first or the last of those factors doesn't hold anymore.
 
-For example you may sometime have made the mistake of laying a wide slab of glass, say from a window, upon another, only to find out that you couldn't easily lift it up anymore: the two slabs were sort of \enquote{stuck} together.
 %
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
-\includegraphics[align=t,width=\linewidth]{images/glassslabs.png}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/glassslabs.png}%
 }%
-The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So the total momentum flux from air to the upper slab does no longer sum up to zero: there's only a compressive flux of downward momentum from air to the slab across its upper surface. As mentioned, for a \qty{1}{m^2} slab this flux is equivalent to a weight of \qty{10000}{kg}! You can't lift the upper slab, not because it's \enquote{stuck} to the lower one, but because it suddenly has a net force of 10\:tonnes on top (which presses the two glass slabs together even more, and therefore drives out more air between them). The only thing you can do is to try to let air again between the two slabs, for instance moving them to a vertical position, so that there will again be atmospheric pressure on both sides of each slab.
+For example you may sometime have made the mistake of laying a wide, smooth slab of glass upon another, only to find out that you couldn't easily separate them anymore: the two slabs were sort of \enquote{stuck} together.
+The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So air is exerting a contact force on the upper side of the top slab and on the lower side of the bottom slab, pressing the two against each other. As mentioned, for a \qty{1}{m^2} slab this momentum flux is equivalent to a weight of \qty{10000}{kg}! You can't separate the slabs, not because they're \enquote{glued} together, but because they're pressed against each other by a net force of \qty{10}{tonnes} on each side. The only thing you can do is to try to let air again between the two slabs.
 
 %
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[align=t,width=\linewidth]{images/sucker.jpg}%
+\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.75\linewidth]{images/sucker.jpg}%
 }%
 The same phenomenon occurs, in a more useful way, with a suction cup:
-the atmospheric pressure on its two sides is very different, and therefore it receives a net influx of momentum pointing towards the wall. This, in turn, leads to an influx of upward momentum owing to friction (which we'll discuss later), which compensate for the momentum supply from gravity. Thus the cup can stay in place without falling and even support some object.
+the atmospheric pressure on its two sides is very different, and therefore the cup receives a net influx of momentum pointing towards the wall. This, in turn, leads to an influx of upward momentum owing to \autoref{sec:friction_normal_force}{friction}, which compensates for the momentum supply from gravity. Thus the cup can stay in place without falling, and it can even support some object.
 
 \medskip
 
@@ -8953,7 +8954,7 @@ The ways in which such a momentum flux between object and air is realized can be
 \begin{description}
 \item[Buoyancy]
 % 
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/airlander.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
