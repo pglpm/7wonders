@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-26T07:31:38+0100
+%% Last-Updated: 2025-02-26T10:34:46+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7933,7 +7933,7 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 \marginpar{\vspace{-25\baselineskip}\footnotesize\centering%
 \includegraphics[height=22em]{images/hooke_controls.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
-The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between the Hookean material and the two bodies are indicated by two \textcolor{purple}{thick dark-red lines}. The fluxes $\yFab$, $\yFba$ occur across these surfaces, but their vectors are placed on the side in the illustration for clarity. The velocities $\yva$, $\yvb$, and the momentum supplies $\yGa$, $\yGb$ are not shown.}%
+The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between the Hookean material and the two bodies are indicated by two \textcolor{purple}{thick dark-red lines}. The fluxes $\yFab$, $\yFba$ occur across these surfaces, but their vectors are placed on the side in the illustration for clarity. The velocities $\yva$, $\yvb$, and momentum supplies $\yGa$, $\yGb$ are not shown.}%
 
 \item[Spring:] The control volume for the piece of Hookean material has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with the control volumes for bodies $a$ and $b$. The amount of matter and matter flux in this control volume are considered to be zero. The same is true for the \masse\ and the  momentum content and supply.
 
@@ -8000,11 +8000,22 @@ that can be solved analytically.
 \begin{exercise}
   Try to refresh your knowledge of linear differential equations with constant coefficients, and find the general solution for the equations above.
 
+  \smallskip
+
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\section{Numerical time integration and state of a system}
+\section[The concept of state. A strategy for numerical time integration]{The concept of state\\A strategy for numerical time integration}
 \label{sec:strategy_simulation}
+
+The present section is somewhat peculiar because we shall discuss two very different topics, one practical and one conceptual:
+\begin{itemize}[noitemsep]
+\item A step-by-step strategy to write a script for numerical time integration for physical systems, starting from the physical analysis of the system.
+\item The concept of \textbf{physical state} of a physical system.
+\end{itemize}
+The reason for a joint section is that the scripting strategy is very helpful for understanding the concept of physical state; and vice versa this concept is key to understanding some steps of the scripting strategy.
+
+\bigskip
 
 The physical system of two masses connected by a Hookean spring can be solved, and its behaviour predicted, analytically. But finding analytical solutions becomes more difficult or even impossible as soon as we consider \autoref{sec:nonhooke}{non-Hookean springs} and more general constitutive relations, or more masses. We then resort to numerical time-integration methods to predict the behaviour of such systems.
 
@@ -8090,7 +8101,7 @@ This is now our starting point. Let's see a reasoned set of steps to write a scr
 \bigskip
 
 
-\subsection{A strategy for writing a numerical time-integration algorithm}
+\subsection{A strategy for writing numerical time-integration algorithms}
 \label{sec:strategy_scheme}
 
 Our strategy can be divided into seven systematic steps, which we reason out now. The script can be written along, as we follow them. After each step, take a look at the example script of table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy}, and locate the lines where that step was implemented.
@@ -8435,12 +8446,16 @@ end
   \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle} \,.
 \end{equation*}
 
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+But we can easily find materials and objects that deviate from Hooke's law. We can try to model their behaviour by choosing alternative expressions for the constitutive function $f(\dotso)$. Small mathematical changes in this function can lead to different, interesting new physical behaviours; take for instance a look at the plots in Exercise~\ref{ex:non_hooke} below. Alternative mathematical expressions of the constitutive function $f(\dotso)$ may be difficult or impossible to be approached with analytical methods, but can easily be time-integrated numerically.
+
+\subsection{Rubber bands and strings}
+%
+\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/rubberbands.png}%
 }
-Items like rubber bands and strings deviate from Hooke's law in a notable way: they exert a purely tensile surface force, and they only exert it if they are stretched beyond their natural, relaxed length. Otherwise they don't exert any force.
+Items like rubber bands and strings deviate from Hooke's law in a notable way: they exert a purely tensile surface force, and they only exert it if they are stretched beyond their natural, relaxed length. If the distance between their extremities is shorter than their natural length, then no forces are exerted -- no momentum fluxes occur.
 
-This kind of behaviour can of course be modelled, at least qualitatively, by a constitutive equation like the following:
+This kind of behaviour can be modelled, at least qualitatively, by a constitutive equation like the following:
 \begin{definition}{Constitutive equation for rubber bands and strings}
   Suppose that the two extremities of a piece of material, such as a rubber band, have position vectors $\yra$ and $\yrb$. The natural length of the piece is $\ylo$. Then the momentum \textbf{ef}fluxes at the extremities $\yra$ and $\yrb$ are approximately given by
   \begin{equation}
@@ -8456,9 +8471,11 @@ This kind of behaviour can of course be modelled, at least qualitatively, by a c
     \end{dcases*}
   \end{equation}
   with $\yle \defd \abs{\yra-\yrb}$.
-\end{definition}
 
-A string can be approximately modelled by such a constitutive equation with a large constant $k$. This constitutive equation is difficult to be used with analytical methods, but is easily time-integrated numerically. These small mathematical changes in the constitutive relation can lead to much richer sets of behaviours, as shown by the side figures in the exercise below.
+  \smallskip
+
+  A string can be approximately modelled by such a constitutive equation with a large constant $k$.
+\end{definition}
 
 
 \subsection{Pairwise forces}
@@ -8484,13 +8501,13 @@ Dependence on other, non-geometric quantities is also common. For instance $f(\d
 
 
 
-\pagebreak[4]
+%\pagebreak[4]
 \marginpar{\vspace{12\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
 \\[\jot]\flushleftright\color{mpcolor}%
-Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{Mass $b$ in red}%
+Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{mass $b$ in red}%
 }%
 \begin{exercise}[label={ex:non_hooke}]
   {\footnotesize\emph{(You can download \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
