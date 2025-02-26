@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-26T22:22:12+0100
+%% Last-Updated: 2025-02-26T23:10:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3827,9 +3827,11 @@ Now explore more extreme physical situations.
 
 \item Now use a more precise constitutive relation between momentum and velocity. Keep the same parameters as in the previous question, but instead of Newton's $\yv= \yP/\ym$, implement the more precise formula
   \begin{equation*}
-    \yv = \yP \frac{\yc}{\sqrt{\ym^{2} \yc^{2} + \abs{\yP}^{2}\,}}
+    \yv = \yP / \sqrt{\ym^{2} + \abs{\yP}^{2}/\yc^{2}\,}
   \end{equation*}
   in the appropriate place of the script. You must also declare the speed of light $\yc = \qty{299792458}{m/s}$ among the constants.
+
+  {\footnotesize (Note: in Octave and Python, the norm $\abs{\dotso}$ is implemented as \verb|norm(...)| and the square root as \verb|sqrt(...)|. Raising to a square, $\dotso^{2}$, is implemented as \verb|...^2| in Octave and as \verb|...**2| in Python.)\par}
 
   Run the script and make again sure to save the output plots of $P_{z}(t)$ and  $z(t)$ against time $t$.
 
@@ -3883,7 +3885,7 @@ So we can estimate the force of Saitama's punch if we can estimate the four quan
 
 Substituting these estimates we find
 \begin{equation*}
-  yF \approx \ym\,\frac{\yv(\yti + \Dt) - \yv(\yti)}{\Dt}
+  \yF \approx \ym\,\frac{\yv(\yti + \Dt) - \yv(\yti)}{\Dt}
   \gtrsim \qty{200}{kg} \cdot
   \frac{\qty{340}{m/s}}{\qty{0.17}{s}} \approx
   \qty{400000}{N} \,.
@@ -3900,7 +3902,7 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
 
 
 
-\label{sec:tennisball_RT}
+\sollabel{sec:tennisball_RT}
 
 \begin{enumerate}[exerc]
 \item Here are the plots from the modified script with high gravity $g$:
@@ -3910,24 +3912,24 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
 
   The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time: its graph is a line. The vertical position $z(t)$ instead decreases \emph{quadratically} or parabolically with time: its graph is a parabola. This is indeed the behaviour we expect in a constant gravitational field (see \chap~10 of our lecture notes).
 
-\item The improved constitutive relations is implemented by replacing the line\\
-  \begin{tabular}{ll}
+\item The improved constitutive relations is implemented by replacing the line
+  \\\begin{tabular}{ll}
     \verb|v = P / m;| & (Octave)
     \\
     \verb|v = P / m| & (Python)
-  \end{tabular}
-  \\ with\\
-  \begin{tabular}{ll}
-    \verb|v = c * P / sqrt(c^2 * m^2 + norm(P)^2);| & (Octave)
+  \end{tabular}\\
+  with
+  \\\begin{tabular}{ll}
+    \verb|v = P / sqrt(m^2 + norm(P)^2 / c^2);| & (Octave)
     \\
-    \verb|v = c * P / sqrt(c**2 * m**2 + norm(P)**2)| & (Python)
-  \end{tabular}
-\\  and adding \\
-  \begin{tabular}{ll}
+    \verb|v = P / sqrt(m**2 + norm(P)**2 / c**2)| & (Python)
+  \end{tabular}\\
+and adding
+  \\\begin{tabular}{ll}
     \verb|c = 299792458;| & (Octave)
     \\
     \verb|c = 299792458| & (Python)
-  \end{tabular}
+  \end{tabular}\\
   in the \texttt{Constants} block.
 
   The plots from this modified script are these:
@@ -3935,9 +3937,9 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
     \hfill\includegraphics[width=\linewidth]{images/tennisball_highg_highv.pdf}%
   \end{center}
 
-  The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time, as in the previous case. This happens because at every time step the momentum is increased by the amount $\yG$, which is constant.
+  The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time, as in the previous case. This happens because at every time step the momentum is increased by the amount $\yG$, which is constant, just like before.
 
-  The vertical position $z(t)$ at first has a curved graph, so it could be almost \emph{quadratic} there; but then it flattens out and becomes a line, so its dependence becomes \emph{linear}. This is unlike the previous case.
+  The vertical position $z(t)$ has a curved graph at first, but then it flattens out and becomes a line, so its dependence becomes \emph{linear}. This is different from the previous case. Because of this, the (negative) final vertical position is also less than in the previous case.
 
 If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t + B$, then its velocity is $\di z(t)/\dt = A$, a constant. This must be the speed of light: at some point the tennis ball approaches the speed of light, and it must stay at that value. In fact, the slope of $z(t)$ can be estimated from the graph above, and it is indeed around \qty{300000000}{m/s}.
 
