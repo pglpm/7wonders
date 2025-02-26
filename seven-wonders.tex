@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-26T10:34:46+0100
+%% Last-Updated: 2025-02-26T10:59:07+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8446,11 +8446,15 @@ end
   \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle} \,.
 \end{equation*}
 
-But we can easily find materials and objects that deviate from Hooke's law. We can try to model their behaviour by choosing alternative expressions for the constitutive function $f(\dotso)$. Small mathematical changes in this function can lead to different, interesting new physical behaviours; take for instance a look at the plots in Exercise~\ref{ex:non_hooke} below. Alternative mathematical expressions of the constitutive function $f(\dotso)$ may be difficult or impossible to be approached with analytical methods, but can easily be time-integrated numerically.
+But we can easily find materials and objects that deviate from Hooke's law. We can try to model their behaviour by choosing alternative expressions for the constitutive function $f(\dotso)$. We discuss some examples below.
+
+Small mathematical changes in the constitutive function $f(\dotso)$ can lead to different, interesting new physical behaviours; take for instance a look at the plots in Exercise~\ref{ex:non_hooke} below. Alternative mathematical expressions of this constitutive function may be difficult or impossible to be approached with analytical methods, but can easily be time-integrated numerically.
+
+It's therefore important that you \emph{play} with the scripts by changing the constitutive function and observing what happens. In some of these explorations your script may break: it means that you've hit upon some extreme physical situation, which need careful numerical handling. Just start anew and try different values of the physical parameters, or of the time step, or some less drastic changes to the constitutive function.
 
 \subsection{Rubber bands and strings}
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/rubberbands.png}%
 }
 Items like rubber bands and strings deviate from Hooke's law in a notable way: they exert a purely tensile surface force, and they only exert it if they are stretched beyond their natural, relaxed length. If the distance between their extremities is shorter than their natural length, then no forces are exerted -- no momentum fluxes occur.
@@ -8477,6 +8481,8 @@ This kind of behaviour can be modelled, at least qualitatively, by a constitutiv
   A string can be approximately modelled by such a constitutive equation with a large constant $k$.
 \end{definition}
 
+The script \texttt{rubberband} (Octave: \furl{https://pglpm.github.io/7wonders/code/rubberband.m}{\texttt{rubberband.m}}; Python: \furl{https://pglpm.github.io/7wonders/code/rubberband.py}{\texttt{rubberband.py}}) implements this kind of constitutive function. Before downloading it, try to build it yourself; see Exercise~\ref{ex:non_hooke} below.
+
 
 \subsection{Pairwise forces}
 
@@ -8502,13 +8508,6 @@ Dependence on other, non-geometric quantities is also common. For instance $f(\d
 
 
 %\pagebreak[4]
-\marginpar{\vspace{12\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{mass $b$ in red}%
-}%
 \begin{exercise}[label={ex:non_hooke}]
   {\footnotesize\emph{(You can download \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
 
@@ -8648,6 +8647,13 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 
 \end{enumerate}
 \end{exercise}
+\marginpar{\vspace{-25\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{mass $b$ in red}%
+}%
 
 
 \section{Many-body systems}
@@ -8655,13 +8661,19 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 
 We can obviously consider more than two objects connected by a number of springs or other pairwise forces. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
 
+This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/md_simulation.png}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics}}%
 }%
-This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
+
+\section[What if the two masses are not attached? Beyond the no-mass simplification]{What if the two masses are not attached?\\Beyond the no-mass simplification}
+\label{sec:no_nomass}
+
+
+
 
 
 \section{Friction and normal forces}
