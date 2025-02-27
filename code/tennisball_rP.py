@@ -27,13 +27,11 @@ dt = 0.01 # s: time step
 dtplot = t1/360 # time interval between plots
 tplot = dtplot # time for next plot
 figure()
-subplot(2, 1, 1)
-plot(t, P[2], '.b')
+subplot(2, 1, 1); plot(t, P[2], '.b')
 xlim([0, t1])
 xlabel('time t/s'); ylabel('z-momentum P_z/(Ns)')
 grid(True)
-subplot(2, 1, 2)
-plot(t, r[2], '.r')
+subplot(2, 1, 2); plot(t, r[2], '.r')
 xlim([0, t1])
 xlabel('time t/s'); ylabel('z-coord z/m')
 grid(True)
@@ -50,10 +48,8 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    subplot(2, 1, 1)
-    plot(t, P[2], '.b')
-    subplot(2, 1, 2)
-    plot(t, r[2], '.r')
+    subplot(2, 1, 1); plot(t, P[2], '.b')
+    subplot(2, 1, 2); plot(t, r[2], '.r')
     tplot = tplot + dtplot
 
 plt.show()

@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-26T23:10:49+0100
+%% Last-Updated: 2025-02-27T00:43:26+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -1105,6 +1105,8 @@ angle-right%
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{as}}
 \newcommand*{\yFba}{\yF_{bs}}
+\newcommand*{\yFa}{\yF_{a}}
+\newcommand*{\yFb}{\yF_{b}}
 \newcommand*{\yFpg}{F_{\text{pg}}}
 \newcommand*{\yFgp}{F_{\text{gp}}}
 \newcommand*{\yFatm}{F_{\text{atm}}}
@@ -3846,8 +3848,137 @@ Now explore more extreme physical situations.
 \end{enumerate}
 
 
+\section{}
+\label{sec:tennisball_double}
 
 
+\emph{Preferably together with one or more colleagues:}
+
+\smallskip
+
+For this exercise, use again the script for the falling tennis ball (Octave: \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.py}{\texttt{tennisball\_rP.py}}).
+
+Suppose that you want to describe the physical behaviour of not one, but \emph{two} tennis balls:
+\begin{enumerate}[exerc]
+\item How many control volumes would you use?
+
+\item How many balances of momentum? Why?
+
+\item Modify the tennis-ball script so that it simulates two tennis balls instead of one.
+  \begin{itemize}
+  \item Suppose that the tennis balls \enquote{don't see} each other, so you don't need to worry about momentum fluxes between them.
+  \item Allow for the possibility that the two tennis balls have different masses.
+  \item Try to modify the plots so that the vertical positions of the two balls are plotted against time.
+  \end{itemize}
+
+  Which modifications do you need to make to the script? Try them out and see if they work.
+\end{enumerate}
+
+
+\section{}
+\label{sec:tennisball_collision_theory}
+
+This is a continuation of Exercise~\ref{sec:tennisball_double}.
+
+Let's add the possibility that the two tennis balls may collide, in which case there is a momentum flux (contact force) between them. We must find a constitutive relation for this momentum flux.
+
+Call $\yra$ and $\yrb$ the positions of the two tennis balls, and $\yFa$ the \textbf{in}flux of momentum into tennis ball $a$ from $b$. Let's the following constitutive relation:
+\begin{equation*}
+  \yFa =
+  \begin{dcases}
+    [0, 0, 0]\,\unit{N}
+    & \text{if}\enskip\abs{\yra - \yrb} > d
+    \\
+    \frac{k}{\abs{\yra - \yrb}^{2}}\, (\yra - \yrb)
+    & \text{if}\enskip\abs{\yra - \yrb} \le d
+  \end{dcases}
+\end{equation*}
+where $k$ is a constant, and $d$ is the diameter of one tennis ball, or equivalently the distance between their centres when they touch.
+
+\begin{enumerate}[exerc]
+\item What is the physical dimension of the constant $k$?
+
+\item When the tennis balls touch, what are the \emph{direction} and the \emph{orientation} of the momentum \textbf{in}flux $\yFa$?
+
+\item How does the \emph{magnitude} of the momentum influx $\yFa$ depend on distance? Does it increase or decrease when the distance decreases? What is its value when $\yra = \yrb$, that is, the centres of the tennis balls coincide?
+
+\item Call $\yFb$ the \textbf{in}flux of momentum into tennis ball $b$. How is it related to $\yFa$? Which principle do you use to find this relation?
+
+\item Can the fluxes $\yFa$ and $\yFb$ be considered as \emph{boundary conditions} in this physical problem?
+\end{enumerate}
+
+
+\section{}
+\label{sec:tennisball_collision_script}
+
+This is a continuation of Exercise~\ref{sec:tennisball_collision_theory}.
+
+Start from the script simulating two independent tennis balls, and implement the constitutive relation from the previous exercise, by means of an \texttt{if-else} construct. In particular:
+
+\begin{enumerate}[exerc]
+\item Where in the time-iteration \texttt{while}-loop should the constitutive relation for $\yFa$ appear? why?
+
+\item In order to calculate $\yFb$, use the principle of symmetry of flux. Where in the \texttt{while}-loop should this calculation appear? Why?
+
+\item Prepare the script with the following constants, initial conditions, and time-iteration parameters:
+  \begin{equation*}
+    \begin{gathered}
+      \yma = \qty{0.06}{kg}
+      \qquad
+      \ymb = \qty{0.06}{kg}
+      \qquad
+      k = \qty{10}{N\,m}
+      \qquad
+      d = \qty{0.07}{m}
+      \\[1ex]
+      \yra = [0,0,10]\,\unit{m}
+      \qquad
+      \yrb = [0,0,5]\,\unit{m}
+      \\[\jot]
+      \yPa = [0,0,-0.5]\,\unit{N\,s}
+      \qquad
+      \yPb = [0,0,0.5]\,\unit{N\,s}
+      \\[1ex]
+      \ytf = \qty{2}{s}
+      \qquad
+      \Dt = \qty{0.00001}{s}
+    \end{gathered}
+  \end{equation*}
+
+  Analysing these values, what do expect to happen? will the tennis ball bounce against each other? how many times?
+
+\item Now let's change the parameters for tennis ball $a$ so that it behaves like  the floor: it's heavy and the force of gravity on it can be neglected. Prepare the script with the following constants, initial conditions, boundary conditions, and time-iteration parameters:
+  \begin{equation*}
+    \begin{gathered}
+      \yma = \qty{0.06}{kg}
+      \qquad
+      \ymb = \qty{10000}{kg}
+      \qquad
+      k = \qty{10}{N\,m}
+      \qquad
+      d = \qty{0.07}{m}
+      \\[1ex]
+      \yGa = -\yma * g * [0, 0, 1]
+      \qquad
+      \yGb = [0, 0, 0]
+      \\[1ex]
+      \yra = [0,0,5]\,\unit{m}
+      \qquad
+      \yrb = [0,0,0]\,\unit{m}
+      \\[\jot]
+      \yPa = [0,0,0]\,\unit{N\,s}
+      \qquad
+      \yPb = [0,0,0]\,\unit{N\,s}
+      \\[1ex]
+      \ytf = \qty{2}{s}
+      \qquad
+      \Dt = \qty{0.00001}{s}
+    \end{gathered}
+  \end{equation*}
+
+  Analysing these values, what do you expect to happen? will the tennis ball bounce on the floor? how many times?
+
+\end{enumerate}
 
 \clearpage
 \addsec{Example solutions}
