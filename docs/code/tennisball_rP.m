@@ -21,14 +21,14 @@ dt = 0.01; % s: time step %@
 %% Plotting
 dtplot = t1/360; % time interval between plots
 tplot = dtplot; % time for next plot
-clf;
+figure
 subplot(2, 1, 1); plot(t, P(3), '.b')
 xlim([0, t1])
-xlabel('time t/s'); ylabel('z-momentum P_z/(Ns)')
+xlabel('time {\it t}/s'); ylabel('z-momentum {\it P_z}/(Ns)')
 axis('tight'); grid on; hold on
 subplot(2, 1, 2); plot(t, r(3), '.r')
 xlim([0, t1])
-xlabel('time t/s'); ylabel('z-coord z/m')
+xlabel('time {\it t}/s'); ylabel('z-coord. {\it z}/m')
 axis('tight'); grid on; hold on %@
 
 %% Numerical time integration

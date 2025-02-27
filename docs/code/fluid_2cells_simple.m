@@ -28,7 +28,7 @@ F3 = A/V * R * T * N2;
 
 
 
-clf;
+figure
 subplot(2,1,1)
 plot(t, N1, '.', 'Color','blue');
 xlim([0, t_end]); ylim([0.3, 1.1]);

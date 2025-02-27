@@ -34,11 +34,11 @@ tplot = dtplot # time for next plot
 figure()
 subplot(2, 1, 1); plot(t, ra[2], '.b')
 xlim([0, t1])
-xlabel('time t/s'); ylabel('z_a/m')
+xlabel('${\it t}$/s'); ylabel('${\it z_a}$/m')
 grid(True)
 subplot(2, 1, 2); plot(t, rb[2], '.r')
 xlim([0, t1])
-xlabel('time t/s'); ylabel('z_b/m')
+xlabel('${\it t}$/s'); ylabel('${\it z_b}$/m')
 grid(True)  #@
 
 ## Numerical time integration

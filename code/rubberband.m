@@ -1,5 +1,5 @@
 %%% Simulation of two bodies connected by non-Hookean material in 2D
-%% Coordinates (y, z)
+%% Coordinates (t, y, z)
 
 %% Constants
 ma = 2;	    % kg: mass of object a
@@ -26,11 +26,11 @@ dt = 0.001;  % s: time step %@
 %% Plotting
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;	  % time for next plot
-clf
+figure
 plot(ra(1), ra(2), 'sb')
 hold on; grid on
 plot(rb(1), rb(2), 'or')
-xlabel('position y/m'); ylabel('position z/m') %@
+xlabel('{\it y}/m'); ylabel('{\it z}/m') %@
 
 %% State: ra, rb, va, vb
 %% Numerical time integration

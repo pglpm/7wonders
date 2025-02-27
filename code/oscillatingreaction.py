@@ -24,10 +24,10 @@ dt = 0.0001 # s: time step
 ## Plotting
 dtplot = t1/360; # time interval between plots
 tplot = dtplot; # time for next plot
-clf()
+figure
 plot(t, Nu, '.b')
 xlim([0, t1])
-xlabel('time t/s'); ylabel('amount N/mol')
+xlabel('time ${\it t}$/s'); ylabel('amount ${\it N}$/mol')
 grid(True)
 plot(t, Nv, '.r')
 

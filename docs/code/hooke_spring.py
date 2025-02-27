@@ -1,5 +1,5 @@
 ### Simulation of two bodies connected by Hookean material in 2D
-## Coordinates (y, z)
+## Coordinates (t, y, z)
 from matplotlib.pyplot import *
 from numpy import *
 from numpy.linalg import norm
@@ -31,11 +31,11 @@ dt = 0.001  # s: time step #@
 ## Plotting
 dtplot = t1/360  # time interval between plots
 tplot = dtplot	 # time for next plot
-clf
+figure
 plot(ra[0], ra[1], 'sb')
 grid(True)
 plot(rb[0], rb[1], 'or')
-xlabel('position y/m'); ylabel('position z/m') #@
+xlabel('${\it y}$/m'); ylabel('${\it z}$/m') #@
 
 ## State: ra, rb, va, vb
 ## Numerical time integration
