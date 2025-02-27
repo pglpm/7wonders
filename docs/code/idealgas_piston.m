@@ -20,7 +20,7 @@ v = 0;  % m/s: initial velocity of piston
 T = 273.15 + 23;  % K: initial temperature of gas
 
 %% Boundary conditions
-G = -m*g;  % N: gravity supply of momentum to piston
+Gpis = -m*g;  % N: gravity supply of momentum to piston
 
 %% Parameters for time loop
 t1 = 1;       % s: final time
@@ -46,18 +46,18 @@ while t < t1
   Q = A * h * (Text - T);
   Phi = (Q + Fgas * v);
   E = C * N * T;
-  P = m * v;
+  Ppis = m * v;
   Fpis = -Fgas + Fatm;
 
   %% step forward in time with balance laws
   t = t + dt;
   E = E + Phi * dt;
-  P = P + (Fpis + G) * dt;
+  Ppis = Ppis + (Fpis + Gpis) * dt;
   z = z + v * dt;
 
   %% constitutive relations: calculate state
   T = E / (C * N);
-  v = P / m;  %@
+  v = Ppis / m;  %@
 
   %% plot
   if t > tplot
