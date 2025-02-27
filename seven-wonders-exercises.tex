@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-27T00:43:26+0100
+%% Last-Updated: 2025-02-27T01:26:57+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3893,14 +3893,14 @@ Call $\yra$ and $\yrb$ the positions of the two tennis balls, and $\yFa$ the \te
     & \text{if}\enskip\abs{\yra - \yrb} \le d
   \end{dcases}
 \end{equation*}
-where $k$ is a constant, and $d$ is the diameter of one tennis ball, or equivalently the distance between their centres when they touch.
+where $k$ is a positive constant, and $d$ is the diameter of one tennis ball, or equivalently the distance between their centres when they touch.
 
 \begin{enumerate}[exerc]
 \item What is the physical dimension of the constant $k$?
 
 \item When the tennis balls touch, what are the \emph{direction} and the \emph{orientation} of the momentum \textbf{in}flux $\yFa$?
 
-\item How does the \emph{magnitude} of the momentum influx $\yFa$ depend on distance? Does it increase or decrease when the distance decreases? What is its value when $\yra = \yrb$, that is, the centres of the tennis balls coincide?
+\item How does the \emph{magnitude} of the momentum influx $\yFa$ depend on the distance between the tennis balls? Does it increase or decrease when the distance decreases? What is its value when $\yra = \yrb$, that is, the centres of the tennis balls coincide?
 
 \item Call $\yFb$ the \textbf{in}flux of momentum into tennis ball $b$. How is it related to $\yFa$? Which principle do you use to find this relation?
 
@@ -4065,7 +4065,7 @@ and adding
 
   The plots from this modified script are these:
   \begin{center}
-    \hfill\includegraphics[width=\linewidth]{images/tennisball_highg_highv.pdf}%
+    \includegraphics[width=\linewidth]{images/tennisball_highg_highv.pdf}%
   \end{center}
 
   The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time, as in the previous case. This happens because at every time step the momentum is increased by the amount $\yG$, which is constant, just like before.
@@ -4077,7 +4077,59 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 \end{enumerate}
 
 
+\sollabel{sec:tennisball_double}
 
+\begin{enumerate}[exerc]
+\item There is not upper limit to the number of control volumes we could use; but in the present case we need at least two, coinciding with the two tennis balls, because we want to track their motions.
+
+\item A balance law always refer to a control volume. So in this case we need one balance of momentum for each volume. And one equation for updating the position for each control volume.
+
+\item See for instance these scripts: Octave \furl{https://pglpm.github.io/7wonders/code/tennisball_rP_2obj.m}{\texttt{tennisball\_rP\_2obj.m}}, Python \furl{https://pglpm.github.io/7wonders/code/tennisball_rP_2obj.py}{\texttt{tennisball\_rP\_2obj.py}}.
+\end{enumerate}
+
+
+\sollabel{sec:tennisball_collision_theory}
+
+\begin{enumerate}[exerc]
+\item The physical dimensions appearing in the equation can be written as follows:
+  \begin{equation*}
+    \texttt{mom.flux} = \frac{k}{\texttt{length}^{2}}\cdot\texttt{length}
+  \end{equation*}
+  therefore $k$ has dimension $\texttt{mom.flux} \cdot \texttt{length}$.
+
+\item When $\yFa$ is non-zero, the vector on the right side of the equation is $\yra-\yrb$, so $\yFa$ must have its same direction. The orientation is also the same unless the multiplying coefficient is negative. But $k$ and a norm $\abs{\dotso}$ are positive. So the influx $\yFa$ has the same direction and orientation as $\yra-\yrb$. In other words, it points from $b$ to $a$.
+
+\item The magnitude of $\yFa$ is zero when $\abs{\yra - \yrb} > d$, otherwise it is $\frac{k}{\abs{\yra - \yrb}^{2}}\,\abs{\yra - \yrb} = \frac{k}{\abs{\yra - \yrb}}$\,. This is a function that increases as the distance decreases. In fact it is infinite when the distance is zero. So the force that pushes $a$ away from $b$ (and vice versa) becomes stronger and stronger as the two objects are pressed against each other.
+
+\item When the two tennis balls are in contact, their control volumes share a common part of their control surfaces. This is where the flux of momentum occur. We therefore have the principle of symmetry of flux: the \textbf{in}flux of momentum into $a$ is the opposite of the \textbf{in}flux of momentum into $b$:
+  \begin{equation*}
+    \yFb = - \yFa \,.
+  \end{equation*}
+
+\item No, we don't know these fluxes beforehand, and we can calculate them at every time step from the positions $\yra$, $\yra$.
+\end{enumerate}
+
+
+\sollabel{sec:tennisball_collision_script}
+
+
+\begin{enumerate}[exerc]
+\item The constitutive relations allow us to calculate quantities, at the same time instant, necessary for using the balance laws to step forward in time. So the equation for $\yFa$ and $\yFb$ must be used before the time is updated.
+
+\item See for instance these scripts: Octave \furl{https://pglpm.github.io/7wonders/code/tennisball_rP_2obj_collision.m}{\texttt{tennisball\_rP\_2obj\_collision.m}}, Python \furl{https://pglpm.github.io/7wonders/code/tennisball_rP_2obj_collision.py}{\texttt{tennisball\_rP\_2obj\_collision.py}}.
+
+  Here are the plots we obtain from them:
+  \begin{center}
+    \includegraphics[width=\linewidth]{images/tennisball_collision.pdf}%
+  \end{center}
+
+\item See for instance these scripts: Octave \furl{https://pglpm.github.io/7wonders/code/tennisball_rP_2obj_collision_floor.m}{\texttt{tennisball\_rP\_2obj\_collision\_floor.m}}, Python \furl{https://pglpm.github.io/7wonders/code/tennisball_rP_2obj_collision_floor.py}{\texttt{tennisball\_rP\_2obj\_collision\_floor.py}}.
+
+  Here are the plots we obtain from them:
+  \begin{center}
+    \includegraphics[width=\linewidth]{images/tennisball_collision_floor.pdf}%
+  \end{center}
+\end{enumerate}
 
 % 23.976/s : 0.0417 s/frame
 % 5.5e5 N : 4.2e4 kg = 42000 kg
