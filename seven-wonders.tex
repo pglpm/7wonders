@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-26T13:00:49+0100
+%% Last-Updated: 2025-02-28T07:01:11+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2381,12 +2381,18 @@ If the spatial coordinate lines are \emph{orthogonal} to one another at every po
 In astronomy, in space and satellite communication, and in \furl{https://oceanservice.noaa.gov/geodesy}{geodesy} (the science of accurately measuring and understanding the Earth's geometric shape, orientation in space, and gravity field), \furl{https://gssc.esa.int/navipedia/index.php?title=Reference_Systems_and_Frames}{several important coordinate systems} are used. For example:
 
 \begin{itemize}
-\item The \emph{International Celestial Reference System} (ICRS) is a coordinate system with orthogonal spatial coordinates, which are almost rectilinear. Their origin is close to the centre of the Sun. Several distant cosmological objects, like \furl{https://esahubble.org/wordbank/quasar}{quasars}, have fixed spatial coordinates in this reference system. Its coordinate time is called Barycentric Coordinate Time (TCB).
+\item%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/icrf3sx.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}}).%
+}%
+ The \furl{https://aa.usno.navy.mil/faq/ICRS_doc}{\emph{International Celestial Reference System} (ICRS)} is a coordinate system with orthogonal spatial coordinates, which are almost rectilinear. Their origin is close to the centre of the Sun. Several distant cosmological objects, like \furl{https://esahubble.org/wordbank/quasar}{quasars}, have fixed spatial coordinates in this reference system. Its coordinate time is called Barycentric Coordinate Time (TCB).
 
 
 \item The \emph{Geocentric Celestial Reference System} (CGRS) is a coordinate system with orthogonal spatial coordinates, which are almost rectilinear. Their origin is close to the centre of the Earth. Distant cosmological objects have almost constant spatial coordinates in this reference system; this means that the Earth rotates with respect to it. Its coordinate time is called Geocentric Coordinate Time (TGB), which is very similar to the TAI.
 
-\item The \emph{International Terrestrial Reference System} (ITRS) is a coordinate system similar to the CGRS, but with the important difference that the Earth is approximately static in this reference system; this means that distant cosmological objects rotate with respect to it. It has the same coordinate time as the ICRS.
+\item The \furl{https://itrf.ign.fr/en/background}{\emph{International Terrestrial Reference System} (ITRS)} is a coordinate system similar to the CGRS, but with the important difference that the Earth is approximately static in this reference system; this means that distant cosmological objects rotate with respect to it. It has the same coordinate time as the ICRS.
 
 \item The \furl{https://earth-info.nga.mil/?dir=wgs84\&action=wgs84}{\emph{World Geodetic System 1984} (WGS~84)} is very similar to the ITRS, besides a discrepancy of some centimetres. It is used by the system of GPS satellites.
 \end{itemize}
@@ -3145,7 +3151,7 @@ In these notes we shall often use the expressions \enquote*{\energym} and \enquo
 
 We often speak of different \emph{forms} of \energym. The most important forms for us will be \textbf{internal \energym}, \textbf{kinetic \energym}, \textbf{gravitational potential \energym}, \textbf{electromagnetic \energym} to be discussed later.
 
-The differences among these forms of \energym\ arise from the way they are calculated from other quantities, \autoref{sec:energy_constitutive}{as we shall see later}. For example, if in a volume there's an amount of a particular kind of matter, then in that volume there must also be an amount of \energym, given by a formula that involves the amount of matter. And if that matter is moving, then we have to add an extra amount of \energym\ given by another formula which involves the velocity. And if in that volume there's a gravitational field (that is, a particular kind of spacetime curvature), then another extra amount of \energym\ must be added, given by yet another formula involving the gravitational field. Similarly if we know that an electromagnetic field is in that volume.
+The differences among these forms of \energym\ arise from the way they are calculated from other quantities, as we shall see later. For example, if in a volume there's an amount of a particular kind of matter, then in that volume there must also be an amount of \energym, given by a formula that involves the amount of matter. And if that matter is moving, then we have to add an extra amount of \energym\ given by another formula which involves the velocity. And if in that volume there's a gravitational field (that is, a particular kind of spacetime curvature), then another extra amount of \energym\ must be added, given by yet another formula involving the gravitational field. Similarly if we know that an electromagnetic field is in that volume.
 
 We also speak of different forms of flux of \energym. The most important for us will be \textbf{heat} and \textbf{mechanical power}. The difference is again in how these fluxes are calculated depending on whether there are also fluxes of matter and of other quantities.
 
@@ -9290,7 +9296,7 @@ If the total momentum influx and supplies are zero, then we find\enskip$\yP\tot(
 
 \printpagenotes*
 \clearpage
-\chapter{Balance of energy}
+\chapter{Balance of energy-mass}
 \label{cha:bal_energy}
 
 \epigraph{I turned the page. The answer was, for the wind-up toy, ``Energy makes it go.'' And for the boy on the bicycle, ``Energy makes it go.'' For everything, ``\emph{Energy} makes it go.''
@@ -9308,7 +9314,7 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
 \section{Formulation and generalities}
 \label{sec:bal_energy_formulation}
 
-\begin{definition}{Balance of energy}
+\begin{definition}{Balance of energy-mass}
   Volume content: $\yE$\qquad Flux: $\yH$\qquad Supply: $\yR$
 
   \begin{equation}
@@ -9320,33 +9326,35 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
   \end{equation}
 \end{definition}
 
-The balance of energy is extremely important in physical phenomena that underlie many modern (post-\furl{https://www.britannica.com/event/Industrial-Revolution}{industrial revolution}) technologies. It must often be explicitly accounted for, together with the balance of momentum; and it often is the main governing balance, when the balance of momentum can be neglected. It's the relevant balance when we put thick clothes on in order to keep warm, or when we watch a video or do computations on a laptop.
+The balance of \energym\ is extremely important in physical phenomena that underlie many modern (post-\furl{https://www.britannica.com/event/Industrial-Revolution}{industrial revolution}) technologies. It must often be explicitly accounted for, together with the balance of momentum; and it is often the main governing balance, when the balance of momentum can be neglected. It's the relevant balance when we put thick clothes on in order to keep warm, or when we watch a video or do computations on a laptop. The balance of \energym\ is also the reason why some things \emph{don't} happen. For instance you never see rigid objects resting on some static surface, like a pen on a table, suddenly move by themselves. This is a consequence of the balance of \energym\ together with the balance of entropy which we'll study in \chap~\ref{cha:bal_entropy}.
 
-In discussing the \autoref{sec:bal_momentum_formulation}{balance of momentum} we saw that there were just a few constitutive relations for its volume content $\yP$, and a plethora of constitutive relations for its flux $\yF$. In the case of energy there is a great variety of constitutive relations that connect both its volume content $\yE$ and its flux $\yH$ to many other quantities: matter, momentum, angular momentum, \autoref{sec:aux_quantities}{auxiliary quantities} like metric and temperature, and others.
+In discussing the \autoref{sec:bal_momentum_formulation}{balance of momentum} we saw that there were just a few constitutive relations for its volume content $\yP$, and a plethora of constitutive relations for its flux $\yF$. In the case of \energym\ there is a great variety of constitutive relations that connect both its volume content $\yE$ and its flux $\yH$ to all other quantities: matter, momentum, angular momentum, the metric, electric charge, electromagnetic fields, and  \autoref{sec:aux_quantities}{auxiliary quantities} like temperature. These constitutive relations are therefore an important focus of \autoref{sec:material_science}{materials science}.
 
-The balance of energy is therefore also very important for numerical time integration. Recall that balance laws, if used alone, allow us to predict \emph{volume contents} at a later time, but not fluxes or supplies. Fluxes and supplies must \autoref{sec:boundary_conds}{either be given as boundary conditions, or predicted by constitutive relations} that connect them to the volume contents of other quantities. The balance and constitutive equations for energy often have this particular \enquote{gluing} role.
+In these notes we shall first restrict our focus on general constitutive relations that can be applied in physical phenomena that involve matter but not electric charge or the electromagnetic field. Then we shall restrict our focus even further, on constitutive relations for specific kinds of matter in particular states, for example ideal gases. Often we shall also simplify the discussion by considering physical phenomena where only one spatial dimension is relevant.
 
-\medskip
+The balance of \energym\ is therefore also very important for numerical time integration, because its constitutive relations allow us to find fluxes and supplies of other quantities, necessary for stepping them forward in time.
 
-In physical phenomena where the balance of energy must be taken explicitly into account, an auxiliary quantity typically appears in our description of the phenomenon: \autoref{sec:temperature}{\textbf{temperature}}.
+% \medskip
+% 
+% In physical phenomena where the balance of energy must be taken explicitly into account, an auxiliary quantity typically appears in our description of the phenomenon: \autoref{sec:temperature}{\textbf{temperature}}.
 
-\subsection{Definitions of total energy}
+\section{Definitions of total energy}
 \label{sec:energy_defs}
 
 In the physics literature we can read about energies and energy fluxes having all sorts of names -- \enquote*{internal}, \enquote*{kinetic}, \enquote*{potential}, \enquote*{elastic}, \enquote*{electromagnetic}, and others. We can also read about different kinds of energy balances, which can be related to one another through particular sequences of mathematical steps.
 
-One confusing aspect of such variety is that it becomes unclear what is, and what is not, to be counted as \enquote{energy content}. One example is \enquote*{gravitational potential energy}. Some texts define it as \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/gpot.html}{\enquote{energy an object possesses because of its position in a gravitational field}}, that is, as energy content.
+One confusing aspect of such variety is that it becomes unclear what is, and what is not, to be counted as \enquote{energy content}. One example is \enquote*{gravitational potential energy}. Some texts define it as \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/gpot.html}{\enquote{energy an object possesses because of its position in a gravitational field}}, that is, as a form of energy \emph{content}.
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
 \includegraphics[align=c,width=0.495\linewidth]{images/birdetal1.jpg}%
 \hfill\includegraphics[align=c,width=0.495\linewidth]{images/birdetal2.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
-Snippets from a formula on p.~330 of %\eqn~(11.1-8) in
+Snippets from a formula in %on p.~330 of %\eqn~(11.1-8) in
 \emph{Introductory Transport Phenomena} \parencites{birdetal2015}. This text does not consider gravitational potential energy to be part of the total energy. Compare the expression above on the right with \eqn~\eqref{eq:thermodynamic_energy} on page~\pageref{eq:thermodynamic_energy} below.%
 }%
-Other texts, especially in fluid dynamics or material science, do not include any gravitational terms in the energy content; related terms appear instead as energy fluxes or supplies. Another example is \enquote*{kinetic energy}, which is sometimes included in the total energy content, and sometimes not, for instance in fluid dynamics.
+Other texts, especially in fluid dynamics or materials science, do not include any gravitational terms in the energy content; related terms appear instead as energy \emph{fluxes} or \emph{supplies}. Another example is \enquote*{kinetic energy}, which is sometimes included as part of the total energy content; and sometimes not, for instance in texts on fluid dynamics.
 
-One can show that all these points of view have mathematically the same consequences. Is the definition of \enquote*{total energy content} arbitrary, then? Yes it is, and relativity theory gives a clear understanding of this arbitrariness.
+One can show that all these points of view have mathematically the same consequences. Is the definition of \enquote*{total energy content} arbitrary, then? Yes it is, and relativity theory gives a clear understanding of the origin of this arbitrariness.
 
 % Suppose we select either a control surface, possibly moving, within two coordinate times; or a control volume -- that is, a three-dimensional region of spacetime at fixed coordinate $t$. From a spacetime point of view, these are just arbitrary three-dimensional regions chosen within four-dimensional spacetime.
 %
@@ -9355,66 +9363,132 @@ One can show that all these points of view have mathematically the same conseque
 % If we asked these questions for matter or for electric charge instead of energy, then they would have unique and definite answers. All observers, even observers moving almost with the speed of light, would measure the same amounts. The answers would be the same even if there were strong gravitational fields. And these answers would actually be \emph{independent of any choice of coordinates}.
 %
 % Not so for energy, nor for momentum.
-Relativity shows that \emph{the definition of \enquote{total energy} depends on the choice of a reference velocity and a reference clock}. This choice of velocity \amp\ clock can even be different at each spacetime point. Furthermore, this choice is \emph{independent from the choice of a coordinate system}. That is, once we have chosen coordinates $(t,x,y,z)$, we can still choose arbitrary reference velocities and reference clocks to define \enquote*{total energy}.
+Relativity theory shows that \emph{the definition of \enquote{total energy} depends on the choice of a reference velocity and a reference clock}. From a spacetime perspective, this is the choice of a four-dimensional vector. The choice of velocity \amp\ clock can also be different at each spacetime point. Furthermore, this choice is \emph{independent from the choice of a coordinate system}. That is, once we have chosen coordinates $(t,x,y,z)$, we can still choose arbitrary reference velocities and reference clocks to define \enquote*{total energy}.
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.75\linewidth]{images/4vector.pdf}%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/4vector.pdf}%
 \\\footnotesize\flushleftright\color{mpcolor}%
 A reference \enquote*{velocity \amp\ clock} is simply a vector with four components in four-dimensional spacetime%
 }%
 
 
-Given a coordinate system $(t,x,y,z)$, one of the following three choices is usually implicitly made, when electromagnetic fields are negligible:
-\begin{itemize}
-\item[\faIcon{globe}] At each point in space and time we may choose a zero coordinate velocity -- that is, we don't move with respect to the coordinates $(x,y,z)$ -- and we may measure time according to coordinate time $t$. % We call \textbf{total energy} or \textbf{coordinate energy} the energy defined with respect to this velocity \amp\ clock. % In these notes we shall denote its volume content by $\yE$, and its flux by $\yH$.
+Given a coordinate system $(t,x,y,z)$, one of the following three choices is usually implicitly made:%, when electromagnetic fields are negligible:
+\begin{enumerate}[label=E\arabic*]
+\item%[\faIcon{globe}]
+  \label{item:totalE}At each point in space and time we may choose a zero coordinate velocity -- that is, we don't move with respect to the coordinates $(x,y,z)$ -- and we may measure time according to coordinate time $t$.
 
-  In Newtonian approximation, the total energy content defined by this choice includes so-called internal-energy, kinetic-energy, and gravitational-potential-energy terms.
+  We shall call \textbf{total energy} or \textbf{coordinate energy} the energy defined with respect to this velocity \amp\ clock. % In these notes we shall denote its volume content by $\yE$, and its flux by $\yH$.
 
-\item[\faIcon{water}] If matter is present, we may choose the matter's velocity (which is \autoref{sec:fluxes_velocities}{related to the matter flux}), and we may measure time according to the proper time of a clock moving together with that body of matter. % We call the energy so defined the \textbf{internal energy} of matter.% , and denote its volume content by $\yU$.
+  % In Newtonian approximation, the total energy content defined by this choice includes so-called internal-energy, kinetic-energy, and gravitational-potential-energy terms.
 
-  In Newtonian approximation, the total energy content defined by this choice includes only an internal-energy term.
-Note that this energy \emph{cannot} be defined if matter is not present. This definition of energy is often adopted in the description of fluids.
+\item%[\faIcon{clock}]
+  \label{item:noEp}We may choose a zero coordinate velocity, as in the previous choice; but instead of measuring time according to coordinate time $t$, we measure it according to the \autoref{sec:time}{\emph{proper time}} of a static observer.
 
+  Energy defined with respect to this velocity \amp\ clock is similar to total energy defined above, except that it lacks a term. We call this missing term \textbf{gravitational potential energy}.
 
-\item[\faIcon{clock}] We may choose a zero coordinate velocity, as in the first case, but measure time according to \autoref{sec:time}{\emph{proper time}} rather than coordinate time $t$. % Energy defined with respect to this reference velocity \amp\ clock is usually different from the previous two definitions. The difference between this energy and internal energy is called \emph{kinetic energy}.% ; we denote its volume content by $\yEk$.
+  % Energy defined with respect to this reference velocity \amp\ clock is usually different from the previous two definitions. The difference between this energy and internal energy is called \emph{kinetic energy}.% ; we denote its volume content by $\yEk$.
   % The difference between total energy and this energy is called \emph{potential gravitational energy}.% ; we denote its volume content by $\yEp$.
 
-  In Newtonian approximation, the total energy content defined by this choice includes internal-energy and kinetic-energy terms, but no terms related to gravity (this is the choice underlying the formula snippet in the previous side picture).
-\end{itemize}
+  % In Newtonian approximation, the total energy content defined by this choice includes internal-energy and kinetic-energy terms, but no terms related to gravity (this is the choice underlying the formula snippet in the previous side picture).
 
-Each of these differently defined energies satisfies a balance law with different fluxes and supplies.
-An interesting property of the second definition above is that the gravitational field is completely absent in its volume content, flux, and supply. % Its balance is usually called the \textbf{first law of thermodynamics}. % Otherwise, what appears as volume content in one definition also typically appears, slightly disguised, as flux or supply in another definition.
+\item%[\faIcon{water}]
+  \label{item:U}If matter is present, we may choose the matter's velocity (which is \autoref{sec:fluxes_velocities}{related to the matter flux}), and we may measure time according to the proper time of a clock moving with that body of matter.
 
-\medskip
+  Energy  defined with respect to this velocity \amp\ clock is called \textbf{internal energy}. %of that  matter.% , and denote its volume content by $\yU$.
+  It is similar to the energy of the preceding definition, except that it lacks a term. We call this missing term \textbf{kinetic energy}. This also means that internal energy lacks \emph{two} terms with respect to the total energy of the first definition: the \enquote*{gravitational potential energy} term, and the \enquote*{kinetic energy} term.
 
-Note that we do \emph{not} need to use \emph{all} of these differently defined energies at the same time; \emph{one is enough}. Depending on the physical application or problem, one definition can be mathematically more convenient to use than another.
+  %In Newtonian approximation, the total energy content defined by this choice includes only an internal-energy term.
+  This definition of energy is often adopted in the description of fluids. Note that this energy \emph{cannot} be defined if matter is not present, because there's no velocity of matter to take as reference.
+\end{enumerate}
 
-In these notes we shall use the \enquote*{total} or \enquote*{coordinate} energy, because it has the following interesting or convenient features:
+If we denote by $\yU$ the \enquote*{internal energy} of choice~\ref{item:U}, by $\yEk$ the \enquote*{kinetic energy} that makes the difference between choices~\ref{item:noEp} and~\ref{item:U}, and by $\yEp$ the \enquote*{gravitational potential energy} that makes the difference between choices~\ref{item:totalE} and~\ref{item:noEp}, then the relationship between the reference choices above can be represented as follows:
+\begin{center}
+  \includegraphics[width=10em]{images/UEkEp.pdf}
+\end{center}
+
+Each of the three differently-defined energies satisfies a balance law with different fluxes and supplies. Note that we must \emph{not} use \emph{all} of these differently defined energies at the same time. \emph{One is enough}. Depending on the physical application or problem, one definition can be mathematically more convenient to use than another.
+
+% An interesting property of the second definition above is that the gravitational field is completely absent in its volume content, flux, and supply.
+% Its balance is usually called the \textbf{first law of thermodynamics}. % Otherwise, what appears as volume content in one definition also typically appears, slightly disguised, as flux or supply in another definition.
+
+% \begin{equation*}
+%   \underbracket[1pt]{\mathcolor{black}{\yU}}_{\makebox[0pt][c]{\parbox{\textwidth}{\centering\tiny
+%         velocity \amp\ clock\\of matter}}}
+%   \quad{}+{}\quad \yEk
+%   \quad{}+{}
+%   \yEp
+% \end{equation*}
+
+
+In these notes we shall adopt the \emph{total energy} choice, because it has the following interesting and convenient features:
 \begin{itemize}
-\item It is defined anywhere, even where no matter is present.
+\item It is defined anywhere, even where no matter is present. This is important when we need to study phenomena involving electromagnetic fields.
 
-\item\label{item:energy_no_supply} Its supply is practically zero with coordinate systems and coordinate time typically used for physical phenomena on Earth (\furl{https://itrf.ign.fr/en/background}{International Terrestrial Reference System, ITRS}) or in the solar system (\furl{https://aa.usno.navy.mil/faq/ICRS_doc}{International Celestial Reference System, ICRS}). In other words, this energy practically \emph{satisfies a conservation law} in these common coordinate systems.
-%
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/icrf3sx.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Map of some distant astronomical objects used to define the International Celestial Reference Frame (from \furl{https://hpiers.obspm.fr/icrs-pc/newwww/icrf/index.php}{\emph{The ICRF}})
-}%
+\item\label{item:energy_no_supply} Its supply is practically zero in coordinate systems typically used for physical phenomena on Earth or in the solar system, like \autoref{sec:coords}{the ITRS or the ICRS}. In other words, this definition of energy practically \emph{satisfies a conservation law} in these common coordinate systems.
 
-\item Its volume content % $\yE$
-  and flux % $\yH$
-  typically contain terms that refer to the motion of matter and to the gravitational field.
+\item Its volume content % $\yE$  %and flux % $\yH$
+  typically contains terms that can be easily connected to the motion of matter and to the gravitational field.
 \end{itemize}
 
 
 
 
 \begin{warning}[An aspect still rarely discussed]
-  Most physics textbooks today unfortunately do not mention the dependence of the energy definition on a reference velocity \amp\ clock; or worse they mix it up with the dependence on coordinate systems. This dependence, however, is as important as the fact that energy and mass are the same thing.
-  % This dependence also makes it clear that the difference, say, between \enquote*{internal energy} and \enquote*{kinetic energy} is on a different level from the difference, say, between \enquote*{elastic energy} and \enquote*{electromagnetic energy}. The latter depends on the choice of constitutive relations, rather than on a reference velocity \amp\ clock, and is often only approximate.
+  Most physics textbooks today unfortunately do not mention the dependence of the energy definition on a reference velocity \amp\ clock; or worse they mix it up with the dependence on coordinate systems.
+  % This dependence, however, is as important as the fact that energy and mass are the same thing.
+
+  \smallskip
+
+  The dependence on a reference velocity \amp\ clock is important because it establishes an exact distinction between energies that does \emph{not} depend on constitutive relations. For instance, the distinction between an \enquote*{elastic energy} and an \enquote*{electromagnetic energy} comes from the use of particular constitutive relations, and it's only approximate: more exact formulae show that such a clear-cut separation cannot be made. But the distinction of a \enquote*{gravitational potential energy} can always be made and does not depend on the choice of constitutive relations.
 \end{warning}
 
-\subsection{Forms of energy}
+\section{Is energy conserved?}
+\label{sec:energy_conserved}
+
+Energy is \emph{balanced}, but not \emph{conserved}, according to our \autoref{wa:conservation}{definitions of these terms}. This is not a controversial statement: recall that many texts use the term \enquote*{conservation} in the sense of \enquote*{balance}, that is, they are not excluding the presence of a volume supply.
+%
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/batchelor_energy.png}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Balance of internal energy in a classic text on fluid dynamics (\cites{batchelor1967_r2000}% \eqn\,(3.4.3)
+). The first summand on the right is the energy \emph{supply}.%
+}%
+In fluid mechanics, for instance, the internal-energy definition is typically used, and as previously mentioned this energy definition satisfies a balance law, not a conservation law.
+
+The statement \enquote{energy is conserved}, however, is often meant in another sense: if we take a control volume where nothing is flowing in or out -- no energy, matter, electric charge, electromagnetic field, momentum -- then isn't its energy content constant in time?
+% But doesn't the energy that appears as \enquote{supply} come from somewhere else, so it also disappears from somewhere else and its total is the same?
+
+The answer to this question is also \emph{no}. As far as we know, there is constant creation of energy on cosmological scales, independently on how we choose the reference velocity \amp\ clock for the definition of energy. The total energy of the universe (provided such a notion can be mathematically defined) is therefore not constant.
+%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/universeexpansion2.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Depiction of change of spacetime metric on cosmological scales, in three different coordinate systems (from \cites{davisetal2004}).%
+}%
+The reason is that the spacetime metric of the universe is not constant along the time direction; this is the so-called \furl{https://www.jpl.nasa.gov/edu/news/2023/7/24/exploring-the-mystery-of-our-expanding-universe/}{expansion of the universe}. An energy that is strictly conserved can only be defined if the metric is constant along some time direction. See \furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll's} and \furl{https://math.ucr.edu/home/baez/physics/Relativity/GR/energy_gr.html}{Baez's} interesting essays about this topic.
+\begin{quote}\footnotesize
+\textins*{C}osmologists have not done a very good job of spreading the word about something that's been well-understood since at least the 1920's: energy is not conserved in General Relativity \sourceatright{\furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll 2010}}
+\end{quote}
+
+\medskip
+
+Something analogous is true for momentum and angular momentum: they are strictly conserved, that is, their supplies are zero, only if the spacetime metric remains the same in different spatial directions and under rotations. We have therefore this curious difference:
+\begin{itemize}
+\item On planetary scales the spacetime metric is not quite constant in space but almost constant in time; so momentum and angular momentum are not conserved, but energy approximately is.
+\item On cosmological scales the spacetime metric is approximately constant in space but not in time; so momentum and angular momentum are approximately conserved, but energy is not.
+\end{itemize}
+
+\medskip
+
+The fact that energy is not conserved, however, does not mean that we could find ways for our cars or laptops to magically operate by themselves. First, the amount of energy supply in our solar system and even in our galaxy is negligible. %\mynotew{***estimate it}
+For devices operating in the solar system, any increase in energy content ultimately comes as an energy influx from the Sun. Second, the human problem of \enquote{using energy} is not about energy \emph{creation} but about energy \emph{conversion} from one form to another. This topic will be discussed in \chap~\ref{cha:bal_entropy}.
+% \mynotew{add ref here}
+% Second, any energy supply is determined by particular constitutive relations. These relations involve influxes of matter and of momentum, so they don't allow for the creation of energy in an isolated system. This is also the reason why we can't have any \enquote{magical} production of internal energy, which as explained above \emph{does} have a supply, ordinarily taken care of in fluid mechanics.
+% % Think for instance of the natural supply of momentum that we experience everyday: gravity. It can be conveniently used if we want to move some object to the ground once -- we just let it go, and gravity moves it for us, without us needing to create an influx of downward momentum into the object. But the same supply is an inconvenience when we want to move some object upward.
+
+
+
+\section{Forms of energy}
 \label{sec:energy_forms}
 
 Once we have agreed on a definition of \enquote*{total energy content} by means of a  reference velocity \amp\ clock, a distinction is usually further made between different \enquote{forms} of energy,
@@ -9441,59 +9515,7 @@ The absence of such a separation is the origin of many interesting and useful ph
 In some situations, however, it is possible to \emph{approximately} express energy as a sum of terms that depend on particular quantities only. In these cases we can speak for instance of \enquote*{elastic energy}, \enquote*{radiation energy}, and similar expressions denoting the terms in the approximate sum.
 
 
-\subsection{Is energy conserved?}
-\label{sec:energy_conserved}
-
-Energy is \emph{balanced}, but not \emph{conserved}, according to our \autoref{wa:conservation}{definitions of these terms}. This is not a controversial statement: recall that many texts use the term \enquote*{conservation} in the sense of \enquote*{balance}, that is, they are not excluding the presence of a volume supply.
-%
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/batchelor_energy.png}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Balance of internal energy in a classic text on fluid dynamics (\cites{batchelor1967_r2000} \eqn\,(3.4.3)). The first summand on the right is the energy supply.%
-}%
-In fluid mechanics, for instance, the internal-energy definition is typically used, and as previously mentioned this energy definition satisfies a balance law, not a conservation law.
-
-The statement \enquote{energy is conserved}, however, is often meant in another sense: if we take a control volume where nothing is flowing in or out -- no energy, matter, electric charge, electromagnetic field, momentum -- then isn't its energy content conserved, constant in time?
-% But doesn't the energy that appears as \enquote{supply} come from somewhere else, so it also disappears from somewhere else and its total is the same?
-
-The answer to this question is also no. As far as we know, there is constant creation of energy on cosmological scales, no matter how we choose the reference velocity \amp\ clock for the definition of energy. The total energy of the universe (provided such a notion can be mathematically defined) is therefore not constant.
-%
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/universeexpansion2.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Depiction of change of spacetime metric on cosmological scales, in three different coordinate systems (from \cites{davisetal2004})%
-}%
-The reason is that the metric of the universe is not constant along the time direction -- the so-called \furl{https://www.jpl.nasa.gov/edu/news/2023/7/24/exploring-the-mystery-of-our-expanding-universe/}{expansion of the universe} -- and an energy that is strictly conserved can only be defined if the metric is constant along some time direction:
-\begin{quote}\footnotesize
-cosmologists have not done a very good job of spreading the word about something that's been well-understood since at least the 1920's: energy is not conserved in General Relativity \sourceatright{\furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll 2010}}
-\end{quote}
-See \furl{https://www.preposterousuniverse.com/blog/2010/02/22/energy-is-not-conserved/}{Carroll's} and \furl{https://math.ucr.edu/home/baez/physics/Relativity/GR/energy_gr.html}{Baez's} interesting posts about this topic.
-
-\medskip
-
-Something analogous is true for momentum and angular momentum: they are strictly conserved, that is, their supplies are zero, only if the spacetime metric remains the same in different spatial directions and under rotations. We have therefore this curious difference:
-\begin{itemize}
-\item On planetary scales the spacetime metric is not quite constant in space but almost constant in time; so momentum and angular momentum are not conserved, but energy approximately is.
-\item On cosmological scales the spacetime metric is approximately constant in space but not in time; so momentum and angular momentum are approximately conserved, but energy is not.
-\end{itemize}
-
-\medskip
-
-The fact that energy is not conserved, however, does not mean that we could find ways for our cars or laptops to magically operate by themselves. First, the amount of energy supply in our solar system and even in our galaxy is negligible. %\mynotew{***estimate it}
-For devices operating in the solar system, any increase in energy content ultimately comes as an energy influx from the Sun. Second, the human problem of \enquote{using energy} is not about energy \emph{creation} but about energy \emph{conversion} from one form to another. This will be the topic of a later chapter.
-% \mynotew{add ref here}
-% Second, any energy supply is determined by particular constitutive relations. These relations involve influxes of matter and of momentum, so they don't allow for the creation of energy in an isolated system. This is also the reason why we can't have any \enquote{magical} production of internal energy, which as explained above \emph{does} have a supply, ordinarily taken care of in fluid mechanics.
-% % Think for instance of the natural supply of momentum that we experience everyday: gravity. It can be conveniently used if we want to move some object to the ground once -- we just let it go, and gravity moves it for us, without us needing to create an influx of downward momentum into the object. But the same supply is an inconvenience when we want to move some object upward.
-
-
-\section{Constitutive relations for energy content}
-\label{sec:energy_constitutive}
-
-Energy probably has the greatest variety of constitutive relations for its content and its flux. Whole books are dedicated to the discussion of constitutive relations for energy.
-
-In these notes we shall first restrict our focus on general constitutive relations that can be applied in physical phenomena that involve matter but not electric charge or the electromagnetic field. Then we shall restrict our focus even further, on constitutive relations for specific kinds of matter in particular states, for example ideal gases. Often we shall also simplify the discussion by considering physical phenomena where only one spatial dimension is relevant.
-
-\subsection{Internal, kinetic, gravitational potential energy}
+\section{Internal, kinetic, gravitational potential energy}
 \label{sec:energy_volume_matter}
 
 If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
@@ -9556,7 +9578,7 @@ Note that in this definition we can still arbitrarily choose the zero of $\yU$.
 
 This general constitutive relation applies to a large variety of physical phenomena. But it is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later.
 
-\subsection{The separation between internal and kinetic energy depends on the observation scale}
+\section{Internal and kinetic energy, and observation scales}
 \label{sec:dependence_energycontentdivision}
 
 Given a control volume containing matter, at a particular time and in a coordinate system, the amount of \emph{total} energy contained therein is uniquely determined and agreed upon by all researchers, even if one researcher is making measurements on that volume with coarse instruments, and another researcher is making measurements on a molecular scale.
@@ -9566,7 +9588,7 @@ But the separation of this total energy into internal, kinetic, gravitational do
 The reason of this difference is that the first researcher does not measure any \emph{visible} velocity in the gas: the measuring instruments average it out to zero. This researcher therefore attributes the total energy completely to internal energy, and indeed still detects the atomic motion indirectly, as a \emph{temperature} possessed by the gas. The second researcher, on the other hand, can measure the velocities of the individual atoms, and therefore attributes all the total energy to kinetic energy. For this researcher the gas has no temperature and no internal energy.
 
 
-\subsection{Examples of the exchange between internal, kinetic, gravitational potential energies}
+\section{The exchange between internal, kinetic, gravitational potential energies}
 \label{sec:energy_constitutive_content}
 
 Of importance in physics and engineering applications are not only changes in the total energy $\yE$, but also exchanges among its internal, kinetic, and gravitational terms, even when the total energy is constant. Here are some examples.
@@ -9600,12 +9622,8 @@ Matter in a gaseous state is also often modelled as having negligible mass. All 
 
 In modelling extended matter in a solid and fluid state, usually all three forms of energy must be taken into account. They can moreover be quite variable from one small control volume to another. This is why their modelling and simulation can be extremely complex.
 
-\section{Constitutive relations for energy flux}
-\label{sec:energy_constitutive_flux}
-
-
-\subsection{Comments about movement of matter at a surface}
-\label{sec:matter_move_surface}
+\section{Heat flux and mechanical power}
+\label{sec:heating_power}
 
 We shall now discuss constitutive relations for energy fluxes through a control surface. These relations are valid under two requirements:
 \begin{itemize}[nosep]
@@ -9617,9 +9635,6 @@ These two requirements sometimes appear as contradictory at first sight: if ther
 
 Both conditions can actually coexist, and there are two main ways in which they do. Let's discuss them briefly so that you can at least understand them intuitively.
 
-
-\subsection{Heat flux and power}
-\label{sec:heating_power}
 
 %
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
@@ -9685,7 +9700,7 @@ In applying the formula above, keep always in mind the following:
 The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in many examples from the previous chapter.
 
 
-\subsection{The separation between heat and power depends on the observation scale}
+\section{Heat and power, and observation scales}
 \label{sec:dependence_energyfluxdivision}
 
 We have discussed the fact that the total energy content in a control volume doesn't depend on our manner of description and measuring instruments, but the separation into internal and kinetic energy does. A completely analogous situation, and for analogous reasons, occurs for the flux of total energy through a control surface, and its separation into heat flux and mechanical power.
@@ -9763,7 +9778,7 @@ In describing and using matter in a gaseous state, usually heat flux and mechani
 
 
 
-\subsection{Summary: energy constitutive relations for matter}
+\section{Summary: energy constitutive relations for matter}
 \label{sec:summary_newton_energy}
 
 So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:

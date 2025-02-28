@@ -13,7 +13,7 @@ A = 0.1^2;           % m^2: area of piston
 m = 10;              % kg: mass of piston
 Fatm = -100000 * A;  % N: force on piston by atmosphere
 
-%% Initial conditions
+%% Initial conditions. State: (z, v, T)
 t = 0;  % s: initial time
 z = 0.15;  % m: initial position of piston
 v = 0;  % m/s: initial velocity of piston
@@ -42,12 +42,12 @@ axis('tight'); grid on; hold on %@
 %% Numerical time integration
 while t < t1
   %% constitutive relations
-  Fgas = -(R * N * T / z -  mu * A * v / z);
-  Q = A * h * (Text - T);
-  Phi = (Q + Fgas * v);
-  E = C * N * T;
-  Ppis = m * v;
-  Fpis = -Fgas + Fatm;
+  Fgas = -(R * N * T / z -  mu * A * v / z);  % ideal-gas law
+  Q = A * h * (Text - T);                     % law of cooling
+  Phi = (Q + Fgas * v);                       % energy influx for gas
+  E = C * N * T;                              % internal energy of ideal gas
+  Ppis = m * v;                               % Newton's formula for momentum
+  Fpis = -Fgas + Fatm;                        % momentum influx for piston
 
   %% step forward in time with balance laws
   t = t + dt;
