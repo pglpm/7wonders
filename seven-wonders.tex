@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-28T14:28:10+0100
+%% Last-Updated: 2025-02-28T15:20:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1372,7 +1372,6 @@ Cover image: the \enquote{Pale Blue Dot} image of the Earth taken by Voyager~1,
 \clearpage
 \phantomsection\pdfbookmark{\contentsname}{toc}
 \setlength{\cftsectionnumwidth}{2.75em}
-% \setrmarg{20em}
 \tableofcontents*
 \label{sec:toc}
 
@@ -9524,8 +9523,9 @@ In some situations, however, it is possible to \emph{approximately} express ener
 \label{sec:energy_volume_matter}
 
 If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
+%
 \begin{definition}{Energy-mass associated with matter,label={def:energy_volume_matter}}
-  Take a coordinate system $(t,x,y,z)$ close to the Earth's surface, with $z$ pointing upwards. Consider a control volume containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must be such that the coordinate velocity $\yv$, the \autoref{def:molarmass}{molar mass} $\yrho$, and the $z$-coordinate of the matter within are approximately the same throughout the volume (this is true, for instance, if the volume is small enough).
+  Take a coordinate system $(t,x,y,z)$ close to the Earth's surface, roughly fixed with respect to the distant stars, and with $z$ pointing upwards. Consider a control volume containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must be such that the coordinate velocity $\yv$, the \autoref{def:molarmass}{molar mass} $\yrho$, and the $z$-coordinate of the matter within are approximately the same throughout the volume (this is true, for instance, if the volume is small enough).
 
   \smallskip
 
@@ -9720,6 +9720,16 @@ These integrals have special names:
   is called the \textbf{mechanical work} done by the force $\yF$ through that surface during that time interval.
 \end{definition}
 
+We see that the momentum \emph{flux}, or \emph{surface} force, $\yF$ appears in the constitutive relation for the energy flux. Therefore, the presence of a momentum flux through a surface can contribute to the flux of energy through it: we say that \enquote{contact forces do work}.
+%
+\begin{warning}[Momentum supply does not contribute to energy flux,label={warn:gravitywork}]
+  The momentum \emph{supply}, or \emph{volume} force, $\yG$ does \emph{not} appear in the constitutive relation for the energy flux. In other words, \textbf{\emph{volume} forces do not contribute to energy \emph{flux}}.
+
+\smallskip
+
+In particular coordinate systems, some kinds of non-gravitational volume forces contribute to the energy \emph{supply}. And if we choose different \autoref{sec:energy_defs}{definitions of total energy}, then gravitational volume forces may contribute to the energy supply as well.
+\end{warning}
+
 \begin{warning}[Tricky points in applying the energy-flux formula,label={warn:energyflux}]
 In applying the formula above, keep always in mind the following:
 \begin{itemize}
@@ -9754,7 +9764,7 @@ from the cup to our hands. How much of it is heat flux, and how much is mechanic
 
 Let's consider a control surface between our hands and the cup, and let's choose a hands${}\to{}$cup crossing direction.
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/handstea.jpg}%
 \\[\jot]\color{mpcolor}%
 (Image from \furl{https://bunkajapan.com/blogs/japanese-tea-culture/how-to-hold-a-tea-cup}{\emph{Bunka Japan}})%
@@ -9778,23 +9788,6 @@ By the symmetry of flux, this same amount of energy flows out of the spring, red
 
 In describing and using matter in a gaseous state, usually heat flux and mechanical power must both be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by providing \emph{influxes of heat} to it.
 
-%
-\marginpar{\vspace{2\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
-\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-}%
-%
-\marginpar{\vspace{5\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
-% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-% \\[7\baselineskip]
-\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
-% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
-% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
-% \\[\jot]
-% \footnotesize\flushleftright\color{mpcolor}%
-% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
-}%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Water is flowing downward in a pipe, as illustrated in the side picture by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
@@ -9810,6 +9803,23 @@ In describing and using matter in a gaseous state, usually heat flux and mechani
   \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
   \end{enumerate}
 \end{exercise}
+%
+\marginpar{\vspace{-31\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
+\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+}%
+%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
+% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+% \\[7\baselineskip]
+\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
+% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
+% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
+% \\[\jot]
+% \footnotesize\flushleftright\color{mpcolor}%
+% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
+}%
 
 
 
