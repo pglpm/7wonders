@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-28T07:01:11+0100
+%% Last-Updated: 2025-02-28T14:08:35+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1072,8 +1072,8 @@ angle-right%
 \newcommand*{\yE}{E}
 \newcommand*{\yU}{U}
 \newcommand*{\yUd}{u}
-\newcommand*{\yUr}{U_{\text{new}}}
-\newcommand*{\yUo}{\yU_{0}}
+\newcommand*{\yUo}{\yU_{\textrm{o}}}
+\newcommand*{\yUr}{\yU_{\text{new}}}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
@@ -1101,8 +1101,11 @@ angle-right%
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{as}}
 \newcommand*{\yFba}{\yF_{bs}}
+\newcommand*{\yPpi}{P_{\textrm{pis}}}
+\newcommand*{\yGpi}{G_{\textrm{pis}}}
+\newcommand*{\yFpi}{F_{\textrm{pis}}}
 \newcommand*{\yFpg}{F_{\textrm{pg}}}
-\newcommand*{\yFgp}{F_{\textrm{gp}}}
+\newcommand*{\yFgp}{F_{\textrm{gas}}}
 \newcommand*{\yFatm}{F_{\textrm{atm}}}
 \newcommand*{\yFa}{\yF_{a}}
 \newcommand*{\yFb}{\yF_{b}}
@@ -9519,73 +9522,74 @@ In some situations, however, it is possible to \emph{approximately} express ener
 \label{sec:energy_volume_matter}
 
 If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
-\begin{definition}{Energy associated with matter,label={def:energy_volume_matter}}
-  Consider a control volume close to Earth's surface and containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must also be such that the coordinate velocity $\yv$, \autoref{def:molarmass}{molar mass} $\yrho$ of the matter within, and the $z$-coordinate are approximately the same throughout the volume (this is true, for instance, if the volume is small enough). Then the total \energym\ content in this control volume is given by
-  \begin{equation}
-    \label{eq:energy_volume_matter}
-    \ym c^{2} +  \yU + \frac{1}{2}\ym \yv^{2} + \ym g z
-    \qquad\text{with}\quad \ym = \yrho\yN
-  \end{equation}
-In this expression, $c$ is the speed of light, $g$ is the \autoref{sec:supply_momentum_gravity}{gravitational acceleration}, and we have assumed a coordinate system $(x,y,z)$ with $z$ pointing upward. % The factor $\ym$ is \autoref{def:molarmass}{connected to the amount of matter} $\yN$ in the volume by $\ym = \yrho\yN$.
-
-    \smallskip
-
-    The term $\yU$ is called \textbf{internal thermodynamic energy} and is given by some further constitutive relation that depends of the physical phenomenon. The terms $\frac{1}{2}\ym \yv^{2}$ and $\ym g z$ are called \textbf{kinetic energy} and \textbf{gravitational potential energy}.
+\begin{definition}{Energy-mass associated with matter,label={def:energy_volume_matter}}
+  Take a coordinate system $(t,x,y,z)$ close to the Earth's surface, with $z$ pointing upwards. Consider a control volume containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must be such that the coordinate velocity $\yv$, the \autoref{def:molarmass}{molar mass} $\yrho$, and the $z$-coordinate of the matter within are approximately the same throughout the volume (this is true, for instance, if the volume is small enough).
 
   \smallskip
 
-  Usually we change the \enquote{zero} of \energym\ content, removing the term $\ym c^{2}$ and defining the total energy as
-    \begin{equation}
+  Then the total \energym\ content in this control volume is given by
+  \begin{equation}
+    \label{eq:energy_volume_matter}
+    \ym \yc^{2} +  \yUo + \yU + \frac{1}{2}\ym \yv^{2} + \ym g z
+    \qquad\text{with}\quad \ym = \yrho\yN \,.
+  \end{equation}
+  In this expression, $\yc$ is the speed of light and $g$ is the \autoref{sec:supply_momentum_gravity}{acceleration of free fall}. % The factor $\ym$ is \autoref{def:molarmass}{connected to the amount of matter} $\yN$ in the volume by $\ym = \yrho\yN$.
+
+  The terms in this expression:
+  \begin{itemize}[noitemsep]
+  \item $\ym \yc^{2}$ is the \textbf{rest \energym}, and in ordinary circumstances is vastly (say, \num[print-unity-mantissa=false]{1e15} times) larger than the other terms.
+
+  \item $\yUo$ defines a \enquote*{zero} of energy, and is discussed below.
+    
+  \item $\yU$ is called \textbf{internal thermodynamic energy}, or simply \emph{internal energy}, and is usually connected to other quantities through further constitutive relations.
+
+  \item $\frac{1}{2}\ym \yv^{2}$ is called \textbf{kinetic energy}.
+
+  \item $\ym g z$ is called \textbf{gravitational potential energy}.
+  \end{itemize}
+
+  \medskip
+
+  In many engineering applications, only \energym\ differences and changes are of importance, and it would be unwieldy to include the huge values coming from the rest-energy term. Therefore \energym\ is usually reported with respect to a \enquote*{zero} appropriately chosen, which includes rest energy and part of gravitational energy. The term $\yUo$ demarcates this zero. We thus write the \energym\ content as
+  \begin{equation}
     \label{eq:thermodynamic_energy}
     \yE = \yU + \frac{1}{2}\ym \yv^{2} + \ym g z
   \end{equation}
+  omitting the constant, arbitrary amount $\ym\yc^{2} + \yUo$. This $\yE$ is what we call \enquote*{energy} rather than \enquote*{\energym}.
 \end{definition}
+%
+As an example of choice of a \enquote*{zero} reference, for water and steam, $\yU$ is decreed to be zero at a particular physical condition called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/thermo/pvtsur.html\#c1}{triple point} \parencites{wagneretal1998_r2008}. Therefore $\ym\yc^{2}+\yUo$ is the total energy of a body of water in its triple-point state.
+
 The formulae above are valid in Newtonian approximation, for speeds smaller than the speed of light and weak gravitational fields.
 
-As we discussed some chapters ago, \autoref{sec:mass_is_energy}{energy and mass are the same thing}. Formula~\eqref{eq:energy_volume_matter} above is actually also the mass, multiplied by $c^{2}$, contained in the control volume. In these notes we often call only \enquote*{$\ym$} the mass contained in a control volume, but clearly this is an approximation: we are neglecting the terms $(\yU + \frac{1}{2}\ym \yv^{2} + \ym g z)/c^{2}$ because they are extremely small -- there are in fact even smaller terms, coming from relativity theory, that are neglected in the expressions above.
+\medskip
 
-%
-\marginpar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-\enquote*{\emph{the \emph{baryon ``mass'' density} $\rho_{0}$, despite its name, and despite the fact it is sometimes even more misleadingly called ``density of rest mass-energy,'' is actually a measure of the number density of baryons $n$, and nothing more. It is defined as the product of $n$ with some standard figure for the mass per baryon, $\mu_{0}$, in some well-defined standard state; thus, $\rho_{0}\equiv n\mu_{0}.$}}\sourceatright{\cites{misneretal1970_r2017} \sect~39.3}%
-}%
-In the sum $\ym c^{2} + \yU$ there actually isn't a clear-cut separation between $\ym c^{2}$ and $\yU$, because the constant value of the molar mass density $\yrho$ in $\ym=\yrho\yN$ is arbitrary to some degree. We can for example remove some constant amount $\yUd$ (possibly negative) from the definition of $\yU$, while adding $\yUd/c^{2}$ to the definition of $\ym$:
-\begin{equation*}
-  \mathcolor{grey}{\underbracket[1pt]{\mathcolor{black}{\bigl(\ym + \tfrac{1}{c^{2}}\yUd\bigr)}}}_{\mathclap{\mathcolor{midgrey}{\text{new $\ym$}}}} c^{2} +
- \mathcolor{grey}{\underbracket[1pt]{\mathcolor{black}{(\yU-\yUd)}}}_{\mathclap{\mathcolor{midgrey}{\text{new $\yU$}}}}
-\end{equation*}
-The change in $\ym$ is usually negligible, beyond its 9th decimal digit. But the change in $\yU$ can be quite large. This means that we can arbitrarily redefine the \enquote{zero} of the thermodynamic internal energy $\yU$. For water and steam, for instance, $\yU$ is decreed to be zero at a particular physical condition called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/thermo/pvtsur.html\#c1}{triple point} \parencites{wagneretal1998_r2008}.
-\begin{exercise}
-  Consider a control volume containing water, with $\ym = \qty{1}{kg}$ and internal energy $\yU=\qty{100000}{J}$. Suppose we want to redefine the internal energy so that it is zero instead. By how much should we redefine $\ym$, so that the sum $\ym c^{2}+\yU$ stays the same?
-\end{exercise}
+This general constitutive relation applies to a large variety of physical phenomena. Its use often requires the further specification of a  constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter; this is again of interest in \autoref{sec:material_science}{materials science}.
 
-\begin{warning}[Zero-point of internal energy and conservation of matter]
+
+
+\begin{warning}[Zero of internal energy and conservation of matter]
   We must remember that $\ym = \yrho\yN$, so the content of matter $\yN$ and its balance should also enter the discussion. In phenomena where matter and antimatter are both present the zero-point of internal energy cannot be redefined arbitrarily. Usually electric charge and electromagnetic field become important in such phenomena, so the general constitutive relation~\eqref{eq:energy_volume_matter} may not be appropriate anyway.
-
-  The discussion above about the zero-point of internal energy is somewhat imprecise, and meant only to give you an idea of why we can define the zero-point arbitrarily. A rigorous but more complicated analysis would involve the law of conservation of matter, and would show that in appropriate circumstances the zero-point of internal energy mathematically disappears from the balance of matter \parencites{eckart1940c}.
 \end{warning}
 
-\medskip
 
-When the total \masse\ is required, for example in the \autoref{eq:matter_momentum_Newton}{Newtonian formula for momentum}, we simply approximate it with $\ym$. But for physical phenomena where energy \emph{exchanges} are important, we change the \enquote{zero} of our energy measurements, shifting it by $\ym c^{2}$, so that energy calculations are numerically more manageable.
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item A small body of water of mass \qty{2}{kg}, in its triple-point state, is moving at \qty{3}{m/s} at a height of \qty{250}. How much is its energy, with respect to its conventional zero?
 
-This is why we shall use the total energy $\yE$ as defined in formula~\eqref{eq:thermodynamic_energy}:
-\begin{equation*}
-  \yE = \yU + \frac{1}{2}\ym \yv^{2} + \ym g z
-\end{equation*}
-Note that in this definition we can still arbitrarily choose the zero of $\yU$.
+  \item A large, static column of concrete is \qty{10}{m} tall and has a rest mass of \qty{24000}{kg}. Its internal energy is $\yU = \qty{10}{J}$. The acceleration of free fall is $g=\qty{9.8}{N/kg}$. Can you apply formula~\eqref{eq:thermodynamic_energy} as-is to calculate the total energy of the column?
+  \end{enumerate}
+\end{exercise}
 
-\medskip
-
-This general constitutive relation applies to a large variety of physical phenomena. But it is of little use unless we specify a detailed constitutive relation for the internal energy $\yU$. The latter can be wildly different depending on the kind and state of matter, as we shall see later.
 
 \section{Internal and kinetic energy, and observation scales}
 \label{sec:dependence_energycontentdivision}
 
-Given a control volume containing matter, at a particular time and in a coordinate system, the amount of \emph{total} energy contained therein is uniquely determined and agreed upon by all researchers, even if one researcher is making measurements on that volume with coarse instruments, and another researcher is making measurements on a molecular scale.
+Given a control volume containing matter, in a particular coordinate system $(t,x,y,z)$, the amount of \emph{total} energy contained therein is uniquely determined and agreed upon by all observers, even if one observer is making measurements on that volume with coarse instruments, and another observer is making measurements on a molecular scale.
 
-But the separation of this total energy into internal, kinetic, gravitational does \emph{depend on the detail and scale of observation}. For instance, a researcher who describes the matter within the volume as a continuous gas may measure a total energy $\yE=\qty{4000}{J}$, and describe this as a sum of $\yU=\qty{4000}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{0}{J} kinetic energy. Another researcher, who describes the matter within the same volume as a large number of atoms in motion, also measures a total energy $\yE=\qty{4000}{J}$, but may describe this as a sum of $\yU=\qty{0}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{4000}{J} kinetic energy, obtained by summing up $\tfrac12\ym\yv^{2}$ for all the atoms in the volume.
+But the separation of this total energy into internal, kinetic, gravitational \emph{depends on the detail and resolution of observation}. For instance, a researcher who describes the matter within the volume as a continuous gas may measure a total energy $\yE=\qty{4000}{J}$, and describe this as a sum of $\yU=\qty{4000}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{0}{J} kinetic energy. Another researcher, who describes the matter within the same volume as a large number of atoms in motion, also measures a total energy $\yE=\qty{4000}{J}$, but may describe this as a sum of $\yU=\qty{0}{J}$ internal energy, \qty{0}{J} gravitational potential energy, and \qty{4000}{J} kinetic energy, obtained by summing up $\tfrac12\ym\yv^{2}$ for all the atoms in the volume.
 
-The reason of this difference is that the first researcher does not measure any \emph{visible} velocity in the gas: the measuring instruments average it out to zero. This researcher therefore attributes the total energy completely to internal energy, and indeed still detects the atomic motion indirectly, as a \emph{temperature} possessed by the gas. The second researcher, on the other hand, can measure the velocities of the individual atoms, and therefore attributes all the total energy to kinetic energy. For this researcher the gas has no temperature and no internal energy.
+The reason of this difference is that the first observer does not measure any \emph{visible} velocity in the gas: the measuring instruments average it out to zero. This observer therefore attributes the total energy completely to internal energy, and indeed still detects the atomic motion indirectly, as a \emph{temperature} possessed by the gas. The second observer, on the other hand, can measure the velocities of the individual atoms, and therefore attributes all the total energy to kinetic energy. For this observer the gas has no temperature and no internal energy.
 
 
 \section{The exchange between internal, kinetic, gravitational potential energies}
@@ -9608,6 +9612,8 @@ Another example where this kind of energy conversion and energy flux are importa
 \begin{exercise}
   A skydiver jumps with zero initial velocity at an altitude of \qty{3000}{m}. What would be the skydiver's velocity at \qty{1000}{m}, if there were no changes in internal energy and no energy fluxes?
 
+  \smallskip
+
   Compare the velocity you found and the typical velocity of \qty{200}{km/h} that a skydiver may have at \qty{1000}{m}, when the parachute is deployed.
 \end{exercise}
 
@@ -9625,19 +9631,29 @@ In modelling extended matter in a solid and fluid state, usually all three forms
 \section{Heat flux and mechanical power}
 \label{sec:heating_power}
 
-We shall now discuss constitutive relations for energy fluxes through a control surface. These relations are valid under two requirements:
-\begin{itemize}[nosep]
-\item matter in contact with the control surface has velocity $\yv$
+We shall study some constitutive relations for the energy flux through a control surface, which are only valid under three conditions:
+\begin{itemize}[noitemsep]
+\item there's matter on both sides of the control surface,
+\item this matter has velocity $\yv$ (possibly zero) on both sides,
 \item there is no flux of matter through the control surface.
 \end{itemize}
-
-These two requirements sometimes appear as contradictory at first sight: if there's no flux of matter, then how can matter have a non-zero velocity?
-
-Both conditions can actually coexist, and there are two main ways in which they do. Let's discuss them briefly so that you can at least understand them intuitively.
-
+These three requirements might appear as contradictory: if there's no flux of matter, then how can matter have a non-zero velocity? So let's discuss them in more detail first.
 
 %
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.5\linewidth]{images/Efluxsurf2.jpg}%
+}%
+One situation is which the conditions above can coexist is when the control surface is parallel to the direction of the velocity $\yv$, as illustrated in the side figure, where the control surface is represented by the \textcolor{purple}{dashed red line}, and matter as a \textcolor{midgrey}{greyish texture}. In this case the surface may be static; yet there's no flux of matter through it, and the matter around it is moving with velocity $\yv$. Imagine for instance a fictitious horizontal surface in the middle of a water stream. Note that the matter on the two sides doesn't need to be of the same kind, though. For instance there could be water on one side of the control surface, and concrete on the other.
+
+%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.5\linewidth]{images/Efluxsurf1.jpg}%
+}%
+Another situation in which three conditions can coexist is when the control surface is also moving, with the same velocity $\yv$ as the moving matter. See side figure. Obviously there's no flux of matter through the control surface, yet there's matter on both sides of it, moving with velocity $\yv$. Note again that the matter on the two sides doesn't need to be of the same kind.
+
+This situation occurs when a person pushes a door, the imaginary control surface being between hand and door; or when a hammer hits and bends a piece of hot iron, the imaginary surface being between hammer and iron; or when a bike-pump piston is pressed down vigorously, the imaginary surface being between the piston and the air within the pump.
+%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/illustr_push.jpg}%
 % \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
 % \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
@@ -9647,23 +9663,28 @@ Both conditions can actually coexist, and there are two main ways in which they 
 % \footnotesize\flushleftright\color{mpcolor}%
 % \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
 }%
-Think of a person pushing a door or lifting a weight on the palm of their hand, a hammer hitting a piece of hot iron, or a bike-pump piston quickly pressed down. These and many other physical phenomena can be characterized as follows:
-\begin{itemize}[nosep]
-\item there's a control surface in contact with matter on both sides
-\item the control surface may be moving
-\item there is no flux of matter through the control surface
-\item electric charges and electromagnetic fields are negligible on a macroscopic scale.
+
+Other situations in between the two above are also possible.
+
+\medskip
+
+Now that these possible relationships between a control surface and matter around it are clearer, let's study an important constitutive formula for the flux of energy through a control surface
+\begin{definition}{Heat flux and mechanical power,label={def:heatflux_adiabatic}}
+  Fix a coordinate system $(t,x,y,z)$, and consider an imaginary control surface satisfying the following conditions:
+\begin{itemize}[noitemsep]
+\item electric charges and electromagnetic fields are negligible;
+\item there's matter on both sides of the control surface;
+\item there is no flux of matter through the control surface;
+\item matter in contact with it has coordinate velocity $\yv$, the same at every point of the surface;
 \end{itemize}
-In situations like these there is a general constitutive formula for the flux of energy through the control surface.
-\begin{definition}{Heat flux and power,label={def:heatflux_adiabatic}}
-  Consider a control surface, possibly moving, satisfying the conditions above. This control surface must also be such that the velocity $\yv$ of matter in contact with it, is the same at every point of the surface (this is true, for instance, if the surface is small enough).
+the last condition is true, for instance, if the surface is small enough.
 
   \smallskip
 
-  Choose a crossing direction in order to define fluxes. If $\yF$ is the flux of momentum through this control surface, then the energy flux $\yH$ through the surface is given by
+  Now choose a crossing direction for the surface, in order to define fluxes. If $\yF$ is the flux of momentum through this control surface, then the energy flux $\yH$ through the surface is given by
 \begin{equation}
   \label{eq:heat_power}
-  \yH = \yQ + \yF\cdot \yv
+  \yH = \yQ + \yF\cdot \yv \,.
   % \yH = \underbracket[0pt]{\yQ}_{\mathclap{\text{\color{grey}\footnotesize heat flux}}} +
   %   \overbracket[0pt]{\yF\cdot \yv}^{\mathclap{\parbox{4em}{\color{grey}\centering\footnotesize mechanical\\ power}}}
 \end{equation}
@@ -9671,17 +9692,30 @@ The term $\yQ$ is called the \textbf{heat flux} or \emph{heating}; the  term $\y
 
 \smallskip
 
-If the heat flux vanishes, $\yQ=\qty{0}{J/s}$, then the energy flux is called \textbf{adiabatic}.
+Heat flux $\yQ$ and force $\yF$ are typically specified by further constitutive relations or \autoref{sec:boundary_conds}{boundary conditions}. One particular boundary condition is the vanishing of the heat flux: $\yQ=\qty{0}{J/s}$. When this boundary condition applies, the energy flux is called \textbf{adiabatic}.
+\end{definition}
 
-\smallskip
-
-We can also consider the \autoref{sec:total_flow}{integrated flux} of energy, that is, the total energy that flows through the surface between times $\yti$ and $\ytf$:
+In the integral expression for the balance of energy, the \autoref{sec:total_flow}{time-integrated flux} $\int_{\yti}^{\ytf}\!\!\yH(t)\,\dt$ appears. Given the constitutive relation~\eqref{eq:heat_power}, this integral can be written as the sum of two integrals:
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt =
   \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt
-  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \dt
+  + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \dt \,.
 \end{equation*}
-The integrated heat flux is called the \textbf{heat} transferred through the surface, and the integrated mechanical power is called the \textbf{mechanical work} done by the force
+These integrals have special names:
+\begin{definition}{Heat and mechanical work,label={def:heatwork}}
+  The time integral of the heat flux between times $\yti$ and $\ytf$,
+  \begin{equation*}
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt \,,
+  \end{equation*}
+  is called the \textbf{heat} transferred through the surface during that time interval.
+
+  \smallskip
+
+  The time integral of the mechanical power between times $\yti$ and $\ytf$,
+  \begin{equation*}
+  \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \dt \,,
+  \end{equation*}
+  is called the \textbf{mechanical work} done by the force $\yF$ through that surface during that time interval.
 \end{definition}
 
 \begin{warning}[Tricky points in applying the energy-flux formula,label={warn:energyflux}]
@@ -9697,10 +9731,9 @@ In applying the formula above, keep always in mind the following:
 \end{itemize}
 \end{warning}
 
-The heat flux $\yQ$ can be controlled in some situations, and in that case it is specified as a \autoref{sec:boundary_conds}{boundary condition} in a physical problem or simulation. In other situations it is instead given by a constitutive relation. Analogously for the momentum flux $\yF$: in some situations it's specified as a boundary condition; in others it's given by a constitutive relation, as we saw in many examples from the previous chapter.
 
 
-\section{Heat and power, and observation scales}
+\section{Heat, power, and observation scales}
 \label{sec:dependence_energyfluxdivision}
 
 We have discussed the fact that the total energy content in a control volume doesn't depend on our manner of description and measuring instruments, but the separation into internal and kinetic energy does. A completely analogous situation, and for analogous reasons, occurs for the flux of total energy through a control surface, and its separation into heat flux and mechanical power.
@@ -9747,6 +9780,19 @@ In describing and using matter in a gaseous state, usually heat flux and mechani
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
 \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
 }%
+%
+\marginpar{\vspace{5\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
+% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+% \\[7\baselineskip]
+\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
+% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
+% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
+% \\[\jot]
+% \footnotesize\flushleftright\color{mpcolor}%
+% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
+}%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Water is flowing downward in a pipe, as illustrated in the side picture by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
@@ -9762,23 +9808,10 @@ In describing and using matter in a gaseous state, usually heat flux and mechani
   \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
   \end{enumerate}
 \end{exercise}
-%
-\marginpar{\vspace{-19\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
-% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-% \\[7\baselineskip]
-\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
-% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
-% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
-% \\[\jot]
-% \footnotesize\flushleftright\color{mpcolor}%
-% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
-}%
 
 
 
-\section{Summary: energy constitutive relations for matter}
+\section{Summary: constitutive relations for energy in the presence of matter}
 \label{sec:summary_newton_energy}
 
 So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
@@ -9793,20 +9826,18 @@ So far we have discussed two general constitutive relations: one for energy cont
 \end{equation*}
 Let us recall the physical conditions under which they are valid:
 \begin{itemize}[nosep]
-\item matter present within and directly outside the control volume
-\item control volume and surface such that the matter velocity $\yv$ and molar mass $\yrho$, and therefore also $\ym$, are the same throughout
-\item no matter flux through the control surface
-\item no electric charges or electromagnetic fields
-\item Newtonian approximation, and close to the Earth's surface
+\item Matter is present within and directly outside the control volume.
+\item The control volume and surface are such that the vertical position $z$, the matter velocity $\yv$ and molar mass $\yrho$, and therefore also the rest mass $\ym$, are the same throughout.
+\item No matter flux occurs through the control surface.
+\item Electric charges or electromagnetic fields are negligible.
+\item The speeds involved are much lower than light's and the control volume is close to the Earth's surface.
 \end{itemize}
-\begin{warning}[Division of control volume or surface may be necessary]
 In some situations we must divide a control volume or closed control surface into several parts where these conditions are valid.
-\end{warning}
 
 
 Under these conditions, the formulae above can be used together with the balance of energy~\eqref{eq:bal_energy} in order to describe many common physical situations, with all sorts of materials, and to make predictions, for instance by \autoref{sec:numeric_simulation}{numerical simulations}. Note how these constitutive formulae connect the fluxes and volume contents of energy, matter, momentum; and they even involve two new auxiliary quantities: the internal energy $\yU$ and the heat flux $\yQ$.
 
-In order to concretely use these constitutive formulae, we need first more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. The variety of constitutive relations for these three quantities is the subject of \furl{https://www.britannica.com/technology/materials-science}{materials science}, and could fill numerous tomes. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
+In order to concretely use these constitutive formulae, we need first more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. We are again in the domain of materials science. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
 
 We shall now focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ which can be used in a more restricted but still quite broad range of physical situations, involving gases.
 
@@ -10163,7 +10194,7 @@ To be more specific we consider a vertical tubular chamber containing an amount 
 }%
 The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upward.
 
-Since the piston has mass $\ym$, it also has momentum $\yP=\ym\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yG = -\ym\,g$.
+Since the piston has mass $\ym$, it also has momentum $\yPpi=\ym\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yGpi = -\ym\,g$.
 
 You may wonder why we need to consider a piston having mass. There are two main reasons. First, in a real situation a piston does have a mass that is non-negligible, compared with the mass of the gas. Second, the assumption that the gas has no mass makes \autoref{sec:further_idealgas}{the balance of momentum become singular}, as discussed in the previous section, and any description and prediction of motion becomes therefore impossible -- unless we add mass somewhere else. The piston is effectively also a proxy for the mass of the gas. We encountered an analogous situation with the spring-and-bodies system.
 
@@ -10207,13 +10238,13 @@ The constant amount of matter in the piston is such that its mass is $\ym$, and 
 
 Let's first apply this balance to the control volume of the piston.
 
-The momentum content of the piston is $P(t) = \ym v(t)$, positive when directed upward.
+The momentum content of the piston is $\yPpi(t) = \ym v(t)$, positive when directed upward.
 
 \medskip
 
-The \emph{total} momentum influx $F(t)$ is the sum of the fluxes through three main surfaces:
+The \emph{total} momentum influx $\yFpi(t)$ is the sum of the fluxes through three main surfaces:
 \begin{description}
-\item[Side:] There usually are \autoref{sec:shear}{shear forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero.
+\item[Side:] There usually are \autoref{sec:friction_normal_force}{friction forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero.
 
 \item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$ approximately constant and equal to
   \begin{equation}
@@ -10221,25 +10252,25 @@ The \emph{total} momentum influx $F(t)$ is the sum of the fluxes through three m
     \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
   \end{equation}
 
-\item[Bottom:] The momentum flux through this surface is particularly important, because it's momentum exchanged between the piston and the gas. Denote by $\yFpg(t)$ the flux of momentum from the gas to the piston, and $\yFgp(t)$ the flux of momentum from the piston into the gas. Again by the symmetry of flux we have
-  \begin{equation*}
-%    \label{eq:Fpg_gas}
-    \yFpg(t) = -\yFgp(t)
-  \end{equation*}
+\item[Bottom:] The momentum influx through this surface is particularly important, because it's momentum exchanged between the piston and the gas. Denote by $\yFgp$ the \textbf{ef}flux of momentum out of the piston's control volume and into the control volume of the gas. By the principle of symmetry of flux, the \textbf{in}flux of momentum into the piston's control volume is then $-\yFgp$.
+%   \begin{equation*}
+% %    \label{eq:Fpg_gas}
+%     \yFpg(t) = -\yFgp(t)
+%   \end{equation*}
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/piston_forces.pdf}%
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/piston_forces.jpg}%
 }%
 
-  The momentum influx $\yFgp(t)$ for the gas, being a pressure, always points inwards; in our coordinates it is always negative, downward. The momentum influx $\yFpg(t)$ for the piston is therefore always positive, upward.
+  % The momentum influx $\yFgp(t)$ for the gas, being a pressure, always points inwards; in our coordinates it is always negative, downward. The momentum influx $\yFpg(t)$ for the piston is therefore always positive, upward.
 
-  For the moment we don't have any constitutive relation for the influx $\yFpg(t)$, but we shall have one when we examine the control volume of the gas.
+  For the moment we don't have any constitutive relation for the influx $-\yFgp(t)$, but we shall find one when we examine the control volume of the gas.
 \end{description}
 
-The total influx of momentum, or surface force, for the piston is therefore
+The \emph{total} \emph{in}flux of momentum, or surface force, for the piston is therefore
 \begin{equation}
   \label{eq:F_piston}
-  F(t) = \yFatm + \yFpg(t)
+  \yFpi(t) = \yFatm - \yFgp(t)
 \end{equation}
 
 \medskip
@@ -10247,7 +10278,7 @@ The total influx of momentum, or surface force, for the piston is therefore
 The gravitational supply of momentum to the piston must be taken into account in our case, because the piston can move vertically. It would have been neglected if the piston had moved horizontally instead. It is given by
 \begin{equation}
   \label{eq:piston_G}
-  G = -\ym\,g
+  \yGpi = -\ym\,g
 \end{equation}
 
 \medskip
@@ -10256,22 +10287,22 @@ The equations governing the motion of the piston are therefore
 \begin{equation}
   \label{eq:piston_equations}
   \begin{gathered}
-    \frac{\di P(t)}{\dt} = F(t) + G(t)
-    \\[\jot]
-    P(t) = \ym v(t)
+    \frac{\di \yPpi(t)}{\dt} = \yFpi(t) + \yGpi(t)
+    \\[2\jot]
+    \yPpi(t) = \ym v(t)
     \qquad
-    F(t) = \yFatm + \yFpg(t)
+    \yFpi(t) = \yFatm - \yFgp(t)
     \qquad
-    G = -\ym\,g
-    \\[\jot]
-    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+    \yGpi = -\ym\,g
+    \\[2\jot]
+    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}} \,.
   \end{gathered}
 \end{equation}
-together with the relation between momentum influxes for piston and gas at the common surface:
-  \begin{equation}
-    \label{eq:Fpg_gas}
-    \yFpg(t) = -\yFgp(t)
-  \end{equation}
+% together with the relation between momentum influxes for piston and gas at the common surface:
+%   \begin{equation}
+%     \label{eq:Fpg_gas}
+%     \yFpg(t) = -\yFgp(t)
+%   \end{equation}
 
 \bigskip
 
@@ -10287,10 +10318,10 @@ The total momentum influx for the gas takes places through three main surfaces:
 \begin{description}
 \item[Side:] The influxes on opposite parts of the side surface are equal in magnitude but opposite in orientation, and cancel each other out. The total force through the side surface is therefore zero, and we don't need to keep track of it.
 
-\item[Top:] The gas is in contact with the piston at the top surface. The influx of momentum through the top, $\yFgp$, is therefore equal to minus the momentum flux $\yFpg$ from the gas to the piston. We wrote this in formula~\eqref{eq:Fpg_gas}:
-  \begin{equation*}
-    \yFpg(t) = -\yFgp(t)
-  \end{equation*}
+\item[Top:] The gas is in contact with the piston at the top surface. We already denoted the \textbf{in}flux of momentum into the gas's control volume by $\yFgp$.% , is therefore equal to minus the momentum flux $\yFpg$ from the gas to the piston. We wrote this in formula~\eqref{eq:Fpg_gas}:
+  % \begin{equation*}
+  %   \yFpg(t) = -\yFgp(t)
+  % \end{equation*}
 
   We have a constitutive relation for the pressure corresponding to this influx: the \autoref{def:idealgas_law}{ideal-gas law}:
   \begin{equation*}
@@ -10311,9 +10342,9 @@ The only equations relevant to the momentum of the gas are therefore
   \label{eq:gas_top_F}
   \yFgp(t) = -A\,\ypr(t)
   \qquad
-  \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}
+  \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt} \,.
 \end{equation}
-together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
+% together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
 
 \subsection{Balances of energy}
 \label{sec:idealgas_ex_energy}
