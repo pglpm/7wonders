@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-02-28T19:44:25+0100
+%% Last-Updated: 2025-03-01T11:46:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1104,8 +1104,8 @@ angle-right%
 \newcommand*{\yPpi}{P_{\textrm{pis}}}
 \newcommand*{\yGpi}{G_{\textrm{pis}}}
 \newcommand*{\yFpi}{F_{\textrm{pis}}}
-\newcommand*{\yFpg}{F_{\textrm{pg}}}
-\newcommand*{\yFgp}{F_{\textrm{gas}}}
+%\newcommand*{\yFpg}{F_{\textrm{pg}}}
+\newcommand*{\yFgas}{F_{\textrm{gas}}}
 \newcommand*{\yFatm}{F_{\textrm{atm}}}
 \newcommand*{\yFa}{\yF_{a}}
 \newcommand*{\yFb}{\yF_{b}}
@@ -1140,7 +1140,7 @@ angle-right%
 \newcommand*{\yTm}{\yT^{-}}%
 \newcommand*{\yTa}{\yT_{a}}%
 \newcommand*{\yTb}{\yT_{b}}%
-\newcommand*{\yTe}{\yT_{\text(ext)}}%
+\newcommand*{\yTe}{\yT_{\text{ext}}}%
 
 %% electric charge and magnetic flux
 \newcommand*{\yC}{\mathcal{Q}}
@@ -9671,7 +9671,7 @@ Other situations in between the two above are also possible.
 \medskip
 
 Now that these possible relationships between a control surface and matter around it are clearer, let's study an important constitutive formula for the flux of energy through a control surface
-\begin{definition}{Heat flux and mechanical power}\label{def:heatflux_adiabatic}
+\begin{definition}{Heat flux and mechanical power}\label{def:heatflux_mechpower}
   Fix a coordinate system $(t,x,y,z)$, and consider an imaginary control surface satisfying the following conditions:
 \begin{itemize}[noitemsep]
 \item electric charges and electromagnetic fields are negligible;
@@ -10056,13 +10056,15 @@ Next we discuss a constitutive relation that connects the amount of internal ene
     \label{eq:int_energy_idealgas}
     \yU = C\,\yN\,\yT
   \end{equation}
-  where the constant $C$ depends on the kind of ideal gas and is called \emph{molar heat capacity}.
+  where the constant $C$ is called \textbf{molar heat capacity} and depends on the kind of ideal gas.
 \end{definition}
-This formula is very important: for an ideal gas, the absolute temperature is a direct measure of the internal energy, so it can often be used as a proxy for the latter.
+This formula is very important: for an ideal gas, the absolute temperature is a direct measure of the internal energy, so it can often be used as a proxy for the latter. For air, when it can be modelled as an ideal gas, the value of the molar heat capacity is approximately $C_{\text{air}} \approx \qty{20}{J/(mol\,K)}$.
 
 \begin{warning}[Validity of the internal-energy formula]
   \begin{itemize}
-  \item Keep in mind that the particular constitutive relation~\eqref{eq:int_energy_idealgas} is valid for an ideal gas only. The internal energy of a generic material is related to other quantities besides amount of matter and temperature.
+  \item The particular constitutive relation~\eqref{eq:int_energy_idealgas} is valid \emph{only for an ideal gas}. The internal energy of a generic material is related to other quantities besides amount of matter and temperature.
+
+  \item The constant $C$ is also called \enquote*{molar heat capacity at constant volume}, but despite this name the constitutive relation above \emph{is also valid when the volume of the gas is changing}!
 
   \item Some books express the formula above saying \enquote{the internal energy of an ideal gas depends only on temperature}. This statement is somewhat vague and easy to misunderstand. First, the internal energy clearly \enquote{depends} also on the amount of matter $\yN$. Second, if in some application we express the amount of matter or the temperature as functions of other quantities, such as volume, then the internal energy also becomes a function of those quantities. The formula above can be simply expressed as follow: if we know the amount (and kind) of matter in a volume, and the temperature in that volume, then we also know the amount of internal energy therein.
   \end{itemize}
@@ -10258,13 +10260,13 @@ The balance law for this control volume is then
       \frac{\di \yPpi(t)}{\dt} = \yFpi(t) + \yGpi(t) \,.
 \end{equation*}
 
-Now let's determine the relevant constitutive relations that connect the content, flux, supply above to other quantities.
+Now let's determine the relevant constitutive relations that connect the content, flux, supply above to other quantities; and the relevant boundary conditions.
 
 The momentum content is connected to the velocity $\yv(t)$ by Newton's formula for momentum: $\yPpi(t) = \ym v(t)$. The signs are correct: positive velocity means upward movement, and this corresponds to positive momentum.
 
 \medskip
 
-For the\emph{total} momentum influx $\yFpi(t)$ we cannot use a single constitutive relation, because different conditions hold on different parts of the control surface.
+For the \emph{total} momentum influx $\yFpi(t)$ we cannot use a single constitutive relation, because different conditions hold on different parts of the control surface.
 We must therefore apply the \autoref{def:extensivity}{principle of extensivity}
 %\autoref{sec:extens_sum}{principle of extensivity}
 and calculate the total influx as the sum of the influxes through partial surfaces, for which we have different constitutive relations or boundary conditions.
@@ -10285,21 +10287,21 @@ This is also a boundary condition. See side figure.
 \includegraphics[width=\linewidth]{images/piston_forces.jpg}%
 }%
 
-\item[Bottom:] This surface is in common between the control volumes of the piston and of the gas. Therefore the principle of flux symmetry applies here. Denote by $\yFgp$ the \textbf{ef}flux of momentum from the side with the piston to the side with the gas. The \textbf{in}flux of momentum into the piston's control volume is then $-\yFgp$. See side figure.
+\item[Bottom:] This surface is in common between the control volumes of the piston and of the gas. Therefore the principle of flux symmetry applies here. Denote by $\yFgas$ the \textbf{ef}flux of momentum from the side with the piston to the side with the gas. The \textbf{in}flux of momentum into the piston's control volume is then $-\yFgas$. See side figure.
 %   \begin{equation*}
 % %    \label{eq:Fpg_gas}
-%     \yFpg(t) = -\yFgp(t)
+%     \yFpg(t) = -\yFgas(t)
 %   \end{equation*}
 
-  % The momentum influx $\yFgp(t)$ for the gas, being a pressure, always points inwards; in our coordinates it is always negative, downward. The momentum influx $\yFpg(t)$ for the piston is therefore always positive, upward.
+  % The momentum influx $\yFgas(t)$ for the gas, being a pressure, always points inwards; in our coordinates it is always negative, downward. The momentum influx $\yFpg(t)$ for the piston is therefore always positive, upward.
 
-  For the moment we don't have any constitutive relation for the influx $-\yFgp(t)$, but we shall find one when we examine the control volume of the gas.
+  For the moment we don't have any constitutive relation for the influx $-\yFgas(t)$, but we shall find one when we examine the control volume of the gas.
 \end{description}
 
 The \emph{total} \emph{in}flux of momentum to the piston is therefore
 \begin{equation}
   \label{eq:F_piston}
-  \yFpi(t) = \yFatm - \yFgp(t) \,
+  \yFpi(t) = \yFatm - \yFgas(t) \,
 \end{equation}
 
 \medskip
@@ -10321,7 +10323,7 @@ The momentum equations for the piston's control volume are therefore
     \\[2\jot]
     \yPpi(t) = \ym v(t)
     \\[2\jot]
-    \yFpi(t) = \yFatm - \yFgp(t)
+    \yFpi(t) = \yFatm - \yFgas(t)
     \qquad
     \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
     \\[2\jot]
@@ -10332,7 +10334,7 @@ The momentum equations for the piston's control volume are therefore
 % together with the relation between momentum influxes for piston and gas at the common surface:
 %   \begin{equation}
 %     \label{eq:Fpg_gas}
-%     \yFpg(t) = -\yFgp(t)
+%     \yFpg(t) = -\yFgas(t)
 %   \end{equation}
 
 \bigskip
@@ -10347,29 +10349,29 @@ Different conditions apply to different parts of the gas's control surface; of p
 \begin{description}
 \item[Side:] The influxes on opposite parts of the side surface are equal in magnitude but opposite in orientation, and cancel each other out. The total surface force through the side surface is therefore zero.
 
-\item[Top:] The gas is in contact with the piston at the top surface. We already denoted the \textbf{in}flux of momentum to the gas by $\yFgp$.% , is therefore equal to minus the momentum flux $\yFpg$ from the gas to the piston. We wrote this in formula~\eqref{eq:Fpg_gas}:
+\item[Top:] The gas is in contact with the piston at the top surface. We already denoted the \textbf{in}flux of momentum to the gas by $\yFgas$.% , is therefore equal to minus the momentum flux $\yFpg$ from the gas to the piston. We wrote this in formula~\eqref{eq:Fpg_gas}:
   % \begin{equation*}
-  %   \yFpg(t) = -\yFgp(t)
+  %   \yFpg(t) = -\yFgas(t)
   % \end{equation*}
 
   We have a constitutive relation for this influx: the \autoref{def:idealgas_law}{ideal-gas law}:
   \begin{equation*}
 %    \label{eq:gas_top_F}
-    \yFgp(t) = -A\,\ypr(t)
+    \yFgas(t) = -A\,\ypr(t)
     \quad\text{with}\quad
     \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}
   \end{equation*}
-  The first equation has a minus sign because the influx always points towards the gas, therefore downward in our case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yT(t)$ of the ideal gas, both of which can change with time.
+  The first equation has a minus sign because the surface force points towards the gas, therefore it has a negative vertical component in this case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yT(t)$ of the ideal gas, both of which can change with time.
 
 \item[Bottom:] It is usually assumed that the chamber containing the ideal gas rests on some support. Through the corresponding surface there is therefore an influx of upward-pointing momentum, as was the case in our analysis of the \autoref{sec:bal_momentum_statics}{books on a table}. Since the total influx of momentum to the gas must be zero, the momentum influx through the bottom must be equal and opposite to the one through the top surface. We assume that this is automatically satisfied, and therefore don't need to keep track of the momentum flux at the bottom.
 \end{description}
 
 \medskip
 
-The only equation fore the momentum of the gas's control volume is therefore
+The only equation for the total influx of momentum to the gas's control volume is therefore
 \begin{equation}
   \label{eq:gas_top_F}
-  \yFgp(t) = -A\,
+  \yFgas(t) = -A\,
   \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt} \,.
 \end{equation}
 % together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
@@ -10379,66 +10381,84 @@ The only equation fore the momentum of the gas's control volume is therefore
 
 \paragraph{Piston.} Let's first consider the control volume of the piston. We are treating the piston as a \emph{rigid} body. Its motion is therefore \autoref{sec:rigid_bodies}{completely determined by the balance of momentum}.
 
-We need to consider the balance of energy for the piston if there are exchanges of energy between it and the gas.
-
-
-You may object: \enquote{but we expect the gas to exchange heat, possibly with the piston as well}. This is a valid and intelligent objection! The gas is indeed likely to exchange energy in the form of heat with the piston, unless we insulate the surface between them and make the energy flux through it \autoref{def:heatflux_adiabatic}{adiabatic}. We are silently making one or both of the following assumptions:
-\begin{itemize}
-\item The area $A$ between piston and gas is small compared to the rest of the gas surface, and can therefore be neglected.
-\item from the point of view of heat exchange (only), the piston can be considered just like the rigid walls and not treated in a special way.
+Do we need to keep track of the balance of energy for the piston? Let's reason about this, considering some possible goals:
+\begin{itemize}[noitemsep]
+\item If we needed to keep track of the internal energy or temperature of the piston, then we should use the balance of energy for it. In that case we would also need to find some constitutive relations or boundary conditions for the heat flux between piston and gas, and possibly for the internal energy of the piston.
+\item We shall need to keep track of the balance of energy for the gas. This means that we shall need to find constitutive relations or boundary conditions for the heat flux to the gas, including heat flux from the piston. In turn this may mean that we have to keep track of the internal energy of the piston.
 \end{itemize}
+So if there is a non-zero heat flux between piston and gas, then we need to keep track of the balance of energy for the piston.
+
+In the present case let's simplify our problem by assuming that the surface between gas and piston is thermally insulated, so the energy flux through it \autoref{def:heatflux_mechpower}{adiabatic}. With this assumption we don't need to keep track of the balance of energy for the piston.
 
 \bigskip
 
 \paragraph{Ideal gas.}
 
-The energy content $\yE(t)$ of the control volume containing the ideal gas \autoref{sec:further_idealgas}{amounts only to its internal energy} $\yU(t)$ -- no kinetic or potential energies -- owing to the zero-mass assumption. And we do have a \autoref{def:internalenergy_gas}{constitutive relation for internal energy}, which connects the latter to the amount $\yN$ of gas and to its thermodynamic temperature $\yT(t)$. The energy content is therefore given by
+Adopt this notation:
+\begin{description}
+\item[$\yE$:] total energy content of the gas.
+\item[$\yH$:] total energy \textbf{in}flux to the gas.
+\item[$\yU$:] internal energy of the gas.
+\end{description}
+The balance law for this control volume is then
+\begin{equation*}
+  \frac{\di \yE(t)}{\dt} = \yH(t) \,.
+\end{equation*}
+
+Now let's determine the relevant constitutive relations that connect the content and flux of energy to other quantities.
+
+For the total-energy content $\yE(t)$ we have the usual constitutive relation for matter in terms of internal, kinetic, and gravitational potential energy. But owing to the negligible-mass assumption for the ideal gas, the total energy
+\autoref{sec:further_idealgas}{amounts only to its internal energy} $\yU(t)$; no kinetic or potential energies: $yE(t) = \yU(t)$.
+
+For the internal energy $\yU(t)$ we have a the \autoref{def:internalenergy_gas}{ideal-gas constitutive relation}, which connects it with the amount of gas $\yN$ of gas and to its thermodynamic temperature $\yT(t)$:
 \begin{equation}
   \label{eq:gas_ex_energy}
   \yE(t) = \yU(t) = C\yN\yT(t)
+  \qquad\text{with}\quad C \approx \qty{20}{J/(mol\,K)} \,.
 \end{equation}
-Keep in mind that this constitutive relation can only be used when the temperature and the amount of matter per volume are approximately the same in every sub-volume.
+\begin{warning}[Uniform conditions in the gas]
+  Keep in mind that this constitutive relation can only be used when the temperature and the amount of matter per volume are approximately the same everywhere in the control volume. If we have very compression or decompression, this assumption won't be true. What counts as \enquote*{fast} in this physical situation? The relevant speed turns out to be the speed of sound in the gas. For air it is approximately \qty{340}{m/s}. Therefore, as long as the piston is moving with a velocity well below that, our approximation of uniform temperature and uniform gas distribution shouldn't be too bad.
+\end{warning}
 
 \medskip
 
-Recall that the energy influx $\yH$ through a surface of area $a$ that satisfies the no-matter-flux and uniform-velocity conditions is given by the general \autoref{def:heatflux_adiabatic}{constitutive equation for energy flux}, together with \autoref{def:newton_cooling}{Newton's law of cooling}:
-\begin{equation*}
-  \yH(t) = \yQ(t) + \yF(t)\cdot \yv(t)
-  \quad\text{with}\quad
-  \yQ(t) = a\,\yhea\, [\yTe-\yT(t)]
-\end{equation*}
-We are calling $\yTe$ the temperature of the walls and piston enclosing the ideal gas, and assuming it to be constant.
+For the \emph{total} energy influx $\yH$ we can use the general constitutive relation that expresses it as a \autoref{def:heatflux_mechpower}{sum of heat flux and mechanical power}. But this constitutive relation cannot be used for the gas's surface as a whole, because different heat fluxes, velocities, and surface forces occur on different parts of it. We therefore need to apply the principle of extensivity.
 
-The \emph{total} energy influx $\yH(t)$ is the sum of fluxes through two main surfaces:
+We must consider three partial surfaces:
 \begin{description}
-\item[Side:] There could be a heat flux through the side walls. Note that as the piston moves up or down, the area of the side walls changes, and this must be taken into account in Newton's law of cooling. For simplicity let's assume that the energy flux through the side walls is adiabatic.
+\item[Side:] There could be a heat flux through the side walls, for which we could use \autoref{def:newton_cooling}{Newton's law of cooling}. Note that as the piston moves up or down, the area of the side walls changes, and this should be taken into account in Newton's law of cooling. For simplicity let's assume that the heat flux through the side walls is zero, that is, the energy flux is \autoref{def:heatflux_mechpower}{adiabatic}.
 
-  The momentum flux $\yF_{\text{side}}$ through the side walls is orthogonal to them, according to the ideal-gas law, and therefore horizontal. As the piston moves up or down, we assume that the velocity $\yv$ of the gas is approximately always vertical instead. This means that, on the side walls, the mechanical power $\yF_{\text{side}}\cdot\yv$ is approximately zero, because $\yF_{\text{side}}$ and $\yv$ are orthogonal there.
+  Let's focus on the mechanical power now. There is a momentum influx $\yF_{\text{side}}$, or surface force, on side walls. But according to the ideal-gas law this surface force is \emph{orthogonal} to the control surface. As the piston moves up or down, we assume that the gas is approximately moving only vertically. This means that, on the side walls, the mechanical power $\yF_{\text{side}}\cdot\yv_{\text{side}}$ is approximately zero, because $\yF_{\text{side}}$ and $\yv_{\text{side}}$ are orthogonal there.
 
-  We have therefore $\yH_{\text{side}}(t) = 0$.
-
-\item[Bottom:] Let's consider the possibility of a heat flux $\yQb$ through the bottom surface. Since the area $A$ of this surface is constant, this flux is
+    The energy influx through the bottom surface is therefore
   \begin{equation*}
-    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)]
+    \yH_{\text{side}}(t) \approx \qty{0}{J/s} \,.
+  \end{equation*}
+  
+\item[Bottom:] Let's consider the possibility of a heat flux $\yQb(t)$ through the bottom surface, for which we can use Newton's law of cooling holds as a constitutive relation. Since the area $A$ of this surface is constant, this flux is
+  \begin{equation*}
+    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)] \,,
+  \end{equation*}
+  where $\yTe$ is the temperature of the cylinder walls. In principle this temperature could be under our control, and we could choose its time dependence. For simplicity let's assume that it's kept constant, say at \qty{23}{\degreeCelsius}: $\yTe \approx \qty{396}{K}$.
+
+  Regarding the mechanical power, the momentum influx $\yF_{\text{bot}}$ through the bottom wall is directed upward. The velocity of the gas at the bottom surface must be zero, otherwise the gas would detach from it and a vacuum would form, and this is not what's typically observed. Since the gas velocity $\yv_{\text{bot}}$ at this surface is zero, then the mechanical power $\yF_{\text{bot}} \cdot \yv_{\text{bot}}$ is also zero.
+
+  The energy influx through the bottom surface is therefore
+  \begin{equation*}
+    \yH_{\text{bot}}(t) = \yQb(t)
+    \qquad\text{with}\quad \yQb(t) = A\,\yhea\,[\yTe-\yT(t)] \,.
   \end{equation*}
 
-  The momentum influx $\yF_{\text{bottom}}$ through the bottom wall is directed upward. The velocity of the gas is approximately assumed to be vertical, and we also assume that it is zero at the bottom surface, because the bottom surface is not moving. Otherwise it would mean either that a vacuum is forming right above the surface, or that some gas is passing through it. Neither of these possibilities are contemplated in the present case; they would require different constitutive relations. If the gas velocity at this surface is zero, then the mechanical power is also zero.
+\item[Top:] We could consider a heat flux through the top surface, between gas and piston. The analysis would be similar to the one for the bottom surface, but we would need to consider the temperature of the piston, and in turn possibly its energy balance, as previously discussed. For simplicity let's assume that this heat flux is zero.
 
-  The energy flux through the bottom surface is therefore
+  Let's analyse the mechanical power. The momentum influx $\yFgas(t)$ through the top surface is has a negative vertical component, and has magnitude given by the ideal-gas law as in formula~\eqref{eq:gas_top_F}. The velocity of the ideal gas at this surface must be equal to that of the surface itself, $v(t)$, otherwise the gas would detach from the piston and a vacuum would form -- and then we would need very different constitutive relations. Force and velocity are therefore parallel, and at the top surface there is a non-zero influx of mechanical power $\yFgas(t)\cdot v(t)$. The energy influx across this surface is therefore
   \begin{equation*}
-    \yH_{\text{bot}} = \yQb(t) + 0
+    \yH_{\text{top}}(t) = \yFgas(t)\cdot v(t)
   \end{equation*}
-
-\item[Top:] We could consider a heat flux through the top surface, between gas and piston. Its formula would be similar to the one for the bottom surface with same area $A$ but possibly different external temperature (the temperature of the piston). For simplicity let's assume that this heat flux is zero.
-
-  The momentum influx $\yFgp(t)$ through the top surface is directed downward, and has magnitude given by the ideal-gas law. The velocity of the ideal gas at this surface must be equal to that of the surface itself, $v(t)$, otherwise there would either be a vacuum or gas would pass through the piston. At the top surface there is therefore a non-zero mechanical power $\yFgp\cdot\yv$. The energy flux across this surface is therefore
-  \begin{equation*}
-    \yH_{\text{top}} = 0 + \yFgp(t)\cdot v(t)
-  \end{equation*}
-where $\yFgp(t)$ is given by formula~\eqref{eq:gas_top_F}.
+where $\yFgas(t)$ is given by formula~\eqref{eq:gas_top_F}.
   % \begin{equation*}
   %   \begin{aligned}
-  %     \yH_{\text{top}} = 0 + \yFgp(t)\cdot v(t) &=
+  %     \yH_{\text{top}} = 0 + \yFgas(t)\cdot v(t) &=
   %     -A\,\ypr(t)\cdot v(t)
   %     \\
   %     &= -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]\cdot v(t)
@@ -10446,20 +10466,46 @@ where $\yFgp(t)$ is given by formula~\eqref{eq:gas_top_F}.
   % \end{equation*}
 \end{description}
 
-The total energy influx into the control volume enclosing the ideal gas is therefore
+\medskip
+
+Summing up the influxes from all partial surfaces, the total energy influx into the gas's control volume is therefore
 \begin{equation}
   \label{eq:gas_energy_influx}
   \begin{gathered}
-    \yH(t) = \yQb(t) + \yFgp(t) \,v(t)
-    \\[\jot]\text{with}\hfill
+    \yH(t) = \yH_{\text{side}} + \yH_{\text{bot}} + \yH_{\text{top}}
+    = \yQb(t) + \yFgas(t) \cdot v(t)
+    \qquad\text{with}
     \\[\jot]
-    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)]
-    \\
-    \yFgp(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]
+    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)] \,,
+    \qquad
+    \yFgas(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]
+    \,.
   \end{gathered}
 \end{equation}
 
-We finally have all the equations to describe and numerically time-integrate our physical system.
+\medskip
+
+The energy equations for the gas's control volume are therefore
+\begin{equation}
+  \label{eq:gas_equations}
+  \begin{gathered}
+  \frac{\di \yE(t)}{\dt} = \yH(t)
+  \\[2\jot]
+    \yE(t) = \yU(t) = C\yN\yT(t)
+    \\[2\jot]
+    \yFgas(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]
+    \\[2\jot]
+    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+    \\[2\jot]
+    C \approx \qty{20}{J/(mol\,K)}
+    \qquad
+    \yTe \approx \qty{396}{K}
+  \end{gathered}
+\end{equation}
+
+\bigskip
+
+We finally have all the equations and boundary conditions to describe and numerically time-integrate our physical system. We only need to specify the initial conditions and some additional constants like the area of the piston.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
@@ -10496,7 +10542,7 @@ We finally have all the equations to describe and numerically time-integrate our
         \qquad
         v(\yti) = \qty{0}{m/s}
         \qquad
-        T(\yti) = \qty{296.15}{m/s}
+        \yT(\yti) = \qty{296.15}{m/s}
       \end{gathered}
     \end{equation*}
     Plot the position $z(t)$ of the piston and the temperature $\yT(t)$ of the ideal gas as functions of time. What do you observe?

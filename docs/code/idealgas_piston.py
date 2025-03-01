@@ -13,10 +13,8 @@ C = 20              # J/(K*mol): molar heat capacity
 mu = 0.00004        # N*s/m**2: gas viscosity
 h = 8000            # J/(K*m**2): heat-transfer coefficient
 N = 0.04            # mol: amount of ideal gas
-Text = 373.15 + 23  # K: temperature of environment
 A = 0.1**2          # m**2: area of piston
 m = 10              # kg: mass of piston
-Fatm = -100000 * A  # N: force on piston by atmosphere
 
 ## Initial conditions. State: (z, v, T)
 t = 0            # s: initial time
@@ -25,7 +23,10 @@ v = 0            # m/s: initial velocity of piston
 T = 273.15 + 23  # K: initial temperature of gas
 
 ## Boundary conditions
-Gpis = -m*g  # N: gravity supply of momentum to piston
+Gpis = -m*g         # N: gravity supply of momentum to piston
+Fatm = -100000 * A  # N: force on piston by atmosphere
+Text = 373.15 + 23  # K: temperature of environment
+                    # other fluxes are zero
 
 ## Parameters for time loop
 t1 = 1       # s: final time
@@ -38,7 +39,7 @@ figure
 subplot(2, 1, 1); plot(t, z, '.b')
 xlim([0, t1])
 xlabel('${\it t}$/s'); ylabel('${\it z}$/m')
-grid(True); 
+grid(True);
 subplot(2, 1, 2); plot(t, T, '.r')
 xlim([0, t1])
 xlabel('${\it t}$/s'); ylabel('${\it T}$/K')
@@ -47,18 +48,18 @@ grid(True);  #@
 ## Numerical time integration
 while t < t1:
   ## constitutive relations
-  Fgas = -(R * N * T / z -  mu * A * v / z)  # ideal-gas law
-  Q = A * h * (Text - T)                     # law of cooling
-  Phi = Q + Fgas * v                         # energy influx to gas
-  E = C * N * T                              # internal energy of ideal gas
-  Ppis = m * v                               # Newton's formula for momentum
-  Fpis = -Fgas + Fatm                        # momentum influx to piston
+  Fgas = -(R * N * T / z -  mu * A * v / z)
+  Ppis = m * v
+  Fpis = -Fgas + Fatm
+  E = C * N * T
+  Qbot = A * h * (Text - T)
+  Phi = Qbot + Fgas * v
 
   ## step forward in time with balance laws
   t = t + dt
-  E = E + Phi * dt
   Ppis = Ppis + (Fpis + Gpis) * dt
   z = z + v * dt
+  E = E + Phi * dt
 
   ## constitutive relations: calculate state
   T = E / (C * N)
