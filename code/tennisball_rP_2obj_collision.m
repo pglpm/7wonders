@@ -27,11 +27,11 @@ dt = 0.00001; % s: time step %@
 dtplot = t1/360; % time interval between plots
 tplot = dtplot; % time for next plot
 figure
-subplot(2, 1, 1); plot(t, ra(3), '.b')
+plot(t, ra(3), 'ob')
 xlim([0, t1])
 xlabel('{\it t}/s'); ylabel('{\it z_a}/m')
 axis('tight'); grid on; hold on
-subplot(2, 1, 2); plot(t, rb(3), '.r')
+plot(t, rb(3), 'sr')
 xlim([0, t1])
 xlabel('{\it t}/s'); ylabel('{\it z_b}/m')
 axis('tight'); grid on; hold on %@
@@ -58,8 +58,8 @@ while t < t1
 
   %% plot
   if t > tplot
-    subplot(2, 1, 1); plot(t, ra(3), '.b')
-    subplot(2, 1, 2); plot(t, rb(3), '.r')
+    plot(t, ra(3), 'ob')
+    plot(t, rb(3), 'sr')
     pause(0)
     tplot = tplot + dtplot;
   end %@

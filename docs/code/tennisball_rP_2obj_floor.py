@@ -32,11 +32,11 @@ dt = 0.00001 # s: time step #@
 dtplot = t1/360 # time interval between plots
 tplot = dtplot # time for next plot
 figure
-subplot(2, 1, 1); plot(t, ra[2], '.b')
+plot(t, ra[2], 'ob')
 xlim([0, t1])
 xlabel('${\it t}$/s'); ylabel('${\it z_a}$/m')
 grid(True); 
-subplot(2, 1, 2); plot(t, rb[2], '.r')
+plot(t, rb[2], 'sr')
 xlim([0, t1])
 xlabel('${\it t}$/s'); ylabel('${\it z_b}$/m')
 grid(True);  #@
@@ -62,8 +62,8 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    subplot(2, 1, 1); plot(t, ra[2], '.b')
-    subplot(2, 1, 2); plot(t, rb[2], '.r')
+    plot(t, ra[2], 'ob')
+    plot(t, rb[2], 'sr')
     tplot = tplot + dtplot
 
 plt.show()
