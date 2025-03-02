@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-01T12:38:59+0100
+%% Last-Updated: 2025-03-02T09:44:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6666,7 +6666,7 @@ We have two balance laws for matter that drive the physical system forward in ti
 We apply the \emph{boundary conditions} from that example: the two influxes $\yJu(t)$, $\yJv(t)$ are always zero. For simplicity we shall therefore simply omit them.
 
 Now we use the constitutive relations between the contents and the supply: $\yav(t) = \lambda \yNu(t)$, $\yau(t) = -\lambda \yNv(t)$. At every time step, after calculating the volume contents $\yNu$, $\yNv$ from the balance laws, we can used their new values to calculate the supplies $\yav$, $\yau$ at that same time step. These supplies can then be used for the next time step:
-\begin{equation}\label{eq:timestepped_evolution_N}
+\begin{equation}\label{eq:timestepped_evolution_NA}
   \begin{aligned}
     \yau\tikzmark{aua}(t) &= -\lambda \yNv(t)
     \\[2\jot]
@@ -6844,7 +6844,7 @@ Keep in mind that the finite-difference approximation~\eqref{eq:finite_diff} tha
 
 
 
-We have illustrated the numerical-evolution procedure, formulae~\eqref{eq:timestepped_evolution} and~\eqref{eq:timestep_momentum_position}, focusing on momentum and position. But obviously this procedure can be applied to any quantities that satisfy balance laws.% : it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
+We have illustrated the numerical-evolution procedure with energy~\eqref{eq:timestepped_evolution} and amount of matter~\eqref{eq:timestepped_evolution_NA}. But obviously this procedure can be applied to any quantities that satisfy balance laws.% : it could be used to simulate the orbit of a planet or the propagation of an electromagnetic field.
 
 The time-stepping scheme discussed in the previous sections is very crude and quickly leads to increasing numerical errors. See for instance the examples on the \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/spring_plot.html}{\texttt{Mass-Spring Model} webpage} of \furl{https://interactivecomputergraphics.github.io/physics-simulation/}{\emph{Physics Simulation in Visual Computing}}. More refined and complex schemes are used for concrete applications.
 
@@ -10358,9 +10358,16 @@ Different conditions apply to different parts of the gas's control surface; of p
   We have a constitutive relation for this influx: the \autoref{def:idealgas_law}{ideal-gas law}:
   \begin{equation*}
 %    \label{eq:gas_top_F}
-    \yFgas(t) = -A\,\ypr(t)
-    \quad\text{with}\quad
-    \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}
+    \begin{gathered}
+      \yFgas(t) = -A\,\ypr(t)
+      \\[\jot]\text{with}\qquad
+      \ypr(t) = \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}
+      \,,\quad
+      V(t) = A\,z(t)
+      \\[2\jot]
+      \implies\qquad
+      \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t) \,.
+    \end{gathered}
   \end{equation*}
   The first equation has a minus sign because the surface force points towards the gas, therefore it has a negative vertical component in this case. Note how this constitutive relation brings into play the volume $V(t)$ and the thermodynamic temperature $\yT(t)$ of the ideal gas, both of which can change with time.
 
@@ -10372,8 +10379,7 @@ Different conditions apply to different parts of the gas's control surface; of p
 The only equation for the total influx of momentum to the gas's control volume is therefore
 \begin{equation}
   \label{eq:gas_top_F}
-  \yFgas(t) = -A\,
-  \frac{R \yN \yT(t)}{V(t)}  - \yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt} \,.
+      \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t) \,.
 \end{equation}
 % together  with the relation between momentum influxes for piston and gas at the common surface, equation~\eqref{eq:Fpg_gas}.
 
@@ -10479,7 +10485,7 @@ Summing up the influxes from all partial surfaces, the total energy influx into 
     \\[\jot]
     \yQb(t) = A\,\yhea\,[\yTe-\yT(t)] \,,
     \qquad
-    \yFgas(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]
+      \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t)
     \,.
   \end{gathered}
 \end{equation}
@@ -10494,7 +10500,7 @@ The energy equations for the gas's control volume are therefore
   \\[2\jot]
     \yE(t) = \yU(t) = C\yN\yT(t)
     \\[2\jot]
-    \yFgas(t) = -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]
+      \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t) \,.
     \\[2\jot]
     \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
     \\[2\jot]

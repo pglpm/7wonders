@@ -44,11 +44,12 @@ axis('tight'); grid on; hold on %@
 while t < t1
   %% constitutive relations
   Fgas = -(R * N * T / z -  mu * A * v / z);
-  Ppis = m * v;
   Fpis = -Fgas + Fatm;
-  E = C * N * T;
+  Ppis = m * v;
   Qbot = A * h * (Text - T);
-  Phi = Qbot + Fgas * v;
+  Qtop = Fgas * v;
+  Phi = Qbot + Qtop;
+  E = C * N * T;
 
   %% step forward in time with balance laws
   t = t + dt;
