@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-02T09:44:49+0100
+%% Last-Updated: 2025-03-02T14:39:46+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1082,7 +1082,7 @@ angle-right%
 \newcommand*{\yHfl}{\yH_{\text{floor}}}
 \newcommand*{\yHc}{\yH_{\text{crate}}}
 \newcommand*{\yQ}{Q}% Q really for time-integral
-\newcommand*{\yQb}{Q_{\text{bot}}}%
+%\newcommand*{\yQb}{Q_{\textrm{bot}}}%
 \newcommand*{\yQp}{Q^{+}}%
 \newcommand*{\yQm}{Q^{-}}%
 \newcommand*{\yQc}{\yQ_{\text{crate}}}
@@ -5103,12 +5103,12 @@ Note that what we found is the time-integrated influx through the \emph{whole} c
 \begin{equation*}
   \begin{split}
     \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt &=
-    \int_{\yti}^{\ytf}\!\bigl[\yJ_{\text{top}}(t) +
+    \int_{\yti}^{\ytf}\!\bigl[\yJ_{\textrm{top}}(t) +
     \yJ_{\text{side}}(t) +
-    \yJ_{\text{bot}}(t)\bigr]\,\dt
+    \yJ_{\textrm{bot}}(t)\bigr]\,\dt
     \\
       \qty{53.4}{mol} &=
-      \int_{\yti}^{\ytf}\!\bigl[\yJ_{\text{top}}(t) +
+      \int_{\yti}^{\ytf}\!\bigl[\yJ_{\textrm{top}}(t) +
       \qty{0}{mol/s} +
       \qty{0}{mol/s}\bigr]\,\dt
   \end{split}
@@ -10225,9 +10225,9 @@ The control volume of the piston doesn't change in size but is movable. Its posi
   V(t) = A\,z(t) \,.
 \end{equation}
 
-The vertical velocity $v(t)$ of the piston is related to the coordinate $z(t)$ by
+The piston's vertical velocity $v(t)$ is related to the coordinate $z(t)$ by
 \begin{equation*}
-  v(t) = \frac{\di z(t)}{\dt}
+  \frac{\di z(t)}{\dt} = v(t)
 \end{equation*}
 and is positive if the piston is moving upward. We also define the rate of change of the volume $V(t)$, which is related to the velocity $v(t)$:
 \begin{equation}\label{eq:Vv_gas}
@@ -10276,11 +10276,11 @@ We must consider three partial surfaces:
 \begin{description}
 \item[Side:] There usually are \autoref{sec:friction_normal_force}{friction forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero. This is a boundary condition.
 
-\item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$ approximately constant and equal to
-  \begin{equation}
-    \label{eq:gas_piston_Fatm}
-    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}} \,.
-  \end{equation}
+\item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$. % The force exerted by the atmospherepproximately constant and equal to
+  % \begin{equation}
+  %   \label{eq:gas_piston_Fatm}
+  %   \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}} \,.
+  % \end{equation}
 This is also a boundary condition. See side figure.
 
 % 
@@ -10326,8 +10326,8 @@ The momentum equations for the piston's control volume are therefore
     \\[2\jot]
     \yFpi(t) = \yFatm - \yFgas(t)
     \qquad
-    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
-    \\[2\jot]
+    % \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+    % \\[2\jot]
     \yGpi = -\ym\,g
     \,.
   \end{gathered}
@@ -10420,8 +10420,8 @@ For the total-energy content $\yE(t)$ we have the usual constitutive relation fo
 For the internal energy $\yU(t)$ we have a the \autoref{def:internalenergy_gas}{ideal-gas constitutive relation}, which connects it with the amount of gas $\yN$ of gas and to its thermodynamic temperature $\yT(t)$:
 \begin{equation}
   \label{eq:gas_ex_energy}
-  \yE(t) = \yU(t) = C\yN\yT(t)
-  \qquad\text{with}\quad C \approx \qty{20}{J/(mol\,K)} \,.
+  \yE(t) = \yU(t) = C\yN\yT(t) \,.
+%  \qquad\text{with}\quad C \approx \qty{20}{J/(mol\,K)} \,.
 \end{equation}
 \begin{warning}[Uniform conditions in the gas]
   Keep in mind that this constitutive relation can only be used when the temperature and the amount of matter per volume are approximately the same everywhere in the control volume. If we have very compression or decompression, this assumption won't be true. What counts as \enquote*{fast} in this physical situation? The relevant speed turns out to be the speed of sound in the gas. For air it is approximately \qty{340}{m/s}. Therefore, as long as the piston is moving with a velocity well below that, our approximation of uniform temperature and uniform gas distribution shouldn't be too bad.
@@ -10442,30 +10442,32 @@ We must consider three partial surfaces:
     \yH_{\text{side}}(t) \approx \qty{0}{J/s} \,.
   \end{equation*}
   
-\item[Bottom:] Let's consider the possibility of a heat flux $\yQb(t)$ through the bottom surface, for which we can use Newton's law of cooling holds as a constitutive relation. Since the area $A$ of this surface is constant, this flux is
+\item[Bottom:] Let's consider the possibility of a heat flux $\yQ_{\textrm{bot}}(t)$ through the bottom surface, for which we can use Newton's law of cooling holds as a constitutive relation. Since the area $A$ of this surface is constant, this flux is
   \begin{equation*}
-    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)] \,,
+    \yQ_{\textrm{bot}}(t) = A\,\yhea\,[\yTe-\yT(t)] \,,
   \end{equation*}
-  where $\yTe$ is the temperature of the cylinder walls. In principle this temperature could be under our control, and we could choose its time dependence. For simplicity let's assume that it's kept constant, say at \qty{23}{\degreeCelsius}: $\yTe \approx \qty{396}{K}$.
+  where $\yTe$ is the temperature of the cylinder walls. In principle this temperature could be under our control, and we could choose its time dependence. For simplicity let's assume that it's kept constant.
+  % , say at \qty{23}{\degreeCelsius}: $\yTe \approx \qty{396}{K}$.
 
-  Regarding the mechanical power, the momentum influx $\yF_{\text{bot}}$ through the bottom wall is directed upward. The velocity of the gas at the bottom surface must be zero, otherwise the gas would detach from it and a vacuum would form, and this is not what's typically observed. Since the gas velocity $\yv_{\text{bot}}$ at this surface is zero, then the mechanical power $\yF_{\text{bot}} \cdot \yv_{\text{bot}}$ is also zero.
+  Regarding the mechanical power, the momentum influx $\yF_{\textrm{bot}}$ through the bottom wall is directed upward. The velocity of the gas $\yv_{\textrm{bot}}$ at the bottom surface must be zero, otherwise the gas would detach from it and a vacuum would form, and this is not what's typically observed. Since the gas velocity $\yv_{\textrm{bot}}$ at this surface is zero, then the mechanical power is also zero: $\yF_{\textrm{bot}} \cdot \yv_{\textrm{bot}} = \qty{0}{J/s}$.
 
   The energy influx through the bottom surface is therefore
   \begin{equation*}
-    \yH_{\text{bot}}(t) = \yQb(t)
-    \qquad\text{with}\quad \yQb(t) = A\,\yhea\,[\yTe-\yT(t)] \,.
+    \yH_{\textrm{bot}}(t) = \yQ_{\textrm{bot}}(t)
+    + \yF_{\textrm{bot}} \cdot \yv_{\textrm{bot}}
+    = A\,\yhea\,[\yTe-\yT(t)] \,.
   \end{equation*}
 
-\item[Top:] We could consider a heat flux through the top surface, between gas and piston. The analysis would be similar to the one for the bottom surface, but we would need to consider the temperature of the piston, and in turn possibly its energy balance, as previously discussed. For simplicity let's assume that this heat flux is zero.
+\item[Top:] We could consider a heat flux through the top surface, between gas and piston. The analysis would be similar to the one for the bottom surface, but we would need to consider the temperature of the piston, and in turn possibly its energy balance, as previously discussed. For simplicity let's assume that this heat flux is zero: $\yQ_{\text{top}} = \qty{0}{J/s}$.
 
   Let's analyse the mechanical power. The momentum influx $\yFgas(t)$ through the top surface is has a negative vertical component, and has magnitude given by the ideal-gas law as in formula~\eqref{eq:gas_top_F}. The velocity of the ideal gas at this surface must be equal to that of the surface itself, $v(t)$, otherwise the gas would detach from the piston and a vacuum would form -- and then we would need very different constitutive relations. Force and velocity are therefore parallel, and at the top surface there is a non-zero influx of mechanical power $\yFgas(t)\cdot v(t)$. The energy influx across this surface is therefore
   \begin{equation*}
-    \yH_{\text{top}}(t) = \yFgas(t)\cdot v(t)
+    \yH_{\textrm{top}}(t) = \yFgas(t)\cdot v(t)
   \end{equation*}
 where $\yFgas(t)$ is given by formula~\eqref{eq:gas_top_F}.
   % \begin{equation*}
   %   \begin{aligned}
-  %     \yH_{\text{top}} = 0 + \yFgas(t)\cdot v(t) &=
+  %     \yH_{\textrm{top}} = 0 + \yFgas(t)\cdot v(t) &=
   %     -A\,\ypr(t)\cdot v(t)
   %     \\
   %     &= -A\biggl[\frac{R \yN \yT(t)}{V(t)}  -\yvis \frac{1}{V(t)}\frac{\di V(t)}{\dt}\biggr]\cdot v(t)
@@ -10479,11 +10481,12 @@ Summing up the influxes from all partial surfaces, the total energy influx into 
 \begin{equation}
   \label{eq:gas_energy_influx}
   \begin{gathered}
-    \yH(t) = \yH_{\text{side}} + \yH_{\text{bot}} + \yH_{\text{top}}
-    = \yQb(t) + \yFgas(t) \cdot v(t)
+    \yH(t) = \yH_{\textrm{bot}} + \yH_{\textrm{top}}
     \qquad\text{with}
     \\[\jot]
-    \yQb(t) = A\,\yhea\,[\yTe-\yT(t)] \,,
+    \yH_{\textrm{bot}} = A\,\yhea\,[\yTe-\yT(t)]
+    \\[\jot]
+    \yH_{\textrm{top}} =  \yFgas(t) \cdot v(t) \,,
     \qquad
       \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t)
     \,.
@@ -10498,58 +10501,112 @@ The energy equations for the gas's control volume are therefore
   \begin{gathered}
   \frac{\di \yE(t)}{\dt} = \yH(t)
   \\[2\jot]
-    \yE(t) = \yU(t) = C\yN\yT(t)
+    \yE(t) = C\yN\yT(t)
     \\[2\jot]
-      \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t) \,.
-    \\[2\jot]
-    \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
-    \\[2\jot]
-    C \approx \qty{20}{J/(mol\,K)}
+    \yH(t) = \yH_{\textrm{bot}} + \yH_{\textrm{top}}
+    \qquad\text{with}
+    \\[\jot]
+    \yH_{\textrm{bot}} = A\,\yhea\,[\yTe-\yT(t)]
+    \\[\jot]
+    \yH_{\textrm{top}} =  \yFgas(t) \cdot v(t) \,,
     \qquad
-    \yTe \approx \qty{396}{K}
+      \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t) \,.
+    % \\[2\jot]
+    % \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+    % \\[2\jot]
+    % C \approx \qty{20}{J/(mol\,K)}
+    % \qquad
+    % \yTe \approx \qty{396}{K}
   \end{gathered}
 \end{equation}
 
-\bigskip
+\vspace{2\bigskipamount}
 
-We finally have all the equations and boundary conditions to describe and numerically time-integrate our physical system. We only need to specify the initial conditions and some additional constants like the area of the piston.
+We finally have all the equations and boundary conditions to describe and numerically time-integrate our physical system. We only need to specify the initial conditions and some additional constants. Let's write them all together here:
+\begin{equation*}
+  \begin{aligned}
+    \text{balances:}&\qquad\left\{
+      \begin{aligned}
+        \frac{\di z(t)}{\dt} &= v(t)
+        \\
+        \frac{\di \yPpi(t)}{\dt} &= \yFpi(t) + \yGpi(t)
+        \\
+        \frac{\di \yE(t)}{\dt} &= \yH(t)
+      \end{aligned}
+    \right.
+    \\[3\jot]
+    \text{const. relations:}&\qquad\left\{
+      \begin{aligned}
+        \yPpi(t) &= \ym v(t)
+        \\
+        \yFpi(t) &= \yFatm - \yFgas(t)
+        \\
+        \yGpi &= -\ym\,g
+        \\
+        \yE(t) &= C\yN\yT(t)
+        \\
+        \yH(t) &= \yH_{\textrm{bot}} + \yH_{\textrm{top}}
+        \qquad\text{with}
+        \\
+        \yH_{\textrm{bot}} &= A\,\yhea\,[\yTe-\yT(t)]
+        \quad
+        \yH_{\textrm{top}} =  \yFgas(t) \cdot v(t)
+        \\[\jot]
+        \yFgas(t) &= -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t) \,.
+      \end{aligned}
+    \right.
+    \\[3\jot]
+    \text{boundary conditions:}&\qquad
+    \yGpi = -\ym\,g \,,
+    \qquad
+    \yFatm \,,
+    \qquad
+    \yTe
+    \\[3\jot]
+    \text{physical constants:}&\qquad
+    A\,,\quad \ym \,,\quad g \,,\quad \yN \,,\quad C \,,\quad \yhea \,,\quad R \,,\quad \yvis \,.
+  \end{aligned}
+\end{equation*}
+Note that there isn't a clear distinction between some constitutive relations and boundary conditions. For instance $\yGpi = -\ym\,g$ is a constitutive relation, but it can also be considered a boundary condition because it's constant an known beforehand in this setup.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Use the \autoref{sec:strategy_simulation}{basic script-writing strategy} to write a script that simulates the system of ideal gas \amp\ piston.
-  \item What is the \autoref{def:state}{state} of the system?
-  \item Simulate the system with the following numerical constants and initial conditions:
+  \item How can we choose the \autoref{def:state}{state variables} for the system?
+  \item Simulate the system with the following numerical constants, boundary conditions, and initial conditions:
     \begin{equation*}
       \begin{gathered}
-        \ym = \qty{10}{kg}
+        A = \qty{0.01}{m^{2}} \,,
         \qquad
-        \yN = \qty{0.04}{mol}
+        \ym = \qty{10}{kg} \,,
         \qquad
-        A = \qty{0.01}{m^{2}}
-        \qquad
-        \yTe = \qty{296.15}{K}
+        g = \qty{9.8}{N/kg} \,,
         \\
-        C = \qty{20}{J/(mol\cdot K)}
-        \quad
-        \yvis = \qty{0.00004}{N\,s/m^{2}}
-        \quad
-        \yhea = \qty{8000}{J/(K\, s\, m^{2})}
-        \\
-        g = \qty{9.8}{N/kg}
+        \yN = \qty{0.04}{mol} \,,
         \qquad
-        R = \qty{8.314}{J/(mol\, K)}
+        C = \qty{20}{J/(mol\, K)}
         \\
-        \yti = \qty{0}{s}
+        \yhea = \qty{8e3}{J/(K\, s\, m^{2})} \,,
         \qquad
-        \ytf = \qty{1}{s}
+        \yvis = \qty{4e-5}{N\,s/m^{2}}
+        \\
+        R = \qty{8.31446261815324}{J/(mol\, K)} \,,
+        \\
+        \yTe = \qty{296.15}{K} \,,
+        \qquad
+        \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+        \\
+        \yti = \qty{0}{s} \,,
+        \qquad
+        \ytf = \qty{1}{s} \,,
         \qquad
         \Dt = \qty{0.0001}{s}
         \\
-        z(\yti) = \qty{0.1}{m}
+        z(\yti) = \qty{0.1}{m} \,,
         \qquad
-        v(\yti) = \qty{0}{m/s}
+        v(\yti) = \qty{0}{m/s} \,,
         \qquad
-        \yT(\yti) = \qty{296.15}{m/s}
+        \yT(\yti) = \qty{296.15}{K}
       \end{gathered}
     \end{equation*}
     Plot the position $z(t)$ of the piston and the temperature $\yT(t)$ of the ideal gas as functions of time. What do you observe?
@@ -10562,10 +10619,12 @@ We finally have all the equations and boundary conditions to describe and numeri
 
 \bigskip
 
-Here is an example of Octave/MATLAB script for simulating the system of ideal gas and piston and plotting $z(t)$ and $\yT(t)$:
-
+Here is an example script for simulating the system of ideal gas \amp\ piston and plotting $z(t)$ and $\yT(t)$:
+%
 \marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-\furl{https://pglpm.github.io/7wonders/code/idealgas_piston.m}{Download \texttt{idealgas\_piston.m}}%
+    Download Octave version \furl{https://pglpm.github.io/7wonders/code/idealgas_piston.m}{\texttt{idealgas\_piston.m}}%
+    \\[2ex]
+    Download Python version \furl{https://pglpm.github.io/7wonders/code/idealgas_piston.py}{\texttt{idealgas\_piston.py}}%
 }%
 \lstinputlisting[style=mycode]{code/idealgas_piston.m}
 
