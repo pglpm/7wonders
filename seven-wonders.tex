@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-02T14:39:46+0100
+%% Last-Updated: 2025-03-03T21:41:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8015,15 +8015,15 @@ that can be solved analytically.
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\section[The concept of state. A strategy for numerical time integration]{The concept of state\\A strategy for numerical time integration}
+\section[The concept of state. A strategy for numerical time integration]{The concept of state variables\\A strategy for numerical time integration}
 \label{sec:strategy_simulation}
 
 The present section is somewhat peculiar because we shall discuss two very different topics, one practical and one conceptual:
 \begin{itemize}[noitemsep]
 \item A step-by-step strategy to write a script for numerical time integration for physical systems, starting from the physical analysis of the system.
-\item The concept of \textbf{physical state} of a physical system.
+\item The concepts of \textbf{physical state} and \textbf{state variables} of a physical system.
 \end{itemize}
-The reason for a joint section is that the scripting strategy is very helpful for understanding the concept of physical state; and vice versa this concept is key to understanding some steps of the scripting strategy.
+The reason for a joint section is that the scripting strategy is very helpful for understanding the concept of physical state and state variables; and vice versa this concept is key to understanding some steps of the scripting strategy.
 
 \bigskip
 
@@ -8133,9 +8133,9 @@ These driving equations easy to identify: \enquote*{$t+\Dt$} appears in them. In
 \sidepar{\vspace{-1ex}\footnotesize{\color{green}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{red}2. Choose a \emph{state} for the physical system.}
+\paragraph{\color{red}2. Choose the \emph{state variables} for the physical system.}
 
-The driving equations in the core lines of the loop calculate later quantities from a particular set of present quantities. We must therefore make sure that the values of these quantities are defined before the core lines, and that they are known before the time-stepping loop begins as well. In our case we see that we need 8 quantities, underlined below, with two components each, for a total of 16 numbers:
+In the time loop, the driving equations calculate later quantities from a particular set of present quantities. We must therefore make sure that the values of all necessary present quantities are defined before the core lines, and also that they are known before the time loop begins. In our case we see that we need 8 quantities, underlined below, with two components each, for a total of 16 numbers:
 \begin{equation*}
   \begin{aligned}[b]
     \yPa(t+\Dt)  &\approx \underbracket[1pt]{\yPa(t)} + [\underbracket[1pt]{\yFab(t)} + \yGa(t)]\,\Dt
@@ -8157,7 +8157,7 @@ The supplies $\yGa$, $\yGb$ are given as boundary conditions, so we don't need t
   %   \end{gathered}
   % \end{equation*}
 
-The eight quantities above are not all independent, thanks to constitutive relations that relate some of them. For instance, if we assign the velocity $\yva$, then the momentum $\yPa$ is  determined by the constitutive relation $\yPa=\yma\yva$; and if we assign the positions $\yra$, $\yrb$, then the force $\yFab$ is determined by the constitutive relation $\yFab  =-k\,(\yra-\yrb)$.
+The eight quantities above are not all independent, owing to the constitutive relations that relate some of them. For instance, if we assign the velocity $\yva$, then the momentum $\yPa$ is  determined by the constitutive relation $\yPa=\yma\yva$; and if we assign the positions $\yra$, $\yrb$, then the force $\yFab$ is determined by the constitutive relation $\yFab  =-k\,(\yra-\yrb)$.
 
 Our task now is to find a \emph{minimum} set among these quantities, from which all others can be determined via constitutive relations. As a rule of thumb, the number of minimum quantities is given by
 \begin{equation*}
@@ -8182,26 +8182,51 @@ The choice is not unique. Convince yourself that this minimal set could be used:
 \begin{equation*}
   \yra\,,\ \yva\,,\enskip\yrb\,,\ \yvb
 \end{equation*}
-or this:
+or alternatively this:
 \begin{equation*}
   \yra\,,\ \yPa\,,\enskip\yFab\,,\ \yvb
 \end{equation*}
-Usually we prefer a minimal set that consists of easily observable or measurable quantities, like positions, velocities, temperatures. In our case, let us agree to use $\yra, \yva, \yrb,\yrb$; note that each of these has two components: $y_{a},z_{a},y_{b},\dotsc$ and so on, for a total of four.
+Usually we prefer a minimal set that consists of easily observable or measurable quantities, like positions, velocities, temperatures. In the present case let's agree to use $\yra, \yva, \yrb,\yrb$. Each of these has two components: $y_{a},z_{a},y_{b},\dotsc$ and so on, for a total of four.
 
-This minimum set is called the \emph{state} of the physical system:
-\begin{definition}{State of a physical system}\label{def:state}
+These are called \emph{state variables} of the physical system:
+\begin{definition}{State and state variables of a physical system}\label{def:state}
   The \textbf{state} of a physical system is the minimal amount of information needed to drive the system from one time point to the next.
 
   \smallskip
 
-  It is usually encoded in a minimal set of time-dependent quantities, but the choice of quantities is often not unique. In this case we say that different sets of quantities \emph{represent the same state}.
+  The state is usually encoded in a minimal set of time-dependent quantities, called \textbf{state variables}. The choice of state variables is often not unique. In this case we say that different sets of state variables \emph{represent the same state}.
 
   \smallskip
 
-  The values of a state at the beginning of a numerical time integration are called \textbf{initial conditions}.
+  The values of the state variables at the beginning of a numerical time integration are called \textbf{initial conditions}.
 \end{definition}
+Note the subtle difference between \emph{state} and \emph{state variables}. In our current example, suppose for a moment that $\yma = \ymb = \qty{2}{kg}$. The set
+\begin{equation*}
+  (\yra, \yva, \yrb,\yrb)
+\end{equation*}
+and the set
+\begin{equation*}
+  (\yra, \yPa, \yrb,\yPb)
+\end{equation*}
+are \emph{different} state variables. But the values
+\begin{equation*}
+  \yra = [1,3]\,\unit{m}\,,\quad
+  \yva = [0,2]\,\unit{m/s}\,,\quad
+  \yrb = [7,5]\,\unit{m}\,,\quad
+  \yvb = [-1,0]\,\unit{m/s}
+\end{equation*}
+and
+\begin{equation*}
+  \yra = [1,3]\,\unit{m}\,,\quad
+  \yPa = [0,4]\,\unit{N\,s}\,,\quad
+  \yrb = [7,5]\,\unit{m}\,,\quad
+  \yPb = [-2,0]\,\unit{N\,s}
+\end{equation*}
+represent the \emph{same state}. This is because the values of the first set of state variables correspond to the values of the second set of state variables: the information they provide is equivalent.
 
-The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at the initial time, that is, the initial conditions, need to be \textbf{declared before the time-stepping loop}, together with the value of the initial time.
+\medskip
+
+We have chosen the state variables of our system to be $(\yra, \yva, \yrb,\yrb)$. The values of the state variables at the initial time, that is, the initial conditions, need to be \textbf{declared before the time-stepping loop}, together with the value of the initial time.
 \sidepar{\vspace{-1ex}\footnotesize{\color{red}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
 \paragraph{\color{purple}3. Determine the boundary conditions.}
@@ -8209,7 +8234,7 @@ The state of our system is $\yra, \yva, \yrb,\yrb$. The values of the state at t
 The time dependence of some fluxes, supplies, and volume contents may be known beforehand. These are what we call boundary conditions. We declare them before the time iteration. In our case the gravity supplies of the two bodies, $\yGa(t) = -\yma\,g\,[0,1]$ and $\yGb(t) = -\ymb\,g\,[0,1]$ are constant, because the masses, the gravitational acceleration, and the unit vector $[0,1]$ are constant. \sidepar{\vspace{-1ex}\footnotesize{\color{purple}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{blue}4. From the state, determine the quantities necessary for forward-driving.}
+\paragraph{\color{blue}4. From the state variables, determine the quantities necessary for forward-driving.}
 
 Recall that the forward-driving equations require, at each time step, the $2\times 8$ quantities
 \begin{equation*}
@@ -8222,7 +8247,7 @@ Recall that the forward-driving equations require, at each time step, the $2\tim
   \yrb(t)\,,\
   \yvb(t)
 \end{equation*}
-We must therefore find these from our state, at each new time step, by using any necessary constitutive relations. In our case:
+We must therefore find these from our state variables, at each new time step, by using any necessary constitutive relations. In the present case:
 \begin{equation*}
   \begin{aligned}
     \yPa(t) &= \yma\,\yva(t)\\
@@ -8235,15 +8260,15 @@ We must therefore find these from our state, at each new time step, by using any
     \yvb(t) &\quad\text{given}
   \end{aligned}
 \end{equation*}
-Note that to find the force $\yFba$ from the state we needed to use two equations.
+Note that to find the force $\yFba$ from the state variables we needed to use two equations.
 
-In the code, the formulae that calculate the quantities necessary to the forward-driving lines from the state \textbf{need to be written within the time-stepping loop, right before the forward-driving lines}.
+In the code, the formulae that calculate the quantities necessary to the forward-driving lines from the state variables \textbf{need to be written within the time-stepping loop, right before the forward-driving lines}.
 \sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
 
-\paragraph{\color{cyan}5. Find the new state from the time-updated quantities.}
+\paragraph{\color{cyan}5. Find the new values of the state variables from the time-updated quantities.}
 
-The time-stepping loop of our code is now able to determine quantities at a later time $t+\Dt$, given the state at the present time $t$. The quantities that we obtain at the later time are
+The time-stepping loop of our code is now able to determine quantities at the next time step $t+\Dt$, given the state at the present time $t$. The quantities that we obtain at the next time step are
 \begin{equation*}
   \yPa(t+\Dt)\,,\enskip
   \yPb(t+\Dt)\,,\enskip
@@ -8251,7 +8276,7 @@ The time-stepping loop of our code is now able to determine quantities at a late
   \yrb(t+\Dt)
 \end{equation*}
 
-We now want to be able to start the next loop iteration. The next iteration needs the new value of the state $\yra, \yva, \yrb,\yrb$; but we have $\yPa, \yPb, \yra, \yrb$. We need therefore to \textbf{convert the updated quantities back to the quantities that constitute the state, within the time loop}. This is again done by using same-time equations. In our case we use
+We now want to be able to start the next loop iteration. The next iteration needs the new value of the state variables $(\yra, \yva, \yrb,\yrb)$; what we we have is $\yPa, \yPb, \yra, \yrb$. We need therefore to \textbf{convert the updated quantities back to the state variables, within the time loop}. This is again done by using same-time constitutive equations. In our case we use
 \sidepar{\vspace{12ex}\footnotesize{\color{cyan}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 \begin{equation*}
   \begin{aligned}
@@ -8305,7 +8330,7 @@ k = 5;     % N/m: spring constant
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{red}\begin{verbatim}
-%% 2.  State and initial conditions
+%% 2.  State variables and initial conditions
 t = 0;         % s: initial time
 ra = [-3, 0];  % m: initial position of object a
 rb = [3, 0];   % m: initial position of object b
@@ -8328,7 +8353,7 @@ while t < t1
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{blue}\begin{verbatim}
-    %% 4.  Calculate forward-driving quantities from state
+    %% 4.  Calculate forward-driving quantities from state var.
     Pa = ma * va;
     Pb = ma * vb;
     Fas = -k * (ra - rb);
@@ -8345,7 +8370,7 @@ while t < t1
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{cyan}\begin{verbatim}
-    %% 5.  Calculate new state from forward-driven quantities
+    %% 5.  Calculate new state var. from forward-driven quantities
     va = Pa / ma;
     vb = Pb / mb;
 \end{verbatim}
@@ -8366,11 +8391,11 @@ end
   \begin{enumerate}[exerc]
   \item Examine our \autoref{tab:oscillatingreaction}{previous script for the oscillating reaction}, and pinpoint where the seven building steps above are implemented.
 
-  \item Which quantities constitute the \emph{state} in that script?
+  \item Which quantities constitute the \emph{state variables} in that script?
 
   \item Implement the pseudo-code of Table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} in your preferred programming language.
 
-    Try to write your script so that some values of the state $\yra,\yrb,\yva,\yvb$, and their corresponding $t$ values are saved at regular intervals, and plot their time evolution afterwards.
+    Try to write your script so that some values of the state variables $(\yra,\yrb,\yva,\yvb)$, and their corresponding $t$ values are plotted or saved at regular intervals.
 
     \smallskip
 
@@ -8848,10 +8873,6 @@ In our second experience, with the object in motion, we noticed that the kinetic
 Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$, need not have the same value; in many cases the coefficient of kinetic friction is smaller than the other.
 
 
-%
-\marginpar{\vspace{6\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/carpush.jpg}%
-}%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item The normal force has physical dimensions of force, SI units \unit{N}. From formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction} find the physical dimensions and units of the coefficients of static and kinetic friction.
@@ -8865,6 +8886,10 @@ Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$
 Check that this function correctly covers and represents both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
   \end{enumerate}
 \end{exercise}\noprelistbreak
+%
+\marginpar{\vspace{-25\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/carpush.jpg}%
+}%
 %
 \sidepar{\vspace{-10\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
 \texttt{\color{blue}sign()} is defined as
@@ -11178,7 +11203,7 @@ For many physical phenomena and materials, a change of the reference state simpl
 \enquote*{\emph{First, there are bodies which have two entropies \textelp{} whose difference is nonconstant \textelp{}. Second, it can happen that the body does not have a smooth entropy. These two peculiarities are related to the fact that for the entropy we have only an inequality.}}\sourceatright{\cites{silhavy1997} \sect~7.6}
 }%
 
-But this non-uniqueness is not a problem. Any one of the entropies, defined with respect to different reference states, can be used for instance as one of the quantities that define the state of the physical system. The prediction of the physical system's behaviour will be the same.
+But this non-uniqueness is not a problem. Any one of the entropies, defined with respect to different reference states, can be used for instance as one of the  state variables. The prediction of the physical system's behaviour will be the same.
 
 \section{Examples of constitutive relations}
 \label{sec:entropy_constitutive}
