@@ -25,16 +25,16 @@ Ga = -ma * g * vector([0, 1])  # N: gravity supply on object a
 Gb = -mb * g * vector([0, 1])  # N: gravity supply on object b
 
 ## Parameters for time loop
-t1 = 5	    # s: final time
-dt = 0.001  # s: time step #@
+t1 = 5	     # s: final time
+dt = 0.0001  # s: time step #@
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
 tplot = dtplot	 # time for next plot
 figure
-plot(ra[0], ra[1], 'sb')
+plot(ra[0], ra[1], 'ob')
 grid(True)
-plot(rb[0], rb[1], 'or')
+plot(rb[0], rb[1], 'sr')
 xlabel('${\it y}$/m'); ylabel('${\it z}$/m') #@
 
 ## State: ra, rb, va, vb
@@ -60,8 +60,8 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    plot(ra[0], ra[1], 'sb')
-    plot(rb[0], rb[1], 'or')
+    plot(ra[0], ra[1], 'ob')
+    plot(rb[0], rb[1], 'sr')
     tplot = tplot + dtplot
 
 plt.show()

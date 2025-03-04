@@ -20,16 +20,16 @@ Ga = -ma * g * [0, 1];	    % N: gravity supply on object a
 Gb = -mb * g * [0, 1] * 0;  % N: gravity supply on object b
 
 %% Parameters for time loop
-t1 = 10;     % s: final time
-dt = 0.001;  % s: time step %@
+t1 = 10;      % s: final time
+dt = 0.0001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;	  % time for next plot
 figure
-plot(ra(1), ra(2), 'sb')
+plot(ra(1), ra(2), 'ob')
 hold on; grid on
-plot(rb(1), rb(2), 'or')
+plot(rb(1), rb(2), 'sr')
 xlabel('{\it y}/m'); ylabel('{\it z}/m') %@
 
 %% State: ra, rb, va, vb
@@ -40,11 +40,11 @@ while t < t1
   Pb = mb * vb;
   l = norm(ra - rb); % calculation of present length
   if l < ln
-    Fa = [0, 0]; % momentum flux from spring to a, y comp.
+    Fa = [0, 0];
   else
     Fa = -k * (l - ln) * (ra - rb)/l;
   end
-  Fb = -Fa; % balance of momentum for Hookean material
+  Fb = -Fa; % balance of momentum for non-Hookean material
 
   %% balances
   t = t + dt;
@@ -59,8 +59,8 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(ra(1), ra(2), 'sb')
-    plot(rb(1), rb(2), 'or')
+    plot(ra(1), ra(2), 'ob')
+    plot(rb(1), rb(2), 'sr')
     pause(0)
     tplot = tplot + dtplot;
   end %@
