@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-04T06:55:16+0100
+%% Last-Updated: 2025-03-04T20:34:52+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1099,8 +1099,8 @@ angle-right%
 \newcommand*{\yPb}{\yP_{b}}
 \newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
-\newcommand*{\yFab}{\yF_{as}}
-\newcommand*{\yFba}{\yF_{bs}}
+\newcommand*{\yFab}{\yF_{a}}
+\newcommand*{\yFba}{\yF_{b}}
 \newcommand*{\yPpi}{P_{\textrm{pis}}}
 \newcommand*{\yGpi}{G_{\textrm{pis}}}
 \newcommand*{\yFpi}{F_{\textrm{pis}}}
@@ -6758,11 +6758,11 @@ The script shown in table~\ref{tab:oscillatingreaction} on page~\pageref{tab:osc
 
 \begin{table}[p]%\vspace{-4ex}
   \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-Download Octave version \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.m}{\texttt{oscillatingreaction.m}}%
+Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.m}{\texttt{oscillatingreaction.m}}%
 \\[2ex]
-Download Python version \furl{https://pglpm.github.io/7wonders/code/oscillatingreaction.py}{\texttt{oscillatingreaction.py}}%
+Download Python version \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.py}{\texttt{oscillatingreaction.py}}%
 }%
-\lstinputlisting[style=mycode]{code/oscillatingreaction.m}
+\lstinputlisting[style=mycode]{scripts/oscillatingreaction.m}
 %
 \sidepar{\vspace{-9\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/oscillatingreaction_plot.jpg}
@@ -7611,13 +7611,13 @@ Let's examine the structure of this script, starting from the bottom, and omitti
 
 \begin{table}[p]\vspace{-4ex}
   \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-    Download Octave version \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.m}{\texttt{tennisball\_rP.m}}%
+    Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}%
     \\[2ex]
-    Download Python version \furl{https://pglpm.github.io/7wonders/code/tennisball_rP.py}{\texttt{tennisball\_rP.py}}%
+    Download Python version \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}%
     \\[5ex]
     \flushleftright\color{black}\emph{Note:} In Octave, vectors are simply represented by square brackets, as in \textcolor{codecolour}{lines 10--11}, similar to the maths notation. The 1st component of a vector \textcolor{codecolour}{\texttt{P}} is retrieved by means of round brackets: \enquote*{\textcolor{codecolour}{\texttt{P(1)}}}.
   }%
-  \lstinputlisting[style=mycode]{code/tennisball_rP.m}
+  \lstinputlisting[style=mycode]{scripts/tennisball_rP.m}
   \caption{Script for the example of a flying tennis ball}\label{tab:tennisball_rP}
 \end{table}
 
@@ -7655,22 +7655,22 @@ In the following sections we shall study several extremely simplified examples o
 
 To start with, we shall simplify the situation as follows:
 \begin{itemize}
-\item We consider a control volume where momentum influx only occurs through two separate parts, usually diametrically opposed, of the closed control surface.
+\item We consider a control volume where momentum flux only occurs through two separate parts, usually diametrically opposed, of the closed control surface.
 \item We summarize the shape and dimensions of the control volume with just the distance between the two parts of the control surface.
 \item We often assume that the matter within the control volume has negligible \masse, and therefore a momentum content that is practically zero at all times.
 \end{itemize}
 
 %
 \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/material_piece.jpg}%
+\includegraphics[width=\linewidth]{images/material_piece2.jpg}%
 }%
 These simplification are illustrated in the side figure. The closed control surface is represented by the \textcolor{yellow}{dashed yellow line}. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be elliptical or round, or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
 
-We assume that momentum fluxes, that is, surface forces, only occur at the two parts represented by the \textcolor{purple}{solid dark-red lines}, which we may call $a$ and $b$, or \enquote*{1} and \enquote*{2}, or similar symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$ or a similar symbol.
+We assume that momentum fluxes, that is, surface forces, only occur at the two partial surfaces represented by the \textcolor{purple}{solid dark-red lines}, which we may call $a$ and $b$, or \enquote*{1} and \enquote*{2}, or similar symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$ or a similar symbol.
 
 If the partial surfaces $a$ and $b$ are enough small, we may identify their positions with position vectors $\yra$ and $\yrb$ (not indicated in the figure). In this case we have $\yle = \abs{\yra - \yrb}$.
 
-The momentum \textbf{in}fluxes through the partial surfaces are $\yFa$ and $\yFb$, represented by the \textcolor{blue}{blue} arrows. In the figure, these momentum influxes are \emph{compressive} (\faIcon{angle-right}\enspace page~\pageref{sec:pressure}), but note that they might also be \emph{tensile} (\faIcon{angle-right}\enspace page~\pageref{sec:tension}).
+The momentum \textbf{ef}fluxes through the partial surfaces are $\yFa$ and $\yFb$, represented by the \textcolor{blue}{blue} arrows. We focus on the effluxes, rather than the influxes, to make the discussion in the following sections easier. In the figure, these momentum effluxes are \emph{compressive} (\faIcon{angle-right}\enspace page~\pageref{sec:pressure}), but note that they might also be \emph{tensile} (\faIcon{angle-right}\enspace page~\pageref{sec:tension}).
 
 
 \medskip
@@ -7690,20 +7690,20 @@ With the simplified setup just described we can approximately represent the resp
 
   \smallskip
 
-  In the top side figure, the influxes $\yFa$ and $\yFb$ are depicted as \emph{compressive} surface forces experienced by the material. Draw an analogous figure, but in which $\yFa$ and $\yFb$ are depicted as \emph{tensile} surface forces instead.
+  In the top side figure, the effluxes $\yFa$ and $\yFb$ are depicted as \emph{compressive} surface forces experienced by the material. Draw an analogous figure, but in which $\yFa$ and $\yFb$ are depicted as \emph{tensile} surface forces instead.
 \end{exercise}
 
 \section{Consequences of simplifying assumptions}
 \label{sec:springs_consequences_balances}
 
-The simplification of having influxes through two separate partial control surfaces, together with the simplification of negligible \masse\ content and momentum content, lead to two important conditions that must be satisfied by the influxes. These conditions are \emph{consequences of the balances of momentum and of \autoref{cha:bal_ang_momentum}{angular momentum}}:
+The simplification of having fluxes through two separate partial control surfaces, together with the simplification of negligible \masse\ content and momentum content, lead to two important conditions that must be satisfied by the momentum fluxes. These conditions are \emph{consequences of the balances of momentum and of \autoref{cha:bal_ang_momentum}{angular momentum}}:
 \begin{enumerate}[label=C\arabic*]
-\item\label{item:C1flux} The influxes $\yFa$ and $\yFb$ must have equal magnitudes and directions, and opposite orientations, that is,
+\item\label{item:C1flux} The fluxes $\yFa$ and $\yFb$ must have equal magnitudes and directions, and opposite orientations, that is,
   \begin{equation*}
     \yFa = - \yFb \,.
   \end{equation*}
 
-\item\label{item:C2flux} If the partial control surfaces $a$ and $b$ are enough small, then the influxes $\yFa$ and $\yFb$ must each have the same direction as the line connecting the two partial surfaces:
+\item\label{item:C2flux} If the partial control surfaces $a$ and $b$ are enough small, then the fluxes $\yFa$ and $\yFb$ must each have the same direction as the line connecting the two partial surfaces:
   \begin{equation*}
     \yFa \,,\enskip \yFb\,,\enskip \yra-\yrb \quad \text{are parallel}
   \end{equation*}
@@ -7716,20 +7716,20 @@ The simplification of having influxes through two separate partial control surfa
 \end{enumerate}
 
 \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
-\includegraphics[align=t,width=0.49\linewidth]{images/material_piece_C1.jpg}%
-\hfill\includegraphics[align=t,width=0.49\linewidth]{images/material_piece_C2.jpg}%
+\includegraphics[width=\linewidth]{images/material_piece2_C12.jpg}%
+%\hfill\includegraphics[align=t,width=0.495\linewidth]{images/material_piece2_C2.jpg}%
 }%
-The difference between these two conditions is illustrated in the two side figures. In the left figure the influxes $\yFa$ and $\yFb$ satisfy condition~\ref{item:C1flux} but break condition~\ref{item:C2flux}. In the right figure the influxes satisfy condition~\ref{item:C2flux} but break condition~\ref{item:C1flux}.
+The difference between these two conditions is illustrated in the two side figures. In the left figure the effluxes $\yFa$ and $\yFb$ satisfy condition~\ref{item:C1flux} but break condition~\ref{item:C2flux}. In the right figure the effluxes satisfy condition~\ref{item:C2flux} but break condition~\ref{item:C1flux}.
 
 \medskip
 
-In words, these two conditions say that the material in this control volume is a \emph{perfect conductor of momentum and of angular momentum}. The material, owing to its negligible \masse, cannot \enquote{store} momentum or angular momentum. Therefore any influx of either on one side is instantaneously transferred, unaltered, to the other side as an efflux.
+In words, these two conditions say that the material in this control volume is a \emph{perfect conductor of momentum and of angular momentum}. The material, owing to its negligible \masse, cannot \enquote{store} momentum or angular momentum. Therefore any influx of either on one side is instantaneously transferred, unaltered, to the other side as an efflux, and vice versa.
 
-Note that the conditions above are not satisfied any longer, as soon as we consider the more realistic case of a control volume containing some amount of \masse. The two influxes $\yFa$ and $\yFb$ can then have different directions, orientations, and magnitudes.
+Note that the conditions above are not satisfied any longer, as soon as we consider the more realistic case of a control volume containing some amount of \masse. The two fluxes $\yFa$ and $\yFb$ can then have different directions, orientations, and magnitudes.
 
 \medskip
 
-An important consequence of the two conditions above, is that the direction -- but not the magnitude or orientation -- of either influx $\yFa$ or $\yFb$ is completely determined by the positions $\yra$, $\yrb$ of the surfaces $a$, $b$: it must be parallel to their difference. Any constitutive relation for the influxes must therefore have the following mathematical expression:
+An important consequence of the two conditions above, is that the direction -- but not the magnitude or orientation -- of either efflux $\yFa$ or $\yFb$ is completely determined by the positions $\yra$, $\yrb$ of the surfaces $a$, $b$: it must be parallel to their difference. Any constitutive relation for the effluxes must therefore have the following mathematical expression:
 \begin{equation}\label{eq:simplified_material}
   \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle}
 \end{equation}
@@ -7758,7 +7758,7 @@ Prove that condition~\ref{item:C1flux} follows from the balance of momentum. Pro
 
 \item By the principle of symmetry of fluxes, the total momentum influx is equal to
   \begin{equation*}
-    \yF = \yFa + \yFb \,.
+    \yF = -\yFa - \yFb \,.
   \end{equation*}
 \end{itemize}
 Combine the three formulae above with the \autoref[\eqn~\eqref]{eq:bal_momentum}{balance of momentum} and derive condition~\ref{item:C1flux}.
@@ -7791,7 +7791,7 @@ In physical situations where the speed of light becomes relevant, such as relati
 
 In the previous sections we discussed a simplified physical situation to study how momentum fluxes, that is, \autoref{sec:visualize_force}{surface forces}, can be connected with geometric quantities in a piece of some kind of material.
 
-We also found that, if the \masse\ of the piece of material is negligible, and if there are just two main momentum influxes $\yFa$ and $\yFb$ across two small surfaces $a$ and $b$, then these influxes must satisfy constitutive relations having mathematical form
+We also found that if the \masse\ of the piece of material is negligible, and if there are just two main momentum effluxes $\yFa$ and $\yFb$ across two small surfaces $a$ and $b$, then these effluxes must satisfy constitutive relations having mathematical form
 \begin{equation*}
   \yFa = -\yFb = f(\dotso) \,\frac{\yra - \yrb}{\yle} \,,
 \end{equation*}
@@ -7816,52 +7816,54 @@ These objects often show two additional characteristics:
 These two characteristics are reflected in a particular mathematical form of the constitutive function $f(\dotso)$:
 
 \begin{definition}{Hookean material}\label{def:hooke}
-  A \textbf{Hookean material} is characterized by momentum \textbf{in}fluxes related to its length $\yle \defd \abs{\yra - \yrb}$ by the constitutive relation
+  A \textbf{Hookean material} is characterized by momentum \textbf{ef}fluxes related to its length $\yle \defd \abs{\yra - \yrb}$ by the constitutive relation
     \begin{equation}
       \label{eq:hooke}
-      \yFa = -\yFb = k\,(\yle -\ylo)\,\frac{\yra - \yrb}{\yle} \,,
+      \yFa = -\yFb = -k\,(\yle -\ylo)\,\frac{\yra - \yrb}{\yle} \,,
     \end{equation}
     where $\ylo$ and $k$ are positive constants. This formula is called \textbf{Hooke's law}.
 
 \smallskip
 
-The constant $\ylo$ is the \emph{natural length} or \emph{unstretched length} of the piece of material;  $k$ is the \textbf{elastic constant} of the material.
+The constant $\ylo$ is the \emph{natural length} or \emph{unstretched length} of the piece of material; $k$ is the \textbf{elastic constant} of the material. The variable difference $\yle-\ylo$ is called the \emph{elongation} of the material; if negative, it means that the material has shortened.
 
 \smallskip
 
-Note the signs of the surface forces \emph{experienced} (momentum influxes) and \emph{exerted} (momentum effluxes) by the piece of material:
+Note the signs of the surface forces \emph{exerted} (momentum effluxes) and \emph{experienced} (momentum influxes) by the piece of material:
 \begin{itemize}[noitemsep]
 \item When $\yle > \ylo$, the surface forces are \emph{tensile}: the material experiences a force that stretches it, and exerts a force directed towards itself.
 \item When $\yle < \ylo$, the surface forces are \emph{compressive}: the material experiences a force that compresses it, and exerts a force directed away from itself.
 \item When $\yle = \ylo$, the material does not experience or exert any surface force.
 \end{itemize}
-The side figure illustrates these situations for the surface force $\yF_{\textrm{e}}$ \emph{exerted} (momentum efflux) by the piece of material.
+The figure below illustrates these situations for the surface force $\yFa$ \emph{exerted} (momentum efflux) by the piece of material.
+\begin{center}
+    \includegraphics[width=0.67\linewidth]{images/hooke3c.jpg}%
+\end{center}
 \end{definition}
-\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/hooke3b.jpg}%
-}%
-
+% \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+% \includegraphics[width=\linewidth]{images/hooke3c.jpg}%
+% }%
 
 In some physical situations the natural length of the piece of material is negligible compared to the amounts by which it is typically stretched, so we can put $\ylo=\qty{0}{m}$. Hooke's law then takes on the very simple form
 \begin{equation*}
         \label{eq:hooke_simple}
-      \yFa = -\yFb = k\,(\yra - \yrb)\,.
+      \yFa = -\yFb = -k\,(\yra - \yrb)\,.
 \end{equation*}
 Note that in this case the material always exerts a tension, never a pressure.
 
-The elastic constant $k$ determines the stiffness of the Hookean material. If $k$ is very large, the material is very stiff, because a small deformation $\yle-\ylo$ corresponds to a large contact force; that is, we need large forces to effect just a small deformation. This constant can never be negative; this is a consequence of the \emph{balance of entropy} which we'll discuss in \chap~\eqref{eq:bal_entropy}.
+The elastic constant $k$ determines the \emph{stiffness} of the Hookean material, or how hard it is to stretch or compress it. Take a particular magnitude of the elongation $\abs{\yle-\ylo}$; let's say \qty{0.01}{m}. If $k=\qty{2}{N/m}$, then the force corresponding to that elongation has magnitude \qty{0.02}{N}; if the elastic constant is ten times larger, $k=\qty{20}{N/m}$, then the force corresponding to that elongation is \qty{0.2}{N} instead: also ten times larger. In other words, for larger values of $k$ we need larger forces to obtain a given amount of elongation.
+
+The elastic constant $k$ can \emph{never be negative}. This is a consequence of the \emph{balance of entropy} which we'll discuss in \chap~\eqref{eq:bal_entropy}.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item What are the physical dimensions of the elastic constant $k$? in which units could we measure it?
+  \item Verify that the elastic constant $k$ has physical dimension \texttt{force}/\texttt{length}.
 
-  \item What would happen if the elastic constant $k$ where negative? Examine Hooke's law~\eqref{eq:hooke}, and try to deduce what would happen if you stretched out such a bizarre kind of material starting from its natural length.
+  \item What if the elastic constant $k$ where negative? Examine Hooke's law~\eqref{eq:hooke}, and try to deduce what would happen if you stretched out such a bizarre kind of material starting from its natural length.
 
   \item Hooke's law is usually stated for the surface forces \emph{exerted} by the material; in other words, for the \emph{ef}fluxes rather than for the influxes.
 
-    Denote by $\yF_{\textrm{e}}$ the efflux through the surface $a$. What is the relation between $\yF_{\textrm{e}}$ and $\yFa$, and what is the physical principle behind this relation?
-
-    Write Hooke's law for $\yF_{\textrm{e}}$ rather than for $\yFa$.
+    Denote by $\yF_{a,\textrm{in}}$ the influx through the surface $a$. Write Hooke's law for $\yF_{a,\textrm{in}}$ rather than for $\yFa$.
   \end{enumerate}
 \end{exercise}
 
@@ -7908,7 +7910,16 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 
   Assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control volume of the Hookean material; this portion is represented by the \textcolor{purple}{thick red lines} in the side picture below. Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} is the influx in body $a$ coming from the Hookean material, the \enquote{spring}; analogously for $\yFba$ and body $b$.
 
-  If we consider gravity effects, we can use the  \autoref{def:gravity_surface}{constitutive equation for gravitational force} $\yGa=-\yma\,g\,[0,0,1]$.
+  If we consider gravity effects, we can use the
+%  \autoref{def:gravity_surface}{constitutive equation for gravitational force}
+  constitutive equation for gravitational force
+  $\yGa=-\yma\,g\,[0,0,1]$.
+
+%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\includegraphics[height=22em]{images/hooke_controls2.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between the Hookean material and the two bodies are indicated by two \textcolor{purple}{thick dark-red lines}. The fluxes $\yFab$, $\yFba$ occur across these surfaces, but their vectors are placed on the side in the illustration for clarity. The velocities $\yva$, $\yvb$, and momentum supplies $\yGa$, $\yGb$ are not shown.}%
 
   For this control volume we have therefore the following momentum balance and constitutive relations:
   \begin{equation*}
@@ -7939,11 +7950,6 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 &\text{\footnotesize const. relation} &\quad&\yGb(t) = -\ymb\,g\,[0,1]
     \end{aligned}
   \end{equation*}
-%
-\marginpar{\vspace{-25\baselineskip}\footnotesize\centering%
-\includegraphics[height=22em]{images/hooke_controls.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. The surfaces in common between the Hookean material and the two bodies are indicated by two \textcolor{purple}{thick dark-red lines}. The fluxes $\yFab$, $\yFba$ occur across these surfaces, but their vectors are placed on the side in the illustration for clarity. The velocities $\yva$, $\yvb$, and momentum supplies $\yGa$, $\yGb$ are not shown.}%
 
 \item[Spring:] The control volume for the piece of Hookean material has two negligible dimensions and can be represented by a long, narrow tube extending between the extremities at $\yra$ and $\yrb$. The two surfaces at these extremities are in common with the control volumes for bodies $a$ and $b$. The amount of matter and matter flux in this control volume are considered to be zero. The same is true for the \masse\ and the  momentum content and supply.
 
@@ -8015,7 +8021,7 @@ that can be solved analytically.
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\section[The concept of physical state. A strategy for numerical time integration]{The concept of physical state\\A strategy for numerical time integration}
+\section[The concept of physical state. A strategy for numerical time integration]{The concept of physical state\noprelistbreak\\ A strategy for numerical time integration}
 \label{sec:strategy_simulation}
 
 The present section is somewhat peculiar because we shall discuss two very different topics, one practical and one conceptual:
@@ -8310,7 +8316,7 @@ It is also easy to generalize the script in various ways. For instance, we can u
 
 \medskip
 
-An example script that implements plotting and uses the general version of Hooke's law can be downloaded as an \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{Octave version \texttt{hooke\_spring.m}} and a \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{Python version \texttt{hooke\_spring.py}}.
+An example script that implements plotting and uses the general version of Hooke's law can be downloaded as an \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{Octave version \texttt{hooke\_spring.m}} and a \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{Python version \texttt{hooke\_spring.py}}.
 
 \begin{table}[p]
   \caption{Example script for numerical time integration of spring\,\amp\,bodies system.}\label{tab:script_strategy}
@@ -8356,16 +8362,16 @@ while t < t1
 \color{blue}\begin{verbatim}
     %% 4.  Calculate forward-driving quantities from state var.
     Pa = ma * va;
-    Pb = ma * vb;
-    Fas = -k * (ra - rb);
-    Fbs = -Fas;   % balance of momentum for Hookean material
+    Pb = mb * vb;
+    Fa = -k * (ra - rb);
+    Fb = -Fa;   % balance of momentum for Hookean material
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{green}\begin{verbatim}
     %% 1.  Balances drive forward in time
     t = t + dt;
-    Pa = Pa + (Fas + Ga) * dt;
-    Pb = Pb + (Fbs + Gb) * dt;
+    Pa = Pa + (Fa + Ga) * dt;
+    Pb = Pb + (Fb + Gb) * dt;
     ra = ra + va * dt;
     rb = rb + vb * dt;
 \end{verbatim}
@@ -8401,7 +8407,7 @@ end
     \smallskip
 
     {\footnotesize\emph{(If you had difficulties writing your script, for the following exercises you can download and use
-\furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
+\furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
 
 
   \item Run your script with the following values:
@@ -8517,7 +8523,7 @@ This kind of behaviour can be modelled, at least qualitatively, by a constitutiv
   A string can be approximately modelled by such a constitutive equation with a large constant $k$.
 \end{definition}
 
-The script \texttt{rubberband} (Octave: \furl{https://pglpm.github.io/7wonders/code/rubberband.m}{\texttt{rubberband.m}}; Python: \furl{https://pglpm.github.io/7wonders/code/rubberband.py}{\texttt{rubberband.py}}) implements this kind of constitutive function. Before downloading it, try to build it yourself; see Exercise~\ref{ex:non_hooke} below.
+The script \texttt{rubberband} (Octave: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.m}{\texttt{rubberband.m}}; Python: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.py}{\texttt{rubberband.py}}) implements this kind of constitutive function. Before downloading it, try to build it yourself; see Exercise~\ref{ex:non_hooke} below.
 
 
 \subsection{Pairwise forces}
@@ -8545,7 +8551,7 @@ Dependence on other, non-geometric quantities is also common. For instance $f(\d
 
 %\pagebreak[4]
 \begin{exercise}[label={ex:non_hooke}]
-  {\footnotesize\emph{(You can download \furl{https://pglpm.github.io/7wonders/code/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/code/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
+  {\footnotesize\emph{(You can download \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
 
   \smallskip
 
@@ -8883,7 +8889,7 @@ Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$
     Will the two persons manage to move the car?
 
   \item Consider the following Octave/MATLAB function to calculate the friction in a numerical simulation in two dimensions with coordinates $(x,z)$:
-    \lstinputlisting[style=mycode]{code/friction.m}
+    \lstinputlisting[style=mycode]{scripts/friction.m}
 Check that this function correctly covers and represents both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
   \end{enumerate}
 \end{exercise}\noprelistbreak
@@ -10650,11 +10656,11 @@ Note that there isn't a clear distinction between some constitutive relations an
 Here is an example script for simulating the system of ideal gas \amp\ piston and plotting $z(t)$ and $\yT(t)$:
 %
 \marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-    Download Octave version \furl{https://pglpm.github.io/7wonders/code/idealgas_piston.m}{\texttt{idealgas\_piston.m}}%
+    Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_piston.m}{\texttt{idealgas\_piston.m}}%
     \\[2ex]
-    Download Python version \furl{https://pglpm.github.io/7wonders/code/idealgas_piston.py}{\texttt{idealgas\_piston.py}}%
+    Download Python version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_piston.py}{\texttt{idealgas\_piston.py}}%
 }%
-\lstinputlisting[style=mycode]{code/idealgas_piston.m}
+\lstinputlisting[style=mycode]{scripts/idealgas_piston.m}
 
 
 \section{Surfaces of discontinuity}
