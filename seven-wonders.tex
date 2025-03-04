@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-03T21:41:49+0100
+%% Last-Updated: 2025-03-04T06:55:16+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7995,7 +7995,7 @@ The set of equations above is usually solved analytically by introducing two alt
   \yww \defd \yra - \yrb
 \end{equation*}
 %
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-13\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/uplot.pdf}%
 \\\includegraphics[width=\linewidth]{images/wplot.pdf}%
 \\[\jot]\flushleftright\color{mpcolor}%
@@ -8015,7 +8015,7 @@ that can be solved analytically.
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\section[The concept of state. A strategy for numerical time integration]{The concept of state variables\\A strategy for numerical time integration}
+\section[The concept of physical state. A strategy for numerical time integration]{The concept of physical state\\A strategy for numerical time integration}
 \label{sec:strategy_simulation}
 
 The present section is somewhat peculiar because we shall discuss two very different topics, one practical and one conceptual:
@@ -8189,8 +8189,9 @@ or alternatively this:
 Usually we prefer a minimal set that consists of easily observable or measurable quantities, like positions, velocities, temperatures. In the present case let's agree to use $\yra, \yva, \yrb,\yrb$. Each of these has two components: $y_{a},z_{a},y_{b},\dotsc$ and so on, for a total of four.
 
 These are called \emph{state variables} of the physical system:
+%
 \begin{definition}{State and state variables of a physical system}\label{def:state}
-  The \textbf{state} of a physical system is the minimal amount of information needed to drive the system from one time point to the next.
+  The \textbf{physical state} of a physical system is the minimal amount of information needed to drive the system from one time point to the next.
 
   \smallskip
 
@@ -9224,7 +9225,7 @@ Imagine a rigid box at rest containing an amount of gas, and vacuum outside the 
 This peculiar behaviour of gases gives us an idea of what kind of momentum fluxes must occur at the boundaries of a control volume containing some gas.
 
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-0.5\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
 }
 \begin{exercise}
@@ -9239,44 +9240,46 @@ This peculiar behaviour of gases gives us an idea of what kind of momentum fluxe
 
 Let us try to infer what are the momentum fluxes through the two horizontal control surfaces depicted in the previous illustration.
 %
-\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.45\linewidth]{images/gasbox_open.jpg}%
 \hfill\includegraphics[width=0.45\linewidth]{images/gasbox_closed.jpg}%
 \\\footnotesize\color{mpcolor}\makebox[0.45\linewidth]{box opened}%
 \hfill\makebox[0.45\linewidth]{box closed}%
 }
 \begin{itemize}
-\item The portion of gas between the two surfaces gets out as soon as we open the upper side of the box. This portion of gas must therefore be receiving outward-oriented momentum. This momentum cannot come from the gravitational momentum supply, because the latter is oriented downward. It must therefore be the result of a momentum flux. This flux cannot be through the surface separating the gas from the vacuum, and it seems implausible that it is a flux through the contact surface with the box. Intuitively we understand that it is a flux coming from the gas further within the box (side picture, left).
-\item As long as the upper side of the box is closed, however, portion of gas between the two surfaces stays at rest. The flux of outward-oriented momentum coming from the gas further within the box must therefore be compensated by a flux of inward-oriented momentum that comes from the closed side of the box (side picture, right).
+\item The portion of gas between the two control surfaces gets out as soon as we open the upper side of the box. This portion of gas must therefore be receiving outward-oriented momentum. This momentum cannot come from the gravitational momentum supply, because the latter is oriented downward. It must therefore be the result of a momentum flux. This flux cannot be through the control surface separating the gas from the vacuum, and it seems implausible that it is a flux through the lateral contact surface with the box. Intuitively we understand that it is a flux coming from the gas on the other side of the lower control surface further within the box (side figure, left).
+\item As long as the upper side of the box is closed, however, the portion of gas between the two control surfaces stays at rest. The flux of outward-oriented momentum coming from the gas on the other side of the lower control surface must therefore be compensated by a flux of inward-oriented momentum that comes from the closed side of the box (side figure, right).
 \end{itemize}
 
-Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small control surface delimiting some gas \emph{at rest} there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
+Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small portion of control surface that delimits some gas \emph{at rest}, there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.75\linewidth]{images/gas_fluxes.jpg}%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/gas_fluxes.jpg}%
 }
 \begin{definition}{Internal pressure}\label{def:internal_pressure}
-  The compressive momentum flux that occurs through any control surface that we may choose within a gas is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is the flux divided by the area through which it occurs.
+  The compressive momentum flux that occurs through any control surface that we may choose within a gas is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is the momentum flux divided by the area through which it occurs.
 \end{definition}
 In \chap~\ref{cha:bal_energy} we shall discuss a constitutive relation for the internal pressure of particular kinds of gas.
 
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.45\linewidth]{images/gas_updownfluxes.jpg}%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
+\includegraphics[vshift=6pt,width=0.45\linewidth]{images/gas_upfluxes.jpg}%
+\hfill\includegraphics[width=0.45\linewidth]{images/gas_downfluxes.jpg}%
+%\\\color{mpcolor}Equivalent depictions of vertical momentum fluxes%
 }
-If we consider a collection of parallel control surfaces within a gas, we see that there is a flux of momentum across all of them; this momentum has the same orientation as the chosen crossing direction. In the side illustration, for instance, if we cross the horizontal control surfaces (\textcolor{purple}{red dashed lines}) from bottom to top, we'll measure a flux of upward momentum. By flux symmetry, if we choose the opposite crossing direction, from top to bottom, then we'll measure a flux of downward momentum.
+If we consider a collection of parallel control surfaces within a gas, we see that there is a flux of momentum across all of them; this momentum has the same orientation as the chosen crossing direction. In the side figures, for instance, if we cross the horizontal control surfaces (\textcolor{purple}{red dashed lines}) from bottom to top, we'll measure a flux of upward momentum (left figure). By flux symmetry, if we choose the opposite crossing direction, from top to bottom, then we'll measure a flux of downward momentum (right figure).
 
 From a molecular point of view, this momentum flux mainly comes from the momentum transported by the molecules that make up the gas. Some molecules are moving with an upward velocity, and therefore each of them has an upward momentum; this upward momentum travels upward, transported by the molecule. Other molecules are moving with a downward velocity, and therefore each of them has a downward momentum, which is also transported downward.
 
 \medskip
 
-At the surface where the gas is in contact with its containing box, the momentum gets transferred to the box. An interesting question then arises. When the box is also at rest, the momentum contained in each portion of it is zero and remains zero. Where does the momentum that it receives from the gas go?
+At the surface where the gas is in contact with its containing box, the momentum gets transferred to the box. An interesting question then arises. When the box is also at rest, the momentum contained in each portion of it is zero and remains zero. Where does the momentum received from the gas go?
+
+The answer is that an opposite and slightly more complex circulation of momentum takes places through the walls of the box. The momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box (represented by the is therefore partially tensile and partially shearing. The side picture gives a \emph{qualitative} illustration of the momentum fluxes  (\textcolor{cyan}{light-blue arrows}) that occur through various control surfaces (\textcolor{blue}{dashed blue lines}) at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs because of transport, not by molecules, but by the electromagnetic field that exists with the box's molecules.
 %
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gasbox_fluxes.jpg}%
 }%
-
-The answer is that an opposite circulation of momentum takes places through the walls of the box: the momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore tensile, or partially tensile and partially shearing. The side picture gives a \emph{qualitative} illustration of the momentum fluxes that occur through various control surfaces at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs not because of transport by molecules, but because of transport by the electromagnetic field that exists with the box's molecules.
 
 
 
