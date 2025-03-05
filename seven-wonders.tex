@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-04T20:34:52+0100
+%% Last-Updated: 2025-03-05T07:40:40+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -991,14 +991,13 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
-\renewcommand*{\autoref}[3][\sect~\ref]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{%
-angle-right%
-%hand-point-right%
-%undo%
-%undo-alt%
-%reply%
-%history%
-}\enskip#1{#2} page~\pageref{#2}}}\textcolor{blue}{#3}}
+% \renewcommand*{\autoref}[3][\sect~\ref]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{angle-right}\enskip#1{#2} page~\pageref{#2}}}\textcolor{blue}{#3}}
+\renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon{angle-right}~#1{#2}\;p.\,\pageref{#2})}}
+% %hand-point-right%
+% %undo%
+% %undo-alt%
+% %reply%
+% %history%
 
 %% auxiliary
 \newcommand*{\energym}{energy-mass}
@@ -1091,7 +1090,7 @@ angle-right%
 \newcommand*{\yhep}{\incr H^{+}}%
 \newcommand*{\yhem}{\incr H^{-}}%
 \newcommand*{\yW}{\incr W}% work
-\newcommand*{\yR}{R}% for energy source
+\newcommand*{\yR}{\mathcal{R}}% for energy source
 
 %% momentum
 \newcommand*{\yP}{\bm{P}}
@@ -1701,7 +1700,86 @@ In science you should not believe something just because you've read it somewher
 Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
 
 
-
+\begin{table}[p]
+  \centering%\footnotesize
+  \caption{List of common symbols}
+  \label{tab:symbols}
+  \begin{tabularx}{1.0\linewidth}{ll}
+    $\ya$ & matter supply
+    \\
+    $\yBf$ & magnetic flux
+    \\
+    $\yE$ & \energym\ content
+    \\
+    $\yEv$ & electric potential difference (electric tension)
+    \\
+    $\yJ$ & matter flux
+    \\
+    $\yL$ & angular-momentum content
+    \\
+    $\yF$ & momentum flux (surface force)
+    \\
+    $\yg$ & acceleration vector of free fall
+    \\
+    $\yG$ & momentum supply (volume force)
+    \\
+    $\yhea$ & coefficient of heat transfer
+    \\
+    $\yI$ & electric current
+    \\
+    $k$ & elastic constant
+    \\
+    $\ym$ & \masse\ content
+    \\
+    $\yM$ & angular-momentum supply (volume torque)
+    \\
+    $\yN$ & matter content or amount of substance
+    \\
+    $p$ & pressure
+    \\
+    $\yP$ & momentum content
+    \\
+    $\yQ$ & heat flux
+    \\
+    $\yC$ & electric-charge content
+    \\
+    $\yr$ & position vector
+    \\
+    $R$ & molar gas constant; radius
+    \\
+    $\yR$ & \energym\ supply
+    \\
+    $\yS$ & entropy content
+    \\
+    $t$ & coordinate time
+    \\
+    $\yT$ & temperature
+    \\
+    $\yv$ & velocity vector
+    \\
+    $x$ & position coordinate, typically horizontal
+    \\
+    $y$ & position coordinate, typically horizontal
+    \\
+    $z$ & position coordinate, typically vertical
+    \\[2\jot]
+    \hline
+    \\[-\jot]
+    $\yH$ & \energym\ flux
+    \\
+    $\yvis$ & viscosity coefficient
+    \\
+    $\yfrik$ & coefficient of kinetic friction
+    \\
+    $\yfris$ & coefficient of static friction
+    \\
+    $\yrho$ & molar mass
+    \\
+    $\yto$ & angular-momentum flux (surface torque)
+    \\
+    $\yB$ & entropy flux
+  \end{tabularx}
+\end{table}
 
 \printpagenotes*
 \clearpage
@@ -6136,7 +6214,7 @@ If you translate \enquote*{\emph{force exerted on\textellipsis}} and similar exp
 \clearpage
 \chapter{Inference, prediction, simulation}
 \label{cha:inference}
-\marginpar{\vspace{-2\baselineskip}\mynotew{Under modification}}
+% \marginpar{\vspace{-2\baselineskip}\mynotew{Under modification}}
 
 \epigraph{\textins{Marco Polo:} \enquote{\textellipsis You take delight not in a city's seven or seventy wonders, but in the answer it gives to a question of yours.}
 
@@ -7247,7 +7325,7 @@ The importance of the balance of momentum comes to a great extent from two kinds
 Through this balance we can therefore describe and predict motions.
 % We saw a concrete example of this application in the \autoref{sec:example_falling_object_timestep}{numerical time integration of the motion of a falling object}.
 %
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/bryggen.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Momentum balance keeps buildings from collapsing (photo: \emph{Bryggen}, Bergen, from \furl{https://whc.unesco.org/en/list/59}{UNESCO World Heritage Centre})%
@@ -8523,7 +8601,7 @@ This kind of behaviour can be modelled, at least qualitatively, by a constitutiv
   A string can be approximately modelled by such a constitutive equation with a large constant $k$.
 \end{definition}
 
-The script \texttt{rubberband} (Octave: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.m}{\texttt{rubberband.m}}; Python: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.py}{\texttt{rubberband.py}}) implements this kind of constitutive function. Before downloading it, try to build it yourself; see Exercise~\ref{ex:non_hooke} below.
+The script \texttt{rubberband} (Octave: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.m}{\texttt{rubberband.m}}; Python: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.py}{\texttt{rubberband.py}}) implements this kind of constitutive function. Before downloading it, see Exercise~\ref{ex:non_hooke} below.
 
 
 \subsection{Pairwise forces}
@@ -9064,18 +9142,18 @@ Air is not always at rest (with respect to the Earth's surface). Owing to energy
 \item[Propelled flight] We can try to create a flow of downward momentum from an object to the surrounding air, even if air is initially at rest. As a result, a body of air surrounding the object will acquire a net, partially downward movement. By the \autoref{def:symmetryflux}{symmetry of flux} this also means that momentum with an upward component flows from the air to the object, and this component can compensate the object's weight. This is achieved by birds by flapping their wings, and by aeroplanes and helicopters through horizontally moving wings or blades.
 \end{description}
 
-%
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
-}%
 \begin{extra}{It's not the difference in air pressure}
   Some texts say that wings can sustain an aeroplane because their cross-section has an asymmetric shape, slightly more bulged upward than downward, leading to a difference in the air pressure between the top and bottom of the wing. This is not true. In fact, aeroplanes with symmetric wings fly as well.
 \begin{quote}\footnotesize
 \emph{the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.}\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
 \end{quote}
 \end{extra}
+%
+\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
+}%
 
 % In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{def:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
 

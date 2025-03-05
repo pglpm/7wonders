@@ -3,7 +3,7 @@
 
 %% Constants
 ma = 2;	    % kg: mass of object a
-mb = 5000;  % kg: mass of object b
+mb = 5;     % kg: mass of object b
 g = 9.81;   % N/kg: gravitational acceleration
 ln = 5;	    % m: natural length
 k = 5;	    % N/m: spring constant
@@ -16,8 +16,8 @@ va = [0, 0];   % m/s: initial velocity of object a
 vb = [0, 0];   % m/s: initial velocity of object b
 
 %% Boundary conditions
-Ga = -ma * g * [0, 1];	    % N: gravity supply on object a
-Gb = -mb * g * [0, 1] * 0;  % N: gravity supply on object b
+Ga = -ma * g * [0, 1];	% N: gravity supply on object a
+Gb = -mb * g * [0, 1];  % N: gravity supply on object b
 
 %% Parameters for time loop
 t1 = 10;      % s: final time
