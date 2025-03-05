@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-05T07:40:40+0100
+%% Last-Updated: 2025-03-05T09:59:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -271,14 +271,14 @@ british%
 % \DeclareMathSymbol{\varNu}{\mathalpha}{egreeki}{"4E}
 % \DeclareMathSymbol{\varXi}{\mathalpha}{egreeki}{"04}
 % \DeclareMathSymbol{\varOmicron}{\mathalpha}{egreeki}{"4F}
-% \DeclareMathSymbol{\varPi}{\mathalpha}{egreeki}{"05}
+\DeclareMathSymbol{\varPi}{\mathalpha}{egreeki}{"05}
 % \DeclareMathSymbol{\varRho}{\mathalpha}{egreeki}{"50}
 % \DeclareMathSymbol{\varSigma}{\mathalpha}{egreeki}{"06}
-% \DeclareMathSymbol{\varTau}{\mathalpha}{egreeki}{"54}
+\DeclareMathSymbol{\varTau}{\mathalpha}{egreeki}{"54}
 % \DeclareMathSymbol{\varUpsilon}{\mathalpha}{egreeki}{"07}
-% \DeclareMathSymbol{\varPhi}{\mathalpha}{egreeki}{"08}
+\DeclareMathSymbol{\varPhi}{\mathalpha}{egreeki}{"08}
 % \DeclareMathSymbol{\varChi}{\mathalpha}{egreeki}{"58}
-% \DeclareMathSymbol{\varPsi}{\mathalpha}{egreeki}{"09}
+\DeclareMathSymbol{\varPsi}{\mathalpha}{egreeki}{"09}
 % \DeclareMathSymbol{\varOmega}{\mathalpha}{egreeki}{"0A}
 % %
 % \DeclareMathSymbol{\Alpha}{\mathalpha}{egreekr}{"41}
@@ -1056,6 +1056,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yn}{n}
 \newcommand*{\yj}{\bm{j}}
 \newcommand*{\ya}{\varAlpha}
+%\newcommand*{\ya}{\mathcal{A}}
 \newcommand*{\yrho}{\rho}
 \newcommand*{\yNu}{\yN_{\text{u}}}
 \newcommand*{\yNv}{\yN_{\text{v}}}
@@ -1090,6 +1091,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yhep}{\incr H^{+}}%
 \newcommand*{\yhem}{\incr H^{-}}%
 \newcommand*{\yW}{\incr W}% work
+%\newcommand*{\yR}{\mathcal{R}}% for energy source
 \newcommand*{\yR}{\mathcal{R}}% for energy source
 
 %% momentum
@@ -1126,8 +1128,9 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %% angular momentum
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
-\newcommand*{\yto}{\bm{\tau}}% M or T or M_Q
-\newcommand*{\yM}{\bm{M}}% M or T or M_Q
+% \newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
+\newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
+\newcommand*{\yM}{\bm{M}}% surface torque M or T or M_Q
 %\newcommand*{\yt}{\bm{\tau}}
 
 %% entropy and temperature
@@ -1699,15 +1702,52 @@ In science you should not believe something just because you've read it somewher
 
 Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
 
+\clearpage
+\addsec{Common symbols}
+\label{sec:list_symbols}
+
+In physics, engineering, and most other scientific fields \emph{there is no universal standard for symbols}. It's therefore important that you \textbf{focus on the concept} that a symbol stands for, rather than the symbol itself. Otherwise you'll face many difficulties reading literature and other scientists' reports.
+
+The present notes try to use as much as possible the symbols recommended by the \furl{https://www.iso.org}{International Organization for Standardization (ISO)}, which are often also adopted by other international bodies like the \furl{https://www.bipm.org}{International Bureau of Weights and Measures (BIPM)}, the \furl{https://www.ieee.org}{Institute of Electrical and Electronics Engineers (IEEE)}, or the \furl{https://iupac.org}{International Union of
+  Pure and Applied Chemistry (IUPAC)}. Some changes are unavoidable, because different disciplines often use the same symbol for different quantities. For instance, the symbol \enquote*{$E$} is used in many fields for \enquote*{energy}, in mechanics for the \enquote*{Young modulus} (a mechanical characteristic of elastic materials), in electromagnetics for the \enquote*{magnitude of the electric field}.
+
+The most common symbols used in the present notes are listed in table~\ref{tab:symbols} on page~\pageref{tab:symbols}.
+
+% \printpagenotes*
+% \clearpage
+% \addchap{List of symbols}
+% \label{cha:list_symbols}
+
 
 \begin{table}[p]
-  \centering%\footnotesize
-  \caption{List of common symbols}
+ \centering
+  \footnotesize
+ \caption{List of common symbols}
   \label{tab:symbols}
   \begin{tabularx}{1.0\linewidth}{ll}
+    \rlap{\textit{(Greek symbols)}}&
+    \\%[\jot]
+    $\yH$ & \energym\ flux
+    \\
+    $\yvis$ & viscosity coefficient
+    \\
+    $\yfrik$ & coefficient of kinetic friction
+    \\
+    $\yfris$ & coefficient of static friction
+    \\
+    $\yB$ & entropy flux
+    \\
+    $\yrho$ & molar mass
+    \\[1.5\jot]
+    \rlap{\textit{(Latin symbols)}}&
+    \\%[\jot]
+    $A$ & area; sometimes just a coefficient
+    \\
     $\ya$ & matter supply
     \\
     $\yBf$ & magnetic flux
+    \\
+    $C$ & molar heat capacity; sometimes just a coefficient
     \\
     $\yE$ & \energym\ content
     \\
@@ -1731,9 +1771,9 @@ Mathematical notation, as well as notation for physical dimensions, strictly fol
     \\
     $\ym$ & \masse\ content
     \\
-    $\yM$ & angular-momentum supply (volume torque)
+    $\yM$ & angular-momentum flux (surface torque)
     \\
-    $\yN$ & matter content or amount of substance
+    $\yN$ & matter content (amount of substance)
     \\
     $p$ & pressure
     \\
@@ -1743,7 +1783,7 @@ Mathematical notation, as well as notation for physical dimensions, strictly fol
     \\
     $\yC$ & electric-charge content
     \\
-    $\yr$ & position vector
+    $\yr$ & coordinate-position vector
     \\
     $R$ & molar gas constant; radius
     \\
@@ -1755,31 +1795,20 @@ Mathematical notation, as well as notation for physical dimensions, strictly fol
     \\
     $\yT$ & temperature
     \\
-    $\yv$ & velocity vector
+    $\yto$ & angular-momentum supply (volume torque)
+    \\
+    $\yv$ & coordinate-velocity vector
+    \\
+    $V$ & volume
     \\
     $x$ & position coordinate, typically horizontal
     \\
     $y$ & position coordinate, typically horizontal
     \\
     $z$ & position coordinate, typically vertical
-    \\[2\jot]
-    \hline
-    \\[-\jot]
-    $\yH$ & \energym\ flux
-    \\
-    $\yvis$ & viscosity coefficient
-    \\
-    $\yfrik$ & coefficient of kinetic friction
-    \\
-    $\yfris$ & coefficient of static friction
-    \\
-    $\yrho$ & molar mass
-    \\
-    $\yto$ & angular-momentum flux (surface torque)
-    \\
-    $\yB$ & entropy flux
   \end{tabularx}
 \end{table}
+
 
 \printpagenotes*
 \clearpage
@@ -3423,7 +3452,7 @@ Since angular momentum and its flux are vector quantities, they are usually expr
 
 \smallskip
 
-The amount of angular momentum in a volume is usually denoted $\yL$. The flux of angular momentum (surface torque) is denoted $\yto$; and supply of angular momentum (volume torque), $\yM$.
+The amount of angular momentum in a volume is usually denoted $\yL$. The flux of angular momentum (surface torque) is denoted $\yM$; and supply of angular momentum (volume torque), $\yto$.
 \end{definition}
 
 Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of angular momentum within that volume. This amount is represented by a vector.
@@ -3769,7 +3798,7 @@ The volume content, flux, and supply of the two vector quantities -- momentum an
     \\[4ex]
     \textbf{momentum}&& $\yP$\enskip[\unit{N\,s}] & $\yF$\enskip[\unit{N}]  & $\yG$
     \\[3ex]
-    \parbox[c]{5em}{\textbf{angular\\momentum}}&& $\yL$\enskip[\unit{N\,m\,s}] & $\yto$\enskip[\unit{N\,m}] & $\yM$
+    \parbox[c]{5em}{\textbf{angular\\momentum}}&& $\yL$\enskip[\unit{N\,m\,s}] & $\yM$\enskip[\unit{N\,m}] & $\yto$
     \\[3ex]
     entropy&& $\yS$\enskip[\unit{J/K}] & $\yB$\enskip[\unit{J/(K\,s)}]
     \\[2ex]
@@ -5872,7 +5901,7 @@ The balances for matter, momentum, energy, angular momentum, electric charge, ma
   \quad
   \di\yP=\yG
   \quad
-  \di\yL=\yM
+  \di\yL=\yto
   \quad
   \di\yS\ge0
 \end{equation*}
@@ -5910,9 +5939,9 @@ If you want to learn more about differential forms, take a look at the books by 
       &\quad
       \frac{\di\yE(t)}{\dt} &= \yH(t) + \yR(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt
       &\quad
-      \frac{\di\yL(t)}{\dt} &= \yto(t) + \yM(t)
+      \frac{\di\yL(t)}{\dt} &= \yM(t) + \yto(t)
       \\[2\jot]
 \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
 &\quad
@@ -10838,14 +10867,14 @@ This makes sense from a molecular point of view: roughly speaking, the kinetic e
 \label{sec:bal_angmomentum_formulation}
 
 \begin{definition}{Balance of angular momentum}
-      Volume content: $\yL$\qquad Flux: $\yto$\qquad Supply: $\yM$
+      Volume content: $\yL$\qquad Flux: $\yM$\qquad Supply: $\yto$
 
   \begin{equation}
     \label{eq:bal_ang_momentum}
-      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yL(t)}{\dt} = \yto(t) + \yM(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+      \underbracket[0pt]{\frac{\di\yL(t)}{\dt} = \yM(t) + \yto(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -10933,11 +10962,11 @@ If $\yP=(P_{x},P_{y},P_{z})$ is the momentum in a \emph{small} volume, and  $\yr
 \end{subequations}
 Choose whichever you prefer.
 
-If $\yF=(F_{x},F_{y},F_{z})$ is the flux of momentum through a \emph{small} surface at a given time, and $\yr=(x,y,z)$ is the position vector of that surface, then the flux of angular momentum, or torque, $\yto=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
+If $\yF=(F_{x},F_{y},F_{z})$ is the flux of momentum through a \emph{small} surface at a given time, and $\yr=(x,y,z)$ is the position vector of that surface, then the flux of angular momentum, or torque, $\yM=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
   \begin{equation}
     \label{eq:torque_def}
     \begin{gathered}
-      \yto = \yr \times \yF
+      \yM = \yr \times \yF
       \\[\jot]
       \text{or equivalently}\qquad\left\{\enskip
         \begin{aligned}
@@ -11626,12 +11655,12 @@ is to be universally valid, then the specific mathematical formulae for $\yQ$ an
 
 %%%% examples use empheq
 %   \begin{empheq}[left={\mathllap{\begin{aligned}    \de\yF_{\yc}/\de\yp&=0\text{:} \\
-%         \de\yF_{\yc}/\de\yM&=0\text{:}\\ \de\yF_{\yc}/\de\yl&=0\text{:}\end{aligned}}\qquad}\empheqlbrace]{align}
+%         \de\yF_{\yc}/\de\yto&=0\text{:}\\ \de\yF_{\yc}/\de\yl&=0\text{:}\end{aligned}}\qquad}\empheqlbrace]{align}
 %     \label{eq:con_p}
 % %    \de\yF_{\yc}/\de\yp &\equiv
-%     -\ln\yp + \ln\yq + \yl\ym + \yM\yu &=0,\\
+%     -\ln\yp + \ln\yq + \yl\ym + \yto\yu &=0,\\
 %     \label{eq:con_u}
-% %    \de\yF_{\yc}/\de\yM &\equiv
+% %    \de\yF_{\yc}/\de\yto &\equiv
 %     \yu\yp-1 &=0,\\
 %     \label{eq:con_l}
 %     %\de\yF_{\yc}/\de\yl &\equiv
