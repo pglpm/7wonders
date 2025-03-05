@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-05T21:19:51+0100
+%% Last-Updated: 2025-03-05T21:44:16+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1413,12 +1413,13 @@ How few are these principles? Around \emph{seven} (the exact number depends on h
 
 \medskip
 
-These universal principles are obviously expressed mathematically. Their consequences and applications can be studied, to some degree, by using analytical methods; that is, by methods involving mathematical operations that we can do by hand. But their most fascinating and practical applications need numerical methods, that is, methods involving some programming and computer simulation.
+These universal principles are, obviously, expressed mathematically. Their consequences and applications can be studied, to some degree, by using analytical methods; that is, by methods involving mathematical operations that we can do by hand. But their most fascinating and practical applications need numerical methods, that is, methods involving programming and computer simulation.
 
-In my opinion, if you learn how to apply these universal principles in simple simulations, then you also better understand their meaning and the way they work. For this reason these notes mainly take a computational approach. We shall learn how to implement these universal principles in simple computer code, and see the fun variety of physical phenomena they lead to. Programs that accompany these notes can be found at
+In my opinion, if you learn how to apply these universal principles in simple simulations, then you also better understand their meaning and the way they work. For this reason these notes mainly take a computational approach. We shall learn how to implement these universal principles in simple computer code, and see the fun variety of physical phenomena they lead to. Scripts that accompany these notes can be found at
 \begin{center}
   \url{https://pglpm.github.io/7wonders/}
 \end{center}
+
 
 \iftrue
 \addsec{Thanks}
@@ -1458,6 +1459,7 @@ Eternal gratitude and deepest esteem go to the teachers and Masters: Gianni Asta
 Ingemar Bengtsson,
 Gunnar Bj{\"o}rk,
 Alain Bossavit,
+Robert Bringhurst,
 William L. Burke,
 Italo Calvino,
 Yvonne Choquet-Bruhat,
@@ -1671,14 +1673,14 @@ Just some vague reminiscences of secondary/high-school physics should be enough.
 
 The text includes the following graphical devices:
 \begin{itemize}[para]
-\item Important notions and definitions are also given in \textbf{boldface}.
+\item Important concepts and definitions are also given in \textbf{boldface}.
 
-\item\label{sec:self-reference}
-  % \subsubsection{\faIcon{hand-point-right}\enskip References to previous topics}
+% \item\label{sec:self-reference}
+%   % \subsubsection{\faIcon{hand-point-right}\enskip References to previous topics}
+% 
+% Clickable references to previous or future topics are often given in \autoref{sec:self-reference}{blue text and round brackets like this:}.
 
-The side margins often report clickable references to \autoref{sec:self-reference}{previous topics, emphasized in blue}.
-
-\item Important-notion boxes:
+\item Important-concept boxes:
   \begin{definition}{Some important notion or definition}
     This is a definition or explanation of Something.
   \end{definition}
@@ -1716,7 +1718,11 @@ Figures, graphs, or quotes related to the material are displayed on the right.
 
 \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Cross-references}
 
-The text gives cross-references to the main section where a topic was discussed or will be discussed. Cross-references appear as section number and page listed on the margin, like this cross-reference to \autoref{sec:conservation_laws}{conservation laws}.
+\marginpar{\vspace{1\baselineskip}\footnotesize%
+\flushleftright\color{green}%
+The symbol \enquote*{\,\sect\,} stands for \enquote*{section}.
+}%
+The text gives cross-references to the main section where a topic was  or will be discussed. Cross-references appear as sectioning number and page in round brackets, like this cross-reference to \autoref{sec:conservation_laws}{conservation laws}.
 
 
 \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Hyperlinks and bibliography}
@@ -1990,7 +1996,7 @@ The \furl{Joint Committee for Guides in Metrology (JCGM)}{Joint Committee for Gu
 \end{quote}
 As you see it's a somewhat vague definition, but it clearly refers to the possibility of quantification. Some physical quantities are connected with familiar concepts that we use every day, like time, position, distance, velocity, temperature, \energym\ -- but we must be careful because their use in physics is more rigorous and often has technical features that the everyday familiar use has not. Other physical quantities, like momentum, magnetic flux, entropy, are more abstract and disconnected with everyday concepts. Their intuition and use therefore require practice and carefulness.
 
-As stated in the definition above, all physical quantities are expressed as a number together with a \emph{reference}, also called a \textbf{unit of measurement} or simply \emph{unit}. The unit is a basic standard for comparing the measurement of a quantity. For example, when we say that a table has a \emph{length} of two metres, written \enquote*{\qty{2}{m}}, we mean that is it as long as two of those standard lengths that we call \enquote*{metre}. We shall further discuss units of measurement in \sect~\ref{sec:units}. The number and unit together are handled by usual mathematical rules; so we can for example add or multiply physical quantities. Not all mathematical operations are allowed on all quantities, though.
+As stated in the definition above, all physical quantities are expressed as a number together with a \emph{reference}, also called a \textbf{unit of measurement} or simply \emph{unit}. The unit is a basic standard for comparing the measurement of a quantity. For example, when we say that a table has a \emph{length} of two metres, written \enquote*{\qty{2}{m}}, we mean that is it as long as two of those standard lengths that we call \enquote*{metre}. We shall further discuss units of measurement in \sect\,\ref{sec:units}. The number and unit together are handled by usual mathematical rules; so we can for example add or multiply physical quantities. Not all mathematical operations are allowed on all quantities, though.
 
 \medskip
 
@@ -2059,7 +2065,7 @@ Physical dimensions reflect the mathematical relationships that exist between ph
 
 \medskip
 
-With each physical dimension we can associate a unit of measurement, which as mentioned in \sect~\ref{sec:primitives} expresses a basic standard for comparing the measurement results for quantities having that physical dimension. Units are very important and must always be written, for several reasons. First, a number without units doesn't tell us anything. If I tell you \enquote{the place is at a distance 100 from here}, you have no idea how far the place is. \enquote{100} what? 100~metres? 100~kilometres? These are completely different distances. Second, units give us useful information about physical quantities and their relationships and measurement. If you see the expression \enquote{\qty{3}{m/s}}, then there's a strong possibility that that's a velocity. If you see the expression \enquote{\qty{5}{J/m^2}}, then you have a hint that it could be measured by measuring an \energym\ and an area, and then dividing them. Third, keeping track of units often allows us to quickly catch errors in solving a physical problem.
+With each physical dimension we can associate a unit of measurement, which as mentioned in \sect\,\ref{sec:primitives} expresses a basic standard for comparing the measurement results for quantities having that physical dimension. Units are very important and must always be written, for several reasons. First, a number without units doesn't tell us anything. If I tell you \enquote{the place is at a distance 100 from here}, you have no idea how far the place is. \enquote{100} what? 100~metres? 100~kilometres? These are completely different distances. Second, units give us useful information about physical quantities and their relationships and measurement. If you see the expression \enquote{\qty{3}{m/s}}, then there's a strong possibility that that's a velocity. If you see the expression \enquote{\qty{5}{J/m^2}}, then you have a hint that it could be measured by measuring an \energym\ and an area, and then dividing them. Third, keeping track of units often allows us to quickly catch errors in solving a physical problem.
 
 % One can choose a basic set of physical dimensions from which to define all others, as well as a set of standard units for these base dimensions. Here we shall follow the
 % \furl{https://www.nist.gov/pml/owm/metric-si/si-units}{International System of Units (SI)} (see also \furl{https://www.nist.gov/pml/special-publication-811}{NIST Special Publication 811}).
@@ -2247,7 +2253,7 @@ Time discrepancies can be measured, for example, by comparing initially synchron
 \marginpar{\vspace{-8\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/hafele_keating_time.jpg}\\\flushleftright\color{mpcolor}Hafele, Keating, and their clocks aboard aeroplane (from \furl{https://time.com/vault/issue/1971-10-18/page/93}{\emph{Time}, October 1971})%
 }%
 
-Most importantly, these time discrepancies affect everyday technologies such as the Global Positioning System. Formulae from General Relativity appear in your phone's GPS software; see for instance \sect~20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. Time discrepancies must also be taken into account in the establishment and synchronization of time in our everyday equipment:
+Most importantly, these time discrepancies affect everyday technologies such as the Global Positioning System. Formulae from General Relativity appear in your phone's GPS software; see for instance \sect\,20.3.3.3.3 of the Interface Control Document \texttt{IS-GPS-200} at \url{https://www.gps.gov/technical/icwg/}. Time discrepancies must also be taken into account in the establishment and synchronization of time in our everyday equipment:
 \begin{quote}\footnotesize
   In 1976, the International Astronomical Union introduced relativistic concepts of time and the transformations between various time scales and reference systems. \textelp{} Now \textelp{} it is necessary to base all astrometry, reference systems, ephemerides, and observational reduction procedures on consistent relativistic grounds. This means that relativity must be accepted in its entirety, and that concepts, as well as practical problems, must be approached from a relativistic point of view.
   %
@@ -2552,7 +2558,7 @@ Map of some distant astronomical objects used to define the International Celest
 \item The \furl{https://earth-info.nga.mil/?dir=wgs84\&action=wgs84}{\emph{World Geodetic System 1984} (WGS~84)} is very similar to the ITRS, besides a discrepancy of some centimetres. It is used by the system of GPS satellites.
 \end{itemize}
 
-But how do we determine the position and time of an event in these coordinate systems? The procedure can be extremely complicated in fact. The starting point is the assignment of some predefined coordinates to objects that seem to have fixed spatial coordinates in the coordinate system; for instance distant cosmological objects like \furl{https://esahubble.org/wordbank/quasar}{quasars} in the case of the ICRS and CGRS, or \furl{https://itrf.ign.fr/en/solutions/ITRF2020-u2023\#frame-definition}{particular reference stations} on Earth's surface in the case of the ITRS and WGS~84. The coordinate of other events are then calculated from measurements of proper times, radar distances, and angles from the reference objects, using formulae from general relativity. As we mentioned in \sect~\ref{sec:time}, even your mobile phone participates in these complex calculations.
+But how do we determine the position and time of an event in these coordinate systems? The procedure can be extremely complicated in fact. The starting point is the assignment of some predefined coordinates to objects that seem to have fixed spatial coordinates in the coordinate system; for instance distant cosmological objects like \furl{https://esahubble.org/wordbank/quasar}{quasars} in the case of the ICRS and CGRS, or \furl{https://itrf.ign.fr/en/solutions/ITRF2020-u2023\#frame-definition}{particular reference stations} on Earth's surface in the case of the ITRS and WGS~84. The coordinate of other events are then calculated from measurements of proper times, radar distances, and angles from the reference objects, using formulae from general relativity. As we mentioned in \sect\,\ref{sec:time}, even your mobile phone participates in these complex calculations.
 %
 \marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
   \includegraphics[width=\linewidth]{images/gcrf.jpg}
@@ -2610,7 +2616,7 @@ We call \textbf{Cartesian coordinates} a set of spatial coordinates $(x,y,z)$ wi
 \end{equation}
 \end{definition}
 
-Perfect Cartesian coordinates do not exist, because spacetime is curved. But it is possible to choose coordinates that are approximately Cartesian in limited regions of spacetime. The coordinate systems ICRS, GCRS, ITRS discussed in \sect~\ref{sec:coords} are \emph{not} Cartesian: they include the effects of curvature generated by the Earth and other bodies in the Solar System.
+Perfect Cartesian coordinates do not exist, because spacetime is curved. But it is possible to choose coordinates that are approximately Cartesian in limited regions of spacetime. The coordinate systems ICRS, GCRS, ITRS discussed in \sect\,\ref{sec:coords} are \emph{not} Cartesian: they include the effects of curvature generated by the Earth and other bodies in the Solar System.
 
 In most of these notes we will not have to worry about the discrepancies between radar distance and coordinate distance, and about the motion of the observer or instrument that is measuring a distance. So we shall use the term \enquote*{distance} without specifications. And we shall often use Cartesian coordinates.
 
@@ -3325,7 +3331,7 @@ The same is true of flux of \energym. What we call \enquote*{heat} on one observ
 
 % So whenever you hear about a distinction between forms of energy or energy fluxes, pay attentionwhich coordinate system and which observation scale are being used.
 
-% Energy-mass is present wherever there's matter, charge, or magnetic flux, and vice versa. \emph{Its specific relation with these quantities depends on the coordinate system} (\sect~\ref{sec:coords}) that we choose. It is extremely important to keep in mind this dependence. For instance, in the examples above we said that the unstretched rubber band in motion had a \masse\ of \qty{0.000500000000000002}{kg}; but if we choose a coordinate system in which the band is not moving, its \masse\ would be \qty{0.000500000000000000}{kg}. Owing to this coordinate dependence, and depending on whether matter or magnetic flux is present in a region, we often conveniently partition an amount of energy into different \enquote{forms} like rest energy, internal energy, kinetic energy, gravitational potential energy, electromagnetic energy. This is only a conceptual division.
+% Energy-mass is present wherever there's matter, charge, or magnetic flux, and vice versa. \emph{Its specific relation with these quantities depends on the coordinate system} (\sect\,\ref{sec:coords}) that we choose. It is extremely important to keep in mind this dependence. For instance, in the examples above we said that the unstretched rubber band in motion had a \masse\ of \qty{0.000500000000000002}{kg}; but if we choose a coordinate system in which the band is not moving, its \masse\ would be \qty{0.000500000000000000}{kg}. Owing to this coordinate dependence, and depending on whether matter or magnetic flux is present in a region, we often conveniently partition an amount of energy into different \enquote{forms} like rest energy, internal energy, kinetic energy, gravitational potential energy, electromagnetic energy. This is only a conceptual division.
 %
 % Also energy flux can be partitioned depending on the coordinate system and on whether there's also a flux of matter. This leads to the important distinction between two forms of energy flux: \textbf{heat} and \textbf{work}.
 %
@@ -3502,7 +3508,7 @@ The amount of angular momentum in a volume is usually denoted $\yL$. The flux of
 Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of angular momentum within that volume. This amount is represented by a vector.
 % %
 % \marginpar{\vspace{-15\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/cube_Nms_coords.jpg}%
-% \\[\jot]\flushleftright\color{mpcolor}The amount of angular momentum within a volume at a given instant is represented by a \textcolor{purple}{vector} (curious about the little circulation symbol around the vector? see \sect~\ref{sec:twisted_vec})%
+% \\[\jot]\flushleftright\color{mpcolor}The amount of angular momentum within a volume at a given instant is represented by a \textcolor{purple}{vector} (curious about the little circulation symbol around the vector? see \sect\,\ref{sec:twisted_vec})%
 % }%
 
 
@@ -3583,7 +3589,7 @@ From the discussions and formulae above, it seems that \energym, momentum, angul
 
   Relativity Theory indeed shows that \energym, momentum, angular momentum are different aspects of one single geometric object, called \emph{energy-momentum tensor}. They are like its \enquote{shadows}, that we can observe by looking at it from different points of view in time and space. This is also why their values get intermixed if we change our system of coordinates. This topic will be discussed in \chap~\ref{cha:energymomentum}.
 
-  General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}. They express how spacetime is curved in different directions. So whenever we measure, say, the \energym\ or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. % We shall discuss further connections between these three quantities and spacetime in \sect~\mynotew{}.
+  General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}. They express how spacetime is curved in different directions. So whenever we measure, say, the \energym\ or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. % We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
 \end{extra}
 \marginpar{\vspace{-12\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/curvature1.png}%
 \\[\jot]\flushleftright\color{mpcolor}Energy-mas, momentum, angular momentum are measures of particular curvatures of spacetime.%
@@ -5672,7 +5678,7 @@ and the time-integrated supplies:
 
   Calculate the integrated supply for this new control surface between $\yti$ and $\ytf$.
 
-  \emph{(Hint: consider the results from the example of \sect~\ref{sec:example_balance_static}, and use the \textbf{symmetry of flux} to find the flux through the bottom part of the control surface of the present exercise. Recall also that the fluxes through the side and top surfaces are zero.)}
+  \emph{(Hint: consider the results from the example of \sect\,\ref{sec:example_balance_static}, and use the \textbf{symmetry of flux} to find the flux through the bottom part of the control surface of the present exercise. Recall also that the fluxes through the side and top surfaces are zero.)}
 \end{exercise}
 
 
@@ -7837,7 +7843,7 @@ The momentum \textbf{ef}fluxes through the partial surfaces are $\yFa$ and $\yFb
 With the simplified setup just described we can approximately represent the response of objects like an elastic band, a spring, a piece of wire, a balloon, a piece of string, or similar. In \chap~\ref{cha:bal_energy} a very similar setup will also be used to represent the response of a body of gaseous substances.
 
 \begin{exercise}[label={ex:tensile_spring}]
-  Review \sect~\ref{sec:pressure_tension_shear} for this exercise.
+  Review \sect\,\ref{sec:pressure_tension_shear} for this exercise.
 
   \smallskip
 
@@ -9225,7 +9231,7 @@ Air is not always at rest (with respect to the Earth's surface). Owing to energy
 \marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
 \\[\jot]\flushleftright\color{mpcolor}%
-Sections of two kinds of wings for supersonic flight \parencites[\sect~26]{leishman2022_r2024}.%
+Sections of two kinds of wings for supersonic flight \parencites[\sect\,26]{leishman2022_r2024}.%
 }%
 
 % In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{def:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
@@ -11174,7 +11180,7 @@ In the technical literature the entropy balance above, used in its full generali
 One added difficulty is that entropy and its balance can also be approached from a completely different direction, especially when we study physical systems on small scales. It's the approach of \furl{https://plato.stanford.edu/entries/statphys-statmech/}{\emph{statistical mechanics}}, which considers physical situations in where we lack information about initial conditions, or boundary conditions, or constitutive relations. In statistical mechanics, a conceptually different entropy appears, not as a physical quantity, but as a measure of our lack of information about the physical system, in the strict technical sense of \furl{https://www.britannica.com/science/information-theory}{Information Theory}. Also this entropy satisfies a balance law very similar to~\eqref{eq:bal_entropy} above.
 \begin{quote}\footnotesize
 One of the reasons for the bewilderment which is sometimes felt at an unheralded appearance of the term entropy is the superabundance of objects which bear this name. On the one hand, there is a large choice of macroscopic quantities (functions of state variables) called entropy, on the other hand, a variety of microscopic quantities, similarly named, associated with the logarithm of a probability or the mean value of the logarithm of a density. Each one of these concepts is suited for a specific purpose. More confusing, however, than the lack of imagination in terminology is the fact that several of these distinct concepts, different in meaning and in numerical value, may be significant in a single problem.
-\sourceatright{\parencites[\sect~1 p.~323]{grad1961}}
+\sourceatright{\parencites[\sect\,1 p.~323]{grad1961}}
 \end{quote}
 
 
@@ -11203,7 +11209,7 @@ A given object of study cannot always be assigned a unique value, its ``entropy'
 
 
 For another example we turn to aerodynamics. The existence of diffusion between oxygen and nitrogen somewhere in a wind tunnel will usually be of no interest. Therefore the aerodynamicist uses an entropy which does not recognize the separate existence of the two elements but only that of ``air''. In other circumstances, the possibility of diffusion between elements with a much smaller mass ratio (e.g., 238/235) may be considered quite relevant.
-\sourceatright{\parencites[\sect~1 pp.~323, 325]{grad1961}}
+\sourceatright{\parencites[\sect\,1 pp.~323, 325]{grad1961}}
 \end{quote}
 
 % For example, a researcher may be studying a given amount of gas, seen as a macroscopic fluid, in a control volume. At a particular time, this researcher measures a total energy content of \qty{3800}{J}, total momentum content of $[0,0,0]\,\unit{N\,s}$, and assigns a total entropy content of \qty{150}{J/K} within the control volume. Another researcher is studying the same gas in the same control volume, but on a molecular scale, thus seeing it as a bunch of molecules in motion. This other researcher also measures, at the same time instant, a total energy content \qty{3800}{J} and total momentum content $[0,0,0]\,\unit{N\,s}$, but may assign a total entropy content of \qty{0}{J/K} (this is correct if this researcher knows the exact positions, velocities, and a couple more characteristics of every molecule in the control volume at that time instant).
@@ -11328,7 +11334,7 @@ What is its physical role of this balance law, then?
 The answer is that \emph{the balance of entropy is a \enquote*{meta-law}}. It is not a law directly about physical phenomena, but a \emph{law about laws} of physical phenomena. Roughly speaking, this meta-law determines which constitutive relations are physically admissible and which are not admissible.
 \begin{quote}\footnotesize
 The subtlety arises, of course, because the second law is an inequality, and therefore only other inequalities can be deduced from it by a purely algebraic procedure. However, \textelp{} one can in fact deduce from the second law, when coupled with appropriate constitutive assumptions, consequences which are equations, not inequalities; the procedure is more a logical than an algebraic one.
-\sourceatright{\parencites[\sect~2.4 p.~46]{astarita1989_r1990}}
+\sourceatright{\parencites[\sect\,2.4 p.~46]{astarita1989_r1990}}
 \end{quote}
 
 In very simple cases this meta-law leads to restrictions on the values of physical coefficients. For example, it's a consequence of the balance of entropy that the viscosity coefficient $\yvis$ in the \autoref{def:idealgas_law}{ideal-gas law} and the surface coefficient of heat transfer $\yhea$ in \autoref{def:newton_cooling}{Newton's law of cooling} must be positive. We shall see a simple example of how this kind of restrictions come about.
@@ -11360,7 +11366,7 @@ The entropies that can be defined for an ordinary paper clip do not differ simpl
 For many physical phenomena and materials, a change of the reference state simply shifts all entropy values by a constant amount, so our entropy is defined except for a \enquote*{zero} of its measurement scale. But there are also important and quite common phenomena and materials for which a change of reference state leads to a \emph{different} entropy function -- not just the addition or subtraction of a constant. An ordinary paper clip is a simple example. The non-uniqueness of entropy is also a consequence of the peculiar inequality sign in the balance of entropy.
 %
 \marginpar{\vspace{-\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-\enquote*{\emph{First, there are bodies which have two entropies \textelp{} whose difference is nonconstant \textelp{}. Second, it can happen that the body does not have a smooth entropy. These two peculiarities are related to the fact that for the entropy we have only an inequality.}}\sourceatright{\cites{silhavy1997} \sect~7.6}
+\enquote*{\emph{First, there are bodies which have two entropies \textelp{} whose difference is nonconstant \textelp{}. Second, it can happen that the body does not have a smooth entropy. These two peculiarities are related to the fact that for the entropy we have only an inequality.}}\sourceatright{\cites{silhavy1997} \sect\,7.6}
 }%
 
 But this non-uniqueness is not a problem. Any one of the entropies, defined with respect to different reference states, can be used for instance as one of the  state variables. The prediction of the physical system's behaviour will be the same.
