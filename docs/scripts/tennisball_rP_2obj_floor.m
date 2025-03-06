@@ -24,7 +24,7 @@ t1 = 10; % s: final time
 dt = 0.00001; % s: time step %@
 
 %% Plotting
-dtplot = t1/360; % time interval between plots
+dtplot = t1/100; % time interval between plots
 tplot = dtplot; % time for next plot
 figure
 plot(t, ra(3), 'ob')
