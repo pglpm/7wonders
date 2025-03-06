@@ -29,11 +29,10 @@ tplot = dtplot; % time for next plot
 figure
 plot(t, ra(3), 'ob')
 xlim([0, t1])
-xlabel('{\it t}/s'); ylabel('{\it z_a}/m')
 axis('tight'); grid on; hold on
 plot(t, rb(3), 'sr')
 xlim([0, t1])
-xlabel('{\it t}/s'); ylabel('{\it z_b}/m')
+xlabel('{\it t}/s'); ylabel('{\it z}/m')
 axis('tight'); grid on; hold on %@
 
 %% Numerical time integration

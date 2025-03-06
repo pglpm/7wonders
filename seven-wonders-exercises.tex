@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-05T21:44:27+0100
+%% Last-Updated: 2025-03-06T11:28:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3871,7 +3871,7 @@ Suppose that you want to describe the physical behaviour of not one, but \emph{t
   \begin{itemize}
   \item Suppose that the tennis balls \enquote{don't see} each other, so you don't need to worry about momentum fluxes between them.
   \item Allow for the possibility that the two tennis balls have different masses.
-  \item Try to modify the plots so that the vertical positions of the two balls are plotted against time.
+  \item Try to modify the plots so that the vertical positions of the two balls are plotted against time, in the same plot.
   \end{itemize}
 
   Which modifications do you need to make to the script? Try them out and see if they work.
@@ -3885,7 +3885,7 @@ This is a continuation of Exercise~\ref{sec:tennisball_double}.
 
 Let's add the possibility that the two tennis balls may collide, in which case there is a momentum flux (contact force) between them. We must find a constitutive relation for this momentum flux.
 
-Call $\yra$ and $\yrb$ the positions of the two tennis balls, and $\yFa$ the \textbf{in}flux of momentum into tennis ball $a$ from $b$. Let's the following constitutive relation:
+Call $\yra$ and $\yrb$ the positions of the two tennis balls, and $\yFa$ the \textbf{in}flux of momentum into tennis ball $a$ from $b$. Let's use the following constitutive relation:
 \begin{equation*}
   \yFa =
   \begin{dcases}
@@ -3998,6 +3998,13 @@ If you have access to a large-language-model service, try feeding it one of our 
 
 It's possible that the large language model might offer you to \enquote{optimize} the script. Keep in mind that we're writing the scripts in order to understand the physics, rather than to be numerically efficient.
 
+\section{}
+\label{sec:state_scripts}
+
+
+
+
+
 
 \clearpage
 \addsec{Example solutions}
@@ -4063,23 +4070,23 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
   The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time: its graph is a line. The vertical position $z(t)$ instead decreases \emph{quadratically} or parabolically with time: its graph is a parabola. This is indeed the behaviour we expect in a constant gravitational field (see \chap~10 of our lecture notes).
 
 \item The improved constitutive relations is implemented by replacing the line
-  \\\begin{tabular}{ll}
+  \\[1ex]\begin{tabular}{ll}
     \verb|v = P / m;| & (Octave)
     \\
     \verb|v = P / m| & (Python)
-  \end{tabular}\\
+  \end{tabular}\\[1ex]
   with
-  \\\begin{tabular}{ll}
+  \\[1ex]\begin{tabular}{ll}
     \verb|v = P / sqrt(m^2 + norm(P)^2 / c^2);| & (Octave)
     \\
     \verb|v = P / sqrt(m**2 + norm(P)**2 / c**2)| & (Python)
-  \end{tabular}\\
+  \end{tabular}\\[1ex]
 and adding
-  \\\begin{tabular}{ll}
+  \\[1ex]\begin{tabular}{ll}
     \verb|c = 299792458;| & (Octave)
     \\
     \verb|c = 299792458| & (Python)
-  \end{tabular}\\
+  \end{tabular}\\[1ex]
   in the \texttt{Constants} block.
 
   The plots from this modified script are these:
@@ -4112,9 +4119,9 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 \begin{enumerate}[exerc]
 \item The physical dimensions appearing in the equation can be written as follows:
   \begin{equation*}
-    \texttt{mom.flux} = \frac{k}{\texttt{length}^{2}}\cdot\texttt{length}
+    \texttt{force} = \frac{k}{\texttt{length}^{2}}\cdot\texttt{length}
   \end{equation*}
-  therefore $k$ has dimension $\texttt{mom.flux} \cdot \texttt{length}$.
+  therefore $k$ has dimension $\texttt{force} \cdot \texttt{length}$. Keep in mind that \enquote*{\texttt{force}} is the same as \enquote*{\texttt{momentum~flux}}.
 
 \item When $\yFa$ is non-zero, the vector on the right side of the equation is $\yra-\yrb$, so $\yFa$ must have its same direction. The orientation is also the same unless the multiplying coefficient is negative. But $k$ and a norm $\abs{\dotso}$ are positive. So the influx $\yFa$ has the same direction and orientation as $\yra-\yrb$. In other words, it points from $b$ to $a$.
 
