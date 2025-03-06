@@ -51,9 +51,9 @@ while t < t1:
   Fgas = -(R * N * T / z -  mu * A * v / z)
   Fpis = -Fgas + Fatm
   Ppis = m * v
-  Qbot = A * h * (Text - T)
-  Qtop = Fgas * v
-  Phi = Qbot + Qtop
+  Phibot = A * h * (Text - T)
+  Phitop = Fgas * v
+  Phi = Phibot + Phitop
   E = C * N * T
 
   ## step forward in time with balance laws
