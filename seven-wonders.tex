@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-06T07:04:55+0100
+%% Last-Updated: 2025-03-06T22:11:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6367,7 +6367,7 @@ When it comes to prediction we notice a critical difference between the universa
 
 But we have also seen that balance laws only connect amounts of the same quantity at different times. Therefore \emph{if we need to predict the value of one quantity later, given the value of a different quantity now, we must perforce use both balance laws and constitutive relations}. Each kind of law by itself would be useless for this kind of prediction.
 
-\subsection{Example: oscillating reaction}
+\subsection{Example: oscillating reaction}\label{sec:oscillating_reaction}
 
 The combination of balance laws and constitutive relations can have amazing predictive capabilities. Let's see a simple but not too unrealistic example.
 
@@ -7612,7 +7612,7 @@ Let's see a simple example with a flying tennis ball. As usual we consider a con
 \begin{itemize}[nosep]
 \item Momentum flux is zero: $\yF(t) = \qty{0}{N}$.
 \item Momentum supply, owing to gravity, is $\yG =-\ym g
-  -\begin{bsmallmatrix}
+  \begin{bsmallmatrix}
     0\\0\\1
   \end{bsmallmatrix}$, constant in time.
 \end{itemize}
@@ -7649,15 +7649,29 @@ Finally replace the expression for $\yv(t)$ above in the integral formula for th
 \,.
 \end{equation*}
 
-Let's put together the time dependence for momentum and position that we found, writing explicitly all components:
+Let's put together the time dependence for momentum and position that we found:
+\begin{equation}\label{eq:rP_dependence_tennisball}
+  \begin{aligned}
+    \yP(t) &= \ym\,\yv(\qty{0}{s}) - \ym g \begin{bmatrix}
+      0\\0\\1
+    \end{bmatrix}\, t \,,
+    \\
+    \yr(t) &= \yr(\qty{0}{s}) + \yv(\qty{0}{s})\,t - \frac12 g
+    \begin{bmatrix}
+      0\\0\\1
+    \end{bmatrix}\,t^{2} \,.
+  \end{aligned}
+\end{equation}
+Or, writing explicitly all components:
 \begin{equation*}
   \begin{aligned}
     \begin{bmatrix}
       P_{x}(t) \\ P_{y}(t) \\ P_{z}(t)
     \end{bmatrix}
     &=
+    \ym
     \begin{bmatrix}
-      P_{x}(\qty{0}{s}) \\ P_{y}(\qty{0}{s}) \\ P_{z}(\qty{0}{s})
+      v_{x}(\qty{0}{s}) \\ v_{y}(\qty{0}{s}) \\ v_{z}(\qty{0}{s})
     \end{bmatrix}
     - \ym g \begin{bmatrix}
       0\\0\\1
@@ -7679,8 +7693,8 @@ Let's put together the time dependence for momentum and position that we found, 
     \end{bmatrix}\,t^{2}
     \,,
   \end{aligned}
-  \quad\text{with}\quad
-  \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
+  % \quad\text{with}\quad
+  % \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
 \end{equation*}
 %
 \marginpar{\vspace{-22\baselineskip}\footnotesize\centering%
@@ -7694,7 +7708,7 @@ $z(\qty{0}{s}) = \qty{5}{m}$.
 
 \medskip
 
-Therefore if we know the initial position $\yr(\qty{0}{s}$, and the initial momentum $\yP(\qty{0}{s})$ or equivalently the initial velocity $\yv(\qty{0}{s})$, then we can predict the position and momentum for all future times. In particular:
+Therefore if we know the initial position $\yr(\qty{0}{s}$, and the initial velocity $\yv(\qty{0}{s})$ or equivalently the initial momentum $\yP(\qty{0}{s})$, then we can predict the position and momentum for all future times. In particular:
 \begin{itemize}
 \item The $x$- and $y$-components of momentum are constant.
 \item The $z$-component of momentum decreases linearly with time.
@@ -7705,21 +7719,33 @@ Therefore if we know the initial position $\yr(\qty{0}{s}$, and the initial mome
 Note again how the analytic method manages to tell us beforehand about important features of the time behaviour, as \autoref{sec:numeric_simulation}{remarked previously}. In the present example it tells us for instance that there are no periodic oscillations, and that the $z$-component of position and momentum can increase or decrease indefinitely.
 
 \begin{exercise}
-  Prove the time dependence of $\yr(t)$ and $\yP(t)$ found above, but start from the differential expressions of the balance law of momentum and of the relation between position and velocity:
+  In the example just discussed, the dependence of $\yr(t)$ and $\yP(t)$ on time shown in formula~\eqref{eq:rP_dependence_tennisball} was found starting from the integral expression of the balance of momentum and of the relation between position and velocity.
+
+  \smallskip
+
+  Try to prove again that time dependence, but starting instead from the \emph{differential} expressions of the balance law of momentum and of the relation between position and velocity:
   \begin{equation*}
     \frac{\di\yP(t)}{\dt} = \yF(t) + \yG(t)
     \,,
     \qquad
     \frac{\di\yr(t)}{\dt} = \yv(t)
-    \,,
-    \qquad
+  \end{equation*}
+  and taking into consideration the constitutive relation and the initial conditions:
+  \begin{equation*}
     \yP(t) = \ym\yv(t)\,,
-\end{equation*}
-instead of the integral expressions. Assume that the position vector has the quadratic dependence
+    \qquad
+    \yr(\qty{0}{t}) = \text{\footnotesize known}\,,
+    \qquad
+    \yv(\qty{0}{t}) = \text{\footnotesize known}\,.
+  \end{equation*}
+
+\smallskip
+
+If you're unsure on how to proceed, follow a strategy similar to the example of the \autoref{sec:oscillating_reaction}{oscillating chemical reaction}: assume that the position vector has the following quadratic dependence on time:
 \begin{equation*}
   \yr(t) = B + C\,t + D\,t^{2} \,,
 \end{equation*}
-where $B$, $C$, $D$ are generic coefficients. Calculate its time derivative and substituting it in the various equations, find out what the coefficients should be so that the equations are identically satisfied.
+where $B$, $C$, $D$ are generic coefficients. Calculate its time derivative and substitute it in the various equations above. Find out what the coefficients $B$, $C$ $D$ should be so that the equations are identically satisfied.
 \end{exercise}
 
 \section{Numerical time integration of position and momentum}
