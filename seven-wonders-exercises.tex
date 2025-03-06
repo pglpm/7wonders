@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-06T11:47:22+0100
+%% Last-Updated: 2025-03-06T21:47:58+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3816,7 +3816,7 @@ Express your estimate of the force of Saitama's punch in kilogram-force unit.
 
 \smallskip
 
-For this exercise, download the script for the falling tennis ball (Octave: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}), and make first sure it runs correctly.
+For this exercise, download the script for the simulation of a falling tennis ball (Octave: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}), and make first sure it runs correctly.
 
 Now explore more extreme physical situations.
 
@@ -3859,7 +3859,7 @@ Now explore more extreme physical situations.
 
 \smallskip
 
-For this exercise, use again the script for the falling tennis ball (Octave: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}).
+For this exercise, use again the script for the simulation of a falling tennis ball (Octave: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}).
 
 Suppose that you want to describe the physical behaviour of not one, but \emph{two} tennis balls:
 \begin{enumerate}[exerc]
@@ -3916,7 +3916,7 @@ where $k$ is a positive constant, and $d$ is the diameter of one tennis ball, or
 
 This is a continuation of Exercise~\ref{sec:tennisball_collision_theory}.
 
-Start from the script simulating two independent tennis balls, and implement the constitutive relation from the previous exercise, by means of an \texttt{if-else} construct. In particular:
+Start from the script for the simulation of two independent tennis balls, and implement the constitutive relation from the previous exercise, by means of an \texttt{if-else} construct. In particular:
 
 \begin{enumerate}[exerc]
 \item Where in the time-iteration \texttt{while}-loop should the constitutive relation for $\yFa$ appear? why?
@@ -3999,10 +3999,66 @@ If you have access to a large-language-model service, try feeding it one of our 
 It's possible that the large language model might offer you to \enquote{optimize} the script. Keep in mind that we're writing the scripts in order to understand the physics, rather than to be numerically efficient.
 
 \section{}
+\label{sec:spring_scripts}
+
+For this exercise, start from the script for the simulation of two objects connected by a spring obeying Hooke's law (Octave: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py}}).
+
+\begin{enumerate}[exerc]
+\item Within the time-iteration loop, find the line containing
+  \vspace{-1em}
+  \begin{center}
+    \verb|l = norm(ra - rb)|
+  \end{center}
+  \vspace{-1em}
+From a physical point of view, what does this line do? Is it a constitutive relation? Or a balance law? Or a line that performs some operation that's useful for other lines?
+
+  Can you completely remove this line by making small changes in other lines of the while-loop?
+
+\item Within the time-iteration loop, find the line containing
+  \vspace{-1em}
+  \begin{center}
+    \verb|Fb = -Fa|
+  \end{center}
+  \vspace{-1em}
+  It seems to say that something is \enquote*{minus} something else. Does this line express the principle of symmetry of flux?
+
+\item The script can be modified to represent two tennis balls, each with mass \qty{0.06}{kg}, initially at rest at $(y,z)$ positions $[-0.75, 5]\,\unit{m}$ and $[0.75, 5]\,\unit{m}$, and zero velocity, and connected by a spring having natural length of \qty{1}{m}. Let's choose two different values of the spring's elastic constant $k$. The two plots below show the tennis balls' trajectories as they fall down; each plot correspond to a different value of the elastic constant:
+  \begin{center}
+\includegraphics[width=0.495\linewidth]{images/spring_const1.pdf}%
+\hfill\includegraphics[width=0.495\linewidth]{images/spring_const2.pdf}%
+  \end{center}
+Which plot corresponds to the simulation with the largest elastic constant, and which with the lowest? Why?
+\end{enumerate}
+
+\section{}
 \label{sec:state_scripts}
 
+Start from the script for the simulation of a flying tennis ball
+(Octave: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}).
+
+\begin{enumerate}[exerc]
+\item Which are the \emph{state variables} in this simulation? Why?
+
+\item Modify the script so that the time iteration uses the state variables $(\yr, \yv)$. Which blocks of lines in the script do you need to remove or add?
+
+\item Is it possible to use $(\yr, \yG)$ as state variables? If it's possible, modify the script accordingly. If it's impossible, explain why.
+\end{enumerate}
 
 
+\section{}
+\label{sec:state_scripts_hooke}
+
+Start from the script for the simulation of two objects connected by a spring obeying Hooke's law (Octave: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py}}).
+
+\begin{enumerate}[exerc]
+\item Which are the \emph{state variables} in this simulation? Why?
+
+\item Modify the script so that the time iteration uses the state variables $(\yra, \yrb, \yPa, \yPb)$. Which blocks of lines in the script do you need to remove or add?
+
+\item Modify the script so that the time iteration uses the state variables $(\yra, \yrb, \yPa, \yPb)$. Which blocks of lines in the script do you need to remove or add?
+
+\item Is it possible to use $(\yFa, \yFb, \yva, \yvb)$ as state variables? If it's possible, modify the script accordingly. If it's impossible, explain why.
+\end{enumerate}
 
 
 
@@ -4146,19 +4202,29 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 
   Here is the plot we obtain from it:
   \begin{center}
-    \includegraphics[width=\linewidth]{images/tennisball_collision.pdf}%
+    \includegraphics[width=0.75\linewidth]{images/tennisball_collision.pdf}%
   \end{center}
 
 \item See for instance this script: Octave \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_2obj_collision_floor.m}{\texttt{tennisball\_rP\_2obj\_collision\_floor.m}}, Python \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_2obj_collision_floor.py}{\texttt{tennisball\_rP\_2obj\_collision\_floor.py}}.
 
   Here is the plot we obtain from it:
   \begin{center}
-    \includegraphics[width=\linewidth]{images/tennisball_collision_floor.pdf}%
+    \includegraphics[width=0.75\linewidth]{images/tennisball_collision_floor.pdf}%
   \end{center}
 \end{enumerate}
 
 % 23.976/s : 0.0417 s/frame
 % 5.5e5 N : 4.2e4 kg = 42000 kg
+
+
+\sollabel{sec:spring_scripts}
+\mynotew{Coming soon}
+
+\sollabel{sec:state_scripts}
+\mynotew{Coming soon}
+
+\sollabel{sec:state_scripts_hooke}
+\mynotew{Coming soon}
 
 
 
