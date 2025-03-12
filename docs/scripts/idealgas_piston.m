@@ -20,7 +20,7 @@ T = 273.15 + 23;  % K: initial temperature of gas
 %% Boundary conditions
 Gpis = -m*g;         % N: gravity supply of momentum to piston
 Fatm = -1e5 * A;     % N: force on piston by atmosphere
-Text = 373.15 + 23;  % K: temperature of environment
+Text = 273.15 + 23;  % K: temperature of environment
                      % other fluxes are zero
 
 %% Parameters for time loop

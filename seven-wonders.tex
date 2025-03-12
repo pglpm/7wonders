@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-10T22:46:32+0100
+%% Last-Updated: 2025-03-12T22:08:10+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9798,13 +9798,13 @@ This general constitutive relation applies to a large variety of physical phenom
 
 
 \begin{warning}[Zero of internal energy and conservation of matter]
-  We must remember that $\ym = \yrho\yN$, so the content of matter $\yN$ and its balance should also enter the discussion. In phenomena where matter and antimatter are both present the zero-point of internal energy cannot be redefined arbitrarily. Usually electric charge and electromagnetic field become important in such phenomena, so the general constitutive relation~\eqref{eq:energy_volume_matter} may not be appropriate anyway.
+  We must remember that $\ym = \yrho\yN$, so the content of matter $\yN$ and its balance should also enter the discussion. In phenomena where matter and antimatter are both present, the zero-point of internal energy cannot be redefined arbitrarily. Usually electric charge and electromagnetic field become important in such phenomena, so the general constitutive relation~\eqref{eq:energy_volume_matter} may not be appropriate anyway.
 \end{warning}
 
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item A small body of water of mass \qty{2}{kg}, in its triple-point state, is moving at \qty{3}{m/s} at a height of \qty{250}. How much is its energy, with respect to its conventional zero?
+  \item A small body of water of mass \qty{2}{kg}, in its triple-point state, is moving at \qty{3}{m/s} at a height of \qty{250}{m}. How much is its energy, with respect to its conventional zero?
 
   \item A large, static column of concrete is \qty{10}{m} tall and has a rest mass of \qty{24000}{kg}. Its internal energy is $\yU = \qty{10}{J}$. The acceleration of free fall is $g=\qty{9.8}{N/kg}$. Can you apply formula~\eqref{eq:thermodynamic_energy} as-is to calculate the total energy of the column?
   \end{enumerate}
@@ -9924,6 +9924,10 @@ The term $\yQ$ is called the \textbf{heat flux} or \emph{heating}; the  term $\y
 Heat flux $\yQ$ and force $\yF$ are typically specified by further constitutive relations or \autoref{sec:boundary_conds}{boundary conditions}. One particular boundary condition is the vanishing of the heat flux: $\yQ=\qty{0}{J/s}$. When this boundary condition applies, the energy flux is called \textbf{adiabatic}.
 \end{definition}
 
+We see that the momentum \emph{flux}, or \emph{surface} force, $\yF$ appears in the constitutive relation for the energy flux. Therefore, the presence of a momentum flux through a surface can contribute to the flux of energy through it: we say that \enquote{contact forces do work}.
+
+\medskip
+
 In the integral expression for the balance of energy, the \autoref{sec:total_flow}{time-integrated flux} $\int_{\yti}^{\ytf}\!\!\yH(t)\,\dt$ appears. Given the constitutive relation~\eqref{eq:heat_power}, this integral can be written as the sum of two integrals:
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt =
@@ -9947,10 +9951,12 @@ These integrals have special names:
   is called the \textbf{mechanical work} done by the force $\yF$ through that surface during that time interval.
 \end{definition}
 
-We see that the momentum \emph{flux}, or \emph{surface} force, $\yF$ appears in the constitutive relation for the energy flux. Therefore, the presence of a momentum flux through a surface can contribute to the flux of energy through it: we say that \enquote{contact forces do work}.
+\medskip
+
+It's important to keep in mind several points in applying the constitutive formula for energy flux, and in speaking about mechanical power and work:
 %
 \begin{warning}[Momentum supply does not contribute to energy flux,label={warn:gravitywork}]
-  The momentum \emph{supply}, or \emph{volume} force, $\yG$ does \emph{not} appear in the constitutive relation for the energy flux. In other words, \textbf{\emph{volume} forces do not contribute to energy \emph{flux}}.
+  The momentum \emph{supply}, or \emph{volume} force, $\yG$ does \emph{not} appear in the constitutive relation for the energy flux. In other words, \textbf{\emph{volume} forces do not contribute to energy \emph{flux}}. In fact, since we're speaking of a control \emph{surface}, such forces are not even clearly defined, since they refer to a volume.
 
 \smallskip
 
@@ -9960,17 +9966,86 @@ In particular coordinate systems, some kinds of non-gravitational volume forces 
 \begin{warning}[Tricky points in applying the energy-flux formula,label={warn:energyflux}]
 In applying the formula above, keep always in mind the following:
 \begin{itemize}
-\item The control surface can be purely imaginary, and there is no real physical separation between the matter on its sides.
+\item The control surface can be purely imaginary, with no real physical separation between the matter on its sides.
 
 \item The heat flux could be negative and the mechanical power positive, or vice versa.
 
-\item When we deal with closed control surfaces, the conditions for applying the formula above often do \textbf{not} hold over the whole surface. For instance, the velocity $\yv$ or the heat flux $\yQ$ could be different on different parts the surface.
-
-  To calculate the \emph{total} energy flux in such cases, we  must first divide the closed surface into parts for which the formula above can be applied, then add the results.
+\item When we deal extended control surfaces, the conditions for applying the formula above often do \textbf{not} hold over the whole surface. For example, the velocity $\yv$ or the heat flux $\yQ$ could be different on different parts the surface. To calculate the \emph{total} energy flux in such cases, we must first divide the surface into parts for which the formula above can be applied, then add the results.
 \end{itemize}
 \end{warning}
 
 
+\marginpar{\vspace{7\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.75\linewidth]{images/mueller_W.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Snippet from an introductory text on thermomechanics, with three special versions of the balance of energy. The symbols $\dot{W}$, $\dot{W}_{\text{stress}}$, $\dot{W}_{\text{int}}$ stand for three different definitions of \enquote*{total mechanical power}. The heat flux is $\dot{Q}$, kinetic energy $K$, potential energy $E_{\text{pot}}$.%
+}%
+\begin{warning}[Contrasting definitions of \enquote*{work}]
+  The definition above is about the mechanical work \textbf{done by a (surface) force $\yF$} -- note the explicit mention of \enquote*{force}. This definition seems to be standard across all physics and engineering texts.
+
+  \smallskip
+
+  Many texts also give additional definitions of different kinds of power and work, which do not explicitly mention a specific force; for example \enquote*{net}, or \enquote*{total}, or \enquote*{internal}, or \enquote*{stress} work and power. Unfortunately these definitions can be drastically different from text to text. For instance some texts define the \enquote*{total} or \enquote*{net} work on a control volume as follows:
+  \begin{equation*}
+    \text{\footnotesize net/total work} \defd
+    \text{\footnotesize work done by surface forces on whole control surface} \,.
+  \end{equation*}
+  But other texts instead call \enquote*{stress} work the definition above, and define \enquote*{net} or \enquote*{total} work as follows:
+  \begin{multline*}
+    \begin{aligned}
+      \text{\footnotesize net/total work} &\defd
+      (\text{\footnotesize work done by surface forces on whole control surface})
+      -{}\\&\qquad
+      (\text{\footnotesize change in total kinetic energy}) -{}\\&\qquad
+      (\text{\footnotesize change in total gravitational potential energy}) \,.
+    \end{aligned}
+  \end{multline*}
+  Still other texts call the above definition \enquote*{internal} work. There are other alternative definitions.
+
+  \smallskip
+
+  Therefore, whenever you peruse a new text for research or job purposes, and you read the simple word \enquote*{work}, make sure to check the definition or formula of that term. You don't want to use incorrect values in your formulae!
+  % \begin{multline*}
+  %   \text{\footnotesize net work} \defd
+  %   (\text{\footnotesize work done by surface forces on whole control surface})
+  %   -{}\\
+  %   (\text{\footnotesize change in total kinetic energy}) \,.
+  % \end{multline*}
+\end{warning}
+
+
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Water is flowing downward in a pipe, as illustrated in the side picture by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
+
+  \item Suppose that there is no power $\yF\cdot\yv$ transmitted through a moving control surface. Does this mean that the momentum flux $\yF$ is zero? Or does this mean that the matter's velocity $\yv$ is zero?
+
+  \item\label{item:energyflux_trick} A control surface, with a given crossing direction, is moving with velocity $[0,2,-3]\,\unit{m/s}$. Through this surface we have a heat flux of $\qty{-3}{J/s}$ and a momentum flux of $[1,-2,1]\,\unit{N}$. How much is the energy flux through the surface?
+
+  \item\label{item:bikepump} Consider the control surface that separates air from the piston within a bike pump, schematized by the \textcolor{purple}{red line} in the side illustration. The piston and the gas in contact with it, on the two sides of the control surface, are moving downward with a velocity $[0,0,-0.5]\,\unit{m/s}$. The edownward flux of momentum is $[0,0,-20]\,\unit{N}$. The energy flux through this surface is adiabatic. How much is the downward flux of energy through this surface?
+
+  \item Consider again the control surface of question~\ref{item:energyflux_trick} above. We are now told that there is no matter flux through this surface, and the matter in contact with the surface on both sides is moving with the same velocity as the surface. How much is the energy flux through the surface?
+
+  \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
+  \end{enumerate}
+\end{exercise}
+%
+\marginpar{\vspace{-31\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
+\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+}%
+%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
+% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+% \\[7\baselineskip]
+\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
+% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
+% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
+% \\[\jot]
+% \footnotesize\flushleftright\color{mpcolor}%
+% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
+}%
 
 \section{Heat and power: observation scales}
 \label{sec:dependence_energyfluxdivision}
@@ -10014,39 +10089,6 @@ By the symmetry of flux, this same amount of energy flows out of the spring, red
 \paragraph{Gases.}
 
 In describing and using matter in a gaseous state, usually heat flux and mechanical power must both be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by providing \emph{influxes of heat} to it.
-
-\begin{exercise}
-  \begin{enumerate}[exerc]
-  \item Water is flowing downward in a pipe, as illustrated in the side picture by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
-
-  \item Suppose that there is no power $\yF\cdot\yv$ transmitted through a moving control surface. Does this mean that the momentum flux $\yF$ is zero? Or does this mean that the matter's velocity $\yv$ is zero?
-
-  \item\label{item:energyflux_trick} A control surface, with a given crossing direction, is moving with velocity $[0,2,-3]\,\unit{m/s}$. Through this surface we have a heat flux of $\qty{-3}{J/s}$ and a momentum flux of $[1,-2,1]\,\unit{N}$. How much is the energy flux through the surface?
-
-  \item\label{item:bikepump} Consider the control surface that separates air from the piston within a bike pump, schematized by the \textcolor{purple}{red line} in the side illustration. The piston and the gas in contact with it, on the two sides of the control surface, are moving downward with a velocity $[0,0,-0.5]\,\unit{m/s}$. The downward flux of momentum is $[0,0,-20]\,\unit{N}$. The energy flux through this surface is adiabatic. How much is the downward flux of energy through this surface?
-
-  \item Consider again the control surface of question~\ref{item:energyflux_trick} above. We are now told that there is no matter flux through this surface, and the matter in contact with the surface on both sides is moving with the same velocity as the surface. How much is the energy flux through the surface?
-
-  \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
-  \end{enumerate}
-\end{exercise}
-%
-\marginpar{\vspace{-31\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
-\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-}%
-%
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
-% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-% \\[7\baselineskip]
-\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
-% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
-% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
-% \\[\jot]
-% \footnotesize\flushleftright\color{mpcolor}%
-% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
-}%
 
 
 
@@ -10187,12 +10229,6 @@ This fact explain why we were able to solve many problems of motion in the previ
 % Rigidity is obviously only an approximation. In fact, General Relativity makes this notion strictly speaking impossible. But in situations where Newtonian approximations apply, the approximation of rigidity makes many physical phenomena much easier to describe.
 
 
-%
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/boomerang.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-\furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
-}%
 \begin{exercise}
   Consider a body undergoing a rigid motion. Does this mean that
   \begin{itemize}[noitemsep]
@@ -10201,6 +10237,12 @@ This fact explain why we were able to solve many problems of motion in the previ
   \end{itemize}
 Think of a boomerang for instance.
 \end{exercise}
+%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/boomerang.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+\furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
+}%
 
 \section{Constitutive relations for ideal gases}
 \label{sec:int_energy_idealgas}
