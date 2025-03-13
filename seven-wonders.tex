@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-13T08:39:08+0100
+%% Last-Updated: 2025-03-13T11:04:16+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10062,13 +10062,13 @@ Let us see some examples in which total-energy flux appears as heat flux, flux o
 \paragraph{Holding a cup of hot tea.}
 When we hold a cup of hot tea or coffee, we can feel a flux of energy from the cup to our hands. How much of it is heat flux, and how much is mechanical power?
 
-Let's consider a control surface between our hands and the cup, and let's choose a hands${}\rightsquigarrow{}$cup crossing direction.
 %
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/handstea.jpg}%
 \\[\jot]\color{mpcolor}%
 (Image from \furl{https://bunkajapan.com/blogs/japanese-tea-culture/how-to-hold-a-tea-cup}{\emph{Bunka Japan}})%
 }%
+Let's consider a control surface between our hands and the cup, and let's choose a hands${}\rightsquigarrow{}$cup crossing direction.
 There is obviously a momentum flux from our hands to the cup. The cup has a constant \autoref{def:gravity_surface}{supply of downward momentum from gravity}, but it isn't falling. This means that there must be an influx of upward momentum: it comes from our hands. We can also feel the pressure that the cup exerts on our hands; by the symmetry of flux this means that there's a flux of momentum from our hands to the cup. So the total influx of momentum $\yF$ is not zero. The cup, however, is not moving: its velocity $\yv$ is zero. The mechanical power $\yF\cdot \yv$ is therefore zero as well.
 
 The energy flux through our control surface must therefore be completely in the form of heat flux $\yQ$. The heat \textbf{in}flux through the control surface is negative, because energy is flowing from the cup to our hands.
@@ -10089,6 +10089,18 @@ In describing and using matter in a gaseous state, usually heat flux and mechani
 
 \paragraph{Foot, wheel, track on ground.}
 
+When we walk, there is a flux of momentum $\yF$ from the ground to our bodies. This momentum points in the direction of our motion and upward. The vertical component nullifies the gravitational supply of momentum; the horizontal component is what keeps our forward motion. (Obviously this is equivalent to a flux of momentum from our body to the ground, having opposite orientation.)
+
+What about the flux of energy across the imaginary control surface that separates our foot from the ground? To calculate the mechanical power $\yF\cdot\yv$ we must consider the velocity $\yv$ of our foot -- more precisely, of the sole of our foot or shoe -- as it's in contact with the ground. The foot actually isn't moving with respect to the ground while the flux of momentum occurs; its velocity $\yv$ is the zero vector. This means that the mechanical power $\yF\cdot\yv$ is also zero. There may be a slight heat flux between foot and ground, but usually it is neglected, $\yQ \approx \qty{0}{J/s}$, when considering the energies involved in the motion.
+
+%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/tyre_contact2.jpg}%
+\\[\jot]\color{mpcolor}%
+From  \cites{rajamani2005_r2012}.%
+}%
+\emph{The flux of total energy between the ground and our body is therefore approximately zero (in the present coordinate system)}. The same conclusion is true also for a car. In particular, \emph{there is no flux of mechanical power or work done from the ground to the car}, because the part of the tyre momentarily touching the ground, called \enquote*{contact area} or \enquote*{contact patch}, has zero velocity in the present coordinate system. Similarly for a vehicle moving on tracks like a caterpillar or a bulldozer.
+
 
 
 \section{Summary: constitutive relations for energy in the presence of matter}
@@ -10104,8 +10116,9 @@ So far we have discussed two general constitutive relations: one for energy cont
     \yR(t) &= 0
   \end{aligned}
 \end{equation*}
-Let us recall the physical conditions under which they are valid:
+Let us recall the conditions under which they are valid:
 \begin{itemize}[nosep]
+\item The coordinate system is at rest with the ground, and with a vertical $z$-coordinate pointing upward.
 \item Matter is present within and directly outside the control volume.
 \item The control volume and surface are such that the vertical position $z$, the matter velocity $\yv$ and molar mass $\yrho$, and therefore also the rest mass $\ym$, are the same throughout.
 \item No matter flux occurs through the control surface.
@@ -10115,11 +10128,11 @@ Let us recall the physical conditions under which they are valid:
 In some situations we must divide a control volume or closed control surface into several parts where these conditions are valid.
 
 
-Under these conditions, the formulae above can be used together with the balance of energy~\eqref{eq:bal_energy} in order to describe many common physical situations, with all sorts of materials, and to make predictions, for instance by \autoref{sec:numeric_simulation}{numerical simulations}. Note how these constitutive formulae connect the fluxes and volume contents of energy, matter, momentum; and they even involve two new auxiliary quantities: the internal energy $\yU$ and the heat flux $\yQ$.
+Under these conditions, the formulae above can be used together with the balance of energy~\eqref{eq:bal_energy} in order to describe many common physical situations, with all sorts of materials, and to make predictions. Note how these constitutive formulae connect the fluxes and volume contents of energy, matter, momentum. They also involve two new auxiliary quantities: the internal energy $\yU$ and the heat flux $\yQ$.
 
-In order to concretely use these constitutive formulae, we need first more specific constitutive relations for the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$. We are again in the domain of materials science. Some constitutive relations for these quantities are mathematically extremely complex, involving integrals and partial derivatives; this is no surprise, because they reflect the complexity of the materials they model.
+Properly speaking the formulae above are \emph{families} of constitutive relations. To have proper constitutive relations that give us actual numeric values, we need to specify how the internal energy $\yU$, the heat flux $\yQ$, and the momentum flux $\yF$ depend on other quantities. We are again in the domain of materials science. There are many constitutive relations for these quantities, many of which are mathematically extremely complex, involving integrals and partial derivatives. This is no surprise, because they reflect the complexity of the materials they model.
 
-We shall now focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ which can be used in a more restricted but still quite broad range of physical situations, involving gases.
+In forthcoming sections we'll focus on a set of simple constitutive relations for $\yF,\yU,\yQ$ which can be used in a more restricted but still quite broad range of physical situations, involving gases.
 
 \begin{extra}{What if there's matter flux? Transport terms}\label{ex:energy_matter_flux}
   We have repeated many times that the constitutive relation for the energy flux is through a control surface
@@ -10229,15 +10242,19 @@ This fact explain why we were able to solve many problems of motion in the previ
 
 
 \begin{exercise}
-  Consider a body undergoing a rigid motion. Does this mean that
-  \begin{itemize}[noitemsep]
-  \item all of its points have the \emph{same velocity?}
-  \item all of its points have the \emph{same mass?}
-  \end{itemize}
-Think of a boomerang for instance.
+  \begin{enumerate}[exerc]
+  \item Suppose someone tells you the positions that all matter points of a body have at a given time $t$ (but you aren't told about other times). From these positions you can calculate all distances at time $t$. From this information can you tell whether that body is undergoing an instantaneously rigid motion?
+
+  \item Consider a body undergoing a rigid motion. Does this mean that
+    \begin{itemize}[noitemsep]
+    \item all of its points have the \emph{same velocity?}
+    \item all of its points have the \emph{same mass?}
+    \end{itemize}
+    Think of a boomerang for instance.
+  \end{enumerate}
 \end{exercise}
 %
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/boomerang.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 \furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
