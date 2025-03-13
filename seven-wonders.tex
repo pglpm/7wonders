@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-13T11:04:16+0100
+%% Last-Updated: 2025-03-13T14:03:23+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10174,6 +10174,63 @@ So the description is somewhat more complicated; you see why we choose to avoid 
 
   If there is no antimatter and the flux of matter is zero, $\yJ=\yJ_{\textrm{m}}= \qty{0}{mol/s}$, then the expression $\yns\cdot(\yv-\yvs)$ must be zero too, and the analogous expressions in the fluxes of momentum and energy are zero as well; all fluxes become much simpler.
 \end{extra}
+
+
+\section{Energy content and flux depend on the coordinates}
+\label{sec:energy_coords}
+
+We have repeated several times that the amount of energy in a given control volume and the flux of energy through a given control surface depend on the coordinate system we're using. Because of this dependence, even the energetic \emph{explanations} of physical phenomena depend on the coordinate system, and can be surprisingly different. Let's illustrate this fact by means of a common example: a car accelerating on the road.
+
+Consider a car that at coordinate time $\yti$ is at rest with respect to the ground, and at a later coordinate time $\ytf$ is moving with respect to the ground. Thus the car and the ground have increased their motions with respect to each other between times $\yti$ and $\ytf$. We analyse the balances, contents, and fluxes of momentum and energy for this motion in two coordinate systems, which have the same coordinate time $t$, horizontal coordinate $y$, and vertical coordinate $z$, but two different horizontal coordinates $x$ and $x'$:
+\begin{description}
+\item[$(t,x,y,z)$:] the ground is always at rest in these coordinates.
+\item[$(t,x',y,z)$:] the car is always at rest in these coordinates.
+\end{description}
+In order to focus on the important points, we consider any heat fluxes between car, air, and ground to be negligible. For the control volume coinciding with the car, denote by $\yP$ the momentum, $\yU$ the internal energy, $\yEk$ the kinetic energy.
+We use Newton's constitutive relation for momentum and denote by $\ym$ the rest \masse\ of the car.
+
+\subsection{Coordinates $(t,x,y,z)$}
+\label{sec:car_road_1}
+
+In these coordinates the ground is always at rest, the car is at rest at time $\yti$ and the velocity $\yv(t)$ of its chassis is increasing in the $x$-direction at time $\ytf$. Note that the wheels have different velocities from the chassis, because they rotate.
+
+\subsubsection{Balance of momentum}
+
+\paragraph{Car.} The car has zero momentum at time $\yti$ is zero, and momentum pointing in the positive $x$-coordinate at time $\ytf$. There is an increasing flux of horizontal momentum $\yF_{\text{air}}(t)$ with negative $x$-direction, \autoref{sec:friction_normal_force}{friction}, from the air to the car. There is also an increasing flux of horizontal momentum with positive $x$-direction, also friction, from the ground to the car. The flux from the ground has larger magnitude than that from the air; this is why the car acquires a net positive-$x$ momentum. There is also a flux of positive-$z$ momentum from the ground, which cancels the negative-$z$ gravitational momentum supply. Thus the vertical momentum of the car stays zero.
+\begin{equation*}
+  \underbracket[1pt]{\yP(\ytf)}_{\rightarrow} {}={} \underbracket[1pt]{\yP(\yti)}_{\textrm{zero}}
+  {}+ \int_{\yti}^{\ytf}\!\! \bigl[
+  \underbracket[1pt]{\yF_{\text{air}}(t)}_{\leftarrow}
+  {}+{}
+  \underbracket[1pt]{\yF_{\text{ground}}(t)}_{\nearrow}
+  \bigr]\,\dt
+  + \int_{\yti}^{\ytf}\!\! \underbracket[1pt]{\yG(t)}_{\downarrow}
+   \,\dt
+\end{equation*}
+
+\paragraph{Ground.} In the present coordinate system the ground has always zero momentum. It is receiving from the car a flux of momentum with negative $z$ and $x$ components. These are cancelled out partly by an opposite flux of momentum coming from deeper layers of the ground, and partly by a momentum supply that exists because the present coordinate system is not fully inertial.
+
+
+\subsubsection{Balance of energy}
+
+\paragraph{Car.} The internal energy of the car consists mainly of chemical energy in the fuel or in the electric battery. We know well that this energy decreases between initial and final times. The kinetic energy of the car is zero at time $\yti$ and is positive, $\frac12 \ym \yv^{2}$, at time $\ytf$. The gravitational potential energy of the car doesn't change because the car doesn't change its vertical position; let's set the zero of this energy content at the same vertical position as the car.
+
+There's is an increasing \emph{negative} influx of mechanical power $\yF_{\text{air}}(t) \cdot \yv(t)$ because the force and the velocity are both horizontal and point in opposite directions. So \emph{the car is giving energy to the air} in this coordinate system. There is \emph{no flux of mechanical power between ground and car} in this coordinate system, because the velocity of the part of the tyres in contact with the ground is zero.
+\begin{multline*}
+  \underbracket[1pt]{\yU(\ytf)}_{\text{less}} {}+{}
+  \underbracket[1pt]{\yEk(\ytf)}_{\text{positive}} {}={}
+  \\
+  \underbracket[1pt]{\yU(\ytf)}_{\text{more}} {}+{}
+  \underbracket[1pt]{\yEk(\ytf)}_{\text{zero}}
+  {}+ \int_{\yti}^{\ytf}\!\! \bigl[
+  \underbracket[1pt]{\yF_{\text{air}}(t) \cdot\yv(t)}_{\text{negative}}
+  {}+{}
+  \underbracket[1pt]{\yF_{\text{ground}}(t) \cdot\yv_{\text{tyre}}(t)}_{\text{zero}}
+  \bigr]\,\dt
+\end{multline*}
+
+
+
 
 \section{Rigid motion and rigid bodies}
 \label{sec:rigid_bodies}
