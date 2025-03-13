@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-12T22:08:10+0100
+%% Last-Updated: 2025-03-13T08:39:08+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9975,7 +9975,7 @@ In applying the formula above, keep always in mind the following:
 \end{warning}
 
 
-\marginpar{\vspace{7\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{8\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/mueller_W.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Snippet from an introductory text on thermomechanics, with three special versions of the balance of energy. The symbols $\dot{W}$, $\dot{W}_{\text{stress}}$, $\dot{W}_{\text{int}}$ stand for three different definitions of \enquote*{total mechanical power}. The heat flux is $\dot{Q}$, kinetic energy $K$, potential energy $E_{\text{pot}}$.%
@@ -10050,31 +10050,28 @@ Snippet from an introductory text on thermomechanics, with three special version
 \section{Heat and power: observation scales}
 \label{sec:dependence_energyfluxdivision}
 
-We have discussed the fact that the total energy content in a control volume doesn't depend on our manner of description and measuring instruments, but the separation into internal and kinetic energy does. A completely analogous situation, and for analogous reasons, occurs for the flux of total energy through a control surface, and its separation into heat flux and mechanical power.
+The total-energy content in a control volume depends on our coordinate system, but it does not depend on the spatial scale of our description; the separation into internal and kinetic energy, however, does depend on the spatial scale. A completely analogous situation, and for analogous reasons, occurs for the flux of total energy through a control surface, and for its separation into heat flux and mechanical power.
 
-Consider two bodies of matter in contact. For one researcher, who observes these bodies macroscopically, there may be a flux of total energy $\yH=\qty{1}{J/s}$ through the contact surface, and no visible motion of matter. This researcher therefore consider this energy flux to consist completely in a heat flux $\yQ=\qty{1}{J/s}$, and no mechanical power $\yF\cdot\yv$ since the velocity $\yv$ is zero. For another researcher, who can keep track of molecular motions and velocities, the total-energy flux is still $\yH=\qty{1}{J/s}$; but this flux consists completely in \qty{1}{J/s} of mechanical power, obtained by summing up $\yF\cdot\yv$ for all molecules at the contact surface; the heat flux $\yQ$ is zero.
+Consider two bodies of matter in contact with each other. For one researcher A, who observes these bodies macroscopically, there may be a flux of total energy $\yH=\qty{1}{J/s}$ through the contact surface, and no visible motion of matter. This researcher therefore considers this energy flux to consist completely in a heat flux $\yQ_{\textrm{A}}=\qty{1}{J/s}$, and in no mechanical power $\yF_{\textrm{A}}\cdot\yv_{\textrm{A}}$ because the velocity $\yv_{\textrm{A}}$ measured by A is zero. For another researcher B, who can keep track of molecular motions and velocities, the total-energy flux is still $\yH=\qty{1}{J/s}$; but this flux consists completely in \qty{1}{J/s} of mechanical power, obtained by summing up $\yF_{\textrm{B}}\cdot\yv_{\textrm{B}}$ for all molecules at the contact surface; the heat flux $\yQ_{\textrm{B}}$ is zero. In the notation just used, \enquote*{A} and \enquote*{B} refer, not to different control surfaces, but to different researchers, who measure the same control surface with instruments of different spatial resolutions.
 
 \subsection{Examples of heat and mechanical-power fluxes}
 \label{sec:energy_constitutive_flux_examples}
 
-Let us see some examples in which energy flux appears as heat flux, flux of mechanical-power, or both.
+Let us see some examples in which total-energy flux appears as heat flux, flux of mechanical-power, or both. In all these examples we choose a coordinate system at rest with the ground.
 
 \paragraph{Holding a cup of hot tea.}
-When we hold a cup of hot tea or coffee,
-we can feel a flux of energy
-from the cup to our hands. How much of it is heat flux, and how much is mechanical power?
+When we hold a cup of hot tea or coffee, we can feel a flux of energy from the cup to our hands. How much of it is heat flux, and how much is mechanical power?
 
-Let's consider a control surface between our hands and the cup, and let's choose a hands${}\to{}$cup crossing direction.
+Let's consider a control surface between our hands and the cup, and let's choose a hands${}\rightsquigarrow{}$cup crossing direction.
 %
 \marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/handstea.jpg}%
 \\[\jot]\color{mpcolor}%
 (Image from \furl{https://bunkajapan.com/blogs/japanese-tea-culture/how-to-hold-a-tea-cup}{\emph{Bunka Japan}})%
 }%
-There is obviously a momentum flux from our hands to the cup. The cup has a constant downward %\autoref{def:gravity_surface}
-{supply of momentum from gravity}, but it isn't falling. This means that there must be a influx of upward momentum. We can also feel the pressure that the cup exerts on our hands; by the symmetry of flux this means that there must also be a flux of momentum to the cup that points towards its centre. So the total influx of momentum $\yF$ is not zero. The cup, however, is not moving: its velocity $\yv$ is zero. The mechanical power $\yF\cdot \yv$ is therefore zero as well.
+There is obviously a momentum flux from our hands to the cup. The cup has a constant \autoref{def:gravity_surface}{supply of downward momentum from gravity}, but it isn't falling. This means that there must be an influx of upward momentum: it comes from our hands. We can also feel the pressure that the cup exerts on our hands; by the symmetry of flux this means that there's a flux of momentum from our hands to the cup. So the total influx of momentum $\yF$ is not zero. The cup, however, is not moving: its velocity $\yv$ is zero. The mechanical power $\yF\cdot \yv$ is therefore zero as well.
 
-The energy flux through our control surface must therefore be completely in the form of heat flux $\yQ$, and the heat \textbf{in}flux through our control surface is negative, because energy is flowing from the cup to our hands.
+The energy flux through our control surface must therefore be completely in the form of heat flux $\yQ$. The heat \textbf{in}flux through the control surface is negative, because energy is flowing from the cup to our hands.
 
 If we move the cup around, then its velocity is no longer zero, and some mechanical power $\yF\cdot\yv$ can be transmitted. It shows as an increase in the kinetic energy of the tea, which can even splash out of the cup.
 
@@ -10082,13 +10079,15 @@ If we move the cup around, then its velocity is no longer zero, and some mechani
 When we cook something we create a heat \textbf{in}flux into the item being cooked. No mechanical power is transferred, since the velocity of matter is zero.
 
 \paragraph{Spring and body.}
-In studying Hookean and non-Hookean springs and rubber bands, we saw that there is a momentum flux from one end of the spring to the body attached at that end. If the momentum influx for the body is $\yF$, and the body is moving with velocity $\yv$, then there is an energy flux into the body, in the form of mechanical power $\yF\cdot \yv$. This energy flux increases the body's kinetic energy $\tfrac12\ym\yv^{2}$.
+In a Hookean or non-Hookean spring or rubber band there is a momentum flux from one end of the spring to the body attached at that end. If the momentum influx for the body is $\yF$, and the body is moving with velocity $\yv$, then there is an energy flux into the body, possibly negative, in the form of mechanical power $\yF\cdot \yv$. This energy flux changes the kinetic energy and gravitational potential energy of the attached body.
 
-By the symmetry of flux, this same amount of energy flows out of the spring, reducing its internal energy. Any heat flux between the spring and the bodies attached to it is usually negligible.
+By the symmetry of flux, this same amount of energy (possibly negative) flows out of the spring, whose internal energy changes. The change in internal energy can be verified by a \furl{https://edu.rsc.org/experiments/rubber-band-experiment/460.article}{simple experiment}: press an unstretched rubber band against your lips (which are especially sensitive to temperature changes), and quickly stretch it. Do you feel any change in the temperature of the rubber band? an increase or a decrease? Now allows some seconds for the stretched rubber band to reach ambient temperature again. Keeping it pressed against your lips, quickly un-stretch it. What temperature change do you feel?
 
 \paragraph{Gases.}
 
 In describing and using matter in a gaseous state, usually heat flux and mechanical power must both be taken into account. Many physical theories and technologies are indeed focused on the problem of generating \emph{effluxes of power} as large as possible from a body of matter, by providing \emph{influxes of heat} to it.
+
+\paragraph{Foot, wheel, track on ground.}
 
 
 
