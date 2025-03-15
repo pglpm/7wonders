@@ -54,13 +54,13 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    clf()
+    # clf() # comment for matplotlib.online
     plot(0, 0, 'sk')
     xlim([-ln, ln]); ylim([-ln, 0])
     grid(True); gca().set_aspect("equal", adjustable="box")
     plot([0, r[0]], [0, r[1]], '-b')
     plot(r[0], r[1], 'ob')
-    # pause(0.0001)
+    # pause(0.0001) # comment for matplotlib.online
     tplot = tplot + dtplot
 
 plt.show()

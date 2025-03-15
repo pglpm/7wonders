@@ -69,10 +69,10 @@ do
     new_line=$(echo "$new_line" | sed 's/axis equal/gca().set_aspect("equal", adjustable="box")/g')
 
     # Replace "axis equal" with "axis('equal')"
-    new_line=$(echo "$new_line" | sed 's/pause\([^)]*\)/# pause(0.0001)/g')
+    new_line=$(echo "$new_line" | sed 's/pause\([^)]*\)/# pause(0.0001) # comment for matplotlib.online/g')
 
     # Replace "hold off" with "clf"
-    new_line=$(echo "$new_line" | sed 's/hold off/clf()/g')
+    new_line=$(echo "$new_line" | sed 's/hold off/# clf() # comment for matplotlib.online/g')
 
     # Replace "grid on" with "grid(True)"
     new_line=$(echo "$new_line" | sed 's/grid on/grid(True)/g')

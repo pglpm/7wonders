@@ -69,7 +69,7 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    clf()
+    # clf() # comment for matplotlib.online
     plot(0, 0, 'sk')
     xlim([-2*ln, 2*ln]); ylim([-2*ln,0])
     grid(True); gca().set_aspect("equal", adjustable="box")
@@ -77,7 +77,7 @@ while t < t1:
     plot(ra[0], ra[1], 'ob')
     plot([ra[0], rb[0]], [ra[1], rb[1]], '-r')
     plot(rb[0], rb[1], 'or')
-    # pause(0.0001)
+    # pause(0.0001) # comment for matplotlib.online
     tplot = tplot + dtplot
 
 plt.show()
