@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-15T12:20:05+0100
+%% Last-Updated: 2025-03-15T14:06:54+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9974,6 +9974,32 @@ In applying the formula above, keep always in mind the following:
 \end{itemize}
 \end{warning}
 
+\begin{warning}[Symmetry of flux does not always apply to heat flux and mechanical power]
+
+  The principle of \autoref{def:symmetryflux}{symmetry of flux} always applies to the flux of total energy $\yH$. But \textbf{symmetry of flux does not always apply to the heat flux $\yQ$ and the mechanical power $\yF\cdot\yv$ separately}.
+
+  \smallskip
+
+  Let's put this in symbols. Consider a control surface with sides $a$ and $b$. For the heat flux $\yQ_{a\rightsquigarrow b}$ in the crossing direction $a\rightsquigarrow b$, and the heat flux $\yQ_{b\rightsquigarrow a}$ in the crossing direction $b\rightsquigarrow a$ it may happen that
+  \begin{equation*}
+    \yQ_{a\rightsquigarrow b} \ne -\yQ_{b\rightsquigarrow a} \,.
+  \end{equation*}
+  In fact in some situations the heat flux may be \emph{positive in both crossing directions}!
+
+  \smallskip
+
+  The same is true for the mechanical power $\yF\cdot\yv$. The reason why the symmetry of flux may break down is clearer in this case: \emph{it happens when matter has two different velocities $\yva$, $\yvb$ on the two sides of the control surface}, as it may happen when \autoref{def:kineticfriction}{kinetic friction} is present:   \begin{equation*}
+    \yF_{a\rightsquigarrow b} \cdot \yvb
+    \ne 
+    -\yF_{b\rightsquigarrow a} \cdot \yva \,.
+  \end{equation*}
+  Note that the momentum flux does always satisfy the symmetry principle: $\yF_{a\rightsquigarrow b} = -\yF_{b\rightsquigarrow a}$.
+
+  \smallskip
+
+  Therefore be careful in drawing separate conclusions about heat flux and mechanical power on two sides of a control surface. We shall see examples of this curious possibility when discussing \autoref{sec:jumps}{surfaces of discontinuity}.
+\end{warning}
+
 
 \marginpar{\vspace{8\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/mueller_W.jpg}%
@@ -9981,7 +10007,7 @@ In applying the formula above, keep always in mind the following:
 Snippet from an introductory text on thermomechanics, with three special versions of the balance of energy. The symbols $\dot{W}$, $\dot{W}_{\text{stress}}$, $\dot{W}_{\text{int}}$ stand for three different definitions of \enquote*{total mechanical power}. The heat flux is $\dot{Q}$, kinetic energy $K$, potential energy $E_{\text{pot}}$.%
 }%
 \begin{warning}[Contrasting definitions of \enquote*{work}]
-  The definition above is about the mechanical work \textbf{done by a (surface) force $\yF$} -- note the explicit mention of \enquote*{force}. This definition seems to be standard across all physics and engineering texts.
+  The definition above is about the mechanical work \textbf{done by a surface force $\yF$} -- note the explicit mention of \enquote*{force}. This definition seems to be standard across all physics and engineering texts.
 
   \smallskip
 
@@ -10097,7 +10123,7 @@ What about the flux of energy across the imaginary control surface that separate
 \marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/tyre_contact2.jpg}%
 \\[\jot]\color{mpcolor}%
-From  \cites{rajamani2005_r2012}.%
+(Image:  \cites{rajamani2005_r2012})%
 }%
 \emph{The flux of total energy between the ground and our body is therefore approximately zero (in the present coordinate system)}. The same conclusion is true also for a car. In particular, \emph{there is no flux of mechanical power or work done from the ground to the car}, because the part of the tyre momentarily touching the ground, called \enquote*{contact area} or \enquote*{contact patch}, has zero velocity in the present coordinate system. Similarly for a vehicle moving on tracks like a caterpillar or a bulldozer.
 
@@ -10319,17 +10345,17 @@ Analyses similar to the one above can be made for all mechanical systems, with t
 
 
 %
-\marginpar{\vspace{9\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{10\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/bike_chain.jpg}%
-\\[\jot]\color{mpcolor}%
-Image: \furl{https://bikerumor.com/review-specialized-s-works-ares-road-shoes-are-great-just-not-for-the-obvious-reasons}{\texttt{Bikerumor}}%
+\\\color{mpcolor}%
+(Image: \furl{https://bikerumor.com/review-specialized-s-works-ares-road-shoes-are-great-just-not-for-the-obvious-reasons}{\texttt{Bikerumor}})%
 }%
 \begin{exercise}
   The movement of a bicycle with respect to the ground is connected with the burning of internal chemical energy in the biker's muscles. Intuitively we would say that energy flows from the biker's feet to the back wheel; but along which path does it flow there?
 
   \smallskip
 
-  Analyse the flow of mechanical energy, at a given time instant $t$, through the three control surfaces shown by the \textcolor{cyan}{blue lines} in the side figure:
+  Analyse, in the same way as for the car example, the flow of mechanical energy, at a given time instant $t$, through the three control surfaces shown by the \textcolor{cyan}{blue lines} in the side figure:
   \begin{enumerate}[label=(\arabic*),noitemsep]
   \item across the upper, taut part of the chain; note that there is a \autoref{sec:tension}{\emph{tensile} force} here;
   \item across the lower, slack part of the chain; note that, approximately, there is no surface force here;
@@ -10554,40 +10580,43 @@ This formula is very important: for an ideal gas, the absolute temperature is a 
 \label{sec:heat_flux}
 
 Lastly we discuss a constitutive relation that connects heat flux and temperature. This relation applies to many physical phenomena and materials: not only to ideal gases, but to many other fluids and solids as well.
+
 \begin{definition}{Newton's law of cooling}\label{def:newton_cooling}
-  Consider a control surface of area $A$ and call its two sides $a$ and $b$. If the matter on side $a$ has approximately uniform temperature $\yTa$, and the matter on side $b$ has approximately uniform temperature $\yTb$, then the heat flux $\yQ$ in the $a\to b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
+  Consider a control surface of area $A$ and with two sides $a$ and $b$. If the matter on side $a$ has temperature $\yTa$ everywhere close to the surface, and the matter on side $b$ has temperature $\yTb$ everywhere close to the surface, then the heat flux $\yQ_{a\rightsquigarrow b}$ in the $a\rightsquigarrow b$ crossing direction is given by \textbf{Newton's \enquote*{law of cooling}}:
 \begin{equation}
   \label{eq:newton_cooling}
-  \yQ = A \yhea\, (\yTa-\yTb)
+  \yQ_{a\rightsquigarrow b} = A \yhea\, (\yTa-\yTb)
 \end{equation}
-where $\yhea$ is called the \emph{surface coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive, and may depend on the temperature.
+where $\yhea$ is called the \emph{surface coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive.
 \end{definition}
 %
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/newton_cooling.jpg}%
 % \\[\jot]\flushleftright\color{mpcolor}%
 % NB: if $\yTb >\yTa$, then $\yQ<0$%
 }%
-The constitutive formula above with $\yhea>0$ says that if the temperature on side $a$ is larger than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
+The constitutive formula above with $\yhea>0$ says that if the temperature on side $a$ is higher than the one on side $b$, then a positive heat flux occurs from $a$ to $b$. In other words, positive heat flows from the hotter to the colder side of the surface.
 % The fact that the thermal-conductivity coefficient can only be positive is a consequence of the \emph{balance of entropy} (second law of thermodynamics), as in the case of the viscosity coefficients.
 
 Newton's law of cooling implies that we can approximately consider temperature as having a jump or discontinuity between the two sides of the surface. In situations where this approximation is too gross, another constitutive equation is often used: \textbf{Fourier's law of heat conduction}, which we can write as
 \begin{equation*}
   \yQ = -A k \frac{\de\yT}{\de x}
 \end{equation*}
-In this expression we imagine the surface to be orthogonal to the $yz$ directions, and the crossing direction to be the positive $x$-direction. The derivative $\frac{\de\yT}{\de x}$ is the gradient of the temperature, expressing how much the temperature changes from one point to another very close one.
+In this expression we imagine the surface to be orthogonal to the $yz$ directions, and the crossing direction to be the positive-$x$ direction. The derivative $\frac{\de\yT}{\de x}$ is the gradient of the temperature, expressing how much the temperature changes from one point to another very close one.
 
 Let's make clear that Newton's law of cooling and Fourier's law \emph{are not universal}. There are physical situations and materials for which the heat flux is connected to temperature in more complex ways; and not only to temperature, but also to momentum flux, matter flux, electromagnetic quantities. \furl{https://www.energy.gov/energysaver/thermoelectric-coolers}{Thermoelectric coolers} are an example application of these more complex constitutive relations for the heat flux.
 
 \begin{warning}[Heat can flow from cold to hot]
   Some texts say that \enquote{heat cannot flow from cold to hot}, and present this vague statement as a consequence of, or equivalent to, the second law of thermodynamics. This statement is actually \emph{not} true, from several points of view.
 
-  Heat can flow from cold to hot. An everyday example is a refrigerator:
+  \smallskip
+
+  The fact that heat can flow from cold to hot is very clear in devices such as refrigerators and freezers, which would not be possible otherwise:
   \begin{quote}\footnotesize
     It is obvious that, on a macroscopic scale, heat flows from a cold source to a hotter sink in a refrigerator: thus the idea that the second law requires heat to invariably flow from hot to cold is belied by the fact that refrigerators do work.
     \sourceatright{\parencites{astarita1989_r1990}}%
 \end{quote}
-Even more interesting examples, in which Fourier's law does not apply, occur for materials such as polymers \mynotew{add text and reference}
+Even more interesting examples, in which Fourier's law does not always apply, occur for materials such as polymers \mynotew{add text and reference}
 \end{warning}
 
 \subsection{Other common assumptions about ideal gases}
@@ -10622,7 +10651,7 @@ This assumption has an important consequence for the balance of momentum of a co
 \end{equation*}
 that is, the \emph{total} momentum influx is always zero. But note that \emph{this does not mean that the momentum influx is zero everywhere} across the closed control surface;
 %
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.45\linewidth]{images/idealgas_mominflux.pdf}%
 % \\[\jot]\flushleftright\color{mpcolor}%
 % NB: if $\yTb >\yTa$, then $\yQ<0$%
