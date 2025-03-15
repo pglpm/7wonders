@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-15T00:00:49+0100
+%% Last-Updated: 2025-03-15T10:56:41+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10187,16 +10187,16 @@ Consider a car that at coordinate time $\yti$ is at rest with respect to the gro
 \item[$(t,x',y,z)$:] the car is always at rest in these coordinates.
 \end{description}
 
-In the analysis we focus only on understanding which quantities are positive, negative, or zero, without definite numerical values. What we want to understand are the change and exchange mechanisms for energy, and how they differ in different coordinates. Our main objective is the car, considered as a control volume. Denote by $\yP$ its momentum, $\yU$ its internal energy, $\yEk$ its kinetic energy. We use Newton's constitutive relation for momentum and denote by $\ym$ the rest \masse\ of the car. For simplicity we imagine there's no air -- even if the analysis of the energy exchanges with air is very fascinating. We also assume that heat exchanges between the car and ground are negligible % The analysis for the heat flux will be given without proof because it relies on results based on \autoref{sec:jumps}{discontinuities}.
+In our analysis we shall only determine which quantities are positive, negative, or zero, without definite numerical values. What we want to understand are the change and exchange mechanisms for energy, and how they differ in different coordinates. Our main focus is the car, considered as a control volume. Denote by $\yP$ its momentum, $\yU$ its internal energy, $\yEk$ its kinetic energy. We use the common constitutive relations for momentum and for energy. For simplicity we imagine there's no air -- even if the analysis of the energy exchanges with air is very fascinating. We also assume that heat exchanges between the car and ground are negligible. % The analysis for the heat flux will be given without proof because it relies on results based on \autoref{sec:jumps}{discontinuities}.
 
-\subsection{Coordinates $(t,x,y,z)$}
+\subsection{Coordinates $(t,x,y,z)$: ground at rest, car moving}
 \label{sec:car_road_1}
 
-In these coordinates the ground is always at rest. The car is at rest at time $\yti$ and the velocity $\yv(t)$ of its chassis is increasing in the positive-$x$ direction until time $\ytf$. Note that the wheels have different velocities from the chassis, because they rotate.
+In these coordinates the ground is always at rest. The car is at rest at time $\yti$ and the velocity $\yv_{\text{c}}(t)$ of its chassis is increasing in the positive-$x$ direction until time $\ytf$. Note that the wheels have different velocities from the chassis, because they rotate.
 
 \subsubsection{Balance of momentum}
 
-The car has zero momentum at time $\yti$ is zero, and momentum with positive-$x$ orientation at time $\ytf$. There is an increasing influx of horizontal momentum $\yF(t)$ with positive-$x$ component, \autoref{sec:friction_normal_force}{friction}, from the ground to the car. The flux from the ground makes the car acquire a net positive-$x$ momentum. There momentum flux from the ground also has a positive-$z$ component, which cancels the negative-$z$ gravitational momentum supply. Thus the vertical momentum of the car stays zero.
+The car has zero momentum at time $\yti$, and momentum with positive-$x$ direction at time $\ytf$. There is an influx of horizontal momentum $\yF(t)$ with positive-$x$ component, \autoref{sec:friction_normal_force}{friction}, from the ground to the car. This influx from the ground makes the car acquire a net positive-$x$ momentum. The momentum influx from the ground also has a positive-$z$ component, which cancels the negative-$z$ gravitational momentum supply. Thus the vertical momentum of the car stays zero.
 
 \begin{equation*}
   \underbracket[1pt]{\yP(\ytf)}_{\rightarrow} {}={} \underbracket[1pt]{\yP(\yti)}_{\text{zero}}
@@ -10216,9 +10216,9 @@ The car has zero momentum at time $\yti$ is zero, and momentum with positive-$x$
 
 \subsubsection{Balance of energy}
 
-The internal energy of the car consists of chemical energy in the fuel or in the electric battery, plus other internal energy, for instance elastic, of the various parts of the car, which we shall neglect. We know well that the chemical energy decreases between the initial and final times. The kinetic energy of the car is zero at time $\yti$ and is positive, $\frac12 \ym \yv^{2}$, at time $\ytf$. The gravitational potential energy of the car doesn't change because the car doesn't change its vertical position; let's set the zero of this energy content at the same vertical position as the car.
+The internal energy $\yU(t)$ of the car consists of chemical energy in the fuel or in the electric battery, plus other internal energy, for instance elastic, of the various other parts of the car; we shall neglect these. We know well that the chemical energy decreases between the initial and final times. The kinetic energy $\yEk(t)$ of the car is zero at time $\yti$ and is positive at time $\ytf$. The gravitational potential energy of the car doesn't change because the car doesn't change its vertical position; let's set the zero of this gravitational energy content at the same vertical position as the car.
 
-There is \emph{no flux of mechanical power between ground and car} in this coordinate system, because the ground and the part of the tyres in contact with it have zero velocity.
+What about the energy flux between ground and car? The ground has zero velocity, and also the parts of the tyres in contact with it have instantaneously zero velocity $\yv_{\text{t,g}} = \qty{0}{m/s}$. Therefore there is \emph{no flux of mechanical power between ground and car} in this coordinate system.
 
 Therefore
 \begin{equation*}
@@ -10229,21 +10229,27 @@ Therefore
   {}+ \int_{\yti}^{\ytf}\!\! %\bigl[
   % \underbracket[1pt]{\yF_{\text{air}}(t) \cdot\yv(t)}_{\text{negative}}
   % {}+{}
-  \underbracket[1pt]{\yF(t) \cdot\yv_{\text{tyre}}(t)}_{\text{zero}}
+  \underbracket[1pt]{\yF(t) \cdot\yv_{\text{t,g}}(t)}_{\text{zero}}
   % \bigr]
   \,\dt
 \end{equation*}
 
+In this coordinate system we therefore describe the energy process as follows:
+\begin{quote}
+$(t,x,y,z)$:\enskip\emph{The chemical internal energy of the car's engine is being converted into kinetic energy; no mechanical energy is being released from the car to the ground}.
+\end{quote}
+
 \medskip
 
-\subsection{Coordinates $(t,x',y,z)$}
+
+\subsection{Coordinates $(t,x',y,z)$: ground moving, car at rest}
 \label{sec:car_road_1}
 
-In these coordinates the chassis of the car is always at rest, but its wheels are in motion. The ground is at rest at time $\yti$ and its velocity $-\yv(t)$ increases in the negative-$x'$ direction until time $\ytf$.
+In these coordinates the chassis of the car is always at rest, although its wheels are in motion. The ground is at rest at time $\yti$ and its velocity increases in the negative-$x'$ direction until time $\ytf$.
 
 \subsubsection{Balance of momentum}
 
-The car has constant zero momentum. The influx of momentum is essentially the same as in the previous coordinate system; the differences become relevant only when the speeds involved are comparable to light's. Thus there is an increasing influx of horizontal momentum  $\yF(t)$ from the ground, having positive $x'$ and  $z$ components. The vertical component compensates the vertical supply of momentum. But where does the \emph{horizontal} component go, given that the car momentum stays zero? It goes to compensate a \emph{horizontal supply} of momentum, which has negative-$x'$ direction. It's an example of \autoref{sec:gravity}{inertial force}, which appears in this coordinate system.
+The car has constant zero momentum. The influx of momentum is essentially the same as in the previous coordinate system; the differences become relevant only when the speeds involved are comparable to light's. Thus there is an increasing influx of horizontal momentum $\yF(t)$ from the ground, having positive $x'$ and $z$ components. The vertical component cancels out the vertical component of the gravitational supply of momentum. But where does the \emph{horizontal} component of the ground force go, given that the car momentum stays zero? It goes to compensate a \emph{horizontal component} of gravitational supply of momentum, having a negative-$x'$ direction. The supply of momentum is different in this coordinate system. The horizontal component is called \autoref{sec:gravity}{inertial force}, but there is no real distinction between it and the gravitational force.
 
 \begin{equation*}
   \underbracket[1pt]{\yP(\ytf)}_{\text{zero}} {}={} \underbracket[1pt]{\yP(\yti)}_{\text{zero}}
@@ -10261,9 +10267,9 @@ The car has constant zero momentum. The influx of momentum is essentially the sa
 
 \subsubsection{Balance of energy}
 
-The internal energy is essentially the same as in the previous coordinate system, again neglecting differences relevant at light's speeds. The chemical energy of the fuel or battery is decreasing. The kinetic energy of the car is zero at all times.
+The decrease in the chemical internal energy $\yU(t)$ of the fuel or battery is essentially the same as in the previous coordinate system, again neglecting differences relevant when close to light's speed. The kinetic energy of the car is zero at all times: $\yEk(t)=\qty{0}{J}$.
 
-In the present coordinate system there is a \emph{loss of mechanical power to the ground}, because the ground and the part of the tyres in contact with it have velocity in the negative-$x$ direction, opposite to $\yF$.
+What about the energy flux between ground and car? In the present coordinate system the ground has a velocity in the negative-$x$ direction, and also the parts of the tyres in contact with it have the same velocity $\yv_{\text{t,g}}$ negative in the $x'$-direction. The momentum flux $\yF(t)$ has a positive-$x'$ component instead. Therefore there is a \emph{loss of mechanical power from the car to the ground} in this coordinate system. Note that the kinetic energy of the ground is indeed increasing, because the ground moves faster and faster in the negative-$x'$ direction.
 
 Therefore
 \begin{equation*}
@@ -10275,68 +10281,54 @@ Therefore
   % \bigl[
   % \underbracket[1pt]{\yF_{\text{air}}(t) \cdot\yv(t)}_{\text{zero}}
   % {}+{}
-  \underbracket[1pt]{\yF(t) \cdot\yv_{\text{tyre}}(t)}_{\text{negative}}
+  \underbracket[1pt]{\yF(t) \cdot\yv_{\text{t,g}}(t)}_{\text{negative}}
   % \bigr]
   \,\dt
 \end{equation*}
 
+In this coordinate system we therefore describe the energy process as follows:
+\begin{quote}
+$(t,x',y,z)$:\enskip\emph{The chemical internal energy of the car's engine is being transferred to the ground as mechanical power; the kinetic energy is always zero.}.
+\end{quote}
+
+
 \subsection{Comparison}
 \label{sec:coord_E_comp}
 
-Let's compare the balance of momentum in the two coordinate systems:
+Regarding momentum, we have seen that the contents and supplies of momentum are quite different in the two coordinate systems. This fact is usually not perceived as surprising.
 
-\begin{itemize}
-\item Coordinates $(t,x,y,z)$ (ground at rest, car moving):
-  \begin{equation*}
-    \underbracket[1pt]{\yP(\ytf)}_{\rightarrow} {}={} \underbracket[1pt]{\yP(\yti)}_{\text{zero}}
-    {}+ \int_{\yti}^{\ytf}\!\!
-    \underbracket[1pt]{\yF(t)}_{\nearrow}
-    \,\dt
-    + \int_{\yti}^{\ytf}\!\! \underbracket[1pt]{\yG(t)}_{\downarrow}
-    \,\dt
-  \end{equation*}
+Regarding energy, we have seen that the kinetic energy of the car is different in the two coordinate systems. This fact is usually not perceived as surprising either.
 
-\item   Coordinates $(t,x',y,z)$ (ground moving, car at rest):
-  \begin{equation*}
-  \underbracket[1pt]{\yP(\ytf)}_{\text{zero}} {}={} \underbracket[1pt]{\yP(\yti)}_{\text{zero}}
-  {}+ \int_{\yti}^{\ytf}\!\!
-  \underbracket[1pt]{\yF_{\text{ground}}(t)}_{\nearrow}
-  \,\dt
-  + \int_{\yti}^{\ytf}\!\! \underbracket[1pt]{\yG(t)}_{\swarrow}
-   \,\dt
-  \end{equation*}
-\end{itemize}
-The contents and supplies are quite different; but usually this is not considered surprising.
+But we have also seen that what happens to the internal chemical energy is completely different in the two coordinate systems. In $(t,x,y,z)$ it's converted into kinetic energy, so \enquote{it stays within the car} in a manner of speaking. In $(t,x',y,z)$ it's transferred to the ground (which increases its kinetic energy), so \enquote{it doesn't stay within the car}. This difference is often perceived as surprising. Yet it makes sense, because mechanical power $\yF\cdot\yv$ explicitly depends on a coordinate velocity, which in turn is completely dependent on the choice of coordinates.
 
 \medskip
 
+Analyses similar to the one above can be made for all mechanical systems, with the same conclusion about coordinate-dependence. This shows that we must take \enquote{explanations} about energy flowing here or there always with a grain of salt: they may be true in one coordinate system, but false in another.
 
-Now consider the balance of energy:
-\begin{itemize}
-\item Coordinates $(t,x,y,z)$ (ground at rest, car moving):
-\begin{equation*}
-  \underbracket[1pt]{\yU(\ytf)}_{\text{lower}} {}+{}
-  \underbracket[1pt]{\yEk(\ytf)}_{\text{positive}} {}={}
-  \underbracket[1pt]{\yU(\ytf)}_{\text{higher}} {}+{}
-  \underbracket[1pt]{\yEk(\ytf)}_{\text{zero}}
-  {}+ \int_{\yti}^{\ytf}\!\!
-  \underbracket[1pt]{\yF_{\text{ground}}(t) \cdot\yv_{\text{tyre}}(t)}_{\text{zero}}
-  \,\dt
-\end{equation*}
-Explanation: \emph{the chemical internal energy is being converted into kinetic energy; no mechanical energy is released from the car}.
 
-\item Coordinates $(t,x',y,z)$ (ground moving, car at rest):
-\begin{equation*}
-  \underbracket[1pt]{\yU(\ytf)}_{\text{lower}} {}+{}
-  \underbracket[1pt]{\yEk(\ytf)}_{\text{zero}} {}={}
-  \underbracket[1pt]{\yU(\ytf)}_{\text{higher}} {}+{}
-  \underbracket[1pt]{\yEk(\ytf)}_{\text{zero}}
-  {}+ \int_{\yti}^{\ytf}\!\!
-  \underbracket[1pt]{\yF(t) \cdot\yv_{\text{tyre}}(t)}_{\text{negative}}
-  \,\dt
-\end{equation*}
-Explanation: \emph{the chemical internal energy is being transferred  as mechanical power to the ground}.
-\end{itemize}
+%
+\marginpar{\vspace{9\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/bike_chain.jpg}%
+\\[\jot]\color{mpcolor}%
+Image: \furl{https://bikerumor.com/review-specialized-s-works-ares-road-shoes-are-great-just-not-for-the-obvious-reasons}{\texttt{Bikerumor}}%
+}%
+\begin{exercise}
+  The movement of a bicycle with respect to the ground is connected with the burning of internal chemical energy in the biker's muscles. Intuitively we would say that energy flows from the biker's feet to the back wheel; but along which path does it flow there?
+
+  \smallskip
+
+  Analyse the flow of mechanical energy, at a given time instant $t$, through the three control surfaces shown by the \textcolor{red}{red lines} in the side figure:
+  \begin{enumerate}[label=(\arabic*),noitemsep]
+  \item across the upper, taut part of the chain; \item across the lower, slack part of the chain; \item between the ground and the back wheel.
+  \end{enumerate}
+  Do the analysis in three different coordinate systems:
+  \begin{enumerate}[label=(\alph*),noitemsep]
+  \item coordinate system where the ground is at rest
+  \item coordinate system where main body of the bike is at rest
+  \item coordinate system where, momentarily, the \emph{upper}, taut part of the chain is at rest.
+  \end{enumerate}
+\end{exercise}
+
 
 
 \section{Rigid motion and rigid bodies}
