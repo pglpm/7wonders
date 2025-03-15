@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-15T14:46:49+0100
+%% Last-Updated: 2025-03-15T15:14:48+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -972,7 +972,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\newcommand*{\sint}{\begingroup\textstyle\int\endgroup}
 %\newcommand*{\sland}{\mathop{\textstyle\bigwedge}}
 %\newcommand*{\slor}{\mathop{\textstyle\bigvee}}
-%\newcommand*{\T}{^\transp}%transpose
+\newcommand*{\T}{^\transp}%transpose
 %%\newcommand*{\QEM}%{\textnormal{$\Box$}}%{\ding{167}}
 %\newcommand*{\qem}{\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
 %\quad\hbox{\QEM}}
@@ -11303,14 +11303,12 @@ Just like total energy, also angular momentum can be defined in different ways; 
 
 \mynotew{To be continued.}
 
-\section{Examples of constitutive relations}
-\label{sec:angmomentum_constitutive}
-
-\subsection{Standard constitutive equation for angular momentum}
+\section{Standard constitutive equation for angular-momentum content}
 \label{sec:constitutive_angmomentum_standard}
 
+Take a \emph{small} control volume having position vector $\yr=[x,y,z]$; note that it's necessary for the control volume to be small, otherwise we could not associate to it just one position.
 
-If $\yP=(P_{x},P_{y},P_{z})$ is the momentum in a \emph{small} volume, and  $\yr=(x,y,z)$ is the position vector of this small volume, then the angular momentum $\yL=(L_{x}, L_{y}, L_{z})$ \emph{with respect to the origin of coordinates}, contained in that same volume, is given by the vector product
+If control volume has momentum content $\yP=[P_{x},P_{y},P_{z}]$, then it also contains angular momentum $\yL=[L_{x}, L_{y}, L_{z}]$ defined \emph{with respect to the origin of coordinates}. This angular-momentum content is given by the vector product
 \begin{subequations}
   \begin{equation}
     \label{eq:ang_momentum_def}
@@ -11323,7 +11321,7 @@ If $\yP=(P_{x},P_{y},P_{z})$ is the momentum in a \emph{small} volume, and  $\yr
           \\    L_{z} & = x\,P_{y} - y\,P_{x}
         \end{aligned}\right.
   \end{equation}
-  Instead of calling the components \enquote{$(L_{x}, L_{y}, L_{z})$}, we can also call them \enquote{$(L_{yz}, L_{zx}, L_{xy})$}, as some books do. The last names make the formulae above easier to remember:
+  Instead of calling the components \enquote{$[L_{x},\, L_{y},\, L_{z}]$}, we can also call them \enquote{$[L_{yz},\, L_{zx},\, L_{xy}]$}, as some books do. The last names make the formulae above easier to remember:
   \begin{equation}
     \label{eq:ang_momentum_def_bis}
 \left\{\enskip
@@ -11335,6 +11333,47 @@ If $\yP=(P_{x},P_{y},P_{z})$ is the momentum in a \emph{small} volume, and  $\yr
 \end{equation}
 \end{subequations}
 Choose whichever you prefer.
+
+In some physics and engineering fields, angular momentum is represented notby a vector, but by an object called \enquote*{bi-vector}, or \enquote*{2-vector}, or \enquote*{antisymmetric tensor}, which can be represented by a special kind of matrix:
+\begin{equation}
+  \label{eq:ang_momentum_bivector}
+  \yL =
+  \begin{bmatrix}
+    0 & L_{xy} & -L_{zx} \\
+    -L_{xy} & 0 & L_{yz} \\
+    L_{zx} & -L_{yz} & 0
+  \end{bmatrix} \,.
+\end{equation}
+This matrix has a zero diagonal, and elements of opposite signs symmetrically with respect to the diagonal. In this matrix representation, the standard constitutive relation for angular momentum has the form
+\begin{equation}
+  \label{eq:ang_momentum_bivector_def_bis}
+  \yL = \yr\, \yP\T - \yP\, \yr\T
+\end{equation}
+where \enquote*{$\bm{X}\T$} means to consider the vector $\bm{X}$ as a row-vector, and the product is the standard matrix multiplication.
+
+\begin{exercise}
+  A GPS satellite has, at a given instant, the following position and momentum content:
+  \begin{equation*}
+    \begin{split}
+      \yr &=\bigl[
+      \num[exponent-mode=scientific]{1.4e+7}\,,\
+      \num[exponent-mode=scientific]{1.6e+7}\,,\
+      0\bigr]\,\unit{m}
+      \\[\jot]
+      \yP &=\bigl[
+      \num[exponent-mode=scientific]{-3.1e+6}\,,\
+      \num[exponent-mode=scientific]{3.4e+6}\,,\
+      0\bigr]\,\unit{N\cdot s}
+    \end{split}
+  \end{equation*}
+  Assuming that the satellite's volume can be considered small enough for the present purpose, calculate the satellite's angular momentum.
+\end{exercise}
+
+
+
+
+  \section{Standard constitutive equation for flux of angular-momentum}
+\label{sec:constitutive_angmomentum_standard}
 
 If $\yF=(F_{x},F_{y},F_{z})$ is the flux of momentum through a \emph{small} surface at a given time, and $\yr=(x,y,z)$ is the position vector of that surface, then the flux of angular momentum, or torque, $\yM=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
   \begin{equation}
@@ -11359,26 +11398,6 @@ If $\yF=(F_{x},F_{y},F_{z})$ is the flux of momentum through a \emph{small} surf
   \end{equation}
 
   
-
-
-\begin{exercise}
-  A GPS satellite has, at a given instant, the following position and momentum content:
-  \begin{equation*}
-    \begin{split}
-      \yr &=\bigl[
-      \num[exponent-mode=scientific]{1.4e+7}\,,\
-      \num[exponent-mode=scientific]{1.6e+7}\,,\
-      0\bigr]\,\unit{m}
-      \\[\jot]
-      \yP &=\bigl[
-      \num[exponent-mode=scientific]{-3.1e+6}\,,\
-      \num[exponent-mode=scientific]{3.4e+6}\,,\
-      0\bigr]\,\unit{N\cdot s}
-    \end{split}
-  \end{equation*}
-  Assuming that the satellite's volume can be considered small enough for the present purpose, calculate the satellite's angular momentum.
-\end{exercise}
-
 
 
 
