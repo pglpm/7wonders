@@ -14,10 +14,10 @@ ln = 1      # m: natural length
 k = 100000  # N/m: spring constant
 
 ## Initial conditions
-t = 0                                               # s: initial time
-anglea = pi/2                                       # rad: initial angle from vertical a
+t = 0                                       # s: initial time
+anglea = pi/2                               # rad: initial angle from vertical a
 ra = ln * vector([sin(anglea), -cos(anglea)])       # m: initial position of object a
-angleb = 0                                          # rad: initial angle from vertical b
+angleb = 0                                  # rad: initial angle from vertical b
 rb = ra + ln * vector([sin(angleb), -cos(angleb)])  # m: initial position of object b
 va = vector([0, 0])                                 # m/s: initial velocity of object a
 vb = vector([0, 0])                                 # m/s: initial velocity of object b
@@ -69,7 +69,7 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    clf
+    clf()
     plot(0, 0, 'sk')
     xlim([-2*ln, 2*ln]); ylim([-2*ln,0])
     grid(True); gca().set_aspect("equal", adjustable="box")
@@ -77,6 +77,7 @@ while t < t1:
     plot(ra[0], ra[1], 'ob')
     plot([ra[0], rb[0]], [ra[1], rb[1]], '-r')
     plot(rb[0], rb[1], 'or')
+    # pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

@@ -13,8 +13,8 @@ ln = 1    # m: natural length
 k = 5000  # N/m: spring constant
 
 ## Initial conditions
-t = 0                                       # s: initial time
-angle = pi/3                                # rad: angle from vertical
+t = 0                               # s: initial time
+angle = pi/3                        # rad: angle from vertical
 r = ln * vector([sin(angle), -cos(angle)])  # m: initial position of object
 v = vector([0, 0])                          # m/s: initial velocity of object
 
@@ -54,12 +54,13 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    clf
+    clf()
     plot(0, 0, 'sk')
     xlim([-ln, ln]); ylim([-ln, 0])
     grid(True); gca().set_aspect("equal", adjustable="box")
     plot([0, r[0]], [0, r[1]], '-b')
     plot(r[0], r[1], 'ob')
+    # pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()
