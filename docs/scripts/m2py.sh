@@ -65,8 +65,11 @@ do
     # Remove "hold on", possibly followed by semicolon and space
     new_line=$(echo "$new_line" | sed 's/hold on\s*; //g' | sed 's/hold on//g')
 
-    # Remove "hold on", possibly followed by semicolon and space
-    new_line=$(echo "$new_line" | sed 's/axis(.tight.)\s*; //g' | sed 's/hold on//g')
+    # Replace "axis equal" with "axis('equal')"
+    new_line=$(echo "$new_line" | sed 's/axis equal/gca().set_aspect("equal", adjustable="box")/g')
+
+    # Replace "hold off" with "clf"
+    new_line=$(echo "$new_line" | sed 's/hold off/clf/g')
 
     # Replace "grid on" with "grid(True)"
     new_line=$(echo "$new_line" | sed 's/grid on/grid(True)/g')
