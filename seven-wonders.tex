@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-16T19:58:33+0100
+%% Last-Updated: 2025-03-16T21:57:52+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11444,13 +11444,59 @@ Analogously to angular-momentum content, you can denote the components by $[M_{y
 
 \medskip
 
+So the content, flux, and supply of angular momentum for \emph{small} control volumes or surfaces are obtained by the cross-product of position $\yr$ and the corresponding momentum quantities. What's \enquote{small} is determined by the distances and velocities involved in the phenomenon under study. For example, billiard balls cannot be considered \enquote{small} when we study their collisions on a billiard table: their rotations lead to special motions; on the other hand, a planet can in some circumstances be considered as \enquote{small} when we study its motion in the solar system.
+
+The constitutive relations above therefore \emph{cannot be used directly for extended control volumes or surfaces}. An extended control volume or surface doesn't have a definite, single position vector $\yr$. The only way to apply the constitutive relations above to an extended control volume or surface is therefore by \autoref{def:extensivity}{extensivity}: divide it into parts \emph{so small} that each of them can be characterized by a single position vector. This means an infinite number of small parts: we are performing a \emph{three-dimensional integration}, possibly over a complicated shape.
+
+But the difficulties do not end here. If the control volume or surface is moving, rotating, deforming, then the position vectors $\yr(t)$ of its small parts will be changing with time. This means that we may need to perform the three-dimensional integration anew at every instant $t$.
+
+It is because of these complications with three-dimensional integration that the alternative tensorial expression~\eqref{eq:bal_ang_momentum_symmetry} of the balance of momentum is used when studying materials. But there is a special case where the constitutive relations above can be used with a minimum of calculations: to study the behaviour of materials that always undergo \autoref{sec:rigid_bodies}{\emph{rigid motion}}, that is, \emph{rigid bodies}.
+
+A rigid body always has the same shape, even if it can move around and take on different orientations. Thanks to this, the integration required by the constitutive relations above can in practice be done only once rather than at every time instant.
 
 
-An important consequence of the constitutive relation $\yL = \yr\times\yP$ is that \emph{it cannot be used directly for extended control volumes}. An extended control volume doesn't have a definite, single position vector $\yr$. Even if each part of a control volume contains the same amount of momentum $yP$, these parts will have different position vectors $\yr$; otherwise they would be overlapping. So we must use \enquote*{$\yr\times\yP$} for each small control sub-volume, and then add up the results using the principle of \autoref{def:extensivity}{extensivity}. Thus to find the total angular momentum of a control volume we must always perform a three-dimensional integration, possibly over a complicated shape.
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Consider a GPS satellite as a point that has, at a given instant, the following position and momentum content in a geocentric coordinate system $(t,x,y,z)$:
+    \begin{equation*}
+      \begin{split}
+        \yr &=\bigl[ \num{1.4e7},\, \num{1.6e7},\, 0\bigr]\,\unit{m}
+        \\[\jot]
+        \yP &=\bigl[ \num{-3.1e6},\, \num{3.4e6},\, 0\bigr]\,\unit{N\,s} \,.
+      \end{split}
+    \end{equation*}
+    Calculate the satellite's angular momentum $\yL$ with respect to the origin of the coordinate system (remember that you should obtain a vector with three components).
 
-But the difficulties do not end there. If the control volume is moving, rotating, deforming, then the position vectors $\yr(t)$ of its sub-volumes will be changing with time. This means that in general we need to perform the three-dimensional integration anew at every coordinate time $t$.
+  \item Assume that the GPS satellite has the following time-dependent position vector and momentum:
+    \begin{equation*}
+      \begin{aligned}
+        \yr(t) &= \bigl[ \cos(\omega t),\, \sin(\omega t),\, 0]\cdot\qty{2.1e7}{m}
+        \\[\jot]
+        \yP(t) &= \bigl[ -\sin(\omega t),\, \cos(\omega t),\, 0]\cdot\qty{1.2e3}{N\,s}
+      \end{aligned}
+      \quad\text{with}\enskip\omega=\qty{3.64}{s^{-1}} \,.
+    \end{equation*}
+    Calculate the time dependence of the satellite's angular momentum $\yL(t)$ with respect to the origin of the coordinate system. Try to explain the peculiar result you obtain.
+
+  \item A flying tennis ball, considered as a point, has the following time-dependent position vector in a coordinate system $(t,x,y,z)$:
+    \begin{equation*}
+      \begin{gathered}
+        \yr(t) = \bigl[v t,\, 0,\, -\tfrac12 g t^{2} + z_{0}\bigr]
+        \\[\jot]\text{with}\quad
+        v=\qty{1}{m/s},\quad g=\qty{9.8}{m/s^{2}},\quad z_{0}=\qty{3}{m} \,.
+      \end{gathered}
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+    \item Find its time-dependent momentum $\yP(t)$ by using Newton's constitutive relation relation for momentum, assuming a \masse\ $\ym=\qty{0.058}{kg}$.
+    \item Then find its time-dependent angular momentum $\yL(t)$ with respect to the origin of the coordinates.
+    \item Represent the angular momentum you found as a straight or twisted vector.
+    \end{enumerate}
+  \end{enumerate}
+\end{exercise}
 
 
+\section{Matrix representation of angular momentum}
+\label{sec:matrix_angmom}
 
 
 
@@ -11470,55 +11516,6 @@ This matrix has a zero diagonal, and elements of opposite signs symmetrically wi
   \yL = \yr\, \yP\T - \yP\, \yr\T
 \end{equation}
 where \enquote*{$\bm{X}\T$} means to consider the vector $\bm{X}$ as a row-vector, and the product is the standard matrix multiplication.
-
-\begin{exercise}
-  A GPS satellite has, at a given instant, the following position and momentum content:
-  \begin{equation*}
-    \begin{split}
-      \yr &=\bigl[
-      \num[exponent-mode=scientific]{1.4e7}\,,\
-      \num[exponent-mode=scientific]{1.6e7}\,,\
-      0\bigr]\,\unit{m}
-      \\[\jot]
-      \yP &=\bigl[
-      \num[exponent-mode=scientific]{-3.1e6}\,,\
-      \num[exponent-mode=scientific]{3.4e6}\,,\
-      0\bigr]\,\unit{N\cdot s}
-    \end{split}
-  \end{equation*}
-  Assuming that the satellite's volume can be considered small enough for the present purpose, calculate the satellite's angular momentum.
-\end{exercise}
-
-
-
-
-  \section{Standard constitutive equation for flux of angular-momentum}
-\label{sec:constitutive_angmomentum_standard}
-
-If $\yF=(F_{x},F_{y},F_{z})$ is the flux of momentum through a \emph{small} surface at a given time, and $\yr=(x,y,z)$ is the position vector of that surface, then the flux of angular momentum, or torque, $\yM=(\tau_{x}, \tau_{y}, \tau_{z})$ \emph{with respect to the origin of coordinates} is given by
-  \begin{equation}
-    \label{eq:torque_def}
-    \begin{gathered}
-      \yM = \yr \times \yF
-      \\[\jot]
-      \text{or equivalently}\qquad\left\{\enskip
-        \begin{aligned}
-          \tau_{x} & = y\,F_{z} - z\,F_{y}
-          \\    \tau_{y} & = z\,F_{x} - x\,F_{z}
-          \\    \tau_{z} & = x\,F_{y} - y\,F_{x}
-        \end{aligned}\right.
-      \qquad\text{or}\qquad
-      \left\{\enskip
-    \begin{aligned}
-      \tau_{yz} & = y\,F_{z} - z\,F_{y}
-      \\    \tau_{zx} & = z\,F_{x} - x\,F_{z}
-      \\    \tau_{xy} & = x\,F_{y} - y\,F_{x}
-    \end{aligned}\right.
-    \end{gathered}
-  \end{equation}
-
-  
-
 
 
 \mynotew{To be continued.}
