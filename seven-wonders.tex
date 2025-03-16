@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-15T15:14:48+0100
+%% Last-Updated: 2025-03-16T19:58:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1129,7 +1129,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
 % \newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
-\newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
+\newcommand*{\ytoo}{\varTau}% volume torque M or T or M_Q
+\newcommand*{\yto}{\bm{\ytoo}}% volume torque M or T or M_Q
 \newcommand*{\yM}{\bm{M}}% surface torque M or T or M_Q
 %\newcommand*{\yt}{\bm{\tau}}
 
@@ -2825,9 +2826,9 @@ In a analogous way we can find the velocity $\yv(t)$ from the acceleration $\bm{
     \begin{equation*}
       \yr(t) =
       \begin{bmatrix}
-        \num[exponent-mode=scientific]{20e+6}\,
+        \num[exponent-mode=scientific]{20e6}\,
         \cos\bigl(\frac{t}{\qty{13751}{s}}\bigr)\\[2\jot]
-        \num[exponent-mode=scientific]{22e+6}\,
+        \num[exponent-mode=scientific]{22e6}\,
         \sin\bigl(\frac{t}{\qty{13751}{s}}\bigr)\\[2\jot]
         \num{0}
       \end{bmatrix}\,\unit{m}
@@ -11258,7 +11259,7 @@ Yet the balance of angular momentum is mentioned less often, and may \emph{seem}
 
 
 
-It moreover turns out that \emph{the balance of angular momentum can be expressed without the time derivative of a volume content, or without the time-integrals of a flux and of a supply}. It can instead be expressed as a sort of symmetry condition, we can call this the \enquote{tensorial expression} of this balance:
+It moreover turns out that \emph{the balance of angular momentum can be expressed without the time derivative of a volume content, or without the time-integrals of a flux and of a supply}. It can instead be expressed as a sort of symmetry condition; we can call this the \enquote{tensorial expression} of this balance:
 
 %
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
@@ -11268,33 +11269,36 @@ The \textcolor{green}{$x$-component} of the \textcolor{red}{momentum flux crossi
 \begin{definition}{Balance of angular momentum (tensorial form)}
   Take a small control surface passing through some point $P$, of area $A$, parallel to the $zx$ directions, and with a positive-$y$ crossing direction. Take another small control surface also passing through $P$ and of area $A$, parallel to the $xy$ directions, and with a positive-$z$ crossing direction.
 
+  \smallskip
+
   Then the flux of $z$-momentum $F_{z}$ through the $zx$ control surface must be equal to the flux of $y$-momentum $F_{y}$ through the $xy$ control surface.
+
+\smallskip
 
   Two more analogous laws hold by exchanging $y$ \amp\ $x$ or $z$ \amp\ $x$ in the statement above:
   \begin{equation}
     \label{eq:bal_ang_momentum_symmetry}
     \begin{aligned}
-      \underbracket[0pt]{\smash{F_{z}}}_{\text{$y$-crossing}}
+      \underbracket[0pt]{\smash{F_{z}}}_{\text{$y^{+}$-crossing}}
       &=
-      \underbracket[0pt]{\smash{F_{y}}}_{\text{$z$-crossing}}
-&\qquad
-      \underbracket[0pt]{\smash{F_{z}}}_{\text{$x$-crossing}}
+      \underbracket[0pt]{\smash{F_{y}}}_{\text{$z^{+}$-crossing}}
+&\quad
+      \underbracket[0pt]{\smash{F_{z}}}_{\text{$x^{+}$-crossing}}
       &=
-      \underbracket[0pt]{\smash{F_{x}}}_{\text{$z$-crossing}}
-&\qquad
-      \underbracket[0pt]{\smash{F_{x}}}_{\text{$y$-crossing}}
+      \underbracket[0pt]{\smash{F_{x}}}_{\text{$z^{+}$-crossing}}
+&\quad
+      \underbracket[0pt]{\smash{F_{x}}}_{\text{$y^{+}$-crossing}}
       &=
-      \underbracket[0pt]{\smash{F_{y}}}_{\text{$x$-crossing}}
+      \underbracket[0pt]{\smash{F_{y}}}_{\text{$x^{+}$-crossing}}
     \end{aligned}
   \end{equation}
-
   These equations only hold if the momentum fluxes are uniform throughout the surfaces.
 \end{definition}
-You notice that in this alternative formulation we don't even need to speak of a volume content, flux, or supply of angular momentum, and we don't use derivatives or integrals.
+In this alternative formulation we don't even need to speak of a volume content, a flux, or a supply of angular momentum; and we don't use derivatives or integrals.
 
-The two expressions of the balance of angular momentum are completely equivalent, as we shall prove later on. Each one has advantages and disadvantages. The integral and differential expressions~\eqref{eq:bal_ang_momentum} involve time-integration or time-differentiation, but they apply to control volumes of arbitrary shape, size, motion. The tensorial expression~\eqref{eq:bal_ang_momentum_symmetry} does not involve integration or differentiation in time, but it can usually only be applied to very small control surfaces.
+The two expressions of the balance of angular momentum can be proven to be completely equivalent (provided that the balance of momentum is satisfied). The integral and differential expressions~\eqref{eq:bal_ang_momentum} involve time-integration or time-differentiation, but they apply to control volumes of arbitrary shape, size, motion. The tensorial expression~\eqref{eq:bal_ang_momentum_symmetry} does not involve integration or differentiation in time, but it can usually only be applied to very small control surfaces.
 
-Each expression is used in particular applications and disciplines. The integral and differential expressions are typically used in applications with small bodies or approximately rigid bodies, or applications where forces are given explicitly, rather than via constitutive relations. The tensorial expression is typically used in material science and fluid dynamics, where constitutive relations for the momentum flux $\yF$ are given in such a way that the tensorial law is automatically satisfied. This is again one case in which the balance of angular momentum plays its role invisibly, automatically satisfied.
+Each expression of the balance of angular momentum is used in particular applications and disciplines. The integral and differential expressions are typically used in applications with small bodies or approximately \autoref{sec:rigid_bodies}{rigid bodies}, or in applications where forces are given as boundary conditions rather than via constitutive relations. The tensorial expression is typically used in materials science and fluid dynamics, where constitutive relations for the momentum flux $\yF$ are given in such a way that the tensorial expression of the balance of angular momentum is automatically satisfied. This is again one case in which the balance of angular momentum plays its role in an invisible way.
 
 \subsection{Definitions of angular momentum}
 \label{sec:angmomentum_defs}
@@ -11303,12 +11307,63 @@ Just like total energy, also angular momentum can be defined in different ways; 
 
 \mynotew{To be continued.}
 
-\section{Standard constitutive equation for angular-momentum content}
+\section{Angular momentum as a twisted vector}
+\label{sec:twisted_vec}
+
+In order to represent content, flux, and supply of angular momentum we can use a kind of vectors different from the arrow-like ones with which you are probably familiar. These vectors of a different kind are called \textbf{twisted vectors}, or \emph{pseudo-vectors} or \emph{axial vectors} or \emph{outer-oriented vectors}, whereas the traditional ones are called  \emph{polar}, or \emph{straight}, or \emph{inner-oriented} vectors.
+
+A twisted vector represent an object related to rotation. Like a traditional straight vector it has a magnitude and a direction, that is, the line on which it lies. But its orientation is different: it is not along the direction, but \emph{around} around it. Here is the graphical difference between a traditional straight vector and a twisted one:
+\begin{center}
+\includegraphics[width=0.34\linewidth]{images/io-vector.pdf}%
+\hspace*{0.16\linewidth}\includegraphics[width=0.34\linewidth]{images/oo-vector.pdf}%
+%
+\\\footnotesize
+\makebox[0pt][c]{straight vector}\hspace*{0.5\linewidth}\makebox[0pt][c]{twisted vector}
+\end{center}
+In both cases a segment indicate the direction of the vector, and the length of the segment represents the magnitude. The orientation of the twisted vector makes it immediately clear that some rotation is involved, and immediately indicates the direction of the rotation.
+
+We can do with twisted vectors the same mathematical operation that we do with straight ones. The sum of two twisted vectors, for instance, is done with the parallelogram rule:
+\begin{center}
+\includegraphics[width=0.67\linewidth]{images/tvectorsum.pdf}%
+\end{center}
+
+Ordinary vectors and twisted vectors behave very differently if we look at their images through a mirror parallel to their axis: the orientation of ordinary vectors appears unchanged, whereas the orientation of twisted vectors appears \emph{reversed}:
+\begin{center}
+  \includegraphics[width=0.67\linewidth]{images/mirror.pdf}
+\end{center}
+this phenomenon reflects the behaviour of rotations under reflections.
+
+\medskip
+
+%
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/curlrighthand.png}
+% \\[\jot]%
+% \footnotesize{\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{cyan}{(3D) vector}}
+}%
+Owing to intellectual inertia, many books are afraid of using twisted vectors, and rely on ordinary vectors instead,
+introducing the \enquote*{right-hand rule} to determine the sense of rotation from the orientation of the ordinary vector. If you've ever asked yourself \enquote{why the right hand, and not the left hand?}, the answer is that it's  purely a convention indeed; one could have introduced a left-hand rule instead. Using twisted vectors we don't need these arbitrary conventions and mnemonics: the sense of rotation is unequivocally indicated..
+
+Use whichever vector representation you prefer! % In these notes we shall use a hybrid notation, as in the side picture of p.~\pageref{fig:volumetwistedarrow}, so as to make everybody (or no one) happy.
+
+
+\section{Constitutive relations for angular momentum}
 \label{sec:constitutive_angmomentum_standard}
 
-Take a \emph{small} control volume having position vector $\yr=[x,y,z]$; note that it's necessary for the control volume to be small, otherwise we could not associate to it just one position.
+The peculiar capacity of the balance of angular momentum to be expressed in two different ways has tight connections with the constitutive relations for angular momentum. In fact these constitutive relations could almost be taken as \emph{definitions} of the content, flux, and supply of angular momentum. They are used in essentially all situations and theories: with matter and with electromagnetic fields, in General Relativity and in Newtonian approximation. The only exception are physical phenomena with particular kinds of materials variously called \emph{polar}, \emph{micropolar}, or \emph{with intrinsic spin}.
 
-If control volume has momentum content $\yP=[P_{x},P_{y},P_{z}]$, then it also contains angular momentum $\yL=[L_{x}, L_{y}, L_{z}]$ defined \emph{with respect to the origin of coordinates}. This angular-momentum content is given by the vector product
+These general constitutive relations for content, flux, and supply have common form, which involves the content, flux, supply of momentum, as well as the position vector in a given coordinate system. We therefore present all of them here.
+
+Choose a coordinate system $(t,x,y,z)$; it does not need to be \autoref{def:cartesian_coords}{Cartesian}. In the following we shall speak of momentum; keep it can be the momentum associated to matter, or to electromagnetic field, or both -- there are no restriction whatsoever.
+
+\medskip
+
+\begin{definition}{Angular-momentum content}\label{def:angmom_content}
+  Take a \emph{small} control volume having position vector $\yr=[x,y,z]$ -- it's necessary for the control volume to be small, otherwise we could not associate just one position to it. Denote by $\yP=[P_{x},P_{y},P_{z}]$ the content of momentum in this small control volume.
+
+  \smallskip
+
+  The content of angular momentum  $\yL=[L_{x}, L_{y}, L_{z}]$, defined \emph{with respect to the origin of coordinates} is given by the vector product
 \begin{subequations}
   \begin{equation}
     \label{eq:ang_momentum_def}
@@ -11320,8 +11375,11 @@ If control volume has momentum content $\yP=[P_{x},P_{y},P_{z}]$, then it also c
           \\    L_{y} & = z\,P_{x} - x\,P_{z}
           \\    L_{z} & = x\,P_{y} - y\,P_{x}
         \end{aligned}\right.
-  \end{equation}
-  Instead of calling the components \enquote{$[L_{x},\, L_{y},\, L_{z}]$}, we can also call them \enquote{$[L_{yz},\, L_{zx},\, L_{xy}]$}, as some books do. The last names make the formulae above easier to remember:
+    \end{equation}
+
+    \smallskip
+
+    The components $[L_{x},\, L_{y},\, L_{z}]$ can alternatively be denoted $[L_{yz},\, L_{zx},\, L_{xy}]$, as some texts do. The latter notation makes the formulae above easier to remember:
   \begin{equation}
     \label{eq:ang_momentum_def_bis}
 \left\{\enskip
@@ -11333,8 +11391,70 @@ If control volume has momentum content $\yP=[P_{x},P_{y},P_{z}]$, then it also c
 \end{equation}
 \end{subequations}
 Choose whichever you prefer.
+\end{definition}
 
-In some physics and engineering fields, angular momentum is represented notby a vector, but by an object called \enquote*{bi-vector}, or \enquote*{2-vector}, or \enquote*{antisymmetric tensor}, which can be represented by a special kind of matrix:
+
+\begin{definition}{Angular-momentum flux}\label{def:angmom_flux}
+  Take a \emph{small} control surface having position vector $\yr=[x,y,z]$ -- it's necessary for the control surface to be small, otherwise we could not associate just one position to it. Denote by $\yF=[F_{x},F_{y},F_{z}]$ the flux of momentum, or surface force, through this small control surface.
+
+  \smallskip
+
+  The flux of angular momentum $\yM=[M_{x}, M_{y}, M_{z}]$, defined \emph{with respect to the origin of coordinates}, is also called \textbf{surface torque} and is given by the vector product
+  \begin{equation}
+    \label{eq:ang_momentum_def}
+      \yM = \yr \times \yF
+      \qquad
+      \text{or equivalently}\qquad\left\{\enskip
+        \begin{aligned}
+          M_{x} & = y\,F_{z} - z\,F_{y}
+          \\    M_{y} & = z\,F_{x} - x\,F_{z}
+          \\    M_{z} & = x\,F_{y} - y\,F_{x}
+        \end{aligned}\right.
+    \end{equation}
+
+    \smallskip
+
+Analogously to angular-momentum content, you can denote the components by $[M_{yz},\, M_{zx},\, M_{xy}]$ instead.
+\end{definition}
+
+
+
+\begin{definition}{Angular-momentum supply}\label{def:angmom_supply}
+  Take a \emph{small} control volume having position vector $\yr=[x,y,z]$. Denote by $\yG=[G_{x},G_{y},G_{z}]$ the supply of momentum, or volume force, in this small control volume.
+
+  \smallskip
+
+  The supply of angular momentum $\yto=[\ytoo_{x}, \ytoo_{y}, \ytoo_{z}]$, defined \emph{with respect to the origin of coordinates}, is also called \textbf{volume torque} and is given by the vector product
+  \begin{equation}
+    \label{eq:ang_momentum_def}
+      \yto = \yr \times \yG
+      \qquad
+      \text{or equivalently}\qquad\left\{\enskip
+        \begin{aligned}
+          \ytoo_{x} & = y\,G_{z} - z\,G_{y}
+          \\    \ytoo_{y} & = z\,G_{x} - x\,G_{z}
+          \\    \ytoo_{z} & = x\,G_{y} - y\,G_{x}
+        \end{aligned}\right.
+    \end{equation}
+
+    \smallskip
+
+    As usual you can denote the components by $[\ytoo_{yz},\, \ytoo_{zx},\, \ytoo_{xy}]$ instead.
+\end{definition}
+
+\medskip
+
+
+
+An important consequence of the constitutive relation $\yL = \yr\times\yP$ is that \emph{it cannot be used directly for extended control volumes}. An extended control volume doesn't have a definite, single position vector $\yr$. Even if each part of a control volume contains the same amount of momentum $yP$, these parts will have different position vectors $\yr$; otherwise they would be overlapping. So we must use \enquote*{$\yr\times\yP$} for each small control sub-volume, and then add up the results using the principle of \autoref{def:extensivity}{extensivity}. Thus to find the total angular momentum of a control volume we must always perform a three-dimensional integration, possibly over a complicated shape.
+
+But the difficulties do not end there. If the control volume is moving, rotating, deforming, then the position vectors $\yr(t)$ of its sub-volumes will be changing with time. This means that in general we need to perform the three-dimensional integration anew at every coordinate time $t$.
+
+
+
+
+
+In some physics and engineering fields, angular momentum is represented not by a vector, but by an object called \enquote*{bi-vector}, or \enquote*{2-vector}, or \enquote*{antisymmetric tensor}, which can be represented by a special kind of matrix:
 \begin{equation}
   \label{eq:ang_momentum_bivector}
   \yL =
@@ -11344,7 +11464,7 @@ In some physics and engineering fields, angular momentum is represented notby a 
     L_{zx} & -L_{yz} & 0
   \end{bmatrix} \,.
 \end{equation}
-This matrix has a zero diagonal, and elements of opposite signs symmetrically with respect to the diagonal. In this matrix representation, the standard constitutive relation for angular momentum has the form
+This matrix has a zero diagonal, and elements of opposite signs symmetrically with respect to the diagonal. In this matrix representation, the standard constitutive relation for angular-momentum contenthas the form
 \begin{equation}
   \label{eq:ang_momentum_bivector_def_bis}
   \yL = \yr\, \yP\T - \yP\, \yr\T
@@ -11356,13 +11476,13 @@ where \enquote*{$\bm{X}\T$} means to consider the vector $\bm{X}$ as a row-vecto
   \begin{equation*}
     \begin{split}
       \yr &=\bigl[
-      \num[exponent-mode=scientific]{1.4e+7}\,,\
-      \num[exponent-mode=scientific]{1.6e+7}\,,\
+      \num[exponent-mode=scientific]{1.4e7}\,,\
+      \num[exponent-mode=scientific]{1.6e7}\,,\
       0\bigr]\,\unit{m}
       \\[\jot]
       \yP &=\bigl[
-      \num[exponent-mode=scientific]{-3.1e+6}\,,\
-      \num[exponent-mode=scientific]{3.4e+6}\,,\
+      \num[exponent-mode=scientific]{-3.1e6}\,,\
+      \num[exponent-mode=scientific]{3.4e6}\,,\
       0\bigr]\,\unit{N\cdot s}
     \end{split}
   \end{equation*}
@@ -11406,39 +11526,6 @@ If $\yF=(F_{x},F_{y},F_{z})$ is the flux of momentum through a \emph{small} surf
 
 \mynotew{Add discussion: the fact that the forces exerted by a Hookean spring are parallel to the spring is a consequence of the balance of angular momentum.}
 
-\section{Angular momentum as a twisted vector}
-\label{sec:twisted_vec}
-
-In order to represent angular momentum we can use a kind of vectors different from the arrow-like ones (called \emph{polar} vectors) with which you are probably familiar. They are called \textbf{twisted vectors}, or also \emph{pseudo}-vectors or \emph{axial} vectors or \emph{outer-oriented} vectors. Twisted vectors represent rotations, and therefore have an orientation, not along them, but \emph{around} them:
-\begin{center}
-\includegraphics[width=0.34\linewidth]{images/io-vector.pdf}%
-\hspace*{0.12\linewidth}\includegraphics[width=0.34\linewidth]{images/oo-vector.pdf}%
-%
-\\\footnotesize
-\makebox[0pt][c]{an ordinary vector}\hspace*{0.46\linewidth}\makebox[0pt][c]{a twisted vector}
-\end{center}
-Their length still represents the magnitude of the vector. They make it immediately clear what is the axis of rotation, and what is the sense of rotation.
-
-The sum of twisted vectors is analogous to the sum of ordinary vectors, with the parallelogram rule:
-\begin{center}
-\includegraphics[width=0.67\linewidth]{images/tvectorsum.pdf}%
-\end{center}
-
-Ordinary vectors and twisted vectors behave very differently if we look at their images through a mirror parallel to their axis: the orientation of ordinary vectors appears unchanged, whereas the orientation of twisted vectors appears \emph{reversed}:
-\begin{center}
-  \includegraphics[width=0.67\linewidth]{images/mirror.pdf}
-\end{center}
-this phenomenon reflects the behaviour of rotations under reflections.
-
-For some mysterious reason many books are afraid of using twisted vectors, and rely on ordinary vectors instead,
-\marginpar{%
-\includegraphics[align=t,width=\linewidth]{images/curlrighthand.png}
-% \\[\jot]%
-% \footnotesize{\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{cyan}{(3D) vector}}
-}
-introducing the \enquote{right-hand rule} to determine the sense of rotation from the arrow of the ordinary vector. If you've ever asked yourself \enquote{why the right hand, and not the left hand?}, the answer is that it's purely a convention; one could have introduced a left-hand rule instead. Using twisted vectors we don't need these arbitrary conventions and mnemonics: the sense of rotation is unequivocally indicated by the twisted vector.
-
-Use whichever vector representation you prefer! % In these notes we shall use a hybrid notation, as in the side picture of p.~\pageref{fig:volumetwistedarrow}, so as to make everybody (or no one) happy.
 
 
 
