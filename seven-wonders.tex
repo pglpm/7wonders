@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-17T15:33:54+0100
+%% Last-Updated: 2025-03-17T21:57:13+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1020,6 +1020,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\ye}{\bm{e}} % unit vector
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
+\newcommand*{\yOm}{\bm{\varOmega}}
 \newcommand*{\yo}{\bm{\omega}}
 \newcommand*{\yox}{\omega_{x}}
 \newcommand*{\yoy}{\omega_{y}}
@@ -1137,7 +1138,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
-\newcommand*{\yIn}{\bm{I}}
+\newcommand*{\yIc}{\bm{I}_{\textrm{c}}}
 
 %% angular momentum
 \newcommand*{\yL}{\bm{L}}% L or H
@@ -8255,7 +8256,7 @@ In trying to reach a systematic way we shall also realize again the importance o
 
 First we must have a clear list of the balance laws and constitutive relations that apply to the physical system. \autoref{sec:hooke_oscillator}{In our case} they are
 \begin{equation*}\label{eq:timestep_hooke}
-  \begin{aligned}[b]
+  \begin{aligned}
 \frac{\di\yPa(t)}{\dt} &= \yFab(t) + \yGa(t)
 &\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
     \\
@@ -11356,8 +11357,7 @@ this phenomenon reflects the behaviour of rotations under reflections.
 % \\[\jot]%
 % \footnotesize{\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{cyan}{(3D) vector}}
 }%
-Owing to intellectual inertia, many books are afraid of using twisted vectors, and rely on ordinary vectors instead,
-introducing the \enquote*{right-hand rule} to determine the sense of rotation from the orientation of the ordinary vector. If you've ever asked yourself \enquote{why the right hand, and not the left hand?}, the answer is that it's  purely a convention indeed; one could have introduced a left-hand rule instead. Using twisted vectors we don't need these arbitrary conventions and mnemonics: the sense of rotation is unequivocally indicated..
+Owing to intellectual inertia, many books are afraid of using twisted vectors, and rely on ordinary vectors instead, introducing the \enquote*{right-hand rule} to determine the sense of rotation from the orientation of the ordinary vector. If you've ever asked yourself \enquote{why the right hand, and not the left hand?}, the answer is that it's purely a convention indeed; one could have introduced a left-hand rule instead. Using twisted vectors we don't need these arbitrary conventions and mnemonics: the sense of rotation is unequivocally indicated..
 
 Use whichever vector representation you prefer! % In these notes we shall use a hybrid notation, as in the side picture of p.~\pageref{fig:volumetwistedarrow}, so as to make everybody (or no one) happy.
 
@@ -11365,7 +11365,7 @@ Use whichever vector representation you prefer! % In these notes we shall use a 
 \section{Constitutive relations for angular momentum}
 \label{sec:constitutive_angmomentum_standard}
 
-The peculiar capacity of the balance of angular momentum to be expressed in two different ways has tight connections with the constitutive relations for angular momentum. In fact these constitutive relations could almost be taken as \emph{definitions} of the content, flux, and supply of angular momentum. They are used in essentially all situations and theories: with matter and with electromagnetic fields, in General Relativity and in Newtonian approximation. The only exception are physical phenomena with particular kinds of materials variously called \emph{polar}, \emph{micropolar}, or \emph{with intrinsic spin}.
+The peculiar capacity of the balance of angular momentum to be expressed in two different ways has tight connections with the constitutive relations for angular momentum. In fact its constitutive relations could almost be taken as \emph{definitions} of the content, flux, and supply of angular momentum. They are used in essentially all situations and theories: with matter and with electromagnetic fields, in General Relativity and in Newtonian approximation. The only exception are physical phenomena with particular kinds of materials variously called \emph{polar}, \emph{micropolar}, or \emph{with intrinsic spin}.
 
 These general constitutive relations for content, flux, and supply have common form, which involves the content, flux, supply of momentum, as well as the position vector in a given coordinate system. We therefore present all of them here.
 
@@ -11381,7 +11381,7 @@ Choose a coordinate system $(t,x,y,z)$; it does not need to be \autoref{def:cart
   The content of angular momentum  $\yL=[L_{x}, L_{y}, L_{z}]$, defined \emph{with respect to the origin of coordinates} is given by the vector product
 \begin{subequations}
   \begin{equation}
-    \label{eq:ang_momentum_def}
+    \label{eq:ang_momentum_content}
       \yL = \yr \times \yP
       \qquad
       \text{or equivalently}\qquad\left\{\enskip
@@ -11396,7 +11396,7 @@ Choose a coordinate system $(t,x,y,z)$; it does not need to be \autoref{def:cart
 
     The components $[L_{x},\, L_{y},\, L_{z}]$ can alternatively be denoted $[L_{yz},\, L_{zx},\, L_{xy}]$, as some texts do. The latter notation makes the formulae above easier to remember:
   \begin{equation}
-    \label{eq:ang_momentum_def_bis}
+    \label{eq:ang_momentum_content_bis}
 \left\{\enskip
     \begin{aligned}
       L_{yz} & = y\,P_{z} - z\,P_{y}
@@ -11416,7 +11416,7 @@ Choose whichever you prefer.
 
   The flux of angular momentum $\yM=[M_{x}, M_{y}, M_{z}]$, defined \emph{with respect to the origin of coordinates}, is also called \textbf{surface torque} and is given by the vector product
   \begin{equation}
-    \label{eq:ang_momentum_def}
+    \label{eq:ang_momentum_flux}
       \yM = \yr \times \yF
       \qquad
       \text{or equivalently}\qquad\left\{\enskip
@@ -11441,7 +11441,7 @@ Analogously to angular-momentum content, you can denote the components by $[M_{y
 
   The supply of angular momentum $\yto=[\ytoo_{x}, \ytoo_{y}, \ytoo_{z}]$, defined \emph{with respect to the origin of coordinates}, is also called \textbf{volume torque} and is given by the vector product
   \begin{equation}
-    \label{eq:ang_momentum_def}
+    \label{eq:ang_momentum_supply}
       \yto = \yr \times \yG
       \qquad
       \text{or equivalently}\qquad\left\{\enskip
@@ -11465,9 +11465,8 @@ The constitutive relations above therefore \emph{cannot be used directly for ext
 
 But the difficulties do not end here. If the control volume or surface is moving, rotating, deforming, then the position vectors $\yr(t)$ of its small parts will be changing with time. This means that we may need to perform the three-dimensional integration anew at every instant $t$.
 
-It is because of these complications with three-dimensional integration that the alternative tensorial expression~\eqref{eq:bal_ang_momentum_symmetry} of the balance of momentum is used when studying materials. But there is a special case where the constitutive relations above can be used with a minimum of calculations: to study the behaviour of materials that always undergo \autoref{sec:rigid_bodies}{\emph{rigid motion}}, that is, \emph{rigid bodies}.
+It is because of these complications with three-dimensional integration that the alternative tensorial expression~\eqref{eq:bal_ang_momentum_symmetry} of the balance of momentum is used when studying materials. But there is a special case where the constitutive relations above may be slightly simplified: to study the behaviour of materials that always undergo \autoref{sec:rigid_bodies}{\emph{rigid motion}}, that is, \emph{rigid bodies}. We shall study these simplifications in the next sections.
 
-A rigid body always has the same shape, even if it can move around and take on different orientations. Thanks to this, the integration required by the constitutive relations above can in practice be done only once rather than at every time instant.
 
 
 \begin{exercise}
@@ -11509,14 +11508,16 @@ A rigid body always has the same shape, even if it can move around and take on d
   \end{enumerate}
 \end{exercise}
 
+\section{Preliminary remarks on constitutive relations for rigid motion}
+\label{sec:prelim_rigidbody}
 
+As already stated, he constitutive relations~\eqref{eq:ang_momentum_content}, \eqref{eq:ang_momentum_flux}, \eqref{eq:ang_momentum_supply} effectively cover almost all physical phenomena, even involving electromagnetic fields. But the use of these constitutive relations typically requires dividing any extended control volume in very small parts -- a three-dimensional spatial integration. This division can be become computationally expensive in simulations.
 
-\section{Centre of \masse\ and angular velocity}
-\label{sec:masscentre_angvel}
+In the case of matter undergoing a rigid motion, the constitutive relations for angular momentum and its balance in integral or differential form can be used avoiding some of the spatial integration. We shall now discuss these simplified form of the constitutive relations. In order to do so we need to introduce three concepts: \emph{center of \masse}, \emph{angular velocity}, and \emph{tensor of inertia}. These concepts apply to any motion, but become especially useful with rigid motion.
 
-In the study of constitutive relations for angular momentum there are two concepts that recurrently appear: \emph{centre of \masse} and \emph{angular velocity}. Let's see their definitions and some of their properties.
+Our purpose will be to get just a general acquaintance with these concepts and get a glimpse of how they are used in applications.
 
-\subsection{Centre of \masse}
+\section{Centre of \masse}
 \label{sec:centre_mass}
 
 The centre of \masse\ can be defined for any control volume having a non-zero \energym\ content: therefore for control volumes that contain matter, or that contain only electromagnetic fields, or both.
@@ -11577,7 +11578,7 @@ The centre of \masse\ in general does not stay in a fixed position with respect 
   \end{enumerate}
 \end{exercise}
 
-\subsection{Angular velocity}
+\section{Angular velocity}
 \label{sec:angvel}
 
 Given a coordinate system $(t,x,y,z)$, we can define the angular velocity of a position vector $\yr(t)$ with respect to another position vector $\yro(t)$, relative to the coordinate system. It represents how fast, in terms of $\frac{\text{angle}}{\text{time}}$, the first position vector is instantaneously rotating around the second.
@@ -11612,8 +11613,66 @@ The angular velocity is the velocity that the vector going from $\yro$ to $\yro$
 
 \medskip
 
-If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$ of different points of a body of matter, and one given reference position $\yro(t)$, then in general the angular velocities of the points with respect to $\yro(t)$ are all different and change with time in different ways. But for a set of points undergoing a rigid motion something special happens: \emph{all points have the same angular velocities with respect to the centre of \masse} (or any other point in the set actually). We use this fact to characterize rigid motion in the next section.
+If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$ of different points of a body of matter, and one given reference position $\yro(t)$, then in general the angular velocities of the points with respect to $\yro(t)$ are all different and change with time in different ways. But for a set of points undergoing a rigid motion something special happens: \emph{all points have the same angular velocities with respect to the centre of \masse} (or any other point in the set actually).
 
+
+\medskip
+
+The angular velocity vector
+\begin{equation*}
+  \yo \equiv [ \yox,\, \yoy,\, \yoz ]
+\end{equation*}
+can also represented as a \emph{matrix} $\yOm$:
+\begin{equation*}
+  \yOm =
+  \begin{bmatrix}
+    0 & -\yoz & \yoy \\
+    \yoz & 0 & -\yox \\
+    -\yoy & \yox & 0
+  \end{bmatrix}
+\end{equation*}
+having a zero diagonal and elements of opposite signs on opposite sides of the diagonal.
+
+\section{Tensor of inertia}
+\label{sec:tensor_inertia}
+
+The \emph{tensor of inertia} is a mathematical object that encodes some information about the distribution of \masse\ within a control volume. This mathematical object is represented by a \emph{matrix}. It is defined with respect to a coordinate system and a reference point, which for our purpose we'll choose as the centre of \masse.
+
+\begin{definition}{Tensor of inertia}
+  In a coordinate system $(t,x,y,z)$, the \textbf{tensor of inertia} or \emph{moment of inertia}  $\yIc(t)$ at time $t$ of a set of points \emph{with respect to their centre of \masse} is given by a matrix:
+  \begin{equation}
+    \label{eq:inertia_tensor}
+    \yIc(t) \equiv
+    \begin{bmatrix}
+      I_{xx} & I_{xy} & I_{zx} \\
+      I_{xy} & I_{yy} & I_{yz} \\
+      I_{zx} & I_{yz} & I_{zz}
+    \end{bmatrix}
+  \end{equation}
+  where all components depend on time. This matrix has equal elements on opposite sides of the diagonal, so it can have at most six different components (three on the diagonal and three on one side of the diagonal).
+
+  \smallskip
+
+  If all coordinates have physical dimension \textsc{length}, then the components of the tensor of inertia have dimension $\textsc{mass}\cdot\textsc{length}^{2}$ and unit \unit{kg\,m^2}.
+\end{definition}
+
+The tensor of inertia is \furl{https://scienceworld.wolfram.com/physics/MomentofInertia.html}{calculated} from the distribution of the \masse\ in the rigid body in the chosen coordinate system. It therefore also depends on the shape of the body. For instance, the tensor of inertia for a solid ball of radius $R$ and total \masse\ $\ym$, uniformly distributed, is
+\begin{equation*}
+  \yIc{}_{\text{,ball}} =
+  \frac{2}{5} \ym R^{2}\,
+  \begin{bmatrix} 1&0&0\\0&1&0\\0&0&1  \end{bmatrix} \,,
+\end{equation*}
+the centre of the ball being also its centre of \masse. In this particular case the tensor of inertia does not depend on time.
+
+\medskip
+
+Given its relation with \masse\ and possibly matter, we suspect that the tensor of inertia must somehow be related to their balances as well. Indeed it satisfy the following equation:
+\begin{equation}
+  \label{eq:dt_inertia_tensor}
+  \frac{\di}{\dt}\yIc(t) =
+  \yOm(t)\, \yIc(t) - \yIc(t) \, \yOm(t)
+\end{equation}
+where $\yOm$ is the angular-velocity matrix. The right side of this formula has two multiplications of two matrices. This equation is essentially a consequence of the balances of matter and \masse.
 
 \section{Rigid motion II}
 \label{sec:rigid_motion_II}
@@ -11645,7 +11704,7 @@ Together, they allow us to find the velocity of any point of the rigid body:
   If $\yr(t)$ is the position vector of a point of a rigid body at time $t$ in a coordinate system $(t,x,y,z)$, then its velocity $\yv(t)$ is given by
   \begin{equation}
     \label{eq:velocity_point_rigidbody}
-    \yv(t) = \yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)] \,,
+    \yv(t) = \yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)]
   \end{equation}
   where $\yrcm(t)$ and $\yvcm(t)$ are the position and velocity of the centre of \masse, and $\yo(t)$ is the angular velocity.
 \end{definition}
@@ -11662,80 +11721,128 @@ The equation above tells us that if we want to track how the position $\yr(t)$ o
   \end{aligned}
 \end{equation*}
 
-\section{Constitutive relation for angular momentum of a rigid body}
+\section{Constitutive relations for a rigid body}
 \label{sec:angmom_rigidbody}
 
-Equipped with the concepts of centre of \masse\ and angular velocity we are almost ready to state the constitutive relation for the angular momentum in a control volume coinciding with a rigid body. We only need one last concept: the \emph{tensor of inertia}.
-%
-\begin{definition}{Tensor of inertia}
-  In a coordinate system $(t,x,y,z)$, the \textbf{tensor of inertia} or \emph{moment of inertia} at time $t$ of a set of points in rigid motion \emph{with respect to their centre of \masse} is a mathematical object $\yIn(t)$ represented by a \emph{matrix}:
+Equipped with the concepts of centre of \masse, angular velocity, and tensor of inertia, we are finally ready to state the constitutive relation for the momentum content and the angular momentum content of a rigid body.
+
+\begin{definition}{Angular momentum of a rigid body}
+  Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$, then the momentum $\yP(t)$ in the control volume is given by
   \begin{equation}
-    \label{eq:inertia_tensor}
-    \yIn(t) \equiv
-    \begin{bmatrix}
-      I_{xx} & I_{xy} & I_{zx} \\
-      I_{xy} & I_{yy} & I_{yz} \\
-      I_{zx} & I_{yz} & I_{zz}
-    \end{bmatrix}
+    \label{eq:mom_rigidbody}
+    \yP(t) = \ym\yvcm(t)
   \end{equation}
-  where all components depend on time. This matrix has equal elements on opposite sides of the diagonal, so it can at most have six different components (three on the diagonal and three on one side of the diagonal).
-
-  \smallskip
-
-  If all coordinates have physical dimension \textsc{length}, then the components of the tensor of inertia have dimension $\textsc{mass}\cdot\textsc{length}^{2}$ and unit \unit{kg\,m^2}.
+  where $\yvcm$ is the velocity of the centre of \masse.
 \end{definition}
 
-The tensor of inertia is \furl{https://scienceworld.wolfram.com/physics/MomentofInertia.html}{calculated} from the distribution of the \masse\ in the rigid body in the chosen coordinate system. It therefore also depends on the shape of the body. For instance, the tensor of inertia for a solid ball of radius $R$ and total \masse\ $\ym$, uniformly distributed, is
-\begin{equation*}
-  \yIn_{\text{ball}} =
-  \frac{2}{5} \ym R^{2}\,
-  \begin{bmatrix} 1&0&0\\0&1&0\\0&0&1  \end{bmatrix} \,,
-\end{equation*}
-the centre of the ball being also its centre of \masse. In this particular case the tensor of inertia does not depend on time.
+The momentum for a rigid body is therefore the same as if the control volume were just a small point of \masse\ $\ym$ moving with velocity $\yvcm$.
 
 \medskip
 
-Now we can finally state the constitutive relation for the angular momentum of a rigid body:
-%
+The constitutive relation for the angular momentum is more complicated:
+
 \begin{definition}{Angular momentum of a rigid body}
-  Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$ and angular velocity $\yo(t)$, and if their tensor of inertia is $\yIn(t)$, then the angular momentum $\yL(t)$ in the control volume is given by
+  Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$ and angular velocity $\yo(t)$, and if their tensor of inertia is $\yIc(t)$, then the angular momentum $\yL(t)$ in the control volume is given by
   \begin{equation}
     \label{eq:angmom_rigidbody}
-    \yL(t) = \yrcm(t) \times \ym\yvcm(t) + \yIn(t)\,\yo(t) \,,
+    \yL(t) = \yrcm(t) \times \ym\yvcm(t) + \yIc(t)\,\yo(t) \,,
   \end{equation}
-  where $\yvcm$ is the velocity of the centre of \masse, and $\yIn\,\yo$ is the matrix multiplication of the matrix $\yIn$ and the column-vector $\yo$.
+  where $\yvcm$ is the velocity of the centre of \masse, and $\yIc\,\yo$ is the matrix multiplication of the matrix $\yIc$ and the column-vector $\yo$.
 \end{definition}
 
-We see that the angular momentum is the sum of two parts. One part is analogous to the standard constitutive relation \enquote*{$\yr\times\yP$}, if the control volume where just a small point with position $\yrcm$ and momentum content $\ym\yvcm$. The other part takes care of the fact that the control volume is extended, and is given by a matrix multiplication.
+The angular momentum for a rigid body is therefore the sum of two parts. One part is analogous to the standard constitutive relation \enquote*{$\yr\times\yP$}, if the control volume where just a small point with position $\yrcm$ and momentum content $\ym\yvcm$. The other part, given by a matrix multiplication, takes care of the fact that the total momentum is actually \enquote{spread out} over an extended control volume.
+
+\section{Use of the balances for a rigid body}
+\label{sec:rigidbody_dynamics}
+
+Now that we have the constitutive relations for momentum and angular-momentum content of a rigid body, we can get a glimpse of how they could be used to keep track of its motion. In concrete applications, rigid-body motion is predicted and simulated with a wide range of different techniques, some of which use fascinating mathematics like the \furl{https://mathworld.wolfram.com/Quaternion.html}{\emph{quaternions}}, generalizations of complex numbers.
+
+The discussion to follow is only meant to give you a glimpse that the concepts introduced so far can indeed be used to study and simulate the motion of a rigid body; and that we cannot avoid using them or other concepts equivalent to them.
+
+The constitutive relations and balances that we have discussed are summarized below. We write the balances and other time derivatives in an approximate finite-difference from appropriate for time iteration:
+\begin{equation*}
+  \begin{aligned}
+    \yP(t) &= \ym \yvcm(t)
+    &\qquad&{\text{\footnotesize\color{midgrey}momentum content}}
+    \\[\jot]
+    \yL(t) &= \yrcm(t) \times \ym \yvcm(t) + \yIc(t)\,\yo(t)
+    &\qquad&{\text{\footnotesize\color{midgrey}angular-momentum content}}
+    \\[2\jot]
+    \yrcm(t+\Dt) &\approx \yrcm(t) + \yvcm(t)\,\Dt
+    &\qquad&{\text{\footnotesize\color{midgrey}update of \masse-centre}}
+    \\[\jot]
+    \yIc(t+\Dt) &\approx \yIc(t) + [\yOm(t)\,\yIc(t) - \yIc(t)\,\yOm(t)]\,\Dt
+    &\qquad&{\text{\footnotesize\color{midgrey}update of inertia tensor}}
+    \\[\jot]
+    \yP(t+\Dt) &\approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
+    &\qquad&{\text{\footnotesize\color{midgrey}momentum balance}}
+    \\[\jot]
+    \yL(t+\Dt) &\approx \yL(t) + [\yM(t) + \yto(t)]\,\Dt
+    &\qquad&{\text{\footnotesize\color{midgrey}angular-momentum balance}}
+  \end{aligned}
+\end{equation*}
+keep in mind that the angular-velocity vector $\yo$ and matrix $\yOm$ have the same numerical components, so if we know the one we also know the other.
+
+It isn't difficult to see that if we know the values of the \autoref{def:state}{state variables}
+\begin{equation*}
+  \yrcm \,,\qquad \yvcm \,,\qquad \yo \,,\qquad \yIc
+\end{equation*}
+at a time instant $\yto$, and we also have appropriate constitutive relations for the surface and volume forces $\yF, \yG$ and torques $\yM, \yto$, then it's possible to calculate the values of the state variables a short time lapse $\Dt$ later.
+
+The tricky point are the constitutive relations for forces and torques: these also need us to integrate over extended surfaces and volumes. Unfortunately there aren't many simplifications for such integrations, but somewhat simple formulae can be found for forces of very special kind; for instance forces that act on one point only of the surface of the rigid body, or forces that have the same value everywhere, like the gravitational force close to Earth's surface.
+
+\begin{exercise}
+  The angular velocity $\yo$ can be calculated from  $\yL, \yrcm, \yvcm, \yIc, \ym$ by the following formula:
+  \begin{equation*}
+    \yo = \yIc^{-1}\,\yL - \yIc^{-1}\, (\yrcm \times \ym \yvcm)
+  \end{equation*}
+  where $\yIc^{-1}$ is the inverse of the matrix $\yIc$. In this exercise you don't need to explicitly calculate anything with this formula, but only know that fact that $\yo$ can be calculated this way.
+
+  \smallskip
+
+  Also assume that the forces $\yF, \yG$ and torques $\yM, \yto$ are known at all times, so you don't need to worry about them.
+
+  \smallskip
+
+  Given this information, and given the starting values
+  \begin{equation*}
+      \yrcm(t) \,,\qquad \yvcm(t) \,,\qquad \yo(t) \,,\qquad \yIc(t)
+  \end{equation*}
+  find out how the formulae for rigid-body motion summarized above could be used to calculate the values a time lapse later
+  \begin{equation*}
+      \yrcm(t+\Dt) \,,\qquad \yvcm(t+\Dt) \,,\qquad \yo(t+\Dt) \,,\qquad \yIc(t+\Dt)
+  \end{equation*}
+\end{exercise}
 
 
-\section{Matrix representation of angular momentum}
-\label{sec:matrix_angmom}
 
-
-
-In some physics and engineering fields, angular momentum is represented not by a vector, but by an object called \enquote*{bi-vector}, or \enquote*{2-vector}, or \enquote*{antisymmetric tensor}, which can be represented by a special kind of matrix:
-\begin{equation}
-  \label{eq:ang_momentum_bivector}
-  \yL =
-  \begin{bmatrix}
-    0 & L_{xy} & -L_{zx} \\
-    -L_{xy} & 0 & L_{yz} \\
-    L_{zx} & -L_{yz} & 0
-  \end{bmatrix} \,.
-\end{equation}
-This matrix has a zero diagonal, and elements of opposite signs symmetrically with respect to the diagonal. In this matrix representation, the standard constitutive relation for angular-momentum content has the form
-\begin{equation}
-  \label{eq:ang_momentum_bivector_def_bis}
-  \yL = \yr\, \yP\T - \yP\, \yr\T
-\end{equation}
-where \enquote*{$\bm{X}\T$} means to consider the vector $\bm{X}$ as a row-vector, and the product is the standard matrix multiplication.
-
-
-\mynotew{To be continued.}
-
-
-\mynotew{Add discussion: the fact that the forces exerted by a Hookean spring are parallel to the spring is a consequence of the balance of angular momentum.}
+% \section{Matrix representation of angular momentum}
+% \label{sec:matrix_angmom}
+% 
+% 
+% 
+% In some physics and engineering fields, angular momentum is represented not by a vector, but by an object called \enquote*{bi-vector}, or \enquote*{2-vector}, or \enquote*{antisymmetric tensor}, which can be represented by a special kind of matrix:
+% \begin{equation}
+%   \label{eq:ang_momentum_bivector}
+%   \yL =
+%   \begin{bmatrix}
+%     0 & L_{xy} & -L_{zx} \\
+%     -L_{xy} & 0 & L_{yz} \\
+%     L_{zx} & -L_{yz} & 0
+%   \end{bmatrix} \,.
+% \end{equation}
+% This matrix has a zero diagonal, and elements of opposite signs symmetrically with respect to the diagonal. In this matrix representation, the standard constitutive relation for angular-momentum content has the form
+% \begin{equation}
+%   \label{eq:ang_momentum_bivector_def_bis}
+%   \yL = \yr\, \yP\T - \yP\, \yr\T
+% \end{equation}
+% where \enquote*{$\bm{X}\T$} means to consider the vector $\bm{X}$ as a row-vector, and the product is the standard matrix multiplication.
+% 
+% 
+% \mynotew{To be continued.}
+% 
+% 
+% \mynotew{Add discussion: the fact that the forces exerted by a Hookean spring are parallel to the spring is a consequence of the balance of angular momentum.}
 
 
 
