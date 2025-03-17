@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-17T09:48:59+0100
+%% Last-Updated: 2025-03-17T15:33:54+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1020,9 +1020,14 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\ye}{\bm{e}} % unit vector
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
+\newcommand*{\yo}{\bm{\omega}}
+\newcommand*{\yox}{\omega_{x}}
+\newcommand*{\yoy}{\omega_{y}}
+\newcommand*{\yoz}{\omega_{z}}
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
+\newcommand*{\yro}{\yr_{0}}
 \newcommand*{\yrcm}{\yr_{\textrm{c}}}
 \newcommand*{\yxcm}{x_{\textrm{c}}}
 \newcommand*{\yycm}{y_{\textrm{c}}}
@@ -1132,6 +1137,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
+\newcommand*{\yIn}{\bm{I}}
 
 %% angular momentum
 \newcommand*{\yL}{\bm{L}}% L or H
@@ -3196,7 +3202,7 @@ The magnetic flux density and the electric field strength together are usually c
 %
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering\includegraphics[width=0.75\linewidth]{images/AAbattery.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
-The \emph{chemical} \energym\ content in an ordinary AA battery is around \qty[print-unity-mantissa=false]{10000}{J}. The \emph{total} \energym\ content, including rest \energym, is around \qty[print-unity-mantissa=false]{1e15}{J}.
+The \emph{chemical} \energym\ content in an ordinary AA battery is around \qty{10000}{J}. The \emph{total} \energym\ content, including rest \energym, is around \qty{e15}{J}.
 }%
 \begin{definition}{Energy-mass: units and notation}
   Energy is a \emph{scalar} quantity. The unit for the amount of energy is the \emph{joule} \unit{J}; the unit for energy flux and supply is \emph{joule per second} \unit{J/s}, also called \emph{watt} $\unit{W} = \unit{J/s}$.
@@ -3336,7 +3342,7 @@ We also speak of different forms of flux of \energym. The most important for us 
 \marginpar{\vspace{\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/molecules_20nmb.png}%
 \\[\jot]\flushleftright\color{mpcolor}\furl{https://doi.org/10.4209/aaqr.2019.04.0177}{Hydrocarbon fuel particles}. The small blobs have size of around \qty{2e-8}{m}.%
 }%
-The distinctions between different forms of \energym\ also depend on the observation scale and the theory used. Take, for instance, the water in a glass resting on table. We can observe and describe that water on a macroscopic scale of centimetres, seeing it as a still, uniform fluid. On this macroscopic scale we say that the water has internal \energym, or that there is internal \energym\ in the glass. But we can also observe and model that same water as a collection of molecules, on a microscopic scale of nanometres (\qty[print-unity-mantissa=false]{1e-9}{m}). On this microscopic scale, we speak of internal \energym\ \emph{and} kinetic \energym, because the molecules are in constant motion. The \emph{total} amount of \energym\ is the same on the centimetre-scale and on the microscopic scale, but its partition into different \enquote{forms} depends on the scale: only internal on the macroscopic scale, and internal plus kinetic on the microscopic scale.
+The distinctions between different forms of \energym\ also depend on the observation scale and the theory used. Take, for instance, the water in a glass resting on table. We can observe and describe that water on a macroscopic scale of centimetres, seeing it as a still, uniform fluid. On this macroscopic scale we say that the water has internal \energym, or that there is internal \energym\ in the glass. But we can also observe and model that same water as a collection of molecules, on a microscopic scale of nanometres (\qty{e-9}{m}). On this microscopic scale, we speak of internal \energym\ \emph{and} kinetic \energym, because the molecules are in constant motion. The \emph{total} amount of \energym\ is the same on the centimetre-scale and on the microscopic scale, but its partition into different \enquote{forms} depends on the scale: only internal on the macroscopic scale, and internal plus kinetic on the microscopic scale.
 
 The same is true of flux of \energym. What we call \enquote*{heat} on one observation scale appears as a flux of \energym\ not associated with the motion of matter. But on a finer scale it is instead called \enquote*{work}, and it appears as an \energym\ flux associated with the microscopic motion of matter. % In phenomena that involve matter and electromagnetic fields, any separation between \enquote*{energy of matter} and \enquote*{energy of electromagnetic field} is often arbitrary.
 
@@ -3375,7 +3381,7 @@ The same is true of flux of \energym. What we call \enquote*{heat} on one observ
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/walking.jpg}%
 \\\flushleftright\color{mpcolor}A walking person has, with respect to the ground, an amount of horizontal momentum of around \qty{70}{N\,s} (\furl{https://www.flickr.com/photos/33486695@N06/13566555795}{image: Antonio Romei}).%
 \par\bigskip\centering\normalsize\includegraphics[width=0.75\linewidth]{images/flashlight.jpg}%
-\\\footnotesize\flushleftright\color{mpcolor}A \qty{10}{cm} beam of light from a \qty{60}{W} torch has an amount of momentum around \qty[print-unity-mantissa=false]{1e-16}{N\,s}.%
+\\\footnotesize\flushleftright\color{mpcolor}A \qty{10}{cm} beam of light from a \qty{60}{W} torch has an amount of momentum around \qty{e-16}{N\,s}.%
 }%
 \begin{definition}{Momentum: units and notation}
   Momentum, also called \emph{linear momentum} or \emph{translational momentum} to distinguish it from angular momentum, is a \emph{vector} quantity. The amount of momentum can be expressed in several equivalent units; we shall keep in mind especially these three:
@@ -7246,12 +7252,12 @@ This is how we are able to say that human usage of fossil fuel is an important f
 % \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 % }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty[print-unity-mantissa=false]{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
 
   Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
   $$\frac{\di\yN(t)}{\dt} = -\lambda\,\yN(t)$$
   with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty[print-unity-mantissa=false]{1e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\,\unit{yr}$.
+  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\,\unit{yr}$.
 \end{exercise}
 
 
@@ -9185,7 +9191,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
 \begin{itemize}
 \item It is always \autoref{sec:pressure}{\emph{compressive}}, that is, its direction is always orthogonal to the surface, and its orientation is the same as the crossing orientation.
-\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty[print-unity-mantissa=false]{1e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
+\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty{e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
 \item Its magnitude slowly decreases with altitude; that is, a \qty{1}{m^2} surface \qty{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty{1}{m^2} surface close to the ground.
 \end{itemize}
 
@@ -9775,7 +9781,7 @@ If a control volume contains matter, and any electric charge or electromagnetic 
   In this expression, $\yc$ is the speed of light and $g$ is the \autoref{sec:supply_momentum_gravity}{acceleration of free fall}. % The factor $\ym$ is \autoref{def:molarmass}{connected to the amount of matter} $\yN$ in the volume by $\ym = \yrho\yN$.
   The other terms:
   \begin{itemize}
-  \item $\ym \yc^{2}$ is the \textbf{rest \energym}, and in ordinary circumstances is vastly (say, \num[print-unity-mantissa=false]{1e15} times) larger than the other terms.
+  \item $\ym \yc^{2}$ is the \textbf{rest \energym}, and in ordinary circumstances is vastly (say, \num{e15} times) larger than the other terms.
 
   \item $\yUo$ defines a \enquote*{zero} of energy, and is discussed below.
     
@@ -10640,10 +10646,10 @@ Even more interesting examples, in which Fourier's law does not always apply, oc
 
 Besides the particular constitutive relations for momentum flux, internal energy, and heat flux just discussed, it is typically assumed that a not-too-large volume of ideal gas has a negligible mass. This is usually a reasonable assumption.
 \begin{exercise}
-  Calculate the mass of a litre, that is \qty[print-unity-mantissa=false]{1e-3}{m^3}, of air. Use the following information:
+  Calculate the mass of a litre, that is \qty{e-3}{m^3}, of air. Use the following information:
   \begin{itemize}[nosep]
   \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\ym\approx\yrho\yN$
-  \item the pressure $\ypr$ of air is around \qty[print-unity-mantissa=false]{1e5}{N/m^2}
+  \item the pressure $\ypr$ of air is around \qty{e5}{N/m^2}
   \item take a thermodynamic temperature of air $\yT=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
   \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
   \end{itemize}
@@ -10803,7 +10809,7 @@ We must consider three partial surfaces:
 \item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$. % The force exerted by the atmospherepproximately constant and equal to
   % \begin{equation}
   %   \label{eq:gas_piston_Fatm}
-  %   \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}} \,.
+  %   \yFatm = - A\cdot\qty{e5}{N/m^{2}} \,.
   % \end{equation}
 This is also a boundary condition. See side figure.
 
@@ -10850,7 +10856,7 @@ The momentum equations for the piston's control volume are therefore
     \\[2\jot]
     \yFpi(t) = \yFatm - \yFgas(t)
     \qquad
-    % \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+    % \yFatm = - A\cdot\qty{e5}{N/m^{2}}
     % \\[2\jot]
     \yGpi = -\ym\,g
     \,.
@@ -11036,7 +11042,7 @@ The energy equations for the gas's control volume are therefore
     \qquad
       \yFgas(t) = -\frac{R \yN \yT(t)}{z(t)}  + \yvis \frac{A}{z(t)} v(t) \,.
     % \\[2\jot]
-    % \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+    % \yFatm = - A\cdot\qty{e5}{N/m^{2}}
     % \\[2\jot]
     % C \approx \qty{20}{J/(mol\,K)}
     % \qquad
@@ -11118,7 +11124,7 @@ Note that there isn't a clear distinction between some constitutive relations an
         \\
         \yTe = \qty{296.15}{K} \,,
         \qquad
-        \yFatm = - A\cdot\qty[print-unity-mantissa=false]{1e5}{N/m^{2}}
+        \yFatm = - A\cdot\qty{e5}{N/m^{2}}
         \\
         \yti = \qty{0}{s} \,,
         \qquad
@@ -11505,10 +11511,15 @@ A rigid body always has the same shape, even if it can move around and take on d
 
 
 
-\section{Centre of \masse}
+\section{Centre of \masse\ and angular velocity}
+\label{sec:masscentre_angvel}
+
+In the study of constitutive relations for angular momentum there are two concepts that recurrently appear: \emph{centre of \masse} and \emph{angular velocity}. Let's see their definitions and some of their properties.
+
+\subsection{Centre of \masse}
 \label{sec:centre_mass}
 
-In the study of constitutive relations for angular momentum there is a concept that recurrently appears: the \emph{centre of \masse}. The centre of \masse\ can be defined for any control volume having a non-zero \energym\ content: therefore for control volumes that contain matter, or that contain only electromagnetic fields, or both.
+The centre of \masse\ can be defined for any control volume having a non-zero \energym\ content: therefore for control volumes that contain matter, or that contain only electromagnetic fields, or both.
 
 \begin{definition}{Centre of \masse}
   Consider a coordinate system $(t,x,y,z)$ and a control volume having a non-zero \masse\ content $\ym$.
@@ -11543,28 +11554,159 @@ We have an intuitive understanding of the centre of \masse\ of objects in everyd
 
 The centre of \masse\ in general does not stay in a fixed position with respect to the control volume, but moves around as the volume changes its shape and the \masse\ within flows in different directions. The centre of \masse\ of an body in \autoref{sec:rigid_bodies}{rigid motion}, however, does stay in a fixed position with respect to that body.
 
+\begin{exercise}
+  In the \autoref{sec:coords}{ICRS coordinate system} centred on the Sun, the Earth and Moon at coordinate time $t$ have positions
+  \begin{equation*}
+    \yr_{\textrm{E}}(t) =
+    \begin{bmatrix}
+      \num{-2.759}\\ \num{13.20} \\ \num{5.727}
+    \end{bmatrix}\cdot\qty{e10}{m} \,,
+    \qquad
+    \yr_{\textrm{M}}(t) =
+    \begin{bmatrix}
+      \num{-2.744}\\ \num{13.17} \\ \num{5.710}
+    \end{bmatrix}\cdot\qty{e10}{m} \,.
+  \end{equation*}
+  Earth's \masse\ is \qty{5.972e24}{kg} and Moon's is \qty{7.346e22}{kg}.
+
+  \begin{enumerate}[exerc]
+  \item Calculate the centre of \masse\ of the Earth-Moon system at the same coordinate time, in this system of coordinates.
+    %% CM: [-2.759e+10  1.320e+11  5.727e+10] m
+  \item Considering that Earth's mean radius is \qty{6371}{km}, determine how many kilometres above or below Earth's surface is that centre of \masse\ located.
+    %% 4.639e6 m: -1.7324279697e6 below
+  \end{enumerate}
+\end{exercise}
+
+\subsection{Angular velocity}
+\label{sec:angvel}
+
+Given a coordinate system $(t,x,y,z)$, we can define the angular velocity of a position vector $\yr(t)$ with respect to another position vector $\yro(t)$, relative to the coordinate system. It represents how fast, in terms of $\frac{\text{angle}}{\text{time}}$, the first position vector is instantaneously rotating around the second.
+
+\begin{definition}{Angular velocity}
+  In a Cartesian coordinate system $(t,x,y,z)$, take a point having position vector $\yr(t)$ at coordinate time $t$, and another position vector $\yro(t)$ distinct from the first. Consider their vector difference $\yr(t) - \yro(t)$, which can be considered as a vector going from the second point to the first.
+
+  \smallskip
+
+After a short time lapse $\Dt$ the vector $\yr(t+\Dt) - \yro(t+\Dt)$ may get slightly shorter or longer than, and it may get slightly \emph{rotated} with respect to the coordinates $(x,y,z)$. The axis of rotation is perpendicular to the plane formed by $\yr(t)-\yro(t)$ and $\yr(t+\Dt)-\yro(t+\Dt)$.
+
+  \smallskip
+
+  The \textbf{angular velocity} $\yo(t)$ of the position $\yr(t)$ with respect to the position $\yro(t)$ at time $t$ is a twisted vector defined as follows:
+  \begin{description}[noitemsep]
+  \item[magnitude:] the angle between\enskip$\yr(t) - \yro(t)$\enskip and\enskip$\yr(t+\Dt) - \yro(t+\Dt)$,\enskip divided by $\Dt$;
+  \item[direction:] the instantaneous axis of rotation;
+  \item[orientation:] the sense of rotation;
+  \end{description}
+  all of them observed at time $t$.
+
+  \smallskip
+
+  Angular velocity has dimension $\textsc{time}^{-1}$, and unit \unit{rad/s}.
+
+  \smallskip
+
+  The definition above is only valid in situations where we can use the Newtonian approximation. For the most general definition, which is mathematically more complicated and holds in any coordinate system, we must consider how the \autoref{sec:metric}{metric} gets deformed around the position $\yr(t)$ in the time lapse $\Dt$.
+  %% State this better
+\end{definition}
+The angular velocity is the velocity that the vector going from $\yro$ to $\yro$ has in a direction perpendicular to itself, also called \emph{tangential velocity}, scaled by the length of that vector.
+
+\medskip
+
+If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$ of different points of a body of matter, and one given reference position $\yro(t)$, then in general the angular velocities of the points with respect to $\yro(t)$ are all different and change with time in different ways. But for a set of points undergoing a rigid motion something special happens: \emph{all points have the same angular velocities with respect to the centre of \masse} (or any other point in the set actually). We use this fact to characterize rigid motion in the next section.
 
 
-\section{Constitutive relations for rigid bodies}
-\label{sec:angmom_rigidbody}
+\section{Rigid motion II}
+\label{sec:rigid_motion_II}
 
 Recall that if a body of matter undergoes a rigid motion, then all distances between its points remain constant in time. In other words, the body can move around and rotate, but it doesn't change shape or expand or contract. We call a body that only undergoes a rigid motion a \emph{rigid body}.
 
-In order to describe the motion of a generic body of matter, like a parcel of water, we need to specify the position or velocity of each of its points, because any two points could suddenly move far apart or close together. In principle this means an infinity of positions to be specified. To describe the motion of a rigid body, instead, we only need \emph{six} parameters, thanks to its rigidity. Three of these six parameters correspond to the position of one fixed point with respect to the body; the remaining three correspond to the orientation of the rigid body with respect to the coordinate system. Let's study them in more detail.
+In order to describe the motion of a generic body of matter, like a parcel of water, we need to specify the position or velocity of each of its points, because any two points could suddenly move far apart or close together. In principle this means an infinity of positions to be specified. To describe the motion of a rigid body, instead, we only need \emph{six} parameters, thanks to its rigidity. Three of these six parameters correspond to the motion of one fixed point in the rigid body; the remaining three correspond to the rotation of the rigid body with respect to the coordinate system.
 
-For the three parameters corresponding to the position of the rigid body we can use its centre of \masse: $\yrcm(t) = [\yxcm(t),\, \yycm(t),\, \yzcm(t)]$. More precisely we focus on the \emph{velocity} of the centre of \masse:
+These six parameters can be defined in different but equivalent ways. We choose the following: the centre of \masse:
 \begin{equation*}
-  \yvcm \defd \frac{\di\yrcm(t)}{\dt} \equiv \biggl[
+  \yrcm(t) \equiv \bigl[ \yxcm(t),\, \yycm(t),\, \yzcm(t) \bigr] \,,
+\end{equation*}
+from which we can calculate the velocity
+\begin{equation*}
+  \yvcm(t) \defd \frac{\di\yrcm(t)}{\dt} \equiv \biggl[
   \frac{\di\yxcm(t)}{\dt},\,
   \frac{\di\yycm(t)}{\dt},\,
   \frac{\di\yzcm(t)}{\dt}
-  \biggr] \,.
+  \biggr] \,;
+\end{equation*}
+and the \emph{angular velocity} of any point of the rigid body with respect to its centre of \masse:
+\begin{equation*}
+  \yo(t) \equiv \bigl[ \yox(t),\, \yoy(t),\, \yoz(t) \bigr] \,.
 \end{equation*}
 
-For the three parameters corresponding to the rotation we introduce a (twisted) vector as follows.
+Together, they allow us to find the velocity of any point of the rigid body:
+%
+\begin{definition}{Velocity of a point in a rigid body}
+  If $\yr(t)$ is the position vector of a point of a rigid body at time $t$ in a coordinate system $(t,x,y,z)$, then its velocity $\yv(t)$ is given by
+  \begin{equation}
+    \label{eq:velocity_point_rigidbody}
+    \yv(t) = \yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)] \,,
+  \end{equation}
+  where $\yrcm(t)$ and $\yvcm(t)$ are the position and velocity of the centre of \masse, and $\yo(t)$ is the angular velocity.
+\end{definition}
 
-\mynotew{To be continued.}
+\medskip
 
+The equation above tells us that if we want to track how the position $\yr(t)$ of any point of a rigid body changes in time, then we only need to track how the centre of \masse\ $\yrcm(t)$ and the angular velocity $\yo(t)$ change in time. If we have them, we can use the formula above to calculate the new position at any time. This is easily understood if imagine to \autoref{sec:position_integration}{iteratively update} the position $\yr(t)$ at small time steps by using the \autoref{def:finitedifference}{finite-difference approximation}:
+\begin{equation*}
+  \begin{aligned}
+    \yr(t+\Dt) &\approx \yr(t) + \yv(t)\,\Dt
+    \\
+    &\approx \yr(t) +
+    \bigl\{\yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)]\bigr\}\,\Dt \,.
+  \end{aligned}
+\end{equation*}
+
+\section{Constitutive relation for angular momentum of a rigid body}
+\label{sec:angmom_rigidbody}
+
+Equipped with the concepts of centre of \masse\ and angular velocity we are almost ready to state the constitutive relation for the angular momentum in a control volume coinciding with a rigid body. We only need one last concept: the \emph{tensor of inertia}.
+%
+\begin{definition}{Tensor of inertia}
+  In a coordinate system $(t,x,y,z)$, the \textbf{tensor of inertia} or \emph{moment of inertia} at time $t$ of a set of points in rigid motion \emph{with respect to their centre of \masse} is a mathematical object $\yIn(t)$ represented by a \emph{matrix}:
+  \begin{equation}
+    \label{eq:inertia_tensor}
+    \yIn(t) \equiv
+    \begin{bmatrix}
+      I_{xx} & I_{xy} & I_{zx} \\
+      I_{xy} & I_{yy} & I_{yz} \\
+      I_{zx} & I_{yz} & I_{zz}
+    \end{bmatrix}
+  \end{equation}
+  where all components depend on time. This matrix has equal elements on opposite sides of the diagonal, so it can at most have six different components (three on the diagonal and three on one side of the diagonal).
+
+  \smallskip
+
+  If all coordinates have physical dimension \textsc{length}, then the components of the tensor of inertia have dimension $\textsc{mass}\cdot\textsc{length}^{2}$ and unit \unit{kg\,m^2}.
+\end{definition}
+
+The tensor of inertia is \furl{https://scienceworld.wolfram.com/physics/MomentofInertia.html}{calculated} from the distribution of the \masse\ in the rigid body in the chosen coordinate system. It therefore also depends on the shape of the body. For instance, the tensor of inertia for a solid ball of radius $R$ and total \masse\ $\ym$, uniformly distributed, is
+\begin{equation*}
+  \yIn_{\text{ball}} =
+  \frac{2}{5} \ym R^{2}\,
+  \begin{bmatrix} 1&0&0\\0&1&0\\0&0&1  \end{bmatrix} \,,
+\end{equation*}
+the centre of the ball being also its centre of \masse. In this particular case the tensor of inertia does not depend on time.
+
+\medskip
+
+Now we can finally state the constitutive relation for the angular momentum of a rigid body:
+%
+\begin{definition}{Angular momentum of a rigid body}
+  Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$ and angular velocity $\yo(t)$, and if their tensor of inertia is $\yIn(t)$, then the angular momentum $\yL(t)$ in the control volume is given by
+  \begin{equation}
+    \label{eq:angmom_rigidbody}
+    \yL(t) = \yrcm(t) \times \ym\yvcm(t) + \yIn(t)\,\yo(t) \,,
+  \end{equation}
+  where $\yvcm$ is the velocity of the centre of \masse, and $\yIn\,\yo$ is the matrix multiplication of the matrix $\yIn$ and the column-vector $\yo$.
+\end{definition}
+
+We see that the angular momentum is the sum of two parts. One part is analogous to the standard constitutive relation \enquote*{$\yr\times\yP$}, if the control volume where just a small point with position $\yrcm$ and momentum content $\ym\yvcm$. The other part takes care of the fact that the control volume is extended, and is given by a matrix multiplication.
 
 
 \section{Matrix representation of angular momentum}
