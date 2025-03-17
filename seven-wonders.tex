@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-16T21:57:52+0100
+%% Last-Updated: 2025-03-17T09:48:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1023,6 +1023,14 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yr}{\bm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
+\newcommand*{\yrcm}{\yr_{\textrm{c}}}
+\newcommand*{\yxcm}{x_{\textrm{c}}}
+\newcommand*{\yycm}{y_{\textrm{c}}}
+\newcommand*{\yzcm}{z_{\textrm{c}}}
+\newcommand*{\yvcm}{\yv_{\textrm{c}}}
+\newcommand*{\yvxcm}{\dot{x}_{\textrm{c}}}
+\newcommand*{\yvycm}{\dot{y}_{\textrm{c}}}
+\newcommand*{\yvzcm}{\dot{z}_{\textrm{c}}}
 \newcommand*{\yxa}{x_{a}}%
 \newcommand*{\yxb}{x_{b}}%
 \newcommand*{\yv}{\bm{v}}
@@ -11300,12 +11308,13 @@ The two expressions of the balance of angular momentum can be proven to be compl
 
 Each expression of the balance of angular momentum is used in particular applications and disciplines. The integral and differential expressions are typically used in applications with small bodies or approximately \autoref{sec:rigid_bodies}{rigid bodies}, or in applications where forces are given as boundary conditions rather than via constitutive relations. The tensorial expression is typically used in materials science and fluid dynamics, where constitutive relations for the momentum flux $\yF$ are given in such a way that the tensorial expression of the balance of angular momentum is automatically satisfied. This is again one case in which the balance of angular momentum plays its role in an invisible way.
 
-\subsection{Definitions of angular momentum}
+\section{Definitions of angular momentum}
 \label{sec:angmomentum_defs}
 
-Just like total energy, also angular momentum can be defined in different ways; in fact, the freedom we have in its definition is more visible than the one we have in defining total energy.
+Just like \autoref{sec:energy_defs}{total energy}, also angular momentum can be defined in different ways. In fact, the freedom we have in its definition is more visible than the one we have in defining total energy. Most important is that \textbf{the definitions of angular momentum content, flux, supply depend on the choice of a reference position}. We could make this clear in the notation for momentum: if the reference position is $\yr$, we could then use the symbol \enquote*{\,$\yL_{\yr}$\,} instead of the generic \enquote*{\,$\yL$\,}; there is no standard notation, for instance some texts use \enquote*{\,$\yL^{[\yr]}$\,}.
 
-\mynotew{To be continued.}
+The reference point is typically chosen to be \textbf{fixed with respect to the coordinate system}, that is, its coordinates do not change with time. Although it is possible to choose a reference point which depends on time, $\yr(t)$, such choice leads to much more complicated equations. In the present notes \emph{we shall use the origin of the coordinate system as reference point}, that is, the position $[0, 0, 0]$; and we shall simply use the symbols $\yL$, $\yM$, $\yto$ for this particular choice.
+
 
 \section{Angular momentum as a twisted vector}
 \label{sec:twisted_vec}
@@ -11481,8 +11490,8 @@ A rigid body always has the same shape, even if it can move around and take on d
   \item A flying tennis ball, considered as a point, has the following time-dependent position vector in a coordinate system $(t,x,y,z)$:
     \begin{equation*}
       \begin{gathered}
-        \yr(t) = \bigl[v t,\, 0,\, -\tfrac12 g t^{2} + z_{0}\bigr]
-        \\[\jot]\text{with}\quad
+        \yr(t) = \bigl[v t,\: 0,\: -\tfrac12 g t^{2} + z_{0}\bigr]
+        \\[2\jot]\text{with}\quad
         v=\qty{1}{m/s},\quad g=\qty{9.8}{m/s^{2}},\quad z_{0}=\qty{3}{m} \,.
       \end{gathered}
     \end{equation*}
@@ -11493,6 +11502,69 @@ A rigid body always has the same shape, even if it can move around and take on d
     \end{enumerate}
   \end{enumerate}
 \end{exercise}
+
+
+
+\section{Centre of \masse}
+\label{sec:centre_mass}
+
+In the study of constitutive relations for angular momentum there is a concept that recurrently appears: the \emph{centre of \masse}. The centre of \masse\ can be defined for any control volume having a non-zero \energym\ content: therefore for control volumes that contain matter, or that contain only electromagnetic fields, or both.
+
+\begin{definition}{Centre of \masse}
+  Consider a coordinate system $(t,x,y,z)$ and a control volume having a non-zero \masse\ content $\ym$.
+
+  \smallskip
+
+  Divide the control volume into smaller and smaller sub-volumes, which we can number $1,2,3,\dotsc$. When they are small enough, we can associate with them the positions $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$. Call $\ym_{1}, \ym_{2}, \ym_{3}, \dotsc$ their \masse\ contents; some of these may be zero, if some sub-volumes are empty. By extensivity we have that $\ym = \ym_{1} + \ym_{2} + \ym_{3} + \dotsb$.
+
+  \smallskip
+
+  The \textbf{centre of \masse} $\yrcm(t)$ of the control volume at coordinate time $t$ is defined as
+  \begin{equation}
+    \label{eq:centre_masse}
+    \yrcm(t) \defd \frac{1}{\ym}
+    \hspace{-1ex}
+    \lim_{\parbox{11ex}{\scriptsize\centering smaller\\sub-volumes}}
+    \hspace{-1ex}
+    \bigl[
+    \ym_{1}\,\yr_{1}(t) + \ym_{2}\,\yr_{2}(t) + \ym_{3}\,\yr_{3}(t) + \dotsb
+    \bigr] \,.
+  \end{equation}
+\end{definition}
+In the definition of the centre of \masse, \emph{all} \masse\ is to be counted: not only the rest \masse, but also internal energy, kinetic energy, and so on. For a control volume containing matter the rest \masse\ only will be an extremely good approximation; for a control volume containing electromagnetic fields, all the electromagnetic energy must be considered.
+
+%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.75\linewidth]{images/penbalance.jpg}
+\\\flushleftright\color{mpcolor}The pen's centre of \masse\ is right above the balancing finger.
+}%
+We have an intuitive understanding of the centre of \masse\ of objects in everyday life. When we try to balance an object on our hands or fingers, we're trying to keep the object's centre of \masse\ directly on the vertical above the balancing point. For control volumes of particular shapes, the centre of \masse\ \emph{may lie outside the control volume itself}; think for example about the centre of \masse\ of a horseshoe.
+
+
+The centre of \masse\ in general does not stay in a fixed position with respect to the control volume, but moves around as the volume changes its shape and the \masse\ within flows in different directions. The centre of \masse\ of an body in \autoref{sec:rigid_bodies}{rigid motion}, however, does stay in a fixed position with respect to that body.
+
+
+
+\section{Constitutive relations for rigid bodies}
+\label{sec:angmom_rigidbody}
+
+Recall that if a body of matter undergoes a rigid motion, then all distances between its points remain constant in time. In other words, the body can move around and rotate, but it doesn't change shape or expand or contract. We call a body that only undergoes a rigid motion a \emph{rigid body}.
+
+In order to describe the motion of a generic body of matter, like a parcel of water, we need to specify the position or velocity of each of its points, because any two points could suddenly move far apart or close together. In principle this means an infinity of positions to be specified. To describe the motion of a rigid body, instead, we only need \emph{six} parameters, thanks to its rigidity. Three of these six parameters correspond to the position of one fixed point with respect to the body; the remaining three correspond to the orientation of the rigid body with respect to the coordinate system. Let's study them in more detail.
+
+For the three parameters corresponding to the position of the rigid body we can use its centre of \masse: $\yrcm(t) = [\yxcm(t),\, \yycm(t),\, \yzcm(t)]$. More precisely we focus on the \emph{velocity} of the centre of \masse:
+\begin{equation*}
+  \yvcm \defd \frac{\di\yrcm(t)}{\dt} \equiv \biggl[
+  \frac{\di\yxcm(t)}{\dt},\,
+  \frac{\di\yycm(t)}{\dt},\,
+  \frac{\di\yzcm(t)}{\dt}
+  \biggr] \,.
+\end{equation*}
+
+For the three parameters corresponding to the rotation we introduce a (twisted) vector as follows.
+
+\mynotew{To be continued.}
+
 
 
 \section{Matrix representation of angular momentum}
@@ -11510,7 +11582,7 @@ In some physics and engineering fields, angular momentum is represented not by a
     L_{zx} & -L_{yz} & 0
   \end{bmatrix} \,.
 \end{equation}
-This matrix has a zero diagonal, and elements of opposite signs symmetrically with respect to the diagonal. In this matrix representation, the standard constitutive relation for angular-momentum contenthas the form
+This matrix has a zero diagonal, and elements of opposite signs symmetrically with respect to the diagonal. In this matrix representation, the standard constitutive relation for angular-momentum content has the form
 \begin{equation}
   \label{eq:ang_momentum_bivector_def_bis}
   \yL = \yr\, \yP\T - \yP\, \yr\T
