@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-17T21:57:13+0100
+%% Last-Updated: 2025-03-18T09:06:19+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6679,7 +6679,7 @@ The finite-difference approximation~\eqref{eq:finite_diff} can be used iterative
   %   \\[-\jot]
   %   &\dotso
   % \end{aligned}
-  \begin{aligned}
+  \begin{aligned}[b]
    \yE\tikzmark{Ea}(t+\Dt) &\approx
     \yE(t) + [\yH(t) + \yR(t)]\,\Dt
     \\[2\jot]
@@ -6805,7 +6805,7 @@ Let's consider again the \autoref{sec:prediction}{oscillating reaction}, which w
 
 We have two balance laws for matter that drive the physical system forward in time. Their iteration is therefore
 \begin{equation}\label{eq:timestepped_evolution_N}
-  \begin{aligned}
+  \begin{aligned}[b]
    \yNu\tikzmark{Nua}(t+\Dt) &\approx
    \yNu(t)
    + [\yJu(t) + \yau(t)]\,\Dt
@@ -6849,7 +6849,7 @@ We apply the \emph{boundary conditions} from that example: the two influxes $\yJ
 
 Now we use the constitutive relations between the contents and the supply: $\yav(t) = \lambda \yNu(t)$, $\yau(t) = -\lambda \yNv(t)$. At every time step, after calculating the volume contents $\yNu$, $\yNv$ from the balance laws, we can used their new values to calculate the supplies $\yav$, $\yau$ at that same time step. These supplies can then be used for the next time step:
 \begin{equation}\label{eq:timestepped_evolution_NA}
-  \begin{aligned}
+  \begin{aligned}[b]
     \yau\tikzmark{aua}(t) &= -\lambda \yNv(t)
     \\[2\jot]
     \yav\tikzmark{ava}(t) &= \lambda \yNu(t)
@@ -11787,33 +11787,54 @@ It isn't difficult to see that if we know the values of the \autoref{def:state}{
 \begin{equation*}
   \yrcm \,,\qquad \yvcm \,,\qquad \yo \,,\qquad \yIc
 \end{equation*}
-at a time instant $\yto$, and we also have appropriate constitutive relations for the surface and volume forces $\yF, \yG$ and torques $\yM, \yto$, then it's possible to calculate the values of the state variables a short time lapse $\Dt$ later.
+at a time instant $\yto$, and we also have appropriate constitutive relations for the surface and volume forces $\yF, \yG$ and torques $\yM, \yto$, then it's possible to calculate the values of the state variables a short time lapse $\Dt$ later. See the exercise below.
 
-The tricky point are the constitutive relations for forces and torques: these also need us to integrate over extended surfaces and volumes. Unfortunately there aren't many simplifications for such integrations, but somewhat simple formulae can be found for forces of very special kind; for instance forces that act on one point only of the surface of the rigid body, or forces that have the same value everywhere, like the gravitational force close to Earth's surface.
+The tricky point are the constitutive relations for forces and torques: they also need spatial integration over extended surfaces and volumes. Unfortunately there aren't many simplifications for such integrations. Somewhat simple formulae can be found for forces of very special kind, for instance forces that act on one point only of the surface of the rigid body, or forces that have the same value everywhere, like the gravitational force close to Earth's surface.
 
 \begin{exercise}
-  The angular velocity $\yo$ can be calculated from  $\yL, \yrcm, \yvcm, \yIc, \ym$ by the following formula:
-  \begin{equation*}
-    \yo = \yIc^{-1}\,\yL - \yIc^{-1}\, (\yrcm \times \ym \yvcm)
-  \end{equation*}
-  where $\yIc^{-1}$ is the inverse of the matrix $\yIc$. In this exercise you don't need to explicitly calculate anything with this formula, but only know that fact that $\yo$ can be calculated this way.
+  For this exercise, keep in mind the following:
+  \begin{itemize}
+  \item The angular velocity $\yo$ can be calculated from  $\yL, \yrcm, \yvcm, \yIc, \ym$ by the following formula:
+    \begin{equation*}
+      \yo = \yIc^{-1}\, \bigl(\yL - \yrcm \times \ym \yvcm \bigr)
+    \end{equation*}
+    where $\yIc^{-1}$ is the inverse of the matrix $\yIc$. You don't need to explicitly calculate anything with this formula, but only know that $\yo$ can be calculated this way.
 
-  \smallskip
-
-  Also assume that the forces $\yF, \yG$ and torques $\yM, \yto$ are known at all times, so you don't need to worry about them.
+  \item Aassume that the forces $\yF, \yG$ and torques $\yM, \yto$ are known at all times, so you don't need to worry about them.
+  \end{itemize}
 
   \smallskip
 
   Given this information, and given the starting values
   \begin{equation*}
-      \yrcm(t) \,,\qquad \yvcm(t) \,,\qquad \yo(t) \,,\qquad \yIc(t)
-  \end{equation*}
-  find out how the formulae for rigid-body motion summarized above could be used to calculate the values a time lapse later
-  \begin{equation*}
-      \yrcm(t+\Dt) \,,\qquad \yvcm(t+\Dt) \,,\qquad \yo(t+\Dt) \,,\qquad \yIc(t+\Dt)
-  \end{equation*}
-\end{exercise}
+      \yrcm(t) \,,\qquad \yvcm(t) \,,\qquad \yo(t) \,,\qquad \yIc(t) \,\text{:}
+    \end{equation*}
+    %
+  \begin{enumerate}[exerc]
+  \item Find out how the formulae for rigid-body motion summarized above could be used to calculate the values a time lapse later
+    \begin{equation*}
+      \yrcm(t+\Dt) \,,\qquad \yvcm(t+\Dt) \,,\qquad \yo(t+\Dt) \,,\qquad \yIc(t+\Dt) \,.
+    \end{equation*}
+    In other words, build a time-stepping scheme like those shown in formula~\eqref{eq:timestepped_evolution_NA} on page~\pageref{eq:timestepped_evolution_NA}, or~\eqref{eq:timestep_momentum_position} on page~\pageref{eq:timestep_momentum_position}.
 
+  \item You know the starting position $\yr(t)$ of one point in the rigid body. Using the position-update relation
+    \begin{equation*}
+      \yr(t+\Dt) \approx \yr(t) + \yv(t)\,\Dt \,,
+    \end{equation*}
+    and the relationship~\eqref{eq:velocity_point_rigidbody} on page~\pageref{eq:velocity_point_rigidbody} for the velocity of a point in a rigid body, update your timestepping scheme to include the updated position $\yr(t+\Dt)$ of the point.
+
+  \item Suppose you are given the initial values
+  \begin{equation*}
+    \yrcm(t) \,,\quad \yvcm(t) \,,\quad \yo(t) \,,\quad \yIc(t)
+    \,,\quad \yr_{1}(t)
+    \,,\quad \yr_{2}(t)
+    \,,\quad \yr_{3}(t)
+  \end{equation*}
+  where $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t)$ are the initial positions of three points in the rigid body. Based on your previous results, can you track the positions of all the three points? (Remember that forces and torques are assumed to be known.)
+
+\item Based on your previous results, would you be able to track the points of the rigid body if the balance of angular momentum $\yL(t+\Dt) \approx \yL(t) + [\yM(t) + \yto(t)]\,\Dt$ were not available? That is, is it possible to follow the motions of the points in a rigid body just by using the balance of momentum?
+  \end{enumerate}
+\end{exercise}
 
 
 % \section{Matrix representation of angular momentum}
