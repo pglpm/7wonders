@@ -29,10 +29,11 @@ dt = 0.000001;  % s: time step %@
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;   % time for next plot
 figure
-plot(r(1), r(3), '.b')
-xlim([-0.3, 0.3]); ylim([-0.3, 0.3])
-hold on; grid on; axis equal
-xlabel('{\it x}/m'); ylabel('{\it z}/m') %@
+plot3(0, 0, 0, 'sr')
+xlim([-0.3, 0.3]); ylim([-0.3, 0.3]); zlim([-0.3, 0.3])
+hold on; grid on
+plot3(r(1), r(2), r(3), '.b')
+xlabel('{\it x}/m'); ylabel('{\it y}/m'); zlabel('{\it z}/m') %@
 
 %% State: rc, vc, Ic, omega, r
 %% Numerical time integration
@@ -61,7 +62,7 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(r(1), r(3), '.b')
+    plot3(r(1), r(2), r(3), '.b')
     pause(0)
     tplot = tplot + dtplot;
   end %@
