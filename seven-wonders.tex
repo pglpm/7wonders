@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-19T10:43:11+0100
+%% Last-Updated: 2025-03-19T16:16:14+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11670,13 +11670,18 @@ the centre of the ball being also its centre of \masse. In this particular case 
 
 \medskip
 
-Given its relation with \masse\ and possibly with matter, we suspect that the tensor of inertia must be somehow related to their balances as well. Indeed it satisfies the following equation:
-\begin{equation}
-  \label{eq:dt_inertia_tensor}
-  \frac{\di}{\dt}\yIc(t) =
-  \yOm(t)\, \yIc(t) - \yIc(t) \, \yOm(t)
-\end{equation}
-where $\yOm$ is the angular-velocity matrix. The right side of this formula has two multiplications of two matrices. This equation is essentially a consequence of the balances of matter and \masse.
+Given its relation with \masse\ and possibly with matter, we suspect that the tensor of inertia must be somehow related to their balances as well. Indeed its time derivative is given by a special equation:
+\begin{definition}{Time derivative of tensor of inertia}
+  The time derivative of the tensor of inertia, defined with respect to the coordinate system $(t,x,y,z)$ and the centre of \masse, is given by:
+  \begin{equation}
+    \label{eq:dt_inertia_tensor}
+    \frac{\di}{\dt}\yIc(t) =
+    \yOm(t)\, \yIc(t) - \yIc(t) \, \yOm(t)
+  \end{equation}
+  where $\yOm$ is the angular-velocity matrix. The right side of this formula has two multiplications of two matrices. This equation is essentially a consequence of the balances of matter and \masse.
+\end{definition}
+
+
 
 \section{Rigid motion II}
 \label{sec:rigid_motion_II}
@@ -11765,7 +11770,7 @@ The angular momentum for a rigid body is therefore the sum of two parts. One par
   \begin{equation}
     \label{eq:mom_rigidbody}
     \yE(t) = \yU(t) +
-    \tfrac{1}{2}\ym \yvcm(t)^{2} + \tfrac{1}{2} \yo \cdot \yIc\,\yo
+    \tfrac{1}{2}\ym \yvcm(t)^{2} + \tfrac{1}{2} \yo(t) \cdot \yIc(t)\,\yo(t)
     + \ym g \yzcm(t)
   \end{equation}
   where $\yU$ is the internal energy in the control volume, $\yvcm$ is the velocity of the centre of \masse, and $\yzcm$ its vertical coordinate.
