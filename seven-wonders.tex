@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-19T10:01:07+0100
+%% Last-Updated: 2025-03-19T10:40:45+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11515,7 +11515,7 @@ It is because of these complications with three-dimensional integration that the
 
 As already stated, he constitutive relations~\eqref{eq:ang_momentum_content}, \eqref{eq:ang_momentum_flux}, \eqref{eq:ang_momentum_supply} effectively cover almost all physical phenomena, even involving electromagnetic fields. But the use of these constitutive relations typically requires dividing any extended control volume in very small parts -- a three-dimensional spatial integration. This division can be become computationally expensive in simulations.
 
-In the case of matter undergoing a rigid motion, the constitutive relations for angular momentum and its balance in integral or differential form can be used avoiding some of the spatial integration. We shall now discuss these simplified form of the constitutive relations. In order to do so we need to introduce three concepts: \emph{center of \masse}, \emph{angular velocity}, and \emph{tensor of inertia}. These concepts apply to any motion, but become especially useful with rigid motion.
+In the case of matter undergoing a rigid motion, the constitutive relations for angular momentum and its balance in integral or differential form can be used avoiding some of the spatial integration. We shall now discuss these simplified form of the constitutive relations. In order to do so we need to introduce three concepts: \emph{centre of \masse}, \emph{angular velocity}, and \emph{tensor of inertia}. These concepts apply to any motion, but become especially useful with rigid motion.
 
 Our purpose will be to get just a general acquaintance with these concepts and get a glimpse of how they are used in applications.
 
@@ -11555,7 +11555,9 @@ In the definition of the centre of \masse, \emph{all} \masse\ is to be counted: 
 We have an intuitive understanding of the centre of \masse\ of objects in everyday life. When we try to balance an object on our hands or fingers, we're trying to keep the object's centre of \masse\ directly on the vertical above the balancing point. For control volumes of particular shapes, the centre of \masse\ \emph{may lie outside the control volume itself}; think for example about the centre of \masse\ of a horseshoe.
 
 
-The centre of \masse\ in general does not stay in a fixed position with respect to the control volume, but moves around as the volume changes its shape and the \masse\ within flows in different directions. The centre of \masse\ of an body in \autoref{sec:rigid_bodies}{rigid motion}, however, does stay in a fixed position with respect to that body.
+The centre of \masse\ in general does not stay in a fixed position with respect to the control volume, but moves around as the volume changes its shape and the \masse\ within flows in different directions.
+
+The centre of \masse\ of a body in \autoref{sec:rigid_bodies}{rigid motion}, however, does stay in a fixed position with respect to that body.
 
 \begin{exercise}
   In the \autoref{sec:coords}{ICRS coordinate system} centred on the Sun, the Earth and Moon at coordinate time $t$ have positions
@@ -11583,18 +11585,18 @@ The centre of \masse\ in general does not stay in a fixed position with respect 
 \section{Angular velocity}
 \label{sec:angvel}
 
-Given a coordinate system $(t,x,y,z)$, we can define the angular velocity of a position vector $\yr(t)$ with respect to another position vector $\yro(t)$, relative to the coordinate system. It represents how fast, in terms of $\frac{\text{angle}}{\text{time}}$, the first position vector is instantaneously rotating around the second.
+Given a coordinate system $(t,x,y,z)$, we can define the angular velocity of a position vector $\yr(t)$ with respect to another position vector $\yro(t)$, relative to the coordinate system. It represents how fast, in terms of $\frac{\text{angle}}{\text{time}}$, the first position vector is instantaneously rotating with respect to the second point.
 
 \begin{definition}{Angular velocity}
-  In a Cartesian coordinate system $(t,x,y,z)$, take a point having position vector $\yr(t)$ at coordinate time $t$, and another position vector $\yro(t)$ distinct from the first. Consider their vector difference $\yr(t) - \yro(t)$, which can be considered as a vector going from the second point to the first.
+  In a Cartesian coordinate system $(t,x,y,z)$, take a point having position vector $\yr(t)$ at coordinate time $t$, and another position vector $\yro(t)$ distinct from the first. Consider their vector difference $\yr(t) - \yro(t)$, which can be seen as a vector going from the second point to the first.
 
   \smallskip
 
-After a short time lapse $\Dt$ the vector $\yr(t+\Dt) - \yro(t+\Dt)$ may get slightly shorter or longer than, and it may get slightly \emph{rotated} with respect to the coordinates $(x,y,z)$. The axis of rotation is perpendicular to the plane formed by $\yr(t)-\yro(t)$ and $\yr(t+\Dt)-\yro(t+\Dt)$.
+After a short time lapse $\Dt$ the vector $\yr(t+\Dt) - \yro(t+\Dt)$ may get slightly shorter or longer, and it may get slightly \emph{rotated} with respect to the coordinates $(x,y,z)$. The axis of rotation is perpendicular to the plane formed by $\yr(t)-\yro(t)$ and $\yr(t+\Dt)-\yro(t+\Dt)$.
 
   \smallskip
 
-  The \textbf{angular velocity} $\yo(t)$ of the position $\yr(t)$ with respect to the position $\yro(t)$ at time $t$ is a twisted vector defined as follows:
+  The \textbf{angular velocity} $\yo(t)$ of the position $\yr(t)$ with respect to the position $\yro(t)$ at time $t$ is a (twisted) vector defined as follows:
   \begin{description}[noitemsep]
   \item[magnitude:] the angle between\enskip$\yr(t) - \yro(t)$\enskip and\enskip$\yr(t+\Dt) - \yro(t+\Dt)$,\enskip divided by $\Dt$;
   \item[direction:] the instantaneous axis of rotation;
@@ -11604,14 +11606,14 @@ After a short time lapse $\Dt$ the vector $\yr(t+\Dt) - \yro(t+\Dt)$ may get sli
 
   \smallskip
 
-  Angular velocity has dimension $\textsc{time}^{-1}$, and unit \unit{rad/s}.
+  Angular velocity has physical dimension $\textsc{time}^{-1}$, and unit \unit{rad/s}.
 
   \smallskip
 
   The definition above is only valid in situations where we can use the Newtonian approximation. For the most general definition, which is mathematically more complicated and holds in any coordinate system, we must consider how the \autoref{sec:metric}{metric} gets deformed around the position $\yr(t)$ in the time lapse $\Dt$.
   %% State this better
 \end{definition}
-The angular velocity is the velocity that the vector going from $\yro$ to $\yro$ has in a direction perpendicular to itself, also called \emph{tangential velocity}, scaled by the length of that vector.
+The angular velocity is the velocity that the vector pointing from $\yro$ to $\yr$ has in a direction perpendicular to itself, also called \emph{tangential velocity}, scaled by the length of that vector.
 
 \medskip
 
@@ -11620,11 +11622,11 @@ If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$
 
 \medskip
 
-The angular velocity vector
+The angular-velocity vector
 \begin{equation*}
   \yo \equiv [ \yox,\, \yoy,\, \yoz ]
 \end{equation*}
-can also represented as a \emph{matrix} $\yOm$:
+can also represented as an \emph{angular-velocity matrix} $\yOm$:
 \begin{equation*}
   \yOm =
   \begin{bmatrix}
