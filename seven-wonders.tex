@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-18T09:28:44+0100
+%% Last-Updated: 2025-03-19T10:01:07+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11726,9 +11726,9 @@ The equation above tells us that if we want to track how the position $\yr(t)$ o
 \section{Constitutive relations for a rigid body}
 \label{sec:angmom_rigidbody}
 
-Equipped with the concepts of centre of \masse, angular velocity, and tensor of inertia, we are finally ready to state the constitutive relation for the momentum content and the angular momentum content of a rigid body.
+Equipped with the concepts of centre of \masse, angular velocity, and tensor of inertia, we can state the constitutive relation for the momentum content, energy content, and angular-momentum content of a rigid body.
 
-\begin{definition}{Angular momentum of a rigid body}
+\begin{definition}{Momentum of a rigid body}
   Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$, then the momentum $\yP(t)$ in the control volume is given by
   \begin{equation}
     \label{eq:mom_rigidbody}
@@ -11743,7 +11743,7 @@ The momentum for a rigid body is therefore the same as if the control volume wer
 
 The constitutive relation for the angular momentum is more complicated:
 
-\begin{definition}{Angular momentum of a rigid body}
+\begin{definition}{Angular omentum of a rigid body}
   Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$ and angular velocity $\yo(t)$, and if their tensor of inertia is $\yIc(t)$, then the angular momentum $\yL(t)$ in the control volume is given by
   \begin{equation}
     \label{eq:angmom_rigidbody}
@@ -11753,6 +11753,21 @@ The constitutive relation for the angular momentum is more complicated:
 \end{definition}
 
 The angular momentum for a rigid body is therefore the sum of two parts. One part is analogous to the standard constitutive relation \enquote*{$\yr\times\yP$}, if the control volume where just a small point with position $\yrcm$ and momentum content $\ym\yvcm$. The other part, given by a matrix multiplication, takes care of the fact that the total momentum is actually \enquote{spread out} over an extended control volume.
+
+\medskip
+
+\begin{definition}{Total energy of a rigid body}
+  Take a coordinate system $(t,x,y,z)$ close to Earth's surface and at rest with respect to it, with the $z$-coordinate pointing upwards. Consider a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$, then the total-energy $\yE(t)$ in the control volume is given by
+  \begin{equation}
+    \label{eq:mom_rigidbody}
+    \yE(t) = \yU(t) +
+    \tfrac{1}{2}\ym \yvcm(t)^{2} + \tfrac{1}{2} \yo \cdot \yIc\,\yo
+    + \ym g \yzcm(t)
+  \end{equation}
+  where $\yU$ is the internal energy in the control volume, $\yvcm$ is the velocity of the centre of \masse, and $\yzcm$ its vertical coordinate.
+\end{definition}
+
+The total energy for a rigid body is therefore, as usual, the sum of an internal energy, a kinetic energy, and a gravitational potential energy. The kinetic energy consists in two parts: one part is the kinetic energy of a small control volume having the same mass $\ym$ as the rigid body, and the velocity $\yvcm$ of its centre of \masse; the other part takes care of the kinetic energy of all small masses that constitute the rigid body. The gravitational potential energy is simply that of a small control volume having the same mass as the rigid body, and vertical coordinate of its centre of \masse.
 
 \section{Use of the balances for a rigid body}
 \label{sec:rigidbody_dynamics}
