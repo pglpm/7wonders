@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-19T16:16:14+0100
+%% Last-Updated: 2025-03-19T17:16:28+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8138,9 +8138,9 @@ The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. Th
       \\[\jot]
 &\text{\footnotesize velocity} &\quad&\frac{\di\yra(t)}{\dt} = \yva(t)
       \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yPa(t) = \yma\yva(t)
+&\text{\footnotesize constit. relation} &\quad&\yPa(t) = \yma\yva(t)
       \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yGa(t) = -\yma\,g\,[0,1]
+&\text{\footnotesize constit. relation} &\quad&\yGa(t) = -\yma\,g\,[0,1]
     \end{aligned}
   \end{equation*}
 
@@ -8155,9 +8155,9 @@ The control volumes are indicated by \textcolor{yellow}{dashed yellow lines}. Th
       \\[\jot]
 &\text{\footnotesize velocity} &\quad&\frac{\di\yrb(t)}{\dt} = \yvb(t)
       \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yPb(t) = \ymb\yvb(t)
+&\text{\footnotesize constit. relation} &\quad&\yPb(t) = \ymb\yvb(t)
       \\[\jot]
-&\text{\footnotesize const. relation} &\quad&\yGb(t) = -\ymb\,g\,[0,1]
+&\text{\footnotesize constit. relation} &\quad&\yGb(t) = -\ymb\,g\,[0,1]
     \end{aligned}
   \end{equation*}
 
@@ -8190,7 +8190,7 @@ The momentum balance and constitutive relations for the control volume of the Ho
       \\[\jot]
 &\text{\footnotesize simplification} &\quad&\yG(t) = 0
       \\[\jot]
-&\text{\footnotesize Hooke const. relation} &\quad&\yFab(t) = -k\,[\yra(t)-\yrb(t)]
+&\text{\footnotesize Hooke constit. relation} &\quad&\yFab(t) = -k\,[\yra(t)-\yrb(t)]
     \end{aligned}
   \end{equation*}
 \end{description}
@@ -11068,7 +11068,7 @@ We finally have all the equations and boundary conditions to describe and numeri
       \end{aligned}
     \right.
     \\[3\jot]
-    \text{const. relations:}&\qquad\left\{
+    \text{constit. relations:}&\qquad\left\{
       \begin{aligned}
         \yPpi(t) &= \ym v(t)
         \\
@@ -11778,7 +11778,7 @@ The angular momentum for a rigid body is therefore the sum of two parts. One par
 
 The total energy for a rigid body is therefore, as usual, the sum of an internal energy, a kinetic energy, and a gravitational potential energy. The kinetic energy consists in two parts: one part is the kinetic energy of a small control volume having the same mass $\ym$ as the rigid body, and the velocity $\yvcm$ of its centre of \masse; the other part takes care of the kinetic energy of all small masses that constitute the rigid body. The gravitational potential energy is simply that of a small control volume having the same mass as the rigid body, and vertical coordinate of its centre of \masse.
 
-\section{Use of the balances for a rigid body}
+\section{Simulation a rigid body}
 \label{sec:rigidbody_dynamics}
 
 Now that we have the constitutive relations for momentum and angular-momentum content of a rigid body, we can get a glimpse of how they could be used to keep track of its motion. In concrete applications, rigid-body motion is predicted and simulated with a wide range of different techniques, some of which use fascinating mathematics like the \furl{https://mathworld.wolfram.com/Quaternion.html}{\emph{quaternions}}, generalizations of complex numbers.
@@ -11789,25 +11789,25 @@ The constitutive relations and balances that we have discussed are summarized be
 \begin{equation*}
   \begin{aligned}
     \yP(t) &= \ym \yvcm(t)
-    &\qquad&{\text{\footnotesize\color{midgrey}momentum content}}
+    &\qquad&{\text{\footnotesize\color{midgrey}constit. relation for momentum content}}
     \\[\jot]
     \yL(t) &= \yrcm(t) \times \ym \yvcm(t) + \yIc(t)\,\yo(t)
-    &\qquad&{\text{\footnotesize\color{midgrey}angular-momentum content}}
-    \\[2\jot]
+    &\qquad&{\text{\footnotesize\color{midgrey}constit. relation for angular-momentum content}}
+    \\[3\jot]
+    \yP(t+\Dt) &\approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
+    &\qquad&{\text{\footnotesize\color{midgrey}balance of momentum}}
+    \\[\jot]
+    \yL(t+\Dt) &\approx \yL(t) + [\yM(t) + \yto(t)]\,\Dt
+    &\qquad&{\text{\footnotesize\color{midgrey}balance of angular-momentum}}
+    \\[\jot]
     \yrcm(t+\Dt) &\approx \yrcm(t) + \yvcm(t)\,\Dt
     &\qquad&{\text{\footnotesize\color{midgrey}update of \masse-centre}}
     \\[\jot]
     \yIc(t+\Dt) &\approx \yIc(t) + [\yOm(t)\,\yIc(t) - \yIc(t)\,\yOm(t)]\,\Dt
     &\qquad&{\text{\footnotesize\color{midgrey}update of inertia tensor}}
-    \\[\jot]
-    \yP(t+\Dt) &\approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
-    &\qquad&{\text{\footnotesize\color{midgrey}momentum balance}}
-    \\[\jot]
-    \yL(t+\Dt) &\approx \yL(t) + [\yM(t) + \yto(t)]\,\Dt
-    &\qquad&{\text{\footnotesize\color{midgrey}angular-momentum balance}}
   \end{aligned}
 \end{equation*}
-keep in mind that the angular-velocity vector $\yo$ and matrix $\yOm$ have the same numerical components, so if we know the one we also know the other.
+keep in mind that the angular-velocity vector $\yo$ and matrix $\yOm$ have the \autoref{sec:angvel}{same numerical components}, so if we know the one we also know the other.
 
 It isn't difficult to see that if we know the values of the \autoref{def:state}{state variables}
 \begin{equation*}
