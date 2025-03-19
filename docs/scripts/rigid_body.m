@@ -3,26 +3,26 @@
 
 %% Constants
 m = 5;     % kg: mass of object
-R = 0.1; % m: radius
+R = 0.1;   % m: radius
 g = 9.81;  % N/kg: gravitational acceleration
 k = 1e5;
 
 
 %% Initial conditions
-t = 0;                               % s: initial time
-rc = [R, 0, 0]; % m: centre of mass-energy
-vc = [0, 0, 0]; % m/s: velocity of mass-energy centre
-omega = [20*pi, 0, 0]; % rad/s angular velocity of object
+t = 0;                  % s: initial time
+rc = [R, 0, 0];         % m: centre of mass-energy
+vc = [0, 0, 0];         % m/s: velocity of mass-energy centre
+omega = [20*pi, 0, 0];  % rad/s angular velocity of object
 Ic = (2 / 5) * m * R^2 * [1, 0, 0; 0, 1, 0; 0, 0, 1]; % inertia tens.
-r = [2* R, 0, 0]; % m: a point
+r = [2* R, 0, 0];       % m: a point
 rp = [0, 0, 0];
 
 %% Boundary conditions
-G = -m * g * [0, 0, 1]; % N: gravity supply on object
-M = 0; % Nm: surface torque
+G = -m * g * [0, 0, 1];  % N: gravity supply on object
+M = 0;                   % Nm: surface torque
 
 %% Parameters for time loop
-t1 = 5;      % s: final time
+t1 = 5;         % s: final time
 dt = 0.000001;  % s: time step %@
 
 %% Plotting
