@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-19T17:16:28+0100
+%% Last-Updated: 2025-03-19T21:53:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7478,8 +7478,9 @@ In fact our \enquote*{feeling of gravity} comes from our \enquote{force-receptor
 How is the supply of momentum $\yG$ in a control volume related to other quantities?
 
 When we consider physical phenomena that happen close to a planet's surface and involve spatial extensions that are small compared to the planet's size, and we choose a coordinate system fixed with the planet's ground, then we have a simple constitutive relation for the supply of momentum:
+%
 \begin{definition}{Gravitational force near a planet's surface}\label{def:gravity_surface}
-  Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ the vertical, upward coordinate. A control volume containing an amount of \masse\ $\ym$ also has a supply of downward momentum, the \textbf{gravitational force}, given by
+  Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ as vertical upward coordinate. A control volume containing an amount of \masse\ $\ym$ also has a supply of downward momentum, the \textbf{gravitational force}, given by
   \begin{equation}
     \label{eq:gravity_surface}
     \yG = \ym\,\yg\ ,\qquad\text{with}\qquad \yg= -g \begin{bmatrix}0\\0\\1\end{bmatrix} \ ,
@@ -7491,6 +7492,7 @@ When we consider physical phenomena that happen close to a planet's surface and 
   \end{equation}
   although it actually depends slightly on location and time.
 \end{definition}
+%
 This constitutive relation is used in most of everyday applications of mechanical and building engineering and fluid mechanics.
 
 \medskip
@@ -11778,7 +11780,7 @@ The angular momentum for a rigid body is therefore the sum of two parts. One par
 
 The total energy for a rigid body is therefore, as usual, the sum of an internal energy, a kinetic energy, and a gravitational potential energy. The kinetic energy consists in two parts: one part is the kinetic energy of a small control volume having the same mass $\ym$ as the rigid body, and the velocity $\yvcm$ of its centre of \masse; the other part takes care of the kinetic energy of all small masses that constitute the rigid body. The gravitational potential energy is simply that of a small control volume having the same mass as the rigid body, and vertical coordinate of its centre of \masse.
 
-\section{Simulation a rigid body}
+\section{Simulation of a rigid body}
 \label{sec:rigidbody_dynamics}
 
 Now that we have the constitutive relations for momentum and angular-momentum content of a rigid body, we can get a glimpse of how they could be used to keep track of its motion. In concrete applications, rigid-body motion is predicted and simulated with a wide range of different techniques, some of which use fascinating mathematics like the \furl{https://mathworld.wolfram.com/Quaternion.html}{\emph{quaternions}}, generalizations of complex numbers.
@@ -11815,8 +11817,6 @@ It isn't difficult to see that if we know the values of the \autoref{def:state}{
 \end{equation*}
 at a time instant $\yto$, and we also have appropriate constitutive relations for the surface and volume forces $\yF, \yG$ and torques $\yM, \yto$, then it's possible to calculate the values of the state variables a short time lapse $\Dt$ later. See the exercise below.
 
-The tricky point are the constitutive relations for forces and torques: they also need spatial integration over extended surfaces and volumes. Unfortunately there aren't many simplifications for such integrations. Somewhat simple formulae can be found for forces of very special kind, for instance forces that act on one point only of the surface of the rigid body, or forces that have the same value everywhere, like the gravitational force close to Earth's surface.
-
 \begin{exercise}
   For this exercise, keep in mind the following:
   \begin{itemize}
@@ -11826,7 +11826,7 @@ The tricky point are the constitutive relations for forces and torques: they als
     \end{equation*}
     where $\yIc^{-1}$ is the inverse of the matrix $\yIc$. You don't need to explicitly calculate anything with this formula, but only know that $\yo$ can be calculated this way.
 
-  \item Aassume that the forces $\yF, \yG$ and torques $\yM, \yto$ are known at all times, so you don't need to worry about them.
+  \item Assume that the forces $\yF, \yG$ and torques $\yM, \yto$ are known at all times, so you don't need to worry about them.
   \end{itemize}
 
   \smallskip
@@ -11858,9 +11858,28 @@ The tricky point are the constitutive relations for forces and torques: they als
   \end{equation*}
   where $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t)$ are the initial positions of three points in the rigid body. Based on your previous results, can you track the positions of all the three points? (Remember that forces and torques are assumed to be known.)
 
-\item Based on your previous results, would you be able to track the points of the rigid body if the balance of angular momentum $\yL(t+\Dt) \approx \yL(t) + [\yM(t) + \yto(t)]\,\Dt$ were not available? That is, is it possible to follow the motions of the points in a rigid body just by using the balance of momentum?
+\item Based on your previous results, would you be able to track the points of the rigid body \emph{if the balance of angular momentum $\yL(t+\Dt) \approx \yL(t) + [\yM(t) + \yto(t)]\,\Dt$ were not available?} That is, is it possible to follow the motions of the points in a rigid body just by using the balance of momentum?
   \end{enumerate}
 \end{exercise}
+
+\section{Constitutive relations for forces and torques in a rigid body}
+\label{sec:force_torque_rigidbody}
+
+We managed to find constitutive relations for the contents of momentum, angular momentum, and total energy in a rigid body.
+
+The tricky point are the constitutive relations for surface and volume forces, and surface and volume torques. They also need spatial integration over extended surfaces and volumes. Unfortunately there aren't many simplifications for such integrations. Somewhat simple formulae can be found for forces of very special kind, for instance forces that act on one point only of the surface of the rigid body, or forces that have the same value everywhere, like the gravitational force close to Earth's surface.
+
+\begin{definition}{Gravitational torque on rigid body near a planet's surface}\label{def:gravity_surface_rigidbody}
+    Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ as vertical upward coordinate. A control volume of a rigid body containing an amount of \masse\ $\ym$ and with centre of \masse\ $\yrcm$ also has a supply of angular momentum, the \textbf{gravitational torque}, given by
+  \begin{equation}
+    \label{eq:gravity_surface_rigidbody}
+    \yG = \yrcm \times \ym\,\yg\ ,\qquad\text{with}\qquad \yg= -g \begin{bmatrix}0\\0\\1\end{bmatrix} \ ,
+  \end{equation}
+  where $\yg$ is the \autoref{def:gravity_surface}{acceleration of free fall}. As usual we are taking the origin of the coordinates as reference point.
+\end{definition}
+
+Therefore this volume torque has the same expression as if the control volume were a small one at the centre of \masse. This results comes from the fact that the gravitational force $\yG$ near a planet's surface is approximately constant in space. An analogous result holds in fact for any other surface or volume force over the whole rigid body. If we are enough far away from a planet's surface, so that the gravitational force cannot be considered approximately constant, then the result above is no longer true.
+
 
 
 % \section{Matrix representation of angular momentum}
