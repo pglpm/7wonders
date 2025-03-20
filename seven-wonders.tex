@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-19T22:01:46+0100
+%% Last-Updated: 2025-03-20T08:01:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11786,7 +11786,7 @@ The angular momentum for a rigid body is therefore the sum of two parts. One par
 
 The total energy for a rigid body is therefore, as usual, the sum of an internal energy, a kinetic energy, and a gravitational potential energy. The kinetic energy consists in two parts: one part is the kinetic energy of a small control volume having the same mass $\ym$ as the rigid body, and the velocity $\yvcm$ of its centre of \masse; the other part takes care of the kinetic energy of all small masses that constitute the rigid body. The gravitational potential energy is simply that of a small control volume having the same mass as the rigid body, and vertical coordinate of its centre of \masse.
 
-\section{Simulation of a rigid body}
+\section{Numerical time integration for rigid body}
 \label{sec:rigidbody_dynamics}
 
 Now that we have the constitutive relations for momentum and angular-momentum content of a rigid body, we can get a glimpse of how they could be used to keep track of its motion. In concrete applications, rigid-body motion is predicted and simulated with a wide range of different techniques, some of which use fascinating mathematics like the \furl{https://mathworld.wolfram.com/Quaternion.html}{\emph{quaternions}}, generalizations of complex numbers.
@@ -11873,18 +11873,43 @@ at a time instant $\yto$, and we also have appropriate constitutive relations fo
 
 We managed to find constitutive relations for the contents of momentum, angular momentum, and total energy in a rigid body.
 
-The tricky point are the constitutive relations for surface and volume forces, and surface and volume torques. They also need spatial integration over extended surfaces and volumes. Unfortunately there aren't many simplifications for such integrations. Somewhat simple formulae can be found for forces of very special kind, for instance forces that act on one point only of the surface of the rigid body, or forces that have the same value everywhere, like the gravitational force close to Earth's surface.
+The tricky point are the constitutive relations for surface and volume forces, and surface and volume torques. They also need spatial integration over extended surfaces and volumes. Unfortunately there aren't many simplifications for such integrations. Somewhat simple formulae can be found for forces of very special kind, for instance forces that act on one point only of the surface of the rigid body; or forces that are constant everywhere, like the gravitational force close to Earth's surface; or forces that have constant magnitude and a direction always perpendicular to the surface of the rigid body.
 
 \begin{definition}{Gravitational torque on rigid body near a planet's surface}\label{def:gravity_surface_rigidbody}
-    Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ as vertical upward coordinate. A control volume of a rigid body containing an amount of \masse\ $\ym$ and with centre of \masse\ $\yrcm$ also has a supply of angular momentum, the \textbf{gravitational torque}, given by
+    Take a coordinate system $(t,x,y,z)$ fixed with the ground, with $z$ as vertical upward coordinate. A control volume of a rigid body containing an amount of \masse\ $\ym$ has a supply of angular momentum, the \textbf{gravitational torque}, given by
   \begin{equation}
     \label{eq:gravity_surface_rigidbody}
     \yG = \yrcm \times \ym\,\yg\ ,\qquad\text{with}\qquad \yg= -g \begin{bmatrix}0\\0\\1\end{bmatrix} \ ,
   \end{equation}
-  where $\yg$ is the \autoref{def:gravity_surface}{acceleration of free fall}. As usual we are taking the origin of the coordinates as reference point.
+  where  $\yrcm$ is the centre of \masse\ and $\yg$ is the \autoref{def:gravity_surface}{acceleration of free fall}. As usual we are taking the origin of the coordinates as reference point.
 \end{definition}
 
-Therefore this volume torque has the same expression as if the control volume were a small one at the centre of \masse. This results comes from the fact that the gravitational force $\yG$ near a planet's surface is approximately constant in space. An analogous result holds in fact for any other surface or volume force over the whole rigid body. If we are enough far away from a planet's surface, so that the gravitational force cannot be considered approximately constant, then the result above is no longer true.
+Therefore this volume torque has the same expression as if the control volume were a small one at the centre of \masse. This results comes from the fact that the gravitational force $\yG$ near a planet's surface is approximately constant in space. An analogous result holds in fact for any other surface or volume force which is constant over the whole rigid body. But if we are enough far away from a planet's surface, so that the gravitational force cannot be considered approximately constant, then the result above is no longer true.
+
+\medskip
+
+Total surface torques can be simplified in some important cases:
+%
+\begin{definition}{Surface torque from air pressure on rigid body}\label{def:air_torque_rigidbody}
+  Take a coordinate system $(t,x,y,z)$. If on the closed control surface there is a pressure or a tension having
+  \begin{itemize}
+  \item constant magnitude,
+  \item direction always orthogonal to the surface,
+  \end{itemize}
+  then the \textbf{total torque of this surface force is zero}.
+\end{definition}
+This is the case for \emph{atmospheric pressure}, whose torque we can therefore neglect if the rigid body has enough small vertical extension. This is the reason why atmospheric pressure is usually neglected when simulating rigid bodies.
+
+Friction from air, however, does not satisfy the conditions above, and therefore must be accounted for in some situations.
+
+\medskip
+
+One more case in which we can manage to handle surface or volume torques in a simple way is when they are concentrated in a very small area or very small volume. In that case the standard constitutive relations~\eqref{eq:ang_momentum_flux}, \eqref{eq:ang_momentum_supply} can be applied directly, without integration. Note that we may need to keep track of their application points.
+
+
+
+
+
 
 
 
