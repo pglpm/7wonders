@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-26T12:35:20+0100
+%% Last-Updated: 2025-03-26T13:48:45+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -992,7 +992,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \DeclareMathOperator*{\argsup}{arg\,sup}
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 % \renewcommand*{\autoref}[3][\sect~\ref]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{angle-right}\enskip#1{#2} page~\pageref{#2}}}\textcolor{blue}{#3}}
-\renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon{angle-right}~#1{#2}\;p.\,\pageref{#2})}}
+% \renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon{angle-right}~#1{#2}\;p.\,\pageref{#2})}}
+\renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon[regular]{eye}\;#1{#2}\;p.\,\pageref{#2})}}
 % %hand-point-right%
 % %undo%
 % %undo-alt%
@@ -1647,30 +1648,31 @@ Finally, thanks to the developers and maintainers of \LaTeX, Emacs, AUC\TeX, Ope
 
 \epigraph{\enquote{What you do in this world is a matter of no consequence,} returned my companion, bitterly. \enquote{The question is, what can you make people believe that you have done?\textellipsis}}{Sherlock Holmes (A. C. Doyle) \cites*{doyle1887}}
 
-\addsec{The plan of these notes}
+\section{The plan of these notes}
 
 After some very general remarks about physics, we recall the notions of \textbf{physical quantity}, unit, and physical dimension. This is really just a reminder; it's assumed that you are already familiar with these general notions.
 
 We then survey two cardinal physical notions: \textbf{time} and \textbf{space}. We briefly examine their fascinating nature as we today understand it. The notion of \textbf{coordinate system} is also introduced.
 
-Thereafter we take an overview of the main seven physical quantities we shall work with: \textbf{matter}, \textbf{energy-mass}, \textbf{momentum}, \textbf{angular momentum}, \textbf{entropy},  \textbf{electric charge}, \textbf{magnetic flux}, discussing some features common to all of them. Other important quantities such as \textbf{temperature} are also introduced.
+Thereafter we take an overview of the main seven physical quantities we shall work with: \textbf{matter}, \textbf{energy-mass}, \textbf{momentum}, \textbf{angular momentum}, \textbf{entropy},  \textbf{electric charge}, \textbf{magnetic flux}, discussing some features common to all of them. Other important quantities such as temperature are also introduced.
 
 The most important feature of the main seven quantities is that we can measure their amount within any volume, and the amount that passes through any surface. We therefore study the intuitive ideas of \textbf{control volume} and \textbf{volume content}, \textbf{control surface} and \textbf{flux}, and \textbf{supply}.
 
-At this point the stage is ready for the introduction of seven physical laws which are just expressions of \textbf{balances} of volume contents, fluxes, and supplies of the seven quantities introduced earlier. These seven balance laws are universal. They are connected by mathematical expressions called \textbf{constitutive relations}, which are not universal but depend on the particular physical phenomenon, and on the particular physical theory we use to describe it.
+At this point the stage is ready for the introduction of seven physical laws which are just expressions of \textbf{balances} of volume contents, fluxes, and supplies of the seven quantities introduced earlier. These seven balance laws are \textbf{universal}. They are connected by mathematical expressions called \textbf{constitutive relations}, which are not universal but depend on the particular physical phenomenon, and on the particular physical theory we use to describe it.
 
-The balance laws are the ones that allow us to predict how the values of different quantities change with time. We show this by exploiting them to build simple computer code that can in principle be applied to any physical system. The role that constitutive relations have in connecting the seven balances also becomes quite clear in the code.
+The balance laws are the ones that allow us to predict how the values of different quantities change with time. We show this by exploiting them to code numerical simulations that can in principle be done for any physical system. The role that constitutive relations have in connecting the seven balances also becomes quite clear in the simulation code.
 
-Five of the seven universal balances are then examined in turn. For each balance, we study some constitutive relations that are often used together with it, as well as some of its physical applications.
+The seven universal balances are then examined in turn. For each balance, we study some constitutive relations that are often used together with it, as well as some of its physical applications.
 
 
-\addsec{Physics prerequisites}
+\section{Prerequisites}
 \label{sec:guide_physics}
+
+\subsection{Physics}
 
 Just some vague reminiscences of secondary/high-school physics should be enough. It can be beneficial if you are familiar with basic physics notions like \emph{velocity}, \emph{mass}, \emph{force}, and similar ones.
 
-\addsec{Maths prerequisites}
-\label{sec:guide_maths}
+\subsection{Maths}
 
 \begin{itemize}
 \item Working familiarity with algebra, its operations and their properties.
@@ -1684,8 +1686,7 @@ Just some vague reminiscences of secondary/high-school physics should be enough.
 \end{itemize}
 
 
-\addsec{Programming prerequisites}
-\label{sec:guide_program}
+\subsection{Programming}
 
 \begin{itemize}
 \item Knowing what a computer program is.
@@ -1695,10 +1696,11 @@ Just some vague reminiscences of secondary/high-school physics should be enough.
 \end{itemize}
 
 
-\addsec{Structure of the text}
+\section{Features of the text}
 \label{sec:guide_text}
 
-\subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Graphical devices}
+% \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Graphical devices}
+\subsection{Graphical devices}
 
 The text includes the following graphical devices:
 \begin{itemize}[para]
@@ -1735,7 +1737,8 @@ The text includes the following graphical devices:
   \end{extra}
 \end{itemize}
 
-\subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Side figures and quotes}
+% \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Side figures and quotes}
+\subsection{Side figures and quotes}
 
 \marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/saitama_image.png}%
@@ -1745,42 +1748,68 @@ This is an image of Saitama, which actually has nothing to do with the text on t
 Figures, graphs, or quotes related to the material are displayed on the right.
 
 
-\subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Cross-references}
+% \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Cross-references}
+\subsection{Cross-references}
 
 \marginpar{\vspace{1\baselineskip}\footnotesize%
-\flushleftright\color{green}%
-The symbol \enquote*{\,\sect\,} stands for \enquote*{section}.
+  \flushleftright\color{green}%
+  The symbol \enquote*{\,\sect\,} stands for \enquote*{section}.%
 }%
-The text gives cross-references to the main section where a topic was  or will be discussed. Cross-references appear as sectioning number and page in round brackets, like this cross-reference to \autoref{sec:conservation_laws}{conservation laws}.
+The text gives cross-references to the main section where a topic was or will be discussed. Cross-references appear as an eye icon followed by sectioning number and page in round brackets, like this cross-reference to \autoref{sec:conservation_laws}{conservation laws}.
 
 
-\subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Hyperlinks and bibliography}
+% \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Hyperlinks and bibliography}
+\subsection{Hyperlinks and bibliography}
 
 Some pieces of text are hyperlinks, like this one about \furl{https://onepunchman.fandom.com}{One Punch Man}. You recognize them from their different colour and from the little footnote number that follows them. The links' URLs are also listed at the end of each chapter, in case you're reading a printed copy of these notes.
 
 \medskip
 
-The text gives bibliographic references, like \enquote{\cites{einstein1905c}}, to scientific literature. The references are listed in the final Bibliography on page~\pageref{sec:biblio}.
-
-These references are given for two reasons:
+The text gives bibliographic references, like \enquote{\cites{einstein1905c}}, to scientific literature. The references are listed in the final Bibliography on page~\pageref{sec:biblio}. Bibliographic references are given for two reasons:
 \begin{itemize}
 \item For your own curiosity.
 
-\item
-\marginpar{\vspace{-1\baselineskip}\footnotesize\raggedright\color{mpcolor}\emph{%
-\enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}}
-\\[\jot](attributed to Gautama Buddha)
-}%
-To back up what's written in the text.
-In science you should not believe something just because you've read it somewhere. You should, as much as possible, \emph{go and check for yourself how the logic behind the statement is proved and what is the experimental evidence behind the statement}.
+\item \marginpar{\vspace{-1\baselineskip}\footnotesize\raggedright\color{mpcolor}\emph{%
+      \enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}} \\[\jot](attributed to Gautama Buddha)%
+  }%
+  To back up what's written in the text. In science you should not believe something just because you've read it somewhere. You should, as much as possible, \emph{go and check for yourself the logic and the experimental evidence behind the statement}.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Notation and terminology}
+\section{Code for numerical simulations}
+\label{sec:code}
 
-Mathematical notation, as well as notation for physical dimensions, strictly follows the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}.
+\subsection{Octave}
+The scripts for numerical simulations presented in the text are written in \furl{https://octave.org}{\emph{Octave}} (they should also work in \furl{https://mathworks.com/products/matlab.html}{\emph{MATLAB}}). Why \emph{Octave}? Several reasons:
+\begin{itemize}
+\item It's free and open source.
+\item It runs on all major operating systems.
+\item It includes a graphical user interface and development environment.
+\item It allows the specification of objects like vectors in a way very similar to physics and maths notation.
+\item It doesn't need extra packages.
+\item Its code can be copied \amp\ pasted without worrying about losing leading whitespace.
+\end{itemize}
+Keep in mind that in Octave the trailing semicolon in a line \textcolor{codecolour}{\texttt{;}} prevents the result of the operation to be printed to the console or to output.
 
-\addsec{Common symbols}
+\subsection{Python}
+
+\furl{https://www.python.org}{\emph{Python}} versions of the scripts are also usually given, linked on the margin. They need the \furl{https://numpy.org}{\emph{NumPy}} and  \furl{https://matplotlib.org}{\emph{Matplotlib}} packages. The Python scripts should work on \furl{https://matplotlib.online}{\texttt{matplotlib.online}}.
+
+\subsection{Code colours}
+
+The scripts usually present two colours:
+\begin{itemize}
+\item \textcolor{codecolour}{Blue lines} are strictly related to the physical simulation. 
+\item \textcolor{grey}{Grey lines} take care of auxiliary operations, like plotting the results or saving them to file.
+\end{itemize}
+
+% \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Notation and terminology}
+\section{Notation and terminology}
 \label{sec:list_symbols}
+
+Mathematical notation follows as much as possible the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}. One slight exception are \autoref{sec:units}{physical dimensions}, whose notation will be explained in that section.
+
+\medskip
+
 
 In physics, engineering, and most other scientific fields \emph{there is no universal standard for symbols}. It's therefore important that you \textbf{focus on the concept} that a symbol stands for, rather than the symbol itself. Otherwise you'll face many difficulties reading literature and other scientists' reports.
 
@@ -6928,11 +6957,7 @@ In the iteration above, note how after specifying the initial  $\yNu(t)$, $\yNv(
 \section{Computer code for numerical time integration}
 \label{sec:code_integration}
 
-The iteration at the core of numerical time integration lends itself well to calculation by a computer. Here are example scripts that implement the numerical time integration of the oscillating reaction and of the tennis ball from a previous exercise.
-
-The scripts are written in \furl{https://octave.org/}{Octave}; they should also work in MATLAB. Python versions are also linked on the sides of the scripts; they should work on \furl{https://matplotlib.online}{\texttt{matplotlib.online}}. \textcolor{codecolour}{Blue lines} are strictly related to numerical time integration. \textcolor{grey}{Grey lines} take care of plotting the results. Keep in mind that in Octave the trailing semicolon in a line \textcolor{codecolour}{\texttt{;}} prevents the result of the operation to be printed to the console or to output.
-
-
+The iteration at the core of numerical time integration lends itself well to calculation by a computer. Here is an example script that implements the numerical time integration of the oscillating reaction and of the tennis ball from a previous exercise. Recall the \autoref{sec:code}{remarks about computer code} used in the present notes.
 
 \subsection{Script for oscillating reaction}
 
@@ -7823,7 +7848,7 @@ These are vector equations; each one corresponds to three components. Note one m
 
 \medskip
 
-A script implementing the numerical time integration based on the iteration above is shown in table~\ref{tab:tennisball_rP} on page~\pageref{tab:tennisball_rP}. \textcolor{codecolour}{Blue lines} are strictly related to numerical time integration; \textcolor{grey}{grey lines} draw the plots of $\yP_{z}(t)$ and $z(t)$ against time $t$.
+A script implementing the numerical time integration based on the iteration above is shown in table~\ref{tab:tennisball_rP} on page~\pageref{tab:tennisball_rP}. Recall the \autoref{sec:code}{remarks about computer code} used in the present notes. \textcolor{grey}{Grey lines} draw the plots of $\yP_{z}(t)$ and $z(t)$ against time $t$.
 
 Let's examine the structure of this script, starting from the bottom, and omitting the lines for plotting, which are physically irrelevant:
 \begin{description}
