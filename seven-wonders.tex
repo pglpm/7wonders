@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-27T12:57:19+0100
+%% Last-Updated: 2025-03-27T16:32:56+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -12532,6 +12532,36 @@ With a little algebra, and recalling that a thermodynamic temperature is always 
 \end{equation}
 This equation has several interesting consequences. Suppose for instance that the net amount of heat $\yhep$ provided at the higher temperature is positive.
 The fraction $\yTm/\yTp$ is also positive. Then $\yhem$ must be negative, because it must be smaller than a negative quantity. The entropy balance therefore says that \emph{in a cycle, if the net amount of heat provided at the higher temperature is positive, then the net amount provided at the lower temperature must be negative}.
+
+But our main question is: does this new two-temperature design allow us to receive positive net work $\yW$ from the engine, in a cycle? To answer this question, take the inequality~\eqref{eq:engine2_heatminus} above, and add $\yhep$ to both sides:
+\begin{equation}\label{eq:engine2_heatminus}
+  \yhep + \yhem \le \yhep -\frac{\yTm}{\yTp}\yhep \,.
+\end{equation}
+The left side, from formula~\eqref{eq:engine2_heatwork} is equal to the net work gained in a cycle. The right side can be rewritten with a little algebra. We obtain the following important inequality:
+\begin{equation}\label{eq:thermal_efficiency}
+  \yW \le \biggl(1-\frac{\yTm}{\yTp}\biggr)\,\yhep
+\end{equation}
+This is the combine consequence of the balances of energy and entropy for this cyclic thermal engine. The factor $1-\frac{\yTm}{\yTp}$ on the right side is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature cannot be negative, the efficiency cannot be greater than $1$; and since $\yTm < \yTp$ by design, the efficiency cannot be negative:
+\begin{equation*}
+  0 < 1-\frac{\yTm}{\yTp} < 1 \,.
+\end{equation*}
+
+Does the inequality~\eqref{eq:thermal_efficiency} allow us to get positive net work in a cycle? Yes! The thermal-efficiency factor is positive; if the heat $\yhep$ provided to the engine at the higher temperature is also positive, then the right side of that inequality is positive. The net work can therefore be positive too, as long as it's less or equal to the positive quantity on the right side. For instance,
+\begin{equation*}
+  \text{if}\quad
+  \yTm = \qty{300}{K}\,,\enskip
+  \yTp = \qty{400}{K}\,,\enskip
+  \yhep = \qty{1000}{J}
+  \qquad
+  \text{then}\quad
+  \yW \le \qty{250}{J} \,.
+\end{equation*}
+and we could therefore obtain, say, \qty{249}{J} of mechanical work at every cycle. The new engine design is successful!
+
+***
+
+
+
 
 We wish to have a positive net amount of heat provided to the engine in a cycle, because from the balance of energy~\eqref{eq:engine2_heatwork} the mechanical work we receive from the engine is then also positive:
 \begin{equation*}
