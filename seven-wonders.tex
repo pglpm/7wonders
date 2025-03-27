@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-27T16:32:56+0100
+%% Last-Updated: 2025-03-27T22:12:22+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -12530,13 +12530,13 @@ With a little algebra, and recalling that a thermodynamic temperature is always 
 \begin{equation}\label{eq:engine2_heatminus}
   \yhem \le -\frac{\yTm}{\yTp}\yhep \,.
 \end{equation}
-This equation has several interesting consequences. Suppose for instance that the net amount of heat $\yhep$ provided at the higher temperature is positive.
-The fraction $\yTm/\yTp$ is also positive. Then $\yhem$ must be negative, because it must be smaller than a negative quantity. The entropy balance therefore says that \emph{in a cycle, if the net amount of heat provided at the higher temperature is positive, then the net amount provided at the lower temperature must be negative}.
+This equation has several interesting consequences. Suppose for instance that the net amount of heat $\yhep$ provided at the higher temperature is strictly positive.
+The fraction $\yTm/\yTp$ is also positive. Then $\yhem$ must be strictly negative, because it must be smaller than a strictly negative quantity. The entropy balance therefore says that \emph{in a cycle, if the net amount of heat provided at the higher temperature is positive, then the net amount provided at the lower temperature must be negative}.
 
 But our main question is: does this new two-temperature design allow us to receive positive net work $\yW$ from the engine, in a cycle? To answer this question, take the inequality~\eqref{eq:engine2_heatminus} above, and add $\yhep$ to both sides:
-\begin{equation}\label{eq:engine2_heatminus}
+\begin{equation*}
   \yhep + \yhem \le \yhep -\frac{\yTm}{\yTp}\yhep \,.
-\end{equation}
+\end{equation*}
 The left side, from formula~\eqref{eq:engine2_heatwork} is equal to the net work gained in a cycle. The right side can be rewritten with a little algebra. We obtain the following important inequality:
 \begin{equation}\label{eq:thermal_efficiency}
   \yW \le \biggl(1-\frac{\yTm}{\yTp}\biggr)\,\yhep
@@ -12556,65 +12556,28 @@ Does the inequality~\eqref{eq:thermal_efficiency} allow us to get positive net w
   \text{then}\quad
   \yW \le \qty{250}{J} \,.
 \end{equation*}
-and we could therefore obtain, say, \qty{249}{J} of mechanical work at every cycle. The new engine design is successful!
+and we could therefore obtain \qty{249}{J} of mechanical work at every cycle. Our new engine design is successful!
 
-***
+Note the upper bound on how much work we can gain in a cycle. We can only get strictly less than the heat we provide at the highest temperature. At first, one might wonder why this must be the case, because we could also provide heat at the lower temperature, heat which could be converted into work as well. But we must remember the inequality~\eqref{eq:engine2_heatminus} for $\yhem$: if $\yhep$ is positive -- and we need it to be positive if we want to gain positive work -- then $\yhem$ must be negative. So we're losing some energy there. If we try to eliminate that heat loss, making $\yhem$ zero, then the inequality~\eqref{eq:engine2_heatminus} says that $\yhep$ must be zero too -- and then the work gained is zero or negative. In fact if $\yhem$ were zero then we would effectively be back to our previous ineffective one-temperature engine design.
 
-
-
-
-We wish to have a positive net amount of heat provided to the engine in a cycle, because from the balance of energy~\eqref{eq:engine2_heatwork} the mechanical work we receive from the engine is then also positive:
-\begin{equation*}
-0 <  \yhep + \yhem  \,.
-\end{equation*}
-This \emph{is} indeed feasible now! Combining the inequality above with the inequality~\eqref{eq:engine2_heatminus} obtained from the entropy balance, we find
-\begin{equation*}
-0 <  \yhep + \yhem  \le \biggl(1 - \frac{\yTm}{\yTp}\biggr)\,\yhep
-\end{equation*}
-
-! If $\yhep$ is positive, then $\yhem$ is negative, but its absolute value is less than $\yhep$, because in formula~\eqref{eq:engine2_heatminus} the fraction $\yTm/\yTp$ is less than $1$. Suppose for instance that $\yhep=\qty{8000}{J}$, $\yTp=\qty{400}{K}$, $\yTm=\qty{100}{K}$. Formula~\eqref{eq:engine2_heatminus} then requires
-\begin{equation*}
-  \yhem \le -\frac{\qty{100}{K}}{\qty{400}{K}}\cdot\qty{8000}{J} = -\qty{2000}{J}
-\end{equation*}
-and it would be possible to have, say, $\yhem=-\qty{3000}{J}$. The net heat amount provided to the engine in a cycle would then be $\qty{8000}{J}-\qty{3000} = +\qty{5000}{J}$. According to the requirement~\eqref{eq:engine2_heatwork} from the balance of energy, in a cycle we would then gain a net work of \qty{5000}{J}. The new engine design is successful!
-
-\medskip
-
-An interesting question arises: how much work, in a cycle, can we squeeze out of our engine? We see that we are giving an energy amount $\yhep$ as heat to the engine, and the engine is returning to us $\yhem$ as heat and $\yW$ as work. Can we somehow minimize $\yhem$ and maximize $\yW$?
-
-It turns out that the balance of entropy also tells us what's the maximal amount of work that we can obtain from the engine. Combine together the requirements~\eqref{eq:engine2_heatwork} and~\eqref{eq:engine2_heatminus}, by substituting $\yhem$ from the latter into the former:
-\begin{equation*}
-  \yW = \yhep + \yhem
-  \enskip\text{\footnotesize and}\enskip
-  \yhem \le -\frac{\yTm}{\yTp}\yhep
-\quad\Longrightarrow\quad
-  \yW \le \yhep -\frac{\yTm}{\yTp}\yhep
-%  =  \biggl(1-\frac{\yTm}{\yTp}\biggr)\,\yhep
-\end{equation*}
-by using a little algebra we finally find the maximal work obtainable:
-\begin{equation}\label{eq:thermal_efficiency}
-  \yW \le \biggl(1-\frac{\yTm}{\yTp}\biggr)\,\yhep
-\end{equation}
-The factor $1-\yTm/\yTp$ is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature is positive, the efficiency cannot be greater than $1$.
-
-In order to maximize the amount of work $\yW$ obtained and minimize the amount of heat $\yhem$ received back from the engine, we must try to make the efficiency as close to $1$ as possible. Looking at the fraction $\yTm/\yTp$ we see that there are two main ways, both of which can be pursued:
+Let's see how to maximize the amount of work $\yW$ that we can gain, for a given amount of heat $\yhep$ provided to the engine. Inequality~\eqref{eq:thermal_efficiency} shows that there are two ways, both of which increase the efficiency; the two are not mutually exclusive:
 \begin{itemize}
-\item Lower as much as possible, close to \qty{0}{K}, the temperature $\yTm$ at which heat is received back from the engine
-\item Increase as much as possible the temperature $\yTp$ at which heat is provided to the engine.
+\item decrease as much as possible the temperature $\yTm$ at which heat is released from the engine;
+\item increase as much as possible the temperature $\yTp$ at which heat is provided to the engine.
 \end{itemize}
 
 \medskip
 
-It is amazing that we can say, beforehand, how much work we can at most get from such an engine, without even knowing or needing to specify what kind of technology, materials, and way of operation it could be based upon. You see the strength of the consequences of the \enquote{$\ge$} sign in the entropy balance.
+It is amazing that we can predict how much work can be obtained from such an engine, without knowing or needing to specify what kind of technology, materials, and way of operation the engine could be based upon. You see the strength of the consequences of the \enquote{$\ge$} sign in the entropy balance.
 
-The thermal-engine example above also hints at the role of the balance of entropy as a meta-law about constitutive relations. In a real application and construction of an engine, the heat flux $\yQ$ and momentum flux $\yF$ will be concretely specified by constitutive relations; think for instance of \autoref{sec:int_energy_idealgas}{Newton's law of cooling for $\yQ$ or the ideal-gas law for $\yF$}. But if a limitation such as the maximal work efficiency~\eqref{eq:thermal_efficiency}, which we can rewrite in full as
+The thermal-engine example above also hints at the role of the balance of entropy as a meta-law about constitutive relations. In a real application and construction of an engine, the heat flux $\yQ$ and momentum flux $\yF$ will be specified by constitutive relations; think for instance about \autoref{def:newton_cooling}{Newton's law of cooling} for $\yQ$, or about the \autoref{def:idealgas_law}{ideal-gas law} for $\yF$. But if a limitation such as the maximal work efficiency~\eqref{eq:thermal_efficiency}, which we can rewrite in full as
 \begin{equation*}
   -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \le
   \biggl(1-\frac{\yTm}{\yTp}\biggr)\,
-  \int_{\yti}^{\ytf}\!\!\yQp(t)\,\dt \ ,
+  \int_{\yti}^{\ytf}\!\!\yQp(t)\,\dt \,,
 \end{equation*}
-is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be arbitrary. Their mathematical expression turns out to have severe restrictions.
+is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be arbitrary. Their mathematical expressions must have severe restrictions.
 
 
 \section{Example application: friction coefficient}
