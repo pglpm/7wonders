@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-27T22:12:22+0100
+%% Last-Updated: 2025-03-28T10:12:03+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -12360,19 +12360,26 @@ First of all let's define what we mean by \enquote*{engine}.
 
 Note the requirement of operating \emph{cyclically}. A device consisting of an electric battery actuating a mechanical arm, for instance, is \emph{not} a cyclic thermal engine, because it will cease operating once the battery is exhausted. Some of the theorems that we discuss below are not valid without the condition of cyclic operation.
 
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Take a control volume wrapping a car. Can this control volume be considered as a cyclic thermal engine? Why or why not?
+  \item Take a control volume wrapping the engine of traditional internal-combustion car: the system of pistons, valves, shafts, but excluding the fuel. Can this control volume be considered as a cyclic thermal engine? Are there any fluxes of matter during an operation cycle?
+  \end{enumerate}
+\end{exercise}
 
-\subsection{An impossible thermal engine}
+
+\section{One-temperature thermal engines: heaters}
 \label{sec:heat_engine1}
 
-Would it be possible to build a cyclic thermal engine that takes some energy in the form of heat from an inlet at constant temperature, and releases energy in the form of work, say by lifting an object?
+Would it be possible to build a cyclic thermal engine that takes some energy in the form of heat from an inlet \emph{at constant temperature}, and releases energy in the form of work, say by lifting an object?
 
+The operation of such an engine is schematized in the side figure. Imagine to wrap the engine, no matter how complex it is, in a closed control surface, defining a control volume. A part of the control surface, in \textcolor{purple}{red} in the figure, delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. The temperature $\yT$ at the inlet is \emph{constant} in time. Another part of the control surface, in \textcolor{blue}{blue} in the figure, delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive from the engine, so it's an \emph{ef}flux for the engine. Through the rest of the control surface there, in \textcolor{midgrey}{grey}, there are \emph{no exchanges of heat or mechanical power}, but there may be fluxes of matter, momentum, angular momentum, and electromagnetic quantities. At the end of a cycle the volume contents of all these quantities are, by definition of \enquote*{cycle}, the same as at the beginning. From the balance laws, the time-integrated fluxes of all these quantities must be therefore be zero over a cycle.
 %
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-13\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/engine_1temp.jpg}%
 }%
-The operation of such an engine is schematized in the side figure. Imagine to wrap the engine, no matter how complex it is, in a closed control surface, defining a control volume. A part of the control surface, in \textcolor{purple}{red} in the figure, delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. The temperature $\yT$ at the inlet is \emph{constant} in time. Another part of the control surface, in \textcolor{blue}{blue} in the figure, delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive from the engine, so it's an \emph{ef}flux for the engine. Through the rest of the control surface there, in \textcolor{midgrey}{grey}, there are \emph{no exchanges of heat or mechanical power}, but there may be fluxes of matter, momentum, angular momentum, and electromagnetic quantities. At the end of a cycle the volume contents of all these quantities are, by definition of \enquote*{cycle}, the same as at the beginning. From the balance laws, the time-integrated fluxes of all these quantities must be therefore be zero over a cycle.
 
-But note that the time-integrated flux of heat $\yQ$ and that mechanical power $-\yF\cdot\yv$ can both be non-zero over a cycle: the balance of energy requires only that their \emph{sum} be zero.
+But note that the time-integrated flux of heat $\yQ$ and the mechanical power $-\yF\cdot\yv$ can both be non-zero over a cycle: the balance of energy requires only that their \emph{sum} be zero.
 
 The engine starts a cycle at time $\yti$ and operates until time $\ytf$, at which time its physical state is exactly the same as at $\yti$. The cycle is complete, and the engine is ready to start a new operation cycle. Let's introduce symbols for the time-integrated amount of heat we provide to the engine and the total amount of work we \emph{receive} from it:
 \begin{equation*}
@@ -12417,7 +12424,7 @@ Let's see what the balance of entropy says. We have
       &= \yS(\yti) + \frac{\yhe}{\yT}
       &\qquad&{\text{\footnotesize\color{midgrey}notation for total heat inflow}}
     \end{aligned}
-    \\
+    \\[\jot]
     \implies\qquad
     \yS(\ytf) \ge \yS(\yti) + \frac{\yhe}{\yT}
   \end{gathered}
@@ -12452,22 +12459,26 @@ It's important to understand correctly what's possible and what's not. We \emph{
 
 But note that the converse is possible: we can \emph{extract} a positive net amount of heat from the device, at constant temperature, as much as we please, and return the device to its initial state.
 
-\subsection{A possible thermal engine, with limitations}
+\begin{exercise}
+  An important result of this section is the inequality~\eqref{eq:engine1_heatminus}, which says that this engine cannot absorb a positive amount of heat in a cycle. Now think of when, in a cold day, you are standing still in front of a fire, or under the sun. There's no doubt that you are \emph{absorbing} a positive amount of heat, and the temperature could be constant and uniform. Why isn't this situation in contradiction with inequality~\eqref{eq:engine1_heatminus}?
+\end{exercise}
+
+\section{Two-temperature thermal engines: bounds on mechanical work}
 \label{sec:heat_engine2}
 
 Let's try a different design, where one of the conditions in the previous section is dropped. The ability to operate cyclically is very convenient, so we keep it. What happens if we let heat be exchanged at different temperatures?
 
 Let's modify the design so that the exchange of heat happens at two different temperatures. This could be done by changing the temperature of one part of the surface over time (within a cycle), or by allowing heat to be exchanged at two different inlets, having constant but different temperatures. We choose the second option because it's easier to analyse and leads to the same results as the first.
 
-The new engine design is schematized in the side figure. An influx of heat $\yQp(t)$ occurs through a part of the closed control surface, in \textcolor{purple}{dark red}, at constant temperature $\yTp$; another influx of heat $\yQm(t)$ occurs through another part of the surface, in \textcolor{red}{light red}, at constant temperature $\yTm$. For definiteness let's say that
-%
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/engine_2temp.jpg}%
-}%
+The new engine design is schematized in the side figure. An influx of heat $\yQp(t)$ occurs through a part of the closed control surface, in \textcolor{purple}{dark red}, at constant temperature $\yTp$; another influx of heat $\yQm(t)$ occurs through another part of the surface, in \textcolor{red}{light red}, at constant temperature $\yTm$. Either flux can be positive or negative. For definiteness let's say that
 \begin{equation*}
   \yTp > \yTm
 \end{equation*}
-but we are not making assumptions about the signs or relative magnitudes of $\yQp(t)$ and $\yQm(t)$. Through another, movable part of the control surface, in \textcolor{blue}{blue}, the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$. Through the rest of the surface, in \textcolor{midgrey}{grey}, there may be fluxes of matter and other quantities, except heat and mechanical power; the time-integrated fluxes of such quantities are zero over an operation cycle.
+but we are not making assumptions about relative magnitudes of $\yQp(t)$ and $\yQm(t)$. Through another, movable part of the control surface, in \textcolor{blue}{blue}, the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, which can also be positive or negative. Through the rest of the surface, in \textcolor{midgrey}{grey}, there may be fluxes of matter and other quantities, except heat and mechanical power; the time-integrated fluxes of such quantities are zero over an operation cycle.
+%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/engine_2temp.jpg}%
+}%
 
 Consider a cycle of the engine between times $\yti$, $\ytf$. Employ similar symbols as before:
 \begin{equation*}
@@ -12517,36 +12528,36 @@ The balance of entropy, during a cycle, therefore says
     \,,
     \qquad
     \yS(\ytf)=\yS(\yti)
-    \\
+    \\[\jot]
     \implies\qquad
       \frac{\yhep}{\yTp} + \frac{\yhem}{\yTm}  \le 0 \,.
   \end{gathered}
 \end{equation*}
-For this new engine, the entropy balance is not saying that the net amount of heat provided in a cycle cannot be positive. It looks like the new engine design might work.
+For this new engine, the entropy balance is not saying that the net amount of heat provided in a cycle must be negative or zero. It looks like the new engine design might work.
 
 \medskip
 
-With a little algebra, and recalling that a thermodynamic temperature is always positive, so $\yTm >0$, we can rewrite the inequality above as follows:
+With a little algebra, and recalling that a thermodynamic temperature is always positive, so that $\yTp > \yTm > 0$, we can rewrite the inequality above as follows:
 \begin{equation}\label{eq:engine2_heatminus}
   \yhem \le -\frac{\yTm}{\yTp}\yhep \,.
 \end{equation}
-This equation has several interesting consequences. Suppose for instance that the net amount of heat $\yhep$ provided at the higher temperature is strictly positive.
+This inequality has several interesting consequences. Suppose for instance that the net amount of heat $\yhep$ provided at the higher temperature is strictly positive.
 The fraction $\yTm/\yTp$ is also positive. Then $\yhem$ must be strictly negative, because it must be smaller than a strictly negative quantity. The entropy balance therefore says that \emph{in a cycle, if the net amount of heat provided at the higher temperature is positive, then the net amount provided at the lower temperature must be negative}.
 
-But our main question is: does this new two-temperature design allow us to receive positive net work $\yW$ from the engine, in a cycle? To answer this question, take the inequality~\eqref{eq:engine2_heatminus} above, and add $\yhep$ to both sides:
+But the more interesting consequence of the inequality above concerns our main question: does this new two-temperature design allow us to receive positive net work $\yW$ from the engine, in a cycle? To answer this question, add $\yhep$ to both sides of the inequality:
 \begin{equation*}
   \yhep + \yhem \le \yhep -\frac{\yTm}{\yTp}\yhep \,.
 \end{equation*}
-The left side, from formula~\eqref{eq:engine2_heatwork} is equal to the net work gained in a cycle. The right side can be rewritten with a little algebra. We obtain the following important inequality:
+The left side is equal to the net work gained in a cycle, from formula~\eqref{eq:engine2_heatwork}, which comes from the balance of energy. The right side can be rewritten with a little algebra. We obtain the following important inequality:
 \begin{equation}\label{eq:thermal_efficiency}
   \yW \le \biggl(1-\frac{\yTm}{\yTp}\biggr)\,\yhep
 \end{equation}
-This is the combine consequence of the balances of energy and entropy for this cyclic thermal engine. The factor $1-\frac{\yTm}{\yTp}$ on the right side is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature cannot be negative, the efficiency cannot be greater than $1$; and since $\yTm < \yTp$ by design, the efficiency cannot be negative:
+This is the combined consequence of the balances of energy and entropy for this cyclic thermal engine. The factor $1-\frac{\yTm}{\yTp}$ on the right side is called the \textbf{efficiency} of the thermal engine. Since thermodynamic temperature cannot be negative, the efficiency cannot be greater than $1$; and since $\yTm < \yTp$ by design, the efficiency cannot be negative:
 \begin{equation*}
-  0 < 1-\frac{\yTm}{\yTp} < 1 \,.
+  0 < 1-\tfrac{\yTm}{\yTp} < 1 \,.
 \end{equation*}
 
-Does the inequality~\eqref{eq:thermal_efficiency} allow us to get positive net work in a cycle? Yes! The thermal-efficiency factor is positive; if the heat $\yhep$ provided to the engine at the higher temperature is also positive, then the right side of that inequality is positive. The net work can therefore be positive too, as long as it's less or equal to the positive quantity on the right side. For instance,
+Does the inequality~\eqref{eq:thermal_efficiency} allow us to get positive net work in a cycle? Yes! The thermal-efficiency factor is positive. If the heat $\yhep$ provided to the engine at the higher temperature is also positive, then the right side of that inequality is positive. The net work can therefore be positive too, as long as it's less than or equal to the positive quantity on the right side. For instance,
 \begin{equation*}
   \text{if}\quad
   \yTm = \qty{300}{K}\,,\enskip
@@ -12556,9 +12567,9 @@ Does the inequality~\eqref{eq:thermal_efficiency} allow us to get positive net w
   \text{then}\quad
   \yW \le \qty{250}{J} \,.
 \end{equation*}
-and we could therefore obtain \qty{249}{J} of mechanical work at every cycle. Our new engine design is successful!
+and we could therefore obtain, say, \qty{249}{J} of mechanical work at every cycle. Our new engine design is successful!
 
-Note the upper bound on how much work we can gain in a cycle. We can only get strictly less than the heat we provide at the highest temperature. At first, one might wonder why this must be the case, because we could also provide heat at the lower temperature, heat which could be converted into work as well. But we must remember the inequality~\eqref{eq:engine2_heatminus} for $\yhem$: if $\yhep$ is positive -- and we need it to be positive if we want to gain positive work -- then $\yhem$ must be negative. So we're losing some energy there. If we try to eliminate that heat loss, making $\yhem$ zero, then the inequality~\eqref{eq:engine2_heatminus} says that $\yhep$ must be zero too -- and then the work gained is zero or negative. In fact if $\yhem$ were zero then we would effectively be back to our previous ineffective one-temperature engine design.
+Note the upper bound \enquote*{$\yW \le \dotso$} in formula~\eqref{eq:thermal_efficiency}, on how much work we can gain in a cycle. We can only get strictly less than the heat we provide at the highest temperature. At first, one might wonder why this must be the case, because we could also provide heat at the lower temperature, heat which could be converted into work as well. But we must remember the inequality~\eqref{eq:engine2_heatminus} for $\yhem$: if $\yhep$ is positive -- and we need it to be positive if we want to gain positive work -- then $\yhem$ must be negative. So we're losing some energy as heat there. If we try to eliminate that heat loss by making $\yhem$ zero, then the inequality~\eqref{eq:engine2_heatminus} says that $\yhep$ must be zero too -- and then the work gained is zero or negative. In fact if $\yhem$ were zero then we would effectively be back to our previous ineffective one-temperature engine design.
 
 Let's see how to maximize the amount of work $\yW$ that we can gain, for a given amount of heat $\yhep$ provided to the engine. Inequality~\eqref{eq:thermal_efficiency} shows that there are two ways, both of which increase the efficiency; the two are not mutually exclusive:
 \begin{itemize}
@@ -12579,6 +12590,12 @@ The thermal-engine example above also hints at the role of the balance of entrop
 \end{equation*}
 is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be arbitrary. Their mathematical expressions must have severe restrictions.
 
+
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Find an upper bound for the amount of work gained similar to formula~\eqref{eq:thermal_efficiency}, but in terms of $\yTp$, $\yTm$, and the heat $\yhem$ provided at the lower temperature. \emph{(Hint: use formula \eqref{eq:engine2_heatwork} to express $\yhep$ in terms of $\yW$ and $\yhem$; replace in formula~\eqref{eq:thermal_efficiency}; solve for $\yW$.)}
+  \end{enumerate}
+\end{exercise}
 
 \section{Example application: friction coefficient}
 \label{sec:friction_entropy}
