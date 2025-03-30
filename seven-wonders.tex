@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-28T19:09:33+0100
+%% Last-Updated: 2025-03-30T11:21:58+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1120,8 +1120,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFr}{\yF_{\textrm{other}}}
 \newcommand*{\yFrx}{F_{\textrm{other},x}}
 \newcommand*{\yFrz}{F_{\textrm{other},z}}
-\newcommand*{\yFp}{F_{\textrm{p}}}
-\newcommand*{\yFf}{F_{\textrm{f}}}
+\newcommand*{\yFp}{\yF_{\textrm{p}}}
+\newcommand*{\yFf}{\yF_{\textrm{f}}}
 \newcommand*{\ypr}{p} % pressure
 \newcommand*{\ypv}{\bm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
@@ -1483,7 +1483,7 @@ A heartfelt thank goes to Yu-Chung Wang for his assistance in teaching and his f
 Eternal gratitude and deepest esteem go to the teachers and Masters:
 Gianni Astarita,
 Ingemar Bengtsson,
-Gunnar Bj{\"o}rk,
+Gunnar Bj\"ork,
 Alain Bossavit,
 Percy W. Bridgman,
 Robert Bringhurst,
@@ -1491,13 +1491,15 @@ William L. Burke,
 Italo Calvino,
 Yvonne Choquet-Bruhat,
 Bernard D. Coleman,
-C{\'e}cile DeWitt-Morette,
+C\'ecile DeWitt-Morette,
 Margaret Dillard-Bleick,
 Albert Einstein,
 Leonhard Euler,
 Jerald L. Ericksen,
+Mercedes Gambarana,
 Jean-Yves Girard,
-{\'E}ric Gourgoulhon,
+Irving J. Good,
+\'Eric Gourgoulhon,
 Theodore Hailperin,
 Alexandr S. Holevo,
 Thomas J. R. Hughes,
@@ -1506,6 +1508,7 @@ Harold Jeffreys,
 William E. Johnson,
 Buster Keaton,
 Attay Kovetz,
+David J. C. MacKay,
 Jerrold E. Marsden,
 Bogdan Mielnik,
 Charles W. Misner,
@@ -1514,14 +1517,17 @@ A. Ian Murdoch,
 Robert Musil,
 Friedrich Nietzsche,
 Walter Noll,
+ONE,
 David R. Owen,
 Saitama,
-Ivan Samoh{\'y}l,
+Ivan Samoh\'yl,
 Jan A. Schouten,
-Miroslav {\v{S}}ilhav{\'y},
+Miroslav \v{S}ilhav\'y,
+Rumiko Takahashi,
 Kip S. Thorne,
 Richard A. Toupin,
-Clifford Truesdell,
+Clifford A. Truesdell,
+Alan M. Turing,
 Robert M. Wald,
 John A. Wheeler,
 Ludwig Wittgenstein.
@@ -11205,9 +11211,9 @@ Here is an example script for simulating the system of ideal gas \amp\ piston an
 \section{Surfaces of discontinuity}
 \label{sec:jumps}
 
-From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing a horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person has same magnitude as the friction, $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $v$, because its time-rate change of horizontal momentum is zero:
+From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person is equal and opposite to the friction: $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $\yv$, because its time-rate change of horizontal momentum is zero:
 \begin{equation*}
-  \frac{\di P_{x}(t)}{\dt} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
+  \frac{\di\yP(t)}{\dt} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
 \end{equation*}
 %
 \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
@@ -11215,15 +11221,15 @@ From our discussion about \autoref{sec:friction_normal_force}{friction}, we know
 }%
 
 
-Let us consider what happens from the point of view of energy. Through the part of control surface where the person pushes the crate there's an influx of mechanical power $\yFp\cdot\yv$. Let's say that there's no heat flux. The total-energy influx through that part of surface is then
+Let us consider what happens from the point of view of energy. Through the part of control surface where the person pushes the crate there's an influx of mechanical power $\yFp\cdot\yv$. Let's say that there's no heat flux there. The total-energy influx through that part of surface is then
 \begin{equation*}
-  \yEp = \yFp\cdot v > 0 \ .
+  \yEp = \yFp\cdot \yv > 0 \ .
 \end{equation*}
-This energy influx is positive because the force exerted by the person and the velocity have the same orientation.
+This energy influx is positive because the force $\yFp$ exerted by the person and the velocity $\yv$ have the same orientation.
 
-What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, there must be one if the internal energy $\yU$ of the crate is constant in time. The crate's kinetic energy $\tfrac12\ym v^{2}$ and gravitational potential energy are also constant, so the total energy content is constant, and therefore the energy flowing in from the push must flow out from somewhere else. Obviously it's flowing through the surface between crate and floor. What kind of energy flux occurs there? is it heat? is it mechanical power?
+What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, there must be one if the internal energy $\yU$ of the crate is constant in time. The crate's kinetic energy $\tfrac12\ym \yv^{2}$ and its gravitational potential energy are also constant, so the total energy content is constant, and therefore the energy flowing in from the push must flow out from somewhere else. Obviously it's flowing through the surface between crate and floor. What kind of energy flux occurs there? is it heat? is it mechanical power?
 
-The constitutive relation $\yH = \yQ + \yF\cdot \yv$ does \emph{not} apply to the control surface between crate and floor, because the velocity of matter $\yv$ is not the same on both sides of the surface. On the upper side, the matter constituting the crate is moving with velocity $v$; on the lower side, the matter constituting the floor is at rest, with zero velocity.
+The constitutive relation $\yH = \yQ + \yF\cdot \yv$ does \emph{not} apply to the control surface between crate and floor, because the velocity of matter $\yv$ is not the same on both sides of the surface. On the upper side, the matter constituting the crate is moving with horizontal velocity $\yv$; on the lower side, the matter constituting the floor is at rest, with zero velocity.
 
 This contact surface is an example of \emph{surface of discontinuity}:
 %
@@ -11231,7 +11237,7 @@ This contact surface is an example of \emph{surface of discontinuity}:
 If a physical quantity $X$ \emph{which is a function of position $\yr$} has two different limit values as we consider positions closer and closer to the two sides of a small control surface, then the latter is called a \textbf{surface of discontinuity for the quantity $X$}.
 \end{definition}
 
-Note that it does not make sense to speak of surface of discontinuity for a quantity which is not a function of position, such as the volume contents of matter, momentum, energy, and so on. Volume contents are related to particular control volumes, not to positions. Quantities for which it makes sense to speak of surfaces of discontinuities are for example velocity, temperature, pressure, matter density, energy density, and similar.
+Note that it doesn't make sense to speak of surface of discontinuity for a quantity which is not a function of position, such as the volume contents of matter, momentum, energy, and so on. Volume contents are related to particular control volumes, not to positions. Quantities for which it makes sense to speak of surfaces of discontinuities are for example velocity, temperature, pressure, matter density, energy density, and similar.
 
 A control surface may be a surface of discontinuity for some quantity but not for another. In our present example, for instance, the matter velocity is different on the two sides, but the temperature of the floor and of the bottom of the crate might be the same. This contact surface is then a surface of discontinuity for the velocity but not for the temperature.
 
@@ -11239,7 +11245,7 @@ A control surface may be a surface of discontinuity for some quantity but not fo
 
 We shall now learn a common and important technique to study surfaces of discontinuity. This technique allows us to extend the application of some constitutive relations also to cases where they cannot be applied at first. Our discussion of the technique is largely intuitive, but it can be made mathematically rigorous.
 
-Let's return to our example with the crate and the floor. Imagine to zoom in on the imaginary control surface that separates the crate and the floor. Replace this surface with a very thin imaginary control volume; see the side figure. Two sides (\textcolor{red}{light-red dashed lines}) of this control volume have the same extension as the original surface and are parallel to it. One of them lies completely within the crate, and the other completely within the floor. The lateral sides (\textcolor{purple}{dark-red dashed lines}) of the control volume have a very small height $h$.
+Let's return to the example with the crate and the floor. Zoom in on the imaginary control surface that separates them. Replace this surface with a very thin imaginary control volume; see the side figure. Two horizontal sides (\textcolor{red}{light-red dashed lines}) of this control volume have the same extension as the original surface and are parallel to it. One of them lies completely within the crate, and the other completely within the floor. The lateral sides (\textcolor{purple}{dark-red dashed lines}) of the control volume have a very small height $h$.
 %
 \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/hsurface.jpg}%
@@ -11247,23 +11253,23 @@ Let's return to our example with the crate and the floor. Imagine to zoom in on 
 
 Consider the fluxes of momentum for this control volume. Thanks to extensivity, they can be separated into three contributions:
 \begin{description}
-\item[\textcolor{red}{Surface within crate:}] Horizontal momentum (having leftward orientation in the figure), as friction, is coming from the floor and the lower parts of the crate, and is passed on to the upper parts. Through this surface there is therefore an \emph{ef}flux of momentum equal to $\yFf$.
+\item[\textcolor{red}{Surface within crate:}] Horizontal momentum (having leftward orientation in the figure), as friction, is coming from the floor and the lower parts of the crate, and is passed on to the upper parts of the crate. Through this surface there is therefore an \emph{ef}flux of momentum equal to $\yFf$.
 
-All matter close to this surface has velocity $v$, on both sides, because this surface is completely within the crate. For the energy \emph{ef}flux  $\yHc$ through this surface we can therefore use the constitutive relation
+All matter close to this surface has velocity $\yv$, on both sides, because this surface is completely within the crate. For the energy \emph{ef}flux  $\yHc$ through this surface we can therefore use the constitutive relation
 \begin{equation*}
-  \yHc = \yQc +\yFf\cdot v
+  \yHc = \yQc +\yFf\cdot \yv
 \end{equation*}
 where $\yQc$ is the heat efflux, possibly zero.
 
-\item[\textcolor{red}{Surface within floor:}] Horizontal momentum (having rightward orientation in the figure), as friction, is coming from the crate and the upper parts of the floor, and is passed on to the lower parts. Through this surface there is therefore an \emph{ef}flux of momentum equal to $-\yFf$.
+\item[\textcolor{red}{Surface within floor:}] Horizontal momentum (having rightward orientation in the figure), as friction, is coming from the crate and the upper parts of the floor, and is passed on to the lower parts of the floor. Through this surface there is therefore an \emph{ef}flux of momentum equal to $-\yFf$.
 
-  All matter close to this surface has zero velocity, on both sides, because this surface is completely within the floor. For the energy \emph{ef}flux $\yHfl$ through this surface we can therefore use the constitutive relation
+  All matter close to this surface has zero velocity, on both sides, because this surface is completely within the floor. For the energy \emph{ef}flux $\yHfl$ through this surface we can therefore use the constitutive relation for matter, but with zero mechanical power, owing to the zero velocity:
 \begin{equation*}
   \yHfl = \yQfl
 \end{equation*}
-where $\yQfl$ is a heat efflux, possibly zero. There is no mechanical power, owing to the zero velocity.
+where $\yQfl$ is the heat efflux, possibly zero.
 
-\item[\textcolor{purple}{Side surfaces:}] We imagine to take the height $h$ to be extremely small, so small that the area of the side control surfaces is negligible. All fluxes through these surfaces are, intuitively, negligible.
+\item[\textcolor{purple}{Side surfaces:}] We imagine to take the height $h$ to be smaller and smaller: so small that the area of the side control surfaces is negligible. All fluxes through these surfaces are, intuitively, negligible in the limit.
 \end{description}
 
 Now let's examine the balance of energy for this thin control volume. Owing to the very small height $h$, the volume is extremely small. Therefore the energy content $\yE$ and its time-rate of change $\di\yE/\dt$ are, intuitively, negligible. The balance of energy then yields
@@ -11271,20 +11277,20 @@ Now let's examine the balance of energy for this thin control volume. Owing to t
   \begin{aligned}
     \frac{\di\yE}{\dt} &= -\yHc -\yHfl
     \\[2\jot]
-    \qty{0}{J/s}&= - (\yQc + \yFf\cdot v) - \yQfl
+    \qty{0}{J/s}&= - (\yQc + \yFf\cdot \yv) - \yQfl
   \end{aligned}
 \end{equation*}
 from which we find
 \begin{equation*}
   \begin{aligned}
-    \yHc &= -\yHfl \\[\jot]  \yQc + \yFf \cdot v &= -\yQfl
+    \yHc &= -\yHfl \\[\jot]  \yQc + \yFf \cdot \yv &= -\yQfl
   \end{aligned}
 \end{equation*}
 
 This is a very interesting result. Zoom out from the thin control volume just analysed, so that it looks like the initial control surface between crate and floor. What happens at this control surface is the following:
 \begin{itemize}
 \item The \autoref{def:symmetryflux}{symmetry of flux} is still valid for the flux of \emph{total-energy}: the flux from floor to crate, $\yHc$, and the flux from crate to floor, $\yHfl$, are equal in magnitude but opposite: $\yHc = -\yHfl$.
-\item However, the energy flux appears \emph{as heat flux plus mechanical power on one side (crate) of the surface}, but \emph{only as heat flux on the other side (floor)}.
+\item However, the energy flux appears \emph{as heat flux plus mechanical power $\yQc + \yFf \cdot \yv$ on one side (crate) of the surface}, but \emph{only as heat flux $\yQfl$ on the other side (floor)}.
 \end{itemize}
 
 This makes sense from a molecular point of view. Roughly speaking, the kinetic energy of the visible, coordinated motion of the molecules that make up the crate, is transformed into kinetic energy of the microscopic uncoordinated motion of the molecules that make up the floor. But note an amazing fact: we obtained this result by applying the balance laws, \emph{without invoking any molecular picture}.
@@ -11300,12 +11306,17 @@ The result above also shows, in accordance with a \autoref{warn:flux_symmetry_no
 Note that the example with the crate \amp\ floor generalizes to situations where the  matter velocity is different on the two sides $a$ and $b$ of a control surface, and non-zero in both. We have:
 \begin{equation}\label{eq:Q_F_discontinuity}
   \begin{gathered}
-    \yQ_{a} + \yF\cdot\yv_{a} = -\yQ_{b} - \yF\cdot\yv_{b}
+    \yQ_{a\rightsquigarrow b} +
+    \yF_{a\rightsquigarrow b}\cdot\yv_{b}
+    =
+    \yQ_{b\rightsquigarrow a} +
+    \yF_{b\rightsquigarrow a}\cdot\yv_{a}
     \\
     \text{possibly with}\quad
-    \yv_{a} \ne \yv_{b} \,,\enskip
-    \yQ_{a} \ne -\yQ_{b} \,,\enskip
-    \yF\cdot\yv_{a} \ne -\yF\cdot\yv_{b} \,.
+    \yv_{b} \ne \yv_{a} \,,\enskip
+    \yQ_{a\rightsquigarrow b} \ne -\yQ_{b\rightsquigarrow a} \,,\enskip
+    \yF_{a\rightsquigarrow b}\cdot\yv_{b}
+    \ne -\yF_{b\rightsquigarrow a}\cdot\yv_{a} \,.
   \end{gathered}
 \end{equation}
 
