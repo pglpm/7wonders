@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-30T11:21:58+0200
+%% Last-Updated: 2025-03-30T18:08:08+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1032,6 +1032,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
 \newcommand*{\yvs}{\bm{v}_{\text{s}}}
+\newcommand*{\yvc}{\yv_{\textrm{crate}}}
 \newcommand*{\yns}{\bm{n}_{\text{s}}}
 \newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
@@ -11211,7 +11212,7 @@ Here is an example script for simulating the system of ideal gas \amp\ piston an
 \section{Surfaces of discontinuity}
 \label{sec:jumps}
 
-From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person is equal and opposite to the friction: $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $\yv$, because its time-rate change of horizontal momentum is zero:
+From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person is equal and opposite to the friction: $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $\yvc$, because its time-rate change of horizontal momentum is zero:
 \begin{equation*}
   \frac{\di\yP(t)}{\dt} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
 \end{equation*}
@@ -11221,15 +11222,15 @@ From our discussion about \autoref{sec:friction_normal_force}{friction}, we know
 }%
 
 
-Let us consider what happens from the point of view of energy. Through the part of control surface where the person pushes the crate there's an influx of mechanical power $\yFp\cdot\yv$. Let's say that there's no heat flux there. The total-energy influx through that part of surface is then
+Let us consider what happens from the point of view of energy. Through the part of control surface where the person pushes the crate there's an influx of mechanical power $\yFp\cdot\yvc$. Let's say that there's no heat flux there. The total-energy influx through that part of surface is then
 \begin{equation*}
-  \yEp = \yFp\cdot \yv > 0 \ .
+  \yEp = \yFp\cdot \yvc > 0 \ .
 \end{equation*}
-This energy influx is positive because the force $\yFp$ exerted by the person and the velocity $\yv$ have the same orientation.
+This energy influx is positive because the force $\yFp$ exerted by the person and the velocity $\yvc$ have the same orientation.
 
-What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, there must be one if the internal energy $\yU$ of the crate is constant in time. The crate's kinetic energy $\tfrac12\ym \yv^{2}$ and its gravitational potential energy are also constant, so the total energy content is constant, and therefore the energy flowing in from the push must flow out from somewhere else. Obviously it's flowing through the surface between crate and floor. What kind of energy flux occurs there? is it heat? is it mechanical power?
+What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, there must be one if the internal energy $\yU$ of the crate is constant in time. The crate's kinetic energy $\tfrac12\ym \yvc^{2}$ and its gravitational potential energy are also constant, so the total energy content is constant, and therefore the energy flowing in from the push must flow out from somewhere else. Obviously it's flowing through the surface between crate and floor. What kind of energy flux occurs there? is it heat? is it mechanical power?
 
-The constitutive relation $\yH = \yQ + \yF\cdot \yv$ does \emph{not} apply to the control surface between crate and floor, because the velocity of matter $\yv$ is not the same on both sides of the surface. On the upper side, the matter constituting the crate is moving with horizontal velocity $\yv$; on the lower side, the matter constituting the floor is at rest, with zero velocity.
+The constitutive relation $\yH = \yQ + \yF\cdot \yvc$ does \emph{not} apply to the control surface between crate and floor, because the velocity of matter $\yvc$ is not the same on both sides of the surface. On the upper side, the matter constituting the crate is moving with horizontal velocity $\yvc$; on the lower side, the matter constituting the floor is at rest, with zero velocity.
 
 This contact surface is an example of \emph{surface of discontinuity}:
 %
@@ -11255,9 +11256,9 @@ Consider the fluxes of momentum for this control volume. Thanks to extensivity, 
 \begin{description}
 \item[\textcolor{red}{Surface within crate:}] Horizontal momentum (having leftward orientation in the figure), as friction, is coming from the floor and the lower parts of the crate, and is passed on to the upper parts of the crate. Through this surface there is therefore an \emph{ef}flux of momentum equal to $\yFf$.
 
-All matter close to this surface has velocity $\yv$, on both sides, because this surface is completely within the crate. For the energy \emph{ef}flux  $\yHc$ through this surface we can therefore use the constitutive relation
+All matter close to this surface has velocity $\yvc$, on both sides, because this surface is completely within the crate. For the energy \emph{ef}flux  $\yHc$ through this surface we can therefore use the constitutive relation
 \begin{equation*}
-  \yHc = \yQc +\yFf\cdot \yv
+  \yHc = \yQc +\yFf\cdot \yvc
 \end{equation*}
 where $\yQc$ is the heat efflux, possibly zero.
 
@@ -11277,46 +11278,44 @@ Now let's examine the balance of energy for this thin control volume. Owing to t
   \begin{aligned}
     \frac{\di\yE}{\dt} &= -\yHc -\yHfl
     \\[2\jot]
-    \qty{0}{J/s}&= - (\yQc + \yFf\cdot \yv) - \yQfl
+    \qty{0}{J/s}&= - (\yQc + \yFf\cdot \yvc) - \yQfl
   \end{aligned}
 \end{equation*}
 from which we find
 \begin{equation*}
   \begin{aligned}
-    \yHc &= -\yHfl \\[\jot]  \yQc + \yFf \cdot \yv &= -\yQfl
+    \yHc &= -\yHfl \\[\jot]  \yQc + \yFf \cdot \yvc &= -\yQfl
   \end{aligned}
 \end{equation*}
 
 This is a very interesting result. Zoom out from the thin control volume just analysed, so that it looks like the initial control surface between crate and floor. What happens at this control surface is the following:
 \begin{itemize}
 \item The \autoref{def:symmetryflux}{symmetry of flux} is still valid for the flux of \emph{total-energy}: the flux from floor to crate, $\yHc$, and the flux from crate to floor, $\yHfl$, are equal in magnitude but opposite: $\yHc = -\yHfl$.
-\item However, the energy flux appears \emph{as heat flux plus mechanical power $\yQc + \yFf \cdot \yv$ on one side (crate) of the surface}, but \emph{only as heat flux $\yQfl$ on the other side (floor)}.
+\item However, the energy flux appears \emph{as heat flux plus mechanical power $\yQc + \yFf \cdot \yvc$ on one side (crate) of the surface}, but \emph{only as heat flux $\yQfl$ on the other side (floor)}.
 \end{itemize}
 
-This makes sense from a molecular point of view. Roughly speaking, the kinetic energy of the visible, coordinated motion of the molecules that make up the crate, is transformed into kinetic energy of the microscopic uncoordinated motion of the molecules that make up the floor. But note an amazing fact: we obtained this result by applying the balance laws, \emph{without invoking any molecular picture}.
+In other words, the contact surface acts as a sort of converter between mechanical power and heating. When we discuss the \autoref[\chap~\ref]{cha:bal_entropy}{balance of entropy} we shall see that this surface can be considered as a peculiar sort of of \emph{thermodynamic engine}. We shall also prove that positive influx of mechanical power on one side can be converted into positive outflux of heat on the other side -- but the opposite conversion \emph{cannot} happen.
 
-When we'll discuss the \autoref[\chap~\ref]{cha:bal_entropy}{balance of entropy}, we'll also discover that at this kind of surfaces of discontinuity, positive influx of mechanical power on one side can be converted to positive outflux of heat on the other side -- but the opposite conversion \emph{cannot} happen.
+This conversion, at a contact surface, between mechanical power and heating makes sense from a molecular point of view. Roughly speaking, the \emph{visible} kinetic energy of the macroscopic, coordinated part of the motion of the molecules that make up the crate -- what we call \enquote*{the velocity of the crate} -- is transformed into \emph{invisible} kinetic energy of a microscopic, uncoordinated motion of the molecules of crate and floor. This is why objects typically become warmer under friction.
 
-\medskip
-
-The result above also shows, in accordance with a \autoref{warn:flux_symmetry_not_parts}{previous warning}, that the principle of extensivity only holds for the flux of total-energy and other total quantities, but not necessarily for the individual parts into which we may decompose those quantities, such as heat flux and mechanical power, into which we typically decompose the total-energy flux.
+But note an amazing fact: we found out about this conversion between mechanical power and heating by applying the balance laws, \emph{without invoking any molecular picture!}
 
 \medskip
 
-Note that the example with the crate \amp\ floor generalizes to situations where the  matter velocity is different on the two sides $a$ and $b$ of a control surface, and non-zero in both. We have:
+The result above also shows, in accordance with a \autoref{warn:flux_symmetry_not_parts}{previous warning}, that the principle of extensivity only holds for the flux of total-energy and other total quantities, but not necessarily for the individual parts into which we may decompose those quantities; like heat flux and mechanical power in the case of energy flux.
+
+\subsection{General case}
+
+The example with the crate \amp\ floor generalizes to situations where the matter velocity is different on the two sides $a$ and $b$ of a control surface, possibly zero or non-zero on either side. Call $\yva$ the velocity of matter on side $a$, and $\yFa$, $\yQ_{a}$, the momentum flux and heat flux appearing on side $a$; analogously for side $b$. Then we have:
 \begin{equation}\label{eq:Q_F_discontinuity}
   \begin{gathered}
-    \yQ_{a\rightsquigarrow b} +
-    \yF_{a\rightsquigarrow b}\cdot\yv_{b}
-    =
-    \yQ_{b\rightsquigarrow a} +
-    \yF_{b\rightsquigarrow a}\cdot\yv_{a}
-    \\
-    \text{possibly with}\quad
-    \yv_{b} \ne \yv_{a} \,,\enskip
-    \yQ_{a\rightsquigarrow b} \ne -\yQ_{b\rightsquigarrow a} \,,\enskip
-    \yF_{a\rightsquigarrow b}\cdot\yv_{b}
-    \ne -\yF_{b\rightsquigarrow a}\cdot\yv_{a} \,.
+    \yFa = -\yFb\,,\quad
+    \yQ_{a} + \yFa\cdot\yva = -(\yQ_{b} + \yFb\cdot\yvb)
+    \\[\jot]
+    \text{but possibly with}\qquad
+    \yva \ne \yvb \,,\quad
+    \yQ_{a} \ne -\yQ_{b} \,,\quad
+    \yFa\cdot\yva \ne -\yFb\cdot\yvb \,.
   \end{gathered}
 \end{equation}
 
