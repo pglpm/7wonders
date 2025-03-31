@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-30T18:12:01+0200
+%% Last-Updated: 2025-03-31T06:47:38+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10467,13 +10467,17 @@ When we study a body of matter in circumstances in which it only undergoes rigid
 
 \medskip
 
-Rigid motions have special properties as regards the balance of energy. Under a rigid motion, the constitutive equations for energy content and energy flux take on a peculiar form:
-\begin{itemize}
-\item \textbf{The heat flux contributes only to changes in internal energy}.
-\item \textbf{The internal energy can only change through heat fluxes}.
-\item \textbf{The mechanical power contributes only to changes in kinetic \amp\ gravitational potential energy}.
-\item \textbf{Kinetic \amp\ gravitational potential energy can only change through mechanical power}.
-\end{itemize}
+Rigid motions have special properties as regards the balance of energy.
+%
+\begin{definition}{Balance of energy for matter in rigid motion}
+  For matter undergoing a rigid motion, the balance of energy take on a special form:
+  \begin{itemize}
+  \item \textbf{The heat flux contributes only to changes in internal energy}.
+  \item \textbf{The internal energy can only change through heat fluxes}.
+  \item \textbf{The mechanical power contributes only to changes in kinetic \amp\ gravitational potential energy}.
+  \item \textbf{Kinetic \amp\ gravitational potential energy can only change through mechanical power}.
+  \end{itemize}
+\end{definition}
 Let's express these conditions mathematically. Consider a control volume containing all or part of a body undergoing rigid motion, and for which the velocity $\yv$ is the same throughout, even if it can change with time. This will be approximately true at least if the control volume is small enough. The mass and internal energy contained in the control volume are $\ym$ and $\yU$, the total momentum influx and heat flux across the closed control surface are $\yF$ and $\yQ$. Use a vertical coordinate $z$. Then, in integral expression:
 \begin{subequations}
   \label{eq:rigid_body_energy_int}
@@ -11213,9 +11217,9 @@ Here is an example script for simulating the system of ideal gas \amp\ piston an
 \section{Surfaces of discontinuity}
 \label{sec:jumps}
 
-From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person is equal and opposite to the friction: $\yFp=-\yFf$. Then the crate will move with constant horizontal velocity $\yvc$, because its time-rate change of horizontal momentum is zero:
+From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person is equal and opposite to the friction: $\yFp=-\yFf$. Then, according to Newton's constitutive equation for momentum $\yP = \ym\yv$, the crate moves with constant horizontal velocity $\yvc$, because its time-rate change of horizontal momentum is zero:
 \begin{equation*}
-  \frac{\di\yP(t)}{\dt} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
+  \frac{\di\yP}{\dt} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
 \end{equation*}
 %
 \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
@@ -11225,13 +11229,13 @@ From our discussion about \autoref{sec:friction_normal_force}{friction}, we know
 
 Let us consider what happens from the point of view of energy. Through the part of control surface where the person pushes the crate there's an influx of mechanical power $\yFp\cdot\yvc$. Let's say that there's no heat flux there. The total-energy influx through that part of surface is then
 \begin{equation*}
-  \yEp = \yFp\cdot \yvc > 0 \ .
+  \yH_{\textrm{p}} = \yFp\cdot \yvc > 0 \ .
 \end{equation*}
 This energy influx is positive because the force $\yFp$ exerted by the person and the velocity $\yvc$ have the same orientation.
 
-What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, there must be one if the internal energy $\yU$ of the crate is constant in time. The crate's kinetic energy $\tfrac12\ym \yvc^{2}$ and its gravitational potential energy are also constant, so the total energy content is constant, and therefore the energy flowing in from the push must flow out from somewhere else. Obviously it's flowing through the surface between crate and floor. What kind of energy flux occurs there? is it heat? is it mechanical power?
+What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, the motion of the crate is \autoref{sec:rigid_bodies}{rigid}; therefore the positive mechanical power coming from the person should increase the kinetic or the gravitational potential energy of the crate. But these two energies are constant; this means that there must be a negative influx of mechanical power somewhere else. Obviously it must occur through the surface between crate and floor. What kind of energy flux occurs there? is it only mechanical power? is it also heating?
 
-The constitutive relation $\yH = \yQ + \yF\cdot \yvc$ does \emph{not} apply to the control surface between crate and floor, because the velocity of matter $\yvc$ is not the same on both sides of the surface. On the upper side, the matter constituting the crate is moving with horizontal velocity $\yvc$; on the lower side, the matter constituting the floor is at rest, with zero velocity.
+The constitutive relation $\yH = \yQ + \yF\cdot \yv$ does \emph{not} apply to the control surface between crate and floor, because the velocity of matter $\yv$ is not the same on both sides of the surface. On the upper side, the matter constituting the crate is moving with horizontal velocity $\yvc$; on the lower side, the matter constituting the floor is at rest, with zero velocity.
 
 This contact surface is an example of \emph{surface of discontinuity}:
 %
