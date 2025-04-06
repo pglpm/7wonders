@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-03-31T06:47:38+0200
+%% Last-Updated: 2025-04-06T09:12:21+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1494,6 +1494,7 @@ Yvonne Choquet-Bruhat,
 Bernard D. Coleman,
 C\'ecile DeWitt-Morette,
 Margaret Dillard-Bleick,
+Carl Eckart,
 Albert Einstein,
 Leonhard Euler,
 Jerald L. Ericksen,
@@ -1520,6 +1521,7 @@ Friedrich Nietzsche,
 Walter Noll,
 ONE,
 David R. Owen,
+Henri Poincar\'e,
 Saitama,
 Ivan Samoh\'yl,
 Jan A. Schouten,
@@ -7395,6 +7397,8 @@ that is, if the area through which the flux occur decreases, then the velocity o
 \chapter{Conservation of magnetic flux}
 \label{cha:cons_magneticflux}
 
+\epigraph{Some writers regard electromagnetism as a well-understood and even as a closed field of study. Maxwell's equations can be accepted and all that is needed is to find appropriate solutions. This, however, is an onlooker's view, practitioners know that there are many fundamental problems to be investigated.}{P. Hammond \cites*{hammond1988}}
+
 \section{Formulation and generalities}
 \label{sec:cons_magneticflux_formulation}
 
@@ -7624,10 +7628,10 @@ in which the term $\yU$ represents internal energy; the term $g$ comes from grav
 
 If a control volume contains not only matter but also electric charge and electromagnetic fields, then we must use constitutive relations that connect the momentum content with all those quantities. Such constitutive relations can be quite complex. In general they cannot even be written as a \emph{sum} of some expression involving only velocity and mass, plus some expression involving only electromagnetic fields; see for example the formula in the side figure.
 %
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/momentum_matter_EM2.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Constitutive relation for the momentum content of a control volume containing matter, electric charge, and electromagnetic fields. Velocity is $\mathbf{v}$, mass density is $\rho_{0}$. The symbols $\mathbf{P}$, $\mathbf{M}$ are related to electric charge; symbols  $\mathbf{E}$, $\mathbf{B}$ to the electromagnetic field. % Note that we cannot separate this formula in a part with only matter-quantities plus one with only electromagnetic quantities.
+Constitutive relation for the momentum content of a control volume containing inviscid fluid matter, electric charge, and electromagnetic fields. Velocity is $\mathbf{v}$, mass density is $\rho_{0}$. The symbols $\mathbf{P}$, $\mathbf{M}$ are related to electric charge; symbols  $\mathbf{E}$, $\mathbf{B}$ to the electromagnetic field. % Note that we cannot separate this formula in a part with only matter-quantities plus one with only electromagnetic quantities.
 From \cites{pfeiferetal2007}.%
 }%
 This happens, for instance, for a control volume containing water or glass traversed by a laser beam, as occurs in applications like water-assisted laser inscription. This inseparability means that we cannot really speak of \enquote{momentum of matter} or \enquote{momentum of the electromagnetic field}: the momentum content is related to the whole.
@@ -10699,16 +10703,7 @@ Even more interesting examples, in which Fourier's law does not always apply, oc
 \subsection{Other common assumptions about ideal gases}
 \label{sec:further_idealgas}
 
-Besides the particular constitutive relations for momentum flux, internal energy, and heat flux just discussed, it is typically assumed that a not-too-large volume of ideal gas has a negligible mass. This is usually a reasonable assumption.
-\begin{exercise}
-  Calculate the mass of a litre, that is \qty{e-3}{m^3}, of air. Use the following information:
-  \begin{itemize}[nosep]
-  \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\ym\approx\yrho\yN$
-  \item the pressure $\ypr$ of air is around \qty{e5}{N/m^2}
-  \item take a thermodynamic temperature of air $\yT=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
-  \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
-  \end{itemize}
-\end{exercise}%1.2e-3
+Besides the particular constitutive relations for momentum flux, internal energy, and heat flux just discussed, it is typically assumed that a not-too-large volume of ideal gas has a negligible mass. This is usually a reasonable assumption (see exercise below).
 
 If the mass $\ym$ of a volume of ideal gas is assumed to be zero, then four other quantities are zero as well in that volume, at all times:
 \begin{itemize}[nosep]
@@ -10780,6 +10775,17 @@ The masslessness assumption is of course inadequate in some conditions like extr
 %
 % \bigskip
 
+
+\begin{exercise}
+  Calculate the mass of a litre, that is \qty{e-3}{m^3}, of air. Use the following information:
+  \begin{itemize}[nosep]
+  \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\ym\approx\yrho\yN$
+  \item the pressure $\ypr$ of air is around \qty{e5}{N/m^2}
+  \item take a thermodynamic temperature of air $\yT=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
+  \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
+  \end{itemize}
+\end{exercise}%1.2e-3
+
 \section{Example applications: ideal gas and piston}
 \label{sec:idealgas_ex}
 
@@ -10789,7 +10795,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
 To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\ym$ and constant surface area $A$.
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
 The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upward.
