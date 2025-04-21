@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-04-09T07:43:59+0200
+%% Last-Updated: 2025-04-21T19:37:28+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7220,15 +7220,15 @@ When we see this symbol we know that there's matter that's only balanced, not co
 }%
 For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\ya$ has a specific constitutive equation:
 \begin{definition}{Matter supply in radioactive decay}
-  \begin{equation*}
+  \begin{equation}\label{eq:radioactive_decay_supply}
   \ya(t) =  -\lambda\,\yN(t)
-\end{equation*}
+\end{equation}
 where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
 
 If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance then takes the form
-  \begin{equation*}
+  \begin{equation}\label{eq:radioactive_decay}
   \frac{\di\yN(t)}{\dt} =  -\lambda\,\yN(t)
-\end{equation*}
+\end{equation}
 called the \furl{https://www.britannica.com/science/radioactivity/Rates-of-radioactive-transitions\#ref496415}{\emph{law of radioactive decay}}.
 \end{definition}
 
@@ -7303,12 +7303,24 @@ This is how we are able to say that human usage of fossil fuel is an important f
 % \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 % }%
 \begin{exercise}
-  Measuring the relative amounts of carbon within an air pocket near the surface of a block of ice, you find that one mole of air contains \qty{e-12}{mol} of the radioactive isotope \nuclide[14]{C}. Making an analogous measurement for an air pocket deeper in the ice, you find instead a relative abundance of \qty{2e-13}{mol} of \nuclide[14]{C}. How old is the deeper section of ice?
+  You measure the relative amounts of carbon within an air pocket near the surface of a block of ice, and find that one mole of air in this pocket contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. You then make an analogous measurement within an air pocket deeper in the ice, and find a relative amount of \qty{2e-13}{mol} of \nuclide[14]{C} there. How older is the deeper section of ice?
 
-  Find out the ice's age $t_{\text{ice}}$ by numerically evolving the balance equation
-  $$\frac{\di\yN(t)}{\dt} = -\lambda\,\yN(t)$$
-  with $\lambda=\qty{0.000122}{yr^{-1}}$, until you reach the amount $\yN(t_{\text{ice}})= \qty{2e-13}{mol}$.
-  Use the procedure of \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and $\yN(\yti)=\qty{e-12}{mol}$, and assuming that the flow $\yJ(t)$ of \nuclide[14]{C} is zero. You can use a timestep $\Dt = (1/365)\,\unit{yr}$.
+  \smallskip
+
+  Find out the age $t_{\text{ice}}$ of the deeper section by numerically evolving the balance equation
+  \begin{equation*}
+    \frac{\di\yN(t)}{\dt} = \ya(t)
+  \end{equation*}
+  where the matter supply $\ya(t)$ has the constitutive relation for \autoref{sec:matter_const_radioactive}{radioactive decay}:
+  \begin{equation*}
+    \ya(t) = -\lambda\,\yN(t) \,,\qquad
+    \lambda = \qty{0.000122}{yr^{-1}}
+  \end{equation*}
+  and the matter flux $\yJ(t)$ is zero. Use a procedure similar to \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and the initial value $\yN(\yti)=\qty{e-12}{mol}$; use a timestep $\Dt = (1/365)\,\unit{yr}$. In this simulation, instead of terminating the \texttt{while} loop when $t$ reaches a definite end time, terminate it when the desired amount $\yN(t) = \qty{2e-13}{mol}$ has been reached; you can then read $t_{\text{ice}}$.
+
+  \smallskip
+
+  Alternatively you can find $t_{\text{ice}}$ by analytically solving the differential equation above, in a way similar to the example with the \autoref{sec:oscillating_reaction}{oscillating reaction}.
 \end{exercise}
 
 
@@ -10295,7 +10307,7 @@ Consider a car that at coordinate time $\yti$ is at rest with respect to the gro
 In our analysis we shall only determine which quantities are positive, negative, or zero, without definite numerical values. What we want to understand are the change and exchange mechanisms for energy, and how they differ in different coordinates. Our main focus is the car, considered as a control volume. Denote by $\yP$ its momentum, $\yU$ its internal energy, $\yEk$ its kinetic energy. We use the common constitutive relations for momentum and for energy. For simplicity we imagine there's no air -- even if the analysis of the energy exchanges with air is very fascinating. We also assume that heat exchanges between the car and ground are negligible. % The analysis for the heat flux will be given without proof because it relies on results based on \autoref{sec:jumps}{discontinuities}.
 
 \subsection{Coordinates $(t,x,y,z)$: ground at rest, car moving}
-\label{sec:car_road_1}
+\label{sec:car_road_rest}
 
 %
 \marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
@@ -10354,7 +10366,7 @@ $(t,x,y,z)$:\enskip\emph{The chemical internal energy of the car's engine is bei
 
 
 \subsection{Coordinates $(t,x',y,z)$: ground moving, car at rest}
-\label{sec:car_road_1}
+\label{sec:car_rest_road}
 
 %
 \marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
@@ -11867,7 +11879,7 @@ The angular momentum for a rigid body is therefore the sum of two parts. One par
 \begin{definition}{Total energy of a rigid body}
   Take a coordinate system $(t,x,y,z)$ close to Earth's surface and at rest with respect to it, with the $z$-coordinate pointing upwards. Consider a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$, then the total-energy $\yE(t)$ in the control volume is given by
   \begin{equation}
-    \label{eq:mom_rigidbody}
+    \label{eq:en_rigidbody}
     \yE(t) = \yU(t) +
     \tfrac{1}{2}\ym \yvcm(t)^{2} + \tfrac{1}{2} \yo(t) \cdot \yIc(t)\,\yo(t)
     + \ym g \yzcm(t)
