@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-04-21T19:37:28+0200
+%% Last-Updated: 2025-04-22T10:34:45+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -993,7 +993,11 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 % \renewcommand*{\autoref}[3][\sect~\ref]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{angle-right}\enskip#1{#2} page~\pageref{#2}}}\textcolor{blue}{#3}}
 % \renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon{angle-right}~#1{#2}\;p.\,\pageref{#2})}}
-\renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon[regular]{eye}\;#1{#2}\;p.\,\pageref{#2})}}
+\renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3}
+\raisebox{0.6ex}{\color{blue}\miniscule%
+%\faIcon[regular]{eye}%
+\faIcon{angle-right}%
+\;#1{#2}\;p.\,\pageref{#2}}}
 % %hand-point-right%
 % %undo%
 % %undo-alt%
@@ -3954,7 +3958,7 @@ The three kinds of amount, for each quantity, are denoted by special symbols. Ta
 \medskip
 
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering\includegraphics[height=8\baselineskip]{images/bottle_water.jpg}%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\centering\includegraphics[height=8\baselineskip]{images/bottle_water.jpg}%
 }%
 Consider a bottle on a table. You measure the amount of water molecules in it at a given time, and find that it's \qty{51.3}{mol}. We can express this as follows:
 \begin{equation*}
@@ -7514,7 +7518,7 @@ In the rest of this chapter we shall explore several common constitutive relatio
 \label{sec:gravity}
 % \sidepar{\vspace{-4\baselineskip}\footnotesize\centering\sffamily(Constitutive relation)}%
 
-According to General Relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$, which we also call a \autoref{sec:contact_volume_forces}{\emph{volume force} or \emph{body force}}. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General Relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we find a non-zero supply of momentum $\yG$ in a very small region, it can be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply of momentum to be zero \emph{in a small region} -- but in general not everywhere.
+According to General Relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$, which we also call a \furl{this}{}\autoref{sec:contact_volume_forces}{\emph{volume force} or \emph{body force}}. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General Relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we find a non-zero supply of momentum $\yG$ in a very small region, it can be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply of momentum to be zero \emph{in a small region} -- but in general not everywhere.
 
 %
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
@@ -9347,7 +9351,7 @@ Air is not always at rest (with respect to the Earth's surface). Owing to energy
 \end{quote}
 \end{extra}
 %
-\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Sections of two kinds of wings for supersonic flight \parencites[\sect\,26]{leishman2022_r2024}.%
@@ -9958,15 +9962,15 @@ These three requirements might appear as contradictory: if there's no flux of ma
 }%
 One situation is which the conditions above can coexist is when the control surface is parallel to the direction of the velocity $\yv$, as illustrated in the side figure, where the control surface is represented by the \textcolor{purple}{dashed red line}, and matter as a \textcolor{midgrey}{greyish texture}. In this case the surface may be static; yet there's no flux of matter through it, and the matter around it is moving with velocity $\yv$. Imagine for instance a fictitious horizontal surface in the middle of a water stream. Note that the matter on the two sides doesn't need to be of the same kind, though. For instance there could be water on one side of the control surface, and concrete on the other.
 
-Another situation in which three conditions can coexist is when the control surface is also moving, with the same velocity $\yv$ as the moving matter. See side figure. Obviously there's no flux of matter through the control surface, yet there's matter on both sides of it, moving with velocity $\yv$. Note again that the matter on the two sides doesn't need to be of the same kind.
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/Efluxsurf1.jpg}%
 }%
+Another situation in which three conditions can coexist is when the control surface is also moving, with the same velocity $\yv$ as the moving matter. See side figure. Obviously there's no flux of matter through the control surface, yet there's matter on both sides of it, moving with velocity $\yv$. Note again that the matter on the two sides doesn't need to be of the same kind.
 
 This situation occurs when a person pushes a door, the imaginary control surface being between hand and door; or when a hammer hits and bends a piece of hot iron, the imaginary surface being between hammer and iron; or when a bike-pump piston is pressed down vigorously, the imaginary surface being between the piston and the air within the pump.
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/illustr_push.jpg}%
 % \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
 % \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
@@ -10131,9 +10135,13 @@ Snippet from an introductory text on thermomechanics, with three special version
 \end{warning}
 
 
+%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
+\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+}%
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item Water is flowing downward in a pipe, as illustrated in the side picture by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
+  \item Water is flowing downward in a pipe, as illustrated in the side figure by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
 
   \item Suppose that there is no power $\yF\cdot\yv$ transmitted through a moving control surface. Does this mean that the momentum flux $\yF$ is zero? Or does this mean that the matter's velocity $\yv$ is zero?
 
@@ -10146,10 +10154,6 @@ Snippet from an introductory text on thermomechanics, with three special version
   \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
   \end{enumerate}
 \end{exercise}
-%
-\marginpar{\vspace{-31\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
-\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-}%
 %
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
 % \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
@@ -10889,7 +10893,7 @@ We must consider three partial surfaces:
 This is also a boundary condition. See side figure.
 
 % 
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/piston_forces.jpg}%
 }%
 
