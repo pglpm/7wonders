@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-04-22T10:34:45+0200
+%% Last-Updated: 2025-04-26T12:05:30+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -824,7 +824,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\providecommand{\coloneqq}{\mathrel{\mathop:}=}
 %\providecommand{\eqqcolon}{=\mathrel{\mathop:}}
 %\providecommand{\varprod}{\prod}
-\newcommand*{\de}{\uppartial}%partial diff
+% See https://tex.stackexchange.com/a/84308/97039
+\newcommand*{\de}{\mathop{}\!\uppartial}%partial diff
 \newcommand*{\pu}{\piup}%constant pi
 \newcommand*{\delt}{\deltaup}%Kronecker, Dirac
 %\newcommand*{\eps}{\varepsilonup}%Levi-Civita, Heaviside
@@ -836,7 +837,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\I}{\ensuremath{\mathrm{i}}}
 % \newcommand*{\e}{\mathrm{e}}%Neper
 \newcommand*{\e}{\ensuremath{\mathrm{e}}}
-\newcommand*{\di}{\mathrm{d}}%differential
+% See https://tex.stackexchange.com/a/84308/97039
+\newcommand*{\di}{\mathop{}\!\mathrm{d}}%differential
 % \newcommand*{\dii}{\ensuremath{\mathrm{d}}}
 % %% From TUGboat 18 (1997) 1 - leads to very strange spacing
 % \makeatletter
@@ -860,8 +862,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \fi\fi\fi\DiffSpace}
 % \makeatother
 
-% \newcommand*{\Di}{\mathrm{D}}%capital differential
-%\newcommand*{\Li}{\mathrm{L}}%Lie derivative
+% \newcommand*{\Di}{\mathop{}\!\mathrm{D}}%capital differential
+%\newcommand*{\Li}{\mathop{}\!\mathrm{L}}%Lie derivative
 %\newcommand*{\planckc}{\hslash}
 %\newcommand*{\avogn}{N_{\textrm{A}}}
 %\newcommand*{\NN}{\bm{\mathrm{N}}}
@@ -2042,7 +2044,7 @@ To study and use physical laws we must therefore become familiar with and profic
 The mathematics used to express physical laws can come in wildly diverse forms, using wildly diverse principles. This leads to what we may call \enquote{different physics languages}; a more technical name is \enquote{physics formalisms}. One may approach a physics phenomenon or problem in terms of \emph{Lagrangeans}, or \emph{Hamiltonians}, or \emph{fibre bundles}, or \emph{categories}, or \emph{action principles}, or many other formalisms.
 \marginpar{\normalsize%
   \begin{gather*}
-    \color{red}\delt\!\!\int\!\!L\,\dt = 0 \quad L=\frac12 m v^{2}
+    \color{red}\delt\!\!\int\!\!L\dt = 0 \quad L=\frac12 m v^{2}
     \\
     \color{cyan}\bm{F}=\frac{\di}{\dt}m\bm{v} \quad \bm{F}=0
   \end{gather*}
@@ -2843,7 +2845,7 @@ Taking the derivative of the velocity with respect to coordinate time, that is, 
 Since velocity is the time derivative of position, we can find the position from the velocity by the inverse operation of integration. So we have
 \begin{equation*}
   \yr(t) %= \bigl[v_{x}(t)\ ,\ v_{y}(t) \ ,\ v_{z}(t) \bigr]
-  =  \yr(\yti) + \int_{\yti}^{t}\yv(t)\,\dt
+  =  \yr(\yti) + \int_{\yti}^{t}\yv(t)\dt
   \qquad\text{or}\qquad
   \begin{bmatrix}
     x(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
@@ -2857,9 +2859,9 @@ Since velocity is the time derivative of position, we can find the position from
     z(\yti)\vphantom{\int_{\yti}^{t}}
   \end{bmatrix} +
   \begin{bmatrix}
-    \int_{\yti}^{t}v_{x}(t)\,\dt\\[3\jot]
-    \int_{\yti}^{t}v_{y}(t)\,\dt\\[3\jot]
-    \int_{\yti}^{t}v_{z}(t)\,\dt
+    \int_{\yti}^{t}v_{x}(t)\dt\\[3\jot]
+    \int_{\yti}^{t}v_{y}(t)\dt\\[3\jot]
+    \int_{\yti}^{t}v_{z}(t)\dt
   \end{bmatrix} \ .
 \end{equation*}
 Note from the formulae above that if we know the expression of the velocity $\yv(t)$, we still cannot know the position $\yr(t)$ unless we \emph{also} know the value $\yr(\yti)$ of the position at some particular time $\yti$.
@@ -2869,7 +2871,7 @@ Note from the formulae above that if we know the expression of the velocity $\yv
 In a analogous way we can find the velocity $\yv(t)$ from the acceleration $\bm{a}(t)$ by integration, provided we also know the value $\yv(\yti)$ of the velocity at some particular time $\yti$:
 \begin{equation*}
   \yv(t) %= \bigl[a_{x}(t)\ ,\ a_{y}(t) \ ,\ a_{z}(t) \bigr]
-  =  \yv(\yti) + \int_{\yti}^{t}\bm{a}(t)\,\dt
+  =  \yv(\yti) + \int_{\yti}^{t}\bm{a}(t)\dt
   \qquad\text{or}\qquad
   \begin{bmatrix}
     v_{x}(t)\vphantom{\int_{\yti}^{t}}\\[3\jot]
@@ -2883,9 +2885,9 @@ In a analogous way we can find the velocity $\yv(t)$ from the acceleration $\bm{
     v_{z}(\yti)\vphantom{\int_{\yti}^{t}}
   \end{bmatrix} +
   \begin{bmatrix}
-    \int_{\yti}^{t}a_{x}(t)\,\dt\\[3\jot]
-    \int_{\yti}^{t}a_{y}(t)\,\dt\\[3\jot]
-    \int_{\yti}^{t}a_{z}(t)\,\dt
+    \int_{\yti}^{t}a_{x}(t)\dt\\[3\jot]
+    \int_{\yti}^{t}a_{y}(t)\dt\\[3\jot]
+    \int_{\yti}^{t}a_{z}(t)\dt
   \end{bmatrix} \ .
 \end{equation*}
 
@@ -4912,7 +4914,7 @@ The total amount of quantity that crosses the surface between times $\yti$ and $
 The total amount of quantity flowing through a control surface in a specified crossing direction, between times $\yti$ and $\ytf$, is called the \textbf{time-integrated flux} and is given by
   \begin{equation}
     \label{eq:total_flow_integral}
-     \int_{\yti}^{\ytf}\!\! \yJ(t)\,\dt\ ,
+     \int_{\yti}^{\ytf}\!\! \yJ(t)\dt\ ,
    \end{equation}
    where $\yJ(t)$ is the flux of the quantity at time $t$.
 \end{definition}
@@ -4922,11 +4924,11 @@ The meaning of the integral above should be clear for any scalar quantity, for w
 Take the case of momentum, whose flux (force) we denote $\yF=[F_{x}, F_{y}, F_{z}]$. The time integral of this flux is then
 \begin{equation}
   \label{eq:total_flow_integral_vector}
-  \int_{\yti}^{\ytf}\!\! \yF(t)\,\dt \defd
+  \int_{\yti}^{\ytf}\!\! \yF(t)\dt \defd
   \Biggl[
-  \int_{\yti}^{\ytf}\!\! F_{x}(t)\,\dt \ ,\enskip
-  \int_{\yti}^{\ytf}\!\! F_{y}(t)\,\dt \ ,\enskip
-  \int_{\yti}^{\ytf}\!\! F_{z}(t)\,\dt
+  \int_{\yti}^{\ytf}\!\! F_{x}(t)\dt \ ,\enskip
+  \int_{\yti}^{\ytf}\!\! F_{y}(t)\dt \ ,\enskip
+  \int_{\yti}^{\ytf}\!\! F_{z}(t)\dt
   \Biggr] \ .
 \end{equation}
 
@@ -4942,7 +4944,7 @@ Take the case of momentum, whose flux (force) we denote $\yF=[F_{x}, F_{y}, F_{z
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item What is the physical dimension of the integrated flux of a quantity?
-  \item Suppose that we calculate the integral above for a particular control surface in the case of matter, finding a total of $\int_{\yti}^{\ytf}\!\! \yJ(t)\,\dt = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
+  \item Suppose that we calculate the integral above for a particular control surface in the case of matter, finding a total of $\int_{\yti}^{\ytf}\!\! \yJ(t)\dt = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
   \end{enumerate}
 \end{exercise}
 
@@ -5172,9 +5174,9 @@ Make the following measurements:
 \begin{itemize}[itemsep=1ex]
 \item $\yN(\yti)$: total \emph{volume content} of the quantity in the control volume at time $\yti$.
 
-\item $\int_{\yti}^{\ytf}\!\yJ(t)\, \dt$: total \emph{time-integrated \textbf{in}flux} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
+\item $\int_{\yti}^{\ytf}\!\yJ(t)\dt$: total \emph{time-integrated \textbf{in}flux} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
 
-\item $\int_{\yti}^{\ytf}\!\ya(t)\, \dt$: total \emph{time-integrated supply} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
+\item $\int_{\yti}^{\ytf}\!\ya(t)\dt$: total \emph{time-integrated supply} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
 
 \item $\yN(\ytf)$: total \emph{volume content} of this quantity in the control volume at time $\ytf$.
 \end{itemize}
@@ -5185,9 +5187,9 @@ Each of the three amounts above is, in this example, a scalar that can be positi
   \begin{gathered}
     \yti = \qty{0}{s} \qquad \yN(\yti) = \qty{10.5}{mol}\ ,
     \\[1ex]
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt = \qty{-9.7}{mol} \ ,
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\dt = \qty{-9.7}{mol} \ ,
     \\[1ex]
-    \int_{\yti}^{\ytf}\!\!\ya(t)\, \dt = \qty{0}{mol} \ ,
+    \int_{\yti}^{\ytf}\!\!\ya(t)\dt = \qty{0}{mol} \ ,
     \\[1ex]
     \ytf = \qty{18}{s} \qquad \yN(\ytf) = \qty{0.8}{mol} \ .
   \end{gathered}
@@ -5216,15 +5218,15 @@ Conservation laws tightly connect \autoref{cha:contents_fluxes}{\emph{volume con
     \label{eq:conserved}
     \textsf{\footnotesize volume\,content}(\ytf) =
     \textsf{\footnotesize volume\,content}(\yti) +
-    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\dt
+    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\dt
   \end{equation}
 \end{definition}
 For example, in the case of matter with volume content $\yN$ and influx $\yJ$, the conservation law would be
 \begin{equation*}
-  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt \ .
+  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt \ .
 \end{equation*}
 
-The meaning of a conservation law is intuitive. Let's take again the example of some kind of matter. The amount of quantity in the final control volume, $\yN(\ytf)$, must be equal to the amount in the initial control volume, $\yN(\yti)$, plus the total amount that flowed in through the surface between those times, the integrated flux $\int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt$. Said otherwise: any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear or disappear out of nowhere. Note that these amounts can be positive, negative, or zero.
+The meaning of a conservation law is intuitive. Let's take again the example of some kind of matter. The amount of quantity in the final control volume, $\yN(\ytf)$, must be equal to the amount in the initial control volume, $\yN(\yti)$, plus the total amount that flowed in through the surface between those times, the integrated flux $\int_{\yti}^{\ytf}\!\!\yJ(t)\dt$. Said otherwise: any amount of quantity that appears in (or disappears from) the control volume, must come in (or go out) through the surface; it can't appear or disappear out of nowhere. Note that these amounts can be positive, negative, or zero.
 
 A conservation law allows us to make several kinds of deductions and predictions. For example:
 \begin{itemize}
@@ -5235,12 +5237,12 @@ A conservation law allows us to make several kinds of deductions and predictions
 
 \item If we know the amount of quantity in the control volume at $\yti$, and the one at $\ytf$, then we can deduce the net amount that entered through the control surface between the times $\yti$ and $\ytf$:
   \begin{equation*}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt = \yN(\ytf) - \yN(\yti) \ .
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\dt = \yN(\ytf) - \yN(\yti) \ .
   \end{equation*}
 
 \item If we know the amount of quantity in the control volume at $\ytf$, and the net amount that entered through the control surface between $\yti$ and $\ytf$, we can deduce the initial amount in the control volume at time $\yti$:
   \begin{equation*}
-    \yN(\yti) = \yN(\ytf) - \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt \ .
+    \yN(\yti) = \yN(\ytf) - \int_{\yti}^{\ytf}\!\!\yJ(t)\dt \ .
   \end{equation*}
 \end{itemize}
 
@@ -5285,7 +5287,7 @@ We consider an imaginary, closed control surface wrapping the tube. The control 
 The conservation law~\eqref{eq:conserved} allows us to calculate the integrated \textbf{in}flux:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt &= \yN(\ytf) - \yN(\yti)
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\dt &= \yN(\ytf) - \yN(\yti)
     \\&= \qty{0.5}{mol} - \qty{12.6}{mol}
     \\&= \qty{-12.1}{mol}
   \end{split}
@@ -5330,7 +5332,7 @@ According to the description above we have
 From the conservation law~\eqref{eq:conserved} we calculate the time-integrated \textbf{in}flux:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt &= \yN(\ytf) - \yN(\yti)
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\dt &= \yN(\ytf) - \yN(\yti)
     \\&= \qty{53.4}{mol} - \qty{0}{mol}
     \\&= \qty{53.4}{mol}
   \end{split}
@@ -5340,15 +5342,15 @@ and this is the net amount of ice that entered the control surface during the \q
 Note that what we found is the time-integrated influx through the \emph{whole} closed control surface. The conservation law doesn't tell us anything about the integrated influx through \emph{parts} of the surface. In the present case we can divide the surface into three parts: a circular surface at the bottom, a side surface, and a circular surface at the top. If we provide the extra knowledge that the fluxes through the side and bottom surfaces are zero, then by the \autoref{def:extensivity}{extensivity property} we have
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt &=
+    \int_{\yti}^{\ytf}\!\!\yJ(t)\dt &=
     \int_{\yti}^{\ytf}\!\bigl[\yJ_{\textrm{top}}(t) +
     \yJ_{\text{side}}(t) +
-    \yJ_{\textrm{bot}}(t)\bigr]\,\dt
+    \yJ_{\textrm{bot}}(t)\bigr]\dt
     \\
       \qty{53.4}{mol} &=
       \int_{\yti}^{\ytf}\!\bigl[\yJ_{\textrm{top}}(t) +
       \qty{0}{mol/s} +
-      \qty{0}{mol/s}\bigr]\,\dt
+      \qty{0}{mol/s}\bigr]\dt
   \end{split}
 \end{equation*}
 from which we find, as was intuitively clear, that the net amount of ice that crossed the top surface in a downward direction is \qty{53.4}{mol}.
@@ -5402,18 +5404,18 @@ and its \emph{volume content} at time $\ytf$.
     \label{eq:balanced}
     \textsf{\footnotesize volume\,content}(\ytf) =
     \textsf{\footnotesize volume\,content}(\yti) +
-    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\,\dt +
-    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize supply}(t)\,\dt
+    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize influx}(t)\dt +
+    \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize supply}(t)\dt
   \end{equation}
 \end{definition}
 For example, in the case of \energym\ with volume content $\yE$, influx $\yH$, supply $\yR$, the balance law would be
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt \ .
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt \ .
 \end{equation*}
 
-The meaning of a balance law is intuitive: the amount of quantity in the final control volume: $\yE(\ytf)$, must be equal to the amount in the initial control volume: $\yE(\yti)$, plus the total amount that flowed in through the surface between those times:  $\int_{\yti}^{\ytf}\!\!\yH(t)\, \dt$, plus the total amount that was created in the volume: $\int_{\yti}^{\ytf}\!\!\yR(t)\, \dt$.
+The meaning of a balance law is intuitive: the amount of quantity in the final control volume: $\yE(\ytf)$, must be equal to the amount in the initial control volume: $\yE(\yti)$, plus the total amount that flowed in through the surface between those times:  $\int_{\yti}^{\ytf}\!\!\yH(t)\dt$, plus the total amount that was created in the volume: $\int_{\yti}^{\ytf}\!\!\yR(t)\dt$.
 
 \medskip
 
@@ -5429,12 +5431,12 @@ A conservation law is powerful because it means that the supply is always known 
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 A conservation law involves only knowledge about the initial and final control volumes (represented by the \textcolor{red}{red hatched} disks), and about the closed control surface during the time lapse (curved \textcolor{red}{red} contours); but not about the control volume during the time lapse. A balance law instead involves also this additional information.%
 }%
-For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enskip$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\, \dt$\enskip is not zero -- so there's no conservation law -- we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enskip An extensive quantity can therefore always be said to satisfy a balance law. A balance is not trivial, however, if we have some other physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enskip$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\dt$\enskip is not zero -- so there's no conservation law -- we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enskip An extensive quantity can therefore always be said to satisfy a balance law. A balance is not trivial, however, if we have some other physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
 
 \begin{warning}[Supplies are very different from fluxes]
   One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
-    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\bigl[\yH(t)+\yR(t)\bigr]\, \dt = 0
+    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\bigl[\yH(t)+\yR(t)\bigr]\dt = 0
   \end{equation*}
   which looks like a conservation law?}
 
@@ -5445,7 +5447,7 @@ Unfortunately the mathematical expression above wouldn't be a conservation law, 
 \smallskip
 
 Remember, moreover, that \autoref{def:symmetryflux}{fluxes always satisfy a symmetry principle}, but \emph{supplies in general do not satisfy any analogous symmetry principle}.
-% Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yR(t)\,\dt$ is not an integrated flux.
+% Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yR(t)\dt$ is not an integrated flux.
 \end{warning}
 
 
@@ -5488,17 +5490,17 @@ Let us now consider an extensive vector quantity like \emph{momentum}, which wil
 The balance law for a vector quantity like momentum has exactly the same expression we already know:
 \begin{equation}
   \label{eq:balanced_momentum}
-  \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\, \dt + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
+  \yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\dt + \int_{\yti}^{\ytf}\!\!\yG(t)\dt
 \end{equation}
 with the only difference that the quantities involved are vectors. So it corresponds to a system of three balance equations, one per component:
 \begin{equation}
   \label{eq:balanced_momentum_components}
 \left\{\   \begin{aligned}
-    P_{x}(\ytf) &= P_{x}(\yti) + \int_{\yti}^{\ytf}\!\!F_{x}(t)\, \dt + \int_{\yti}^{\ytf}\!\!G_{x}(t)\,\dt
+    P_{x}(\ytf) &= P_{x}(\yti) + \int_{\yti}^{\ytf}\!\!F_{x}(t)\dt + \int_{\yti}^{\ytf}\!\!G_{x}(t)\dt
     \\
-    P_{y}(\ytf) &= P_{y}(\yti) + \int_{\yti}^{\ytf}\!\!F_{y}(t)\, \dt + \int_{\yti}^{\ytf}\!\!G_{y}(t)\,\dt
+    P_{y}(\ytf) &= P_{y}(\yti) + \int_{\yti}^{\ytf}\!\!F_{y}(t)\dt + \int_{\yti}^{\ytf}\!\!G_{y}(t)\dt
     \\
-    P_{z}(\ytf) &= P_{z}(\yti) + \int_{\yti}^{\ytf}\!\!F_{z}(t)\, \dt + \int_{\yti}^{\ytf}\!\!G_{z}(t)\,\dt
+    P_{z}(\ytf) &= P_{z}(\yti) + \int_{\yti}^{\ytf}\!\!F_{z}(t)\dt + \int_{\yti}^{\ytf}\!\!G_{z}(t)\dt
   \end{aligned}\right.
 \end{equation}
 
@@ -5571,8 +5573,8 @@ The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of mom
 %   \begin{split}
 %     \yP(\ytf)
 %     &= \yP(\yti)
-%     + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
-%     + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
+%     + \int_{\yti}^{\ytf}\!\!\yF(t)\dt
+%     + \int_{\yti}^{\ytf}\!\!\yG(t)\dt
 %     \\[\jot]
 %     &= \yP(\yti)
 %     + \yF\cdot (\ytf-\yti)
@@ -5587,8 +5589,8 @@ The balance law~\eqref{eq:balanced_momentum} allows us to find the amount of mom
   \begin{split}
     \yP(\ytf)
     &= \yP(\yti)
-    + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
-    + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
+    + \int_{\yti}^{\ytf}\!\!\yF(t)\dt
+    + \int_{\yti}^{\ytf}\!\!\yG(t)\dt
     \\[2\jot]
     &= \yP(\yti)
     + \yF\cdot (\ytf-\yti)
@@ -5631,7 +5633,7 @@ Can we find the time-integrated influx or supply of momentum during the time lap
 
 Suppose we are told that the time-integrated supply of momentum \emph{within the control volume}, during the time lapse, is directed downward and has magnitude \qty{1.57}{N\,s}. That is,
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
+  \int_{\yti}^{\ytf}\!\!\yG(t)\dt
   =
   \begin{bmatrix}
     0\\0\\\num{-1.57}
@@ -5643,9 +5645,9 @@ Suppose we are told that the time-integrated supply of momentum \emph{within the
 The influx through the top surface can now be found using the balance law~\eqref{eq:balanced_momentum}:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
+    \int_{\yti}^{\ytf}\!\!\yF(t)\dt
     &=\yP(\ytf) - \yP(\yti)
-- \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
+- \int_{\yti}^{\ytf}\!\!\yG(t)\dt
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\,\unit{N\,s}
     - \begin{bmatrix}0\\0\\0\end{bmatrix}\,\unit{N\,s}
@@ -5701,9 +5703,9 @@ We are told that the ice block initially has zero momentum (because it's release
 We have enough data to find the time-integrated supply of momentum generated within the moving control volume, using the balance of momentum:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\dt
+    \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\dt
     &=\underline{\yP}(\ytf) - \underline{\yP}(\yti)
-- \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\dt
+- \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\dt
     \\[2\jot]
     &= \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\,\unit{N\,s}
     - \begin{bmatrix}0\\0\\0\end{bmatrix}\,\unit{N\,s}
@@ -5718,18 +5720,18 @@ We have enough data to find the time-integrated supply of momentum generated wit
 
 As we remarked above, even if the physical event is exactly the same, the momentum flux and supply in the present analysis are different from the previous analysis, because \emph{they refer to different imaginary control surfaces and volumes}. Compare the time-integrated influxes of the two analyses:
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt =
+  \int_{\yti}^{\ytf}\!\!\yF(t)\dt =
   \begin{bmatrix}0\\0\\\num{-3.15}\end{bmatrix}\,\unit{N\,s}
   \enskip\bm{\ne}\enskip
-  \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\,\dt =
+  \int_{\yti}^{\ytf}\!\!\underline{\yF}(t)\dt =
   \begin{bmatrix}0\\0\\0\end{bmatrix}\,\unit{N\,s} \ .
 \end{equation*}
 and the time-integrated supplies:
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt =
+  \int_{\yti}^{\ytf}\!\!\yG(t)\dt =
   \begin{bmatrix}0\\0\\\num{-1.57}\end{bmatrix}\,\unit{N\,s}
   \enskip\bm{\ne}\enskip
-  \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\,\dt =
+  \int_{\yti}^{\ytf}\!\!\underline{\yG}(t)\dt =
   \begin{bmatrix}0\\0\\\num{-4.72}\end{bmatrix}\,\unit{N\,s}
 \end{equation*}
 % \marginpar{\vspace{-8\baselineskip}\footnotesize%
@@ -5776,12 +5778,12 @@ and the time-integrated supplies:
 A balance law such as
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
 \end{equation*}
 or a conservation law such as
 \begin{equation*}
-    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+    \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
 \end{equation*}
 are said to be written in \emph{integral form} because they contain time-integrated fluxes or supplies. These time integrations are necessary for calculating the net amount of quantity that enters through the control surface or is generated in the volume during the time lapse considered.
 
@@ -5791,7 +5793,7 @@ This rewriting is essentially an expression of the \furl{https://encyclopediaofm
 \begin{equation*}
   \frac{\di\yN(t)}{\dt} = \yJ(t)
   \qquad\iff\qquad
-  \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt = \yN(\ytf) - \yN(\yti) \ .
+  \int_{\yti}^{\ytf}\!\!\yJ(t)\dt = \yN(\ytf) - \yN(\yti) \ .
 \end{equation*}
 But the equation on the right is just a conservation law written in a slightly different way! This means that it can equivalently be expressed by the equation on the left.
 
@@ -5812,11 +5814,11 @@ Change the symbol for the time $\yti$ into $t$, and take $\ytf$ to come after a 
 }%
 Then the integrated flux can be approximated by
 \begin{equation*}
-  \int_{t}^{t+\Dt}\!\!\yH(t)\, \dt \approx \yH(t)\, \Dt
+  \int_{t}^{t+\Dt}\!\!\yH(t)\dt \approx \yH(t)\, \Dt
 \end{equation*}
 that is, the flux at time $t$ multiplied by the time lapse. The reason for this approximation is that the flux $\yH$ is approximately constant during the short time lapse $\Dt$, and equal to its initial value at time $t$. Similarly for the supply:
 \begin{equation*}
-  \int_{t}^{t+\Dt}\!\!\yR(t)\, \dt \approx \yR(t)\, \Dt \ .
+  \int_{t}^{t+\Dt}\!\!\yR(t)\dt \approx \yR(t)\, \Dt \ .
 \end{equation*}
 
 The balance law above can then be approximated as follows:
@@ -5852,12 +5854,12 @@ For instance, the balance and conservation laws written above can be re-expresse
   \begin{equation*}
     \begin{gathered}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
   \qquad\text{\color{grey}or}\qquad
       \frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)
       \\[\jot]
-      \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\, \dt
+      \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
   \qquad\text{\color{grey}or}\qquad
     \frac{\di\yN(t)}{\dt} = \yJ(t) \ .
     \end{gathered}
@@ -5923,7 +5925,7 @@ We can find the momentum at any  time $t$ between and including $\yti$ and $\ytf
   \begin{split}
         \yP(\ytf)
     &= \yP(\yti)
-    + \int_{\yti}^{\ytf}\! \frac{\di\yP(t)}{\dt}\,\dt
+    + \int_{\yti}^{\ytf}\! \frac{\di\yP(t)}{\dt}\dt
     \\[2\jot]
     &= \begin{bmatrix}0\\\num{1.70}\\\num{0.98}\end{bmatrix}\,\unit{N\,s}
     + \int_{\yti}^{\ytf}
@@ -6050,31 +6052,31 @@ If you want to learn more about differential forms, take a look at the books by 
         &&&\hspace{1em}\text{\footnotesize\color{grey}integral expression}
         &&\hspace{-1em}\text{\footnotesize\color{grey}differential expression}
         \\[2\jot]
-      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt  +\int_{\yti}^{\ytf}\!\!\ya(t)\,\dt
+      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt  +\int_{\yti}^{\ytf}\!\!\ya(t)\dt
       &\quad
       \frac{\di\yN(t)}{\dt} &= \yJ(t)  +\ya(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\,\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\dt
       &\quad
       \frac{\di\yC(t)}{\dt} &= \yI(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering magnetic\\flux}}}&&\yBf(\ytf) &= \yBf(\yti) - \int_{\yti}^{\ytf}\!\!\yEv(t)\,\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering magnetic\\flux}}}&&\yBf(\ytf) &= \yBf(\yti) - \int_{\yti}^{\ytf}\!\!\yEv(t)\dt
       &\quad
       \frac{\di\yBf(t)}{\dt} &= -\yEv(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}momentum}}&&\yP(\ytf) &= \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}momentum}}&&\yP(\ytf) &= \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\dt + \int_{\yti}^{\ytf}\!\!\yG(t)\dt
       &\quad
       \frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}energy}}&&\yE(\ytf) &= \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}energy}}&&\yE(\ytf) &= \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
       &\quad
       \frac{\di\yE(t)}{\dt} &= \yH(t) + \yR(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\dt + \int_{\yti}^{\ytf}\!\!\yto(t)\dt
       &\quad
       \frac{\di\yL(t)}{\dt} &= \yM(t) + \yto(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}entropy}}&&\yS(\ytf) &\ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\dt
 &\quad
       \frac{\di\yS(t)}{\dt} &\ge \yB(t)
     \end{aligned}
@@ -6124,8 +6126,8 @@ In the previous sections we studied the mathematical form of balance and conserv
 From their formulation and from the examples, you noticed that each balance law connects the volume content, flux, supply of one extensive quantity at different times. For instance, the balance law for energy
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
-  + \int_{\yti}^{\ytf}\!\!\yH(t)\, \dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
 \end{equation*}
 connects the volume contents $\yE$ \emph{of energy}, the flux $\yH$ \emph{of energy}, the supply $\yR$ \emph{of energy}. It does not involve, say, the volume content $\yN$ of matter, or the flux $\yF$ of momentum.
 
@@ -6456,12 +6458,12 @@ Suppose in a control volume we have two substances called $\mathrm{u}$ and $\mat
     \frac{\di\yNu(t)}{\dt} &= \yau(t)
     &\qquad\text{or}\qquad
     \yNu(\ytf) &= \yNu(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yau(t)\,\dt \,,
+    \int_{\yti}^{\ytf}\!\!\yau(t)\dt \,,
     \\
     \frac{\di\yNv(t)}{\dt} &= \yav(t)
     &\qquad\text{or}\qquad
     \yNv(\ytf) &= \yNv(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yav(t)\,\dt \,.
+    \int_{\yti}^{\ytf}\!\!\yav(t)\dt \,.
   \end{aligned}
 \end{equation*}
 From the integral expression it is clear that if we know $\yNu(\yti)$ and we want to predict $\yNu(\ytf)$ at the later time, then we need to know how $\yau(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $\mathrm{v}$ substance.
@@ -6579,7 +6581,7 @@ Numerical time integration is essential for present-day engineering and physical
 
 Recall again the integral and differential expressions of a balance law. In the following discussion we shall use the symbols for energy, but the reasoning is valid for any other quantity:
 \begin{equation*}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -6603,22 +6605,22 @@ If they do change appreciably, then we take an even shorter $\Dt$.
 Since they are approximately constant, their integrals can also be approximated as follows:
 %
 \marginpar{\vspace{2\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\,\di x = \text{const}\cdot(b-a)$$%
+Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\di x = \text{const}\cdot(b-a)$$%
 }%
 \begin{equation*}
   \begin{aligned}
-    \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt &\approx
-\int_{\yti}^{\ytf}\!\!\yH(\yti)\,\dt =
+    \int_{\yti}^{\ytf}\!\!\yH(t)\dt &\approx
+\int_{\yti}^{\ytf}\!\!\yH(\yti)\dt =
     \yH(\yti)\,(\ytf-\yti) = \yH(\yti)\,\Dt\\
-    \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt &\approx
-    \int_{\yti}^{\ytf}\!\!\yR(\yti)\,\dt =
+    \int_{\yti}^{\ytf}\!\!\yR(t)\dt &\approx
+    \int_{\yti}^{\ytf}\!\!\yR(\yti)\dt =
     \yR(\yti)\,(\ytf-\yti) = \yR(\yti)\,\Dt
   \end{aligned}
 \end{equation*}
 
 Now let's replace these approximations in the balance law, also taking $\ytf = \yti + \Dt$. We find:
 \begin{equation*}
-  \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\,\dt}} + \underbracket[0pt]{\yR(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yR(t)\,\dt}}
+  \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\dt}} + \underbracket[0pt]{\yR(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yR(t)\dt}}
 \end{equation*}
 Factoring $\Dt$, and replacing the symbol \enquote*{$\yti$} with \enquote*{$t$} (since we don't need to distinguish initial and final time), we obtain:
 \begin{definition}{Finite-difference approximation}\label{def:finitedifference}
@@ -7106,8 +7108,8 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
     \label{eq:cons_matter}
     \underbracket[0pt]{\yN(\ytf) =
       \yN(\yti) +
-      \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt  +
-      \int_{\yti}^{\ytf}\!\!\ya(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \int_{\yti}^{\ytf}\!\!\yJ(t)\dt  +
+      \int_{\yti}^{\ytf}\!\!\ya(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yN(t)}{\dt} = \yJ(t) +
         \ya(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -7399,7 +7401,7 @@ that is, if the area through which the flux occur decreases, then the velocity o
     \label{eq:cons_charge}
     \underbracket[0pt]{\yC(\ytf) =
       \yC(\yti) +
-      \int_{\yti}^{\ytf}\!\!\yI(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \int_{\yti}^{\ytf}\!\!\yI(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yC(t)}{\dt} =
         \yI(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -7427,7 +7429,7 @@ that is, if the area through which the flux occur decreases, then the velocity o
     \label{eq:cons_magneticflux}
     \underbracket[0pt]{\yBf(\ytf) =
       \yBf(\yti) -
-      \int_{\yti}^{\ytf}\!\!\yEv(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \int_{\yti}^{\ytf}\!\!\yEv(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yBf(t)}{\dt} =
         -\yEv(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -7472,7 +7474,7 @@ LAW~II. \emph{The change of motion is proportional to the motive force impressed
 
   \begin{equation}
     \label{eq:bal_momentum}
-      \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yG(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yP(\ytf) = \yP(\yti) + \int_{\yti}^{\ytf}\!\!\yF(t)\dt + \int_{\yti}^{\ytf}\!\!\yG(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yP(t)}{\dt} = \yF(t) + \yG(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
@@ -7680,14 +7682,14 @@ We must therefore use the balance of momentum together with the relation between
     \frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
     &\quad\text{or}\quad
     \yP(\ytf) &= \yP(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yF(t)\,\dt
-    +\int_{\yti}^{\ytf}\!\!\yG(t)\,\dt
+    \int_{\yti}^{\ytf}\!\!\yF(t)\dt
+    +\int_{\yti}^{\ytf}\!\!\yG(t)\dt
     \,,
     \\
     \frac{\di\yr(t)}{\dt} &= \yv(t)
     &\quad\text{or}\quad
     \yr(\ytf) &= \yr(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yv(t)\,\dt \,.
+    \int_{\yti}^{\ytf}\!\!\yv(t)\dt \,.
   \end{aligned}
 \end{equation*}
 Even if we have the influx $\yF$ and supply $\yG$ of momentum are given as \autoref{sec:boundary_conds}{boundary conditions}, and therefore we can find the momentum at future times, we would still need to specify the velocity $\yv(t)$ at all times in order to find the future position $\yr$ at future times.
@@ -9606,7 +9608,7 @@ Note that the total momentum influx is zero:\enskip$\yF\tot=0$\,.\enskip Indeed 
 
 Momentum balance also applies to the total control volume:
 \begin{equation*}
-  \yP\tot(\ytf) = \yP\tot(\yti) + \int_{\yti}^{\ytf}\!\!\yF\tot(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yG\tot(t)\,\dt
+  \yP\tot(\ytf) = \yP\tot(\yti) + \int_{\yti}^{\ytf}\!\!\yF\tot(t)\dt + \int_{\yti}^{\ytf}\!\!\yG\tot(t)\dt
 \end{equation*}
 If the total momentum influx and supplies are zero, then we find\enskip$\yP\tot(\ytf) = \yP\tot(\yti)$\,,\enskip which explains why we found that the velocity for the whole system could be considered as constant.
 
@@ -9637,7 +9639,7 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
 
   \begin{equation}
     \label{eq:bal_energy}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -10016,17 +10018,17 @@ We see that the momentum \emph{flux}, or \emph{surface} force, $\yF$ appears in 
 
 \medskip
 
-In the integral expression for the balance of energy, the \autoref{sec:total_flow}{time-integrated flux} $\int_{\yti}^{\ytf}\!\!\yH(t)\,\dt$ appears. Given the constitutive relation~\eqref{eq:heat_power}, this integral can be written as the sum of two integrals:
+In the integral expression for the balance of energy, the \autoref{sec:total_flow}{time-integrated flux} $\int_{\yti}^{\ytf}\!\!\yH(t)\dt$ appears. Given the constitutive relation~\eqref{eq:heat_power}, this integral can be written as the sum of two integrals:
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt =
-  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt
+  \int_{\yti}^{\ytf}\!\!\yH(t)\dt =
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\dt
   + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot \yv(t)\ \dt \,.
 \end{equation*}
 These integrals have special names:
 \begin{definition}{Heat and mechanical work}\label{def:heatwork}
   The time integral of the heat flux between times $\yti$ and $\ytf$,
   \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt \,,
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\dt \,,
   \end{equation*}
   is called the \textbf{heat} transferred through the surface during that time interval.
 
@@ -10333,9 +10335,9 @@ The car has zero momentum at time $\yti$, and momentum with positive-$x$ directi
   % {}+{}
   \underbracket[1pt]{\yF(t)}_{\nearrow}
   % \bigr]
-  \,\dt
+  \dt
   + \int_{\yti}^{\ytf}\!\! \underbracket[1pt]{\yG(t)}_{\downarrow}
-   \,\dt
+   \dt
 \end{equation*}
 
 % \paragraph{Ground.} In the present coordinate system the ground has always zero momentum. It is receiving from the car a flux of momentum with negative $z$ and $x$ components. These are cancelled out partly by an opposite flux of momentum coming from deeper layers of the ground, and partly by a momentum supply that exists because the present coordinate system is not fully inertial.
@@ -10358,7 +10360,7 @@ Therefore
   % {}+{}
   \underbracket[1pt]{\yF(t) \cdot\yv_{\text{t,g}}(t)}_{\text{zero}}
   % \bigr]
-  \,\dt
+  \dt
 \end{equation*}
 
 In this coordinate system we therefore describe the energy process as follows:
@@ -10392,9 +10394,9 @@ The car has constant zero momentum. The influx of momentum is essentially the sa
   % {}+{}
   \underbracket[1pt]{\yF_{\text{ground}}(t)}_{\nearrow}
   % \bigr]
-  \,\dt
+  \dt
   + \int_{\yti}^{\ytf}\!\! \underbracket[1pt]{\yG(t)}_{\swarrow}
-   \,\dt
+   \dt
 \end{equation*}
 
 
@@ -10416,7 +10418,7 @@ Therefore
   % {}+{}
   \underbracket[1pt]{\yF(t) \cdot\yv_{\text{t,g}}(t)}_{\text{negative}}
   % \bigr]
-  \,\dt
+  \dt
 \end{equation*}
 
 In this coordinate system we therefore describe the energy process as follows:
@@ -10504,7 +10506,7 @@ Let's express these conditions mathematically. Consider a control volume contain
 \begin{subequations}
   \label{eq:rigid_body_energy_int}
   \begin{gather}
-    \yU(\ytf) = \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yQ(t)\, \dt
+    \yU(\ytf) = \yU(\yti) + \int_{\yti}^{\ytf}\!\!\yQ(t)\dt
     \\[\jot]
   \label{eq:rigid_body_energy_int_power}
     \tfrac12\ym\yv(\ytf)^{2} + \ym g z(\ytf) =
@@ -11368,7 +11370,7 @@ The example with the crate \amp\ floor generalizes to situations where the matte
 
   \begin{equation}
     \label{eq:bal_ang_momentum}
-      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\,\dt + \int_{\yti}^{\ytf}\!\!\yto(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\dt + \int_{\yti}^{\ytf}\!\!\yto(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yL(t)}{\dt} = \yM(t) + \yto(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -12099,7 +12101,7 @@ I hold in fact
 
   \begin{equation}
     \label{eq:bal_entropy}
-      \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
       \underbracket[0pt]{\frac{\di\yS(t)}{\dt} \ge \yB(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -12207,20 +12209,20 @@ From a qualitative point of view, the inequality sign in the balance of entropy 
 
 Consider first a generic balance or conservation law; let's take conservation of matter for instance:
 \begin{equation*}
-  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt
+  \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
 \end{equation*}
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/matter_content.jpg}}%
-Suppose a control volume contains an amount \qty{20}{mol} of matter. During an interval of time we provide a net flow of matter $\int_{\yti}^{\ytf}\!\!\yJ(t)\,\dt = \qty{3}{mol}$ into the control volume. By the conservation law, at the end we have an amount \qty{23}{mol} of matter in the control volume. This also means that in principle we could revert to an amount of \qty{20}{mol} by providing a \emph{negative} amount of the same flow as before, \qty{-3}{mol}. We can, in principle, change the matter content in the volume between \qty{20}{mol} and \qty{23}{mol} by providing a net flow of \qty{+3}{mol} or its opposite \qty{-3}{mol}. If we consider a balance with a supply, the conclusion remains the same, if we invert also the sign of the supply.
+Suppose a control volume contains an amount \qty{20}{mol} of matter. During an interval of time we provide a net flow of matter $\int_{\yti}^{\ytf}\!\!\yJ(t)\dt = \qty{3}{mol}$ into the control volume. By the conservation law, at the end we have an amount \qty{23}{mol} of matter in the control volume. This also means that in principle we could revert to an amount of \qty{20}{mol} by providing a \emph{negative} amount of the same flow as before, \qty{-3}{mol}. We can, in principle, change the matter content in the volume between \qty{20}{mol} and \qty{23}{mol} by providing a net flow of \qty{+3}{mol} or its opposite \qty{-3}{mol}. If we consider a balance with a supply, the conclusion remains the same, if we invert also the sign of the supply.
 
 Now consider the balance of entropy with a \emph{strict} inequality:
 \begin{equation*}
-  \yS(\ytf) > \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
+  \yS(\ytf) > \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\dt
 \end{equation*}
 %
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/entropy_content.jpg}}%
-Suppose a control volume contains an amount \qty{20}{J/K} of entropy. During an interval of time we provide a net flow of entropy $\int_{\yti}^{\ytf}\!\!\yB(t)\,\dt = \qty{3}{J/K}$ into the control volume. By the inequality above, at the end we \emph{cannot} have an amount \qty{23}{J/K} of entropy in the control volume: we must have a larger amount, for instance \qty{23.1}{J/K}. If we want to revert to an entropy content of \qty{20}{J/K}, then simply reversing the total flow to \qty{-3}{J/K} won't be enough.
+Suppose a control volume contains an amount \qty{20}{J/K} of entropy. During an interval of time we provide a net flow of entropy $\int_{\yti}^{\ytf}\!\!\yB(t)\dt = \qty{3}{J/K}$ into the control volume. By the inequality above, at the end we \emph{cannot} have an amount \qty{23}{J/K} of entropy in the control volume: we must have a larger amount, for instance \qty{23.1}{J/K}. If we want to revert to an entropy content of \qty{20}{J/K}, then simply reversing the total flow to \qty{-3}{J/K} won't be enough.
 In fact, even \qty{-3.1}{J/K} won't be enough, because by the inequality above we must have
 \begin{equation*}
   \text{\footnotesize new entropy amount} > \qty{23.1}{J/K} - \qty{3.1}{J/K}
@@ -12239,7 +12241,7 @@ Analogously, the example does \emph{not} imply that the entropy content of a con
 
 In cases where the balance of entropy holds with an equal sign:
 \begin{equation*}
-  \yS(\ytf) = \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
+  \yS(\ytf) = \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\dt
 \end{equation*}
 then we can of course revert to a given entropy content by inverting the entropy flux.
 
@@ -12448,21 +12450,21 @@ But note that the time-integrated flux of heat $\yQ$ and the mechanical power $-
 
 The engine starts a cycle at time $\yti$ and operates until time $\ytf$, at which time its physical state is exactly the same as at $\yti$. The cycle is complete, and the engine is ready to start a new operation cycle. Let's introduce symbols for the time-integrated amount of heat we provide to the engine and the total amount of work we \emph{receive} from it:
 \begin{equation*}
-  \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt
+  \yhe \defd \int_{\yti}^{\ytf}\!\!\yQ(t)\dt
   \qquad\qquad
   \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
 \end{equation*}
 The net amount of total energy flowing into the control volume between $\yti$ and $\ytf$ is therefore
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt =
-  \int_{\yti}^{\ytf}\!\!\yQ(t)\,\dt
+  \int_{\yti}^{\ytf}\!\!\yH(t)\dt =
+  \int_{\yti}^{\ytf}\!\!\yQ(t)\dt
   + \int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \equiv \yhe -\yW
 \end{equation*}
 
 We already remarked that this time-integrated flux must be zero: from the balance of energy and the condition of cyclic operation:
 \begin{equation*}
-    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt
+    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
 \equiv \yE(\yti) + \yhe - \yW
 \end{equation*}
 we find
@@ -12479,11 +12481,11 @@ Let's see what the balance of entropy says. We have
 \begin{equation*}
   \begin{gathered}
     \begin{aligned}
-      \yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt
-      &= \yS(\yti) + \int_{\yti}^{\ytf}\!\frac{\yQ(t)}{\yT}\,\dt
+      \yS(\ytf) \ge \yS(\yti) + \int_{\yti}^{\ytf}\!\!\yB(t)\dt
+      &= \yS(\yti) + \int_{\yti}^{\ytf}\!\frac{\yQ(t)}{\yT}\dt
       &\qquad&{\text{\footnotesize\color{midgrey}constit. relation for entropy flux}}
       \\
-      &= \yS(\yti) + \frac{1}{\yT}\int_{\yti}^{\ytf}\!\yQ(t)\,\dt
+      &= \yS(\yti) + \frac{1}{\yT}\int_{\yti}^{\ytf}\!\yQ(t)\dt
       &\qquad&{\text{\footnotesize\color{midgrey}temperature was assumed constant}}
       \\
       &= \yS(\yti) + \frac{\yhe}{\yT}
@@ -12548,16 +12550,16 @@ but we are not making assumptions about relative magnitudes of $\yQp(t)$ and $\y
 Consider a cycle of the engine between times $\yti$, $\ytf$. Employ similar symbols as before:
 \begin{equation*}
   \begin{gathered}
-    \yhep \defd \int_{\yti}^{\ytf}\!\!\yQp(t)\,\dt
+    \yhep \defd \int_{\yti}^{\ytf}\!\!\yQp(t)\dt
     \qquad\qquad
-    \yhem \defd \int_{\yti}^{\ytf}\!\!\yQm(t)\,\dt
+    \yhem \defd \int_{\yti}^{\ytf}\!\!\yQm(t)\dt
     \\
     \yW \defd -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \end{gathered}
 \end{equation*}
 so that the net amount of energy flowing into the control volume in this cycle is
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!\!\yH(t)\,\dt =
+  \int_{\yti}^{\ytf}\!\!\yH(t)\dt =
  \yhep + \yhem -\yW
 \end{equation*}
 
@@ -12578,10 +12580,10 @@ That is, the net work released in a cycle must equal to the net heat provided, a
 
 The time-integrated flux of entropy for the engine's control volume is
 \begin{equation*}
-    \int_{\yti}^{\ytf}\!\!\yB(t)\,\dt =
+    \int_{\yti}^{\ytf}\!\!\yB(t)\dt =
     \int_{\yti}^{\ytf}\!\biggl[\frac{\yQp(t)}{\yTp} +
     \frac{\yQm(t)}{\yTm}
-    \biggr]\,\dt
+    \biggr]\dt
 \equiv \frac{\yhep}{\yTp} + \frac{\yhem}{\yTm}
 \end{equation*}
 where we have again used our short symbols for the time-integrated heat, and taken into account that the temperatures are constant.
@@ -12651,7 +12653,7 @@ The thermal-engine example above also hints at the role of the balance of entrop
   -\int_{\yti}^{\ytf}\!\!\yF(t)\cdot\yv(t)\ \dt
   \le
   \biggl(1-\frac{\yTm}{\yTp}\biggr)\,
-  \int_{\yti}^{\ytf}\!\!\yQp(t)\,\dt \,,
+  \int_{\yti}^{\ytf}\!\!\yQp(t)\dt \,,
 \end{equation*}
 is to be universally valid, then the specific mathematical formulae for $\yQ$ and $\yF$ cannot be arbitrary. Their mathematical expressions must have severe restrictions.
 
