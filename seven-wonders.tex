@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-04-26T12:05:30+0200
+%% Last-Updated: 2025-04-29T19:15:16+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1129,6 +1129,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFrz}{F_{\textrm{other},z}}
 \newcommand*{\yFp}{\yF_{\textrm{p}}}
 \newcommand*{\yFf}{\yF_{\textrm{f}}}
+\newcommand*{\yFo}{\yF_{\textrm{r}}}
 \newcommand*{\ypr}{p} % pressure
 \newcommand*{\ypv}{\bm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
@@ -10043,7 +10044,7 @@ These integrals have special names:
 
 \medskip
 
-It's important to keep in mind several points in applying the constitutive formula for energy flux, and in speaking about mechanical power and work:
+It's important to keep in mind several points in applying the constitutive formula for energy flux, and in speaking about mechanical power and work. So get ready now for a string of warnings:
 %
 \begin{warning}[Momentum supply does not contribute to energy flux,label={warn:gravitywork}]
   The momentum \emph{supply}, or \emph{volume} force, $\yG$ does \emph{not} appear in the constitutive relation for the energy flux. In other words, \textbf{\emph{volume} forces do not contribute to energy \emph{flux}}. In fact, since we're speaking of a control \emph{surface}, such forces are not even clearly defined, since they refer to a volume.
@@ -10098,10 +10099,49 @@ In applying the formula above, keep always in mind the following:
 \end{warning}
 
 
+
+%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
+\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+}%
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Water is flowing downward in a pipe, as illustrated in the side figure by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
+
+  \item Suppose that there is no power $\yF\cdot\yv$ transmitted through a moving control surface. Does this mean that the momentum flux $\yF$ is zero? Or does this mean that the matter's velocity $\yv$ is zero?
+
+  \item\label{item:energyflux_trick} A control surface, with a given crossing direction, is moving with velocity $[0,2,-3]\,\unit{m/s}$. Through this surface we have a heat flux of $\qty{-3}{J/s}$ and a momentum flux of $[1,-2,1]\,\unit{N}$. How much is the energy flux through the surface?
+
+  \item\label{item:bikepump} Consider the control surface that separates air from the piston within a bike pump, schematized by the \textcolor{purple}{red line} in the side illustration. The piston and the gas in contact with it, on the two sides of the control surface, are moving downward with a velocity $[0,0,-0.5]\,\unit{m/s}$. The edownward flux of momentum is $[0,0,-20]\,\unit{N}$. The energy flux through this surface is adiabatic. How much is the downward flux of energy through this surface?
+
+  \item Consider again the control surface of question~\ref{item:energyflux_trick} above. We are now told that there is no matter flux through this surface, and the matter in contact with the surface on both sides is moving with the same velocity as the surface. How much is the energy flux through the surface?
+
+  \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
+  \end{enumerate}
+\end{exercise}
+%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
+% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
+% \\[7\baselineskip]
+\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
+% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
+% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
+% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
+% \\[\jot]
+% \footnotesize\flushleftright\color{mpcolor}%
+% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
+}%
+
+\section*{Volume heating and volume mechanical power}
+\label{sec:volume_heat_power}
+
+\mynotew{To be written in a later version}
+
 \marginpar{\vspace{8\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/mueller_W.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
-Snippet from an introductory text on thermomechanics, with three special versions of the balance of energy. The symbols $\dot{W}$, $\dot{W}_{\text{stress}}$, $\dot{W}_{\text{int}}$ stand for three different definitions of \enquote*{total mechanical power}. The heat flux is $\dot{Q}$, kinetic energy $K$, potential energy $E_{\text{pot}}$.%
+Snippet from a text on thermomechanics \autocites{muelleretal2009} showing three special versions of the balance of energy. The symbols $\dot{W}$, $\dot{W}_{\text{stress}}$, $\dot{W}_{\text{int}}$ stand for three different definitions of \enquote*{total mechanical power}. The heat flux is $\dot{Q}$, kinetic energy $K$, potential energy $E_{\text{pot}}$.%
 }%
 \begin{warning}[Contrasting definitions of \enquote*{work}]
   The definition above is about the mechanical work \textbf{done by a surface force $\yF$} -- note the explicit mention of \enquote*{force}. This definition seems to be standard across all physics and engineering texts.
@@ -10137,38 +10177,6 @@ Snippet from an introductory text on thermomechanics, with three special version
 \end{warning}
 
 
-%
-\marginpar{\vspace{1\baselineskip}\footnotesize\centering%-33 at bottom, 2 at top
-\includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-}%
-\begin{exercise}
-  \begin{enumerate}[exerc]
-  \item Water is flowing downward in a pipe, as illustrated in the side figure by the \textcolor{blue}{blue squiggly arrows}. Take a control surface moving with velocity $\yv$ as depicted in \textcolor{purple}{red}. Can we apply  formula~\eqref{eq:heat_power} for the energy flux through this control surface?
-
-  \item Suppose that there is no power $\yF\cdot\yv$ transmitted through a moving control surface. Does this mean that the momentum flux $\yF$ is zero? Or does this mean that the matter's velocity $\yv$ is zero?
-
-  \item\label{item:energyflux_trick} A control surface, with a given crossing direction, is moving with velocity $[0,2,-3]\,\unit{m/s}$. Through this surface we have a heat flux of $\qty{-3}{J/s}$ and a momentum flux of $[1,-2,1]\,\unit{N}$. How much is the energy flux through the surface?
-
-  \item\label{item:bikepump} Consider the control surface that separates air from the piston within a bike pump, schematized by the \textcolor{purple}{red line} in the side illustration. The piston and the gas in contact with it, on the two sides of the control surface, are moving downward with a velocity $[0,0,-0.5]\,\unit{m/s}$. The edownward flux of momentum is $[0,0,-20]\,\unit{N}$. The energy flux through this surface is adiabatic. How much is the downward flux of energy through this surface?
-
-  \item Consider again the control surface of question~\ref{item:energyflux_trick} above. We are now told that there is no matter flux through this surface, and the matter in contact with the surface on both sides is moving with the same velocity as the surface. How much is the energy flux through the surface?
-
-  \item Imagine a cylindrical \emph{closed} control surface enveloping the air within the bike pump of question~\ref{item:bikepump} above. The surface previously considered is part of this closed control surface. We are told that across the rest of the closed surface there is a total heat \textbf{ef}flux of \qty{2}{J/s}. How much is the total energy \textbf{in}flux through the closed control surface?
-  \end{enumerate}
-\end{exercise}
-%
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%-33/-18 at bottom, 2 at top
-% \includegraphics[width=0.9\linewidth]{images/waterflow_v.pdf}%
-% \\[7\baselineskip]
-\includegraphics[height=7\baselineskip]{images/pump_piston.pdf}%
-% \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
-% \\\includegraphics[width=0.49\linewidth]{images/hammer_iron2.jpg}%
-% \hfill\includegraphics[width=0.49\linewidth]{images/hands_pump.jpg}%
-% \\[\jot]
-% \footnotesize\flushleftright\color{mpcolor}%
-% \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
-}%
 
 \section{Heat and power: observation scales}
 \label{sec:dependence_energyfluxdivision}
@@ -10298,6 +10306,54 @@ So the description is somewhat more complicated; you see why we choose to avoid 
   If there is no antimatter and the flux of matter is zero, $\yJ=\yJ_{\textrm{m}}= \qty{0}{mol/s}$, then the expression $\yns\cdot(\yv-\yvs)$ must be zero too, and the analogous expressions in the fluxes of momentum and energy are zero as well; all fluxes become much simpler.
 \end{extra}
 
+
+\begin{extra}{Symmetry between energy and momentum fluxes}
+  Let's compare the formulae for energy flux and momentum flux in the presence of matter that we've encountered so far:
+  \begin{equation*}
+    \begin{aligned}
+      \text{energy flux:}&\quad \yQ + \yF\cdot\yv
+      \\
+      \text{momentum flux:}&\quad \yF
+    \end{aligned}
+  \end{equation*}
+  where $\yQ$ and $\yF$ need to be specified by further constitutive relations.
+
+    \smallskip
+
+    Upon looking at the two formulae, you might wonder: Why does the full flux of momentum contribute to flux of energy, but full flux of energy doesn't contribute to the flux of momentum? Mathematically, why does \enquote*{$\yF$} appear in both, but \enquote*{$\yQ$} only in one?
+
+    \smallskip
+
+    You should feel proud if a question of this kind has appeared in your mind! It's the kind of questions that have led to the discovery of new important scientific theories, like electromagnetics and relativity theory.
+
+    \smallskip
+
+    And the answer to your question is: \emph{both fluxes, in fact, contribute to each other!}
+
+    \smallskip
+
+    We must remember that the formulae above are only Newtonian approximations, valid only in particular circumstances. A better approximation than the Newtonian is the following:
+  \begin{equation*}
+    \begin{aligned}
+      \text{energy flux:}&\quad \yQ + \yFo\cdot\yv + \dotsb
+      \\
+      \text{momentum flux:}&\quad \yFo + \frac{1}{\yc^2}\yQ\, \yv + \dotsb
+    \end{aligned}
+  \end{equation*}
+  where $\yFo$, called \emph{rest force}, is the momentum flux measured in a coordinate system where the matter is at rest -- just like the heating $\yQ$ is the energy flux measured in that same coordinate system. These more precise formulae show that parts of energy flux contribute to momentum flux, just like parts of momentum flux contribute to energy flux. The contribution of heat to momentum flux, however, is negligible in many situations, as clear from the very small factor $1/\yc^{2}$ with the speed of light $\yc$. This is why it is neglected in the Newtonian approximation. But there are situations in which the heat contribution to momentum flux becomes important; for instance with spacecrafts on very long journeys in the solar system and constantly receiving heat from the Sun.
+
+  \smallskip
+
+  The two fluxes can actually be written in an even more symmetrical way. The remaining asymmetry comes from the fact that energy flux and momentum flux have different physical dimensions. We can change the physical dimensions and units of momentum flux into those of an energy flux by multiplying it by $\yc$, so that the new momentum is $\yc\yF$ and so on:
+  \begin{equation*}
+    \begin{aligned}
+      \text{energy flux:}&\quad \yQ + \yc\yFo\cdot\frac{\yv}{\yc} + \dotsb
+      \\
+      \text{momentum flux (energy dimensions):}&\quad \yc\yFo + \yQ\, \frac{\yv}{\yc} + \dotsb
+    \end{aligned}
+  \end{equation*}
+  Now the symmetry is complete!
+\end{extra}
 
 \section{Energy content, flux, supply depend on the coordinate system}
 \label{sec:energy_coords}
