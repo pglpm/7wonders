@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-04-29T19:15:16+0200
+%% Last-Updated: 2025-05-02T13:51:01+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1037,9 +1037,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yv}{\bm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
-\newcommand*{\yvs}{\bm{v}_{\text{s}}}
 \newcommand*{\yvc}{\yv_{\textrm{crate}}}
-\newcommand*{\yns}{\bm{n}_{\text{s}}}
 \newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
@@ -1059,6 +1057,16 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\Dxh}{\tfrac{\incr x}{2}}
 \newcommand*{\Dyh}{\tfrac{\incr y}{2}}
 \newcommand*{\Dzh}{\tfrac{\incr z}{2}}
+
+%% transport
+\newcommand*{\yvs}{\bm{v}_{\textrm{s}}}
+\newcommand*{\yns}{\bm{n}_{\textrm{s}}}
+\newcommand*{\yAs}{A}%_{\textrm{s}}}
+\newcommand*{\yVs}{V_{\textrm{s}}}
+\newcommand*{\yNs}{\yN_{\textrm{s}}}
+\newcommand*{\yPs}{\yP_{\textrm{s}}}
+\newcommand*{\yEs}{\yE_{\textrm{s}}}
+
 
 %% matter
 \newcommand*{\yN}{N}
@@ -10275,35 +10283,33 @@ In forthcoming sections we'll focus on a set of simple constitutive relations fo
   There is indeed a more general formula that can be used even when there is a flux of matter through the control surface. To understand it, however, we must:
   \begin{itemize}[nosep]
   \item give the formulae for the fluxes of matter, momentum, energy at the same time
-  \item take into account the contents of matter, momentum, energy in a thin control volume connected to the surface
+  \item take into account the contents of matter, momentum, and energy in a thin control volume connected to the surface
   \item take into account the velocity of the control surface itself.
   \end{itemize}
-So the description is somewhat more complicated; you see why we choose to avoid this more general situation in the notes. But here are the fully general formulae, in case you're curious.
+So the description is somewhat more complicated; you see why we choose to avoid this more general situation. But here are the fully general formulae, in case you're curious.
 
-  Choose a crossing direction for the surface, and
+  Choose a crossing direction for the surface, and consider the following quantities:
   \begin{itemize}[nosep]
-  \item $\yvs$ is the velocity of the surface
-  \item $\yns$ is a \emph{unit} vector orthogonal to the surface, having the same direction as the crossing direction
-  \item $A$ is the area of the surface
-  \item $V$ is the volume of a thin control volume in contact with the surface
-  \item $\yN$, $\yP$, $\yE$ are the matter, momentum, energy contents in that thin control volume
-  \item $\yv$ is the velocity of matter in contact with the surface
+  \item $\yvs$ is the velocity of the surface,
+  \item $\yns$ is a \emph{unit} vector orthogonal to the surface, having the same direction as the crossing direction,
+  \item $\yAs$ is the area of the surface,
+  \item $\yVs$ is the volume of a \emph{thin control volume} in contact with the surface,
+  \item $\yNs$, $\yPs$, $\yEs$ are the matter, momentum, energy contents in that thin control volume,
+  \item $\yv$ is the velocity of matter in contact with the surface.
   \end{itemize}
   Then the fluxes of matter, momentum, energy are given by the following general formulae, if no electromagnetic fields or electric charges are present and in Newtonian approximation:
-  \begin{equation*}
+  \begin{equation}\label{eq:transport_equations}
     \begin{aligned}
-      \yJ &= \yJ_{\textrm{m}} + \frac{A}{V}\, \yns\cdot(\yv - \yvs)\,\yN
+      \yJ &= \yJ_{\textrm{r}} + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yNs
       \\
 %      \yF &= A\,\yns\cdot\yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
-      \yF &= A\,\yns\cdot\yst + \frac{A}{V}\, \yns\cdot(\yv - \yvs)\,\yP
+      \yF &= \yAs\,\yns\cdot\yst + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yPs
       \\
-      \yH &= \yQ + A\,\yns\cdot\yst\cdot \yv
-      + \frac{A}{V}\, \yns\cdot(\yv - \yvs)\,\yE
+      \yH &= \yQ + \yAs\,\yns\cdot\yst\cdot \yv
+      + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yEs
     \end{aligned}
-  \end{equation*}
-  In these formulae, $\yJ_{\textrm{m}}$ is called \emph{matter current} and is only required when antimatter is present; and $\yst$ is a 3-by-3 matrix called the \emph{stress tensor} or \emph{pressure tensor}. The terms containing the expression\enskip$\tfrac{A}{V}\yns\cdot(\yv-\yvs)$\enskip are called \emph{transport terms}, because they originate from the transport of matter through the surface.
-
-  If there is no antimatter and the flux of matter is zero, $\yJ=\yJ_{\textrm{m}}= \qty{0}{mol/s}$, then the expression $\yns\cdot(\yv-\yvs)$ must be zero too, and the analogous expressions in the fluxes of momentum and energy are zero as well; all fluxes become much simpler.
+  \end{equation}
+  In these formulae, $\yJ_{\textrm{r}}$ is called \emph{matter current} and is only required when antimatter is present; $\yst$ is a 3-by-3 matrix called the \emph{stress tensor} or \emph{pressure tensor}. The terms containing the expression\enskip$\tfrac{\yAs}{\yVs}\yns\cdot(\yv-\yvs)$\enskip are called \emph{transport terms}, because they originate from the transport of matter through the surface. If there is no antimatter, $\yJ_{\textrm{r}}= \qty{0}{mol/s}$, and matter is moving with the same velocity as the surface, $\yv = \yvs$, then there is no flux of matter $\yJ$, the transport terms disappear, and we recover the simpler constitutive relations we are familiar with.
 \end{extra}
 
 
