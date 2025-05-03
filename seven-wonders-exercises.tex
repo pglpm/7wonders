@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-04-26T16:56:19+0200
+%% Last-Updated: 2025-05-03T10:03:19+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3139,25 +3139,26 @@ The negative sign for the supply makes sense, because the number of neutrons has
   \item Initial time $\yti$, final time $\ytf=\yti + \qty{0.1}{s}$.
   \item Angular-momentum content $\yL(\yti)=[0, \num{2.1e-36},0]\,\unit{N\,m\,s}$ at time $\yti$.
   \item Angular-momentum content $\yL(\ytf)=[0,0,0]\,\unit{N\,m\,s}$ at time $\ytf$.
+    \item Angular-momentum supply $\yto = [0,0,0]\,\unit{N\,m}$ always, because it says to assume that angular-momentum satisfies a \emph{conservation} law. We can therefore omit the supply.
   \end{itemize}
   Unknown:
   \begin{itemize}[nosep]
-  \item Time-integrated \textbf{ef}flux of angular momentum $-\int_{\yti}^{\ytf}\!\yto(t)\dt$; the minus sign is because $\yto$ denotes the influx.
+  \item Time-integrated \textbf{ef}flux of angular momentum $-\int_{\yti}^{\ytf}\!\yM(t)\dt$; the minus sign is because $\yM$ denotes the \textbf{in}flux when we write the balance or conservation law.
   \end{itemize}
 
   Assuming angular momentum to obey a conservation law, the quantities above are related by
   \begin{equation*}
-    \yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yto(t)\dt 
+    \yL(\ytf) = \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\dt 
   \end{equation*}
 of which two are known. We can find the \textbf{ef}flux by algebra:
 \begin{equation*}
   \begin{split}
-   - \int_{\yti}^{\ytf}\!\!\yto(t)\dt &=    \yL(\yti) - yL(\ytf)
+   - \int_{\yti}^{\ytf}\!\!\yM(t)\dt &=    \yL(\yti) - yL(\ytf)
    \\&= [0, \num{2.1e-36},0]\,\unit{N\,m\,s} - [0,0,0]\,\unit{N\,m\,s}
     = [0, \num{2.1e-36},0]\,\unit{N\,m\,s} \ .
   \end{split}
 \end{equation*}
-It makes sense that the efflux is positive, because all angular momentum left the control volume.
+It makes sense that the efflux is positive, because all angular momentum has left the control volume.
 \end{enumerate}
 
 
