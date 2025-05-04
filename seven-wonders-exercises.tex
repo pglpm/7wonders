@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-05-03T12:31:42+0200
+%% Last-Updated: 2025-05-04T22:03:41+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -4021,7 +4021,11 @@ Start from the script for the simulation of two independent tennis balls, and im
 
   Analysing these values, what do expect to happen? will the tennis ball bounce against each other? how many times?
 
-\item Now let's change the parameters for tennis ball $a$ so that it behaves like  the floor: it's heavy and the force of gravity on it can be neglected. Prepare the script with the following constants, initial conditions, boundary conditions, and time-iteration parameters:
+\item Now we want to replace tennis ball $a$ with a floor. Can this be done in a simple way?
+
+  In this simulation, the shape of the tennis ball is not important; in fact, nothing in the script says that this should be a tennis ball: what counts is the object's mass $\yma$, position $\yra$, momentum $\yPa$, and the force of gravity $\yGa$ on it. Let us therefore think of it as the floor. What should be its mass, position, momentum? A floor is essentially Earth's surface: its mass is large, and the force of gravity on it can be neglected (it is the source of gravity).
+
+  Therefore think now of object $a$ as the floor instead. Prepare the script with the following constants, initial conditions, boundary conditions, and time-iteration parameters:
   \begin{equation*}
     \begin{gathered}
       \yma = \qty{0.06}{kg}
