@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-05-05T20:44:18+0200
+%% Last-Updated: 2025-05-05T21:37:05+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4727,14 +4727,16 @@ We thus see that \emph{Newton's third law is the expression of the \autoref{def:
 \section{Pressure, tension, shear force}
 \label{sec:pressure_tension_shear}
 
-The examples of the previous section demonstrated a variety of possible orientations of the momentum-flux vector with respect to the surface through which it occurs. All orientations of momentum flux are possible. But to momentum flux with three special orientations we give special names: \emph{pressure}, \emph{tension}, and \emph{shear force}.
+The examples of the previous section demonstrated a variety of possible orientations of the momentum-flux vector with respect to the surface through which it occurs. All orientations of momentum flux are possible. But we give special names to momentum flux with three special orientations: \emph{pressure}, \emph{tension}, and \emph{shear force}.
 
-Take a small surface; it doesn't matter whether it's vertical, horizontal, or whether it has some other inclination. Call the surface's sides $A$ and $B$. Consider the crossing directions $A\!\rightsquigarrow\!B$ and $B\!\rightsquigarrow\!A$.
+Take a small surface; it doesn't matter whether vertical, horizontal, or with some other inclination. Call the surface's sides $A$ and $B$. Consider the crossing directions $A\!\rightsquigarrow\!B$ and $B\!\rightsquigarrow\!A$.
 
 \begin{definition}{Pressure}
   \label{sec:pressure}
 
   \textbf{Pressure}, or \emph{compressive momentum flux} or \emph{compressive force}, is a flux of momentum through a surface, which points \emph{away from} the surface.
+
+  \smallskip
 
   So in the crossing direction $A\!\rightsquigarrow\!B$, pressure is represented by a vector oriented from $A$ to $B$. Equivalently, in the crossing direction $B\!\rightsquigarrow\!A$ pressure is represented by a vector oriented from $B$ to $A$:\noprelistbreak
   \begin{center}\medskip
@@ -4761,6 +4763,8 @@ Pressure is the kind of momentum flux that we exert when we \emph{push} on an ob
   \label{sec:tension}
   \textbf{Tension}, or \emph{tensile momentum flux} or \emph{tensile force}, is a flux of momentum through a surface, which points \emph{towards} the surface.
 
+  \smallskip
+
   So in the crossing direction $A\!\rightsquigarrow\!B$, tension is represented by a vector oriented from $B$ to $A$. Equivalently, in the crossing direction $B\!\rightsquigarrow\!A$ tension is represented by a vector oriented from $A$ to $B$:\noprelistbreak
   \begin{center}\medskip
     \hspace*{\fill}
@@ -4771,13 +4775,15 @@ Pressure is the kind of momentum flux that we exert when we \emph{push} on an ob
     \makebox[0pt][c]{\hspace*{0.4\linewidth}\footnotesize(\furl{https://pglpm.github.io/7wonders/media/tension.webp}{animated version})}
   \end{center}
 \end{definition}
-Tension is the kind of momentum flux that we experience in our bones when we \emph{pull} an object, and that occurs in any section of a stretched rubber band.
+Tension is the momentum flux that we experience in our bones when we \emph{pull} an object, and that occurs in any section of a stretched rubber band.
 % *** any object in state of \enquote{tension}
 
 \begin{definition}{Shear force}
   \label{sec:shear}
 
   \textbf{Shear force}, or \emph{shearing momentum flux}, is a flux of momentum through a surface, \emph{parallel} to the surface.
+
+  \smallskip
 
   In the crossing direction $A\!\rightsquigarrow\!B$ and in the crossing direction $B\!\rightsquigarrow\!A$, shear force is represented by a vector parallel to the surface. Obviously the orientation is opposite on the two sides, owing to the symmetry of flux:\noprelistbreak
   \begin{center}\medskip
@@ -4911,7 +4917,7 @@ The individual fluxes and the total efflux are consistent because
 % 3e18 enter
 
 
-\section{Time-integrated fluxes}
+\section{Time-integrated fluxes and supplies}
 \label{sec:total_flow}
 
 A flux is defined as the amount of a quantity crossing a control surface in a short time lapse $\Dt$, divided by that time lapse. Denoting the flux by, say, $\yJ$, this definition also means that the amount of quantity crossing the surface in a short time $\Dt$ is approximately equal to $\yJ\,\Dt$.
@@ -4944,8 +4950,21 @@ Take the case of momentum, whose flux (force) we denote $\yF=[F_{x}, F_{y}, F_{z
 
 \medskip
 
-\begin{warning}[The time-integrated flux can be zero even with non-zero flux]
-  The result of the integral defining the integrated flux can be zero. This means that no \emph{net} amount of quantity flowed through the surface between $\yti$ and $\ytf$. Yet the flux $\yJ(t)$ can be non-zero, even at all times; of course it needs to be positive at some times, and negative at others, in order for the integral to be zero.
+An analogous discussion can be made about the supply of a quantity in a control volume:
+%
+\begin{definition}{Time-integrated supply}
+The net amount of quantity created in a a control volume, between times $\yti$ and $\ytf$, is called the \textbf{time-integrated supply} and is given by
+  \begin{equation}
+    \label{eq:total_supply_integral}
+     \int_{\yti}^{\ytf}\!\! \ya(t)\dt\ ,
+   \end{equation}
+   where $\ya(t)$ is the supply of the quantity at time $t$. If the integral is negative, it means that a net amount of quantity has been destroyed.
+ \end{definition}
+
+ \medskip
+
+\begin{warning}[Time-integrated quantities can be zero even with non-zero flux or supply]
+  The result of the integral defining a time-integrated flux or supply can be zero. This means that no \emph{net} amount of quantity flowed through the surface, or was created in the volume, between $\yti$ and $\ytf$. Yet the flux or supply can be non-zero, even at all times; of course it needs to be positive at some times, and negative at others, in order for the time integral to be zero.
 \end{warning}
 % As a simple example, consider a room's door. During one minute, three people enter through the door; during the next minute, three people (not necessarily the same) exit through the door. The total flow of people is zero, but the flux was non-zero during the first minute, and non-zero during the second minute.
 
@@ -4953,8 +4972,8 @@ Take the case of momentum, whose flux (force) we denote $\yF=[F_{x}, F_{y}, F_{z
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item What is the physical dimension of the integrated flux of a quantity?
-  \item Suppose that we calculate the integral above for a particular control surface in the case of matter, finding a total of $\int_{\yti}^{\ytf}\!\! \yJ(t)\dt = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
+  \item What are the physical dimensions of the time-integrated flux and the time-integrated supply of a quantity?
+  \item Suppose that we calculate the time integral for a particular control surface in the case of matter, finding a total of $\int_{\yti}^{\ytf}\!\! \yJ(t)\dt = \qty{7}{mol}$. Now we change our mind and choose the opposite crossing direction for that surface. How does the result above change?
   \end{enumerate}
 \end{exercise}
 
@@ -4969,7 +4988,7 @@ The rigorous definition of velocity from flux is somewhat involved, so here we'l
 
 Take a scalar extensive quantity like matter, electric charge, \energym, or entropy. For concreteness let's take matter. Choose a coordinate system $(t,x,y,z)$ and consider a point in space at a specific coordinate time.
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/flux_velocity.pdf}%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/flux_velocity.pdf}%
 \\[\jot]\flushleftright\color{mpcolor}This control volume is small, static, and with sides parallel to the coordinate axes.%
 }%
 Around this point, choose a very small \emph{static} cuboid region, as in the side figure, delimited by six small rectangular \emph{static} surfaces: two parallel to the $yz$-coordinate plane, two to the $zx$ one, and two to the $xy$ one. The cuboid has volume $V$, and the volume content of matter in it is $\yN$. The two $yz$ surfaces (one of them is in \textcolor{purple}{dark red} in the picture) have area $A$, approximately the same for both; and there is a flux of matter $\yJ_{x}$ crossing either of these two surfaces in the positive-$x$ direction. These two parallel surfaces have approximately the same area and the same flux because the cuboid region is very small.
@@ -4996,7 +5015,7 @@ The velocity $\yv=[v_{x}, v_{y}, v_{z}]$ so defined has the following intuitive 
 \medskip
 
 
-\begin{extra}{Velocities of objects in General Relativity}
+\begin{extra}{Velocities of quantities in General Relativity}
   One consequence of the relationship between velocities and fluxes is that we can define such a velocity for any extensive quantity. So we have a velocity matter from the flux of matter, but also a \emph{velocity of \energym} from the flux of \energym.
 
   \smallskip
