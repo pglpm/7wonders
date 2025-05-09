@@ -7,7 +7,7 @@ g = 9.8;             % N/kg: gravitational acceleration
 C = 20;              % J/(K*mol): molar heat capacity
 mu = 0.00004;        % N*s/m^2: gas viscosity
 h = 8000;            % J/(K*m^2): heat-transfer coefficient
-N = 0.04;            % mol: amount of ideal gas
+
 Text = 373.15 + 23;  % K: temperature of environment
 A = 0.1^2;           % m^2: area of piston
 m = 50;              % kg: mass of piston
@@ -19,12 +19,14 @@ t = 0;  % s: initial time
 z = 0.15;  % m: initial position of piston
 v = 0;  % m/s: initial velocity of piston
 T = 273.15 + 23;  % K: initial temperature of gas
+N = 0.04;            % mol: amount of ideal gas
 
 %% Boundary conditions
 Gpis = -m*g;  % N: gravity supply of momentum to piston
+J = -0.000; % mol/s
 
 %% Parameters for time loop
-t1 = 1;       % s: final time
+t1 = 10;       % s: final time
 dt = 0.0001;  % s: time step %@
 
 ## Plotting
@@ -41,7 +43,7 @@ xlabel('{\it t}/s'); ylabel('{\it T}/K')
 axis('tight'); grid on; hold on %@
 
 %% Numerical time integration
-while t < t1
+while t < t1 && N > 0
   %% constitutive relations
   Fgas = -(R * N * T / z -  mu * A * v / z);  % ideal-gas law
   Q = A * h * (Text - T);                     % law of cooling
@@ -55,6 +57,7 @@ while t < t1
   t = t + dt;
   E = E + Phi * dt;
   Ppis = Ppis + (Fpis + Gpis) * dt;
+  N = N + J * dt;
   z = z + v * dt;
 
   %% constitutive relations: calculate state
