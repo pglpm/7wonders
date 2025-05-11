@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-05-09T18:34:30+0200
+%% Last-Updated: 2025-05-11T23:31:36+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -3482,8 +3482,10 @@ This is a system of two equations, with two unknowns: $\yI_{S}$ and $\di\yQ_{\te
 Besides the required answer, we also found that positive current is flowing from the top to the bottom capacitor.
 
   \medskip
-  \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/capacitors_CS2.jpg}%
-  }%
+
+\marginpar{\vspace{0.5\baselineskip}\centering\footnotesize%
+\includegraphics[width=0.75\linewidth]{images/capacitors_CS2.jpg}%
+}%
   \textbf{(2)} We have one closed control surface, which can be divided into three parts: one called $A$ through which there's an electric current to or from other components; one called $S$ through which there's an electric current to or from the other capacitor; and one without name through which there's no current.
 
   The partial surface $S$ from the previous approach is not considered here. It's within the control volume, so it doesn't matter.
@@ -4376,8 +4378,73 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 \section{}
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
+\section{}
+\label{sec:horiz_bar}
+
+\marginpar{\vspace{0.5\baselineskip}\centering\footnotesize%
+\includegraphics[width=\linewidth]{images/horiz_bar.jpg}%
+}%
+See side figure. A rigid bar (in \textcolor{yellow}{yellow}) of mass \qty{2.0}{kg} is horizontally supported on two points at equal distances of \qty{0.1}{m} from its centre of \masse. The support points have positions vectors $\yr_{1} = [-0.2, 0, 0.1]\,\unit{m}$ and $\yr_{2} = [0.2, 0, 0.1]\,\unit{m}$; the centre of \masse\ (black dot) has position vector $\yrcm = [0, 0, 0.1]\,\unit{m}$. Air is negligible
+
+Considering the bar as a control volume, there are two influxes of momentum, or surface forces, $\yF_{1}$ and $\yF_{2}$ (\textcolor{red}{red upward arrows}) at very small surfaces at  $\yr_{1}$ and $\yr_{2}$; and there is the gravitational momentum supply, or volume force, $\yG$ (\textcolor{blue}{blue downward arrow}). The gravitational acceleration is $g=\qty{9.8}{N/kg}$.
+
+\begin{enumerate}[exerc]
+\item Find the gravitational force $\yG$, and then \emph{try} to find the forces $\yF_{1}$ and $\yF_{2}$ by using the balance of momentum.
+
+\item Try to imagine situations in which the forces at $\yr_{1}$ and $\yr_{2}$ could be unequal, or could have horizontal components, or one of them could point downward.
+
+\item Try to find more components of the forces $\yF_{1}$ and $\yF_{2}$ by using the balance of angular momentum besides the balance of momentum.
+\end{enumerate}
+
+
 \clearpage
 \addsec{Example solutions}
+
+\sollabel{sec:horiz_bar}
+
+\begin{enumerate}[exerc]
+\item To find the volume force $\yG$ we use the constitutive relation for the gravitational force near the Earth's surface:
+  \begin{equation*}
+    \yG = -\ym g \,[0, 0, 1] \approx -[0, 0, 20]\,\unit{N} \,.
+  \end{equation*}
+
+To find the surface forces $\yF_{1}$ and $\yF_{2}$ we consider the given control volume; denote its momentum with $\yP$ and its total influx of momentum with $\yF$. The physical laws and data that we use are the following:
+\begin{itemize}[noitemsep]
+\item The balance of momentum in its differential expression, since the situation is static.
+\item The information that $\frac{\di\yP}{\dt} = [0,0,0]\,\unit{N}$.
+\item The principle of extensivity, from which we find the total momentum influx is the sum of the momentum influxes at the two support points.
+\item The supply of momentum $\yG$ found above.
+\end{itemize}
+All these together form the system of equations
+\begin{equation}
+  \label{eq:momentum_horiz_bar}
+  \begin{aligned}
+    &\frac{\di\yP}{\dt} = \yF + \yG
+    \\&\frac{\di\yP}{\dt} = [0,0,0]\,\unit{N}
+    \\&\yF = \yF_{1} + \yF_{2}
+    \\&\yG = -\ym g\, [0,0,1]
+  \end{aligned}
+\end{equation}
+Its solution is easy:
+\begin{equation*}
+  \yF_{1} + \yF_{2} = \yG
+\end{equation*}
+with $\yG$ known. Therefore if we know the three components of $\yF_{2}$ we can then find $\yF_{1}$; or if we know the three components of $\yF_{1}$ we can then find $\yF_{2}$.
+
+But we cannot find the components of \emph{both} $\yF_{1}$ and $\yF_{2}$ without further information!
+
+\item In fact, the problem is somewhat vague regarding the support forces. The bar could have been dropped on the support points; in this case we would expect the forces there to be vertical. Or maybe the bar was attached to the support points by some glue or spikes. In some situations the two forces could be unequal and could have horizontal components -- say if the spikes were nailed at an inclined angle. The bar could have been attached at $\yr_{1}$ with a very strong glue. Then it would stay horizontal even if we removed the support at $\yr_{2}$; this would mean that no force was exerted there.
+
+\item We consider the same control volume as before. Denote its angular momentum with $\yL$; its total influx of angular momentum, or surface torque, with $\yM$; its total supply of angular momentum, or volume torque,  with $\yto$. We use the following additional physical laws and data:
+  \begin{itemize}[noitemsep]
+  \item The balance of angular momentum in its differential expression, since the situation is static.
+\item The information that $\frac{\di\yL}{\dt} = [0,0,0]\,\unit{N}$.
+\item The principle of extensivity, from which we find the total angular-momentum influx is the sum of the angular-momentum influxes at the two support points.
+\item Since the surface at $\yr_{1}$ is small, the angular-momentum influx $\yM_{1}$ there is given by the constitutive relation $\yM_{1} = \yr_{1} \times \yF_{1}$; similarly for $\yr_{2}$.
+\item The text says that the bar is rigid; for a rigid body, the gravitational angular-momentum supply $\yto$ is given by the constitutive relation $\yto = \yrcm \times \yG$, where $\yrcm$ is the centre of mass.
+\item The two position vectors and the centre of mass are given in the problem.
+  \end{itemize}
+\end{enumerate}
 
 
 % \section{Formulation and generalities}
