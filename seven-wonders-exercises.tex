@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-05-11T23:31:36+0200
+%% Last-Updated: 2025-05-12T11:58:30+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -4384,16 +4384,16 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize%
 \includegraphics[width=\linewidth]{images/horiz_bar.jpg}%
 }%
-See side figure. A rigid bar (in \textcolor{yellow}{yellow}) of mass \qty{2.0}{kg} is horizontally supported on two points at equal distances of \qty{0.1}{m} from its centre of \masse. The support points have positions vectors $\yr_{1} = [-0.2, 0, 0.1]\,\unit{m}$ and $\yr_{2} = [0.2, 0, 0.1]\,\unit{m}$; the centre of \masse\ (black dot) has position vector $\yrcm = [0, 0, 0.1]\,\unit{m}$. Air is negligible
+See side figure. A rigid bar (in \textcolor{yellow}{yellow}) of mass \qty{2.0}{kg} is horizontally supported on two points at equal distances of \qty{0.1}{m} from its centre of \masse. With respect to a coordinate system $(t, x, y, z)$, the support points have positions vectors $\yr_{1} = [-0.2, 0, 0.1]\,\unit{m}$ and $\yr_{2} = [0.2, 0, 0.1]\,\unit{m}$; the centre of \masse\ (black dot) has position vector $\yrcm = [0, 0, 0.1]\,\unit{m}$. The physical effects of air are negligible.
 
-Considering the bar as a control volume, there are two influxes of momentum, or surface forces, $\yF_{1}$ and $\yF_{2}$ (\textcolor{red}{red upward arrows}) at very small surfaces at  $\yr_{1}$ and $\yr_{2}$; and there is the gravitational momentum supply, or volume force, $\yG$ (\textcolor{blue}{blue downward arrow}). The gravitational acceleration is $g=\qty{9.8}{N/kg}$.
+Considering the bar as a control volume, there are two influxes of momentum, or surface forces, $\yF_{1}$ and $\yF_{2}$ (\textcolor{red}{red upward arrows}) on very small surfaces at $\yr_{1}$ and $\yr_{2}$; these two forces are purely vertical. There is also a gravitational momentum supply, or volume force, $\yG$ (\textcolor{blue}{blue downward arrow}). The gravitational acceleration is $g=\qty{9.8}{N/kg}$.
 
 \begin{enumerate}[exerc]
-\item Find the gravitational force $\yG$, and then \emph{try} to find the forces $\yF_{1}$ and $\yF_{2}$ by using the balance of momentum.
+\item Find the gravitational force $\yG$.
 
-\item Try to imagine situations in which the forces at $\yr_{1}$ and $\yr_{2}$ could be unequal, or could have horizontal components, or one of them could point downward.
+\item Try to find the forces $\yF_{1}$ and $\yF_{2}$ by using the balance of momentum. Can you determine all their components?
 
-\item Try to find more components of the forces $\yF_{1}$ and $\yF_{2}$ by using the balance of angular momentum besides the balance of momentum.
+\item Try to find the forces $\yF_{1}$ and $\yF_{2}$ by using the balance of angular momentum besides the balance of momentum.
 \end{enumerate}
 
 
@@ -4408,43 +4408,162 @@ Considering the bar as a control volume, there are two influxes of momentum, or 
     \yG = -\ym g \,[0, 0, 1] \approx -[0, 0, 20]\,\unit{N} \,.
   \end{equation*}
 
-To find the surface forces $\yF_{1}$ and $\yF_{2}$ we consider the given control volume; denote its momentum with $\yP$ and its total influx of momentum with $\yF$. The physical laws and data that we use are the following:
+
+\item To find the vertical surface forces $\yF_{1}$ and $\yF_{2}$ we consider the given control volume; denote its net momentum content with $\yP$ and its net momentum influx with $\yF$. The physical laws and data that we know are the following:
 \begin{itemize}[noitemsep]
-\item The balance of momentum in its differential expression, since the situation is static.
-\item The information that $\frac{\di\yP}{\dt} = [0,0,0]\,\unit{N}$.
-\item The principle of extensivity, from which we find the total momentum influx is the sum of the momentum influxes at the two support points.
+\item The balance of momentum; we can try to use its differential expression, since the situation is static.
+\item The principle of extensivity, from which we find the net momentum influx $\yF$ from the momentum influxes at the two support points.
 \item The supply of momentum $\yG$ found above.
+\item The information that $\frac{\di\yP}{\dt} = [0,0,0]\,\unit{N}$, since the bar is static.
+\item The information that $\yF_{1}$, $\yF_{2}$ are vertical.
 \end{itemize}
-All these together form the system of equations
+All these together form this system of equations:
 \begin{equation}
   \label{eq:momentum_horiz_bar}
   \begin{aligned}
     &\frac{\di\yP}{\dt} = \yF + \yG
-    \\&\frac{\di\yP}{\dt} = [0,0,0]\,\unit{N}
+    &&\qquad\text{\footnotesize momentum balance}
     \\&\yF = \yF_{1} + \yF_{2}
+    &&\qquad\text{\footnotesize extensivity of momentum flux}
     \\&\yG = -\ym g\, [0,0,1]
+    &&\qquad\text{\footnotesize known: gravitational force}
+    \\&\frac{\di\yP}{\dt} = [0,0,0]\,\unit{N}
+    &&\qquad\text{\footnotesize rest condition}
+    \\&\yF_{1} = [\qty{0}{N}, \qty{0}{N}, F_{1,z}]
+    &&\qquad\text{\footnotesize force is vertical}
+    \\&\yF_{2} = [\qty{0}{N}, \qty{0}{N}, F_{2,z}]
+    &&\qquad\text{\footnotesize force is vertical}
   \end{aligned}
 \end{equation}
-Its solution is easy:
+with unknowns $F_{1,z}$ and $F_{2,z}$.
+
+The solution of the system can be found by the method of substitution. We end up with
 \begin{equation*}
-  \yF_{1} + \yF_{2} = \yG
+  F_{1,z} + F_{2,z} = \ym g \approx \qty{20}{N} \,.
 \end{equation*}
-with $\yG$ known. Therefore if we know the three components of $\yF_{2}$ we can then find $\yF_{1}$; or if we know the three components of $\yF_{1}$ we can then find $\yF_{2}$.
+The equation above can tell us $F_{1,z}$ if we know $F_{2,z}$, or vice versa. But it cannot tell us \emph{both}. It looks like the information given in the problem is not enough to find both forces.
 
-But we cannot find the components of \emph{both} $\yF_{1}$ and $\yF_{2}$ without further information!
+One could say \enquote{the situation of the two forces is symmetrical, so we can intuitively assume that $F_{1,z}$ and $F_{2,z}$ should be equal}. But note that this is not a result of the balance of momentum. Which physical law would this \enquote{symmetry} be? Now we'll find an answer to this question.
 
-\item In fact, the problem is somewhat vague regarding the support forces. The bar could have been dropped on the support points; in this case we would expect the forces there to be vertical. Or maybe the bar was attached to the support points by some glue or spikes. In some situations the two forces could be unequal and could have horizontal components -- say if the spikes were nailed at an inclined angle. The bar could have been attached at $\yr_{1}$ with a very strong glue. Then it would stay horizontal even if we removed the support at $\yr_{2}$; this would mean that no force was exerted there.
 
-\item We consider the same control volume as before. Denote its angular momentum with $\yL$; its total influx of angular momentum, or surface torque, with $\yM$; its total supply of angular momentum, or volume torque,  with $\yto$. We use the following additional physical laws and data:
+\item Consider the same control volume as before. Denote its net angular momentum with $\yL$; its net influx of angular momentum, or surface torque, with $\yM$; its net supply of angular momentum, or volume torque, with $\yto$. The additional physical laws and data that we know are the following:
   \begin{itemize}[noitemsep]
-  \item The balance of angular momentum in its differential expression, since the situation is static.
-\item The information that $\frac{\di\yL}{\dt} = [0,0,0]\,\unit{N}$.
-\item The principle of extensivity, from which we find the total angular-momentum influx is the sum of the angular-momentum influxes at the two support points.
-\item Since the surface at $\yr_{1}$ is small, the angular-momentum influx $\yM_{1}$ there is given by the constitutive relation $\yM_{1} = \yr_{1} \times \yF_{1}$; similarly for $\yr_{2}$.
+\item The balance of angular momentum; we can try to use its differential expression, since the situation is static.
+\item The principle of extensivity, from which we find the net angular-momentum influx $\yM$ from the angular-momentum influxes at the two support points.
+\item Since the surface at $\yr_{1}$ is small, the angular-momentum influx $\yM_{1}$ through it is given by the constitutive relation $\yM_{1} = \yr_{1} \times \yF_{1}$;
+\item similarly for $\yr_{2}$.
 \item The text says that the bar is rigid; for a rigid body, the gravitational angular-momentum supply $\yto$ is given by the constitutive relation $\yto = \yrcm \times \yG$, where $\yrcm$ is the centre of mass.
-\item The two position vectors and the centre of mass are given in the problem.
+\item The information that $\frac{\di\yL}{\dt} = [0,0,0]\,\unit{N\,m}$, since the bar is static.
+\item The values of $\yr_{1}$, $\yr_{2}$, $\yrcm$.
   \end{itemize}
 \end{enumerate}
+All these together form this enlarged system of equations:
+\begin{equation}
+  \label{eq:angmomentum_horiz_bar}
+  \begin{aligned}
+    &\frac{\di\yL}{\dt} = \yM + \yto
+    &&\qquad\text{\footnotesize ang.-momentum balance}
+    \\&\yM = \yM_{1} + \yM_{2}
+    &&\qquad\text{\footnotesize extensivity of ang.-momentum flux}
+    \\&\yM_{1} = \yr_{1} \times \yF_{1}
+    &&\qquad\text{\footnotesize const. rel. for torque}
+    \\&\yM_{2} = \yr_{2} \times \yF_{2}
+    &&\qquad\text{\footnotesize const. rel. for torque}
+    \\&\yto = \yrcm \times \yG
+    &&\qquad\text{\footnotesize const. rel. for grav. torque}
+    \\&\frac{\di\yL}{\dt} = [0,0,0]\,\unit{N\,m}
+    &&\qquad\text{\footnotesize rest condition}
+    \\&\yr_{1} = [-0.2, 0, 0.1]\,\unit{m}
+    &&\qquad\text{\footnotesize given}
+    \\&\yr_{2} = [0.2, 0, 0.1]\,\unit{m}
+    &&\qquad\text{\footnotesize given}
+    \\&\yrcm = [0, 0, 0.1]\,\unit{m}
+    &&\qquad\text{\footnotesize given}
+    \\&\yF_{1} = [\qty{0}{N}, \qty{0}{N}, F_{1,z}]
+    &&\qquad\text{\footnotesize force is vertical}
+    \\&\yF_{2} = [\qty{0}{N}, \qty{0}{N}, F_{2,z}]
+    &&\qquad\text{\footnotesize force is vertical}
+    \\&\yF_{2} = [\qty{0}{N}, \qty{0}{N}, F_{2,z}]
+    &&\qquad\text{\footnotesize force is vertical}
+    % \\&F_{1,z} + F_{2,z} = \ym g \approx \qty{20}{N}
+    % &&\qquad\text{\footnotesize from mom. balance}
+  \end{aligned}
+\end{equation}
+with unknowns $F_{1,z}$ and $F_{2,z}$.
+
+The system above can also be solved by substitution. We arrive at these intermediate steps:
+\begin{equation*}
+  \yM_{1} + \yM_{2} = -\yto
+  \qquad\implies\qquad
+  \yr_{1} \times \yF_{1} +
+  \yr_{2} \times \yF_{2} = -\yrcm \times \yG \,,
+\end{equation*}
+and the vector products in the last equation are easily calculated
+\begin{equation*}
+  \begin{aligned}
+    \yr_{1} \times \yF_{1} &=
+    \begin{bmatrix}
+      -0.2\\0\\0.1
+    \end{bmatrix}\,\unit{m}
+    \times
+    \begin{bmatrix}
+      \qty{0}{N}\\\qty{0}{N}\\ F_{1,z}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \qty{0}{N\,m}\\ \qty{0.2}{m}\, F_{1,z}\\ \qty{0}{N\,m}
+    \end{bmatrix}
+    \\[\jot]
+        \yr_{2} \times \yF_{2} &=
+    \begin{bmatrix}
+      0.2\\0\\0.1
+    \end{bmatrix}\,\unit{m}
+    \times
+    \begin{bmatrix}
+      \qty{0}{N}\\\qty{0}{N}\\ F_{2,z}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \qty{0}{N\,m}\\ -\qty{0.2}{m}\, F_{2,z}\\ \qty{0}{N\,m}
+    \end{bmatrix}
+    \\[\jot]
+        \yrcm \times \yG &=
+    \begin{bmatrix}
+      0\\0\\0.1
+    \end{bmatrix}\,\unit{m}
+    \times
+    \begin{bmatrix}
+      \qty{0}{N}\\\qty{0}{N}\\ -\ym\,g
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}\,\unit{N\,m}
+  \end{aligned}
+\end{equation*}
+
+We finally arrive at
+\begin{equation*}
+  \begin{bmatrix}
+    \qty{0}{N\,m}\\ \qty{0.2}{m}\, F_{1,z}\\ \qty{0}{N\,m}
+  \end{bmatrix}
+  +
+  \begin{bmatrix}
+    \qty{0}{N\,m}\\ -\qty{0.2}{m}\, F_{2,z}\\ \qty{0}{N\,m}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0 \\ 0 \\ 0
+  \end{bmatrix}\,\unit{N\,m} \,.
+\end{equation*}
+This corresponds to three equations. The first ($x$-component) and last ($z$-component) are identities $0=0$. The second ($y$-component) can be used together with the equation we found from the momentum balance:
+\begin{equation*}
+  \begin{aligned}
+    \qty{0.2}{m}\, F_{1,z} -\qty{0.2}{m}\, F_{2,z} &= \qty{0}{N\,m}
+    \\
+    F_{1,z} + F_{2,z} &= \ym g \approx \qty{20}{N}
+  \end{aligned}
+\end{equation*}
 
 
 % \section{Formulation and generalities}
