@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-05-15T23:13:52+0200
+%% Last-Updated: 2025-05-19T23:01:20+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -3898,7 +3898,7 @@ For each of the seven primitive quantities, except magnetic flux, we can measure
 \marginpar{\vspace{\baselineskip}\footnotesize\centering\includegraphics[height=11em]{images/howmuch_surface_notime.jpg}%
 }%
 \begin{definition}{Flux}
-  \textbf{Flux} is the amount of quantity flowing through a two-dimensional surface in a given direction, \emph{per time}, at a particular time instant.
+  \textbf{Flux} or \textbf{current} or \textbf{flow rate} is the amount of quantity flowing through a two-dimensional surface in a given direction, \emph{per time}, at a particular time instant.
 
   \smallskip
 
@@ -3918,6 +3918,26 @@ For the magnetic flux we shall introduce analogous kinds of amount, but in one l
 
 The volume content, flux, and supply of the four scalar quantities -- matter, electric charge, \energym, entropy -- are also \emph{scalars}; that is, each is expressed by one number and a unit.
 The volume content, flux, and supply of the two vector quantities -- momentum and angular momentum -- are also \emph{vectors}; that is, each is usually expressed by three numbers and units.
+
+\begin{warning}[Different terminology across disciplines and literature]
+  Keep in mind that many disciplines and their literature use terms different from \enquote*{content}, \enquote*{flux}, \enquote*{supply}, to indicate the \emph{same notions}. It's therefore important that you understand the \emph{concepts} these terms stand for, without getting too attached to the terms themselves.
+
+  \smallskip
+
+  The term \emph{content} is very rarely used. In most disciplines, one simply speaks of the quantity \emph{in} the control volume, without mentioning any \enquote*{content}. For instance, instead of saying \enquote{the energy content in the control volume is \qty{2}{J}}, one simply says \enquote{the energy in the control volume is \qty{2}{J}}. In these notes we use the word \enquote*{content} to clearly distinguish its notion from those of \emph{flux} and \emph{supply}.
+
+  \smallskip
+
+  The term \emph{flux} is often used in disciplines like fluid mechanics. In solid state physics and some other disciplines the term \emph{current} is used instead; the most evident example is \emph{electric current}, which is exactly the same as \emph{flux of electric charge}. In physical chemistry and other disciplines, the term \emph{flow rate} is used instead. You may even meet other technical terms for the same concept. In these notes \enquote*{flux} is chosen because it's short and unlikely to be misinterpreted in a qualitative sense.
+
+  \smallskip
+
+  One more confusing aspect about the terms \emph{flux} and \emph{current} is that some disciplines use them to denote the notions we mean in these notes, but \emph{divided by area}. This means that their units will also be different in those disciplines. The \furl{https://doi.org/10.6028/NIST.SP.811e2008}{International Organization for Standardization (ISO) recommends} that the terms \enquote*{areic flux} or \enquote*{flux density}, and similarly with \enquote*{current}, be used instead to denote the division of a flux by the area of the surface through which it occurs. Our terminology agrees with the ISO.
+
+    \smallskip
+
+  The term \emph{supply} is often used in disciplines like fluid mechanics. In solid state physics and some other disciplines the term \emph{source} is used instead, and \emph{sink} to denote a supply having a negative value. Some disciplines use \emph{supply} and \emph{source} to denote these notions but \emph{divided by volume}. The ISO recommends instead to use the terms \enquote*{volumic supply} or \enquote*{supply density} in this case.
+\end{warning}
 
 \section{Symbols, notation, and extensivity}
 \label{sec:symbols_quantities}
@@ -4109,7 +4129,7 @@ In the previous example the control volume and control surfaces had very simple 
 
 In a similar way we can consider as control volumes more complicated objects and spaces -- like a car, a rocket, a bacterium, a planet, the chamber in a piston -- with appropriate control surfaces that \enquote{wrap} them. Keep in mind that these control volumes and surfaces bend and move as needed. The locomotive system illustrated on the side can be considered as a control volume, with a complex movable control surface that perfectly wraps every element of it.
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%\includegraphics[width=0.75\linewidth]{images/piston_CV2.jpg}\\%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%\includegraphics[width=0.75\linewidth]{images/piston_CV2.jpg}\\%
 \includegraphics[width=\linewidth]{images/locomotive.jpg}%
 \\[\jot]\flushleftright\footnotesize\color{mpcolor}From \furl{http://www.009.cd2.com}{009 Lynton and Barnstaple Railway County Gate}%
 }%
@@ -4141,7 +4161,7 @@ With this choice we do have to explicitly consider the physical law for the bala
 \medskip
 
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
   \\[\jot]\flushleftright\color{mpcolor}Clever hybrid choices of control volumes and surfaces allow us to simulate complex motions of fluid surfaces. \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{See also animation} (\cites{wojtanetal2009}).%
 }%
 There are also hybrid choices between the two special choices above, with some control volumes and surfaces that are static, and others that move and deform in a more fluid way. These hybrid choices are used for instance in simulations of fluids where the behaviour of their surface -- waves, detaching drops, and similar -- are important.
@@ -4254,7 +4274,7 @@ To get an intuitive grip of the notion of flux, consider a %
 flow of people through an open door. The door is our control surface. %
 We can ask how many people crossed the door during a minute. But one more detail about this flow is important: \emph{in which direction did the people cross the door?} This detail is important because, for example, the door leads to a classroom and we need to keep track of how many seats are free. We therefore need to know whether each person who crossed the door was actually \emph{entering} or \emph{leaving} the classroom.
 
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/person_enter.pdf}
 \\\flushleftright\footnotesize\color{mpcolor}According to the crossing direction indicated by the \textcolor{cyan}{blue wiggly arrow}, the person crossing the door counts as\enskip\enquote*{$+1$}.%
 
