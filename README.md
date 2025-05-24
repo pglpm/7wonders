@@ -1,4 +1,4 @@
-# The Seven Wonders of the world
+# The Seven Wonders of the World
 
 <img src="images/7wonders_cover.jpg" alt="Seven fundamental equations" width="100%"/>
 
