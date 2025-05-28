@@ -2,12 +2,11 @@
 %% Coordinates (t, z)
 
 %% Constants
-R = 8.31446261815;  % J/(K*mol): molar gas constant
-g = 9.8;            % N/kg: gravitational acceleration
-N = 0.04;           % mol: amount of ideal gas
-C = 20;             % J/(K*mol): molar heat capacity
-mu = 0.00004;       % N*s/m^2: gas viscosity
-h = 8000;           % J/(K*m^2): heat-transfer coefficient
+R = 8.31446261815;   % J/(K*mol): molar gas constant
+g = 9.8;             % N/kg: gravitational acceleration
+C = 20;              % J/(K*mol): molar heat capacity
+mu = 0.00004;        % N*s/m^2: gas viscosity
+h = 8000;            % J/(K*m^2): heat-transfer coefficient
 
 Text = 373.15 + 23;  % K: temperature of environment
 A = 0.1^2;           % m^2: area of piston
@@ -20,9 +19,11 @@ t = 0;            % s: initial time
 z = 0.15;         % m: initial position of piston
 v = 0;            % m/s: initial velocity of piston
 T = 273.15 + 23;  % K: initial temperature of gas
+N = 0.04;         % mol: amount of ideal gas
 
 %% Boundary conditions
 G = -m*g;  % N: gravity supply of momentum to piston
+J = -0.000;   % mol/s: gas leak
 
 %% Parameters for time loop
 t1 = 10;      % s: final time
@@ -56,6 +57,7 @@ while t < t1 && N > 0
   t = t + dt;
   E = E + Phi * dt;
   P = P + (F + G) * dt;
+  N = N + J * dt;
   z = z + v * dt;
 
   %% constitutive relations: calculate state
