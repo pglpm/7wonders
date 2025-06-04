@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-06-04T22:30:44+0200
+%% Last-Updated: 2025-06-04T22:55:00+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5162,7 +5162,7 @@ In \sects~\ref{sec:constitutive}--\ref{sec:diff_balance_constitutive} we shall d
   In our imaginary example, the law \enquote*{$a=b$} is fundamental and universal, and the law \enquote*{$b=c$} is fundamental and constitutive. Is the derived law \enquote*{$a=c$} universal? or is it constitutive?
 \end{exercise}
 
-\section{Balance and conservation laws}
+\section{Balance laws and conservation laws}
 \label{sec:balance_intro}
 
 % \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
@@ -5174,7 +5174,7 @@ There are physical laws which have a special meaning and mathematical form: they
 Balance laws concern \emph{extensive} quantities, like our \autoref{sec:stuff}{seven primitive quantities}. Recall that for extensive quantities we may ask: \enquote*{how much is there in a particular control volume?}, \enquote*{how much is flowing through a particular control surface?}, \enquote*{how much is being produced in a control volume?}
 % How do we describe the patterns, regularities, and diversities that we observe in these phenomena?
 % There is a small set of laws that either are fundamental laws or can be derived from fundamental laws, and that have a special mathematical form and physical meaning. They are called \emph{balance laws}:
-\begin{definition}{Balance and conservation laws}
+\begin{definition}{Balance laws and conservation laws}
   A \textbf{balance law}, or simply \emph{balance}, expresses a relation between the volume content, flux, and supply of an extensive physical quantity.
 
   \smallskip
@@ -7954,7 +7954,7 @@ Let's examine the structure of this script, starting from the bottom, and omitti
 \end{table}
 
 
-\medskip
+\FloatBlock
 
 \begin{exercise}[label={ex:tennisball3}]
   Modify and play around with the script for the tennis ball of table~\ref{tab:tennisball_rP} on page~\pageref{tab:tennisball_rP}, changing the various parameters in the script and changing the physical situation a little. For example you can try the following:
@@ -7969,7 +7969,7 @@ Let's examine the structure of this script, starting from the bottom, and omitti
   \end{itemize}
 \end{exercise}
 
-\clearpage
+%\clearpage
 \section{Constitutive relations for momentum flux: materials science}
 \label{sec:material_science}
 
@@ -7992,13 +7992,15 @@ To start with, we shall simplify the situation as follows:
 \item We often assume that the matter within the control volume has negligible \masse, and therefore a momentum content that is practically zero at all times.
 \end{itemize}
 
+These simplification are illustrated in the side figure on the next page.
+%% ***float!
+The closed control surface is represented by the \textcolor{yellow}{dashed yellow line}. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be elliptical or round, or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
+
+We assume that momentum fluxes, that is, surface forces, only occur at the two partial surfaces represented by the \textcolor{purple}{solid dark-red lines}, which we may call $a$ and $b$ (we could also call them \enquote*{1} and \enquote*{2}, or use other similar symbols). The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$.
 %
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/material_piece2.jpg}%
 }%
-These simplification are illustrated in the side figure. The closed control surface is represented by the \textcolor{yellow}{dashed yellow line}. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be elliptical or round, or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
-
-We assume that momentum fluxes, that is, surface forces, only occur at the two partial surfaces represented by the \textcolor{purple}{solid dark-red lines}, which we may call $a$ and $b$, or \enquote*{1} and \enquote*{2}, or similar symbols. The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$ or a similar symbol.
 
 If the partial surfaces $a$ and $b$ are enough small, we may identify their positions with position vectors $\yra$ and $\yrb$ (not indicated in the figure). In this case we have $\yle = \abs{\yra - \yrb}$.
 
@@ -8008,7 +8010,7 @@ The momentum \textbf{ef}fluxes through the partial surfaces are $\yFa$ and $\yFb
 \medskip
 
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/rubberband0.jpg}%
 \\[\jot]\includegraphics[width=0.5\linewidth]{images/spring0.jpg}%
 \\[\jot]\includegraphics[width=0.5\linewidth]{images/wire0.jpg}%
@@ -8721,8 +8723,7 @@ end
 \vspace{-1\baselineskip}\end{framed}
 \end{table}
 
-
-\clearpage
+\FloatBlock
 \color{black}
 
 \begin{exercise}[label={ex:hooke}]
@@ -8812,7 +8813,7 @@ end
 \end{exercise}
 
 
-\section{Non-hookean and more general materials}
+\section{Non-Hookean and more general materials}
 \label{sec:nonhooke}
 
 \autoref{sec:hooke}{Hooke's law} is just a very simple example of how the magnitude and orientation of the momentum influx in our simplified piece of material can depend on other quantities:
