@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-05-12T15:32:36+0200
+%% Last-Updated: 2025-08-09T07:47:40+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anontrue
@@ -340,9 +340,9 @@ british%
 % \DeclareMathSymbol{\varphiup}{\mathalpha}{egreekr}{"27}
 
 
-% \usepackage%[scaled=0.9]%
-% {classico}%  Optima as sans-serif font
-\renewcommand\sfdefault{uop}
+\usepackage[scaled=0.837435]%
+{DejaVuSansCondensed}%  sans-serif font
+%\renewcommand\sfdefault{URWClassico-TLF}
 \DeclareMathAlphabet{\mathsf}  {T1}{\sfdefault}{m}{sl}
 \SetMathAlphabet{\mathsf}{bold}{T1}{\sfdefault}{b}{sl}
 %\newcommand*{\mathte}[1]{\textbf{\textit{\textsf{#1}}}}
@@ -350,8 +350,9 @@ british%
 % \DeclareMathAlphabet{\mathsu}  {T1}{\sfdefault}{m}{n}
 % \SetMathAlphabet{\mathsu}{bold}{T1}{\sfdefault}{b}{n}
 
-% DejaVu Mono as typewriter text
-\usepackage[scaled=0.83]{DejaVuSansMono}
+\usepackage[scaled=0.837435]
+{DejaVuSansMono} % typewriter text
+
 
 \usepackage{mathdots}
 
@@ -588,7 +589,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
   \renewcommand*{\chapterheadstart}{\vspace*{40pt}}
   \renewcommand*{\afterchapternum}{\par\nobreak\vskip -34pt}
    % \renewcommand*{\chapnamefont}{\normalfont\LARGE\flushright}
-   \renewcommand*{\chapnumfont}{\normalfont\HUGE\color{midgrey}}
+   \renewcommand*{\chapnumfont}{\normalfont\HUGE\sffamily\color{midgrey}}
 \renewcommand*{\chaptitlefont}{\normalfont\huge\sffamily\bfseries}
    % \renewcommand*{\chaptitlefont}{\normalfont\HUGE\bfseries\flushright}
 \renewcommand*{\printchaptername}{}%
@@ -1010,6 +1011,8 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 \newcommand*{\energym}{energy-mass}
 \newcommand*{\masse}{mass-energy}
 \newcommand*{\tot}{_{\textrm{tot}}}
+
+\newcommand{\textdim}{\textsf}
 
 %% constants
 %% R % molar gas constant
@@ -1571,11 +1574,11 @@ Find the correct units for the following quantities:
 Find which of the following mathematical expressions and equalities are dimensionally incorrect, and explain why they are incorrect:
 \begin{itemize}[label=$\triangleright$\enskip,itemsep=1ex]
 \item $\displaystyle\qty{11}{J} + \qty{4}{kg}$%%
-\item $\displaystyle\tan\biggl(\frac{a}{b}\biggr)$, where $a$ has dimension \textsc{length} and $b$ has dimension \textsc{time}%%
+\item $\displaystyle\tan\biggl(\frac{a}{b}\biggr)$, where $a$ has dimension \textdim{length} and $b$ has dimension \textdim{time}%%
 \item $\displaystyle\qty{299792458}{m/s}$
 \item $\displaystyle\exp\biggl(\frac{\qty{71}{s}}{\qty{3}{s}}\biggr)$
 \item $\displaystyle\cos(\num{3.14})\:\unit{m}$
-\item $\displaystyle m - v$, where $m$ has dimension of \textsc{mass} and $v$ of \textsc{velocity}%%
+\item $\displaystyle m - v$, where $m$ has dimension of \textdim{mass} and $v$ of \textdim{velocity}%%
 \item $\displaystyle \qty{10}{N\, s}-\qty{2}{kg\, m/s} = \qty{8}{J\, s/m}$
 \item $\displaystyle\exp(-8\,\unit{J})$%%
 \item $\displaystyle\bigl(\qty{9}{m},\, \qty{0.1}{rad},\, -\qty{0.5}{rad}\bigr)$
@@ -1586,7 +1589,7 @@ Find which of the following mathematical expressions and equalities are dimensio
 \item $\displaystyle\bigl(\e^{7}\bigr)^{\unit{s}}$%%
 \item $\displaystyle\tan\biggl(\frac{\qty{10}{m}}{\qty{5}{m}}\biggr)$
 \item $\displaystyle\sqrt{\qty{300}{K}\,}$
-\item $\displaystyle\sin(t/\unit{s})$, where $t$ has dimension of \textsc{time}
+\item $\displaystyle\sin(t/\unit{s})$, where $t$ has dimension of \textdim{time}
 \item $\displaystyle\frac{3}{\unit{s}}$
 \item $\displaystyle\sin(\qty{10}{s})$%%
 \end{itemize}
@@ -1598,11 +1601,11 @@ Find which of the following mathematical expressions and equalities are dimensio
     \hline\\
     \textbf{Quantity}&\textbf{SI Dimension}&\textbf{Unit}
     \\[2\jot]
-    Time&\textsc{time}&\emph{second}\;\unit{s}
+    Time&\textdim{time}&\emph{second}\;\unit{s}
     \\[\jot]
-    Length&\textsc{length}&\emph{metre}\;\unit{m}
+    Length&\textdim{length}&\emph{metre}\;\unit{m}
     \\[\jot]
-    Temperature&\textsc{temperature}&\emph{kelvin}\;\unit{K}
+    Temperature&\textdim{temperature}&\emph{kelvin}\;\unit{K}
     \\[2\jot]
     Matter&\textsf{amount of substance}&\emph{mole}\;\unit{mol}
     \\[\jot]
@@ -1610,20 +1613,20 @@ Find which of the following mathematical expressions and equalities are dimensio
     \\[\jot]
     Magnetic flux&\textsf{magnetic flux}&\emph{weber}\;\unit{Wb}
     \\[2\jot]
-    Energy&\parbox[t]{10em}{\textsc{energy},\\[0\jot] \textsc{mass}}&\parbox[t]{5em}{\emph{joule}\;\unit{J},\\[0\jot] \emph{kilogram}\;\unit{kg}}
+    Energy&\parbox[t]{10em}{\textdim{energy},\\[0\jot] \textdim{mass}}&\parbox[t]{5em}{\emph{joule}\;\unit{J},\\[0\jot] \emph{kilogram}\;\unit{kg}}
     \\[7\jot]
     \textbf{Momentum}
-    &\parbox[t]{10em}{$\textsc{force}\cdot\textsc{time}$,
-      \\[0\jot]$\textsc{mass}\cdot\textsc{length}/\textsc{time}$,
-      \\[0\jot]$\textsc{energy}\cdot\textsc{time}/\textsc{length}$}
+    &\parbox[t]{10em}{$\textdim{force}\cdot\textdim{time}$,
+      \\[0\jot]$\textdim{mass}\cdot\textdim{length}/\textdim{time}$,
+      \\[0\jot]$\textdim{energy}\cdot\textdim{time}/\textdim{length}$}
     &\parbox[t]{5em}{\unit{N\cdot s},
       \\[0\jot]\unit{kg\cdot m/s},
       \\[0\jot] \unit{J\cdot s/m}}
     \\[12\jot]
     \textbf{Angular momentum}
-    &\parbox[t]{10em}{$\textsc{force}\cdot\textsc{length}\cdot\textsc{time}$,
-      \\[0\jot]$\textsc{mass}\cdot\textsc{length}^{2}/\textsc{time}$,
-      \\[0\jot]$\textsc{energy}\cdot\textsc{time}$}
+    &\parbox[t]{10em}{$\textdim{force}\cdot\textdim{length}\cdot\textdim{time}$,
+      \\[0\jot]$\textdim{mass}\cdot\textdim{length}^{2}/\textdim{time}$,
+      \\[0\jot]$\textdim{energy}\cdot\textdim{time}$}
     &\parbox[t]{5em}{\unit{N\cdot m\cdot s},
       \\[0\jot]\unit{kg\cdot m^2/s},
       \\[0\jot] \unit{J\cdot s}}
@@ -1732,28 +1735,28 @@ For \emph{pressure}, it depends on the context. In some applications it is consi
 \begin{itemize}[label=$\triangleright$\enskip,itemsep=1ex]
 \item $\displaystyle\qty{11}{J} + \qty{4}{kg}$\\%%
   \textbf{Incorrect}: cannot sum quantities of different dimension
-\item $\displaystyle\tan\biggl(\frac{a}{b}\biggr)$, where $a$ dimension \textsc{length} and $b$ has dimension \textsc{time}\\%%
-  \textbf{Incorrect}: trigonometric function must have a dimensionless argument, but $a/b$ has dimension \textsc{length}/\textsc{time}
+\item $\displaystyle\tan\biggl(\frac{a}{b}\biggr)$, where $a$ dimension \textdim{length} and $b$ has dimension \textdim{time}\\%%
+  \textbf{Incorrect}: trigonometric function must have a dimensionless argument, but $a/b$ has dimension \textdim{length}/\textdim{time}
 \item $\displaystyle\qty{299792458}{m/s}$
 \item $\displaystyle\exp\biggl(\frac{\qty{71}{s}}{\qty{3}{s}}\biggr)$
 \item $\displaystyle\cos(\num{3.14})\:\unit{m}$
-\item $\displaystyle m - v$, where $m$ has dimension of \textsc{mass} and $v$ of \textsc{velocity}\\%%
+\item $\displaystyle m - v$, where $m$ has dimension of \textdim{mass} and $v$ of \textdim{velocity}\\%%
   \textbf{Incorrect}: cannot subtract quantities of different dimension
 \item $\displaystyle \qty{10}{N\, s}-\qty{2}{kg\, m/s} = \qty{8}{J\, s/m}$
 \item $\displaystyle\exp(-8\,\unit{J})$\\%%
-  \textbf{Incorrect}: exponential function must have a dimensionless argument, but this argument has dimension \textsc{energy}
+  \textbf{Incorrect}: exponential function must have a dimensionless argument, but this argument has dimension \textdim{energy}
 \item $\displaystyle\bigl(\qty{9}{m},\, \qty{0.1}{rad},\, -\qty{0.5}{rad}\bigr)$
 \item $\displaystyle\qty{8}{J/s}=\qty{12}{N\,m}-\qty{4}{N\,m}$\\%%
   \textbf{Incorrect}: $\unit{J/s} \ne \unit{N\,m}$ (correct is $\unit{J} = \unit{N\,m}$)
 \item $\displaystyle\e^{-8}\:\unit{J}$
 \item $\displaystyle\frac{\qty{15}{J}}{\qty{5}{kg/s^{2}}} = \qty{3}{m^{2}}$
 \item $\displaystyle \sqrt{25}\,\unit{K} = 5$\\%%
-  \textbf{Incorrect}: both sides of an equation must have the same dimension; here the left side has dimension \textsc{length}${}^{1/2}$, right side is dimensionless
+  \textbf{Incorrect}: both sides of an equation must have the same dimension; here the left side has dimension \textdim{length}${}^{1/2}$, right side is dimensionless
 \item $\displaystyle\bigl(\e^{7}\bigr)^{\unit{s}}$\\%%
   \textbf{Incorrect}: cannot raise to a dimensional power
 \item $\displaystyle\tan\biggl(\frac{\qty{10}{m}}{\qty{5}{m}}\biggr)$
 \item $\displaystyle\sqrt{\qty{300}{K}\,}$
-\item $\displaystyle\sin(t/\unit{s})$, where $t$ has dimension of \textsc{time}
+\item $\displaystyle\sin(t/\unit{s})$, where $t$ has dimension of \textdim{time}
 \item $\displaystyle\frac{3}{\unit{s}}$
 \item $\displaystyle\sin(\qty{10}{s})$\\%%
   \textbf{Incorrect}: trigonometric function must have a dimensionless argument
@@ -1920,7 +1923,7 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 
 \section{}
 \label{sec:3Dmotion_simple}
-We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates have each dimension \textsc{length}. A small object S has position $\yr_{\text{S}}(t)$ given by
+We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates have each dimension \textdim{length}. A small object S has position $\yr_{\text{S}}(t)$ given by
 \begin{multline*}
   \yr_{\text{S}}(t) =
   \begin{bmatrix}
@@ -1974,13 +1977,13 @@ and the pulse is located at $z=\qty{-2}{m}$ at $t=\qty{1}{s}$.
 \sollabel{sec:1D_motion}
 
 \begin{enumerate}[exerc]
-\item It is, provided that $t$ has dimension \textsc{time} and $x$ has dimension \textsc{length}. In this case, since $a$ has dimension \textsc{length}/\textsc{time}, then $a\,t$ has dimension \textsc{length}, which is added to $b$ which also has dimension \textsc{length}; the left and right side have then both dimension \textsc{length}.
+\item It is, provided that $t$ has dimension \textdim{time} and $x$ has dimension \textdim{length}. In this case, since $a$ has dimension \textdim{length}/\textdim{time}, then $a\,t$ has dimension \textdim{length}, which is added to $b$ which also has dimension \textdim{length}; the left and right side have then both dimension \textdim{length}.
 \item
     $\cx{S}(\qty{0}{s}) = \qty{7}{m}\ , \qquad
     \cx{S}(\qty{-10}{s}) = \qty{37}{m}\ , \qquad
     \cx{S}(\qty{5}{s}) = \qty{-8}{m}$\ .
     
-  \item The question doesn't make sense, because \enquote{$t=10$} is dimensionless; it should have dimension \textsc{length} instead.
+  \item The question doesn't make sense, because \enquote{$t=10$} is dimensionless; it should have dimension \textdim{length} instead.
 
 \item Denoting with $\vx{S}$ the coordinate velocity of S, then $\vx{S}(t) = a$, which is constant in time.
 \item $\vx{S}(t) = \qty{-3}{m/s}$ at any time.
@@ -1991,7 +1994,7 @@ and the pulse is located at $z=\qty{-2}{m}$ at $t=\qty{1}{s}$.
 
 \sollabel{sec:1D_motion_b}
 \begin{enumerate}[exerc]
-\item The expression is dimensionally correct, provided $t$ has dimension \textsc{time} and $x$ has dimension \textsc{length}. The argument of the sine function is dimensionless, and the two terms on the right have dimension \textsc{length}.
+\item The expression is dimensionally correct, provided $t$ has dimension \textdim{time} and $x$ has dimension \textdim{length}. The argument of the sine function is dimensionless, and the two terms on the right have dimension \textdim{length}.
 
 \item From the rules for the derivative,
   \begin{equation*}
@@ -2038,7 +2041,7 @@ which is not what we want. Trying next $\omega \ytf = \pu$, which means $\ytf = 
 \sollabel{sec:3Dmotion_simple}
 
 \begin{enumerate}[exerc]
-\item No, the expression is not dimensionally correct, because the $z$ component of $\yr_{\text{S}}$ is \enquote{$0$}, which is a dimensionless number, whereas $z$ has dimension \textsc{length}. The $z$ component should be \enquote{\qty{0}{m}}.
+\item No, the expression is not dimensionally correct, because the $z$ component of $\yr_{\text{S}}$ is \enquote{$0$}, which is a dimensionless number, whereas $z$ has dimension \textdim{length}. The $z$ component should be \enquote{\qty{0}{m}}.
 \item See exercises~\ref{sec:1D_motion} and \ref{sec:1D_motion_b}\enskip\faIcon{smile}
 \end{enumerate}
 
@@ -3188,15 +3191,15 @@ Solving equation~\eqref{eq:const_block} for $a$, and omitting the time dependenc
 \begin{equation*}
   a = \yE/\yT^{4} \,
 \end{equation*}
-which means that $a$ has physical dimension $\textsc{energy}/\textsc{temperature}^{4}$ or equivalently $\textsc{mass}\cdot\textsc{length}^{2}/(\textsc{time}^{2}\cdot\textsc{temperature}^{4})$. Possible units are therefore \enquote*{\unit{J/K^4}}.
+which means that $a$ has physical dimension $\textdim{energy}/\textdim{temperature}^{4}$ or equivalently $\textdim{mass}\cdot\textdim{length}^{2}/(\textdim{time}^{2}\cdot\textdim{temperature}^{4})$. Possible units are therefore \enquote*{\unit{J/K^4}}.
 
 An analogous procedure shows:
 \begin{itemize}
-\item $b$: physical dimension $\textsc{energy}$, unit \enquote*{\unit{J}}.
-\item $d$: physical dimension $\textsc{temperature}$, unit \enquote*{\unit{K}}.
-\item $R$: physical dimension $\textsc{momentum}\cdot\textsc{length}/(\textsc{substance}\cdot\textsc{temperature})$, units \enquote*{\unit{N\,m/(mol\,K)}}.
-\item $\yU_{0}$: physical dimension $\textsc{energy}$, unit \enquote*{\unit{J}}.
-\item $C$: physical dimension $\textsc{energy}/(\textsc{substance}\cdot\textsc{temperature})$, unit \enquote*{\unit{J/(mol\,K)}}.
+\item $b$: physical dimension $\textdim{energy}$, unit \enquote*{\unit{J}}.
+\item $d$: physical dimension $\textdim{temperature}$, unit \enquote*{\unit{K}}.
+\item $R$: physical dimension $\textdim{momentum}\cdot\textdim{length}/(\textdim{substance}\cdot\textdim{temperature})$, units \enquote*{\unit{N\,m/(mol\,K)}}.
+\item $\yU_{0}$: physical dimension $\textdim{energy}$, unit \enquote*{\unit{J}}.
+\item $C$: physical dimension $\textdim{energy}/(\textdim{substance}\cdot\textdim{temperature})$, unit \enquote*{\unit{J/(mol\,K)}}.
 \end{itemize}
 
 % \section{Fundamental vs derived laws}
