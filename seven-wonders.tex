@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-09-08T10:28:30+0200
+%% Last-Updated: 2025-09-08T14:07:31+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -223,7 +223,7 @@ british%
 %%%% best to uncomment only the ones needed
 %% %% \input{definegreek.tex} % originally in a separate file
 % \DeclareMathSymbol{\varpartial}{\mathalpha}{egreeki}{"40}
-%\DeclareMathSymbol{\partialup}{\mathalpha}{egreekr}{"40}
+% \DeclareMathSymbol{\partialup}{\mathalpha}{egreekr}{"40}
 % \DeclareMathSymbol{\alpha}{\mathalpha}{egreeki}{"0B}
 % \DeclareMathSymbol{\beta}{\mathalpha}{egreeki}{"0C}
 % \DeclareMathSymbol{\gamma}{\mathalpha}{egreeki}{"0D}
@@ -339,8 +339,11 @@ british%
 % \DeclareMathSymbol{\varphiup}{\mathalpha}{egreekr}{"27}
 
 
-\usepackage[scaled=0.837435]%
-{DejaVuSansCondensed}%  sans-serif font
+% 0.95: capitals same height
+% 0.85: lowercase approx same height
+% geom. mean: 0.89861
+\usepackage[scaled=0.89861]{DejaVuSansMono}% typewriter text
+\usepackage[scaled=0.89861]{DejaVuSansCondensed}% sans-serif font
 %\renewcommand\sfdefault{URWClassico-TLF}
 \DeclareMathAlphabet{\mathsf}  {T1}{\sfdefault}{m}{sl}
 \SetMathAlphabet{\mathsf}{bold}{T1}{\sfdefault}{b}{sl}
@@ -348,9 +351,6 @@ british%
 % Upright sans-serif math alphabet
 % \DeclareMathAlphabet{\mathsu}  {T1}{\sfdefault}{m}{n}
 % \SetMathAlphabet{\mathsu}{bold}{T1}{\sfdefault}{b}{n}
-
-\usepackage[scaled=0.837435]%
-{DejaVuSansMono}% typewriter text
 
 \usepackage{mathdots}
 
@@ -472,9 +472,8 @@ OSF \doi{10.17605/osf.io/#1}%
 %\usepackage{tikz-cd}
 
 \usepackage{pdfrender}
-\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
-\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.1pt}{\boldsymbol{#1}}}
-
+%\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
+\newcommand*{\xbm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.1pt}{\boldsymbol{#1}}}
 
 \usepackage[depth=3]{bookmark}
 \hypersetup{%
@@ -495,7 +494,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 \usepackage{tensor}
 
-\usepackage[british]{datetime2}
+\usepackage[british,showseconds=false]{datetime2}
 \DTMnewdatestyle{mydate}%
 {% definitions
 \renewcommand*{\DTMdisplaydate}[4]{%
@@ -1023,25 +1022,25 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yfrik}{\mu_{\text{k}}}
 \newcommand*{\yvis}{\mu} % viscosity coeff
 \newcommand*{\yhea}{h} % heat-transfer coeff
-\newcommand*{\yg}{\bm{g}} % gravitational acceleration
-\newcommand*{\yh}{\bm{h}} % gravitational-inertial-magnetic force
+\newcommand*{\yg}{\xbm{g}} % gravitational acceleration
+\newcommand*{\yh}{\xbm{h}} % gravitational-inertial-magnetic force
 \newcommand*{\yGG}{\kappa} % gravitational constant
 
 
 %% time and space
-\newcommand*{\ye}{\bm{e}} % unit vector
-\newcommand*{\yuu}{\bm{u}}
-\newcommand*{\yww}{\bm{w}}
-\newcommand*{\yr}{\bm{r}}
+\newcommand*{\ye}{\xbm{e}} % unit vector
+\newcommand*{\yuu}{\xbm{u}}
+\newcommand*{\yww}{\xbm{w}}
+\newcommand*{\yr}{\xbm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
 \newcommand*{\yxa}{x_{a}}%
 \newcommand*{\yxb}{x_{b}}%
-\newcommand*{\yv}{\bm{v}}
+\newcommand*{\yv}{\xbm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
 \newcommand*{\yvc}{\yv_{\textrm{crate}}}
-\newcommand*{\yst}{\bm{\sigma}}
+\newcommand*{\yst}{\xbm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
 \newcommand*{\ydl}{\incr\bm{l}}
@@ -1062,8 +1061,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\Dzh}{\tfrac{\incr z}{2}}
 
 %% transport
-\newcommand*{\yvs}{\bm{v}_{\textrm{s}}}
-\newcommand*{\yns}{\bm{n}_{\textrm{s}}}
+\newcommand*{\yvs}{\xbm{v}_{\textrm{s}}}
+\newcommand*{\yns}{\xbm{n}_{\textrm{s}}}
 \newcommand*{\yAs}{A}%_{\textrm{s}}}
 \newcommand*{\yVs}{V_{\textrm{s}}}
 \newcommand*{\yNs}{\yN_{\textrm{s}}}
@@ -1075,7 +1074,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
 \newcommand*{\yn}{n}
-\newcommand*{\yj}{\bm{j}}
+\newcommand*{\yj}{\xbm{j}}
 % \newcommand*{\ya}{\varAlpha}
 \newcommand*{\ya}{\mathcal{A}}
 \newcommand*{\yrho}{\rho}
@@ -1112,14 +1111,13 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yhep}{\incr H^{+}}%
 \newcommand*{\yhem}{\incr H^{-}}%
 \newcommand*{\yW}{\incr W}% work
-%\newcommand*{\yR}{\mathcal{R}}% for energy source
 \newcommand*{\yR}{\mathcal{R}}% for energy source
 
 %% momentum
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yPa}{\yP_{a}}
 \newcommand*{\yPb}{\yP_{b}}
-\newcommand*{\yp}{\bm{p}}
+\newcommand*{\yp}{\xbm{p}}
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{a}}
 \newcommand*{\yFba}{\yF_{b}}
@@ -1142,14 +1140,14 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFf}{\yF_{\textrm{f}}}
 \newcommand*{\yFo}{\yF_{\textrm{r}}}
 \newcommand*{\ypr}{p} % pressure
-\newcommand*{\ypv}{\bm{\ypr}} % pressure vector
+\newcommand*{\ypv}{\xbm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
 
 %% rigid motion
 \newcommand*{\yOm}{\bm{\varOmega}}
-\newcommand*{\yo}{\bm{\omega}}
+\newcommand*{\yo}{\xbm{\omega}}
 \newcommand*{\yox}{\omega_{x}}
 \newcommand*{\yoy}{\omega_{y}}
 \newcommand*{\yoz}{\omega_{z}}
@@ -1170,8 +1168,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
 \newcommand*{\yM}{\bm{M}}% surface torque M or T or M_Q
 \newcommand*{\ytoo}{\mathcal{T}}% volume torque M or T or M_Q
-\newcommand*{\yto}{\bm{\ytoo}}% volume torque M or T or M_Q
-%\newcommand*{\yt}{\bm{\tau}}
+\newcommand*{\yto}{\xbm{\ytoo}}% volume torque M or T or M_Q
+%\newcommand*{\yt}{\xbm{\tau}}
 
 %% entropy and temperature
 \newcommand*{\yS}{S}
