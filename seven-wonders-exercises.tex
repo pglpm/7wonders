@@ -1,11 +1,11 @@
-\pdfoutput=1
+%@\pdfoutput=1
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-08-28T18:04:02+0200
+%% Last-Updated: 2025-09-10T07:14:47+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
-\anontrue
+\anonfalse
 \newif\ifarxiv
 \arxivfalse
 %\iftrue\pdfmapfile{+classico.map}\fi
@@ -35,7 +35,7 @@ british%
 %%% Calls to packages (uncomment as needed)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\usepackage{pifont}
+% \usepackage{pifont}
 
 %\usepackage{fontawesome}
 \PassOptionsToPackage{obeyspaces}{url}
@@ -340,8 +340,11 @@ british%
 % \DeclareMathSymbol{\varphiup}{\mathalpha}{egreekr}{"27}
 
 
-\usepackage[scaled=0.837435]%
-{DejaVuSansCondensed}%  sans-serif font
+% 0.95: capitals same height
+% 0.85: lowercase approx same height
+% geom. mean: 0.89861
+\usepackage[scaled=0.89861]{DejaVuSansMono}% typewriter text
+\usepackage[scaled=0.89861]{DejaVuSansCondensed}% sans-serif font
 %\renewcommand\sfdefault{URWClassico-TLF}
 \DeclareMathAlphabet{\mathsf}  {T1}{\sfdefault}{m}{sl}
 \SetMathAlphabet{\mathsf}{bold}{T1}{\sfdefault}{b}{sl}
@@ -349,10 +352,6 @@ british%
 % Upright sans-serif math alphabet
 % \DeclareMathAlphabet{\mathsu}  {T1}{\sfdefault}{m}{n}
 % \SetMathAlphabet{\mathsu}{bold}{T1}{\sfdefault}{b}{n}
-
-\usepackage[scaled=0.837435]%
-{DejaVuSansMono}% typewriter text
-
 
 \usepackage{mathdots}
 
@@ -436,36 +435,41 @@ citestyle=authoryear-comp,bibstyle=pglpm_latex/pglpm-authoryear,autopunct=false,
 \newcommand*{\amp}{\&}
 % \newcommand*{\citein}[2][]{\textnormal{\textcite[#1]{#2}}%\addtocategory{extras}{#2}
 % }
-\newcommand*{\citein}[2][]{\textnormal{\textcite[#1]{#2}}%\addtocategory{extras}{#2}
+\makeatletter
+\newcommand*{\citein}[2][]{\textnormal{\togglefalse{blx@bibliography}\blx@initunit\cite[#1]{#2}}%\addtocategory{extras}{#2}
 }
-\newcommand*{\citebi}[2][]{\textcite[#1]{#2}%\addtocategory{extras}{#2}
+\newcommand*{\citebi}[2][]{\togglefalse{blx@bibliography}\blx@initunit\cite[#1]{#2}%\addtocategory{extras}{#2}
 }
+\makeatother
 \newcommand*{\subtitleproc}[1]{}
 \newcommand*{\chapb}{ch.}
 
-\newcommand*{\arxiveprint}[1]{%
-arXiv \doi{10.48550/arXiv.#1}%
-}
-\newcommand*{\mparceprint}[1]{%
-\href{http://www.ma.utexas.edu/mp_arc-bin/mpa?yn=#1}{mp_arc:\allowbreak\nolinkurl{#1}}%
-}
-\newcommand*{\haleprint}[1]{%
-\href{https://hal.archives-ouvertes.fr/#1}{\textsc{hal}:\allowbreak\nolinkurl{#1}}%
-}
-\newcommand*{\philscieprint}[1]{%
-\href{http://philsci-archive.pitt.edu/archive/#1}{PhilSci:\allowbreak\nolinkurl{#1}}%
-}
 \newcommand*{\doi}[1]{%
-\href{https://doi.org/#1}{\textsc{doi}:\allowbreak\nolinkurl{#1}}%
+\href{https://doi.org/#1}{doi:\allowbreak\nolinkurl{#1}}%
 }
-\newcommand*{\biorxiveprint}[1]{%
-bioRxiv \doi{10.1101/#1}%
+\newcommand*{\zenododoi}[1]{%
+Zenodo \doi{#1}% 10.31219/osf.io/
 }
-\newcommand*{\osfeprint}[1]{%
-Open Science Framework \doi{10.31219/osf.io/#1}%
+\newcommand*{\osfdoi}[1]{%
+OSF \doi{#1}% 10.31219/osf.io/
+}
+\newcommand*{\arxivdoi}[1]{%
+arXiv \doi{#1}% 10.48550/arXiv.
+}
+\newcommand*{\biorxivdoi}[1]{%
+bioRxiv \doi{#1}% 10.1101/
+}
+\newcommand*{\halurl}[1]{%
+HAL \url{#1}% https://hal.science/
+}
+\newcommand*{\philsciurl}[1]{%
+PhilSci \url{#1}% https://philsci-archive.pitt.edu/id/eprint/
+}
+\newcommand*{\mparcurl}[1]{%
+mp\_arc \url{#1}% https://web.ma.utexas.edu/mp_arc-bin/mpa?yn=
 }
 \newcommand*{\osfproj}[1]{%
-Open Science Framework \doi{10.17605/osf.io/#1}%
+OSF \doi{10.17605/osf.io/#1}%
 }
 
 \usepackage{graphicx}
@@ -474,14 +478,14 @@ Open Science Framework \doi{10.17605/osf.io/#1}%
 %\usepackage{tikz-cd}
 
 \usepackage{pdfrender}
-\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
-\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\boldsymbol{#1}}}
+%\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
+\newcommand*{\xbm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.1pt}{\boldsymbol{#1}}}
 
 \usepackage[depth=3]{bookmark}
 \hypersetup{%
-colorlinks=true,
+colorlinks=true,%
 %pdfborderstyle={/S/U/W 0.5},
-bookmarksnumbered,pdfborder={0 0 0.25},
+bookmarksnumbered,pdfborder={0 0 0.25},%
 citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlbordercolor=green,urlcolor=green,breaklinks=true,pdftitle={\pdftitle},pdfauthor={\pdfauthor}}
 % \usepackage[vertfit=local]{breakurl}% only for arXiv
 \providecommand*{\urlalt}{\href}
@@ -636,12 +640,12 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \raggedright}
 % \setsecheadstyle{\bfseries\sffamily%
 % \raggedright}
-%\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex}
-%\setaftersecskip{1.3ex plus .2ex }% plus 1ex minus .2ex}
+%\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex
+%\setaftersecskip{1.3ex plus .2ex }% plus 1ex minus .2ex
 %\setsubsubsecheadstyle{\bfseries\sffamily\slshape\raggedright}
-%\setbeforesubsecskip{1.25ex plus 1ex minus .2ex }% plus 1ex minus .2ex}
-%\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex}
-\setsecindent{0pt}%0ex plus 1ex minus .2ex}
+%\setbeforesubsecskip{1.25ex plus 1ex minus .2ex }% plus 1ex minus .2ex
+%\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex
+\setsecindent{0pt}%0ex plus 1ex minus .2ex
 \setsubsecheadstyle{\large\bfseries\sffamily%
 \raggedright}
 \setparaheadstyle{\itshape\bfseries\sffamily%
@@ -818,9 +822,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 }\fi
 
 %\date{Draft of \today\ (first drafted \firstdraft)}
-\date{%\textbf{Working draft} version \version, updated
-Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.io/7wonders}
-}
+\date{\textbf{Working draft} version \version, updated \updated\\[\jot]\href{https://pglpm.github.io/7wonders/}{\texttt{pglpm.github.io/7wonders}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Macros @@@
@@ -831,6 +833,7 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 %\providecommand{\coloneqq}{\mathrel{\mathop:}=}
 %\providecommand{\eqqcolon}{=\mathrel{\mathop:}}
 %\providecommand{\varprod}{\prod}
+% See https://tex.stackexchange.com/a/84308/97039
 \newcommand*{\de}{\mathop{}\!\uppartial}%partial diff
 \newcommand*{\pu}{\piup}%constant pi
 \newcommand*{\delt}{\deltaup}%Kronecker, Dirac
@@ -940,8 +943,8 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 %%
 \newcommand*{\sect}{\S}% Sect.~
 \newcommand*{\sects}{\S\S}% Sect.~
-\newcommand*{\chap}{Chapter}%
-\newcommand*{\chaps}{chs}%
+\newcommand*{\chap}{chapter}%
+\newcommand*{\chaps}{chapters}%
 \newcommand*{\bref}{ref.}%
 \newcommand*{\brefs}{refs}%
 %\newcommand*{\fn}{fn}%
@@ -980,7 +983,7 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 %\newcommand*{\sint}{\begingroup\textstyle\int\endgroup}
 %\newcommand*{\sland}{\mathop{\textstyle\bigwedge}}
 %\newcommand*{\slor}{\mathop{\textstyle\bigvee}}
-%\newcommand*{\T}{^\transp}%transpose
+\newcommand*{\T}{^\transp}%transpose
 %%\newcommand*{\QEM}%{\textnormal{$\Box$}}%{\ding{167}}
 %\newcommand*{\qem}{\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
 %\quad\hbox{\QEM}}
@@ -998,9 +1001,14 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 % \begin{tabular}[#1]{c}#2\\[0.5\jot]\rule{1pt}{#3}\\#4\end{tabular}}%}
 % \newcommand*{\ptext}[1]{\text{\small #1}}% for propositions
 % \DeclareMathOperator*{\argsup}{arg\,sup}
-\newcommand*{\furl}[2]{\href{#1}{#2}\,\pagenote{\url{#1}}}
+\newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 % \renewcommand*{\autoref}[3][\sect~\ref]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{angle-right}\enskip#1{#2} page~\pageref{#2}}}\textcolor{blue}{#3}}
-\renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon{angle-right}~#1{#2}\;p.\,\pageref{#2})}}
+% \renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon{angle-right}~#1{#2}\;p.\,\pageref{#2})}}
+\renewcommand*{\autoref}[3][\sect\,\ref]{\textcolor{blue}{#3}
+\raisebox{0.6ex}{\color{blue}\miniscule%
+%\faIcon[regular]{eye}%
+\faIcon{angle-right}%
+\;#1{#2}\;p.\,\pageref{#2}}}
 % %hand-point-right%
 % %undo%
 % %undo-alt%
@@ -1016,33 +1024,31 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 
 %% constants
 %% R % molar gas constant
-\newcommand*{\yc}{c} % lightspeed, according to SI
+\newcommand*{\yc}{c} % lightspeed, according to SI \qty{299792458}{m/s}
 % \newcommand*{\yc}{c_{0}} % lightspeed, according to SI
 \newcommand*{\yfri}{\mu} % friction coeff
 \newcommand*{\yfris}{\mu_{\text{s}}}
 \newcommand*{\yfrik}{\mu_{\text{k}}}
 \newcommand*{\yvis}{\mu} % viscosity coeff
 \newcommand*{\yhea}{h} % heat-transfer coeff
-\newcommand*{\yg}{\bm{g}} % gravitational acceleration
-\newcommand*{\yh}{\bm{h}} % gravitational-inertial-magnetic force
+\newcommand*{\yg}{\xbm{g}} % gravitational acceleration
+\newcommand*{\yh}{\xbm{h}} % gravitational-inertial-magnetic force
 \newcommand*{\yGG}{\kappa} % gravitational constant
 
 
 %% time and space
-\newcommand*{\ye}{\bm{e}} % unit vector
-\newcommand*{\yuu}{\bm{u}}
-\newcommand*{\yww}{\bm{w}}
-\newcommand*{\yr}{\bm{r}}
+\newcommand*{\ye}{\xbm{e}} % unit vector
+\newcommand*{\yuu}{\xbm{u}}
+\newcommand*{\yww}{\xbm{w}}
+\newcommand*{\yr}{\xbm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
 \newcommand*{\yxa}{x_{a}}%
 \newcommand*{\yxb}{x_{b}}%
-\newcommand*{\yv}{\bm{v}}
+\newcommand*{\yv}{\xbm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
-\newcommand*{\yvs}{\bm{v}_{\text{s}}}
-\newcommand*{\yns}{\bm{n}_{\text{s}}}
-\newcommand*{\yst}{\bm{\sigma}}
+\newcommand*{\yst}{\xbm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
 \newcommand*{\ydl}{\incr\bm{l}}
@@ -1062,11 +1068,21 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 \newcommand*{\Dyh}{\tfrac{\incr y}{2}}
 \newcommand*{\Dzh}{\tfrac{\incr z}{2}}
 
+%% transport
+\newcommand*{\yvs}{\xbm{v}_{\textrm{s}}}
+\newcommand*{\yns}{\xbm{n}_{\textrm{s}}}
+\newcommand*{\yAs}{A}%_{\textrm{s}}}
+\newcommand*{\yVs}{V_{\textrm{s}}}
+\newcommand*{\yNs}{\yN_{\textrm{s}}}
+\newcommand*{\yPs}{\yP_{\textrm{s}}}
+\newcommand*{\yEs}{\yE_{\textrm{s}}}
+
+
 %% matter
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
 \newcommand*{\yn}{n}
-\newcommand*{\yj}{\bm{j}}
+\newcommand*{\yj}{\xbm{j}}
 % \newcommand*{\ya}{\varAlpha}
 \newcommand*{\ya}{\mathcal{A}}
 \newcommand*{\yrho}{\rho}
@@ -1084,7 +1100,7 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 \newcommand*{\yE}{E}
 \newcommand*{\yU}{U}
 \newcommand*{\yUd}{u}
-\newcommand*{\yUr}{U_{\textrm{new}}}
+\newcommand*{\yUr}{\yU_{\textrm{new}}}
 \newcommand*{\yUo}{\yU_{0}}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
@@ -1109,7 +1125,7 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yPa}{\yP_{a}}
 \newcommand*{\yPb}{\yP_{b}}
-\newcommand*{\yp}{\bm{p}}
+\newcommand*{\yp}{\xbm{p}}
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{as}}
 \newcommand*{\yFba}{\yF_{bs}}
@@ -1128,14 +1144,14 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 \newcommand*{\yFp}{F_{\text{p}}}
 \newcommand*{\yFf}{F_{\text{f}}}
 \newcommand*{\ypr}{p} % pressure
-\newcommand*{\ypv}{\bm{\ypr}} % pressure vector
+\newcommand*{\ypv}{\xbm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
 
 %% rigid motion
 \newcommand*{\yOm}{\bm{\varOmega}}
-\newcommand*{\yo}{\bm{\omega}}
+\newcommand*{\yo}{\xbm{\omega}}
 \newcommand*{\yox}{\omega_{x}}
 \newcommand*{\yoy}{\omega_{y}}
 \newcommand*{\yoz}{\omega_{z}}
@@ -1154,10 +1170,10 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
 % \newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
-\newcommand*{\ytoo}{\mathcal{T}}% volume torque M or T or M_Q
-\newcommand*{\yto}{\bm{\ytoo}}% volume torque M or T or M_Q
 \newcommand*{\yM}{\bm{M}}% surface torque M or T or M_Q
-%\newcommand*{\yt}{\bm{\tau}}
+\newcommand*{\ytoo}{\mathcal{T}}% volume torque M or T or M_Q
+\newcommand*{\yto}{\xbm{\ytoo}}% volume torque M or T or M_Q
+%\newcommand*{\yt}{\xbm{\tau}}
 
 %% entropy and temperature
 \newcommand*{\yS}{S}
@@ -1168,7 +1184,7 @@ Updated \updated%\\[\jot]\href{https://pglpm.github.io/7wonders/}{pglpm.github.i
 \newcommand*{\yTm}{\yT^{-}}%
 \newcommand*{\yTa}{\yT_{a}}%
 \newcommand*{\yTb}{\yT_{b}}%
-\newcommand*{\yTe}{\yT_{\text(ext)}}%
+\newcommand*{\yTe}{\yT_{\text{ext}}}%
 
 %% electric charge and magnetic flux
 \newcommand*{\yC}{\mathcal{Q}}
@@ -1207,12 +1223,14 @@ retain-explicit-plus,%
 \colorlet{codecolour}{blue}
 \usepackage{listings}
 \lstdefinestyle{mycode}{
+  % morecomment=[l][\color{midgrey}]{\% },
   basicstyle=\ttfamily\footnotesize\bfseries\color{codecolour},
   moredelim=**[is][\color{grey}]{\%@}{\%@},
+  % escapeinside={\#}{\@},
   frame=single,
   numbers=left,
   numberstyle=\sffamily\scriptsize,
-  xleftmargin=\parindent
+  xleftmargin=17.625pt
 }
 
 % \usepackage{multimedia}
@@ -1359,7 +1377,7 @@ retain-explicit-plus,%
   \includegraphics[align=c,height=1em]{images/cc_by_sa.png} Licence
 
   \medskip
-  P.G.L. Porta Mana \enskip\epost{\email{pgl}{portamana.org}}
+  P.G.L. Porta Mana\enskip\epost{\email{pgl}{portamana.org}}
   \\\href{https://orcid.org/0000-0002-6070-0784}{%
 %\raisebox{0.5ex}{\protect%
 \includegraphics[height=1ex]{pglpm_latex/orcid_32x32.png}%}
@@ -1373,7 +1391,7 @@ Typeset with \LaTeX.%\ using 12\,pt Palatino and Optima fonts
 \medskip
 
 No large language models were used in the preparation of this document,\\
-except in specific exercises that specifically target them.
+except in exercises that specifically target them.
 
 \vspace{17em}
 
