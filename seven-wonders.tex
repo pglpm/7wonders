@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-09-10T07:14:37+0200
+%% Last-Updated: 2025-09-28T20:58:44+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1814,21 +1814,55 @@ The text gives bibliographic references, like \enquote{\cites{einstein1905c}}, t
 \section{Code for numerical simulations}
 \label{sec:code}
 
+\subsection{Why code?}
+
+As we learn about physical laws and equations, we shall explore and apply them both \emph{analytically}, that is with pen \amp\ paper, and \emph{numerically}, that is by writing and running code in a programming language. Why using code? For three different reasons.
+
+First, a larger and larger part of physics and engineering research and applications requires the numerical solution of physics equations, by means of code in different programming languages. Code is used even for problems that could be solved with pen \amp\ paper, because doing so minimizes the possibility of human calculation errors. So it's good if you get familiar with \enquote{translating} physics problems into code and solving them by running code.
+
+Second, many -- we can say the majority -- of physics phenomena cannot be fully studied  analytically. But many of them are easy to simulate and study numerically. Therefore using code allows you to explore many additional interesting physical phenomena.
+
+Third, writing code allows us to see more clearly the different roles that different physical laws have in physical phenomena, as well as the interrelationship among them.
+
+The third reason above is the most important for these notes. This is also why our goal is not to write \emph{efficient} code, but to write code that allows us to \emph{understand the physics}.
+
+
 \subsection{Octave}
-The scripts for numerical simulations presented in the text are written in \furl{https://octave.org}{\emph{Octave}} (they should also work in \furl{https://mathworks.com/products/matlab.html}{\emph{MATLAB}}). Why \emph{Octave}? Several reasons:
+The scripts for numerical simulations presented in the text are written in \furl{https://octave.org}{\emph{Octave}}. % (they should also work in \furl{https://mathworks.com/products/matlab.html}{\emph{MATLAB}})
+Why \emph{Octave} for these notes? Several reasons:
 \begin{itemize}
 \item It's free and open source.
+
 \item It runs on all major operating systems.
-\item It includes a graphical user interface and development environment.
-\item It allows the specification of objects like vectors in a way very similar to physics and maths notation.
-\item It doesn't need extra packages.
-\item Its code can be copied \amp\ pasted without worrying about losing leading whitespace.
+
+\item It includes a graphical user interface and development environment, where you can edit your code and see resulting plots.
+
+\item You can run it immediately, without needing to compile it first. This means that it's slower than some other programming languages; but as stated above, our goal is not efficient code, but code that makes us understand physics.
+
+\item Its syntax is very close to physics's mathematical notation. For instance, a sum of two vectors expressed mathematically as
+  $$[1, 2, 3] + [5, 6, 7]$$
+  is written in Octave like this:\quad{\color{codecolour}\verb@[1, 2, 3] + [5, 6, 7]@}\,.\\
+  Compare the same expression in other programming languages:
+  \begin{itemize}
+  \item Python:\quad{\color{codecolour}\verb@np.array([1, 2, 3]) + np.array([5, 6, 7])@}\\(you must load the \texttt{numpy} library first).
+  \item JavaScript:\quad{\color{codecolour}\verb@math.add([1, 2, 3], [5, 6, 7])@}\\(you must load the \texttt{mathjs} library first).
+  \item R:\quad{\color{codecolour}\verb@c(1, 2, 3) + c(5, 6, 7)@}\,.
+  \item Rust:\quad{\color{codecolour}\verb@Array1::from(vec![1, 2, 3]) + Array1::from(vec![5, 6, 7])@}\\(you must load \texttt{ndarray}).
+  \item C, Visual Basic, Perl, Go: between 5 and 10 lines of code.
+  \end{itemize}
+
+\item You can use it directly, without loading extra libraries.
+
+\item You don't need to worry about \enquote{environments} or version dependencies.
+
+\item Its syntax is very similar to \textsc{matlab}'s, which is a language used in some other engineering courses; typically you can run Octave's code in \textsf{matlab} and vice versa.
 \end{itemize}
-Keep in mind that in Octave a trailing semicolon \textcolor{codecolour}{\texttt{;}} prevents the result of an operation to be printed to the console or to output.
+Keep in mind that we are not saying that Octave is the best programming language for physics; what's best depends on the specific physics application. We're just saying that Octave is particularly convenient for the goals we have in these notes.
 
-\subsection{Python}
+You can find many introductions to Octave online. Check out its own \furl{https://docs.octave.org/latest/}{documentation} for example.
 
-\furl{https://www.python.org}{\emph{Python}} versions of the scripts are also usually given, linked on the margin. They need the \furl{https://numpy.org}{\emph{NumPy}} and  \furl{https://matplotlib.org}{\emph{Matplotlib}} packages. The Python scripts should work on \furl{https://matplotlib.online}{\texttt{matplotlib.online}}.
+% Keep in mind that in Octave a trailing semicolon \textcolor{codecolour}{\texttt{;}} prevents the result of an operation to be printed to the console or to output.
+
 
 \subsection{Code colours}
 
@@ -1838,6 +1872,11 @@ The scripts usually present two colours:
 \item \textcolor{grey}{Grey lines} take care of auxiliary operations, like plotting the results or saving them to file.
 \end{itemize}
 
+\subsection{Other programming languages}
+
+Feel free to translate the Octave scripts used in these notes into your favourite programming language; that's a great exercise! Please do get in touch if you want to make them available in these notes. For example, some \furl{https://www.python.org}{\emph{Python}} versions are also given for some of the scripts, linked on the margin. Note that they need the \furl{https://numpy.org}{\emph{NumPy}} and \furl{https://matplotlib.org}{\emph{Matplotlib}} packages. The Python scripts should work on \furl{https://matplotlib.online}{\texttt{matplotlib.online}}.
+
+
 % \subsubsection{\texorpdfstring{\faIcon{hand-point-right}\enskip}{}Notation and terminology}
 \section{Notation and terminology}
 \label{sec:list_symbols}
@@ -1845,7 +1884,6 @@ The scripts usually present two colours:
 Mathematical notation follows as much as possible the standards given by the \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)}, listed for example in \cites{iso2009} and \cites{iso2019}. One slight exception are \autoref{sec:units}{physical dimensions}, whose notation will be explained in that section.
 
 \medskip
-
 
 In physics, engineering, and most other scientific fields \emph{there is no universal standard for symbols}. It's therefore important that you \textbf{focus on the concept} that a symbol stands for, rather than the symbol itself. Otherwise you'll face many difficulties reading literature and other scientists' reports.
 
