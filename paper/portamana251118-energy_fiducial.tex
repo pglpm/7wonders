@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1 % to preserve fonts in figs
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-11-18T17:29:26+0100
+%% Last-Updated: 2025-11-19T11:19:54+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -25,10 +25,7 @@ onecolumn,oneside,article,%french,italian,german,swedish,latin,
 british%
 ]{memoir}
 \fi
-% \documentclass[\ifafour a4paper,12pt\else a5paper,10pt\fi,%extrafontsizes,%
-% onecolumn,oneside,article,%french,italian,german,swedish,latin,
-% british%
-% ]{memoir}
+
 \newcommand*{\firstdraft}{18 November 2025}
 \newcommand*{\firstpublished}{\firstdraft}
 \newcommand*{\updated}{\ifarxiv***\else\today\ [draft]\fi}
@@ -546,14 +543,16 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \setlength{\trimtop}{0pt}
 % \setlength{\trimedge}{\stockwidth}
 % \addtolength{\trimedge}{-\paperwidth}
-%\settrims{0pt}{0pt}
+% \settrims{0pt}{0pt}
+% quadratic interpolation from Bringhurst:
 % The length of the normalsize alphabet is 133.05988pt - 10 pt = 26.1408pc
 % The length of the normalsize alphabet is 159.6719pt - 12pt = 30.3586pc
 % Bringhurst gives 32pc as boundary optimal with 69 ch per line
 % The length of the normalsize alphabet is 191.60612pt - 14pt = 35.8634pc
 \ifafour\settypeblocksize{*}{32pc}{1.618} % A4
 %\setulmargins{*}{*}{1.667}%gives 5/3 margins % 2 or 1.667
-\else\settypeblocksize{*}{26pc}{1.618}% nearer to a 66-line newpx and preserves GR
+%\else\settypeblocksize{*}{27.431}{1.618}% nearer to a 66-line newpx and preserves GR
+\else\settypeblocksize{*}{26.1408pc}{1.618}% quadratic interpolation, 66-line newpx and preserves GR
 \fi
 \setulmargins{*}{*}{1}%gives equal margins
 \setlrmargins{*}{*}{*}
@@ -963,6 +962,20 @@ Western Norway University of Applied Sciences%
 % \setcounter{section}{-1} % to start numbering at 0
 \section{Momentum in \enquote{static} electromagnetic configurations}
 \label{sec:intro}
+
+\begin{enumerate}
+\item Why is internal energy invariant under a change of Newtonian reference frame, even non-inertial, whereas kinetic energy is not?
+
+\item Consider a car accelerating on a street, say in the positive-$x$ direction. In the frame of reference where the street is at rest, there is a flow of positive $x$-momentum -- that is, force -- from the street to the car, or equivalently a flow of negative $x$-momentum from the car to the street. In the frame of reference where the car is at rest, the \emph{flow} of momentum is the same.
+
+  Not so with energy flow. In the frame of reference where the street is at rest, there is no flow of energy between street and car: the contact forces involved act on matter that has momentarily zero velocity, so their work is zero. In the reference frame where the car is at rest, there is a flow of positive energy from the car to the street: the contact forces do work on the latter.
+
+  Why do the flows of momentum and of energy behave differently under this change of frame?
+
+\item In fluid mechanics, and more generally in continuum mechanics, the balance of energy can be expressed in very different forms. In one, only the time derivative of the internal energy appears, and kinetic energy is mysteriously absent; this expression of energy balance is moreover invariant with respect changes of frames, even non-inertial. In another, kinetic energy does appear; this expression is not invariant with respect to changes of frame.
+
+  Why do we have this kind of flexibility and possible invariance with the balance of energy, but not with the balance of momentum?
+\end{enumerate}
 
 
 %% diverse transf. properties
