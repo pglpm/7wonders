@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-11-17T13:19:57+0100
+%% Last-Updated: 2025-11-19T22:18:35+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -588,6 +588,44 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \renewcommand{\@chapapp}{}
 % \makeatother
 % \makeatletter
+\iftrue
+\makeatletter
+\newcommand\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\makechapterstyle{manacha}{
+\setlength\midchapskip{10pt}
+\setlength{\afterchapskip}{40pt}
+\renewcommand*{\chapterheadstart}{\vspace*{-20pt}}
+\renewcommand\chapternamenum{}
+\renewcommand\printchaptername{}
+\renewcommand*{\chapnumfont}{\normalfont\HUGE\sffamily\color{midgrey}}
+\renewcommand\chapnamefont{\Large\sffamily\bfseries}
+\renewcommand\printchapternum{\flushright\makebox[1.33\textwidth][l]{\color{midgrey}%
+\chapnamefont\null\thickhrulefill\quad
+\space\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
+}}
+\renewcommand\printchapternonum{\flushright\makebox[1.33\textwidth][l]{\color{midgrey}%
+\par\thickhrulefill\quad
+\space\mbox{}%\resizebox{!}{\beforechapskip}{\vphantom{.}}%\quad\thickhrulefill
+}\par\vskip\midchapskip}
+% \renewcommand\printchapternum{{\color{grey}%
+% \chapnamefont\null\thickhrulefill\quad
+% \space\resizebox{!}{\beforechapskip}{\thechapter}%\quad\thickhrulefill
+% }}
+% \renewcommand\printchapternonum{%
+% \par\thickhrulefill\par\vskip\midchapskip
+% \hrule\vskip\midchapskip
+% }
+\renewcommand\chaptitlefont{\Huge\sffamily\bfseries\centering}
+\renewcommand\afterchapternum{%
+\par\nobreak\vskip\midchapskip%\hrule\vskip\midchapskip
+}
+\renewcommand\afterchaptertitle{%
+\par\vskip\afterchapskip%\hrule\nobreak\vskip\afterchapskip
+}
+}
+\makeatother
+\fi
+\iffalse
 \makechapterstyle{manacha}{%
    \setlength{\afterchapskip}{40pt}
   \renewcommand*{\chapterheadstart}{\vspace*{40pt}}
@@ -625,6 +663,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \makeoddfoot{plain}{}{}{\thepage}
 }
 % \makeatother
+\fi
 \chapterstyle{manacha}
 % \chapterstyle{veelo}
 
