@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-11-19T22:18:35+0100
+%% Last-Updated: 2025-11-20T08:38:48+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -590,40 +590,31 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \makeatletter
 \iftrue
 \makeatletter
-\newcommand\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\newcommand{\thickhrulefill}{\leavevmode\leaders\hrule height 1ex \hfill\kern\z@}
+\makeatother
 \makechapterstyle{manacha}{
-\setlength\midchapskip{10pt}
+%\setlength{\beforechapskip}{10pt}
+\setlength{\midchapskip}{20pt}
 \setlength{\afterchapskip}{40pt}
-\renewcommand*{\chapterheadstart}{\vspace*{-20pt}}
-\renewcommand\chapternamenum{}
-\renewcommand\printchaptername{}
-\renewcommand*{\chapnumfont}{\normalfont\HUGE\sffamily\color{midgrey}}
-\renewcommand\chapnamefont{\Large\sffamily\bfseries}
-\renewcommand\printchapternum{\flushright\makebox[1.33\textwidth][l]{\color{midgrey}%
-\chapnamefont\null\thickhrulefill\quad
-\space\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
+\renewcommand*{\chapterheadstart}{\vspace*{-\beforechapskip}}
+\renewcommand*{\chapternamenum}{}
+\renewcommand*{\printchaptername}{}
+\renewcommand*{\chapnumfont}{\normalfont\HUGE\sffamily}
+\renewcommand*{\chapnamefont}{}
+\renewcommand*{\chaptitlefont}{\Huge\sffamily\bfseries\centering}
+\renewcommand{\printchapternum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
+\null\thickhrulefill\quad\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
 }}
-\renewcommand\printchapternonum{\flushright\makebox[1.33\textwidth][l]{\color{midgrey}%
-\par\thickhrulefill\quad
-\space\mbox{}%\resizebox{!}{\beforechapskip}{\vphantom{.}}%\quad\thickhrulefill
+\renewcommand{\printchapternonum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
+\par\thickhrulefill\quad\raisebox{0pt}[\beforechapskip][0pt]{}%\resizebox{!}{\beforechapskip}{\vphantom{.}}%\quad\thickhrulefill
 }\par\vskip\midchapskip}
-% \renewcommand\printchapternum{{\color{grey}%
-% \chapnamefont\null\thickhrulefill\quad
-% \space\resizebox{!}{\beforechapskip}{\thechapter}%\quad\thickhrulefill
-% }}
-% \renewcommand\printchapternonum{%
-% \par\thickhrulefill\par\vskip\midchapskip
-% \hrule\vskip\midchapskip
-% }
-\renewcommand\chaptitlefont{\Huge\sffamily\bfseries\centering}
-\renewcommand\afterchapternum{%
+\renewcommand{\afterchapternum}{%
 \par\nobreak\vskip\midchapskip%\hrule\vskip\midchapskip
 }
-\renewcommand\afterchaptertitle{%
+\renewcommand{\afterchaptertitle}{%
 \par\vskip\afterchapskip%\hrule\nobreak\vskip\afterchapskip
 }
 }
-\makeatother
 \fi
 \iffalse
 \makechapterstyle{manacha}{%
@@ -1841,14 +1832,14 @@ Some pieces of text are hyperlinks, like this one about \furl{https://onepunchma
 
 \medskip
 
+\marginpar{\vspace{0\baselineskip}\footnotesize\raggedright\color{mpcolor}\emph{%
+      \enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}} \\[\jot](attributed to Gautama Buddha)%
+  }%
 The text gives bibliographic references, like \enquote{\cites{einstein1905c}}, to scientific literature. The references are listed in the final Bibliography on page~\pageref{sec:biblio}. Bibliographic references are given for two reasons:
 \begin{itemize}
 \item For your own curiosity.
 
-\item \marginpar{\vspace{-1\baselineskip}\footnotesize\raggedright\color{mpcolor}\emph{%
-      \enquote{Believe nothing, O monks, merely because you have been told it, or because it is traditional, or because you yourselves have imagined it. Do not believe what your teacher tells you merely out of respect for the teacher.}} \\[\jot](attributed to Gautama Buddha)%
-  }%
-  To back up what's written in the text. In science you should not believe something just because you've read it somewhere. You should, as much as possible, \emph{go and check for yourself the logic and the experimental evidence behind the statement}.
+\item   To back up what's written in the text. In science you should not believe something just because you've read it somewhere. You should, as much as possible, \emph{go and check for yourself the logic and the experimental evidence behind the statement}.
 \end{itemize}
 
 \section{Code for numerical simulations}
@@ -2078,21 +2069,6 @@ Many things can be said and have been said about science and physics. Rather tha
 % \end{center}
 
 
-
-\section{What is \enquote{fundamental} physics?}
-\label{sec:fundamental_physics}
-
-But what's the \enquote{ultimate} goal of physics? What's \enquote{fundamental} physics? The answer to this question is again subjective -- also in this case physics lets you express your proclivities and personality. In the history of physics one can probably identify two main conceptions of \enquote{fundamental} physics.
-
-For some physicists it is about finding the ultimate building blocks, so that one day we can say \enquote{\textellipsis and these are the constituents, and they obey these equations}. The history of physics seems to show that this goal is overturned every few generations. And yet every generation says \enquote{\emph{Now} we almost have the complete picture -- it's right behind the corner. It's true that previous generations thought they almost had it, and turned out to be wrong. But \emph{this time} is different, this time we have the real deal!}. The theoretical and particle physicist \furl{https://www.physics.lbl.gov/rememberinggeoffreychew/}{Geffrey Chew} depicted this situation as in \fig\,\ref{fig:chew1}. For this reason some physicists are a little sceptical about this goal; maybe it's a never-ending structure, with surprises at every deeper look.
-
-So for other physicists fundamental physics is about finding some point of view or mathematical structure that is rich enough to make useful predictions, and yet flexible enough to accommodate any new patterns or objects that we might discover. In a manner of speaking, it is about finding \enquote{patterns of patterns} or \enquote{laws about physical laws}.
-
-The two conceptions above are not mutually exclusive, and both are always pursued, even if time-changing fashions may emphasize the one or the other.
-
-In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between two kinds of physical laws that we'll draw in \chap~\ref{cha:laws}.
-
-
 \begin{figure}[p]
   \centering
   \includegraphics[width=1.2\textwidth]{images/chew1.png}
@@ -2108,21 +2084,36 @@ In these notes we take a point of view slightly closer to the second conception.
   \label{fig:chew2}
 \end{figure}
 
-\newpage
+
+
+\section{What is \enquote{fundamental} physics?}
+\label{sec:fundamental_physics}
+
+But what's the \enquote{ultimate} goal of physics? What's \enquote{fundamental} physics? The answer to this question is again subjective -- also in this case physics lets you express your proclivities and personality. In the history of physics one can probably identify two main conceptions of \enquote{fundamental} physics.
+
+For some physicists it is about finding the ultimate building blocks, so that one day we can say \enquote{\textellipsis and these are the constituents, and they obey these equations}. The history of physics seems to show that this goal is overturned every few generations. And yet every generation says \enquote{\emph{Now} we almost have the complete picture -- it's right behind the corner. It's true that previous generations thought they almost had it, and turned out to be wrong. But \emph{this time} is different, this time we have the real deal!}. The theoretical and particle physicist \furl{https://www.physics.lbl.gov/rememberinggeoffreychew/}{Geffrey Chew} depicted this situation as in \fig\,\ref{fig:chew1}. For this reason some physicists are a little sceptical about this goal; maybe it's a never-ending structure, with surprises at every deeper look.
+
+So for other physicists fundamental physics is about finding some point of view or mathematical structure that is rich enough to make useful predictions, and yet flexible enough to accommodate any new patterns or objects that we might discover. In a manner of speaking, it is about finding \enquote{patterns of patterns} or \enquote{laws about physical laws}.
+
+The two conceptions above are not mutually exclusive, and both are always pursued, even if time-changing fashions may emphasize the one or the other.
+
+In these notes we take a point of view slightly closer to the second conception. This will also be reflected in the main division between two kinds of physical laws that we'll draw in \chap~\ref{cha:laws}.
+
 
 \section{Physical laws}
 \label{sec:phys_laws0}
 
 \subsection{What's a physical law?}
 
-\marginpar{\vspace{\baselineskip}\footnotesize%
-\includegraphics[width=\linewidth]{images/flying_lesson2.jpg}%
-\\[\jot]\color{mpcolor}%
-Some things, we don't expect to be possible (image: \furl{https://www.parkeharrison.com/bodies-of-work/architect-s-brother/earth-elegies}{\emph{Flying Lesson} by S. \amp\ R. ParkeHarrison}).%
-}%
 Our lives rely on many kinds of patterns and regular experiences -- so common that we take them for granted and don't even think about them most of the time. If you leave an object in your room in the morning, say a book or a pair of keys, and go out, then when you come back you expect the object to be exactly were you saw it, if you know that nobody entered your room in the meantime. While you go on the street you don't expect to suddenly levitate or flay away. While you write on your notepad, you're not afraid that it might suddenly disappear into thin air. The way we use everyday devices of all kinds relies on predictable behaviours and responses on their part.
 
-All these patterns are regular behaviours that we observe and use are the essential core of physical laws.
+\marginpar{\vspace{-4\baselineskip}\footnotesize%
+\includegraphics[width=\linewidth]{images/flying_lesson2.jpg}%
+\\[\jot]\color{mpcolor}%
+Some things we don't expect to be possible (image: \furl{https://www.parkeharrison.com/bodies-of-work/architect-s-brother/earth-elegies}{\emph{Flying Lesson} by S. \amp\ R. ParkeHarrison}).%
+}%
+
+All these patterns and regular behaviours that we observe and use are the essential core of physical laws.
 
 A \textbf{physical law}, in the more technical meaning of this term, goes beyond the simple observation or use of such experiences in at least two ways:
 
@@ -2213,12 +2204,12 @@ where the symbol \enquote{$\defd$} means \enquote{is defined as} or \enquote{is 
 
 Treating \emph{speed} as a derived quantity means that we could in principle avoid using the word \enquote*{speed} and the symbol \enquote*{$v$} altogether, and instead always speak about \enquote*{distance} and \enquote*{duration}, always using the symbols \enquote*{$d$} and \enquote*{$t$} in the combination \enquote*{$d/v$}, instead of using $v$. Doing so would probably lead to very long sentences and formulae, and therefore be extremely inconvenient; but in principle it could be done. The definition of a derived quantity often tells us how that quantity can be measured.
 
-A derived quantity is defined in terms of other quantities, and these may in turn be derived quantities, defined in terms of still other quantities, and so on. But at some point this chain of definitions must come to an end, otherwise we would go around in circles.
 \marginpar{\vspace{-3\baselineskip}\footnotesize%
 \includegraphics[width=\linewidth]{images/feynman_why2.png}%
 \\[\jot]\color{mpcolor}%
 \emph{\enquote{you have to be in some framework that you allow something to be true. Otherwise you're perpetually asking \enquote*{why}}.} (\furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{see video}).%
 }%
+A derived quantity is defined in terms of other quantities, and these may in turn be derived quantities, defined in terms of still other quantities, and so on. But at some point this chain of definitions must come to an end, otherwise we would go around in circles.
 A \textbf{primitive quantity} is one that we decide \emph{not} to define in terms of other quantities. That it is not defined in terms of other quantities doesn't mean that we cannot try to explain it. But such explanation must be taken as informal and heuristic. Primitive quantities are often explained through metaphors or by appealing to intuition; but you must always be a little wary of such explanations, because they may fail you spectacularly in some situations. Primitive quantities are the building blocks from which we define all other quantities.
 
 We have therefore a choice about which quantities to take as primitive and which to take as derived. For instance we can define \emph{energy} in terms of quantities like \emph{work} and \emph{heat}, which in turn need to be defined in terms of others, or to be taken as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it and of other quantities. The latter choice can be more convenient for stating a physical law and for developing a physical theory. It often happens that a quantity, if taken as primitive, is very convenient for building a theory, but difficult to understand intuitively. Vice versa, a quantity can be very intuitive, and therefore convenient as a primitive; but it leads to a complicated theory. We also have some choice in deciding \emph{how many} quantities to take as primitive. Taking as few as possible primitive quantities can actually make the development of a physical theory more difficult, requiring very complicated definitions of the derived quantities.
@@ -2386,18 +2377,6 @@ and you see that the correct units for velocity have automatically appeared.
 
 \emph{Time} is a primitive quantity. We understand the notion of time intuitively, even if it is difficult to explain -- that's why it is taken as primitive. In 1905, with the Theory of Relativity, part of our everyday intuition about the notion of time was seriously shaken. For many years afterwards our old intuition could still be used in practice and in applications. But the new, correct intuition is becoming more and more important in everyday life and technologies. GPS navigation, for example -- which we use every day in leisure activities like hiking or sightseeing, as well as in more critical ones like aeroplane landing -- crucially depends on the correct notion, intuition, and measurement of time. Luckily the new intuition of time is also becoming more and more widespread thanks to films and mass-media; think of movies like \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}.
 
-Let's see, by means of a thought experiment, how our traditional intuition about time goes astray. Here's Alice, Bob, and Charlie. They have extremely precise clocks, built in exactly the same way. They synchronize their clocks and stay very close to one another. Keeping close, they go around, maybe on an aeroplane or on a space ship, and they constantly compare their three clocks. They notice that their clocks stay perfectly synchronized all the time, no matter where they go and what they do.
-
-At some point they separate, and each one goes around independently. One of them might stay in place, another might take a helicopter, and another might go for a trip to Mars and back.
-
-Alice and Bob at some point meet again, and compare their clocks. They see that their clocks are not synchronized anymore; the difference could be as small as microseconds, or as large as years. In fact, if this time discrepancy is large, they notice that they have also aged differently: the time difference is not only apparent in their clocks, but also in their bodies. Let's say for concreteness that Alice's clock is ahead of Bob's, or equivalently that Bob's clock is behind Alice's. Note the following aspects:
-
-First, both Alice and Bob can say \enquote{my clock has been working fire, so it should be correct}: neither has noticed anything strange about the passage of time.
-
-Second, if they now stay together, they see that their clocks remain exactly synchronized, besides the time discrepancy they noticed when they met again. This discrepancy doesn't increase or decrease. They might even retrace together Alice's and Bob's previous trips; their clocks will still remain synchronized.
-
-Third, they might wonder what the time is on Charlie's clock. But Charlie is at some distance away. They could decide to contact Charlie, say via radio, and ask \enquote{what does your clock show, right \emph{now}?}. But they would notice that there's a delay, even if extremely small, in the radio transmission; so it's unclear to what time Charlie's answer would apply. If we say \enquote{let's account for the radio-signal speed}, we see that there's a logical problem: speed is distance divided by \emph{time}, and here we have a problem in exactly determining what's the \enquote{correct} time! So we would be reasoning in circles. But even neglecting these difficulties, Charlie's answer could reveal a time that is completely different from Alice's and from Bob's -- it could be years ahead or behind both of theirs!
-
 %\calccentering{\unitlength}
 \begin{figure}[p]
 %\begin{adjustwidth}{\unitlength}{-\unitlength}
@@ -2416,12 +2395,30 @@ Third, they might wonder what the time is on Charlie's clock. But Charlie is at 
 \end{figure}
 %\clearpage
 
-The experience just described will occur again any time Alice, Bob, Charlie, or any two of them, meet. There could be a hundred observers like Alice, Bob, Charlie, initially at the same place and with synchronized clocks. Whenever two or more of them meet after having been separated, they will notice discrepancies in their clocks (and in the ageing of their bodies). But their clocks will have exactly the same time lapses as long as they stay together.
+Let's see, by means of a thought experiment, how our traditional intuition about time goes astray. Here's \textcolor{green}{Alice}, \textcolor{red}{Bob}, and \textcolor{blue}{Charlie}. They have extremely precise clocks, built in exactly the same way. They synchronize their clocks to, say, 12:00 and stay very close to one another. You can follow their trips in \fig~\ref{fig:ABC_spacetime}, which is an example of \textbf{spacetime diagram}. The figure represents the temporal dimension and one spatial dimension merged together in a two-dimensional image. The motions of Alice, Bob, Charlie \enquote*{in space} are therefore represented as lines in this two-dimensional spacetime. They are called \emph{worldlines}. Each point in a worldline has an associated time, the time measured by the person or object following that worldline.
 
-%
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/net_rotations.png}\\[-\jot]\color{mpcolor}\url{https://xkcd.com/2882}%
-}%
-This situation is illustrated in \fig~\ref{fig:ABC_spacetime}, which is an example of \textbf{spacetime diagram}. The figure represents the temporal dimension and one spatial dimension merged together in a two-dimensional image. The motions of Alice, Bob, Charlie \enquote*{in space} are therefore represented as lines in this two-dimensional spacetime. They are called \emph{worldlines}. Each point in a worldline has an associated time, the time measured by the person or object following that worldline.
+Alice, Bob, Charlie stay very close together at first. They go around, maybe on an aeroplane or on a space ship, and they constantly compare their three clocks. They notice that their clocks stay perfectly synchronized all the time, no matter where they go together and what they do.
+
+At time 12:10 they separate, and each one goes around independently. One of them might stay in place, another might take a helicopter, and another might go for a trip to Mars or to another star and back.
+
+Bob and Charlie at some point meet again. They compare their clocks, and see that they are not synchronized anymore; the difference could be as small as microseconds, or as large as years. In fact, if this time discrepancy is large, Bob and Charlie notice that they have also aged differently: the time difference is not only apparent in their clocks, but also in their bodies. Let's say for concreteness that Bob's clock shows 16:00 and Charlie's shows 12:30 of the same day. So Bob's clock is ahead of Charlie's, or equivalently Charlie's clock is behind Bob's. Note the following aspects:
+
+First, both Bob and Charlie can say \enquote{my clock has been working fine, so it should be correct}: neither has noticed anything strange about the passage of time.
+
+Second, if they now stay together, no matter where they go, they see that their clocks remain exactly synchronized, besides the time discrepancy they noticed when they met again. This discrepancy doesn't increase or decrease. When Bob's clock shows 16:10, Charlie's shows 12:40.
+
+\smallskip
+
+Let's focus on Alice on her trip. At some point, let's say when her clock shows 14:00, she wonders what the time might be on Bob's and Charlie's clocks. Bob and Charlie are far away. Alice could decide to contact each of them, say via radio broadcast, and ask \enquote{what does your clock show, right \emph{now}, at your position?}. But consider how weird this question actually is:
+
+First, there would be a delay, even if extremely small, in the radio transmission; so it's unclear to what time Bob's and Charlie's answers would apply. If we say \enquote{let's account for the radio-signal speed}, we see that there's a logical problem: speed is distance divided by \emph{time}, and here we are trying to determine what's the \enquote{correct} time! So we would be reasoning in circles.
+
+Second, suppose that Bob and Charlie receive Alice's radio broadcast when they happen to be together again. Bob's clock shows, say, 16:04, and Charlie's 12:34. What should they reply to Alice regarding \emph{the time at their position}? They are close together, so both of their clocks refer to that position, but the clocks show different times!
+
+It may happen thereafter that Alice also meets Bob and Charlie again. Her clock will generally show a time different from theirs, and she will show a corresponding different ageing as well. As long as the three stay close together, they again notice that their clocks stay perfectly synchronized, besides the discrepancy at the moment of meeting. So if Alice's clock shows 15:00, Bob's 17:00, and Charlie's 13:20 when they meet (Charlie and Bob had gone apart again), then when Alice's shows 15:10 Bob's will show 17:10 and Charlie's 13:30.
+
+
+The experiences just described will occur again any time Alice, Bob, Charlie, or any two of them, meet or go apart. There could be a hundred observers like Alice, Bob, Charlie, initially at the same place and with synchronized clocks. Whenever two or more of them meet after having been separated, they will notice discrepancies in their clocks (and in the ageing of their bodies). But their clocks will have exactly the same time lapses as long as they stay together.
 
 \medskip
 
@@ -2490,7 +2487,7 @@ where $G\approx\qty{6.7e-11}{m^{3}/(kg.s^{2})}$, $c=\qty{3.0e8}{m/s}$, and the E
   In the film \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}, two
   astronauts travel to Miller's planet, at a distance $r_{\text{e}}$ from the black hole Gargantua, while leaving a third astronaut in orbit at a distance $r_{\text{s}}\approx \infty$ (the distance is large enough that it can be approximated as infinity). The two astronauts stay on Miller's planet for \qty{3}{hours}. When they meet the latter astronaut in orbit again, the latter has aged \emph{23\;years}.
 \sidepar{\footnotesize\centering%
-\vspace{-7em}\includegraphics[width=\linewidth]{images/gargantua.jpg}
+\vspace{-5\baselineskip}\includegraphics[width=\linewidth]{images/gargantua.jpg}
 }
 
   Given that Gargantua's \masse\ is $M=\qty{2.0e38}{kg}$, calculate the distance $r_{\text{e}}$ of Miller's planet from the black hole.
@@ -2527,6 +2524,11 @@ In applications related to interplanetary spacecraft navigation and cosmological
 
 \medskip
 
+%
+\marginpar{\vspace{-5\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/net_rotations.png}\\[-\jot]\color{mpcolor}\url{https://xkcd.com/2882}%
+}%
+
+
 When we use coordinate time, some important physics formulae turn out to be the same no matter whether we use General Relativity or an approximate theory such as Newtonian Mechanics. Thanks to this fact, for the most part of these notes we will not need to deal with proper-time details. But it is important for you to keep in mind how time really works, and the small time discrepancies that exist and occur all the time along your \emph{worldline}.
 
 
@@ -2538,13 +2540,13 @@ Together with the notion of time, also the notions of space, length, distance lo
 
 To see the complications in defining \enquote*{distance} and \enquote*{length}, imagine two objects or people that are moving with respect to each other, getting closer and farther away. Call them A and B; let's say that A represents you. You have a clock, and B is equipped with another clock identical to yours. These clocks were synchronized (to time 06:00) in the past when you and B were in contact with each another.
 
+We can represent the motions of A and B as \emph{worldlines} in spacetime, as in the side figure (similarly to what we did in \fig~\ref{fig:ABC_spacetime}). The figure shows the points in spacetime where your clock displays the times 06:00, 08:00, and 08:10, and where B's clock displays 06:00 and 08:00. Note in particular that you and B touch each other and are synchronized at 06:00; then you touch each other again later, when your clock displays 08:10 and B's clock displays 08:00.
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize%
+\marginpar{\vspace{-4\baselineskip}\footnotesize%
 \includegraphics[width=\linewidth]{images/A_B_spacetime.jpg}%
 % \\[\jot]%
 % \footnotesize\color{mpcolor}%
 }%
-We can represent the motions of A and B as \emph{worldlines} in spacetime, as in the side figure (similarly to what we did in \fig~\ref{fig:ABC_spacetime}). The figure shows the points in spacetime where your clock displays the times 06:00, 08:00, and 08:10, and where B's clock displays 06:00 and 08:00. Note in particular that you and B touch each other and are synchronized at 06:00; then you touch each other again later, when your clock displays 08:10 and B's clock displays 08:00.
 
 \medskip
 
@@ -2576,11 +2578,12 @@ Similar problems appear if we ask questions about \emph{lengths}. Suppose there 
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}From
 \emph{\furl{https://www.astro.ucla.edu/~wright/distance.htm}{The ABC's of Distances}}.%
 }%
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+A spectacular case of the effect of spacetime curvature is the phenomenon of \furl{https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-gravitational-lenses}{gravitational lensing}. Owing to the curvature of spacetime, light and other electromagnetic radiation emanating from the object reach us along different paths in spacetime. All these paths are \enquote{straight lines} (geodesics). Coming from different directions, to us these look like distorted, duplicated images of the object, as schematized in the side figure. The curvature is generated by some large distribution of \energym, such as a galaxy, between us and the object. A beautiful example of this phenomenon is given by the \furl{https://www.nasa.gov/image-article/distant-quasar-rx-j1131}{quasar RX~J1131-1231}, side image. Spacetime curvature separates the light arriving to us from this quasar into four \textcolor{yellow}{yellow} \amp\ \textcolor{red}{red} spots, three at the top and one at the bottom in the image. The curvature is generated by a galaxy visible as the \textcolor{blue}{blue spot} at the centre.% but get also deformed into the almost-closed \textcolor{blue}{blue arc}.
+%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/quasar_lens2.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}From \furl{https://esawebb.org/images/potm2406a}{ESA/Webb}.%
 }%
-A spectacular case of the effect of spacetime curvature is the phenomenon of \furl{https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-gravitational-lenses}{gravitational lensing}. Owing to the curvature of spacetime, light and other electromagnetic radiation emanating from the object reach us along different paths in spacetime. All these paths are \enquote{straight lines} (geodesics). Coming from different directions, to us these look like distorted, duplicated images of the object, as schematized in the top side figure. The curvature is generated by some large distribution of \energym, such as a galaxy, between us and the object. A beautiful example of this phenomenon is given by the \furl{https://www.nasa.gov/image-article/distant-quasar-rx-j1131}{quasar RX~J1131-1231}, bottom side image. Spacetime curvature separates the light arriving to us from this quasar into four \textcolor{yellow}{yellow} \amp\ \textcolor{red}{red} spots, three at the top and one at the bottom in the image. The curvature is generated by a galaxy visible as the \textcolor{blue}{blue spot} at the centre.% but get also deformed into the almost-closed \textcolor{blue}{blue arc}.
 
 \medskip
 
@@ -2597,7 +2600,7 @@ The definition of distance that's regarded as the most \enquote{physical} is \em
 Consider again a situation in which an object B is moving with respect to you. Yours and B's motions in spacetime, around the time when your clock displays time $t$, are illustrated in the next side figure.
 Your \emph{worldline} in spacetime is the \textcolor{blue}{blue} one on the left; the worldline of object~B is the \textcolor{green}{green} one on the right. At your proper time $\yti$ you send a light pulse towards object~B. The pulse travels in empty space, and upon hitting object~B it immediately bounces back to you. It reaches you at your proper time $\ytf$. The worldline of the light pulse is shown in \textcolor{yellow}{dashed yellow} in the figure.
 %
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering\includegraphics[width=0.9\linewidth]{images/radar_distance.jpg}%
+\marginpar{\vspace{-10\baselineskip}\footnotesize\centering\includegraphics[width=0.9\linewidth]{images/radar_distance.jpg}%
   % \\[\jot]\flushleftright\color{mpcolor}%
 }%
 
@@ -2618,7 +2621,7 @@ where $\yc$ is the speed of light in vacuum, a universal physical constant:
 
 The SI unit of length, the \furl{https://www.nist.gov/si-redefinition/meter}{metre}, is based on the measuring procedure above. Common laser distance meters also work by the same procedure, and therefore yield radar distance. As the name indicates, this is also the distance measured by radars.
 %
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering\includegraphics[width=0.75\linewidth]{images/laser_meter.jpg}%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering\includegraphics[width=0.75\linewidth]{images/laser_meter.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}A laser distance meter (the light beam is not visible in reality).%
 }%
 
@@ -2711,13 +2714,13 @@ All these coordinates together form a \emph{coordinate system}, also called \emp
   Often the coordinates have physical meaning -- like the proper time elapsed for a specific clock, or the distance from some event as measured by a specific observer -- but they don't need to. Typically we use three spatial coordinates. In special situations, such as locating points on the Earth's surface neglecting altitude, only two or even one spatial coordinate can be enough.
 
 
+A coordinate system can be visualized as a grid made by a set of lines or planes, one set for each coordinate, which allow us to read the coordinates of any point. The side figure shows an example with spatial coordinates $(x,y)$ in two dimensions, for a specific coordinate time. It is of course assumed that the grid can be refined as much as needed. We are all familiar with the coordinate system $(\lambda, \phi)$ of \emph{latitude} and \emph{longitude} to identify locations on Earth's surface, and used internally by the location systems of mobile phones.
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/coords_curv.jpg}%
 % \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 % Grid representing a two-dimensional coordinate system.%
 }%
-A coordinate system can be visualized as a grid made by a set of lines or planes, one set for each coordinate, which allow us to read the coordinates of any point. The side figure shows an example with spatial coordinates $(x,y)$ in two dimensions, for a specific coordinate time. It is of course assumed that the grid can be refined as much as needed. We are all familiar with the coordinate system $(\lambda, \phi)$ of \emph{latitude} and \emph{longitude} to identify locations on Earth's surface, and used internally by the location systems of mobile phones.
 
 Since a coordinate system is arbitrary, we often choose one adapted to the physical phenomenon under study. It's very common to choose a coordinate system $(t,x,y,z)$ that has time coordinate $t=\qty{0}{s}$ at the beginning of our observation of the phenomenon, and spatial coordinates $(x,y,z)=(0,0,0)\,\unit{m}$ at a location close to where the phenomenon happens.
 
@@ -3336,7 +3339,7 @@ magnetic-flux lines emerging from the surface of a Type~II superconductor}}\sour
   The electric potential difference is usually calculated by means of a \emph{vector} quantity called \emph{electric field strength}; its unit is the \emph{volt per metre} (\unit{V/m}).
 \end{definition}
 
-As we shall see in more detail in \chap~\ref{cha:cons_magneticflux}, magnetic flux differs from the other six main quantities in that it answers the two \enquote{how much?} questions \emph{in one lower dimension}: \enquote{How much magnetic flux is in this surface?} and \enquote{How much magnetic flux crosses this line in the unit of time?}. It also requires a slightly different notion of orientation of a surface. The \enquote{flux of magnetic flux}, or \emph{electric potential difference}, is therefore a flow connected to a line.
+As we shall see in more detail in \chap~\ref{cha:cons_magneticflux}, magnetic flux differs from the other six main quantities in that it answers the two \enquote{how much?} questions \emph{in one lower dimension}: \enquote{How much magnetic flux is in this surface?} and \enquote{How much magnetic flux crosses this curve in the unit of time?}. It also requires a slightly different notion of orientation of a surface. The \enquote{flux of magnetic flux}, or \emph{electric potential difference}, is therefore a flow connected to a curve.
 
 
 \marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
@@ -3345,7 +3348,7 @@ As we shall see in more detail in \chap~\ref{cha:cons_magneticflux}, magnetic fl
 \\[\jot]\flushleftright\color{mpcolor}\enquote{\emph{%
 sketch of the magnetic lines of force in a magnetic filament extending up through the photosphere.}}\sourceatright{\cites{parker1974b}}%
 }
-The magnetic flux density and the electric field strength together are usually called \enquote{electromagnetic field}, which is therefore commonly represented by two vectors associated to each point in space. But it can also be interpreted and visualized as a collection of spinning magnetic tubes or lines, either closed or extending indefinitely, which move around. This visualization is somewhat analogous to how we visualize matter and charge, as moving blobs or points, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}). In particular situations, for example in some superconductors subjected to external magnetic fields, the magnetic-flux lines can literally be seen and even tracked as they move around (see previous side figure).
+The magnetic flux density and the electric field strength together are usually called \enquote{electromagnetic field}, which is therefore commonly represented by two vectors associated to each point in space. But it can also be interpreted and visualized as a collection of spinning magnetic \emph{tubes}, either closed or extending indefinitely, which move around. This visualization is somewhat analogous to how we visualize matter and charge, as moving blobs, but with one more dimension. This interpretation goes back to Faraday \parencites*{faraday1846}, Maxwell \parencites*{maxwell1855b}, and later Dirac \parencites*{dirac1955} among others, and today is conveniently used in some fields such as \furl{https://doi.org/10.1093/acrefore/9780190871994.013.21}{solar physics}, for example to study \furl{https://spaceplace.nasa.gov/solar-activity/}{sunspots} (see Ryutova \cites*{ryutova2015_r2018}). In particular situations, for example in some superconductors subjected to external magnetic fields, the magnetic-flux tubes can literally be seen and even tracked as they move around (see previous side figure).
 
 \mynotew{To be completed in a later version}
 
@@ -3992,9 +3995,6 @@ For each of the seven primitive quantities, except magnetic flux, we can measure
   The volume content of a quantity does \emph{not} depend on how the volume is moving. The volume content has the same physical dimension as the quantity.
 \end{definition}
 
-%
-\marginpar{\vspace{\baselineskip}\footnotesize\centering\includegraphics[height=11em]{images/howmuch_surface_notime.jpg}%
-}%
 \begin{definition}{Flux}
   \textbf{Flux} or \textbf{current} or \textbf{flow rate} is the amount of quantity flowing through a two-dimensional surface in a given direction, \emph{per time}, at a particular time instant.
 
@@ -4002,6 +4002,9 @@ For each of the seven primitive quantities, except magnetic flux, we can measure
 
   The flux of a quantity through a surface depends on how that surface is moving and deforming. The flux has the physical dimension of that quantity divided by time.
 \end{definition}
+%
+\marginpar{\vspace{-9\baselineskip}\footnotesize\centering\includegraphics[height=11em]{images/howmuch_surface_notime.jpg}%
+}%
 
 
 \begin{definition}{Supply}
@@ -4259,7 +4262,7 @@ With this choice we do have to explicitly consider the physical law for the bala
 \medskip
 
 %
-\marginpar{\vspace{-6\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/liquidvolume.png}%
   \\[\jot]\flushleftright\color{mpcolor}Clever hybrid choices of control volumes and surfaces allow us to simulate complex motions of fluid surfaces. \furl{http://www.youtube.com/watch?v=M5xnAdVPbgQ}{See also animation} (\cites{wojtanetal2009}).%
 }%
 There are also hybrid choices between the two special choices above, with some control volumes and surfaces that are static, and others that move and deform in a more fluid way. These hybrid choices are used for instance in simulations of fluids where the behaviour of their surface -- waves, detaching drops, and similar -- are important.
@@ -7285,7 +7288,7 @@ Conservation of matter is a law that we intuitively take for granted and use con
 The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{when considered together}.
 More specifically it seems to hold, even in extreme physical conditions, if we count baryonic and \emph{anti}-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as \enquote*{negative}. As an example, consider a closed surface containing two neutrons (baryon number \num{+1}), and some energy, in such a way that the total electric charge, momentum, and angular momentum are zero. Then it's today considered impossible that the two neutrons could just disappear, and two protons (baryon number \num{+1} each) plus two electrons (lepton number \num{+1} each) appear in their stead, even if energy, momentum, and so on were exactly the same. This is because otherwise we would have first $\yN(\yti) = \num{+2}$ and then $\yN(\ytf) = \num{+2}-\num{2}=0$, without any flux of matter: $\yJ(t)=0$; conservation of matter would be broken.
 %
-\marginpar{\vspace{-10\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
     \emph{\enquote{All these operators conserve \mbox{$B-L$} \textins{number of baryons $B$ minus number of leptons $L$}, so in any superunified theory we expect \mbox{$B-L$} to be conserved\textellipsis}}\sourceatright{\cites{wilczeketal1979}}%
 }%
 
@@ -7483,7 +7486,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
 The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume contents and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
 %
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
 \includegraphics[height=15em]{images/pipesection.pdf}%
 }%
 Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\dt}=0$. By the law of conservation of matter, the total influx must then be zero:
@@ -7500,7 +7503,7 @@ and it is given by the influxes through three surfaces: the side surface, the on
   \yJ_{1}(t) = -\yJ_{2}(t)
 \end{equation*}
 %
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
 \includegraphics[height=12em]{images/jet3.png}%
 \\[\jot]\footnotesize\color{mpcolor}%
 (image from \furl{https://www.jet-x.org/a8.html}{JetX})%
@@ -7669,13 +7672,13 @@ In the rest of this chapter we shall explore several common constitutive relatio
 
 According to General Relativity, there can be creation of momentum in a control volume, that is, there can be a momentum supply $\yG$, which we also call a \furl{this}{}\autoref{sec:contact_volume_forces}{\emph{volume force} or \emph{body force}}. This supply depends on two aspects: our choice of coordinate system, and the nearby presence of large amounts of \energym, momentum, and of their fluxes. General Relativity also makes it clear that it doesn't make sense to distinguish between these two aspects in a small control volume: if we find a non-zero supply of momentum $\yG$ in a very small region, it can be because of our coordinate system, or because of the nearby presence of \energym\ or momentum. In fact, by changing our coordinate system we can always make the supply of momentum to be zero \emph{in a small region} -- but in general not everywhere.
 
+Examples of these kinds of supplies are the \emph{gravitational force}, the \emph{centrifugal force}, and other forces called \emph{inertial}. For example, when we're travelling in a car that speeds up or slows down, we feel a horizontal force pushing us against our seat or pulling us away from it; we feel this force in all our body. This force is an example of supply of momentum.
 %
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/crashtest.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 The supply of momentum appearing in a slowed-down car is deadly real.%
 }%
-Examples of these kinds of supplies are the \emph{gravitational force}, the \emph{centrifugal force}, and other forces called \emph{inertial}. For example, when we're travelling in a car that speeds up or slows down, we feel a horizontal force pushing us against our seat or pulling us away from it; we feel this force in all our body. This force is an example of supply of momentum.
 
 You may have noticed a peculiar coincidence. When \emph{we} feel these \emph{body} forces, we also always feel some accompanying \emph{contact} forces. Examples: Most of the time we feel the force of gravity in our body, and also the contact force of the ground pressing upward against the soles of our feet. Sitting in an accelerating car, we feel the force pushing our body against the seat, but also the contact force from the seat pushing against our back. % Similarly when taking off on an aeroplane, the force pushing our body down is accompanied by an upward contact force from the seat.
 When we don't feel any body force, for instance when we reach the peak while going back and forth in a swing, and momentarily feel weightless, or if we fall from a height, then we don't feel any contact forces either.
@@ -7730,7 +7733,7 @@ where $\yGG \approx \qty{6.67384e-11}{N\,m^{2}/kg^{2}}$ is the \emph{gravitation
 \includegraphics[width=\linewidth]{images/g_moyer0.jpg}%
 \\\flushleftright\color{mpcolor}%
 Expression for gravitational force used by JPL/NASA \autocites{moyer2000}.\par
-\vspace{1em}\centering\includegraphics[width=\linewidth]{images/g_geodesy.jpg}%
+\vspace{2em}\centering\includegraphics[width=\linewidth]{images/g_geodesy.jpg}%
 \\\flushleftright\color{mpcolor}%
 Expression for gravitational force (to be added to Newton's) used by the International Earth Rotation and Reference Systems Service IERS \autocites{petitetal2010}.%
 }%
@@ -8298,7 +8301,7 @@ The elastic constant $k$ can \emph{never be negative}. This is a consequence of 
   \end{enumerate}
 \end{exercise}
 
-\section{Application: Hookean spring and harmonic oscillator}
+\section[Application: Hookean spring and harmonic oscillator]{Application: Hookean spring\noprelistbreak\\ and harmonic oscillator}
 \label{sec:hooke_oscillator}
 
 The zero-mass simplification that we're making to study the momentum fluxes of materials has a drawback: we cannot study the motion of such a piece of material \emph{alone}. By saying that its \masse\ is negligible, we're effectively saying that its momentum is too small to be measured. We're thus forfeiting exactly the quantity allows us to study its motion.
@@ -8755,7 +8758,7 @@ An example script that implements plotting and uses the general version of Hooke
 \small
 \begin{framed}\vspace{-1\baselineskip}
 \color{grey}\begin{verbatim}
-%%% Simulation of two bodies connected by Hookean material in 2D
+%%% 2D simulation of two bodies connected by Hookean material
 %% Coordinates (y, z)
 \end{verbatim}
 \vspace{-1.25\baselineskip}
@@ -8791,7 +8794,7 @@ while t < t1
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{blue}\begin{verbatim}
-    %% 4.  Calculate forward-driving quantities from state var.
+    %% 4.  Calculate forward-driving quantities from state
     Pa = ma * va;
     Pb = mb * vb;
     Fa = -k * (ra - rb);
@@ -8808,7 +8811,7 @@ while t < t1
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{cyan}\begin{verbatim}
-    %% 5.  Calculate new state var. from forward-driven quantities
+    %% 5.  Calculate new state from forward-driven quantities
     va = Pa / ma;
     vb = Pb / mb;
 \end{verbatim}
@@ -9402,7 +9405,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 \end{enumerate}
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/opmvol2.jpg}%
 \\\includegraphics[width=3em]{images/axes.pdf}%
   % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
@@ -9984,7 +9987,7 @@ The absence of such a separation is the origin of many interesting and useful ph
 In some situations, however, it is possible to \emph{approximately} express energy as a sum of terms that depend on particular quantities only. In these cases we can speak for instance of \enquote*{elastic energy}, \enquote*{radiation energy}, and similar expressions denoting the terms in the approximate sum.
 
 
-\section[Internal, kinetic, gravitational potential energy]{Internal, kinetic,\\ gravitational potential energy}
+\section[Internal energy, kinetic energy, gravitational potential energy]{Internal energy, kinetic energy,\noprelistbreak\\ gravitational potential energy}
 \label{sec:energy_volume_matter}
 
 If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
@@ -10381,7 +10384,7 @@ What about the flux of energy across the imaginary control surface that separate
 
 
 
-\section{Summary: constitutive relations for energy in the presence of matter}
+\section[Summary: constitutive relations for energy in the presence of matter]{Summary: constitutive relations\noprelistbreak\\ for energy in the presence of matter}
 \label{sec:summary_newton_energy}
 
 So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
@@ -10500,7 +10503,7 @@ So the description is somewhat more complicated; you see why we choose to avoid 
   Now the symmetry is complete!
 \end{extra}
 
-\section{Energy content, flux, supply depend on the coordinate system}
+\section[Energy content, flux, supply depend on the coordinate system]{Energy content, flux, supply\noprelistbreak\\ depend on the coordinate system}
 \label{sec:energy_coords}
 
 We have repeated several times that the amount of energy in a given control volume and the flux of energy through a given control surface depend on the coordinate system adopted. Because of this dependence, even the \textbf{explanations of energetic processes depend on the coordinate system}, and can be surprisingly different. This is a fact that surprises many, so let's illustrate it by means of a common and concrete example: a car accelerating on the road.
@@ -11016,7 +11019,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
 To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\ym$ and constant surface area $A$.
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
 The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upward.
@@ -12278,7 +12281,7 @@ One more case in which we can manage to handle surface or volume torques in a si
 
 \printpagenotes*
 \cleartooddpage
-\chapter{Remarks on momentum and energy}
+\chapter{Momentum and energy: remarks}
 \label{cha:energymomentum}
 
 %\vspace{-2\baselineskip}
