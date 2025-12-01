@@ -35,7 +35,6 @@ axis('tight'); grid on; hold on %@
 while t < t1
   %% constitutive relations
   v = P / m;
-90
   %% step forward in time with balance laws
   t = t + dt;
   P = P + (F + G) * dt;
