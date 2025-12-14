@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-10T07:20:53+0100
+%% Last-Updated: 2025-12-14T10:06:44+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11829,23 +11829,23 @@ It is because of these complications with three-dimensional integration that the
 The centre of \masse\ can be defined for any control volume having a non-zero \energym\ content: therefore for control volumes that contain matter, or that contain only electromagnetic fields, or both.
 
 \begin{definition}{Centre of \masse}
-  Consider a coordinate system $(t,x,y,z)$ and a control volume having a non-zero \masse\ content $\ym$.
+  Consider a coordinate system $(t,x,y,z)$ and a control volume having non-zero \masse\ content $\ym$ at some time $t$.
 
   \smallskip
 
-  Divide the control volume into smaller and smaller sub-volumes, which we can number $1,2,3,\dotsc$. When they are small enough, we can associate with them the positions $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$. Call $\ym_{1}, \ym_{2}, \ym_{3}, \dotsc$ their \masse\ contents; some of these may be zero, if some sub-volumes are empty. By extensivity we have that $\ym = \ym_{1} + \ym_{2} + \ym_{3} + \dotsb$.
+  Divide the control volume into smaller and smaller sub-volumes, which we can number $1,2,3,\dotsc$. When they are small enough, we can associate with them the positions $\yr_{1}, \yr_{2}, \yr_{3}, \dotsc$. Call $\ym_{1}, \ym_{2}, \ym_{3}, \dotsc$ their \masse\ contents; some of these may be zero, if some sub-volumes are empty. By extensivity we have that $\ym = \ym_{1} + \ym_{2} + \ym_{3} + \dotsb$.
 
   \smallskip
 
   The \textbf{centre of \masse} $\yrcm(t)$ of the control volume at coordinate time $t$ is defined as
   \begin{equation}
     \label{eq:centre_masse}
-    \yrcm(t) \defd \frac{1}{\ym}
+    \yrcm \defd \frac{1}{\ym}
     \hspace{-1ex}
     \lim_{\parbox{11ex}{\scriptsize\centering smaller\\sub-volumes}}
     \hspace{-1ex}
     \bigl[
-    \ym_{1}\,\yr_{1}(t) + \ym_{2}\,\yr_{2}(t) + \ym_{3}\,\yr_{3}(t) + \dotsb
+    \ym_{1}\,\yr_{1} + \ym_{2}\,\yr_{2} + \ym_{3}\,\yr_{3} + \dotsb
     \bigr] \,.
   \end{equation}
 \end{definition}
@@ -11886,6 +11886,13 @@ The centre of \masse\ of a body in \autoref{sec:rigid_bodies}{rigid motion}, how
   \end{enumerate}
 \end{exercise}
 
+\section{Angular momentum and rigid motion}
+\label{sec:rigid_motion}
+
+The constitutive relations~\eqref{eq:ang_momentum_content}, \eqref{eq:ang_momentum_flux}, \eqref{eq:ang_momentum_supply} cover almost all physical phenomena, even those involving electromagnetic fields. But the use of these constitutive relations typically requires the division of any extended control volume into very small parts -- a three-dimensional spatial integration -- and then the monitoring of each of these parts through time. This procedure can be computationally expensive in simulations.
+
+In the case of matter undergoing a \autoref{sec:rigid_bodies}{rigid motion}, the constitutive relations for angular momentum can sometimes be applied without the need of a three-dimensional spatial integration. We shall now discuss these simplified forms of constitutive relations. In order to do so we need to use the \emph{centre of \masse}, introduced earlier, and two new concepts: the \emph{angular velocity} and the \emph{tensor of inertia}.
+
 \section{Angular velocity}
 \label{sec:angvel}
 
@@ -11900,7 +11907,7 @@ After a short time lapse $\Dt$ the vector $\yr(t+\Dt) - \yro(t+\Dt)$ may get sli
 
   \smallskip
 
-  The \textbf{angular velocity} $\yo(t)$ of the position $\yr(t)$ with respect to the position $\yro(t)$ at time $t$ is a (twisted) vector defined as follows:
+  The \textbf{angular velocity} $\yo(t)$ of the position $\yr(t)$ with respect to the position $\yro(t)$ at time $t$ is a vector defined as follows:
   \begin{description}[noitemsep]
   \item[magnitude:] the angle between\enskip$\yr(t) - \yro(t)$\enskip and\enskip$\yr(t+\Dt) - \yro(t+\Dt)$,\enskip divided by $\Dt$;
   \item[direction:] the instantaneous axis of rotation;
@@ -11919,13 +11926,6 @@ After a short time lapse $\Dt$ the vector $\yr(t+\Dt) - \yro(t+\Dt)$ may get sli
 \end{definition}
 The angular velocity is the velocity that the vector pointing from $\yro$ to $\yr$ has in a direction perpendicular to itself, also called \emph{tangential velocity}, scaled by the length of that vector.
 
-\medskip
-
-If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$ of different points of a body of matter, and one given reference position $\yro(t)$, then in general the angular velocities of the points with respect to $\yro(t)$ are all different and change with time in different ways. But for a set of points undergoing a rigid motion something special happens: \emph{all points have the same angular velocities with respect to the centre of \masse} (or any other point in the set actually).
-
-
-\medskip
-
 The angular-velocity vector
 \begin{equation*}
   \yo \equiv [ \yox,\, \yoy,\, \yoz ]
@@ -11941,6 +11941,11 @@ can also represented as an \emph{angular-velocity matrix} $\yOm$:
 \end{equation*}
 having a zero diagonal and elements of opposite signs on opposite sides of the diagonal.
 
+\medskip
+
+If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$ of different points of a body of matter, and one given reference position $\yro(t)$, then in general the angular velocities of the points with respect to $\yro(t)$ are all different and change with time in different ways. But for a set of points undergoing a rigid motion something special happens: \emph{all points have the same angular velocity}, and in particular the same angular velocity with respect to the centre of \masse.
+
+
 \begin{exercise}
     A point with time-dependent position $\yr(t)$ is rotating around the fixed point $\yro = [2, -3, 0]$. The trajectory of $\yr(t)$ is parallel to the $zx$ plane. The rotation is clockwise if we look at $\yr(t)$ from some point far away on the positive-$y$ axis. The point $\yr(t)$ does two complete rotations every second.
   \begin{enumerate}[exerc]
@@ -11949,6 +11954,54 @@ having a zero diagonal and elements of opposite signs on opposite sides of the d
   \end{enumerate}
 \end{exercise}
 
+\section{Angular velocity and rigid motion}
+\label{sec:rigid_motion}
+
+In order to describe the motion of a generic body of matter, like a parcel of water, we need to specify the position or velocity of each of its points, because any two points can move far apart or close together. This means that an infinity of positions needs to be specified.
+
+Recall that if a body of matter undergoes a \autoref{sec:rigid_bodies}{rigid motion}, then all distances between its points remain constant in time. In other words, the body can move around and rotate, but it doesn't change shape or expand or contract. We call a body that only undergoes a rigid motion a \emph{rigid body}.
+
+To describe the motion of a rigid body we do not need an infinity of positions, but only \emph{six} parameters, thanks to its rigidity. Three of these six parameters correspond to the motion of one fixed point in the rigid body. The remaining three correspond to the rotation of the rigid body with respect to the coordinate system.
+
+These six parameters can be defined in different but equivalent ways. We choose the following: the centre of \masse:
+\begin{equation*}
+  \yrcm(t) \equiv \bigl[ \yxcm(t),\, \yycm(t),\, \yzcm(t) \bigr] \,,
+\end{equation*}
+from which we can calculate the velocity
+\begin{equation*}
+  \yvcm(t) \defd \frac{\di\yrcm(t)}{\dt} \equiv \biggl[
+  \frac{\di\yxcm(t)}{\dt},\,
+  \frac{\di\yycm(t)}{\dt},\,
+  \frac{\di\yzcm(t)}{\dt}
+  \biggr] \,;
+\end{equation*}
+and the \emph{angular velocity} of any point of the rigid body with respect to its centre of \masse:
+\begin{equation*}
+  \yo(t) \equiv \bigl[ \yox(t),\, \yoy(t),\, \yoz(t) \bigr] \,.
+\end{equation*}
+
+Together, they allow us to find the velocity of any point of the rigid body:
+%
+\begin{definition}{Velocity of a point in a rigid body}
+  If $\yr(t)$ is the position vector of a point of a rigid body at time $t$ in a coordinate system $(t,x,y,z)$, then its velocity $\yv(t)$ is given by
+  \begin{equation}
+    \label{eq:velocity_point_rigidbody}
+    \yv(t) = \yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)]
+  \end{equation}
+  where $\yrcm(t)$ and $\yvcm(t)$ are the position and velocity of the centre of \masse, and $\yo(t)$ is the angular velocity.
+\end{definition}
+
+\medskip
+
+The equation above tells us that if we want to track how the position $\yr(t)$ of any point of a rigid body changes in time, then we only need to track how the centre of \masse\ $\yrcm(t)$ and the angular velocity $\yo(t)$ change in time. If we have them, we can use the formula above to calculate the new position at any time. This is easily understood if imagine to \autoref{sec:position_integration}{iteratively update} the position $\yr(t)$ at small time steps by using the \autoref{def:finitedifference}{finite-difference approximation}:
+\begin{equation*}
+  \begin{aligned}
+    \yr(t+\Dt) &\approx \yr(t) + \yv(t)\,\Dt
+    \\
+    &\approx \yr(t) +
+    \bigl\{\yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)]\bigr\}\,\Dt \,.
+  \end{aligned}
+\end{equation*}
 
 
 \section{Tensor of inertia}
@@ -11995,60 +12048,6 @@ Given its relation with \masse\ and possibly with matter, we suspect that the te
   where $\yOm$ is the angular-velocity matrix. The right side of this formula has two multiplications of two matrices. This equation is essentially a consequence of the balances of matter and \masse.
 \end{definition}
 
-
-
-\section{Angular momentum and rigid motion}
-\label{sec:rigid_motion}
-
-The constitutive relations~\eqref{eq:ang_momentum_content}, \eqref{eq:ang_momentum_flux}, \eqref{eq:ang_momentum_supply} cover almost all physical phenomena, even those involving electromagnetic fields. But the use of these constitutive relations typically requires dividing any extended control volume in very small parts -- a three-dimensional spatial integration -- and following each of these parts through time. This procedure can be computationally expensive in simulations.
-
-In the case of matter undergoing a \autoref{sec:rigid_bodies}{rigid motion}, the constitutive relations for angular momentum and its balance in integral or differential form can be applied without the need of many small control volumes followed through time.
-
-Recall that if a body of matter undergoes a rigid motion, then all distances between its points remain constant in time. In other words, the body can move around and rotate, but it doesn't change shape or expand or contract. We call a body that only undergoes a rigid motion a \emph{rigid body}.
-
-In order to describe the motion of a generic body of matter, like a parcel of water, we need to specify the position or velocity of each of its points, because any two points could suddenly move far apart or close together. In principle this means an infinity of positions to be specified.
-
-To describe the motion of a rigid body, instead, we only need \emph{six} parameters, thanks to its rigidity. Three of these six parameters correspond to the motion of one fixed point in the rigid body. The remaining three correspond to the rotation of the rigid body with respect to the coordinate system.
-
-These six parameters can be defined in different but equivalent ways. We choose the following: the centre of \masse:
-\begin{equation*}
-  \yrcm(t) \equiv \bigl[ \yxcm(t),\, \yycm(t),\, \yzcm(t) \bigr] \,,
-\end{equation*}
-from which we can calculate the velocity
-\begin{equation*}
-  \yvcm(t) \defd \frac{\di\yrcm(t)}{\dt} \equiv \biggl[
-  \frac{\di\yxcm(t)}{\dt},\,
-  \frac{\di\yycm(t)}{\dt},\,
-  \frac{\di\yzcm(t)}{\dt}
-  \biggr] \,;
-\end{equation*}
-and the \emph{angular velocity} of any point of the rigid body with respect to its centre of \masse:
-\begin{equation*}
-  \yo(t) \equiv \bigl[ \yox(t),\, \yoy(t),\, \yoz(t) \bigr] \,.
-\end{equation*}
-
-Together, they allow us to find the velocity of any point of the rigid body:
-%
-\begin{definition}{Velocity of a point in a rigid body}
-  If $\yr(t)$ is the position vector of a point of a rigid body at time $t$ in a coordinate system $(t,x,y,z)$, then its velocity $\yv(t)$ is given by
-  \begin{equation}
-    \label{eq:velocity_point_rigidbody}
-    \yv(t) = \yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)]
-  \end{equation}
-  where $\yrcm(t)$ and $\yvcm(t)$ are the position and velocity of the centre of \masse, and $\yo(t)$ is the angular velocity.
-\end{definition}
-
-\medskip
-
-The equation above tells us that if we want to track how the position $\yr(t)$ of any point of a rigid body changes in time, then we only need to track how the centre of \masse\ $\yrcm(t)$ and the angular velocity $\yo(t)$ change in time. If we have them, we can use the formula above to calculate the new position at any time. This is easily understood if imagine to \autoref{sec:position_integration}{iteratively update} the position $\yr(t)$ at small time steps by using the \autoref{def:finitedifference}{finite-difference approximation}:
-\begin{equation*}
-  \begin{aligned}
-    \yr(t+\Dt) &\approx \yr(t) + \yv(t)\,\Dt
-    \\
-    &\approx \yr(t) +
-    \bigl\{\yvcm(t) + \yo(t) \times [\yr(t) - \yrcm(t)]\bigr\}\,\Dt \,.
-  \end{aligned}
-\end{equation*}
 
 \section{Constitutive relations for a rigid body}
 \label{sec:angmom_rigidbody}
