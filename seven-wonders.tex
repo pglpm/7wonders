@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-17T13:19:10+0100
+%% Last-Updated: 2025-12-18T21:16:54+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8042,8 +8042,9 @@ Let's examine the structure of this script, starting from the bottom, and omitti
 \item[Lines 5--6:] \textbf{constants}. Our equations use the constant \masse\ of the tennis ball $\ym = \qty{0.06}{kg}$, and the magnitude of free-fall acceleration of  $g = \qty{9.8}{N/kg}$.
 \end{description}
 
-\begin{table}[p]\vspace{-4ex}
-  \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\begin{table}[p]
+  \caption{Script for the example of a flying tennis ball}\label{tab:tennisball_rP}
+\vspace{-4ex}  \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
     Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}%
     \\[2ex]
     Download Python version \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}%
@@ -8051,7 +8052,6 @@ Let's examine the structure of this script, starting from the bottom, and omitti
     \flushleftright\color{black}\emph{Note:} In Octave, vectors are simply represented by square brackets, as in \textcolor{codecolour}{lines 10--11}, similar to the maths notation. The 1st component of a vector \textcolor{codecolour}{\texttt{P}} is retrieved by means of round brackets: \enquote*{\textcolor{codecolour}{\texttt{P(1)}}}.
   }%
   \lstinputlisting[style=mycode]{scripts/tennisball_rP.m}
-  \caption{Script for the example of a flying tennis ball}\label{tab:tennisball_rP}
 \end{table}
 
 
@@ -11392,9 +11392,9 @@ Note that there isn't a clear distinction between some constitutive relations an
   \item Simulate the system with the following numerical constants, boundary conditions, and initial conditions:
     \begin{equation*}
       \begin{gathered}
-        A = \qty{0.01}{m^{2}} \,,
+        A = \qty{0.03}{m^{2}} \,,
         \qquad
-        \ym = \qty{10}{kg} \,,
+        \ym = \qty{1}{kg} \,,
         \qquad
         g = \qty{9.8}{N/kg} \,,
         \\
@@ -11414,11 +11414,11 @@ Note that there isn't a clear distinction between some constitutive relations an
         \\
         \yti = \qty{0}{s} \,,
         \qquad
-        \ytf = \qty{1}{s} \,,
+        \ytf = \qty{2}{s} \,,
         \qquad
         \Dt = \qty{0.0001}{s}
         \\
-        z(\yti) = \qty{0.1}{m} \,,
+        z(\yti) = \qty{1}{m} \,,
         \qquad
         v(\yti) = \qty{0}{m/s} \,,
         \qquad
@@ -11435,15 +11435,27 @@ Note that there isn't a clear distinction between some constitutive relations an
 
 \bigskip
 
-Here is an example script for simulating the system of ideal gas \amp\ piston and plotting $z(t)$ and $\yT(t)$:
+Table~\ref{tab:idealgas_piston} on page~\pageref{tab:idealgas_piston} presents an example script for simulating the system of ideal gas \amp\ piston, as proposed in the exercise above, and plotting $z(t)$ and $\yT(t)$. The resulting plot is shown at the end of the script on page~\pageref{fig:idealgas_piston_zT}.
+
+The plot shows that the piston's position and the temperature of the gas oscillate in time, with slightly less than two oscillations per second. The oscillations are initially of a couple of centimetres for the piston and a couple of degrees for the temperature; but they are quickly damped and tend to settle on some constant values -- their \emph{equilibrium values}.
 %
+\clearpage
+\begin{table}[t]
+  \vspace{4ex}
+  \caption{Script for ideal gas \amp\ piston}\label{tab:idealgas_piston}
+  \vspace{-4ex}
+\end{table}
 \marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
     Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_piston.m}{\texttt{idealgas\_piston.m}}%
     \\[2ex]
     Download Python version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_piston.py}{\texttt{idealgas\_piston.py}}%
 }%
 \lstinputlisting[style=mycode]{scripts/idealgas_piston.m}
-
+\vspace{-1em}
+\begin{center}\label{fig:idealgas_piston_zT}
+\includegraphics[height=19em]{images/idealgas_piston_zT.pdf}%
+\end{center}
+\clearpage
 
 \section{Surfaces of discontinuity}
 \label{sec:jumps}

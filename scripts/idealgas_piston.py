@@ -7,24 +7,24 @@ import matplotlib.pyplot as plt
 ## Coordinates (t, z)
 
 ## Constants
-R = 8.31446261815   # J/(K*mol): molar gas constant
-g = 9.8             # N/kg: gravitational acceleration
-C = 20              # J/(K*mol): molar heat capacity
-mu = 4e-5           # N*s/m**2: gas viscosity
-h = 8e3             # J/(K*m**2): heat-transfer coefficient
-N = 0.04            # mol: amount of ideal gas
-A = 0.1**2          # m**2: area of piston
-m = 10              # kg: mass of piston
+R = 8.31446261815  # J/(K*mol): molar gas constant
+g = 9.8            # N/kg: gravitational acceleration
+C = 20             # J/(K*mol): molar heat capacity
+mu = 4e-5          # N*s/m**2: gas viscosity
+h = 8e3            # J/(K*m**2): heat-transfer coefficient
+N = 0.04           # mol: amount of ideal gas
+A = 0.03**2        # m**2: area of piston
+m = 1              # kg: mass of piston
 
 ## Initial conditions. State: (z, v, T)
 t = 0            # s: initial time
-z = 0.15         # m: initial position of piston
+z = 1            # m: initial position of piston
 v = 0            # m/s: initial velocity of piston
 T = 273.15 + 23  # K: initial temperature of gas
 
 ## Boundary conditions
-Gpis = -m*g         # N: gravity supply of momentum to piston
-Fatm = -1e5 *    A  # N: force on piston by atmosphere
+Gpis = -m * g       # N: gravity supply of momentum to piston
+Fatm = -1e5 * A     # N: force on piston by atmosphere
 Text = 373.15 + 23  # K: temperature of environment
                     # other fluxes are zero
 
