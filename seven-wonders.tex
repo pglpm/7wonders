@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-18T21:56:21+0100
+%% Last-Updated: 2025-12-21T23:08:18+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -482,7 +482,7 @@ OSF \doi{10.17605/osf.io/#1}%
 
 \usepackage{pdfrender}
 %\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
-\newcommand*{\xbm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.1pt}{\boldsymbol{#1}}}
+\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.05pt}{\boldsymbol{#1}}}
 
 \usepackage[depth=3]{bookmark}
 \hypersetup{%
@@ -1061,25 +1061,25 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yfrik}{\mu_{\text{k}}}
 \newcommand*{\yvis}{\mu} % viscosity coeff
 \newcommand*{\yhea}{h} % heat-transfer coeff
-\newcommand*{\yg}{\xbm{g}} % gravitational acceleration
-\newcommand*{\yh}{\xbm{h}} % gravitational-inertial-magnetic force
+\newcommand*{\yg}{\bm{g}} % gravitational acceleration
+\newcommand*{\yh}{\bm{h}} % gravitational-inertial-magnetic force
 \newcommand*{\yGG}{\kappa} % gravitational constant
 
 
 %% time and space
-\newcommand*{\ye}{\xbm{e}} % unit vector
-\newcommand*{\yuu}{\xbm{u}}
-\newcommand*{\yww}{\xbm{w}}
-\newcommand*{\yr}{\xbm{r}}
+\newcommand*{\ye}{\bm{e}} % unit vector
+\newcommand*{\yuu}{\bm{u}}
+\newcommand*{\yww}{\bm{w}}
+\newcommand*{\yr}{\bm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
 \newcommand*{\yxa}{x_{a}}%
 \newcommand*{\yxb}{x_{b}}%
-\newcommand*{\yv}{\xbm{v}}
+\newcommand*{\yv}{\bm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
 \newcommand*{\yvc}{\yv_{\textrm{crate}}}
-\newcommand*{\yst}{\xbm{\sigma}}
+\newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
 \newcommand*{\ydl}{\incr\bm{l}}
@@ -1100,20 +1100,25 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\Dzh}{\tfrac{\incr z}{2}}
 
 %% transport
-\newcommand*{\yvs}{\xbm{v}_{\textrm{s}}}
-\newcommand*{\yns}{\xbm{n}_{\textrm{s}}}
+\newcommand*{\yvs}{\bm{v}_{\textrm{s}}}
+\newcommand*{\yns}{\bm{n}_{\textrm{s}}}
 \newcommand*{\yAs}{A}%_{\textrm{s}}}
-\newcommand*{\yVs}{V_{\textrm{s}}}
-\newcommand*{\yNs}{\yN_{\textrm{s}}}
-\newcommand*{\yPs}{\yP_{\textrm{s}}}
-\newcommand*{\yEs}{\yE_{\textrm{s}}}
+% \newcommand*{\yVs}{V_{\textrm{s}}}
+% \newcommand*{\yNs}{\yN_{\textrm{s}}}
+% \newcommand*{\yPs}{\yP_{\textrm{s}}}
+% \newcommand*{\yEs}{\yE_{\textrm{s}}}
+\newcommand*{\yVs}{V}
+\newcommand*{\yNs}{\yN}
+\newcommand*{\yPs}{\yP}
+\newcommand*{\yEs}{\yE}
 
 
 %% matter
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
 \newcommand*{\yn}{n}
-\newcommand*{\yj}{\xbm{j}}
+\newcommand*{\yj}{\bm{j}}
+\newcommand*{\yjr}{\yj_{\textrm{r}}}
 % \newcommand*{\ya}{\varAlpha}
 \newcommand*{\ya}{\mathcal{A}}
 \newcommand*{\yrho}{\rho}
@@ -1126,6 +1131,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 %% energy
 \newcommand*{\ym}{m}% m, and q_m for mass flow
+\newcommand*{\ymr}{\ym_{\textrm{r}}}% m, and q_m for mass flow
 \newcommand*{\yma}{\ym_{a}}
 \newcommand*{\ymb}{\ym_{b}}
 \newcommand*{\yE}{E}
@@ -1156,7 +1162,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yPa}{\yP_{a}}
 \newcommand*{\yPb}{\yP_{b}}
-\newcommand*{\yp}{\xbm{p}}
+\newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{a}}
 \newcommand*{\yFba}{\yF_{b}}
@@ -1179,14 +1185,14 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFf}{\yF_{\textrm{f}}}
 \newcommand*{\yFo}{\yF_{\textrm{r}}}
 \newcommand*{\ypr}{p} % pressure
-\newcommand*{\ypv}{\xbm{\ypr}} % pressure vector
+\newcommand*{\ypv}{\bm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
 
 %% rigid motion
 \newcommand*{\yOm}{\bm{\varOmega}}
-\newcommand*{\yo}{\xbm{\omega}}
+\newcommand*{\yo}{\bm{\omega}}
 \newcommand*{\yox}{\omega_{x}}
 \newcommand*{\yoy}{\omega_{y}}
 \newcommand*{\yoz}{\omega_{z}}
@@ -1207,8 +1213,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
 \newcommand*{\yM}{\bm{M}}% surface torque M or T or M_Q
 \newcommand*{\ytoo}{\mathcal{T}}% volume torque M or T or M_Q
-\newcommand*{\yto}{\xbm{\ytoo}}% volume torque M or T or M_Q
-%\newcommand*{\yt}{\xbm{\tau}}
+\newcommand*{\yto}{\bm{\ytoo}}% volume torque M or T or M_Q
+%\newcommand*{\yt}{\bm{\tau}}
 
 %% entropy and temperature
 \newcommand*{\yS}{S}
@@ -1228,6 +1234,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yEv}{\mathcal{E}}
 \newcommand*{\yBB}{\bm{B}}
 \newcommand*{\yEE}{\bm{E}}
+\newcommand*{\ez}{\epsilon_{0}}
 
 
 %%% Custom macros end @@@
@@ -3232,7 +3239,7 @@ But \autoref{sec:primitives}{remember} that it is very difficult, if not impossi
 One mole of different substances (\furl{https://www.nist.gov/image/moleedit2jpg}{image: NIST}).%
 }%
 \begin{definition}{Matter: units and notation}
-  Matter, which includes \furl{https://doi.org/10.1351/goldbook.A00297}{\emph{amount of substance}} in chemistry, is a \emph{scalar} quantity. The unit for the amount of matter is the \furl{https://www.nist.gov/si-redefinition/redefining-mole}{\emph{mole}} \unit{mol}; the unit for matter flux and supply is \emph{mole per second} \unit{mol/s}. In statistical mechanics and particle physics, matter is often simply counted and thus measured in dimensionless units, rather than in moles.
+  Matter, which includes \furl{https://doi.org/10.1351/goldbook.A00297}{\emph{amount of substance}} in chemistry, is a \emph{scalar} quantity. The \furl{https://www.nist.gov/si-redefinition/redefining-mole}{unit for the amount of matter} is the \emph{mole},~\unit{mol}. The unit for matter flux and supply is the \emph{mole per second},~\unit{mol/s}. In statistical mechanics and particle physics, matter is often simply counted and thus measured in dimensionless units, rather than in moles.
 
   \smallskip
 
@@ -3315,7 +3322,7 @@ In these notes we use the term \enquote*{matter} in the generic sense discussed 
 \label{sec:intro_charge}
 
 \begin{definition}{Electric charge: units and notation}
-  Electric charge is a \emph{scalar} quantity. The unit for the amount of electric-charge is the \furl{https://doi.org/10.1351/goldbook.C01365}{\emph{coulomb}} \unit{C}. The flux of electric charge is called \emph{electric current}, its unit is the \furl{https://www.nist.gov/si-redefinition/ampere-introduction}{\emph{ampere}} $\unit{A} = \unit{C/s}$.
+  Electric charge is a \emph{scalar} quantity. The \furl{https://doi.org/10.1351/goldbook.C01365}{unit for the amount of electric charge} is the \emph{coulomb},~\unit{C}. The flux of electric charge is called \emph{electric current}, its \furl{https://www.nist.gov/si-redefinition/ampere-introduction}{unit} is the \emph{ampere},~$\unit{A} = \unit{C/s}$.
 \end{definition}
 
 \mynotew{To be completed in a later version}
@@ -3333,15 +3340,15 @@ In these notes we use the term \enquote*{matter} in the generic sense discussed 
 magnetic-flux lines emerging from the surface of a Type~II superconductor}}\sourceatright{\cites{essmannetal1971}}%
 }%
 \begin{definition}{Magnetic flux: units and notation}
-  Magnetic flux is a \emph{scalar} quantity. The unit for magnetic flux is the \furl{https://doi.org/10.1351/goldbook.W06666}{\emph{weber}} \unit{Wb}. The \enquote{flux} of magnetic flux is called \emph{electric potential difference} or \emph{electric tension}; its unit is the \furl{https://doi.org/10.1351/goldbook.V06634}{\emph{volt}} $\unit{V} = \unit{Wb/s}$.
+  Magnetic flux is a \emph{scalar} quantity. The \furl{https://doi.org/10.1351/goldbook.W06666}{unit for magnetic flux} is the \emph{weber},~\unit{Wb}. The \enquote{flux} of magnetic flux is called \emph{electric potential difference} or \emph{electric tension}; its \furl{https://doi.org/10.1351/goldbook.V06634}{unit} is the \emph{volt},~$\unit{V} = \unit{Wb/s}$.
 
   \smallskip
 
-  The magnetic flux is usually calculated by means of a \emph{vector} quantity called \emph{magnetic flux density}; its unit is the \furl{https://doi.org/10.1351/goldbook.T06283}{\emph{tesla}} $\unit{T} = \unit{Wb/m^{2}}$.
+  The magnetic flux is usually calculated by means of a \emph{vector} quantity called \emph{magnetic flux density}; its \furl{https://doi.org/10.1351/goldbook.T06283}{unit} is the \emph{tesla},~$\unit{T} = \unit{Wb/m^{2}}$.
 
   \smallskip
 
-  The electric potential difference is usually calculated by means of a \emph{vector} quantity called \emph{electric field strength}; its unit is the \emph{volt per metre} (\unit{V/m}).
+  The electric potential difference is usually calculated by means of a \emph{vector} quantity called \emph{electric field strength}; its unit is the \emph{volt per metre},~\unit{V/m}.
 \end{definition}
 
 As we shall see in more detail in \chap~\ref{cha:cons_magneticflux}, magnetic flux differs from the other six main quantities in that it answers the two \enquote{how much?} questions \emph{in one lower dimension}: \enquote{How much magnetic flux is in this surface?} and \enquote{How much magnetic flux crosses this curve in the unit of time?}. It also requires a slightly different notion of orientation of a surface. The \enquote{flux of magnetic flux}, or \emph{electric potential difference}, is therefore a flow connected to a curve.
@@ -3381,11 +3388,11 @@ The magnetic flux density and the electric field strength together are usually c
 The \emph{chemical} \energym\ content in an ordinary AA battery is around \qty{10000}{J}. The \emph{total} \energym\ content, including rest \energym, is around \qty{e15}{J}.
 }%
 \begin{definition}{Energy-mass: units and notation}
-  Energy is a \emph{scalar} quantity. The unit for the amount of energy is the \emph{joule} \unit{J}; the unit for energy flux and supply is \emph{joule per second} \unit{J/s}, also called \emph{watt} $\unit{W} = \unit{J/s}$.
+  Energy is a \emph{scalar} quantity. The unit for the amount of energy is the \emph{joule},~\unit{J}. The unit for energy flux and supply is \emph{joule per second},~\unit{J/s}, also called \emph{watt},~$\unit{W} = \unit{J/s}$.
 
   \smallskip
 
-  Equivalently we can speak of mass. The unit for the amount of mass is the \furl{https://doi.org/10.1351/goldbook.K03391}{\emph{kilogram}} \unit{kg}; the unit for mass flux and supply is \emph{kilogram per second} \unit{kg/s}.
+  Equivalently we can speak of mass. The \furl{https://doi.org/10.1351/goldbook.K03391}{unit for the amount of mass} is the \emph{kilogram},~\unit{kg}. The unit for mass flux and supply is \emph{kilogram per second},~\unit{kg/s}.
 
   \smallskip
 
@@ -3394,10 +3401,10 @@ The \emph{chemical} \energym\ content in an ordinary AA battery is around \qty{1
 \end{definition}
 
 
-The notion of energy is extremely important today, and central in many world-wide discussions and worries -- think of today's \enquote{energy crisis}, the need for \enquote{renewable energy}, and so on. It is somewhat funny that despite its importance it's actually difficult to answer \enquote*{what \emph{is} energy, really?}. Often we speak about energy as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will be enough in these notes. The notion of \emph{mass} is also very intuitive in our everyday life; we associate it with the \enquote{resistance} we feel when setting objects into motion, or with the weight of objects.
+The notion of energy is extremely important today, and central in many world-wide discussions and worries -- think of today's \enquote{energy crisis}, the need for \enquote{renewable energy}, and so on. It is somewhat funny that despite the importance of this notion it is actually difficult to answer \enquote*{what \emph{is} energy, really?}. Often we speak about energy as something that \enquote{flows}, is \enquote{transported}, \enquote{converted}, \enquote{stored}, and similar visualizations. This intuition will be enough in these notes. The notion of \emph{mass} is also very intuitive in our everyday life; we associate it with the \enquote{resistance} we feel when setting objects into motion or when stopping them from moving, or with the weight of objects.
 % relativity says that there's a strong connection between these two associations.
 
-From Relativity Theory -- and experimentally -- we know that \emph{energy and mass are the same quantity}, and in these notes we shall emphasize this experimental fact.
+From Relativity Theory, and experimentally, we know that \emph{energy and mass are the same quantity}, and in these notes we shall emphasize this experimental fact.
 
 
 \subsection{Energy is mass, mass is energy}
@@ -3411,12 +3418,12 @@ Imagine we have a box with a given amount of gas, say \qty{1}{mol} of oxygen mol
 \begin{equation*}
   \qty{0.031999540000000000}{kg} \ .
 \end{equation*}
-Now we heat the gas, providing \qty{60}{J} of energy, while making sure that not a single molecule of oxygen gets in or out of the box. The temperature of the gas increases by around \qty{3}{K}. We actually observe that the weight measured by the scale increases while we heat the gas, reaching the new value
+Now we heat the gas, providing \qty{60}{J} of energy, while making sure that not a single molecule of oxygen gets into or out of the box. The temperature of the gas increases by around \qty{3}{K}. We observe that the weight measured by the scale increases while we heat the gas, reaching the new value
 % cp= 29.4 J/mol/K  cv=21.1
 \begin{equation*}
   \qty{0.031999540000000668}{kg} \ .
 \end{equation*}
-Clearly the mass has increased, but no molecules were added! The additional mass is the \qty{60}{J} of energy that we provided to the gas by heating. Energy has weight, energy is mass.
+Clearly the mass has increased, but no molecules were added! The additional mass of around \qty{7e-16}{kg} is exactly the energy (\qty{60}{J}) that we provided to the gas by heating. Energy has weight, energy is mass.
 
 % Some texts say that \enquote{mass is a form of energy}, but that's incorrect: mass \emph{is} energy, and energy in all its possible forms \emph{is} mass.
 
@@ -3430,15 +3437,15 @@ Take a common rubber band, and imagine again that we have an extremely precise w
 \begin{equation*}
   \qty{0.000500000000000000000}{kg}\ .
 \end{equation*}
-Now we stretch the band a little. By doing so we give energy to the band, which is said to acquire \enquote*{elastic energy}. Let's say we have given \qty{0.3}{J} to the band in this way.
+Now we stretch the band a little. By doing so we give energy to the band, which is said to acquire \enquote*{elastic energy}. Let's say we have given \qty{0.3}{J} to the band this way.
 % Refer later to elastic constant
 % 0.5 * 50 N/m * (0.1 m)^2 \approx 0.3 J
-Now we weigh the rubber band again, while stretched. We observe a mass of approximately
+Now we weigh the rubber band again, while stretched. We measure a mass of
 \begin{equation*}
   \qty{0.000500000000000003338}{kg} \ .
 \end{equation*}
 The extremely small difference of around \qty{3e-18}{kg} from the initial mass
-is exactly the elastic energy that we provided by stretching.
+is exactly the elastic energy (\qty{0.3}{J}) that we provided by stretching.
 Energy has weight; energy is mass.
 
 \medskip
@@ -3451,6 +3458,23 @@ Now set the unstretched band in motion. Owing to the motion, the band is said to
 The small difference from the initial mass is the additional kinetic energy of the band. Energy has weight; energy is mass.
 
 % This case is actually connected with the example of the gas above. If we observed the gas at a molecular level, we would interpret the energy of \qty{60}{J} provided to it as additional kinetic energy of its molecules. The increase in weight was exactly this additional kinetic energy.
+
+\paragraph{Silicon crystal and gas}
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering\includegraphics[height=10em]{images/silicon28crystal.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}\emph{Prototype of a silicon-28 single crystal} (\furl{https://www.fv-berlin.de//en/public-relations/media-response/article/lorem-ipsum-2-5}{Leibniz-Institut f{\"u}r Kristallz{\"u}chtung})%
+}
+%
+At a temperature of \qty{0}{K}, take a number of \furl{https://pubchem.ncbi.nlm.nih.gov/compound/Silicon-28-atom}{silicon-28} atoms forming a crystal of mass exactly \qty{1}{kg}. Then \emph{that same} number of atoms, in dilute gas form, always at \qty{0}{K}, has mass
+\begin{equation*}
+  \qty{1.00000000018}{kg} \ .
+\end{equation*}
+
+\begin{quote}\footnotesize
+  The equivalent mass of the cohesive energy of a crystal of silicon or graphite reduces the mass of the crystal by parts in \num{e10} as compared to the mass of the same number of unbound atoms, assuming in both cases that the atoms are at rest and in their ground state.
+  %
+  \sourceatright{\parencites{davisetal2014}}
+\end{quote}
+
 
 \paragraph{Fission and atomic bombs.}
 \marginpar{\vspace{\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/atomicbomb.jpg}%
@@ -3472,9 +3496,9 @@ From the examples above it becomes clear that energy and mass are two names for 
 The equivalence between energy and mass is given by the famous formula $E=m c^{2}$, where $c$ is the speed of light, \eqn~\eqref{eq:c}. In their respective units this gives
 \begin{equation*}
   \begin{gathered}
-    \qty{1}{kg} = \qty{89875517873681764}{J}\quad\text{(exactly)}
+    \qty{1}{kg} = \qty{8.9875517873681764e16}{J}\quad\text{(exactly)}
     \\
-    \qty{1}{J} \approx \qty{0.0000000000000000111265}{kg}
+    \qty{1}{J} \approx \qty{1.11265e-17}{kg}
   \end{gathered}
 \end{equation*}
 %
@@ -3486,29 +3510,32 @@ we are led to the more general conclusion: The mass of a body is a measure of it
 %
 To grasp these numbers, consider that the mass of the rubber band in the example above, \qty{0.5}{g}, is comparable to the energy released by the \furl{https://www.britannica.com/story/atomic-bombing-of-hiroshima}{atomic bomb over Hiroshima}.
 
-But it also becomes clear that in our daily experience we deal with \energym\ in two different ways:
+But in our daily experience we deal with \energym\ in two different ways:
 
-On the one hand, we deal with huge (atom-bomb-like) amounts of \energym\ packed in very small volumes: the huge amounts of \energym\ that go together with objects and stuff like pens, keys, bicycles, cars, houses, water, and so on. We move, push, pull these huge \energym\ amounts from one place to another, and even put them in our pockets. We ourselves are huge bundles of \energym\ moving around. These  amounts of \energym\ change a little, all the time, as in the examples with the rubber band above. But these changes are so small as to be often undetectable with ordinary weight scales, and negligible for practical purposes. We use the word \enquote*{mass} for any such huge amount of \energym, and measure it with a unit -- \unit{kg} -- that doesn't lead to ridiculously large numbers. And we also agree to neglect the imprecision and fluctuation in its measurement, say any imprecision \furl{https://www.nist.gov/si-redefinition/kilogram-disseminating-new-kilogram}{under \qty{0.00001}{\percent}}.\enskip So we say \enquote{the rubber band has a mass of \qty{0.0005}{kg}}, rather than \enquote{the rubber band has an \energym\ of \qty{45000000000000}{J}}.
-
+On the one hand, we deal with huge (atom-bomb-like) amounts of \energym\ packed in very small volumes: the huge amounts of \energym\ that go together with objects and stuff like pens, keys, bicycles, cars, houses, water, and so on. We move, push, pull these huge \energym\ amounts from one place to another, and even put them in our pockets. We ourselves are huge bundles of \energym\ moving around. These  amounts of \energym\ change a little, all the time, as in the example above with the rubber band. But these changes are so small as to be undetectable with ordinary weight scales, and negligible for practical purposes. We use the word \enquote*{mass} for any such huge amount of \energym, and measure it with a unit -- \unit{kg} -- that doesn't lead to ridiculously large numbers. And we also agree to neglect the imprecision and fluctuation in its measurement, say any imprecision \furl{https://www.nist.gov/si-redefinition/kilogram-disseminating-new-kilogram}{under \qty{0.00001}{\percent}}.\enskip So we say \enquote{the rubber band has a mass of \qty{0.0005}{kg}}, rather than \enquote{the rubber band has an \energym\ of \qty{45000000000000}{J}}.
+%
+\marginpar{\vspace{-7\baselineskip}\footnotesize\color{mpcolor}\enquote{\emph{although an exact relationship between mass and amount of substance is not fundamentally challenged by the technologies used to weigh chemicals (which will subsequently be improved), a point will be reached when the equivalent masses of molecular bond energies can no longer be considered negligible.}}\sourceatright{\cites{davisetal2014}}%
+}
+%
 % This situation is similar to our measuring the power produced by power plants in megawatts (MW). We can say that another power plant constantly produces \qty{500}{MW}; but with this we don't really mean that it produces \emph{exactly} \qty{500000000.000}{W}: there are fluctuations all the time. And we can say that a power plant produces twice as much power, \qty{1000}{MW}, again with the understanding that the ratio is not \emph{exactly} \num{2.000000000000}.
 
-On the other hand, we also deal with the small energy changes and exchanges in all these objects. These energy exchanges that are very important for our daily life: they keep us warm, keep our cells active, make our laptops work. In dealing with these energy exchanges, we don't care about the huge energy reservoirs they come from. So we agree to measure them with a unit -- \unit{J} -- that doesn't lead to ridiculously small numbers. And we also agree not to be precise about the total amount in the reservoir from which these energy bits come from.
+On the other hand, we also deal with the small energy changes and exchanges in all these objects. These energy exchanges are very important for our daily life: they keep us warm, keep our cells active, make our laptops work. In dealing with these energy exchanges, we don't care about the huge energy reservoirs they come from. So we agree to measure them with a unit -- \unit{J} -- that doesn't lead to ridiculously small numbers. And we also agree not to be precise about the total amount in the reservoir from which these bits of energy come.
 
-As an analogy, think of when we speak about the amount of people in different countries. We can say that in Norway there are \num{5} millions, and in India \num{1500} millions, so in India there are \num{300} times more people. By this we don't mean that in Norway there are \emph{exactly} \num{5000000} people and that India has \emph{exactly} \num{300} times more people. These numbers are changing slightly all the time, but we don't care about differences of 10 or even \num{10000} people. At the same time, if we have three dear friends or relatives visiting us from abroad, then the amount of \num{3} people is now for us very important -- even if it is a very small amount compared to the total population of a country.
+As an analogy, think of when we speak about the amount of people in different countries. We can say that in Norway there are \num{5} millions, and in India \num{1500} millions, so in India there are \num{300} times more people. By this we don't mean that in Norway there are \emph{exactly} \num{5000000} people and that India has \emph{exactly} \num{300} times more people. These numbers are approximate, and change slightly all the time. We don't care if these approximate numbers are off by 10 or even \num{100000} people. At the same time, if we have three dear friends or relatives visiting us from abroad, then the amount of \num{3} people is now for us very important, and we know it exactly -- even if it is a very small amount compared to the total population of the country we live in.
 
 \medskip
 
-The distinction above is of course not clear-cut. In dealing with some physical phenomena, for example with few molecules or with subatomic particles, the fictitious but pragmatic distinction between mass and energy becomes too blurry and not useful anymore. In discussing these phenomena, indeed, one often uses the terms \enquote*{mass} and \enquote*{energy} interchangeably, as well as a common unit for both, such as the \furl{https://home.cern/tags/13-tev}{\emph{electronvolt}}.
+The distinction above is of course not clear-cut. In dealing with some physical phenomena, for example with few molecules or with subatomic particles, the but pragmatic but fictitious distinction between mass and energy becomes too blurry and not useful anymore. In discussing these phenomena, indeed, one often uses the terms \enquote*{mass} and \enquote*{energy} interchangeably, as well as a common unit for both, such as the \furl{https://home.cern/tags/13-tev}{\emph{electronvolt}}.
 
 \medskip
 
 % From the examples above it is clear that the energy changes that we deal with and use in everyday situations are extremely small changes in mass -- so small that we can't measure them within the precision of ordinary weighing scales. Vice versa, the masses that we ordinarily deal with are huge amounts of energy. If we spoke only of \enquote*{energy} or only of \enquote*{mass} in all situations, and used only one unit, either joules or kilograms, we would have to work with very impractical numbers. \enquote*{Mass} can be considered a convenient term for \enquote*{energy} when huge amounts of it are involved, concentrated in small regions of space, and ordinary small energy changes can be neglected.
-In these notes we shall often use the expressions \enquote*{\energym} and \enquote*{\masse} to remind ourselves that these two words denote the same physical thing.
+In these notes we shall often use the expressions \enquote*{\energym} and \enquote*{\masse} to remind ourselves that these two words denote the same physical entity.
 
 \subsection{Different \enquote*{forms} of \energym}
 \label{sec:forms_energy}
 
-We often speak of different \emph{forms} of \energym. The most important forms for us will be \textbf{internal \energym}, \textbf{kinetic \energym}, \textbf{gravitational potential \energym}, \textbf{electromagnetic \energym} to be discussed later.
+We often speak of different \emph{forms} of \energym. The most important forms for us will be \textbf{internal \energym}, \textbf{kinetic \energym}, \textbf{gravitational potential \energym}, \textbf{electromagnetic \energym}.
 
 The differences among these forms of \energym\ arise from the way they are calculated from other quantities, as we shall see later. For example, if in a volume there's an amount of a particular kind of matter, then in that volume there must also be an amount of \energym, given by a formula that involves the amount of matter. And if that matter is moving, then we have to add an extra amount of \energym\ given by another formula which involves the velocity. And if in that volume there's a gravitational field (that is, a particular kind of spacetime curvature), then another extra amount of \energym\ must be added, given by yet another formula involving the gravitational field. Similarly if we know that an electromagnetic field is in that volume.
 
@@ -3518,9 +3545,10 @@ We also speak of different forms of flux of \energym. The most important for us 
 \marginpar{\vspace{\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/molecules_20nmb.png}%
 \\[\jot]\flushleftright\color{mpcolor}\furl{https://doi.org/10.4209/aaqr.2019.04.0177}{Hydrocarbon fuel particles}. The small blobs have size of around \qty{2e-8}{m}.%
 }%
-The distinctions between different forms of \energym\ also depend on the observation scale and the theory used. Take, for instance, the water in a glass resting on table. We can observe and describe that water on a macroscopic scale of centimetres, seeing it as a still, uniform fluid. On this macroscopic scale we say that the water has internal \energym, or that there is internal \energym\ in the glass. But we can also observe and model that same water as a collection of molecules, on a microscopic scale of nanometres (\qty{e-9}{m}). On this microscopic scale, we speak of internal \energym\ \emph{and} kinetic \energym, because the molecules are in constant motion. The \emph{total} amount of \energym\ is the same on the centimetre-scale and on the microscopic scale, but its partition into different \enquote{forms} depends on the scale: only internal on the macroscopic scale, and internal plus kinetic on the microscopic scale.
+%
+The distinctions between different forms of \energym\ also depend on the observation scale and the theory used. Take for instance some water in a glass resting on a table. We can observe and describe that water on a macroscopic scale of centimetres, seeing it as a still, uniform fluid. On this macroscopic scale we say that the water has some internal \energym, or that there is internal \energym\ in the glass. But we can also observe and model that same water as a collection of molecules, on a microscopic scale of nanometres (\qty{e-9}{m}). On this microscopic scale we say that water has internal \energym\ \emph{and} kinetic \energym, because the molecules are in constant motion. The \emph{total} amount of \energym\ is the same on the centimetre-scale and on the nanometre-scale, but its partition into different \enquote{forms} depends on the scale: only internal on the centimetre scale, and internal plus kinetic on the nanometre scale.
 
-The same is true of flux of \energym. What we call \enquote*{heat} on one observation scale appears as a flux of \energym\ not associated with the motion of matter. But on a finer scale it is instead called \enquote*{work}, and it appears as an \energym\ flux associated with the microscopic motion of matter. % In phenomena that involve matter and electromagnetic fields, any separation between \enquote*{energy of matter} and \enquote*{energy of electromagnetic field} is often arbitrary.
+The same is true for flux of \energym. What we call \enquote*{heat} on one observation scale appears as a flux of \energym\ not associated with the motion of matter. But on a finer scale it is instead called \enquote*{work}, and it appears as an \energym\ flux associated with the microscopic motion of matter. % In phenomena that involve matter and electromagnetic fields, any separation between \enquote*{energy of matter} and \enquote*{energy of electromagnetic field} is often arbitrary.
 
 % \begin{warning}[Amounts of \energym\ are coordinate-dependent]
 %   Never change coordinate system in the middle of a calculation of energy change!
@@ -3537,7 +3565,7 @@ The same is true of flux of \energym. What we call \enquote*{heat} on one observ
 
 
 \begin{exercise}
-  In an hour, 14 people exit through a door. Taking the average human weight to be \qty{62}{kg} \parencites{walpoleetal2012}, what's the average flux of \emph{\energym} t, in \unit{J/s}, through that door?
+  In an hour, 14 people exit through a door. Taking the average human weight to be \qty{62}{kg} \parencites{walpoleetal2012}, what's the average flux of \emph{\energym}, in \unit{J/s}, through that door?
 \end{exercise}
 
 
@@ -3605,16 +3633,26 @@ Since momentum and momentum flux are vector quantities, they are usually express
 The amount of momentum in a volume is usually denoted $\yP$. The flux of momentum (surface force) is denoted $\yF$; and supply of momentum (volume force), $\yG$.
 \end{definition}
 
-
-Momentum is a subtle quantity, even subtler than \energym. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass and the velocity of a body, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only valid in special circumstances, and cannot be used in many everyday technological applications, especially when electromagnetism or high speeds are involved. And that relation is actually only an approximation even in the circumstances where it's used. For example, in a small region where there are matter and electromagnetic fields, momentum is approximately given by $\yP=\ym\yv + \epsilon_{0}\yEE \times \yBB$, where the quantities $\yEE$ (electric field strength) and $\yBB$ (magnetic flux density) are related to the electromagnetic properties of matter. And at high speeds, the momentum of matter is better approximated by
+Momentum is a subtle quantity, maybe subtler than \energym. Textbooks that focus on Newtonian mechanics \emph{define} it as the product of the mass and the velocity of a body, usually written \enquote{$\bm{p}=m\bm{v}$}. This relation, however, is only valid in special circumstances, and cannot be used in many technological applications, especially when electromagnetism or high speeds are involved. For example, in a small region where there are matter and electromagnetic fields, momentum is approximately given by
+\begin{equation*}
+  \yP=\ym\yv + \ez\yEE \times \yBB \ ,
+\end{equation*}
+where the quantities $\yEE$, called electric field strength, and $\yBB$, called magnetic flux density, are related to the electromagnetic properties of matter. If we were describing a volume $V$ of matter composing a star, we would use a formula for momentum like the following:
+\begin{equation*}
+  \yP = \ymr \yv 
+  + \frac{1}{\yc^{2}}\,\ymr\yv \,
+  \biggl(\frac12 v^{2} + \yU/V - 2\, G\biggr)
+  + \frac{1}{\yc^{2}} \bigl(\bm{\varPhi} + p\,\yv\bigr)
+\end{equation*}
 % $\yP = \ym\yv + (\yU + \tfrac12 \ym v^{2} + \ym g z)\yv/\yc^{2}$,
-$\yP = (\ym + \yE/\yc^{2})\yv$, where $\ym$ is the rest-\energym\ and $\yE$ is the remaining \energym\ of matter.
+% $\yP = (\ym + \yE/\yc^{2})\,\yv$,
+where $\ymr$ is the \energym\ of that matter if it were at rest, $\yU$ its internal energy, $\bm{\varPhi}$ the heat flux through it, $p$ its pressure, and $G$ a term describing gravitational effects. Still other formulae for momentum can be used in other contexts.
 
 % First, it is true that where there's matter in motion there's also momentum; but this momentum is given by \enquote*{mass${}\times{}$velocity} only as an approximation. Second, there can be momentum also where there is no matter; for instance where there is magnetic flux. If you prepare a sealed glass box which is completely empty of matter within (you create a vacuum), there still is momentum within the box if light or electromagnetic waves are present. We shall discuss later some technological uses of this fact.
 
 It is therefore beneficial to separate our idea of momentum from the \enquote{mass-times-velocity} formula, keeping in mind that the latter is just a particular case of momentum. Instead, think of momentum as \emph{something associated with translational motion} of matter and of electromagnetic fields. Translational motion is the kind of motion that leads to a new position in space. For instance, when you walk from one place to a different one, you have performed translational motion (note that translational motion doesn't need to be in a straight line).
 % We shall moreover see that there is an important connection between momentum and our intuitive idea of \enquote*{force}.
-So if something -- be it matter or a magnetic-flux line -- is changing its position in space, then that something has momentum. Indeed in many languages -- for example Chinese, French, Italian, Japanese, Norwegian, Spanish, Swedish -- the term for momentum is literally \enquote*{quantity of motion}.
+So if something -- be it matter or a magnetic-flux tube -- is changing its position in space, then that something has momentum. Indeed in many languages -- for example Chinese, French, Italian, Japanese, Norwegian, Spanish, Swedish -- the term for momentum is literally \enquote*{quantity of motion}.
 
 % Just as energy can be mentally visualized as a sort of fluid, also momentum can be visualized as a sort fluid; but we must imagine it as a \enquote{fluid of vectors}. Just as with energy, this visualization comes with many warnings though.
 % \marginpar{%
@@ -3622,7 +3660,9 @@ So if something -- be it matter or a magnetic-flux line -- is changing its posit
 % \\[\jot]\footnotesize\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{cyan}{(3D) vector}%
 % }
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering\includegraphics[align=t,width=\linewidth]{images/cube_Ns_coords.jpg}%
+
+\pagebreak
+\marginpar{\vspace{-1\baselineskip}\footnotesize\centering\includegraphics[align=t,width=\linewidth]{images/cube_Ns_coords.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}The amount of momentum within a volume at a given instant is represented by a \textcolor{purple}{vector}%
 }%
 Given a particular volume at a particular instant in time, and given a coordinate system, we can speak of the total amount of momentum within that volume. This amount is represented by a \emph{vector}. You can imagine a continuous collection of vectors filling the volume, possibly with different directions and small magnitudes; the total momentum is the sum of all these vectors. This visualization obviously comes with many warnings, but it can be very useful if we are careful.
@@ -7667,6 +7707,78 @@ But this balance is also essential in the opposite problem: when we need to stud
 
 In the rest of this chapter we shall explore several common constitutive relations that involve momentum, and some of their applications together with the balance law for momentum.
 
+
+
+
+\section{Newton's approximate relation between momentum and matter}
+\label{sec:bal_momentum_Newton}
+
+One of the most important constitutive relations is the one connecting momentum with the flux of matter, briefly mentioned in \ref{sec:example_constitutive}{previous chapters}.
+
+% This constitutive relation is based on the \autoref{def:molarmass}{relation between matter and \masse}: $\ym = \yrho\yN$, where $\yN$ and $\ym$ are the amounts of matter and \masse\ in a control volume.
+
+Choose a coordinate system $(t,x,y,z)$. Consider a control volume containing an amount of matter $\yN$, and where electromagnetic fields are negligible. From the \autoref{sec:const_matter_mass}{constitutive relation between matter and \masse} we know that this volume also contains an amount of \masse\ $\ym=\yrho\yN$. If this control volume is small enough, the matter in it has also a unique velocity $\yv$, possibly zero, \autoref{sec:fluxes_velocities}{related to its flux}. The \textbf{Newtonian formula for the momentum of matter} then says that this control volume also contains an amount of momentum $\yP$ that is proportional to the \masse\ and the velocity:
+%
+\begin{definition}{Newtonian constitutive relation for momentum}
+If a control volume contains an amount of matter $\yN$ having rest \masse\ $\ym$ and velocity $\yv$, then it also contains an amount of momentum
+\begin{equation}
+  \label{eq:matter_momentum_Newton}
+  \yP = \ym \yv
+  \qquad\text{\small or in components}\qquad
+  \begin{bmatrix}
+    P_{x}\\P_{y}\\P_{z}
+  \end{bmatrix}
+  = \ym
+  \begin{bmatrix}
+    v_{x}\\v_{y}\\v_{z}
+  \end{bmatrix}
+\end{equation}
+This relation is only valid if the matter's velocity $\yv$ is the same throughout the volume. This is usually the case if the volume is \emph{small} enough.
+\end{definition}
+
+You are probably familiar with the equality above; old textbook present it as the definition of momentum. Today we know that this equality cannot be taken as a definition of momentum: it only holds for matter but not, for instance, for the electromagnetic field. And even for matter it is only approximate: it's only valid when the speed $v$ is small compared to the speed of light, only in weak gravitational fields, and only when changes in \energym\ are small compared to the total \energym.
+
+In \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Relativ/relmom.html\#c1}{particle physics} the following constitutive relation between momentum, \masse, and velocity of matter is ordinarily used instead:
+\begin{equation*}
+  \yP = \frac{\ym \yv}{\sqrt{1-v^{2}/c^{2}}}
+  \approx \ym \yv + \frac{1}{2\yc^{2}}  v^{2}\,\ym \yv + \dotsb
+\end{equation*}
+where $\yc$ is the speed of light. This relation is also valid at high speeds, but only with weak gravitational fields and only in particular coordinates. A more general expression is
+\begin{equation*}
+  \yP \approx \ym \yv 
+  + \frac{1}{\yc^{2}}  \bigl(\tfrac12 v^{2} + \yU/V + 3\, g\bigr)\,\ym \yv
+  + \frac{1}{\yc^{2}}\bm{\varPhi} + \dotsb
+\end{equation*}
+in which the term $\yU$ represents internal energy; the term $g$ comes from gravitational effects, and the term $\bm{\varPhi}$ represents fluxes of heat and mechanical energy; we shall say more about these quantities in \chap~\ref{cha:bal_energy}. Relations among momentum, matter, velocity of this kind are used for instance in astrophysics, to describe and predict the behaviour of stars and planets. They are also used for our Earth in some applications of geodesy.
+
+\medskip
+
+If a control volume contains not only matter but also electric charge and electromagnetic fields, then we must use constitutive relations that connect the momentum content with all those quantities. Such constitutive relations can be quite complex. In general they cannot even be written as a \emph{sum} of some expression involving only velocity and mass, plus some expression involving only electromagnetic fields; see for example the formula in the side figure.
+%
+\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/momentum_matter_EM2.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Constitutive relation for the momentum content of a control volume containing inviscid fluid matter, electric charge, and electromagnetic fields. Velocity is $\mathbf{v}$, mass density is $\rho_{0}$. The symbols $\mathbf{P}$, $\mathbf{M}$ are related to electric charge; symbols  $\mathbf{E}$, $\mathbf{B}$ to the electromagnetic field. % Note that we cannot separate this formula in a part with only matter-quantities plus one with only electromagnetic quantities.
+From \cites{pfeiferetal2007}.%
+}%
+This happens, for instance, for a control volume containing water or glass traversed by a laser beam, as occurs in applications like water-assisted laser inscription. This inseparability means that we cannot really speak of \enquote{momentum of matter} or \enquote{momentum of the electromagnetic field}: the momentum content is related to the whole.
+
+% Equivalently
+% 
+% \\
+% \intertext{or equivalently} \yP &= \yrho\, \frac{V}{A}\,
+%     \begin{bmatrix}
+%       J_{x}\\J_{y}\\J_{z}
+%     \end{bmatrix}
+%     % \qquad\text{with}\qquad
+%     % \ym=\yrho\yN
+%   \end{aligned}
+% \end{equation}
+%
+% \autoref{sec:fluxes_velocities}{connection between flux and velocity}
+
+
+
 \section{Momentum supply: gravity and inertial forces}
 \label{sec:gravity}
 % \sidepar{\vspace{-4\baselineskip}\footnotesize\centering\sffamily(Constitutive relation)}%
@@ -7750,76 +7862,6 @@ Newton's law of gravitation is not used in present-day technologies that must ac
 %   where $G=\qty{6.67}{N\,m^{2}/kg^{2}}$ is the gravitational constant, $M_{\textrm{E}}=\qty{5.97e24}{kg}$ is \furl{https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html}{Earth's \masse}, and $r$ is the distance of the control volume from the Earth's centre.
 % 
 %   Current satellite and astronomical applications use complex expressions for $\yg$, which can also depend on the time coordinate, and on the motion of matter.
-
-
-
-
-\section{Newton's approximate relation between momentum and matter}
-\label{sec:bal_momentum_Newton}
-
-One of the most important constitutive relations is the one \ref{sec:example_constitutive}{connecting momentum with the flux of matter}, briefly mentioned in previous chapters.
-
-% This constitutive relation is based on the \autoref{def:molarmass}{relation between matter and \masse}: $\ym = \yrho\yN$, where $\yN$ and $\ym$ are the amounts of matter and \masse\ in a control volume.
-
-Choose a coordinate system $(t,x,y,z)$, and consider a control volume containing an amount of matter $\yN$, and where electromagnetic fields are negligible. From the \autoref{sec:const_matter_mass}{constitutive relation between matter and \masse} we then know that this volume also contains an amount of \masse\ $\ym=\yrho\yN$. If this control volume is small enough, the matter in it has also a unique velocity $\yv$, possibly zero, \autoref{sec:fluxes_velocities}{related to its flux}. The \textbf{Newtonian formula for the momentum of matter} then says that this control volume also contains an amount of momentum $\yP$ that is proportional to the \masse\ and the velocity:
-%
-\begin{definition}{Newtonian constitutive relation for momentum}
-If a control volume contains an amount of matter $\yN$ having rest \masse\ $\ym$ and velocity $\yv$, then it also contains an amount of momentum
-\begin{equation}
-  \label{eq:matter_momentum_Newton}
-  \yP = \ym \yv
-  \qquad\text{\small or in components}\qquad
-  \begin{bmatrix}
-    P_{x}\\P_{y}\\P_{z}
-  \end{bmatrix}
-  = \ym
-  \begin{bmatrix}
-    v_{x}\\v_{y}\\v_{z}
-  \end{bmatrix}
-\end{equation}
-This relation is only valid if the matter's velocity $\yv$ is the same throughout the volume. This is usually the case if the volume is \emph{small} enough.
-\end{definition}
-
-You are probably familiar with the first equality above; old textbook present it as the definition of momentum. Today we know today  this equality only holds for matter but not, for instance, for the electromagnetic field. And even for matter it is only approximate: only valid when the speed $v$ is small compared to the speed of light, only in weak gravitational fields, and only when changes in \energym\ are small compared to the total \energym.
-
-In \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Relativ/relmom.html\#c1}{particle physics} the following constitutive relation between momentum, \masse, and velocity of matter is ordinarily used instead:
-\begin{equation*}
-  \yP = \frac{\ym \yv}{\sqrt{1-v^{2}/c^{2}}}
-  \approx \ym \yv + \frac{1}{2\yc^{2}}  v^{2}\,\ym \yv + \dotsb
-\end{equation*}
-where $\yc$ is the speed of light. This relation is also valid at high speeds, but only with weak gravitational fields and only in particular coordinates. A more general expression is
-\begin{equation*}
-  \yP \approx \ym \yv 
-  + \frac{1}{\yc^{2}}  \bigl(\tfrac12 v^{2} + \yU/V + 3\, g\bigr)\,\ym \yv
-  + \frac{1}{\yc^{2}}\bm{\varPhi} + \dotsb
-\end{equation*}
-in which the term $\yU$ represents internal energy; the term $g$ comes from gravitational effects, and the term $\bm{\Phi}$ represents fluxes of heat and mechanical energy; we shall say more about these quantities in \chap~\ref{cha:bal_energy}. Relations among momentum, matter, velocity of this kind are used for instance in astrophysics, to describe and predict the behaviour of stars and planets. They are also used for our Earth in some applications of geodesy.
-
-\medskip
-
-If a control volume contains not only matter but also electric charge and electromagnetic fields, then we must use constitutive relations that connect the momentum content with all those quantities. Such constitutive relations can be quite complex. In general they cannot even be written as a \emph{sum} of some expression involving only velocity and mass, plus some expression involving only electromagnetic fields; see for example the formula in the side figure.
-%
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/momentum_matter_EM2.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Constitutive relation for the momentum content of a control volume containing inviscid fluid matter, electric charge, and electromagnetic fields. Velocity is $\mathbf{v}$, mass density is $\rho_{0}$. The symbols $\mathbf{P}$, $\mathbf{M}$ are related to electric charge; symbols  $\mathbf{E}$, $\mathbf{B}$ to the electromagnetic field. % Note that we cannot separate this formula in a part with only matter-quantities plus one with only electromagnetic quantities.
-From \cites{pfeiferetal2007}.%
-}%
-This happens, for instance, for a control volume containing water or glass traversed by a laser beam, as occurs in applications like water-assisted laser inscription. This inseparability means that we cannot really speak of \enquote{momentum of matter} or \enquote{momentum of the electromagnetic field}: the momentum content is related to the whole.
-
-% Equivalently
-% 
-% \\
-% \intertext{or equivalently} \yP &= \yrho\, \frac{V}{A}\,
-%     \begin{bmatrix}
-%       J_{x}\\J_{y}\\J_{z}
-%     \end{bmatrix}
-%     % \qquad\text{with}\qquad
-%     % \ym=\yrho\yN
-%   \end{aligned}
-% \end{equation}
-%
-% \autoref{sec:fluxes_velocities}{connection between flux and velocity}
 
 
 \section{Analytical time integration of position and momentum}
@@ -10443,15 +10485,32 @@ So the description is somewhat more complicated; you see why we choose to avoid 
   Then the fluxes of matter, momentum, energy are given by the following general formulae, if no electromagnetic fields or electric charges are present and in Newtonian approximation:
   \begin{equation}\label{eq:transport_equations}
     \begin{aligned}
-      \yJ &= \yJ_{\textrm{r}} + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yNs
+      \yJ &= \yAs\,\yns\cdot\biggl(\yjr - \yvs \, \frac{\yNs}{\yVs}\biggr)
       \\
 %      \yF &= A\,\yns\cdot\yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
-      \yF &= \yAs\,\yns\cdot\yst + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yPs
+      \yF &= \yAs\,\yns\cdot\biggl(
+      \yst
+      + \yjr \,\frac{\yPs}{\yNs}
+      - \yvs \, \frac{\yPs}{\yVs}\biggr)
       \\
-      \yH &= \yQ + \yAs\,\yns\cdot\yst\cdot \yv
-      + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yEs
+      \yH &= \yAs\,\yns\cdot\biggl(
+      \bm{q}
+      + \yst\cdot \yjr\,\frac{\yVs}{\yNs}
+      + \yjr \,\frac{\yEs}{\yNs}
+      - \yvs \, \frac{\yEs}{\yVs}\biggr)
     \end{aligned}
   \end{equation}
+%   \begin{equation}\label{eq:transport_equations}
+%     \begin{aligned}
+%       \yJ &= \yJ_{\textrm{r}} + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yNs
+%       \\
+% %      \yF &= A\,\yns\cdot\yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
+%       \yF &= \yAs\,\yns\cdot\yst + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yPs
+%       \\
+%       \yH &= \yQ + \yAs\,\yns\cdot\yst\cdot \yv
+%       + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yEs
+%     \end{aligned}
+%   \end{equation}
   In these formulae, $\yJ_{\textrm{r}}$ is called \emph{matter current} and is only required when antimatter is present; $\yst$ is a 3-by-3 matrix called the \emph{stress tensor} or \emph{pressure tensor}. The terms containing the expression\enskip$\tfrac{\yAs}{\yVs}\yns\cdot(\yv-\yvs)$\enskip are called \emph{transport terms}, because they originate from the transport of matter through the surface. If there is no antimatter, $\yJ_{\textrm{r}}= \qty{0}{mol/s}$, and matter is moving with the same velocity as the surface, $\yv = \yvs$, then there is no flux of matter $\yJ$, the transport terms disappear, and we recover the simpler constitutive relations we are familiar with.
 \end{extra}
 
