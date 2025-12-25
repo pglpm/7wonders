@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-25T11:35:28+0100
+%% Last-Updated: 2025-12-25T12:13:15+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10507,19 +10507,15 @@ So the description is somewhat more complicated; you see why we choose to avoid 
   Then the fluxes of matter, momentum, energy are given by the following general formulae, if no electromagnetic fields or electric charges are present and in Newtonian approximation:
   \begin{equation}\label{eq:transport_equations}
     \begin{aligned}
-      \yJ &= \yAs\,\yns\cdot\biggl(\yjr - \yvs \, \frac{\yNs}{\yVs}\biggr)
+      \yJ &= \yAs\,\yns\cdot(\yv - \yvs)\, \frac{\yNs}{\yVs}
       \\
 %      \yF &= A\,\yns\cdot\yst + \frac{A}{V}\,\yP\, \yns\cdot(\yv - \yvs)
-      \yF &= \yAs\,\yns\cdot\biggl(
-      \yst
-      + \yjr \,\frac{\yPs}{\yNs}
-      - \yvs \, \frac{\yPs}{\yVs}\biggr)
+      \yF &= \yAs\,\yns\cdot\yst
+      + \yAs\,\yns\cdot(\yv - \yvs)\, \frac{\yPs}{\yVs}
       \\
-      \yH &= \yAs\,\yns\cdot\biggl(
-      \bm{q}
-      + \yst\cdot \yjr\,\frac{\yVs}{\yNs}
-      + \yjr \,\frac{\yEs}{\yNs}
-      - \yvs \, \frac{\yEs}{\yVs}\biggr)
+      \yH &= \yAs\,\yns\cdot \bm{q}
+      + \yAs\,\yns\cdot\yst\cdot \yv
+      + \yAs\,\yns\cdot(\yv - \yvs)\, \frac{\yEs}{\yVs}
     \end{aligned}
   \end{equation}
 %   \begin{equation}\label{eq:transport_equations}
@@ -10533,9 +10529,13 @@ So the description is somewhat more complicated; you see why we choose to avoid 
 %       + \frac{\yAs}{\yVs}\, \yns\cdot(\yv - \yvs)\,\yEs
 %     \end{aligned}
 %   \end{equation}
-  In these formulae, $\yJ_{\textrm{r}}$ is called \emph{matter current} and is only required when antimatter is present; $\yst$ is a 3-by-3 matrix called the \emph{stress tensor} or \emph{pressure tensor}. The terms containing the expression\enskip$\tfrac{\yAs}{\yVs}\yns\cdot(\yv-\yvs)$\enskip are called \emph{transport terms}, because they originate from the transport of matter through the surface. If there is no antimatter, $\yJ_{\textrm{r}}= \qty{0}{mol/s}$, and matter is moving with the same velocity as the surface, $\yv = \yvs$, then there is no flux of matter $\yJ$, the transport terms disappear, and we recover the simpler constitutive relations we are familiar with.
+  In these formulae,
+  % $\yJ_{\textrm{r}}$ is called \emph{matter current} and is only required when antimatter is present;
+  $\yst$ is a 3-by-3 matrix called the \emph{stress tensor} or \emph{pressure tensor}, and $\bm{q}$ a vector called \emph{heat-flux vector}. The terms containing the expression\enskip$\yns\cdot(\yv-\yvs)$\enskip are called \emph{transport terms}, because they originate from the transport of matter through the surface. If matter is moving with the same velocity as the surface, $\yv = \yvs$, then there is no flux of matter $\yJ$, the transport terms disappear, and we recover the simpler constitutive relations we are familiar with.
 \end{extra}
-
+\begin{exercise}
+From \eqns~\eqref{eq:transport_equations}, prove that when $\yns\cdot(\yv-\yvs)=0$ (no matter flux), the energy flux $\yH$ takes on the familiar expression $\yQ + \yF\cdot\yv$, with $\yQ \defd \yAs\,\yns\cdot \bm{q}$\,.
+\end{exercise}
 
 \begin{extra}{Symmetry between energy and momentum fluxes}
   Let's compare the formulae for energy flux and momentum flux in the presence of matter, which we've encountered so far:
