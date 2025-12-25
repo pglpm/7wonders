@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-25T15:02:48+0100
+%% Last-Updated: 2025-12-25T21:08:52+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7301,7 +7301,7 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
 
 \printpagenotes*
 \cleartooddpage
-\chapter{Conservation \amp\ balance of matter}
+\chapter{Balance and conservation of matter}
 \label{cha:cons_matter}
 
 \epigraph{\textins*{T}he inertia of energy does not obviate the necessity for assuming the conservation of matter. \emph{Matter} is to be interpreted as number of molecules, therefore, and not as inertia.}{C. Eckart \cites*{eckart1940c}}
@@ -7582,14 +7582,68 @@ where $A_{1}, A_{2}$ are  the areas  of the top and bottom surfaces, and $v_{1},
 \end{equation*}
 that is, if the area through which the flux occur decreases, then the velocity of the fluid through it increases, and vice versa. This is what we often observe in water running from our taps. We can feel with our fingers that the water stream is slightly faster at the bottom, right before it hits the basin; and at this point the stream usually also thinner than at the top (the presence of an aerator or of turbulence can mask this effect).
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/tap_water.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
   The thickness and velocity variations of tap water are a consequence of the law of conservation of matter%
 }%
 
+\medskip
 
+\section{Matter flux through a moving control surface}
+\label{sec:matterflux_controlsurface}
+
+As with all fluxes, the flux of matter through a control surface at a coordinate time $t$ depends on the instantaneous motion of the surface at that same time. Take for example a tennis ball moving to the right with velocity $\yv$ at time $t$, as in the following side figures, and imagine a vertical control surface of given area, depicted by the \textcolor{darkgrey}{dashed grey line}, passing through the centre of the ball. A time $t + \Dt$ later the ball will have moved a little to the right.
+
+%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\flushleft%
+\includegraphics[height=10ex]{images/ball_surfacestill_t.jpg}%
+\\[1ex]\includegraphics[height=10ex]{images/ball_surfacestill_tDt.jpg}%
+}%
+If the control surface is at rest at time $t$, then at time $t + \Dt$ it will still be at the same position. Part of the tennis ball, indicated by the \textcolor{red}{hatched red area}, will therefore go through it during the time interval $\Dt$; in other words, there is a non-zero flux $\yJ$ of matter through the surface at time $t$.
+
+\pagebreak
+%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\flushleft%
+\includegraphics[height=10ex]{images/ball_surface_t.jpg}%
+\\[\jot]\includegraphics[height=10ex]{images/ball_surface_tDt.jpg}%
+}%
+If the control surface is instead moving with velocity $\yvs = \yv$ at time $t$, then at time $t + \Dt$ it will still be at the centre of the tennis ball. No matter has passed through it, and the matter flux is zero. There are obviously also intermediate situations, depending on the magnitude and direction of the velocity $\yv$ of matter and $\yvs$ of the surface.
+
+\medskip
+
+It is convenient to have a formula that yields the matter flux $\yJ$ if we know these velocities and some other details:
+
+% 
+\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.75\linewidth]{images/surf_moving.jpg}%
+}%
+\begin{definition}{Matter flux through moving control surface}
+  Consider a control surface at time $t$, having area $\yAs$ and normal unit vector $\yns$, oriented as the surface crossing direction. The surface at time $t$ has velocity $\yvs$.
+
+  \smallskip
+
+  If in a thin volume $\yVs$ containing the surface there is an amount of matter $\yN$ having velocity $\yv$, then the matter flux through the surface at time $t$ is given by
+  \begin{equation}\label{eq:matterflux_movingsurface}
+    \yJ = \yAs\,\yns \cdot (\yv - \yvs)\,\frac{\yN}{\yVs} \ .
+  \end{equation}
+
+This formula is only valid if the control surface is straight, so that the normal $\yns$ is well-defined, and if the velocity of matter $\yv$ is the same all around the surface. These conditions are usually satisfied if the control surface is \emph{small} enough.
+\end{definition}
+
+
+\begin{exercise}
+  Verify that the formula above makes sense:
+  \begin{enumerate}[exerc]
+  \item How much is the flux if neither matter or the surface are moving, that is $\yv = \yvs = \qty{0}{m/s}$\,?
+  \item How much is the flux if matter and surface are moving with the same velocity, that is $\yv = \yvs$\,?
+  \item How much is the flux if the surface is not moving, $\yvs = \qty{0}{m/s}$, and  matter is moving parallel to the surface, that is $\yns \cdot \yv = 0$\,?
+  \item How much is the flux if there is no matter around the surface, that is $\yN = \qty{0}{mol}$\,?
+  \item How much is the flux if matter is not moving, $\yv = \qty{0}{m/s}$, and the surface is moving parallel to itself, that is $\yns \cdot \yvs = 0$\,?
+  \end{enumerate}
+\end{exercise}
 \bigskip
+
 \mynotew{Sections on chemical reactions and stoichiometry to be added.}
 
 \printpagenotes*
