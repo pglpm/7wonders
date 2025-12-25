@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-18T21:58:27+0100
+%% Last-Updated: 2025-12-24T15:50:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1136,7 +1136,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yU}{U}
 \newcommand*{\yUd}{u}
 \newcommand*{\yUr}{\yU_{\textrm{new}}}
-\newcommand*{\yUo}{\yU_{0}}
+% \newcommand*{\yUo}{\yU_{0}}
 \newcommand*{\yEk}{\yE_{\textrm{k}}}%T
 \newcommand*{\yEp}{\yE_{\textrm{p}}}%V
 \newcommand*{\yH}{\varPhi}% really used for heat-flow
@@ -1204,10 +1204,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %% angular momentum
 \newcommand*{\yL}{\bm{L}}% L or H
 %\newcommand*{\yl}{\bm{L}}
-% \newcommand*{\yto}{\bm{\varTau}}% volume torque M or T or M_Q
+% \newcommand*{\yTo}{\bm{\varTau}}% volume torque M or T or M_Q
 \newcommand*{\yM}{\bm{M}}% surface torque M or T or M_Q
-\newcommand*{\ytoo}{\mathcal{T}}% volume torque M or T or M_Q
-\newcommand*{\yto}{\xbm{\ytoo}}% volume torque M or T or M_Q
+\newcommand*{\yToo}{\mathcal{T}}% volume torque M or T or M_Q
+\newcommand*{\yTo}{\xbm{\yToo}}% volume torque M or T or M_Q
 %\newcommand*{\yt}{\xbm{\tau}}
 
 %% entropy and temperature
@@ -1712,7 +1712,7 @@ Find which of the following mathematical expressions and equalities are dimensio
     \\[2\jot]
     momentum&& $\yP$\enskip[\unit{N\,s}] & $\yF$\enskip[\unit{N}]
     \\[2\jot]
-    angular momentum&& $\yL$\enskip[\unit{N\,m\,s}] & $\yto$\enskip[\unit{N\,m}]
+    angular momentum&& $\yL$\enskip[\unit{N\,m\,s}] & $\yTo$\enskip[\unit{N\,m}]
     \\[3\jot]
     entropy&& $\yS$\enskip[\unit{J/K}] & $\yB$\enskip[\unit{J/(K\,s)}]
     \\[2\jot]
@@ -3200,7 +3200,7 @@ The negative sign for the supply makes sense, because the number of neutrons has
   \item Initial time $\yti$, final time $\ytf=\yti + \qty{0.1}{s}$.
   \item Angular-momentum content $\yL(\yti)=[0, \num{2.1e-36},0]\,\unit{N\,m\,s}$ at time $\yti$.
   \item Angular-momentum content $\yL(\ytf)=[0,0,0]\,\unit{N\,m\,s}$ at time $\ytf$.
-    \item Angular-momentum supply $\yto = [0,0,0]\,\unit{N\,m}$ always, because it says to assume that angular-momentum satisfies a \emph{conservation} law. We can therefore omit the supply.
+    \item Angular-momentum supply $\yTo = [0,0,0]\,\unit{N\,m}$ always, because it says to assume that angular-momentum satisfies a \emph{conservation} law. We can therefore omit the supply.
   \end{itemize}
   Unknown:
   \begin{itemize}[nosep]
@@ -4507,13 +4507,13 @@ The equation above can tell us $F_{1,z}$ if we know $F_{2,z}$, or vice versa. Bu
 One could say \enquote{the situation of the two forces is symmetrical, so we can intuitively assume that $F_{1,z}$ and $F_{2,z}$ should be equal}. But note that this is not a result of the balance of momentum. Which physical law would this \enquote{symmetry} be? Now we'll find an answer to this question.
 
 
-\item Consider the same control volume as before. Denote its net angular momentum with $\yL$; its net influx of angular momentum, or surface torque, with $\yM$; its net supply of angular momentum, or volume torque, with $\yto$. The additional physical laws and data that we know are the following:
+\item Consider the same control volume as before. Denote its net angular momentum with $\yL$; its net influx of angular momentum, or surface torque, with $\yM$; its net supply of angular momentum, or volume torque, with $\yTo$. The additional physical laws and data that we know are the following:
   \begin{itemize}[noitemsep]
 \item The balance of angular momentum; we can try to use its differential expression, since the situation is static.
 \item The principle of extensivity, from which we find the net angular-momentum influx $\yM$ from the angular-momentum influxes at the two support points.
 \item Since the surface at $\yr_{1}$ is small, the angular-momentum influx $\yM_{1}$ through it is given by the constitutive relation $\yM_{1} = \yr_{1} \times \yF_{1}$;
 \item similarly for $\yr_{2}$.
-\item The text says that the bar is rigid; for a rigid body, the gravitational angular-momentum supply $\yto$ is given by the constitutive relation $\yto = \yrcm \times \yG$, where $\yrcm$ is the centre of mass.
+\item The text says that the bar is rigid; for a rigid body, the gravitational angular-momentum supply $\yTo$ is given by the constitutive relation $\yTo = \yrcm \times \yG$, where $\yrcm$ is the centre of mass.
 \item The information that $\frac{\di\yL}{\dt} = [0,0,0]\,\unit{N\,m}$, since the bar is static.
 \item The values of $\yr_{1}$, $\yr_{2}$, $\yrcm$.
   \end{itemize}
@@ -4522,7 +4522,7 @@ All these together form this enlarged system of equations:
 \begin{equation}
   \label{eq:angmomentum_horiz_bar}
   \begin{aligned}
-    &\frac{\di\yL}{\dt} = \yM + \yto
+    &\frac{\di\yL}{\dt} = \yM + \yTo
     &&\qquad\text{\footnotesize ang.-momentum balance}
     \\&\yM = \yM_{1} + \yM_{2}
     &&\qquad\text{\footnotesize extensivity of ang.-momentum flux}
@@ -4530,7 +4530,7 @@ All these together form this enlarged system of equations:
     &&\qquad\text{\footnotesize const. rel. for torque}
     \\&\yM_{2} = \yr_{2} \times \yF_{2}
     &&\qquad\text{\footnotesize const. rel. for torque}
-    \\&\yto = \yrcm \times \yG
+    \\&\yTo = \yrcm \times \yG
     &&\qquad\text{\footnotesize const. rel. for grav. torque}
     \\&\frac{\di\yL}{\dt} = [0,0,0]\,\unit{N\,m}
     &&\qquad\text{\footnotesize rest condition}
@@ -4554,7 +4554,7 @@ with unknowns $F_{1,z}$ and $F_{2,z}$.
 
 The system above can also be solved by substitution. We arrive at these intermediate steps:
 \begin{equation*}
-  \yM_{1} + \yM_{2} = -\yto
+  \yM_{1} + \yM_{2} = -\yTo
   \qquad\implies\qquad
   \yr_{1} \times \yF_{1} +
   \yr_{2} \times \yF_{2} = -\yrcm \times \yG \,,
