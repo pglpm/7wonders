@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-26T11:49:02+0100
+%% Last-Updated: 2025-12-26T13:28:51+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1023,6 +1023,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Custom macros for this file @@@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Note on \enspace vs \enskip, simplifying:
+%% \enspace: (0.5em) NO break allowed afterwards
+%% \enskip: (0.5em) allow break afterwards
 
 \newcommand*{\widebar}[1]{{\mkern1.5mu\skew{2}\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}}
 
@@ -8194,18 +8198,28 @@ Let's examine the structure of this script, starting from the bottom, and omitti
 \section{Constitutive relations for momentum flux in the presence of matter}
 \label{sec:material_science}
 
-A control surface generally has a non-zero momentum flux if there are matter or electromagnetic fields around it. In the following sections we shall focus on constitutive relations for momentum flux in the case where there is matter but electromagnetic fields are negligible.
+A control surface generally has a non-zero momentum flux if there are matter or electromagnetic fields around it. In the following sections we shall focus on constitutive relations for momentum flux in the case where there is matter but electromagnetic fields are negligible. We also assume that the speeds involved are smaller than the speed of light, and gravitational fields are weak enough, like those of a planet.
+
+In the presence of matter, contact forces or momentum flux through a control surface can be seen as consisting of two contributions:
+\begin{itemize}
+\item A force that occurs simply because matter is present, even if no matter is flowing through the control surface.
+\item A force that occurs if matter is flowing through the control surface.
+\end{itemize}
+
+The contact forces that we experience on our skin -- for example when we pull or push an object with our hands, or the pressure and friction from the ground on the soles of our feet -- consist of the first contribution only, because no matter flows through the control surface that is our skin. But the second kind of force contribution is extremely important in many fields of physics and engineering, especially in the study and use of fluids, in applications ranging from the flow of water and gas in pipes to the thrust of rockets.
+
+We shall further discuss these two kinds of contributions later on. For the moment let us see how their combination is expressed in mathematical form. What we have is not just a constitutive relation, but a \emph{family} of constitutive relations which have a common mathematical form, which needs to be specified further.
 
 \begin{definition}{Momentum flux in the presence of matter}\label{def:momentumflux_matter}
   Fix a coordinate system $(t,x,y,z)$, and consider an imaginary control surface with a given crossing direction, and satisfying the following conditions:
 \begin{itemize}[noitemsep]
-\item electromagnetic fields are negligible;
+\item electromagnetic fields are negligible, velocities and gravitational fields are small enough;
 \item there's a matter flux $\yJ$, possibly zero, through the surface;
 \item a thin control volume containing the surface has \emph{uniform} matter content $\yN$ and momentum content $\yP$;
 \item conditions are uniform over the surface; this is true for instance if the surface is small enough.
 \end{itemize}
 
-Then the flux of momentum or contact force $\yF$ through the surface can be written as the sum of two terms:
+Then the flux of momentum or contact force $\yF$ through the surface can be written, in many circumstances, as the sum of two terms:
 \begin{subequations}
   \begin{equation}
     \label{eq:force_momtransport}
@@ -8213,11 +8227,11 @@ Then the flux of momentum or contact force $\yF$ through the surface can be writ
   \end{equation}
   % Unfortunately these two terms have different names in different engineering fields, with no standard terminology.
 
-  The term $\ySt$ is called \textbf{stress vector} or \textbf{traction} or \textbf{molecular momentum flux}, among other names. It obeys further constitutive relations that depend on the kind and state of matter.
+  The term\enskip$\ySt$\enskip is called \textbf{stress vector} or \textbf{traction} or \textbf{molecular momentum flux}, among other names. It obeys further constitutive relations that depend on the kind and state of matter. It can be present even if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$,\enskip through the surface.
 
   \smallskip
 
-  The term $\yJ\,\yP/\yN$ is called \textbf{momentum transfer} or \textbf{convective momentum flux}, among other names. If the control surface has area $\yAs$ and the thin volume around it has volume $\yVs$, then using the formula for matter flux~\eqref{eq:matterflux_movingsurface} and Newton's formula for momentum~\eqref{eq:matter_momentum_Newton}, we can rewrite the convective momentum flux as follows:
+  The term\enskip$\yJ\,\yP/\yN$\enskip is called \textbf{momentum transfer} or \textbf{convective momentum flux}, among other names. It is zero if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$.\enskip If the control surface has area $\yAs$ and the thin volume around it has volume $\yVs$, then using the formula for matter flux~\eqref{eq:matterflux_movingsurface} and Newton's formula for momentum~\eqref{eq:matter_momentum_Newton}, we can rewrite the convective momentum flux as follows:
   \begin{equation*}
     \frac{\yJ}{\yN}\,\yP \equiv \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv \ .
   \end{equation*}
