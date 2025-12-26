@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-25T21:44:05+0100
+%% Last-Updated: 2025-12-26T11:44:37+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1079,6 +1079,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
 \newcommand*{\yvc}{\yv_{\textrm{crate}}}
+\newcommand*{\ySt}{\bm{\varSigma}}
 \newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
@@ -8190,9 +8191,50 @@ Let's examine the structure of this script, starting from the bottom, and omitti
 
 \FloatBlock
 
+\section{Constitutive relations for momentum flux in the presence of matter}
+\label{sec:material_science}
+
+A control surface generally has a non-zero momentum flux if there are matter or electromagnetic fields around it. In the following sections we shall focus on constitutive relations for momentum flux in the case where there is matter but electromagnetic fields are negligible.
+
+\begin{definition}{Momentum flux in the presence of matter}\label{def:momentumflux_matter}
+  Fix a coordinate system $(t,x,y,z)$, and consider an imaginary control surface with a given crossing direction, and satisfying the following conditions:
+\begin{itemize}[noitemsep]
+\item electromagnetic fields are negligible;
+\item there's a matter flux $\yJ$, possibly zero, through the surface;
+\item a thin control volume containing the surface has \emph{uniform} matter content $\yN$ and momentum content $\yP$;
+\item conditions are uniform over the surface; this is true for instance if the surface is small enough.
+\end{itemize}
+
+Then the flux of momentum or contact force $\yF$ through the surface can be written as the sum of two terms:
+\begin{subequations}
+  \begin{equation}
+    \label{eq:force_momtransport}
+    \yF = \ySt + \frac{\yJ}{\yN}\,\yP
+  \end{equation}
+  % Unfortunately these two terms have different names in different engineering fields, with no standard terminology.
+
+  The term $\ySt$ is called \textbf{stress vector} or \textbf{traction} or \textbf{molecular momentum flux}, among other names. It obeys further constitutive relations that depend on the kind and state of matter.
+
+  \smallskip
+
+  The term $\yJ\,\yP/\yN$ is called \textbf{momentum transfer} or \textbf{convective momentum flux}, among other names. If the control surface has area $\yAs$ and the thin volume around it has volume $\yVs$, then using the formula for matter flux~\eqref{eq:matterflux_movingsurface} and Newton's formula for momentum~\eqref{eq:matter_momentum_Newton}, we can rewrite the convective momentum flux as follows:
+  \begin{equation*}
+    \frac{\yJ}{\yN}\,\yP \equiv \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv \ .
+  \end{equation*}
+
+  \smallskip
+
+  The constitutive formula for momentum flux can then be rewritten
+  \begin{equation}
+    \label{eq:force_momtransport_velocity}
+    \yF = \ySt + \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv
+  \end{equation}
+\end{subequations}
+\end{definition}
 
 
-%\clearpage
+
+\clearpage
 \section{Constitutive relations for momentum flux: materials science}
 \label{sec:material_science}
 
