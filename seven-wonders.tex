@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-26T18:18:14+0100
+%% Last-Updated: 2025-12-26T21:18:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9866,16 +9866,21 @@ If the total momentum influx and supplies are zero, then we find\enskip$\yP\tot(
 \section{Constitutive relations for momentum flux in the presence of matter flux}
 \label{sec:momentumflux_matterflux}
 
-In the previous sections we have studied different constitutive relations and applications for momentum flux through a control surface under a particular condition: there was no \emph{flux of matter} through the surface. This condition can often be satisfied in applications involving solid materials, or in static situations.
+In the previous sections we have studied different constitutive relations and applications for momentum flux through a control surface under a particular condition: there was \emph{no flux of matter} through the surface. This condition can often be satisfied in applications involving solid materials or in static situations.
 
-In applications involving fluids in motion, however, it can be very difficult to choose control surfaces that satisfy a no-matter-flux condition. Fluids can undergo very complex stretching and bending motions -- think of how a large drop of milk on a cup of coffee get deformed as you stir it with a spoon. This is why in the study of fluid motion we typically choose imaginary control surfaces, static or in motion, which are independent of the motion of the fluid. The fluid therefore flows through them.
+%
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.75\linewidth]{images/coffee_milk_teaspoon.jpg}%
+% \\[\jot]\flushleftright\color{mpcolor}%
+}%
+In applications involving fluids in motion, however, it can be very difficult to choose control surfaces that satisfy a no-matter-flux condition. Fluids can undergo very complex stretching and bending motions -- think of how a large drop of milk on a cup of coffee gets deformed as it's stirred with a teaspoon. This is why in the study of fluid motion we typically choose imaginary control surfaces, static or in motion, which are independent of the motion of the fluid. The fluid therefore flows through them.
 
-For a control surface through which there is a flux of matter, we have a more general constitutive relation for the contact force or momentum flux. The momentum flux can be seen as consisting of two contributions:
+For a control surface through which there is a flux of matter, there is a more general constitutive relation for the contact force or momentum flux. The momentum flux can be seen as consisting of two contributions:
 \begin{itemize}
-\item A force that occurs simply because matter is present, even if no matter is flowing through the control surface.
-\item A force that occurs because matter is flowing through the control surface.
+\item A contact force that occurs simply because matter is present, even if no matter is flowing through the control surface.
+\item A contact force that occurs because matter is flowing through the control surface. If this matter has momentum, then in passing through the surface it brings its momentum from one side to the other. There is therefore a momentum flux, a contact force.
 \end{itemize}
-Let us see how these contribution are expressed in mathematical form. What we have is not just a constitutive relation, but a \emph{family} of constitutive relations which have a common mathematical form, which needs to be specified further.
+Let us see how these two contributions are expressed in mathematical form. What we have is not just a constitutive relation, but a \emph{family} of constitutive relations which have a common mathematical form.
 
 \begin{definition}{Momentum flux in the presence of matter flux}\label{def:momentumflux_matter}
   Fix a coordinate system $(t,x,y,z)$, and consider an imaginary control surface with a given crossing direction, and satisfying the following conditions:
@@ -9913,45 +9918,44 @@ Then the flux of momentum or contact force $\yF$ through the surface can be writ
 \end{subequations}
 \end{definition}
 
+In the applications of momentum flux studied in the previous sections, there was never a matter flux through the control surfaces of interest. All forces considered there had therefore only the stress vector contribution $\ySt$. The constitutive relations that we explored were, effectively, constitutive relations for the stress vector $\ySt$. The contact forces that we experience on our skin -- for example when we pull or push an object with our hands, or the pressure and friction from the ground on the soles of our feet -- consist only of a stress vector, because no matter flows through the control surface that is our skin.
 
-The contact forces that we experience on our skin -- for example when we pull or push an object with our hands, or the pressure and friction from the ground on the soles of our feet -- consist of the first contribution only, because no matter flows through the control surface that is our skin. But the second kind of force contribution is extremely important in many fields of physics and engineering, especially in the study and use of fluids, in applications ranging from the flow of water and gas in pipes to the thrust of rockets.
+In the next section we shall explore situations where matter flux occurs. The convective momentum flux will therefore appear and be quite relevant. There are also hybrid situations, where some control surfaces enclosing a control volume do not have a matter flux, whereas other do.
 
-As discussed in \sect\,\ref{sec:choice_control_volumes}, in applications involving solid materials we typically choose control surfaces that are fixed with respect to the solid body, and therefore there never is a matter flux through them. Therefore in such applications there is no convective momentum flux either, and all contact forces are understood to be stress vectors.
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item In formula~\eqref{eq:force_momtransport}, verify that the convective-flux term\enskip$\frac{\yJ}{\yN}\,\yP$\enskip has the correct dimensions of force.
 
-In applications involving fluids, on the other hand, we typically choose imaginary control surfaces which are independent of the motion of the fluid, and typically the fluid flows through them. Therefore in such applications the convective momentum flux does appear and may be quite relevant.
+  \item In formula~\eqref{eq:force_momtransport_velocity}, verify that the convective-flux term also has the correct dimensions of force.
 
-There are also hybrid situations. For example, in studying the motion of a rocket we may consider two imaginary control surfaces with different conditions. One surface, like the one schematized by the \textcolor{yellow}{solid yellow line} in the side figure, coincides with the rocket's lateral surface. There is no matter flux through this surface. The force consist only of a stress vector, representing the friction between rocket and atmosphere. The other imaginary surface, like the one schematized by the \textcolor{purple}{red dotted line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket. The force through this surface consist of both a stress vector, representing the internal pressure of the exhaust gases, and of a convective momentum flux, coming from the flux of gases through the surface. This convective flux is the main contributor to the momentum content in the rocket.
+  \item Fix a coordinate system $(t, x, y, z)$ at rest with the Earth's surface, with $z$ upwards. Consider a horizontal control surface of area \qty{7.5}{m^2}, with a \emph{downward} crossing direction; this is therefore also the direction of its normal $\yns$.
+
+    At some time point, the control surface has positive vertical velocity \qty{300}{m/s}. Matter, say some gases, is crossing the surface downwards, with vertical velocity \qty{-130}{m/s}. The mass of the gases divided by volume is $\ym/\yVs = \qty{4.3}{kg/m^{3}}$. How much is the convective momentum flux through the control surface, including its sign? % \qty{-1.8e6}{N}
+  \end{enumerate}
+\end{exercise}
+
+
+\section{Rockets}
+\label{sec:bal_momentum_rockets}
+
+The flight mechanisms discussed in \sect\,\ref{sec:bal_momentum_flight} rely on the presence of air or some kind of atmosphere around the object, with which a momentum exchange through a surface can occur. This is not possible in outer space; and  even if air is surrounding an object, that kind of momentum flux may not be enough to lift it anyway.
+
+Another way of producing an influx of upward momentum is to release matter having downward momentum, creating a convective momentum flux. This is the momentum-flux mechanism employed by rockets.
+% Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter, and the law of conservation of matter must hold as well.
+Let us study, in a simplified setting, the basics of such a force in the case of a rocket like the \furl{https://www.smithsonianmag.com/air-space-magazine/we-built-saturn-v-180964759/}{Saturn~V}; see side figure. We consider two imaginary control surfaces.
 %
-\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.33\linewidth]{images/saturnv_controlsurf.jpg}%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.5\linewidth]{images/saturnv_controlsurf.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Saturn~V SA-513 rocket (image: \furl{https://space.skyrocket.de/doc_lau_det/saturn-5_2st.htm}{Gunter's Space Page}).%
 }%
 
-\medskip
+One surface, schematized by the \textcolor{yellow}{solid yellow line}, coincides with the rocket's whole surface except the nozzle at the bottom. There is no matter flux through this surface. The force on it consists only of a stress vector, expressing the friction between rocket and atmosphere.
 
-In the following sections we shall first study constitutive relations for cases in which there is no convective momentum flux, so that\enskip$\yF = \ySt$\,.\enskip They are effectively constitutive relations for the stress vector.
+The other imaginary surface, schematized by the \textcolor{purple}{red dotted line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket. The force through this surface consists of both a stress vector, representing the \autoref{sec:momentumflux_gas}{internal pressure} of the exhaust gases, and of a convective momentum flux owing to the flux of gases through the surface.
 
-\begin{exercise}
-  \begin{enumerate}[exerc]
-  \item In formula~\eqref{eq:force_momtransport}, verify that the convective-flux term $\yJ\,\yP/\yN$ has the correct dimensions of force.
-  \item In formula~\eqref{eq:force_momtransport_velocity}, verify that the convective-flux term also has the correct dimensions of force.
-  \item Consider a control surface at the nozzle of a rocket, like the one represented by the \textcolor{purple}{red dotted line} in the side figure above. Choose a vertical coordinate $z$, fixed with the ground and directed upwards, but a \emph{downward} crossing direction for the control surface; note that this is also the direction of the normal vector $\yns$. The surface has area \qty{7.5}{m^2}.
 
-    At some time point, the vertical velocity of the rocket is \qty{300}{m/s}, the vertical velocity of the exhaust gases is \qty{-130}{m/s}, and their mass divided by volume is $\ym/\yVs = \qty{4.3}{kg/m^{3}}$. How much is the convective momentum flux through the control surface, including its sign? % \qty{-1.8e6}{N}
-  \end{enumerate}
-\end{exercise}
-
-\section{Application: Rockets}
-\label{sec:bal_momentum_rockets}
-
-The flight mechanisms discussed in the previous section rely on the presence of air or some kind of atmosphere around the object, with which a momentum flux can occur. This is not possible in outer space, and such flux may not be enough to lift an object even if air is surrounding it.
-
-Another way of producing an influx of upward momentum is to release matter having downward momentum. As we saw in an \autoref{sec:example_balance_static}{example with a falling block of ice}, if through a surface there's a flux of matter, then there's also a flux of momentum. So if an object manages to realize a strong enough flux of matter through a surface at its bottom, the object itself will experience an influx of upward momentum, which can overcome the object's weight. This is the momentum-flux mechanism employed by rockets.
-
-Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter, and the law of conservation of matter must hold as well.
-
-\mynotew{To be written in a later version}
+\mynotew{To be continued}
 
 
 % In order to use the balance of momentum in this application, we need a constitutive relation between the flux of matter and the flux of momentum. In the simple case in which all kinds of motions and fluxes happen only in one direction, say $z$, the relation is as follow:
