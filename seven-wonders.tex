@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-26T11:50:22+0100
+%% Last-Updated: 2025-12-26T21:19:20+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1023,6 +1023,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Custom macros for this file @@@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Note on \enspace vs \enskip, simplifying:
+%% \enspace: (0.5em) NO break allowed afterwards
+%% \enskip: (0.5em) allow break afterwards
 
 \newcommand*{\widebar}[1]{{\mkern1.5mu\skew{2}\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}}
 
@@ -8191,56 +8195,14 @@ Let's examine the structure of this script, starting from the bottom, and omitti
 
 \FloatBlock
 
-\section{Constitutive relations for momentum flux in the presence of matter}
-\label{sec:material_science}
 
-A control surface generally has a non-zero momentum flux if there are matter or electromagnetic fields around it. In the following sections we shall focus on constitutive relations for momentum flux in the case where there is matter but electromagnetic fields are negligible.
-
-\begin{definition}{Momentum flux in the presence of matter}\label{def:momentumflux_matter}
-  Fix a coordinate system $(t,x,y,z)$, and consider an imaginary control surface with a given crossing direction, and satisfying the following conditions:
-\begin{itemize}[noitemsep]
-\item electromagnetic fields are negligible;
-\item there's a matter flux $\yJ$, possibly zero, through the surface;
-\item a thin control volume containing the surface has \emph{uniform} matter content $\yN$ and momentum content $\yP$;
-\item conditions are uniform over the surface; this is true for instance if the surface is small enough.
-\end{itemize}
-
-Then the flux of momentum or contact force $\yF$ through the surface can be written as the sum of two terms:
-\begin{subequations}
-  \begin{equation}
-    \label{eq:force_momtransport}
-    \yF = \ySt + \frac{\yJ}{\yN}\,\yP
-  \end{equation}
-  % Unfortunately these two terms have different names in different engineering fields, with no standard terminology.
-
-  The term $\ySt$ is called \textbf{stress vector} or \textbf{traction} or \textbf{molecular momentum flux}, among other names. It obeys further constitutive relations that depend on the kind and state of matter.
-
-  \smallskip
-
-  The term $\yJ\,\yP/\yN$ is called \textbf{momentum transfer} or \textbf{convective momentum flux}, among other names. If the control surface has area $\yAs$ and the thin volume around it has volume $\yVs$, then using the formula for matter flux~\eqref{eq:matterflux_movingsurface} and Newton's formula for momentum~\eqref{eq:matter_momentum_Newton}, we can rewrite the convective momentum flux as follows:
-  \begin{equation*}
-    \frac{\yJ}{\yN}\,\yP \equiv \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv \ .
-  \end{equation*}
-
-  \smallskip
-
-  The constitutive formula for momentum flux can then be rewritten
-  \begin{equation}
-    \label{eq:force_momtransport_velocity}
-    \yF = \ySt + \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv
-  \end{equation}
-\end{subequations}
-\end{definition}
-
-
-
-\clearpage
+%\clearpage
 \section{Constitutive relations for momentum flux: materials science}
 \label{sec:material_science}
 
 In everyday situations we can experimentally observe that the constitutive relation between \emph{volume content} of momentum $\yP$ and matter is essentially the Newtonian one, when electromagnetic fields can be neglected.
 
-When it comes to \emph{flux} of momentum, that is, \emph{surface force} through the boundary of a control volume, we instead observe an astounding, seemingly endless variety of constitutive relations which connect momentum flux to matter content and flux, and to the shape and dimensions of the control volumes and surfaces involved. These constitutive relations reflect the spectacular variety of physical behaviour offered by objects and materials that surround us and that make up our bodies.
+When it comes to \emph{flux} of momentum, that is, \emph{surface force} through a control surface, we instead observe an astounding, seemingly endless variety of constitutive relations which connect momentum flux to matter content and flux, and to the shape and dimensions of the control volumes and surfaces involved. These constitutive relations reflect the spectacular variety of physical behaviour offered by objects and materials that surround us and that make up our bodies.
 
 Consider for instance what happens if you hold and squeeze different kinds of materials between your fingers; the ensuing behaviour is called the \textbf{response} of the material. A block of metal or hard wood may not deform at all as you squeeze it; it is a \emph{rigid} response. A piece of rubber may deform and return to its initial shape as you release it; it has an \emph{elastic} response. A piece of plastic or wax may deform and thereafter keep the deformed shape; it has a \emph{plastic} response. With water, it's even impossible to hold it between your fingers! We have \emph{liquid} and \emph{gaseous} materials, which in turn can also have \emph{elastic} (in a slightly different sense than the solid case) or \emph{viscous} responses, or many other kinds of behaviour.
 
@@ -8252,16 +8214,16 @@ In the following sections we shall study several extremely simplified examples o
 
 To start with, we shall simplify the situation as follows:
 \begin{itemize}
-\item We consider a control volume where momentum flux only occurs through two separate parts, usually diametrically opposed, of the closed control surface.
-\item We summarize the shape and dimensions of the control volume with just the distance between the two parts of the control surface.
-\item We often assume that the matter within the control volume has negligible \masse, and therefore a momentum content that is practically zero at all times.
+\item Momentum flux only occurs through two separate parts of the control surfaces, usually diametrically opposite.
+\item The shape and dimensions of the closed control surface can be summarized by the distance between the two parts.
+\item There is no flux of matter through the control surface.
+\item The matter within the closed control surface has negligible \masse, and therefore the momentum content is practically zero at all times.
 \end{itemize}
-
 These simplification are illustrated in the side figure.
 %% ***float!
-The closed control surface is represented by the \textcolor{yellow}{dashed yellow line}. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be elliptical or round, or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
+The closed control surface is represented by the rectangle with \textcolor{yellow}{dashed yellow} and  \textcolor{purple}{solid red} lines. Keep in mind that the control volume does not need to have the elongated shape shown in the figure; it could be round or have a helical shape instead. The matter within the control volume is represented by the \textcolor{midgrey}{greyish fill}.
 
-We assume that momentum fluxes, that is, surface forces, only occur at the two partial surfaces represented by the \textcolor{purple}{solid dark-red lines}, which we may call $a$ and $b$ (we could also call them \enquote*{1} and \enquote*{2}, or use other similar symbols). The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; this distance may be denoted $\yle$.
+The momentum fluxes, that is, surface forces, only occur at the two partial surfaces represented by the \textcolor{purple}{solid red lines}, which we may call $a$ and $b$ (or \enquote*{1} and \enquote*{2}, or other similar symbols). The relevant geometrical dimension of the control volume is the distance between the two partial control surfaces; it may be denoted $\yle$.
 %
 \marginpar{\vspace{-14\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/material_piece2.jpg}%
@@ -8269,9 +8231,7 @@ We assume that momentum fluxes, that is, surface forces, only occur at the two p
 
 If the partial surfaces $a$ and $b$ are enough small, we may identify their positions with position vectors $\yra$ and $\yrb$ (not indicated in the figure). In this case we have $\yle = \abs{\yra - \yrb}$.
 
-The momentum \textbf{ef}fluxes through the partial surfaces are $\yFa$ and $\yFb$, represented by the \textcolor{blue}{blue} arrows. We focus on the effluxes, rather than the influxes, to make the discussion in the following sections easier. In the figure, these momentum effluxes are \autoref{sec:pressure}{\emph{compressive}}, but note that they might also be \autoref{sec:tension}{\emph{tensile}}.
-
-\medskip
+The momentum \textbf{ef}fluxes through the partial surfaces are $\yFa$ and $\yFb$, represented by the \textcolor{blue}{blue} arrows. We focus on the effluxes, rather than the influxes, to make the discussion in the following sections easier. In the figure, the momentum effluxes are depicted as \autoref{sec:pressure}{\emph{compressive}}, but note that they might be \autoref{sec:tension}{\emph{tensile}} instead.
 
 %
 \marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
@@ -8281,7 +8241,7 @@ The momentum \textbf{ef}fluxes through the partial surfaces are $\yFa$ and $\yFb
 \\[\jot]\includegraphics[width=0.5\linewidth]{images/balloon0.jpg}%
 \\[\jot]\includegraphics[width=0.5\linewidth]{images/string0.jpg}%
 }%
-With the simplified setup just described we can approximately represent the response of objects like an elastic band, a spring, a piece of wire, a balloon, a piece of string, or similar. In \chap~\ref{cha:bal_energy} a very similar setup will also be used to represent the response of a body of gaseous substance.
+With the simplified setup just described we can approximately represent the response of objects like an elastic band, a spring, a piece of wire, a balloon, a piece of string, and other similar objects. In \chap~\ref{cha:bal_energy} a very similar setup will be used to represent the response of a gaseous substance.
 
 \begin{exercise}[label={ex:tensile_spring}]
   Review \sect\,\ref{sec:pressure_tension_shear} for this exercise. In the top side figure, the momentum effluxes $\yFa$ and $\yFb$ are depicted as \emph{compressive} surface forces experienced by the material. Draw an analogous figure, but in which $\yFa$ and $\yFb$ are depicted as \emph{tensile} surface forces instead.
@@ -8461,7 +8421,7 @@ The elastic constant $k$ can \emph{never be negative}. This is a consequence of 
   \end{enumerate}
 \end{exercise}
 
-\section[Application: Hookean spring and harmonic oscillator]{Application: Hookean spring\noprelistbreak\\ and harmonic oscillator}
+\section{Hookean spring and harmonic oscillator}
 \label{sec:hooke_oscillator}
 
 The zero-mass simplification that we're making to study the momentum fluxes of materials has a drawback: we cannot study the motion of such a piece of material \emph{alone}. By saying that its \masse\ is negligible, we're effectively saying that its momentum is too small to be measured. We're thus forfeiting exactly the quantity allows us to study its motion.
@@ -8615,7 +8575,7 @@ that can be solved analytically.
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\section[The concept of physical state. A strategy for numerical time integration]{The concept of physical state\noprelistbreak\\ A strategy for numerical time integration}
+\section[The concept of physical state. A strategy for numerical time integration]{The concept of physical state.\noprelistbreak\\ A strategy for numerical time integration}
 \label{sec:strategy_simulation}
 
 The present section is somewhat peculiar because we shall discuss two very different topics, one practical and one conceptual:
@@ -9508,7 +9468,7 @@ Check that this function correctly covers and represents both formulae~\eqref{eq
 
 
 
-\section{Application: statics}
+\section{Statics}
 \label{sec:bal_momentum_statics}
 
 As previously mentioned there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \furl{https://www.britannica.com/science/statics}{statics}. Let's see a couple of concrete examples.
@@ -9571,7 +9531,7 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
   % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
 
-\section{Application: Atmospheric pressure}
+\section{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
 
 There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called \furl{https://www.britannica.com/science/atmospheric-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
@@ -9628,7 +9588,7 @@ In some cases the magnitude of the atmospheric pressure is different because of 
     {\color{red}\footnotesize\faIcon{exclamation-circle}\enskip The results obtained in this exercise are approximate, because the supply of momentum $\yG$ actually changes with altitude as well, and depends on other quantities such as temperature. But they do have the correct order of magnitude.\par}
 \end{exercise}
 
-\section{Application: Airborne flight}
+\section{Airborne flight}
 \label{sec:bal_momentum_flight}
 
 Airborne flight is a conceptually extremely simple application of momentum balance.
@@ -9672,31 +9632,9 @@ Sections of two kinds of wings for supersonic flight \parencites[\sect\,26]{leis
 
 % In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{def:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
 
-\section{Application: Rockets}
-\label{sec:bal_momentum_rockets}
-
-The flight mechanisms discussed in the previous section rely on the presence of air or some kind of atmosphere around the object, with which a momentum flux can occur. This is not possible in outer space, and such flux may not be enough to lift an object even if air is surrounding it.
-
-Another way of producing an influx of upward momentum is to release matter having downward momentum. As we saw in an \autoref{sec:example_balance_static}{example with a falling block of ice}, if through a surface there's a flux of matter, then there's also a flux of momentum. So if an object manages to realize a strong enough flux of matter through a surface at its bottom, the object itself will experience an influx of upward momentum, which can overcome the object's weight. This is the momentum-flux mechanism employed by rockets.
-
-Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter, and the law of conservation of matter must hold as well.
-
-% In order to use the balance of momentum in this application, we need a constitutive relation between the flux of matter and the flux of momentum. In the simple case in which all kinds of motions and fluxes happen only in one direction, say $z$, the relation is as follow:
-% \begin{definition}{Constitutive relation for matter flux and momentum flux}
-%   Fix a coordinate direction $z$, and suppose that at some instant of time there's a small surface orthogonal to the $z$-axis and moving with velocity $\yvs$ with respect to the coordinate system.
-%
-%   If there's a flux of matter $\yJ_{z}$ across the surface in the positive-$z$ direction, and the flowing matter has velocity $v_{z}$ with respect to the coordinate system, then there is also a flux of momentum $F_{z}$ given by
-%   \begin{equation}
-%     \label{eq:matterflux_momentumflux}
-%     F_{z} = \yrho\, \yJ_{z}\, (v_{z}-\yvs)
-%   \end{equation}
-%   where $\yrho$ is the \autoref{def:molarmass}{molar mass} of that kind of matter.
-% \end{definition}
-% % This constitutive relation makes sense: first, if $v_{z}=\yvs$ it means that the matter and the surface are moving together, so there can't be a flux of momentum across the surface
 
 
-
-\section{Application: Statics again and cable cars}
+\section{Statics again: cable cars}
 \label{sec:bal_momentum_cablecar}
 
 %
@@ -9816,7 +9754,7 @@ In solving the cable-car problem above we used the balance of momentum, but note
 \end{itemize}
 
 
-\section{Application: Momentum fluxes in a gas}
+\section{Momentum fluxes in a gas}
 \label{sec:momentumflux_gas}
 
 Imagine a rigid box at rest containing an amount of gas, and vacuum outside the box. Let gravity be negligible. It is common knowledge that if we open one side of the box, the gas within gets out. The gas's behaviour is to be contrasted with that of a solid: if the box contained, say, a brick, then the brick would simply stay where it is upon opening one side of the box.
@@ -9860,8 +9798,10 @@ Repeating this kind of reasoning with horizontal control surfaces further within
 \end{definition}
 In \chap~\ref{cha:bal_energy} we shall discuss a constitutive relation for the internal pressure of particular kinds of gas.
 
+\pagebreak
+
 %
-\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[vshift=6pt,width=0.45\linewidth]{images/gas_upfluxes.jpg}%
 \hfill\includegraphics[width=0.45\linewidth]{images/gas_downfluxes.jpg}%
 %\\\color{mpcolor}Equivalent depictions of vertical momentum fluxes%
@@ -9876,7 +9816,7 @@ At the surface where the gas is in contact with its containing box, the momentum
 
 The answer is that an opposite and slightly more complex circulation of momentum takes places through the walls of the box. The momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore partially tensile and partially shearing. The side picture gives a \emph{qualitative} illustration of the momentum fluxes (\textcolor{cyan}{light-blue arrows}) that occur through various control surfaces (\textcolor{blue}{dashed blue lines}) at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs because of transport, not by molecules, but by the electromagnetic field that exists with the box's molecules.
 %
-\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-13\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gasbox_fluxes.jpg}%
 }%
 
@@ -9922,6 +9862,114 @@ Momentum balance also applies to the total control volume:
   \yP\tot(\ytf) = \yP\tot(\yti) + \int_{\yti}^{\ytf}\!\!\yF\tot(t)\dt + \int_{\yti}^{\ytf}\!\!\yG\tot(t)\dt
 \end{equation*}
 If the total momentum influx and supplies are zero, then we find\enskip$\yP\tot(\ytf) = \yP\tot(\yti)$\,,\enskip which explains why we found that the velocity for the whole system could be considered as constant.
+
+\section{Constitutive relations for momentum flux in the presence of matter flux}
+\label{sec:momentumflux_matterflux}
+
+In the previous sections we have studied different constitutive relations and applications for momentum flux through a control surface under a particular condition: there was \emph{no flux of matter} through the surface. This condition can often be satisfied in applications involving solid materials or in static situations.
+
+%
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.75\linewidth]{images/coffee_milk_teaspoon.jpg}%
+% \\[\jot]\flushleftright\color{mpcolor}%
+}%
+In applications involving fluids in motion, however, it can be very difficult to choose control surfaces that satisfy a no-matter-flux condition. Fluids can undergo very complex stretching and bending motions -- think of how a large drop of milk on a cup of coffee gets deformed as it's stirred with a teaspoon. This is why in the study of fluid motion we typically choose imaginary control surfaces, static or in motion, which are independent of the motion of the fluid. The fluid therefore flows through them.
+
+For a control surface through which there is a flux of matter, there is a more general constitutive relation for the contact force or momentum flux. The momentum flux can be seen as consisting of two contributions:
+\begin{itemize}
+\item A contact force that occurs simply because matter is present, even if no matter is flowing through the control surface.
+\item A contact force that occurs because matter is flowing through the control surface. If this matter has momentum, then in passing through the surface it brings its momentum from one side to the other. There is therefore a momentum flux, a contact force.
+\end{itemize}
+Let us see how these two contributions are expressed in mathematical form. What we have is not just a constitutive relation, but a \emph{family} of constitutive relations which have a common mathematical form.
+
+\begin{definition}{Momentum flux in the presence of matter flux}\label{def:momentumflux_matter}
+  Fix a coordinate system $(t,x,y,z)$, and consider an imaginary control surface with a given crossing direction, and satisfying the following conditions:
+\begin{itemize}[noitemsep]
+\item electromagnetic fields are negligible, velocities and gravitational fields are small enough;
+\item there's a matter flux $\yJ$, possibly zero, through the surface;
+\item a thin control volume containing the surface has \emph{uniform} matter content $\yN$ and momentum content $\yP$;
+\item conditions are uniform over the surface; this is true for instance if the surface is small enough.
+\end{itemize}
+
+Then the flux of momentum or contact force $\yF$ through the surface can be written, in many circumstances, as the sum of two terms:
+\begin{subequations}
+  \begin{equation}
+    \label{eq:force_momtransport}
+    \yF = \ySt + \frac{\yJ}{\yN}\,\yP
+  \end{equation}
+  % Unfortunately these two terms have different names in different engineering fields, with no standard terminology.
+
+  The term\enskip$\ySt$\enskip is called \textbf{stress vector} or \textbf{traction} or \textbf{molecular momentum flux}, among other names. It can be present even if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$\,,\enskip through the surface. It obeys further constitutive relations that depend on the kind and state of matter, like those we studied in the previous sections.
+
+  \smallskip
+
+  The term\enskip$\yJ\,\yP/\yN$\enskip is called \textbf{momentum transfer} or \textbf{convective momentum flux}, among other names. It is zero if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$\,.\enskip If the control surface has area $\yAs$ and the thin volume around it has volume $\yVs$, then using the formula for matter flux~\eqref{eq:matterflux_movingsurface} and Newton's formula for momentum~\eqref{eq:matter_momentum_Newton}, we can rewrite the convective momentum flux as follows:
+  \begin{equation*}
+    \frac{\yJ}{\yN}\,\yP \equiv \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv \ .
+  \end{equation*}
+
+  \smallskip
+
+  The constitutive formula for momentum flux can then be rewritten
+  \begin{equation}
+    \label{eq:force_momtransport_velocity}
+    \yF = \ySt + \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv
+  \end{equation}
+\end{subequations}
+\end{definition}
+
+In the applications of momentum flux studied in the previous sections, there was never a matter flux through the control surfaces of interest. All forces considered there had therefore only the stress vector contribution $\ySt$. The constitutive relations that we explored were, effectively, constitutive relations for the stress vector $\ySt$. The contact forces that we experience on our skin -- for example when we pull or push an object with our hands, or the pressure and friction from the ground on the soles of our feet -- consist only of a stress vector, because no matter flows through the control surface that is our skin.
+
+In the next section we shall explore situations where matter flux occurs. The convective momentum flux will therefore appear and be quite relevant. There are also hybrid situations, where some control surfaces enclosing a control volume do not have a matter flux, whereas other do.
+
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item In formula~\eqref{eq:force_momtransport}, verify that the convective-flux term\enskip$\frac{\yJ}{\yN}\,\yP$\enskip has the correct dimensions of force.
+
+  \item In formula~\eqref{eq:force_momtransport_velocity}, verify that the convective-flux term also has the correct dimensions of force.
+
+  \item Fix a coordinate system $(t, x, y, z)$ at rest with the Earth's surface, with $z$ upwards. Consider a horizontal control surface of area \qty{7.5}{m^2}, with a \emph{downward} crossing direction; this is therefore also the direction of its normal $\yns$.
+
+    At some time point, the control surface has positive vertical velocity \qty{300}{m/s}. Matter, say some gases, is crossing the surface downwards, with vertical velocity \qty{-130}{m/s}. The mass of the gases divided by volume is $\ym/\yVs = \qty{4.3}{kg/m^{3}}$. How much is the convective momentum flux through the control surface, including its sign? % \qty{-1.8e6}{N}
+  \end{enumerate}
+\end{exercise}
+
+
+\section{Rockets}
+\label{sec:bal_momentum_rockets}
+
+The flight mechanisms discussed in \sect\,\ref{sec:bal_momentum_flight} rely on the presence of air or some kind of atmosphere around the object, with which a momentum exchange through a surface can occur. This is not possible in outer space; and  even if air is surrounding an object, that kind of momentum flux may not be enough to lift it anyway.
+
+Another way of producing an influx of upward momentum is to release matter having downward momentum, creating a convective momentum flux. This is the momentum-flux mechanism employed by rockets.
+% Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter, and the law of conservation of matter must hold as well.
+Let us study, in a simplified setting, the basics of such a force in the case of a rocket like the \furl{https://www.smithsonianmag.com/air-space-magazine/we-built-saturn-v-180964759/}{Saturn~V}; see side figure. We consider two imaginary control surfaces.
+%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.5\linewidth]{images/saturnv_controlsurf.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Saturn~V SA-513 rocket (image: \furl{https://space.skyrocket.de/doc_lau_det/saturn-5_2st.htm}{Gunter's Space Page}).%
+}%
+
+One surface, schematized by the \textcolor{yellow}{solid yellow line}, coincides with the rocket's whole surface except the nozzle at the bottom. There is no matter flux through this surface. The force on it consists only of a stress vector, expressing the friction between rocket and atmosphere.
+
+The other imaginary surface, schematized by the \textcolor{purple}{red dotted line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket. The force through this surface consists of both a stress vector, representing the \autoref{sec:momentumflux_gas}{internal pressure} of the exhaust gases, and of a convective momentum flux owing to the flux of gases through the surface.
+
+
+\mynotew{To be continued}
+
+
+% In order to use the balance of momentum in this application, we need a constitutive relation between the flux of matter and the flux of momentum. In the simple case in which all kinds of motions and fluxes happen only in one direction, say $z$, the relation is as follow:
+% \begin{definition}{Constitutive relation for matter flux and momentum flux}
+%   Fix a coordinate direction $z$, and suppose that at some instant of time there's a small surface orthogonal to the $z$-axis and moving with velocity $\yvs$ with respect to the coordinate system.
+%
+%   If there's a flux of matter $\yJ_{z}$ across the surface in the positive-$z$ direction, and the flowing matter has velocity $v_{z}$ with respect to the coordinate system, then there is also a flux of momentum $F_{z}$ given by
+%   \begin{equation}
+%     \label{eq:matterflux_momentumflux}
+%     F_{z} = \yrho\, \yJ_{z}\, (v_{z}-\yvs)
+%   \end{equation}
+%   where $\yrho$ is the \autoref{def:molarmass}{molar mass} of that kind of matter.
+% \end{definition}
+% % This constitutive relation makes sense: first, if $v_{z}=\yvs$ it means that the matter and the surface are moving together, so there can't be a flux of momentum across the surface
 
 
 
