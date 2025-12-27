@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-26T13:26:20+0100
+%% Last-Updated: 2025-12-27T19:05:06+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -670,7 +670,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\chapterstyle{pedersen}
 %\chapterstyle{ell}
 \setsecnumdepth{section}
-\setsecnumformat{\faIcon{puzzle-piece}\enskip\upshape\csname the#1\endcsname\quad}
+\setsecnumformat{\makebox[0pt][r]{\faIcon{puzzle-piece}\enskip}\upshape\csname the#1\endcsname\enskip}
+% \setsecnumformat{\faIcon{puzzle-piece}\enskip\upshape\csname the#1\endcsname\quad}
 \setsecheadstyle{\Large\bfseries\sffamily%
 \raggedright}
 % \setsecheadstyle{\bfseries\sffamily%
@@ -690,7 +691,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
 \newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
 \newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
-\newcommand{\sollabel}[1]{\addsubsec{\faIcon[regular]{lightbulb}\enskip\ref{#1}}}
+%
+\newcommand{\solsec}[1]{\addsec{#1}}
+\newcommand{\sollabel}[1]{\addsubsec{\makebox[0pt][r]{\faIcon[regular]{lightbulb}\enskip}\ref{#1}}}
+% \newcommand{\sollabel}[1]{\addsubsec{\faIcon[regular]{lightbulb}\enskip\ref{#1}}}
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect~#1}}
 
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect~#1}}
@@ -1728,7 +1732,7 @@ Find which of the following mathematical expressions and equalities are dimensio
 
 
 \clearpage
-\addsec{Example solutions}
+\solsec{Example solutions}
 
 \sollabel{sec:time_vel_primitive}
 

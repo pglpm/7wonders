@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-27T10:09:16+0100
+%% Last-Updated: 2025-12-27T18:51:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -668,9 +668,9 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\chapterstyle{pedersen}
 %\chapterstyle{ell}
 \setsecnumdepth{section}
-\setsecnumformat{\upshape\csname the#1\endcsname\quad}
+\setsecnumformat{\makebox[0pt][r]{\textsection\enskip}\upshape\csname the#1\endcsname\enskip}
 \setsecheadstyle{\Large\bfseries\sffamily%
-\centering}
+\raggedright}
 % \setsecheadstyle{\bfseries\sffamily%
 % \raggedright}
 %\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex
@@ -1289,7 +1289,7 @@ retain-explicit-plus,%
   % fontupper=\small,
   fonttitle=\bfseries\sffamily,
   after={\smallskip},
-  title=\color{yellow}\faIcon{puzzle-piece}\enskip Exercise~\thetcbcounter,#1}
+  title=\color{yellow}\makebox[0pt][r]{\faIcon{puzzle-piece}\hspace{1.5em}}Exercise~\thetcbcounter,#1}
 
 \newtcolorbox{warning}[1][]{enhanced, no shadow,
   %parbox=false,
@@ -1304,7 +1304,7 @@ retain-explicit-plus,%
 % fontupper=\small, fonttitle=\bfseries\small,
 fonttitle=\bfseries,
 after={\smallskip},
-title=\color{red}\faIcon{exclamation-circle}\enskip#1}
+title=\color{red}\makebox[0pt][r]{\faIcon{exclamation-circle}\hspace{1.5em}}#1}
 
 % \newtcolorbox{critique}[1][Critique]{enhanced, no shadow,parbox=false,center,
 % width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enskip#1}
@@ -1318,7 +1318,7 @@ title=\color{red}\faIcon{exclamation-circle}\enskip#1}
   left=1ex, right=0ex, bottom=1ex,
   %colframe=green,
   %leftrule=0pt, rightrule=0pt, bottomrule=0.5pt, toprule=0pt,
-  breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\color{green}\faIcon{bookmark}\enskip#1}
+  breakable, fonttitle=\bfseries\sffamily, after={\smallskip}, title=\color{green}\makebox[0pt][r]{\faIcon{bookmark}\hspace{1.5em}}#1}
 %map-marker-alt
 
 \newtcolorbox{extra}[1]{enhanced, no shadow,
@@ -1331,7 +1331,7 @@ title=\color{red}\faIcon{exclamation-circle}\enskip#1}
   left=1ex, right=0ex, bottom=1ex,
   breakable,
    fontupper=\footnotesize,
-  fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\color{blue}\faIcon{user-astronaut}\enskip#1}
+  fonttitle=\bfseries\sffamily\footnotesize, after={\smallskip}, title=\color{blue}\makebox[0pt][r]{\faIcon{user-astronaut}\hspace{1.5em}}#1}
 % \newtcolorbox[auto counter, number within=chapter]{extra}[2][]{enhanced, no shadow, parbox=false,width=0.975\linewidth, flush right, colback=blue!5!white, colframe=blue, boxrule=0.5pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{rocket}\enskip Curiosity~\thetcbcounter\enskip#2,#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5267,7 +5267,7 @@ This latter physical law doesn't tell us anything new that wasn't already implic
 \includegraphics[width=\linewidth]{images/fundamental_forces.png}
 \\\footnotesize\color{mpcolor}\url{https://xkcd.com/1489}%
 }%
-The distinction between fundamental and derived physical laws is not objective, but mostly a matter of convenience and even of personal taste. We can often promote a derived law to fundamental law, demoting some other fundamental law to a derived-law status. In the example above, we could take \enquote*{$a=b$} and \enquote*{$a=c$} as fundamental laws; then \enquote*{$b=c$} becomes a derived law, because it can be obtained from the other two. It is important to be aware of this flexibility in what's fundamental and what's derived. You'll find physics and engineering texts that present a physical theory as consisting in a particular collection of fundamental laws, and other texts that present the same physical theory as consisting in a collection of slightly different fundamental laws. There is no contradiction there: it means that some laws taken as derived in some texts, but as fundamental in others, and vice versa.
+The distinction between fundamental and derived physical laws is not objective, but mostly a matter of convenience and even of personal taste. We can often promote a derived law to fundamental law, demoting some other fundamental law to a derived-law status. In the example above, we could take\enskip$a=b$\enskip and\enskip$a=c$\enskip as fundamental laws; then\enskip$b=c$\enskip becomes a derived law, because it can be obtained from the other two. It is important to be aware of this flexibility in what's fundamental and what's derived. You'll find physics and engineering texts that present a physical theory as consisting in a particular collection of fundamental laws, and other texts that present the same physical theory as consisting in a collection of slightly different fundamental laws. There is no contradiction there: it means that some laws taken as derived in some texts, but as fundamental in others, and vice versa.
 
 Yet, the choice fundamental laws is not without consequence. A particular choice of fundamental laws, rather than others, may cover more physical situations. It may also suggest new physical ideas and generalizations, leading to the discovery of new physical phenomena.
 
@@ -5291,7 +5291,7 @@ One of the meanings of the word \emph{constitutive} is \enquote*{that makes a th
 
 The distinction above is different from the one between \enquote*{fundamental} and \enquote*{derived}. Let's try to understand this difference by means of our previous simple example.
 
-Suppose we observe that the law \enquote*{$a=b$} is always valid in all physical phenomena we explore, under all possible extreme conditions, circumstances, regions of space, and time. Also suppose we observe that \enquote*{$b=c$} is instead only valid in specific physical phenomena and conditions, but not in others. For instance, we may observe that it is only valid when we make experiments with gases and low speeds, but not with solids or high speeds. The conclusion (until we find a disproof) is that the physical law \enquote*{$a=b$} is \emph{universal}, whereas the physical law \enquote*{$b=c$} is \emph{constitutive}: constitutive of gases and low speeds. Yet both laws are fundamental, because we cannot deduce \enquote*{$b=c$} from \enquote*{$a=b$}: the law about $b$ and $c$ says something new, although something that is true only in some circumstances. In concrete applications we may therefore need to use both \enquote*{$a=b$} and \enquote*{$b=c$}.
+Suppose we observe that the law\enskip$a=b$\enskip is always valid in all physical phenomena we explore, under all possible extreme conditions, circumstances, regions of space, and time. Also suppose we observe that\enskip$b=c$\enskip is instead only valid in specific physical phenomena and conditions, but not in others. For instance, we may observe that it is only valid when we make experiments with gases and low speeds, but not with solids or high speeds. The conclusion (until we find a disproof) is that the physical law\enskip$a=b$\enskip is \emph{universal}, whereas the physical law\enskip$b=c$\enskip is \emph{constitutive}: constitutive of gases and low speeds. Yet both laws are fundamental, because we cannot deduce\enskip$b=c$\enskip from\enskip$a=b$\,:\enskip the law about $b$ and $c$ says something new, although something that is true only in some circumstances. In concrete applications we may therefore need to use both\enskip$a=b$\enskip and\enskip$b=c$\,.
 
 
 \medskip
@@ -5299,7 +5299,7 @@ Suppose we observe that the law \enquote*{$a=b$} is always valid in all physical
 
 But are there really universal physical laws, which can be applied to \emph{every} physical phenomenon, without exclusions or exceptions?
 
-The answer is \emph{yes}. \autoref{sec:seven_universal}{We shall soon meet them}, and we shall see that they are tightly connected with the seven primitive quantities discussed in \chap~\ref{cha:stuff}. Our study of physics will indeed completely hinge on these universal laws. They are applied with extreme confidence to every new phenomenon we observe, and they often allow us to make predictions of at least a qualitative character without the need of constitutive relations. We would modify these universal laws only as a last resort; so far this has rarely or never been necessary. On the other hand, we have a large freedom in modifying constitutive relations, and in proposing new ones to account for newly observed physical phenomena.
+The answer is \emph{yes}. We shall meet them in \sect\,\ref{sec:seven_universal}, and we shall see that they are tightly connected with the seven primitive quantities discussed in \chap~\ref{cha:stuff}. Our study of physics will indeed completely hinge on these universal laws. They are applied with extreme confidence to every new phenomenon we observe, and they often allow us to make predictions of at least a qualitative character without the need of constitutive relations. We would modify these universal laws only as a last resort; so far this has rarely or never been necessary. On the other hand, we have a large freedom in modifying constitutive relations, and in proposing new ones to account for newly observed physical phenomena.
 
 As real examples, the \autoref{sec:bal_momentum_formulation}{\emph{balance of momentum}}
 \begin{equation*}
@@ -5322,7 +5322,7 @@ In \sects~\ref{sec:constitutive}--\ref{sec:diff_balance_constitutive} we shall d
 \end{warning}
 
 \begin{exercise}
-  In our imaginary example, the law \enquote*{$a=b$} is fundamental and universal, and the law \enquote*{$b=c$} is fundamental and constitutive. Is the derived law \enquote*{$a=c$} universal? or is it constitutive?
+  In our imaginary example from the preceding sections, the law\enskip$a=b$\enskip is fundamental and universal, and the law\enskip$b=c$\enskip is fundamental and constitutive. Is the derived law\enskip$a=c$\enskip universal? or is it constitutive?
 \end{exercise}
 
 \section{Balance laws and conservation laws}
@@ -6440,7 +6440,7 @@ In more precise applications in \furl{https://oceanservice.noaa.gov/geodesy}{geo
 %
 \sidepar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}Remember that\vspace{-1ex}$$\yv^{2} \equiv\yv\cdot\yv \equiv \abs{\yv}^{2} \equiv v^{2} \,.$$}%
   \begin{equation*}
-    \yE = \ymr \yc^{2} +  \yU + \frac{1}{2} \ymr \yv^{2} + \ym g z \ .
+    \yE = \ymr \yc^{2} +  \yU + \frac{1}{2} \ymr \yv^{2} + \ymr g z \ .
   \end{equation*}
   The first term in this sum is called \emph{rest \energym} (a \autoref{sec:intro_energy}{huge amount} of energy in ordinary situations), the third term $\yU$ is called \emph{internal energy}, the fourth is called \emph{kinetic energy}, the fifth \emph{gravitational potential energy}. The separation between the rest- and internal-energy terms is actually arbitrary. The rest \masse\ $\ym$ and the internal energy $\yU$ depend on the amount of matter $\yN$.
 \end{description}
@@ -6585,6 +6585,8 @@ One more, obvious limitation of Newton's laws is that they are about \enquote*{b
 \medskip
 
 If you translate \enquote*{\emph{force exerted on\textellipsis}} and similar expressions to \enquote*{\emph{momentum influx into\textellipsis}} or \enquote*{\emph{momentum supply into\textellipsis}}, paying attention on whether they're surface or volume forces, then you'll be able to frame any physical problems in terms of control volumes, control surfaces, and balances.
+
+
 
 
 \printpagenotes*
