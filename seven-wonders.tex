@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-27T20:55:16+0100
+%% Last-Updated: 2025-12-27T23:45:34+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7983,31 +7983,30 @@ In simple cases this allows us to find the time dependence of momentum $\yP(t)$ 
 Let's see a simple example with a flying tennis ball. As usual we consider a control volume coinciding with the tennis ball, and which can be localized just by a position vector $\yr(t)$ in some coordinate system $(t,x,y,z)$. Suppose the \masse\ of the ball is $\ym = \qty{0.06}{kg}$. Suppose that we know the following boundary conditions:
 \begin{itemize}[nosep]
 \item Momentum flux is zero: $\yF(t) = \qty{0}{N}$.
-\item Momentum supply, owing to gravity, is $\yG =-\ym g
-  \begin{bsmallmatrix}
+\item Momentum supply, owing to gravity, is\enskip$\yG =\ym \yg \equiv
+ -\ym g \begin{bsmallmatrix}
     0\\0\\1
-  \end{bsmallmatrix}$, constant in time.
+  \end{bsmallmatrix}$\,,\enskip constant in time.
 \end{itemize}
 Insert these two boundary conditions into the integral expression of the balance of momentum, and solve the simple integrals. If we say that the initial time is $\yti = \qty{0}{s}$, and call the final time $\ytf$ simply $t$, we find
 \begin{equation*}
-  \yP(t) = \yP(\qty{0}{s}) - \ym g \begin{bsmallmatrix}
-      0\\0\\1
-    \end{bsmallmatrix}\, t \,.
+  \yP(t) = \yP(\qty{0}{s}) + \ym \yg t \ .
 \end{equation*}
 The initial momentum is $\yP(\qty{0}{s})$, and thanks to the Newtonian relation between momentum and velocity we also find the initial velocity:
 \begin{equation*}
-  \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
+  \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \ .
 \end{equation*}
 With the same relation we can also find the velocity at any time $t$:
 \begin{equation*}
   \begin{aligned}
-    \yv(t) = \yP(t)/ \ym
-    &= \yP(\qty{0}{s})/\ym - (\ym g/\ym) \begin{bsmallmatrix}
-      0\\0\\1
-    \end{bsmallmatrix}\, t
-    \\&= \yv(\qty{0}{s}) - g \begin{bsmallmatrix}
-      0\\0\\1
-    \end{bsmallmatrix}\,t
+    \yv(t) = \yP(t)/ \ym &= \yP(\qty{0}{s})/\ym + \ym \yg t/\ym
+    \\&= \yv(\qty{0}{s}) + \yg t
+    % &= \yP(\qty{0}{s})/\ym - (\ym g/\ym) \begin{bsmallmatrix}
+    %   0\\0\\1
+    % \end{bsmallmatrix}\, t
+    % \\&= \yv(\qty{0}{s}) - g \begin{bsmallmatrix}
+    %   0\\0\\1
+    % \end{bsmallmatrix}\,t
   \end{aligned}
 \end{equation*}
 Note that this is simply a linear function of the variable $t$, of the kind \enquote*{$C + D\,t$}.
@@ -8015,26 +8014,18 @@ Note that this is simply a linear function of the variable $t$, of the kind \enq
 Finally replace the expression for $\yv(t)$ above in the integral formula for the position $\yr(t)$, and integrate. The result is
 \begin{equation*}
   \yr(t) = \yr(\qty{0}{s}) +
-  \yv(\qty{0}{s})\,t - \frac12 g \begin{bsmallmatrix}
-      0\\0\\1
-    \end{bsmallmatrix}\,t^{2}
-\,.
+  \yv(\qty{0}{s})\,t + \frac12 \yg\,t^{2} \ .
 \end{equation*}
 
-Let's put together the time dependence for momentum and position that we found:
+Let's put together the time dependence for momentum and position that we've found:
 \begin{equation}\label{eq:rP_dependence_tennisball}
   \begin{aligned}
-    \yP(t) &= \ym\,\yv(\qty{0}{s}) - \ym g \begin{bmatrix}
-      0\\0\\1
-    \end{bmatrix}\, t \,,
+    \yP(t) &= \ym\,\yv(\qty{0}{s}) + \ym \yg t \ ,
     \\
-    \yr(t) &= \yr(\qty{0}{s}) + \yv(\qty{0}{s})\,t - \frac12 g
-    \begin{bmatrix}
-      0\\0\\1
-    \end{bmatrix}\,t^{2} \,.
+    \yr(t) &= \yr(\qty{0}{s}) + \yv(\qty{0}{s})\,t + \frac12 \yg t^{2} \ .
   \end{aligned}
 \end{equation}
-Or, writing explicitly all components:
+Or, writing explicitly all components (remember that\enskip$\yg \defd - g\, [0, 0, 1]$\,):
 \begin{equation*}
   \begin{aligned}
     \begin{bmatrix}
@@ -8069,7 +8060,7 @@ Or, writing explicitly all components:
   % \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
 \end{equation*}
 %
-\marginpar{\vspace{-22\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-12\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/tball_Pz.jpg}\\
 \includegraphics[width=\linewidth]{images/tball_z.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
@@ -9649,14 +9640,14 @@ This problem has some similarities with the previous one about the book on a tab
 \item The total momentum in this volume is constantly zero, because the cable car isn't moving
 \item There's a constant momentum supply because of gravity; let's say that in this case it's
   \begin{equation*}
-    \yG(t) = [0\,,0\,,\num{-8e4}]\,\unit{N}\enskip\text{(constant)}
+    \yG(t) = - [0\,,0\,,\num{8e4}]\,\unit{N}\quad\text{(constant)}
   \end{equation*}
 \item By the balance of momentum, there must then be an influx of upward-momentum of the same magnitude as the supply:
   \begin{equation*}
   \begin{split}
     \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-8e4}]\,\unit{N}}
 \\[2\jot]
- &=   [0\,,0\,,\num{8e4}]\,\unit{N}\enskip\text{(constant)}.
+ &=   [0\,,0\,,\num{8e4}]\,\unit{N}\quad\text{(constant)}.
   \end{split}
 \end{equation*}
 \item Also in this case the influx through the parts of the control surface in contact with air is practically zero:
