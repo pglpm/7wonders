@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-27T18:51:36+0100
+%% Last-Updated: 2025-12-27T20:55:16+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -669,8 +669,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\chapterstyle{ell}
 \setsecnumdepth{section}
 \setsecnumformat{\makebox[0pt][r]{\textsection\enskip}\upshape\csname the#1\endcsname\enskip}
-\setsecheadstyle{\Large\bfseries\sffamily%
-\raggedright}
+% \setsecnumformat{\llap{\textsection\enskip}\upshape\csname the#1\endcsname\enskip}
+\setsecheadstyle{\Large\bfseries\sffamily\raggedright}
 % \setsecheadstyle{\bfseries\sffamily%
 % \raggedright}
 %\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex
@@ -679,10 +679,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\setbeforesubsecskip{1.25ex plus 1ex minus .2ex }% plus 1ex minus .2ex
 %\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex
 \setsecindent{0pt}%0ex plus 1ex minus .2ex
-\setsubsecheadstyle{\large\bfseries\sffamily%
-\raggedright}
-\setparaheadstyle{\itshape\bfseries\sffamily%
-\raggedright}
+\setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
+\setparaheadstyle{\itshape\bfseries\sffamily\raggedright}
 \newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
 \newcommand{\addsec}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}\markright{#1}}
 \newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
@@ -5345,14 +5343,14 @@ Balance laws concern \emph{extensive} quantities, like our \autoref{sec:stuff}{s
   A \textbf{conservation law} is a special and important kind of balance law, in which the supply is always zero.
 \end{definition}
 
-It turns out that \emph{we can formulate almost all known universal laws as balance laws}. For this reason we now study balance laws in detail.
-
-
 \begin{warning}[\enquote*{Conservation} vs \enquote*{balance} in other texts,label={wa:conservation}]
   Be aware that some physics and engineering texts do \emph{not} distinguish between \enquote*{conservation law} and \enquote*{balance law}, and often use \enquote{conservation} to mean both. This use is unfortunate, because balance is the most general of the two. Always try to infer from the context how these two terms are used.
 \end{warning}
 
-\subsection{General setup for balance and conservation laws}
+It turns out that \emph{we can formulate almost all known universal laws as balance laws}. For this reason we now study balance laws in detail.
+
+
+\subsection{Setup for balance and conservation laws}
 \label{sec:balance_setup}
 
 The general setup to formulate a balance or a conservation law is as follows.
@@ -5845,6 +5843,11 @@ The expression for $\yP(\yti)$ says the initial momentum content in the control 
 Can we find the time-integrated influx or supply of momentum during the time lapse of \qty{0.5}{s}? Strictly speaking, from the data mathematically expressed above, the answer is no: to find the time-integrated influx we would need the time-integrated supply, and vice versa. This situation illustrates what we said previously: balance laws generally require more information than conservation laws.
 
 Suppose we are told that the time-integrated supply of momentum \emph{within the control volume}, during the time lapse, is directed downward and has magnitude \qty{1.57}{N\,s}. That is,
+%
+\marginpar{%
+\footnotesize\flushleftright%
+\color{red}\faIcon{exclamation-circle}\quad  Remember again that \emph{this is not a flux}: it isn't momentum that \enquote{enters} from the top of the control surface because the ice block is entering there. This is momentum \emph{created} (by gravity) in the parts of the volume where there's matter.
+}%
 \begin{equation*}
   \int_{\yti}^{\ytf}\!\!\yG(t)\dt
   =
@@ -5852,9 +5855,6 @@ Suppose we are told that the time-integrated supply of momentum \emph{within the
     0\\0\\\num{-1.57}
   \end{bmatrix}\,\unit{N\,s} \ .
 \end{equation*}
-\begin{warning}
-  Pay attention to the fact that this is \emph{not a flux} of momentum: this is not momentum that \enquote{enters} from the top of the control surface because the ice block is entering there. This is momentum created (by gravity) in the parts of the volume where there is matter.
-\end{warning}
 The influx through the top surface can now be found using the balance law~\eqref{eq:balanced_momentum}:
 \begin{equation*}
   \begin{split}
@@ -6021,9 +6021,8 @@ Change the symbol for the time $\yti$ into $t$, and take $\ytf$ to come after a 
 %
 \marginpar{%
 \footnotesize\flushleftright%
-\begin{warning}
-  Some mathematical conditions must be satisfied to make these steps; otherwise the derivative below must be carefully defined in a generalized sense.
-\end{warning}\par
+\color{red}\faIcon{exclamation-circle}\quad
+Some mathematical conditions must be satisfied to make these steps; otherwise the derivative below must be carefully defined in a generalized sense.
 }%
 Then the integrated flux can be approximated by
 \begin{equation*}
@@ -6181,16 +6180,20 @@ A \furl{https://encyclopedia.che.engin.umich.edu/distillation-columns/}{distilla
 \section{Seven universal balance laws}
 \label{sec:seven_universal}
 
-The reason for introducing the \autoref{sec:stuff}{seven primitive quantities}, which are common to all our main physical theories, is that each of them obeys a balance law. More precisely: \emph{matter} and \emph{electric charge} obey conservation laws, \eqn~\eqref{eq:conserved}; \enquote*{magnetic flux} obeys an analogous conservation law but in one less dimension, as we'll discuss later.  \emph{Energy}, \emph{momentum}, \emph{angular momentum}, \emph{entropy} instead satisfy balance laws, \eqn~\eqref{eq:balanced}; only in special circumstances do these four quantities have zero supply.
+The reason for introducing the \autoref{sec:stuff}{seven primitive quantities}, which are common to all our main physical theories, is that \textbf{each of these quantities obeys a balance law}, and some of them obeys more strictly a conservation law.
+% More precisely: \emph{matter} and \emph{electric charge} obey conservation laws, \eqn~\eqref{eq:conserved}; \emph{magnetic flux} obeys an analogous conservation law but in one less dimension, as we'll discuss later.  \emph{Energy}, \emph{momentum}, \emph{angular momentum}, \emph{entropy} instead satisfy balance laws, \eqn~\eqref{eq:balanced}; only in special circumstances do these four quantities have zero supply.
 
 What's remarkable about these seven balance laws?
 \begin{itemize}[para]
 \item They are known, so far, to be satisfied by \emph{all} physical phenomena, from subatomic scales to cosmological scales. No exceptions are known.
-\item They appear implicitly or explicitly in \emph{all} our main physical theories, approximate or not: from Newtonian mechanics to special relativity, from general relativity to quantum theory.
+\item They appear implicitly or explicitly in \emph{all} our main physical theories, approximate or not: from Newtonian mechanics to electromagnetism, from general relativity to quantum theory.
+\item They are valid in any system of coordinates, for any kind of control volumes and surfaces, at any time.
 \item Each of these balances can be expressed by the \emph{same} mathematical equation in all of these theories.
 \end{itemize}
+% They are valid in Newtonian thermo-mechanics, electromagnetism, General Relativity, and even quantum theory if the symbols are interpreted as so-called statistical operators, which encode probabilistic properties.
 In other words these seven balances are, as far as we know, \autoref{sec:universal_constitutive}{\emph{universal}}.
 
+These balances are truly the \emph{Seven Wonders of the World}, even more long-lasting than the \furl{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}{traditional \enquote{seven wonders}} or the \furl{https://www.britannica.com/list/new-seven-wonders-of-the-world}{\enquote{new seven wonders}}:
 \begin{definition}{The seven universal balance laws}
   {\centering\large\bfseries\sffamily%\color{blue}
 %     \textcolor{green}{Conservation of matter}
@@ -6200,7 +6203,7 @@ In other words these seven balances are, as far as we know, \autoref{sec:univers
 % \\ \textcolor{cyan}{Balance of momentum}
 % \\ \textcolor{yellow}{Balance of angular momentum}
 % \\ \textcolor{midgrey}{Balance of entropy}
-    Conservation of matter
+    Balance of matter
 \\ Conservation of electric charge
 \\ Conservation of magnetic flux
 \\ Balance of energy
@@ -6209,16 +6212,11 @@ In other words these seven balances are, as far as we know, \autoref{sec:univers
 \\ Balance of entropy
 \par}
 
-\medskip
-
-These balances are valid in any system of coordinates, for any kind of control volumes and surfaces, at any time. They are valid in Newtonian thermo-mechanics, electromagnetism, General Relativity, and even quantum theory if the symbols are interpreted as so-called statistical operators, which encode probabilistic properties.
 
 \smallskip
 
 The mathematical expressions of these balances are reported in table~\ref{tab:balances} on page~\pageref{tab:balances}.
 \end{definition}
-
-These balances are truly the \emph{Seven Wonders of the World}, even more long-lasting than the \furl{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}{traditional \enquote{seven wonders}} or the \furl{https://www.britannica.com/list/new-seven-wonders-of-the-world}{\enquote{new seven wonders}}.
 
 In some approximate physical theories, such as Newtonian thermo-mechanics, all these balance laws are, or can easily be taken to be, the \autoref{sec:fundamental_derived}{fundamental laws} on which the theory is built. In other theories, only some of these laws are taken as fundamental, while the rest are derived from other fundamental laws; but nevertheless all these balances are still universally satisfied.
 %
@@ -12208,7 +12206,7 @@ If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$
 \end{exercise}
 
 \section{Angular velocity and rigid motion}
-\label{sec:rigid_motion}
+\label{sec:angvel_rigid_motion}
 
 In order to describe the motion of a generic body of matter, like a parcel of water, we need to specify the position or velocity of each of its points, because any two points can move far apart or close together. This means that an infinity of positions needs to be specified.
 
