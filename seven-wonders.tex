@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-27T23:45:34+0100
+%% Last-Updated: 2025-12-28T17:54:42+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -670,7 +670,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \setsecnumdepth{section}
 \setsecnumformat{\makebox[0pt][r]{\textsection\enskip}\upshape\csname the#1\endcsname\enskip}
 % \setsecnumformat{\llap{\textsection\enskip}\upshape\csname the#1\endcsname\enskip}
-\setsecheadstyle{\Large\bfseries\sffamily\raggedright}
+\setsecheadstyle{\large\bfseries\sffamily\raggedright}
 % \setsecheadstyle{\bfseries\sffamily%
 % \raggedright}
 %\setbeforesecskip{-1.5ex plus 1ex minus .2ex}% plus 1ex minus .2ex
@@ -679,7 +679,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\setbeforesubsecskip{1.25ex plus 1ex minus .2ex }% plus 1ex minus .2ex
 %\setaftersubsecskip{-1em}%{-0.5ex plus .2ex}% plus 1ex minus .2ex
 \setsecindent{0pt}%0ex plus 1ex minus .2ex
-\setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
+\setsubsecheadstyle{\bfseries\sffamily\raggedright}
 \setparaheadstyle{\itshape\bfseries\sffamily\raggedright}
 \newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
 \newcommand{\addsec}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}\markright{#1}}
@@ -814,7 +814,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newlength{\wfwidth}
 % \setlength{\wfwidth}{0.4\linewidth}
 
-\colorlet{mpcolor}{green}
+\colorlet{mpcolor}{darkgrey}
 %\newcommand*{\puzzle}{\maltese}
 % \newcommand*{\puzzle}{{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont\symbol{225}}}
 % \newcommand*{\wrench}{{\fontencoding{U}\fontfamily{fontawesomethree}\selectfont\symbol{114}}}
@@ -1251,7 +1251,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 print-unity-mantissa=true,%
 parse-units=false,%
 %exponent-product=\cdot,%
-%quantity-product=\:,%
+%quantity-product=\:,% default is \,
 retain-explicit-plus,%
 ]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
@@ -2179,7 +2179,7 @@ The formalism we'll use might be called \enquote{field theory}. Roughly speaking
 \section{Physical quantities}
 \label{sec:primitives}
 
-\subsection{Generalities; scalar and vector quantities}
+\subsection{Generalities. Scalar and vector quantities}
 \label{sec:quants_scalar_vector}
 
 As discussed in the previous section, in order to formulate and use physical laws we need to view all physical phenomena in and around us from a more abstract point of view, which more easily lends itself to quantification. This is done by using the concept of \textbf{physical quantity}.
@@ -2235,7 +2235,7 @@ In our study of physical laws we shall take these quantities as primitive:
 \end{center}
 
 \emph{Time} and \emph{space} are taken as primitive quantities -- for obvious reasons -- in almost all current physical theories. We shall discuss them in \chap~\ref{cha:time_space}. The other seven physical quantities, which we shall discuss in \chap~\ref{cha:stuff}, are chosen because of several advantages:
-\begin{itemize}[label={\small\faIcon{check}}]
+\begin{itemize}%[label={\small\faIcon{check}}]
 \item They can be understood physically, and treated mathematically, in a similar way. Therefore as we get familiar in thinking about and handling any one of them, we automatically get also familiar with all the others.
 \item The way in which they can be understood and handled is intuitive and lends itself to mental visualization.
 \item They lead to physical laws that have an almost identical expression. And, as mentioned before, this expression represent a sort of \enquote{budget} and is therefore intuitive.
@@ -2369,6 +2369,8 @@ The \autoref{sec:velocity}{velocity} of the object is given by the derivative of
 \end{equation*}
 and you see that the correct units for velocity have automatically appeared.
 
+
+% When a number is given without any further information, it is generally interpreted so that the last digit is rounded with a rounding range equal to 1 in the last digit (see Annex~B). Thus, for example, the number \num{401008} is generally assumed to represent a value between \num{401007,5} and \num{401008,5}. In this case, the maximum magnitude of the error in the number \num{401008} is \num{0,5}. However, in some applications rounding is replaced by truncation (i.e. by simply cutting off the last digits), e.g. \num{401008,91} becomes \num{401008}. In this case, the number \num{401008} represents a value between \num{401008,0} and \num{401009,0} and the error is between 0 and 1. Similarly, the number \num{40,1008} is generally assumed to represent a value between \num{40,10075} and \num{40,10085} or sometimes a value between \num{40,10080} and \num{40,10090}. \autocites[\sect\,7.3.4]{iso2009}
 
 
 \printpagenotes*
@@ -3849,7 +3851,7 @@ From the discussions and formulae above, it seems that \energym, momentum, angul
 
   General Relativity gives a new meaning to these quantities: they are \emph{particular curvatures of spacetime}. They express how spacetime is curved in different directions. So whenever we measure, say, the \energym\ or the momentum of some object or of some electromagnetic radiation, we are actually measuring how much that object or radiation is curving spacetime in a particular way. % We shall discuss further connections between these three quantities and spacetime in \sect\,\mynotew{}.
 \end{extra}
-\marginpar{\vspace{-12\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/curvature1.png}%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/curvature1.png}%
 \\[\jot]\flushleftright\color{mpcolor}Energy-mas, momentum, angular momentum are measures of particular curvatures of spacetime.%
 }%
 
@@ -4732,11 +4734,10 @@ What happens to the value of a flux through a surface, if we consider a \emph{di
 \end{itemize}
 
 
-Consider for instance the picture on the side.
-%
+\needspace{11\baselineskip}%
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/two_surfaces_flux.pdf}%
 }%
-It depicts two intersecting surfaces (as usual simplified by removing one dimension) and two chosen crossing directions on them. The crossing directions are both roughly rightward. Yet the \energym\ flux through the \textcolor{blue}{solid blue surface} is \textcolor{blue}{\qty{+5}{J/s}}, whereas the \energym\ flux through the \textcolor{purple}{dashed red surface} is \textcolor{purple}{\qty{-1}{J/s}}.
+Consider for instance the picture on the side. It depicts two intersecting surfaces (as usual simplified by removing one dimension) and two chosen crossing directions on them. The crossing directions are both roughly rightward. Yet the \energym\ flux through the \textcolor{blue}{solid blue surface} is \textcolor{blue}{\qty{+5}{J/s}}, whereas the \energym\ flux through the \textcolor{purple}{dashed red surface} is \textcolor{purple}{\qty{-1}{J/s}}.
 
 % As another example,
 % % %
@@ -4802,7 +4803,7 @@ What we call \emph{surface force} is therefore just a \emph{flux of momentum}. T
 
 %
 \marginpar{\vspace{-\baselineskip}\footnotesize\centering\includegraphics[width=0.75\linewidth]{images/person_push_force.pdf}%
-}%
+\\\flushleftright\footnotesize\color{mpcolor}A distressed person pushing against a wall}%
 As a concrete example, imagine a person pushing against a wall, as in the side figure. In terms of force, we say that \emph{the person's head is exerting a surface force on the wall}. The vector that represents this pushing force, the \textcolor{purple}{purple arrow} in the figure, has a person$\to$wall orientation.
 % \begin{center}
 %     \includegraphics[height=8em]{images/person_push_force.pdf}
@@ -4824,10 +4825,10 @@ Since contact force and momentum flux are the same thing, the last figure tells 
 
 \medskip
 
-Now let's consider an example involving pulling instead of pushing. Imagine a person pulling a rope fastened somewhere, as in the side figure. In terms of force we say that \emph{the person is exerting a surface force on the rope}; the vector that represents this force has a rope$\rightarrow$person orientation.
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/person_pull_force.pdf}%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/person_pull_force.pdf}%
 }%
+Now let's consider an example involving pulling instead of pushing. Imagine a person pulling a rope fastened somewhere, as in the side figure. In terms of force we say that \emph{the person is exerting a surface force on the rope}; the vector that represents this force has a rope$\rightarrow$person orientation.
 % This can be depicted like this:\noprelistbreak
 % \begin{center}
 %     \includegraphics[height=6em]{images/person_pull_force.pdf}
@@ -5355,9 +5356,9 @@ It turns out that \emph{we can formulate almost all known universal laws as bala
 
 The general setup to formulate a balance or a conservation law is as follows.
 
-We choose a \autoref{sec:in_out_flux}{\emph{closed} control surface} that exists between coordinate times $\yti$ and $\ytf$. Being closed, this control surface delimits a control volume. This surface and volume can move and deform arbitrarily in between the two times; what's important is that the control surface remains closed: no holes or cuts can form. At the final time $\ytf$ the closed control surface and volume can be very different from how they were at the initial time $\yti$, and even at different positions. We are completely free in our choice of location, size, shape, motion of this control surface and volume.
-
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+We choose a \autoref{sec:in_out_flux}{\emph{closed} control surface} that exists between coordinate times $\yti$ and $\ytf$. Being closed, this control surface delimits a control volume.
+%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.245\linewidth]{images/cs1.png}\hfill%
 \includegraphics[width=0.245\linewidth]{images/cs2.png}\hfill%
 \includegraphics[width=0.245\linewidth]{images/cs3.png}\hfill%
@@ -5366,6 +5367,8 @@ We choose a \autoref{sec:in_out_flux}{\emph{closed} control surface} that exists
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Four snapshots of a moving and deforming closed control surface (\furl{https://pglpm.github.io/7wonders/media/volume_moving.gif}{animated version})%
 }%
+This surface and volume can move and deform arbitrarily in between the two times; what's important is that the control surface remains closed: no holes or cuts can form. At the final time $\ytf$ the closed control surface and volume can be very different from how they were at the initial time $\yti$, and even at different positions. We are completely free in our choice of location, size, shape, motion of this control surface and volume.
+
 A very simple example could be a spherical surface delimiting a ball-shaped region. But we could as well consider a surface that initially is spherical and delimits a region the size of a tennis ball, and at the end is cubical and delimits a region the size of our galaxy. The closed control surface doesn't even need to be connected: it could consist of several separate closed control surfaces, each delimiting a separate volume.
 
 % \marginpar{\vspace{10\baselineskip}\footnotesize\centering%
@@ -5569,7 +5572,7 @@ from which we find, as was intuitively clear, that the net amount of ice that cr
 
 \bigskip
 
-\marginpar{\vspace{14\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{12\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/room_heater_window.jpg}
 }
 \begin{exercise}
@@ -5725,7 +5728,7 @@ with the only difference that the quantities involved are vectors. So it corresp
   And from a spacetime perspective, the amount of a quantity $\yE(\yti)$ or $\yE(\ytf)$ within a 3D region is seen as a flux through time; so its apparent difference from the flux $\yH$ also disappear. % Their only difference is that the first  ($\yE$) points exclusively in the time direction, while the other ($\yH$) also points partially in a spatial direction.
 \end{extra}
 %
-\marginpar{\vspace{-13\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/worlddiagram.jpg}%
 \\\footnotesize\flushleftright\color{mpcolor}%
 Spacetime representation of the evolution of a closed control surface, containing some pointlike objects (adapted from \cites{misneretal1970_r2017})%
@@ -5749,15 +5752,16 @@ In order to apply a balance law we must choose one or more closed control surfac
 \end{enumerate*}
 Let's see how a balance law is applied in these two cases. For the quantity to study we choose momentum, so that we can get immediately get acquainted with handling vector equations.
 
+\needspace{8\baselineskip}
 \subsection{Moving control surface}
 \label{sec:example_balance_moving}
 
-Let's say that coordinates $x$, $y$ have horizontal directions, and $z$ an upward direction. Consider a flying tennis ball. Choose an imaginary, closed control surface that perfectly wraps the tennis ball and moves with it.
-
-\marginpar{\vspace{-2\baselineskip}\centering%
+\marginpar{\vspace{0\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/tennisball.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 }%
+Let's say that coordinates $x$, $y$ have horizontal directions, and $z$ an upward direction. Consider a flying tennis ball. Choose an imaginary, closed control surface that perfectly wraps the tennis ball and moves with it.
+
 At a particular time instant $\yti$ the tennis ball has momentum\enskip$[0,\num{1.70},\num{0.98}]\,\unit{N\,s}$;\enskip by this we mean that the control volume corresponding to the ball contains that amount of momentum.
 
 While the tennis ball is flying, we assume that the net influx of momentum through the control surface is zero, for instance because the ball is in a vacuum. But there's a supply of momentum within the volume, constant in time, equal to\enskip$[0,0,-\num{0.579}]\,\unit{N}$. This supply, as we'll see later, exist because the tennis ball is in the gravitational field of the Earth.
@@ -5822,14 +5826,14 @@ Therefore two seconds later the ball's momentum has the same $x$- and $y$-compon
 \subsection{Static control surface}
 \label{sec:example_balance_static}
 
-Take again the previous \autoref{sec:example_conservation_static}{example of a cylindrical block of ice} moving downward, in a vacuum, during a lapse of time of \qty{0.5}{s}, depicted again in the side figure. In the previous example we discussed the net amount of matter that crosses a static, closed control surface at the final location of the ice block. Now we are instead interested in the net amount of \emph{momentum} that crosses the same surface. We shall therefore use the balance of momentum~\eqref{eq:balanced_momentum}.
-
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/waterblock_control.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
+Take again the previous \autoref{sec:example_conservation_static}{example of a cylindrical block of ice} moving downward, in a vacuum, during a lapse of time of \qty{0.5}{s}, depicted again in the side figure. In the previous example we discussed the net amount of matter that crosses a static, closed control surface at the final location of the ice block. Now we are instead interested in the net amount of \emph{momentum} that crosses the same surface. We shall therefore use the balance of momentum~\eqref{eq:balanced_momentum}.
+
 Suppose we have this information:
 \begin{equation*}
   \yti=\qty{0}{s}\ ,\quad
@@ -5844,8 +5848,7 @@ Can we find the time-integrated influx or supply of momentum during the time lap
 
 Suppose we are told that the time-integrated supply of momentum \emph{within the control volume}, during the time lapse, is directed downward and has magnitude \qty{1.57}{N\,s}. That is,
 %
-\marginpar{%
-\footnotesize\flushleftright%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\flushleftright%
 \color{red}\faIcon{exclamation-circle}\quad  Remember again that \emph{this is not a flux}: it isn't momentum that \enquote{enters} from the top of the control surface because the ice block is entering there. This is momentum \emph{created} (by gravity) in the parts of the volume where there's matter.
 }%
 \begin{equation*}
@@ -5879,14 +5882,14 @@ The influx through the top surface can now be found using the balance law~\eqref
 \subsection{Another example with a moving control surface}
 \label{sec:ice_moving_surface}
 
-Let us consider the same physical situation as in the previous example, but now let's choose a \emph{moving} control surface instead, as in the first example with the tennis ball. We choose a closed control surface that tightly wraps the block of ice at all times between $\yti$ and $\ytf$.
-
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/waterblock_control_moving.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 % There's a physical hole in the physical tube, but no holes in the imaginary control surface that wraps the tube}%
 }%
+Let us consider the same physical situation as in the previous example, but now let's choose a \emph{moving} control surface instead, as in the first example with the tennis ball. We choose a closed control surface that tightly wraps the block of ice at all times between $\yti$ and $\ytf$.
+
 An important remark: since we are now choosing a different control surface and volume from the previous example, the values of momentum contents and fluxes may be different from the previous ones as well -- they refer to different regions of space. To avoid getting confused, it's good to denote the amounts in the present example with different symbols. Let's underline them for instance; we could also use some other graphical symbol, or simply change the letters themselves.
 
 Suppose that we want to know how much is the time-integrated supply of momentum in the new, moving control volume, between times $\yti$ and $\ytf$. In order to find it from the balance of momentum we need to know:
@@ -6098,12 +6101,12 @@ But keep in mind that these are only guidelines. Some problems may be easily sol
 \subsection{Example}
 \label{sec:example_diff}
 
-As an example of use of the differential expression, let's consider again the \autoref{sec:example_conservation_moving}{problem with the tennis ball}. The physical situation, choice of control surface and volume, and the known information and question are the same as before.
-
 \marginpar{\vspace{\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/tennisball.jpg}
 % \\[\jot]\footnotesize\flushleftright{\color{mpcolor}%
 }%
+As an example of use of the differential expression, let's consider again the \autoref{sec:example_conservation_moving}{problem with the tennis ball}. The physical situation, choice of control surface and volume, and the known information and question are the same as before.
+
 We solved this problem using the integral expression of the balance law for momentum. But it can also be solved using its differential expression:
 \begin{equation*}
   \frac{\di \yP(t)}{\dt} = \yF(t) + \yG(t)
@@ -6194,6 +6197,7 @@ What's remarkable about these seven balance laws?
 In other words these seven balances are, as far as we know, \autoref{sec:universal_constitutive}{\emph{universal}}.
 
 These balances are truly the \emph{Seven Wonders of the World}, even more long-lasting than the \furl{https://education.nationalgeographic.org/resource/seven-wonders-ancient-world/}{traditional \enquote{seven wonders}} or the \furl{https://www.britannica.com/list/new-seven-wonders-of-the-world}{\enquote{new seven wonders}}:
+\needspace{12\baselineskip}
 \begin{definition}{The seven universal balance laws}
   {\centering\large\bfseries\sffamily%\color{blue}
 %     \textcolor{green}{Conservation of matter}
@@ -6212,7 +6216,6 @@ These balances are truly the \emph{Seven Wonders of the World}, even more long-l
 \\ Balance of entropy
 \par}
 
-
 \smallskip
 
 The mathematical expressions of these balances are reported in table~\ref{tab:balances} on page~\pageref{tab:balances}.
@@ -6220,10 +6223,10 @@ The mathematical expressions of these balances are reported in table~\ref{tab:ba
 
 In some approximate physical theories, such as Newtonian thermo-mechanics, all these balance laws are, or can easily be taken to be, the \autoref{sec:fundamental_derived}{fundamental laws} on which the theory is built. In other theories, only some of these laws are taken as fundamental, while the rest are derived from other fundamental laws; but nevertheless all these balances are still universally satisfied.
 %
-\marginpar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+\marginpar{\vspace{-0.5\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
 The \emph{Einstein equations}, which can deceivingly simply be written
     $$\bm{G}= \tfrac{8\pu\, G}{c^{4}}\bm{T}$$
-    include the balances of energy, momentum, angular momentum as special consequences.%
+    include the balances of energy, momentum, angular momentum, boost momentum as special consequences.%
 }%
 In General Relativity, for instance, the conservation of matter, electric charge, magnetic flux, and the balance of entropy are taken as fundamental; but the balances of energy, momentum, angular momentum are a \emph{consequence} of the so-called Einstein equations, which are taken as more fundamental.
 
@@ -6374,7 +6377,7 @@ A very powerful characteristic of many constitutive relations is that they conne
 
 % ; the latter give rise to physical phenomena that possess \enquote{memory}.
 
-\subsection{Examples}
+\section{Examples of constitutive relations}
 \label{sec:example_constitutive}
 
 Let us briefly reveal some constitutive equations that have tacitly been used in examples of the previous sections. This is only an overview; we shall study these constitutive relations at length in the next chapters. All these constitutive relations are valid only in \enquote{Newtonian approximation}, that is, when speeds are much lower than the speed of light; gravitation is weak, as it is on Earth; and any present electromagnetic fields are enough weak. Note how all relations are only valid for particular kinds of control volumes or surfaces.
@@ -6387,7 +6390,7 @@ If a small control volume contains an amount of matter $\yN$, then it also conta
 \end{equation*}
 where $\yrho$, called \emph{molar mass}, is approximately a constant that depends on the kind of matter. This constitutive relation is the reason why an amount of matter is often quantified in terms of mass.
 
-\item[Constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity} One of the most used constitutive relations connects the amount of matter in a small control volume, or the flux of matter through its surface, with the amount of momentum in the volume. It can be stated in several ways. Here are two alternatives: the first valid for a \emph{moving} control volume, the second for a \emph{static} one.
+\item[Newton's constitutive relation for momentum and matter.]\label{item:momentum_mass_velocity} One of the most used constitutive relations connects the amount of matter in a small control volume, or the flux of matter through its surface, with the amount of momentum in the volume. It can be stated in several ways. Here are two alternatives: the first valid for a \emph{moving} control volume, the second for a \emph{static} one.
 
 
   First formulation. Take a small control volume moving with velocity $\yv$, with speed much smaller than light's. If this control volume contains an amount of matter $\yN$ and there's \emph{no flux} of matter through its surface, then it also contains, to a very good approximation, an amount of momentum
@@ -6436,7 +6439,7 @@ In more precise applications in \furl{https://oceanservice.noaa.gov/geodesy}{geo
 \item[Constitutive relation for \energym\ of matter.]
   Take a small control volume on Earth's surface containing an amount of matter $\yN$, and such that there is no flux of matter $\yJ$ across its surface. In a coordinate system $(t,x,y,z)$ where $z$ points upward, this control volume also contains an amount of \energym
 %
-\sidepar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}Remember that\vspace{-1ex}$$\yv^{2} \equiv\yv\cdot\yv \equiv \abs{\yv}^{2} \equiv v^{2} \,.$$}%
+\sidepar{\vspace{\baselineskip}\footnotesize\flushleftright\color{mpcolor}Remember that\vspace{-1ex}$$\yv^{2} \equiv\yv\cdot\yv \equiv \abs{\yv}^{2} \equiv v^{2}$$}%
   \begin{equation*}
     \yE = \ymr \yc^{2} +  \yU + \frac{1}{2} \ymr \yv^{2} + \ymr g z \ .
   \end{equation*}
@@ -6480,6 +6483,40 @@ Let's summarize the most important typical differences between the seven univers
   \end{tabular*}
 \end{center}
 
+\section{Approximations, observation scales, `small enough'}
+\label{sec:approx_obs_smalllarge}
+
+The amazing convenience of the seven universal balance laws is that we do not have to worry about the size of the control volumes and surfaces to which we apply them; we do not have to worry about the coordinate system we're using; we do not have to worry on whether we are applying them on a molecular scale and resolution or on a galactic scale and resolution; we do not have to worry about the magnitudes of the quantities involved. These laws apply, without approximation, to all situations.
+
+In stating and using constitutive relations, instead, we do have to pay attention to the size and even shape of the control volumes and surfaces to which we apply them; to coordinates; to magnitudes of the quantities involved; and to whether we're studying a phenomenon on molecular or galactic scales and resolutions. And even when we have paid attention to all these aspects, it may still be that a constitutive relation holds only approximately, so our study will have some quantitative error.
+
+This is the reason why in the statement of a constitutive relation there are often qualifying phrases like \enquote{only if the volume is small enough}, \enquote{only for low velocities}, \enquote{only for weak gravitational fields}, \enquote{only if the velocity is approximately the same everywhere}, \enquote{only at large enough resolutions}, \enquote{quasi-static}, and similar. You saw some examples in \sect\,\ref{sec:example_constitutive}; in discussing Newton's constitutive relation for momentum, for instance, we said \enquote{take a small control volume}\textellipsis
+
+Most important, you'll notice that \emph{such qualifying phrases are often vague}. What's a \enquote*{small control volume}? is a volume of \qty{1}{cm^3} small enough? or do we need to go down to \qty{1}{mm^3}? or maybe \qty{1}{m^3} is already enough?\quad And what about a velocity being \enquote*{the same everywhere}? is it acceptable if the velocity in one part of the control volume is \qty{1.00}{m/s} and in another \qty{1.01}{m/s}? or must we go down to \qty{1.000}{m/s} and \qty{1.001}{m/s}?\quad And what's \enquote*{quasi-static}? is a motion at \qty{1}{mm/s} quasi-static? could be \qty{1}{m/s} be accepted as quasi-static?
+
+Unfortunately \emph{no general answer can be given to such questions}. This is why the qualifying phrases use vague words like \enquote{small enough}. The answer depends, among other factors, on \textbf{the numerical precision that we require in the final answer}, and on \textbf{the relative magnitudes of all quantities involved}. A velocity, or a variability in the velocity, equal to \qty{1}{m/s} may be considered very low in some circumstances, and very high in others.
+
+%
+\marginpar{\vspace{2\baselineskip}\centering%
+\includegraphics[width=0.75\linewidth]{images/matter_mvleftright.jpg}%
+}%
+Let's see a very simple example. Suppose that there is some matter in a control volume, and we need to know the total momentum contained in the volume. Only one horizontal coordinate is relevant. We want to use Newton's constitutive relation for momentum\enskip$P = \ym v$\,.\enskip The left half of the volume contains matter with total \masse\ of \qty{1.00}{kg} and everywhere a velocity of \qty{0.100}{m/s}. The right half contains matter with total \masse\ of \qty{1.00}{kg} and everywhere a velocity of \qty{0.103}{m/s}. We could apply Newton's relation to each half and applying the extensivity property of momentum, obtaining
+\begin{equation*}
+  \begin{aligned}
+    P &= \ym_{\text{left}}\,v_{\text{left}} + \ym_{\text{right}}\,v_{\text{right}}
+    \\ &= (1.00 \times 0.100 + 1.00 \times 0.103)\,\unit{kg\,m/s} = \qty{0.203}{N\,s} \ .
+  \end{aligned}
+\end{equation*}
+But suppose we only need to know the momentum to \emph{two} significant digit, that is, it's enough to know whether the momentum is between \qty{0.195}{N\,s} and \qty{0.205}{N\,s}. In this case the velocity $v$ may be considered \enquote*{approximately the same} in the whole control volume, with value\enskip$v = \qty{0.10}{m/s}$\,.\enskip The total mass in the volume is\enskip$\ym = \qty{2.0}{kg}$\enskip and we can apply Newton's constitutive relation without dividing the control volume:
+\begin{equation*}
+  P = \ym v = (2.0 \times 0.10)\,\unit{kg\,m/s} = \qty{0.20}{N\,s} \ .
+\end{equation*}
+
+\medskip
+
+The example above was extremely simple. In real applications it can be quite difficult to assess whether the conditions for applying a constitutive relation -- say, whether some quantities or volumes are \enquote{small enough} -- are satisfied for the precision required. In such situations one can explore a test case, first with a less approximate analysis, for instance using many small control volumes and more precise constitutive relations; and then with a more approximate analysis, for instance using just a couple of control volumes and less precise constitutive relations. If the more approximate analysis agrees with the less approximate one to the number of significant digits required, then we know that the more approximate analysis can be used in other similar cases.
+
+In many engineering fields it is known, from experience, what expressions like \enquote*{small enough} mean in numerical terms -- even if this meaning is often left implicit. So if you will work in any specific field you will learn which approximations can be considered acceptable. But it's also good to periodically re-check that such experience is still valid and does not lead to the inappropriate use of some constitutive relations.
 
 \section{Newton's laws}
 \label{sec:newton_laws}
@@ -6515,7 +6552,7 @@ With some liberty we may interpret this law as the balance of momentum, but with
 
 First, Newton did not make any explicit distinction between surface forces and volume forces. The absence of this important distinction caused some difficulties in applying Newton's laws to bodies capable of deformation, like fluids. These difficulties were solved when the Bernoullis and especially Euler in the 1700s introduced more clearly the concept of control surface and surface force, eventually developed in full generality by Cauchy in the 1800s. Modern mechanical engineering and fluid mechanics would have been impossible without this conceptual distinction.
 %
-\marginpar{\vspace{-9\baselineskip}\centering%
+\marginpar{\vspace{-8\baselineskip}\centering%
 \includegraphics[width=\linewidth]{images/euler_surface.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Imaginary surface $EIiF$ in a fluid, conceived by Euler to describe internal pressure.
@@ -6541,7 +6578,7 @@ This law is only valid for \emph{surface} forces, that is, for momentum flux; bu
 We already mentioned that this law can be viewed as the \autoref{sec:newton_3rd}{principle of symmetry of flux for momentum}. Therefore an analogous law is true for the fluxes of all other quantities, not only of momentum.
 
 %
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[scale=0.43]{images/actionreaction2.jpg}%
 \\[4ex]%
 \includegraphics[scale=0.43]{images/actionreaction1.jpg}%
@@ -6650,7 +6687,7 @@ We can obviously also combine different balance laws or constitutive relations t
 The term \emph{prediction} has many related everyday meanings. Here we shall use it in the specific sense of \emph{finding physical information about a future time, given physical information at an earlier time or times}. Another and perhaps better term is \emph{forecast}.
 
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/perseverance_trajectory.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Sending probes, such as the \furl{https://mars.nasa.gov/mars2020/}{Perseverance rover}, to other planets requires a careful prediction of the planet's and the probe's trajectories (image: \furl{https://www.jpl.nasa.gov/news/nasas-perseverance-rover-is-midway-to-mars}{NASA})%
@@ -6712,7 +6749,7 @@ which is a set of uncoupled \furl{https://mathworld.wolfram.com/Second-OrderOrdi
 \medskip
 
 %
-\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/BZ_reaction.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 The \furl{https://ccl.northwestern.edu/netlogo/models/B-ZReaction}{Belousov-Zhabotinsky reaction} (above) and the \furl{https://chemistrytalk.org/briggs-rauscher-reaction}{Briggs-Rauscher reaction} are two kinds of real oscillating chemical reactions that have the main features of our simplified example; see the videos and interactive applets in the links above (image: \furl{https://www.rit.edu/spotlights/chemical-waves-belousov-zhabotinsky-bz-reaction}{Rochester Institute of Technology}).%
@@ -6964,16 +7001,16 @@ The finite-difference approximation~\eqref{eq:finite_diff} can be used iterative
     \\[2\jot]
     &\dotso\tikzmark{cEb}
   \end{aligned}
-\end{equation}
 \begin{tikzpicture}[remember picture]
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:Ea) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:Eb);
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bEa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bEb);
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:cEa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:cEb);
 \end{tikzpicture}
+\end{equation}
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/momentum_timestep2.png}
 \\[2\jot]\flushleftright\color{mpcolor}%
-\furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage} iterating an evolution equation for momentum.%
+\furl{https://github.com/InteractiveComputerGraphics/physics-simulation/blob/5bfb1022ac8b055bf52b197da22b0c2e4122d5f8/examples/particle_system.html\#L181}{Code snippet} from the  \furl{https://interactivecomputergraphics.github.io/physics-simulation/examples/particle_system.html}{\texttt{Particle System} webpage}, iterating an evolution equation for momentum.%
 }%
 And an analogous iteration could be used for a vector quantity such as momentum.
 
@@ -7025,7 +7062,7 @@ The first possibility occurs when we actually \emph{control} the influxes or sup
 
 For example, in a reaction chamber we may control the influx and efflux of different substances through valves and similar devices. In a power grid control centre the effluxes of electric charge and energy -- the power demand -- are continuously monitored. In the case of the tennis ball in the last exercise, it is known that the influx of momentum is zero if the object is moving in vacuum, or negligible when moving through air.
 %
-\marginpar{\vspace{-4\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/control_room.jpg}
 \\[\jot]\flushleftright\color{mpcolor}%
 Old power-grid control room in Frøland, Norway (image: \furl{https://digitaltmuseum.no/nvim}{Kraftmuseet}).%
@@ -7107,7 +7144,6 @@ We have two balance laws for matter that drive the physical system forward in ti
     \\[2\jot]
     &\dotso\tikzmark{bNvb}
   \end{aligned}
-\end{equation}
 \begin{tikzpicture}[remember picture]
 \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:Nua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:Nub);
 \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bNub);
@@ -7117,6 +7153,7 @@ We have two balance laws for matter that drive the physical system forward in ti
 \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:bNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:bNvb);
 % \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:cNva) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:cNvb);
 \end{tikzpicture}
+\end{equation}
 
 We apply the \emph{boundary conditions} from that example: the two influxes $\yJu(t)$, $\yJv(t)$ are always zero. For simplicity we shall therefore simply omit them.
 
@@ -7163,7 +7200,6 @@ Now we use the constitutive relations between the contents and the supply: $\yav
     \\[2\jot]
     &\dotso\tikzmark{bNNvb}
   \end{aligned}
-\end{equation}
 \begin{tikzpicture}[remember picture]
 \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:NNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:NNub);
 \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:NNua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:NNuc);
@@ -7180,6 +7216,7 @@ Now we use the constitutive relations between the contents and the supply: $\yav
 \draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:nava) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:navb);
 \draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:naua) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:naub);
 \end{tikzpicture}
+\end{equation}
 
 In the iteration above, note how after specifying the initial  $\yNu(t)$, $\yNv(t)$ we don't need to worry about anything else: the iteration can proceed indefinitely without any new input from us.
 
@@ -7349,11 +7386,12 @@ Conservation of matter is a law that we intuitively take for granted and use con
 \label{sec:matter_balances}
 
 The law of \emph{conservation} of matter holds, as far as we know, for all kinds of matter \emph{when considered together}.
-More specifically it seems to hold, even in extreme physical conditions, if we count baryonic and \emph{anti}-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as \enquote*{negative}. As an example, consider a closed surface containing two neutrons (baryon number \num{+1}), and some energy, in such a way that the total electric charge, momentum, and angular momentum are zero. Then it's today considered impossible that the two neutrons could just disappear, and two protons (baryon number \num{+1} each) plus two electrons (lepton number \num{+1} each) appear in their stead, even if energy, momentum, and so on were exactly the same. This is because otherwise we would have first $\yN(\yti) = \num{+2}$ and then $\yN(\ytf) = \num{+2}-\num{2}=0$, without any flux of matter: $\yJ(t)=0$; conservation of matter would be broken.
+More specifically it seems to hold, even in extreme physical conditions, if we count baryonic and \emph{anti}-leptonic matter as \enquote*{positive} and leptonic and anti-baryonic matter as \enquote*{negative}.
 %
-\marginpar{\vspace{-7\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-    \emph{\enquote{All these operators conserve \mbox{$B-L$} \textins{number of baryons $B$ minus number of leptons $L$}, so in any superunified theory we expect \mbox{$B-L$} to be conserved\textellipsis}}\sourceatright{\cites{wilczeketal1979}}%
+\marginpar{\vspace{-1\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+    \emph{\enquote{All these operators conserve ${B-L}$ \textins{number of baryons $B$ minus number of leptons $L$}, so in any superunified theory we expect ${B-L}$ to be conserved\textellipsis}}\sourceatright{\cites{wilczeketal1979}}%
 }%
+As an example, consider a closed surface containing two neutrons (baryon number \num{+1}), and some energy, in such a way that the total electric charge, momentum, and angular momentum are zero. Then it's today considered impossible that the two neutrons could just disappear, and two protons (baryon number \num{+1} each) plus two electrons (lepton number \num{+1} each) appear in their stead, even if energy, momentum, and so on were exactly the same. This is because otherwise we would have first $\yN(\yti) = \num{+2}$ and then $\yN(\ytf) = \num{+2}-\num{2}=0$, without any flux of matter: $\yJ(t)=0$; conservation of matter would be broken.
 
 \medskip
 
@@ -7431,12 +7469,6 @@ In applications where we can consider the molar mass as practically constant, we
 \subsection{Radioactive decay}
 \label{sec:matter_const_radioactive}
 
-%
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.75\linewidth]{images/radioactive.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-When we see this symbol we know that there's matter that's only balanced, not conserved -- which involves danger%
-}%
 For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\ya$ has a specific constitutive equation:
 \begin{definition}{Matter supply in radioactive decay}
   \begin{equation}\label{eq:radioactive_decay_supply}
@@ -7450,6 +7482,12 @@ If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance t
 \end{equation}
 called the \furl{https://www.britannica.com/science/radioactivity/Rates-of-radioactive-transitions\#ref496415}{\emph{law of radioactive decay}}.
 \end{definition}
+%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.33\linewidth]{images/radioactive.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+When we see this symbol we know that there's matter that's only balanced, not conserved -- which may involve danger.%
+}%
 
 
 \section{Examples of applications}
@@ -7549,7 +7587,7 @@ This is how we are able to say that human usage of fossil fuel is an important f
 The law of conservation of matter in its explicit form is at the heart of fluid-dynamic problems. Consider the flow of a fluid (liquid or gas) for instance through a pipe or through a jet engine. When we say that a flow is \textbf{steady} we mean that the volume contents and the fluxes taken for whatever control volumes and surfaces do not change in time (though they may change in space). This condition can be viewed as a constitutive relation.
 
 %
-\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[height=15em]{images/pipesection.pdf}%
 }%
 Consider a control volume, for instance the one indicated in \textcolor{cyan}{light blue} in the side picture. The amount of fluid $\yN$ in this volume is constant in time: $\frac{\di\yN(t)}{\dt}=0$. By the law of conservation of matter, the total influx must then be zero:
@@ -7565,13 +7603,14 @@ and it is given by the influxes through three surfaces: the side surface, the on
   \qquad\Longrightarrow\qquad
   \yJ_{1}(t) = -\yJ_{2}(t)
 \end{equation*}
+that is, the influx through the top surface must equal the efflux through the bottom one.
 %
 \marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
-\includegraphics[height=12em]{images/jet3.png}%
+\includegraphics[width=\linewidth]{images/jet3.jpg}%
 \\[\jot]\footnotesize\color{mpcolor}%
 (image from \furl{https://www.jet-x.org/a8.html}{JetX})%
 }%
-that is, the influx through the top surface must equal the efflux through the bottom one. This is a very powerful deduction: consider that it is valid at different sections of a jet engine, even if the flow of the fluid is turbulent, and in even more general situations.
+This is a very powerful deduction: consider that it's valid at different sections of a jet engine, even if the flow of the fluid is turbulent; it's valid in even more general situations.
 
 \medskip
 
@@ -7598,27 +7637,23 @@ that is, if the area through which the flux occur decreases, then the velocity o
 \section{Matter flux through a moving control surface}
 \label{sec:matterflux_controlsurface}
 
-As with all fluxes, the flux of matter through a control surface at a coordinate time $t$ depends on the instantaneous motion of the surface at that same time. Take for example a tennis ball moving to the right with velocity $\yv$ at time $t$, as in the following side figures, and imagine a vertical control surface of given area, depicted by the \textcolor{darkgrey}{dashed grey line}, passing through the centre of the ball. A time $t + \Dt$ later the ball will have moved a little to the right.
+As with all fluxes, the flux of matter through a control surface at a coordinate time $t$ depends on the instantaneous motion of the surface at that same time. Take for example a tennis ball moving to the right with velocity $\yv$ at time $t$, as in the side figures, and imagine a vertical control surface of given area, depicted by the \textcolor{darkgrey}{dashed grey line}, passing through the centre of the ball. A time $t + \Dt$ later the ball will have moved a little to the right.
 
 %
-\marginpar{\vspace{-1\baselineskip}\footnotesize\flushleft%
+\marginpar{\vspace{-5\baselineskip}\footnotesize\flushleft%
 \includegraphics[height=10ex]{images/ball_surfacestill_t.jpg}%
 \\[1ex]\includegraphics[height=10ex]{images/ball_surfacestill_tDt.jpg}%
+\\[5ex]\includegraphics[height=10ex]{images/ball_surface_t.jpg}%
+\\[1ex]\includegraphics[height=10ex]{images/ball_surface_tDt.jpg}%
 }%
 If the control surface is at rest at time $t$, then at time $t + \Dt$ it will still be at the same position. Part of the tennis ball, indicated by the \textcolor{red}{hatched red area}, will therefore go through it during the time interval $\Dt$; in other words, there is a non-zero flux $\yJ$ of matter through the surface at time $t$.
 
-\pagebreak
-%
-\marginpar{\vspace{-1\baselineskip}\footnotesize\flushleft%
-\includegraphics[height=10ex]{images/ball_surface_t.jpg}%
-\\[\jot]\includegraphics[height=10ex]{images/ball_surface_tDt.jpg}%
-}%
 If the control surface is instead moving with velocity $\yvs = \yv$ at time $t$, then at time $t + \Dt$ it will still be at the centre of the tennis ball. No matter has passed through it, and the matter flux is zero. There are obviously also intermediate situations, depending on the magnitude and direction of the velocity $\yv$ of matter and $\yvs$ of the surface.
 
 \medskip
 
 It is convenient to have a formula that yields the matter flux $\yJ$ if we know these velocities and some other details:
-%
+\needspace{12\baselineskip}%
 \marginpar{\vspace{3\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/surf_moving.jpg}%
 }%
@@ -7843,10 +7878,10 @@ where $\ymr$ is the rest \masse, the term $\yU$ represents internal energy, the 
 
 If a control volume contains not only matter but also electric charge and electromagnetic fields, then we must use constitutive relations that connect the momentum content with all those quantities. Such constitutive relations can be quite complex. In general they cannot even be written as a \emph{sum} of some expression involving only velocity and mass, plus some expression involving only electromagnetic fields; see for example the formula on the side.
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-4.5\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/momentum_matter_EM2.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Constitutive relation for the momentum content of a control volume containing inviscid fluid matter, electric charge, and electromagnetic fields. Velocity is $\mathbf{v}$, mass density is $\rho_{0}$. The symbols $\mathbf{P}$, $\mathbf{M}$ are related to electric charge; symbols  $\mathbf{E}$, $\mathbf{B}$ to the electromagnetic field. % Note that we cannot separate this formula in a part with only matter-quantities plus one with only electromagnetic quantities.
+Constitutive relation for the momentum content of a control volume containing inviscid fluid matter, electric charge, and electromagnetic fields. Velocity is $\mathbf{v}$, mass density is $\rho_{0}$. Symbols $\mathbf{P}$, $\mathbf{M}$ are related to electric charge; $\mathbf{E}$, $\mathbf{B}$ to electromagnetic field. % Note that we cannot separate this formula in a part with only matter-quantities plus one with only electromagnetic quantities.
 From \cites{pfeiferetal2007}.%
 }%
 This happens, for instance, for a control volume containing water or glass traversed by a laser beam, as occurs in applications like water-assisted laser inscription. This inseparability means that we cannot really speak of \enquote{momentum of matter} or \enquote{momentum of the electromagnetic field}: the momentum content is related to the whole.
@@ -7914,16 +7949,25 @@ Further away from a planet's surface, an approximate expression for the supply o
 % }%
 where $\yGG \approx \qty{6.67384e-11}{N\,m^{2}/kg^{2}}$ is the \emph{gravitational constant}, more often denoted \enquote*{$G$} (a symbol we don't use here to avoid confusion with momentum supply).
 
+Newton's law of gravitation is not used in present-day technologies that must account for gravitational forces on planetary scale, because it is too approximate for the precision of modern measuring instruments, also in \furl{https://oceanservice.noaa.gov/geodesy}{geodesy} \autocites{muelleretal2008}. But it is useful for pedagogical purposes and for quick, approximate checks.
+\needspace{12\baselineskip}
+At NASA's \furl{https://www.jpl.nasa.gov}{Jet Propulsion Laboratory}, the following expression for gravitational force is used for spacecraft, satellite, and planetary motions:
 %
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/g_moyer0.jpg}%
-\\\flushleftright\color{mpcolor}%
-Expression for gravitational force used by NASA/JPL \autocites{moyer2000}.\par
-\vspace{2em}\centering\includegraphics[width=\linewidth]{images/g_geodesy.jpg}%
-\\\flushleftright\color{mpcolor}%
-Expression for gravitational force (to be added to Newton's) used by the International Earth Rotation and Reference Systems Service IERS \autocites{petitetal2010}.%
+\marginpar{\vspace{5\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+from \cites{moyer2000} \sect\,4.4.1 \eqn~(4.26)
 }%
-Newton's law of gravitation is not used in present-day technologies that must account for gravitational forces on planetary scale, because it is too approximate for the precision of modern measuring instruments, also in \furl{https://oceanservice.noaa.gov/geodesy}{geodesy} \autocites{muelleretal2008}. But it is useful for pedagogical purposes and for quick, approximate checks. On the side margin you see the expression used at NASA's \furl{https://www.jpl.nasa.gov}{Jet Propulsion Laboratory} for spacecraft, satellite, and planetary motions; and the expression used by the \furl{https://www.iers.org}{International Earth Rotation and Reference Systems Service (IERS)}. These more precise expressions show interesting features: for example, the force of gravity (besides the centrifugal force) depends on how fast a planet rotates.
+\begin{center}
+  \includegraphics[width=0.67\linewidth]{images/g_moyer0.jpg}%
+\end{center}
+The \furl{https://www.iers.org}{International Earth Rotation and Reference Systems Service (IERS)} uses the following expression, to be added to Newton's:
+%
+\marginpar{\vspace{3\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+from \cites{petitetal2010} \sect\,10.3 \eqn~(10.12)
+}%
+\begin{center}
+\includegraphics[width=0.75\linewidth]{images/g_geodesy.jpg}%
+\end{center}
+These more precise expressions show interesting features: for example, the force of gravity (besides the centrifugal force) depends on how fast a planet rotates; this is represented by the terms\enskip$\dot{s}_{i}$\enskip and\enskip$\vec{J}$\,.
 
 \medskip
 
@@ -8025,6 +8069,16 @@ Let's put together the time dependence for momentum and position that we've foun
     \yr(t) &= \yr(\qty{0}{s}) + \yv(\qty{0}{s})\,t + \frac12 \yg t^{2} \ .
   \end{aligned}
 \end{equation}
+%
+\needspace{15\baselineskip}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/tball_Pz.jpg}\\
+\includegraphics[width=\linewidth]{images/tball_z.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Plots of $P_{z}(t)$ and $z(t)$ vs $t$ with initial conditions
+$P_{z}(\qty{0}{s}) = \qty{0.42}{N\,s}$ and 
+$z(\qty{0}{s}) = \qty{5}{m}$.
+}%
 Or, writing explicitly all components (remember that\enskip$\yg \defd - g\, [0, 0, 1]$\,):
 \begin{equation*}
   \begin{aligned}
@@ -8059,15 +8113,6 @@ Or, writing explicitly all components (remember that\enskip$\yg \defd - g\, [0, 
   % \quad\text{with}\quad
   % \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
 \end{equation*}
-%
-\marginpar{\vspace{-12\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/tball_Pz.jpg}\\
-\includegraphics[width=\linewidth]{images/tball_z.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Plots of $P_{z}(t)$ and $z(t)$ vs $t$ with initial conditions
-$P_{z}(\qty{0}{s}) = \qty{0.42}{N\,s}$ and 
-$z(\qty{0}{s}) = \qty{5}{m}$.
-}%
 
 \medskip
 
@@ -8136,7 +8181,6 @@ Let us study the tennis-ball example with numerical time integration. We already
     \\[2\jot]
     &\dotso
   \end{aligned}
-\end{equation}%
 \begin{tikzpicture}[remember picture]
 \draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vb);
 \draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:vva) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vvb);
@@ -8144,6 +8188,7 @@ Let us study the tennis-ball example with numerical time integration. We already
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pb);
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pc);
 \end{tikzpicture}%
+\end{equation}%
 %
 These are vector equations; each one corresponds to three components. Note again how the constitutive relations, in this case Newton's formula for momentum, connect quantities at the same time instant; whereas the balance laws drive the physical phenomenon forward in time (the update of position is a proxy of the balance of matter).
 
@@ -9091,9 +9136,15 @@ But the function $f(\dotso)$ does not even need to depend on the length $\yle$ o
 
 Dependence on other, non-geometric quantities is also common. For instance $f(\dotso)$ could depend on the \emph{temperature} of the material. In \chap~\ref{cha:bal_energy} we shall explore and simulate \emph{gases}, whose momentum fluxes show this kind of temperature dependence in addition to a geometric one.
 
+%
+\marginpar{\vspace{5\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
+\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{mass $b$ in red}%
+}%
 
-
-%\pagebreak[4]
 \begin{exercise}[label={ex:non_hooke}]
   {\footnotesize\emph{(You can download \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
 
@@ -9233,14 +9284,6 @@ Dependence on other, non-geometric quantities is also common. For instance $f(\d
 
 \end{enumerate}
 \end{exercise}
-\marginpar{\vspace{-25\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
-\\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{mass $b$ in red}%
-}%
-
 
 
 \section{Beyond the no-mass simplification}
@@ -9249,7 +9292,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 
 The physical phenomena that we explored in the previous sections involve two small bodies attached to the ends of a piece of material, for instance two tennis balls connected by a spring. The two bodies are assumed to always stay attached to the piece of material. So you may wonder: what if the two bodies are just touching the extremities of the material, without being \enquote{glued} to them? If we compress a spring by means of two tennis balls, these will be pushed apart, and at some point they will lose contact with the spring and continue moving. Otherwise pinball machines and other devices that rely on spring launchers wouldn't work.
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/pinball0.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Wooden pinball machine. Spring launcher on the bottom right (image: \furl{https://pin.it/5rsbVkSFf}{Thebigkegg})%
@@ -9424,11 +9467,15 @@ In our second experience, with the object in motion, we noticed that the kinetic
 Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$, need not have the same value; in many cases the coefficient of kinetic friction is smaller than the other.
 
 
+%
+\marginpar{\vspace{5\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/carpush.jpg}%
+}%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item The normal force has physical dimensions of force, SI units \unit{N}. From formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction} find the physical dimensions and units of the coefficients of static and kinetic friction.
 
-  \item Two persons are pushing a parked car (side figure). The car rests on a thin layer of ice that formed on the tarmac. Each person is exerting a horizontal force of \qty{600}{N}. The car has mass \qty{1200}{kg}, and the acceleration of gravity is \qty{9.8}{N/kg}. The coefficient of static friction between the wheel's rubber and ice is $\yfris=0.1$.
+  \item Two persons are pushing a parked car. The car rests on a thin layer of ice that formed on the tarmac. Each person is exerting a horizontal force of \qty{600}{N}. The car has mass \qty{1200}{kg}, and the acceleration of gravity is \qty{9.8}{N/kg}. The coefficient of static friction between the wheel's rubber and ice is $\yfris=0.1$.
 
     Will the two persons manage to move the car?
 
@@ -9437,10 +9484,6 @@ Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$
 Check that this function correctly covers and represents both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
   \end{enumerate}
 \end{exercise}\noprelistbreak
-%
-\marginpar{\vspace{-25\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/carpush.jpg}%
-}%
 %
 \sidepar{\vspace{-10\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
 \texttt{\color{blue}sign()} is defined as
@@ -9506,6 +9549,12 @@ From the last three equations we finally find
 \end{equation*}
 In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This is the \textbf{normal force} discussed in the previous section.
 
+\needspace{15\baselineskip}%
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
+\\\includegraphics[width=3em]{images/axes.pdf}%
+  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+}%
 \begin{exercise}[label={ex:twobooks}]
   Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces of cuboid shape, each wrapping one book, and having one side in common (where the two books touch). Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-2}]\,\unit{N}$, constant in time, and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
 
@@ -9516,11 +9565,6 @@ In other words, there's a flux of \emph{upward} momentum from the table to the b
 \end{enumerate}
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
-\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
-\\\includegraphics[width=3em]{images/axes.pdf}%
-  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
-}%
 
 \section{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
@@ -9588,13 +9632,13 @@ In terms of momentum, the objective of flight is to compensate or over-compensat
 The ways in which such a momentum flux between object and air is realized can be very different:
 \begin{description}
 \item[Buoyancy]
-In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
-% 
-\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
+\needspace{10\baselineskip}% 
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/airlander.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
 }%
+In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{https://www.britannica.com/science/Archimedes-principle}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
 
 \item[Soaring]
 %
@@ -9615,7 +9659,7 @@ Air is not always at rest (with respect to the Earth's surface). Owing to energy
 \end{quote}
 \end{extra}
 %
-\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Sections of two kinds of wings for supersonic flight \parencites[\sect\,26]{leishman2022_r2024}.%
@@ -9709,7 +9753,7 @@ Pictorially this means that only the momentum flux represented in the left pictu
 \end{center}
 the other three (from left to right: shear, pressure, mixed) are not.
 
-We therefore need to know the directions of the axes of the two parts of the cable. Let's suppose that each part has an inclination of $\qty{0.12}{rad}\approx\qty{6.9}{\degree}$, but in opposite directions. This must then also be the angle between the influx $\yF_{\text{right}}$ and its horizontal component $(\yF_{\text{right}})_{x}$, as in this picture (the angle has been exaggerated for clarity):
+We therefore need to know the directions of the axes of the two parts of the cable. Let's suppose that each part has an inclination of $\qty{0.12}{rad}\approx\qty{6.9}{\degree}$, but in opposite directions. This must then also be the angle between the influx $\yF_{\text{right}}$ and its horizontal component $(\yF_{\text{right}})_{x}$, as in the following picture (the angle has been exaggerated for clarity):\noprelistbreak%
 \begin{center}
   \includegraphics[width=0.533\linewidth]{images/cableangle2.jpg}
 \end{center}
@@ -9784,12 +9828,11 @@ Repeating this kind of reasoning with horizontal control surfaces further within
 \marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gas_fluxes.jpg}%
 }
+
 \begin{definition}{Internal pressure}\label{def:internal_pressure}
   The compressive momentum flux that occurs through any control surface that we may choose within a gas is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is the momentum flux divided by the area through which it occurs.
 \end{definition}
 In \chap~\ref{cha:bal_energy} we shall discuss a constitutive relation for the internal pressure of particular kinds of gas.
-
-\pagebreak
 
 %
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
@@ -9805,11 +9848,12 @@ From a molecular point of view, this momentum flux mainly comes from the momentu
 
 At the surface where the gas is in contact with its containing box, the momentum gets transferred to the box. An interesting question then arises. When the box is also at rest, the momentum contained in each portion of it is zero and remains zero. Where does the momentum received from the gas go?
 
-The answer is that an opposite and slightly more complex circulation of momentum takes places through the walls of the box. The momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore partially tensile and partially shearing. The side picture gives a \emph{qualitative} illustration of the momentum fluxes (\textcolor{cyan}{light-blue arrows}) that occur through various control surfaces (\textcolor{blue}{dashed blue lines}) at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs because of transport, not by molecules, but by the electromagnetic field that exists with the box's molecules.
-%
-\marginpar{\vspace{-13\baselineskip}\footnotesize\centering%
+\needspace{13\baselineskip}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gasbox_fluxes.jpg}%
 }%
+The answer is that an opposite and slightly more complex circulation of momentum takes places through the walls of the box. The momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore partially tensile and partially shearing.
+The side picture gives a \emph{qualitative} illustration of the momentum fluxes (\textcolor{cyan}{light-blue arrows}) that occur through various control surfaces (\textcolor{blue}{dashed blue lines}) at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs because of transport, not by molecules, but by the electromagnetic field that exists with the box's molecules.
 
 
 
@@ -9860,7 +9904,7 @@ If the total momentum influx and supplies are zero, then we find\enskip$\yP\tot(
 In the previous sections we have studied different constitutive relations and applications for momentum flux through a control surface under a particular condition: there was \emph{no flux of matter} through the surface. This condition can often be satisfied in applications involving solid materials or in static situations.
 
 %
-\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/coffee_milk_teaspoon.jpg}%
 % \\[\jot]\flushleftright\color{mpcolor}%
 }%
@@ -9940,7 +9984,7 @@ Another way of producing an influx of upward momentum is to release matter havin
 % Obviously the amount of matter in the control volume defining the object will be decreasing, since there's also a negative influx of matter, and the law of conservation of matter must hold as well.
 Let us study, in a simplified setting, the basics of such a force in the case of a rocket like the \furl{https://www.smithsonianmag.com/air-space-magazine/we-built-saturn-v-180964759/}{Saturn~V}; see side figure. We consider two imaginary control surfaces.
 %
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/saturnv_controlsurf.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Saturn~V SA-513 rocket (image: \furl{https://space.skyrocket.de/doc_lau_det/saturn-5_2st.htm}{Gunter's Space Page}).%
@@ -10196,7 +10240,7 @@ In some situations, however, it is possible to \emph{approximately} express ener
 
 If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
 %
-\sidepar{\vspace{14\baselineskip}\footnotesize\flushleftright\color{mpcolor}Remember that\vspace{-1ex}$$\yv^{2} \equiv\yv\cdot\yv \equiv \abs{\yv}^{2} \equiv v^{2} \,.$$}%
+\sidepar{\vspace{12.5\baselineskip}\footnotesize\flushleftright\color{mpcolor}Remember that\vspace{-1ex}$$\yv^{2} \equiv\yv\cdot\yv \equiv \abs{\yv}^{2} \equiv v^{2} \,.$$}%
 \begin{definition}{Energy-mass associated with matter}\label{def:energy_volume_matter}
   Take a coordinate system $(t,x,y,z)$ close to the Earth's surface, roughly fixed with respect to the distant stars, and with $z$ pointing upwards. Consider a control volume containing an amount of matter $\yN$ but no electric charges or electromagnetic fields. This control volume must be such that the coordinate velocity $\yv$, the \autoref{def:molarmass}{molar mass} $\yrho$, and the $z$-coordinate of the matter within are approximately the same throughout the volume (this is true, for instance, if the volume is small enough).
 
@@ -10330,14 +10374,12 @@ These three requirements might appear as contradictory: if there's no flux of ma
 One situation is which the conditions above can coexist is when the control surface is parallel to the direction of the velocity $\yv$, as illustrated in the side figure, where the control surface is represented by the \textcolor{purple}{dashed red line}, and matter as a \textcolor{midgrey}{greyish texture}. In this case the surface may be static; yet there's no flux of matter through it, and the matter around it is moving with velocity $\yv$. Imagine for instance a fictitious horizontal surface in the middle of a water stream. Note that the matter on the two sides doesn't need to be of the same kind, though. For instance there could be water on one side of the control surface, and concrete on the other.
 
 %
-\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/Efluxsurf1.jpg}%
 }%
 Another situation in which three conditions can coexist is when the control surface is also moving, with the same velocity $\yv$ as the moving matter. See side figure. Obviously there's no flux of matter through the control surface, yet there's matter on both sides of it, moving with velocity $\yv$. Note again that the matter on the two sides doesn't need to be of the same kind.
 
-This situation occurs when a person pushes a door, the imaginary control surface being between hand and door; or when a hammer hits and bends a piece of hot iron, the imaginary surface being between hammer and iron; or when a bike-pump piston is pressed down vigorously, the imaginary surface being between the piston and the air within the pump.
-%
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/illustr_push.jpg}%
 % \includegraphics[width=0.49\linewidth]{images/hand_push_door.jpg}%
 % \hfill\includegraphics[width=0.49\linewidth]{images/hand_weight2.jpg}%
@@ -10347,6 +10389,7 @@ This situation occurs when a person pushes a door, the imaginary control surface
 % \footnotesize\flushleftright\color{mpcolor}%
 % \emph{Inventing Temperature} by H.~Chang \parencites*{chang2004} gives a brilliant account of the history of invention of temperature, as well as an interesting portrait of how scientific concepts are born and develop.%
 }%
+This situation occurs when a person pushes a door, the imaginary control surface being between hand and door; or when a hammer hits and bends a piece of hot iron, the imaginary surface being between hammer and iron; or when a bike-pump piston is pressed down vigorously, the imaginary surface being between the piston and the air within the pump.
 
 Other situations in between the two above are also possible.
 
@@ -10876,6 +10919,12 @@ But we have also seen that what happens to the internal chemical energy is compl
 Analyses similar to the one above can be made for all mechanical systems, with the same conclusion about coordinate-dependence. This shows that we must take \enquote{explanations} about energy flowing here or there always with a grain of salt: they may be true in one coordinate system, but false in another.
 
 
+\needspace{12\baselineskip}%
+\marginpar{\vspace{6\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/bike_chain.jpg}%
+\\\color{mpcolor}%
+(Image: \furl{https://bikerumor.com/review-specialized-s-works-ares-road-shoes-are-great-just-not-for-the-obvious-reasons}{\texttt{Bikerumor}})%
+}%
 \begin{exercise}
   The movement of a bicycle with respect to the ground is connected with the burning of internal chemical energy in the biker's muscles. Intuitively we would say that energy flows from the biker's feet to the back wheel; but along which path does it flow there?
 
@@ -10895,12 +10944,6 @@ Analyses similar to the one above can be made for all mechanical systems, with t
   \item coordinate system where, momentarily, the \emph{upper, taut} part of the chain is at rest.
   \end{enumerate}
 \end{exercise}
-%
-\marginpar{\vspace{-15\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/bike_chain.jpg}%
-\\\color{mpcolor}%
-(Image: \furl{https://bikerumor.com/review-specialized-s-works-ares-road-shoes-are-great-just-not-for-the-obvious-reasons}{\texttt{Bikerumor}})%
-}%
 
 
 
@@ -10974,6 +11017,12 @@ This fact explain why we were able to solve many problems of motion in the previ
 % Rigidity is obviously only an approximation. In fact, General Relativity makes this notion strictly speaking impossible. But in situations where Newtonian approximations apply, the approximation of rigidity makes many physical phenomena much easier to describe.
 
 
+%
+\marginpar{\vspace{4\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/boomerang.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+\furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
+}%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Suppose someone tells you the positions that all matter points of a body have at a given time $t$ (but you aren't told about other times). From these positions you can calculate all distances at time $t$. From this information can you tell whether that body is undergoing an instantaneously rigid motion?
@@ -10986,12 +11035,6 @@ This fact explain why we were able to solve many problems of motion in the previ
     Think of a boomerang for instance.
   \end{enumerate}
 \end{exercise}
-%
-\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/boomerang.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-\furl{https://imgur.com/BzcZOvl}{Long exposure of the trajectory of a boomerang outfitted with LEDs}%
-}%
 
 \section{Constitutive relations for ideal gases}
 \label{sec:int_energy_idealgas}
@@ -11074,13 +11117,13 @@ The equation above is called the \textbf{ideal-gas law with viscosity}.
 \end{definition}
 Note that the formula above for pressure and momentum flux is only valid for surfaces through which no matter flux occurs.
 
-In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\dt} = 0$.
 %
-\marginpar{\vspace{-5\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/idealgas_mug.jpg}%
 % \\[\jot]\flushleftright{\color{mpcolor}%
 % The famous \enquote{$pV=NRT$} formula}%
 }%
+In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\dt} = 0$.
 
 If the ideal gas is in motion, for instance expanding or contracting and its volume $V$ changes with time, then additional terms must be added to the famous \enquote{$pV=NRT$} formula. This is what we see in the relation~\eqref{eq:ideal_gas_p} above. In many cases these additional terms are extremely small and therefore neglected.
 
@@ -11126,7 +11169,7 @@ Lastly we discuss a constitutive relation that connects heat flux and temperatur
 where $\yhea$ is called the \emph{surface coefficient of heat transfer} and depends on the particular physical conditions of the matter on the two sides of the surface. This coefficient is usually positive.
 \end{definition}
 %
-\marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/newton_cooling.jpg}%
 % \\[\jot]\flushleftright\color{mpcolor}%
 % NB: if $\yTb >\yTa$, then $\yQ<0$%
@@ -11178,7 +11221,7 @@ This assumption has an important consequence for the balance of momentum of a co
 \end{equation*}
 that is, the \emph{total} momentum influx is always zero. But note that \emph{this does not mean that the momentum influx is zero everywhere} across the closed control surface;
 %
-\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.45\linewidth]{images/idealgas_mominflux.pdf}%
 % \\[\jot]\flushleftright\color{mpcolor}%
 % NB: if $\yTb >\yTa$, then $\yQ<0$%
@@ -11241,18 +11284,19 @@ The masslessness assumption is of course inadequate in some conditions like extr
   \end{itemize}
 \end{exercise}%1.2e-3
 
-\section{Example applications: ideal gas and piston}
+\needspace{15\baselineskip}
+\section{Example: ideal gas and piston}
 \label{sec:idealgas_ex}
 
 \subsection{Setup}
 \label{sec:idealgas_ex_setup}
 
-One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
-To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\ym$ and constant surface area $A$.
 %
-\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
+One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
+To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\ym$ and constant surface area $A$.
 The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upward.
 
 Since the piston has mass $\ym$, it also has momentum $\yPpi=\ym\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yGpi = -\ym\,g$.
@@ -11328,13 +11372,12 @@ We must consider three partial surfaces:
   %   \yFatm = - A\cdot\qty{e5}{N/m^{2}} \,.
   % \end{equation}
 This is also a boundary condition. See side figure.
-
-% 
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+%
+\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/piston_forces.jpg}%
 }%
 
-\item[Bottom:] This surface is in common between the control volumes of the piston and of the gas. Therefore the principle of flux symmetry applies here. Denote by $\yFgas$ the \textbf{ef}flux of momentum from the side with the piston to the side with the gas. The \textbf{in}flux of momentum into the piston's control volume is then $-\yFgas$. See side figure.
+\item[Bottom:] This surface is in common between the control volumes of the piston and of the gas. Therefore the principle of flux symmetry applies here. Denote by $\yFgas$ the \textbf{ef}flux of momentum from the side with the piston to the side with the gas. The \textbf{in}flux of momentum into the piston's control volume is then $-\yFgas$. %See side figure.
 %   \begin{equation*}
 % %    \label{eq:Fpg_gas}
 %     \yFpg(t) = -\yFgas(t)
@@ -11350,9 +11393,6 @@ The \emph{total} \emph{in}flux of momentum to the piston is therefore
   \label{eq:F_piston}
   \yFpi(t) = \yFatm - \yFgas(t) \,
 \end{equation}
-
-\medskip
-
 For the total supply of momentum we use the constitutive relation
 \begin{equation}
   \label{eq:piston_G}
@@ -11907,13 +11947,14 @@ this phenomenon reflects the behaviour of rotations under reflections.
 
 \medskip
 
-Owing to intellectual inertia, many books are afraid of using twisted vectors, and rely on ordinary vectors instead, introducing the \enquote*{right-hand rule} to determine the sense of rotation from the orientation of the ordinary vector. If you've ever asked yourself \enquote{why the right hand, and not the left hand?}, the answer is that it's purely a convention indeed; one could have introduced a left-hand rule instead. Using twisted vectors we don't need these arbitrary conventions and mnemonics: the sense of rotation is unequivocally indicated.
 %
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/curlrighthand.png}
 % \\[\jot]%
 % \footnotesize{\color{mpcolor}The amount of momentum within a volume is represented by a \textcolor{cyan}{(3D) vector}}
 }%
+Owing to intellectual inertia, many books are afraid of using twisted vectors, and rely on ordinary vectors instead, introducing the \enquote*{right-hand rule} to determine the sense of rotation from the orientation of the ordinary vector. If you've ever asked yourself \enquote{why the right hand, and not the left hand?}, the answer is that it's purely a convention indeed; one could have introduced a left-hand rule instead.
+Using twisted vectors we don't need these arbitrary conventions and mnemonics: the sense of rotation is unequivocally indicated.
 
 Use whichever vector representation you prefer! % In these notes we shall use a hybrid notation, as in the side picture of p.~\pageref{fig:volumetwistedarrow}, so as to make everybody (or no one) happy.
 
@@ -12906,11 +12947,11 @@ Note the requirement of operating \emph{cyclically}. A device consisting of an e
 
 Would it be possible to build a cyclic thermal engine that takes some energy in the form of heat from an inlet \emph{at constant temperature}, and releases energy in the form of work, say by lifting an object?
 
-The operation of such an engine is schematized in the side figure. Imagine to wrap the engine, no matter how complex it is, in a closed control surface, defining a control volume. A part of the control surface, in \textcolor{purple}{red} in the figure, delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. The temperature $\yT$ at the inlet is \emph{constant} in time. Another part of the control surface, in \textcolor{blue}{blue} in the figure, delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive from the engine, so it's an \emph{ef}flux for the engine. Through the rest of the control surface there, in \textcolor{midgrey}{grey}, there are \emph{no exchanges of heat or mechanical power}, but there may be fluxes of matter, momentum, angular momentum, and electromagnetic quantities. At the end of a cycle the volume contents of all these quantities are, by definition of \enquote*{cycle}, the same as at the beginning. From the balance laws, the time-integrated fluxes of all these quantities must be therefore be zero over a cycle.
-%
-\marginpar{\vspace{-13\baselineskip}\footnotesize\centering%
+\needspace{12\baselineskip}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/engine_1temp.jpg}%
 }%
+The operation of such an engine is schematized in the side figure. Imagine to wrap the engine, no matter how complex it is, in a closed control surface, defining a control volume. A part of the control surface, in \textcolor{purple}{red} in the figure, delimits the inlet through which the engine receives a heat flux $\yQ(t)$, possibly variable in time. The temperature $\yT$ at the inlet is \emph{constant} in time. Another part of the control surface, in \textcolor{blue}{blue} in the figure, delimits the movable components through which the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, where $\yF(t)$ is the influx of momentum through that part, and $\yv(t)$ is the velocity of the matter set into motion; both can vary with time. The expression for the mechanical power has a minus sign because it's the power \emph{we} receive from the engine, so it's an \emph{ef}flux for the engine. Through the rest of the control surface there, in \textcolor{midgrey}{grey}, there are \emph{no exchanges of heat or mechanical power}, but there may be fluxes of matter, momentum, angular momentum, and electromagnetic quantities. At the end of a cycle the volume contents of all these quantities are, by definition of \enquote*{cycle}, the same as at the beginning. From the balance laws, the time-integrated fluxes of all these quantities must be therefore be zero over a cycle.
 
 But note that the time-integrated flux of heat $\yQ$ and the mechanical power $-\yF\cdot\yv$ can both be non-zero over a cycle: the balance of energy requires only that their \emph{sum} be zero.
 
@@ -13003,15 +13044,16 @@ Let's try a different design, where one of the conditions in the previous sectio
 
 Let's modify the design so that the exchange of heat happens at two different temperatures. This could be done by changing the temperature of one part of the surface over time (within a cycle), or by allowing heat to be exchanged at two different inlets, having constant but different temperatures. We choose the second option because it's easier to analyse and leads to the same results as the first.
 
+\needspace{12\baselineskip}
+%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/engine_2temp.jpg}%
+}%
 The new engine design is schematized in the side figure. An influx of heat $\yQp(t)$ occurs through a part of the closed control surface, in \textcolor{purple}{dark red}, at constant temperature $\yTp$; another influx of heat $\yQm(t)$ occurs through another part of the surface, in \textcolor{red}{light red}, at constant temperature $\yTm$. Either flux can be positive or negative. For definiteness let's say that
 \begin{equation*}
   \yTp > \yTm
 \end{equation*}
 but we are not making assumptions about relative magnitudes of $\yQp(t)$ and $\yQm(t)$. Through another, movable part of the control surface, in \textcolor{blue}{blue}, the engine is releasing mechanical power $-\yF(t)\cdot\yv(t)$, which can also be positive or negative. Through the rest of the surface, in \textcolor{midgrey}{grey}, there may be fluxes of matter and other quantities, except heat and mechanical power; the time-integrated fluxes of such quantities are zero over an operation cycle.
-%
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/engine_2temp.jpg}%
-}%
 
 Consider a cycle of the engine between times $\yti$, $\ytf$. Employ similar symbols as before:
 \begin{equation*}
