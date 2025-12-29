@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-29T14:31:12+0100
+%% Last-Updated: 2025-12-29T16:24:42+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9911,7 +9911,7 @@ Let us see how these two contributions are expressed in mathematical form. What 
 \begin{itemize}[noitemsep]
 \item electromagnetic fields are negligible, velocities and gravitational fields are small enough;
 \item there's a matter flux $\yJ$, possibly zero, through the surface;
-\item a thin control volume containing the surface has \emph{uniform} matter content $\yN$ and momentum content $\yP$;
+\item a thin control volume containing the surface has \emph{uniform} matter content $\yN_{\textrm{m}}$ and momentum content $\yP_{\textrm{m}}$;
 \item conditions are uniform over the surface; this is true for instance if the surface is small enough.
 \end{itemize}
 
@@ -9919,7 +9919,7 @@ Then the flux of momentum or contact force $\yF$ through the surface can be writ
 \begin{subequations}\label{eq:convective_momflux_general}
   \begin{equation}
     \label{eq:convective_momflux}
-    \yF = \ySt + \frac{\yJ}{\yN}\,\yP
+    \yF = \ySt + \yJ\,\frac{\yP_{\textrm{m}}}{\yN_{\textrm{m}}}
   \end{equation}
   % Unfortunately these two terms have different names in different engineering fields, with no standard terminology.
 
@@ -9927,9 +9927,11 @@ Then the flux of momentum or contact force $\yF$ through the surface can be writ
 
   \smallskip
 
-  The term\enskip$\yJ\,\yP/\yN$\enskip is called \textbf{convective momentum flux} or \textbf{momentum transfer}, among other names. It is zero if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$\,.\enskip If the control surface has area $\yAs$ and the thin volume around it has volume $\yVs$, then using the formula for matter flux~\eqref{eq:matterflux_movingsurface} and Newton's formula for momentum~\eqref{eq:matter_momentum_Newton}, we can rewrite the convective momentum flux as follows:
+  The term\enskip$\yJ\,\yP_{\textrm{m}}/\yN_{\textrm{m}}$\enskip is called \textbf{convective momentum flux} or \textbf{momentum transfer}, among other names. It is zero if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$\,.\enskip If the control surface has area $\yAs$ and the thin volume around it has volume $V_{\textrm{m}}$, then using the formula for matter flux~\eqref{eq:matterflux_movingsurface} and Newton's formula for momentum~\eqref{eq:matter_momentum_Newton}, we can rewrite the convective momentum flux as follows:
   \begin{equation*}
-    \frac{\yJ}{\yN}\,\yP \equiv \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv \ .
+    \yJ\,\frac{\yP_{\textrm{m}}}{\yN_{\textrm{m}}}
+    \equiv \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yvs)\,
+    \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}} \ .
   \end{equation*}
 
   \smallskip
@@ -9937,7 +9939,9 @@ Then the flux of momentum or contact force $\yF$ through the surface can be writ
   The constitutive formula for momentum flux can then be rewritten
   \begin{equation}
     \label{eq:convective_momflux_velocity}
-    \yF = \ySt + \frac{\yAs}{\yVs}\,\yns \cdot(\yv - \yvs)\,\ym\,\yv
+    \yF = \ySt +
+    \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yvs)\,
+    \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}}
   \end{equation}
 \end{subequations}
 \end{definition}
@@ -9948,13 +9952,13 @@ In the next section we shall explore situations where matter flux occurs. The co
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item In formula~\eqref{eq:convective_momflux}, verify that the convective-flux term\enskip$\frac{\yJ}{\yN}\,\yP$\enskip has the correct dimensions of force.
+  \item In formula~\eqref{eq:convective_momflux}, verify that the convective-flux term\enskip$\yJ\,\frac{\yP_{\textrm{m}}}{\yN_{\textrm{m}}}$\enskip has the correct dimensions of force.
 
   \item In formula~\eqref{eq:convective_momflux_velocity}, verify that the convective-flux term also has the correct dimensions of force.
 
   \item Fix a coordinate system $(t, x, y, z)$ at rest with the Earth's surface, with $z$ upwards. Consider a horizontal control surface of area \qty{7.5}{m^2}, with a \emph{downward} crossing direction; this is therefore also the direction of its normal $\yns$.
 
-    At some time point, the control surface has positive vertical velocity \qty{300}{m/s}. Matter, say some gases, is crossing the surface downwards, with vertical velocity \qty{-130}{m/s}. The mass of the gases divided by volume is $\ym/\yVs = \qty{4.3}{kg/m^{3}}$. How much is the convective momentum flux through the control surface, including its sign? % \qty{-1.8e6}{N}
+    At some time point, the control surface has positive vertical velocity \qty{300}{m/s}. Matter, say some gases, is crossing the surface downwards, with vertical velocity \qty{-130}{m/s}. The mass of the gases divided by volume is $\ym_{\textrm{m}}/V_{\textrm{m}} = \qty{4.3}{kg/m^{3}}$. How much is the convective momentum flux through the control surface, including its sign? % \qty{-1.8e6}{N}
   \end{enumerate}
 \end{exercise}
 
@@ -9988,6 +9992,7 @@ We consider a control volume bounded by two imaginary control surfaces:
 \item The other imaginary surface, represented by the \textcolor{purple}{dotted red line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket.
   % The force through this surface consists of both a stress vector, representing the \autoref{sec:momentumflux_gas}{internal pressure} of the exhaust gases, and of a convective momentum flux owing to the flux of gases through the surface.
 \end{itemize}
+For both surfaces we consider an \emph{inward} crossing direction, so that the fluxes through them are influxes. Both surfaces are moving with velocity $\yv(t)$, the rocket's velocity.
 
 \medskip
 
@@ -10014,23 +10019,39 @@ Which constitutive relations do we need?
 \begin{description}[itemsep=1ex]
 \item[Matter and momentum content] We can use Newton's constitutive equation to relate the total momentum $\yP$ and the amounts of matter. The two kinds of matter $a$ and $b$ have different \autoref{def:molarmass}{molar masses}.
 
-  The amount of matter $a$ is constant, so we can associate with it a constant mass $\yma$ and a momentum\enskip$\yma\yv(t)$\,,\enskip where $\yv$ is the velocity of the rocket. If the second kind of matter has molar mass $\yrho$, then its momentum is\enskip$\yrho\,\yNb(t)\,\yv(t)$\,.\enskip Note that using just one velocity $\yv$ is an approximation: the matter within the control volume, especially the one involved in combustion, does not have the same velocity everywhere.
+  The amount of matter $a$ is constant, so we can associate with it a constant mass $\yma$ and a momentum\enskip$\yma\,\yv(t)$\,,\enskip where $\yv$ is the velocity of the rocket. If the second kind of matter has molar mass $\yrho$, then its momentum is\enskip$\yrho\,\yNb(t)\,\yv(t)$\,.\enskip Note that using just one velocity $\yv$ is an approximation: the matter within the control volume, especially the one involved in combustion, does not have the same velocity everywhere.
 
   By extensivity the total momentum is
   \begin{equation}
     \label{eq:momcontent_rocket}
-    \yP(t) = [\ym_{\text{c}} + \yrho\,\yNb(t)]\,\yv(t) \ .
+    \yP(t) = [\yma + \yrho\,\yNb(t)]\,\yv(t) \ .
   \end{equation}
 
-\item[Momentum and matter flux] As already mentioned we must consider the two bounding surfaces separately.
+\item[Matter and momentum flux] As already mentioned we must consider the two bounding surfaces separately.
 
-  At the rocket's surface there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible.
+  At the rocket's surface there is no flux of matter. There should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible. All influxes through this surface are therefore zero.
 
-  At the nozzle, where there's a flux of matter, we must use the general constitutive relation~\eqref{eq:convective_momflux_general}, with a more specific constitutive relation for the stress vector $\ySt$.
+  At the nozzle there is a flux of matter $\yJ$. This flux is connected with the velocity of matter at the nozzle $\yv_{\textrm{m}}$ and the matter density $\yN_{\textrm{m}}/V_{\textrm{m}}$, and to the velocity of the nozzle control surface $\yv$, and surface area $\yAs$ and normal $\yns$, by the constitutive relation \eqn~\eqref{eq:matterflux_movingsurface}:
+  \begin{equation*}
+    \yJ = \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yv)\,
+    \frac{\yN_{\textrm{m}}}{V_{\textrm{m}}} \ .
+  \end{equation*}
+Note that the symbols used in the present problem ***
 
-  The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let us suppose that this pressure is simply constant; it therefore belongs to the boundary conditions of our simulation.
 
-  
+
+  In general this flux can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and can depend on other quantities such as pressure and temperature. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation.
+
+  For the momentum flux $\yF$ at the nozzle we must use the general constitutive relation~\eqref{eq:convective_momflux_general}:
+  \begin{equation*}
+    \yF(t) = \ySt +
+    \yAs\,\yns \cdot \bigl[\yv_{\textrm{m}}(t - \yv(t)\bigr]\,
+    \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}}
+    \yAs\,
+  \end{equation*}
+  with a more specific constitutive relation for the stress vector $\ySt$. This vector expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let us suppose that this pressure is simply constant; it therefore belongs to the boundary conditions.
+
+  For the convective momentum flux
 \end{description}
 
 
