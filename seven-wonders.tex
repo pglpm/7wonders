@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-29T16:24:42+0100
+%% Last-Updated: 2025-12-29T18:30:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10027,29 +10027,35 @@ Which constitutive relations do we need?
     \yP(t) = [\yma + \yrho\,\yNb(t)]\,\yv(t) \ .
   \end{equation}
 
-\item[Matter and momentum flux] As already mentioned we must consider the two bounding surfaces separately.
-
-  At the rocket's surface there is no flux of matter. There should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible. All influxes through this surface are therefore zero.
-
-  At the nozzle there is a flux of matter $\yJ$. This flux is connected with the velocity of matter at the nozzle $\yv_{\textrm{m}}$ and the matter density $\yN_{\textrm{m}}/V_{\textrm{m}}$, and to the velocity of the nozzle control surface $\yv$, and surface area $\yAs$ and normal $\yns$, by the constitutive relation \eqn~\eqref{eq:matterflux_movingsurface}:
+\item[Matter flux] At the rocket's surface there is no flux of matter. At the nozzle there is a flux of matter $\yJ$. This flux is connected with the velocity of the exhaust gases at the nozzle $\yv_{\textrm{m}}$ and the their density $\yN_{\textrm{m}}/V_{\textrm{m}}$, and to the velocity of the nozzle control surface $\yv$ and surface area $\yAs$ and normal $\yns$, by the constitutive relation \eqn~\eqref{eq:matterflux_movingsurface}:
+%
+\marginpar{\footnotesize\flushleftright\color{red}%
+\faIcon{exclamation-circle}\quad The velocity of the control surface, \enquote*{\,$\yvs$\,} in \eqn~\eqref{eq:matterflux_movingsurface}, in the present case is $\yv$, the same as the rocket's.%
+}%
   \begin{equation*}
     \yJ = \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yv)\,
     \frac{\yN_{\textrm{m}}}{V_{\textrm{m}}} \ .
   \end{equation*}
-Note that the symbols used in the present problem ***
 
+ In general the matter flux $\yJ$ can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and can depend on other quantities such as pressure and temperature; in fact it can be controlled by the rocket's pilot. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation. Assuming that the surface area $\yAs$ and the density of the exhaust gases $\yN_{\textrm{m}}/V_{\textrm{m}}$ are also constant, we find an important fact: the difference between the normal velocities of gases and rocket must be constant:
+ \begin{equation*}
+   \yJ = \text{\footnotesize const.}\quad\implies\quad
+   \yns \cdot \yv_{\textrm{m}}(t) - \yns\cdot\yv(t) = \text{\footnotesize const.}
+ \end{equation*}
+ but note that both velocities \emph{do} depend on time. This result means that the velocity of the gases \emph{relative to the rocket} is constant.
 
-
-  In general this flux can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and can depend on other quantities such as pressure and temperature. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation.
+\item[Momentum flux] At the rocket's surface there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible. All influxes through this surface are therefore zero.
 
   For the momentum flux $\yF$ at the nozzle we must use the general constitutive relation~\eqref{eq:convective_momflux_general}:
   \begin{equation*}
     \yF(t) = \ySt +
-    \yAs\,\yns \cdot \bigl[\yv_{\textrm{m}}(t - \yv(t)\bigr]\,
-    \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}}
-    \yAs\,
+    \yAs\,\yns \cdot \bigl[\yv_{\textrm{m}}(t) - \yv(t)\bigr]\,
+    \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,
+    \yv_{\textrm{m}}(t)
   \end{equation*}
-  with a more specific constitutive relation for the stress vector $\ySt$. This vector expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let us suppose that this pressure is simply constant; it therefore belongs to the boundary conditions.
+  with a more specific constitutive relation for the stress vector $\ySt$.
+
+  The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is simply constant; it therefore given in the boundary conditions.
 
   For the convective momentum flux
 \end{description}
