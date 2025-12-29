@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-29T09:01:53+0100
+%% Last-Updated: 2025-12-29T14:29:37+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1103,12 +1103,12 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\ya}{\varAlpha}
 \newcommand*{\ya}{\mathcal{A}}
 \newcommand*{\yrho}{\rho}
-\newcommand*{\yNu}{\yN_{\text{u}}}
-\newcommand*{\yNv}{\yN_{\text{v}}}
-\newcommand*{\yJu}{\yJ_{\text{u}}}
-\newcommand*{\yJv}{\yJ_{\text{v}}}
-\newcommand*{\yau}{\ya_{\text{u}}}
-\newcommand*{\yav}{\ya_{\text{v}}}
+\newcommand*{\yNa}{\yN_{a}}
+\newcommand*{\yNb}{\yN_{b}}
+\newcommand*{\yJa}{\yJ_{a}}
+\newcommand*{\yJb}{\yJ_{b}}
+\newcommand*{\yau}{\ya_{a}}
+\newcommand*{\yav}{\ya_{b}}
 
 %% energy
 \newcommand*{\ym}{m}% m, and q_m for mass flow
@@ -6680,46 +6680,46 @@ But we have also seen that balance laws only connect amounts of the same quantit
 
 The combination of balance laws and constitutive relations can have amazing predictive capabilities. Let's see a simple but not too unrealistic example.
 
-Suppose in a control volume we have two substances called $\mathrm{u}$ and $\mathrm{v}$. Let's say that the control volume corresponds to a sealed container, so the net influxes $\yJu$ and $\yJv$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
+Suppose in a control volume we have two substances called $a$ and $b$. Let's say that the control volume corresponds to a sealed container, so the net influxes $\yJa$ and $\yJb$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yNu(t)}{\dt} &= \yau(t)
+    \frac{\di\yNa(t)}{\dt} &= \yau(t)
     &\qquad\text{or}\qquad
-    \yNu(\ytf) &= \yNu(\yti) +
+    \yNa(\ytf) &= \yNa(\yti) +
     \int_{\yti}^{\ytf}\!\!\yau(t)\dt \,,
     \\
-    \frac{\di\yNv(t)}{\dt} &= \yav(t)
+    \frac{\di\yNb(t)}{\dt} &= \yav(t)
     &\qquad\text{or}\qquad
-    \yNv(\ytf) &= \yNv(\yti) +
+    \yNb(\ytf) &= \yNb(\yti) +
     \int_{\yti}^{\ytf}\!\!\yav(t)\dt \,.
   \end{aligned}
 \end{equation*}
-From the integral expression it is clear that if we know $\yNu(\yti)$ and we want to predict $\yNu(\ytf)$ at the later time, then we need to know how $\yau(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $\mathrm{v}$ substance.
+From the integral expression it is clear that if we know $\yNa(\yti)$ and we want to predict $\yNa(\ytf)$ at the later time, then we need to know how $\yau(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $b$ substance.
 
 Now suppose that in these specific physical conditions two constitutive relations are known to be valid:
 \begin{equation*}
-  \yav(t) = \lambda \yNu(t) \,,
+  \yav(t) = \lambda \yNa(t) \,,
   \qquad
-  \yau(t) = -\lambda \yNv(t) \,,
+  \yau(t) = -\lambda \yNb(t) \,,
 \end{equation*}
-for some positive physical constant $\lambda$. These constitutive relations express chemical reactions. The first constitutive relation says that the supply of substance $\mathrm{v}$ is always proportional to the volume content of substance $\mathrm{u}$. The second relation says that the sink (negative supply) of substance $\mathrm{u}$ is always proportional to the volume content of substance $\mathrm{v}$. Intuitively, a large amount of $\mathrm{u}$ favours the production of $\mathrm{v}$, and a large amount of $\mathrm{v}$ disfavours the production of $\mathrm{u}$.
+for some positive physical constant $\lambda$. These constitutive relations express chemical reactions. The first constitutive relation says that the supply of substance $b$ is always proportional to the volume content of substance $a$. The second relation says that the sink (negative supply) of substance $a$ is always proportional to the volume content of substance $b$. Intuitively, a large amount of $a$ favours the production of $b$, and a large amount of $b$ disfavours the production of $a$.
 
 Combine these two constitutive relations with the balance laws in their differential expression: take each $\ya$ and replace its expression in the balance laws, so that all $\ya$s disappear (we're omitting the time argument, for brevity):
 \begin{equation}\label{eq:1storder_uv}
     \begin{aligned}
-      \frac{\di\yNu}{\dt} &= -\lambda\yNv \,,
+      \frac{\di\yNa}{\dt} &= -\lambda\yNb \,,
       \qquad&
-      \frac{\di\yNv}{\dt} &= \lambda\yNu \,.
+      \frac{\di\yNb}{\dt} &= \lambda\yNa \,.
   \end{aligned}
 \end{equation}
-This is called a \emph{system of coupled, \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order ordinary differential equations}}. It is \enquote*{coupled} because each equation contains both $\yN_{\mathrm{u}(t)}$ and $\yNv(t)$. We can also substitute $\yN_{\mathrm{u}(t)}$ from the second equation into the derivative of the first, and vice versa. We find
+This is called a \emph{system of coupled, \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order ordinary differential equations}}. It is \enquote*{coupled} because each equation contains both $\yNa(t)$ and $\yNb(t)$. We can also substitute $\yNa(t)$ from the second equation into the derivative of the first, and vice versa. We find
 \begin{equation*}
     \begin{aligned}
-      \frac{\di^{2}\yNu}{\dt^{2}} &=
-      -\lambda^{2}\frac{\di\yNu}{\dt} \,,
+      \frac{\di^{2}\yNa}{\dt^{2}} &=
+      -\lambda^{2}\frac{\di\yNa}{\dt} \,,
       \qquad&
-      \frac{\di^{2}\yNv}{\dt^{2}} &=
-      -\lambda^{2}\frac{\di\yNv}{\dt} \,,
+      \frac{\di^{2}\yNb}{\dt^{2}} &=
+      -\lambda^{2}\frac{\di\yNb}{\dt} \,,
   \end{aligned}
 \end{equation*}
 which is a set of uncoupled \furl{https://mathworld.wolfram.com/Second-OrderOrdinaryDifferentialEquation.html}{second-order ordinary differential equations}. Each one is the equation for \furl{https://mathworld.wolfram.com/SimpleHarmonicMotion.html}{simple harmonic motion}.
@@ -6732,39 +6732,39 @@ which is a set of uncoupled \furl{https://mathworld.wolfram.com/Second-OrderOrdi
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 The \furl{https://ccl.northwestern.edu/netlogo/models/B-ZReaction}{Belousov-Zhabotinsky reaction} (above) and the \furl{https://chemistrytalk.org/briggs-rauscher-reaction}{Briggs-Rauscher reaction} are two kinds of real oscillating chemical reactions that have the main features of our simplified example; see the videos and interactive applets in the links above (image: \furl{https://www.rit.edu/spotlights/chemical-waves-belousov-zhabotinsky-bz-reaction}{Rochester Institute of Technology}).%
 }%
-Something amazing has actually happened. It turns out that the differential equations above are satisfied if $\yNu$ has this specific time dependence:
+Something amazing has actually happened. It turns out that the differential equations above are satisfied if $\yNa$ has this specific time dependence:
 \begin{equation}\label{eq:solution_Nu}
-  \yNu(t) = C\cos(\lambda t) + D\sin(\lambda t)
+  \yNa(t) = C\cos(\lambda t) + D\sin(\lambda t)
 \end{equation}
 where $C$, $D$ are two constants. If we substitute this expression in the system~\eqref{eq:1storder_uv}, and thereafter in the constitutive relations, we finally find
 \begin{equation}\label{eq:solution_N_A}
   \begin{aligned}
-    \yNu(t) &= C\cos(\lambda t) + D\sin(\lambda t) \,,
+    \yNa(t) &= C\cos(\lambda t) + D\sin(\lambda t) \,,
     &\quad
     \yau &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \,,
     \\
-    \yNv(t) &= -D\cos(\lambda t) + C\sin(\lambda t) \,,
+    \yNb(t) &= -D\cos(\lambda t) + C\sin(\lambda t) \,,
     &\quad
     \yav &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \,.
   \end{aligned}
 \end{equation}
-The two constants $C$, $D$ can be found if we know $\yNu(\yti)$ and $\yNv(\yti)$ at the initial time $\yti$.
+The two constants $C$, $D$ can be found if we know $\yNa(\yti)$ and $\yNb(\yti)$ at the initial time $\yti$.
 
 \medskip
 
 Let's summarize what all this means. If we know:
 \begin{itemize}
-\item that $\yNu$ and $\yNv$ satisfy balance laws,
+\item that $\yNa$ and $\yNb$ satisfy balance laws,
 \item that the net influxes are zero,
-\item that the constitutive relations $\yav = \lambda \yNu$ and $\yau = -\lambda \yNv$ are valid,
-\item the values $\yNu(\yti)$, $\yNv(\yti)$ at time $\yti$,
+\item that the constitutive relations $\yav = \lambda \yNa$ and $\yau = -\lambda \yNb$ are valid,
+\item the values $\yNa(\yti)$, $\yNb(\yti)$ at time $\yti$,
 \end{itemize}
 then we can predict the values of the volume contents and of the supplies \emph{at all times}, or at least all times at which the conditions above are true!
 
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item Find the final solutions~\eqref{eq:solution_N_A}, by substituting the expression~\eqref{eq:solution_Nu} in the equations~\eqref{eq:1storder_uv} to find $\yNv(t)$, and then finding the supplies $\ya$ from the constitutive relations.
+  \item Find the final solutions~\eqref{eq:solution_N_A}, by substituting the expression~\eqref{eq:solution_Nu} in the equations~\eqref{eq:1storder_uv} to find $\yNb(t)$, and then finding the supplies $\ya$ from the constitutive relations.
 \item What are physical dimensions of $\lambda$?
 \item Find the concrete numerical expression of the solution~\eqref{eq:solution_N_A} in the case where
     \begin{equation*}
@@ -6772,12 +6772,12 @@ then we can predict the values of the volume contents and of the supplies \emph{
       \qquad
       \yti = \qty{0}{s}\,,
       \quad
-      \yNu(\yti) = \qty{2}{mol} \,,
+      \yNa(\yti) = \qty{2}{mol} \,,
       \quad
-      \yNv(\yti) = \qty{3}{mol} \,,
+      \yNb(\yti) = \qty{3}{mol} \,,
     \end{equation*}
-  and plot the graph of $\yNu(t)$ against time $t$ between $t=\qty{0}{s}$ and $t=\qty{5}{s}$.
-\item Try to explain the time behaviour of $\yNu(t)$, from the intuitive explanation of the constitutive relation given in the example above.
+  and plot the graph of $\yNa(t)$ against time $t$ between $t=\qty{0}{s}$ and $t=\qty{5}{s}$.
+\item Try to explain the time behaviour of $\yNa(t)$, from the intuitive explanation of the constitutive relation given in the example above.
 \item Is there any generation of antimatter in this imaginary example?
   \end{enumerate}
 \end{exercise}
@@ -6793,9 +6793,9 @@ An analytical formula is a combination of \furl{https://mathworld.wolfram.com/El
 
 Unfortunately, however, the \emph{vast majority} of combinations of balance laws and constitutive relations lead to time-dependencies that \emph{cannot be expressed by analytical formulae}. For instance, if for the oscillating reaction we had to use constitutive relations such as
 \begin{equation*}
-  \yav(t) = \lambda \sin[\yNu(t)/\unit{mol}] \,,
+  \yav(t) = \lambda \sin[\yNa(t)/\unit{mol}] \,,
   \qquad
-  \yau(t) = -\lambda \cos[\yNv(t)/\unit{mol}] \,,
+  \yau(t) = -\lambda \cos[\yNb(t)/\unit{mol}] \,,
 \end{equation*}
 (with a new $\lambda$ having different physical dimensions), then an analytical solution is hardly available. In these cases we can't simply plug in the time $t$ and quickly calculate what the result is. How can we predict the physical behaviour then?
 
@@ -7094,29 +7094,29 @@ Let's consider again the \autoref{sec:prediction}{oscillating reaction}, which w
 We have two balance laws for matter that drive the physical system forward in time. Their iteration is therefore
 \begin{equation}\label{eq:timestepped_evolution_N}
   \begin{aligned}[b]
-   \yNu\tikzmark{Nua}(t+\Dt) &\approx
-   \yNu(t)
-   + [\yJu(t) + \yau(t)]\,\Dt
+   \yNa\tikzmark{Nua}(t+\Dt) &\approx
+   \yNa(t)
+   + [\yJa(t) + \yau(t)]\,\Dt
     \\[2\jot]
-   \yNv\tikzmark{Nva}(t+\Dt) &\approx
-   \yNv(t)
-   + [\yJv(t) + \yav(t)]\,\Dt
+   \yNb\tikzmark{Nva}(t+\Dt) &\approx
+   \yNb(t)
+   + [\yJb(t) + \yav(t)]\,\Dt
     \\[3\jot]
-    \yNu\tikzmark{bNua}(t+2\Dt)  &\approx
-    \tikzmark{Nub}\yNu(t+\Dt)
-    + [\yJu(t+\Dt) + \yau(t+\Dt)]\,\Dt
+    \yNa\tikzmark{bNua}(t+2\Dt)  &\approx
+    \tikzmark{Nub}\yNa(t+\Dt)
+    + [\yJa(t+\Dt) + \yau(t+\Dt)]\,\Dt
     \\[2\jot]
-    \yNv\tikzmark{bNva}(t+2\Dt)  &\approx
-    \tikzmark{Nvb}\yNv(t+\Dt)
-    + [\yJv(t+\Dt) + \yav(t+\Dt)]\,\Dt
+    \yNb\tikzmark{bNva}(t+2\Dt)  &\approx
+    \tikzmark{Nvb}\yNb(t+\Dt)
+    + [\yJb(t+\Dt) + \yav(t+\Dt)]\,\Dt
     % \\[3\jot]
-    % \yNu\tikzmark{cNua}(t+3\Dt)  &\approx
-    % \tikzmark{bNub}\yNu(t+2\Dt)
-    % + [\yJu(t+2\Dt) + \yau(t+2\Dt)]\,\Dt
+    % \yNa\tikzmark{cNua}(t+3\Dt)  &\approx
+    % \tikzmark{bNub}\yNa(t+2\Dt)
+    % + [\yJa(t+2\Dt) + \yau(t+2\Dt)]\,\Dt
     % \\[2\jot]
-    % \yNv\tikzmark{cNva}(t+3\Dt)  &\approx
-    % \tikzmark{bNvb}\yNv(t+2\Dt)
-    % + [\yJv(t+2\Dt) + \yav(t+2\Dt)]\,\Dt
+    % \yNb\tikzmark{cNva}(t+3\Dt)  &\approx
+    % \tikzmark{bNvb}\yNb(t+2\Dt)
+    % + [\yJb(t+2\Dt) + \yav(t+2\Dt)]\,\Dt
     \\[3\jot]
     &\dotso\tikzmark{bNub}
     \\[2\jot]
@@ -7133,45 +7133,45 @@ We have two balance laws for matter that drive the physical system forward in ti
 \end{tikzpicture}
 \end{equation}
 
-We apply the \emph{boundary conditions} from that example: the two influxes $\yJu(t)$, $\yJv(t)$ are always zero. For simplicity we shall therefore simply omit them.
+We apply the \emph{boundary conditions} from that example: the two influxes $\yJa(t)$, $\yJb(t)$ are always zero. For simplicity we shall therefore simply omit them.
 
-Now we use the constitutive relations between the contents and the supply: $\yav(t) = \lambda \yNu(t)$, $\yau(t) = -\lambda \yNv(t)$. At every time step, after calculating the volume contents $\yNu$, $\yNv$ from the balance laws, we can used their new values to calculate the supplies $\yav$, $\yau$ at that same time step. These supplies can then be used for the next time step:
+Now we use the constitutive relations between the contents and the supply: $\yav(t) = \lambda \yNa(t)$, $\yau(t) = -\lambda \yNb(t)$. At every time step, after calculating the volume contents $\yNa$, $\yNb$ from the balance laws, we can used their new values to calculate the supplies $\yav$, $\yau$ at that same time step. These supplies can then be used for the next time step:
 \begin{equation}\label{eq:timestepped_evolution_NA}
   \begin{aligned}[b]
-    \yau\tikzmark{aua}(t) &= -\lambda \yNv(t)
+    \yau\tikzmark{aua}(t) &= -\lambda \yNb(t)
     \\[2\jot]
-    \yav\tikzmark{ava}(t) &= \lambda \yNu(t)
+    \yav\tikzmark{ava}(t) &= \lambda \yNa(t)
     \\[3\jot]
-   \yNu\tikzmark{NNua}(t+\Dt) &\approx
-   \yNu(t)
+   \yNa\tikzmark{NNua}(t+\Dt) &\approx
+   \yNa(t)
    +\tikzmark{aub}\yau(t)\,\Dt
     \\[2\jot]
-   \yNv\tikzmark{NNva}(t+\Dt) &\approx
-   \yNv(t)
+   \yNb\tikzmark{NNva}(t+\Dt) &\approx
+   \yNb(t)
    +\tikzmark{avb}\yav(t)\,\Dt
     \\[4\jot]
-    \yau\tikzmark{naua}(t + \Dt) &= -\lambda \tikzmark{NNvc}\yNv(t + \Dt)
+    \yau\tikzmark{naua}(t + \Dt) &= -\lambda \tikzmark{NNvc}\yNb(t + \Dt)
     \\[2\jot]
-    \yav\tikzmark{nava}(t + \Dt) &= \lambda \tikzmark{NNuc}\yNu(t + \Dt)
+    \yav\tikzmark{nava}(t + \Dt) &= \lambda \tikzmark{NNuc}\yNa(t + \Dt)
     \\[3\jot]
-    \yNu\tikzmark{bNNua}(t+2\Dt)  &\approx
-    \tikzmark{NNub}\yNu(t+\Dt)
+    \yNa\tikzmark{bNNua}(t+2\Dt)  &\approx
+    \tikzmark{NNub}\yNa(t+\Dt)
     +\tikzmark{naub}\yau(t+\Dt)\,\Dt
     \\[2\jot]
-    \yNv\tikzmark{bNNva}(t+2\Dt)  &\approx
-    \tikzmark{NNvb}\yNv(t+\Dt)
+    \yNb\tikzmark{bNNva}(t+2\Dt)  &\approx
+    \tikzmark{NNvb}\yNb(t+\Dt)
     +\tikzmark{navb}\yav(t+\Dt)\,\Dt
     % \\[4\jot]
-    % \yau(t + 2\Dt) &= -\lambda \yNv(t + 2\Dt)
+    % \yau(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
     % \\[2\jot]
-    % \yav(t + 2\Dt) &= \lambda \yNu(t + 2\Dt)
+    % \yav(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
     % \\[3\jot]
-    % \yNu\tikzmark{cNNua}(t+3\Dt)  &\approx
-    % \tikzmark{bNNub}\yNu(t+2\Dt)
+    % \yNa\tikzmark{cNNua}(t+3\Dt)  &\approx
+    % \tikzmark{bNNub}\yNa(t+2\Dt)
     % +\yau(t+2\Dt)]\,\Dt
     % \\[2\jot]
-    % \yNv\tikzmark{cNNva}(t+3\Dt)  &\approx
-    % \tikzmark{bNNvb}\yNv(t+2\Dt)
+    % \yNb\tikzmark{cNNva}(t+3\Dt)  &\approx
+    % \tikzmark{bNNvb}\yNb(t+2\Dt)
     % +\yav(t+2\Dt)]\,\Dt
     \\[4\jot]
     &\dotso\tikzmark{bNNub}
@@ -7196,7 +7196,7 @@ Now we use the constitutive relations between the contents and the supply: $\yav
 \end{tikzpicture}
 \end{equation}
 
-In the iteration above, note how after specifying the initial  $\yNu(t)$, $\yNv(t)$ we don't need to worry about anything else: the iteration can proceed indefinitely without any new input from us.
+In the iteration above, note how after specifying the initial  $\yNa(t)$, $\yNb(t)$ we don't need to worry about anything else: the iteration can proceed indefinitely without any new input from us.
 
 \section{Computer code for numerical time integration}
 \label{sec:code_integration}
@@ -7644,35 +7644,37 @@ It is convenient to have a formula that yields the matter flux $\yJ$ if we know 
 
   \smallskip
 
-  If in a thin volume $\yVs$ containing the surface there is an amount of matter $\yN$ having velocity $\yv$, then the flux through the surface at time $t$ is
+  If in a thin volume $V_{\textrm{m}}$ containing the surface there is an amount of matter $\yN_{\textrm{m}}$ having velocity $\yv_{\textrm{m}}$, then the flux through the surface at time $t$ is
   \begin{equation}\label{eq:matterflux_movingsurface}
-    \yJ = \yAs\,\yns \cdot (\yv - \yvs)\,\frac{\yN}{\yVs} \ .
+    \yJ = \yAs\,\yns \cdot
+    (\yv_{\textrm{m}} - \yvs)\,
+    \frac{\yN_{\textrm{m}}}{V_{\textrm{m}}} \ .
   \end{equation}
 
-  This formula is only valid if the control surface is flat, so that the normal $\yns$ is well-defined; if matter is uniform throughout the volume; and if the velocity of matter $\yv$ is the same all around the surface. These conditions are usually satisfied if the control surface is \emph{small} enough. The velocities must be smaller than the speed of light, and gravitational fields must be weak.
+  This formula is only valid if the control surface is flat, so that the normal $\yns$ is well-defined; if matter is uniform throughout the volume; and if the velocity of matter $\yv_{\textrm{m}}$ is the same all around the surface. These conditions are usually satisfied if the control surface is \emph{small} enough. The velocities must be smaller than the speed of light, and gravitational fields must be weak.
 \end{definition}
 
-The relation above connects the matter flux $\yJ$, the component of matter velocity normal to the control-surface $\yns\cdot\yv$, and the normal component of the surface velocity $\yvs$. It therefore allows us to find any one of these quantities given the other two.
+The relation above connects the matter flux $\yJ$, the component of matter velocity normal to the control-surface $\yns\cdot\yv_{\textrm{m}}$, and the normal component of the surface velocity $\yns\cdot\yvs$. It therefore allows us to find any one of these quantities given the other two.
 
 
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Verify that the formula above makes sense:
     \begin{enumerate}
-  \item How much is the flux if neither matter or the surface are moving, that is $\yv = \yvs = \qty{0}{m/s}$\,?
-  \item How much is the flux if matter and surface are moving with the same velocity, that is $\yv = \yvs$\,?
-  \item How much is the flux if the surface is not moving, $\yvs = \qty{0}{m/s}$, and  matter is moving parallel to the surface, that is $\yns \cdot \yv = 0$\,?
-  \item How much is the flux if there is no matter around the surface, that is $\yN = \qty{0}{mol}$\,?
-  \item How much is the flux if matter is not moving, $\yv = \qty{0}{m/s}$, and the surface is moving parallel to itself, that is $\yns \cdot \yvs = 0$\,?
+  \item How much is the flux if neither matter or the surface are moving, that is $\yv_{\textrm{m}} = \yvs = \qty{0}{m/s}$\,?
+  \item How much is the flux if matter and surface are moving with the same velocity, that is $\yv_{\textrm{m}} = \yvs$\,?
+  \item How much is the flux if the surface is not moving, $\yvs = \qty{0}{m/s}$, and  matter is moving parallel to the surface, that is $\yns \cdot \yv_{\textrm{m}} = 0$\,?
+  \item How much is the flux if there is no matter around the surface, that is $\yN_{\textrm{m}} = \qty{0}{mol}$\,?
+  \item How much is the flux if matter is not moving, $\yv_{\textrm{m}} = \qty{0}{m/s}$, and the surface is moving parallel to itself, that is $\yns \cdot \yvs = 0$\,?
   \end{enumerate}
-\item Take a vertical coordinate, say $z$, directed upward. Through a horizontal control surface of area \qty{7.5}{m^2} and vertical normal $\yns$ directed downward, there is a (downward) matter flux $\yJ = \qty{80e3}{mol/s}$. The surface is moving upward with velocity $\yvs = \qty{300}{m/s}$. The ratio between amount of matter and volume at the surface is $\yN/V = \qty{25}{mol/m^{3}}$. How much is the component of the matter velocity along the normal, $\yns\cdot\yv$\,?
+\item Take a vertical coordinate, say $z$, directed upward. Through a horizontal control surface of area \qty{7.5}{m^2} and vertical normal $\yns$ directed downward, there is a (downward) matter flux $\yJ = \qty{80e3}{mol/s}$. The surface is moving upward with velocity $\yvs = \qty{300}{m/s}$. The ratio between amount of matter and volume at the surface is $\yN_{\textrm{m}}/V_{\textrm{m}} = \qty{25}{mol/m^{3}}$. How much is the component of the matter velocity along the normal, $\yns\cdot\yv_{\textrm{m}}$\,?
 \end{enumerate}
 \end{exercise}
 
 \begin{extra}{Matter flux for any speeds and gravitational fields}
   A formula very similar to~\eqref{eq:matterflux_movingsurface} holds more generally, also in general relativity, provided the surface is small enough:
   \begin{equation*}\
-    \yJ = \yAs\,\yns \cdot \biggl(\yj - \yvs\,\frac{\yN}{\yVs}\biggr) \ ,
+    \yJ = \yAs\,\yns \cdot \biggl(\yj - \yvs\,\frac{\yN_{\textrm{m}}}{V_{\textrm{m}}}\biggr) \ ,
   \end{equation*}
   where $\yj \defd [j_{x}, j_{y}, j_{z}]$ are the fluxes, divided by coordinate area, across three small surfaces parallel to the $yz$, $zx$, and $xy$ coordinate planes.
 \end{extra}
@@ -9980,29 +9982,55 @@ Let us study and simulate, in a simplified setting, the motion of a rocket like 
 
 We consider a control volume bounded by two imaginary control surfaces:
 \begin{itemize}
-\item One surface, represented by the \textcolor{yellow}{solid yellow line}, coincides with the rocket's whole surface except the nozzle at the bottom. There is no matter flux through this surface. The force on it consists only of a stress vector, expressing the friction between rocket and atmosphere.
+\item One surface, represented by the \textcolor{yellow}{solid yellow line}, coincides with the rocket's whole surface except the nozzle at the bottom. There is no matter flux through this surface.
+  % The force on it consists only of a stress vector, expressing the friction between rocket and atmosphere.
 
-\item The other imaginary surface, represented by the \textcolor{purple}{dotted red line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket. The force through this surface consists of both a stress vector, representing the \autoref{sec:momentumflux_gas}{internal pressure} of the exhaust gases, and of a convective momentum flux owing to the flux of gases through the surface.
+\item The other imaginary surface, represented by the \textcolor{purple}{dotted red line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket.
+  % The force through this surface consists of both a stress vector, representing the \autoref{sec:momentumflux_gas}{internal pressure} of the exhaust gases, and of a convective momentum flux owing to the flux of gases through the surface.
 \end{itemize}
 
-Which balances do we have to consider for this control volume? We are interested in its motion, so the \emph{balance of momentum} is necessary. Since combustion gases are expelled from the nozzle control surface, the amount of matter within the control volume changes with time; we therefore need also the \emph{balance of matter}.
+\medskip
+
+Which balances do we have to consider for this control volume?
+\begin{description}[itemsep=1ex]
+\item[Matter] The control volume contains many different kinds of matter: metal, plastic, astronauts, fuel, and so on. For our purposes we can approximately consider just two kinds. Let's call $a$ the matter that always stay within the control volume; and $b$ the matter, consisting mainly of fuel and oxidizing agents, that is transformed by a combustion and expelled as gas at the nozzle.
+
+  For the first kind of matter no explicit balance of matter is necessary, since we know there is no flux or supply and its amount is constant. For the second kind we need to keep track of its amount $\yNb(t)$, which depends on time owing to a non-zero flux $\yJb$ at the nozzle.
+
+  If we wanted to simulate and keep track of the combustion process, we would need to distinguish among more kinds of matter and their balances, in the form of chemical reactions.
+
+\item[Momentum] We are interested in the motion of the rocket, so the \emph{balance of momentum} is necessary for the total momentum $\yP$ in the control volume enclosing the rocket. This control volume does not include the gases expelled out of the nozzle.
+
+  We are considering two kinds of matter, which as an approximation we may imagine to occupy separate control-subvolumes. The principle of extensivity can therefore be used to calculate their total momentum.
+
+  The contact forces for the rocket's surface (\textcolor{yellow}{solid yellow line}) and for the surface at the nozzle (\textcolor{purple}{dotted red line}) are different, so we shall use the principle of extensivity to calculate the total momentum flux $\yF$. The total momentum supply $\yG$ is the gravitational force.
+
+\item[Energy and other balances] In a more realistic scenario we might be interested in keeping track of the rocket's energy content and of the energy released. But let's keep things simple and assume that the balance of energy is unimportant to us -- hoping that it won't be necessary for our simulation.
+\end{description}
+
+\medskip
 
 Which constitutive relations do we need?
 \begin{description}[itemsep=1ex]
-\item[Momentum content] We can use Newton's constitutive equation. Within the control volume there are different kinds of matter, having different \autoref{def:molarmass}{molar masses}. We can approximately consider just two kinds: the matter that always stay within the control volume -- metal, astronauts, fuel, and so on -- with total constant mass $\ym_{\text{c}}$; and the gas matter that is going to be ejected. The amount $\yN(t)$ of the latter changes with time, and we take it to have a fixed molar density $\yrho$.
+\item[Matter and momentum content] We can use Newton's constitutive equation to relate the total momentum $\yP$ and the amounts of matter. The two kinds of matter $a$ and $b$ have different \autoref{def:molarmass}{molar masses}.
 
-  If we imagine them to occupy separate parts of the control volume, we can use the principle of extensivity to find the total momentum content $\yP(t)$:
+  The amount of matter $a$ is constant, so we can associate with it a constant mass $\yma$ and a momentum\enskip$\yma\yv(t)$\,,\enskip where $\yv$ is the velocity of the rocket. If the second kind of matter has molar mass $\yrho$, then its momentum is\enskip$\yrho\,\yNb(t)\,\yv(t)$\,.\enskip Note that using just one velocity $\yv$ is an approximation: the matter within the control volume, especially the one involved in combustion, does not have the same velocity everywhere.
+
+  By extensivity the total momentum is
   \begin{equation}
     \label{eq:momcontent_rocket}
-    \yP(t) = [\ym_{\text{c}} + \yrho\,\yN(t)]\,\yv(t) \ ,
+    \yP(t) = [\ym_{\text{c}} + \yrho\,\yNb(t)]\,\yv(t) \ .
   \end{equation}
-  where $\yv(t)$ is the velocity of the control volume, that is, of the rocket. Note that using just one velocity is an approximation: the matter within the control volume, especially the one involved in the combustion, does not have the same velocity everywhere.
 
-\item[Momentum flux] For the contact force on the boundary of the volume we must consider the two bounding surfaces separately.
+\item[Momentum and matter flux] As already mentioned we must consider the two bounding surfaces separately.
 
-  At the rocket's surface (\textcolor{yellow}{solid yellow line}) there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible.
+  At the rocket's surface there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible.
 
-  At the nozzle, where there's a flux of matter, we must use the general constitutive relation~\eqref{eq:convective_momflux_general}, with a more specific relation for the stress vector $\ySt$.
+  At the nozzle, where there's a flux of matter, we must use the general constitutive relation~\eqref{eq:convective_momflux_general}, with a more specific constitutive relation for the stress vector $\ySt$.
+
+  The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depend on their temperature, density, and possibly other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let us suppose that this pressure is simply constant; it therefore belongs to the boundary conditions of our simulation.
+
+  
 \end{description}
 
 
