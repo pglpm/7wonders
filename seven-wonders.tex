@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-29T18:30:04+0100
+%% Last-Updated: 2025-12-30T09:54:41+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8600,7 +8600,7 @@ that can be solved analytically.
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\section[The concept of physical state. A strategy for numerical time integration]{The concept of physical state.\noprelistbreak\\ A strategy for numerical time integration}
+\section[A strategy for numerical time integration. The concept of physical state]{A strategy for numerical time integration.\\The concept of physical state}
 \label{sec:strategy_simulation}
 
 The present section is somewhat peculiar because we shall discuss two very different topics, one practical and one conceptual:
@@ -8720,15 +8720,26 @@ These driving equations easy to identify: \enquote*{$t+\Dt$} appears in them. In
 
 \paragraph{\color{red}2. Choose the \emph{state variables} for the physical system.}
 
-In the time loop, the driving equations calculate later quantities from a particular set of present quantities. We must therefore make sure that the values of all necessary present quantities are defined before the core lines, and also that they are known before the time loop begins. In our case we see that we need 8 quantities, underlined below, with two components each, for a total of 16 numbers:
+In the time loop, the driving equations calculate later quantities from a particular set of present quantities. We must therefore make sure that the values of all necessary present quantities are defined before the core lines, and also that they are known before the time loop begins. In our case we need 8 vector quantities, underlined below, with two components each, for a total of 16 numbers:
 \begin{equation*}
   \begin{aligned}[b]
-    \yPa(t+\Dt)  &\approx \underbracket[1pt]{\yPa(t)} + [\underbracket[1pt]{\yFab(t)} + \yGa(t)]\,\Dt
+    \yPa(t+\Dt)  &\approx
+    \underbracket[1pt]{\yPa(t)}_{\text{needed}} +
+    [\underbracket[1pt]{\yFab(t)}_{\text{needed}} +
+    \yGa(t)]\,\Dt
     \\
-    \yPb(t+\Dt)  &\approx \underbracket[1pt]{\yPb(t)} + [\underbracket[1pt]{\yFba(t)} + \yGb(t)]\,\Dt
+    \yPb(t+\Dt)  &\approx
+    \underbracket[1pt]{\yPb(t)}_{\text{needed}} +
+    [\underbracket[1pt]{\yFba(t)}_{\text{needed}} +
+    \yGb(t)]\,\Dt
     \\[\jot]
-    \yra(t+\Dt)  &\approx \underbracket[1pt]{\yra(t)} + \underbracket[1pt]{\yva(t)}\,\Dt
-   \\    \yrb(t+\Dt)  &\approx \underbracket[1pt]{\yrb(t)} + \underbracket[1pt]{\yvb(t)}\,\Dt
+    \yra(t+\Dt)  &\approx
+    \underbracket[1pt]{\yra(t)}_{\text{needed}} +
+    \underbracket[1pt]{\yva(t)}_{\text{needed}}\,\Dt
+    \\
+    \yrb(t+\Dt)  &\approx
+    \underbracket[1pt]{\yrb(t)}_{\text{needed}} +
+    \underbracket[1pt]{\yvb(t)}_{\text{needed}}\,\Dt
  \end{aligned}
 \end{equation*}
 The supplies $\yGa$, $\yGb$ are given as boundary conditions, so we don't need to worry about them.
@@ -8744,7 +8755,7 @@ The supplies $\yGa$, $\yGb$ are given as boundary conditions, so we don't need t
 
 The eight quantities above are not all independent, owing to the constitutive relations that relate some of them. For instance, if we assign the velocity $\yva$, then the momentum $\yPa$ is  determined by the constitutive relation $\yPa=\yma\yva$; and if we assign the positions $\yra$, $\yrb$, then the force $\yFab$ is determined by the constitutive relation $\yFab  =-k\,(\yra-\yrb)$.
 
-Our task now is to find a \emph{minimum} set among these quantities, from which all others can be determined via constitutive relations. As a rule of thumb, the number of minimum quantities is given by
+Our task now is to find a \emph{minimum} set of available quantities, from which all others can be determined via constitutive relations. As a rule of thumb, the minimum number of quantities is given by
 \begin{equation*}
   \text{\footnotesize(number needed in driving equations)} -
   \text{\footnotesize(number of same-time relations)}
@@ -9976,6 +9987,9 @@ The flight mechanisms discussed in \sect\,\ref{sec:bal_momentum_flight} rely on 
 Another way of producing an influx of upward momentum is to release matter having downward momentum, creating a \emph{convective momentum flux}. This is the momentum-flux mechanism employed by rockets. This convective momentum flux should have a large magnitude. From the constitutive relation~\eqref{eq:convective_momflux_velocity} we see that the flux can be increased by increasing the area $\yAs$ of the surface, or the matter velocity $\yv$, or the mass-to-volume ratio $\ym/\yVs$; typically the focus is on the first two factors. Rockets that must achieve high velocities, for instance in order to leave Earth, typically have \furl{https://www.grc.nasa.gov/WWW/k-12/airplane/nozzled.html}{nozzles} with large outlet areas. The released matter consists of gases produced by combustion, which produces large pressure and velocity; and this velocity is increased even more by means of a specific nozzle design.
 
 \needspace{22\baselineskip}
+\subsection{Simplified simulation of a rocket's motion}
+\label{sec:rocket_motion_simulation}
+
 %
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/saturnv_controlsurf.jpg}%
@@ -10027,38 +10041,98 @@ Which constitutive relations do we need?
     \yP(t) = [\yma + \yrho\,\yNb(t)]\,\yv(t) \ .
   \end{equation}
 
-\item[Matter flux] At the rocket's surface there is no flux of matter. At the nozzle there is a flux of matter $\yJ$. This flux is connected with the velocity of the exhaust gases at the nozzle $\yv_{\textrm{m}}$ and the their density $\yN_{\textrm{m}}/V_{\textrm{m}}$, and to the velocity of the nozzle control surface $\yv$ and surface area $\yAs$ and normal $\yns$, by the constitutive relation \eqn~\eqref{eq:matterflux_movingsurface}:
+\item[Matter flux] At the rocket's surface there is no flux of matter. At the nozzle there is a flux of matter $\yJ$. This flux is connected with the velocity of the exhaust gases at the nozzle $\yv_{\textrm{g}}$ and the their density $\yN_{\textrm{g}}/V_{\textrm{g}}$, and to the velocity of the nozzle control surface $\yv$ and surface area $\yAs$ and normal $\yns$, by the constitutive relation \eqn~\eqref{eq:matterflux_movingsurface}:
 %
-\marginpar{\footnotesize\flushleftright\color{red}%
-\faIcon{exclamation-circle}\quad The velocity of the control surface, \enquote*{\,$\yvs$\,} in \eqn~\eqref{eq:matterflux_movingsurface}, in the present case is $\yv$, the same as the rocket's.%
+\marginpar{\vspace{0.5\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+% \faIcon{exclamation-circle}\enskip
+The velocity of the control surface \enquote*{\,$\yvs$\,} and of matter \enquote*{\,$\yv_{\textrm{m}}$\,} in \eqn~\eqref{eq:matterflux_movingsurface} are called \enquote*{\,$\yv$\,} and \enquote*{\,$\yv_{\textrm{g}}$\,} in the present case.%
 }%
   \begin{equation*}
-    \yJ = \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yv)\,
-    \frac{\yN_{\textrm{m}}}{V_{\textrm{m}}} \ .
+    \yJ = \yAs\,\yns \cdot (\yv_{\textrm{g}} - \yv)\,
+    \frac{\yN_{\textrm{g}}}{V_{\textrm{g}}} \ .
   \end{equation*}
 
- In general the matter flux $\yJ$ can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and can depend on other quantities such as pressure and temperature; in fact it can be controlled by the rocket's pilot. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation. Assuming that the surface area $\yAs$ and the density of the exhaust gases $\yN_{\textrm{m}}/V_{\textrm{m}}$ are also constant, we find an important fact: the difference between the normal velocities of gases and rocket must be constant:
- \begin{equation*}
-   \yJ = \text{\footnotesize const.}\quad\implies\quad
-   \yns \cdot \yv_{\textrm{m}}(t) - \yns\cdot\yv(t) = \text{\footnotesize const.}
- \end{equation*}
- but note that both velocities \emph{do} depend on time. This result means that the velocity of the gases \emph{relative to the rocket} is constant.
+ In general the matter flux $\yJ$ can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and can depend on other quantities such as pressure and temperature; in fact it can be controlled by the rocket's pilot. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation. % Assuming that the surface area $\yAs$ and the density of the exhaust gases $\yN_{\textrm{g}}/V_{\textrm{g}}$ are also constant, we find an important fact: the difference between the normal velocities of gases and rocket must be constant:
+ % \begin{equation*}
+ %   \yJ = \text{\footnotesize const.}\quad\implies\quad
+ %   \yns \cdot \yv_{\textrm{g}}(t) - \yns\cdot\yv(t) = \text{\footnotesize const.}
+ % \end{equation*}
+ % but note that both velocities \emph{do} depend on time. This result means that the velocity of the gases \emph{relative to the rocket} is constant.
 
 \item[Momentum flux] At the rocket's surface there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible. All influxes through this surface are therefore zero.
 
   For the momentum flux $\yF$ at the nozzle we must use the general constitutive relation~\eqref{eq:convective_momflux_general}:
   \begin{equation*}
     \yF(t) = \ySt +
-    \yAs\,\yns \cdot \bigl[\yv_{\textrm{m}}(t) - \yv(t)\bigr]\,
-    \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,
-    \yv_{\textrm{m}}(t)
+    \yAs\,\yns \cdot \bigl[\yv_{\textrm{g}}(t) - \yv(t)\bigr]\,
+    \frac{\ym_{\textrm{g}}}{V_{\textrm{g}}}\,
+    \yv_{\textrm{g}}(t)
   \end{equation*}
   with a more specific constitutive relation for the stress vector $\ySt$.
 
   The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is simply constant; it therefore given in the boundary conditions.
 
-  For the convective momentum flux
+  The convective momentum flux can be rewritten as follows by multiplying and dividing by $\yN_{\textrm{g}}$:
+  \begin{equation*}
+    \begin{split}
+      \yAs\,\yns \cdot \bigl[\yv_{\textrm{g}}(t) - \yv(t)\bigr]\,
+      \frac{\ym_{\textrm{g}}}{V_{\textrm{g}}}\,
+      \yv_{\textrm{g}}(t)
+      &=
+      \yAs\,\yns \cdot \bigl[\yv_{\textrm{g}}(t) - \yv(t)\bigr]\,
+      \frac{\color{green}\yN_{\textrm{g}}}{V_{\textrm{g}}}\,
+      \frac{\ym_{\textrm{g}}}{\color{green}\yN_{\textrm{g}}}\,
+      \yv_{\textrm{g}}(t)
+      \\&
+      = \yJ\, \frac{\ym_{\textrm{g}}}{N_{\textrm{g}}}\, \yv_{\textrm{g}}(t)
+    \end{split}
+  \end{equation*}
+
+  The total momentum flux into the rocket's control volume is therefore
+\begin{equation*}
+  \yF(t) = \ySt +
+  \yJ\, \frac{\ym_{\textrm{g}}}{N_{\textrm{g}}}\, \yv_{\textrm{g}}(t)
+\end{equation*}
+
+  \item[Momentum supply]
 \end{description}
+
+
+\subsection{Overview of the relevant equations}
+\label{sec:summary_equations_rocket_motion}
+
+Here is the list of balance laws and constitutive relations that apply to the present physical system.
+\begin{equation*}
+  \begin{aligned}
+\frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
+&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
+    \\
+\frac{\di\yPb(t)}{\dt} &= \yFba(t) + \yGb(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
+    \\[\jot]
+\frac{\di\yra(t)}{\dt} &= \yva(t)
+&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
+\\    \frac{\di\yrb(t)}{\dt} &= \yvb(t)
+&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
+\\[\jot]
+    \yFba(t)  &=-\yFab(t)
+&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
+    \\[2\jot]
+    \yPa(t) &= \yma\yva(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
+\\        \yPb(t) &= \ymb\yvb(t)
+&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+    \\[\jot]
+    \yGa(t) &= -\yma\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $a$}}
+\\      \yGb(t) &= -\ymb\,g\,[0,1]
+&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
+    \\[\jot]
+\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
+&&{\text{\footnotesize\color{midgrey}Hooke's law}}
+  \end{aligned}
+\end{equation*}
+
 
 
 \mynotew{To be continued}
