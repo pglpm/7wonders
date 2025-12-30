@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-30T15:26:52+0100
+%% Last-Updated: 2025-12-30T15:58:05+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9984,19 +9984,23 @@ In the next section we shall explore situations where matter flux occurs. The co
 
 The flight mechanisms discussed in \sect\,\ref{sec:bal_momentum_flight} rely on the presence of air or some kind of atmosphere around the object, with which a momentum exchange through a surface can occur. This is not possible in outer space; and  even if air is surrounding an object, that kind of momentum flux may not be enough to lift it anyway.
 
-Another way of producing an influx of upward momentum is to release matter having downward momentum, creating a \emph{convective momentum flux}. This is the momentum-flux mechanism employed by rockets. This convective momentum flux should have a large magnitude. From the constitutive relation~\eqref{eq:convective_momflux_velocity} we see that the flux can be increased by increasing the area $\yAs$ of the surface, or the matter velocity $\yv$, or the mass-to-volume ratio $\ym/\yVs$; typically the focus is on the first two factors. Rockets that must achieve high velocities, for instance in order to leave Earth, typically have \furl{https://www.grc.nasa.gov/WWW/k-12/airplane/nozzled.html}{nozzles} with large outlet areas. The released matter consists of gases produced by combustion, which produces large pressure and velocity; and this velocity is increased even more by means of a specific nozzle design.
+Another way of producing an influx of upward momentum is to release matter having downward momentum, creating a \emph{convective momentum flux}. This is the momentum-flux mechanism employed by rockets. This convective momentum flux, which is called \textbf{thrust} in applications with rockets and jet engines, should have a large magnitude. From the constitutive relation~\eqref{eq:convective_momflux_velocity}, rewritten here: \begin{equation*} \yF = \ySt + \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yvs)\, \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}}
+\end{equation*}
+we see that the flux can be increased by increasing the area $\yAs$ of the surface, or the matter velocity $\yv$, or the mass-to-volume ratio $\frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}$ around the surface. Typically the focus is on the first two factors. Rockets that must achieve high velocities, for instance in order to leave Earth, typically have \furl{https://www.grc.nasa.gov/WWW/k-12/airplane/nozzled.html}{nozzles} with large outlet areas. The released matter consists of gases produced by combustion, which produces large pressure and velocity; and this velocity is increased even more by means of a specific nozzle design.
 
 \needspace{22\baselineskip}
 \subsection{Simplified simulation of a rocket's motion}
 \label{sec:rocket_motion_simulation}
 
 %
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.5\linewidth]{images/saturnv_controlsurf.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Saturn~V SA-513 rocket (image: \furl{https://space.skyrocket.de/doc_lau_det/saturn-5_2st.htm}{Gunter's Space Page}).%
 }%
-Let us study and simulate, in a simplified setting, the motion of a rocket like the \furl{https://www.smithsonianmag.com/air-space-magazine/we-built-saturn-v-180964759/}{Saturn~V}; see side figure. We choose a coordinate system $(t,z)$ with just one spatial coordinate $z$, vertical and directed upward, with origin fixed on the Earth's surface. All vectors below have therefore just one component. Note that rockets like Saturn~V typically have a purely vertical motion only at the very beginning; their motion gradually becomes horizontal and often goes into an orbital motion around the Earth.
+Let us study and simulate, in a simplified setting, the motion of a rocket like the \furl{https://www.smithsonianmag.com/air-space-magazine/we-built-saturn-v-180964759/}{Saturn~V}; see side figure. We follow our \autoref{sec:strategy_simulation}{general strategy for numerical time integration}.
+
+Choose a coordinate system $(t,z)$ with just one spatial coordinate $z$, vertical and directed upward, with origin fixed on the Earth's surface. All vectors below have therefore just one component. Note that rockets like Saturn~V typically only have a purely vertical motion at the very beginning; their motion gradually becomes horizontal and goes into an orbital motion around the Earth.
 
 We consider a control volume bounded by two imaginary control surfaces:
 \begin{itemize}
@@ -10079,7 +10083,7 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
 
   The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is simply constant; it therefore given in the boundary conditions.
 
-  The convective momentum flux can be rewritten as follows by multiplying and dividing by $\yN_{b,\text{nozzle}}$:
+  The convective momentum flux, or \emph{thrust}, can be rewritten as follows by multiplying and dividing by $\yN_{b,\text{nozzle}}$:
   \begin{equation*}
     \begin{split}
       &\yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
@@ -10117,7 +10121,12 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
 \subsection{Overview of the relevant equations}
 \label{sec:summary_equations_rocket_motion}
 
-Here is the list of balance laws and constitutive relations that apply to the present physical system.
+Let's collect the balance laws and constitutive relations that apply to the present physical system. Since all vectors have the $z$-component only, we simply write this component instead of using boldface notation. Note that the normal vector to the nozzle control surface has component $+1$ because it is directed upward. All scalar products then simplify; for instance
+\begin{equation*}
+  \yns \cdot \yv = 1 \cdot v = v \ .
+\end{equation*}
+
+
 \begin{equation*}
   \begin{aligned}
 \frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
@@ -10128,7 +10137,7 @@ Here is the list of balance laws and constitutive relations that apply to the pr
     \\[\jot]
 \frac{\di\yr(t)}{\dt} &= \yv(t)
 &&{\text{\footnotesize\color{midgrey}velocity of rocket's body}}
-\\[2\jot]
+\\[3\jot]
     \yP  &= [\yma + \yrho\,\yNb(t)]\,\yv(t)
 &&{\text{\footnotesize\color{midgrey}momentum of rocket's body}}
 \\[2\jot]
@@ -10142,7 +10151,16 @@ Here is the list of balance laws and constitutive relations that apply to the pr
 &&{\text{\footnotesize\color{midgrey}Momentum supply of rocket's body}}
   \end{aligned}
 \end{equation*}
-
+The first three balances will occur in our simulation in their finite-difference approximations:
+\begin{equation*}
+  \begin{aligned}
+    \yP(t+\Dt)  &\approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
+    \\[\jot]
+    \yNb(t+\Dt)  &\approx \yNb(t) + \yJ\,\Dt
+    \\[\jot]
+    \yr(t+\Dt)  &\approx \yr(t) + \yv(t)\,\Dt
+\end{aligned}
+\end{equation*}
 
 
 \mynotew{To be continued}
