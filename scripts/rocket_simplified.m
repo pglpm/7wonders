@@ -4,12 +4,11 @@
 %% Constants
 m = 756e3;         % kg: rocket mass without fuel
 rho = 0.17;        % kg/mol: fuel molar mass
-d = 25;            % mol/m^3: fuel molar density
+delta = 25;            % mol/m^3: fuel molar density
 A = 7.5;           % m^2: nozzle area
 h = 0.3;           % N/(m^2/s^2): drag coefficient
 ka = 6.67430e-11;  % N/(kg^2/m^2): gravity const.
-ME = 5.97e24;      % kg: Earth's mass
-RE = 6371e3;       % m: Earth's radius
+g = 9.8;      % kg: Earth's mass
 
 %% Initial conditions
 t = 0;       % s: initial time
@@ -19,7 +18,7 @@ v = 0;       % m/s: velocity of control volume
 
 %% Boundary conditions
 J = -80e3;  % mol/s: matter influx at nozzle
-p = 3.7e6;  % kg/m^2: pressure at nozzle
+p = 3.7e6;  % N/m^2: pressure at nozzle
 
 %% Time-iteration parameters
 t1 = 160;    % s: final time
@@ -42,10 +41,9 @@ axis('tight'); grid on; hold on %@
 while t < t1 && v < 300 && N > 0 % '&&' means 'and'
 
   P = (m + rho * N) * v;
-  Fside = -h * abs(v) * v;
-  Fnoz = A * p + rho * J^2 / (A * d) + rho * J * v;
-  F = Fnoz + Fside;
-  G = -ka * (m + rho * N) * ME / (RE + z)^2;
+  vb = J / (A * delta) + v;
+  F = Sigma + J * delta * rho * vb;
+  G = (m + rho * N) * g;
 
   t = t + dt;
   N = N + J * dt;
