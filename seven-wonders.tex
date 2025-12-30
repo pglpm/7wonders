@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-30T09:54:41+0100
+%% Last-Updated: 2025-12-30T15:26:52+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9996,11 +9996,11 @@ Another way of producing an influx of upward momentum is to release matter havin
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Saturn~V SA-513 rocket (image: \furl{https://space.skyrocket.de/doc_lau_det/saturn-5_2st.htm}{Gunter's Space Page}).%
 }%
-Let us study and simulate, in a simplified setting, the motion of a rocket like the \furl{https://www.smithsonianmag.com/air-space-magazine/we-built-saturn-v-180964759/}{Saturn~V}; see side figure. We choose a coordinate system $(t,z)$ with just one spatial coordinate $z$, vertical and directed upward, with origin fixed on the Earth's surface.
+Let us study and simulate, in a simplified setting, the motion of a rocket like the \furl{https://www.smithsonianmag.com/air-space-magazine/we-built-saturn-v-180964759/}{Saturn~V}; see side figure. We choose a coordinate system $(t,z)$ with just one spatial coordinate $z$, vertical and directed upward, with origin fixed on the Earth's surface. All vectors below have therefore just one component. Note that rockets like Saturn~V typically have a purely vertical motion only at the very beginning; their motion gradually becomes horizontal and often goes into an orbital motion around the Earth.
 
 We consider a control volume bounded by two imaginary control surfaces:
 \begin{itemize}
-\item One surface, represented by the \textcolor{yellow}{solid yellow line}, coincides with the rocket's whole surface except the nozzle at the bottom. There is no matter flux through this surface.
+\item One surface, represented by the \textcolor{yellow}{solid yellow line}, wraps the rocket's frame, except the nozzle at the bottom. There is no matter flux through this surface.
   % The force on it consists only of a stress vector, expressing the friction between rocket and atmosphere.
 
 \item The other imaginary surface, represented by the \textcolor{purple}{dotted red line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket.
@@ -10010,92 +10010,108 @@ For both surfaces we consider an \emph{inward} crossing direction, so that the f
 
 \medskip
 
-Which balances do we have to consider for this control volume?
+\paragraph{Which balances do we have to consider for this control volume?}
 \begin{description}[itemsep=1ex]
-\item[Matter] The control volume contains many different kinds of matter: metal, plastic, astronauts, fuel, and so on. For our purposes we can approximately consider just two kinds. Let's call $a$ the matter that always stay within the control volume; and $b$ the matter, consisting mainly of fuel and oxidizing agents, that is transformed by a combustion and expelled as gas at the nozzle.
+\item[Matter balance:] The control volume contains many different kinds of matter: metal, plastic, astronauts, fuel, and so on. For our purposes we can approximately consider just two kinds. Let's call $a$ the matter that always stay within the control volume; and $b$ the matter, consisting mainly of fuel and oxidizing agents, that is transformed into gas by combustion and expelled at the nozzle.
 
-  For the first kind of matter no explicit balance of matter is necessary, since we know there is no flux or supply and its amount is constant. For the second kind we need to keep track of its amount $\yNb(t)$, which depends on time owing to a non-zero flux $\yJb$ at the nozzle.
+  For the first kind of matter no explicit balance is necessary, because we know there is no flux or supply and its amount is constant. For the second kind we need to keep track of its amount $\yNb(t)$, which depends on time owing to a non-zero flux $\yJ$ at the nozzle. If we wanted to simulate and keep track of the combustion process, we would need to distinguish among more kinds of matter and their balances, in the form of chemical reactions.
 
-  If we wanted to simulate and keep track of the combustion process, we would need to distinguish among more kinds of matter and their balances, in the form of chemical reactions.
-
-\item[Momentum] We are interested in the motion of the rocket, so the \emph{balance of momentum} is necessary for the total momentum $\yP$ in the control volume enclosing the rocket. This control volume does not include the gases expelled out of the nozzle.
+\item[Momentum balance:] We are interested in the motion of the rocket, so the \emph{balance of momentum} is necessary for the total momentum $\yP$ in the control volume enclosing the rocket. This control volume does not include the gases expelled out of the nozzle.
 
   We are considering two kinds of matter, which as an approximation we may imagine to occupy separate control-subvolumes. The principle of extensivity can therefore be used to calculate their total momentum.
 
   The contact forces for the rocket's surface (\textcolor{yellow}{solid yellow line}) and for the surface at the nozzle (\textcolor{purple}{dotted red line}) are different, so we shall use the principle of extensivity to calculate the total momentum flux $\yF$. The total momentum supply $\yG$ is the gravitational force.
 
-\item[Energy and other balances] In a more realistic scenario we might be interested in keeping track of the rocket's energy content and of the energy released. But let's keep things simple and assume that the balance of energy is unimportant to us -- hoping that it won't be necessary for our simulation.
+\item[Energy and other balances:] In a more realistic scenario we might be interested in keeping track of the rocket's energy content and of the energy released. But let's keep things simple and assume that the balance of energy is unimportant to us -- hoping that it won't be necessary for our simulation.
 \end{description}
 
-\medskip
-
-Which constitutive relations do we need?
+\paragraph{Which constitutive relations do we need?}
 \begin{description}[itemsep=1ex]
-\item[Matter and momentum content] We can use Newton's constitutive equation to relate the total momentum $\yP$ and the amounts of matter. The two kinds of matter $a$ and $b$ have different \autoref{def:molarmass}{molar masses}.
+\item[Matter and momentum content:] We can use Newton's constitutive equation to relate the total momentum $\yP$ and the amounts of matter. The two kinds of matter $a$ and $b$ have different \autoref{def:molarmass}{molar masses}.
 
-  The amount of matter $a$ is constant, so we can associate with it a constant mass $\yma$ and a momentum\enskip$\yma\,\yv(t)$\,,\enskip where $\yv$ is the velocity of the rocket. If the second kind of matter has molar mass $\yrho$, then its momentum is\enskip$\yrho\,\yNb(t)\,\yv(t)$\,.\enskip Note that using just one velocity $\yv$ is an approximation: the matter within the control volume, especially the one involved in combustion, does not have the same velocity everywhere.
+  The amount of matter $a$ is constant, so we can associate with it a constant mass $\yma$ and a momentum\enskip$\yma\,\yv(t)$\,,\enskip where $\yv$ is the velocity of the rocket. The second kind of matter has constant molar mass
+  \begin{equation*}
+    \yrho = \frac{\ymb}{\yNb} \ ,
+  \end{equation*}
+so its momentum is\enskip$\yrho\,\yNb(t)\,\yv(t)$\,.\enskip Note that using just one velocity $\yv$ is an approximation: the matter within the control volume, especially the one involved in combustion, does not have the same velocity everywhere.
 
   By extensivity the total momentum is
-  \begin{equation}
+  \begin{equation*}
     \label{eq:momcontent_rocket}
     \yP(t) = [\yma + \yrho\,\yNb(t)]\,\yv(t) \ .
-  \end{equation}
+  \end{equation*}
 
-\item[Matter flux] At the rocket's surface there is no flux of matter. At the nozzle there is a flux of matter $\yJ$. This flux is connected with the velocity of the exhaust gases at the nozzle $\yv_{\textrm{g}}$ and the their density $\yN_{\textrm{g}}/V_{\textrm{g}}$, and to the velocity of the nozzle control surface $\yv$ and surface area $\yAs$ and normal $\yns$, by the constitutive relation \eqn~\eqref{eq:matterflux_movingsurface}:
+\item[Matter flux] At the rocket's surface there is no flux of matter. At the nozzle there is a flux $\yJ$ of exhaust gases, matter $b$; the relevant constitutive relation is \eqn~\eqref{eq:matterflux_movingsurface}. Note that for this constitutive equation we must momentarily imagine a \emph{thin control volume around the nozzle}, and this is \emph{not} the whole control volume of the rocket!
+
+  Denote by\enskip$V_{\text{nozzle}}$\enskip the size of this thin control volume; and by $\yN_{b,\text{nozzle}}$ the amount of matter $b$, the exhaust gases, contained in it. This is not the whole amount $\yNb$ contained in the rocket:\enskip$\yN_{b,\text{nozzle}} \ne \yNb$\,. What's important in the constitutive relation is the molar density of this matter in this thin control volume, which we can denote by $\delta$:
+  \begin{equation*}
+    \delta \defd \frac{\yN_{b,\text{nozzle}}}{V_{\text{nozzle}}} \ .
+  \end{equation*}
+  This density can in principle change with time, but for simplicity we assume it is constant.
+
+If the surface area of the nozzle control surface is $A$, and its normal, directed upward, is $\yns$, and the velocity of the exhaust gases is $\yvb$, then the constitutive relation for the matter flux $\yJ$ can be written
 %
 \marginpar{\vspace{0.5\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
 % \faIcon{exclamation-circle}\enskip
-The velocity of the control surface \enquote*{\,$\yvs$\,} and of matter \enquote*{\,$\yv_{\textrm{m}}$\,} in \eqn~\eqref{eq:matterflux_movingsurface} are called \enquote*{\,$\yv$\,} and \enquote*{\,$\yv_{\textrm{g}}$\,} in the present case.%
-}%
+  The velocity of matter \enquote*{\,$\yv_{\textrm{m}}$\,} and of the control surface \enquote*{\,$\yvs$\,} in \eqn~\eqref{eq:matterflux_movingsurface} are called \enquote*{\,$\yvb$\,} and \enquote*{\,$\yv$\,} in the present case.%
+}\noprelistbreak%
   \begin{equation*}
-    \yJ = \yAs\,\yns \cdot (\yv_{\textrm{g}} - \yv)\,
-    \frac{\yN_{\textrm{g}}}{V_{\textrm{g}}} \ .
+    \yJ = \yAs\,\yns \cdot (\yvb - \yv)\,\delta \ .
   \end{equation*}
 
- In general the matter flux $\yJ$ can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and can depend on other quantities such as pressure and temperature; in fact it can be controlled by the rocket's pilot. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation. % Assuming that the surface area $\yAs$ and the density of the exhaust gases $\yN_{\textrm{g}}/V_{\textrm{g}}$ are also constant, we find an important fact: the difference between the normal velocities of gases and rocket must be constant:
+ In general the matter flux $\yJ$ can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and it can depend on other quantities such as pressure and temperature; in fact it can be controlled by the rocket's pilots. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation. % Assuming that the surface area $\yAs$ and the density of the exhaust gases $\yN_{b,\text{nozzle}}/V_{b,\text{nozzle}}$ are also constant, we find an important fact: the difference between the normal velocities of gases and rocket must be constant:
  % \begin{equation*}
  %   \yJ = \text{\footnotesize const.}\quad\implies\quad
- %   \yns \cdot \yv_{\textrm{g}}(t) - \yns\cdot\yv(t) = \text{\footnotesize const.}
+ %   \yns \cdot \yvb(t) - \yns\cdot\yv(t) = \text{\footnotesize const.}
  % \end{equation*}
  % but note that both velocities \emph{do} depend on time. This result means that the velocity of the gases \emph{relative to the rocket} is constant.
 
-\item[Momentum flux] At the rocket's surface there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible. All influxes through this surface are therefore zero.
+\item[Momentum flux:] At the rocket's surface there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible. All influxes through this surface are therefore zero.
 
   For the momentum flux $\yF$ at the nozzle we must use the general constitutive relation~\eqref{eq:convective_momflux_general}:
   \begin{equation*}
     \yF(t) = \ySt +
-    \yAs\,\yns \cdot \bigl[\yv_{\textrm{g}}(t) - \yv(t)\bigr]\,
-    \frac{\ym_{\textrm{g}}}{V_{\textrm{g}}}\,
-    \yv_{\textrm{g}}(t)
+    \yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
+    \frac{\ym_{b,\text{nozzle}}}{V_{b,\text{nozzle}}}\,
+    \yvb(t) \ ,
   \end{equation*}
-  with a more specific constitutive relation for the stress vector $\ySt$.
+  where $\ym_{b,\text{nozzle}}$ is the mass of the matter $\yN_{b,\text{nozzle}}$ in the thin control volume around the nozzle.
 
   The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is simply constant; it therefore given in the boundary conditions.
 
-  The convective momentum flux can be rewritten as follows by multiplying and dividing by $\yN_{\textrm{g}}$:
+  The convective momentum flux can be rewritten as follows by multiplying and dividing by $\yN_{b,\text{nozzle}}$:
   \begin{equation*}
     \begin{split}
-      \yAs\,\yns \cdot \bigl[\yv_{\textrm{g}}(t) - \yv(t)\bigr]\,
-      \frac{\ym_{\textrm{g}}}{V_{\textrm{g}}}\,
-      \yv_{\textrm{g}}(t)
-      &=
-      \yAs\,\yns \cdot \bigl[\yv_{\textrm{g}}(t) - \yv(t)\bigr]\,
-      \frac{\color{green}\yN_{\textrm{g}}}{V_{\textrm{g}}}\,
-      \frac{\ym_{\textrm{g}}}{\color{green}\yN_{\textrm{g}}}\,
-      \yv_{\textrm{g}}(t)
-      \\&
-      = \yJ\, \frac{\ym_{\textrm{g}}}{N_{\textrm{g}}}\, \yv_{\textrm{g}}(t)
+      &\yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
+      \frac{\ym_{b,\text{nozzle}}}{V_{b,\text{nozzle}}}\,
+      \yvb(t)
+      \\[\jot]
+      {}={}&
+      \yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
+      \underbracket[1pt]{\frac{\color{green}\yN_{b,\text{nozzle}}}{
+          V_{b,\text{nozzle}}}}_{\delta}\,
+        \underbracket[1pt]{\frac{\ymb
+          }{\color{green}\yN_{b,\text{nozzle}}}}_{\yrho}\,
+      \yvb(t)
+      \\
+      {}={}&\yJ\, \delta\,\yrho\, \yvb(t)
     \end{split}
   \end{equation*}
 
-  The total momentum flux into the rocket's control volume is therefore
+  The total momentum influx into the rocket's control volume is therefore
 \begin{equation*}
-  \yF(t) = \ySt +
-  \yJ\, \frac{\ym_{\textrm{g}}}{N_{\textrm{g}}}\, \yv_{\textrm{g}}(t)
+  \yF(t) = \ySt + \yJ\, \delta\, \yrho\, \yvb(t) \ .
 \end{equation*}
 
-  \item[Momentum supply]
-\end{description}
+\item[Momentum supply:] The rocket receives the Earth's gravitational force. For the beginning of the flight, when the rocket is still close to the Earth's we could use the simplified \autoref{def:gravity_surface}{constitutive relation} ${\yG = \ym\yg}$, with constant $g \approx \qty{9.8}{kg/N}$. More precision could be obtained using Newton's formula for gravitation. In the Saturn~V case, the first stage of the flight reached an altitude of around \qty{65000}{km} \parencites{orloff2000_e2024}, where the acceleration of free fall becomes \qty{9.6}{kg/N}. So let's use the simplified expression with constant $g$.
+
+  The reasoning is similar to the one for momentum content: we must keep track of two kinds of matter, applying the principle of extensivity. The formula we obtain is
+  \begin{equation*}
+    \label{eq:momcontent_rocket}
+    \yG = [\yma + \yrho\,\yNb(t)]\,\yg \ .
+  \end{equation*}
+ This momentum supply is not constant, because the mass changes with time.
+  \end{description}
 
 
 \subsection{Overview of the relevant equations}
@@ -10105,31 +10121,25 @@ Here is the list of balance laws and constitutive relations that apply to the pr
 \begin{equation*}
   \begin{aligned}
 \frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
-&\qquad&{\text{\footnotesize\color{midgrey}momentum balance for body $a$}}
-    \\
-\frac{\di\yPb(t)}{\dt} &= \yFba(t) + \yGb(t)
-&&{\text{\footnotesize\color{midgrey}momentum balance for body $b$}}
+&\qquad&{\text{\footnotesize\color{midgrey}momentum balance}}
     \\[\jot]
-\frac{\di\yra(t)}{\dt} &= \yva(t)
-&&{\text{\footnotesize\color{midgrey}velocity of body $a$}}
-\\    \frac{\di\yrb(t)}{\dt} &= \yvb(t)
-&&{\text{\footnotesize\color{midgrey}velocity of body $b$}}
-\\[\jot]
-    \yFba(t)  &=-\yFab(t)
-&&{\text{\footnotesize\color{midgrey}momentum balance for spring}}
-    \\[2\jot]
-    \yPa(t) &= \yma\yva(t)
-&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $a$}}
-\\        \yPb(t) &= \ymb\yvb(t)
-&&{\text{\footnotesize\color{midgrey}Newtonian momentum body $b$}}
+\frac{\di\yNb(t)}{\dt} &= \yJ
+&&{\text{\footnotesize\color{midgrey}momentum balance for matter $b$}}
     \\[\jot]
-    \yGa(t) &= -\yma\,g\,[0,1]
-&&{\text{\footnotesize\color{midgrey}momentum supply body $a$}}
-\\      \yGb(t) &= -\ymb\,g\,[0,1]
-&&{\text{\footnotesize\color{midgrey}momentum supply body $b$}}
-    \\[\jot]
-\yFab(t)  &=-k\,[\yra(t)-\yrb(t)]
-&&{\text{\footnotesize\color{midgrey}Hooke's law}}
+\frac{\di\yr(t)}{\dt} &= \yv(t)
+&&{\text{\footnotesize\color{midgrey}velocity of rocket's body}}
+\\[2\jot]
+    \yP  &= [\yma + \yrho\,\yNb(t)]\,\yv(t)
+&&{\text{\footnotesize\color{midgrey}momentum of rocket's body}}
+\\[2\jot]
+    \yJ  &= \yAs\,\yns \cdot [\yvb(t) - \yv(t)]\,\delta = \text{\footnotesize const.}
+&&{\text{\footnotesize\color{midgrey}flux of matter $b$}}
+\\[2\jot]
+\yF(t) & = \ySt + \yJ\, \delta\, \yrho\, \yvb(t)
+&&{\text{\footnotesize\color{midgrey}Momentum flux}}
+\\[2\jot]
+\yG(t) & = [\yma + \yrho\,\yNb(t)]\,\yg
+&&{\text{\footnotesize\color{midgrey}Momentum supply of rocket's body}}
   \end{aligned}
 \end{equation*}
 
