@@ -12,6 +12,7 @@
 %2.6e3 kg/s mass flow * 5 = 1.3e4 kg/s -> 1.1e4 mol/s * 5 = 6e5 mol/s
 %9753627 mol fuel
 %6.8e6 N * 5 thrust sea level = 3.4e7 N thrust sea level
+% thrust - press = 
 %4000000 N/m^2 pressure
 %vb = 2.5 km/s at start?
 % 3200 or 1600 K temp ->
@@ -33,11 +34,11 @@ v = 0;       % m/s: velocity of control volume
 
 %% Boundary conditions
 J = -6e4;  % mol/s: matter influx at nozzle
-p = 4e6;  % N/m^2: pressure at nozzle
+p = 4e4 - 1e5;  % N/m^2: pressure at nozzle
 Sigma = A * p;
 
 %% Time-iteration parameters
-t1 = 130;    % s: final time
+t1 = 150;    % s: final time
 dt = 0.001;  % s: time step
 
 %% Plotting
