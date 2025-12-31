@@ -33,7 +33,7 @@ v = 0;       % m/s: velocity of control volume
 
 %% Boundary conditions
 J = -6e4;  % mol/s: matter influx at nozzle
-p = 4e6 - 1e5;  % N/m^2: pressure at nozzle
+p = 4e6;  % N/m^2: pressure at nozzle
 Sigma = A * p;
 
 %% Time-iteration parameters
@@ -58,7 +58,7 @@ while t < t1 && N > 0 % '&&' means 'and'
 
   P = (m + rho * N) * v;
   vb = v + J / (A * delta);
-  F = Sigma + J * rho * vb - 113 * 0.35 * abs(v) * v / 2;
+  F = Sigma + J * rho * vb; % - 113 * 0.35 * abs(v) * v / 2;
   G = -(m + rho * N) * g;
 
   t = t + dt;
