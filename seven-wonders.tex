@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-30T15:58:05+0100
+%% Last-Updated: 2025-12-31T06:17:48+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -120,7 +120,7 @@ british%
 \setlist[enumerate,2]{label=(\roman*)}
 \setlist[enumerate]{label=(\alph*),leftmargin=26.44pt}
 \setlist[itemize]{leftmargin=26.44pt}% parindent is 17.62482pt
-\setlist[description]{leftmargin=26.44pt,font=\sffamily\bfseries}
+\setlist[description]{leftmargin=26.44pt}
 % old alternative:
 % \setlist[enumerate,2]{label=\alph*.}
 % \setlist[enumerate]{leftmargin=\parindent}
@@ -10010,7 +10010,9 @@ We consider a control volume bounded by two imaginary control surfaces:
 \item The other imaginary surface, represented by the \textcolor{purple}{dotted red line}, is at the rocket's nozzle. This surface is static with respect to the rocket, but there is a matter flux through it: the exhaust gases ejected from the rocket.
   % The force through this surface consists of both a stress vector, representing the \autoref{sec:momentumflux_gas}{internal pressure} of the exhaust gases, and of a convective momentum flux owing to the flux of gases through the surface.
 \end{itemize}
-For both surfaces we consider an \emph{inward} crossing direction, so that the fluxes through them are influxes. Both surfaces are moving with velocity $\yv(t)$, the rocket's velocity.
+For both surfaces we consider an \emph{inward} crossing direction, so that the fluxes through them are influxes.
+
+We associate a position vector $\yr(t)$, the altitude, with the rocket's control volume, let's say with its lowest point, at the nozzle. The control volume and its two bounding surfaces are moving with velocity $\yv(t) = \di\yr(t)/\dt$.
 
 \medskip
 
@@ -10081,7 +10083,11 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
   \end{equation*}
   where $\ym_{b,\text{nozzle}}$ is the mass of the matter $\yN_{b,\text{nozzle}}$ in the thin control volume around the nozzle.
 
-  The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} of the exhaust gases, which generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is simply constant; it therefore given in the boundary conditions.
+  The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} $p$ of the exhaust gases, exerted on the nozzle area $\yAs$; it is a positive influx of momentum:
+  \begin{equation*}
+    \abs{\ySt} = \yAs\, p \ .
+  \end{equation*}
+  The pressure $p$ generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is simply constant; it therefore given in the boundary conditions.
 
   The convective momentum flux, or \emph{thrust}, can be rewritten as follows by multiplying and dividing by $\yN_{b,\text{nozzle}}$:
   \begin{equation*}
@@ -10098,13 +10104,13 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
           }{\color{green}\yN_{b,\text{nozzle}}}}_{\yrho}\,
       \yvb(t)
       \\
-      {}={}&\yJ\, \delta\,\yrho\, \yvb(t)
+      {}={}&\yJ\, \yrho\, \yvb(t)
     \end{split}
   \end{equation*}
 
   The total momentum influx into the rocket's control volume is therefore
 \begin{equation*}
-  \yF(t) = \ySt + \yJ\, \delta\, \yrho\, \yvb(t) \ .
+  \yF(t) = \ySt + \yJ\, \yrho\, \yvb(t) \ .
 \end{equation*}
 
 \item[Momentum supply:] The rocket receives the Earth's gravitational force. For the beginning of the flight, when the rocket is still close to the Earth's we could use the simplified \autoref{def:gravity_surface}{constitutive relation} ${\yG = \ym\yg}$, with constant $g \approx \qty{9.8}{kg/N}$. More precision could be obtained using Newton's formula for gravitation. In the Saturn~V case, the first stage of the flight reached an altitude of around \qty{65000}{km} \parencites{orloff2000_e2024}, where the acceleration of free fall becomes \qty{9.6}{kg/N}. So let's use the simplified expression with constant $g$.
@@ -10121,44 +10127,53 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
 \subsection{Overview of the relevant equations}
 \label{sec:summary_equations_rocket_motion}
 
-Let's collect the balance laws and constitutive relations that apply to the present physical system. Since all vectors have the $z$-component only, we simply write this component instead of using boldface notation. Note that the normal vector to the nozzle control surface has component $+1$ because it is directed upward. All scalar products then simplify; for instance
-\begin{equation*}
-  \yns \cdot \yv = 1 \cdot v = v \ .
-\end{equation*}
-
-
+Let's collect the balance laws and constitutive relations that apply to the present physical system. Since all vectors have only a $z$-component, we simply write this component instead of using boldface notation. In particular:
 \begin{equation*}
   \begin{aligned}
-\frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
+    \yr(t) \equiv z(t) \ ,
+    \quad
+    \yns \equiv +1 \ ,
+    \quad
+    \yg \equiv -g\ ,
+    \quad
+    \ySt \equiv \yAs\,p \ ,
+    \quad
+    \yns \cdot \yv = 1 \cdot v = v \ .
+  \end{aligned}
+\end{equation*}
+Our equations become:
+\begin{equation*}
+  \begin{aligned}
+\frac{\di P(t)}{\dt} &= F(t) + G(t)
 &\qquad&{\text{\footnotesize\color{midgrey}momentum balance}}
     \\[\jot]
 \frac{\di\yNb(t)}{\dt} &= \yJ
 &&{\text{\footnotesize\color{midgrey}momentum balance for matter $b$}}
     \\[\jot]
-\frac{\di\yr(t)}{\dt} &= \yv(t)
+\frac{\di z(t)}{\dt} &= v(t)
 &&{\text{\footnotesize\color{midgrey}velocity of rocket's body}}
 \\[3\jot]
-    \yP  &= [\yma + \yrho\,\yNb(t)]\,\yv(t)
+    P(t)  &= [\yma + \yrho\,\yNb(t)]\, v(t)
 &&{\text{\footnotesize\color{midgrey}momentum of rocket's body}}
 \\[2\jot]
-    \yJ  &= \yAs\,\yns \cdot [\yvb(t) - \yv(t)]\,\delta = \text{\footnotesize const.}
+    \yJ  &= \yAs\,[v_{b}(t) - v(t)]\,\delta = \text{\footnotesize const.}
 &&{\text{\footnotesize\color{midgrey}flux of matter $b$}}
 \\[2\jot]
-\yF(t) & = \ySt + \yJ\, \delta\, \yrho\, \yvb(t)
+F(t) & = A\,p + \yJ\, \delta\, \yrho\, v_{b}(t)
 &&{\text{\footnotesize\color{midgrey}Momentum flux}}
 \\[2\jot]
-\yG(t) & = [\yma + \yrho\,\yNb(t)]\,\yg
+G(t) & = -[\yma + \yrho\,\yNb(t)]\,g
 &&{\text{\footnotesize\color{midgrey}Momentum supply of rocket's body}}
   \end{aligned}
 \end{equation*}
 The first three balances will occur in our simulation in their finite-difference approximations:
 \begin{equation*}
   \begin{aligned}
-    \yP(t+\Dt)  &\approx \yP(t) + [\yF(t) + \yG(t)]\,\Dt
+    P(t+\Dt)  &\approx P(t) + [F(t) + G(t)]\,\Dt
     \\[\jot]
     \yNb(t+\Dt)  &\approx \yNb(t) + \yJ\,\Dt
     \\[\jot]
-    \yr(t+\Dt)  &\approx \yr(t) + \yv(t)\,\Dt
+    z(t+\Dt)  &\approx z(t) + v(t)\,\Dt
 \end{aligned}
 \end{equation*}
 
