@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-31T12:07:18+0100
+%% Last-Updated: 2026-01-01T12:12:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8717,6 +8717,8 @@ These driving equations easy to identify: \enquote*{$t+\Dt$} appears in them. In
   In our case there's also one more balance, the momentum balance for the spring, but owing to the special assumptions about the spring (being massless), it simplifies to a same-time equation.
 \sidepar{\vspace{-1ex}\footnotesize{\color{green}\faIcon{eye}\faIcon{code}\enskip page~\pageref{tab:script_strategy}}}
 
+\subsection{Physical state and state variables}
+\label{sec:physical_state_variables}
 
 \paragraph{\color{red}2. Choose the \emph{state variables} for the physical system.}
 
@@ -8755,10 +8757,10 @@ The supplies $\yGa$, $\yGb$ are given as boundary conditions, so we don't need t
 
 The eight quantities above are not all independent, owing to the constitutive relations that relate some of them. For instance, if we assign the velocity $\yva$, then the momentum $\yPa$ is  determined by the constitutive relation $\yPa=\yma\yva$; and if we assign the positions $\yra$, $\yrb$, then the force $\yFab$ is determined by the constitutive relation $\yFab  =-k\,(\yra-\yrb)$.
 
-Our task now is to find a \emph{minimum} set of available quantities, from which all others can be determined via constitutive relations. As a rule of thumb, the minimum number of quantities is given by
+Our task now is to find a \emph{minimum} set of available quantities from which all others can be determined via constitutive relations. As a rule of thumb, the minimum number of quantities is given by
 \begin{equation*}
   \text{\footnotesize(number needed in driving equations)} -
-  \text{\footnotesize(number of same-time relations)}
+  \text{\footnotesize(number of same-time constitutive relations)}
 \end{equation*}
 considering all vector components. In our case the same-time relations are four, with two components each:
 \begin{equation*}
@@ -10051,9 +10053,9 @@ so its momentum is\enskip$\yrho\,\yNb(t)\,\yv(t)$\,.\enskip Note that using just
 
 \item[Matter flux] At the rocket's surface there is no flux of matter. At the nozzle there is a flux $\yJ$ of exhaust gases, matter $b$; the relevant constitutive relation is \eqn~\eqref{eq:matterflux_movingsurface}. Note that for this constitutive equation we must momentarily imagine a \emph{thin control volume around the nozzle}, and this is \emph{not} the whole control volume of the rocket!
 
-  Denote by\enskip$V_{\text{nozzle}}$\enskip the size of this thin control volume; and by $\yN_{b,\text{nozzle}}$ the amount of matter $b$, the exhaust gases, contained in it. This is not the whole amount $\yNb$ contained in the rocket:\enskip$\yN_{b,\text{nozzle}} \ne \yNb$\,. What's important in the constitutive relation is the molar density of this matter in this thin control volume, which we can denote by $\delta$:
+  Denote by\enskip$V_{\text{noz}}$\enskip the size of this thin control volume; and by $\yN_{b,\text{noz}}$ the amount of matter $b$, the exhaust gases, contained in it. This is not the whole amount $\yNb$ contained in the rocket:\enskip$\yN_{b,\text{noz}} \ne \yNb$\,. What's important in the constitutive relation is the molar density of this matter in this thin control volume, which we can denote by $\delta$:
   \begin{equation*}
-    \delta \defd \frac{\yN_{b,\text{nozzle}}}{V_{\text{nozzle}}} \ .
+    \delta \defd \frac{\yN_{b,\text{noz}}}{V_{\text{noz}}} \ .
   \end{equation*}
   This density can in principle change with time, but for simplicity we assume it is constant.
 
@@ -10067,43 +10069,45 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
     \yJ = \yAs\,\yns \cdot (\yvb - \yv)\,\delta \ .
   \end{equation*}
 
- In general the matter flux $\yJ$ can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and it can depend on other quantities such as pressure and temperature; in fact it can be controlled by the rocket's pilots. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation. % Assuming that the surface area $\yAs$ and the density of the exhaust gases $\yN_{b,\text{nozzle}}/V_{b,\text{nozzle}}$ are also constant, we find an important fact: the difference between the normal velocities of gases and rocket must be constant:
+ In general the matter flux $\yJ$ can change with time -- for instance it is zero before the engines are turned on and after the fuel is used up -- and it can depend on other quantities such as pressure and temperature; in fact it can be controlled by the rocket's pilots. For simplicity let's assume that it is constant, and therefore belongs to the boundary conditions of our simulation. % Assuming that the surface area $\yAs$ and the density of the exhaust gases $\yN_{b,\text{noz}}/V_{b,\text{noz}}$ are also constant, we find an important fact: the difference between the normal velocities of gases and rocket must be constant:
  % \begin{equation*}
  %   \yJ = \text{\footnotesize const.}\quad\implies\quad
  %   \yns \cdot \yvb(t) - \yns\cdot\yv(t) = \text{\footnotesize const.}
  % \end{equation*}
  % but note that both velocities \emph{do} depend on time. This result means that the velocity of the gases \emph{relative to the rocket} is constant.
 
-\item[Momentum flux:] At the rocket's surface there should be friction force with the air, possibly varying with time as the altitude of the rocket increases and air becomes more rarefied. For simplicity let's assume that this force is negligible. All influxes through this surface are therefore zero.
+\item[Momentum flux:] By extensivity, the total momentum flux into the control volume is given by the sum of the flux $\yF_{\text{air}}$ into the rocket's control surface, and the flux $\yF_{\text{noz}}$ at the nozzle.
 
-  For the momentum flux $\yF$ at the nozzle we must use the general constitutive relation~\eqref{eq:convective_momflux_general}, or rocket thrust equation:
+  At the rocket's surface there is force from the atmosphere, which varies with the altitude of the rocket, as air becomes more rarefied. There is also the drag force from the air, which depends on the rocket's velocity and on the altitude. For simplicity let's assume -- quite unrealistically -- that the drag force is negligible. Recall that the net force from \autoref{sec:bal_momentum_atmosphere}{atmospheric pressure} on an object is approximately zero because it acts from all sides. In the present case, however, it does not act on the nozzle surface, because there are exhaust gases there instead of air. There is therefore a net amount of force from the atmosphere, directed downward and acting on an area equal to the nozzle surface. We assume this force to be constant; it is therefore given in the boundary conditions.
+
+  For the momentum flux $\yF_{\text{noz}}$ at the nozzle we must use the general constitutive relation~\eqref{eq:convective_momflux_general}, or rocket thrust equation:
   \begin{equation*}
-    \yF(t) = \ySt +
+    \yF_{\text{noz}}(t) = \ySt +
     \yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
-    \frac{\ym_{b,\text{nozzle}}}{V_{b,\text{nozzle}}}\,
+    \frac{\ym_{b,\text{noz}}}{V_{b,\text{noz}}}\,
     \yvb(t) \ ,
   \end{equation*}
-  where $\ym_{b,\text{nozzle}}$ is the mass of the matter $\yN_{b,\text{nozzle}}$ in the thin control volume around the nozzle.
+  where $\ym_{b,\text{noz}}$ is the mass of the matter $\yN_{b,\text{noz}}$ in the thin control volume around the nozzle.
 
-  The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} $p$ of the exhaust gases, exerted on the nozzle area $\yAs$; it is a positive influx of momentum:
+  The stress vector $\ySt$ expresses the \autoref{def:internal_pressure}{internal pressure} $p$ of the exhaust gases, exerted on the nozzle area $\yAs$; it is a positive influx of momentum having magnitude
   \begin{equation*}
     \abs{\ySt} = \yAs\, p \ .
   \end{equation*}
-  The pressure $p$ generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is simply constant; it therefore given in the boundary conditions.
+  The pressure $p$ generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is constant; it is therefore given in the boundary conditions.
 
-  The convective momentum flux can be rewritten as follows by multiplying and dividing by $\yN_{b,\text{nozzle}}$:
+  The convective momentum flux can be rewritten as follows by multiplying and dividing by $\yN_{b,\text{noz}}$:
   \begin{equation*}
     \begin{split}
       &\yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
-      \frac{\ym_{b,\text{nozzle}}}{V_{b,\text{nozzle}}}\,
+      \frac{\ym_{b,\text{noz}}}{V_{b,\text{noz}}}\,
       \yvb(t)
       \\[\jot]
       {}={}&
       \yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
-      \underbracket[1pt]{\frac{\color{green}\yN_{b,\text{nozzle}}}{
-          V_{b,\text{nozzle}}}}_{\delta}\,
+      \underbracket[1pt]{\frac{\color{green}\yN_{b,\text{noz}}}{
+          V_{b,\text{noz}}}}_{\delta}\,
         \underbracket[1pt]{\frac{\ymb
-          }{\color{green}\yN_{b,\text{nozzle}}}}_{\yrho}\,
+          }{\color{green}\yN_{b,\text{noz}}}}_{\yrho}\,
       \yvb(t)
       \\
       {}={}&\yJ\, \yrho\, \yvb(t)
@@ -10112,7 +10116,11 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
 
   The total momentum influx into the rocket's control volume is therefore
 \begin{equation*}
-  \yF(t) = \ySt + \yJ\, \yrho\, \yvb(t) \ .
+  \begin{aligned}
+    \yF(t) &= \yF_{\text{air}} + \yF_{\text{noz}}
+    \\
+    &= \yF_{\text{air}} + \ySt + \yJ\, \yrho\, \yvb(t) \ .
+  \end{aligned}
 \end{equation*}
 
 \item[Momentum supply:] The rocket receives the Earth's gravitational force. For the beginning of the flight, when the rocket is still close to the Earth's we could use the simplified \autoref{def:gravity_surface}{constitutive relation} ${\yG = \ym\yg}$, with constant $g \approx \qty{9.8}{kg/N}$. More precision could be obtained using Newton's formula for gravitation. In the Saturn~V case, the first stage of the flight reached an altitude of around \qty{65000}{km} \parencites{orloff2000_e2024}, where the acceleration of free fall becomes \qty{9.6}{kg/N}. So let's use the simplified expression with constant $g$.
@@ -10161,7 +10169,7 @@ Our equations become, making all time dependencies explicit:
     \yJ  &= \yAs\,[v_{b}(t) - v(t)]\,\delta = \text{\footnotesize const.}
 &&{\text{\footnotesize\color{midgrey}flux of matter $b$}}
 \\[2\jot]
-F(t) & = A\,p + \yJ\, \yrho\, v_{b}(t)
+F(t) & = F_{\text{air}} + A\,p + \yJ\, \yrho\, v_{b}(t)
 &&{\text{\footnotesize\color{midgrey}Momentum flux}}
 \\[2\jot]
 G(t) & = -[\yma + \yrho\,\yNb(t)]\,g
@@ -10182,10 +10190,45 @@ The first three balances will occur in our simulation in their finite-difference
 \subsection{State variables}
 \label{sec:state_rocket}
 
+The next step is to find the \autoref{def:state}{state variables} to be updated at each time step of the simulation. Try first to find them by yourself:
+\begin{exercise}
+  Review \sect~\ref{sec:strategy_simulation} if necessary, and find a set of state variables from which the time-varying quantities in the time-stepping loop can be calculated at each time step.
+\end{exercise}
 
+Two natural state variables are the altitude $z$ and velocity $v$ of the rocket. From these we can time-step the altitude itself.
 
+Another natural state variable is the amount of fuel matter $\yNb$. Since the fuel matter flux $\yJ$ is constant, with this state variable we can time-step the balance of matter.
+
+From the velocity $v$ and amount of matter $\yNb$ we can also calculate the rocket's momentum $P$, by means of its constitutive relation. From the amount of matter $\yNb$ we can calculate the gravity force $G$ as well by means of its constitutive relation.
+
+What's left is the force $F$. A look at its constitutive relation shows that the only time-varying term is the velocity of the exhaust gases $v_{b}$. Do we need this quantity as a state variable? Actually not. This velocity appears the constitutive relation for the matter flux, in which all other quantities are constant except for the rocket velocity $v$, which we have counted in as a state variable. We can therefore calculate $v_{b}$ from this constitutive relation as follows:
+\begin{equation*}
+  v_{b}(t) = \frac{J}{\yAs\,\delta} + v(t) \ .
+\end{equation*}
+
+Now all quantities needed for the time step are accounted for. Our state variables are $(z, v, \yNb)$.
 
 \mynotew{To be continued}
+
+\clearpage
+\begin{table}[t]
+  \vspace{4ex}
+  \caption{Script for simplified rocket simulation}\label{tab:rocket_simplified}
+  \vspace{-4ex}
+\end{table}
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+    Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/rocket_simplified.m}{\texttt{rocket\_simplified.m}}%
+    % \\[2ex]
+    % Download Python version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_piston.py}{\texttt{idealgas\_piston.py}}%
+}%
+\lstinputlisting[style=mycode]{scripts/rocket_simplified.m}
+% \vspace{-1em}
+% \begin{center}\label{fig:idealgas_piston_zT}
+% \includegraphics[height=19em]{images/idealgas_piston_zT.pdf}%
+% \end{center}
+\clearpage
+
+
 
 
 % In order to use the balance of momentum in this application, we need a constitutive relation between the flux of matter and the flux of momentum. In the simple case in which all kinds of motions and fluxes happen only in one direction, say $z$, the relation is as follow:
