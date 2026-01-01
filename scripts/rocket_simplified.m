@@ -8,21 +8,21 @@ delta = 0.5;  % mol/m^3: fuel molar density
 A = 50;       % m^2: nozzle area
 g = 9.8;      % kg: free-fall acceleration
 
-%% Initial conditions
-t = 0;      % s: initial time
-N = 9.8e6;  % mol: amount of fuel
-z = 0;      % m: altitude of control volume
-v = 0;      % m/s: velocity of control volume
+%% Initial conditions. State: (z, v, Nb)
+t = 0;       % s: initial time
+z = 0;       % m: altitude of control volume
+v = 0;       % m/s: velocity of control volume
+Nb = 9.8e6;  % mol: amount of fuel
 
 %% Boundary conditions
-J = -6e4;           % mol/s: matter influx at nozzle
-patm = 1e5;         % N/m^2: atmospheric pressure
-p = 5e4;            % N/m^2: pressure at nozzle
+J = -6e4;          % mol/s: matter influx at nozzle
+patm = 1e5;        % N/m^2: atmospheric pressure
+p = 5e4;           % N/m^2: pressure at nozzle
 Fatm = -A * patm;  % N: force on rocket surface
-Sigma = A * p;      % N: stress tensor at nozzle
+Sigma = A * p;     % N: stress tensor at nozzle
 
 %% Time-iteration parameters
-t1 = 150;    % s: final time
+t1 = 150;     % s: final time
 dt = 0.0001;  % s: time step %@
 
 %% Plotting
@@ -39,19 +39,21 @@ xlabel('time {\it t}/s'); ylabel('{\it v} / (m/s)')
 axis('tight'); grid on; hold on %@
 
 %% Numerical time integration
-while t < t1 && N > 0 % '&&' means 'and'
-
-  P = (m + rho * N) * v;
-  vb = v + J / (A * delta);
+while t < t1 && Nb > 0 % '&&' means 'and'
+  %% constitutive relations
+  P = (m + rho * Nb) * v;
+  vb = v + J / (A * delta); % needed to calculate F
   F = Fatm + Sigma + J * rho * vb;
-  G = -(m + rho * N) * g;
+  G = -(m + rho * Nb) * g;
 
+  %% step forward in time with balance laws
   t = t + dt;
-  N = N + J * dt;
+  Nb = Nb + J * dt;
   P = P + (F + G) * dt;
   z = z + v * dt;
 
-  v = P / (m + rho * N); %@
+  %% constitutive relations: calculate state
+  v = P / (m + rho * Nb); %@
 
   %% plot
   if t > tplot

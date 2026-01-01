@@ -23,13 +23,13 @@ Fatm = -1e5 * A;     % N: force on piston by atmosphere
 Text = 273.15 + 23;  % K: temperature of environment
                      % other fluxes are zero
 
-%% Parameters for time loop
+%% Time-iteration parameters
 t1 = 2;       % s: final time
 dt = 0.0001;  % s: time step %@
 
-## Plotting
-dtplot = t1/360; # time interval between plots
-tplot = dtplot; # time for next plot
+%% Plotting
+dtplot = t1/360;  % time interval between plots
+tplot = dtplot;   % time for next plot
 figure
 subplot(2, 1, 1); plot(t, z, '.b')
 xlim([0, t1])
@@ -59,7 +59,7 @@ while t < t1
 
   %% constitutive relations: calculate state
   T = E / (C * N);
-  v = Ppis / m;  %@
+  v = Ppis / m; %@
 
   %% plot
   if t > tplot
