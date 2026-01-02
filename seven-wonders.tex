@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-02T09:32:56+0100
+%% Last-Updated: 2026-01-02T20:32:34+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10076,7 +10076,7 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
  % \end{equation*}
  % but note that both velocities \emph{do} depend on time. This result means that the velocity of the gases \emph{relative to the rocket} is constant.
 
-\item[Momentum flux:] By extensivity, the total momentum flux into the control volume is given by the sum of the flux $\yF_{\text{air}}$ into the rocket's control surface, and the flux $\yF_{\text{noz}}$ at the nozzle.
+\item[Momentum flux:] By extensivity, the total momentum flux into the control volume is given by the sum of the flux $\yF_{\text{atm}}$ into the rocket's control surface, and the flux $\yF_{\text{noz}}$ at the nozzle.
 
   At the rocket's surface there is force from the atmosphere, which varies with the altitude of the rocket, as air becomes more rarefied. There is also the drag force from the air, which depends on the rocket's velocity and on the altitude. For simplicity let's assume -- quite unrealistically -- that the drag force is negligible. Recall that the net force from \autoref{sec:bal_momentum_atmosphere}{atmospheric pressure} on an object is approximately zero because it acts from all sides. In the present case, however, it does not act on the nozzle surface, because there are exhaust gases there instead of air. There is therefore a net amount of force from the atmosphere, directed downward and acting on an area equal to the nozzle surface. We assume this force to be constant; it is therefore given in the boundary conditions.
 
@@ -10117,9 +10117,9 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
   The total momentum influx into the rocket's control volume is therefore
 \begin{equation*}
   \begin{aligned}
-    \yF(t) &= \yF_{\text{air}} + \yF_{\text{noz}}
+    \yF(t) &= \yF_{\text{atm}} + \yF_{\text{noz}}
     \\
-    &= \yF_{\text{air}} + \ySt + \yJ\, \yrho\, \yvb(t) \ .
+    &= \yF_{\text{atm}} + \ySt + \yJ\, \yrho\, \yvb(t) \ .
   \end{aligned}
 \end{equation*}
 
@@ -10137,7 +10137,7 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
 \subsection{Overview of the relevant equations}
 \label{sec:summary_equations_rocket_motion}
 
-Let's collect the balance laws and constitutive relations that apply to the present physical system. Since all vectors have only a $z$-component, we simply write this component instead of using boldface notation. In particular:
+Let's collect the balance laws and constitutive relations just discussed for the present physical system. Since all vectors have only a $z$-component, we simply write this component instead of using boldface notation. In particular:
 \begin{equation*}
   \begin{aligned}
     \yr(t) \equiv z(t) \ ,
@@ -10169,7 +10169,7 @@ Our equations become, making all time dependencies explicit:
     \yJ  &= \yAs\,[v_{b}(t) - v(t)]\,\delta = \text{\footnotesize const.}
 &&{\text{\footnotesize\color{midgrey}flux of matter $b$}}
 \\[2\jot]
-F(t) & = F_{\text{air}} + A\,p + \yJ\, \yrho\, v_{b}(t)
+F(t) & = F_{\text{atm}} + A\,p + \yJ\, \yrho\, v_{b}(t)
 &&{\text{\footnotesize\color{midgrey}Momentum flux}}
 \\[2\jot]
 G(t) & = -[\yma + \yrho\,\yNb(t)]\,g
@@ -10177,7 +10177,7 @@ G(t) & = -[\yma + \yrho\,\yNb(t)]\,g
   \end{aligned}
 \end{equation*}
 The first three balances will occur in our simulation in their finite-difference approximations:
-\begin{equation*}
+\begin{equation}\label{eq:timestep_PNz_rocket}
   \begin{aligned}
     P(t+\Dt)  &\approx P(t) + [F(t) + G(t)]\,\Dt
     \\[\jot]
@@ -10185,17 +10185,17 @@ The first three balances will occur in our simulation in their finite-difference
     \\[\jot]
     z(t+\Dt)  &\approx z(t) + v(t)\,\Dt
 \end{aligned}
-\end{equation*}
+\end{equation}
 
 \subsection{State variables}
 \label{sec:state_rocket}
 
-The next step is to find the \autoref{def:state}{state variables} to be updated at each time step of the simulation. Try first to find them by yourself:
+The next step is to find the \autoref{def:state}{state variables} that can be used to repeat the time steps of the rocket's simulation. Try first to find them by yourself:
 \begin{exercise}
   Review \sect~\ref{sec:strategy_simulation} if necessary. Find a set of state variables from which the time-varying quantities in the time-stepping loop can be calculated at each time step.
 \end{exercise}
 
-Two natural state variables are the altitude $z$ and velocity $v$ of the rocket. From these we can time-step the altitude itself.
+Two obvious state variables are the altitude $z$ and velocity $v$ of the rocket. From these we can time-step the altitude itself.
 
 Another natural state variable is the amount of fuel matter $\yNb$. Since the fuel matter flux $\yJ$ is constant, with this state variable we can time-step the balance of matter.
 
@@ -10205,8 +10205,102 @@ What's left is the force $F$. A look at its constitutive relation shows that the
 \begin{equation*}
   v_{b}(t) = \frac{J}{\yAs\,\delta} + v(t) \ .
 \end{equation*}
+In the simulation, this expression can either be directly substituted in the expression for $F(t)$, which becomes
+\begin{equation*}
+  F(t) = F_{\text{atm}} + A\,p + \yJ\, \yrho\,
+  \biggl[ \frac{J}{\yAs\,\delta} + v(t)\biggr] \ ,
+\end{equation*}
+or it can be computed separately, and then the result substituted in $F(t)$. We shall follow this latter approach.
+
+\medskip
 
 Now all quantities needed for the time step are accounted for. Our state variables are $(z, v, \yNb)$.
+
+After the update~\eqref{eq:timestep_PNz_rocket} of $P$, $\yNb$, $z$, we already have the state variables $\yNb$ and $z$ for the new timestep. Only $v$ is missing, but it's easily obtained from the new values of $P$ and $\yNb$ by means of the constitutive relation for momentum:
+\begin{equation*}
+  v(t+\Dt)  = P(t+\Dt) / [\yma + \yrho\,\yNb(t+\Dt)] \ .
+\end{equation*}
+
+\medskip
+
+The body of the time-integration loop in our simulation looks therefore as follows; the dependencies between the time-dependent quantities before the time update are indicated by arrows:
+\begin{equation}\label{eq:timestep_rocket}
+  \begin{gathered}
+      z\tikzmark{za}(t) \ , \quad
+      v\tikzmark{va}(t) \ , \quad
+      Nb\tikzmark{Na}(t)
+      \\[4ex]
+  \begin{aligned}
+    P\tikzmark{Pa}(t)  &= [\yma + \yrho\,\yNb\tikzmark{Nb}(t)]\, v\tikzmark{vb}(t)
+    \\[1ex]
+    v_{b}\tikzmark{wa}(t) &= \frac{J}{\yAs\,\delta} + v\tikzmark{vc}(t)
+    \\
+    F\tikzmark{Fa}(t) & = F_{\text{atm}} + A\,p + \yJ\, \yrho\, v_{b}\tikzmark{wb}(t)
+    \\[1ex]
+    G\tikzmark{Ga}(t) & = -[\yma + \yrho\,\yNb\tikzmark{Nc}(t)]\,g
+  \end{aligned}
+  \\[4ex]
+  \begin{aligned}
+    P(t+\Dt)  &\approx P\tikzmark{Pb}(t) + [F\tikzmark{Fb}(t) + G\tikzmark{Gb}(t)]\,\Dt
+    \\[\jot]
+    \yNb(t+\Dt)  &\approx \yNb\tikzmark{Nd}(t) + \yJ\,\Dt
+    \\[\jot]
+    z(t+\Dt)  &\approx z\tikzmark{zb}(t) + v\tikzmark{vd}(t)\,\Dt
+\end{aligned}
+\\[4ex]
+v(t+\Dt)  = P(t+\Dt) / [\yma + \yrho\,\yNb(t+\Dt)]
+  \end{gathered}
+  \begin{tikzpicture}[remember picture]
+      \draw[overlay,yellow,line width=1pt, opacity=0.33, -{Stealth[length=10pt, width=5pt]}] (pic cs:za) to[out=-135,in=135]  ([shift={(0ex,1ex)}]pic cs:zb);
+\draw[overlay,red,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to[out=-90,in=90]  ([shift={(0ex,1ex)}]pic cs:vb);
+\draw[overlay,red,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to[out=-90,in=90]  ([shift={(0ex,1ex)}]pic cs:vc);
+\draw[overlay,red,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to[out=-90,in=90]  ([shift={(0ex,1ex)}]pic cs:vd);
+\draw[overlay,green,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:Na) to[out=-45,in=45]  ([shift={(0ex,1ex)}]pic cs:Nb);
+\draw[overlay,green,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:Na) to[out=-45,in=45]  ([shift={(0ex,1ex)}]pic cs:Nc);
+\draw[overlay,green,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:Na) to[out=-45,in=45]  ([shift={(0ex,1ex)}]pic cs:Nd);
+\draw[overlay,grey,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:wa) to[out=0,in=180]  ([shift={(0ex,1ex)}]pic cs:wb);
+\draw[overlay,purple,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:Pa) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:Pb);
+\draw[overlay,blue,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:Fa) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:Fb);
+\draw[overlay,cyan,line width=1pt, opacity=0.33,-{Stealth[length=10pt, width=5pt]}] (pic cs:Ga) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:Gb);
+\end{tikzpicture}%
+\end{equation}%
+
+\subsection{Constants and initial and boundary conditions}
+\label{sec:rocket_constants}
+
+In order to choose somewhat realistic values for the constants and initial and boundary conditions of our simulation, we use values available for the flight of the Saturn~V SA-506, from the \furl{https://www.nasa.gov/mission/apollo-11/}{Apollo~11} mission which brought humans onto the Moon for the first time. Here are the chosen values, together with their sources:
+\begin{equation*}
+  \label{eq:rocket_constants}
+  \begin{aligned}
+    \yma &= \qty{7.9e5}{kg}
+    &\qquad&\text{\footnotesize\color{darkgrey}rocket mass without 1st-stage fuel\enskip\autocites{orloff1996_e2024}}
+    \\\yrho &= \qty{0.22}{kg/mol}
+    &\qquad&\text{\footnotesize\color{darkgrey}molar mass of fuel\enskip\autocites[Tables~5-4, 5-5]{suttonetal1949_r2017}}
+    \\\delta &= \qty{0.5}{mol/m^{3}}
+    &\qquad&\text{\footnotesize\color{darkgrey}molar density of exhaust gases\enskip\autocites[Table~2]{oefeleinetal1993}}
+    \\\yJ &= \qty{-6e4}{mol/s}
+    &\qquad&\text{\footnotesize\color{darkgrey}matter (exhaust gases) influx at nozzle\enskip\autocites[Table~2]{oefeleinetal1993}}
+    \\\yAs &= \qty{50}{mol/m^{3}}
+    &\qquad&\text{\footnotesize\color{darkgrey}total area of nozzles\enskip\autocites[\sect\,III p.~3.7]{nasa1967_r1972}}
+    \\p &= \qty{5e4}{N/m^{2}}
+    &\qquad&\text{\footnotesize\color{darkgrey}exhaust-gas pressure\enskip\autocites[Table~2]{oefeleinetal1993}}
+    \\[1ex]
+    \yNb(\yti) &= \qty{9.8e6}{mol}
+    &\qquad&\text{\footnotesize\color{darkgrey}amount of 1st-stage fuel\enskip\autocites{orloff1996_e2024}}
+    \\
+    \ytf &= \qty{150}{s}
+    &\qquad&\text{\footnotesize\color{darkgrey}time to 1st-stage engine cutoff\enskip\autocites{orloff1996_e2024}}
+    \\[1ex]
+    g &= \qty{9.8}{N/kg}
+    &\qquad&\text{\footnotesize\color{darkgrey}free-fall acceleration}
+    \\p_{\text{atm}} &= \qty{1e5}{N/m^{2}}
+    &\qquad&\text{\footnotesize\color{darkgrey}atmospheric pressure (sea level)}
+  \end{aligned}
+\end{equation*}
+
+\medskip
+
+The script implementing our simulation is shown in table~\ref{tab:rocket_simplified}.
 
 \mynotew{To be continued}
 
