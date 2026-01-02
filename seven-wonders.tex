@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-02T20:34:59+0100
+%% Last-Updated: 2026-01-02T23:32:47+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7345,7 +7345,7 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
   The supply $\ya$ is called \textbf{reaction rate} or \textbf{activity} depending on the field, and $\ya(t)\equiv 0$ in case of conservation.
 \end{definition}
 
-Conservation of matter is a law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space. % This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
+Conservation of matter is a physical law that we intuitively take for granted and use continuously in our life. The very notion of \enquote*{object} -- including living objects -- is possible thanks to this fundamental regularity of nature: we can speak of objects because they exist for some time and we can follow them as they move in space; these are typical consequences of a conservation law.. % This is possible because the integrated flux through a small surface of the \enquote{stuff} that makes the object equals the amount that disappeared in a nearby small region: we can then say that the \enquote{stuff} has moved.
 
 % In fact even the notion of \emph{velocity} of an object is actually built from the notions of flux and of volume content, but it would make little sense if the flux didn't equal the rate of change of the volume content.
 % \begin{extra}{Velocity from flux and volume content}\label{extra:velocity_matter}
@@ -7359,6 +7359,63 @@ Conservation of matter is a law that we intuitively take for granted and use con
 %   \end{equation*}
 %   And analogously for the other two velocity components. This relation is valid as a first approximation for enough small velocities and weak gravitational fields (Newtonian approximation).
 % \end{extra}
+
+Despite our everyday acquaintance with it, this law is tricky in several respects:
+\begin{itemize}
+\item How can we quantify amounts of matter?
+\item How many kinds of matter are there?
+\item Does matter satisfy a balance law, or a conservation law instead?
+\end{itemize}
+The answer to each of these questions depends on the particular physics or engineering discipline, and also on the scale on which we observe matter. Let's examine them in turn.
+
+\section{Quantification of amounts of matter}
+\label{sec:quantify_matter}
+
+There are three ways in which amounts of matter are usually quantified: by simple counting, in terms of \enquote*{amount of substance}, and in terms of \masse.
+\begin{description}
+\item[Count.] On finer and finer observation scales and resolutions, matter appears to exist in \enquote{bundles} or entities: molecules, atoms, subatomic particles, and so on. In some disciplines these entities are therefore simply \emph{counted:} we can say for example that a control volume contains two protons, or three electrons, or 40 atoms of oxygen, 385 molecules of $\mathrm{H_{2}O}$ (water), and so on.
+
+  Quantified this way, the volume content $\yN$ is a quantity of dimension~one, with no unit (or more precisely the unit is the number~\emph{1}). The flux $\yJ$ and supply $\ya$ are quantities of dimension 1/\textdim{time} with unit \emph{inverse second}, \unit{s^{-1}}.
+
+\item[Amount of substance.] Especially in chemistry and when large amounts of matter are involved, we can count the entities of matter in multiples of a large amount of them called a \emph{mole}. The number per mole is given by the \textbf{Avogadro constant}:
+  \begin{equation}
+    \label{eq:avogadro_constant}
+    N_{\textrm{A}} \defd \qty{6.02214076e23}{mol^{-1}}\quad\text{(exactly)} \ .
+  \end{equation}
+  So one mole of protons means exactly \num{6.02214076e23} protons; one mole of $\mathrm{H_{2}O}$ means exactly \num{6.02214076e23} of $\mathrm{H_{2}O}$ molecules; and so on -- it's important to specify which entities we are quantifying.
+
+  Quantified this way, the volume content $\yN$ is a quantity of dimension \textdim{amount of substance}, with unit \emph{mole} (\unit{mol}). The flux $\yJ$ and supply $\ya$ have dimension \textdim{amount of substance}/\textdim{time} with unit \emph{mole per second}, \unit{mol/s}.
+
+  %%%**** add why useful for chemical reactions
+
+\item[Mass.] If a control volume contains matter, then it also always contains a non-zero amount of \masse. Yet, matter and \masse\ are not the same thing. In fact, two control volumes that contain exactly the \emph{same} amount of the same kind of matter -- say, \num{1000} molecules of $\mathrm{H_{2}O}$ -- usually contain \emph{different} amounts of \masse. But it's also true that in many important applications the same amount of the same kind of matter has \emph{approximately} the same amount of \masse: the difference could be beyond the 10th significant digit. For example, two control volumes, each with exactly the same number of silicon-28 atoms, could contain mass-energies of
+  \begin{equation*}
+    \qty{1.00000000000}{kg}
+    \qquad\text{vs}\qquad
+  \qty{1.00000000018}{kg} \ .
+\end{equation*}
+Both mass-energies can therefore be considered equal to \qty{1.000000}{kg} to more than six significant digits, which may be enough in many applications. Later on we shall formulate a constitutive relation based on this.
+
+For this reason an amount of matter in many disciplines is quantified in terms of \emph{amount of \masse}, with dimension \textdim{mass} and unit \emph{kilogram}, \unit{kg}. Thus we may say
+\begin{quote}
+  \enquote{this control volume contains \qty{1}{kg} of $\mathrm{H_{2}O}$ molecules}
+\end{quote}
+by which we mean
+\begin{quote}
+  \enquote{this control volume contains such an amount of $\mathrm{H_{2}O}$ molecules as to have \masse\ of \qty{1}{kg}, within less precision than 9 significant digits.}
+\end{quote}
+The approximately constant amount of \masse\ associated with a given amount of matter depends on the kind of matter itself.
+\end{description}
+
+\section{Categorization of kinds of matter}
+\label{sec:kinds_matter}
+
+
+
+
+
+
+
 
 \subsection{Balance vs conservation of matter}
 \label{sec:matter_balances}
