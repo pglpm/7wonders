@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2025-12-29T07:21:57+0100
+%% Last-Updated: 2026-01-05T10:55:07+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -585,15 +585,29 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \renewcommand*{\chapnumfont}{\normalfont\HUGE\bfseries\sffamily}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chaptitlefont}{\Huge\sffamily\bfseries\centering}
-\renewcommand{\printchapternum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
-\null\thickhrulefill\quad\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
-}}
-\renewcommand{\printchapternonum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
-\par\thickhrulefill\quad\raisebox{0pt}[\beforechapskip][0pt]{}%\resizebox{!}{\beforechapskip}{\vphantom{.}}%\quad\thickhrulefill
-}\par\vskip\midchapskip}
-\renewcommand{\afterchapternum}{%
-\par\nobreak\vskip\midchapskip%\hrule\vskip\midchapskip
-}
+% textwidth: 384.0pt
+% margin separation: 17.62482pt
+% margin width = 0.33\textwidth
+% distance from text to margin-centre: 464.98482pt
+\renewcommand{\printchapternum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+\hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
+\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%
+}}\par\nobreak\vskip\midchapskip}
+% \renewcommand{\printchapternum}{{\color{midgrey}\null\thickhrulefill}%
+% \sidepar{\color{midgrey}\centering\resizebox{!}{%
+% \beforechapskip}{\chapnumfont\thechapter%
+% }}}
+% \renewcommand{\printchapternum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
+% \null\thickhrulefill\quad\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
+% }}
+\renewcommand{\printchapternonum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+\hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
+\raisebox{0pt}[\beforechapskip][0pt]{}%
+}}\par\nobreak\vskip\midchapskip}
+% \renewcommand{\printchapternonum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
+% \par\thickhrulefill\quad\raisebox{0pt}[\beforechapskip][0pt]{}%\resizebox{!}{\beforechapskip}{\vphantom{.}}%\quad\thickhrulefill
+% }\par\vskip\midchapskip}
+\renewcommand{\afterchapternum}{}%
 \renewcommand{\afterchaptertitle}{%
 \par\vskip\afterchapskip%\hrule\nobreak\vskip\afterchapskip
 }

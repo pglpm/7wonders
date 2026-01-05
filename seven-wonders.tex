@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-04T23:45:35+0100
+%% Last-Updated: 2026-01-05T10:54:39+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -542,7 +542,9 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \setlrmargins{*}{*}{4}
 \setheadfoot{\onelineskip}{2.5\onelineskip}
 \setheaderspaces{*}{2\onelineskip}{*}
-\setmarginnotes{\parindent}{0.33\textwidth}{1em}
+\typeout{MARGINS: \the\parindent}
+\typeout{MARGINS: \the\textwidth}
+\setmarginnotes{\parindent}{0.33\textwidth}{\baselineskip}
 \checkandfixthelayout[nearest]
 %%% End layout
 %% this fixes missing white spaces
@@ -583,15 +585,29 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \renewcommand*{\chapnumfont}{\normalfont\HUGE\bfseries\sffamily}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chaptitlefont}{\Huge\sffamily\bfseries\centering}
-\renewcommand{\printchapternum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
-\null\thickhrulefill\quad\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
-}}
-\renewcommand{\printchapternonum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
-\par\thickhrulefill\quad\raisebox{0pt}[\beforechapskip][0pt]{}%\resizebox{!}{\beforechapskip}{\vphantom{.}}%\quad\thickhrulefill
-}\par\vskip\midchapskip}
-\renewcommand{\afterchapternum}{%
-\par\nobreak\vskip\midchapskip%\hrule\vskip\midchapskip
-}
+% textwidth: 384.0pt
+% margin separation: 17.62482pt
+% margin width = 0.33\textwidth
+% distance from text to margin-centre: 464.98482pt
+\renewcommand{\printchapternum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+\hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
+\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%
+}}\par\nobreak\vskip\midchapskip}
+% \renewcommand{\printchapternum}{{\color{midgrey}\null\thickhrulefill}%
+% \sidepar{\color{midgrey}\centering\resizebox{!}{%
+% \beforechapskip}{\chapnumfont\thechapter%
+% }}}
+% \renewcommand{\printchapternum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
+% \null\thickhrulefill\quad\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
+% }}
+\renewcommand{\printchapternonum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+\hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
+\raisebox{0pt}[\beforechapskip][0pt]{}%
+}}\par\nobreak\vskip\midchapskip}
+% \renewcommand{\printchapternonum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
+% \par\thickhrulefill\quad\raisebox{0pt}[\beforechapskip][0pt]{}%\resizebox{!}{\beforechapskip}{\vphantom{.}}%\quad\thickhrulefill
+% }\par\vskip\midchapskip}
+\renewcommand{\afterchapternum}{}%
 \renewcommand{\afterchaptertitle}{%
 \par\vskip\afterchapskip%\hrule\nobreak\vskip\afterchapskip
 }
@@ -7382,34 +7398,37 @@ There are three ways in which amounts of matter are usually quantified: by simpl
 
   Quantified this way, the volume content $\yN$ is a quantity of dimension~one, with no unit (or more precisely the unit is the number~\emph{1}). The flux $\yJ$ and supply $\ya$ are quantities of dimension 1/\textdim{time} with unit \emph{inverse second}, \unit{s^{-1}}.
 
-\item[Amount of substance.] Especially in chemistry and when large amounts of matter are involved, we can count the entities of matter in multiples of a large amount of them called a \emph{mole}. The number per mole is given by the \textbf{Avogadro constant}:
+\item[Amount of substance.] Especially in chemistry and when large amounts of matter are involved, we can count the entities of matter in multiples of a large amount called a \emph{mole}. The number per mole is given by the \textbf{Avogadro constant}:
   \begin{equation}
     \label{eq:avogadro_constant}
     N_{\textrm{A}} \defd \qty{6.02214076e23}{mol^{-1}}\quad\text{(exactly)} \ .
   \end{equation}
-  So one mole of protons means exactly \num{6.02214076e23} protons; one mole of $\mathrm{H_{2}O}$ means exactly \num{6.02214076e23} of $\mathrm{H_{2}O}$ molecules; and so on -- it's important to specify which entities we are quantifying.
-
+  So one mole of protons means exactly \num{6.02214076e23} protons; one mole of $\mathrm{H_{2}O}$ molecules means exactly \num{6.02214076e23} $\mathrm{H_{2}O}$ molecules; and so on.
+  \begin{warning}[Always specify the entities]
+    It's important to specify which entities we are quantifying. For example, one oxygen \emph{molecule}, chemical formula $\mathrm{O}_{2}$, is composed of two oxygen \emph{atoms}. Therefore one mole of oxygen molecules is not the same as one mole of oxygen atoms; for every mole of oxygen molecules we have two moles of atoms.
+  \end{warning}
+  
   Quantified this way, the volume content $\yN$ is a quantity of dimension \textdim{amount of substance}, with unit \emph{mole} (\unit{mol}). The flux $\yJ$ and supply $\ya$ have dimension \textdim{amount of substance}/\textdim{time} with unit \emph{mole per second}, \unit{mol/s}.
 
   %%%**** add why useful for chemical reactions
 
 \item[Mass.] If a control volume contains matter, then it also always contains a non-zero amount of \masse. Yet, \textbf{matter and \masse\ are not the same thing}. In fact, two control volumes that contain exactly the \emph{same} amount of the same kind of matter -- say, \num{1000} molecules of $\mathrm{H_{2}O}$ -- usually contain \emph{different} amounts of \masse.
 
-  But it's also true that in many important applications the same amount of the same kind of matter has \emph{approximately} the same amount of \masse: the difference could be beyond the 10th significant digit. For example, two control volumes, each with exactly the same number of silicon-28 atoms, could contain mass-energies of
+  But it's also true that in many important applications the same amount of the same kind of matter has \emph{approximately} the same amount of \masse: the difference could be beyond the 10th significant digit. For example, two control volumes, each with exactly the same number of silicon-28 atoms, could contain different mass-energies of
   \begin{equation*}
     \qty{1.00000000000}{kg}
     \qquad\text{vs}\qquad
   \qty{1.00000000018}{kg} \ .
 \end{equation*}
-Both mass-energies can therefore be considered equal to \qty{1.000000}{kg} to more than six significant digits, which may be enough in many applications. Later on we shall formulate a constitutive relation based on this.
+Both mass-energies can therefore be considered equal to \qty{1.000000}{kg} to six or seven significant digits, which is high enough precision in many applications. Later on we shall formulate a constitutive relation based on this.
 
 For this reason an amount of matter in many disciplines is quantified in terms of \emph{amount of \masse}, with dimension \textdim{mass} and unit \emph{kilogram}, \unit{kg}. Thus we may say
 \begin{quote}
   \enquote{this control volume contains \qty{1}{kg} of $\mathrm{H_{2}O}$ molecules}
 \end{quote}
-by which we mean
+by which we mean something like this:
 \begin{quote}
-  \enquote{this control volume contains such an amount of $\mathrm{H_{2}O}$ molecules as to have \masse\ of \qty{1}{kg}, within less precision than 9 significant digits.}
+  \enquote{this control volume contains such an amount of $\mathrm{H_{2}O}$ molecules as to have \masse\ of \qty{1}{kg}, within a precision of less than 9 significant digits.}
 \end{quote}
 The approximately constant amount of \masse\ associated with a given amount of matter depends on the kind of matter itself.
 \end{description}
@@ -7417,10 +7436,10 @@ The approximately constant amount of \masse\ associated with a given amount of m
 \section{Categorization of kinds of matter}
 \label{sec:kinds_matter}
 
-Also the categorization of matter into different kinds, each of which may satisfy a balance or conservation law, depends on the particular discipline, application, and scale of observation. We distinguish four main categorizations, which are obviously not mutually exclusive:
+Also the categorization of matter into different kinds, each of which may satisfy a balance or a conservation law, depends on the particular discipline, application, and scale of observation. We can distinguish four main categorizations, which are obviously not mutually exclusive:
 
 \begin{description}
-\item[High-energy particle physics.] In the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Forces/particleint.html}{Standard Model} of high-energy particle physics, which try to describe sub-nuclear scales, we generally speak of different kinds of \emph{fields}. What we call \enquote*{matter} can be taken to be the set of \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/spinc.html\#c2}{\emph{fermion}} fields. The way fermion fields are grouped together into different kinds of \enquote*{matter} is somewhat arbitrary: they could be considered as just one, or twelve, or more.
+\item[High-energy particle physics.] In the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Forces/particleint.html}{Standard Model} of high-energy particle physics, which tries to describe sub-nuclear scales, we generally speak of different kinds of \emph{fields}. What we call \enquote*{matter} can be taken to be the set of \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/spinc.html\#c2}{\emph{fermion}} fields. The way fermion fields are grouped together into different kinds of \enquote*{matter} is somewhat arbitrary: they could be considered as just one, or twelve, or more.
 
 %
 \needspace{11\baselineskip}\sidepar{\vspace{0\baselineskip}%
@@ -7428,17 +7447,17 @@ Also the categorization of matter into different kinds, each of which may satisf
 % \emph{\enquote{All these operators conserve ${B-L}$ \textins{number of baryons $B$ minus number of leptons $L$}, so in any superunified theory we expect ${B-L}$ to be conserved\textellipsis}}\sourceatright{\cites{wilczeketal1979}}%
 \emph{\enquote{The anomalies cancel if we take the difference of the baryon and lepton currents, with the resulting anomaly equations$$\de_{\mu}\bigl(\yJ^{\mu}_{B} - \yJ^{\mu}_{L}\bigr) = 0$$\textelp{} Here we see that, because of the anomaly, baryon number is in fact not conserved in the Standard Model, although $B - L$ is.%
 % \par However, the baryon-number violation due to the anomaly is unmeasurably small at low temperature.
-}}\sourceatright{\cites{donoghueetal1992_r2022}}%
+  }}\sourceatright{\cites{donoghueetal1992_r2022}}%
 }%
-  But it's possible to group them into two kinds. One kind, which describes \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/particles/quark.html}{quarks} and also protons and neutrons which are composed of quarks, is characterized by a \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/parint.html\#c2}{\emph{baryon number}}. The other, which describes \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/particles/lepton.html}{leptons} like the electron, is characterized by a \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/parint.html\#c3}{\emph{lepton number}}. These two kinds of matter satisfy a \emph{conservation law for all practical purposes}.
+But it's possible to group them into two kinds. One kind consists in \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/particles/quark.html}{quarks}, which make up protons and neutrons among other particles, and is characterized by a \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/parint.html\#c2}{\emph{baryon number}}. The other consists in \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/particles/lepton.html}{leptons}, like the electron, and is characterized by a \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/parint.html\#c3}{\emph{lepton number}}. Each of these two kinds of matter satisfies a \emph{conservation law for all practical purposes}.
 
-If we consider these two kinds of matter as just one kind, with baryonic and \emph{anti}-leptonic counting as \enquote*{positive}, and leptonic and \emph{anti}-baryonic counting as \enquote*{negative}, then this kind should be conserved even beyond the Standard Model.
+If we consider these two kinds of matter as just one kind, with baryonic and anti-leptonic counting as \enquote*{positive}, and leptonic and anti-baryonic counting as \enquote*{negative}, then this kind should be conserved even beyond the Standard Model.
 
-In any case, the theories we have for these scales are still incomplete or tentative; and they also need the use of probability theory by means of quantum theory.
+In any case, the theories we have for these scales of length and energy are still incomplete or tentative; and they also need the use of probability theory by means of quantum theory.
 
-\item[Baryons and fermions.] In applications on the scale of atoms and of their nuclei, and often in disciplines like astrophysics, we can consider matter as consisting of two kinds \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/particles/hadron.html\#c6}{\emph{baryonic}}, which comprises protons, neutrons, and their anti-particles; and leptonic, which comprises electrons and their anti-particles positrons. Either kind obeys essentially a \emph{conservation} law, even in phenomena involving \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/radact.html}{radioactivity} and nuclear \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/NucEne/fission.html}{fission} and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/NucEne/fusion.html}{fusion}.
+\item[Baryons and fermions.] In applications on the scale of atoms and of their nuclei, and often in disciplines like astrophysics, we can consider matter as consisting of two kinds: \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/particles/hadron.html\#c6}{\emph{baryonic}}, which comprises protons, neutrons, and their anti-particles; and leptonic, which comprises electrons and their anti-particles positrons. Either kind obeys essentially a \emph{conservation} law, even in phenomena involving \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/radact.html}{radioactivity} and nuclear \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/NucEne/fission.html}{fission} and \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/NucEne/fusion.html}{fusion}.
 
-  With this kind of categorization, amount of matter can be quantified by counting, or in moles, or in \masse\ terms. With one convenient feature: owing to the definition of the mole we have that \qty{1.0}{mol} of baryonic matter has a \masse\ of approximately \qty{0.0010}{kg}. That is:
+  With this kind of categorization, an amount of matter can be quantified by counting, or in moles, or in \masse\ terms. There's one convenient feature: owing to the definition of the mole, we have that \qty{1.0}{mol} of baryonic matter has a \masse\ of approximately \qty{0.0010}{kg}. That is:
   \begin{equation}
     \label{eq:kg_mol_count}
     \begin{aligned}
@@ -7453,13 +7472,13 @@ In any case, the theories we have for these scales are still incomplete or tenta
           \num{6.0e26} &\enskip\text{baryons}
 \end{aligned}
   \end{equation}
-  So if we're told that a control volume contains a \qty{2.3}{kg} amount of baryonic matter, then we know that it approximately contains \qty{2.3e3}{mol} of matter, or \num{1.4e27} baryons.
+  So if we're told that a control volume contains \qty{2.3}{kg} baryonic matter, then we know that it approximately contains \qty{2.3e3}{mol} of matter, or \num{1.4e27} baryons.
 
-%
+\needspace{4\baselineskip}%
 \marginpar{\vspace{0.5\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
 \emph{\enquote*{every quantity is referred to a unit of ``matter,'' i.e., to a unit of baryonic charge.}}\sourceatright{\cites{zeldovichetal1967_t1996}}%
 }%
-By contrast \qty{1.0}{mol} of leptons -- essentially electrons -- has a much lower \masse\ of approximately \qty{0.00000055}{kg}. For this reason in disciplines like astrophysics \enquote*{matter} is often simply identified with \enquote*{baryons}.
+By contrast, \qty{1.0}{mol} of leptons -- essentially electrons -- has a much lower \masse\ of approximately \qty{0.00000055}{kg}. For this reason in disciplines like astrophysics \enquote*{matter} is often simply identified with \enquote*{baryons}.
 
 \item[Materials, substances, elements.] In everyday phenomena that do not involve nuclear energy or radioactive decay, we often consider different kinds of matter such as wood, air, water, iron, skin, and so on. We call them different \furl{https://mse.engineering.cmu.edu/about/what-is-mse.html}{materials} or \furl{https://doi.org/10.1351/goldbook.M03949}{mixtures} or \furl{https://doi.org/10.1351/goldbook.S05746}{solutions} or \furl{https://doi.org/10.1351/goldbook.C01039}{substances}, or other terms which often have very specific meanings.
 
