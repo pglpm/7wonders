@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-05T12:22:52+0100
+%% Last-Updated: 2026-01-05T15:18:19+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7513,26 +7513,80 @@ By contrast, \qty{1.0}{mol} of leptons -- essentially electrons -- has a much lo
 
 
 
-
 \section{Constitutive relation between matter and \masse}
 \label{sec:const_matter_mass}
 
-As discussed in the previous sections, a very important constitutive relation connects the amount of matter and the amount of \masse\ in a control volume.
-
-According to our present physical knowledge, if a control volume contains an amount of matter $\yN$, then it always also contains an amount of \masse\ $\ym$.
+As discussed in the previous sections, a very important constitutive relation connects the amount of matter and the amount of \masse\ in a control volume. According to our present physical knowledge, if a control volume contains an amount of matter $\yN$, then it always also contains an amount of \masse\ $\ym$.
 The opposite is not true: a control volume can contain \masse\ but no matter.
 
 The amount of \masse\ is typically huge when measured in joules. For instance, a control volume with $\yN=\qty{1}{mol}$ of water (which occupies roughly \qty{2e-5}{m^3} in everyday conditions) has approximately $\ym = \qty{0.018}{kg}$ or \qty{1.6e15}{J} of \masse.
 
-The amount of \masse\ is different depending on whether matter is moving or not, and on its internal conditions, for instance as reflected by temperature. But in many circumstances these differences are \autoref{sec:dist_mass_energy}{so small as to be completely negligible}, say much less than \qty{0.00000001}{\percent} in the example above with water! Then the \masse\ $\ym$ is practically equal to the amount that matter has when not in motion and at low temperatures; we call this amount \textbf{rest \masse}, and is practically constant.
+The exact amount of \masse\ mainly depends on the kind of matter contained in the control volume, and to a minor degree also on the matter's temperature and flux, that is, motion, within the volume. In many circumstances the dependence on temperature and motion is so small as to be safely neglected, as we discussed in \sect~\ref{sec:quantify_matter}. So we can simply consider the amount of \masse\ at low temperature and if there was no motion; we call this amount \textbf{rest \masse}.
 %
 \begin{definition}{Mass-energy of matter}\label{def:molarmass}
-  The amount of \masse\ $\ym$ in a control volume containing an amount $\yN$ of matter, and in which electromagnetic fields are weak enough, is
+  If a control volume contains an amount $\yN$ of matter, then it also contains an amount of \masse\ $\ym$ which is to a great approximation simply proportional to $\yN$:
   \begin{equation*}
 \ym =  \yrho\yN
 \end{equation*}
 where the proportionality factor $\yrho$, called \textbf{molar mass}, depends on the kind of matter and can be taken as practically constant in many applications.
+
+\smallskip
+
+The amount of matter in the volume is often directly reported in terms of its \masse, that is, $\yrho\yN$ is reported instead of $\yN$.
 \end{definition}
+
+The molar mass of various materials can be found in published tables. It can be quickly estimated if we know:
+\begin{itemize}[nosep]
+\item the chemical composition of the material, that is, how many atoms of each chemical substance and element are in a given amount of material;
+\item the average molar mass of those chemical elements, which is reported in many periodic tables, often called \furl{https://goldbook.iupac.org/terms/view/S05907}{\emph{standard atomic weight}} or \emph{atomic mass}.
+\end{itemize}
+
+\medskip
+
+Let's see an example: what's the \masse\ of \qty{1}{mol} of air? Air is a \furl{https://www.noaa.gov/jetstream/atmosphere}{mixture of several substances}. The ones in the largest amounts are:
+\begin{itemize}[noitemsep]
+\item \furl{https://pubchem.ncbi.nlm.nih.gov/element/Nitrogen}{nitrogen}, $\mathrm{N_{2}}$, around 78\%;
+\item \furl{https://pubchem.ncbi.nlm.nih.gov/element/Oxygen}{oxygen}, $\mathrm{O_{2}}$, around 21\%;
+\item \furl{https://pubchem.ncbi.nlm.nih.gov/element/Argon}{argon}, $\mathrm{Ar}$, around 1\%;
+\end{itemize}
+Air usually also contains water vapour in amounts that can be very variable depending on the geographical location and period of the year; for simplicity let's imagine very dry conditions with no water vapour.
+
+So \qty{1}{mol} of air approximately consists of
+\begin{equation*}
+  \begin{aligned}
+    2 \times \qty{0.78}{mol} &= \qty{1.56}{mol}\enskip\text{of nitrogen atoms}
+    \\
+    2 \times \qty{0.21}{mol} &= \qty{0.42}{mol}\enskip\text{of oxygen atoms}
+    \\
+    1 \times \qty{0.01}{mol} &= \qty{0.01}{mol}\enskip\text{of argon atoms}
+  \end{aligned}
+\end{equation*}
+A look at a \furl{https://pubchem.ncbi.nlm.nih.gov/ptable/}{periodic table} shows these average molar masses for the atoms of these three elements:
+\begin{equation*}
+  \yrho_{\mathrm{N}} \approx \qty{0.014}{kg/mol},
+  \qquad
+  \yrho_{\mathrm{O}} \approx \qty{0.016}{kg/mol},
+  \qquad
+  \yrho_{\mathrm{Ar}} \approx \qty{0.040}{kg/mol}.
+\end{equation*}
+
+For air we therefore find
+\begin{equation*}
+  \begin{split}
+    \yrho_{\text{air}} &\approx (
+    1.56 \times \num{0.014} + 0.42 \times \num{0.016} + 0.01 \times \num{0.040}
+    )\:\unit{kg/mol}
+    \\
+    &\approx \qty{0.029}{kg/mol} \ ,
+  \end{split}
+\end{equation*}
+and a control volume containing \qty{1}{mol} of air (and no water vapour) approximately contains \qty{0.029}{kg} \masse.
+
+\subsection{Isotopes and average molar mass}
+\label{sec:isotopes_average_molar_mass}
+
+
+
 
 For instance, in many physical phenomena involving water we assume the constitutive relation above, with a \furl{https://webbook.nist.gov/cgi/inchi/InChI\%3D1S/H2O/h1H2}{water molar-mass constant} of approximately $\yrho_{\mathrm{H_2O}}=\qty{0.0180}{kg/mol}$. If a volume contains $\yN=\qty{20}{mol}$ of water, we usually attribute to it a \masse\ of
 \begin{equation*}
