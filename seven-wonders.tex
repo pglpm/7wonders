@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-06T10:49:03+0100
+%% Last-Updated: 2026-01-06T14:58:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7363,7 +7363,7 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
       \underbracket[0pt]{\frac{\di\yN(t)}{\dt} = \yJ(t) +
         \ya(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
-  The supply $\ya$ is called \textbf{rate of formation}, or \textbf{rate of consumption} if negative; it is also called \textbf{activity} depending on the field and application. It is identically zero, $\ya(t)\equiv 0$, in case of conservation.
+  The supply $\ya$ is called \textbf{rate of formation}, or \textbf{rate of consumption} if negative. The negative supply $-\ya$ is also called \textbf{activity} in applications involving radioactivity. The supply is identically zero, $\ya(t)\equiv 0$, in case of conservation.
 \end{definition}
 %\furl{https://doi.org/10.1351/goldbook.R05146} rate of consumption
 
@@ -7628,8 +7628,8 @@ and a control volume containing \qty{1}{mol} of air (and no water vapour) approx
 \end{exercise}
 
 
-\section{Rates of formation and stoichiometry}
-\label{sec:reaction_rates}
+\section[Constitutive relations for rates of formation: stoichiometry]{Constitutive relations for rates of formation:\newline stoichiometry}
+\label{sec:reaction_stoichiometry}
 
 If in a control volume there are different kinds of matter, then their supplies or \emph{rates of formation} satisfy particular constitutive relations. These relations express the fact that, even if different kinds of matter can appear or disappear, the chemical elements which constitute them are nevertheless conserved.
 
@@ -7642,7 +7642,7 @@ where $\mathrm{A}$, \textellipsis, $\mathrm{Z}$ stand for chemical formulae of s
 
 If no other substances appear in the control volume besides those written in the stoichiometric equation, then the corresponding reaction is called \textbf{elementary}. Chemical reactions are usually \textbf{composite}, consisting of many elementary reactions that occur simultaneously or in steps.
 
-\begin{definition}{Rate of conversion}
+\begin{definition}{Rate of conversion}\label{def:rate_conversion}
   If an \emph{elementary} reaction occurs in a control volume among some substances, say $\mathrm{A}$, $\mathrm{B}$, $\mathrm{Y}$, $\mathrm{Z}$, with stoichiometric equation
 \begin{equation*}
   a\,\mathrm{A} + b\,\mathrm{B}  \to  y\,\mathrm{Y} + z\,\mathrm{Z}
@@ -7653,7 +7653,7 @@ then the supplies of the substances satisfy the constitutive relations
 -\frac{1}{a}  \ya_{\mathrm{A}}(t) =
 -\frac{1}{b}  \ya_{\mathrm{B}}(t) =
 \frac{1}{y}  \ya_{\mathrm{Y}}(t) =
-\frac{1}{z}  \ya_{\mathrm{Z}}(t) =
+\frac{1}{z}  \ya_{\mathrm{Z}}(t) \defs
 \dot\xi(t)
 \end{equation}
 or analogous relations if more or less reactants or products are involved.
@@ -7702,6 +7702,47 @@ This reaction is not elementary, but in some situations it may be considered app
     2\,\mathrm{NO} + \mathrm{O_{2}} \to 2\,\mathrm{NO_{2}} \ .
   \end{equation*}
 \end{exercise}
+
+\section[Constitutive relations for rates of formation: reaction rates]{Constitutive relations for rates of formation:\newline reaction rates}
+\label{sec:reaction_stoichiometry}
+
+The constitutive relation explored in the previous section relates the supplies of different kinds of matter, but does not give an explicit expression for them in terms of other quantities.
+
+Finding constitutive relations between supplies and other quantities like the amount of substances, temperature, volume, forces, and so on, is the goal of \emph{chemical kinetics}. The kind of available relations and their mathematical form are extremely diverse. Here we discuss some of the simplest.
+
+One constitutive relation that applies for some elementary reactions relates the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction, to their amounts, the volume they occupy, and the temperature.
+
+\begin{definition}{Empirical rate law with Arrhenius equation}\label{def:rate_law_arrhenius}
+  Consider an approximately elementary reaction occurring in a control volume of size $V$, say with stoichiometric equation
+\begin{equation*}
+  a\,\mathrm{A} + b\,\mathrm{B}  \to  y\,\mathrm{Y} + z\,\mathrm{Z}
+\end{equation*}
+and rate of conversion
+\begin{equation*}
+  \dot\xi(t) \defd
+-\frac{1}{a}  \ya_{\mathrm{A}}(t) =
+-\frac{1}{b}  \ya_{\mathrm{B}}(t) =
+\frac{1}{y}  \ya_{\mathrm{Y}}(t) =
+\frac{1}{z}  \ya_{\mathrm{Z}}(t) \ .
+\end{equation*}
+This reaction obeys an \emph{empirical rate law} with \emph{Arrhenius equation} if the rate of conversion satisfies the equation
+\begin{equation}
+  \label{eq:empirical_rate_law}
+  \dot\xi = V \,A_{\textrm{r}}
+  \exp\biggl(-\frac{E_{\textrm{r}}}{R\,\yT}\biggr)\,
+  \biggl(\frac{\ya_{\mathrm{A}}}{V}\biggr)^{\alpha}\,
+  \biggl(\frac{\ya_{\mathrm{B}}}{V}\biggr)^{\beta}
+\end{equation}
+where $A_{\textrm{r}}$ is a constant called \textbf{pre-exponential factor}; $E_{\textrm{r}}$ is called the \textbf{activation energy} of the reaction; and the exponents $\alpha$, $\beta$ are called \textbf{partial orders}. An analogous formula holds if there are more or fewer reactants.
+
+\smallskip
+
+In this expression, the volume, supplies, temperature may depend on time $t$; the activation energy may depend on other quantities such as temperature.
+
+\smallskip
+
+This expression is only valid if the conditions are uniform throughout the control volume, which is usually the case for a small enough control volume.
+\end{definition}
 
 
 \section{Radioactive decay}
@@ -8860,7 +8901,7 @@ that can be solved analytically.
   Then express this solution in terms of the positions $\yra$ and $\yrb$.
 \end{exercise}
 
-\section[A strategy for numerical time integration. The concept of physical state]{A strategy for numerical time integration.\\The concept of physical state}
+\section[A strategy for numerical time integration. The concept of physical state]{A strategy for numerical time integration.\newline The concept of physical state}
 \label{sec:strategy_simulation}
 
 The present section is somewhat peculiar because we shall discuss two very different topics, one practical and one conceptual:
@@ -9549,7 +9590,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 
 
 \section{Beyond the no-mass simplification}
-% \section[What if the two masses are not attached? Beyond the no-mass simplification]{What if the two masses are not attached?\\Beyond the no-mass simplification}
+% \section[What if the two masses are not attached? Beyond the no-mass simplification]{What if the two masses are not attached?\newline Beyond the no-mass simplification}
 \label{sec:no_nomass}
 
 The physical phenomena that we explored in the previous sections involve two small bodies attached to the ends of a piece of material, for instance two tennis balls connected by a spring. The two bodies are assumed to always stay attached to the piece of material. So you may wonder: what if the two bodies are just touching the extremities of the material, without being \enquote{glued} to them? If we compress a spring by means of two tennis balls, these will be pushed apart, and at some point they will lose contact with the spring and continue moving. Otherwise pinball machines and other devices that rely on spring launchers wouldn't work.
@@ -10832,7 +10873,7 @@ The absence of such a separation is the origin of many interesting and useful ph
 In some situations, however, it is possible to \emph{approximately} express energy as a sum of terms that depend on particular quantities only. In these cases we can speak for instance of \enquote*{elastic energy}, \enquote*{radiation energy}, and similar expressions denoting the terms in the approximate sum.
 
 
-\section[Internal energy, kinetic energy, gravitational potential energy]{Internal energy, kinetic energy,\noprelistbreak\\ gravitational potential energy}
+\section[Internal energy, kinetic energy, gravitational potential energy]{Internal energy, kinetic energy,\newline gravitational potential energy}
 \label{sec:energy_volume_matter}
 
 If a control volume contains matter, and any electric charge or electromagnetic field is negligible, then that control volume also contains an amount of total \energym\  that can be written in a very general form.
@@ -11238,7 +11279,7 @@ What about the flux of energy across the imaginary control surface that separate
 
 
 
-\section[Summary: constitutive relations for energy in the presence of matter]{Summary: constitutive relations\noprelistbreak\\ for energy in the presence of matter}
+\section[Summary: constitutive relations for energy in the presence of matter]{Summary: constitutive relations for energy\newline in the presence of matter}
 \label{sec:summary_newton_energy}
 
 So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
@@ -11374,7 +11415,7 @@ From \eqns~\eqref{eq:transport_equations}, prove that when $\yns\cdot(\yv-\yvs)=
   Now the symmetry is complete!
 \end{extra}
 
-\section[Energy content, flux, supply depend on the coordinate system]{Energy content, flux, supply\noprelistbreak\\ depend on the coordinate system}
+\section[Energy content, flux, supply depend on the coordinate system]{Energy content, flux, supply depend on\newline the coordinate system}
 \label{sec:energy_coords}
 
 We have repeated several times that the amount of energy in a given control volume and the flux of energy through a given control surface depend on the coordinate system adopted. Because of this dependence, even the \textbf{explanations of energetic processes depend on the coordinate system}, and can be surprisingly different. This is a fact that surprises many, so let's illustrate it by means of a common and concrete example: a car accelerating on the road.
@@ -12556,7 +12597,7 @@ Using twisted vectors we don't need these arbitrary conventions and mnemonics: t
 Use whichever vector representation you prefer! % In these notes we shall use a hybrid notation, as in the side picture of p.~\pageref{fig:volumetwistedarrow}, so as to make everybody (or no one) happy.
 
 
-\section[Constitutive relations for angular momentum]{Constitutive relations for\\ angular momentum}
+\section{Constitutive relations for angular momentum}
 \label{sec:constitutive_angmomentum_standard}
 
 The peculiar capacity of the balance of angular momentum to be expressed in two different ways has tight connections with the constitutive relations for angular momentum. In fact its constitutive relations could almost be taken as \emph{definitions} of the content, flux, and supply of angular momentum. They are used in essentially all situations and theories: with matter and with electromagnetic fields, in General Relativity and in Newtonian approximation. The only exception are physical phenomena with particular kinds of materials variously called \emph{polar}, \emph{micropolar}, or \emph{with intrinsic spin}.
@@ -13647,7 +13688,7 @@ But note that the converse is possible: we can \emph{extract} a positive net amo
   An important result of this section is the inequality~\eqref{eq:engine1_heatminus}, which says that this engine cannot absorb a positive amount of heat in a cycle. Now think of when, in a cold day, you are standing still in front of a fire, or under the sun. There's no doubt that you are \emph{absorbing} a positive amount of heat, and the temperature could be constant and uniform. Why isn't this situation in contradiction with inequality~\eqref{eq:engine1_heatminus}?
 \end{exercise}
 
-\section[Two-temperature thermal engines: bounds on mechanical work]{Two-temperature thermal engines:\\ bounds on mechanical work}
+\section[Two-temperature thermal engines: bounds on mechanical work]{Two-temperature thermal engines:\newline bounds on mechanical work}
 \label{sec:heat_engine2}
 
 Let's try a different design, where one of the conditions in the previous section is dropped. The ability to operate cyclically is very convenient, so we keep it. What happens if we let heat be exchanged at different temperatures?
