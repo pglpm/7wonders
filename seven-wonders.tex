@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-06T14:58:59+0100
+%% Last-Updated: 2026-01-06T15:19:55+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7708,9 +7708,9 @@ This reaction is not elementary, but in some situations it may be considered app
 
 The constitutive relation explored in the previous section relates the supplies of different kinds of matter, but does not give an explicit expression for them in terms of other quantities.
 
-Finding constitutive relations between supplies and other quantities like the amount of substances, temperature, volume, forces, and so on, is the goal of \emph{chemical kinetics}. The kind of available relations and their mathematical form are extremely diverse. Here we discuss some of the simplest.
+Finding constitutive relations between supplies and other quantities like the volume contents of the substances, temperature, volume, forces, and so on, is the goal of \emph{chemical kinetics}. The kind of available relations and their mathematical form are extremely diverse. Here we discuss some of the simplest.
 
-One constitutive relation that applies for some elementary reactions relates the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction, to their amounts, the volume they occupy, and the temperature.
+One constitutive relation that applies for some elementary reactions relates the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction, to their volume contents, the size of the control volume, and the temperature.
 
 \begin{definition}{Empirical rate law with Arrhenius equation}\label{def:rate_law_arrhenius}
   Consider an approximately elementary reaction occurring in a control volume of size $V$, say with stoichiometric equation
@@ -7725,24 +7725,27 @@ and rate of conversion
 \frac{1}{y}  \ya_{\mathrm{Y}}(t) =
 \frac{1}{z}  \ya_{\mathrm{Z}}(t) \ .
 \end{equation*}
-This reaction obeys an \emph{empirical rate law} with \emph{Arrhenius equation} if the rate of conversion satisfies the equation
+This reaction obeys an \furl{https://doi.org/10.1351/goldbook.O04322}{\emph{empirical rate law}} with \emph{Arrhenius equation} if the rate of conversion satisfies the equation
 \begin{equation}
   \label{eq:empirical_rate_law}
-  \dot\xi = V \,A_{\textrm{r}}
+  \dot\xi = V \,A_{\textrm{r}}\,
   \exp\biggl(-\frac{E_{\textrm{r}}}{R\,\yT}\biggr)\,
-  \biggl(\frac{\ya_{\mathrm{A}}}{V}\biggr)^{\alpha}\,
-  \biggl(\frac{\ya_{\mathrm{B}}}{V}\biggr)^{\beta}
+  \biggl(\frac{\yN_{\mathrm{A}}}{V}\biggr)^{\alpha}\,
+  \biggl(\frac{\yN_{\mathrm{B}}}{V}\biggr)^{\beta}
 \end{equation}
-where $A_{\textrm{r}}$ is a constant called \textbf{pre-exponential factor}; $E_{\textrm{r}}$ is called the \textbf{activation energy} of the reaction; and the exponents $\alpha$, $\beta$ are called \textbf{partial orders}. An analogous formula holds if there are more or fewer reactants.
+where $A_{\textrm{r}}$ is a constant called \textbf{pre-exponential factor}; $E_{\textrm{r}}$ is called the \textbf{activation energy} of the reaction; the exponents $\alpha$, $\beta$ are called \textbf{partial orders}; and $R$ is the \furl{https://www.physics.nist.gov/cgi-bin/cuu/Value?eqr|search_for=molar+gas}{\textbf{molar gas constant}},
+\begin{equation*}
+R \approx  \qty{8.314462618}{J/(mol\,K)} \ .
+\end{equation*}
+An analogous formula holds if there are more or fewer reactants.
 
 \smallskip
 
-In this expression, the volume, supplies, temperature may depend on time $t$; the activation energy may depend on other quantities such as temperature.
-
-\smallskip
-
-This expression is only valid if the conditions are uniform throughout the control volume, which is usually the case for a small enough control volume.
+In this expression, the volume, volume contents, temperature may depend on time $t$; the activation energy may depend on other quantities such as temperature. This expression is only valid if the conditions are uniform throughout the control volume, which is usually the case for a small enough control volume.
 \end{definition}
+\begin{warning}[Partial orders need not be related to stoichiometric numbers]
+The partial orders $\alpha$, $\beta$ of the rate law~\eqref{eq:empirical_rate_law} are in principle unrelated to the stoichiometric numbers $a$, $b$ of the stoichiometric equation. In some situations they are equal, in others not.
+\end{warning}
 
 
 \section{Radioactive decay}
