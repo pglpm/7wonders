@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-06T07:36:34+0100
+%% Last-Updated: 2026-01-06T10:49:03+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7357,7 +7357,8 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
     \underbracket[0pt]{\yN(\ytf) =
       \yN(\yti) +
       \int_{\yti}^{\ytf}\!\!\yJ(t)\dt  +
-      \int_{\yti}^{\ytf}\!\!\ya(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \int_{\yti}^{\ytf}\!\!\ya(t)\dt
+    }_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yN(t)}{\dt} = \yJ(t) +
         \ya(t)}_{\mathclap{\text{\color{grey}differential expression}}}
@@ -7637,7 +7638,7 @@ The disappearance and appearance of different kinds of matter in a control volum
 \begin{equation*}
   a\,\mathrm{A} + b\,\mathrm{B}  \to  y\,\mathrm{Y} + z\,\mathrm{Z}
 \end{equation*}
-where $\mathrm{A}$, \textellipsis, $\mathrm{Z}$ stand for chemical formulae of some substances; and $a$, \textellipsis, $z$ for numeric coefficients called \textbf{stoichiometric numbers}. The substances on the left are called \textbf{reactants} and those on the right \textbf{products}. This equation expresses the fact that for every amount $a$ of substance $\mathrm{A}$ that disappears, also an amount $b$ of $\mathrm{B}$ disappears, and amounts $y$, $z$ of substances $\mathrm{Y}$, $\mathrm{Z}$ appear. A chemical reaction may even involve just one reactant and one product, or more than two.
+where $\mathrm{A}$, \textellipsis, $\mathrm{Z}$ stand for chemical formulae of some substances; and $a$, \textellipsis, $z$ for numeric coefficients. The substances on the left are called \textbf{reactants} and those on the right \textbf{products}. The coefficients $-a$, $-b$, $y$, $z$, with negative sign for the reactants, are called \textbf{stoichiometric numbers}. This equation expresses the fact that for every amount $a$ of substance $\mathrm{A}$ that disappears, also an amount $b$ of $\mathrm{B}$ disappears (hence the negative sign for their stoichiometric numbers), and amounts $y$, $z$ of substances $\mathrm{Y}$, $\mathrm{Z}$ appear. A chemical reaction may even involve just one reactant and one product, or more than two.
 
 If no other substances appear in the control volume besides those written in the stoichiometric equation, then the corresponding reaction is called \textbf{elementary}. Chemical reactions are usually \textbf{composite}, consisting of many elementary reactions that occur simultaneously or in steps.
 
@@ -7649,15 +7650,58 @@ If no other substances appear in the control volume besides those written in the
 then the supplies of the substances satisfy the constitutive relations
 \begin{equation}
   \label{eq:rate_conversion}
--\frac{1}{a}  \ya_{\mathrm{A}} =
--\frac{1}{b}  \ya_{\mathrm{B}} =
-\frac{1}{y}  \ya_{\mathrm{Y}} =
-\frac{1}{z}  \ya_{\mathrm{Z}}
+-\frac{1}{a}  \ya_{\mathrm{A}}(t) =
+-\frac{1}{b}  \ya_{\mathrm{B}}(t) =
+\frac{1}{y}  \ya_{\mathrm{Y}}(t) =
+\frac{1}{z}  \ya_{\mathrm{Z}}(t) =
+\dot\xi(t)
 \end{equation}
 or analogous relations if more or less reactants or products are involved.
 Note the negative sign for the reactants.
+
+\smallskip
+
+The quantity $\dot\xi(t)$ is called the \textbf{rate of conversion} for the elementary reaction, and depends on other quantities such as temperature, the contents of the substances, the volume, momentum fluxes, and others.
+
+\smallskip
+
+This constitutive relation can also be written with the time-integrated supplies:
+\begin{equation}
+  \label{eq:rate_conversion_integr}
+  -\frac{1}{a}  \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{A}}(t)\dt =
+  \dotso =
+\frac{1}{z}  \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{Z}}(t)\dt =
+\int_{\yti}^{\ytf}\!\!\dot\xi(t)\dt
+\end{equation}
+and the quantity $\int_{\yti}^{\ytf}\!\!\dot\xi(t)\dt$ is called the \textbf{extent of reaction}.
 \end{definition}
 
+Let's see a simple example of this constitutive relation. Take the elementary reaction where \furl{https://pubchem.ncbi.nlm.nih.gov/compound/Nitrogen-dioxide}{nitrogen dioxide} $\mathrm{NO_{2}}$ converts into \furl{https://pubchem.ncbi.nlm.nih.gov/compound/25352}{dinitrogen tetroxide} $\mathrm{N_{2}O_{4}}$:
+\begin{equation*}
+  2\, \mathrm{NO_{2}} \to \mathrm{N_{2}O_{4}} \ .
+\end{equation*}
+This reaction has only one reactant, $\mathrm{NO_{2}}$, with stoichiometric number \num{-2}; and only one product, $\mathrm{N_{2}O_{4}}$, with stoichiometric number \num{+1}. Their supplies then satisfy the constitutive relation
+\begin{equation*}
+  -\frac{1}{2}\,  \ya_{\mathrm{NO_{2}}}(t) =
+  \ya_{\mathrm{N_{2}O_{4}}}(t) \ .
+\end{equation*}
+
+As another example take the reaction between hydrogen and \furl{https://pubchem.ncbi.nlm.nih.gov/element/bromine}{bromine}:
+\begin{equation*}
+  \mathrm{H_{2}} + \mathrm{Br_{2}} \to 2\,\mathrm{H Br} \ .
+\end{equation*}
+This reaction is not elementary, but in some situations it may be considered approximately so. The supplies of the three substances satisfy the constitutive relation
+\begin{equation*}
+  -\ya_{\mathrm{H_{2}}}(t) = -\ya_{\mathrm{Br_{2}}}(t) =
+  \frac{1}{2}\,\ya_{\mathrm{H Br}}(t) \ .
+\end{equation*}
+
+\begin{exercise}
+  Write down the constitutive relation for the three supplies in the approximately elementary reaction
+  \begin{equation*}
+    2\,\mathrm{NO} + \mathrm{O_{2}} \to 2\,\mathrm{NO_{2}} \ .
+  \end{equation*}
+\end{exercise}
 
 
 \section{Radioactive decay}
