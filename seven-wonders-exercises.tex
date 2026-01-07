@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-05T18:12:07+0100
+%% Last-Updated: 2026-01-07T21:43:53+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1115,15 +1115,15 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yJ}{J}
 \newcommand*{\yn}{n}
 \newcommand*{\yj}{\xbm{j}}
-% \newcommand*{\ya}{\varAlpha}
-\newcommand*{\ya}{\mathcal{A}}
+% \newcommand*{\yR}{\varAlpha}
+\newcommand*{\yR}{\mathcal{R}}
 \newcommand*{\yrho}{\rho}
 \newcommand*{\yNu}{\yN_{\text{u}}}
 \newcommand*{\yNv}{\yN_{\text{v}}}
 \newcommand*{\yJu}{\yJ_{\text{u}}}
 \newcommand*{\yJv}{\yJ_{\text{v}}}
-\newcommand*{\yau}{\ya_{\text{u}}}
-\newcommand*{\yav}{\ya_{\text{v}}}
+\newcommand*{\yRu}{\yR_{\text{u}}}
+\newcommand*{\yRv}{\yR_{\text{v}}}
 
 %% energy
 \newcommand*{\ym}{m}% m, and q_m for mass flow
@@ -1151,7 +1151,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yhep}{\incr H^{+}}%
 \newcommand*{\yhem}{\incr H^{-}}%
 \newcommand*{\yW}{\incr W}% work
-\newcommand*{\yR}{\mathcal{R}}% for energy source
+\newcommand*{\yA}{\mathcal{A}}% for energy source
 
 %% momentum
 \newcommand*{\yP}{\bm{P}}
@@ -3100,13 +3100,13 @@ Find the physical dimensions and units of the constants $a$, $b$, $d$ in Exercis
   If water obeys a balance law, the quantities above are related by
   \begin{equation*}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\dt
+    + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
   \end{equation*}
 of which three are known. We can find the unknown:
 \begin{equation*}
   \begin{split}
     \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\dt
+    + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
     \\&= \qty{10}{mol} + \qty{0}{mol} + \qty{3}{mol}
     = \qty{13}{mol} \ .
   \end{split}
@@ -3149,18 +3149,18 @@ of which two are known. We can find the unknown by simple algebra:
   \end{itemize}
   Unknown:
   \begin{itemize}[nosep]
-  \item Time-integrated supply of neutrons $\int_{\yti}^{\ytf}\!\ya(t)\dt$.
+  \item Time-integrated supply of neutrons $\int_{\yti}^{\ytf}\!\yR(t)\dt$.
   \end{itemize}
 
   If the amount of neutrons obeys a balance law, the quantities above are related by
   \begin{equation*}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\dt
+    + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
   \end{equation*}
 of which three are known. We can find the unknown by algebra:
 \begin{equation*}
   \begin{split}
-    \int_{\yti}^{\ytf}\!\!\ya(t)\dt &=    \yN(\ytf) - \yN(\yti)
+    \int_{\yti}^{\ytf}\!\!\yR(t)\dt &=    \yN(\ytf) - \yN(\yti)
     - \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
     \\&= \qty{141.0}{mol} - \qty{140.5}{mol} - \qty{0}{mol}
     = -\qty{0.5}{mol} \ .
@@ -3391,11 +3391,11 @@ Start from script for the imaginary oscillating reaction discussed in \sects~6.2
 
 Here are some possibilities:
 \begin{itemize}
-\item $\yav(t) = \lambda_{\text{u}} \yNu(t)\,, \quad\yau(t) = -\lambda_{\text{v}} \yNv(t)$\\ with different positive values for $\lambda_{\text{u}}$ and $\lambda_{\text{v}}$.
+\item $\yRv(t) = \lambda_{\text{u}} \yNu(t)\,, \quad\yRu(t) = -\lambda_{\text{v}} \yNv(t)$\\ with different positive values for $\lambda_{\text{u}}$ and $\lambda_{\text{v}}$.
 
-\item $\yav(t) = \lambda \yNu(t)\, \yNv(t)\,, \quad\yau(t) = -\lambda \yNu(t)\, \yNv(t)$\,.
+\item $\yRv(t) = \lambda \yNu(t)\, \yNv(t)\,, \quad\yRu(t) = -\lambda \yNu(t)\, \yNv(t)$\,.
 
-\item $\yav(t) = \lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]\,, \quad\yau(t) = -\lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]$\,.
+\item $\yRv(t) = \lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]\,, \quad\yRu(t) = -\lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]$\,.
 
 \item Introduce a third substance.
 \end{itemize}
@@ -3418,14 +3418,14 @@ Let's choose a closed control surface corresponding to the tank's inner wall (if
   \begin{itemize}[nosep]
   \item Initial time $\yti$, final time $\ytf= \yti + \qty{10}{s}$.
   \item Volume content of water $\yN(\yti)=\qty{0}{mol}$ at time $\yti$.
-  \item Supply of water in control volume $\ya(t) = \qty{2.0}{mol}$, constant in time.
+  \item Supply of water in control volume $\yR(t) = \qty{2.0}{mol}$, constant in time.
   \item Influx of water $\yJ(t) = -\qty{0.1}{mol}$ (\enquote{water is leaking out}), constant in time.
   \end{itemize}
 
   Water obeys a balance law. The fluxes and supplies reported in the question are constant in time, and so they could be easily used in the differential expression of the balance law. But the problem also involves a specific lapse of time; this suggests to use the integral expression of the balance law instead:
   \begin{equation*}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\dt \ .
+    + \int_{\yti}^{\ytf}\!\!\yR(t)\dt \ .
   \end{equation*}
 We can use it to find $\yN(\ytf)$ if we have the other three terms. $\yN(\yti)$ is known, and the time-integrated flux and supply can be found by integration:
 \begin{equation*}
@@ -3438,7 +3438,7 @@ We can use it to find $\yN(\ytf)$ if we have the other three terms. $\yN(\yti)$ 
     \end{aligned}
     \\
     \begin{aligned}
-      \int_{\yti}^{\ytf}\!\!\ya(t)\dt =
+      \int_{\yti}^{\ytf}\!\!\yR(t)\dt =
       \int_{\yti}^{\ytf}\!\!\qty{2.0}{mol/s}\dt
       &= \qty{2.0}{mol/s}\cdot (\ytf-\yti)
       \\&=\qty{2.0}{mol/s} \cdot \qty{10}{s} = \qty{20}{mol} \ .
@@ -3450,7 +3450,7 @@ Using the balance law we finally find the amount of water after \qty{10}{s}:
 \begin{equation*}
   \begin{split}
     \yN(\ytf) &= \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\dt
+    + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
     \\&= \qty{0}{\mol} -\qty{1}{mol} + \qty{20}{mol}
     = \qty{19}{mol} \ .
   \end{split}
@@ -3742,7 +3742,7 @@ We choose a control volume corresponding to the space occupied by the fissile ma
   \begin{itemize}[nosep]
   \item Initial time $\yti=\qty{0}{s}$, final time $\ytf$ \emph{unknown}.
   \item Volume content of free neutrons $\yN(\yti)=\qty{1.67e19}{pt}$ at time $\yti$.
-  \item Supply of free neutrons in control volume $\ya(t) = \qty{5.00e19}{pt/s}$, constant in time.
+  \item Supply of free neutrons in control volume $\yR(t) = \qty{5.00e19}{pt/s}$, constant in time.
   \item Influx of free neutrons
     \begin{equation*}
       \begin{gathered}
@@ -3760,7 +3760,7 @@ with a minus sign because the question gives the efflux; it's convenient to intr
   Free neutrons obey a balance law. The question asks about a lapse of time, so the integral expression seems most convenient. The quantities above are therefore related by
   \begin{equation*}
     \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
-    + \int_{\yti}^{\ytf}\!\!\ya(t)\dt \ .
+    + \int_{\yti}^{\ytf}\!\!\yR(t)\dt \ .
   \end{equation*}
   The unkwnown is the integration end-time $\ytf$; all the other quantities and functions are known.
 
@@ -3769,33 +3769,33 @@ with a minus sign because the question gives the efflux; it's convenient to intr
     \begin{gathered}
       \yN(\ytf) = \yN(\yti)
       -\int_{\yti}^{\ytf} (r-at)\dt
-      + \int_{\yti}^{\ytf}\ya \dt
+      + \int_{\yti}^{\ytf}\yR \dt
       \\
       \implies\qquad
       \yN(\ytf) = \yN(\yti)
       -\Bigl(rt-\frac{1}{2}at^{2}\Bigr)\Bigr\rvert_{\yti}^{\ytf}
-      + \ya\,(\ytf-\yti)
+      + \yR\,(\ytf-\yti)
       \\
       \implies\qquad
       \yN(\ytf) = \yN(\yti)
       -\Bigl(r\ytf-\frac{1}{2}a{\ytf}^{2}\Bigr)
       +
       \Bigl(r\yti-\frac{1}{2}a{\yti}^{2}\Bigr)
-      + \ya\,(\ytf-\yti)
+      + \yR\,(\ytf-\yti)
     \end{gathered}
   \end{equation*}
-  in this last expression, $\yti$, $\yN(\yti)$, $\yN(\ytf)$, $\ya$, $r$, $a$ are known values. We can therefore solve for $\ytf$; note that we have a second-degree equation:
+  in this last expression, $\yti$, $\yN(\yti)$, $\yN(\ytf)$, $\yR$, $r$, $a$ are known values. We can therefore solve for $\ytf$; note that we have a second-degree equation:
   \begin{equation*}
       \frac{1}{2}a{\ytf}^{2}
-      +(\ya-r)\, r\ytf
+      +(\yR-r)\, r\ytf
       +\biggl(
       \yN(\yti) - \yN(\ytf)
       +r\yti-\frac{1}{2}a{\yti}^{2}
-      -\ya\yti
+      -\yR\yti
       \biggr)
       = \qty{0}{pt}
     \end{equation*}
-    Now we can substitute all values. Many things simplify because $\yti=\qty{0}{s}$, and $r=\ya$:
+    Now we can substitute all values. Many things simplify because $\yti=\qty{0}{s}$, and $r=\yR$:
     \begin{equation*}
       \begin{gathered}
         (\qty{0.70e12}{pt/s^{2}})\, {\ytf}^{2}

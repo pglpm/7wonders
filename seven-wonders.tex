@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-07T10:27:37+0100
+%% Last-Updated: 2026-01-07T21:41:52+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1116,15 +1116,15 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yn}{n}
 \newcommand*{\yj}{\bm{j}}
 \newcommand*{\yjr}{\yj_{\textrm{r}}}
-% \newcommand*{\ya}{\varAlpha}
-\newcommand*{\ya}{\mathcal{A}}
+% \newcommand*{\yR}{\varAlpha}
+\newcommand*{\yR}{\mathcal{R}}
 \newcommand*{\yrho}{\rho}
 \newcommand*{\yNa}{\yN_{a}}
 \newcommand*{\yNb}{\yN_{b}}
 \newcommand*{\yJa}{\yJ_{a}}
 \newcommand*{\yJb}{\yJ_{b}}
-\newcommand*{\yau}{\ya_{a}}
-\newcommand*{\yav}{\ya_{b}}
+\newcommand*{\yRu}{\yR_{a}}
+\newcommand*{\yRv}{\yR_{b}}
 
 %% energy
 \newcommand*{\ym}{m}% m, and q_m for mass flow
@@ -1153,7 +1153,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yhep}{\incr H^{+}}%
 \newcommand*{\yhem}{\incr H^{-}}%
 \newcommand*{\yW}{\incr W}% work
-\newcommand*{\yR}{\mathcal{R}}% for energy source
+\newcommand*{\yA}{\mathcal{A}}% for energy source
 
 %% momentum
 \newcommand*{\yP}{\bm{P}}
@@ -1975,7 +1975,7 @@ The most common symbols used in the present notes are listed in table~\ref{tab:s
     \\%[\jot]
     $A$ & usually: area; in some contexts: just a coefficient
     \\
-    $\ya$ & matter supply
+    $\yR$ & matter supply
     \\
     $\yBf$ & magnetic flux
     \\
@@ -2021,7 +2021,7 @@ The most common symbols used in the present notes are listed in table~\ref{tab:s
     \\
     $R$ & usually: molar gas constant; in some contexts: radius
     \\
-    $\yR$ & \energym\ supply
+    $\yA$ & \energym\ supply
     \\
     $\yr$ & coordinate-position vector
     \\
@@ -3246,7 +3246,7 @@ The amount of matter in a volume will be denoted $\yN$. Its \furl{https://www.ni
 
 \smallskip
 
-Flux of matter will be denoted $\yJ$. Supply of matter will be denoted $\ya$. Their unit is the \emph{mole per second},~\unit{mol/s}.
+Flux of matter will be denoted $\yJ$. Supply of matter will be denoted $\yR$. Their unit is the \emph{mole per second},~\unit{mol/s}.
 
 \smallskip
 
@@ -3411,7 +3411,7 @@ The \emph{chemical} \energym\ content in an ordinary AA battery is around \qty{1
 
   \smallskip
 
-  Flux of energy will be denoted $\yH$. Supply of energy will be denoted $\yR$. Their unit is the \emph{joule per second},~\unit{J/s}, also called \emph{watt},~$\unit{W} = \unit{J/s}$.
+  Flux of energy will be denoted $\yH$. Supply of energy will be denoted $\yA$. Their unit is the \emph{joule per second},~\unit{J/s}, also called \emph{watt},~$\unit{W} = \unit{J/s}$.
 
   \smallskip
 
@@ -4115,14 +4115,14 @@ The volume content, flux, and supply of the two vector quantities -- momentum an
     \textit{Quantity}&& \textit{Vol. content\enskip[unit]} & \textit{Flux\enskip[unit]} & \textit{Supply}
     \\[4ex]
     matter&& $\yN$\enskip[\unit{mol}] & $\yJ$\enskip[\unit{mol/s}]
-    & $\ya$
+    & $\yR$
     \\[3ex]
     electric charge&&$\yC$\enskip[\unit{C}] &$\yI$\enskip[\unit{C/s} \textcolor{grey}{\footnotesize or} \unit{A}] &
     \\[3ex]
     \energym&&
     \parbox[c]{5em}{$\yE$\enskip[\unit{J}]\\$\ym$\enskip[\unit{kg}]}
     & $\yH$\enskip\parbox[c]{5em}{[\unit{J/s}\;\textcolor{grey}{\footnotesize or}\;\unit{W}]\\{}[\unit{kg/s}]}
-    & $\yR$
+    & $\yA$
     \\[4ex]
     \textbf{momentum}&& $\yP$\enskip[\unit{N\,s}] & $\yF$\enskip[\unit{N}]  & $\yG$
     \\[3ex]
@@ -5137,9 +5137,9 @@ An analogous discussion can be made about the supply of a quantity in a control 
 The net amount of quantity created in a a control volume, between times $\yti$ and $\ytf$, is called the \textbf{time-integrated supply} and is given by
   \begin{equation}
     \label{eq:total_supply_integral}
-     \int_{\yti}^{\ytf}\!\! \ya(t)\dt\ ,
+     \int_{\yti}^{\ytf}\!\! \yR(t)\dt\ ,
    \end{equation}
-   where $\ya(t)$ is the supply of the quantity at time $t$. If the integral is negative, it means that a net amount of quantity has been destroyed.
+   where $\yR(t)$ is the supply of the quantity at time $t$. If the integral is negative, it means that a net amount of quantity has been destroyed.
  \end{definition}
 
  \medskip
@@ -5380,7 +5380,7 @@ A very simple example could be a spherical surface delimiting a ball-shaped regi
 
 \medskip
 
-Now consider an extensive quantity; specifically take any one of our \autoref{sec:stuff}{primitive quantities}, except magnetic flux. For concreteness let's take some kind of \emph{matter}, but keep in mind that it could be \energym, or momentum, or any of the other six. Recall that we denote the volume content of matter by $\yN$, the flux by $\yJ$, the supply by $\ya$.
+Now consider an extensive quantity; specifically take any one of our \autoref{sec:stuff}{primitive quantities}, except magnetic flux. For concreteness let's take some kind of \emph{matter}, but keep in mind that it could be \energym, or momentum, or any of the other six. Recall that we denote the volume content of matter by $\yN$, the flux by $\yJ$, the supply by $\yR$.
 
 Make the following measurements:
 \begin{itemize}[itemsep=1ex]
@@ -5388,7 +5388,7 @@ Make the following measurements:
 
 \item $\int_{\yti}^{\ytf}\!\yJ(t)\dt$: total \emph{time-integrated \textbf{in}flux} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
 
-\item $\int_{\yti}^{\ytf}\!\ya(t)\dt$: total \emph{time-integrated supply} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
+\item $\int_{\yti}^{\ytf}\!\yR(t)\dt$: total \emph{time-integrated supply} of the quantity through the closed control surface between times $\yti$ and $\ytf$.
 
 \item $\yN(\ytf)$: total \emph{volume content} of this quantity in the control volume at time $\ytf$.
 \end{itemize}
@@ -5401,7 +5401,7 @@ Each of the three amounts above is, in this example, a scalar that can be positi
     \\[1ex]
     \int_{\yti}^{\ytf}\!\!\yJ(t)\dt = \qty{-9.7}{mol} \ ,
     \\[1ex]
-    \int_{\yti}^{\ytf}\!\!\ya(t)\dt = \qty{0}{mol} \ ,
+    \int_{\yti}^{\ytf}\!\!\yR(t)\dt = \qty{0}{mol} \ ,
     \\[1ex]
     \ytf = \qty{18}{s} \qquad \yN(\ytf) = \qty{0.8}{mol} \ .
   \end{gathered}
@@ -5620,14 +5620,14 @@ and its \emph{volume content} at time $\ytf$.
     \int_{\yti}^{\ytf}\!\!\textsf{\footnotesize supply}(t)\dt
   \end{equation}
 \end{definition}
-For example, in the case of \energym\ with volume content $\yE$, influx $\yH$, supply $\yR$, the balance law would be
+For example, in the case of \energym\ with volume content $\yE$, influx $\yH$, supply $\yA$, the balance law would be
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
   + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt \ .
+  + \int_{\yti}^{\ytf}\!\!\yA(t)\dt \ .
 \end{equation*}
 
-The meaning of a balance law is intuitive: the amount of quantity in the final control volume: $\yE(\ytf)$, must be equal to the amount in the initial control volume: $\yE(\yti)$, plus the total amount that flowed in through the surface between those times:  $\int_{\yti}^{\ytf}\!\!\yH(t)\dt$, plus the total amount that was created in the volume: $\int_{\yti}^{\ytf}\!\!\yR(t)\dt$.
+The meaning of a balance law is intuitive: the amount of quantity in the final control volume: $\yE(\ytf)$, must be equal to the amount in the initial control volume: $\yE(\yti)$, plus the total amount that flowed in through the surface between those times:  $\int_{\yti}^{\ytf}\!\!\yH(t)\dt$, plus the total amount that was created in the volume: $\int_{\yti}^{\ytf}\!\!\yA(t)\dt$.
 
 \medskip
 
@@ -5643,23 +5643,23 @@ A conservation law is powerful because it means that the supply is always known 
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 A conservation law involves only knowledge about the initial and final control volumes (represented by the \textcolor{red}{red hatched} disks), and about the closed control surface during the time lapse (curved \textcolor{red}{red} contours); but not about the control volume during the time lapse. A balance law instead involves also this additional information.%
 }%
-For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enskip$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\dt$\enskip is not zero -- so there's no conservation law -- we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enskip An extensive quantity can therefore always be said to satisfy a balance law. A balance is not trivial, however, if we have some other physical law that tells us in advance how the amount created or destroyed at each instant, $\yR(t)$, can be calculated.
+For these reasons a balance law is in some respects more trivial than a conservation law. If we measure that\enskip$\yE(\yti) - \yE(\ytf) - \int_{\yti}^{\ytf}\!\yH(t)\dt$\enskip is not zero -- so there's no conservation law -- we can always say that some amount of quantity must have been created or destroyed within the control volume between $\yti$ and $\ytf$.\enskip An extensive quantity can therefore always be said to satisfy a balance law. A balance is not trivial, however, if we have some other physical law that tells us in advance how the amount created or destroyed at each instant, $\yA(t)$, can be calculated.
 
 \begin{warning}[Supplies are very different from fluxes]
-  One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yR(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
+  One could object: \enquote{why don't you just put the flux $\yH(t)$ and the supply $\yA(t)$ together, adding the two integrals in equation~\eqref{eq:balanced}? Wouldn't you get
   \begin{equation*}
-    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\bigl[\yH(t)+\yR(t)\bigr]\dt = 0
+    \yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\bigl[\yH(t)+\yA(t)\bigr]\dt = 0
   \end{equation*}
   which looks like a conservation law?}
 
 \medskip
 
-Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the supply $\yR$, instead, involves what's happening \emph{within the control volume}. A conservation law does \emph{not} require us to know what's happening within the control volumes, except at the initial and final time.
+Unfortunately the mathematical expression above wouldn't be a conservation law, despite its appearance. The point is this: the flux $\yH$ involves only what's happening \emph{on the control surface}; the supply $\yA$, instead, involves what's happening \emph{within the control volume}. A conservation law does \emph{not} require us to know what's happening within the control volumes, except at the initial and final time.
 
 \smallskip
 
 Remember, moreover, that \autoref{def:symmetryflux}{fluxes always satisfy a symmetry principle}, but \emph{supplies in general do not satisfy any analogous symmetry principle}.
-% Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yR(t)\dt$ is not an integrated flux.
+% Said otherwise, the integral $\int_{\yti}^{\ytf}\!\!\yA(t)\dt$ is not an integrated flux.
 \end{warning}
 
 
@@ -5667,7 +5667,7 @@ Remember, moreover, that \autoref{def:symmetryflux}{fluxes always satisfy a symm
 % \begin{itemize}
 % \item If we know the amount of quantity within the surface at $\yti$, the amount that flowed in through the surface between $\yti$ and $\ytf$, and the amount that was created within the surface between $\yti$ and $\ytf$, then we can predict the amount within the surface at $\ytf$:
 %   \begin{equation*}
-%     \yE(\ytf) = \yE(\yti) + \yH + \yR \ .
+%     \yE(\ytf) = \yE(\yti) + \yH + \yA \ .
 %   \end{equation*}
 % \end{itemize}
 % And similarly as in the other examples for a conservation law. You see that in order to use a balance we need an extra piece of information.
@@ -5993,7 +5993,7 @@ A balance law such as
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
   + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
+  + \int_{\yti}^{\ytf}\!\!\yA(t)\dt
 \end{equation*}
 or a conservation law such as
 \begin{equation*}
@@ -6031,16 +6031,16 @@ Then the integrated flux can be approximated by
 \end{equation*}
 that is, the flux at time $t$ multiplied by the time lapse. The reason for this approximation is that the flux $\yH$ is approximately constant during the short time lapse $\Dt$, and equal to its initial value at time $t$. Similarly for the supply:
 \begin{equation*}
-  \int_{t}^{t+\Dt}\!\!\yR(t)\dt \approx \yR(t)\, \Dt \ .
+  \int_{t}^{t+\Dt}\!\!\yA(t)\dt \approx \yA(t)\, \Dt \ .
 \end{equation*}
 
 The balance law above can then be approximated as follows:
 \begin{equation*}
-  \yE(t+\Dt) \approx \yE(t) + [\yH(t) + \yR(t)]\, \Dt \ .
+  \yE(t+\Dt) \approx \yE(t) + [\yH(t) + \yA(t)]\, \Dt \ .
 \end{equation*}
 Now move the term $\yE(t)$ to the left side, and divide the whole expression by $\Dt$:
 \begin{equation*}
-  \frac{\yE(t+\Dt) - \yE(t)}{\Dt} \approx \yH(t) + \yR(t) \ .
+  \frac{\yE(t+\Dt) - \yE(t)}{\Dt} \approx \yH(t) + \yA(t) \ .
 \end{equation*}
 
 
@@ -6068,9 +6068,9 @@ For instance, the balance and conservation laws written above can be re-expresse
     \begin{gathered}
   \yE(\ytf) = \yE(\yti)
   + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
+  + \int_{\yti}^{\ytf}\!\!\yA(t)\dt
   \qquad\text{\color{grey}or}\qquad
-      \frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)
+      \frac{\di\yE(t)}{\dt} = \yH(t) + \yA(t)
       \\[\jot]
       \yN(\ytf) = \yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt
   \qquad\text{\color{grey}or}\qquad
@@ -6236,13 +6236,13 @@ It is therefore important and useful to learn these universal balances, no matte
 The seven balances can be expressed very concisely if we use the language of \furl{http://encyclopediaofmath.org/index.php?title=Differential_form}{\emph{differential forms}}. These are geometric objects that associate a number to any curve, surface, or volume of our choice. % In terms of differential forms, even the difference between the \enquote*{integral} and \enquote*{differential} expressions of the balance laws disappear.
 The balances for matter, momentum, energy, angular momentum, electric charge, magnetic flux, entropy then take on these very concise expressions:
 \begin{equation*}
-  \di\yN=\ya
+  \di\yN=\yR
   \quad
   \di\yC=\yI
   \quad
   \di\yBf=-\yEv
   \quad
-  \di\yE=\yR
+  \di\yE=\yA
   \quad
   \di\yP=\yG
   \quad
@@ -6264,9 +6264,9 @@ If you want to learn more about differential forms, take a look at the books by 
         &&&\hspace{1em}\text{\footnotesize\color{grey}integral expression}
         &&\hspace{-1em}\text{\footnotesize\color{grey}differential expression}
         \\[2\jot]
-      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt  +\int_{\yti}^{\ytf}\!\!\ya(t)\dt
+      \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}matter}}&&\yN(\ytf) &=\yN(\yti) + \int_{\yti}^{\ytf}\!\!\yJ(t)\dt  +\int_{\yti}^{\ytf}\!\!\yR(t)\dt
       &\quad
-      \frac{\di\yN(t)}{\dt} &= \yJ(t)  +\ya(t)
+      \frac{\di\yN(t)}{\dt} &= \yJ(t)  +\yR(t)
       \\[2\jot]
 \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering electric\\charge}}}&&\yC(\ytf) &= \yC(\yti) + \int_{\yti}^{\ytf}\!\!\yI(t)\dt
       &\quad
@@ -6280,9 +6280,9 @@ If you want to learn more about differential forms, take a look at the books by 
       &\quad
       \frac{\di\yP(t)}{\dt} &= \yF(t) + \yG(t)
       \\[2\jot]
-\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}energy}}&&\yE(\ytf) &= \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
+\rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}energy}}&&\yE(\ytf) &= \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yA(t)\dt
       &\quad
-      \frac{\di\yE(t)}{\dt} &= \yH(t) + \yR(t)
+      \frac{\di\yE(t)}{\dt} &= \yH(t) + \yA(t)
       \\[2\jot]
 \rotatebox[origin=c]{90}{\text{\footnotesize\color{midgrey}\parbox[c][][c]{5em}{\centering angular\\momentum}}}&&\yL(\ytf) &= \yL(\yti) + \int_{\yti}^{\ytf}\!\!\yM(t)\dt + \int_{\yti}^{\ytf}\!\!\yTo(t)\dt
       &\quad
@@ -6339,9 +6339,9 @@ From their formulation and from the examples, you noticed that each balance law 
 \begin{equation*}
   \yE(\ytf) = \yE(\yti)
   + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
-  + \int_{\yti}^{\ytf}\!\!\yR(t)\dt
+  + \int_{\yti}^{\ytf}\!\!\yA(t)\dt
 \end{equation*}
-connects the volume contents $\yE$ \emph{of energy}, the flux $\yH$ \emph{of energy}, the supply $\yR$ \emph{of energy}. It does not involve, say, the volume content $\yN$ of matter, or the flux $\yF$ of momentum.
+connects the volume contents $\yE$ \emph{of energy}, the flux $\yH$ \emph{of energy}, the supply $\yA$ \emph{of energy}. It does not involve, say, the volume content $\yN$ of matter, or the flux $\yF$ of momentum.
 
 But we know that there must also exist connections among the amounts of \emph{different} quantities. This fact is implicit in many expressions we use everyday, like \enquote{the pressure of air} (pressure is \emph{momentum} flux, air is \emph{matter}), or \enquote{the \emph{energy} of the battery} (the battery is made of \emph{matter}, and involves \emph{electric charge}). In previous sections we often made statements such as \enquote{the momentum is zero, because there's no matter}.
 
@@ -6703,28 +6703,28 @@ The combination of balance laws and constitutive relations can have amazing pred
 Suppose in a control volume we have two substances called $a$ and $b$. Let's say that the control volume corresponds to a sealed container, so the net influxes $\yJa$ and $\yJb$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yNa(t)}{\dt} &= \yau(t)
+    \frac{\di\yNa(t)}{\dt} &= \yRu(t)
     &\qquad\text{or}\qquad
     \yNa(\ytf) &= \yNa(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yau(t)\dt \,,
+    \int_{\yti}^{\ytf}\!\!\yRu(t)\dt \,,
     \\
-    \frac{\di\yNb(t)}{\dt} &= \yav(t)
+    \frac{\di\yNb(t)}{\dt} &= \yRv(t)
     &\qquad\text{or}\qquad
     \yNb(\ytf) &= \yNb(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yav(t)\dt \,.
+    \int_{\yti}^{\ytf}\!\!\yRv(t)\dt \,.
   \end{aligned}
 \end{equation*}
-From the integral expression it is clear that if we know $\yNa(\yti)$ and we want to predict $\yNa(\ytf)$ at the later time, then we need to know how $\yau(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $b$ substance.
+From the integral expression it is clear that if we know $\yNa(\yti)$ and we want to predict $\yNa(\ytf)$ at the later time, then we need to know how $\yRu(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $b$ substance.
 
 Now suppose that in these specific physical conditions two constitutive relations are known to be valid:
 \begin{equation*}
-  \yav(t) = \lambda \yNa(t) \,,
+  \yRv(t) = \lambda \yNa(t) \,,
   \qquad
-  \yau(t) = -\lambda \yNb(t) \,,
+  \yRu(t) = -\lambda \yNb(t) \,,
 \end{equation*}
 for some positive physical constant $\lambda$. These constitutive relations express chemical reactions. The first constitutive relation says that the supply of substance $b$ is always proportional to the volume content of substance $a$. The second relation says that the sink (negative supply) of substance $a$ is always proportional to the volume content of substance $b$. Intuitively, a large amount of $a$ favours the production of $b$, and a large amount of $b$ disfavours the production of $a$.
 
-Combine these two constitutive relations with the balance laws in their differential expression: take each $\ya$ and replace its expression in the balance laws, so that all $\ya$s disappear (we're omitting the time argument, for brevity):
+Combine these two constitutive relations with the balance laws in their differential expression: take each $\yR$ and replace its expression in the balance laws, so that all $\yR$s disappear (we're omitting the time argument, for brevity):
 \begin{equation}\label{eq:1storder_uv}
     \begin{aligned}
       \frac{\di\yNa}{\dt} &= -\lambda\yNb \,,
@@ -6761,11 +6761,11 @@ where $C$, $D$ are two constants. If we substitute this expression in the system
   \begin{aligned}
     \yNa(t) &= C\cos(\lambda t) + D\sin(\lambda t) \,,
     &\quad
-    \yau &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \,,
+    \yRu &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \,,
     \\
     \yNb(t) &= -D\cos(\lambda t) + C\sin(\lambda t) \,,
     &\quad
-    \yav &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \,.
+    \yRv &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \,.
   \end{aligned}
 \end{equation}
 The two constants $C$, $D$ can be found if we know $\yNa(\yti)$ and $\yNb(\yti)$ at the initial time $\yti$.
@@ -6776,7 +6776,7 @@ Let's summarize what all this means. If we know:
 \begin{itemize}
 \item that $\yNa$ and $\yNb$ satisfy balance laws,
 \item that the net influxes are zero,
-\item that the constitutive relations $\yav = \lambda \yNa$ and $\yau = -\lambda \yNb$ are valid,
+\item that the constitutive relations $\yRv = \lambda \yNa$ and $\yRu = -\lambda \yNb$ are valid,
 \item the values $\yNa(\yti)$, $\yNb(\yti)$ at time $\yti$,
 \end{itemize}
 then we can predict the values of the volume contents and of the supplies \emph{at all times}, or at least all times at which the conditions above are true!
@@ -6784,7 +6784,7 @@ then we can predict the values of the volume contents and of the supplies \emph{
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item Find the final solutions~\eqref{eq:solution_N_A}, by substituting the expression~\eqref{eq:solution_Nu} in the equations~\eqref{eq:1storder_uv} to find $\yNb(t)$, and then finding the supplies $\ya$ from the constitutive relations.
+  \item Find the final solutions~\eqref{eq:solution_N_A}, by substituting the expression~\eqref{eq:solution_Nu} in the equations~\eqref{eq:1storder_uv} to find $\yNb(t)$, and then finding the supplies $\yR$ from the constitutive relations.
 \item What are physical dimensions of $\lambda$?
 \item Find the concrete numerical expression of the solution~\eqref{eq:solution_N_A} in the case where
     \begin{equation*}
@@ -6813,9 +6813,9 @@ An analytical formula is a combination of \furl{https://mathworld.wolfram.com/El
 
 Unfortunately, however, the \emph{vast majority} of combinations of balance laws and constitutive relations lead to time-dependencies that \emph{cannot be expressed by analytical formulae}. For instance, if for the oscillating reaction we had to use constitutive relations such as
 \begin{equation*}
-  \yav(t) = \lambda \sin[\yNa(t)/\unit{mol}] \,,
+  \yRv(t) = \lambda \sin[\yNa(t)/\unit{mol}] \,,
   \qquad
-  \yau(t) = -\lambda \cos[\yNb(t)/\unit{mol}] \,,
+  \yRu(t) = -\lambda \cos[\yNb(t)/\unit{mol}] \,,
 \end{equation*}
 (with a new $\lambda$ having different physical dimensions), then an analytical solution is hardly available. In these cases we can't simply plug in the time $t$ and quickly calculate what the result is. How can we predict the physical behaviour then?
 
@@ -6829,13 +6829,13 @@ Numerical time integration is essential for present-day engineering and physical
 
 Recall again the integral and differential expressions of a balance law. In the following discussion we shall use the symbols for energy, but the reasoning is valid for any other quantity:
 \begin{equation*}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yA(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
-  % \frac{\di\yE(t)}{\dt} - \yH(t) = \yR(t)
+      \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yA(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+  % \frac{\di\yE(t)}{\dt} - \yH(t) = \yA(t)
 \end{equation*}
-This is a conservation law if $\yR(t)=0$ in all circumstances.
+This is a conservation law if $\yA(t)=0$ in all circumstances.
 
 From either of these expressions we can find an approximate mathematical procedure to make predictions about a short instant of time ahead. Let's see how to do this from the integral expression.
 
@@ -6843,10 +6843,10 @@ Suppose that the lapse of time $\Dt$ between $\yti$ and $\ytf$,
 \begin{equation*}
   \Dt = \ytf - \yti
 \end{equation*}
-is extremely short. So short that the flux $\yH(t)$ and the supply $\yR(t)$ don't change appreciably during this time lapse. We can take their values as approximately constant in time, equal to their initial values:
+is extremely short. So short that the flux $\yH(t)$ and the supply $\yA(t)$ don't change appreciably during this time lapse. We can take their values as approximately constant in time, equal to their initial values:
 \begin{equation*}
   \yH(t) \approx \yH(\yti) \qquad
-  \yR(t) \approx \yR(\yti) \qquad\text{for all $t$ between $\yti$ and $\ytf$} \ .
+  \yA(t) \approx \yA(\yti) \qquad\text{for all $t$ between $\yti$ and $\ytf$} \ .
 \end{equation*}
 If they do change appreciably, then we take an even shorter $\Dt$.
 
@@ -6860,36 +6860,36 @@ Recall that $$\textstyle\int_{a}^{b}\!\!\text{const}\di x = \text{const}\cdot(b-
     \int_{\yti}^{\ytf}\!\!\yH(t)\dt &\approx
 \int_{\yti}^{\ytf}\!\!\yH(\yti)\dt =
     \yH(\yti)\,(\ytf-\yti) = \yH(\yti)\,\Dt\\
-    \int_{\yti}^{\ytf}\!\!\yR(t)\dt &\approx
-    \int_{\yti}^{\ytf}\!\!\yR(\yti)\dt =
-    \yR(\yti)\,(\ytf-\yti) = \yR(\yti)\,\Dt
+    \int_{\yti}^{\ytf}\!\!\yA(t)\dt &\approx
+    \int_{\yti}^{\ytf}\!\!\yA(\yti)\dt =
+    \yA(\yti)\,(\ytf-\yti) = \yA(\yti)\,\Dt
   \end{aligned}
 \end{equation*}
 
 Now let's replace these approximations in the balance law, also taking $\ytf = \yti + \Dt$. We find:
 \begin{equation*}
-  \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\dt}} + \underbracket[0pt]{\yR(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yR(t)\dt}}
+  \underbracket[0pt]{\yE(\yti+\Dt)}_{\color{grey}\mathclap{{}=E(\ytf)}} \approx \yE(\yti) + \underbracket[0pt]{\yH(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yH(t)\dt}} + \underbracket[0pt]{\yA(\yti)\,\Dt}_{\color{grey}\mathclap{{}\approx\int_{\yti}^{\ytf}\!\!\yA(t)\dt}}
 \end{equation*}
 Factoring $\Dt$, and replacing the symbol \enquote*{$\yti$} with \enquote*{$t$} (since we don't need to distinguish initial and final time), we obtain:
 \begin{definition}{Finite-difference approximation}\label{def:finitedifference}
   \begin{equation}\label{eq:finite_diff}
-    \yE(t+\Dt)  \approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+    \yE(t+\Dt)  \approx \yE(t) + [\yH(t) + \yA(t)]\,\Dt
   \end{equation}
   is a \textbf{finite-difference approximation} of a balance law.
 \end{definition}
-This formula says that if we know the value of the volume content $\yE(t)$, the total influx $\yH(t)$, and the total supply $\yR(t)$ at time $\yti$, then we can \emph{approximately} predict the value of the volume content $\yE(\yti+\Dt)$ a short lapse $\Dt$ later. This basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}.
+This formula says that if we know the value of the volume content $\yE(t)$, the total influx $\yH(t)$, and the total supply $\yA(t)$ at time $\yti$, then we can \emph{approximately} predict the value of the volume content $\yE(\yti+\Dt)$ a short lapse $\Dt$ later. This basic idea is the same as the one behind \furl{https://encyclopediaofmath.org/wiki/Euler_method}{Euler's method}.
 
 \subsection{Example}
 
-Suppose that the total amount of energy in a given control volume at time\enskip$t=\qty{20}{s}$\enskip is\enskip$\yE(t)=\qty{500}{J}$\,.\enskip At that same time there's a net influx of\enskip$\yH(t)= \qty{-30}{J/s}$\,,\enskip and the supply is zero,\enskip$\yR(t)=\qty{0}{J/s}$\,.
+Suppose that the total amount of energy in a given control volume at time\enskip$t=\qty{20}{s}$\enskip is\enskip$\yE(t)=\qty{500}{J}$\,.\enskip At that same time there's a net influx of\enskip$\yH(t)= \qty{-30}{J/s}$\,,\enskip and the supply is zero,\enskip$\yA(t)=\qty{0}{J/s}$\,.
 
 Then the amount of energy in the control volume \qty{0.01}{s} later, at time\enskip$t+\Dt = \qty{20}{s} + \qty{0.01}{s} = \qty{20.01}{s}$\,,\enskip is approximately
 \begin{equation*}
   \begin{split}
-    \yE(t + \Dt) &\approx \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+    \yE(t + \Dt) &\approx \yE(t) + [\yH(t) + \yA(t)]\,\Dt
     \\
     \yE(\qty{20.01}{s}) &\approx \yE(\qty{20}{s})
-    + [\yH(\qty{20}{s}) + \yR(\qty{20}{s})]\cdot\qty{0.01}{s}
+    + [\yH(\qty{20}{s}) + \yA(\qty{20}{s})]\cdot\qty{0.01}{s}
     \\
     &\approx \qty{500}{J} + [\qty{-30}{J/s} + \qty{0}{J/s}]\cdot\qty{0.01}{s}
     \\
@@ -6908,7 +6908,7 @@ Then the amount of energy in the control volume \qty{0.01}{s} later, at time\ens
 
   \item Try to obtain the finite-difference approximation starting from the differential expression of the balance law instead:
     \begin{equation*}
-      \frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t) \ .
+      \frac{\di\yE(t)}{\dt} = \yH(t) + \yA(t) \ .
     \end{equation*}
 Use the fact that the derivative at a time $t$ can be approximately calculated as
     \begin{equation*}
@@ -6975,27 +6975,27 @@ The finite-difference approximation~\eqref{eq:finite_diff} can be used iterative
   % \begin{aligned}
   %   \mathcolor{blue}{\yE(t+\Dt)} &
   %   \mathrel{\underset{\mathclap{\color{blue}\displaystyle\searrow}}{\approx}}
-  %   \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+  %   \yE(t) + [\yH(t) + \yA(t)]\,\Dt
   %   \\[-\jot]
   %   \mathcolor{red}{\yE(t+2\Dt)}  &
   %   \mathrel{\underset{\mathclap{\color{red}\displaystyle\searrow}}{\approx}}
-  %   \mathcolor{blue}{\yE(t+\Dt)} + [\yH(t+\Dt) + \yR(t+\Dt)]\,\Dt
+  %   \mathcolor{blue}{\yE(t+\Dt)} + [\yH(t+\Dt) + \yA(t+\Dt)]\,\Dt
   %   \\[-\jot]
   %   \mathcolor{yellow}{\yE(t+3\Dt)}  &
   %   \mathrel{\underset{\mathclap{\color{yellow}\displaystyle\searrow}}{\approx}}
-  %   \mathcolor{red}{\yE(t+2\Dt)} + [\yH(t+2\Dt) + \yR(t+2\Dt)]\,\Dt
+  %   \mathcolor{red}{\yE(t+2\Dt)} + [\yH(t+2\Dt) + \yA(t+2\Dt)]\,\Dt
   %   \\[-\jot]
   %   &\dotso
   % \end{aligned}
   \begin{aligned}[b]
    \yE\tikzmark{Ea}(t+\Dt) &\approx
-    \yE(t) + [\yH(t) + \yR(t)]\,\Dt
+    \yE(t) + [\yH(t) + \yA(t)]\,\Dt
     \\[2\jot]
     \yE\tikzmark{bEa}(t+2\Dt)  &\approx
-    \tikzmark{Eb}\yE(t+\Dt) + [\yH(t+\Dt) + \yR(t+\Dt)]\,\Dt
+    \tikzmark{Eb}\yE(t+\Dt) + [\yH(t+\Dt) + \yA(t+\Dt)]\,\Dt
     \\[2\jot]
     \yE\tikzmark{cEa}(t+3\Dt)  &\approx
-    \tikzmark{bEb}\yE(t+2\Dt) + [\yH(t+2\Dt) + \yR(t+2\Dt)]\,\Dt
+    \tikzmark{bEb}\yE(t+2\Dt) + [\yH(t+2\Dt) + \yA(t+2\Dt)]\,\Dt
     \\[2\jot]
     &\dotso\tikzmark{cEb}
   \end{aligned}
@@ -7035,7 +7035,7 @@ It is apparent that each of the lines in the iteration~\eqref{eq:timestepped_evo
     \item the initial time is $\yti = \qty{0}{s}$,
     \item the energy content at the initial time is $\yE(\yti) = \qty{3.0}{J}$,
     \item the energy influx is constant in time: $\yH(t) = \qty{0.5}{J/s}$,
-    \item the energy supply is zero: $\yR = \qty{0}{J/s}$
+    \item the energy supply is zero: $\yA = \qty{0}{J/s}$
     \item total duration of simulation is \qty{300}{s}
     \item timestep is $\Dt={0.1}{s}$
     \end{itemize}
@@ -7045,7 +7045,7 @@ It is apparent that each of the lines in the iteration~\eqref{eq:timestepped_evo
 \section{Iteration: the roles of boundary conditions and constitutive relations}
 \label{sec:boundary_conds}
 
-In order to perform the numerical time integration~\eqref{eq:timestepped_evolution}, we need to know the new values of influx $\yH$ and supply $\yR$ at the initial time and at \emph{all} subsequent time steps. The finite-difference equation updates only the volume content $\yE$, not the influx or the supply.
+In order to perform the numerical time integration~\eqref{eq:timestepped_evolution}, we need to know the new values of influx $\yH$ and supply $\yA$ at the initial time and at \emph{all} subsequent time steps. The finite-difference equation updates only the volume content $\yE$, not the influx or the supply.
 
 From where can we get the values of influx and supply at later times? There are two possibilities:
 \begin{itemize}
@@ -7116,27 +7116,27 @@ We have two balance laws for matter that drive the physical system forward in ti
   \begin{aligned}[b]
    \yNa\tikzmark{Nua}(t+\Dt) &\approx
    \yNa(t)
-   + [\yJa(t) + \yau(t)]\,\Dt
+   + [\yJa(t) + \yRu(t)]\,\Dt
     \\[2\jot]
    \yNb\tikzmark{Nva}(t+\Dt) &\approx
    \yNb(t)
-   + [\yJb(t) + \yav(t)]\,\Dt
+   + [\yJb(t) + \yRv(t)]\,\Dt
     \\[3\jot]
     \yNa\tikzmark{bNua}(t+2\Dt)  &\approx
     \tikzmark{Nub}\yNa(t+\Dt)
-    + [\yJa(t+\Dt) + \yau(t+\Dt)]\,\Dt
+    + [\yJa(t+\Dt) + \yRu(t+\Dt)]\,\Dt
     \\[2\jot]
     \yNb\tikzmark{bNva}(t+2\Dt)  &\approx
     \tikzmark{Nvb}\yNb(t+\Dt)
-    + [\yJb(t+\Dt) + \yav(t+\Dt)]\,\Dt
+    + [\yJb(t+\Dt) + \yRv(t+\Dt)]\,\Dt
     % \\[3\jot]
     % \yNa\tikzmark{cNua}(t+3\Dt)  &\approx
     % \tikzmark{bNub}\yNa(t+2\Dt)
-    % + [\yJa(t+2\Dt) + \yau(t+2\Dt)]\,\Dt
+    % + [\yJa(t+2\Dt) + \yRu(t+2\Dt)]\,\Dt
     % \\[2\jot]
     % \yNb\tikzmark{cNva}(t+3\Dt)  &\approx
     % \tikzmark{bNvb}\yNb(t+2\Dt)
-    % + [\yJb(t+2\Dt) + \yav(t+2\Dt)]\,\Dt
+    % + [\yJb(t+2\Dt) + \yRv(t+2\Dt)]\,\Dt
     \\[3\jot]
     &\dotso\tikzmark{bNub}
     \\[2\jot]
@@ -7155,44 +7155,44 @@ We have two balance laws for matter that drive the physical system forward in ti
 
 We apply the \emph{boundary conditions} from that example: the two influxes $\yJa(t)$, $\yJb(t)$ are always zero. For simplicity we shall therefore simply omit them.
 
-Now we use the constitutive relations between the contents and the supply: $\yav(t) = \lambda \yNa(t)$, $\yau(t) = -\lambda \yNb(t)$. At every time step, after calculating the volume contents $\yNa$, $\yNb$ from the balance laws, we can used their new values to calculate the supplies $\yav$, $\yau$ at that same time step. These supplies can then be used for the next time step:
+Now we use the constitutive relations between the contents and the supply: $\yRv(t) = \lambda \yNa(t)$, $\yRu(t) = -\lambda \yNb(t)$. At every time step, after calculating the volume contents $\yNa$, $\yNb$ from the balance laws, we can used their new values to calculate the supplies $\yRv$, $\yRu$ at that same time step. These supplies can then be used for the next time step:
 \begin{equation}\label{eq:timestepped_evolution_NA}
   \begin{aligned}[b]
-    \yau\tikzmark{aua}(t) &= -\lambda \yNb(t)
+    \yRu\tikzmark{aua}(t) &= -\lambda \yNb(t)
     \\[2\jot]
-    \yav\tikzmark{ava}(t) &= \lambda \yNa(t)
+    \yRv\tikzmark{ava}(t) &= \lambda \yNa(t)
     \\[3\jot]
    \yNa\tikzmark{NNua}(t+\Dt) &\approx
    \yNa(t)
-   +\tikzmark{aub}\yau(t)\,\Dt
+   +\tikzmark{aub}\yRu(t)\,\Dt
     \\[2\jot]
    \yNb\tikzmark{NNva}(t+\Dt) &\approx
    \yNb(t)
-   +\tikzmark{avb}\yav(t)\,\Dt
+   +\tikzmark{avb}\yRv(t)\,\Dt
     \\[4\jot]
-    \yau\tikzmark{naua}(t + \Dt) &= -\lambda \tikzmark{NNvc}\yNb(t + \Dt)
+    \yRu\tikzmark{naua}(t + \Dt) &= -\lambda \tikzmark{NNvc}\yNb(t + \Dt)
     \\[2\jot]
-    \yav\tikzmark{nava}(t + \Dt) &= \lambda \tikzmark{NNuc}\yNa(t + \Dt)
+    \yRv\tikzmark{nava}(t + \Dt) &= \lambda \tikzmark{NNuc}\yNa(t + \Dt)
     \\[3\jot]
     \yNa\tikzmark{bNNua}(t+2\Dt)  &\approx
     \tikzmark{NNub}\yNa(t+\Dt)
-    +\tikzmark{naub}\yau(t+\Dt)\,\Dt
+    +\tikzmark{naub}\yRu(t+\Dt)\,\Dt
     \\[2\jot]
     \yNb\tikzmark{bNNva}(t+2\Dt)  &\approx
     \tikzmark{NNvb}\yNb(t+\Dt)
-    +\tikzmark{navb}\yav(t+\Dt)\,\Dt
+    +\tikzmark{navb}\yRv(t+\Dt)\,\Dt
     % \\[4\jot]
-    % \yau(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
+    % \yRu(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
     % \\[2\jot]
-    % \yav(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
+    % \yRv(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
     % \\[3\jot]
     % \yNa\tikzmark{cNNua}(t+3\Dt)  &\approx
     % \tikzmark{bNNub}\yNa(t+2\Dt)
-    % +\yau(t+2\Dt)]\,\Dt
+    % +\yRu(t+2\Dt)]\,\Dt
     % \\[2\jot]
     % \yNb\tikzmark{cNNva}(t+3\Dt)  &\approx
     % \tikzmark{bNNvb}\yNb(t+2\Dt)
-    % +\yav(t+2\Dt)]\,\Dt
+    % +\yRv(t+2\Dt)]\,\Dt
     \\[4\jot]
     &\dotso\tikzmark{bNNub}
     \\[2\jot]
@@ -7350,20 +7350,20 @@ Yet, the simple time-stepping scheme that we have explored remains the core of m
 \label{sec:cons_matter_formulation}
 
 \begin{definition}{Balance and conservation of matter}
-  Volume content: $\yN$\qquad Flux: $\yJ$\qquad Supply: $\ya$
+  Volume content: $\yN$\qquad Flux: $\yJ$\qquad Supply: $\yR$
 
   \begin{equation}
     \label{eq:cons_matter}
     \underbracket[0pt]{\yN(\ytf) =
       \yN(\yti) +
       \int_{\yti}^{\ytf}\!\!\yJ(t)\dt  +
-      \int_{\yti}^{\ytf}\!\!\ya(t)\dt
+      \int_{\yti}^{\ytf}\!\!\yR(t)\dt
     }_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad\quad
       \underbracket[0pt]{\frac{\di\yN(t)}{\dt} = \yJ(t) +
-        \ya(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+        \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
-  The supply $\ya$ is called \textbf{rate of formation}, or \textbf{rate of consumption} if negative. The negative supply $-\ya$ is also called \textbf{activity} in applications involving radioactivity. The supply is identically zero, $\ya(t)\equiv 0$, in case of conservation.
+  The supply $\yR$ is called \textbf{rate of formation}, or \textbf{rate of consumption} if negative. The negative supply $-\yR$ is also called \textbf{activity} in applications involving radioactivity. The supply is identically zero, $\yR(t)\equiv 0$, in case of conservation.
 \end{definition}
 %\furl{https://doi.org/10.1351/goldbook.R05146} rate of consumption
 
@@ -7397,7 +7397,7 @@ There are three ways in which amounts of matter are usually quantified: by simpl
 \begin{description}
 \item[Count.] As our observation resolution and scale become finer and finer, matter appears to exist in \enquote{bundles} or entities: molecules, atoms, subatomic particles, and so on. In some disciplines these entities are therefore simply \emph{counted:} we can say for example that a control volume contains 41 protons, or 2 electrons, or 35 atoms of oxygen, or 485 molecules of $\mathrm{H_{2}O}$ (water), and so on.
 
-  Quantified this way, the volume content $\yN$ is a quantity of dimension~one, with no unit (or more precisely the unit is the number~\emph{1}). The flux $\yJ$ and supply $\ya$ are quantities of dimension 1/\textdim{time} with unit \emph{inverse second}, \unit{s^{-1}}.
+  Quantified this way, the volume content $\yN$ is a quantity of dimension~one, with no unit (or more precisely the unit is the number~\emph{1}). The flux $\yJ$ and supply $\yR$ are quantities of dimension 1/\textdim{time} with unit \emph{inverse second}, \unit{s^{-1}}.
 
 \item[Amount of substance.] Especially in chemistry and when large amounts of matter are involved, we can count the entities of matter in multiples of a large amount called a \emph{mole}. The number per mole is given by the \textbf{Avogadro constant}:
   \begin{equation}
@@ -7409,7 +7409,7 @@ There are three ways in which amounts of matter are usually quantified: by simpl
     It's important to specify which entities we are quantifying. For example, one oxygen \emph{molecule}, chemical formula $\mathrm{O}_{2}$, is composed of two oxygen \emph{atoms}. Therefore one mole of oxygen molecules is not the same as one mole of oxygen atoms; for every mole of oxygen molecules we have two moles of atoms.
   \end{warning}
   
-  Quantified this way, the volume content $\yN$ is a quantity of dimension \textdim{amount of substance}, with unit \emph{mole} (\unit{mol}). The flux $\yJ$ and supply $\ya$ have dimension \textdim{amount of substance}/\textdim{time} with unit \emph{mole per second}, \unit{mol/s}.
+  Quantified this way, the volume content $\yN$ is a quantity of dimension \textdim{amount of substance}, with unit \emph{mole} (\unit{mol}). The flux $\yJ$ and supply $\yR$ have dimension \textdim{amount of substance}/\textdim{time} with unit \emph{mole per second}, \unit{mol/s}.
 
   %%%**** add why useful for chemical reactions
 
@@ -7650,10 +7650,10 @@ If no other substances appear in the control volume besides those written in the
 then the supplies of the substances satisfy the constitutive relations
 \begin{equation}
   \label{eq:rate_conversion}
--\frac{1}{a}  \ya_{\mathrm{A}}(t) =
--\frac{1}{b}  \ya_{\mathrm{B}}(t) =
-\frac{1}{y}  \ya_{\mathrm{Y}}(t) =
-\frac{1}{z}  \ya_{\mathrm{Z}}(t) \defs
+-\frac{1}{a}  \yR_{\mathrm{A}}(t) =
+-\frac{1}{b}  \yR_{\mathrm{B}}(t) =
+\frac{1}{y}  \yR_{\mathrm{Y}}(t) =
+\frac{1}{z}  \yR_{\mathrm{Z}}(t) \defs
 \dot\xi(t)
 \end{equation}
 or analogous relations if more or less reactants or products are involved.
@@ -7668,9 +7668,9 @@ The quantity $\dot\xi(t)$ is called the \textbf{rate of conversion} for the elem
 This constitutive relation can also be written with the time-integrated supplies:
 \begin{equation}
   \label{eq:rate_conversion_integr}
-  -\frac{1}{a}  \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{A}}(t)\dt =
+  -\frac{1}{a}  \int_{\yti}^{\ytf}\!\!\yR_{\mathrm{A}}(t)\dt =
   \dotso =
-\frac{1}{z}  \int_{\yti}^{\ytf}\!\!\ya_{\mathrm{Z}}(t)\dt =
+\frac{1}{z}  \int_{\yti}^{\ytf}\!\!\yR_{\mathrm{Z}}(t)\dt =
 \int_{\yti}^{\ytf}\!\!\dot\xi(t)\dt
 \end{equation}
 and the quantity $\int_{\yti}^{\ytf}\!\!\dot\xi(t)\dt$ is called the \textbf{extent of reaction}.
@@ -7682,8 +7682,8 @@ Let's see a simple example of this constitutive relation. Take the elementary re
 \end{equation*}
 This reaction has only one reactant, $\mathrm{NO_{2}}$, with stoichiometric number \num{-2}; and only one product, $\mathrm{N_{2}O_{4}}$, with stoichiometric number \num{+1}. Their supplies then satisfy the constitutive relation
 \begin{equation*}
-  -\frac{1}{2}\,  \ya_{\mathrm{NO_{2}}}(t) =
-  \ya_{\mathrm{N_{2}O_{4}}}(t) \ .
+  -\frac{1}{2}\,  \yR_{\mathrm{NO_{2}}}(t) =
+  \yR_{\mathrm{N_{2}O_{4}}}(t) \ .
 \end{equation*}
 
 As another example take the reaction between hydrogen and \furl{https://pubchem.ncbi.nlm.nih.gov/element/bromine}{bromine}:
@@ -7692,8 +7692,8 @@ As another example take the reaction between hydrogen and \furl{https://pubchem.
 \end{equation*}
 This reaction is not elementary, but in some situations it may be considered approximately so. The supplies of the three substances satisfy the constitutive relation
 \begin{equation*}
-  -\ya_{\mathrm{H_{2}}}(t) = -\ya_{\mathrm{Br_{2}}}(t) =
-  \frac{1}{2}\,\ya_{\mathrm{H Br}}(t) \ .
+  -\yR_{\mathrm{H_{2}}}(t) = -\yR_{\mathrm{Br_{2}}}(t) =
+  \frac{1}{2}\,\yR_{\mathrm{H Br}}(t) \ .
 \end{equation*}
 
 \begin{exercise}
@@ -7720,10 +7720,10 @@ One constitutive relation that applies for some elementary reactions relates the
 and rate of conversion
 \begin{equation*}
   \dot\xi(t) \defd
--\frac{1}{a}  \ya_{\mathrm{A}}(t) =
--\frac{1}{b}  \ya_{\mathrm{B}}(t) =
-\frac{1}{y}  \ya_{\mathrm{Y}}(t) =
-\frac{1}{z}  \ya_{\mathrm{Z}}(t) \ .
+-\frac{1}{a}  \yR_{\mathrm{A}}(t) =
+-\frac{1}{b}  \yR_{\mathrm{B}}(t) =
+\frac{1}{y}  \yR_{\mathrm{Y}}(t) =
+\frac{1}{z}  \yR_{\mathrm{Z}}(t) \ .
 \end{equation*}
 This reaction obeys an \furl{https://doi.org/10.1351/goldbook.O04322}{\emph{empirical rate law}} with \emph{Arrhenius equation} if the rate of conversion satisfies the equation
 \begin{equation}
@@ -7751,7 +7751,7 @@ The partial orders $\alpha$, $\beta$ of the rate law~\eqref{eq:empirical_rate_la
 \section{Radioactive decay}
 \label{sec:matter_const_radioactive}
 
-For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\ya$ has a specific constitutive equation:
+For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\yR$ has a specific constitutive equation:
 \needspace{10\baselineskip}%
 \marginpar{\vspace{3\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.33\linewidth]{images/radioactive.png}%
@@ -7760,9 +7760,9 @@ When we see this symbol we know that there's matter that's only balanced, not co
 }%
 \begin{definition}{Matter supply in radioactive decay}
   \begin{equation}\label{eq:radioactive_decay_supply}
-  \ya(t) =  -\lambda\,\yN(t)
+  \yR(t) =  -\lambda\,\yN(t)
 \end{equation}
-where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\ya$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
+where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\yR$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
 
 \smallskip
 
@@ -7848,11 +7848,11 @@ This is how we are able to say that human usage of fossil fuel is an important f
 
   Find out the age $t_{\text{ice}}$ of the deeper section by numerically evolving the balance equation
   \begin{equation*}
-    \frac{\di\yN(t)}{\dt} = \ya(t)
+    \frac{\di\yN(t)}{\dt} = \yR(t)
   \end{equation*}
-  where the matter supply $\ya(t)$ has the constitutive relation for \autoref{sec:matter_const_radioactive}{radioactive decay}:
+  where the matter supply $\yR(t)$ has the constitutive relation for \autoref{sec:matter_const_radioactive}{radioactive decay}:
   \begin{equation*}
-    \ya(t) = -\lambda\,\yN(t) \,,\qquad
+    \yR(t) = -\lambda\,\yN(t) \,,\qquad
     \lambda = \qty{0.000122}{yr^{-1}}
   \end{equation*}
   and the matter flux $\yJ(t)$ is zero. Use a procedure similar to \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and the initial value $\yN(\yti)=\qty{e-12}{mol}$; use a timestep $\Dt = (1/365)\,\unit{yr}$. In this simulation, instead of terminating the \texttt{while} loop when $t$ reaches a definite end time, terminate it when the desired amount $\yN(t) = \qty{2e-13}{mol}$ has been reached; you can then read $t_{\text{ice}}$.
@@ -10675,14 +10675,14 @@ It's also not even true that ``energy makes it go,'' because if it stops, you co
 \label{sec:bal_energy_formulation}
 
 \begin{definition}{Balance of energy-mass}
-  Volume content: $\yE$\qquad Flux: $\yH$\qquad Supply: $\yR$
+  Volume content: $\yE$\qquad Flux: $\yH$\qquad Supply: $\yA$
 
   \begin{equation}
     \label{eq:bal_energy}
-      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yR(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
+      \underbracket[0pt]{\yE(\ytf) = \yE(\yti) + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf}\!\!\yA(t)\dt}_{\mathclap{\text{\color{grey}integral expression}}}
       \qquad%\text{\footnotesize\color{grey}or}
       \qquad
-      \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)}_{\mathclap{\text{\color{grey}differential expression}}}
+      \underbracket[0pt]{\frac{\di\yE(t)}{\dt} = \yH(t) + \yA(t)}_{\mathclap{\text{\color{grey}differential expression}}}
   \end{equation}
 \end{definition}
 
@@ -11285,14 +11285,14 @@ What about the flux of energy across the imaginary control surface that separate
 \section[Summary: constitutive relations for energy in the presence of matter]{Summary: constitutive relations for energy\newline in the presence of matter}
 \label{sec:summary_newton_energy}
 
-So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yR$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
+So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yA$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
 \begin{equation*}
   \begin{aligned}
     \yE(t) &=  \yU(t) + \tfrac{1}{2}\ym \yv(t)^{2} + \ym g z(t)
     \\
     \yH(t) &= \yQ(t) + \yF(t)\cdot\yv(t)
     \\
-    \yR(t) &= 0
+    \yA(t) &= 0
   \end{aligned}
 \end{equation*}
 Let us recall the conditions under which they are valid:
@@ -13198,7 +13198,7 @@ Either \iffalse(\fi1) the textbook writers are too stupid to have thought about 
 \label{sec:bal_boostmomentum_formulation}
 
 \begin{definition}{Balance of boost momentum or energy-mass moment}
-      Volume content: $\yr\,\yE - t\,\yP$\qquad Flux: $\yr\,\yH - t\,\yF$\qquad Supply: $\yr\,\yR - t\,\yG$
+      Volume content: $\yr\,\yE - t\,\yP$\qquad Flux: $\yr\,\yH - t\,\yF$\qquad Supply: $\yr\,\yA - t\,\yG$
 
   \begin{equation}
     \label{eq:bal_boost_momentum}
@@ -14017,7 +14017,7 @@ One might hear the argument that the teaching approach via Newtonian point-mass 
 These notes state several times that the mathematical form of the equation for balance, for instance
 \begin{equation}
   \label{eq:balance_post}
-  \frac{\di\yE(t)}{\dt} = \yH(t) + \yR(t)
+  \frac{\di\yE(t)}{\dt} = \yH(t) + \yA(t)
 \end{equation}
 or its integral expression, is also valid in General Relativity. I would like to give a brief explanation, if not a proof, of this fact for those who are not familiar with General Relativity.
 
