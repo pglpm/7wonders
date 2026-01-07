@@ -5,12 +5,12 @@ lambda = 6.283; % s^-1: conversion rate
 
 %% Initial conditions
 t = 0; % s: initial time
-Nu = 2; % mol: volume content substance u
-Nv = 3; % mol: volume content substance v
+Na = 2; % mol: volume content substance a
+Nb = 3; % mol: volume content substance b
 
 %% Boundary conditions
-Ju = 0; % mol/s: influx substance u
-Jv = 0; % mol/s: influx substance v
+Ja = 0; % mol/s: influx substance a
+Jb = 0; % mol/s: influx substance b
 
 %% Time-iteration parameters
 t1 = 5; % s: duration of time integration
@@ -20,27 +20,27 @@ dt = 0.0001; % s: time step %@
 dtplot = t1/360; % time interval between plots
 tplot = dtplot; % time for next plot
 figure
-plot(t, Nu, 'ob')
+plot(t, Na, 'ob')
 xlim([0, t1])
 xlabel('time {\it t}/s'); ylabel('amount {\it N}/mol')
 grid on; hold on
-plot(t, Nv, 'sr') %@
+plot(t, Nb, 'sr') %@
 
 %% Numerical time integration
 while t < t1
   %% constitutive relations
-  Au = -lambda * Nv;
-  Av = lambda * Nu;
+  Aa = -lambda * Nb;
+  Ab = lambda * Na;
 
   %% step forward in time with balance laws
   t = t + dt;
-  Nu = Nu + (Ju + Au) * dt;
-  Nv = Nv + (Jv + Av) * dt; %@
+  Na = Na + (Ja + Aa) * dt;
+  Nb = Nb + (Jb + Ab) * dt; %@
 
   %% plot
   if t > tplot
-    plot(t, Nu, 'ob')
-    plot(t, Nv, 'sr')
+    plot(t, Na, 'ob')
+    plot(t, Nb, 'sr')
     pause(0)
     tplot = tplot + dtplot;
   end %@
