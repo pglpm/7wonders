@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-07T21:41:52+0100
+%% Last-Updated: 2026-01-08T06:41:57+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7489,7 +7489,13 @@ By contrast, \qty{1.0}{mol} of leptons -- essentially electrons -- has a much lo
 
 \item[Materials, substances, elements.] In everyday phenomena that do not involve nuclear energy or radioactive decay, we often consider different kinds of matter such as wood, air, water, iron, skin, and so on. We call them different \furl{https://mse.engineering.cmu.edu/about/what-is-mse.html}{materials} or \furl{https://doi.org/10.1351/goldbook.M03949}{mixtures} or \furl{https://doi.org/10.1351/goldbook.S05746}{solutions} or \furl{https://doi.org/10.1351/goldbook.C01039}{substances}, or other terms which often have very specific meanings.
 
-  These different kinds obey \emph{balance} laws. For instance, in a closed control volume at some time $\yti$ we could have air, wood, and a slight amount of other materials like \furl{https://pubchem.ncbi.nlm.nih.gov/element/Sulfur}{sulphur} and \furl{https://pubchem.ncbi.nlm.nih.gov/element/Phosphorus}{phosphorus}; and at some later time $\ytf$ we could have just air, and ash -- without the wood or ash leaving or entering through the volume's surface. They must therefore have non-zero supplies. As a simpler example, in a control volume we could have oxygen and hydrogen gases at a given time, and just water at a later time, without any of these substances leaving or entering through the control surface.
+\needspace{5\baselineskip}%
+\marginpar{\vspace{1\baselineskip}\centering%
+\includegraphics[width=\linewidth]{images/match_reaction.jpg}%
+% \\[2\jot]\footnotesize{\color{mpcolor}%
+% A match burning}%
+}%
+These different kinds obey \emph{balance} laws. For instance, in a closed control volume at some time $\yti$ we could have air, wood, and a slight amount of other materials like \furl{https://pubchem.ncbi.nlm.nih.gov/element/Sulfur}{sulphur} and \furl{https://pubchem.ncbi.nlm.nih.gov/element/Phosphorus}{phosphorus}; and at some later time $\ytf$ we could have just air, and ash -- without the wood or ash leaving or entering through the volume's surface. They must therefore have non-zero supplies. That's what happens in a common \furl{https://chem.washington.edu/lecture-demos/match-head-reaction}{match-head reaction}. As a simpler example, in a control volume we could have oxygen and hydrogen gases at a given time, and just water at a later time, without any of these substances leaving or entering through the control surface.
 
   In such type of phenomena, which we can call \emph{chemical reactions} in a general sense, amounts of some kinds of matter appear while amounts of other kinds disappear. The supplies and sinks in these phenomena are connected by precise constitutive relations, which are the subject of chemistry and of \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry}.
 
@@ -7733,10 +7739,17 @@ This reaction obeys an \furl{https://doi.org/10.1351/goldbook.O04322}{\emph{empi
   \biggl(\frac{\yN_{\mathrm{A}}}{V}\biggr)^{\alpha}\,
   \biggl(\frac{\yN_{\mathrm{B}}}{V}\biggr)^{\beta}
 \end{equation}
-where $A_{\textrm{r}}$ is a constant called \textbf{pre-exponential factor}; $E_{\textrm{r}}$ is called the \textbf{activation energy} of the reaction; the exponents $\alpha$, $\beta$ are called \textbf{partial orders}; and $R$ is the \furl{https://www.physics.nist.gov/cgi-bin/cuu/Value?eqr|search_for=molar+gas}{\textbf{molar gas constant}},
-\begin{equation*}
-R \defd  \qty{8.31446261815324}{J/(mol\,K)}\quad\text{(exactly)}.
-\end{equation*}
+where:
+\begin{itemize}[nosep]
+\item $A_{\textrm{r}}$ is a constant called \textbf{pre-exponential factor}; 
+\item $E_{\textrm{r}}$ is called the \textbf{activation energy} of the reaction; 
+\item the exponents $\alpha$, $\beta$ are called \textbf{partial orders};
+\item $T$ is the temperature in the control volume;
+\item $R$ is the \furl{https://www.physics.nist.gov/cgi-bin/cuu/Value?eqr|search_for=molar+gas}{\textbf{molar gas constant}},
+  \begin{equation*}
+    R \defd  \qty{8.31446261815324}{J/(mol\,K)}\quad\text{(exactly)}.
+  \end{equation*}
+\end{itemize}
 An analogous formula holds if there are more or fewer reactants.
 
 \smallskip
@@ -7752,7 +7765,7 @@ The partial orders $\alpha$, $\beta$ of the rate law~\eqref{eq:empirical_rate_la
 \label{sec:matter_const_radioactive}
 
 For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\yR$ has a specific constitutive equation:
-\needspace{10\baselineskip}%
+%\needspace{10\baselineskip}%
 \marginpar{\vspace{3\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.33\linewidth]{images/radioactive.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
@@ -7795,29 +7808,6 @@ At each timestep the \masse\ $\ym$ of the tennis ball is assumed to be constant 
 % you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\ym$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\ym = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\dt = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
 
 
-\section{Chemistry}
-\label{sec:cons_matter_chemistry}
-
-One of the main assumptions in chemistry is the \enquote*{permanence of atoms}. This assumption imposes important restrictions in the \furl{https://doi.org/10.1351/goldbook.S06026}{stoichiometry} of chemical reactions, that is, in determining the amounts of products that can appear from given amounts of reactants.
-
-\needspace{6\baselineskip}%
-\marginpar{\vspace{0\baselineskip}\centering%
-\includegraphics[width=\linewidth]{images/match_reaction.jpg}%
-% \\[2\jot]\footnotesize{\color{mpcolor}%
-% A match burning}%
-}%
-For instance, the \furl{https://chem.washington.edu/lecture-demos/match-head-reaction}{match-head reaction}
-\begin{equation*}
-  3\,\mathrm{P_{4}} + 10\,\mathrm{K\,Cl\,O_{3}}
-  \to 3\,\mathrm{P_{4}O_{10}} + 10\,\mathrm{K\,Cl}
-  % \mathrm{CH_{3}CHO} \to \mathrm{CH_{4}} + \mathrm{CO}
-\end{equation*}
-expresses that if 30 moles of oxygen (O) atoms appear among the reactants, they must also appear among the products; same for the 12 moles of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Phosphorus}{phosphorus (P) atoms}, the 10 moles of \furl{https://pubchem.ncbi.nlm.nih.gov/element/Potassium}{potassium (K) atoms}, and so on.
-
-This assumption is simply the statement of conservation of matter, \emph{separately} for each chemical element: since the reaction doesn't let any other matter go in or out, the flux $\yJ$ for each chemical element must be zero. Therefore the amount $\yN$ of each chemical element must be constant: $\di\yN(t)/\dt = \yJ = 0$.
-
-% This assumption is often called \enquote*{conservation of mass}, but, as previously explained, \autoref{sec:cons_matter_formulation}{\enquote{mass} is in this case only a proxy for matter}.
-The assumption of the permanence of atoms is only approximate and no longer valid in phenomena for which nuclear physics or particle physics become relevant.
 
 \section{Climate}
 \label{sec:cons_matter_climate}
