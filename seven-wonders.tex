@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-08T06:41:57+0100
+%% Last-Updated: 2026-01-08T07:44:22+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7710,13 +7710,11 @@ This reaction is not elementary, but in some situations it may be considered app
 \end{exercise}
 
 \section[Constitutive relations for rates of formation: reaction rates]{Constitutive relations for rates of formation:\newline reaction rates}
-\label{sec:reaction_stoichiometry}
+\label{sec:reaction_rates}
 
-The constitutive relation explored in the previous section relates the supplies of different kinds of matter, but does not give an explicit expression for them in terms of other quantities.
+The constitutive relation explored in the previous section relates the supplies of different kinds of matter, but does not give an explicit expression for them in terms of other quantities. Finding constitutive relations between supplies and other quantities like the volume contents of the substances, temperature, volume, forces, and so on, is the goal of \emph{chemical kinetics}. The kind of available relations and their mathematical form are extremely diverse.
 
-Finding constitutive relations between supplies and other quantities like the volume contents of the substances, temperature, volume, forces, and so on, is the goal of \emph{chemical kinetics}. The kind of available relations and their mathematical form are extremely diverse. Here we discuss some of the simplest.
-
-One constitutive relation that applies for some elementary reactions relates the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction, to their volume contents, the size of the control volume, and the temperature.
+Here we discuss one of the simplest: an example of constitutive relation that applies for some elementary reactions, and relates the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction, their volume contents, the size of the control volume, and the temperature in the control volume. It's actually the combination of two constitutive relations: the first is an \emph{empirical rate law}, and the second is the \emph{Arrhenius equation}.
 
 \begin{definition}{Empirical rate law with Arrhenius equation}\label{def:rate_law_arrhenius}
   Consider an approximately elementary reaction occurring in a control volume of size $V$, say with stoichiometric equation
@@ -7731,7 +7729,8 @@ and rate of conversion
 \frac{1}{y}  \yR_{\mathrm{Y}}(t) =
 \frac{1}{z}  \yR_{\mathrm{Z}}(t) \ .
 \end{equation*}
-This reaction obeys an \furl{https://doi.org/10.1351/goldbook.O04322}{\emph{empirical rate law}} with \emph{Arrhenius equation} if the rate of conversion satisfies the equation
+This reaction obeys an %\furl{https://doi.org/10.1351/goldbook.O04322}
+\emph{empirical rate law} with \emph{Arrhenius equation} if the rate of conversion satisfies the equation
 \begin{equation}
   \label{eq:empirical_rate_law}
   \dot\xi = V \,A_{\textrm{r}}\,
@@ -7760,12 +7759,37 @@ In this expression, the volume, volume contents, temperature may depend on time 
 The partial orders $\alpha$, $\beta$ of the rate law~\eqref{eq:empirical_rate_law} are in principle unrelated to the stoichiometric numbers $a$, $b$ of the stoichiometric equation. In some situations they are equal, in others not.
 \end{warning}
 
+The constants in \eqn~\eqref{eq:empirical_rate_law} can be found in published tables, for example in the \furl{https://kinetics.nist.gov/kinetics/}{\emph{NIST Chemical Kinetics Database}}.
+
+It's important to keep in mind that the constitutive relation above is \emph{only an example}. Rates of conversion may satisfy constitutive relations that are mathematically quite different. For instance, the reaction
+\begin{equation*}
+  \mathrm{H_{2}} + \mathrm{Br_{2}} \to 2\,\mathrm{HBr}
+\end{equation*}
+has the rate law
+\begin{equation*}
+  \label{eq:empirical_rate_law}
+  \dot\xi = V\, k_{1}(\dotso)\,
+  \frac{\yN_{\mathrm{H_{2}}}}{V}\,
+  \sqrt{\frac{\yN_{\mathrm{Br_{2}}}}{V}\,}\,
+  \biggl(1 +
+  \gamma\frac{\yN_{\mathrm{HBr}}}{\yN_{\mathrm{Br_{2}}}}
+  \biggr)
+\end{equation*}
+where the function $k_{1}(\dotso)$ depends on temperature, and $\gamma$ is a constant. Note that the volume content of the \emph{product}, $\mathrm{HBr}$, also appears in the law. Other examples exist, involving sums of powers or other mathematical expressions.
+
+\section[Constitutive relations for rates of formation: example]{Constitutive relations for rates of formation:\newline example}
+\label{sec:reaction_rates_example}
+
+\mynotew{to be written}
+
+
+
 
 \section{Radioactive decay}
 \label{sec:matter_const_radioactive}
 
 For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\yR$ has a specific constitutive equation:
-%\needspace{10\baselineskip}%
+\needspace{8\baselineskip}%
 \marginpar{\vspace{3\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.33\linewidth]{images/radioactive.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
@@ -7814,7 +7838,7 @@ At each timestep the \masse\ $\ym$ of the tennis ball is assumed to be constant 
 
 The laws of conservation and balances of matter turn out to be very useful also in problems related to climate.
 
-%
+\needspace{12\baselineskip}%
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/co2_air.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
