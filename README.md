@@ -1,6 +1,6 @@
 # The Seven Wonders of the World
 
-<img src="images/7wonders_cover.jpg" alt="Seven fundamental equations" width="100%"/>
+<img src="images/7wonders_cover.jpg" alt="Seven fundamental balance laws" width="100%"/>
 
 Lecture notes on mechanics, thermodynamics, electromagnetism, at an undergraduate level. They take a simplified point of view from general relativity and continuum thermomechanics.
 
