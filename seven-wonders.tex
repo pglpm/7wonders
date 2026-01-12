@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-08T07:46:58+0100
+%% Last-Updated: 2026-01-12T21:18:07+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1233,6 +1233,9 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yEE}{\bm{E}}
 \newcommand*{\ez}{\epsilon_{0}}
 
+%% chemical formulae
+\newcommand*{\NOd}{\mathrm{NO_{2}}}
+\newcommand*{\NOt}{\mathrm{N_{2}O_{4}}}
 
 %%% Custom macros end @@@
 
@@ -7682,14 +7685,14 @@ This constitutive relation can also be written with the time-integrated supplies
 and the quantity $\int_{\yti}^{\ytf}\!\!\dot\xi(t)\dt$ is called the \textbf{extent of reaction}.
 \end{definition}
 
-Let's see a simple example of this constitutive relation. Take the elementary reaction where \furl{https://pubchem.ncbi.nlm.nih.gov/compound/Nitrogen-dioxide}{nitrogen dioxide} $\mathrm{NO_{2}}$ converts into \furl{https://pubchem.ncbi.nlm.nih.gov/compound/25352}{dinitrogen tetroxide} $\mathrm{N_{2}O_{4}}$:
+Let's see a simple example of this constitutive relation. Take the elementary reaction where \furl{https://pubchem.ncbi.nlm.nih.gov/compound/Nitrogen-dioxide}{nitrogen dioxide} $\NOd$ converts into \furl{https://pubchem.ncbi.nlm.nih.gov/compound/25352}{dinitrogen tetroxide} $\NOt$:
 \begin{equation*}
-  2\, \mathrm{NO_{2}} \to \mathrm{N_{2}O_{4}} \ .
+  2\, \NOd \to \NOt \ .
 \end{equation*}
-This reaction has only one reactant, $\mathrm{NO_{2}}$, with stoichiometric number \num{-2}; and only one product, $\mathrm{N_{2}O_{4}}$, with stoichiometric number \num{+1}. Their supplies then satisfy the constitutive relation
+This reaction has only one reactant, $\NOd$, with stoichiometric number \num{-2}; and only one product, $\NOt$, with stoichiometric number \num{+1}. Their supplies then satisfy the constitutive relation
 \begin{equation*}
-  -\frac{1}{2}\,  \yR_{\mathrm{NO_{2}}}(t) =
-  \yR_{\mathrm{N_{2}O_{4}}}(t) \ .
+  -\frac{1}{2}\,  \yR_{\NOd}(t) =
+  \yR_{\NOt}(t) \ .
 \end{equation*}
 
 As another example take the reaction between hydrogen and \furl{https://pubchem.ncbi.nlm.nih.gov/element/bromine}{bromine}:
@@ -7705,7 +7708,7 @@ This reaction is not elementary, but in some situations it may be considered app
 \begin{exercise}
   Write down the constitutive relation for the three supplies in the approximately elementary reaction
   \begin{equation*}
-    2\,\mathrm{NO} + \mathrm{O_{2}} \to 2\,\mathrm{NO_{2}} \ .
+    2\,\mathrm{NO} + \mathrm{O_{2}} \to 2\,\NOd \ .
   \end{equation*}
 \end{exercise}
 
@@ -7761,6 +7764,8 @@ The partial orders $\alpha$, $\beta$ of the rate law~\eqref{eq:empirical_rate_la
 
 The constants in \eqn~\eqref{eq:empirical_rate_law} can be found in published tables, for example in the \furl{https://kinetics.nist.gov/kinetics/}{\emph{NIST Chemical Kinetics Database}}.
 
+\medskip
+
 It's important to keep in mind that the constitutive relation above is \emph{only an example}. Rates of conversion may satisfy constitutive relations that are mathematically quite different. For instance, the reaction
 \begin{equation*}
   \mathrm{H_{2}} + \mathrm{Br_{2}} \to 2\,\mathrm{HBr}
@@ -7775,10 +7780,139 @@ has the rate law
   \gamma\frac{\yN_{\mathrm{HBr}}}{\yN_{\mathrm{Br_{2}}}}
   \biggr)
 \end{equation*}
-where the function $k_{1}(\dotso)$ depends on temperature, and $\gamma$ is a constant. Note that the volume content of the \emph{product}, $\mathrm{HBr}$, also appears in the law. Other examples exist, involving sums of powers or other mathematical expressions.
+where the function $k_{1}(\dotso)$ depends on temperature, and $\gamma$ is a constant. Note that the volume content of the \emph{product}, $\mathrm{HBr}$, also appears in the constitutive law above. Other examples exist, involving sums of powers or other mathematical expressions. The dependence on the temperature $\yT$ can also be different from the exponential expression\enspace$\exp[-E_{\textrm{r}}/(R\,\yT)]$. For instance, some reactions have expressions like
+\begin{equation*}
+V \,A_{\textrm{r}}\, \yT^{n}  \exp\biggl(-\frac{E_{\textrm{r}}}{R\,\yT}\biggr) \dotso
+\end{equation*}
+where the exponent $n$ is a constant. Still other expressions exist.
 
-\section[Constitutive relations for rates of formation: example]{Constitutive relations for rates of formation:\newline example}
+
+\section[Constitutive relations for rates of formation: examples]{Constitutive relations for rates of formation:\newline example}
 \label{sec:reaction_rates_example}
+
+As examples of the constitutive relations discussed in the previous sections, let's study two opposite reactions involving \furl{https://webbook.nist.gov/cgi/cbook.cgi?ID=C10102440&Units=SI}{nitrogen dioxide} ($\NOd$) and \furl{https://webbook.nist.gov/cgi/cbook.cgi?ID=C10544726&Units=SI}{dinitrogen tetroxide} ($\NOt$):
+\begin{enumerate}[label=(\arabic*)]
+\item\label{item:NOd} in a so-called \furl{https://doi.org/10.1351/goldbook.D01744}{dimerization} reaction, $\NOd$ turns into $\NOt$:
+  \begin{equation}
+  \label{eq:NO2-N2O4}
+  2\,\NOd \to \NOt
+\end{equation}
+
+\item\label{item:NOt} in a so-called \furl{https://doi.org/10.1351/goldbook.D01801}{dissociation} reaction, $\NOt$ turns into $\NOd$:
+\begin{equation}
+  \label{eq:NO2-N2O4}
+  \NOt \to  2\,\NOd
+\end{equation}
+\end{enumerate}
+We shall refer to these two reactions by~\ref{item:NOd} and~\ref{item:NOt}.
+
+\subsection{Dimerization}
+\label{sec:NO2-dim}
+
+The stoichiometric equation for reaction~\ref{item:NOd} indicates that the $\NOd$ content in a control volume, $\yN_{\NOd}$, decreases, whereas the $\NOt$ content $\yN_{\NOt}$ increases. Let's find the supplies $\yR_{1,\NOd}$ and $\yR_{1,\NOt}$ provided by this reaction for the two substances.
+
+This reaction involves only one reactant, with stoichiometric number~$-2$, and one product, with stoichiometric number~$1$. Therefore the supplies satisfy the constitutive relation
+\begin{equation}
+  \label{rate_NO2-dim}
+  -\frac{1}{2} \yR_{1,\NOd}(t) = \yR_{1,\NOt}(t) = \dot\xi_{1}(t) \ .
+\end{equation}
+
+The rate of conversion $\dot\xi_{1}$ can be described by a constitutive relation like \eqn~\eqref{eq:empirical_rate_law}, with exponent $\alpha=2$:
+\begin{equation}
+  \label{eq:NO2-dim-rate}
+  \begin{gathered}
+    \dot\xi_{1} =
+    V \, A_{1} \,
+    \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+    \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2}
+    \\[\jot]
+    \text{with}\quad
+    A_{1} = \qty{1.88e5}{m^3/(mol\,s)} \ ,\quad
+    E_{1} = -\qty{2.23e3}{J/mol}
+  \end{gathered}
+\end{equation}
+The \furl{https://kinetics.nist.gov/kinetics/ReactionSearch?r0=10102440&r1=10102440&r2=0&r3=0&r4=0&p0=10544726&p1=0&p2=0&p3=0&p4=0&expandResults=true}{values} of $A_{1}$ and $E_{1}$ are taken from the NIST Chemical Kinetics Database.
+
+Combining \eqns~\eqref{rate_NO2-dim}, \eqref{eq:NO2-dim-rate} we find the supplies
+\begin{equation}
+  \label{eq:NO2-dim-supplies}
+  \begin{aligned}
+    \yR_{1,\NOd} &=
+    -2\, V \, A_{1} \,
+    \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+    \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2} \ ,
+    \\
+    \yR_{1,\NOt} &=
+    V \, A_{1} \,
+    \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+    \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2} \ .
+  \end{aligned}
+\end{equation}
+Keep in mind that many quantities in the expressions above are time-independent: besides the supplies themselves and the volume contents $\yN_{\NOd}$, $\yN_{\NOt}$, also the temperature $\yT$ and the volume $V$ might vary with time.
+
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item In \eqn~\eqref{eq:NO2-dim-rate}, verify that the units of the constants $A_{2}$ and $E_{1}$ make sense.
+  \item In \eqn~\eqref{eq:NO2-dim-supplies}, verify that the supply $\yR_{1,\NOd}$ is always negative, and $\yR_{1,\NOt}$ always positive. Do these signs make sense in this reaction?
+  \item Note that the activation energy $E_{1}$ in \eqn~\eqref{eq:NO2-dim-supplies} is \emph{negative}. If we increase the temperature $\yT$ (keeping everything else constant), will the supply magnitudes $\abs{\yR_{1,\NOd}}$ and $\abs{\yR_{1,\NOt}}$ increase or decrease?
+  \end{enumerate}
+\end{exercise}
+
+\subsection{Dissociation}
+\label{sec:NO2-dis}
+
+The stoichiometric equation for reaction~\ref{item:NOt} indicates that the $\NOt$ content $\yN_{\NOt}$, decreases, whereas the $\NOd$ content $\yN_{\NOd}$ increases. Let's find the supplies $\yR_{2,\NOd}$ and $\yR_{2,\NOt}$ provided by this reaction.
+
+We have only one reactant, with stoichiometric number~$-1$, and one product, with stoichiometric number~$2$. The supplies satisfy the constitutive relation
+\begin{equation}
+  \label{eq:rate_NO2-dis}
+  - \yR_{2,\NOt}(t) = \frac{1}{2} \yR_{2,\NOd}(t) = \dot\xi_{2}(t) \ .
+\end{equation}
+
+The rate of conversion $\dot\xi_{2}$ can be described by a constitutive relation like \eqn~\eqref{eq:empirical_rate_law}, with exponent $\alpha=1$:
+\begin{equation}
+  \label{eq:NO2-dis-rate}
+  \begin{gathered}
+    \dot\xi_{2} =
+    V \, A_{2} \,
+    \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+    \frac{\yN_{\NOt}}{V}
+    \\[\jot]
+    \text{with}\quad
+    A_{2} = \qty{4.30e15}{s^{-1}} \ ,\quad
+    E_{2} = \qty{5.32e4}{J/mol}
+  \end{gathered}
+\end{equation}
+The \furl{https://kinetics.nist.gov/kinetics/ReactionSearch?r0=10544726&r1=0&r2=0&r3=0&r4=0&p0=10102440&p1=10102440&p2=0&p3=0&p4=0&expandResults=true}{values} of $A_{2}$ and $E_{2}$ are taken from the NIST Chemical Kinetics Database.
+
+Combining \eqns~\eqref{eq:rate_NO2-dis}, \eqref{eq:NO2-dis-rate} we find the supplies
+\begin{equation}
+  \label{eq:NO2-dis-supplies}
+  \begin{aligned}
+    \yR_{2,\NOd} &=
+    2\, V \, A_{2} \,
+    \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+    \frac{\yN_{\NOt}}{V} \ ,
+    \\
+    \yR_{2,\NOt} &=
+    - V \, A_{2} \,
+    \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+    \frac{\yN_{\NOt}}{V} \ .
+  \end{aligned}
+\end{equation}
+Also in this expression the temperature $\yT$ and volume $V$ might vary with time.
+
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item In \eqn~\eqref{eq:NO2-dis-rate}, verify that the units of the constants $A_{2}$ and $E_{2}$ make sense; note that the units of $A_{2}$ are different from those of the previous $A_{1}$.
+  \item In \eqn~\eqref{eq:NO2-dis-supplies}, verify that the supply $\yR_{2,\NOd}$ is always positive, and $\yR_{2,\NOt}$ always negative. Do these signs make sense in this reaction?
+  \item The activation energy $E_{2}$ in \eqn~\eqref{eq:NO2-dis-supplies} is \emph{positive}. If we increase the temperature $\yT$ (keeping everything else constant), will the supply magnitudes $\abs{\yR_{2,\NOd}}$ and $\abs{\yR_{2,\NOt}}$ increase or decrease?
+  \end{enumerate}
+\end{exercise}
+
+\section{Simulation of a chemical reaction}
+\label{sec:simul_chemical_reaction}
+
 
 \mynotew{to be written}
 
