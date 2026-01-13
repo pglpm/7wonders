@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-12T21:43:34+0100
+%% Last-Updated: 2026-01-13T08:44:14+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8624,11 +8624,12 @@ where $B$, $C$, $D$ are generic coefficients. Calculate its time derivative and 
 The previous example with the tennis ball was simple enough for the analytic method to be available. But as soon as we introduce more constitutive relations between momentum $\yP$ and velocity $\yv$ that are more precise than the Newtonian one, or new constitutive relations that connect momentum flux and supply to position or velocity, then finding an analytical solution might be mathematically impossible. We shall therefore have to use \autoref{sec:numeric_simulation}{numerical time-integration} methods instead.
 
 Let us study the tennis-ball example with numerical time integration. We already discussed in \chap~\ref{cha:inference} the  \autoref[\eqn~\eqref]{eq:finite_diff_vect}{finite-difference approximation of the balance law for momentum} and \autoref[\eqn~\eqref]{eq:finite_diff_position}{that for position}. Thanks to the constitutive relation $\yP(t)=\ym\yv(t)$, knowledge of the momentum at every timestep allows us to calculate the velocity at that same timestep, or vice versa. The time iteration therefore looks as follows:
-\begin{equation}\label{eq:timestep_momentum_position}
+\begin{equation}
+  \label{eq:timestep_momentum_position}
   \begin{aligned}[b]
-    \yv\tikzmark{va}(\yti)&= \yP(\yti)/\ym
+    \yv\tikzmark{vaa}(\yti)&= \yP(\yti)/\ym
     \\[2\jot]
-    \yr\tikzmark{ra}(\yti+\Dt)  &\approx \yr(\yti) + \tikzmark{vb}\yv(\yti)\,\Dt\\
+    \yr\tikzmark{ra}(\yti+\Dt)  &\approx \yr(\yti) + \tikzmark{vbb}\yv(\yti)\,\Dt\\
     \yP\tikzmark{pa}(\yti+\Dt)  &\approx \yP(\yti) + [\yF(\yti) + \yG(\yti)]\,\Dt
     \\[4\jot]
     \yv\tikzmark{vva}(\yti+\Dt) &= \tikzmark{pb}\yP(\yti+\Dt)/\ym
@@ -8644,7 +8645,7 @@ Let us study the tennis-ball example with numerical time integration. We already
     &\dotso
   \end{aligned}
 \begin{tikzpicture}[remember picture]
-\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:va) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vb);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:vaa) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vbb);
 \draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:vva) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:vvb);
 \draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:ra) to[out=-45,in=135]  ([shift={(0ex,1ex)}]pic cs:rb);
 \draw[overlay,yellow,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:pa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:pb);
