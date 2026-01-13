@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-13T08:44:14+0100
+%% Last-Updated: 2026-01-13T11:26:03+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7637,6 +7637,79 @@ and a control volume containing \qty{1}{mol} of air (and no water vapour) approx
 \end{exercise}
 
 
+
+
+
+
+\section{Radioactive decay}
+\label{sec:matter_const_radioactive}
+
+For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\yR$ has a specific constitutive equation:
+\needspace{9\baselineskip}%
+\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.33\linewidth]{images/radioactive.png}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+When we see this symbol we know that there's matter that's only balanced, not conserved -- which may involve danger.%
+}%
+\begin{definition}{Matter supply in radioactive decay}
+  \begin{equation}\label{eq:radioactive_decay_supply}
+  \yR(t) =  -\lambda\,\yN(t)
+\end{equation}
+where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\yR$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
+
+\smallskip
+
+If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance is then called the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/radact.html}{\emph{law of radioactive decay}} and takes the form
+  \begin{equation}\label{eq:radioactive_decay}
+  \frac{\di\yN(t)}{\dt} =  -\lambda\,\yN(t)
+\end{equation}
+\end{definition}
+
+\subsection{Application to climate}
+\label{sec:cons_matter_climate}
+
+The balance of matter together with the constitutive relation~\eqref{eq:radioactive_decay_supply} for radioactive decay turn out to be very useful in climate research.
+
+\needspace{12\baselineskip}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/co2_air.jpg}%
+\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
+Volume content of $\mathrm{CO_{2}}$ in the atmosphere in the years 1000--2000. By the law of matter conservation, there must have been a net \textbf{in}flux of $\mathrm{CO_{2}}$ into the atmosphere in these years. A vertical line is drawn at year 1769, when James Watt patented his steam engine (from \cites{mackay2008} p.~6)%
+}%
+On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/nuclear/nucnot.html\#c2}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, like the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
+
+For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects like ice or wood.
+
+This is how we are able to say that human usage of fossil fuel is an important factor in the increase of carbon dioxide ($\mathrm{CO_{2}}$) in the atmosphere during the past 200 years or so. Take a look at the more detailed explanations given by the \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory}.
+
+% %
+% \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
+% \includegraphics[width=\linewidth]{images/ice_core.png}%
+% \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
+% }%
+\begin{exercise}
+  You measure the relative amounts of carbon within an air pocket near the surface of a block of ice, and find that one mole of air in this pocket contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. You then make an analogous measurement within an air pocket deeper in the ice, and find a relative amount of \qty{2e-13}{mol} of \nuclide[14]{C} there. How older is the deeper section of ice?
+
+  \smallskip
+
+  Find out the age $t_{\text{ice}}$ of the deeper section by numerically evolving the balance equation
+  \begin{equation*}
+    \frac{\di\yN(t)}{\dt} = \yR(t)
+  \end{equation*}
+  where the matter supply $\yR(t)$ has the constitutive relation for \autoref{sec:matter_const_radioactive}{radioactive decay}:
+  \begin{equation*}
+    \yR(t) = -\lambda\,\yN(t) \,,\qquad
+    \lambda = \qty{0.000122}{yr^{-1}}
+  \end{equation*}
+  and the matter flux $\yJ(t)$ is zero. Use a procedure similar to \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and the initial value $\yN(\yti)=\qty{e-12}{mol}$; use a timestep $\Dt = (1/365)\,\unit{yr}$. In this simulation, instead of terminating the \texttt{while} loop when $t$ reaches a definite end time, terminate it when the desired amount $\yN(t) = \qty{2e-13}{mol}$ has been reached; you can then read $t_{\text{ice}}$.
+
+  \smallskip
+
+  Alternatively you can find $t_{\text{ice}}$ by analytically solving the differential equation above, in a way similar to the example with the \autoref{sec:oscillating_reaction}{oscillating reaction}.
+\end{exercise}
+
+
+
 \section[Constitutive relations for rates of formation: stoichiometry]{Constitutive relations for rates of formation:\newline stoichiometry}
 \label{sec:reaction_stoichiometry}
 
@@ -7938,33 +8011,6 @@ Also in this expression the temperature $\yT$ and volume $V$ might vary with tim
 \mynotew{to be written}
 
 
-
-
-\section{Radioactive decay}
-\label{sec:matter_const_radioactive}
-
-For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\yR$ has a specific constitutive equation:
-\needspace{8\baselineskip}%
-\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.33\linewidth]{images/radioactive.png}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-When we see this symbol we know that there's matter that's only balanced, not conserved -- which may involve danger.%
-}%
-\begin{definition}{Matter supply in radioactive decay}
-  \begin{equation}\label{eq:radioactive_decay_supply}
-  \yR(t) =  -\lambda\,\yN(t)
-\end{equation}
-where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\yR$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
-
-\smallskip
-
-If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance is then called the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/radact.html}{\emph{law of radioactive decay}} and takes the form
-  \begin{equation}\label{eq:radioactive_decay}
-  \frac{\di\yN(t)}{\dt} =  -\lambda\,\yN(t)
-\end{equation}
-\end{definition}
-
-
 \section{Rigid-body and particle mechanics}
 \label{sec:cons_matter_particle}
 
@@ -7987,49 +8033,6 @@ At each timestep the \masse\ $\ym$ of the tennis ball is assumed to be constant 
 % you see that at each timestep we calculate the velocity $\yv$ of matter from the momentum $\yP$, simply dividing by the mass $\ym$. \emph{This mass is assumed to be constant, not changing with time}. But this mass is proportional to the amount of matter: $\ym = \yrho \yN$. We are therefore assuming that the amount of matter $\yN$ doesn't change with time: $\di\yN(t)/\dt = 0$. This assumption is indeed guaranteed by the balance of matter~\eqref{eq:cons_matter}, by choosing a sequence of control surfaces that have no net flux of matter through them: $\yJ(t)=0$; in other words, they tightly wrap and follow the moving object.
 
 
-
-\section{Climate}
-\label{sec:cons_matter_climate}
-
-The laws of conservation and balances of matter turn out to be very useful also in problems related to climate.
-
-\needspace{12\baselineskip}%
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/co2_air.jpg}%
-\\[\jot]\footnotesize\flushleftright\color{mpcolor}%
-Volume content of $\mathrm{CO_{2}}$ in the atmosphere in the years 1000--2000. By the law of matter conservation, there must have been a net \textbf{in}flux of $\mathrm{CO_{2}}$ into the atmosphere in these years. A vertical line is drawn at year 1769, when James Watt patented his steam engine (from \cites{mackay2008} p.~6)%
-}%
-On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/nuclear/nucnot.html\#c2}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, like the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
-
-For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects like ice or wood.
-
-This is how we are able to say that human usage of fossil fuel is an important factor in the increase of carbon dioxide ($\mathrm{CO_{2}}$) in the atmosphere during the past 200 years or so. Take a look at the more detailed explanations given by the \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory}.
-
-% %
-% \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
-% \includegraphics[width=\linewidth]{images/ice_core.png}%
-% \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
-% }%
-\begin{exercise}
-  You measure the relative amounts of carbon within an air pocket near the surface of a block of ice, and find that one mole of air in this pocket contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. You then make an analogous measurement within an air pocket deeper in the ice, and find a relative amount of \qty{2e-13}{mol} of \nuclide[14]{C} there. How older is the deeper section of ice?
-
-  \smallskip
-
-  Find out the age $t_{\text{ice}}$ of the deeper section by numerically evolving the balance equation
-  \begin{equation*}
-    \frac{\di\yN(t)}{\dt} = \yR(t)
-  \end{equation*}
-  where the matter supply $\yR(t)$ has the constitutive relation for \autoref{sec:matter_const_radioactive}{radioactive decay}:
-  \begin{equation*}
-    \yR(t) = -\lambda\,\yN(t) \,,\qquad
-    \lambda = \qty{0.000122}{yr^{-1}}
-  \end{equation*}
-  and the matter flux $\yJ(t)$ is zero. Use a procedure similar to \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and the initial value $\yN(\yti)=\qty{e-12}{mol}$; use a timestep $\Dt = (1/365)\,\unit{yr}$. In this simulation, instead of terminating the \texttt{while} loop when $t$ reaches a definite end time, terminate it when the desired amount $\yN(t) = \qty{2e-13}{mol}$ has been reached; you can then read $t_{\text{ice}}$.
-
-  \smallskip
-
-  Alternatively you can find $t_{\text{ice}}$ by analytically solving the differential equation above, in a way similar to the example with the \autoref{sec:oscillating_reaction}{oscillating reaction}.
-\end{exercise}
 
 
 \section{Nozzle flow}
