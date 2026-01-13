@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-13T12:07:12+0100
+%% Last-Updated: 2026-01-13T22:57:19+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7939,7 +7939,7 @@ Keep in mind that many quantities in the expressions above are time-independent:
   \begin{enumerate}[exerc]
   \item In \eqn~\eqref{eq:NO2-dim-rate}, verify that the units of the constants $A_{2}$ and $E_{1}$ make sense.
   \item In \eqn~\eqref{eq:NO2-dim-supplies}, verify that the supply $\yR_{1,\NOd}$ is always negative, and $\yR_{1,\NOt}$ always positive. Do these signs make sense in this reaction?
-  \item Note that the activation energy $E_{1}$ in \eqn~\eqref{eq:NO2-dim-supplies} is \emph{negative}. If we decrease the temperature $\yT$ (keeping everything else constant), will the supply magnitudes $\abs{\yR_{1,\NOd}}$ and $\abs{\yR_{1,\NOt}}$ increase or decrease? (Remember that thermodynamic temperature is always positive, $\yT > \qty{0}{K}$.)
+  \item Note that the activation energy $E_{1}$ in \eqn~\eqref{eq:NO2-dim-supplies} is \emph{negative}. If we decrease the temperature $\yT$ (keeping everything else constant), will the supply magnitudes\enskip$\abs{\yR_{1,\NOd}}$\enskip and\enskip$\abs{\yR_{1,\NOt}}$\enskip increase or decrease? (Remember that thermodynamic temperature is always positive, $\yT > \qty{0}{K}$.)
   \end{enumerate}
 \end{exercise}
 
@@ -7999,17 +7999,95 @@ Also in this expression the temperature $\yT$ and volume $V$ might vary with tim
   \begin{enumerate}[exerc]
   \item In \eqn~\eqref{eq:NO2-dis-rate}, verify that the units of the constants $A_{2}$ and $E_{2}$ make sense; note that the units of $A_{2}$ are different from those of the previous $A_{1}$.
   \item In \eqn~\eqref{eq:NO2-dis-supplies}, verify that the supply $\yR_{2,\NOd}$ is always positive, and $\yR_{2,\NOt}$ always negative. Do these signs make sense in this reaction?
-  \item The activation energy $E_{2}$ in \eqn~\eqref{eq:NO2-dis-supplies} is \emph{positive}. If we decrease the temperature $\yT$ (keeping everything else constant), will the supply magnitudes $\abs{\yR_{2,\NOd}}$ and $\abs{\yR_{2,\NOt}}$ increase or decrease?
+  \item The activation energy $E_{2}$ in \eqn~\eqref{eq:NO2-dis-supplies} is \emph{positive}. If we decrease the temperature $\yT$ (keeping everything else constant), will the supply magnitudes\enskip$\abs{\yR_{2,\NOd}}$\enskip and\enskip$\abs{\yR_{2,\NOt}}$\enskip increase or decrease?
   \end{enumerate}
 \end{exercise}
 
 \section[Analytical time integration of amount of matter in a chemical reaction]{Analytical time integration of amount of matter\newline in a chemical reaction}
 \label{sec:analit_chemical_reaction}
 
-\mynotew{to be written}
+In applications involving chemical reactions, our goal may be to predict the amount of a particular substance in a control volume after a given amount of time. The balance of matter and the constitutive relations discussed in the previous sections can let us make such predictions -- provided they apply to the specific situation under study. In simple situations such predictions can be made \ref{sec:prediction}{analytically}.
 
+As an example, let's suppose we have a control volume with some amounts of nitrogen dioxide $\NOd$ and dinitrogen tetroxide $\NOt$, and:
+\begin{itemize}[nosep]
+\item \emph{only} the dissociation reaction\enskip$\NOt \to  2\,\NOd$\enskip takes place in the volume;
+\item there are no matter fluxes into or out of the control volume;
+\item the volume size $V$ and temperature $\yT$ are constant in time.
+\end{itemize}
+It's unrealistic to assume that only the dissociation reaction is taking place, but under some conditions it might be the prevalent one.
 
-\section[Numerical time integration of amount of matter in a chemical reaction]{Numerical time integration of amount of matter\newline in a chemical reaction}
+If at time $\yti = \qty{0}{s}$ there are amounts $\yN_{\NOd}(\yti)$ and $\yN_{\NOt}(t)$ of the two substances, what will be the amounts at time $\ytf$?
+
+The physical laws that we must apply to this control volume are the balance of matter as well as the constitutive relations~\eqref{eq:NO2-dis-supplies} between supplies and volume contents, for both substances:
+\begin{equation*}
+  \begin{aligned}
+\frac{\di\yN_{\NOd}(t)}{\dt} &= \yJ_{\NOd}(t) + \yR_{2,\NOd}(t)
+&\qquad&{\text{\footnotesize\color{midgrey}matter balance for $\NOd$}}
+    \\
+\frac{\di\yN_{\NOt}(t)}{\dt} &= \yJ_{\NOt}(t) + \yR_{2,\NOt}(t)
+&\qquad&{\text{\footnotesize\color{midgrey}matter balance for $\NOt$}}
+    \\[\jot]
+    \yR_{2,\NOd}(t) &=
+    2\, V \, A_{2} \,
+    \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+    \frac{\yN_{\NOt}(t)}{V}
+&\qquad&{\text{\footnotesize\color{midgrey}const. relation for $\NOd$ supply}}
+    \\
+    \yR_{2,\NOt}(t) &=
+    - V \, A_{2} \,
+    \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+    \frac{\yN_{\NOt}(t)}{V}
+    &\qquad&{\text{\footnotesize\color{midgrey}const. relation for $\NOt$ supply}}
+    \\[2\jot]
+    \yJ_{\NOd}(t) &\equiv \qty{0}{mol/s} \ ,
+    \quad
+    \yJ_{\NOt}(t) \equiv \qty{0}{mol/s}
+    &\qquad&{\text{\footnotesize\color{midgrey}no fluxes}}
+  \end{aligned}
+\end{equation*}
+
+Substituting the constitutive relations and no-flux conditions in the matter balances, and simplifying with some simple algebra, we arrive at this system of differential equations:
+\begin{equation*}
+  \begin{aligned}
+    \frac{\di\yN_{\NOd}(t)}{\dt} &=
+    2\, A_{2} \,
+    \e^{-\frac{E_{2}}{R\,\yT}}\,
+    \yN_{\NOt}(t)
+    \\[\jot]
+\frac{\di\yN_{\NOt}(t)}{\dt} &= 
+    - A_{2} \,
+    \e^{-\frac{E_{2}}{R\,\yT}}\,
+    \yN_{\NOt}(t)
+  \end{aligned}
+\end{equation*}
+where $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ are the unknown functions; all other quantities are constant and their values are supposed to be known.
+
+Focus on the second equation: it's a \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order homogeneous linear differential equation} with constant coefficients, which can be solved analytically:
+\begin{equation*}
+  \yN_{\NOt}(t) = C\,\exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\, t \Bigr) \ .
+\end{equation*}
+The constant $C$ can be found by imposing the initial condition at $\yti = \qty{0}{s}$:
+\begin{equation*}
+  C \,\exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\cdot \qty{0}{s}\Bigr)
+  =  \yN_{\NOt}(\yti)
+  \qquad\limplies\qquad
+  C =  \yN_{\NOt}(\yti) \ .
+\end{equation*}
+
+\needspace{6\baselineskip}
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/n2o4_time.pdf}%
+}%
+We finally arrive at the solution for $\yN_{\NOt}(t)$:
+\begin{equation}
+  \label{eq:N2O4_analytic}
+  \yN_{\NOt}(t) =
+  \exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\, t\Bigr) \,
+  \yN_{\NOt}(\yti) \ .
+\end{equation}
+The side plot shows its graph for a temperature $\yT = \qty{173}{K}$ and an initial amount $\yN_{\NOt}(\yti) = \qty{0.04}{mol}$. At $t = \qty{10}{s}$ there is almost no $\NOt$ left.
+
+\section[Numerical time integration for amount of matter in a chemical reaction]{Numerical time integration for amount of matter\newline in a chemical reaction}
 \label{sec:simul_chemical_reaction}
 
 
@@ -8161,9 +8239,6 @@ The relation above connects the matter flux $\yJ$, the component of matter veloc
 \end{extra}
 
 
-\bigskip
-
-\mynotew{Sections on chemical reactions and stoichiometry to be added.}
 
 \printpagenotes*
 \cleartooddpage
