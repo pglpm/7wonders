@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-14T10:36:25+0100
+%% Last-Updated: 2026-01-14T11:28:00+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2262,22 +2262,20 @@ With each physical dimension we can associate a unit of measurement, which as me
 % One can choose a basic set of physical dimensions from which to define all others, as well as a set of standard units for these base dimensions. Here we shall follow the
 % \furl{https://www.nist.gov/pml/owm/metric-si/si-units}{International System of Units (SI)} (see also \furl{https://www.nist.gov/pml/special-publication-811}{NIST Special Publication 811}).
 
-If a physical quantity is defined in terms of other quantities, then its unit is usually given in terms of the defining quantities. For example, if we define \emph{speed} as \emph{length} divided by \emph{time}, then its unit is \enquote*{metres per second}, \enquote*{\unit{m/s}}. Some combinations of units receive special unit names. For instance, \emph{power} is defined as \energym\ divided by time; its unit is therefore \enquote*{\unit{J/s}} (\enquote*{joules per second}). But this compound unit is usually called \enquote*{watt}, symbol \enquote*{\unit{W}}. In other words, one \enquote*{watt} and one \enquote*{joule per second} are the same:
-\begin{equation*}
-  \qty{1}{W} \equiv \qty{1}{J/s} \ .
-\end{equation*}
+If a physical quantity is defined in terms of other quantities, then its unit is usually given in terms of the defining quantities. For example, if we define \emph{speed} as \emph{length} divided by \emph{time}, then its unit is \enquote*{metres per second}, \enquote*{\unit{m/s}}. Some combinations of units receive special unit names. For instance, \emph{power} is defined as \energym\ divided by time; its unit is therefore \enquote*{\unit{J/s}} (\enquote*{joules per second}). But this compound unit is usually called \enquote*{watt}, symbol \enquote*{\unit{W}}, as we discuss in the next section.
+
 \begin{warning}[How to pronounce combinations of units]
   According to the International Organization for Standardization \parencites[\sect7.2.4]{iso2009}:
   \begin{description}
   \item[Multiplication:] The name of the product of two units is the concatenation of the two names, separated by a space. For instance
     \begin{center}\vspace{-0.5\baselineskip}
-      \unit{N\cdot s} \equiv \unit{N\,s}\quad$\longrightarrow$\quad
+      $\unit{N\cdot s} \equiv \unit{N\,s}$\quad$\longrightarrow$\quad
       netwon\,metre
     \end{center}
 
   \item[Power:]  The name of the power a of a unit is the name of that unit followed by \enquote*{to the power $n$}. However, the powers two and three may be expressed by \enquote*{squared} and \enquote*{cubed}. For instance
     \begin{center}\vspace{-0.5\baselineskip}
-      \unit{s^{-1}}\quad$\to$\quad
+      \unit{s^{-1}}\quad$\longrightarrow$\quad
       second to the (power of) minus one
       \\[\jot]
       \unit{m^2}\quad$\longrightarrow$\quad
@@ -2305,6 +2303,45 @@ We shall speak further about units in the next chapters. The main quantities and
 \section{Relations between units. Base units}
 \label{sec:base_units}
 
+Some physical quantities have their own unit, often because of historical reasons. For instance, \emph{energy flux} and \emph{energy supply}, which we shall discuss later, have unit \enquote*{\,watt\,}, symbol\enskip\enquote*{\,\unit{W}\,}. Similarly, \emph{momentum flux} and \emph{momentum supply}, which we also call \emph{forces} and shall discuss later, have unit \enquote*{\,newton\,}, symbol\enskip\enquote*{\,\unit{N}\,}.
+
+Some units may satisfy particular mathematical relations, either because their quantities are defined in terms of one another, or because their quantities satisfy important physical relationships or laws (in fact, in many situations the distinction between \enquote*{definition} and \enquote*{physical law} is not clear-cut).
+
+For example, since \emph{energy flux} is related to change in \emph{energy} divided by \emph{time}, it has physical dimension\enskip\textdim{energy/time}\,.\enskip Thus there's also an equivalence between the units \enquote*{\,watt\,} and \enquote*{\,joule per second\,}: one watt and one joule per second are the same:
+\begin{equation*}
+  \qty{1}{W} \equiv \qty{1}{J/s} \ .
+\end{equation*}
+
+There is a very important relation of this kind among the units for \textdim{time}, \textdim{length}, \textdim{momentum flux}, \textdim{energy}, \textdim{mass}:
+\begin{center}
+  \begin{tabular}{ccccc}
+    \textdim{time}&
+    \textdim{length}&
+    \textdim{momentum\,flux}&
+    \textdim{energy}&
+    \textdim{mass}
+    \\
+    \unit{s}&
+    \unit{m}&
+    \unit{N}&
+    \unit{J}&
+    \unit{kg}
+  \end{tabular}
+\end{center}
+The relation can be written in several equivalent ways; here's one:
+\begin{definition}{{Relation between second, metre, newton, joule, kilogram}}
+  \begin{equation}
+    \label{eq:rel_smnjkg}
+    \unit{kg} \cdot \unit{m}^{2} / \unit{s}^{2} =
+    \unit{J} =
+    \unit{N}\cdot\unit{s}
+  \end{equation}
+\end{definition}
+\marginpar{\vspace{-0.5\baselineskip}\footnotesize\centering%
+\color{mpcolor}%
+$E = m\,c^{2}$%
+}%
+The first equality expresses the fact that \emph{mass and energy are the same thing}, as we'll discuss in \chaps~\ref{cha:stuff} and~\ref{cha:bal_energy}. The second equality expresses a physical fact that comes forward from General Relativity: \emph{energy and momentum are different aspects of the same physical quantity}, a quantity called \enquote*{energy-momentum tensor}.
 
 
 
