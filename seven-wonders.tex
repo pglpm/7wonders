@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-14T07:18:19+0100
+%% Last-Updated: 2026-01-14T10:36:25+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2251,7 +2251,9 @@ We shall also use other quantities, some of which are very familiar, like \emph{
 
 To each quantity we associate a \textbf{physical dimension}. The term \enquote*{dimension} here has nothing to do with physical extension, as in \enquote{the dimensions of this box}; be careful not to confuse the two. Usually it's clear which one is meant from the context.
 
-Physical dimensions reflect the mathematical relationships that exist between physical quantities. For instance, we take \emph{distance} to have dimension \textdim{length}, and \emph{time interval} to have dimension \textdim{time}; if we now define \emph{speed} as \emph{distance} divided by a \emph{time interval}, then the physical dimension of \emph{speed} is \textdim{length}$/$\textdim{time}. Physical dimensions help us to avoid doing mathematical operations that don't make sense with some quantities. For example, it doesn't make sense to sum up the volume of a glass of water with its temperature. The \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)} represents the physical dimensions of several base quantities by single capital letters; for instance\enspace T\enspace stands for the physical dimension \enquote*{time}. In the present notes we use the different, non-standard convention of denoting a physical dimension using the full word in sans-serif font:\enskip\textdim{time}.\enskip This way we avoid ambiguity and confusion with other one-letter symbols.
+Physical dimensions reflect the mathematical relationships that exist between physical quantities. For instance, we take \emph{distance} to have dimension \textdim{length}, and \emph{time interval} to have dimension \textdim{time}; if we now define \emph{speed} as \emph{distance} divided by a \emph{time interval}, then the physical dimension of \emph{speed} is \textdim{length}$/$\textdim{time}. Physical dimensions help us to avoid doing mathematical operations that don't make sense with some quantities. For example, it doesn't make sense to sum up the volume of a glass of water with its temperature.
+
+The \furl{https://www.nist.gov/pml/special-publication-811}{International System of Units (SI)} represents the physical dimensions of several base quantities by single capital letters; for instance\enspace T\enspace stands for the physical dimension \enquote*{time}. In the present notes we use the different, non-standard convention of denoting a physical dimension using the full word in sans-serif font:\enskip\textdim{time}\,.\enskip This way we avoid ambiguity and confusion with other one-letter symbols.
 
 \medskip
 
@@ -2260,21 +2262,48 @@ With each physical dimension we can associate a unit of measurement, which as me
 % One can choose a basic set of physical dimensions from which to define all others, as well as a set of standard units for these base dimensions. Here we shall follow the
 % \furl{https://www.nist.gov/pml/owm/metric-si/si-units}{International System of Units (SI)} (see also \furl{https://www.nist.gov/pml/special-publication-811}{NIST Special Publication 811}).
 
-If a physical quantity is defined in terms of other quantities, then its unit is usually given in terms of the defining quantities. For example, if we define \emph{speed} as \emph{length} divided by \emph{time}, then its unit is \enquote*{metres per second}, \enquote*{\unit{m/s}}. Some combinations of units receive special unit names. For instance, \emph{power} is defined as \energym\ divided by time; its unit is therefore \enquote*{\unit{J/s}} (\enquote*{joules per second}). But this compound unit is usually called \enquote*{watt}, symbol \enquote*{\unit{W}}. In other words, \enquote*{one watt} and \enquote*{one joule per second} are the same:
+If a physical quantity is defined in terms of other quantities, then its unit is usually given in terms of the defining quantities. For example, if we define \emph{speed} as \emph{length} divided by \emph{time}, then its unit is \enquote*{metres per second}, \enquote*{\unit{m/s}}. Some combinations of units receive special unit names. For instance, \emph{power} is defined as \energym\ divided by time; its unit is therefore \enquote*{\unit{J/s}} (\enquote*{joules per second}). But this compound unit is usually called \enquote*{watt}, symbol \enquote*{\unit{W}}. In other words, one \enquote*{watt} and one \enquote*{joule per second} are the same:
 \begin{equation*}
   \qty{1}{W} \equiv \qty{1}{J/s} \ .
 \end{equation*}
+\begin{warning}[How to pronounce combinations of units]
+  According to the International Organization for Standardization \parencites[\sect7.2.4]{iso2009}:
+  \begin{description}
+  \item[Multiplication:] The name of the product of two units is the concatenation of the two names, separated by a space. For instance
+    \begin{center}\vspace{-0.5\baselineskip}
+      \unit{N\cdot s} \equiv \unit{N\,s}\quad$\longrightarrow$\quad
+      netwon\,metre
+    \end{center}
 
-The topics of measurement, physical dimensions, and units, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves! I assume that you will look in the documents by the SI for more complicated details. We shall speak further about units in the next chapters. The main quantities and units used in the present notes are summarized in table~\ref{tab:units} on page~\pageref{tab:units} and table~\ref{tab:symbols_volint_fluxes} on page~\pageref{tab:symbols_volint_fluxes}.
+  \item[Power:]  The name of the power a of a unit is the name of that unit followed by \enquote*{to the power $n$}. However, the powers two and three may be expressed by \enquote*{squared} and \enquote*{cubed}. For instance
+    \begin{center}\vspace{-0.5\baselineskip}
+      \unit{s^{-1}}\quad$\to$\quad
+      second to the (power of) minus one
+      \\[\jot]
+      \unit{m^2}\quad$\longrightarrow$\quad
+      metre squared
+    \end{center}
 
-\begin{warning}[How to pronounce the quotient and the product of units]
-  According to the rules of the SI, the quotient of two units is pronounced \enquote*{per} in English; for instance \enquote*{\unit{m/s}} is pronounced \enquote*{metres per second}. The product of two units is simply pronounced by concatenating the names of the units; for instance \enquote*{\unit{N\cdot s}} is pronounced \enquote*{newton seconds}.
+  \item[Division:] The name of the quotient of two units is formed by inserting the word \enquote*{\textbf{per}} between the two names. A compound name shall never contain more then one \enquote*{per}. For instance
+    \begin{center}\vspace{-0.5\baselineskip}
+      \unit{m/s}\quad$\longrightarrow$\quad
+      metre per second
+    \end{center}
+  \end{description}
 
   \smallskip
 
   For other rules about printing and reporting units take a look at the \furl{https://www.nist.gov/pml/special-publication-811/nist-guide-si-check-list-reviewing-manuscripts}{NIST Check List}.
-
 \end{warning}
+
+\medskip
+
+The topics of measurement, physical dimensions, and units, which are studied in \emph{metrology} and in \emph{dimensional analysis}, could occupy an entire course by themselves! I assume that you will look in the documents by the SI for more complicated details.
+We shall speak further about units in the next chapters. The main quantities and units used in the present notes are summarized in table~\ref{tab:units} on page~\pageref{tab:units} and table~\ref{tab:symbols_volint_fluxes} on page~\pageref{tab:symbols_volint_fluxes}.
+
+
+\section{Relations between units. Base units}
+\label{sec:base_units}
 
 
 
