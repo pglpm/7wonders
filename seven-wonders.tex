@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-14T12:31:01+0100
+%% Last-Updated: 2026-01-14T13:54:16+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2175,8 +2175,8 @@ The formalism we'll use might be called \enquote{field theory}. Roughly speaking
 \section{Physical quantities}
 \label{sec:primitives}
 
-\subsection{Generalities. Scalar and vector quantities}
-\label{sec:quants_scalar_vector}
+\subsection{Physical quantities}
+\label{sec:quants_general}
 
 As discussed in the previous section, in order to formulate and use physical laws we need to view all physical phenomena in and around us from a more abstract point of view, which more easily lends itself to quantification. This is done by using the concept of \textbf{physical quantity}.
 
@@ -2188,9 +2188,43 @@ As you see it's a somewhat vague definition, but it clearly refers to the possib
 
 As stated in the definition above, all physical quantities are expressed as a number together with a \emph{reference}, also called a \textbf{unit of measurement} or simply \emph{unit}. The unit is a basic standard for comparing the measurement of a quantity. For example, when we say that a table has a \emph{length} of two metres, written \enquote*{\qty{2}{m}}, we mean that is it as long as two of those standard lengths that we call \enquote*{metre}. We shall further discuss units of measurement in \sect\ref{sec:units}. The number and unit together are handled by usual mathematical rules; so we can for example add or multiply physical quantities. Not all mathematical operations are allowed on all quantities, though.
 
+
+\section{Scalar and vector quantities}
+\label{sec:quants_scalar_vector}
+
+Some physical quantities can be specified by giving only \emph{one} number together with a unit. Such a quantity is called a \textbf{scalar}.
+
+\needspace{5\baselineskip} \marginpar{\vspace{4\baselineskip}\footnotesize%
+  \color{mpcolor}%
+  This terminology is given in \cites{iso2019}.%
+}%
+Other physical quantities require the specification of \emph{several} numbers, corresponding to different spatial directions (and sometimes even to a \enquote{time} direction), with associated units. Such a quantity is called a \textbf{vector}, and can be graphically represented by an arrow. These numbers and their units are called the \textbf{scalar components} or the \textbf{coordinates} of the vector. They are usually three, one for each spatial dimension. In some applications we can neglect one or two spatial dimensions, and the vector will therefore have only two or one scalar components. In some applications, time is also treated as a fourth dimension in space-time, and we can therefore have vectors, often called \emph{four-vectors}, having four components.
+
+The values of the scalar components of a vector depend on the coordinate system under use; we shall therefore say more about them when we discuss coordinate systems in \chap~\ref{cha:time_space}.
+
+Examples of scalar quantities:
+\begin{description}[font=\normalfont\itshape]
+\item[Time] When you check the time on your clock, or read a time lapse on a stopwatch, you only read one number; for instance 16:52:01, or \qty{90}{s}.
+
+\item[Distance] For example the shortest distance between you and some place could be \qty{100}{m}. Mark the difference with \emph{position}, discussed below.
+
+\item[Energy] The amount of chemical energy in packaged food is given by one number, say \qty{800000}{J} (roughly equivalent to \qty{191}{kcal}). Also the amount of energy radiated by a light bulb is given by one number, say \qty{10}{J/s}.
+
+\item[Temperature] When you measure your own temperature, or check what's the temperature outdoors or indoors, you just read one number from the thermometer, say \qty{25}{\celsius}.
+\end{description}
+
 \medskip
 
-Some physical quantities can be specified by giving only one number together with a unit. Such a quantity is called a \textbf{scalar}. Other physical quantities instead require the specification of several numbers, usually three, with associated units. Such a quantity is called a \textbf{vector}, and can be graphically represented by a vector. There are also quantities that must be specified by several numbers and units, collected together into a sort of matrix. Such a quantity is called a \textbf{tensor}.
+Examples of vector quantities:
+\begin{description}[font=\normalfont\itshape]
+\item[Position] To specify the position or location of an object we usually need two or three numbers. Imagine for instance a pen lying on the floor in a room. We could specify its position by reporting its distance from the east wall and its distance from the north wall -- only one of the distances wouldn't be enough. For an object floating in air, we would also need to specify its distance from the floor. We could report this position as, say, $[\qty{1}{m}, \qty{2}{m}, \qty{0.3}{m}]$.
+
+ A GPS device gives our position on Earth also in terms of two or three numbers, called \emph{latitude}, \emph{longitude}, \emph{altitude}; for instance $(\qty{60.370}{\degree}, \qty{5.350}{\degree}, \qty{74.4}{m})$.
+\end{description}
+
+
+
+ There are also quantities that must be specified by several numbers and units, collected together into a sort of matrix. Such a quantity is called a \textbf{tensor}.
 \begin{warning}[What's scalar or vector or tensor depends on the theory]
   \emph{Scalar}, \emph{vector}, \emph{tensor} have specific and slightly different meanings in different theories. It is therefore important that you don't take the classification used in these notes as universal.
 
@@ -2200,7 +2234,7 @@ Some physical quantities can be specified by giving only one number together wit
 \end{warning}
 
 
-\subsection{Derived and primitive quantities}
+\section{Derived and primitive quantities}
 \label{sec:derived_primitive_quant}
 
 We must briefly discuss a way of categorizing physical quantities which is important for understanding our approach to study physical laws. It's the distinction between \emph{derived} and \emph{primitive} quantities. This is an arbitrary distinction; that is, we can decide, within some bounds, which quantities we consider as \enquote*{derived} and which as \enquote*{primitive}.
@@ -2337,11 +2371,13 @@ The relation can be written in several equivalent ways; here's one:
     \unit{N}\cdot\unit{m}
   \end{equation}
 \end{definition}
+
+\needspace{2\baselineskip}
 \marginpar{\vspace{-0.5\baselineskip}\footnotesize\centering%
 \color{mpcolor}%
 $E = m\,c^{2}$%
 }%
-The first equality expresses the fact that \emph{mass and energy are the same thing}, as we'll discuss in \chaps~\ref{cha:stuff} and~\ref{cha:bal_energy}. The second equality expresses a physical fact that comes forward from General Relativity: \emph{energy and momentum are different aspects of the same physical quantity}, a quantity called \enquote*{energy-momentum tensor}.
+The first equality expresses the fact that \emph{mass and energy are the same thing}, as we'll discuss in \chaps~\ref{cha:stuff} and~\ref{cha:bal_energy}. The second equality expresses a physical fact that comes from General Relativity: \emph{energy and momentum are different aspects of the same physical quantity}, a quantity called \enquote*{energy-momentum tensor}.
 
 
 
