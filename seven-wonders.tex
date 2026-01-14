@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-13T22:57:19+0100
+%% Last-Updated: 2026-01-14T07:18:19+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8026,7 +8026,7 @@ The physical laws that we must apply to this control volume are the balance of m
     \\
 \frac{\di\yN_{\NOt}(t)}{\dt} &= \yJ_{\NOt}(t) + \yR_{2,\NOt}(t)
 &\qquad&{\text{\footnotesize\color{midgrey}matter balance for $\NOt$}}
-    \\[\jot]
+    \\[2\jot]
     \yR_{2,\NOd}(t) &=
     2\, V \, A_{2} \,
     \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
@@ -8038,7 +8038,7 @@ The physical laws that we must apply to this control volume are the balance of m
     \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
     \frac{\yN_{\NOt}(t)}{V}
     &\qquad&{\text{\footnotesize\color{midgrey}const. relation for $\NOt$ supply}}
-    \\[2\jot]
+    \\[3\jot]
     \yJ_{\NOd}(t) &\equiv \qty{0}{mol/s} \ ,
     \quad
     \yJ_{\NOt}(t) \equiv \qty{0}{mol/s}
@@ -8047,7 +8047,7 @@ The physical laws that we must apply to this control volume are the balance of m
 \end{equation*}
 
 Substituting the constitutive relations and no-flux conditions in the matter balances, and simplifying with some simple algebra, we arrive at this system of differential equations:
-\begin{equation*}
+\begin{equation}\label{eq:N2O4toNO2_diffeqs}
   \begin{aligned}
     \frac{\di\yN_{\NOd}(t)}{\dt} &=
     2\, A_{2} \,
@@ -8059,14 +8059,21 @@ Substituting the constitutive relations and no-flux conditions in the matter bal
     \e^{-\frac{E_{2}}{R\,\yT}}\,
     \yN_{\NOt}(t)
   \end{aligned}
-\end{equation*}
+\end{equation}
 where $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ are the unknown functions; all other quantities are constant and their values are supposed to be known.
 
-Focus on the second equation: it's a \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order homogeneous linear differential equation} with constant coefficients, which can be solved analytically:
+\medskip
+
+Let's try to solve analytically this system of differential equations.
+
+In the first equation both amounts $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ appear, whereas in the second, only $\yN_{\NOt}(t)$ does. Therefore focus first on the second equation. It's a \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order homogeneous linear differential equation} with constant coefficients, which can be solved analytically. The general solution is
 \begin{equation*}
   \yN_{\NOt}(t) = C\,\exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\, t \Bigr) \ .
 \end{equation*}
-The constant $C$ can be found by imposing the initial condition at $\yti = \qty{0}{s}$:
+With an undetermined constant $C$. This constant can be found by imposing the initial condition at $\yti = \qty{0}{s}$:
+\marginpar{\vspace{\baselineskip}\footnotesize\centering\color{mpcolor}%
+Recall that\enskip$e^{0} = 1$.%
+}%
 \begin{equation*}
   C \,\exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\cdot \qty{0}{s}\Bigr)
   =  \yN_{\NOt}(\yti)
@@ -8074,18 +8081,26 @@ The constant $C$ can be found by imposing the initial condition at $\yti = \qty{
   C =  \yN_{\NOt}(\yti) \ .
 \end{equation*}
 
-\needspace{6\baselineskip}
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/n2o4_time.pdf}%
-}%
-We finally arrive at the solution for $\yN_{\NOt}(t)$:
+\medskip
+
+We finally arrive at the formula for the explicit time-dependence of the amount $\yN_{\NOt}(t)$ of nitrogen dioxide:
 \begin{equation}
   \label{eq:N2O4_analytic}
   \yN_{\NOt}(t) =
   \exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\, t\Bigr) \,
   \yN_{\NOt}(\yti) \ .
 \end{equation}
-The side plot shows its graph for a temperature $\yT = \qty{173}{K}$ and an initial amount $\yN_{\NOt}(\yti) = \qty{0.04}{mol}$. At $t = \qty{10}{s}$ there is almost no $\NOt$ left.
+
+\needspace{6\baselineskip}
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/n2o4_time.pdf}%
+}%
+The side plot shows how the amount changes in \qty{10}{s}, for a temperature $\yT = \qty{173}{K}$ and an initial amount $\yN_{\NOt}(\yti) = \qty{0.04}{mol}$; the values of $A_{2}$ and $E_{2}$ were given in \eqn~\eqref{eq:NO2-dis-rate}. We see that at $t = \qty{10}{s}$ there is almost no $\NOt$ left; but remember that our current example is unrealistic, because the dissociation reaction is not the only one that occurs in reality.
+
+\medskip
+
+\mynotew{to be continued}
+
 
 \section[Numerical time integration for amount of matter in a chemical reaction]{Numerical time integration for amount of matter\newline in a chemical reaction}
 \label{sec:simul_chemical_reaction}
