@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-14T18:54:10+0100
+%% Last-Updated: 2026-01-14T22:06:23+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2218,12 +2218,27 @@ Examples of \textbf{vector} quantities:
 
   A GPS device gives our position on Earth also in terms of two or three numbers, called \emph{latitude}, \emph{longitude}, \emph{altitude}; for example, the GPS could read $(\qty{60.370}{\degree}, \qty{5.350}{\degree}, \qty{74.4}{m})$.
 
-\item[Velocity] 
+\item[Velocity] expresses not only how fast something is moving, but also in which direction. This information can equivalently be expressed by three numbers, as we'll discuss in \sect\ref{sec:velocity}.
+
+\item[Force and momentum] are also related to motion, as we'll discuss at length in later chapters. They therefore require a direction as well as a number, or equivalently three numbers.
 \end{description}
 
+\medskip
 
+ There are also quantities that must be specified by more than three numbers and units, collected together into a sort of matrix or higher-dimensional array. Such a quantity is called a \textbf{tensor}.
 
- There are also quantities that must be specified by several numbers and units, collected together into a sort of matrix. Such a quantity is called a \textbf{tensor}.
+\medskip
+
+\begin{warning}[{{Position vs distance, velocity vs speed}}]
+  Mark the difference between \emph{position} and \emph{distance}. The first is a vector, because it must give information about 3D space. The second is a scalar, because it's associated to a specific path between two positions (often implicitly understood to be the shortest path). In some cases there may be a simple mathematical relation between distance and one or more positions.
+
+  \smallskip
+
+  Mark also the difference between \emph{velocity} and \emph{speed}. The latter is defined as the magnitude of the former, and is therefore always a \emph{positive} scalar.
+\end{warning}
+
+\medskip
+
 \begin{warning}[What's scalar or vector or tensor depends on the theory]
   \emph{Scalar}, \emph{vector}, \emph{tensor} have specific and slightly different meanings in different theories. It is therefore important that you don't take the classification used in these notes as universal.
 
@@ -2236,7 +2251,7 @@ Examples of \textbf{vector} quantities:
 \section{Derived and primitive quantities}
 \label{sec:derived_primitive_quant}
 
-We must briefly discuss a way of categorizing physical quantities which is important for understanding our approach to study physical laws. It's the distinction between \emph{derived} and \emph{primitive} quantities. This is an arbitrary distinction; that is, we can decide, within some bounds, which quantities we consider as \enquote*{derived} and which as \enquote*{primitive}.
+We must briefly discuss a way of categorizing physical quantities which is important for understanding our approach to study physical laws. It's the distinction between \emph{derived} and \emph{primitive} quantities. To some extent this is an arbitrary distinction; that is, we can decide, within some bounds, which quantities we consider as \enquote*{derived} and which as \enquote*{primitive}.
 
 A \textbf{derived quantity} is one that we decide to define in terms of other quantities. For example, we can define \emph{speed} $v$ (more precisely: average speed) as the ratio between a \emph{distance} $d$ and a \emph{time duration} $t$:
 \begin{equation*}
@@ -2252,7 +2267,7 @@ Treating \emph{speed} as a derived quantity means that we could in principle avo
 \emph{\enquote{you have to be in some framework that you allow something to be true. Otherwise you're perpetually asking \enquote*{why}}.} (\furl{https://www.youtube.com/watch?v=nYg6jzotiAc&t=893s}{see video}).%
 }%
 A derived quantity is defined in terms of other quantities, and these may in turn be derived quantities, defined in terms of still other quantities, and so on. But at some point this chain of definitions must come to an end, otherwise we would go around in circles.
-A \textbf{primitive quantity} is one that we decide \emph{not} to define in terms of other quantities. That it is not defined in terms of other quantities doesn't mean that we cannot try to explain it. But such explanation must be taken as informal and heuristic. Primitive quantities are often explained through metaphors or by appealing to intuition; but you must always be a little wary of such explanations, because they may fail you spectacularly in some situations. Primitive quantities are the building blocks from which we define all other quantities.
+A \textbf{primitive quantity} or \textbf{base quantity} is one that we decide \emph{not} to define in terms of other quantities. That it is not defined in terms of other quantities doesn't mean that we cannot try to explain it. But such explanation must be taken as informal and heuristic. Primitive quantities are often explained through metaphors or by appealing to intuition; but you must always be a little wary of such explanations, because they may fail you spectacularly in some situations. Primitive quantities are the building blocks from which we define all other quantities.
 
 We have therefore a choice about which quantities to take as primitive and which to take as derived. For instance we can define \emph{energy} in terms of quantities like \emph{work} and \emph{heat}, which in turn need to be defined in terms of others, or to be taken as primitive. Or we can take \emph{energy} as primitive, and define \emph{work} and \emph{heat} in terms of it and of other quantities. The latter choice can be more convenient for stating a physical law and for developing a physical theory. It often happens that a quantity, if taken as primitive, is very convenient for building a theory, but difficult to understand intuitively. Vice versa, a quantity can be very intuitive, and therefore convenient as a primitive; but it leads to a complicated theory. We also have some choice in deciding \emph{how many} quantities to take as primitive. Taking as few as possible primitive quantities can actually make the development of a physical theory more difficult, requiring very complicated definitions of the derived quantities.
 
@@ -2333,8 +2348,8 @@ The topics of measurement, physical dimensions, and units, which are studied in 
 We shall speak further about units in the next chapters. The main quantities and units used in the present notes are summarized in table~\ref{tab:units} on page~\pageref{tab:units} and table~\ref{tab:symbols_volint_fluxes} on page~\pageref{tab:symbols_volint_fluxes}.
 
 
-\section{Relations between units. Base units}
-\label{sec:base_units}
+\section{Relations between units}
+\label{sec:relations_units}
 
 Some physical quantities have their own unit, often because of historical reasons. For instance, \emph{energy flux} and \emph{energy supply}, which we shall discuss later, have unit \enquote*{\,watt\,}, symbol\enskip\enquote*{\,\unit{W}\,}. Similarly, \emph{momentum flux} and \emph{momentum supply}, which we also call \emph{forces} and shall discuss later, have unit \enquote*{\,newton\,}, symbol\enskip\enquote*{\,\unit{N}\,}.
 
@@ -2345,22 +2360,22 @@ For example, since \emph{energy flux} is related to change in \emph{energy} divi
   \qty{1}{W} \equiv \qty{1}{J/s} \ .
 \end{equation*}
 
-There is a very important relation of this kind among the units for \textdim{time}, \textdim{length}, \textdim{momentum flux}, \textdim{energy}, \textdim{mass}:
-\begin{center}
-  \begin{tabular}{ccccc}
-    \textdim{time}&
-    \textdim{length}&
-    \textdim{momentum\,flux}&
-    \textdim{energy}&
-    \textdim{mass}
-    \\
-    \unit{s}&
-    \unit{m}&
-    \unit{N}&
-    \unit{J}&
-    \unit{kg}
-  \end{tabular}
-\end{center}
+There is a very important relation of this kind among the units for \textdim{time} (\unit{s}), \textdim{length} (\unit{m}), \textdim{momentum flux} or \textdim{force} (\unit{N}), \textdim{energy} (\unit{J}), \textdim{mass} (\unit{kg}).
+% \begin{center}
+%   \begin{tabular}{ccccc}
+%     \textdim{time}&
+%     \textdim{length}&
+%     \textdim{momentum\,flux}&
+%     \textdim{energy}&
+%     \textdim{mass}
+%     \\
+%     \unit{s}&
+%     \unit{m}&
+%     \unit{N}&
+%     \unit{J}&
+%     \unit{kg}
+%   \end{tabular}
+% \end{center}
 The relation can be written in several equivalent ways; here's one:
 \begin{definition}{{Relation between second, metre, newton, joule, kilogram}}
   \begin{equation}
@@ -2371,14 +2386,72 @@ The relation can be written in several equivalent ways; here's one:
   \end{equation}
 \end{definition}
 
-\needspace{2\baselineskip}
-\marginpar{\vspace{-0.5\baselineskip}\footnotesize\centering%
+\needspace{2\baselineskip}%
+\marginpar{\vspace{0.5\baselineskip}\footnotesize\centering%
 \color{mpcolor}%
 $E = m\,c^{2}$%
 }%
 The first equality expresses the fact that \emph{mass and energy are the same thing}, as we'll discuss in \chaps~\ref{cha:stuff} and~\ref{cha:bal_energy}. The second equality expresses a physical fact that comes from General Relativity: \emph{energy and momentum are different aspects of the same physical quantity}, a quantity called \enquote*{energy-momentum tensor}.
 
+With some algebra we obtain other equivalent expressions of the equalities above, for example
+\begin{equation*}
+  \unit{kg} =
+  \unit{J}\cdot\frac{\unit{s}^{2}}{\unit{m}^{2}} =
+  \unit{N} \cdot \frac{\unit{s}^{2}}{\unit{m}} \ ,
+  \qquad\text{\footnotesize or}\qquad
+      \unit{kg} \cdot \frac{\unit{m}}{\unit{s}} =
+    \unit{J} \cdot \frac{\unit{s}}{\unit{m}} =
+    \unit{N}\cdot\unit{s} \ ,
+\end{equation*}
+or many others. Keep the main equality~\eqref{eq:rel_smnjkg} always in mind when you do conversion between units.
 
+
+\section{Base units}
+\label{sec:base_units}
+
+The distinction between base quantities and derived quantities brings about an analogous distinction between \textbf{base units} and \textbf{derived units}. Any unit can always be rewritten as product of powers of base units.
+
+\needspace{9\baselineskip}%
+\marginpar{\vspace{2\baselineskip}\footnotesize%
+\includegraphics[width=\linewidth]{images/si_logo.png}%
+\\[\jot]\color{mpcolor}%
+SI logo depicting the base units and the fundamental constants they are based upon%
+}%
+The International System of Units (SI) adopts a set of seven base units:
+\begin{center}
+  \begin{tabular}{ccc}
+    unit, symbol&&quantity
+    \\[\jot]
+    metre, \unit{m}&&\textdim{length}\\
+    kilogram, \unit{kg}&&\textdim{mass}\\
+    second, \unit{s}&&\textdim{time}\\
+    ampere, \unit{A}&&\textdim{electric current}\\
+    kelvin, \unit{K}&&\textdim{thermodynamic temperature}\\
+    mole, \unit{mol}&&\textdim{amount of substance}\\
+    candela, \unit{cd}&&\textdim{luminous intensity}
+%\\    \unit{m}&&\textdim{length}
+  \end{tabular}
+\end{center}
+together with some auxiliary units for quantities related to information theory. The majority of these units is defined with respect to fundamental physical constants.
+
+In these notes we shall emphasize a slightly different set of base units, related to our seven \autoref{sec:primitives}{primitive quantities}:
+\begin{center}
+  \begin{tabular}{ccc}
+    unit, symbol&&quantity
+    \\[\jot]
+    second, \unit{s}&&\textdim{time}\\
+    metre, \unit{m}&&\textdim{length}\\
+    mole, \unit{mol}&&\textdim{amount of matter}\\
+    coulomb, \unit{C}&&\textdim{electric charge}\\
+    weber, \unit{Wb}&&\textdim{magnetic flux}\\
+    newton, \unit{N}&&\textdim{momentum flux}\\
+    joule, \unit{J}\enskip{\footnotesize or}\enskip kilogram, \unit{kg}&
+    &\textdim{\energym}\\
+    kelvin, \unit{K}&&\textdim{thermodynamic temperature}
+%\\    \unit{m}&&\textdim{length}
+  \end{tabular}
+\end{center}
+Besides second and metre, related to coordinates, the other seven units apply to almost all our seven primitive quantities or their fluxes; so by using these units we can bring to light the presence and role of those main quantities. There is no real conflict with the SI, because all units above are official base or derived SI units.
 
 \section{Mathematics with quantities and units}
 \label{sec:variables_units}
