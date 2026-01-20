@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-20T07:02:09+0100
+%% Last-Updated: 2026-01-20T08:11:12+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2511,7 +2511,7 @@ This expression is now unambiguous: suppose that $t=\qty{60}{s}\equiv\qty{1}{min
 
 \medskip
 
-Also remember that \textbf{the results of trigonometric and exponential functions are dimensionless numbers} as well, so an expression like \enquote*{$3\,\cos(\dotso)$} denotes a pure number, with no units. If you want to express that the result is a length, the appropriate units must appear. We can for instance write
+Also remember that \textbf{the results of trigonometric and exponential functions are dimensionless numbers}. Therefore an expression such as \enquote*{$3\,\cos(\dotso)$} denotes a pure number, with no units. If we want to express that the result is, say, a length, then the appropriate units must appear. We can for instance write
 \begin{equation*}
   L\,\cos(\dotso)
 \end{equation*}
@@ -2534,17 +2534,18 @@ says that the position of some object oscillates with time, between the values \
 
 The \autoref{sec:velocity}{velocity} of the object is given by the derivative of this expression with respect to $t$. Let's calculate it treating all unit symbols as literal constants:
 \begin{equation*}
-  \frac{\di x(t)}{\dt} = \frac{\di}{\dt}\Bigl(
+  \frac{\di x(t)}{\dt} = \frac{\di}{\dt}\bigl[
   2\,\cos(t/\unit{s})\,\unit{m}
-  \Bigr)
+  \bigr]
   =
-  2\,\Bigl[
-  \mathcolor{grey}{\underbracket{\color{black}-\sin(t/\unit{s})\cdot\frac{1}{\unit{s}}}_{\zerob{\color{grey}\footnotesize chain rule}}}
-  \Bigr]\,\unit{m}
+  2\,\biggl[
+  \mathcolor{grey}{\underbracket{\color{black}
+      -\sin(t/\unit{s})\cdot\frac{1}{\unit{s}}}_{\zerob{\color{grey}\footnotesize chain rule}}}
+  \biggr]\,\unit{m}
   =
- -2\,\sin(t/\unit{s})\,\unit{m/s}
+ -2\,\sin(t/\unit{s})\,\unit{\frac{m}{s}}
 \end{equation*}
-and you see that the correct units for velocity have automatically appeared.
+and we see that the correct units for velocity, \enquote*{\unit{m/s}}, have appeared automatically.
 
 
 % When a number is given without any further information, it is generally interpreted so that the last digit is rounded with a rounding range equal to 1 in the last digit (see Annex~B). Thus, for example, the number \num{401008} is generally assumed to represent a value between \num{401007,5} and \num{401008,5}. In this case, the maximum magnitude of the error in the number \num{401008} is \num{0,5}. However, in some applications rounding is replaced by truncation (i.e. by simply cutting off the last digits), e.g. \num{401008,91} becomes \num{401008}. In this case, the number \num{401008} represents a value between \num{401008,0} and \num{401009,0} and the error is between 0 and 1. Similarly, the number \num{40,1008} is generally assumed to represent a value between \num{40,10075} and \num{40,10085} or sometimes a value between \num{40,10080} and \num{40,10090}. \autocites[\sect7.3.4]{iso2009}
