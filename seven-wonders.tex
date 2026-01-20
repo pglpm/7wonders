@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-20T19:22:47+0100
+%% Last-Updated: 2026-01-20T22:03:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8358,15 +8358,127 @@ The side figure shows how this amount changes in \qty{10}{s} for a temperature $
 \end{exercise}
 
 
-\section[Numerical time integration for amount of matter in a chemical reaction]{Numerical time integration for amount of matter\newline in a chemical reaction}
-\label{sec:simul_chemical_reaction}
+\section{Simultaneous reactions}
+\label{sec:simultaneous_reactions}
 
-In reality neither the dimerization nor the dissociation reactions occur alone. They occur together -- in fact together with still other reactions. A more realistic analysis of the time dependence of \NOd\ and \NOt\ amounts must therefore consider both reactions at once; we write
+In reality neither the dimerization nor the dissociation reactions discussed so far occurs alone. They occur together -- in fact, together with still other reactions. A more realistic analysis of the time dependence of \NOd\ and \NOt\ amounts must therefore consider both reactions at once; we write
 \begin{equation*}
   2\,\NOd \leftrightarrows \NOt
 \end{equation*}
+To indicate that they occur simultaneously
 
-When several reactions occur simultaneously among a set of substances, the supplies of the substances may generally have complicated dependencies that are not related to the supplies of the individual reactions. In many cases, however,
+When several reactions occur simultaneously between a substance~A and other substances, the  supply $\yR_{\textrm{A}}$ may have a  complicated constitutive relation, quite different from those of the individual reactions in which substance~A participates. In many cases, however, we can consider the supply to be \emph{the sum} of the supplies for the individual reactions. For instance, in the case of the dimerization and association reactions of the previous section we have
+\begin{equation*}
+  \begin{aligned}
+    2\,\NOd &\to \NOt
+    &\qquad\text{\footnotesize supplies:}&\ 
+    \left\{\begin{aligned}
+        &\yR_{1,\NOd}\\ &\yR_{1,\NOt}
+      \end{aligned}\right.
+    \\[0.5em]
+    \NOt &\to 2\,\NOd
+    &\qquad\text{\footnotesize supplies:}&\ 
+    \left\{\begin{aligned}
+        &\yR_{2,\NOd} \\ &\yR_{2,\NOt}
+      \end{aligned}\right.
+    \\[1em]
+    2\,\NOd &\leftrightarrows \NOt
+    &\qquad\text{\footnotesize supplies:}&\ 
+    \left\{\begin{aligned}
+        &\yR_{\NOd} = \yR_{1,\NOd} + \yR_{2,\NOd}
+        \\
+        &\yR_{\NOt} = \yR_{1,\NOt} + \yR_{2,\NOt}
+      \end{aligned}\right.
+  \end{aligned}
+\end{equation*}
+
+This is a constitutive relation:
+\begin{definition}{Supply for simultaneous reactions}
+Under particular conditions, if a substance~A simultaneously participates in several chemical reactions~1, 2,~\textellipsis having supplies $\yR_{1,\textrm{A}}(t)$, $\yR_{2,\textrm{A}}(t)$,~$\dotsc$, then its supply $\yR_{\textrm{A}}(t)$ for all reactions at once is given by the sum
+\begin{equation}
+  \label{eq:sum_supply_reactions}
+  \yR_{\textrm{A}}(t) = \yR_{1,\textrm{A}}(t) + \yR_{2,\textrm{A}}(t) + \dotsb
+\end{equation}
+\end{definition}
+
+You might wonder: the fact that the supply for both reactions is the sum of the supplies for the individual reactions, is it a consequence of the \autoref{def:extensivity}{extensivity property}? The answer to this intelligent question is not clear-cut. We might say that the two reactions occur in many distinct microscopic sub-volumes, and this is the reason why the supplies add up. But in this picture we must also be aware that there might be microscopic \emph{fluxes} of the substances between the various sub-volumes. If these microscopic fluxes are important and we neglect them, the effect from a macroscopic perspective is that the supplies don't add up anymore.
+
+\medskip
+
+Let's see an example of this constitutive relation for the dimerization-dissociation reaction\enskip$2\,\NOd \leftrightarrows \NOt$\,. According to the supplies~\eqref{eq:NO2-dim-supplies} and~\eqref{eq:NO2-dis-supplies} for the individual reactions, the supplies for the joint reaction are
+\begin{equation}
+  \label{eq:supplies_joint_reaction}
+  \begin{gathered}[t]
+    \begin{aligned}
+      \yR_{\NOd} &=
+      -2\, V \, A_{1} \,
+      \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+      \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2}
+      +
+      2\, V \, A_{2} \,
+      \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+      \frac{\yN_{\NOt}}{V}
+      \\[1ex]
+      \yR_{\NOt} &=
+      V \, A_{1} \,
+      \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+      \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2}
+      -
+      V \, A_{2} \,
+      \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+      \frac{\yN_{\NOt}}{V}
+    \end{aligned}
+    \\[1ex]
+    \text{with}\\
+    \begin{aligned}
+      A_{1} &= \qty{1.88e5}{m^3/(mol\,s)}&\quad
+      E_{1} &= -\qty{2.23e3}{J/mol}\\
+      A_{2} &= \qty{4.30e15}{s^{-1}}&
+      E_{2} &= \qty{5.32e4}{J/mol} \ .
+    \end{aligned}
+  \end{gathered}
+\end{equation}
+In the equations above, the supplies, the volume contents, and possibly also the temperature and the volume depend on time.
+
+\begin{exercise}
+  Following the example from \sect~\ref{sec:analit_chemical_reaction}, combine the balances of matter for \NOd\ and \NOt, with the constitutive relations above for the supplies in the simultaneous reaction\enskip$2\,\NOd \leftrightarrows \NOt$; and write down the two differential equations that describe the time evolution of the volume contents $\yN_{\NOd}(t)$, $\yN_{\NOt}(t)$.
+\end{exercise}
+
+
+\section[Numerical time integration for amount of matter in a chemical reaction]{Numerical time integration for amount of matter\newline in a chemical reaction}
+\label{sec:simul_chemical_reaction}
+
+For the simultaneous dimerization-dissociation reaction
+\begin{equation*}
+  2\,\NOd \leftrightarrows \NOt
+\end{equation*}
+if we combine the balances of matter for \NOd\ and \NOt\ with the constitutive relations~\eqref{eq:supplies_joint_reaction} we arrive at the system of differential equations
+\begin{equation}\label{eq:N2O4_NO2_diffeqs}
+  \begin{aligned}
+    \frac{\di\yN_{\NOd}(t)}{\dt} &=
+      -2\, A_{1} \,
+      \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+      \frac{\yN_{\NOd}(t)^{2}}{V}
+      +
+      2\, A_{2} \,
+      \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+      \yN_{\NOt}(t)
+    \\[1ex]
+\frac{\di\yN_{\NOt}(t)}{\dt} &=
+      A_{1} \,
+      \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+      \frac{\yN_{\NOd}(t)^{2}}{V}
+      -
+      A_{2} \,
+      \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+      \yN_{\NOt}(t)
+  \end{aligned}
+\end{equation}
+where $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ are the unknown functions.
+
+This is a much more complicated system than the one studied in \sect~\ref{sec:analit_chemical_reaction}. Both unknown functions appear in both equations, and one of them is squared. This is generally called a \furl{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{Riccati} system of differential equations, and can actually be solved analytically.
+
+
 
 \mynotew{to be continued}
 
