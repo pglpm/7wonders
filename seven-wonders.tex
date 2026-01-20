@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-20T08:11:12+0100
+%% Last-Updated: 2026-01-20T15:13:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2550,6 +2550,12 @@ and we see that the correct units for velocity, \enquote*{\unit{m/s}}, have appe
 
 % When a number is given without any further information, it is generally interpreted so that the last digit is rounded with a rounding range equal to 1 in the last digit (see Annex~B). Thus, for example, the number \num{401008} is generally assumed to represent a value between \num{401007,5} and \num{401008,5}. In this case, the maximum magnitude of the error in the number \num{401008} is \num{0,5}. However, in some applications rounding is replaced by truncation (i.e. by simply cutting off the last digits), e.g. \num{401008,91} becomes \num{401008}. In this case, the number \num{401008} represents a value between \num{401008,0} and \num{401009,0} and the error is between 0 and 1. Similarly, the number \num{40,1008} is generally assumed to represent a value between \num{40,10075} and \num{40,10085} or sometimes a value between \num{40,10080} and \num{40,10090}. \autocites[\sect7.3.4]{iso2009}
 
+
+
+\section{Expression of measurement uncertainty}
+\label{sec:measurement_uncertainty}
+
+\mynotew{To be written}
 
 \printpagenotes*
 \cleartooddpage
@@ -8248,15 +8254,15 @@ where $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ are the unknown functions; all other q
 
 \medskip
 
-Let's try to solve analytically this system of differential equations.
+Let's try to analytically solve this system of differential equations.
 
 In the first equation both amounts $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ appear, whereas in the second, only $\yN_{\NOt}(t)$ does. Therefore focus first on the second equation. It's a \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order homogeneous linear differential equation} with constant coefficients, which can be solved analytically. The general solution is
 \begin{equation*}
   \yN_{\NOt}(t) = C\,\exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\, t \Bigr) \ .
 \end{equation*}
 With an undetermined constant $C$. This constant can be found by imposing the initial condition at $\yti = \qty{0}{s}$:
-\marginpar{\vspace{\baselineskip}\footnotesize\centering\color{mpcolor}%
-Recall that\enskip$e^{0} = 1$.%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering\color{midgrey}%
+Recall that\enskip$\e^{0} = 1$.%
 }%
 \begin{equation*}
   C \,\exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\cdot \qty{0}{s}\Bigr)
@@ -8283,8 +8289,44 @@ The side plot shows how the amount changes in \qty{10}{s}, for a temperature $\y
 
 \medskip
 
-\mynotew{to be continued}
-
+Now that we have the explicit time dependence for $\yN_{\NOt}(t)$, we can also find the one for $\yN_{\NOd}(t)$ from the first of \eqns~\eqref{eq:N2O4toNO2_diffeqs}. All we have to do is integrate its left and right side with respect to time between~$\yti = \qty{0}{s}$ and a generic time~$t$:
+\marginpar{\vspace{4\baselineskip}\footnotesize\centering\color{midgrey}%
+Recall that\\$\int_{a}^{b}\e^{c t}\dt = \frac{1}{c} \bigl(\e^{c t} - \e^{c\yti}\bigr)$%
+}%
+\begin{equation*}
+  \label{eq:NO2_analytic}
+  \begin{aligned}
+    \int_{\yti}^{t} \!\frac{\di\yN_{\NOd}(t)}{\dt} \dt &=
+    2\, A_{2} \,
+    \e^{-\frac{E_{2}}{R\,\yT}}\,
+    \int_{\yti}^{t}
+    \yN_{\NOt}(t) \dt
+    \\
+    &=
+    2\, A_{2} \,
+    \e^{-\frac{E_{2}}{R\,\yT}}\,
+    \int_{\yti}^{t}
+    \exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\, t\Bigr)
+    \dt\cdot
+    \yN_{\NOt}(\yti)
+    \\[1em]
+    \implies\quad
+    \yN_{\NOd}(t) - \yN_{\NOd}(\yti) &=
+    - 2\,\Bigl[
+    \exp\Bigl(-A_{2} \, \e^{-\frac{E_{2}}{R\,\yT}}\, t\Bigr)
+    - 1
+    \Bigr]\,
+  \yN_{\NOt}(\yti)
+  \end{aligned}
+\end{equation*}
+from which we finally find
+\begin{equation}
+  \label{eq:NO2_analytic}
+    \yN_{\NOd}(t) = \yN_{\NOd}(\yti) 
+    - 2\,\bigl[
+    \yN_{\NOt}(t) - \yN_{\NOt}(\yti)
+    \bigr] \ .
+\end{equation}
 
 \section[Numerical time integration for amount of matter in a chemical reaction]{Numerical time integration for amount of matter\newline in a chemical reaction}
 \label{sec:simul_chemical_reaction}
