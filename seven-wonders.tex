@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-21T07:58:18+0100
+%% Last-Updated: 2026-01-21T19:45:32+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7830,8 +7830,8 @@ and a control volume containing \qty{1}{mol} of air (and no water vapour) approx
 \label{sec:matter_const_radioactive}
 
 For radioactive substances, for which conservation does not hold for individual kinds of matter, we still have a balance law where the supply $\yR$ has a specific constitutive equation:
-\needspace{9\baselineskip}%
-\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
+\needspace{6\baselineskip}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.33\linewidth]{images/radioactive.png}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 When we see this symbol we know that there's matter that's only balanced, not conserved -- which may involve danger.%
@@ -7895,13 +7895,111 @@ The amount of radioactive material at time $t$ is therefore given by
 \subsection{Numerical time integration of the law of radioactive decay}
 \label{sec:numer_int_decay}
 
-In any situation where the law of radioactive decay applies, it is most convenient and quick to use the analytic expression found above for the time dependence of the volume content $yN(t)$. But as an instructive exercise let's numerically integrate that law in the way we learned in \sect\ref{sec:numeric_simulation}.
+In any situation where the law of radioactive decay applies, it is most convenient and quick to use the analytic expression found above for the time dependence of the volume content $\yN(t)$. But as an instructive exercise let's write a script that numerically integrates that law in the way we learned in \sect\ref{sec:numeric_simulation}.
 
+\needspace{2\baselineskip}
+\marginpar{\vspace{1.5\baselineskip}\footnotesize\color{mpcolor}%
+There is no official \enquote*{\unit{yr}} (year) unit; informally let's set\\ $\qty{1}{yr} = \qty{31e6}{s}$.
+}%
+Take the following concrete scenario: we have a control volume containing \qty{1e-12}{mol} of the carbon radioactive isotope \nuclide[14]{C} at time $\yti = \qty{0}{yr}$. The decay constant for this isotope is $\lambda = \qty{0.000122}{yr^{-1}}$. We are interested in monitoring the amount of \nuclide[14]{C} over \qty{20000}{yr}.
+
+We're going to examine the script for such a task soon; but try to write it on your own first, before continuing:
+\begin{exercise}
+  Try to write a script for the numerical time integration of an amount $\yN(t)$ of radioactive material in a control volume. Follow the scheme and example from \sect\ref{sec:oscillatingreact2} and \sect~\ref{sec:code_integration}; note that the present problem is much simpler!
+
+  \smallskip
+
+  For the present problem:
+\begin{itemize}
+\item The balance of matter\enskip$\frac{\di\yN}{\dt} = \yJ + \yR$\,,\enskip in its \autoref{def:finitedifference}{finite-difference approximation}, drives the system forward in time.
+\item We have the \autoref{sec:boundary_conds}{boundary condition} of zero flux: $\yJ \equiv \qty{0}{mol/s}$.
+\item The constitutive relation~\eqref{eq:radioactive_decay_supply} for radioactive decay allows us to determine all necessary quantities for performing a new time step. Take $\lambda = \qty{0.000122}{yr^{-1}}$.
+\item As initial values take
+  \begin{equation*}
+    \yN(\yti)=\qty{e-12}{mol}
+    \quad\text{\footnotesize at}\quad\yti = \qty{0}{yr} \ .
+  \end{equation*}
+\item Integrate until time $\ytf = \qty{20000}{yr}$ using a timestep $\Dt = \qty{1}{yr}$ or \qty{0.1}{yr}.
+\end{itemize}
+\end{exercise}
+
+\medskip
+
+The time iteration looks as follows:
+\begin{equation}\label{eq:timestepped_radioactive}
+  \begin{aligned}[b]
+    \yR\tikzmark{R1Aa}(t) &= -\lambda \yN(t)
+    \\[3\jot]
+   \yN\tikzmark{N1Aa}(t+\Dt) &\approx
+   \yN(t) +[\yJ + \tikzmark{R1Ab}\yR(t)]\,\Dt
+    \\[4\jot]
+    \yR\tikzmark{R1Ba}(t + \Dt) &= -\lambda \tikzmark{N1Ab}\yN(t + \Dt)
+    \\[3\jot]
+    \yN\tikzmark{N1Ba}(t+2\Dt)  &\approx
+    \tikzmark{N1Ac}\yN(t+\Dt) +[\yJ + \tikzmark{R1Bb}\yR(t+\Dt)]\,\Dt
+    % \\[4\jot]
+    % \yRu(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
+    % \\[2\jot]
+    % \yRv(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
+    % \\[3\jot]
+    % \yNa\tikzmark{cNNua}(t+3\Dt)  &\approx
+    % \tikzmark{bNNub}\yNa(t+2\Dt)
+    % +\yRu(t+2\Dt)]\,\Dt
+    % \\[2\jot]
+    % \yNb\tikzmark{cNNva}(t+3\Dt)  &\approx
+    % \tikzmark{bNNvb}\yNb(t+2\Dt)
+    % +\yRv(t+2\Dt)]\,\Dt
+    \\[4\jot]
+    &\dotso\tikzmark{N1Bb}
+  \end{aligned}
+\begin{tikzpicture}[remember picture]
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:R1Aa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:R1Ab);
+\draw[overlay,cyan,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:R1Ba) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:R1Bb);
+%%
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:N1Aa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:N1Ab);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:N1Aa) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:N1Ac);
+\draw[overlay,red,line width=1pt,-{Stealth[length=10pt, width=5pt]}] (pic cs:N1Ba) to[out=-45,in=135]  ([shift={(0ex,1.5ex)}]pic cs:N1Bb);
+\end{tikzpicture}
+\end{equation}
+We note again the important roles of the two physical laws involved:
+\begin{itemize}
+\item The balance of matter, written as a finite-difference approximation, allows us to determine the amount $\yN$ at the next time step.
+\item In order to use the balance of matter to step forward from $t$ to $t+\Dt$ we also need the values of content influx $\yJ$, supply $\yR$ at time $t$. It's the constitutive relation~\eqref{eq:radioactive_decay_supply} that allow us to find $\yR(t)$ from $\yN(t)$.
+\end{itemize}
+The influx $\yJ$ is instead given as a constant boundary condition: it is always zero.
+
+A script implementing this numerical time integration is shown in table~\ref{tab:radioactive_decay} on page~\pageref{tab:radioactive_decay}. Recall the \autoref{sec:code}{remarks about computer code} used in the present notes. \textcolor{grey}{Light-grey code lines} are for drawing the plot of $\yN(t)$ against time $t$; they are of no importance for the physical simulation. The resulting plot is shown at the bottom of the table.
+
+Let's examine the structure of the script, starting from the while-loop; the lines for plotting, which are physically irrelevant, are omitted:
+\begin{description}
+\item[Lines 26--40:] \textbf{iteration}. At each time step the supply of matter is calculated from the amount of matter in \textbf{line 28}, using the constitutive relation for radioactive decay. Then the matter content is calculated in \textbf{line 32}, using the approximate form of the matter balance.
+\item[Lines 14--15:] \textbf{time-iteration parameters}. We time-integrate the system until time $\ytf = \qty{20000}{yr}$, with a timestep $\Dt = \qty{1}{yr}$.
+\item[Line 11:] \textbf{boundary condition}. We assume that the flux of matter is zero.
+\item[Lines 7--8:] \textbf{initial conditions}. We start the time integration from $\yti = \qty{0}{yr}$, with the initial value $\yN(\yti) = \qty{1e-12}{mol}$.
+\item[Line 4:] \textbf{constant}. Our equations use the decay constant $\lambda = \qty{0.000122}{yr^{-1}}$.
+\end{description}
+
+\begin{table}[p]
+  \caption{Script for radioactive decay}\label{tab:radioactive_decay}
+\vspace{-4ex}  \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+    Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/radioactive_decay.m}{\texttt{radioactive\_decay.m}}%
+    \\[2ex]
+    Download Python version \furl{https://pglpm.github.io/7wonders/scripts/radioactive_decay.py}{\texttt{radioactive\_decay.py}}%
+}%
+  \lstinputlisting[style=mycode]{scripts/radioactive_decay.m}
+\vspace{-1em}
+\begin{center}\label{fig:C14_time}
+\includegraphics[height=10em]{images/C14_time.pdf}%
+\end{center}
+\end{table}
+
+
+\FloatBlock
 
 \subsection{Application to climate}
 \label{sec:cons_matter_climate}
 
-The balance of matter together with the constitutive relation~\eqref{eq:radioactive_decay_supply} for radioactive decay turn out to be very useful in climate research.
+The balance of matter together with the constitutive relation~\eqref{eq:radioactive_decay_supply} for radioactive decay are very useful in climate research.
 
 \needspace{12\baselineskip}%
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
@@ -7917,33 +8015,17 @@ This is how we are able to say that human usage of fossil fuel is an important f
 
 
 
-
-
-
 % %
 % \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 % \includegraphics[width=\linewidth]{images/ice_core.png}%
 % \\\footnotesize\color{mpcolor}\url{https://xkcd.com/2902}%
 % }%
 \begin{exercise}
-  You measure the relative amounts of carbon within an air pocket near the surface of a block of ice, and find that one mole of air in this pocket contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. You then make an analogous measurement within an air pocket deeper in the ice, and find a relative amount of \qty{2e-13}{mol} of \nuclide[14]{C} there. How older is the deeper section of ice?
+  You measure the relative amounts of carbon within an air pocket near the surface of a block of ice, and find that one mole of air in this pocket contains \qty{1e-12}{mol} of the radioactive isotope \nuclide[14]{C}. You then make an analogous measurement within an air pocket deeper in the ice, and find a relative amount of \qty{2e-13}{mol} of \nuclide[14]{C} there. The smaller amount in the same volume size indicates that some of the original \nuclide[14]{C} has disappeared from radioactive decay. How older is the deeper section of ice?
 
   \smallskip
 
-  Find out the age $t_{\text{ice}}$ of the deeper section by numerically evolving the balance equation
-  \begin{equation*}
-    \frac{\di\yN(t)}{\dt} = \yR(t)
-  \end{equation*}
-  where the matter supply $\yR(t)$ has the constitutive relation for \autoref{sec:matter_const_radioactive}{radioactive decay}:
-  \begin{equation*}
-    \yR(t) = -\lambda\,\yN(t) \,,\qquad
-    \lambda = \qty{0.000122}{yr^{-1}}
-  \end{equation*}
-  and the matter flux $\yJ(t)$ is zero. Use a procedure similar to \autoref{sec:numeric_simulation}{\eqn~\eqref{eq:finite_diff}}, starting from time $\yti=\qty{0}{yr}$ and the initial value $\yN(\yti)=\qty{e-12}{mol}$; use a timestep $\Dt = (1/365)\,\unit{yr}$. In this simulation, instead of terminating the \texttt{while} loop when $t$ reaches a definite end time, terminate it when the desired amount $\yN(t) = \qty{2e-13}{mol}$ has been reached; you can then read $t_{\text{ice}}$.
-
-  \smallskip
-
-  Alternatively you can find $t_{\text{ice}}$ by analytically solving the differential equation above, in a way similar to the example with the \autoref{sec:oscillating_reaction}{oscillating reaction}.
+  Find out the age $t_{\text{ice}}$ of the deeper section by using either the analytical or the numerical time integration used in the present section. \emph{(Hint: if you use numerical time integration, you can terminate the while-loop when the desired amount $\yN(t) = \qty{2e-13}{mol}$ has been reached, and then read $t_{\text{ice}}$.)}
 \end{exercise}
 
 
@@ -8490,7 +8572,7 @@ Let's see an example of this constitutive relation for the dimerization-dissocia
 In the equations above, the supplies, the volume contents, and possibly also the temperature and the volume depend on time.
 
 \begin{exercise}
-  Following the example from \sect~\ref{sec:analit_chemical_reaction}, combine the balances of matter for \NOd\ and \NOt, with the constitutive relations above for the supplies in the simultaneous reaction\enskip$2\,\NOd \leftrightarrows \NOt$; and write down the two differential equations that describe the time evolution of the volume contents $\yN_{\NOd}(t)$, $\yN_{\NOt}(t)$.
+  Following the example from \sect\ref{sec:analit_chemical_reaction}, combine the balances of matter for \NOd\ and \NOt, with the constitutive relations above for the supplies in the simultaneous reaction\enskip$2\,\NOd \leftrightarrows \NOt$; and write down the two differential equations that describe the time evolution of the volume contents $\yN_{\NOd}(t)$, $\yN_{\NOt}(t)$.
 \end{exercise}
 
 
@@ -8525,7 +8607,7 @@ if we combine the balances of matter for \NOd\ and \NOt\ with the constitutive r
 \end{equation}
 where $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ are the unknown functions.
 
-This is a much more complicated system than the one studied in \sect~\ref{sec:analit_chemical_reaction}. Both unknown functions appear in both equations, and one of them is squared. This is generally called a \furl{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{Riccati} system of differential equations, and can actually be solved analytically.
+This is a much more complicated system than the one studied in \sect\ref{sec:analit_chemical_reaction}. Both unknown functions appear in both equations, and one of them is squared. This is generally called a \furl{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{Riccati} system of differential equations, and can actually be solved analytically.
 
 
 
