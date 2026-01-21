@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-20T22:03:43+0100
+%% Last-Updated: 2026-01-21T07:58:18+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7826,10 +7826,6 @@ and a control volume containing \qty{1}{mol} of air (and no water vapour) approx
 \end{exercise}
 
 
-
-
-
-
 \section{Radioactive decay}
 \label{sec:matter_const_radioactive}
 
@@ -7845,14 +7841,62 @@ When we see this symbol we know that there's matter that's only balanced, not co
   \yR(t) =  -\lambda\,\yN(t)
 \end{equation}
 where $\lambda$ is positive and called the \textbf{decay constant} of that particular substance. The supply with changed sign, $-\yR$, is usually called \furl{https://goldbook.iupac.org/terms/view/A00114}{\textbf{activity}}.
-
-\smallskip
-
-If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance is then called the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/radact.html}{\emph{law of radioactive decay}} and takes the form
-  \begin{equation}\label{eq:radioactive_decay}
-  \frac{\di\yN(t)}{\dt} =  -\lambda\,\yN(t)
-\end{equation}
+% 
+% \smallskip
+% 
+% If there is no influx of matter, $\yJ(t)=0$, the balance law for the substance is then called the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/radact.html}{\emph{law of radioactive decay}} and takes the form
+%   \begin{equation}\label{eq:radioactive_decay}
+%   \frac{\di\yN(t)}{\dt} =  -\lambda\,\yN(t)
+% \end{equation}
 \end{definition}
+
+\subsection{Law of radioactive decay}
+\label{sec:law_radioactive_decay}
+
+Consider a control volume containing a radioactive material. The balance of matter obviously applies to the amount of material $\yN$ in this control volume:
+\begin{equation*}
+  \frac{\di\yN(t)}{\dt} = \yJ(t) + \yR(t) \ .
+\end{equation*}
+If no material is leaving or entering the volume through the surface, the influx is always zero:\enskip$\yJ(t)\equiv 0$\,.\enskip The supply $\yR(t)$ is given by the constitutive relation~\eqref{eq:radioactive_decay_supply}. The balance of matter therefore becomes
+\begin{equation}\label{eq:radioactive_decay}
+  \frac{\di\yN(t)}{\dt} =  -\lambda\,\yN(t) \ .
+\end{equation}
+This expression is called the \textbf{law of radioactive decay}. It is a differential equation with $\yN(t)$ as the unknown function.
+
+\subsection{Analytical time integration of the law of radioactive decay}
+\label{sec:analyt_int_decay}
+
+Suppose that at time $\yti = \qty{0}{s}$ we have an amount $\yN(\yti)$ of radioactive material in the control volume, and we want to know how much material will be there at a generic time $t$; this time could be in the future or in the past. To find this amount $\yN(t)$ we need to solve the law of radioactive decay~\eqref{eq:radioactive_decay}.
+
+This differential equation is easy to solve. Let's try as a solution a function with the expression\enskip$\yN(t) = A\,\e^{Bt}$\,,\enskip where $A$ and $B$ are constants:
+\begin{equation*}
+  \begin{aligned}
+    \frac{\di A\,\e^{Bt}}{\dt} &=  -\lambda\,A\,\e^{Bt}
+    \\
+    \implies\quad
+    B\,A\,\e^{Bt} &= -\lambda\,A\,\e^{Bt}
+  \end{aligned}
+\end{equation*}
+which is satisfied if $B = -\lambda$. We find $A$ by setting the initial amount at $\yti = \qty{0}{s}$:
+%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering\color{midgrey}%
+Recall that\enskip$\e^{0} = 1$.%
+}%
+\begin{equation*}
+  \yN(\yti) = A\,\e^{-\lambda\cdot\qty{0}{s}} = A \ .
+\end{equation*}
+
+The amount of radioactive material at time $t$ is therefore given by
+\begin{equation}
+  \label{eq:N_radioactive}
+  \yN(t) = \e^{-\lambda t}\,\yN(\yti) \ .
+\end{equation}
+
+\subsection{Numerical time integration of the law of radioactive decay}
+\label{sec:numer_int_decay}
+
+In any situation where the law of radioactive decay applies, it is most convenient and quick to use the analytic expression found above for the time dependence of the volume content $yN(t)$. But as an instructive exercise let's numerically integrate that law in the way we learned in \sect\ref{sec:numeric_simulation}.
+
 
 \subsection{Application to climate}
 \label{sec:cons_matter_climate}
@@ -7865,11 +7909,16 @@ The balance of matter together with the constitutive relation~\eqref{eq:radioact
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Volume content of $\mathrm{CO_{2}}$ in the atmosphere in the years 1000--2000. By the law of matter conservation, there must have been a net \textbf{in}flux of $\mathrm{CO_{2}}$ into the atmosphere in these years. A vertical line is drawn at year 1769, when James Watt patented his steam engine (from \cites{mackay2008} p.~6)%
 }%
-On the Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/nuclear/nucnot.html\#c2}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, like the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
+On Earth's surface and atmosphere we can assume a law of conservation of matter for each of the \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/nuclear/nucnot.html\#c2}{stable isotopes} of the chemical elements, for instance the \furl{https://education.jlab.org/itselemental/ele006.html}{two stable carbon isotopes} and the \furl{https://education.jlab.org/itselemental/ele008.html}{three stable oxygen isotopes}. We can therefore follow these isotopes as they flow between different physical systems, like the atmosphere, the oceans, and the biosphere, especially plants -- in practice we are using huge control volumes.
 
 For the radioactive isotopes, the \autoref{sec:matter_const_radioactive}{law of radioactive decay} applies, and from it we can deduce the age of different materials and objects like ice or wood.
 
 This is how we are able to say that human usage of fossil fuel is an important factor in the increase of carbon dioxide ($\mathrm{CO_{2}}$) in the atmosphere during the past 200 years or so. Take a look at the more detailed explanations given by the \furl{https://gml.noaa.gov/outreach/isotopes/}{Global Monitoring Laboratory}.
+
+
+
+
+
 
 % %
 % \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
