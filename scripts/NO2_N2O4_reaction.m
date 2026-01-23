@@ -18,7 +18,7 @@ T = 340;  % K: temperature
 V = 0.001;            % m^3: volume
 
 %% Time-iteration parameters
-t1 = 5e-7;        % s: final time
+t1 = 2e-7;        % s: final time
 dtmin = 1e-10;  % s: time step %@
 
 %% Plotting
@@ -28,6 +28,9 @@ clf
 plot(t, N_NO2, 'o', 'color', '#EE6677')
 hold on ;
 plot(t, N_N2O4, 'o', 'color', '#CCBB44')
+legend('NO_2', 'N_2O_4')
+legend('box', 'off', 'location', 'southeast', 'fontsize', 24)
+legend ("autoupdate", "off");
 xlim([0, t1])
 xlabel('{\it t}/s'); ylabel('{\it N}/mol')
 axis('tight'); grid on; hold on %@
