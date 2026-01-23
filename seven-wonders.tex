@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-23T12:58:37+0100
+%% Last-Updated: 2026-01-23T15:04:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7868,14 +7868,15 @@ This expression is called the \textbf{law of radioactive decay}. It is a differe
 
 Suppose that at time $\yti = \qty{0}{s}$ we have an amount $\yN(\yti)$ of radioactive material in the control volume, and we want to know how much material will be there at a generic time $t$; this time could be in the future or in the past. To find this amount $\yN(t)$ we need to solve the law of radioactive decay~\eqref{eq:radioactive_decay}.
 
-This differential equation is easy to solve. Let's try as a solution a function with the expression\enskip$\yN(t) = A\,\e^{Bt}$\,,\enskip where $A$ and $B$ are constants:
+This differential equation is easy to solve. Let's try, as a solution, a function with the expression\enskip$\yN(t) = A\,\e^{Bt}$\,,\enskip where $A$ and $B$ are constants:
 \begin{equation*}
-  \begin{aligned}
-    \frac{\di A\,\e^{Bt}}{\dt} &=  -\lambda\,A\,\e^{Bt}
-    \\
-    \implies\quad
-    B\,A\,\e^{Bt} &= -\lambda\,A\,\e^{Bt}
-  \end{aligned}
+  \frac{\di
+    \overbracket[0.75pt]{\color{black}A\,\e^{Bt}}^{\color{midgrey}\mathclap{\yN(t)}}
+    }{\dt}
+    =  -\lambda\,
+\overbracket[0.75pt]{\color{black}A\,\e^{Bt}}^{\color{midgrey}\mathclap{\yN(t)}}
+\qquad    \implies\qquad
+    B\,A\,\e^{Bt} = -\lambda\,A\,\e^{Bt}
 \end{equation*}
 which is satisfied if $B = -\lambda$. We find $A$ by setting the initial amount at $\yti = \qty{0}{s}$:
 %
@@ -7883,7 +7884,8 @@ which is satisfied if $B = -\lambda$. We find $A$ by setting the initial amount 
 Recall that\enskip$\e^{0} = 1$.%
 }%
 \begin{equation*}
-  \yN(\yti) = A\,\e^{-\lambda\cdot\qty{0}{s}} = A \ .
+  \yN(\yti) = A\,\e^{-\lambda\yti} =
+  A\,\e^{-\lambda\cdot(\qty{0}{s})} = A \ .
 \end{equation*}
 
 The amount of radioactive material at time $t$ is therefore given by
@@ -8108,9 +8110,9 @@ This reaction is not elementary, but in some situations it may be considered app
 \section[Constitutive relations for rates of formation: reaction rates]{Constitutive relations for rates of formation:\newline reaction rates}
 \label{sec:reaction_rates}
 
-The constitutive relation explored in the previous section relates the supplies of different kinds of matter, but does not give an explicit expression for them in terms of other quantities. Finding constitutive relations between supplies and other quantities like the volume contents of the substances, temperature, volume, forces, and so on, is the goal of \emph{chemical kinetics}. The kind of available relations and their mathematical form are extremely diverse.
+The constitutive relation discussed in the previous section relates the supplies of different kinds of matter, but does not give an explicit expression for them in terms of other quantities. Finding constitutive relations between supplies and other quantities like the volume contents of the substances, temperature, volume, forces, and so on, is the goal of \emph{chemical kinetics}. Such relations can have extremely diverse mathematical expressions.
 
-Here we discuss one of the simplest: an example of constitutive relation that applies for some elementary reactions, and relates the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction, their volume contents, the size of the control volume, and the temperature in the control volume. It's actually the combination of two constitutive relations: the first is an \emph{empirical rate law}, and the second is the \emph{Arrhenius equation}.
+Here we discuss one of the simplest: an example of constitutive relation that applies for some elementary reactions, and that connects together: the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction; their volume contents; the size of the control volume; and the temperature in the control volume. It's actually the combination of two constitutive relations: the first is an \emph{empirical rate law}, and the second is called \emph{Arrhenius equation}.
 
 \begin{definition}{Empirical rate law with Arrhenius equation}\label{def:rate_law_arrhenius}
   Consider an approximately elementary reaction occurring in a control volume of size $V$, say with stoichiometric equation
@@ -8130,8 +8132,8 @@ This reaction obeys an %\furl{https://doi.org/10.1351/goldbook.O04322}
 \begin{equation}
   \label{eq:empirical_rate_law}
   \dot\xi = V \,A_{\textrm{r}}\,
-  \exp\biggl(-\frac{E_{\textrm{r}}}{R\,\yT}\biggr)\,
-  \biggl(\frac{\yN_{\mathrm{A}}}{V}\biggr)^{\alpha}\,
+  \exp\biggl(-\frac{E_{\textrm{r}}}{R\,\yT}\biggr)\cdot
+  \biggl(\frac{\yN_{\mathrm{A}}}{V}\biggr)^{\alpha}\cdot
   \biggl(\frac{\yN_{\mathrm{B}}}{V}\biggr)^{\beta}
 \end{equation}
 where:
@@ -8422,7 +8424,7 @@ The side plot shows how the amount changes in \qty{10}{s}, for a temperature $\y
 
 Now that we have the explicit time dependence for $\yN_{\NOt}(t)$, we can also find the one for $\yN_{\NOd}(t)$ from the first of \eqns~\eqref{eq:N2O4toNO2_diffeqs}. All we have to do is integrate its left and right side with respect to time between~$\yti = \qty{0}{s}$ and a generic time~$t$:
 \marginpar{\vspace{4\baselineskip}\footnotesize\centering\color{midgrey}%
-Recall that\\$\int_{a}^{b}\e^{C t}\dt = \frac{1}{c} \bigl(\e^{C b} -
+Recall that\\$\int_{a}^{b}\e^{C t}\dt = \frac{1}{C} \bigl(\e^{C b} -
 \e^{C a}\bigr)$%
 }%
 \begin{equation*}
@@ -8608,6 +8610,13 @@ if we combine the balances of matter for \NOd\ and \NOt\ with the constitutive r
 where $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ are the unknown functions.
 
 This is a much more complicated system than the one studied in \sect\ref{sec:analit_chemical_reaction}. Both unknown functions appear in both equations, and one of them is squared. This is generally called a \furl{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{Riccati} system of differential equations, and can actually be solved analytically.
+
+It may nevertheless be convenient to numerically integrate the time evolution of this joint reaction, as we learned in \sect\ref{sec:numeric_simulation} and as we did, as an instructive example, with \autoref{sec:numer_int_decay}{radioactive decay}.
+
+Let's consider temperature $\yT$ and volume $V$ to be constant
+\medskip
+
+
 
 
 
@@ -9803,22 +9812,22 @@ In the time loop, the driving equations calculate later quantities from a partic
 \begin{equation*}
   \begin{aligned}[b]
     \yPa(t+\Dt)  &\approx
-    \underbracket[1pt]{\yPa(t)}_{\text{needed}} +
-    [\underbracket[1pt]{\yFab(t)}_{\text{needed}} +
+    \underbracket[0.75pt]{\yPa(t)}_{\text{needed}} +
+    [\underbracket[0.75pt]{\yFab(t)}_{\text{needed}} +
     \yGa(t)]\,\Dt
     \\
     \yPb(t+\Dt)  &\approx
-    \underbracket[1pt]{\yPb(t)}_{\text{needed}} +
-    [\underbracket[1pt]{\yFba(t)}_{\text{needed}} +
+    \underbracket[0.75pt]{\yPb(t)}_{\text{needed}} +
+    [\underbracket[0.75pt]{\yFba(t)}_{\text{needed}} +
     \yGb(t)]\,\Dt
     \\[\jot]
     \yra(t+\Dt)  &\approx
-    \underbracket[1pt]{\yra(t)}_{\text{needed}} +
-    \underbracket[1pt]{\yva(t)}_{\text{needed}}\,\Dt
+    \underbracket[0.75pt]{\yra(t)}_{\text{needed}} +
+    \underbracket[0.75pt]{\yva(t)}_{\text{needed}}\,\Dt
     \\
     \yrb(t+\Dt)  &\approx
-    \underbracket[1pt]{\yrb(t)}_{\text{needed}} +
-    \underbracket[1pt]{\yvb(t)}_{\text{needed}}\,\Dt
+    \underbracket[0.75pt]{\yrb(t)}_{\text{needed}} +
+    \underbracket[0.75pt]{\yvb(t)}_{\text{needed}}\,\Dt
  \end{aligned}
 \end{equation*}
 The supplies $\yGa$, $\yGb$ are given as boundary conditions, so we don't need to worry about them.
@@ -11178,19 +11187,27 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
   The convective momentum flux can be rewritten as follows by multiplying and dividing by $\yN_{b,\text{noz}}$:
   \begin{equation*}
     \begin{split}
-      &\yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
+      &\quad\yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
       \frac{\ym_{b,\text{noz}}}{V_{b,\text{noz}}}\,
       \yvb(t)
       \\[\jot]
-      {}={}&
+      &=
       \yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
-      \underbracket[1pt]{\frac{\color{green}\yN_{b,\text{noz}}}{
-          V_{b,\text{noz}}}}_{\delta}\,
-        \underbracket[1pt]{\frac{\ymb
-          }{\color{green}\yN_{b,\text{noz}}}}_{\yrho}\,
+      \overbracket[0.75pt]{
+        \biggl(
+        \mathcolor{black}{\frac{\color{green}\yN_{b,\text{noz}}}{
+          V_{b,\text{noz}}}}
+        \biggr)
+      }^{\color{midgrey}\delta}\,
+    \overbracket[0.75pt]{
+      \biggl(
+      \mathcolor{black}{\frac{\ymb
+      }{\color{green}\yN_{b,\text{noz}}}}
+      \biggr)
+    }^{\color{midgrey}\yrho}\,
       \yvb(t)
       \\
-      {}={}&\yJ\, \yrho\, \yvb(t)
+      &= \yJ\, \yrho\, \yvb(t)
     \end{split}
   \end{equation*}
 
