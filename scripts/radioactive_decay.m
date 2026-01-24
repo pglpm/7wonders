@@ -18,7 +18,7 @@ dt = 1;    % yr: time step %@
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;	  % time for next plot
 figure
-plot(t, N, '.', 'color', '#4477AA')
+plot(t, N, 'o', 'color', '#4477AA')
 xlabel('{\it t}/s'); ylabel('{\it N}/mol')
 axis('tight'); grid on; hold on %@
 
@@ -33,7 +33,7 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(t, N, '.', 'color', '#4477AA')
+    plot(t, N, 'o', 'color', '#4477AA')
     pause(0)
     tplot = tplot + dtplot;
   end %@

@@ -23,7 +23,7 @@ dt = 0.1    # yr: time step #@
 dtplot = t1/360  # time interval between plots
 tplot = dtplot	  # time for next plot
 figure
-plot(t, N, '.', 'color', '#4477AA')
+plot(t, N, 'o', color = '#4477AA')
 xlabel('${\it t}$/s'); ylabel('${\it N}$/mol')
 grid(True);  #@
 
@@ -38,7 +38,7 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    plot(t, N, '.', 'color', '#4477AA')
+    plot(t, N, 'o', color = '#4477AA')
     # pause(0.0001) # comment for matplotlib.online
     tplot = tplot + dtplot
 
