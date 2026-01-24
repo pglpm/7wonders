@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-24T13:46:41+0100
+%% Last-Updated: 2026-01-24T14:08:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8648,9 +8648,14 @@ Before discussing the script for this time integration, try to write it on your 
 
 The time iteration is very similar to the one for the \autoref[\eqn~\eqref]{eq:timestepped_evolution_NA}{oscillating reaction}, except that in the present case both volume contents $\yN_{\NOd}(t)$, $\yN_{\NOt}(t)$ allow us to calculate both supplies $\yR_{\NOd}(t)$, $\yR_{\NOt}(t)$ at every time step $t$.
 
-A script implementing the numerical time integration from $\yti = \qty{0}{s}$ to $\ytf = \qty{0.01}{s}$ is shown in table~\ref{tab:NO2_N2O4} on page~\pageref{tab:NO2_N2O4}.
+A script implementing the numerical time integration from $\yti = \qty{0}{s}$ to $\ytf = \qty{0.01}{s}$ is shown in table~\ref{tab:NO2_N2O4} on page~\pageref{tab:NO2_N2O4} and the following page.
 
-The resulting plot is shown on the left at the bottom of the table. \NOd\ amounts are represented by \textcolor{red}{red triangles}, and \NOt\ amounts by \textcolor{yellow}{yellow crosses}. You notice something peculiar: although we started with \qty{0.04}{mol} of \NOt\ and no \NOd, the plot seems to show constant amounts \qty{0.025}{mol} of \NOt\ and  \qty{0.030}{mol} of \NOd! Is there are error somewhere in the script? But a closer look reveals that the very initial values at $t = \qty{0}{s}$ are actually as prescribed in the script.
+The resulting plot is shown on the left at the bottom of the table. \NOd\ amounts are represented by \textcolor{red}{red triangles}, and \NOt\ amounts by \textcolor{yellow}{yellow crosses}. You notice something peculiar: although we started with \qty{0.04}{mol} of \NOt\ and no \NOd, the plot seems to show constant amounts \qty{0.025}{mol} of \NOt\ and  \qty{0.030}{mol} of \NOd! Is there an error somewhere in the script?
+
+A closer look reveals that the very initial amounts at $t = \qty{0}{s}$ are actually as prescribed in the script: note the markers at the upper and lower left corners of the plot area. This means that there is an extremely rapid change in the amounts at the very beginning of the time integration.
+
+\mynotew{to be continued}
+
 
 \clearpage
 \begin{table}[t]
@@ -8672,7 +8677,7 @@ The resulting plot is shown on the left at the bottom of the table. \NOd\ amount
 \includegraphics[width=0.495\linewidth]{images/NO2_N2O4_long.pdf}%
 \hfill%
 \includegraphics[width=0.495\linewidth]{images/NO2_N2O4_short.pdf}%
-\\%
+\\\footnotesize%
 \hspace{0.2475\linewidth}\clap{Longer time integration%: $\ytf = \qty{0.01}{s}$, $\Dt = \qty{e-8}{s}$
 }%
 \hfill\clap{Shorter time integration%: $\ytf = \qty{2e-7}{s}$, $\Dt = \qty{e-10}{s}$
@@ -8686,8 +8691,6 @@ The resulting plot is shown on the left at the bottom of the table. \NOd\ amount
 \FloatBlock
 
 
-
-\mynotew{to be continued}
 
 
 \section{Rigid-body and particle mechanics}
