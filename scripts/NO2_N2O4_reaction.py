@@ -27,12 +27,12 @@ J_N2O4 = 0  # mol/s: influx of N2O4
 ## Time-iteration parameters
 
 ## uncomment these for longer simulation
-#t1 = 0.01  # s: final time
-#dt = 1e-8  # s: time step
+t1 = 0.01  # s: final time
+dt = 1e-8  # s: time step
 
 ## uncomment these for shorter simulation
-t1 = 2e-7   # s: final time
-dt = 1e-10  # s: time step #@
+#t1 = 2e-7   # s: final time
+#dt = 1e-10  # s: time step #@
 
 ## Plotting
 dtplot = t1/360  # time interval between plots

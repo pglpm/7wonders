@@ -22,25 +22,22 @@ J_N2O4 = 0;  % mol/s: influx of N2O4
 %% Time-iteration parameters
 
 %% uncomment these for longer simulation
-%t1 = 0.01;  % s: final time
-%dt = 1e-8;  % s: time step
+t1 = 0.01;  % s: final time
+dt = 1e-8;  % s: time step
 
 %% uncomment these for shorter simulation
-t1 = 2e-7;   % s: final time
-dt = 1e-10;  % s: time step %@
+%t1 = 2e-7;   % s: final time
+%dt = 1e-10;  % s: time step %@
 
 %% Plotting
-dtplot = t1/360;  % time interval between plots
+dtplot = t1/60;  % time interval between plots
 tplot = dtplot;   % time for next plot
 figure
-plot(t, N_NO2, 'o', 'color', '#EE6677')
-hold on;
-plot(t, N_N2O4, 'o', 'color', '#CCBB44')
+plot(t, N_NO2, 'v', 'color', '#EE6677');
+hold on; plot(t, N_N2O4, 'x', 'color', '#CCBB44')
 legend('NO_2', 'N_2O_4')
-legend('fontsize', 24, 'box', 'off')
-legend ('autoupdate', 'off')
-xlim([0, t1])
-xlabel('{\it t}/s'); ylabel('{\it N}/mol')
+legend('fontsize', 24, 'box', 'off', 'autoupdate', 'off')
+xlim([0, t1]); xlabel('{\it t}/s'); ylabel('{\it N}/mol')
 axis('tight'); grid on %@
 
 %% Numerical time integration
@@ -60,8 +57,8 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(t, N_NO2, 'o', 'color', '#EE6677')
-    plot(t, N_N2O4, 'o', 'color', '#CCBB44')
+    plot(t, N_NO2, 'v', 'color', '#EE6677')
+    plot(t, N_N2O4, 'x', 'color', '#CCBB44')
     pause(0)
     tplot = tplot + dtplot;
   end %@

@@ -12,7 +12,7 @@ J = 0;  % mol/s: matter influx of C14
 
 %% Parameters for time loop
 t1 = 20000;  % yr: final time
-dt = 1;    % yr: time step %@
+dt = 1;      % yr: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots

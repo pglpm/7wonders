@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-22T19:48:09+0100
+%% Last-Updated: 2026-01-24T13:39:20+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -121,7 +121,7 @@ british%
 \setlist[enumerate,2]{label=(\roman*)}
 \setlist[enumerate]{label=(\alph*),leftmargin=26.44pt}
 \setlist[itemize]{leftmargin=26.44pt}% parindent is 17.62482pt
-\setlist[description]{leftmargin=26.44pt,font=\sffamily\bfseries}
+\setlist[description]{leftmargin=26.44pt}
 % old alternative:
 % \setlist[enumerate,2]{label=\alph*.}
 % \setlist[enumerate]{leftmargin=\parindent}
@@ -461,7 +461,7 @@ OSF \doi{10.17605/osf.io/#1}%
 
 \usepackage{pdfrender}
 %\newcommand*{\textxbf}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.2pt}{\textbf{#1}}}
-\newcommand*{\xbm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.1pt}{\boldsymbol{#1}}}
+\renewcommand*{\bm}[1]{\textpdfrender{TextRenderingMode=2,LineWidth=0.05pt}{\boldsymbol{#1}}}
 
 \usepackage[depth=3]{bookmark}
 \hypersetup{%
@@ -540,15 +540,27 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\settypeblocksize{*}{27pc}{1.414}% nearer to a 70-line newpx and preserves sqrt2
 %\fi
 \setulmargins{*}{*}{1}%gives equal margins
-\setlrmargins{*}{*}{4}
+%\setlrmargins{*}{*}{4}
+\setlrmargins{34.50787pt}{*}{*}
 \setheadfoot{\onelineskip}{2.5\onelineskip}
 \setheaderspaces{*}{2\onelineskip}{*}
-\setmarginnotes{\parindent}{0.33\textwidth}{1em}
+% \typeout{MARGINS: \the\parindent} % 17.62482pt
+% \typeout{MARGINS: \the\textwidth} % 384.0pt
+\setmarginnotes{17pt}{0.33\textwidth}{\baselineskip}
 \checkandfixthelayout[nearest]
 %%% End layout
 %% this fixes missing white spaces
 %\pdfmapline{+dummy-space <dummy-space.pfb}
 %\pdfinterwordspaceon% seems to add a white margin to Sumatrapdf
+% \typeout{TEXTWIDTH: \the\textwidth}
+% \typeout{LINEWIDTH: \the\linewidth}
+%% page width: 597.50787pt
+%% text width: 384.0pt
+%% left margin: 34.50787pt
+%% marginnote width: 128pt
+%% distance text-marginnote 17pt
+%% distance marginnote-edge 34pt
+%% width without side margins: 529pt
 
 %%% Sectioning
 % \newcommand*{\asudedication}[1]{%
@@ -585,10 +597,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chaptitlefont}{\Huge\sffamily\bfseries\centering}
 % textwidth: 384.0pt
-% margin separation: 17.62482pt
-% margin width = 0.33\textwidth
-% distance from text to margin-centre: 464.98482pt
-\renewcommand{\printchapternum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+% text-marginnote separation: 17pt
+% margin width = 0.33\textwidth = 128pt
+% distance from text to margin-centre: 465
+\renewcommand{\printchapternum}{\makebox[465pt][l]{\color{midgrey}\null\thickhrulefill%
 \hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
 \resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%
 }}\par\nobreak\vskip\midchapskip}
@@ -599,7 +611,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \renewcommand{\printchapternum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
 % \null\thickhrulefill\quad\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
 % }}
-\renewcommand{\printchapternonum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+\renewcommand{\printchapternonum}{\makebox[465pt][l]{\color{midgrey}\null\thickhrulefill%
 \hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
 \raisebox{0pt}[\beforechapskip][0pt]{}%
 }}\par\nobreak\vskip\midchapskip}
@@ -1062,24 +1074,24 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yfrik}{\mu_{\text{k}}}
 \newcommand*{\yvis}{\mu} % viscosity coeff
 \newcommand*{\yhea}{h} % heat-transfer coeff
-\newcommand*{\yg}{\xbm{g}} % gravitational acceleration
-\newcommand*{\yh}{\xbm{h}} % gravitational-inertial-magnetic force
+\newcommand*{\yg}{\bm{g}} % gravitational acceleration
+\newcommand*{\yh}{\bm{h}} % gravitational-inertial-magnetic force
 \newcommand*{\yGG}{\kappa} % gravitational constant
 
 
 %% time and space
-\newcommand*{\ye}{\xbm{e}} % unit vector
-\newcommand*{\yuu}{\xbm{u}}
-\newcommand*{\yww}{\xbm{w}}
-\newcommand*{\yr}{\xbm{r}}
+\newcommand*{\ye}{\bm{e}} % unit vector
+\newcommand*{\yuu}{\bm{u}}
+\newcommand*{\yww}{\bm{w}}
+\newcommand*{\yr}{\bm{r}}
 \newcommand*{\yra}{\yr_{a}}
 \newcommand*{\yrb}{\yr_{b}}
 \newcommand*{\yxa}{x_{a}}%
 \newcommand*{\yxb}{x_{b}}%
-\newcommand*{\yv}{\xbm{v}}
+\newcommand*{\yv}{\bm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
-\newcommand*{\yst}{\xbm{\sigma}}
+\newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
 \newcommand*{\ydl}{\incr\bm{l}}
@@ -1100,8 +1112,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\Dzh}{\tfrac{\incr z}{2}}
 
 %% transport
-\newcommand*{\yvs}{\xbm{v}_{\textrm{s}}}
-\newcommand*{\yns}{\xbm{n}_{\textrm{s}}}
+\newcommand*{\yvs}{\bm{v}_{\textrm{s}}}
+\newcommand*{\yns}{\bm{n}_{\textrm{s}}}
 \newcommand*{\yAs}{A}%_{\textrm{s}}}
 \newcommand*{\yVs}{V_{\textrm{s}}}
 \newcommand*{\yNs}{\yN_{\textrm{s}}}
@@ -1113,7 +1125,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yN}{N}
 \newcommand*{\yJ}{J}
 \newcommand*{\yn}{n}
-\newcommand*{\yj}{\xbm{j}}
+\newcommand*{\yj}{\bm{j}}
 % \newcommand*{\yR}{\varAlpha}
 \newcommand*{\yR}{\mathcal{R}}
 \newcommand*{\yrho}{\rho}
@@ -1156,7 +1168,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yP}{\bm{P}}
 \newcommand*{\yPa}{\yP_{a}}
 \newcommand*{\yPb}{\yP_{b}}
-\newcommand*{\yp}{\xbm{p}}
+\newcommand*{\yp}{\bm{p}}
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{as}}
 \newcommand*{\yFba}{\yF_{bs}}
@@ -1175,14 +1187,14 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFp}{F_{\text{p}}}
 \newcommand*{\yFf}{F_{\text{f}}}
 \newcommand*{\ypr}{p} % pressure
-\newcommand*{\ypv}{\xbm{\ypr}} % pressure vector
+\newcommand*{\ypv}{\bm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
 
 %% rigid motion
 \newcommand*{\yOm}{\bm{\varOmega}}
-\newcommand*{\yo}{\xbm{\omega}}
+\newcommand*{\yo}{\bm{\omega}}
 \newcommand*{\yox}{\omega_{x}}
 \newcommand*{\yoy}{\omega_{y}}
 \newcommand*{\yoz}{\omega_{z}}
@@ -1203,8 +1215,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\yTo}{\bm{\varTau}}% volume torque M or T or M_Q
 \newcommand*{\yM}{\bm{M}}% surface torque M or T or M_Q
 \newcommand*{\yToo}{\mathcal{T}}% volume torque M or T or M_Q
-\newcommand*{\yTo}{\xbm{\yToo}}% volume torque M or T or M_Q
-%\newcommand*{\yt}{\xbm{\tau}}
+\newcommand*{\yTo}{\bm{\yToo}}% volume torque M or T or M_Q
+%\newcommand*{\yt}{\bm{\tau}}
 
 %% entropy and temperature
 \newcommand*{\yS}{S}
@@ -1385,14 +1397,17 @@ retain-explicit-plus,%
 % \usetikzlibrary{positioning}
 % \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 
+% distance from right edge of text block to right edge of margin-note
+\newlength{\rspace}
+\setlength{\rspace}{145pt}
+
 \begin{document}
 %\AddToShipoutPicture*{\BackgroundPic}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
 
 \begin{titlingpage}
-\calccentering{\unitlength}
-\begin{adjustwidth}{\unitlength}{-\unitlength}
+\begin{adjustwidth}{0pt}{-\rspace}
   \centering
   % c6ddff % color of Earth in the Pale Blue Dot picture
 % \color[HTML]{C6DDFF}
@@ -1402,8 +1417,7 @@ retain-explicit-plus,%
 \end{titlingpage}
 \killtitle
 
-\calccentering{\unitlength}
-\begin{adjustwidth*}{\unitlength}{-\unitlength}\thispagestyle{empty}
+\begin{adjustwidth}{0pt}{-\rspace}\thispagestyle{empty}
   \centering
   \includegraphics[align=c,height=1em]{images/cc_by_sa.png} Licence
 
@@ -1427,7 +1441,7 @@ except in exercises that specifically target them.
 \vspace{17em}
 
 Cover: adapted from \href{https://onepunchman.fandom.com}{\emph{One Punch Man}} Punch~192: \href{https://onepunchman.fandom.com/wiki/Chapter_192_(Online)}{\emph{Level Up}}.
-\end{adjustwidth*}
+\end{adjustwidth}
 \setcounter{page}{2}
 
 % \calccentering{\unitlength}

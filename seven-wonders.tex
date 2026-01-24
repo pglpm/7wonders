@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-23T15:04:04+0100
+%% Last-Updated: 2026-01-24T13:46:41+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -539,17 +539,27 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 %\settypeblocksize{*}{27pc}{1.414}% nearer to a 70-line newpx and preserves sqrt2
 %\fi
 \setulmargins{*}{*}{1}%gives equal margins
-\setlrmargins{*}{*}{4}
+%\setlrmargins{*}{*}{4}
+\setlrmargins{34.50787pt}{*}{*}
 \setheadfoot{\onelineskip}{2.5\onelineskip}
 \setheaderspaces{*}{2\onelineskip}{*}
-\typeout{MARGINS: \the\parindent}
-\typeout{MARGINS: \the\textwidth}
-\setmarginnotes{\parindent}{0.33\textwidth}{\baselineskip}
+% \typeout{MARGINS: \the\parindent} % 17.62482pt
+% \typeout{MARGINS: \the\textwidth} % 384.0pt
+\setmarginnotes{17pt}{0.33\textwidth}{\baselineskip}
 \checkandfixthelayout[nearest]
 %%% End layout
 %% this fixes missing white spaces
 %\pdfmapline{+dummy-space <dummy-space.pfb}
 %\pdfinterwordspaceon% seems to add a white margin to Sumatrapdf
+% \typeout{TEXTWIDTH: \the\textwidth}
+% \typeout{LINEWIDTH: \the\linewidth}
+%% page width: 597.50787pt
+%% text width: 384.0pt
+%% left margin: 34.50787pt
+%% marginnote width: 128pt
+%% distance text-marginnote 17pt
+%% distance marginnote-edge 34pt
+%% width without side margins: 529pt
 
 %%% Sectioning
 % \newcommand*{\asudedication}[1]{%
@@ -586,10 +596,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chaptitlefont}{\Huge\sffamily\bfseries\centering}
 % textwidth: 384.0pt
-% margin separation: 17.62482pt
-% margin width = 0.33\textwidth
-% distance from text to margin-centre: 464.98482pt
-\renewcommand{\printchapternum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+% text-marginnote separation: 17pt
+% margin width = 0.33\textwidth = 128pt
+% distance from text to margin-centre: 465
+\renewcommand{\printchapternum}{\makebox[465pt][l]{\color{midgrey}\null\thickhrulefill%
 \hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
 \resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%
 }}\par\nobreak\vskip\midchapskip}
@@ -600,7 +610,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \renewcommand{\printchapternum}{\makebox[1.33\textwidth][l]{\color{midgrey}%
 % \null\thickhrulefill\quad\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%\quad\thickhrulefill
 % }}
-\renewcommand{\printchapternonum}{\makebox[464.98482pt][l]{\color{midgrey}\null\thickhrulefill%
+\renewcommand{\printchapternonum}{\makebox[465pt][l]{\color{midgrey}\null\thickhrulefill%
 \hspace{\marginparsep}\hspace{0.5\marginparwidth}\clap{%
 \raisebox{0pt}[\beforechapskip][0pt]{}%
 }}\par\nobreak\vskip\midchapskip}
@@ -1371,14 +1381,17 @@ keepaspectratio]{images/palebluedotA4s.png}%
 % \usetikzlibrary{positioning}
 % \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 
+% distance from right edge of text block to right edge of margin-note
+\newlength{\rspace}
+\setlength{\rspace}{145pt}
+
 \begin{document}
 \AddToShipoutPicture*{\BackgroundPic}
 \captiondelim{\quad}\captionnamefont{\footnotesize}\captiontitlefont{\footnotesize}
 \selectlanguage{british}\frenchspacing
 
 \begin{titlingpage}
-\calccentering{\unitlength}
-\begin{adjustwidth}{\unitlength}{-\unitlength}
+\begin{adjustwidth}{0pt}{-\rspace}
   \centering
   % c6ddff % color of Earth in the Pale Blue Dot picture
   \color[HTML]{C6DDFF}
@@ -1387,8 +1400,7 @@ keepaspectratio]{images/palebluedotA4s.png}%
 \end{titlingpage}
 \killtitle
 
-\calccentering{\unitlength}
-\begin{adjustwidth*}{\unitlength}{-\unitlength}\thispagestyle{empty}
+\begin{adjustwidth}{0pt}{-\rspace}\thispagestyle{empty}
   \centering
   \includegraphics[align=c,height=1em]{images/cc_by_sa.png} Licence
 
@@ -1413,7 +1425,7 @@ No large language models were used in the preparation of this document.
 Cover: the \emph{Pale Blue Dot} image of the Earth,
 \\ taken by Voyager~1 from right outside Pluto's orbit.\\
 \url{https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/}
-\end{adjustwidth*}
+\end{adjustwidth}
 \setcounter{page}{2}
 
 
@@ -2576,9 +2588,7 @@ and we see that the correct units for velocity, \enquote*{\unit{m/s}}, have appe
 
 \emph{Time} is a primitive quantity. We understand the notion of time intuitively, even if it is difficult to explain -- that's why it is taken as primitive. In 1905, with the Theory of Relativity, part of our everyday intuition about the notion of time was seriously shaken. For many years afterwards our old intuition could still be used in practice and in applications. But the new, correct intuition is becoming more and more important in everyday life and technologies. GPS navigation, for example -- which we use every day in leisure activities like hiking or sightseeing, as well as in more critical ones like aeroplane landing -- crucially depends on the correct notion, intuition, and measurement of time. Luckily the new intuition of time is also becoming more and more widespread thanks to films and mass-media; think of movies like \furl{https://www.imdb.com/title/tt0816692/}{\emph{Interstellar}}.
 
-%\calccentering{\unitlength}
 \begin{figure}[p]
-%\begin{adjustwidth}{\unitlength}{-\unitlength}
   \includegraphics[width=\linewidth]{images/ABC_spacetime.jpg}
   \caption{A \emph{spacetime diagram} that illustrates of the experiences of Alice (\textcolor{green}{dashed green \faIcon{grin-tongue}}), Bob (\textcolor{red}{solid red \faIcon{flushed}}), Charlie (\textcolor{blue}{dot-dashed blue \faIcon{grimace}}) with time. The area within the \textcolor{midgrey}{dotted grey line} represents a two-dimensional spacetime. Space is more horizontal than vertical; time is more vertical than horizontal, and flows upward. Note that we can't precisely say, for instance, \enquote{the vertical direction is time}, because our problem is to see whether we can really separate time and space at all.
     %
@@ -2590,7 +2600,6 @@ and we see that the correct units for velocity, \enquote*{\unit{m/s}}, have appe
 (1)~when Bob and Charlie are together their clocks differ -- impossible to say what's \enquote{the} time at their position; (2)~it is not clear which instant in Bob \amp\ Charlie's trajectory should be considered as \enquote{now} for Alice (\textcolor{yellow}{dashed yellow lines}).
 %
 \\[\jot]\textbf{Upper part}: When Alice, Bob, Charlie meet again, their clocks have completely different readings; and they have aged differently. But their clocks run again at the same rate as long as they stay close again.}  \label{fig:ABC_spacetime}
-%\end{adjustwidth}
 \end{figure}
 %\clearpage
 
@@ -7903,7 +7912,7 @@ In any situation where the law of radioactive decay applies, it is most convenie
 \marginpar{\vspace{1.5\baselineskip}\footnotesize\color{mpcolor}%
 There is no official \enquote*{\unit{yr}} (year) unit; informally let's set\\ $\qty{1}{yr} = \qty{31e6}{s}$.
 }%
-Take the following concrete scenario: we have a control volume containing \qty{1e-12}{mol} of the carbon radioactive isotope \nuclide[14]{C} at time $\yti = \qty{0}{yr}$. The decay constant for this isotope is $\lambda = \qty{0.000122}{yr^{-1}}$. We are interested in monitoring the amount of \nuclide[14]{C} over \qty{20000}{yr}.
+Take the following concrete scenario. We have a control volume containing \qty{1e-12}{mol} of the carbon radioactive isotope \nuclide[14]{C} at time $\yti = \qty{0}{yr}$. The decay constant for this isotope is $\lambda = \qty{0.000122}{yr^{-1}}$. We are interested in monitoring the amount of \nuclide[14]{C} over \qty{20000}{yr}.
 
 We're going to examine the script for such a task soon; but try to write it on your own first, before continuing:
 \begin{exercise}
@@ -8609,14 +8618,72 @@ if we combine the balances of matter for \NOd\ and \NOt\ with the constitutive r
 \end{equation}
 where $\yN_{\NOd}(t)$ and $\yN_{\NOt}(t)$ are the unknown functions.
 
-This is a much more complicated system than the one studied in \sect\ref{sec:analit_chemical_reaction}. Both unknown functions appear in both equations, and one of them is squared. This is generally called a \furl{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{Riccati} system of differential equations, and can actually be solved analytically.
+This is a much more complicated system than the one studied in \sect\ref{sec:analit_chemical_reaction}. Both unknown functions appear in both equations, and one of them is squared. This is generally called a \furl{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{Riccati} system of differential equations, and can actually be solved analytically. It may nevertheless be convenient to numerically integrate the time evolution of this joint reaction, as we learned in \sect\ref{sec:numeric_simulation} and as we did, as an instructive example, with \autoref{sec:numer_int_decay}{radioactive decay}.
 
-It may nevertheless be convenient to numerically integrate the time evolution of this joint reaction, as we learned in \sect\ref{sec:numeric_simulation} and as we did, as an instructive example, with \autoref{sec:numer_int_decay}{radioactive decay}.
+Consider the following scenario. A control volume of constant size $V = \qty{0.001}{m^{3}}$ (one litre) contains $\qty{0.04}{mol}$ of \NOt\ and no \NOd\ at the initial time $\yti = \qty{0}{s}$. The temperature is constant at $\yT = \qty{330}{K}$ (around \qty{57}{\degreeCelsius}). The two reactions\enskip$2\,\NOd \leftrightarrows \NOt$\enskip occur; the rates of formation of \NOd\ and \NOt\ are given by \eqns~\eqref{eq:supplies_joint_reaction}. All influxes of matter are zero. We want to know the amounts of \NOd\ and \NOt\ a very short time $\ytf = \qty{0.01}{s}$ later.
 
-Let's consider temperature $\yT$ and volume $V$ to be constant
+Before discussing the script for this time integration, try to write it on your own:
+\begin{exercise}
+  Try to write a script for the numerical time integration of the chemical reaction described above. Follow the scheme and example from \sect\ref{sec:oscillatingreact2} and \sect\ref{sec:code_integration}; the present problem is similar, it only has slightly more complicated supplies.
+
+  \smallskip
+
+  For the present problem:
+\begin{itemize}
+\item The balances of matter for \NOd\ and \NOt, in their finite-difference approximations, drive the system forward in time.
+\item We have the boundary conditions of zero fluxes.
+\item The constitutive relations~\eqref{eq:supplies_joint_reaction} allow us to determine the supplies of the two substances, necessary for performing a new time step.
+\item As initial values take
+  \begin{equation*}
+    \yN_{\NOd}(\yti)=\qty{0.00}{mol}
+    \quad
+    \yN_{\NOt}(\yti)=\qty{0.04}{mol}
+    \quad\text{\footnotesize at}\quad\yti = \qty{0}{s} \ .
+  \end{equation*}
+\item Integrate until time $\ytf = \qty{0.01}{s}$ using a timestep $\Dt = \qty{1e-8}{s}$.
+\end{itemize}
+\end{exercise}
+
 \medskip
 
+The time iteration is very similar to the one for the \autoref[\eqn~\eqref]{eq:timestepped_evolution_NA}{oscillating reaction}, except that in the present case both volume contents $\yN_{\NOd}(t)$, $\yN_{\NOt}(t)$ allow us to calculate both supplies $\yR_{\NOd}(t)$, $\yR_{\NOt}(t)$ at every time step $t$.
 
+A script implementing the numerical time integration from $\yti = \qty{0}{s}$ to $\ytf = \qty{0.01}{s}$ is shown in table~\ref{tab:NO2_N2O4} on page~\pageref{tab:NO2_N2O4}.
+
+The resulting plot is shown on the left at the bottom of the table. \NOd\ amounts are represented by \textcolor{red}{red triangles}, and \NOt\ amounts by \textcolor{yellow}{yellow crosses}. You notice something peculiar: although we started with \qty{0.04}{mol} of \NOt\ and no \NOd, the plot seems to show constant amounts \qty{0.025}{mol} of \NOt\ and  \qty{0.030}{mol} of \NOd! Is there are error somewhere in the script? But a closer look reveals that the very initial values at $t = \qty{0}{s}$ are actually as prescribed in the script.
+
+\clearpage
+\begin{table}[t]
+  \vspace{4ex}
+  \caption{Script for $2\,\NOd \leftrightarrows \NOt$ reaction}\label{tab:NO2_N2O4}
+  \vspace{-4ex}
+\end{table}
+\sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+  Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/NO2_N2O4_reaction.m}{\texttt{NO2\_N2O4\_reaction.m}}%
+  \\[2ex]
+  Download Python version \furl{https://pglpm.github.io/7wonders/scripts/NO2_N2O4_reaction.py}{\texttt{NO2\_N2O4\_reaction.py}}%
+}%
+\lstinputlisting[style=mycode]{scripts/NO2_N2O4_reaction.m}
+
+\vspace{1em}
+
+\begin{adjustwidth}{0pt}{-\rspace}
+\begin{center}\label{fig:C14_time}
+\includegraphics[width=0.495\linewidth]{images/NO2_N2O4_long.pdf}%
+\hfill%
+\includegraphics[width=0.495\linewidth]{images/NO2_N2O4_short.pdf}%
+\\%
+\hspace{0.2475\linewidth}\clap{Longer time integration%: $\ytf = \qty{0.01}{s}$, $\Dt = \qty{e-8}{s}$
+}%
+\hfill\clap{Shorter time integration%: $\ytf = \qty{2e-7}{s}$, $\Dt = \qty{e-10}{s}$
+}%
+\hspace{0.2475\linewidth}\mbox{}%
+\end{center}
+\end{adjustwidth}
+\clearpage
+
+
+\FloatBlock
 
 
 
