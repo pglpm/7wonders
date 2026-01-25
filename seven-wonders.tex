@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-25T10:30:36+0100
+%% Last-Updated: 2026-01-25T15:24:55+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8074,7 +8074,7 @@ Note the negative sign for the reactants.
 
 \smallskip
 
-The quantity $\dot\xi(t)$ is called the \textbf{rate of conversion} for the elementary reaction, and depends on other quantities such as temperature, the contents of the substances, the volume, momentum fluxes, and others.
+The quantity $\dot\xi(t)$ is called the \textbf{rate of conversion} for the elementary reaction, and depends on other quantities such as temperature, the contents of the substances, the volume, momentum fluxes, and others. We shall discuss some of these dependencies shortly.
 
 \smallskip
 
@@ -8123,7 +8123,7 @@ The constitutive relation discussed in the previous section relates the supplies
 
 Here we discuss one of the simplest: an example of constitutive relation that applies for some elementary reactions, and that connects together: the rate of conversion $\dot\xi$, and therefore the supplies of all reactants and products of the reaction; their volume contents; the size of the control volume; and the temperature in the control volume. It's actually the combination of two constitutive relations: the first is an \emph{empirical rate law}, and the second is called \emph{Arrhenius equation}.
 
-\begin{definition}{Empirical rate law with Arrhenius equation}\label{def:rate_law_arrhenius}
+\begin{definition}{Empirical rate law}\label{def:rate_law_N_V}
   Consider an approximately elementary reaction occurring in a control volume of size $V$, say with stoichiometric equation
 \begin{equation*}
   a\,\mathrm{A} + b\,\mathrm{B}  \to  y\,\mathrm{Y} + z\,\mathrm{Z}
@@ -8139,34 +8139,27 @@ and rate of conversion
 This reaction obeys an %\furl{https://doi.org/10.1351/goldbook.O04322}
 \emph{empirical rate law} with \emph{Arrhenius equation} if the rate of conversion satisfies the equation
 \begin{equation}
-  \label{eq:empirical_rate_law}
-  \dot\xi = V \,A_{\textrm{r}}\,
-  \exp\biggl(-\frac{E_{\textrm{r}}}{R\,\yT}\biggr)\cdot
+  \label{eq:empirical_rate_law_simple}
+  \dot\xi = V \,C\cdot
   \biggl(\frac{\yN_{\mathrm{A}}}{V}\biggr)^{\alpha}\cdot
   \biggl(\frac{\yN_{\mathrm{B}}}{V}\biggr)^{\beta}
 \end{equation}
 where:
 \begin{itemize}[nosep]
-\item $A_{\textrm{r}}$ is a constant called \textbf{pre-exponential factor}; 
-\item $E_{\textrm{r}}$ is called the \textbf{activation energy} of the reaction; 
 \item the exponents $\alpha$, $\beta$ are called \textbf{partial orders};
-\item $\yT$ is the \autoref{sec:temperature}{thermodynamic temperature} in the control volume;
-\item $R$ is the \furl{https://www.physics.nist.gov/cgi-bin/cuu/Value?eqr|search_for=molar+gas}{\textbf{molar gas constant}},
-  \begin{equation*}
-    R \defd  \qty{8.31446261815324}{J/(mol\,K)}\quad\text{(exactly)}.
-  \end{equation*}
+\item $C$ is a factor that depends on the temperature and possibly on other quantities;
 \end{itemize}
 An analogous formula holds if there are more or fewer reactants.
 
 \smallskip
 
-In this expression, the volume, volume contents, temperature may depend on time $t$; the activation energy may depend on other quantities such as temperature. This expression is only valid if the conditions are uniform throughout the control volume, which is usually the case for a small enough control volume.
+In this expression, the volume, volume contents, and the factor $C$ may depend on time $t$. This expression is only valid if the conditions are uniform throughout the control volume, which is usually the case for a small enough control volume.
 \end{definition}
 \begin{warning}[Partial orders need not be related to stoichiometric numbers]
-The partial orders $\alpha$, $\beta$ of the rate law~\eqref{eq:empirical_rate_law} are in principle unrelated to the stoichiometric numbers $a$, $b$ of the stoichiometric equation. In some situations they are equal, in others not.
+The partial orders $\alpha$, $\beta$ of the rate law~\eqref{eq:empirical_rate_law_simple} are in principle unrelated to the stoichiometric numbers $a$, $b$ of the stoichiometric equation. In some situations they are equal, in others not.
 \end{warning}
 
-The constants in \eqn~\eqref{eq:empirical_rate_law} can be found in published tables, for example in the \furl{https://kinetics.nist.gov/kinetics/}{\emph{NIST Chemical Kinetics Database}}.
+We shall discuss the factor $C$ that appears in \eqn~\eqref{eq:empirical_rate_law_simple} more in detail later, after we study the balance of \energym.
 
 \medskip
 
@@ -8176,20 +8169,14 @@ It's important to keep in mind that the constitutive relation above is \emph{onl
 \end{equation*}
 has the rate law
 \begin{equation*}
-  \label{eq:empirical_rate_law}
-  \dot\xi = V\, k_{1}(\dotso)\,
+  \dot\xi = V\, C\,
   \frac{\yN_{\mathrm{H_{2}}}}{V}\,
   \sqrt{\frac{\yN_{\mathrm{Br_{2}}}}{V}\,}\,
   \biggl(1 +
   \gamma\frac{\yN_{\mathrm{HBr}}}{\yN_{\mathrm{Br_{2}}}}
   \biggr)
 \end{equation*}
-where the function $k_{1}(\dotso)$ depends on temperature, and $\gamma$ is a constant. Note that the volume content of the \emph{product}, $\mathrm{HBr}$, also appears in the constitutive law above. Other examples exist, involving sums of powers or other mathematical expressions. The dependence on the temperature $\yT$ can also be different from the exponential expression\enspace$\exp[-E_{\textrm{r}}/(R\,\yT)]$. For instance, some reactions have expressions like
-\begin{equation*}
-V \,A_{\textrm{r}}\, \yT^{n}  \exp\biggl(-\frac{E_{\textrm{r}}}{R\,\yT}\biggr) \dotso
-\end{equation*}
-where the exponent $n$ is a constant. Still other expressions exist.
-
+where $\gamma$ is a constant. Note that the volume content of the \emph{product}, $\mathrm{HBr}$, also appears in the constitutive law above. Other examples exist, involving sums of powers or other mathematical expressions.
 
 \needspace{12\baselineskip}
 \section[Constitutive relations for rates of formation: examples]{Constitutive relations for rates of formation:\newline example}
@@ -8234,44 +8221,40 @@ This reaction involves only one reactant, with stoichiometric number~$-2$, and o
   -\frac{1}{2} \yR_{1,\NOd}(t) = \yR_{1,\NOt}(t) = \dot\xi_{1}(t) \ .
 \end{equation}
 
-The rate of conversion $\dot\xi_{1}$ can be described by a constitutive relation like \eqn~\eqref{eq:empirical_rate_law}, with exponent $\alpha=2$:
+The rate of conversion $\dot\xi_{1}$ can be described by a constitutive relation like \eqn~\eqref{eq:empirical_rate_law_simple}, with exponent $\alpha=2$:
 \begin{equation}
   \label{eq:NO2-dim-rate}
   \begin{gathered}
     \dot\xi_{1} =
-    V \, A_{1} \,
-    \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+    V \, C_{1}\cdot
     \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2}
     \\[\jot]
-    \text{with}\quad
-    A_{1} = \qty{1.88e5}{m^3/(mol\,s)} \ ,\quad
-    E_{1} = -\qty{2.23e3}{J/mol}
+    \text{with}\qquad
+    C_{1} = \qty{423770}{m^3/(mol\,s)}
+    \quad\text{\footnotesize at a temperature of \qty{330}{K}}.
   \end{gathered}
 \end{equation}
-The \furl{https://kinetics.nist.gov/kinetics/ReactionSearch?r0=10102440&r1=10102440&r2=0&r3=0&r4=0&p0=10544726&p1=0&p2=0&p3=0&p4=0&expandResults=true}{values} of $A_{1}$ and $E_{1}$ are taken from the NIST Chemical Kinetics Database.
 
 Combining \eqns~\eqref{rate_NO2-dim}, \eqref{eq:NO2-dim-rate} we find the supplies
 \begin{equation}
   \label{eq:NO2-dim-supplies}
   \begin{aligned}
     \yR_{1,\NOd} &=
-    -2\, V \, A_{1} \,
-    \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+    -2\, V \, C_{1}\cdot
     \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2} \ ,
     \\
     \yR_{1,\NOt} &=
-    V \, A_{1} \,
-    \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+    V \, C_{1} \cdot
     \biggl(\frac{\yN_{\NOd}}{V}\biggr)^{2} \ .
   \end{aligned}
 \end{equation}
-Keep in mind that many quantities in the expressions above are time-independent: besides the supplies themselves and the volume contents $\yN_{\NOd}$, $\yN_{\NOt}$, also the temperature $\yT$ and the volume $V$ might vary with time.
+Keep in mind that many quantities in the expressions above are time-independent: besides the supplies themselves and the volume contents $\yN_{\NOd}$, $\yN_{\NOt}$, also the factor $C_{1}$ and the volume $V$ might vary with time.
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item In \eqn~\eqref{eq:NO2-dim-rate}, verify that the units of the constants $A_{2}$ and $E_{1}$ make sense.
+  \item In \eqn~\eqref{eq:NO2-dim-rate}, verify that the units of the factor $C_{1}$ make sense.
   \item In \eqn~\eqref{eq:NO2-dim-supplies}, verify that the supply $\yR_{1,\NOd}$ is always negative, and $\yR_{1,\NOt}$ always positive. Do these signs make sense in this reaction?
-  \item Note that the activation energy $E_{1}$ in \eqn~\eqref{eq:NO2-dim-supplies} is \emph{negative}. If we decrease the temperature $\yT$ (keeping everything else constant), will the supply magnitudes\enskip$\abs{\yR_{1,\NOd}}$\enskip and\enskip$\abs{\yR_{1,\NOt}}$\enskip increase or decrease? (Remember that thermodynamic temperature is always positive, $\yT > \qty{0}{K}$.)
+  \item If we decrease the volume $V$ (keeping everything else constant), will the supply magnitudes\enskip$\abs{\yR_{1,\NOd}}$\enskip and\enskip$\abs{\yR_{1,\NOt}}$\enskip increase or decrease?
   \end{enumerate}
 \end{exercise}
 
@@ -8294,7 +8277,7 @@ We have only one reactant, with stoichiometric number~$-1$, and one product, wit
   - \yR_{2,\NOt}(t) = \frac{1}{2} \yR_{2,\NOd}(t) = \dot\xi_{2}(t) \ .
 \end{equation}
 
-The rate of conversion $\dot\xi_{2}$ can be described by a constitutive relation like \eqn~\eqref{eq:empirical_rate_law}, with exponent $\alpha=1$:
+The rate of conversion $\dot\xi_{2}$ can be described by a constitutive relation like \eqn~\eqref{eq:empirical_rate_law_simple}, with exponent $\alpha=1$:
 \begin{equation}
   \label{eq:NO2-dis-rate}
   \begin{gathered}
@@ -13379,6 +13362,14 @@ The example with the crate \amp\ floor generalizes to situations where the matte
 \begin{exercise}
   Consider a person pushing a crate on a conveyor belt or on moving walkway, in a direction opposite to the belt. Using the technique of the \enquote{thin control volume} and proceeding in a way analogous to the discussion above, analyse this situation and prove the formulae and inequalities~\eqref{eq:Q_F_discontinuity}.
 \end{exercise}
+
+
+\section[Constitutive relations for rates of formation: temperature dependence]{Constitutive relations for rates of formation:\newline temperature dependence}
+\label{sec:reaction_rates_temperature}
+
+\mynotew{To be written}
+
+
 
 
 \printpagenotes*
