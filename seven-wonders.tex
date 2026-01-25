@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-24T14:08:43+0100
+%% Last-Updated: 2026-01-25T10:30:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8633,6 +8633,7 @@ Before discussing the script for this time integration, try to write it on your 
 \item The balances of matter for \NOd\ and \NOt, in their finite-difference approximations, drive the system forward in time.
 \item We have the boundary conditions of zero fluxes.
 \item The constitutive relations~\eqref{eq:supplies_joint_reaction} allow us to determine the supplies of the two substances, necessary for performing a new time step.
+\item Set $V = \qty{0.001}{m^{3}}$, $\yT = \qty{330}{K}$.
 \item As initial values take
   \begin{equation*}
     \yN_{\NOd}(\yti)=\qty{0.00}{mol}
@@ -8648,14 +8649,12 @@ Before discussing the script for this time integration, try to write it on your 
 
 The time iteration is very similar to the one for the \autoref[\eqn~\eqref]{eq:timestepped_evolution_NA}{oscillating reaction}, except that in the present case both volume contents $\yN_{\NOd}(t)$, $\yN_{\NOt}(t)$ allow us to calculate both supplies $\yR_{\NOd}(t)$, $\yR_{\NOt}(t)$ at every time step $t$.
 
-A script implementing the numerical time integration from $\yti = \qty{0}{s}$ to $\ytf = \qty{0.01}{s}$ is shown in table~\ref{tab:NO2_N2O4} on page~\pageref{tab:NO2_N2O4} and the following page.
-
-The resulting plot is shown on the left at the bottom of the table. \NOd\ amounts are represented by \textcolor{red}{red triangles}, and \NOt\ amounts by \textcolor{yellow}{yellow crosses}. You notice something peculiar: although we started with \qty{0.04}{mol} of \NOt\ and no \NOd, the plot seems to show constant amounts \qty{0.025}{mol} of \NOt\ and  \qty{0.030}{mol} of \NOd! Is there an error somewhere in the script?
-
-A closer look reveals that the very initial amounts at $t = \qty{0}{s}$ are actually as prescribed in the script: note the markers at the upper and lower left corners of the plot area. This means that there is an extremely rapid change in the amounts at the very beginning of the time integration.
-
-\mynotew{to be continued}
-
+A script implementing the numerical time integration from $\yti = \qty{0}{s}$ to $\ytf = \qty{0.01}{s}$ is shown in table~\ref{tab:NO2_N2O4} on page~\pageref{tab:NO2_N2O4} and the following page. The structure of the time-stepping loop is the usual one. Note in particular how the supplies $\yR_{\NOd}(t)$, $\yR_{\NOt}(t)$ are calculated (lines~\texttt{46}--\texttt{51}) before the actual timestepping, in two stages:
+\begin{description}
+\item[Lines 46--48:] First the rates of conversion $\dot\xi_{1}$, $\dot\xi_{2}$ are calculated using \eqns~\eqref{eq:NO2-dim-rate}, \eqref{eq:NO2-dis-rate}; they are called \texttt{xidot1}, \texttt{xidot2} in the script.
+\item[Lines 49--51:] Then the rates of formation $\yR_{\NOd}$, $\yR_{\NOt}$ are calculated using \eqns~\eqref{rate_NO2-dim}, \eqref{eq:rate_NO2-dis}, added together as in \eqn~\eqref{eq:sum_supply_reactions}.
+\end{description}
+This calculation could have been done in other equivalent ways. For instance we could have used directly formulae~\eqref{eq:supplies_joint_reaction}.
 
 \clearpage
 \begin{table}[t]
@@ -8686,11 +8685,50 @@ A closer look reveals that the very initial amounts at $t = \qty{0}{s}$ are actu
 \end{center}
 \end{adjustwidth}
 \clearpage
-
-
 \FloatBlock
 
+\subsection{Equilibrium}
+\label{sec:NO_equilibrium}
 
+The resulting plot is shown on the left at the bottom of the table. \NOd\ amounts are represented by \textcolor{red}{red triangles}, and \NOt\ amounts by \textcolor{yellow}{yellow crosses}. You notice something peculiar: although we started with \qty{0.04}{mol} of \NOt\ and no \NOd, the plot seems to show constant amounts \qty{0.025}{mol} of \NOt\ and  \qty{0.030}{mol} of \NOd! Is there an error somewhere in the script? A closer look reveals that the very initial amounts at $t = \qty{0}{s}$ are actually as prescribed in the script: note the markers at the upper and lower left corners of the plot area. This means that there is an extremely rapid change in the amounts at the very beginning of the time integration.
+
+To explore this rapid change, let's do a shorter time integration with final time $\ytf = \qty{2e-7}{s}$ and timestep $\Dt = \qty{e-10}{s}$ (see lines \texttt{28}--\texttt{30} in the script). The resulting plot is shown on the right at the bottom of the table. We observe that the volume contents of \NOd\ and \NOt\ reach stable, constant values within \qty{2e-7}{s}. This time scale  -- around \qty{e-7}{s} -- is \emph{not} reliable, because on such short scales our constitutive relations cannot be trusted anymore. The real time scale of the change seems to be somewhere between \qty{e-7}{s} and \qty{e-4}{s}  \parencites[\sect1]{samukovetal2025}. But the first, longer time integration is reliable, and it shows us that equilibrium is quickly reached in the control volume.
+
+\textbf{Equilibrium} in a chemical reaction is the condition where the volume contents of reactants and products do not change in time; that is, in our case,
+\begin{equation*}
+  \frac{\di\yN_{\NOd}(t)}{\dt} = \frac{\di\yN_{\NOt}(t)}{\dt} = \qty{0}{mol/s}
+  \ .
+\end{equation*}
+Usually a condition of zero-influx, $\yJ = \qty{0}{mol/s}$, is also implicitly understood. Substituting the equilibrium condition in \eqns~\eqref{eq:N2O4toNO2_diffeqs} for the time evolution of the amounts, we obtain a system of two equations (no more differential equations) for two unknowns: $\yN_{\NOd}$ and $\yN_{\NOt}$:
+\begin{equation*}
+  \begin{aligned}
+      -2\, A_{1} \,
+      \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+      \frac{\yN_{\NOd}^{2}}{V}
+      +
+      2\, A_{2} \,
+      \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+      \yN_{\NOt}
+      &=\qty{0}{mol/s}
+    \\[1ex]
+      A_{1} \,
+      \exp\biggl(-\frac{E_{1}}{R\,\yT}\biggr)\,
+      \frac{\yN_{\NOd}^{2}}{V}
+      -
+      A_{2} \,
+      \exp\biggl(-\frac{E_{2}}{R\,\yT}\biggr)\,
+      \yN_{\NOt}
+      &=\qty{0}{mol/s}
+  \end{aligned}
+\end{equation*}
+
+\begin{exercise}
+  \begin{enumerate}[exerc]
+  \item Solve the system above of two equations in $\yN_{\NOd}$ and $\yN_{\NOt}$, and verify that the solution agrees with the result of the simulation. (The values of the constants in the equations can be read from lines~\texttt{5}--\texttt{9} and~\texttt{17}--\texttt{18} in the script.)
+
+  \item Perform the longer time integration several times, trying out different values for the temperature $\yT$ (line~\texttt{17)} and the volume $V$ (line~\texttt{18}). How do the equilibrium amounts of \NOd\ and \NOt\ change? Does each increase or decrease with an increase or decrease of temperature or volume? (Warning: try very small changes at first, modifying temperature by a couple of degrees and volume by around \qty{0.0005}{m^3}.)
+  \end{enumerate}
+\end{exercise}
 
 
 \section{Rigid-body and particle mechanics}
@@ -8698,7 +8736,7 @@ A closer look reveals that the very initial amounts at $t = \qty{0}{s}$ are actu
 
 In many applications, the law of conservation of matter can be used in such a subtle way that we almost don't notice that we're actually using it.
 
-This happens when we choose closed control surfaces through which there is no flux of matter: $\yJ(t)=0$. For example, in studying solid objects, we choose control surfaces that tightly \enquote{wrap} and follow the object; think of what we did in the tennis-ball examples and exercises of the chapter on \autoref{sec:example_balance_vect}{physical laws}. With this choice, the amount of matter $\yN$ within the control surfaces doesn't change in time, thanks to the law of conservation of matter. So this law is hidden in the fact that we're taking that amount of matter as constant.
+This happens when we choose closed control surfaces through which there is no flux of matter: $\yJ(t)=\qty{0}{mol/s}$. For example, in studying solid objects, we choose control surfaces that tightly \enquote{wrap} and follow the object; think of what we did in the tennis-ball examples and exercises of the chapter on \autoref{sec:example_balance_vect}{physical laws}. With this choice, the amount of matter $\yN$ within the control surfaces doesn't change in time, thanks to the law of conservation of matter. So this law is hidden in the fact that we're taking that amount of matter as constant.
 
 % In many applications we set up our description of the physical phenomenon of interest in such a way that the law of conservation of matter is \emph{automatically} satisfied.
 % This is achieved by choosing a sequence of closed control surfaces for which the net flux of matter is zero: $\yJ(t)=0$, and therefore the amount of matter in the control volumes is constant. In other words, the control surfaces tightly wrap and follow the moving object of interest. % This procedure is often carried without many comments -- to the point of being almost forgotten at times.
