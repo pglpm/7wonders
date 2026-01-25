@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 
 ## Constants
 V = 0.001   # m**3: volume
-C1 = 4.2e5  # m^3/(mol*s): factor 2NO2->N2O4
-C2 = 1.6e7  # 1/s: factor N2O4->2NO2
+C1 = 4.2e5  # m^3/(mol*s): factor  2NO2 -> N2O4
+C2 = 1.6e7  # 1/s: factor  N2O4 -> 2NO2
 
 ## Initial conditions
 t = 0          # s: time
