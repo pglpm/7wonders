@@ -29,13 +29,13 @@ plot(t, Nb, 'sr') %@
 %% Numerical time integration
 while t < t1
   %% constitutive relations
-  Aa = -lambda * Nb;
-  Ab = lambda * Na;
+  Ra = -lambda * Nb;
+  Rb = lambda * Na;
 
   %% step forward in time with balance laws
   t = t + dt;
-  Na = Na + (Ja + Aa) * dt;
-  Nb = Nb + (Jb + Ab) * dt; %@
+  Na = Na + (Ja + Ra) * dt;
+  Nb = Nb + (Jb + Rb) * dt; %@
 
   %% plot
   if t > tplot

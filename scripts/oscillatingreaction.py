@@ -34,13 +34,13 @@ plot(t, Nv, '.r')
 ## Numerical time integration
 while t < t1:
   ## constitutive relations
-  Au = -lambd * Nv
-  Av = lambd * Nu
+  Ru = -lambd * Nv
+  Rv = lambd * Nu
   
   ## step forward in time with balance laws
   t = t + dt
-  Nu = Nu + (Ju + Au) * dt
-  Nv = Nv + (Jv + Av) * dt
+  Nu = Nu + (Ju + Ru) * dt
+  Nv = Nv + (Jv + Rv) * dt
   
   ## plot
   if t > tplot:
