@@ -1,8 +1,5 @@
-#!/usr/bin/env python3
-
 from matplotlib.pyplot import *
 import matplotlib.pyplot as plt
-
 ### Numerical simulation for amount of substance in volume
 
 ## Initial conditions
