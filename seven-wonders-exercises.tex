@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-01-24T13:39:20+0100
+%% Last-Updated: 2026-01-29T10:50:39+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1129,10 +1129,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\yR}{\varAlpha}
 \newcommand*{\yR}{\mathcal{R}}
 \newcommand*{\yrho}{\rho}
-\newcommand*{\yNu}{\yN_{\text{u}}}
-\newcommand*{\yNv}{\yN_{\text{v}}}
-\newcommand*{\yJu}{\yJ_{\text{u}}}
-\newcommand*{\yJv}{\yJ_{\text{v}}}
+\newcommand*{\yNa}{\yN_{a}}
+\newcommand*{\yNb}{\yN_{b}}
+\newcommand*{\yJa}{\yJ_{a}}
+\newcommand*{\yJb}{\yJ_{b}}
 \newcommand*{\yRu}{\yR_{\text{u}}}
 \newcommand*{\yRv}{\yR_{\text{v}}}
 
@@ -3389,23 +3389,67 @@ You send a team to check and fix the problem. The team asks you how much time th
 \section{}
 \label{sec:play_oscillating_reaction}
 
-\emph{Feel free to do this with a colleague:}
+\emph{Feel free to do this with colleagues:}
 
 \smallskip
 
-Start from script for the imaginary oscillating reaction discussed in \sects~6.2 and~6.5 of the main text (Octave: \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.m}{\texttt{oscillatingreaction.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.py}{\texttt{oscillatingreaction.py}}), and modify it to simulate different constitutive relations, or change the chemical system a little. Describe what happens, and try to explain why that happens from the mathematical form of the constitutive relations. Keep in mind that in some situations the simulation may become numerically unstable and even crash. Also check what are the correct dimensions of the constants that appear in your physical laws.
+Start from script for the imaginary oscillating reaction discussed in \sects6.2 and~6.5 of the main text (Octave: \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.m}{\texttt{oscillatingreaction.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.py}{\texttt{oscillatingreaction.py}}), and modify it to simulate different constitutive relations, or change the chemical system a little. Describe what happens, and try to explain why that happens from the mathematical form of the constitutive relations. Keep in mind that in some situations the simulation may become numerically unstable and even crash. Also check what are the correct dimensions of the constants that appear in your physical laws.
 
 Here are some possibilities:
 \begin{itemize}
-\item $\yRv(t) = \lambda_{\text{u}} \yNu(t)\,, \quad\yRu(t) = -\lambda_{\text{v}} \yNv(t)$\\ with different positive values for $\lambda_{\text{u}}$ and $\lambda_{\text{v}}$.
+\item $\yRv(t) = \lambda_{\text{u}} \yNa(t)\,, \quad\yRu(t) = -\lambda_{\text{v}} \yNb(t)$\\ with different positive values for $\lambda_{\text{u}}$ and $\lambda_{\text{v}}$.
 
-\item $\yRv(t) = \lambda \yNu(t)\, \yNv(t)\,, \quad\yRu(t) = -\lambda \yNu(t)\, \yNv(t)$\,.
+\item $\yRv(t) = \lambda \yNa(t)\, \yNb(t)\,, \quad\yRu(t) = -\lambda \yNa(t)\, \yNb(t)$\,.
 
-\item $\yRv(t) = \lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]\,, \quad\yRu(t) = -\lambda \sin[\yNu(t)\, \yNv(t)/\unit{mol^{2}}]$\,.
+\item $\yRv(t) = \lambda \sin[\yNa(t)\, \yNb(t)/\unit{mol^{2}}]\,, \quad\yRu(t) = -\lambda \sin[\yNa(t)\, \yNb(t)/\unit{mol^{2}}]$\,.
 
 \item Introduce a third substance.
 \end{itemize}
 
+\section{}
+\label{sec:NO2_reaction_later}
+
+\emph{Feel free to do this with colleagues:}
+
+\smallskip
+
+Start from script for the imaginary oscillating reaction discussed in \sect6.5 of the main text (Octave: \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.m}{\texttt{oscillatingreaction.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/oscillatingreaction.py}{\texttt{oscillatingreaction.py}}). Modify it to use the following constitutive relations instead:
+\begin{equation*}
+  \begin{gathered}[t]
+    \begin{aligned}
+      \yRu(t) &=
+      -2\, V \, C_{1} \cdot
+      \biggl(\frac{\yNa(t)}{V}\biggr)^{2}
+      +
+      2\, V \, C_{2} \cdot
+      \frac{\yNb(t)}{V}
+      \\[1ex]
+      \yRv(t) &=
+      V \, C_{1} \,
+      \biggl(\frac{\yNa(t)}{V}\biggr)^{2}
+      -
+      V \, C_{2} \,
+      \frac{\yNb(t)}{V}
+    \end{aligned}
+    \\[1ex]
+    \text{\footnotesize with}\quad
+      V = \qty{0.001}{m^{3}} \ ,\quad
+      C_{2} = \qty{1.6e7}{s^{-1}} \ ,\quad
+      C_{2} = \qty{1.6e7}{s^{-1}} \ .
+  \end{gathered}
+\end{equation*}
+
+Simulate it with the following initial conditions, boundary conditions, and time step:
+\begin{itemize}
+\item $\yti = \qty{0}{s}$, $\yNa(\yti) = \qty{0}{mol}$, $\yNb(\yti) = \qty{0.04}{mol}$.
+\item $\yJa = \yJb = \qty{0}{mol/s}$.
+\item $\ytf = \qty{2e-7}{s}$, $\Dt = \qty{1e-10}{s}$.
+\end{itemize}
+
+\begin{enumerate}[exerc]
+\item Before running the script, what kind of behaviour do you expect to observe? Do you think it will oscillate?
+\item After running the script: does it seem to oscillate? Can you try to explain why it does or doesn't?
+\end{enumerate}
 
 \section{}
 \label{sec:calc_from_bal2-scripts}
@@ -3816,6 +3860,11 @@ with a minus sign because the question gives the efflux; it's convenient to intr
     where we have discarded the negative-time solution.
 
     The team has around \qty{96}{min} to fix the problem!
+
+\sollabel{sec:NO2_reaction_later}
+
+See \sects7.10--7.11 in the main text.
+
 
 
 \sollabel{sec:calc_from_bal2-scripts}
