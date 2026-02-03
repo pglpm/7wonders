@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-02T08:48:07+0100
+%% Last-Updated: 2026-02-03T11:34:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1134,8 +1134,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yNb}{\yN_{b}}
 \newcommand*{\yJa}{\yJ_{a}}
 \newcommand*{\yJb}{\yJ_{b}}
-\newcommand*{\yRu}{\yR_{a}}
-\newcommand*{\yRv}{\yR_{b}}
+\newcommand*{\yRa}{\yR_{a}}
+\newcommand*{\yRb}{\yR_{b}}
 
 %% energy
 \newcommand*{\ym}{m}% m, and q_m for mass flow
@@ -6909,24 +6909,24 @@ The combination of balance laws and constitutive relations can have amazing pred
 Suppose in a control volume we have two substances called $a$ and $b$. Let's say that the control volume corresponds to a sealed container, so the net influxes $\yJa$ and $\yJb$ of the two substances are always zero; we directly omit them in the following. We know that the two substances obey balance laws:
 \begin{equation*}
   \begin{aligned}
-    \frac{\di\yNa(t)}{\dt} &= \yRu(t)
+    \frac{\di\yNa(t)}{\dt} &= \yRa(t)
     &\qquad\text{or}\qquad
     \yNa(\ytf) &= \yNa(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yRu(t)\dt \,,
+    \int_{\yti}^{\ytf}\!\!\yRa(t)\dt \,,
     \\
-    \frac{\di\yNb(t)}{\dt} &= \yRv(t)
+    \frac{\di\yNb(t)}{\dt} &= \yRb(t)
     &\qquad\text{or}\qquad
     \yNb(\ytf) &= \yNb(\yti) +
-    \int_{\yti}^{\ytf}\!\!\yRv(t)\dt \,.
+    \int_{\yti}^{\ytf}\!\!\yRb(t)\dt \,.
   \end{aligned}
 \end{equation*}
-From the integral expression it is clear that if we know $\yNa(\yti)$ and we want to predict $\yNa(\ytf)$ at the later time, then we need to know how $\yRu(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $b$ substance.
+From the integral expression it is clear that if we know $\yNa(\yti)$ and we want to predict $\yNa(\ytf)$ at the later time, then we need to know how $\yRa(t)$ depends on time, for \emph{all} times between $\yti$ and $\ytf$. That's a lot of information. Similarly for the $b$ substance.
 
 Now suppose that in these specific physical conditions two constitutive relations are known to be valid:
 \begin{equation*}
-  \yRv(t) = \lambda \yNa(t) \,,
+  \yRb(t) = \lambda \yNa(t) \,,
   \qquad
-  \yRu(t) = -\lambda \yNb(t) \,,
+  \yRa(t) = -\lambda \yNb(t) \,,
 \end{equation*}
 for some positive physical constant $\lambda$. These constitutive relations express chemical reactions. The first constitutive relation says that the supply of substance $b$ is always proportional to the volume content of substance $a$. The second relation says that the sink (negative supply) of substance $a$ is always proportional to the volume content of substance $b$. Intuitively, a large amount of $a$ favours the production of $b$, and a large amount of $b$ disfavours the production of $a$.
 
@@ -6967,11 +6967,11 @@ where $C$, $D$ are two constants. If we substitute this expression in the system
   \begin{aligned}
     \yNa(t) &= C\cos(\lambda t) + D\sin(\lambda t) \,,
     &\quad
-    \yRu &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \,,
+    \yRa &= \lambda D \cos(\lambda t) - \lambda C\sin(\lambda t) \,,
     \\
     \yNb(t) &= -D\cos(\lambda t) + C\sin(\lambda t) \,,
     &\quad
-    \yRv &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \,.
+    \yRb &= \lambda C \cos(\lambda t) + \lambda D\sin(\lambda t) \,.
   \end{aligned}
 \end{equation}
 The two constants $C$, $D$ can be found if we know $\yNa(\yti)$ and $\yNb(\yti)$ at the initial time $\yti$.
@@ -6982,7 +6982,7 @@ Let's summarize what all this means. If we know:
 \begin{itemize}
 \item that $\yNa$ and $\yNb$ satisfy balance laws,
 \item that the net influxes are zero,
-\item that the constitutive relations $\yRv = \lambda \yNa$ and $\yRu = -\lambda \yNb$ are valid,
+\item that the constitutive relations $\yRb = \lambda \yNa$ and $\yRa = -\lambda \yNb$ are valid,
 \item the values $\yNa(\yti)$, $\yNb(\yti)$ at time $\yti$,
 \end{itemize}
 then we can predict the values of the volume contents and of the supplies \emph{at all times}, or at least all times at which the conditions above are true!
@@ -7019,9 +7019,9 @@ An analytical formula is a combination of \furl{https://mathworld.wolfram.com/El
 
 Unfortunately, however, the \emph{vast majority} of combinations of balance laws and constitutive relations lead to time-dependencies that \emph{cannot be expressed by analytical formulae}. For instance, if for the oscillating reaction we had to use constitutive relations such as
 \begin{equation*}
-  \yRv(t) = \lambda \sin[\yNa(t)/\unit{mol}] \,,
+  \yRb(t) = \lambda \sin[\yNa(t)/\unit{mol}] \,,
   \qquad
-  \yRu(t) = -\lambda \cos[\yNb(t)/\unit{mol}] \,,
+  \yRa(t) = -\lambda \cos[\yNb(t)/\unit{mol}] \,,
 \end{equation*}
 (with a new $\lambda$ having different physical dimensions), then an analytical solution is hardly available. In these cases we can't simply plug in the time $t$ and quickly calculate what the result is. How can we predict the physical behaviour then?
 
@@ -7327,27 +7327,27 @@ We have two balance laws for matter that drive the physical system forward in ti
   \begin{aligned}[b]
    \yNa\tikzmark{Nua}(t+\Dt) &\approx
    \yNa(t)
-   + [\yJa(t) + \yRu(t)]\,\Dt
+   + [\yJa(t) + \yRa(t)]\,\Dt
     \\[2\jot]
    \yNb\tikzmark{Nva}(t+\Dt) &\approx
    \yNb(t)
-   + [\yJb(t) + \yRv(t)]\,\Dt
+   + [\yJb(t) + \yRb(t)]\,\Dt
     \\[3\jot]
     \yNa\tikzmark{bNua}(t+2\Dt)  &\approx
     \tikzmark{Nub}\yNa(t+\Dt)
-    + [\yJa(t+\Dt) + \yRu(t+\Dt)]\,\Dt
+    + [\yJa(t+\Dt) + \yRa(t+\Dt)]\,\Dt
     \\[2\jot]
     \yNb\tikzmark{bNva}(t+2\Dt)  &\approx
     \tikzmark{Nvb}\yNb(t+\Dt)
-    + [\yJb(t+\Dt) + \yRv(t+\Dt)]\,\Dt
+    + [\yJb(t+\Dt) + \yRb(t+\Dt)]\,\Dt
     % \\[3\jot]
     % \yNa\tikzmark{cNua}(t+3\Dt)  &\approx
     % \tikzmark{bNub}\yNa(t+2\Dt)
-    % + [\yJa(t+2\Dt) + \yRu(t+2\Dt)]\,\Dt
+    % + [\yJa(t+2\Dt) + \yRa(t+2\Dt)]\,\Dt
     % \\[2\jot]
     % \yNb\tikzmark{cNva}(t+3\Dt)  &\approx
     % \tikzmark{bNvb}\yNb(t+2\Dt)
-    % + [\yJb(t+2\Dt) + \yRv(t+2\Dt)]\,\Dt
+    % + [\yJb(t+2\Dt) + \yRb(t+2\Dt)]\,\Dt
     \\[3\jot]
     &\dotso\tikzmark{bNub}
     \\[2\jot]
@@ -7366,44 +7366,44 @@ We have two balance laws for matter that drive the physical system forward in ti
 
 We apply the \emph{boundary conditions} from that example: the two influxes $\yJa(t)$, $\yJb(t)$ are always zero. For simplicity we shall therefore simply omit them.
 
-Now we use the constitutive relations between the contents and the supply: $\yRv(t) = \lambda \yNa(t)$, $\yRu(t) = -\lambda \yNb(t)$. At every time step, after calculating the volume contents $\yNa$, $\yNb$ from the balance laws, we can used their new values to calculate the supplies $\yRv$, $\yRu$ at that same time step. These supplies can then be used for the next time step:
+Now we use the constitutive relations between the contents and the supply: $\yRb(t) = \lambda \yNa(t)$, $\yRa(t) = -\lambda \yNb(t)$. At every time step, after calculating the volume contents $\yNa$, $\yNb$ from the balance laws, we can used their new values to calculate the supplies $\yRb$, $\yRa$ at that same time step. These supplies can then be used for the next time step:
 \begin{equation}\label{eq:timestepped_evolution_NA}
   \begin{aligned}[b]
-    \yRu\tikzmark{aua}(t) &= -\lambda \yNb(t)
+    \yRa\tikzmark{aua}(t) &= -\lambda \yNb(t)
     \\[2\jot]
-    \yRv\tikzmark{ava}(t) &= \lambda \yNa(t)
+    \yRb\tikzmark{ava}(t) &= \lambda \yNa(t)
     \\[3\jot]
    \yNa\tikzmark{NNua}(t+\Dt) &\approx
    \yNa(t)
-   +\tikzmark{aub}\yRu(t)\,\Dt
+   +\tikzmark{aub}\yRa(t)\,\Dt
     \\[2\jot]
    \yNb\tikzmark{NNva}(t+\Dt) &\approx
    \yNb(t)
-   +\tikzmark{avb}\yRv(t)\,\Dt
+   +\tikzmark{avb}\yRb(t)\,\Dt
     \\[4\jot]
-    \yRu\tikzmark{naua}(t + \Dt) &= -\lambda \tikzmark{NNvc}\yNb(t + \Dt)
+    \yRa\tikzmark{naua}(t + \Dt) &= -\lambda \tikzmark{NNvc}\yNb(t + \Dt)
     \\[2\jot]
-    \yRv\tikzmark{nava}(t + \Dt) &= \lambda \tikzmark{NNuc}\yNa(t + \Dt)
+    \yRb\tikzmark{nava}(t + \Dt) &= \lambda \tikzmark{NNuc}\yNa(t + \Dt)
     \\[3\jot]
     \yNa\tikzmark{bNNua}(t+2\Dt)  &\approx
     \tikzmark{NNub}\yNa(t+\Dt)
-    +\tikzmark{naub}\yRu(t+\Dt)\,\Dt
+    +\tikzmark{naub}\yRa(t+\Dt)\,\Dt
     \\[2\jot]
     \yNb\tikzmark{bNNva}(t+2\Dt)  &\approx
     \tikzmark{NNvb}\yNb(t+\Dt)
-    +\tikzmark{navb}\yRv(t+\Dt)\,\Dt
+    +\tikzmark{navb}\yRb(t+\Dt)\,\Dt
     % \\[4\jot]
-    % \yRu(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
+    % \yRa(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
     % \\[2\jot]
-    % \yRv(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
+    % \yRb(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
     % \\[3\jot]
     % \yNa\tikzmark{cNNua}(t+3\Dt)  &\approx
     % \tikzmark{bNNub}\yNa(t+2\Dt)
-    % +\yRu(t+2\Dt)]\,\Dt
+    % +\yRa(t+2\Dt)]\,\Dt
     % \\[2\jot]
     % \yNb\tikzmark{cNNva}(t+3\Dt)  &\approx
     % \tikzmark{bNNvb}\yNb(t+2\Dt)
-    % +\yRv(t+2\Dt)]\,\Dt
+    % +\yRb(t+2\Dt)]\,\Dt
     \\[4\jot]
     &\dotso\tikzmark{bNNub}
     \\[2\jot]
@@ -7966,17 +7966,17 @@ The time iteration looks as follows:
     \yN\tikzmark{N1Ba}(t+2\Dt)  &\approx
     \tikzmark{N1Ac}\yN(t+\Dt) +[\yJ + \tikzmark{R1Bb}\yR(t+\Dt)]\,\Dt
     % \\[4\jot]
-    % \yRu(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
+    % \yRa(t + 2\Dt) &= -\lambda \yNb(t + 2\Dt)
     % \\[2\jot]
-    % \yRv(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
+    % \yRb(t + 2\Dt) &= \lambda \yNa(t + 2\Dt)
     % \\[3\jot]
     % \yNa\tikzmark{cNNua}(t+3\Dt)  &\approx
     % \tikzmark{bNNub}\yNa(t+2\Dt)
-    % +\yRu(t+2\Dt)]\,\Dt
+    % +\yRa(t+2\Dt)]\,\Dt
     % \\[2\jot]
     % \yNb\tikzmark{cNNva}(t+3\Dt)  &\approx
     % \tikzmark{bNNvb}\yNb(t+2\Dt)
-    % +\yRv(t+2\Dt)]\,\Dt
+    % +\yRb(t+2\Dt)]\,\Dt
     \\[4\jot]
     &\dotso\tikzmark{N1Bb}
   \end{aligned}
@@ -10462,6 +10462,12 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 \section{Beyond the no-mass simplification}
 % \section[What if the two masses are not attached? Beyond the no-mass simplification]{What if the two masses are not attached?\newline Beyond the no-mass simplification}
 \label{sec:no_nomass}
+
+%%% Massive element with linearly increasing stretch:
+%% Fa = K\, [L + 4 \yxa(t) + 2 \yxb(t) - 6 \yxc(t)]
+%% Fb = K\, [L - 2 \yxa(t) - 4 \yxb(t) + 6 \yxc(t)]
+%% Fa' = 2\,K\,[2 \yva'(t) + \yvb(t) - 3 \yvc(t)]
+%% Fb' = -2\,K\,[\yva'(t) + 2 \yvb(t) - 3 \yvc(t)]
 
 The physical phenomena that we explored in the previous sections involve two small bodies attached to the ends of a piece of material, for instance two tennis balls connected by a spring. The two bodies are assumed to always stay attached to the piece of material. So you may wonder: what if the two bodies are just touching the extremities of the material, without being \enquote{glued} to them? If we compress a spring by means of two tennis balls, these will be pushed apart, and at some point they will lose contact with the spring and continue moving. Otherwise pinball machines and other devices that rely on spring launchers wouldn't work.
 %
