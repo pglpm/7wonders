@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-05T21:57:33+0100
+%% Last-Updated: 2026-02-06T09:54:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9150,6 +9150,294 @@ So whenever you feel a body force $\yG_{\text{you}}$, you must also feel somewhe
 % 
 %   Current satellite and astronomical applications use complex expressions for $\yg$, which can also depend on the time coordinate, and on the motion of matter.
 
+\section{Statics}
+\label{sec:bal_momentum_statics}
+
+As previously mentioned there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \textbf{statics}. Let's see a couple of concrete examples.
+
+\medskip
+
+An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation?
+
+Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
+%
+\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/opmvol1.jpg}%
+\\\includegraphics[width=3em]{images/axes.pdf}%
+  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+}%
+\begin{equation*}
+  \yP(t) = [0\,,0\,,0]\,\unit{N\,s}\enskip\text{(constant)}.
+\end{equation*}
+We also know that any control volume close to Earth's surface %\autoref{sec:supply_momentum_gravity}{}
+has a constant \emph{supply} of momentum, proportional to the \masse\ it contains. Let's say that the supply in this case is
+\begin{equation*}
+  \yG(t) = [0\,,0\,,\num{-2}]\,\unit{N}\enskip\text{(constant)}.
+\end{equation*}
+Then \emph{what can the momentum fluxes across different parts of the control surface be?}
+
+A straightforward application of momentum balance in differential expression tells us that the \emph{net} \textbf{in}flux of momentum must be
+\begin{equation*}
+  \begin{split}
+    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\unit{N}\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-2}]\,\unit{N}}
+\\[3\jot]
+ &=   [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
+  \end{split}
+\end{equation*}
+Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The \autoref{sec:in_out_flux}{influxes through different parts of the control surface could be very different} from this value, which is only their total; but the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from constitutive relations.
+
+In the present case there's a constitutive relation about the force, through the \emph{whole} surface, exerted by air on the book, which says that such total force is approximately zero:
+\begin{equation*} \yF_{\text{air}\rightsquigarrow\text{book}}(t) \approx [0\,,0\,,0]\,\unit{N} \ .
+\end{equation*} The only remaining force must be the one between the book and the table: a \autoref{sec:friction_normal_force}{contact force}. So the total influx $\yF(t)$ that appears in the momentum balance must be the sum of these two:
+\begin{equation*}
+  \yF(t) = \yF_{\text{air}\rightsquigarrow\text{book}}(t) + \yF_{\text{table}\rightsquigarrow\text{book}}(t) \ .
+\end{equation*}
+From the last three equations we finally find
+\begin{equation*} \yF_{\text{table}\rightsquigarrow\text{book}}(t) \approx [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
+\end{equation*}
+In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This is the \textbf{normal force} discussed in the previous section.
+
+\needspace{15\baselineskip}%
+\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
+\\\includegraphics[width=3em]{images/axes.pdf}%
+  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
+}%
+\begin{exercise}[label={ex:twobooks}]
+  Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces of cuboid shape, each wrapping one book, and having one side in common (where the two books touch). Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-2}]\,\unit{N}$, constant in time, and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
+
+  Use the balance of momentum with the two control surfaces to find:
+\begin{enumerate}[exerc]
+\item the flux of momentum between the two books
+\item the flux of momentum between the bottom book and the table
+\end{enumerate}
+  {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
+\end{exercise}
+
+\section{Atmospheric pressure}
+\label{sec:bal_momentum_atmosphere}
+
+There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called
+% % alt. url
+% https://education.nationalgeographic.org/resource/atmospheric-pressure/
+\furl{https://www.noaa.gov/jetstream/atmosphere/air-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
+\begin{itemize}
+\item It is always \autoref{sec:pressure}{\emph{compressive}}, that is, its direction is always orthogonal to the surface, and its orientation is the same as the crossing orientation.
+\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty{e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
+\item Its magnitude slowly decreases with altitude; that is, a \qty{1}{m^2} surface \qty{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty{1}{m^2} surface close to the ground.
+\end{itemize}
+
+In examining momentum fluxes for objects on Earth we often neglect the presence of air and atmospheric pressure. We did so in the previous example about a book on a table. The reason is that the \emph{total} momentum flux from atmospheric pressure around an object is usually approximately zero. This happens on account of three factors:
+\begin{enumerate*}[label=(\alph*)]
+\item there's always at least a thin layer of air around an object; even an object lying on a table or on the ground has a thin layer of air underneath;
+\item the atmospheric-pressure momentum flux is always orthogonal to every small piece of surface;
+\item its magnitude is approximately the same at the same altitude.
+\end{enumerate*}
+Together, these factors lead to a zero total when we sum up all the atmospheric-pressure fluxes across the different parts of a surface that encloses an object.
+
+Indeed we suddenly feel the heavy presence of atmospheric pressure when the first or the last of those factors doesn't hold anymore.
+
+%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/glassslabs.png}%
+}%
+For example you may sometime have made the mistake of laying a wide, smooth slab of glass upon another, only to find out that you couldn't easily separate them anymore: the two slabs were sort of \enquote{stuck} together.
+The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So air is exerting a contact force on the upper side of the top slab and on the lower side of the bottom slab, pressing the two against each other. As mentioned, for a \qty{1}{m^2} slab this momentum flux is equivalent to a weight of \qty{10000}{kg}! You can't separate the slabs, not because they're \enquote{glued} together, but because they're pressed against each other by a net force of \qty{10}{tonnes} on each side. The only thing you can do is to try to let air again between the two slabs.
+
+%
+\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.75\linewidth]{images/sucker.jpg}%
+}%
+The same phenomenon occurs, in a more useful way, with a suction cup:
+the atmospheric pressure on its two sides is very different, and therefore the cup receives a net influx of momentum pointing towards the wall. This, in turn, leads to an influx of upward momentum owing to \autoref{sec:friction_normal_force}{friction}, which compensates for the momentum supply from gravity. Thus the cup can stay in place without falling, and it can even support some object.
+
+\medskip
+
+In some cases the magnitude of the atmospheric pressure is different because of altitude, and this can be exploited for flying, as we discuss below. But in order to do that, try to solve this exercise first:
+\begin{exercise}[label={ex:atmosphericpressure}]
+  In this exercise we apply a reasoning very similar to that of Exercise~\ref{ex:twobooks}.
+
+  Consider a body of air at rest. Imagine a closed control surface which encloses some of this air. This is analogous to the \autoref{sec:bal_momentum_statics}{example with the book on the table}; now instead of a book we simply have a volume of air, and instead of a table we have air also underneath the volume. For definiteness let's say that the volume is a cuboid with small height $h$ and horizontal base area $A$, so the volume is $h\,A$
+
+  Air is matter, and therefore this control volume has a constant supply of downward momentum owing to gravity. On Earth's surface we can say (this is a constitutive relation) that a volume $h\,A$ of air has a momentum supply with $z$-component approximately equal to
+  \begin{equation*}
+    G_{z} = -h\cdot A \cdot \qty{11.8}{N/m^{3}}\ .
+  \end{equation*}
+
+  Assume that the momentum flux on the lateral surface of the volume is zero.
+  \begin{enumerate}[exerc]
+  \item Apply the momentum balance, and extensivity of momentum, to find the \textbf{difference in magnitude} between the momentum influx through the bottom of the cuboid and the momentum influx through the top of the cuboid.
+    \item Pressure is defined as momentum flux \emph{divided by area}. How much is the pressure difference between the bottom and top of the cuboid of air?
+    \item Try to generalize and write an approximate formula of how pressure changes with altitude.
+    \end{enumerate}
+
+    {\color{red}\footnotesize\faIcon{exclamation-circle}\enskip The results obtained in this exercise are approximate, because the supply of momentum $\yG$ actually changes with altitude as well, and depends on other quantities such as temperature. But they do have the correct order of magnitude.\par}
+\end{exercise}
+
+\section{Statics: cable cars}
+\label{sec:bal_momentum_cablecar}
+
+%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/cable-car3.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+\furl{https://www.scenicworld.com.au/experience/scenic-skyway}{\emph{Scenic Skyway}} cable car, Australia}%
+Consider a cable car suspended on a horizontal cable, and not moving. Which momentum fluxes occur in this situation?
+
+This problem has some similarities with the previous one about the book on a table. Choose a control volume containing the cable car.
+\begin{itemize}[nosep]
+\item The total momentum in this volume is constantly zero, because the cable car isn't moving
+\item There's a constant momentum supply because of gravity; let's say that in this case it's
+  \begin{equation*}
+    \yG(t) = - [0\,,0\,,\num{8e4}]\,\unit{N}\quad\text{(constant)}
+  \end{equation*}
+\item By the balance of momentum, there must then be an influx of upward-momentum of the same magnitude as the supply:
+  \begin{equation*}
+  \begin{split}
+    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-8e4}]\,\unit{N}}
+\\[2\jot]
+ &=   [0\,,0\,,\num{8e4}]\,\unit{N}\quad\text{(constant)}.
+  \end{split}
+\end{equation*}
+\item Also in this case the influx through the parts of the control surface in contact with air is practically zero:
+  \begin{equation*}
+  \yF_{\text{air-car}}(t) \approx [0\,,0\,,0]\,\unit{N} \ .
+\end{equation*}
+\end{itemize}
+
+All the influx of momentum must therefore come through the cable. But there are some interesting aspects on how this happens. In this case it's interesting to choose a static closed control surface that wraps the car and part of the cables,  \enquote{cutting} the cables in imagination, as illustrated by the \textcolor{red}{red polygon} in the picture below:
+\begin{center}
+  \includegraphics[align=t,width=\linewidth]{images/cablecardraw.jpg}
+\end{center}
+This picture also depicts, as zoom-ins, the two parts of the imaginary control surface that \enquote{cut} the cable (for simplicity imagine that there's only one cable). The total influx $\yF$ must happen through these two small regions of the surface, in the cable. An interesting question is: \emph{How much is the momentum influx \textbf{through each one?}}. Call these two momentum influxes $\yF_{\text{left}}$ through surface cutting the cable on the left; and $\yF_{\text{right}}$ through surface cutting the cable on the right. Since all these fluxes are constant in time, let's drop the argument \enquote*{$(t)$}; and let's drop the $y$-components, which are all zero.
+
+We know that
+\begin{equation*}
+  \yF_{\text{left}} + \yF_{\text{right}} = \yF =
+  \begin{bsmallmatrix}
+    0\\\num{8e4}
+  \end{bsmallmatrix}\,\unit{N}
+\end{equation*}
+from this equation we find
+\begin{equation*}
+  (\yF_{\text{left}})_{x} = - (\yF_{\text{right}})_{x}
+  \qquad
+  (\yF_{\text{left}})_{z} = \qty{8e4}{N} - (\yF_{\text{right}})_{z}
+\end{equation*}
+where \enquote*{$(\dotso)_{x}$} denotes the $x$-component, and similarly for the $z$-component. But this doesn't tell us how much $\yF_{\text{left}}$ and $\yF_{\text{right}}$ are individually. For example we could have
+\begin{equation*}
+  \yF_{\text{left}} \stackrel{?}{=}
+  \begin{bsmallmatrix}
+    \num{5}\\ \num{-2e4}
+  \end{bsmallmatrix}\,\unit{N}
+  \qquad
+  \yF_{\text{right}} \stackrel{?}{=}
+  \begin{bsmallmatrix}
+    \num{-5}\\ \num{20e4}
+  \end{bsmallmatrix}\,\unit{N}
+\end{equation*}
+and the total influx would be the correct one.
+
+We shall see later that the \emph{balance of angular momentum} applied to this problem leads to a further constraint:\enskip$(\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z}$\,.\enskip So we can conclude that
+\begin{equation*}
+  (\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z} = \qty{4e4}{N}
+\end{equation*}
+that is, each half of the cable is \enquote{taking half of the weight}, as intuitively expected.
+
+The last part of our mystery, about the $x$-components, can be solved thanks to an additional constitutive property:
+\begin{definition}{{Momentum flux allowed in cables and ropes}}
+  A cable, rope, or similar object can (approximately) only transmit \autoref{sec:tension}{\emph{tensile} momentum flux}, aligned along its axis.
+\end{definition}
+Pictorially this means that only the momentum flux represented in the left picture below -- tension -- is physically possible:
+\begin{center}
+\includegraphics[align=c,width=0.33\linewidth]{images/cabletension.jpg}%
+\hfill
+\includegraphics[align=c,width=0.22\linewidth]{images/cableshear.jpg}%
+\includegraphics[align=c,width=0.22\linewidth]{images/cablepressure.jpg}%
+\includegraphics[align=c,width=0.22\linewidth]{images/cablemix.jpg}%
+\end{center}
+the other three (from left to right: shear, pressure, mixed) are not.
+
+We therefore need to know the directions of the axes of the two parts of the cable. Let's suppose that each part has an inclination of $\qty{0.12}{rad}\approx\qty{6.9}{\degree}$, but in opposite directions. This must then also be the angle between the influx $\yF_{\text{right}}$ and its horizontal component $(\yF_{\text{right}})_{x}$, as in the following picture (the angle has been exaggerated for clarity):\noprelistbreak%
+\begin{center}
+  \includegraphics[width=0.533\linewidth]{images/cableangle2.jpg}
+\end{center}
+From trigonometry we find
+\begin{equation*}
+  (\yF_{\text{right}})_{x} =
+  (\yF_{\text{right}})_{z}/\tan(\qty{0.12}{rad})
+  =  \qty{4e4}{N}/0.12 \approx \qty{3.3e5}{N}
+\end{equation*}
+and therefore\enskip$(\yF_{\text{left}})_{x} \approx \qty{-3.3e5}{N}$:
+\begin{equation*}
+  \yF_{\text{left}} \approx
+  \begin{bsmallmatrix}
+    \num{-3.3e5}\\ \num{4e4}
+  \end{bsmallmatrix}\,\unit{N}
+  \qquad
+  \yF_{\text{right}} \approx
+  \begin{bsmallmatrix}
+    \num{3.3e5}\\ \num{4e4}
+  \end{bsmallmatrix}\,\unit{N}
+\end{equation*}
+The magnitude of these tensions is also approximately $\abs{\yF_{\text{left}}} = \abs{\yF_{\text{right}}} \approx \qty{3e5}{N}$ or an equivalent weight of 35\,tonnes (this result seems in the correct order of magnitude, comparing with the data in \cites{brownjohn1998}).
+
+In solving the cable-car problem above we used the balance of momentum, but note and keep in mind how that balance alone wasn't enough. We also had to use:
+\begin{itemize}[nosep]
+\item the balance of angular momentum
+\item constitutive relations regarding:
+  \begin{itemize}[nosep]
+  \item the momentum supply
+  \item the amount of momentum flux between air and the cable car
+  \item the kind of momentum flux allowed in a cable
+  \end{itemize}
+\end{itemize}
+
+\section{Airborne flight}
+\label{sec:bal_momentum_flight}
+
+Airborne flight is a conceptually extremely simple application of momentum balance.
+In terms of momentum, the objective of flight is to compensate or over-compensate the constant downward-momentum supply $\yG$ that an object, not touching any other solid object, receives because of gravity. One way to compensate this supply is by creating a \emph{net} influx of upward-momentum, or equivalently a \emph{net} efflux of downward-momentum, between the object and the air or atmosphere that surrounds it. This is airborne flight.
+
+The ways in which such a momentum flux between object and air is realized can be very different:
+\begin{description}
+\item[Buoyancy]
+\needspace{10\baselineskip}% 
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/airlander.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
+}%
+In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/pbuoy.html\#arch}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
+
+\item[Soaring]
+%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/hangglider.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+A hang-glider (image from \furl{https://www.jaerenluftsport.no}{J{\ae}ren Luftsportsklubb})%
+}%
+Air is not always at rest (with respect to the Earth's surface). Owing to energy flow in the atmosphere and Earth's rotation, bodies of air -- air currents -- can be moving in different directions, including upward. An upward-moving body of air contains a net upward momentum. If an object stops the vertical motion of this air, for example deflecting it horizontally, then by the balance of momentum there must be a flux of upward momentum from the body of air to the object. This upward momentum can compensate the gravity supply of downward momentum, and therefore the object can float or rise. This mechanism is called \furl{https://www.birdful.org/how-is-soaring-different-from-flying-birds/}{soaring or gliding} and is used by birds and gliders; it's also the mechanism that lifts light objects like paper or feathers.
+
+\item[Propelled flight] We can try to create a flow of downward momentum from an object to the surrounding air, even if air is initially at rest. As a result, a body of air surrounding the object will acquire a net, partially downward movement. By the \autoref{def:symmetryflux}{symmetry of flux} this also means that momentum with an upward component flows from the air to the object, and this component can compensate the object's weight. This is achieved by birds by flapping their wings, and by aeroplanes and helicopters through horizontally moving wings or blades.
+\end{description}
+
+\begin{extra}{It's not the difference in air pressure}
+  Some texts say that wings can sustain an aeroplane because their cross-section has an asymmetric shape, slightly more bulged upward than downward, leading to a difference in the air pressure between the top and bottom of the wing. This is not true. In fact, aeroplanes with symmetric wings fly as well.
+\begin{quote}\footnotesize
+\emph{the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.}\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
+\end{quote}
+\end{extra}
+%
+\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
+\\[\jot]\flushleftright\color{mpcolor}%
+Sections of two kinds of wings for supersonic flight \parencites[\sect26]{leishman2022_r2024}.%
+}%
+
+% In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{def:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
+
+
 
 \section{Analytical time integration of position and momentum}
 \label{sec:integration_P_r}
@@ -10326,7 +10614,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
   \begin{enumerate}[exerc]
   \item Modify the script for the Hookean material in table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} so as to implement the non-Hookean constitutive relation~\eqref{eq:nonhooke}. This constitutive relation can be implemented with an \texttt{if}-statement.
 
-  Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the side plots:
+  Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the three plots on the margin:
 \begin{description}[itemsep=\baselineskip]
       \item[Set 1:]
         \begin{equation*}
@@ -10681,294 +10969,6 @@ Check that this function correctly covers and represents both formulae~\eqref{eq
 
 
 
-\section{Statics}
-\label{sec:bal_momentum_statics}
-
-As previously mentioned there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \textbf{statics}. Let's see a couple of concrete examples.
-
-\medskip
-
-An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation?
-
-Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
-%
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/opmvol1.jpg}%
-\\\includegraphics[width=3em]{images/axes.pdf}%
-  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
-}%
-\begin{equation*}
-  \yP(t) = [0\,,0\,,0]\,\unit{N\,s}\enskip\text{(constant)}.
-\end{equation*}
-We also know that any control volume close to Earth's surface %\autoref{sec:supply_momentum_gravity}{}
-has a constant \emph{supply} of momentum, proportional to the \masse\ it contains. Let's say that the supply in this case is
-\begin{equation*}
-  \yG(t) = [0\,,0\,,\num{-2}]\,\unit{N}\enskip\text{(constant)}.
-\end{equation*}
-Then \emph{what can the momentum fluxes across different parts of the control surface be?}
-
-A straightforward application of momentum balance in differential expression tells us that the \emph{net} \textbf{in}flux of momentum must be
-\begin{equation*}
-  \begin{split}
-    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\unit{N}\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-2}]\,\unit{N}}
-\\[3\jot]
- &=   [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
-  \end{split}
-\end{equation*}
-Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The \autoref{sec:in_out_flux}{influxes through different parts of the control surface could be very different} from this value, which is only their total; but the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from constitutive relations.
-
-In the present case there's a constitutive relation about the force, through the \emph{whole} surface, exerted by air on the book, which says that such total force is approximately zero:
-\begin{equation*} \yF_{\text{air}\rightsquigarrow\text{book}}(t) \approx [0\,,0\,,0]\,\unit{N} \ .
-\end{equation*} The only remaining force must be the one between the book and the table: a \autoref{sec:friction_normal_force}{contact force}. So the total influx $\yF(t)$ that appears in the momentum balance must be the sum of these two:
-\begin{equation*}
-  \yF(t) = \yF_{\text{air}\rightsquigarrow\text{book}}(t) + \yF_{\text{table}\rightsquigarrow\text{book}}(t) \ .
-\end{equation*}
-From the last three equations we finally find
-\begin{equation*} \yF_{\text{table}\rightsquigarrow\text{book}}(t) \approx [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
-\end{equation*}
-In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This is the \textbf{normal force} discussed in the previous section.
-
-\needspace{15\baselineskip}%
-\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
-\\\includegraphics[width=3em]{images/axes.pdf}%
-  % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
-}%
-\begin{exercise}[label={ex:twobooks}]
-  Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces of cuboid shape, each wrapping one book, and having one side in common (where the two books touch). Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-2}]\,\unit{N}$, constant in time, and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
-
-  Use the balance of momentum with the two control surfaces to find:
-\begin{enumerate}[exerc]
-\item the flux of momentum between the two books
-\item the flux of momentum between the bottom book and the table
-\end{enumerate}
-  {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
-\end{exercise}
-
-\section{Atmospheric pressure}
-\label{sec:bal_momentum_atmosphere}
-
-There is a continuous flux of momentum across any surface that has air on at least one of its sides. Not only any surface where air is in contact with objects, but also any imaginary surface, say in the sky over an open field, with air on both sides. This flux is called
-% % alt. url
-% https://education.nationalgeographic.org/resource/atmospheric-pressure/
-\furl{https://www.noaa.gov/jetstream/atmosphere/air-pressure}{\emph{atmospheric pressure}} and has some important constitutive properties:
-\begin{itemize}
-\item It is always \autoref{sec:pressure}{\emph{compressive}}, that is, its direction is always orthogonal to the surface, and its orientation is the same as the crossing orientation.
-\item Its magnitude, for a surface of \qty{1}{m^2} at sea level, is approximately equal to \qty{e5}{N} (corresponding to a weight of about \qty{10000}{kg}!).
-\item Its magnitude slowly decreases with altitude; that is, a \qty{1}{m^2} surface \qty{1}{km} above the ground will have an atmospheric pressure (momentum flux) lower than a \qty{1}{m^2} surface close to the ground.
-\end{itemize}
-
-In examining momentum fluxes for objects on Earth we often neglect the presence of air and atmospheric pressure. We did so in the previous example about a book on a table. The reason is that the \emph{total} momentum flux from atmospheric pressure around an object is usually approximately zero. This happens on account of three factors:
-\begin{enumerate*}[label=(\alph*)]
-\item there's always at least a thin layer of air around an object; even an object lying on a table or on the ground has a thin layer of air underneath;
-\item the atmospheric-pressure momentum flux is always orthogonal to every small piece of surface;
-\item its magnitude is approximately the same at the same altitude.
-\end{enumerate*}
-Together, these factors lead to a zero total when we sum up all the atmospheric-pressure fluxes across the different parts of a surface that encloses an object.
-
-Indeed we suddenly feel the heavy presence of atmospheric pressure when the first or the last of those factors doesn't hold anymore.
-
-%
-\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/glassslabs.png}%
-}%
-For example you may sometime have made the mistake of laying a wide, smooth slab of glass upon another, only to find out that you couldn't easily separate them anymore: the two slabs were sort of \enquote{stuck} together.
-The reason is that the glass surface is so smooth that effectively there's no space for a thin layer of air between the two glass slabs. So air is exerting a contact force on the upper side of the top slab and on the lower side of the bottom slab, pressing the two against each other. As mentioned, for a \qty{1}{m^2} slab this momentum flux is equivalent to a weight of \qty{10000}{kg}! You can't separate the slabs, not because they're \enquote{glued} together, but because they're pressed against each other by a net force of \qty{10}{tonnes} on each side. The only thing you can do is to try to let air again between the two slabs.
-
-%
-\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.75\linewidth]{images/sucker.jpg}%
-}%
-The same phenomenon occurs, in a more useful way, with a suction cup:
-the atmospheric pressure on its two sides is very different, and therefore the cup receives a net influx of momentum pointing towards the wall. This, in turn, leads to an influx of upward momentum owing to \autoref{sec:friction_normal_force}{friction}, which compensates for the momentum supply from gravity. Thus the cup can stay in place without falling, and it can even support some object.
-
-\medskip
-
-In some cases the magnitude of the atmospheric pressure is different because of altitude, and this can be exploited for flying, as we discuss below. But in order to do that, try to solve this exercise first:
-\begin{exercise}[label={ex:atmosphericpressure}]
-  In this exercise we apply a reasoning very similar to that of Exercise~\ref{ex:twobooks}.
-
-  Consider a body of air at rest. Imagine a closed control surface which encloses some of this air. This is analogous to the \autoref{sec:bal_momentum_statics}{example with the book on the table}; now instead of a book we simply have a volume of air, and instead of a table we have air also underneath the volume. For definiteness let's say that the volume is a cuboid with small height $h$ and horizontal base area $A$, so the volume is $h\,A$
-
-  Air is matter, and therefore this control volume has a constant supply of downward momentum owing to gravity. On Earth's surface we can say (this is a constitutive relation) that a volume $h\,A$ of air has a momentum supply with $z$-component approximately equal to
-  \begin{equation*}
-    G_{z} = -h\cdot A \cdot \qty{11.8}{N/m^{3}}\ .
-  \end{equation*}
-
-  Assume that the momentum flux on the lateral surface of the volume is zero.
-  \begin{enumerate}[exerc]
-  \item Apply the momentum balance, and extensivity of momentum, to find the \textbf{difference in magnitude} between the momentum influx through the bottom of the cuboid and the momentum influx through the top of the cuboid.
-    \item Pressure is defined as momentum flux \emph{divided by area}. How much is the pressure difference between the bottom and top of the cuboid of air?
-    \item Try to generalize and write an approximate formula of how pressure changes with altitude.
-    \end{enumerate}
-
-    {\color{red}\footnotesize\faIcon{exclamation-circle}\enskip The results obtained in this exercise are approximate, because the supply of momentum $\yG$ actually changes with altitude as well, and depends on other quantities such as temperature. But they do have the correct order of magnitude.\par}
-\end{exercise}
-
-\section{Airborne flight}
-\label{sec:bal_momentum_flight}
-
-Airborne flight is a conceptually extremely simple application of momentum balance.
-In terms of momentum, the objective of flight is to compensate or over-compensate the constant downward-momentum supply $\yG$ that an object, not touching any other solid object, receives because of gravity. One way to compensate this supply is by creating a \emph{net} influx of upward-momentum, or equivalently a \emph{net} efflux of downward-momentum, between the object and the air or atmosphere that surrounds it. This is airborne flight.
-
-The ways in which such a momentum flux between object and air is realized can be very different:
-\begin{description}
-\item[Buoyancy]
-\needspace{10\baselineskip}% 
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/airlander.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Airship \emph{Airlander} from \furl{https://www.hybridairvehicles.com/}{Hybrid Air Vehicles}%
-}%
-In the preceding section we saw that the magnitude of the compressive momentum flux -- atmospheric pressure -- between air and any object \emph{decreases} with height. So if the object is large enough compared to its weight, it automatically receives a net influx of upward momentum that can balance its weight. A calculation shows that this net upward force is proportional to the volume of the object, the mass per volume of the surrounding air (or atmosphere or other fluid), and the gravitational acceleration; this formula is called \furl{http://hyperphysics.phy-astr.gsu.edu/hbase/pbuoy.html\#arch}{\enquote*{Archimedes's principle}}. Flight by buoyancy can therefore be achieved by making the object large, light, or both. This is the principle upon which helium-filled party balloons, hot-air balloons, airships, and also submarines, are based.
-
-\item[Soaring]
-%
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/hangglider.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-A hang-glider (image from \furl{https://www.jaerenluftsport.no}{J{\ae}ren Luftsportsklubb})%
-}%
-Air is not always at rest (with respect to the Earth's surface). Owing to energy flow in the atmosphere and Earth's rotation, bodies of air -- air currents -- can be moving in different directions, including upward. An upward-moving body of air contains a net upward momentum. If an object stops the vertical motion of this air, for example deflecting it horizontally, then by the balance of momentum there must be a flux of upward momentum from the body of air to the object. This upward momentum can compensate the gravity supply of downward momentum, and therefore the object can float or rise. This mechanism is called \furl{https://www.birdful.org/how-is-soaring-different-from-flying-birds/}{soaring or gliding} and is used by birds and gliders; it's also the mechanism that lifts light objects like paper or feathers.
-
-\item[Propelled flight] We can try to create a flow of downward momentum from an object to the surrounding air, even if air is initially at rest. As a result, a body of air surrounding the object will acquire a net, partially downward movement. By the \autoref{def:symmetryflux}{symmetry of flux} this also means that momentum with an upward component flows from the air to the object, and this component can compensate the object's weight. This is achieved by birds by flapping their wings, and by aeroplanes and helicopters through horizontally moving wings or blades.
-\end{description}
-
-\begin{extra}{It's not the difference in air pressure}
-  Some texts say that wings can sustain an aeroplane because their cross-section has an asymmetric shape, slightly more bulged upward than downward, leading to a difference in the air pressure between the top and bottom of the wing. This is not true. In fact, aeroplanes with symmetric wings fly as well.
-\begin{quote}\footnotesize
-\emph{the popular theory of lift generation found in many textbooks is completely wrong! The upper surface doesn't have to be longer than the lower surface to generate lift. The lift occurs because the airfoil turns the flow of air and both the lower and upper surface contribute to the turning.}\sourceatright{\furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry/}{\emph{Wing geometry}, NASA Glenn Research Center}}
-\end{quote}
-\end{extra}
-%
-\marginpar{\vspace{-9\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/supersonic_airfoil.png}%
-\\[\jot]\flushleftright\color{mpcolor}%
-Sections of two kinds of wings for supersonic flight \parencites[\sect26]{leishman2022_r2024}.%
-}%
-
-% In airborne flight this is done by somehow \emph{deflecting} the air surrounding the object; that is, giving to the surrounding air a downward-momentum. Owing to the \autoref{def:symmetryflux}{symmetry of flux}, this is equivalent to the object's receiving an upward-momentum, which can compensate and even exceed the downward-momentum supply from gravity.
-
-
-
-\section{Statics again: cable cars}
-\label{sec:bal_momentum_cablecar}
-
-%
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/cable-car3.jpg}%
-\\[\jot]\flushleftright\color{mpcolor}%
-\furl{https://www.scenicworld.com.au/experience/scenic-skyway}{\emph{Scenic Skyway}} cable car, Australia}%
-Consider a cable car suspended on a horizontal cable, and not moving. Which momentum fluxes occur in this situation?
-
-This problem has some similarities with the previous one about the book on a table. Choose a control volume containing the cable car.
-\begin{itemize}[nosep]
-\item The total momentum in this volume is constantly zero, because the cable car isn't moving
-\item There's a constant momentum supply because of gravity; let's say that in this case it's
-  \begin{equation*}
-    \yG(t) = - [0\,,0\,,\num{8e4}]\,\unit{N}\quad\text{(constant)}
-  \end{equation*}
-\item By the balance of momentum, there must then be an influx of upward-momentum of the same magnitude as the supply:
-  \begin{equation*}
-  \begin{split}
-    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-8e4}]\,\unit{N}}
-\\[2\jot]
- &=   [0\,,0\,,\num{8e4}]\,\unit{N}\quad\text{(constant)}.
-  \end{split}
-\end{equation*}
-\item Also in this case the influx through the parts of the control surface in contact with air is practically zero:
-  \begin{equation*}
-  \yF_{\text{air-car}}(t) \approx [0\,,0\,,0]\,\unit{N} \ .
-\end{equation*}
-\end{itemize}
-
-All the influx of momentum must therefore come through the cable. But there are some interesting aspects on how this happens. In this case it's interesting to choose a static closed control surface that wraps the car and part of the cables,  \enquote{cutting} the cables in imagination, as illustrated by the \textcolor{red}{red polygon} in the picture below:
-\begin{center}
-  \includegraphics[align=t,width=\linewidth]{images/cablecardraw.jpg}
-\end{center}
-This picture also depicts, as zoom-ins, the two parts of the imaginary control surface that \enquote{cut} the cable (for simplicity imagine that there's only one cable). The total influx $\yF$ must happen through these two small regions of the surface, in the cable. An interesting question is: \emph{How much is the momentum influx \textbf{through each one?}}. Call these two momentum influxes $\yF_{\text{left}}$ through surface cutting the cable on the left; and $\yF_{\text{right}}$ through surface cutting the cable on the right. Since all these fluxes are constant in time, let's drop the argument \enquote*{$(t)$}; and let's drop the $y$-components, which are all zero.
-
-We know that
-\begin{equation*}
-  \yF_{\text{left}} + \yF_{\text{right}} = \yF =
-  \begin{bsmallmatrix}
-    0\\\num{8e4}
-  \end{bsmallmatrix}\,\unit{N}
-\end{equation*}
-from this equation we find
-\begin{equation*}
-  (\yF_{\text{left}})_{x} = - (\yF_{\text{right}})_{x}
-  \qquad
-  (\yF_{\text{left}})_{z} = \qty{8e4}{N} - (\yF_{\text{right}})_{z}
-\end{equation*}
-where \enquote*{$(\dotso)_{x}$} denotes the $x$-component, and similarly for the $z$-component. But this doesn't tell us how much $\yF_{\text{left}}$ and $\yF_{\text{right}}$ are individually. For example we could have
-\begin{equation*}
-  \yF_{\text{left}} \stackrel{?}{=}
-  \begin{bsmallmatrix}
-    \num{5}\\ \num{-2e4}
-  \end{bsmallmatrix}\,\unit{N}
-  \qquad
-  \yF_{\text{right}} \stackrel{?}{=}
-  \begin{bsmallmatrix}
-    \num{-5}\\ \num{20e4}
-  \end{bsmallmatrix}\,\unit{N}
-\end{equation*}
-and the total influx would be the correct one.
-
-We shall see later that the \emph{balance of angular momentum} applied to this problem leads to a further constraint:\enskip$(\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z}$\,.\enskip So we can conclude that
-\begin{equation*}
-  (\yF_{\text{left}})_{z} = (\yF_{\text{right}})_{z} = \qty{4e4}{N}
-\end{equation*}
-that is, each half of the cable is \enquote{taking half of the weight}, as intuitively expected.
-
-The last part of our mystery, about the $x$-components, can be solved thanks to an additional constitutive property:
-\begin{definition}{{Momentum flux allowed in cables and ropes}}
-  A cable, rope, or similar object can (approximately) only transmit \autoref{sec:tension}{\emph{tensile} momentum flux}, aligned along its axis.
-\end{definition}
-Pictorially this means that only the momentum flux represented in the left picture below -- tension -- is physically possible:
-\begin{center}
-\includegraphics[align=c,width=0.33\linewidth]{images/cabletension.jpg}%
-\hfill
-\includegraphics[align=c,width=0.22\linewidth]{images/cableshear.jpg}%
-\includegraphics[align=c,width=0.22\linewidth]{images/cablepressure.jpg}%
-\includegraphics[align=c,width=0.22\linewidth]{images/cablemix.jpg}%
-\end{center}
-the other three (from left to right: shear, pressure, mixed) are not.
-
-We therefore need to know the directions of the axes of the two parts of the cable. Let's suppose that each part has an inclination of $\qty{0.12}{rad}\approx\qty{6.9}{\degree}$, but in opposite directions. This must then also be the angle between the influx $\yF_{\text{right}}$ and its horizontal component $(\yF_{\text{right}})_{x}$, as in the following picture (the angle has been exaggerated for clarity):\noprelistbreak%
-\begin{center}
-  \includegraphics[width=0.533\linewidth]{images/cableangle2.jpg}
-\end{center}
-From trigonometry we find
-\begin{equation*}
-  (\yF_{\text{right}})_{x} =
-  (\yF_{\text{right}})_{z}/\tan(\qty{0.12}{rad})
-  =  \qty{4e4}{N}/0.12 \approx \qty{3.3e5}{N}
-\end{equation*}
-and therefore\enskip$(\yF_{\text{left}})_{x} \approx \qty{-3.3e5}{N}$:
-\begin{equation*}
-  \yF_{\text{left}} \approx
-  \begin{bsmallmatrix}
-    \num{-3.3e5}\\ \num{4e4}
-  \end{bsmallmatrix}\,\unit{N}
-  \qquad
-  \yF_{\text{right}} \approx
-  \begin{bsmallmatrix}
-    \num{3.3e5}\\ \num{4e4}
-  \end{bsmallmatrix}\,\unit{N}
-\end{equation*}
-The magnitude of these tensions is also approximately $\abs{\yF_{\text{left}}} = \abs{\yF_{\text{right}}} \approx \qty{3e5}{N}$ or an equivalent weight of 35\,tonnes (this result seems in the correct order of magnitude, comparing with the data in \cites{brownjohn1998}).
-
-In solving the cable-car problem above we used the balance of momentum, but note and keep in mind how that balance alone wasn't enough. We also had to use:
-\begin{itemize}[nosep]
-\item the balance of angular momentum
-\item constitutive relations regarding:
-  \begin{itemize}[nosep]
-  \item the momentum supply
-  \item the amount of momentum flux between air and the cable car
-  \item the kind of momentum flux allowed in a cable
-  \end{itemize}
-\end{itemize}
 
 
 \section{Momentum fluxes in a gas}
@@ -11017,6 +11017,7 @@ Repeating this kind of reasoning with horizontal control surfaces further within
 In \chap~\ref{cha:bal_energy} we shall discuss a constitutive relation for the internal pressure of particular kinds of gas.
 
 %
+\needspace{9\baselineskip}
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[vshift=6pt,width=0.45\linewidth]{images/gas_upfluxes.jpg}%
 \hfill\includegraphics[width=0.45\linewidth]{images/gas_downfluxes.jpg}%
