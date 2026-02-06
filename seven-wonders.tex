@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-06T09:54:43+0100
+%% Last-Updated: 2026-02-06T14:57:35+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9153,28 +9153,82 @@ So whenever you feel a body force $\yG_{\text{you}}$, you must also feel somewhe
 \section{Statics}
 \label{sec:bal_momentum_statics}
 
-As previously mentioned there are situations in which we must study or find which momentum fluxes $\yF$ and supply $\yG$ can make the amount of momentum in a control volume to be zero at all time. This is the domain of the discipline of \textbf{statics}. Let's see a couple of concrete examples.
+There are situations in which the momentum in one or more control volumes and in their sub-volumes is zero at all times; so for each control volume we have
+\begin{equation}
+  \label{eq:static_conditions}
+  \yP = \qty{0}{N\,s}\ , \qquad \frac{\di\yP}{\dt} \equiv \qty{0}{N} \ .
+\end{equation}
+Such a situation is called \textbf{static}. Two typical tasks in static situations are: to find what are the momentum fluxes (forces) $\yF$ and supplies $\yG$ that make situation static; or to design momentum fluxes and supplies such that the physical condition will be and remain static. This is the domain of the discipline of \textbf{statics}. Let's see a couple of simple examples.
 
 \medskip
 
-An object, such as a book, is resting on a table. Which momentum fluxes occur in such a situation?
+An object, such as a book, is resting on a table. Which momentum fluxes occur in such a static situation? Let's see if we can answer this question with the information given, and what happens as additional pieces of information are provided.
 
-Let's choose a coordinate system (see side picture) and a static control surface that wraps the object. The total amount of momentum in this control volume is zero and constant:
-%
-\marginpar{\vspace{-2\baselineskip}\footnotesize\centering%
+\needspace{7\baselineskip}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/opmvol1.jpg}%
 \\\includegraphics[width=3em]{images/axes.pdf}%
   % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
+Choose a coordinate system (see side figure) and a control volume coinciding with the object. We collect the physical laws that are relevant for this control volume, together with all information we have about the physical situation. Obviously we have the balance of momentum, and we know that the situation is static; therefore what we know is expressed mathematically as
 \begin{equation*}
-  \yP(t) = [0\,,0\,,0]\,\unit{N\,s}\enskip\text{(constant)}.
+\left\{  \begin{aligned}
+    &\frac{\di\yP}{\dt} = \yF + \yG
+    \\
+    &\yP = [0\,,0\,,0]\,\unit{N\,s}
+    \\
+    &\frac{\di\yP}{\dt} = [0\,,0\,,0]\,\unit{N}
+  \end{aligned}\right.
+\end{equation*}
+
+If this is all information we have, then it is \emph{not} possible to determine the total influx $\yF$, or any influxes through parts of the control surface, such as the one between the object and the table. From the equations above we easily find $\yF = -\yG$, but since the supply $\yG$ is not given, the total flux $\yF$ is unknown too.
+
+\medskip
+
+Now suppose we're given an additional piece of information: the object has \masse\ $\ym = \qty{0.20}{kg}$. We can combine this information with a constitutive relation: the momentum supply for matter close to Earth's surface,\enskip$\yG = \ym\, \yg$\,,\enskip with\enskip$\yg \approx -[0,0,9.8]\:\unit{N}$\,.\enskip The information we have now can thus be expressed by
+\begin{equation*}
+\left\{  \begin{aligned}
+    &\frac{\di\yP}{\dt} = \yF + \yG
+    \\
+    &\yP = [0\,,0\,,0]\:\unit{N\,s}
+    \\
+    &\frac{\di\yP}{\dt} = [0\,,0\,,0]\:\unit{N}
+    \\
+    &\yG = \ym\, \yg \approx -[0\,,0\,,2.0]\:\unit{N}
+  \end{aligned}\right.
+\end{equation*}
+
+
+\needspace{5\baselineskip}
+With this information we are now able to find the \emph{total} flux $\yF$. This is intuitively clear from a quick look at the equations above, but it can also be seen from a more formal mathematical analysis.
+\needspace{4\baselineskip}
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+The equation\enskip${\yP = \qty{0}{N\,s}}$\enskip and the \enquote{unkwnown} $\yP$ are very trivial, but let's count them in for formality's sake.%
+}%
+The set of physical laws and static conditions above can be seen as a linear system: four vector equations and four vector unknowns $\di\yP/\dt$, $\yF$, $\yG$, $\yP$. We find
+\begin{equation*}
+  \yF = -\yG \approx -[0\,,0\,,2.0]\:\unit{N} \ .
+\end{equation*}
+
+If the problem was to find the \emph{total} flux $\yF$, then it's solved.
+
+\medskip
+
+But let's now imagine that we want to find the influx of momentum (force) from the table to the object through the bottom surface, not just the total.
+
+
+
+The total amount of momentum in this control volume is zero and constant:
+\begin{equation*}
+  \yP(t) = [0\,,0\,,0]\,\unit{N\,s} \ ,
+  \qquad \frac{\di\yP}{\dt} = [0\,,0\,,0]\,\unit{N} \ .
 \end{equation*}
 We also know that any control volume close to Earth's surface %\autoref{sec:supply_momentum_gravity}{}
 has a constant \emph{supply} of momentum, proportional to the \masse\ it contains. Let's say that the supply in this case is
 \begin{equation*}
   \yG(t) = [0\,,0\,,\num{-2}]\,\unit{N}\enskip\text{(constant)}.
 \end{equation*}
-Then \emph{what can the momentum fluxes across different parts of the control surface be?}
+Then \emph{what are the momentum fluxes across different parts of the control surface?}
 
 A straightforward application of momentum balance in differential expression tells us that the \emph{net} \textbf{in}flux of momentum must be
 \begin{equation*}
@@ -9184,7 +9238,7 @@ A straightforward application of momentum balance in differential expression tel
  &=   [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
   \end{split}
 \end{equation*}
-Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The \autoref{sec:in_out_flux}{influxes through different parts of the control surface could be very different} from this value, which is only their total; but the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from constitutive relations.
+Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The influxes \autoref{sec:in_out_flux}{through different parts} of the control surface could be very different from this value, which is only their total. But the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from direct measurements or from constitutive relations.
 
 In the present case there's a constitutive relation about the force, through the \emph{whole} surface, exerted by air on the book, which says that such total force is approximately zero:
 \begin{equation*} \yF_{\text{air}\rightsquigarrow\text{book}}(t) \approx [0\,,0\,,0]\,\unit{N} \ .
