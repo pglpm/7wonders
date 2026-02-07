@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-06T18:59:45+0100
+%% Last-Updated: 2026-02-07T16:48:56+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -689,9 +689,9 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \setparaheadstyle{\itshape\bfseries\sffamily\raggedright}
 \newcommand{\addchap}[1]{\chapter*[#1]{#1}\addcontentsline{toc}{chapter}{#1}}
 \newcommand{\addsec}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}\markright{#1}}
-\newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
-\newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
-\newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
+% \newcommand{\addsubsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+% \newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
+% \newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
 
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect #1}}
 
@@ -1075,6 +1075,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 %% time and space
 \newcommand*{\ye}{\bm{e}} % unit vector
+\newcommand*{\zerov}{\bm{0}} % zero vector
 \newcommand*{\yuu}{\bm{u}}
 \newcommand*{\yww}{\bm{w}}
 \newcommand*{\yr}{\bm{r}}
@@ -1259,7 +1260,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 print-unity-mantissa=true,%
 parse-units=false,%
 %exponent-product=\cdot,%
-%quantity-product=\:,% default is \,
+%quantity-product=\:,% default is \, % separator value-unit
 retain-explicit-plus,%
 ]{siunitx}
 %\sisetup{input-digits = 0123456789\piup}
@@ -9150,19 +9151,36 @@ So whenever you feel a body force $\yG_{\text{you}}$, you must also feel somewhe
 % 
 %   Current satellite and astronomical applications use complex expressions for $\yg$, which can also depend on the time coordinate, and on the motion of matter.
 
+
 \section{Statics}
 \label{sec:bal_momentum_statics}
 
-There are situations in which the momentum in one or more control volumes and in their sub-volumes is zero at all times; so for each control volume we have
+There are situations where, in some coordinate system:
+\begin{itemize}[nosep]
+\item the momentum in one or more control volumes and in their sub-volumes is \emph{zero} at all times;
+\item the fluxes and supplies of momentum (forces) are \emph{constant} in time.
+\end{itemize}
+In such situations, for each control volume we have
 \begin{equation}
   \label{eq:static_conditions}
-  \yP = \qty{0}{N\,s}\ , \qquad \frac{\di\yP}{\dt} \equiv \qty{0}{N} \ .
+  \begin{gathered}
+    \yP(t) = \zerov\,\unit{N\,s}\ ,
+    \qquad \frac{\di\yP}{\dt} \equiv \zerov\,\unit{N} \ ,
+    \\
+    \yF(t)\enskip\text{constant},
+    \qquad \yG(t)\enskip\text{constant}.
+  \end{gathered}
 \end{equation}
-Such a situation is called \textbf{static}. Two typical tasks in static situations are: to find what are the momentum fluxes (forces) $\yF$ and supplies $\yG$ that make situation static; or to design momentum fluxes and supplies such that the physical condition will be and remain static. This is the domain of the discipline of \textbf{statics}. Let's see a couple of simple examples.
+Such a situation is called \textbf{static}. Since contents, fluxes, supplies are constant in time, the time-dependence \enquote*{\,$(t)$\,} is often omitted.
 
-\medskip
+Two typical tasks in static situations are: to find what are the momentum fluxes (forces) $\yF$ and supplies $\yG$ that make situation static; or to design momentum fluxes and supplies such that the physical condition will be and remain static. This is the domain of the discipline of \textbf{statics}.
 
-An object, such as a book, is resting on a table. Which momentum fluxes occur in such a static situation? Let's see if we can answer this question with the information given, and what happens as additional pieces of information are provided.
+Let's see a simple example, approached in four different scenarios.
+
+
+\paragraph{Scenario 1. Initial question and information.}
+
+An object, say a book, is resting on a table. Which momentum fluxes occur in such a static situation? Let's see if we can answer this question with the information given, and what happens as additional pieces of information are provided.
 
 \needspace{7\baselineskip}%
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
@@ -9174,27 +9192,35 @@ Choose a coordinate system (see side figure) and a control volume coinciding wit
 \begin{equation*}
 \left\{  \begin{aligned}
     &\frac{\di\yP}{\dt} = \yF + \yG
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance}}
     \\
-    &\yP = [0\,,0\,,0]\,\unit{N\,s}
+    &\yP = \zerov\,\unit{N\,s}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
     \\
-    &\frac{\di\yP}{\dt} = [0\,,0\,,0]\,\unit{N}
+    &\frac{\di\yP}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
   \end{aligned}\right.
 \end{equation*}
 
 If this is all information we have, then it is \emph{not} possible to determine the total influx $\yF$, or any influxes through parts of the control surface, such as the one between the object and the table. From the equations above we easily find $\yF = -\yG$, but since the supply $\yG$ is not given, the total flux $\yF$ is unknown too.
 
-\medskip
 
-Now suppose we're given an additional piece of information: the object has \masse\ $\ym = \qty{0.20}{kg}$. We can combine this information with a constitutive relation: the momentum supply for matter close to Earth's surface,\enskip$\yG = \ym\, \yg$\,,\enskip with\enskip$\yg \approx -[0,0,9.8]\:\unit{N}$\,.\enskip The information we have now can thus be expressed by
+\paragraph{Scenario 2. Additional information: \masse\ and a constitutive relation.}
+
+Now suppose we're given an additional piece of information: the object has \masse\ $\ym = \qty{0.20}{kg}$. We can combine this information with a constitutive relation: the momentum supply for matter close to Earth's surface,\enskip$\yG = \ym\, \yg$\,,\enskip with\enskip$\yg \approx -[0, 0, \num{9.8}]\,\unit{N}$\,.\enskip The information we have now can thus be expressed by
 \begin{equation*}
 \left\{  \begin{aligned}
     &\frac{\di\yP}{\dt} = \yF + \yG
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance}}
     \\
-    &\yP = [0\,,0\,,0]\:\unit{N\,s}
+    &\yP = \zerov\,\unit{N\,s}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
     \\
-    &\frac{\di\yP}{\dt} = [0\,,0\,,0]\:\unit{N}
+    &\frac{\di\yP}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
     \\
-    &\yG = \ym\, \yg \approx -[0\,,0\,,2.0]\:\unit{N}
+    &\yG = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation}}
   \end{aligned}\right.
 \end{equation*}
 
@@ -9202,54 +9228,118 @@ Now suppose we're given an additional piece of information: the object has \mass
 \needspace{5\baselineskip}
 With this information we are now able to find the \emph{total} flux $\yF$. This is intuitively clear from a quick look at the equations above, but it can also be seen from a more formal mathematical analysis.
 \needspace{4\baselineskip}
-\marginpar{\vspace{1\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-The equation\enskip${\yP = \qty{0}{N\,s}}$\enskip and the \enquote{unkwnown} $\yP$ are very trivial, but let's count them in for formality's sake.%
+\marginpar{\vspace{1\baselineskip}\footnotesize\flushleftright\color{grey}%
+The equation\enskip${\yP = \zerov\,\unit{N\,s}}$\enskip and the \enquote{unknown} $\yP$ are trivial, but let's count them in for formality's sake.%
 }%
-The set of physical laws and static conditions above can be seen as a linear system: four vector equations and four vector unknowns $\di\yP/\dt$, $\yF$, $\yG$, $\yP$. We find
+The set of physical laws and static conditions above can be seen as a linear system: \emph{four} vector equations, and \emph{four} vector unknowns:\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yP$\,.\enskip We find
 \begin{equation*}
-  \yF = -\yG \approx -[0\,,0\,,2.0]\:\unit{N} \ .
+  \yF = -\yG \approx [0, 0, \num{2.0}]\,\unit{N} \ .
 \end{equation*}
 
 If the problem was to find the \emph{total} flux $\yF$, then it's solved.
 
-\medskip
 
-Let's now consider a different task. We don't want to find the total flux of momentum (force) to the object, but more specifically the flux of momentum \emph{from the table to the object through the bottom surface}.
+\paragraph{Scenario 3. Different task: particular flux.}
 
+Now let's consider a different task. We don't want to find the total flux of momentum (force) to the object, but more specifically the flux of momentum \emph{from the table to the object through the bottom surface}, that is, the force exerted from the table to the object.
 
-
-The total amount of momentum in this control volume is zero and constant:
+Since we're asking about the influx through part of our closed control surface, we must invoke the principle of \autoref{def:extensivity}{extensivity}, and write the total flux $\yF$ as the sum of fluxes through the different surfaces, for instance:
 \begin{equation*}
-  \yP(t) = [0\,,0\,,0]\,\unit{N\,s} \ ,
-  \qquad \frac{\di\yP}{\dt} = [0\,,0\,,0]\,\unit{N} \ .
+  \yF = \yF_{\text{table}\rightsquigarrow\text{book}}
+  + \yF_{\text{other}} \ .
 \end{equation*}
-We also know that any control volume close to Earth's surface %\autoref{sec:supply_momentum_gravity}{}
-has a constant \emph{supply} of momentum, proportional to the \masse\ it contains. Let's say that the supply in this case is
-\begin{equation*}
-  \yG(t) = [0\,,0\,,\num{-2}]\,\unit{N}\enskip\text{(constant)}.
-\end{equation*}
-Then \emph{what are the momentum fluxes across different parts of the control surface?}
+This sum could be even more precise, considering for instance the flux through the lateral sides of the object and the flux from the top. But the statement of the problem doesn't give us much information on how this separation should be done.
 
-A straightforward application of momentum balance in differential expression tells us that the \emph{net} \textbf{in}flux of momentum must be
+The information we have now is the same as before, plus the equation for extensivity:
+\begin{equation*}
+\left\{  \begin{aligned}
+    &\frac{\di\yP}{\dt} = \yF + \yG
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance}}
+    \\
+    &\yP = \zerov\,\unit{N\,s}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\frac{\di\yP}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\yG = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation}}
+    \\
+    &\yF = \yF_{\text{table}\rightsquigarrow\text{book}}
+  + \yF_{\text{other}}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extensivity}}
+  \end{aligned}\right.
+\end{equation*}
+and our unknown is\enskip$\yF_{\text{table}\rightsquigarrow\text{book}}$\,. Clearly we do \emph{not} have enough information to solve the problem. In terms of a mathematical system we have five vector equations in six vector unknowns:\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yF_{\text{table}\rightsquigarrow\text{book}}$, $\yF_{\text{other}}$, $\yP$\,.\enskip All we can say is that
+\begin{equation*}
+  \yF_{\text{table}\rightsquigarrow\text{book}} \approx
+  -[0, 0, \num{2.0}]\,\unit{N} - \yF_{\text{other}} \ .
+\end{equation*}
+
+
+\paragraph{Scenario 4. Additional information: momentum flux from air.}
+
+Finally let's suppose that the task is as before, finding the force from the table to the object, but we're given an additional piece of information: \emph{the other influx of momentum to consider is from the air surrounding the object to the object itself, but this influx is negligible}. Mathematically we can express this as follows:
+\begin{equation*}
+  \begin{aligned}
+    &\yF = \yF_{\text{table}\rightsquigarrow\text{book}}
+    + \yF_{\text{air}\rightsquigarrow\text{book}}
+    \\
+    &\yF_{\text{air}\rightsquigarrow\text{book}} \approx \zerov\,\unit{N} \ .
+  \end{aligned}
+\end{equation*}
+
+The information we have in this last set-up is mathematically expressed by these equations:
+\begin{equation*}
+\left\{  \begin{aligned}
+    &\frac{\di\yP}{\dt} = \yF + \yG
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance}}
+    \\
+    &\yP = \zerov\,\unit{N\,s}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\frac{\di\yP}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\yG = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation}}
+    \\
+    &\yF = \yF_{\text{table}\rightsquigarrow\text{book}}
+    + \yF_{\text{air}\rightsquigarrow\text{book}}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extensivity}}
+    \\
+    &\yF_{\text{air}\rightsquigarrow\text{book}} \approx \zerov\,\unit{N} \ .
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extra information}}
+  \end{aligned}\right.
+\end{equation*}
+and our unknown is still\enskip$\yF_{\text{table}\rightsquigarrow\text{book}}$\,. It's obvious that we can now find the answer; indeed we have \emph{six} vector equations in \emph{six} vector unknowns\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yF_{\text{table}\rightsquigarrow\text{book}}$, $\yF_{\text{air}\rightsquigarrow\text{book}}$, $\yP$\,.\enskip The answer is
 \begin{equation*}
   \begin{split}
-    \yF(t) &= \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\color{grey}[0,0,0]\unit{N}\text{ because constant}} - \underbracket[0pt]{\yG(t)}_{\color{grey}[0,0,\num{-2}]\,\unit{N}}
-\\[3\jot]
- &=   [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
+    \yF_{\text{table}\rightsquigarrow\text{book}}
+    &= -\yG - \yF_{\text{air}\rightsquigarrow\text{book}}
+    \\
+    &\approx
+    + [0, 0, \num{2.0}]\,\unit{N} - [0,0,0]\,\unit{N}
+    =  [0, 0, \num{2.0}]\,\unit{N} \ .
   \end{split}
 \end{equation*}
-Note that this is the only piece of information that the balance of momentum, applied to the chosen closed control surface, can give us. The influxes \autoref{sec:in_out_flux}{through different parts} of the control surface could be very different from this value, which is only their total. But the balance of momentum by itself cannot give us these partial fluxes. We need additional information, which can only come from direct measurements or from constitutive relations.
 
-In the present case there's a constitutive relation about the force, through the \emph{whole} surface, exerted by air on the book, which says that such total force is approximately zero:
-\begin{equation*} \yF_{\text{air}\rightsquigarrow\text{book}}(t) \approx [0\,,0\,,0]\,\unit{N} \ .
-\end{equation*} The only remaining force must be the one between the book and the table: a \autoref{sec:friction_normal_force}{contact force}. So the total influx $\yF(t)$ that appears in the momentum balance must be the sum of these two:
-\begin{equation*}
-  \yF(t) = \yF_{\text{air}\rightsquigarrow\text{book}}(t) + \yF_{\text{table}\rightsquigarrow\text{book}}(t) \ .
-\end{equation*}
-From the last three equations we finally find
-\begin{equation*} \yF_{\text{table}\rightsquigarrow\text{book}}(t) \approx [0\,,0\,,\num{2}]\,\unit{N}\enskip\text{(constant)}.
-\end{equation*}
-In other words, there's a flux of \emph{upward} momentum from the table to the book. This is the flux that compensates the \emph{downward} momentum supply in the book, keeping the book's total momentum to zero. This is the \textbf{normal force} discussed in the previous section.
+\paragraph{What to pay attention to.}
+
+The problem in each of the four scenarios above was quite simple, easily solvable, or easily recognized as unsolvable. If it had been a concrete application, we wouldn't have needed to go through all the formal steps of writing down physical laws and extra information, counting equations and unknowns, and so on. So why all the hullabaloo?
+
+Concrete applications, in static and non-static problems, can be vastly more complex than the one just discussed; so complex that we don't have any clear intuition and we easily get lost among the information given and the tasks to solve. In complex applications we therefore need to use a more  systematic and formal procedure. Note some of the most important steps involved in such a procedure:
+\begin{itemize}
+\item choose appropriate control volumes;
+\item list balances and constitutive relations;
+\item list the information given, expressing it mathematically;
+\item identify the need for principles such as extensivity and symmetry of fluxes, and use them;
+\item identify the unknowns and the equations.
+\end{itemize}
+
+The detailed analysis of the four scenarios above is useful because you can try out and get an idea of the systematic and formal procedure, but at the same time understand intuitively why you're doing the systematic steps.
+
+
 
 \needspace{15\baselineskip}%
 \marginpar{\vspace{3\baselineskip}\footnotesize\centering%
@@ -9328,6 +9418,7 @@ In some cases the magnitude of the atmospheric pressure is different because of 
     {\color{red}\footnotesize\faIcon{exclamation-circle}\enskip The results obtained in this exercise are approximate, because the supply of momentum $\yG$ actually changes with altitude as well, and depends on other quantities such as temperature. But they do have the correct order of magnitude.\par}
 \end{exercise}
 
+\needspace{8\baselineskip}
 \section{Statics: cable cars}
 \label{sec:bal_momentum_cablecar}
 
@@ -10800,7 +10891,7 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 \end{enumerate}
 \end{exercise}
 
-
+\needspace{14\baselineskip}
 \section{Beyond the no-mass simplification}
 % \section[What if the two masses are not attached? Beyond the no-mass simplification]{What if the two masses are not attached?\newline Beyond the no-mass simplification}
 \label{sec:no_nomass}
@@ -10811,13 +10902,13 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 %% Fa' = 2\,K\,[2 \yva'(t) + \yvb(t) - 3 \yvc(t)]
 %% Fb' = -2\,K\,[\yva'(t) + 2 \yvb(t) - 3 \yvc(t)]
 
-The physical phenomena that we explored in the previous sections involve two small bodies attached to the ends of a piece of material, for instance two tennis balls connected by a spring. The two bodies are assumed to always stay attached to the piece of material. So you may wonder: what if the two bodies are just touching the extremities of the material, without being \enquote{glued} to them? If we compress a spring by means of two tennis balls, these will be pushed apart, and at some point they will lose contact with the spring and continue moving. Otherwise pinball machines and other devices that rely on spring launchers wouldn't work.
 %
-\marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/pinball0.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Wooden pinball machine. Spring launcher on the bottom right (image: \furl{https://pin.it/5rsbVkSFf}{Thebigkegg})%
 }%
+The physical phenomena that we explored in the previous sections involve two small bodies attached to the ends of a piece of material, for instance two tennis balls connected by a spring. The two bodies are assumed to always stay attached to the piece of material. So you may wonder: what if the two bodies are just touching the extremities of the material, without being \enquote{glued} to them? If we compress a spring by means of two tennis balls, these will be pushed apart, and at some point they will lose contact with the spring and continue moving. Otherwise pinball machines and other devices that rely on spring launchers wouldn't work.
 
 Our simplified setup cannot handle this kind of situation: as soon as the two bodies are not in contact with the piece of material, we must again face the problem of its masslessness and its lack of momentum. The only way is therefore to remove the zero-mass simplification, and treat the material as having mass and momentum. This realistic step, however, leads to a host of complications.
 
