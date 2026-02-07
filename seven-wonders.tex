@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-07T18:16:43+0100
+%% Last-Updated: 2026-02-07T18:41:15+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1042,7 +1042,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\furl}[2]{\href{#1}{#2}\pagenote{\url{#1}}}
 % \renewcommand*{\autoref}[3][\sect\ref]{\sidepar{\vspace{-1ex}\footnotesize{\color{blue}\faIcon{angle-right}\enskip#1{#2} page~\pageref{#2}}}\textcolor{blue}{#3}}
 % \renewcommand*{\autoref}[3][\sect\ref]{\textcolor{blue}{#3} {\color{blue}\scriptsize(\faIcon{angle-right}~#1{#2}\;p.\,\pageref{#2})}}
-\renewcommand*{\autoref}[3][\sect\ref]{\textcolor{blue}{#3}\,\raisebox{0.6ex}{\color{blue}\miniscule%
+\renewcommand*{\autoref}[3][\sect\ref]{\textcolor{blue}{#3}\,\raisebox{0.6ex}{\color{blue}\normalfont\miniscule%
 %\faIcon[regular]{eye}%
 \faIcon{angle-right}%
 \;#1{#2}\;p.\,\pageref{#2}}}
@@ -9279,7 +9279,7 @@ and our unknown is\enskip$\yF_{\text{\tiny table}\rightsquigarrow\text{\tiny boo
 
 \paragraph{Scenario 4. Additional information: momentum flux from air.}
 
-Finally let's suppose that the task is as before, finding the force from the table to the object, but we're given an additional piece of information: \emph{the other influx of momentum to consider is from the air surrounding the object to the object itself, but this influx is negligible}. Mathematically we can express this as follows:
+Finally let's suppose that the task is as before, finding the force from the table to the object, but we're given an additional piece of information: \emph{the other influx of momentum to consider is from the air surrounding the object to the object itself, but this influx is \autoref{sec:bal_momentum_atmosphere}{negligible}}. Mathematically we can express this with two equations:
 \begin{equation*}
   \begin{aligned}
     &\yF = \yF_{\text{\tiny table}\rightsquigarrow\text{\tiny book}}
@@ -9340,6 +9340,12 @@ Concrete applications, in static and non-static problems, can be vastly more com
 The detailed analysis of the four scenarios above is useful because you can try out and get an idea of the systematic and formal procedure, but at the same time understand intuitively why you're doing the systematic steps.
 
 
+\section{Statics and the choice of control volumes}
+\label{sec:bal_momentum_statics_controlvols}
+
+In the  problem of statics discussed in the previous section it was obvious how to choose the control volume. More complex statics problems may require the choice of several control volumes. But there are no clear-cut rule for such choice. Different choices of number, shapes, locations of control volumes can all lead to the solution of the problem -- and obviously the solution will be the same. Other choices may prove to be unfruitful.
+
+Let's see three different analysis of the same statics problem, with three different choices of control volume. Before continuing, try to solve the problem on your own; then compare your approach with the three approaches explained below. Did you use one of them? or maybe a new one?
 
 \needspace{15\baselineskip}%
 \marginpar{\vspace{3\baselineskip}\footnotesize\centering%
@@ -9348,7 +9354,7 @@ The detailed analysis of the four scenarios above is useful because you can try 
   % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
 \begin{exercise}[label={ex:twobooks}]
-  Consider two identical books, on top of each other, resting on a table. Choose two static closed control surfaces of cuboid shape, each wrapping one book, and having one side in common (where the two books touch). Assume that the momentum supply in each control volume is $[0\,,0\,,\num{-2}]\,\unit{N}$, constant in time, and make the same assumptions as before regarding the momentum flux across the parts of the surfaces in contact with air.
+  Two identical books, on top of each other, rest on a table. Each book has  \masse\ \qty{0.2}{kg}. The momentum flux from the air to each book is negligible.
 
   Use the balance of momentum with the two control surfaces to find:
 \begin{enumerate}[exerc]
@@ -9357,6 +9363,9 @@ The detailed analysis of the four scenarios above is useful because you can try 
 \end{enumerate}
   {\itshape answer the questions above not just by using intuition, but \textbf{by explaining step-by-step how you use the balance law and the given assumptions}, in a mathematical deduction.}
 \end{exercise}
+
+
+
 
 \section{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
