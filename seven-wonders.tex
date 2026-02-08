@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-08T13:59:38+0100
+%% Last-Updated: 2026-02-08T15:09:50+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9369,7 +9369,7 @@ Let's see three different analysis of the same statics problem, with three diffe
 
 Denote the top book with \enquote*{1} and the bottom book with \enquote*{2}.
 
-\paragraph{Choose control volume.} Since out task is to find the momentum flux from table to book~2, let's try to analyse the situation with one control volume only, coinciding with book~2; see side figure. The momentum content, influx, supply for this control volume are denoted\enskip$\yP_{2}$, $\yF_{2}$, $\yG_{2}$\,.
+\paragraph{Choose control volume.} Since out task is to find the momentum flux from table to book~2, let's try to analyse the situation with one control volume only, coinciding with book~2; see margin figure. The momentum content, influx, supply for this control volume are denoted\enskip$\yP_{2}$, $\yF_{2}$, $\yG_{2}$\,.
 
 \paragraph{Physical laws.} From the information given, two physical laws seem relevant for this control volume: the balance of momentum and the constitutive relation for momentum supply (force) from gravity.
 
@@ -9400,7 +9400,7 @@ Denote the top book with \enquote*{1} and the bottom book with \enquote*{2}.
     &\frac{\di\yP_{2}}{\dt} = \zerov\,\unit{N}
     &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
     \\
-    &\yG_{2} = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\yG_{2} = \ym_{2}\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
     &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation}}
     \\
     &\yF_{2} = \yF_{1\rightsquigarrow 2}
@@ -9432,7 +9432,7 @@ We must therefore consider additional or alternative control volumes.
 }%
 \subsection{Second approach. Both books as control volumes}
 
-\paragraph{Choose control volume.} In our previous tentative analysis, the momentum flux from book~1 to book~2 appeared to be relevant. Let us therefore try adding one more control volume, coinciding with book~1. The boundaries of this new control volume and of the initial one have one part in common (\textcolor{green}{dashed green thin line}. The momentum content, influx, supply for the new control volume are denoted\enskip$\yP_{1}$, $\yF_{1}$, $\yG_{1}$\,.
+\paragraph{Choose control volume.} In our previous tentative analysis, the momentum flux from book~1 to book~2 appeared to be relevant. Let us therefore try adding one more control volume, coinciding with book~1. The boundaries of this new control volume and of the initial one have one part in common (\textcolor{green}{dashed green thin line}. The momentum content, influx, supply for the additional control volume are denoted\enskip$\yP_{1}$, $\yF_{1}$, $\yG_{1}$\,.
 
 \paragraph{Physical laws.} We now have two control volumes, so for each one we must use the balance of momentum and the constitutive relation for momentum supply (force) from gravity.
 
@@ -9469,10 +9469,10 @@ Moreover, the two control volumes have part of their boundaries in common. The p
     &\frac{\di\yP_{2}}{\dt} = \zerov\,\unit{N}
     &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition book~2}}
     \\
-    &\yG_{1} = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\yG_{1} = \ym_{1}\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
     &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation book~1}}
     \\
-    &\yG_{2} = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\yG_{2} = \ym_{2}\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
     &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation book~2}}
     \\
     &\yF_{1} = \yF_{2\rightsquigarrow 1}
@@ -9526,12 +9526,67 @@ and the final answer to our task:
 This answer was probably obvious to you from the beginning, after a quick intuitive analysis. But let's emphasize again: \textbf{our focus in the example above is not on the answer, but on the \emph{procedure}}.
 
 
-\needspace{7\baselineskip}
+\needspace{8\baselineskip}
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/books2_together.jpg}%
 }%
 \subsection{Third approach. Both books as a single control volume}
 
+The last analysis led to many equations because we were considering two control volumes -- and therefore balances and constitutive relations for each. Is it possible to solve the problem with fewer equations, analysing it in terms of a single control volume? Let's try such an approach.
+
+\paragraph{Choose control volume.} It seems important to take into account book~1, so let's choose one control volume that coincides with \emph{both} books, as illustrated in the margin figure. The momentum content, influx, supply for this alternaive control volume are denoted\enskip$\yP$, $\yF$, $\yG$\,.
+
+\paragraph{Physical laws.} We now have one volume, so we need to use the balance of momentum only once.
+
+We also need the constitutive relation for the momentum supply:\enskip$\yG = \ym\yg$\,.\enskip Note, however, that strictly speaking this constitutive relation cannot be used as-is in the present case: \emph{we need to use it together with the principle of extensivity}, as explained below.
+
+\paragraph{Other information.} The configuration is static, so the time-derivative of momentum for this control volume is zero. We are given the mass-energies of the two books separately; as discussed below we need to use extensivity for them. Our present closed control surface should be divided into two parts, with corresponding influxes:
+\begin{itemize}[nosep]
+\item The surface (\textcolor{green}{dashed blue thin bottom line}) separating table and our control volume, with influx\enskip$\yF_{\text{\tiny table}\rightsquigarrow 2}$\enskip as before.
+\item The remaining surface (\textcolor{yellow}{solid yellow curve}) with a negligible influx\enskip$\yF_{\text{\tiny air}\rightsquigarrow}$\,.
+\end{itemize}
+Note that \emph{we don't need to consider any control surface or momentum flux between the two books!} This is the consequence of using a single control volume including both.
+
+\paragraph{Extensivity for flux and for supply.} We have influxes through two surfaces, we must used the principle of extensivity:
+\begin{equation*}
+\yF = \yF_{\text{\tiny table}\rightsquigarrow 2}
+    + \yF_{\text{\tiny air}\rightsquigarrow\text{\tiny books}} \ .
+\end{equation*}
+
+We also need to use this principle to calculate the total supply, as mentioned above. The reason is that the \enquote*{$\ym$} in the constitutive relation for the gravitational force refers to the \emph{total} \masse\ in the control volume, and problem's text doesn't give this directly. The principle of extensivity must be used in two possible alternative ways:
+\begin{itemize}[nosep]
+\item \emph{Extensivity of \masse}: the total \masse\ $\ym$ in the control volume is the sum of the mass-energies in two sub-volumes:\enskip${\ym = \ym_{1} + \ym_{2}}$\,. Once we have the total \masse, we can used the constitutive relation for the momentum supply.
+\item \emph{Extensivity of momentum supply}: the total momentum supply $\yG$ in the control volume is the sum of the supplies in two sub-volumes:\enskip${\yG = \yG_{1} + \yG_{2}}$\,. The constitutive relation for momentum supply can be used for each of the two supplies separately.
+\end{itemize}
+These two ways are obviously equivalent; you can choose whichever you prefer. What's important here is to pay attention to the fact that the principle of extensivity was used, in one way or another.
+
+\paragraph{Equations and unknowns.} We arrive at \emph{seven} vector equations:
+\begin{equation*}
+\left\{  \begin{aligned}
+    &\frac{\di\yP}{\dt} = \yF + \yG
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance}}
+    \\
+    &\frac{\di\yP}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\yG_{1} = \ym_{1}\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation book~1}}
+    \\
+    &\yG_{2} = \ym_{2}\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation book~2}}
+    \\
+    &\yG = \yG_{1} + \yG_{2}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extensivity supply}}
+    \\
+    &\yF = \yF_{\text{\tiny air}\rightsquigarrow\text{\tiny books}}
+    + \yF_{\text{\tiny table}\rightsquigarrow 2}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extensivity influx}}
+    \\
+    &\yF_{\text{\tiny air}\rightsquigarrow\text{\tiny books}} \approx \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extra information}}
+  \end{aligned}\right.
+\end{equation*}
+with \emph{seven} vector unknowns:\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yG_{1}$, $\yG_{2}$, $\yF_{\text{\tiny air}\rightsquigarrow\text{\tiny books}}$, $\yF_{\text{\tiny table}\rightsquigarrow 2}$\,.
 
 \section{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
