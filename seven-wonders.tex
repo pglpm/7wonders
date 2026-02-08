@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-08T15:09:50+0100
+%% Last-Updated: 2026-02-09T00:06:02+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9329,15 +9329,16 @@ and our unknown is still\enskip$\yF_{\text{\tiny table}\rightsquigarrow\text{\ti
 The problem in each of the four scenarios above was quite simple, easily solvable, or easily recognized as unsolvable. If it had been a concrete application, we wouldn't have needed to go through all the formal steps of writing down physical laws and extra information, counting equations and unknowns, and so on. So why all the hullabaloo?
 
 Concrete applications, in static and non-static problems, can be vastly more complex than the one just discussed; so complex that we don't have any clear intuition and we easily get lost among the information given and the tasks to solve. In complex applications we therefore need to use a more  systematic and formal procedure. Note some of the most important steps involved in such a procedure:
-\begin{itemize}
+\begin{itemize}\bfseries
 \item Choose appropriate control volumes.
 \item List balances and constitutive relations.
 \item List the information given, expressing it mathematically.
 \item Identify the need for principles such as extensivity and symmetry of fluxes, and use them.
 \item Identify the unknowns and the equations.
 \end{itemize}
+These steps are only roughly in chronological order. It may happen that to complete a step you need to take a look at subsequent steps; it may also happen that some step leads you to re-examine and modify a previous step.
 
-The detailed analysis of the four scenarios above is useful because you can try out and get an idea of the systematic and formal procedure, but at the same time understand intuitively why you're doing the systematic steps.
+The detailed analyses of the four scenarios above are example applications of this systematic procedure. The fact that they are simple helps you understand intuitively the systematic steps.
 
 
 \section{Statics and the choice of control volumes}
@@ -9348,7 +9349,7 @@ In the  problem of statics discussed in the previous section it was obvious how 
 Let's see three different analysis of the same statics problem, with three different choices of control volume. Before continuing, try to solve the problem on your own; then compare your approach with the three approaches explained below. Did you use one of them? or maybe a new one?
 
 \needspace{6\baselineskip}%
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.8\linewidth]{images/opmvol2.jpg}%
 \\\includegraphics[width=3em]{images/axes.pdf}%
   % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
@@ -9414,17 +9415,35 @@ Denote the top book with \enquote*{1} and the bottom book with \enquote*{2}.
 \end{equation*}
 with \emph{six} vector unknowns:\enskip$\di\yP_{2}/\dt$, $\yF_{2}$, $\yG_{2}$, $\yF_{1\rightsquigarrow 2}$, $\yF_{\text{\tiny air}\rightsquigarrow 2}$, $\yF_{\text{\tiny table}\rightsquigarrow 2}$\,. The unknown that interests us is the latter one.
 
-It's now clear that we cannot find the unknown we want. In fact, solving the system we can only arrive at
+It's clear that the system of equations is under-determined. Indeed either $\yF_{\text{\tiny table}\rightsquigarrow 2}$ or $\yF_{1\rightsquigarrow 2}$ could be chosen as a \furl{https://textbooks.math.gatech.edu/ila/parametric-form.html}{free variable}. We arrive at
 \begin{equation*}
-  \yF_{\text{\tiny table}\rightsquigarrow 2} \approx
-  [0, 0, \num{2.0}]\,\unit{N} - \yF_{1\rightsquigarrow 2}
+  \yF_{\text{\tiny table}\rightsquigarrow 2} + \yF_{1\rightsquigarrow 2}
+  \approx [0, 0, \num{2.0}]\,\unit{N}
 \end{equation*}
-where the fluxes on the left and on the right are both unknown.
+where both fluxes on the left are unknown.
 
-We must therefore consider additional or alternative control volumes.
+In other to solve our original task we must therefore consider additional or alternative control volumes.
 \begin{warning}[The analysis was correct but insufficient]
   Note that the analysis above is physically correct; there is nothing wrong with it from a physics point of view. Its only problem is that it's insufficient for arriving at the information we want.
 \end{warning}
+
+\begin{exercise}
+  Ordering the unknowns as follows:
+  \begin{equation*}
+    \di\yP_{2}/\dt\ ,\quad \yF_{2}\ ,\quad \yG_{2}\ ,
+    \quad \yF_{1\rightsquigarrow 2}\ ,\quad \yF_{\text{\tiny air}\rightsquigarrow 2}
+  \end{equation*}
+  verify that the \furl{https://textbooks.math.gatech.edu/ila/row-reduction.html}{augmented matrix} corresponding to the system of equations above is this:
+  \begin{equation*}
+    \begin{pmatrix}
+    1 & -1 & -1 & 0 & 0 & 0 &\bigm| & \zerov \\
+    1 & 0 & 0 & 0 & 0 & 0 &\bigm| & \zerov \\
+    0 & 0 & 1 & 0 & 0 & 0 &\bigm| & \ym_{2}\, \yg \\
+    0 & 1 & 0 & -1 & -1 & -1 &\bigm| & \zerov \\
+    0 & 0 & 0 & 0 & 0 & 1 &\bigm| & \zerov
+\end{pmatrix}
+  \end{equation*}
+\end{exercise}
 
 \needspace{7\baselineskip}
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering%
@@ -9506,7 +9525,7 @@ with 11 vector unknowns:
 \end{equation*}
 The last one being our target.
 
-Now we can arrive at a solution. Solving the system above, for instance by the method of substitution, we find in particular
+Now we can arrive at a unique solution. Solving the system above, for instance by the method of substitution, we find in particular
 \begin{equation*}
   \begin{aligned}
     \yF_{1\rightsquigarrow 2} &= \yG_{1} \approx
@@ -9543,9 +9562,9 @@ We also need the constitutive relation for the momentum supply:\enskip$\yG = \ym
 \paragraph{Other information.} The configuration is static, so the time-derivative of momentum for this control volume is zero. We are given the mass-energies of the two books separately; as discussed below we need to use extensivity for them. Our present closed control surface should be divided into two parts, with corresponding influxes:
 \begin{itemize}[nosep]
 \item The surface (\textcolor{green}{dashed blue thin bottom line}) separating table and our control volume, with influx\enskip$\yF_{\text{\tiny table}\rightsquigarrow 2}$\enskip as before.
-\item The remaining surface (\textcolor{yellow}{solid yellow curve}) with a negligible influx\enskip$\yF_{\text{\tiny air}\rightsquigarrow}$\,.
+\item The remaining surface (\textcolor{yellow}{solid yellow curve}) with a negligible influx\enskip$\yF_{\text{\tiny air}\rightsquigarrow\text{\tiny books}}$\,.
 \end{itemize}
-Note that \emph{we don't need to consider any control surface or momentum flux between the two books!} This is the consequence of using a single control volume including both.
+Note that \emph{we don't need to consider any control surface or momentum flux between the two books} (the surface depicted in \textcolor{green}{dashed green} in the previous figures)! This is the consequence of using a single control volume including both books.
 
 \paragraph{Extensivity for flux and for supply.} We have influxes through two surfaces, we must used the principle of extensivity:
 \begin{equation*}
@@ -9555,10 +9574,10 @@ Note that \emph{we don't need to consider any control surface or momentum flux b
 
 We also need to use this principle to calculate the total supply, as mentioned above. The reason is that the \enquote*{$\ym$} in the constitutive relation for the gravitational force refers to the \emph{total} \masse\ in the control volume, and problem's text doesn't give this directly. The principle of extensivity must be used in two possible alternative ways:
 \begin{itemize}[nosep]
-\item \emph{Extensivity of \masse}: the total \masse\ $\ym$ in the control volume is the sum of the mass-energies in two sub-volumes:\enskip${\ym = \ym_{1} + \ym_{2}}$\,. Once we have the total \masse, we can used the constitutive relation for the momentum supply.
+\item \emph{Extensivity of \masse}: the total \masse\ $\ym$ in the control volume is the sum of the mass-energies in two sub-volumes:\enskip${\ym = \ym_{1} + \ym_{2}}$\,. Once we have the total \masse, we can use it in the constitutive relation for the momentum supply.
 \item \emph{Extensivity of momentum supply}: the total momentum supply $\yG$ in the control volume is the sum of the supplies in two sub-volumes:\enskip${\yG = \yG_{1} + \yG_{2}}$\,. The constitutive relation for momentum supply can be used for each of the two supplies separately.
 \end{itemize}
-These two ways are obviously equivalent; you can choose whichever you prefer. What's important here is to pay attention to the fact that the principle of extensivity was used, in one way or another.
+These two ways are obviously equivalent; you can choose whichever you prefer. What's important here is to note that the principle of extensivity was used, in one way or another.
 
 \paragraph{Equations and unknowns.} We arrive at \emph{seven} vector equations:
 \begin{equation*}
@@ -9587,6 +9606,23 @@ These two ways are obviously equivalent; you can choose whichever you prefer. Wh
   \end{aligned}\right.
 \end{equation*}
 with \emph{seven} vector unknowns:\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yG_{1}$, $\yG_{2}$, $\yF_{\text{\tiny air}\rightsquigarrow\text{\tiny books}}$, $\yF_{\text{\tiny table}\rightsquigarrow 2}$\,.
+
+All unknowns can therefore be found. In particular we find, as before,\enskip${\yF_{\text{\tiny table}\rightsquigarrow 2} \approx [0, 0, \num{4.0}]\,\unit{N}}$\,.
+
+\begin{exercise}
+  Solve the linear system of equations above, using your favourite method.
+\end{exercise}
+
+
+\subsection{Summary}
+
+Comparing the three approaches above, you notice some important aspects of the solution of a physical problem:
+\begin{itemize}
+\item The physical problem doesn't always clearly indicate how control volumes and surfaces should be chosen. Often you have great freedom of choice.
+\item Different choices of control volumes can lead to the solution.
+\item Some choices may \emph{not} lead to the solution; so you have to alter your initial choice.
+\item Depending on the choice of control volumes, some fluxes or supplies may have to be considered or may be neglected.
+\end{itemize}
 
 \section{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
@@ -11151,18 +11187,19 @@ Condition~\ref{item:C2flux} is no longer satisfied either, because angular momen
 
 For this reason we shall study this more realistic setup when we discuss the balance of angular momentum in \chap~\ref{cha:bal_ang_momentum}.
 
+
+\needspace{12\baselineskip}%
 \section{Many-body systems}
 \label{sec:many-body}
 
-We can obviously consider more than two objects connected by a number of springs or other pairwise forces. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
-
-This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
-%
-\marginpar{\vspace{-11\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/md_simulation.png}%
 \\[\jot]\flushleftright\color{mpcolor}%
 Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu/schroeder/md}{\emph{Interactive Molecular Dynamics}}%
 }%
+We can obviously consider more than two objects connected by a number of springs or other pairwise forces. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
+
+This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
 
 
 
@@ -11368,8 +11405,8 @@ This peculiar behaviour of gases gives us an idea of what kind of momentum fluxe
 \medskip
 
 Let us try to infer what are the momentum fluxes through the two horizontal control surfaces depicted in the previous illustration.
-%
-\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\needspace{10\baselineskip}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.45\linewidth]{images/gasbox_open.jpg}%
 \hfill\includegraphics[width=0.45\linewidth]{images/gasbox_closed.jpg}%
 \\\footnotesize\color{mpcolor}\makebox[0.45\linewidth]{box opened}%
