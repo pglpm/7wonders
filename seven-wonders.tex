@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-07T23:24:42+0100
+%% Last-Updated: 2026-02-08T13:59:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9312,7 +9312,7 @@ The information we have in this last set-up is mathematically expressed by these
     &\qquad&\text{\rlap{\footnotesize\color{midgrey}extra information}}
   \end{aligned}\right.
 \end{equation*}
-and our unknown is still\enskip$\yF_{\text{\tiny table}\rightsquigarrow\text{\tiny book}}$\,. It's obvious that we can now find the answer; indeed we have \emph{six} vector equations in \emph{six} vector unknowns\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yF_{\text{\tiny table}\rightsquigarrow\text{\tiny book}}$, $\yF_{\text{\tiny air}\rightsquigarrow\text{\tiny book}}$, $\yP$\,.\enskip The answer is
+and our unknown is still\enskip$\yF_{\text{\tiny table}\rightsquigarrow\text{\tiny book}}$\,. It's obvious that we can now find the answer; indeed we have \emph{six} vector equations in \emph{six} vector unknowns:\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yF_{\text{\tiny table}\rightsquigarrow\text{\tiny book}}$, $\yF_{\text{\tiny air}\rightsquigarrow\text{\tiny book}}$, $\yP$\,.\enskip The answer is
 \begin{equation*}
   \begin{split}
     \yF_{\text{\tiny table}\rightsquigarrow\text{\tiny book}}
@@ -9330,11 +9330,11 @@ The problem in each of the four scenarios above was quite simple, easily solvabl
 
 Concrete applications, in static and non-static problems, can be vastly more complex than the one just discussed; so complex that we don't have any clear intuition and we easily get lost among the information given and the tasks to solve. In complex applications we therefore need to use a more  systematic and formal procedure. Note some of the most important steps involved in such a procedure:
 \begin{itemize}
-\item choose appropriate control volumes;
-\item list balances and constitutive relations;
-\item list the information given, expressing it mathematically;
-\item identify the need for principles such as extensivity and symmetry of fluxes, and use them;
-\item identify the unknowns and the equations.
+\item Choose appropriate control volumes.
+\item List balances and constitutive relations.
+\item List the information given, expressing it mathematically.
+\item Identify the need for principles such as extensivity and symmetry of fluxes, and use them.
+\item Identify the unknowns and the equations.
 \end{itemize}
 
 The detailed analysis of the four scenarios above is useful because you can try out and get an idea of the systematic and formal procedure, but at the same time understand intuitively why you're doing the systematic steps.
@@ -9349,7 +9349,7 @@ Let's see three different analysis of the same statics problem, with three diffe
 
 \needspace{6\baselineskip}%
 \marginpar{\vspace{\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/opmvol2.jpg}%
+\includegraphics[width=0.8\linewidth]{images/opmvol2.jpg}%
 \\\includegraphics[width=3em]{images/axes.pdf}%
   % \\[\jot]\flushleftright{\color{mpcolor}% The thickness and velocity variations of tap water are a consequence of the law of conservation of matter}%
 }%
@@ -9361,12 +9361,176 @@ Let's see three different analysis of the same statics problem, with three diffe
   Find the flux of momentum between the table and the bottom book, using any appropriate physical laws.
 \end{exercise}
 
-\subsection{Approach 1. Bottom book as control volume}
+\needspace{7\baselineskip}
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/books2_bot.jpg}%
+}%
+\subsection{First approach. Bottom book as control volume}
+
+Denote the top book with \enquote*{1} and the bottom book with \enquote*{2}.
+
+\paragraph{Choose control volume.} Since out task is to find the momentum flux from table to book~2, let's try to analyse the situation with one control volume only, coinciding with book~2; see side figure. The momentum content, influx, supply for this control volume are denoted\enskip$\yP_{2}$, $\yF_{2}$, $\yG_{2}$\,.
+
+\paragraph{Physical laws.} From the information given, two physical laws seem relevant for this control volume: the balance of momentum and the constitutive relation for momentum supply (force) from gravity.
+
+\paragraph{Other information.} The text implies that we have a static configuration, so the momentum content and its time derivative are zero. We are also given the \masse\ of the books, which can be used in the constitutive relation for the gravitational force. Finally, the text implies that our closed control surface should be divided into several pieces, and several momentum fluxes should be considered. We have:
+\begin{itemize}[nosep]
+\item The surface (\textcolor{green}{dashed green thin top line} in the figure) separating book~1 and book~2, with influx\enskip$\yF_{1\rightsquigarrow 2}$\,.
+\item The surface (\textcolor{green}{dashed blue thin bottom line}) separating table and book~2, with influx\enskip$\yF_{\text{\tiny table}\rightsquigarrow 2}$\,.
+\item The remaining surface (\textcolor{purple}{dashed red thick side curves}), with a negligible influx\enskip$\yF_{\text{\tiny air}\rightsquigarrow 2}$\,.
+\end{itemize}
 
 
+\paragraph{Extensivity for flux.} Since we have influxes through several surfaces, we must used the principle of extensivity to find the total momentum influx:
+\begin{equation*}
+\yF_{2} = \yF_{1\rightsquigarrow 2}
+    + \yF_{\text{\tiny table}\rightsquigarrow 2}
+    + \yF_{\text{\tiny air}\rightsquigarrow 2} \ .
+\end{equation*}
+
+\paragraph{Equations and unknowns.} All the information above can be collected in the following \emph{five} vector equations:
+\begin{equation*}
+\left\{  \begin{aligned}
+    &\frac{\di\yP_{2}}{\dt} = \yF_{2} + \yG_{2}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance}}
+    % \\
+    % &\yP = \zerov\,\unit{N\,s}
+    % &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\frac{\di\yP_{2}}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\yG_{2} = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation}}
+    \\
+    &\yF_{2} = \yF_{1\rightsquigarrow 2}
+    + \yF_{\text{\tiny table}\rightsquigarrow 2}
+    + \yF_{\text{\tiny air}\rightsquigarrow 2}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extensivity influx}}
+    \\
+    &\yF_{\text{\tiny air}\rightsquigarrow 2} \approx \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extra information}}
+  \end{aligned}\right.
+\end{equation*}
+with \emph{six} vector unknowns:\enskip$\di\yP_{2}/\dt$, $\yF_{2}$, $\yG_{2}$, $\yF_{1\rightsquigarrow 2}$, $\yF_{\text{\tiny air}\rightsquigarrow 2}$, $\yF_{\text{\tiny table}\rightsquigarrow 2}$\,. The unknown that interests us is the latter one.
+
+It's now clear that we cannot find the unknown we want. In fact, solving the system we can only arrive at
+\begin{equation*}
+  \yF_{\text{\tiny table}\rightsquigarrow 2} \approx
+  [0, 0, \num{2.0}]\,\unit{N} - \yF_{1\rightsquigarrow 2}
+\end{equation*}
+where the fluxes on the left and on the right are both unknown.
+
+We must therefore consider additional or alternative control volumes.
+\begin{warning}[The analysis was correct but insufficient]
+  Note that the analysis above is physically correct; there is nothing wrong with it from a physics point of view. Its only problem is that it's insufficient for arriving at the information we want.
+\end{warning}
+
+\needspace{7\baselineskip}
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/books2_topbot.jpg}%
+}%
+\subsection{Second approach. Both books as control volumes}
+
+\paragraph{Choose control volume.} In our previous tentative analysis, the momentum flux from book~1 to book~2 appeared to be relevant. Let us therefore try adding one more control volume, coinciding with book~1. The boundaries of this new control volume and of the initial one have one part in common (\textcolor{green}{dashed green thin line}. The momentum content, influx, supply for the new control volume are denoted\enskip$\yP_{1}$, $\yF_{1}$, $\yG_{1}$\,.
+
+\paragraph{Physical laws.} We now have two control volumes, so for each one we must use the balance of momentum and the constitutive relation for momentum supply (force) from gravity.
+
+\paragraph{Other information.} The information listed previously for book~2 applies also in the present analysis. We must add the information about book~1. The static configuration also holds for book~1, so the time-derivative of momentum for this control volume is zero. We are also given the \masse\ of book~1, identical to that of book~2, to be used for the gravitational force. The flux from air is also negligible for this book. It seems that the closed control surface for book~1 should be divided into two parts, with corresponding influxes:
+\begin{itemize}[nosep]
+\item The surface (\textcolor{green}{dashed green thin line}) separating book~1 and book~2, with influx\enskip$\yF_{2\rightsquigarrow 1}$\,;\enskip note that this is the \emph{in}flux into the new control volume.
+\item The remaining surface (\textcolor{purple}{dashed light-red thick curves}), with a negligible influx\enskip$\yF_{\text{\tiny air}\rightsquigarrow 1}$\,.
+\end{itemize}
+
+\paragraph{Flux extensivity and symmetry.} The use of extensivity for the initial control surface still applies. We must apply extensivity also for the new closed control surface:
+\begin{equation*}
+\yF_{1} = \yF_{2\rightsquigarrow 1} + \yF_{\text{\tiny air}\rightsquigarrow 1} \ .
+\end{equation*}
+Moreover, the two control volumes have part of their boundaries in common. The principle of \autoref{def:symmetryflux}{symmetry of flux} (Newton's third law in this case) therefore applies there:
+\begin{equation*}
+\yF_{2\rightsquigarrow 1} = - \yF_{1\rightsquigarrow 2} \ .
+\end{equation*}
+
+\paragraph{Equations and unknowns.} We arrive at 11 vector equations:
+\begin{equation*}
+\left\{  \begin{aligned}
+    &\frac{\di\yP_{1}}{\dt} = \yF_{1} + \yG_{1}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance book~1}}
+\\
+    &\frac{\di\yP_{2}}{\dt} = \yF_{2} + \yG_{2}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}momentum balance book~2}}
+    % \\
+    % &\yP = \zerov\,\unit{N\,s}
+    % &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition}}
+    \\
+    &\frac{\di\yP_{1}}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition book~1}}
+    \\
+    &\frac{\di\yP_{2}}{\dt} = \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}static condition book~2}}
+    \\
+    &\yG_{1} = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation book~1}}
+    \\
+    &\yG_{2} = \ym\, \yg \approx -[0, 0, \num{2.0}]\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}constitutive relation book~2}}
+    \\
+    &\yF_{1} = \yF_{2\rightsquigarrow 1}
+    + \yF_{\text{\tiny air}\rightsquigarrow 1}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extensivity influx book~1}}
+    \\
+    &\yF_{2} = \yF_{1\rightsquigarrow 2}
+    + \yF_{\text{\tiny table}\rightsquigarrow 2}
+    + \yF_{\text{\tiny air}\rightsquigarrow 2}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extensivity influx book~2}}
+    \\
+    &\yF_{2\rightsquigarrow 1} = - \yF_{1\rightsquigarrow 2}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}flux symmetry}}
+    \\
+    &\yF_{\text{\tiny air}\rightsquigarrow 1} \approx \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extra information}}
+    \\
+    &\yF_{\text{\tiny air}\rightsquigarrow 2} \approx \zerov\,\unit{N}
+    &\qquad&\text{\rlap{\footnotesize\color{midgrey}extra information}}
+  \end{aligned}\right.
+\end{equation*}
+with 11 vector unknowns:
+\begin{equation*}
+  \di\yP_{1}/\dt,\yF_{1}, \yG_{1},
+  \di\yP_{2}/\dt, \yF_{2}, \yG_{2},
+  \yF_{2\rightsquigarrow 1},
+  \yF_{\text{\tiny air}\rightsquigarrow 1},
+  \yF_{1\rightsquigarrow 2},
+  \yF_{\text{\tiny air}\rightsquigarrow 2},
+  \yF_{\text{\tiny table}\rightsquigarrow 2}\ .
+\end{equation*}
+The last one being our target.
+
+Now we can arrive at a solution. Solving the system above, for instance by the method of substitution, we find in particular
+\begin{equation*}
+  \begin{aligned}
+    \yF_{1\rightsquigarrow 2} &= \yG_{1} \approx
+    -[0, 0, \num{2.0}]\,\unit{N}
+    \\
+    \yF_{\text{\tiny table}\rightsquigarrow 2}
+    &= -\yG_{1} - \yF_{1\rightsquigarrow 2}
+  \end{aligned}
+\end{equation*}
+and the final answer to our task:
+\begin{equation*}
+  \yF_{\text{\tiny table}\rightsquigarrow 2} \approx [0, 0, \num{4.0}]\,\unit{N} \ .
+\end{equation*}
+
+\medskip
+
+This answer was probably obvious to you from the beginning, after a quick intuitive analysis. But let's emphasize again: \textbf{our focus in the example above is not on the answer, but on the \emph{procedure}}.
 
 
-
+\needspace{7\baselineskip}
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/books2_together.jpg}%
+}%
+\subsection{Third approach. Both books as a single control volume}
 
 
 \section{Atmospheric pressure}
