@@ -24,17 +24,18 @@ tplot = dtplot; % time for next plot
 figure
 subplot(2, 1, 1); plot(t, P(3), '.b')
 xlim([0, t1])
-xlabel('time {\it t}/s'); ylabel('z-momentum {\it P_z}/(Ns)')
+xlabel('time {\it t}/s'); ylabel('z-momentum {\it P_z}/(N s)')
 axis('tight'); grid on; hold on
 subplot(2, 1, 2); plot(t, r(3), '.r')
 xlim([0, t1])
-xlabel('time {\it t}/s'); ylabel('z-coord. {\it z}/m')
+xlabel('time {\it t}/s'); ylabel('z-coordinate {\it z}/m')
 axis('tight'); grid on; hold on %@
 
 %% Numerical time integration
 while t < t1
   %% constitutive relations
   v = P / m;
+
   %% step forward in time with balance laws
   t = t + dt;
   P = P + (F + G) * dt;

@@ -33,7 +33,7 @@ xlabel('time ${\it t}$/s'); ylabel('z-momentum ${\it P_z}$/(Ns)')
 grid(True)
 subplot(2, 1, 2); plot(t, r[2], '.r')
 xlim([0, t1])
-xlabel('time ${\it t}$/s'); ylabel('z-coord. ${\it z}$/m')
+xlabel('time ${\it t}$/s'); ylabel('z-coordinate ${\it z}$/m')
 grid(True)
 
 ## Numerical time integration
