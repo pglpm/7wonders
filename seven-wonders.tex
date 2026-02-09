@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-09T00:06:02+0100
+%% Last-Updated: 2026-02-09T07:46:04+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -8222,7 +8222,7 @@ As examples of the constitutive relations discussed in the previous sections, le
 
 \item\label{item:NOt} in a so-called \furl{https://doi.org/10.1351/goldbook.D01801}{dissociation} reaction, \NOt\ turns into \NOd:
 \begin{equation}
-  \label{eq:NO2-N2O4}
+  \label{eq:N2O4-NO2}
   \NOt \to  2\,\NOd
 \end{equation}
 \end{enumerate}
@@ -8655,7 +8655,7 @@ This calculation could have been done in other equivalent ways. For instance we 
 %\vspace{-\baselineskip}
 \begin{minipage}{\linewidth}
   \begin{center}
-    \label{fig:C14_time}\footnotesize
+    \label{fig:NO2_N2O4}\footnotesize
     \includegraphics[width=0.8\linewidth]{images/NO2_N2O4_long.pdf}%
     \\[-3.5\baselineskip]\textbf{Longer time integration}%
     \\[2.5\baselineskip]
@@ -9365,6 +9365,8 @@ Let's see three different analysis of the same statics problem, with three diffe
 \needspace{7\baselineskip}
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/books2_bot.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+(Supplies and some fluxes are not shown.)%
 }%
 \subsection{First approach. Bottom book as control volume}
 
@@ -9448,8 +9450,11 @@ In other to solve our original task we must therefore consider additional or alt
 \needspace{7\baselineskip}
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/books2_topbot.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+(Supplies and some fluxes are not shown.)%
 }%
 \subsection{Second approach. Both books as control volumes}
+\label{sec:statics_approach_2}
 
 \paragraph{Choose control volume.} In our previous tentative analysis, the momentum flux from book~1 to book~2 appeared to be relevant. Let us therefore try adding one more control volume, coinciding with book~1. The boundaries of this new control volume and of the initial one have one part in common (\textcolor{green}{dashed green thin line}. The momentum content, influx, supply for the additional control volume are denoted\enskip$\yP_{1}$, $\yF_{1}$, $\yG_{1}$\,.
 
@@ -9548,8 +9553,11 @@ This answer was probably obvious to you from the beginning, after a quick intuit
 \needspace{8\baselineskip}
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/books2_together.jpg}%
+\\[\jot]\flushleftright\color{mpcolor}%
+(Supplies and some fluxes are not shown.)%
 }%
 \subsection{Third approach. Both books as a single control volume}
+\label{sec:statics_approach_3}
 
 The last analysis led to many equations because we were considering two control volumes -- and therefore balances and constitutive relations for each. Is it possible to solve the problem with fewer equations, analysing it in terms of a single control volume? Let's try such an approach.
 
@@ -9610,7 +9618,7 @@ with \emph{seven} vector unknowns:\enskip$\di\yP/\dt$, $\yF$, $\yG$, $\yG_{1}$, 
 All unknowns can therefore be found. In particular we find, as before,\enskip${\yF_{\text{\tiny table}\rightsquigarrow 2} \approx [0, 0, \num{4.0}]\,\unit{N}}$\,.
 
 \begin{exercise}
-  Solve the linear system of equations above, using your favourite method.
+ Solve the linear system of equations above, using your favourite method.
 \end{exercise}
 
 
@@ -9623,6 +9631,19 @@ Comparing the three approaches above, you notice some important aspects of the s
 \item Some choices may \emph{not} lead to the solution; so you have to alter your initial choice.
 \item Depending on the choice of control volumes, some fluxes or supplies may have to be considered or may be neglected.
 \end{itemize}
+
+\begin{exercise}
+  Try solving the two-book problem of this section by using \emph{two} control volumes chosen as follows:
+  \begin{itemize}[nosep]
+  \item one coinciding with both books, as in the \autoref{sec:statics_approach_3}{third approach};
+  \item one containing part of the table under the two books, or the whole table if you prefer.
+  \end{itemize}
+  For the procedure, work by analogy with the \autoref{sec:statics_approach_2}{second approach}.
+
+  \smallskip
+
+  Do you obtain a system of equations where \emph{all} unknowns can be found? Can you still manage to find the unknown of interest, $\yF_{\text{\tiny table}\rightsquigarrow 2}$?
+\end{exercise}
 
 \section{Atmospheric pressure}
 \label{sec:bal_momentum_atmosphere}
@@ -9685,22 +9706,22 @@ In some cases the magnitude of the atmospheric pressure is different because of 
 \end{exercise}
 
 \needspace{8\baselineskip}
-\section{Statics: cable cars}
-\label{sec:bal_momentum_cablecar}
-
-%
-\marginpar{\vspace{\baselineskip}\footnotesize\centering%
+\marginpar{\vspace{2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/cable-car3.jpg}%
 \\[\jot]\flushleftright\color{mpcolor}%
 \furl{https://www.scenicworld.com.au/experience/scenic-skyway}{\emph{Scenic Skyway}} cable car, Australia}%
+%
+\section{Statics: cable cars}
+\label{sec:bal_momentum_cablecar}
+
 Consider a cable car suspended on a horizontal cable, and not moving. Which momentum fluxes occur in this situation?
 
 This problem has some similarities with the previous one about the book on a table. Choose a control volume containing the cable car.
 \begin{itemize}[nosep]
-\item The total momentum in this volume is constantly zero, because the cable car isn't moving
+\item This is a static problem. The total momentum in the control volume is zero and constant in time, because the cable car isn't moving.
 \item There's a constant momentum supply because of gravity; let's say that in this case it's
   \begin{equation*}
-    \yG(t) = - [0, 0, \num{8e4}]\,\unit{N}\quad\text{(constant)}
+    \yG(t) = - [0, 0, \num{8e4}]\,\unit{N}\quad\text{(constant)}.
   \end{equation*}
 \item By the balance of momentum, there must then be an influx of upward-momentum of the same magnitude as the supply:
   \begin{equation*}
@@ -9712,7 +9733,8 @@ This problem has some similarities with the previous one about the book on a tab
 \end{equation*}
 \item Also in this case the influx through the parts of the control surface in contact with air is practically zero:
   \begin{equation*}
-  \yF_{\text{air-car}}(t) \approx \zerov\,\unit{N} \ .
+    \yF_{\text{\tiny air}\rightsquigarrow\text{\tiny car}}(t) \approx \zerov\,\unit{N}
+    \ .
 \end{equation*}
 \end{itemize}
 
@@ -11008,15 +11030,14 @@ But the function $f(\dotso)$ does not even need to depend on the length $\yle$ o
 
 Dependence on other, non-geometric quantities is also common. For instance $f(\dotso)$ could depend on the \emph{temperature} of the material. In \chap~\ref{cha:bal_energy} we shall explore and simulate \emph{gases}, whose momentum fluxes show this kind of temperature dependence in addition to a geometric one.
 
-%
-\marginpar{\vspace{5\baselineskip}\footnotesize\centering%
+\needspace{15\baselineskip}
+\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/rubberband2Dplot4.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot1.pdf}%
 \\[\jot]\includegraphics[width=\linewidth]{images/rubberband2Dplot3.pdf}%
 \\[\jot]\flushleftright\color{mpcolor}%
-Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{mass $b$ in red}%
+Examples of trajectories of two masses connected by a non-Hookean spring, for different values of parameters and initial conditions. \textcolor{blue}{Mass $a$ in blue}, \textcolor{red}{mass $b$ in red}.%
 }%
-
 \begin{exercise}[label={ex:non_hooke}]
   {\footnotesize\emph{(You can download \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py} (Python)} as a starting point.)}\par}
 
@@ -11025,131 +11046,147 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
   \begin{enumerate}[exerc]
   \item Modify the script for the Hookean material in table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} so as to implement the non-Hookean constitutive relation~\eqref{eq:nonhooke}. This constitutive relation can be implemented with an \texttt{if}-statement.
 
-  Then numerically time-integrate the system with the following four different sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the three plots on the margin:
+  \item Then numerically time-integrate the system with the following four sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the three plots on the margin:
 \begin{description}[itemsep=\baselineskip]
-      \item[Set 1:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
-        \\
-        \yma=\qty{0.1}{kg}
-        \qquad
-        \ymb=\qty{0.1}{kg}
-        \qquad
-        k=\qty{0.5}{N/m}
-        \qquad
-        \ylo = \qty{0.5}{m}
-        \\
-        \yra(\yti)=[\num{-0.3},\, \num{0.3}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{1},\, \num{5}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{5}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= \yma\cdot[\num{0},\, \num{0}]\,\unit{N/kg}
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
+      \item[Set 1:]\quad
+        $\displaystyle
+        \begin{gathered}[t]
+            \begin{aligned}[t]
+              \yti &= \qty{0}{s}
+              &
+              \ytf &= \qty{10}{s}
+              &
+              \Dt  &=  \qty{0.001}{s}
+              & &
+              \\
+              \yma &= \qty{0.1}{kg}
+              &
+              \ymb &= \qty{0.1}{kg}
+              &
+              k &= \qty{0.5}{N/m}
+              &
+              \ylo  &=  \qty{0.5}{m}
+            \end{aligned}
+            \\
+            \begin{aligned}
+              \yra(\yti) &= [\num{-0.3},\, \num{0.3}]\,\unit{m}
+              &
+              \yrb(\yti) &= [\num{0},\, \num{0}]\,\unit{m}
+              \\
+              \yva(\yti) &= [\num{1},\, \num{5}]\,\unit{m/s}
+              &
+              \yvb(\yti) &= [\num{0},\, \num{5}]\,\unit{m/s}
+              \\
+              \yGa(\yti) &=  \yma\cdot[\num{0},\, \num{0}]\,\unit{N/kg}
+              &
+              \yGb(\yti) &= [\num{0},\, \num{0}]\,\unit{N}
+            \end{aligned}
+          \end{gathered}$
 
-  \item[Set 2:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
+  \item[Set 2:]\quad
+    $\displaystyle
+    \begin{gathered}[t]
+        \begin{aligned}[t]
+          \yti &= \qty{0}{s}
+          &
+          \ytf &= \qty{10}{s}
+          &
+          \Dt  &=  \qty{0.001}{s}
+          & &
+          \\
+          \yma &= \qty{2}{kg}
+          &
+          \ymb &= \qty{2}{kg}
+          &
+          k &= \qty{5}{N/m}
+          &
+          \ylo  &=  \qty{5}{m}
+        \end{aligned}
         \\
-        \yma=\qty{2}{kg}
-        \qquad
-        \ymb=\qty{2}{kg}
-        \qquad
-        k=\qty{5}{N/m}
-        \qquad
-        \ylo = \qty{5}{m}
-        \\
-        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{3},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= [\num{0},\, \num{0}]\,\unit{N}
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
+        \begin{aligned}
+          \yra(\yti) &= [\num{-3},\, \num{0}]\,\unit{m}
+          &
+          \yrb(\yti) &= [\num{3},\, \num{0}]\,\unit{m}
+          \\
+          \yva(\yti) &= [\num{0},\, \num{0}]\,\unit{m/s}
+          &
+          \yvb(\yti) &= [\num{0},\, \num{0}]\,\unit{m/s}
+          \\
+          \yGa(\yti) &=  [\num{0},\, \num{0}]\,\unit{N}
+          &
+          \yGb(\yti) &= [\num{0},\, \num{0}]\,\unit{N}
+        \end{aligned}
+      \end{gathered}$
 
-  \item[Set 3:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
+  \item[Set 3:]\quad
+    $\displaystyle
+      \begin{gathered}[t]
+        \begin{aligned}[t]
+          \yti &= \qty{0}{s}
+          &
+          \ytf &= \qty{10}{s}
+          &
+          \Dt  &=  \qty{0.001}{s}
+          & &
+          \\
+          \yma &= \qty{1}{kg}
+          &
+          \ymb &= \qty{5000}{kg}
+          &
+          k &= \qty{5000}{N/m}
+          &
+          \ylo  &=  \qty{5}{m}
+        \end{aligned}
         \\
-        \yma=\qty{1}{kg}
-        \qquad
-        \ymb=\qty{5000}{kg}
-        \qquad
-        k=\qty{5000}{N/m}
-        \qquad
-        \ylo = \qty{5}{m}
-        \\
-        \yra(\yti)=[\num{-3},\, \num{0}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= -\yma\,g\,\cdot[0,\, 1]
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
+        \begin{aligned}
+          \yra(\yti) &= [\num{-3},\, \num{0}]\,\unit{m}
+          &
+          \yrb(\yti) &= [\num{0},\, \num{0}]\,\unit{m}
+          \\
+          \yva(\yti) &= [\num{0},\, \num{0}]\,\unit{m/s}
+          &
+          \yvb(\yti) &= [\num{0},\, \num{0}]\,\unit{m/s}
+          \\
+          \yGa(\yti) &=  -\yma\,g\,\cdot[0,\, 1]
+          &
+          \yGb(\yti) &= [\num{0},\, \num{0}]\,\unit{N}
+        \end{aligned}
+      \end{gathered}$
 
-  \item[Set 4:]
-        \begin{equation*}
-      \begin{gathered}
-        \yti=\qty{0}{s}
-        \qquad
-        \ytf=\qty{10}{s}
-        \qquad
-        \Dt = \qty{0.001}{s}
+  \item[Set 4:]\quad
+    $\displaystyle
+      \begin{gathered}[t]
+        \begin{aligned}[t]
+          \yti &= \qty{0}{s}
+          &
+          \ytf &= \qty{10}{s}
+          &
+          \Dt  &=  \qty{0.001}{s}
+          & &
+          \\
+          \yma &= \qty{1}{kg}
+          &
+          \ymb &= \qty{5000}{kg}
+          &
+          k &= \qty{5}{N/m}
+          &
+          \ylo  &=  \qty{5}{m}
+        \end{aligned}
         \\
-        \yma=\qty{1}{kg}
-        \qquad
-        \ymb=\qty{5000}{kg}
-        \qquad
-        k=\qty{5}{N/m}
-        \qquad
-        \ylo = \qty{5}{m}
-        \\
-        \yra(\yti)=[\num{-3},\, \num{3}]\,\unit{m}
-        \qquad
-        \yrb(\yti)=[\num{0},\, \num{0}]\,\unit{m}
-        \\
-        \yva(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \qquad
-        \yvb(\yti)=[\num{0},\, \num{0}]\,\unit{m/s}
-        \\
-        \yGa(\yti)= \yma\,g\,\cdot[0,\, 1]
-        \qquad
-        \yGb(\yti)=[\num{0},\, \num{0}]\,\unit{N}
-      \end{gathered}
-    \end{equation*}
+        \begin{aligned}
+          \yra(\yti) &= [\num{-3},\, \num{3}]\,\unit{m}
+          &
+          \yrb(\yti) &= [\num{0},\, \num{0}]\,\unit{m}
+          \\
+          \yva(\yti) &= [\num{0},\, \num{0}]\,\unit{m/s}
+          &
+          \yvb(\yti) &= [\num{0},\, \num{0}]\,\unit{m/s}
+          \\
+          \yGa(\yti) &=  \yma\,g\,\cdot[0,\, 1]
+          &
+          \yGb(\yti) &= [\num{0},\, \num{0}]\,\unit{N}
+        \end{aligned}
+      \end{gathered}$
   \end{description}
 
   Play with other parameters and initial values!
@@ -11429,7 +11466,7 @@ Repeating this kind of reasoning with horizontal control surfaces further within
 In \chap~\ref{cha:bal_energy} we shall discuss a constitutive relation for the internal pressure of particular kinds of gas.
 
 %
-\needspace{9\baselineskip}
+\needspace{98\baselineskip}
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[vshift=6pt,width=0.45\linewidth]{images/gas_upfluxes.jpg}%
 \hfill\includegraphics[width=0.45\linewidth]{images/gas_downfluxes.jpg}%
@@ -11728,7 +11765,7 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
 
   The reasoning is similar to the one for momentum content: we must keep track of two kinds of matter, applying the principle of extensivity. The formula we obtain is
   \begin{equation*}
-    \label{eq:momcontent_rocket}
+    \label{eq:supply_rocket}
     \yG = [\yma + \yrho\,\yNb(t)]\,\yg \ .
   \end{equation*}
  This momentum supply is not constant, because the mass changes with time.
