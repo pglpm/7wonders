@@ -7,9 +7,9 @@ g = 9.8;            % N/kg: gravitational acceleration
 N = 0.04;           % mol: amount of ideal gas
 C = 20;             % J/(K*mol): molar heat capacity
 mu = 0.00004;       % N*s/m^2: gas viscosity
-h = 8000;           % J/(K*m^2): heat-transfer coefficient
+h = 500;            % J/(K*m^2): heat-transfer coefficient
 
-Text = 373.15 + 23;  % K: temperature of environment
+Tout = 373.15 + 23;  % K: temperature of environment
 A = 0.1^2;           % m^2: area of piston
 m = 50;              % kg: mass of piston
 Fatm = -100000 * A;  % N: force on piston by atmosphere
@@ -22,30 +22,28 @@ v = 0;            % m/s: initial velocity of piston
 T = 273.15 + 23;  % K: initial temperature of gas
 
 %% Boundary conditions
-G = -m*g;  % N: gravity supply of momentum to piston
+G = -m * g;  % N: gravity supply of momentum to piston
 
 %% Parameters for time loop
-t1 = 10;      % s: final time
-dt = 0.0001;  % s: time step %@
+t1 = 3;        % s: final time
+dt = 0.00001;  % s: time step %@
 
 ## Plotting
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;   % time for next plot
 figure
-subplot(2, 1, 1); plot(t, z, '.b')
-xlim([0, t1])
+subplot(2, 1, 1); plot(t, z, 's', 'color', '#4477AA')
 xlabel('{\it t}/s'); ylabel('{\it z}/m')
-axis('tight'); grid on; hold on
-subplot(2, 1, 2); plot(t, T, '.r')
-xlim([0, t1])
+axis('tight'); xlim([0, t1]); grid on; hold on
+subplot(2, 1, 2); plot(t, T, 'o', 'color', '#EE6677')
 xlabel('{\it t}/s'); ylabel('{\it T}/K')
-axis('tight'); grid on; hold on %@
+axis('tight'); xlim([0, t1]); grid on; hold on %@
 
 %% Numerical time integration
 while t < t1 && N > 0
   %% constitutive relations
   Fgas = -(R * N * T / z -  mu * A * v / z);  % ideal-gas law
-  Q = A * h * (Text - T);                     % law of cooling
+  Q = A * h * (Tout - T);                     % law of cooling
   Phi = Q + Fgas * v;                         % energy influx for gas
   E = C * N * T;                              % internal energy of ideal gas
   P = m * v;                                  % Newton's formula for momentum
@@ -64,8 +62,8 @@ while t < t1 && N > 0
 
   %% plot
   if t > tplot
-    subplot(2, 1, 1); plot(t, z, '.b')
-    subplot(2, 1, 2); plot(t, T, '.r')
+    subplot(2, 1, 1); plot(t, z, 's', 'color', '#4477AA')
+    subplot(2, 1, 2); plot(t, T, 'o', 'color', '#EE6677')
     pause(0)
     tplot = tplot + dtplot;
   end %@
