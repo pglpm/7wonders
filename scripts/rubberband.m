@@ -2,34 +2,34 @@
 %% Coordinates (t, y, z)
 
 %% Constants
-ma = 2;	    % kg: mass of object a
-mb = 5;     % kg: mass of object b
-g = 9.81;   % N/kg: gravitational acceleration
-ln = 5;	    % m: natural length
-k = 5;	    % N/m: spring constant
+ma = 0.1;  % kg: mass object a
+mb = 0.1;  % kg: mass object b
+g = 9.8;   % N/kg: gravitational acceleration
+ln = 0.5;  % m: natural length
+k = 0.5;   % N/m: spring constant
 
 %% Initial conditions
-t = 0;	       % s: initial time
-ra = [-3, 3];  % m: initial position of object a
-rb = [0, 0];   % m: initial position of object b
-va = [0, 0];   % m/s: initial velocity of object a
-vb = [0, 0];   % m/s: initial velocity of object b
+t = 0;             % s: initial time
+ra = [-0.3, 0.3];  % m: initial position object a
+rb = [0, 0];       % m: initial position object b
+va = [1, 5];       % m/s: initial velocity object a
+vb = [0, 5];       % m/s: initial velocity object b
 
 %% Boundary conditions
-Ga = -ma * g * [0, 1];	% N: gravity supply on object a
-Gb = -mb * g * [0, 1];  % N: gravity supply on object b
+Ga = -ma * g * [0, 0];	% N: gravity supply object a
+Gb = -mb * g * [0, 0];  % N: gravity supply object b
 
 %% Parameters for time loop
-t1 = 10;      % s: final time
-dt = 0.0001;  % s: time step %@
+t1 = 10;     % s: final time
+dt = 0.001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;	  % time for next plot
 figure
-plot(ra(1), ra(2), 'ob')
+plot(ra(1), ra(2), 'o', 'color', '#4477AA')
 hold on; grid on
-plot(rb(1), rb(2), 'sr')
+plot(rb(1), rb(2), 's', 'color', '#EE6677')
 xlabel('{\it y}/m'); ylabel('{\it z}/m') %@
 
 %% State: ra, rb, va, vb
@@ -59,8 +59,8 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(ra(1), ra(2), 'ob')
-    plot(rb(1), rb(2), 'sr')
+    plot(ra(1), ra(2), 'o', 'color', '#4477AA')
+    plot(rb(1), rb(2), 's', 'color', '#EE6677')
     pause(0)
     tplot = tplot + dtplot;
   end %@

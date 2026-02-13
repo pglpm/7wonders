@@ -20,11 +20,10 @@ dt = 0.0001; % s: time step %@
 dtplot = t1/360; % time interval between plots
 tplot = dtplot; % time for next plot
 figure
-plot(t, Na, 'oy')
-xlim([0, t1])
+plot(t, Na, 'o', 'color', '#CCBB44'); hold on
+plot(t, Nb, 'v', 'color', '#EE6677')
 xlabel('time {\it t}/s'); ylabel('amount {\it N}/mol')
-grid on; hold on
-plot(t, Nb, 'vr') %@
+axis tight; xlim([0, t1]); grid on %@
 
 %% Numerical time integration
 while t < t1
@@ -39,8 +38,8 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(t, Na, 'oy')
-    plot(t, Nb, 'vr')
+    plot(t, Na, 'o', 'color', '#CCBB44')
+    plot(t, Nb, 'v', 'color', '#EE6677')
     pause(0)
     tplot = tplot + dtplot;
   end %@

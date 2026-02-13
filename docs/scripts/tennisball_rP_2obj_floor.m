@@ -2,38 +2,36 @@
 %% Coordinates (t, x, y, z)
 
 %% Constants
-ma = 0.06; % kg: mass-energy object a
-mb = 10000; % kg: mass-energy object b
-g = 9.8; % N/kg: gravitational acceleration
-k = 10; % elastic constant
-d = 0.07; % m: distance between centres of objects
+ma = 0.06;   % kg: mass-energy object a
+mb = 10000;  % kg: mass-energy object b
+g = 9.8;     % N/kg: gravitational acceleration
+k = 10;      % elastic constant
+d = 0.07;    % m: distance between centres of objects
 
 %% Initial conditions
-t = 0; % s: initial time
-ra = [0, 0, 5]; % m: initial position vector a
-rb = [0, 0, 0]; % m: initial position vector b
-Pa = [0, 0, 0]; % N s: initial momentum vector a
-Pb = [0, 0, 0]; % N s: initial momentum vector b
+t = 0;           % s: initial time
+ra = [0, 0, 5];  % m: initial position vector a
+rb = [0, 0, 0];  % m: initial position vector b
+Pa = [0, 0, 0];  % N s: initial momentum vector a
+Pb = [0, 0, 0];  % N s: initial momentum vector b
 
 %% Boundary conditions
-Ga = -ma * g * [0, 0, 1]; % N: momentum supply object a
-Gb = -mb * 0 * [0, 0, 1]; % N: momentum supply object b
+Ga = -ma * g * [0, 0, 1];  % N: momentum supply object a
+Gb = -mb * 0 * [0, 0, 1];  % N: momentum supply object b
 
 %% Time-iteration parameters
-t1 = 10; % s: final time
-dt = 0.00001; % s: time step %@
+t1 = 10;        % s: final time
+dt = 0.000002;  % s: time step %@
 
 %% Plotting
-dtplot = t1/100; % time interval between plots
-tplot = dtplot; % time for next plot
+dtplot = t1/100;  % time interval between plots
+tplot = dtplot;   % time for next plot
 figure
-plot(t, ra(3), 'ob')
-xlim([0, t1])
-axis('tight'); grid on; hold on
-plot(t, rb(3), 'sr')
-xlim([0, t1])
+plot(t, ra(3), 'o', 'color', '#4477AA')
+axis('tight'); xlim([0, t1]); grid on; hold on
+plot(t, rb(3), 's', 'color', '#EE6677')
 xlabel('{\it t}/s'); ylabel('{\it z}/m')
-axis('tight'); grid on; hold on %@
+axis('tight'); xlim([0, t1]); grid on; hold on %@
 
 %% Numerical time integration
 while t < t1
@@ -57,8 +55,8 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(t, ra(3), 'ob')
-    plot(t, rb(3), 'sr')
+    plot(t, ra(3), 'o', 'color', '#4477AA')
+    plot(t, rb(3), 's', 'color', '#EE6677')
     pause(0)
     tplot = tplot + dtplot;
   end %@

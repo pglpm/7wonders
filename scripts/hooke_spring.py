@@ -7,22 +7,22 @@ from numpy import array as vector
 import matplotlib.pyplot as plt
 
 ## Constants
-ma = 2	  # kg: mass of object a
-mb = 3	  # kg: mass of object b
+ma = 2	  # kg: mass object a
+mb = 3	  # kg: mass object b
 g = 9.81  # N/kg: gravitational acceleration
 ln = 1	  # m: natural length
 k = 5	  # N/m: spring constant
 
 ## Initial conditions
 t = 0                 # s: initial time
-ra = vector([-3, 0])  # m: initial position of object a
-rb = vector([3, 0])   # m: initial position of object b
-va = vector([0, 10])  # m/s: initial velocity of object a
-vb = vector([0, 0])   # m/s: initial velocity of object b
+ra = vector([-3, 0])  # m: initial position object a
+rb = vector([3, 0])   # m: initial position object b
+va = vector([0, 10])  # m/s: initial velocity object a
+vb = vector([0, 0])   # m/s: initial velocity object b
 
 ## Boundary conditions
-Ga = -ma * g * vector([0, 1])  # N: gravity supply on object a
-Gb = -mb * g * vector([0, 1])  # N: gravity supply on object b
+Ga = -ma * g * vector([0, 1])  # N: gravity supply object a
+Gb = -mb * g * vector([0, 1])  # N: gravity supply object b
 
 ## Parameters for time loop
 t1 = 5	     # s: final time
@@ -32,9 +32,9 @@ dt = 0.0001  # s: time step #@
 dtplot = t1/360  # time interval between plots
 tplot = dtplot	 # time for next plot
 figure
-plot(ra[0], ra[1], 'ob')
+plot(ra[0], ra[1], 'o', color='#4477AA')
 grid(True)
-plot(rb[0], rb[1], 'sr')
+plot(rb[0], rb[1], 's', color='#EE6677')
 xlabel('${\it y}$/m'); ylabel('${\it z}$/m') #@
 
 ## State: ra, rb, va, vb
@@ -47,7 +47,7 @@ while t < t1:
   Fa = -k * (l - ln) * (ra - rb)/l
   Fb = -Fa # balance of momentum for Hookean material
 
-  ## balances
+  ## balance laws
   t = t + dt
   Pa = Pa + (Fa + Ga) * dt
   Pb = Pb + (Fb + Gb) * dt
@@ -60,8 +60,8 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    plot(ra[0], ra[1], 'ob')
-    plot(rb[0], rb[1], 'sr')
+    plot(ra[0], ra[1], 'o', color='#4477AA')
+    plot(rb[0], rb[1], 's', color='#EE6677')
     tplot = tplot + dtplot
 
 plt.show()

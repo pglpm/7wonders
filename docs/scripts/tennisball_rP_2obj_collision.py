@@ -7,38 +7,38 @@ from numpy import array as vector
 import matplotlib.pyplot as plt
 
 ## Constants
-ma = 0.06 # kg: mass-energy object a
-mb = 0.06 # kg: mass-energy object b
-g = 9.8 # N/kg: gravitational acceleration
-k = 10 # elastic constant
-d = 0.07 # m: distance between centres of objects
+ma = 0.06  # kg: mass-energy object a
+mb = 0.06  # kg: mass-energy object b
+g = 9.8    # N/kg: gravitational acceleration
+k = 10     # elastic constant
+d = 0.07   # m: distance between centres of objects
 
 ## Initial conditions
-t = 0 # s: initial time
-ra = vector([0, 0, 10]) # m: initial position vector a
-rb = vector([0, 0, 5]) # m: initial position vector b
-Pa = vector([0, 0, -0.5]) # N s: initial momentum vector a
-Pb = vector([0, 0, 0.5]) # N s: initial momentum vector b
+t = 0                      # s: initial time
+ra = vector([0, 0, 10])    # m: initial position vector a
+rb = vector([0, 0, 5])     # m: initial position vector b
+Pa = vector([0, 0, -0.5])  # N s: initial momentum vector a
+Pb = vector([0, 0, 0.5])   # N s: initial momentum vector b
 
 ## Boundary conditions
-Ga = -ma * g * vector([0, 0, 1]) # N: momentum supply object a
-Gb = -mb * g * vector([0, 0, 1]) # N: momentum supply object b
+Ga = -ma * g * vector([0, 0, 1])  # N: momentum supply object a
+Gb = -mb * g * vector([0, 0, 1])  # N: momentum supply object b
 
 ## Time-iteration parameters
-t1 = 2 # s: final time
-dt = 0.00001 # s: time step #@
+t1 = 2        # s: final time
+dt = 0.00001  # s: time step #@
 
 ## Plotting
 dtplot = t1/360 # time interval between plots
 tplot = dtplot # time for next plot
 figure
-plot(t, ra[2], 'ob')
+plot(t, ra[2], 'o', color='#4477AA')
 xlim([0, t1])
-grid(True); 
-plot(t, rb[2], 'sr')
+grid(True)
+plot(t, rb[2], 's', color='#EE6677')
 xlim([0, t1])
 xlabel('${\it t}$/s'); ylabel('${\it z}$/m')
-grid(True);  #@
+grid(True)  #@
 
 ## Numerical time integration
 while t < t1:
@@ -61,8 +61,8 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    plot(t, ra[2], 'ob')
-    plot(t, rb[2], 'sr')
+    plot(t, ra[2], 'o', color='#4477AA')
+    plot(t, rb[2], 's', color='#EE6677')
     tplot = tplot + dtplot
 
 plt.show()

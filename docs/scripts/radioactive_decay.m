@@ -20,7 +20,7 @@ tplot = dtplot;	  % time for next plot
 figure
 plot(t, N, 'o', 'color', '#4477AA')
 xlabel('{\it t}/s'); ylabel('{\it N}/mol')
-axis('tight'); grid on; hold on %@
+axis('tight'); xlim([0, t1]); grid on; hold on %@
 
 %% Numerical time integration
 while t < t1

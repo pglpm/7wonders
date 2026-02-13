@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-11T14:43:58+0100
+%% Last-Updated: 2026-02-13T10:39:29+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1234,7 +1234,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yTm}{\yT^{-}}%
 \newcommand*{\yTa}{\yT_{a}}%
 \newcommand*{\yTb}{\yT_{b}}%
-\newcommand*{\yTe}{\yT_{\text{ext}}}%
+\newcommand*{\yTe}{\yT_{\text{env}}}%
 
 %% electric charge and magnetic flux
 \newcommand*{\yC}{\mathcal{Q}}
@@ -11008,8 +11008,6 @@ This kind of behaviour can be modelled, at least qualitatively, by a constitutiv
   A string can be approximately modelled by such a constitutive equation with a large constant $k$.
 \end{definition}
 
-The script \texttt{rubberband} (Octave: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.m}{\texttt{rubberband.m}}; Python: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.py}{\texttt{rubberband.py}}) implements this kind of constitutive function. Before downloading it, see Exercise~\ref{ex:non_hooke} below.
-
 
 \subsection{Pairwise forces}
 
@@ -11047,6 +11045,8 @@ Examples of trajectories of two masses connected by a non-Hookean spring, for di
 
   \begin{enumerate}[exerc]
   \item Modify the script for the Hookean material in table~\ref{tab:script_strategy} on page~\pageref{tab:script_strategy} so as to implement the non-Hookean constitutive relation~\eqref{eq:nonhooke}. This constitutive relation can be implemented with an \texttt{if}-statement.
+
+    If you need some help, download the script \texttt{rubberband} (Octave: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.m}{\texttt{rubberband.m}}; Python: \furl{https://pglpm.github.io/7wonders/scripts/rubberband.py}{\texttt{rubberband.py}}), which implements this kind of constitutive relation.
 
   \item Then numerically time-integrate the system with the following four sets of parameters and initial values. Find out which of these correspond to the trajectories shown in the three plots on the margin:
 \begin{description}[itemsep=\baselineskip]
@@ -11959,8 +11959,8 @@ The script implementing our simulation is shown in table~\ref{tab:rocket_simplif
 \end{table}
 \marginpar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
     Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/rocket_simplified.m}{\texttt{rocket\_simplified.m}}%
-    % \\[2ex]
-    % Download Python version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_piston.py}{\texttt{idealgas\_piston.py}}%
+    \\[2ex]
+    Download Python version \furl{https://pglpm.github.io/7wonders/scripts/rocket_simplified.py}{\texttt{rocket\_simplified.py}}%
 }%
 \lstinputlisting[style=mycode]{scripts/rocket_simplified.m}
 % \vspace{-1em}
@@ -13519,7 +13519,7 @@ We must consider three partial surfaces:
   \begin{equation*}
     \yQ_{\textrm{bot}}(t) = A\,\yhea\,[\yTe-\yT(t)] \,,
   \end{equation*}
-  where $\yTe$ is the temperature of the cylinder walls. In principle this temperature could be under our control, and we could choose its time dependence. For simplicity let's assume that it's kept constant.
+  where $\yTe$ is the temperature of the environment. In principle this temperature could be under our control, and we could choose its time dependence. For simplicity let's assume that it's kept constant.
   % , say at \qty{23}{\degreeCelsius}: $\yTe \approx \qty{396}{K}$.
 
   Regarding the mechanical power, the momentum influx $\yF_{\textrm{bot}}$ through the bottom wall is directed upward. The velocity of the gas $\yv_{\textrm{bot}}$ at the bottom surface must be zero, otherwise the gas would detach from it and a vacuum would form, and this is not what's typically observed. Since the gas velocity $\yv_{\textrm{bot}}$ at this surface is zero, then the mechanical power is also zero: $\yF_{\textrm{bot}} \cdot \yv_{\textrm{bot}} = \qty{0}{J/s}$.

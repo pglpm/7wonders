@@ -6,7 +6,7 @@ R = 8.31446261815;   % J/(K*mol): molar gas constant
 g = 9.8;             % N/kg: gravitational acceleration
 C = 20;              % J/(K*mol): molar heat capacity
 mu = 0.00004;        % N*s/m^2: gas viscosity
-h = 8000;            % J/(K*m^2): heat-transfer coefficient
+h = 500;             % J/(K*m^2): heat-transfer coefficient
 
 Text = 373.15 + 23;  % K: temperature of environment
 A = 0.1^2;           % m^2: area of piston
@@ -22,25 +22,25 @@ T = 273.15 + 23;  % K: initial temperature of gas
 N = 0.04;         % mol: amount of ideal gas
 
 %% Boundary conditions
-G = -m*g;  % N: gravity supply of momentum to piston
+G = -m * g;  % N: gravity supply of momentum to piston
 J = -0.000;   % mol/s: gas leak
 
 %% Parameters for time loop
-t1 = 10;      % s: final time
-dt = 0.0001;  % s: time step %@
+t1 = 5;      % s: final time
+dt = 0.00001;  % s: time step %@
 
 ## Plotting
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;   % time for next plot
 figure
-subplot(2, 1, 1); plot(t, z, '.b')
+subplot(2, 1, 1); plot(t, z, 's', 'color', '#4477AA')
 xlim([0, t1])
 xlabel('{\it t}/s'); ylabel('{\it z}/m')
-axis('tight'); grid on; hold on
-subplot(2, 1, 2); plot(t, T, '.r')
+axis('tight'); xlim([0, t1]); grid on; hold on
+subplot(2, 1, 2); plot(t, T, 'o', 'color', '#EE6677')
 xlim([0, t1])
 xlabel('{\it t}/s'); ylabel('{\it T}/K')
-axis('tight'); grid on; hold on %@
+axis('tight'); xlim([0, t1]); grid on; hold on %@
 
 %% Numerical time integration
 while t < t1 && N > 0
@@ -66,8 +66,8 @@ while t < t1 && N > 0
 
   %% plot
   if t > tplot
-    subplot(2, 1, 1); plot(t, z, '.b')
-    subplot(2, 1, 2); plot(t, T, '.r')
+    subplot(2, 1, 1); plot(t, z, 's', 'color', '#4477AA')
+    subplot(2, 1, 2); plot(t, T, 'o', 'color', '#EE6677')
     pause(0)
     tplot = tplot + dtplot;
   end %@

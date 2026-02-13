@@ -30,8 +30,8 @@ figure; plot(t, N_NO2, 'v', 'color', '#EE6677')
 hold on; plot(t, N_N2O4, 'x', 'color', '#CCBB44')
 legend('NO_2', 'N_2O_4')
 legend('fontsize', 24, 'box', 'off', 'autoupdate', 'off')
-xlim([0, t1]); xlabel('{\it t}/s'); ylabel('{\it N}/mol')
-axis('tight'); grid on %@
+xlabel('{\it t}/s'); ylabel('{\it N}/mol')
+axis('tight'); xlim([0, t1]); grid on %@
 
 %% Numerical time integration
 while t < t1
