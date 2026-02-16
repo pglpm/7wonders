@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-16T15:22:10+0100
+%% Last-Updated: 2026-02-16T23:25:44+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4078,6 +4078,31 @@ In everyday situations we often quantify force in \enquote*{kilograms}, or bette
 Express your estimate of the force of Saitama's punch in kilogram-force unit.
 
 
+\section{}
+\label{sec:graniteblocks}
+
+\marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks2.jpg}%
+\\\flushleftright\color{mpcolor}%
+The directions and magnitudes of the surface forces $\yF_{\textrm{L\,bot}}$ and $\yF_{\textrm{R\,bot}}$ are not known, so their drawing is purely hypothetical.}
+%
+Two blocks of granite rest on the ground leaning against each other as shown in the margin figure. Each block touches the ground and the other block. There are momentum fluxes (contact forces) at the three contact surfaces, as depicted in the figure. The block on the left, denoted \enquote*{L}, has mass \qty{27000}{kg}; the one on the right, denoted \enquote*{R}, mass \qty{9000}{kg}. Air can be neglected.
+
+Answer the following questions:
+\begin{enumerate}[exerc]
+\item Which physical principle relates the surface forces $\yF_{\textrm{L\,top}}$ and $\yF_{\textrm{R\,top}}$? Write it as a mathematical equation between the two.
+\item The two blocks have also volume forces (momentum supplies) $\yG_{\textrm{L}}$ and $\yG_{\textrm{R}}$. Which constitutive relation can you use to find these? Write down both forces numerically, as vectors with $x$- and $z$-components, according to the coordinates shown in the figure.
+\item You are now given the following additional information:
+  \begin{itemize}[nosep]
+  \item The $z$-component of the force $\yF_{\textrm{L\,top}}$ is \qty{0}{N}; that is, this force is purely horizontal.
+  \item The $x$-component of the force $\yF_{\textrm{R\,bot}}$ is $-\qty{33075}{N}$.
+  \end{itemize}
+  Find the $z$-component of the force $\yF_{\textrm{R\,bot}}$, explaining which physical laws (balance laws, constitutive relations, symmetry of flux, extensivity; compare your answers to the previous two questions) and which text information you need to use in order to find it. Can you manage to find the component using only one control volume?
+\end{enumerate}
+
+
+
+
+
 
 \section{}
 \label{sec:tennisball_RT}
@@ -4387,6 +4412,115 @@ or \qty{40}{tonnes}.
 
 So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentrated in less than half a second.
 
+
+\sollabel{sec:graniteblocks}
+
+\begin{enumerate}[exerc]
+\item The momentum fluxes, or surface forces, $\yF_{\textrm{L\,top}}$ and $\yF_{\textrm{R\,top}}$ are related by the principle of \textbf{symmetry of flux}, which in this case is the same as Newton's 3rd law. These forces occur \emph{on the same surface}: $\yF_{\textrm{L\,top}}$ represents a flux of momentum from the block on the right to that on the left; $\yF_{\textrm{R\,top}}$ represents the same flux but in the opposite crossing direction, from the block on the left to that on the right. So they are equal in magnitude but opposite in direction:
+  \begin{equation*}
+    \yF_{\textrm{L\,top}} = -\yF_{\textrm{R\,top}} \ .
+  \end{equation*}
+
+\item Being on the Earth's surface, we can use the constitutive relation  for the gravitational force:
+  \begin{equation*}
+    \yG = -\ym g\,[0, 1] \ ,\qquad g \approx \qty{9.8}{N/kg},
+  \end{equation*}
+  where $m$ is the mass in the control volume. In this case we therefore find
+  \begin{equation*}
+    \begin{aligned}
+      \yG_{\textrm{L}} &= -\ym_{\textrm{L}} g\, [0,1]
+      \approx [0, -\num{26000}]\,\unit{N} \ ,
+      \\
+      \yG_{\textrm{R}} &= -\ym_{\textrm{R}} g\, [0,1]
+      \approx [0, -\num{88000}]\,\unit{N} \ .
+    \end{aligned}
+  \end{equation*}
+
+\item It looks like we have enough information if we focus on the \emph{right block} only, considered as one control volume. The physical principles we need are:
+  \begin{itemize}[noitemsep]
+  \item The \textbf{balance of momentum}; this is obvious because the problem is about determining forces, that is, momentum fluxes.
+  \item The principle of \textbf{extensivity} (also called \textbf{additivity}); it says that the force occurring on the block's whole surface is the sum of the forces on individual parts of the surface. We need it because the balance of momentum requires the total force, but the problem is giving us separate forces.
+  \item The principle of \textbf{symmetry of flux}, which is also called Newton's 3rd law in the case of forces; it was discussed in the first answer above. We need it because the balance of momentum requires the surface forces \emph{to} the block, but one of the forces given in the problem, $\yF_{\textrm{L\,top}}$, is a force \emph{from} the block.
+  \item Finally we need the constitutive relation for the gravity force, since this force also appears in the balance of momentum.
+  \end{itemize}
+  The information given in the text is the following:
+  \begin{itemize}[noitemsep]
+  \item The situation is static, so the momentum is constant in time (and zero).
+  \item The mass of the right block; this can be used directly in the formula for the gravity force.
+  \item $F_{\textrm{L\,top,z}} = \qty{0}{N}$.
+  \item $F_{\textrm{R\,bot,x}} = -\qty{33075}{N}$.
+  \item No forces on the surfaces in contact with air; so we can simply disregard these.
+  \end{itemize}
+
+  If we denote with $\yP_{\textrm{R}}$ the momentum of the right block and with $\yF_{\textrm{R}}$ the \emph{total} surface force on it, we can write all the law and information above as follows:
+  \begin{equation*}
+    \begin{aligned}
+      &\frac{\di\yP_{\textrm{R}}}{\dt} = \yF_{\textrm{R}} + \yG_{\textrm{R}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance}}
+        \\
+        &\yF_{\textrm{R}} = \yF_{\textrm{R\,top}} + \yF_{\textrm{R\,bot}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity}}
+        \\
+        &\yF_{\textrm{R\,top}} = -\yF_{\textrm{L\,top}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}symmetry of flux, Newton's 3rd law}}
+        \\
+        &\yG_{\textrm{R}} = -\ym_{\textrm{R}} g\, \begin{bsmallmatrix}0\\1\end{bsmallmatrix}
+        \approx \begin{bsmallmatrix}0\\ -\num{88000}\end{bsmallmatrix}\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}constit. rel. for gravity force}}
+        \\
+        &\frac{\di\yP_{\textrm{R}}}{\dt} =  \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N}
+          &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation}}
+          \\
+        &\yF_{\textrm{L\,top}} = \begin{bsmallmatrix}F_{\textrm{L\,top,x}}\\\qty{0}{N}\end{bsmallmatrix}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
+          \\
+        &\yF_{\textrm{R\,bot}} = \begin{bsmallmatrix}-\qty{33075}{N}\\ F_{\textrm{R\,bot,z}}\end{bsmallmatrix}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \end{aligned}
+  \end{equation*}
+  This system can be solved by substitution, for example, as follows:
+  \begin{equation*}
+    \begin{aligned}
+      \frac{\di\yP_{\textrm{R}}}{\dt} &= \yF_{\textrm{R}} + \yG_{\textrm{R}}
+      &&
+      \\
+      \implies\quad
+      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &= \yF_{\textrm{R}} + \yG_{\textrm{R}}
+      &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation}}
+      \\
+      \implies\quad
+      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &= \yF_{\textrm{R\,top}} + \yF_{\textrm{R\,bot}}
+      + \yG_{\textrm{R}}
+      &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity}}
+      \\
+      \implies\quad
+      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &= -\yF_{\textrm{L\,top}} + \yF_{\textrm{R\,bot}}
+      + \yG_{\textrm{R}}
+      &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}symmetry of flux}}
+      \\
+      \implies\quad
+      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &=
+      -\begin{bsmallmatrix}
+        F_{\textrm{L\,top,x}}
+        \\ \qty{0}{N}
+      \end{bsmallmatrix}
+      + \begin{bsmallmatrix}
+        -\qty{33075}{N}\\
+        F_{\textrm{R\,bot,z}}
+      \end{bsmallmatrix}
+      + \begin{bsmallmatrix}0\\ -\num{88000}\end{bsmallmatrix}\,\unit{N}
+      &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
+      \\[1ex]
+      \implies\quad
+      &\begin{aligned}
+        F_{\textrm{L\,top,x}} & = -\qty{33075}{N}
+        \\
+        F_{\textrm{R\,bot,z}} &= \qty{88000}{N}
+      \end{aligned}
+      &&
+    \end{aligned}
+  \end{equation*}
+\end{enumerate}
 
 
 \sollabel{sec:tennisball_RT}
