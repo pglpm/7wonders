@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-14T10:11:10+0100
+%% Last-Updated: 2026-02-16T07:17:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -9908,47 +9908,47 @@ In simple cases this allows us to find the time dependence of momentum $\yP(t)$ 
 
 Let's see a simple example with a flying tennis ball. As usual we consider a control volume coinciding with the tennis ball, and which can be localized just by a position vector $\yr(t)$ in some coordinate system $(t,x,y,z)$. Suppose the \masse\ of the ball is $\ym = \qty{0.06}{kg}$. Suppose that we know the following boundary conditions:
 \begin{itemize}[nosep]
-\item Momentum flux is zero: $\yF(t) = \qty{0}{N}$.
-\item Momentum supply, owing to gravity, is\enskip$\yG =\ym \yg \equiv
+\item Momentum flux is zero: $\yF(t) \equiv \qty{0}{N}$.
+\item Momentum supply, owing to gravity, is\enskip$\yG(t) =\ym \yg \equiv
  -\ym g \begin{bsmallmatrix}
     0\\0\\1
   \end{bsmallmatrix}$\,,\enskip constant in time.
 \end{itemize}
-Insert these two boundary conditions into the integral expression of the balance of momentum, and solve the simple integrals. If we say that the initial time is $\yti = \qty{0}{s}$, and call the final time $\ytf$ simply $t$, we find
+Insert these two boundary conditions into the integral expression of the balance of momentum, and solve the simple integrals. If the initial time is $\yti$ and we call the final time $\ytf$ simply $t$, that is $\ytf = t$, we find
 \begin{equation*}
-  \yP(t) = \yP(\qty{0}{s}) + \ym \yg t \ .
+  \yP(t) = \yP(\yti) + \ym \yg \, (t-\yti) \ .
 \end{equation*}
-The initial momentum is $\yP(\qty{0}{s})$, and thanks to the Newtonian relation between momentum and velocity we also find the initial velocity:
+The initial momentum is $\yP(\yti)$, and thanks to the Newtonian relation between momentum and velocity we also find the initial velocity:
 \begin{equation*}
-  \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \ .
+  \yv(\yti) = \yP(\yti) / \ym \ .
 \end{equation*}
 With the same relation we can also find the velocity at any time $t$:
 \begin{equation*}
   \begin{aligned}
-    \yv(t) = \yP(t)/ \ym &= \yP(\qty{0}{s})/\ym + \ym \yg t/\ym
-    \\&= \yv(\qty{0}{s}) + \yg t
-    % &= \yP(\qty{0}{s})/\ym - (\ym g/\ym) \begin{bsmallmatrix}
+    \yv(t) = \yP(t)/ \ym &= \yP(\yti)/\ym + \ym \yg\,(t-\yti)/\ym
+    \\&= \yv(\yti) + \yg \,(t - \yti)
+    % &= \yP(\yti)/\ym - (\ym g/\ym) \begin{bsmallmatrix}
     %   0\\0\\1
-    % \end{bsmallmatrix}\, t
-    % \\&= \yv(\qty{0}{s}) - g \begin{bsmallmatrix}
+    % \end{bsmallmatrix}\,(t - \yti)
+    % \\&= \yv(\yti) - g \begin{bsmallmatrix}
     %   0\\0\\1
-    % \end{bsmallmatrix}\,t
+    % \end{bsmallmatrix}\,(t - \yti)
   \end{aligned}
 \end{equation*}
-Note that this is simply a linear function of the variable $t$, of the kind \enquote*{$C + D\,t$}.
+Note that this is simply a linear function \enquote*{\,$C + D\,t$\,} of the variable $t$.
 
 Finally replace the expression for $\yv(t)$ above in the integral formula for the position $\yr(t)$, and integrate. The result is
 \begin{equation*}
-  \yr(t) = \yr(\qty{0}{s}) +
-  \yv(\qty{0}{s})\,t + \frac12 \yg\,t^{2} \ .
+  \yr(t) = \yr(\yti) +
+  \yv(\yti)\,(t - \yti) + \frac12 \yg\,(t - \yti)^{2} \ .
 \end{equation*}
 
 Let's put together the time dependence for momentum and position that we've found:
 \begin{equation}\label{eq:rP_dependence_tennisball}
   \begin{aligned}
-    \yP(t) &= \ym\,\yv(\qty{0}{s}) + \ym \yg t \ ,
+    \yP(t) &= \ym\,\yv(\yti) + \ym \yg \,(t - \yti) \ ,
     \\
-    \yr(t) &= \yr(\qty{0}{s}) + \yv(\qty{0}{s})\,t + \frac12 \yg t^{2} \ .
+    \yr(t) &= \yr(\yti) + \yv(\yti)\,(t - \yti) + \frac12 \yg \,(t - \yti)^{2} \ .
   \end{aligned}
 \end{equation}
 %
@@ -9958,8 +9958,8 @@ Let's put together the time dependence for momentum and position that we've foun
 \includegraphics[width=\linewidth]{images/tball_z.jpg}%
 \\[\jot]\footnotesize\flushleftright\color{mpcolor}%
 Plots of $P_{z}(t)$ and $z(t)$ vs $t$ with initial conditions
-$P_{z}(\qty{0}{s}) = \qty{0.42}{N\,s}$ and 
-$z(\qty{0}{s}) = \qty{5}{m}$.
+${\yti = \qty{0}{s}}$, ${P_{z}(\yti) = \qty{0.42}{N\,s}}$,
+${z(\yti) = \qty{5}{m}}$.
 }%
 Or, writing explicitly all components (remember that\enskip$\yg \defd - g\, [0, 0, 1]$\,):
 \begin{equation*}
@@ -9970,35 +9970,35 @@ Or, writing explicitly all components (remember that\enskip$\yg \defd - g\, [0, 
     &=
     \ym
     \begin{bmatrix}
-      v_{x}(\qty{0}{s}) \\ v_{y}(\qty{0}{s}) \\ v_{z}(\qty{0}{s})
+      v_{x}(\yti) \\ v_{y}(\yti) \\ v_{z}(\yti)
     \end{bmatrix}
     - \ym g \begin{bmatrix}
       0\\0\\1
-    \end{bmatrix}\, t \,,
+    \end{bmatrix}\,(t - \yti) \,,
     \\[\jot]
     \begin{bmatrix}
       x(t)\\y(t)\\z(t)
     \end{bmatrix}
     &=
     \begin{bmatrix}
-      x(\qty{0}{s})\\y(\qty{0}{s})\\z(\qty{0}{s})
+      x(\yti)\\y(\yti)\\z(\yti)
     \end{bmatrix}
     +
     \begin{bmatrix}
-      v_{x}(\qty{0}{s}) \\ v_{y}(\qty{0}{s}) \\ v_{z}(\qty{0}{s})
-    \end{bmatrix}\, t
+      v_{x}(\yti) \\ v_{y}(\yti) \\ v_{z}(\yti)
+    \end{bmatrix}\,(t - \yti)
     - \frac12 g \begin{bmatrix}
       0\\0\\1
-    \end{bmatrix}\,t^{2}
+    \end{bmatrix}\,(t - \yti)^{2}
     \,,
   \end{aligned}
   % \quad\text{with}\quad
-  % \yv(\qty{0}{s}) = \yP(\qty{0}{s}) / \ym \,.
+  % \yv(\yti) = \yP(\yti) / \ym \,.
 \end{equation*}
 
 \medskip
 
-Therefore if we know the initial position $\yr(\qty{0}{s})$, and the initial velocity $\yv(\qty{0}{s})$ or equivalently the initial momentum $\yP(\qty{0}{s})$, then we can predict the position and momentum for all future times. In particular:
+Therefore if we know the initial position $\yr(\yti)$, and the initial velocity $\yv(\yti)$ or equivalently the initial momentum $\yP(\yti)$, then we can predict the position and momentum for all future times. In particular:
 \begin{itemize}
 \item The $x$- and $y$-components of momentum are constant.
 \item The $z$-component of momentum decreases linearly with time.
@@ -10024,9 +10024,9 @@ Note again how the analytic method manages to tell us beforehand about important
   \begin{equation*}
     \yP(t) = \ym\yv(t)\,,
     \qquad
-    \yr(\qty{0}{t}) = \text{\footnotesize known}\,,
+    \yr(\yti) = \text{\footnotesize known}\,,
     \qquad
-    \yv(\qty{0}{t}) = \text{\footnotesize known}\,.
+    \yv(\yti) = \text{\footnotesize known}\,.
   \end{equation*}
 
 \smallskip
@@ -10079,18 +10079,18 @@ A script implementing the numerical time integration based on the iteration abov
 
 Let's examine the structure of this script, starting from the bottom, and omitting the lines for plotting, which are physically irrelevant:
 \begin{description}
-\item[Lines 35--50:] \textbf{iteration}. At each time step the velocity is calculated from the momentum in \textbf{line 37}, using Newton's constitutive relation. Then the momentum content and the position vector at the next timestep are calculated in \textbf{lines 40--41}, using the approximate forms of the momentum balance and of the relation between position and velocity.
-\item[Lines 18--19:] \textbf{time-iteration parameters}. We decide to time-integrate the system until time $\ytf = \qty{2}{s}$, with a timestep $\Dt = \qty{0.01}{s}$.
-\item[Lines 14--15:] \textbf{boundary conditions}. We assume that the flux of momentum is zero, and the supply of momentum is the gravitational force, constant in time.
-\item[Lines 9--11:] \textbf{initial conditions}. We decide to start the time integration from $\yti = \qty{0}{s}$, with the initial values $\yr(\yti) = [0,0,5]\,\unit{m}$ and $\yP = [0,0,\num{0.42}]\,unit{N\,s}$.
-\item[Lines 5--6:] \textbf{constants}. Our equations use the constant \masse\ of the tennis ball $\ym = \qty{0.06}{kg}$, and the magnitude of free-fall acceleration $g = \qty{9.8}{N/kg}$.
+\item[Lines 32--49:] \textbf{iteration}. At each time step the velocity is calculated from the momentum in \textbf{line 35}, using Newton's constitutive relation. Then the momentum content and the position vector at the next timestep are calculated in \textbf{lines 39--40}, using the approximate forms of the momentum balance and of the relation between position and velocity.
+\item[Lines 17--19:] \textbf{time-iteration parameters}. We decide to time-integrate the system until time $\ytf = \qty{2}{s}$, with a timestep $\Dt = \qty{0.01}{s}$.
+\item[Lines 13--15:] \textbf{boundary conditions}. We assume that the flux of momentum is zero, and the supply of momentum is the gravitational force, constant in time.
+\item[Lines 8--11:] \textbf{initial conditions}. We decide to start the time integration from $\yti = \qty{0}{s}$, with the initial values $\yr(\yti) = [0,0,5]\,\unit{m}$ and $\yP = [0,0,\num{0.42}]\,\unit{N\,s}$.
+\item[Lines 4--6:] \textbf{constants}. Our equations use the constant \masse\ of the tennis ball $\ym = \qty{0.06}{kg}$, and the magnitude of free-fall acceleration $g = \qty{9.8}{N/kg}$.
 \end{description}
 
 \begin{exercise}[label={ex:tennisball3}]
   Modify and play around with the script for the tennis ball of table~\ref{tab:tennisball_rP} on page~\pageref{tab:tennisball_rP}, changing the various parameters in the script and changing the physical situation a little. For example you can try the following:
   \begin{itemize}
   \item Change the mass $\ym$, so that the script describes not a tennis ball, but a golf ball or a bowling ball. How does this modify the time behaviour of the vertical position and of the vertical momentum?
-  \item Change the initial momentum $\yP$. What happens if the object initially has a downward momentum? What if there is a horizontal component of momentum? Note that you can plot the $x$-component of momentum or position by changing \textcolor{codecolour}{\texttt{P(3)}} into \textcolor{codecolour}{\texttt{P(1)}} and \textcolor{codecolour}{\texttt{r(3)}} into \textcolor{codecolour}{\texttt{r(1)}}.
+  \item Change the initial momentum $\yP$. What happens if the object initially has a downward momentum? What if there is a horizontal component of momentum? Note that you can plot the $x$-component of momentum or position by changing \enquote*{\,\textcolor{codecolour}{\texttt{P(3)}}\,} into \enquote*{\,\textcolor{codecolour}{\texttt{P(1)}}\,} and \enquote*{\,\textcolor{codecolour}{\texttt{r(3)}}\,} into \enquote*{\,\textcolor{codecolour}{\texttt{r(1)}}\,}.
   \item Change the boundary condition for the momentum influx. You can approximately represent the effect of wind by using a horizontal influx of momentum, constant in time; for instance
     \begin{equation*}
       \yF(t) = [2, 0, 0]\,\unit{N} \,.
@@ -10106,7 +10106,7 @@ Let's examine the structure of this script, starting from the bottom, and omitti
     \\[2ex]
     Download Python version \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}%
     \\[5ex]
-    \flushleftright\color{black}\emph{Note:} In Octave, vectors are simply represented by square brackets, as in \textcolor{codecolour}{lines 10--11}, similar to the maths notation. The 1st component of a vector \textcolor{codecolour}{\texttt{P}} is retrieved by means of round brackets: \enquote*{\textcolor{codecolour}{\texttt{P(1)}}}.
+    \flushleftright\color{black}\emph{Note:} In Octave, vectors are simply represented by square brackets, as in \textcolor{codecolour}{lines 10--11}, similar to the maths notation. The 1st component of a vector \textcolor{codecolour}{\texttt{P}} is retrieved by means of round brackets: \enquote*{\,\textcolor{codecolour}{\texttt{P(1)}}\,}.
   }%
   \lstinputlisting[style=mycode]{scripts/tennisball_rP.m}
 \end{table}
@@ -10816,10 +10816,10 @@ An example script that implements plotting and uses the general version of Hooke
 \vspace{-1.25\baselineskip}
 \color{yellow}\begin{verbatim}
 %% 0.  Constants
-ma = 2;    % kg: mass of object a
-mb = 2;    % kg: mass of object b
-g = 9.81;  % N/kg: gravitational acceleration
-k = 5;     % N/m: spring constant
+ma = 2;   % kg: mass of object a
+mb = 2;   % kg: mass of object b
+g = 9.8;  % N/kg: gravitational acceleration
+k = 5;    % N/m: spring constant
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{red}\begin{verbatim}
@@ -10838,9 +10838,10 @@ Gb = -mb * g * [0, 1];  % N: gravity supply in object b
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{midgrey}\begin{verbatim}
-%% 6.  Parameters for time iteration
+%% 6.  Parameters for time integration
 t1 = 5;      % s: final time
 dt = 0.001;  % s: time step
+
 %% Numerical time integration
 while t < t1
 \end{verbatim}
