@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-13T11:05:43+0100
+%% Last-Updated: 2026-02-16T15:22:10+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4091,20 +4091,20 @@ For this exercise, download the script for the simulation of a falling tennis ba
 Now explore more extreme physical situations.
 
 \begin{enumerate}[exerc]
-\item Let's imagine to be in an much stronger and extended gravitational field: set the gravitational acceleration constant to \qty{9800}{N/kg}, the simulation end-time to $\ytf = \qty{100000}{s}$ (that's a little longer than one day), and the time step to $\Dt = \qty{100}{s}$.
+\item Let's imagine the ball to be in a uniform but very extended gravitational field, so that it can keep on falling for a long time. Set the gravitational acceleration constant to \qty{9.8}{N/kg}, the simulation end-time to $\ytf = \qty{1e8}{s}$ (that's a little longer than six years), and the time step to $\Dt = \qty{1e6}{s}$.
 
-  Run the script and make sure to save the output plots of the ball's vertical momentum $P_{z}(t)$ and vertical position $z(t)$ against time $t$. (The resulting heights are unrealistic, but don't mind about that.)
+  Run the script and make sure to save the output plots of the ball's vertical momentum $P_{z}(t)$ and vertical position $z(t)$ against time $t$. The resulting heights are unrealistic, but don't mind about that.
 
   \begin{itemize}
   \item How does the vertical momentum $P_{z}$ change with time? Would you say its time dependence is \emph{linear} or \emph{parabolic}?
   \item What about the vertical position $z$? linear or parabolic?
   \end{itemize}
 
-\item Now use a more precise constitutive relation between momentum and velocity. Keep the same parameters as in the previous question, but instead of Newton's $\yv= \yP/\ym$, implement the more precise formula
+\item Now use a more precise constitutive relation between momentum and velocity. Keep the same parameters as in the previous question, but instead of Newton's $\yv = \yP/\ym$, implement the more precise relativistic formula
   \begin{equation*}
     \yv = \yP / \sqrt{\ym^{2} + \abs{\yP}^{2}/\yc^{2}\,}
   \end{equation*}
-  in the appropriate place of the script. You must also declare the speed of light $\yc = \qty{299792458}{m/s}$ among the constants.
+  at the appropriate place of the script. You must also declare the speed of light $\yc = \qty{299792458}{m/s}$ among the constants.
 
   {\footnotesize (Note: in Octave and Python, the norm $\abs{\dotso}$ is implemented as \verb|norm(...)| and the square root as \verb|sqrt(...)|. Raising to a square, $\dotso^{2}$, is implemented as \verb|...^2| in Octave and as \verb|...**2| in Python.)\par}
 
@@ -4392,9 +4392,10 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
 \sollabel{sec:tennisball_RT}
 
 \begin{enumerate}[exerc]
-\item Here are the plots from the modified script with high gravity $g$:
+
+\item Here are the plots from the modified script with long simulation time:
   \begin{center}
-    \hfill\includegraphics[width=\linewidth]{images/tennisball_highg.pdf}%
+    \hfill\includegraphics[width=\linewidth]{images/tennisball_rP_long.pdf}%
   \end{center}
 
   The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time: its graph is a line. The vertical position $z(t)$ instead decreases \emph{quadratically} or parabolically with time: its graph is a parabola. This is indeed the behaviour we expect in a constant gravitational field (see \chap~10 of our lecture notes).
@@ -4417,11 +4418,14 @@ and adding
     \\
     \verb|c = 299792458| & (Python)
   \end{tabular}\\[1ex]
-  in the \texttt{Constants} block.
+  in the \texttt{Constants} block. Example script:
+  \begin{itemize}[nosep]
+  \item[] Octave \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_relativity.m}{\texttt{tennisball\_rP\_relativity.m}},\item[] Python \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_relativity.py}{\texttt{tennisball\_rP\_relativity.py}}.
+  \end{itemize}
 
   The plots from this modified script are these:
   \begin{center}
-    \includegraphics[width=\linewidth]{images/tennisball_highg_highv.pdf}%
+    \includegraphics[width=\linewidth]{images/tennisball_rP_relativity.pdf}%
   \end{center}
 
   The vertical momentum $P_{z}(t)$ decreases \emph{linearly} with time, as in the previous case. This happens because at every time step the momentum is increased by the amount $\yG$, which is constant, just like before.

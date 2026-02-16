@@ -1,12 +1,12 @@
 %%% Simulation of two bodies connected by Hookean material in 2D
-%% Coordinates (t, y, z)
+%% Coordinates (t, x, z)
 
 %% Constants
-ma = 2;	   % kg: mass object a
-mb = 3;	   % kg: mass object b
-g = 9.81;  % N/kg: gravitational acceleration
-ln = 1;	   % m: natural length
-k = 5;	   % N/m: spring constant
+ma = 2;	  % kg: mass object a
+mb = 3;	  % kg: mass object b
+g = 9.8;  % N/kg: gravitational acceleration
+ln = 1;	  % m: natural length
+k = 5;	  % N/m: spring constant
 
 %% Initial conditions
 t = 0;	       % s: initial time
@@ -30,7 +30,7 @@ figure
 plot(ra(1), ra(2), 'o', 'color', '#4477AA')
 hold on; grid on
 plot(rb(1), rb(2), 's', 'color', '#EE6677')
-xlabel('{\it y}/m'); ylabel('{\it z}/m') %@
+xlabel('{\it x}/m'); ylabel('{\it z}/m') %@
 
 %% State: ra, rb, va, vb
 %% Numerical time integration

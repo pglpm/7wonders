@@ -1,4 +1,4 @@
-### Numerical simulation of object motion with gravity
+### Numerical simulation of relativistic motion with gravity
 ## Coordinates (t, x, y, z)
 from matplotlib.pyplot import *
 from numpy import *
@@ -12,17 +12,17 @@ g = 9.8        # N/kg: gravitational acceleration
 c = 299792458  # m/s: speed of light
 
 ## Initial conditions
-t = 0                     # s: initial time
-r = vector([0, 0, 5])     # m: initial position vector
-P = vector([0, 0, 0.42])  # N s: initial momentum vector
+t = 0                      # s: initial time
+r = vector([0, 0, 0])      # m: initial position vector
+P = vector([0, 0, 1.8e6])  # N s: initial momentum vector
 
 ## Boundary conditions
 F = vector([0, 0, 0])           # N: momentum influx
 G = -m * g * vector([0, 0, 1])  # N: momentum supply
 
 ## Time-iteration parameters
-t1 = 2 # s: final time
-dt = 0.01 # s: time step
+t1 = 2e8  # s: final time
+dt = 1e6  # s: time step
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
@@ -41,7 +41,7 @@ grid(True)
 while t < t1:
   
   ## constitutive relations
-  v = P / m
+  v = P / sqrt(m**2 + norm(P)**2 / c**2)
   
   ## step forward in time with balance laws
   t = t + dt

@@ -2,25 +2,25 @@
 %% Coordinates (t, x, y, z)
 
 %% Constants
-m = 0.06; % kg: tennis ball's mass-energy
-g = 9.8; % N/kg: gravitational acceleration
+m = 0.06;  % kg: tennis ball's mass-energy
+g = 9.8;   % N/kg: gravitational acceleration
 
 %% Initial conditions
-t = 0; % s: initial time
-r = [0, 0, 5]; % m: initial position vector
-P = [0, 0, 0.42]; % N s: initial momentum vector
+t = 0;             % s: initial time
+r = [0, 0, 5];     % m: initial position vector
+P = [0, 0, 0.42];  % N s: initial momentum vector
 
 %% Boundary conditions
-F = [0, 0, 0]; % N: momentum influx
-G = -m * g * [0, 0, 1]; % N: momentum supply
+F = [0, 0, 0];           % N: momentum influx
+G = -m * g * [0, 0, 1];  % N: momentum supply
 
 %% Time-iteration parameters
-t1 = 2; % s: final time
-dt = 0.01; % s: time step %@
+t1 = 2;     % s: final time
+dt = 0.01;  % s: time step %@
 
 %% Plotting
-dtplot = t1/360; % time interval between plots
-tplot = dtplot; % time for next plot
+dtplot = t1/360;  % time interval between plots
+tplot = dtplot;   % time for next plot
 figure
 subplot(2, 1, 1); plot(t, P(3), '^', 'color', '#4477AA')
 xlabel('time {\it t}/s'); ylabel('z-momentum {\it P_z}/(N s)')
@@ -31,6 +31,7 @@ axis('tight'); xlim([0, t1]); grid on; hold on %@
 
 %% Numerical time integration
 while t < t1
+
   %% constitutive relations
   v = P / m;
 

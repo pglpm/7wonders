@@ -1,5 +1,5 @@
 ### Simulation of two bodies connected by Hookean material in 2D
-## Coordinates (t, y, z)
+## Coordinates (t, x, z)
 from matplotlib.pyplot import *
 from numpy import *
 from numpy.linalg import norm
@@ -7,11 +7,11 @@ from numpy import array as vector
 import matplotlib.pyplot as plt
 
 ## Constants
-ma = 2	  # kg: mass object a
-mb = 3	  # kg: mass object b
-g = 9.81  # N/kg: gravitational acceleration
-ln = 1	  # m: natural length
-k = 5	  # N/m: spring constant
+ma = 2	 # kg: mass object a
+mb = 3	 # kg: mass object b
+g = 9.8  # N/kg: gravitational acceleration
+ln = 1	 # m: natural length
+k = 5	 # N/m: spring constant
 
 ## Initial conditions
 t = 0                 # s: initial time
@@ -35,7 +35,7 @@ figure
 plot(ra[0], ra[1], 'o', color='#4477AA')
 grid(True)
 plot(rb[0], rb[1], 's', color='#EE6677')
-xlabel('${\it y}$/m'); ylabel('${\it z}$/m') #@
+xlabel('${\it x}$/m'); ylabel('${\it z}$/m') #@
 
 ## State: ra, rb, va, vb
 ## Numerical time integration

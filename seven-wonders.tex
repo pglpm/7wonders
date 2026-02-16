@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-16T07:17:38+0100
+%% Last-Updated: 2026-02-16T07:56:41+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -10368,7 +10368,7 @@ In this section we study this three-body physical system step by step, in order 
 
 Consider two bodies of matter, call them $a$ and $b$, of small extension compared to the distance between them. Attach them at the two ends of a piece of Hookean material, such as a small spring. For simplicity, in this analysis we take the natural length of the piece to be negligible: $\ylo \approx \qty{0}{m}$.
 
-Choose a coordinate system $(t,x,y,z)$ at rest with the Earth's surface, with $z$ pointing upward. The only momentum supply, if considered, is given by the constitutive equation for \autoref{sec:gravity}{gravitational force}.
+Choose a coordinate system $(t,x,z)$ at rest with the Earth's surface, with $z$ pointing upward. The only momentum supply, if considered, is given by the constitutive equation for \autoref{sec:gravity}{gravitational force}.
 
 In terms of control surfaces, we have three of them: one tightly enveloping body $a$, one body $b$, and a third enveloping the piece of Hookean material. Let us analyse each one in turn, writing down its relevant balances. Note that all quantities below, except the masses and the elastic constant $k$, depend on the time $t$.
 
@@ -10386,7 +10386,7 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
   If we consider gravity effects, we can use the
 %  \autoref{def:gravity_surface}{constitutive equation for gravitational force}
   constitutive equation for gravitational force
-  $\yGa=-\yma\,g\,[0,0,1]$.
+  $\yGa=-\yma\,g\,[0,1]$.
 
 %
 \marginpar{\vspace{-8\baselineskip}\footnotesize\centering%
@@ -10678,7 +10678,7 @@ or alternatively this:
 \begin{equation*}
   \yra\,,\ \yPa\,,\enskip\yFab\,,\ \yvb
 \end{equation*}
-Usually we prefer a minimal set that consists of easily observable or measurable quantities, like positions, velocities, temperatures. In the present case let's agree to use $\yra, \yva, \yrb,\yrb$. Each of these has two components: $y_{a},z_{a},y_{b},\dotsc$ and so on, for a total of four.
+Usually we prefer a minimal set that consists of easily observable or measurable quantities, like positions, velocities, temperatures. In the present case let's agree to use $\yra, \yva, \yrb,\yrb$. Each of these has two components: $x_{a},z_{a},x_{b},\dotsc$ and so on, for a total of eight.
 
 These are called \emph{state variables} of the physical system:
 %
@@ -10811,7 +10811,7 @@ An example script that implements plotting and uses the general version of Hooke
 \begin{framed}\vspace{-1\baselineskip}
 \color{grey}\begin{verbatim}
 %%% 2D simulation of two bodies connected by Hookean material
-%% Coordinates (y, z)
+%% Coordinates (x, z)
 \end{verbatim}
 \vspace{-1.25\baselineskip}
 \color{yellow}\begin{verbatim}
@@ -10880,7 +10880,7 @@ end
 \color{black}
 
 \begin{exercise}[label={ex:hooke}]
-  % We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $y$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
+  % We consider a system like the one discussed in the previous two sections: two small objects attached to a Hookean spring, in the simple case of \textbf{two dimensions}, so that all vectors have two components only, say the $x$ and $z$-components. We also assume that the natural length $\ylo$ of the spring is zero.
   \begin{enumerate}[exerc]
   \item Examine our \autoref{tab:oscillatingreaction}{previous script for the oscillating reaction}, and pinpoint where the seven building steps above are implemented.
 
@@ -10924,11 +10924,11 @@ end
     \end{equation*}
 
     \begin{itemize}
-    \item Plot the $y$-coordinate of body $a$ against time $t$. What kind of time dependence do you observe? can you explain it intuitively?
+    \item Plot the $x$-coordinate of body $a$ against time $t$. What kind of time dependence do you observe? can you explain it intuitively?
 
-    \item Now plot the trajectories of the two bodies, that is, $z_{a}$ against $y_{a}$, and $z_{b}$ against $y_{b}$. What do you observe? can you explain it intuitively?
+    \item Now plot the trajectories of the two bodies, that is, $z_{a}$ against $x_{a}$, and $z_{b}$ against $x_{b}$. What do you observe? can you explain it intuitively?
 
-    \item Plot, against time $t$, the $y$- and $z$-components of the \emph{total} momentum $\yPa+\yPb$ for the system composed by the two bodies and the spring. How do these component change? Why?
+    \item Plot, against time $t$, the $x$- and $z$-components of the \emph{total} momentum $\yPa+\yPb$ for the system composed by the two bodies and the spring. How do these component change? Why?
     \end{itemize}
 
   \item Run the script with the same parameter as before but the following initial velocity values:
@@ -10941,7 +10941,7 @@ end
     \end{equation*}
 
     \begin{itemize}
-    \item Plot again the $y$-coordinate of body $a$ against time $t$. Is the time dependence different from the previous simulation? How do the trajectories of the two bodies look like this time?
+    \item Plot again the $x$-coordinate of body $a$ against time $t$. Is the time dependence different from the previous simulation? How do the trajectories of the two bodies look like this time?
 
     \item Plot again the components of the total momentum against time. How do they change? Why have they the same time dependence as before?
     \end{itemize}
