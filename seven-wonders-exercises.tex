@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-16T23:25:44+0100
+%% Last-Updated: 2026-02-17T10:14:05+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4428,10 +4428,10 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
   where $m$ is the mass in the control volume. In this case we therefore find
   \begin{equation*}
     \begin{aligned}
-      \yG_{\textrm{L}} &= -\ym_{\textrm{L}} g\, [0,1]
+      \yG_{\textrm{L}} &= -\ym_{\textrm{L}}\, g\, [0,1]
       \approx [0, -\num{26000}]\,\unit{N} \ ,
       \\
-      \yG_{\textrm{R}} &= -\ym_{\textrm{R}} g\, [0,1]
+      \yG_{\textrm{R}} &= -\ym_{\textrm{R}}\,g\, [0,1]
       \approx [0, -\num{88000}]\,\unit{N} \ .
     \end{aligned}
   \end{equation*}
@@ -4447,8 +4447,8 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
   \begin{itemize}[noitemsep]
   \item The situation is static, so the momentum is constant in time (and zero).
   \item The mass of the right block; this can be used directly in the formula for the gravity force.
-  \item $F_{\textrm{L\,top,z}} = \qty{0}{N}$.
-  \item $F_{\textrm{R\,bot,x}} = -\qty{33075}{N}$.
+  \item $F_{\textrm{L\,top, z}} = \qty{0}{N}$.
+  \item $F_{\textrm{R\,bot, x}} = -\qty{33075}{N}$.
   \item No forces on the surfaces in contact with air; so we can simply disregard these.
   \end{itemize}
 
@@ -4464,64 +4464,88 @@ So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentra
         &\yF_{\textrm{R\,top}} = -\yF_{\textrm{L\,top}}
         &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}symmetry of flux, Newton's 3rd law}}
         \\
-        &\yG_{\textrm{R}} = -\ym_{\textrm{R}} g\, \begin{bsmallmatrix}0\\1\end{bsmallmatrix}
-        \approx \begin{bsmallmatrix}0\\ -\num{88000}\end{bsmallmatrix}\,\unit{N}
+        &\yG_{\textrm{R}} = -\ym_{\textrm{R}}\, g\, \begin{bmatrix}0\\1\end{bmatrix}
+        \approx \begin{bmatrix}0\\ -\num{88000}\end{bmatrix}\,\unit{N}
         &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}constit. rel. for gravity force}}
         \\
-        &\frac{\di\yP_{\textrm{R}}}{\dt} =  \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N}
+        &\frac{\di\yP_{\textrm{R}}}{\dt} =  \begin{bmatrix}0\\0\end{bmatrix}\,\unit{N}
           &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation}}
           \\
-        &\yF_{\textrm{L\,top}} = \begin{bsmallmatrix}F_{\textrm{L\,top,x}}\\\qty{0}{N}\end{bsmallmatrix}
+          &\yF_{\textrm{L\,top}} = \begin{bmatrix}
+            F_{\textrm{L\,top, x}}\\\qty{0}{N}
+          \end{bmatrix}
         &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
           \\
-        &\yF_{\textrm{R\,bot}} = \begin{bsmallmatrix}-\qty{33075}{N}\\ F_{\textrm{R\,bot,z}}\end{bsmallmatrix}
+          &\yF_{\textrm{R\,bot}} = \begin{bmatrix}
+            -\qty{33075}{N}\\ F_{\textrm{R\,bot, z}}
+          \end{bmatrix}
         &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
     \end{aligned}
   \end{equation*}
-  This system can be solved by substitution, for example, as follows:
+  This system can be solved by substitution for example, as follows:
   \begin{equation*}
     \begin{aligned}
       \frac{\di\yP_{\textrm{R}}}{\dt} &= \yF_{\textrm{R}} + \yG_{\textrm{R}}
       &&
       \\
       \implies\quad
-      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &= \yF_{\textrm{R}} + \yG_{\textrm{R}}
+      \begin{bmatrix}\qty{0}{N}\\\qty{0}{N}\end{bmatrix} &= \yF_{\textrm{R}} + \yG_{\textrm{R}}
       &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation}}
       \\
       \implies\quad
-      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &= \yF_{\textrm{R\,top}} + \yF_{\textrm{R\,bot}}
+      \begin{bmatrix}\qty{0}{N}\\\qty{0}{N}\end{bmatrix} &= \yF_{\textrm{R\,top}} + \yF_{\textrm{R\,bot}}
       + \yG_{\textrm{R}}
       &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity}}
       \\
       \implies\quad
-      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &= -\yF_{\textrm{L\,top}} + \yF_{\textrm{R\,bot}}
+      \begin{bmatrix}\qty{0}{N}\\\qty{0}{N}\end{bmatrix} &= -\yF_{\textrm{L\,top}} + \yF_{\textrm{R\,bot}}
       + \yG_{\textrm{R}}
       &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}symmetry of flux}}
       \\
       \implies\quad
-      \begin{bsmallmatrix}0\\0\end{bsmallmatrix}\,\unit{N} &=
-      -\begin{bsmallmatrix}
-        F_{\textrm{L\,top,x}}
+      \begin{bmatrix}\qty{0}{N}\\\qty{0}{N}\end{bmatrix} &=
+      -\begin{bmatrix}
+        F_{\textrm{L\,top, x}}
         \\ \qty{0}{N}
-      \end{bsmallmatrix}
-      + \begin{bsmallmatrix}
+      \end{bmatrix}
+      + \begin{bmatrix}
         -\qty{33075}{N}\\
-        F_{\textrm{R\,bot,z}}
-      \end{bsmallmatrix}
-      + \begin{bsmallmatrix}0\\ -\num{88000}\end{bsmallmatrix}\,\unit{N}
+        F_{\textrm{R\,bot, z}}
+      \end{bmatrix}
+      + \begin{bmatrix}\qty{0}{N}\\ -\qty{88000}{N}\end{bmatrix}
       &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
-      \\[1ex]
+      \\[2ex]
       \implies\quad
       &\begin{aligned}
-        F_{\textrm{L\,top,x}} & = -\qty{33075}{N}
+        F_{\textrm{L\,top, x}} & = -\qty{33075}{N}
         \\
-        F_{\textrm{R\,bot,z}} &= \qty{88000}{N}
+        F_{\textrm{R\,bot, z}} &= \qty{88000}{N}
       \end{aligned}
       &&
     \end{aligned}
   \end{equation*}
 \end{enumerate}
 
+We could also have considered other alternative ways of solving the problem; for example:
+\begin{itemize}
+\item With each block as a control volume: two control volumes in total. In this approach we should consider two balances of momentum, one for each block, and also the forces $\yF_{\textrm{R\,bot}}$ and $\yG_{\textrm{R}}$. This approach would also lead to the solution of the problem. We would be using more equations than necessary, so it would be inefficient -- but still physically correct.
+
+\needspace{13\baselineskip}
+\marginpar{\vspace{-1\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks2_divide.jpg}%
+\\\flushleftright\color{mpcolor}%
+Imaginary division of the right granite block into two parts, along the \textcolor{green}{dashed green line}. The original left block has been omitted.}
+%
+\item Imagining to divide the right granite block into two (or more!) parts, say an upper part and a lower part; see margin figure. This block would then be as \emph{two} control volumes. In this approach we should consider a balance of momentum for the upper part and one for the lower part. We should also need to consider the forces (displayed in \textcolor{green}{green} in the margin figure) at the surface dividing the upper and lower parts, and the gravitational forces (not displayed in the margin figure) on the upper and lower parts. We would arrive at the solution of the problem, again using more equations than necessary.
+
+\item With both blocks together, considered as a single object; that is, as \emph{one} control volume. In this approach we should consider just one balance of momentum, for both blocks together, and also the force $\yF_{\textrm{R\,bot}}$ and the total gravitational force on the two blocks. The force between the two blocks, at the top, would not be considered, because it would be a force internal to our object. This approach would not lead to the solution of the problem. We would arrive at the equation
+  \begin{equation*}
+    \yF_{\textrm{R\,bot}} =
+    -\yF_{\textrm{L\,bot}}
+    -\yG_{\textrm{L}}
+    -\yG_{\textrm{R}}
+  \end{equation*}
+which cannot be solved for\enskip$F_{\textrm{R\,bot, z}}$\,,\enskip because $\yF_{\textrm{L\,bot}}$ is completely unknown.
+\end{itemize}
 
 \sollabel{sec:tennisball_RT}
 
