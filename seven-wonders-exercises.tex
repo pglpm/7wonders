@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-17T11:04:31+0100
+%% Last-Updated: 2026-02-17T14:15:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4109,7 +4109,10 @@ Answer the following questions:
 \\\flushleftright\color{mpcolor}%
 The directions and magnitudes of the surface forces $\yF_{\textrm{L\,top}}$, $\yF_{\textrm{R\,top}}$, $\yF_{\textrm{R\,bot}}$ are not known, so their drawing is purely hypothetical.}
 %
-Three blocks of granite are statically arranged as shown in the margin figure. The blocks on the left and right touch the ground, and both sustain a third, central block, suspended from the ground. There are momentum fluxes (contact forces) at the four contact surfaces, depicted in the figure by \textcolor{blue}{blue arrows}; the forces on the central block are not displayed. The block on the left, denoted \enquote*{L}, has mass \qty{13000}{kg}; the one on the right, denoted \enquote*{R}, mass \qty{9000}{kg}; the central one, denoted \enquote*{C}, mass \qty{2000}{kg}. Air can be neglected.
+Three blocks of granite are statically arranged as shown in the margin figure. The blocks on the left and right touch the ground, and both sustain a third, central block, suspended from the ground. There are momentum fluxes (contact forces) at the four contact surfaces, depicted in the figure by \textcolor{blue}{blue arrows}; the forces on the central block are not displayed. The block on the left, denoted \enquote*{L}, has mass \qty{13000}{kg}; the one on the right, denoted \enquote*{R}, mass \qty{9000}{kg}; the central one, denoted \enquote*{C}, mass \qty{2000}{kg}. Air can be neglected. We know one of the forces:
+\begin{equation*}
+  \yF_{\textrm{L\,bot}} = [\num{29400}, \num{151900}]\,\unit{N} \ .
+\end{equation*}
 
 \begin{enumerate}[exerc]
 \item Try to find $\yF_{\textrm{R\,bot}}$ by considering each block as a separate control volume and applying the balance of momentum to each, together with any other necessary physical laws or principles.
@@ -4572,6 +4575,26 @@ which cannot be solved for\enskip$F_{\textrm{R\,bot, z}}$\,,\enskip because $\yF
 \begin{enumerate}[exerc]
 \item Let's denote the momentum, total surface force, and gravitational force for the left block with $\yP_{\textrm{L}}$, $\yF_{\textrm{L}}$, $\yG_{\textrm{L}}$; those for the central block with $\yP_{\textrm{C}}$, $\yF_{\textrm{C}}$, $\yG_{\textrm{C}}$; those for the right block with $\yP_{\textrm{R}}$, $\yF_{\textrm{R}}$, $\yG_{\textrm{R}}$. We have one balance of momentum per block. The texts says that the arrangement is static, therefore the changes in the three momenta are zero.
 
+The total surface forces on each block are calculated by adding the forces on the separate surfaces, because of the principle of extensivity:
+\begin{equation*}
+  \begin{aligned}
+    \yF_{\textrm{L}} = \yF_{\textrm{L\,bot}} + \yF_{\textrm{L\,top}} \ ,
+    \quad
+    \yF_{\textrm{C}} = \yF_{\textrm{C\,left}}
+    + \yF_{\textrm{C\,right}} \ ,
+    \quad
+    \yF_{\textrm{R}} = \yF_{\textrm{R\,bot}} + \yF_{\textrm{R\,top}} \ .
+  \end{aligned}
+\end{equation*}
+  The forces between the left and central blocks, and those between the central and right blocks, are related by the principle of symmetry of flux (Newton's 3rd law in this case):
+\begin{equation*}
+  \begin{aligned}
+    \yF_{\textrm{C\,left}} = - \yF_{\textrm{L\,top}} \ ,
+    \qquad
+\yF_{\textrm{C\,right}} = - \yF_{\textrm{R\,top}} \ .
+  \end{aligned}
+\end{equation*}
+
   For the gravitational force of each blocks we can use the constitutive relations
   \begin{equation*}
     \begin{aligned}
@@ -4586,27 +4609,123 @@ which cannot be solved for\enskip$F_{\textrm{R\,bot, z}}$\,,\enskip because $\yF
     \end{aligned}
   \end{equation*}
 
-The total surface forces on each block are calculated by adding the forces on the separate surfaces, because of the principle of extensivity:
-\begin{equation*}
-  \begin{aligned}
-    \yF_{\textrm{L}} &= \yF_{\textrm{L\,bot}} + \yF_{\textrm{L\,top}} \ ,
-    \\
-    \yF_{\textrm{C}} &= \yF_{\textrm{C\,left}}
-    + \yF_{\textrm{C\,right}} \ ,
-    \\
-    \yF_{\textrm{R}} &= \yF_{\textrm{R\,bot}} + \yF_{\textrm{R\,top}} \ .
-  \end{aligned}
-\end{equation*}
-  The forces between the left and central blocks, and those between the central and right blocks, are related by the principle of symmetry of flux (Newton's 3rd law in this case):
-\begin{equation*}
-  \begin{aligned}
-    \yF_{\textrm{C\,left}} &= - \yF_{\textrm{L\,top}} \ ,
-    \\
-\yF_{\textrm{C\,right}} &= - \yF_{\textrm{R\,top}} \ .
-  \end{aligned}
-\end{equation*}
+Collecting together all the equations above we obtain the following system:
+  \begin{equation*}
+    \begin{aligned}
+      &\frac{\di\yP_{\textrm{L}}}{\dt} = \yF_{\textrm{L}} + \yG_{\textrm{L}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance block L}}
+        \\
+      &\frac{\di\yP_{\textrm{C}}}{\dt} = \yF_{\textrm{C}} + \yG_{\textrm{C}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance block C}}
+        \\
+      &\frac{\di\yP_{\textrm{R}}}{\dt} = \yF_{\textrm{R}} + \yG_{\textrm{R}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance block R}}
+        \\
+        &\yF_{\textrm{L}} = \yF_{\textrm{L\,top}} + \yF_{\textrm{L\,bot}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity block L}}
+        \\
+        &\yF_{\textrm{C}} = \yF_{\textrm{C\,left}} + \yF_{\textrm{C\,right}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity block C}}
+        \\
+        &\yF_{\textrm{R}} = \yF_{\textrm{R\,top}} + \yF_{\textrm{R\,bot}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity block R}}
+        \\
+        &\yF_{\textrm{C\,left}} = -\yF_{\textrm{R\,top}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}symmetry of flux}}
+        \\
+        &\yF_{\textrm{C\,right}} = -\yF_{\textrm{L\,top}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}symmetry of flux}}
+        \\
+        &\yG_{\textrm{L}} = -\ym_{\textrm{L}}\, g\, [0,1]
+        %\approx [0, -\num{130000}]\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}gravity force block L}}
+        \\
+        &\yG_{\textrm{C}} = -\ym_{\textrm{C}}\, g\, [0,1]
+        %\approx [0, -\num{20000}]\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}gravity force block C}}
+        \\
+        &\yG_{\textrm{R}} = -\ym_{\textrm{R}}\, g\, [0,1]
+        %\approx [0, -\num{88000}]\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}gravity force block R}}
+        \\
+        &\frac{\di\yP_{\textrm{L}}}{\dt} =  [0,0]\,\unit{N}
+          &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation block L}}
+        \\
+        &\frac{\di\yP_{\textrm{C}}}{\dt} =  [0,0]\,\unit{N}
+          &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation block C}}
+        \\
+        &\frac{\di\yP_{\textrm{R}}}{\dt} =  [0,0]\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation block R}}
+        \\
+        &\yF_{\textrm{L\,bot}} = [\num{29400}, \num{151900}]\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}information}}
+    \end{aligned}
+  \end{equation*}
 
-\item \mynotew{Coming soon!}
+  Solving the system above by substitution, we notice that all the forces between the blocks mathematically disappear from the final result:
+  \begin{equation*}
+    \yF_{\textrm{R\,bot}} =
+    -\yF_{\textrm{L\,bot}}
+    -\yG_{\textrm{L}} -\yG_{\textrm{C}} -\yG_{\textrm{R}}
+    \approx
+    [-\num{29400}, \num{83000}]\,\unit{N} \, .
+  \end{equation*}
+  But from the same system it is also possible to find all other surface forces. In particular
+  \begin{equation*}
+    \yF_{\textrm{R\,top}} =
+    \yF_{\textrm{L\,bot}}
+    +\yG_{\textrm{L}} +\yG_{\textrm{C}}
+    \approx
+    [\num{29400}, \num{4900}]\,\unit{N} \, .
+  \end{equation*}
+
+\item In the previous solution, the forces between the granite rocks mathematically disappear from the final result for $\yF_{\textrm{R\,bot}}$. This may indicate that this force can be found considering the three blocks as a single object, a single control volume.
+
+  Denote by $\yP$, $\yF$, $\yG$ the total momentum, surface force, and gravitational force for this control volume. These three satisfy the balance of momentum, and we know that the time derivative of momentum is zero because of the static situation.
+
+  The principle of extensivity applies to the surface forces, but in this case we have a sum of only two:
+  \begin{equation*}
+    \yF = \yF_{\textrm{L\,bot}} + \yF_{\textrm{R\,bot}}
+  \end{equation*}
+  because all the other surface forces occur on surfaces \emph{within} the control volume, thus they don't count. There is no need to consider any symmetry of flux (Newton's 3rd law) either.
+
+  The total gravitational force is obtained by either adding the gravitational forces for the three subvolumes, or by considering the total mass:
+  \begin{equation*}
+    \yG =
+    -(\ym_{\textrm{L}} + \ym_{\textrm{C}} + \ym_{\textrm{R}})\,
+    g\, [0,1]
+      \approx [0, -\num{240000}]\,\unit{N} \ .
+  \end{equation*}
+
+In this approach we obtain this system:
+  \begin{equation*}
+    \begin{aligned}
+      &\frac{\di\yP}{\dt} = \yF + \yG
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance, all blocks together}}
+        \\
+        &\yF = \yF_{\textrm{L\,bot}} + \yF_{\textrm{R\,bot}}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity}}
+        \\
+        &\yG =
+    -(\ym_{\textrm{L}} + \ym_{\textrm{C}} + \ym_{\textrm{R}})\,
+    g\, [0,1]
+        %\approx [0, -\num{130000}]\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}gravity force, all blocks together}}
+        \\
+        &\frac{\di\yP}{\dt} =  [0,0]\,\unit{N}
+          &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}static situation}}
+        \\
+        &\yF_{\textrm{L\,bot}} = [\num{29400}, \num{151900}]\,\unit{N}
+        &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}information}}
+    \end{aligned}
+  \end{equation*}
+  from which we find the same solution as before, but much faster:
+  \begin{equation*}
+    \yF_{\textrm{R\,bot}} = -\yF_{\textrm{L\,bot}} -\yG
+    \approx [-\num{29400}, \num{83000}]\,\unit{N} \, .
+  \end{equation*}
+
+  In this approach, however, we cannot find $\yF_{\textrm{R\,top}}$ or any of the other forces between the blocks.
 \end{enumerate}
 
 
