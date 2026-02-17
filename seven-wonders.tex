@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-16T07:56:41+0100
+%% Last-Updated: 2026-02-17T15:06:39+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11247,17 +11247,26 @@ This way we can numerically simulate complex physical phenomena like a planetary
 \section{Friction and normal forces}
 \label{sec:friction_normal_force}
 
-Many physical phenomena involve contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor, or a layer of vegetable oil floating above water. The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces} and have several peculiar features. In some cases they are mathematically quite difficult to describe.
+Many physical phenomena involve contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor, a layer of vegetable oil floating above water, or a football being hit by a foot. The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces}, or \textbf{impact forces} when they occur for very short times, as in the case of the football. Forces of this kind often obey quite complex constitutive relations, and are therefore mathematically difficult to describe and to use for making predictions.
 
-We here discuss some particular constitutive relations for contact forces between rigid bodies, with the following simplifications:
-\begin{itemize}[nosep]
-\item one of the bodies is at rest in the chosen coordinate system; typically this \enquote*{body} is the ground, floor, or the surface of a table;
+In some situations we can find the value of contact forces if we \emph{already know} the motion, or more precisely the change in momentum; for instance because we observe that the situation is static. In such cases we can use the balance of momentum to find the force from the change in momentum and the remaining forces:
+\begin{equation*}
+  {\underbracket[0.5pt]{\frac{\di\yP}{\di t}}_{\text{known}}}
+    =
+  {\underbracket[0.5pt]{\yF_{\text{contact}}}_{\text{\color{red}unknown}}}
++  {\underbracket[0.5pt]{\yF_{\text{other}}}_{\text{known}}}
+ + {\underbracket[0.5pt]{\yG}_{\text{known}}}
+\end{equation*}
+
+We here discuss some methods to find contact forces between rigid bodies, with the following simplifications:
+\begin{itemize}[noitemsep]
+\item one of the bodies is \emph{at rest} in the chosen coordinate system; typically this \enquote*{body} is the ground, floor, or the surface of a table; this means that we know that $\di\yP/\dt = \zerov\,\unit{N}$ for this body;
 \item the contact surface is horizontal, orthogonal to the force of gravity.
 \end{itemize}
 
-A contact force in this kind of situations typically has both a component orthogonal to the surface (vertical component), and a component parallel to the surface (horizontal component), so its direction is oblique with respect to the surface. The surface-orthogonal component of a contact force is called \textbf{normal force}, and the surface-parallel component is called \textbf{friction}.
+In this kind of situations, a contact force typically has both a component orthogonal to the surface (vertical component), and a component parallel to the surface (horizontal component), so its direction is oblique with respect to the surface. The surface-orthogonal component of a contact force is called \textbf{normal force}, and the surface-parallel component is often called \textbf{friction}.
 
-If we simplify the problem to two dimensions with coordinates $(x,z)$, where $x$ is horizontal and $z$ is vertical, upward, then the $z$-component of the contact force is the normal force, and the $x$-component is the friction. Informally we can write
+If we simplify the problem to two dimensions with coordinates $(x,z)$, with $x$ is horizontal and $z$ is vertical, upward, then the $z$-component of the contact force is the normal force, and the $x$-component is the friction. Informally we can write
 \begin{equation*}
   \textbf{\footnotesize contact force}
   =
@@ -11274,7 +11283,7 @@ If we simplify the problem to two dimensions with coordinates $(x,z)$, where $x$
   \end{bmatrix}
 \end{equation*}
 
-In many cases, a contact force $\yFc$ has a constitutive equation of this type:
+In many cases it is known that the components of a contact force $\yFc$ satisfy a relation of this type:
 \begin{equation}\label{eq:contact_force_2D}
   \yFc =
   \begin{bmatrix}
@@ -11282,16 +11291,14 @@ In many cases, a contact force $\yFc$ has a constitutive equation of this type:
     \yFn
   \end{bmatrix}
 \end{equation}
-where $\yFn$ is the normal force and $\yfri$ is approximately a constant, called \textbf{friction coefficient}. The normal force $\yFn$ has in turn a special expression. Let us examine it first.
+where $\yFn$ is the normal force and $\yfri$ is called \textbf{friction coefficient} and is approximately constant. Constitutive relations for the normal force $\yFn$ are often very complicated. Let's see how this force can be found if we already know the motion instead.
 
 \paragraph{Normal force}
 \label{sec:normal_force}
 
-The normal components of contact forces are peculiar: their mathematical expression can be said to be determined by the balance of momentum, rather than vice versa.
+Consider an object such as a book lying on a table, possibly pushed along the table. We \emph{observe} that the vertical position of the book does not change: the book doesn't suddenly sink into the table, nor does it suddenly levitate upward. Its vertical velocity component is therefore always zero:\enskip$v_{z} = \qty{0}{m/s}$\,.\enskip Using Newton's constitutive relation for momentum $\yP=\ym\yv$, where $\ym$ is the mass of the book, we see that the vertical momentum component is also always zero:\enskip$P_{z}=\ym v_{z} = \qty{0}{N\,s}$\,.\enskip Its time derivative is therefore also zero.
 
-Consider an object such a book lying on a table, possibly pushed along the table. We \emph{observe} that the vertical position of the book does not change: the book doesn't suddenly sink into the table, nor does it suddenly levitate upward. Its vertical velocity component is therefore always zero:\enskip$v_{z} = \qty{0}{m/s}$\,.\enskip Using Newton's constitutive relation for momentum $\yP=\ym\yv$, where $\ym$ is the mass of the book, we see that the vertical momentum component is also always zero:\enskip$P_{z}=\ym v_{z} = \qty{0}{N\,s}$\,.\enskip Its time derivative is therefore also zero.
-
-Now consider the sum of all momentum fluxes through the whole surface of the book \emph{except the contact surface}: top surface, side surfaces; call this sum $\yFr$. Consider also the gravitational supply of momentum $\yG=-\ym\,g\,[0,-1]$. Taking the vertical, $z$-component of the balance of momentum we have
+Now consider the sum of all momentum fluxes through the whole surface of the book \emph{except the contact surface}: top surface, side surfaces; call this sum $\yFr$. Consider also the gravitational supply of momentum $\yG=-\ym\,g\,[0,1]$. Taking the vertical, $z$-component of the balance of momentum we have
 \begin{equation*}
   \qty{0}{N} =
   \frac{\di P_{z}}{\dt}
@@ -11299,15 +11306,17 @@ Now consider the sum of all momentum fluxes through the whole surface of the boo
 \qquad  \Longrightarrow\qquad
   \yFn = - \yFrz - G_{z}
 \end{equation*}
-That is, the normal force is equal to \emph{minus} the sum of all $z$-components of the other momentum fluxes and of the momentum supply:
-\begin{definition}{Normal force (horizontal case)}\label{def:normalforce}
-  In many situations of horizontal contact between two solid bodies, the \textbf{normal force} $\yFn$ is given by
+That is, the normal force must be equal to \emph{minus} the sum of all $z$-components of the other momentum fluxes and of the momentum supply. More generally in static situations we must have
+% \begin{definition}{Normal force (horizontal case)}\label{def:normalforce}
+%   In many situations of horizontal contact between two solid bodies, the \textbf{normal force} $\yFn$ is given by
   \begin{equation*}
-    \yFn = -\Bigl(\parbox{0.8\linewidth}{\footnotesize sum of $z$-components of momentum fluxes through all other surfaces and of momentum supply}\Bigr)
+    \yFn = -\Bigl(\parbox{0.8\linewidth}{\footnotesize sum of $z$-components of momentum fluxes through all other surfaces and of momentum supply}\Bigr) \ .
   \end{equation*}
-\end{definition}
-
-The normal force is therefore never needed to predict the behaviour of the vertical momentum of a body. Rather, its mathematical expression comes from the fact that we already know that such momentum is zero and constant. But the value of this force is needed to determine the \emph{horizontal component} of the contact force: the friction, as formula~\eqref{eq:contact_force_2D} shows.
+% \end{definition}
+  \begin{warning}[Force from motion, instead of motion from force]
+    It must be emphasized that the mathematical formula above is \textbf{not} a constitutive relation: it does not relate the force to volume contents or fluxes or supplies at the present time. It is only a 
+  \end{warning}
+  If the normal force is calculated, thanks to the fact that we already know that the vertical momentum is zero and constant, then we can determine the \emph{horizontal component} of the contact force: the friction, as formula~\eqref{eq:contact_force_2D} shows.
 
 \paragraph{Friction}
 
