@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-17T10:48:04+0100
+%% Last-Updated: 2026-02-17T11:04:31+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4109,7 +4109,7 @@ Answer the following questions:
 \\\flushleftright\color{mpcolor}%
 The directions and magnitudes of the surface forces $\yF_{\textrm{L\,top}}$, $\yF_{\textrm{R\,top}}$, $\yF_{\textrm{R\,bot}}$ are not known, so their drawing is purely hypothetical.}
 %
-Three blocks of granite are arranged as shown in the margin figure. The blocks on the left and right touch the ground, and both sustain a third, central block, suspended from the ground. There are momentum fluxes (contact forces) at the four contact surfaces, depicted in the figure by \textcolor{blue}{blue arrows}; the forces on the central block are not displayed. The block on the left, denoted \enquote*{L}, has mass \qty{13000}{kg}; the one on the right, denoted \enquote*{R}, mass \qty{9000}{kg}; the central one, denoted \enquote*{C}, mass \qty{2000}{kg}. Air can be neglected.
+Three blocks of granite are statically arranged as shown in the margin figure. The blocks on the left and right touch the ground, and both sustain a third, central block, suspended from the ground. There are momentum fluxes (contact forces) at the four contact surfaces, depicted in the figure by \textcolor{blue}{blue arrows}; the forces on the central block are not displayed. The block on the left, denoted \enquote*{L}, has mass \qty{13000}{kg}; the one on the right, denoted \enquote*{R}, mass \qty{9000}{kg}; the central one, denoted \enquote*{C}, mass \qty{2000}{kg}. Air can be neglected.
 
 \begin{enumerate}[exerc]
 \item Try to find $\yF_{\textrm{R\,bot}}$ by considering each block as a separate control volume and applying the balance of momentum to each, together with any other necessary physical laws or principles.
@@ -4570,7 +4570,42 @@ which cannot be solved for\enskip$F_{\textrm{R\,bot, z}}$\,,\enskip because $\yF
 
 \sollabel{sec:graniteblocks3}
 \begin{enumerate}[exerc]
-\item \mynotew{Coming soon!}
+\item Let's denote the momentum, total surface force, and gravitational force for the left block with $\yP_{\textrm{L}}$, $\yF_{\textrm{L}}$, $\yG_{\textrm{L}}$; those for the central block with $\yP_{\textrm{C}}$, $\yF_{\textrm{C}}$, $\yG_{\textrm{C}}$; those for the right block with $\yP_{\textrm{R}}$, $\yF_{\textrm{R}}$, $\yG_{\textrm{R}}$. We have one balance of momentum per block. The texts says that the arrangement is static, therefore the changes in the three momenta are zero.
+
+  For the gravitational force of each blocks we can use the constitutive relations
+  \begin{equation*}
+    \begin{aligned}
+      \yG_{\textrm{L}} &= -\ym_{\textrm{L}}\, g\, [0,1]
+      \approx [0, -\num{130000}]\,\unit{N} \ ,
+      \\
+      \yG_{\textrm{C}} &= -\ym_{\textrm{C}}\,g\, [0,1]
+      \approx [0, -\num{20000}]\,\unit{N} \ ,
+      \\
+      \yG_{\textrm{R}} &= -\ym_{\textrm{R}}\,g\, [0,1]
+      \approx [0, -\num{88000}]\,\unit{N} \ .
+    \end{aligned}
+  \end{equation*}
+
+The total surface forces on each block are calculated by adding the forces on the separate surfaces, because of the principle of extensivity:
+\begin{equation*}
+  \begin{aligned}
+    \yF_{\textrm{L}} &= \yF_{\textrm{L\,bot}} + \yF_{\textrm{L\,top}} \ ,
+    \\
+    \yF_{\textrm{C}} &= \yF_{\textrm{C\,left}}
+    + \yF_{\textrm{C\,right}} \ ,
+    \\
+    \yF_{\textrm{R}} &= \yF_{\textrm{R\,bot}} + \yF_{\textrm{R\,top}} \ .
+  \end{aligned}
+\end{equation*}
+  The forces between the left and central blocks, and those between the central and right blocks, are related by the principle of symmetry of flux (Newton's 3rd law in this case):
+\begin{equation*}
+  \begin{aligned}
+    \yF_{\textrm{C\,left}} &= - \yF_{\textrm{L\,top}} \ ,
+    \\
+\yF_{\textrm{C\,right}} &= - \yF_{\textrm{R\,top}} \ .
+  \end{aligned}
+\end{equation*}
+
 \item \mynotew{Coming soon!}
 \end{enumerate}
 
