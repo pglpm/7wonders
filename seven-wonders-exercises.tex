@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-17T22:25:44+0100
+%% Last-Updated: 2026-02-17T23:46:37+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1095,7 +1095,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yv}{\bm{v}}
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
-\newcommand*{\ySt}{\bm{\mathcal{F}}}
+\newcommand*{\yFt}{\bm{\mathcal{F}}}
 \newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
@@ -4141,7 +4141,45 @@ At a particular time $\ytf$ a car is moving uphill with an instantaneous velocit
 \item You're given the additional information that the car has, at time $\ytf$, an instantaneous acceleration of magnitude \qty{0.95}{m/s^{2}}, in the same direction as the velocity. Also in this case we don't know the acceleration at any earlier or later instant. Can you calculate how much is the surface force from the road to the car at time $\ytf$?
 \end{enumerate}
 
-%11.4, 6.60
+
+\needspace{7\baselineskip}
+\section{}
+\label{sec:wind_building}
+
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building.jpg}%
+\\\flushleftright\color{mpcolor}%
+The building is seen from the front}
+%
+A strong wind is hitting a building from one side, as illustrated in the margin figure; the wind is represented by the \textcolor{cyan}{light-blue dotted arrows}. As it hits the building's side, the wind's air is deflected upwards. We are interested in calculating the surface force that the wind exerts on the building's side.
+
+At some distance from the building, the wind has a horizontal velocity ($x$ direction) of \qty{30}{m/s}. The deflected wind has a completely vertical velocity ($z$ direction).
+
+Consider the constitutive relation for a surface force $\yF$ in the case where matter is flowing through a static surface with perpendicular velocity $v$:
+\begin{equation*}
+  \yF = A \yrho v \yv + \yFt
+\end{equation*}
+where:
+\begin{itemize}
+\item[] $A$ is the area of the surface;
+\item[] $\yrho$ is the mass density of the matter flowing through the surface;
+\item[] $\yFt$, called the pressure vector or stress vector, is the force that there would be on the surface if matter weren't flowing through it.
+\end{itemize}
+
+In the present case, this constitutive relation can be applied to the vertical surface represented by the vertical, \textcolor{yellow}{yellow dashed line} in the margin figure. The surface force there is called $\yF_{\textrm{left}}$. The pressure vector $\yFt$ is the horizontal force from atmospheric pressure:
+\begin{equation*}
+  \mathcal{F} = A\,p
+  \qquad\text{with}\quad
+p \approx \qty{1e5}{N/m^{2}} \ .
+\end{equation*}
+
+Proceed as follows in order to find the force that the wind exerts on the building's side:
+\begin{enumerate}
+\item Consider the imaginary control volume represented by the \textcolor{yellow}{yellow dashed rectangle} in the figure (it has a depth but it isn't visible since the figure shows it from the front).
+\item Apply the balance of momentum to this control volume, focusing on the $x$-component.
+\item Consider which surface forces must be added together.
+\item Assume that the total momentum within the control volume is constant in time; that is, the wind is steady.
+\item Assume that the air's mass is negligible.
+\end{enumerate}
 
 
 
@@ -4806,6 +4844,27 @@ Finally, using the balance of momentum at time $\ytf$ we obtain
   \end{aligned}
 \end{equation*}
 \end{enumerate}
+
+
+\sollabel{sec:wind_building}
+
+Denote with $\yP$ the total momentum contained in the imaginary control volume; with $\yF$ the total surface force exerted on its sides; and with $\yG$ the total volume force from gravity. The balance of momentum applies:
+\begin{equation*}
+\frac{\di\yP}{\dt} = \yF + \yG \ .
+\end{equation*}
+
+The text says to assume that the momentum is constant in time. This means
+\begin{equation*}
+  \frac{\di\yP}{\dt} = \zerov\,\unit{N}
+\end{equation*}
+and in particular, for the $x$-component,
+\begin{equation*}
+  \frac{\di P_{x}}{\dt} = \qty{0}{N} \ .
+\end{equation*}
+
+Moreover, the air's mass is negligible. This means that we can take the gravitational force ${\yG \approx \zerov\,\unit{N}}$ (note that there's only air within the control volume). In any case, the $x$-component of this force would be zero.
+
+The total surface force $\yF$ is given by the sum of the forces on all six sides of the control volume (four visible in the figure as dashed lines, plus two on the front and back).
 
 
 \sollabel{sec:tennisball_RT}
