@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-17T18:38:26+0100
+%% Last-Updated: 2026-02-17T21:06:19+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11293,7 +11293,7 @@ In many cases it is known that the components of a contact force $\yFc$ satisfy 
 \end{equation}
 where $\yFn$ is the normal force and $\yfri$ is called \textbf{friction coefficient} and is approximately constant. Constitutive relations for the normal force $\yFn$ are often very complicated. Let's see how this force can be found if we already know the motion instead.
 
-\paragraph{Normal force}
+\subsection{Normal force}
 \label{sec:normal_force}
 
 Consider an object such as a book lying on a table, possibly pushed along the table. We \emph{observe} that the vertical position of the book does not change: the book doesn't suddenly sink into the table, nor does it suddenly levitate upward. Its vertical velocity component is therefore always zero:\enskip$v_{z} = \qty{0}{m/s}$\,.\enskip Using Newton's constitutive relation for momentum $\yP=\ym\yv$, where $\ym$ is the mass of the book, we see that the vertical momentum component is also always zero:\enskip$P_{z}=\ym v_{z} = \qty{0}{N\,s}$\,.\enskip Its time derivative is therefore also zero.
@@ -11314,7 +11314,7 @@ That is, the normal force must be equal to \emph{minus} the sum of all $z$-compo
   \end{equation*}
   But let's emphasize again:
 % \end{definition}
-  \begin{warning}[]
+  \begin{warning}[Normal force for prediction or simulation]
     The mathematical formula above can only be used if we know \emph{beforehand} that the momentum is constant in time. The formula is therefore \textbf{not} a constitutive relation: it does not relate the force to volume contents, fluxes, or supplies at the same coordinate time. It is only an application of the balance of momentum, when the change in momentum is known.
 
     \smallskip
@@ -11323,7 +11323,7 @@ That is, the normal force must be equal to \emph{minus} the sum of all $z$-compo
   \end{warning}
 
 
-\paragraph{Friction}
+\subsection{Friction}
 
 If the normal force is calculated, then we can determine the \emph{horizontal component} of the contact force: the friction, using formula~\eqref{eq:contact_force_2D}.
 
@@ -11333,7 +11333,7 @@ In both these experiences the total momentum content of the object is not changi
 
 Our two experiences illustrate that this friction may be different depending on whether the object is at rest or in motion with respect to the floor. We call it \textbf{static friction} when the object's velocity is zero, and \textbf{kinetic} or \textbf{sliding friction} when the object's velocity is non-zero. Let's see their mathematical expressions.
 
-\paragraph{Static friction}
+\subsection{Static friction}
 
 In our first experience, with the object at rest on the floor, we noticed that the (zero) horizontal momentum does not change if we exert any amount of force smaller than a particular threshold. Reasoning as we did for the normal force, consider again the sum $\yFr$ of all momentum fluxes through the whole surface of the object except the contact surface. Even if not necessary in this specific case, consider also the gravitational supply of momentum $\yG=-\ym\,g\,[0,-1]$. Finally, call $\yFs$ the static friction. Taking the horizontal, $x$-component of the balance of momentum we find
 \begin{equation*}
@@ -11375,7 +11375,7 @@ We can express this threshold with the equation
   $\yFn$ is the normal force, $\yfris$ is called the \textbf{coefficient of static friction}, and $\ye_{\yFr}$ is a \emph{unit vector} having the same direction as $\yFr$.
 \end{definition}
 
-\paragraph{Kinetic friction}
+\subsection{Kinetic friction}
 
 In our second experience, with the object in motion, we noticed that the kinetic friction $\yFk$ exerted by the floor on the object is, approximately:
 \begin{itemize}[nosep]
@@ -11473,11 +11473,11 @@ Let us try to infer what are the momentum fluxes through the two horizontal cont
 \item As long as the upper side of the box is closed, however, the portion of gas between the two control surfaces stays at rest. The flux of outward-oriented momentum coming from the gas on the other side of the lower control surface must therefore be compensated by a flux of inward-oriented momentum that comes from the closed side of the box (side figure, right).
 \end{itemize}
 
-Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small portion of control surface that delimits some gas \emph{at rest}, there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
-%
-\marginpar{\vspace{-7\baselineskip}\footnotesize\centering%
+\needspace{7\baselineskip}
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gas_fluxes.jpg}%
-}
+}%
+Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small portion of control surface that delimits some gas \emph{at rest}, there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
 
 \begin{definition}{Internal pressure}\label{def:internal_pressure}
   The compressive momentum flux that occurs through any control surface that we may choose within a gas is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is the momentum flux divided by the area through which it occurs.

@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-17T14:15:59+0100
+%% Last-Updated: 2026-02-17T22:16:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4126,6 +4126,24 @@ Three blocks of granite are statically arranged as shown in the margin figure. T
 
 
 
+\needspace{7\baselineskip}
+\section{}
+\label{sec:car_uphill}
+
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/car_uphill.jpg}%
+}
+%
+At a particular time $\ytf$ a car is moving uphill with an instantaneous velocity ${\yv(\ytf) = [\num{11.4}, \num{6.6}]\,\unit{m/s}}$ in the coordinate system $(x, z)$, as in the margin figure. Note that this is the car's velocity at that specific instant; we don't know the velocity at any earlier or later instant. The car (including driver) has mass \qty{1400}{kg}. Assume that air is negligible.
+
+\begin{enumerate}[exerc]
+\item Given the above information, can you calculate how much is the surface force (momentum flux) from the road to the car at time $\ytf$?
+
+\item You're given the additional information that the car has, at time $\ytf$, an instantaneous acceleration of magnitude \qty{0.95}{m/s^{2}}, in the same direction as the velocity. Also in this case we don't know the acceleration at any earlier or later instant. Can you calculate how much is the surface force from the road to the car at time $\ytf$?
+\end{enumerate}
+
+%11.4, 6.60
+
+
 
 \section{}
 \label{sec:tennisball_RT}
@@ -4726,6 +4744,67 @@ In this approach we obtain this system:
   \end{equation*}
 
   In this approach, however, we cannot find $\yF_{\textrm{R\,top}}$ or any of the other forces between the blocks.
+\end{enumerate}
+
+
+\sollabel{sec:car_uphill}
+
+\begin{enumerate}[exerc]
+\item No, we don't have enough information to find the surface force $\yF(\ytf)$ from road to car at that time instant. One way to calculate such force would be to apply the balance of momentum to the car at that time:
+  \begin{equation*}
+    \frac{\di\yP(\ytf)}{\dt} = \yF(\ytf) + \yG(\ytf) \ ,
+  \end{equation*}
+  where $\yP$ is the car's momentum and $\yG$ the gravitational force on the car. In order to find $\yF$ we'd need to know both $\di\yP(\ytf)/\dt$ and $\yG(\ytf)$. We can calculate the latter from the information given, but $\di\yP(\ytf)/\dt$ is unknown.
+
+  Applying Newton's constitutive relation between momentum and velocity we can find that the car's momentum at $\ytf$ is
+  \begin{equation*}
+    \yP(\ytf) = \ym\, \yv(\ytf) \approx [\num{160000}, \num{9240}]\,\unit{N\,s}
+  \end{equation*}
+  but this doesn't tell us anything about the \emph{change} in momentum at that time: the momentum could be constant, or it could be larger or smaller a little later.
+
+\item Yes, now we do have enough information to calculate $\yF(\ytf)$. We are given the magnitude of the acceleration at time $\ytf$, and are told that it has the same direction of the velocity. We can find the acceleration components by multiplying the magnitude by a unit vector formed from the velocity:
+  \begin{equation*}
+    \begin{aligned}
+      \frac{\di\yv(\ytf)}{\dt} &=
+      \qty{0.95}{m/s^{2}} \cdot \frac{\yv(\ytf)}{\abs{\yv(\ytf)}}
+      \\[1ex]
+      &\approx
+      \qty{0.95}{m/s^{2}} \cdot
+      \frac{[\num{11.4}, \num{6.6}]}{\sqrt{\num{11.4}^{2} + \num{6.6}^{2}}}
+      =
+      \qty{0.95}{m/s^{2}} \cdot \frac{[\num{11.4}, \num{6.6}]}{\num{13.173}}
+      \\[1ex]
+      &\approx [0.82, 0.48]\,\unit{m/s^{2}} \ .
+    \end{aligned}
+  \end{equation*}
+
+  Since the car's mass is constant, we can then find the time derivative of the car's momentum by using Newton's relation between momentum and velocity:
+\begin{equation*}
+  \begin{aligned}
+    \frac{\di\yP(\ytf)}{\dt} =
+    \frac{\di\ym\yv(\ytf)}{\dt} &=
+    \ym\frac{\di\yv(\ytf)}{\dt}
+    \\
+    &\approx \qty{1400}{kg} \cdot [0.82, 0.48]\,\unit{m/s^{2}}
+    = [\num{1200}, 670]\,\unit{N} \ .
+  \end{aligned}
+\end{equation*}
+
+From the car's mass we can also find the gravitational force, using the appropriate constitutive relation:
+\begin{equation*}
+  \yG = -\ym g\, [0,1]
+  \approx -[0, \num{14000}]\,\unit{N} \ .
+\end{equation*}
+
+Finally, using the balance of momentum at time $\ytf$ we obtain
+\begin{equation*}
+  \begin{aligned}
+    \yF(\ytf) &= \frac{\di\yP(\ytf)}{\dt} - \yG(\ytf)
+    \\
+    &\approx [\num{1200}, 670]\,\unit{N} + [0, \num{14000}]\,\unit{N}
+    \approx [\num{1200}, \num{15000}]\,\unit{N} \ .
+  \end{aligned}
+\end{equation*}
 \end{enumerate}
 
 
