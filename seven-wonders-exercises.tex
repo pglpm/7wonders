@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-18T01:23:54+0100
+%% Last-Updated: 2026-02-18T13:25:30+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4150,36 +4150,41 @@ At a particular time $\ytf$ a car is moving uphill with an instantaneous velocit
 \\\flushleftright\color{mpcolor}%
 The building is seen from the front}
 %
-A strong wind is hitting a building from one side, as illustrated in the margin figure; the wind is represented by the \textcolor{cyan}{light-blue dotted arrows}. As it hits the building's side, the wind's air is deflected upwards. We are interested in calculating the surface force that the wind exerts on the building's side.
+A strong wind is hitting a building from one side, as illustrated in the margin figure; the wind is represented by the \textcolor{cyan}{light-blue dotted arrows}. The wind's air is deflected upwards, by the building and the ground, as it approaches the building's side. The area of the building's side is \qty{450}{m^{2}}.
 
-At some distance from the building, the wind has a horizontal velocity ($x$ direction) of \qty{30}{m/s}. The deflected wind has a completely vertical velocity ($z$ direction).
+We are interested in calculating the \emph{extra} surface force that the wind exerts on the building's side, beyond to the usual force from atmospheric pressure. Owing to the wind, the total force is stronger than that from usual atmospheric pressure.
 
-There is a constitutive relation for the surface force $F$ in the case where matter is flowing through a static surface with perpendicular velocity $v$:
+At some distance from the building's side (left in the figure), the wind has a purely horizontal velocity $\yv_{\textrm{wind}}$ of \qty{30}{m/s}. The deflected wind has a purely vertical velocity.
+
+There is a constitutive relation for the surface force $F$ when matter is flowing through the surface with perpendicular velocity $v$, and the surface is not moving:
 \begin{equation*}
-  F = A \yrho v^{2} + \mathcal{F}
+  F = A\, \yrho\, v^{2} + \mathcal{F}
 \end{equation*}
 where:
 \begin{itemize}
 \item[] $A$ is the area of the surface;
 \item[] $\yrho$ is the mass density of the matter flowing through the surface;
-\item[] $\mathcal{F}$, called the pressure vector or stress vector, is the force that there would be on the surface if matter weren't flowing through it.
+\item[] $\mathcal{F}$, called pressure vector or stress vector, is the force that there would be on the surface if matter weren't flowing through it.
 \end{itemize}
-In the present case this constitutive relation can be applied to the vertical surface represented by the vertical, \textcolor{yellow}{yellow dashed line} in the margin figure. The surface force there is called $\yF_{\textrm{left}}$. The pressure vector $\mathcal{F}$ is the horizontal force from atmospheric pressure:
-\begin{equation*}
-  \mathcal{F} = A\,p
-  \qquad\text{with}\quad
-p \approx \qty{1e5}{N/m^{2}} \ .
-\end{equation*}
+The force $F$ has the same direction as the velocity.
 
-Proceed as follows in order to find the force that the wind exerts on the building's side:
+\medskip
+
+Find the force that the wind exerts on the building's side; proceed as follows:
 \begin{enumerate}
-\item Consider the imaginary control volume represented by the \textcolor{yellow}{yellow dashed rectangle} in the figure (it has a depth but it isn't visible since the figure shows it from the front).
-\item Apply the balance of momentum to this control volume, focusing on the $x$-component.
-\item Consider which surface forces must be added together.
+\item Consider the imaginary control volume represented by the \textcolor{yellow}{yellow dashed rectangle} in the figure (this control volume has a depth which isn't visible because the figure shows it from the front).
+\item Apply the balance of momentum to this control volume, focusing on the $x$-component only.
+\item Consider which surface forces must be added together. The only forces with a horizontal component are those on the vertical surfaces shown in the figure.
+\item For the force across the vertical surface on the left, use the constitutive relation above. In this case:
+  \begin{itemize}
+  \item \enquote*{$F$} is $F_{\textrm{left}}$.
+  \item \enquote*{$v$} is $v_{\textrm{wind}}$.
+  % \item $A = \qty{450}{m^{2}}$, the same as the area of the building's side.
+  \item $\yrho = \qty{1.2}{kg/m^{3}}$ is the mass density of air.
+  \item $\mathcal{F} = A\,p_{\textrm{air}}$, where ${p_{\textrm{air}} \approx \qty{1.0e5}{N/m^{2}}}$ is the atmospheric pressure.
+  \end{itemize}
 \item Assume that the total momentum within the control volume is constant in time; that is, the wind is steady.
-\item Assume that the air's mass is negligible.
 \end{enumerate}
-
 
 
 \section{}
@@ -4847,23 +4852,75 @@ Finally, using the balance of momentum at time $\ytf$ we obtain
 
 \sollabel{sec:wind_building}
 
-Denote with $\yP$ the total momentum contained in the imaginary control volume; with $\yF$ the total surface force exerted on its sides; and with $\yG$ the total volume force from gravity. The balance of momentum applies:
+Let's proceed as indicated in the text.
+
+\begin{enumerate}
+\item Denote with $\yP$ the total momentum contained in the imaginary control volume; with $\yF_{\textrm{tot}}$ the \emph{total} surface force exerted on all its sides; and with $\yG$ the total volume force from gravity.
+
+\item The balance of momentum applies:
 \begin{equation*}
-\frac{\di\yP}{\dt} = \yF + \yG \ .
+\frac{\di\yP}{\dt} = \yF_{\textrm{tot}} + \yG \ .
+\end{equation*}
+We focus on the $x$-component only:
+\begin{equation*}
+\frac{\di P_{x}}{\dt} = F_{\textrm{tot},x} + G_{x} \ .
 \end{equation*}
 
-The text says to assume that the momentum is constant in time. This means
-\begin{equation*}
-  \frac{\di\yP}{\dt} = \zerov\,\unit{N}
-\end{equation*}
-and in particular, for the $x$-component,
-\begin{equation*}
-  \frac{\di P_{x}}{\dt} = \qty{0}{N} \ .
-\end{equation*}
+\marginpar{\vspace{2\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building_solution.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+\item The control volume has six sides in total: four shown in the figure (as dashed lines), plus one facing us, plus one behind. The text says that only two sides have forces with $x$-components: the vertical left side, with force $F_{\textrm{left}}$; and the vertical right side, which is the building's side, with the force from the building to the air; see margin figure here. Let's call this force $F_{\textrm{build}\rightsquigarrow\textrm{air}}$.
 
-Moreover, the air's mass is negligible. This means that we can take the gravitational force ${\yG \approx \zerov\,\unit{N}}$ (note that there's only air within the control volume). In any case, the $x$-component of this force would be zero.
+  Therefore
+  \begin{equation*}
+    F_{\textrm{tot},x} = F_{\textrm{left}}
+    + F_{\textrm{build}\rightsquigarrow\textrm{air}} \ .
+  \end{equation*}
 
-The total surface force $\yF$ is given by the sum of the forces on all six sides of the control volume (four visible in the figure as dashed lines, plus two on the front and back).
+\item The constitutive relation applied to the force $F_{\textrm{left}}$ gives
+  \begin{equation*}
+    \begin{aligned}
+      F_{\textrm{left}} &=
+      A\, \yrho\, (v_{\textrm{wind}})^{2} + A\,p_{\textrm{air}}
+      \\ &=
+      \qty{450}{m^{2}} \cdot
+      \qty{1.2}{kg/m^{3}} \cdot
+      (\qty{30}{m/s})^{2} +
+      \qty{450}{m^{2}} \cdot \qty{1.0e5}{N/m^{2}}
+      \\ &\approx
+      \qty{486000}{N} + \qty{45000000}{N} \ .
+    \end{aligned}
+  \end{equation*}
+
+\item We assume $\di P_{x}/dt = \qty{0}{N}$ because the wind is steady, as indicated in the text. We also know that $G_{x}$ because the gravitational force is vertical. So we obtain
+  \begin{equation*}
+    \begin{aligned}
+      &&\frac{\di P_{x}}{\dt} &= F_{\textrm{tot},x} + G_{x}
+      \\ &\implies&
+      \qty{0}{N} &= F_{\textrm{left}}
+      F_{\textrm{build}\rightsquigarrow\textrm{air}}
+      + \qty{0}{N}
+      \\[1ex] &\implies&
+      F_{\textrm{build}\rightsquigarrow\textrm{air}} &=
+      -F_{\textrm{left}}
+      \approx -\qty{486000}{N} - \qty{45000000}{N} \ .
+    \end{aligned}
+  \end{equation*}
+\end{enumerate}
+
+\needspace{6\baselineskip}
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building_solution2.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+The force we want to find is the one from the wind's air to the building, that is, $F_{\textrm{air}\rightsquigarrow\textrm{build}}$. By the principle of symmetry of flux (Newton's 3rd law in this case) we finally find
+\begin{equation*}
+  F_{\textrm{air}\rightsquigarrow\textrm{build}} =
+ - F_{\textrm{build}\rightsquigarrow\textrm{air}}
+  \approx \qty{486000}{N} + \qty{45000000}{N} \ .
+\end{equation*}
+The second term is the usual atmospheric pressure. It's the first term, approximately \qty{490000}{N}, which may be worrying: is the building's structure able to withstand such an extra force from one side?
 
 
 \sollabel{sec:tennisball_RT}
