@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-18T13:25:30+0100
+%% Last-Updated: 2026-02-18T14:19:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4077,11 +4077,30 @@ In everyday situations we often quantify force in \enquote*{kilograms}, or bette
 
 Express your estimate of the force of Saitama's punch in kilogram-force unit.
 
+\needspace{9\baselineskip}
+\section{}
+\label{sec:hexagon_fluxes}
 
+\marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/hexagon_fluxes.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+Consider the control volume (simplified in 2D) in the margin figure. You know the following at a given coordinate time $t$, and in some coordinates $(x,y,z)$:
+\begin{itemize}
+\item The momentum content in the volume is changing at a time rate of $[4, -1,3]\,\unit{N}$.
+  \item The momentum influx at surface A is $[3, 2, -7]\,\unit{N}$
+  \item The momentum influx at surface B is $[-5, 0, 0]\,\unit{N}$
+  \item The momentum efflux at surface C is $[4, 4, 4]\,\unit{N}$
+  \item The momentum influx at surface D is $[0, 0, 1]\,\unit{N}$
+  \item The momentum influx at the other surfaces is $\zerov\,\unit{N}$.
+  \item Gravity is negligible
+\end{itemize}
+Find the momentum influx at surface E at time $t$.
+
+\needspace{15\baselineskip}
 \section{}
 \label{sec:graniteblocks2}
 
-\needspace{11\baselineskip}
 \marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks2.jpg}%
 \\\flushleftright\color{mpcolor}%
 The directions and magnitudes of the surface forces $\yF_{\textrm{L\,bot}}$ and $\yF_{\textrm{R\,bot}}$ are not known, so their drawing is purely hypothetical.}
@@ -4101,11 +4120,11 @@ Answer the following questions:
 \end{enumerate}
 
 
-\needspace{8\baselineskip}
+\needspace{11\baselineskip}
 \section{}
 \label{sec:graniteblocks3}
 
-\marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks3.jpg}%
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks3.jpg}%
 \\\flushleftright\color{mpcolor}%
 The directions and magnitudes of the surface forces $\yF_{\textrm{L\,top}}$, $\yF_{\textrm{R\,top}}$, $\yF_{\textrm{R\,bot}}$ are not known, so their drawing is purely hypothetical.}
 %
@@ -4343,7 +4362,7 @@ Start from the script for the simulation of two independent tennis balls, and im
       \qquad
       d = \qty{0.07}{m}
       \\[1ex]
-      \yGa = -\yma * g * [0, 0, 1]
+      \yGa = -\yma \, g \, [0, 0, 1]
       \qquad
       \yGb = [0, 0, 0]
       \\[1ex]
@@ -4494,6 +4513,67 @@ In terms of equivalent weight, this force is
 or \qty{40}{tonnes}. 
 
 So Saitama exerted a force equivalent to a weight of \qty{40}{tonnes}, concentrated in less than half a second.
+
+\sollabel{sec:hexagon_fluxes}
+
+We can apply the differential form of the balance of momentum:
+\begin{equation*}
+  \frac{\di\yP}{\dt} = \yF + \yG
+\end{equation*}
+at the given time.
+
+\needspace{9\baselineskip}
+\marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/hexagon_fluxes_solution.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+The total \emph{in}flux $\yF$ is given, by the principle of extensivity, by the sum of the individual fluxes, given in the problem. We must only be careful to respect the crossing directions of the fluxes; in particular the flux through surface~C is given as an \textbf{ef}flux, so we must change its sign, by the principle of symmetry of flux:
+\begin{equation*}
+  \yF =  \yF_{\textrm{A}}
+  + \yF_{\textrm{B}}
+  - \yF_{\textrm{C}}
+  + \yF_{\textrm{D}}
+  + \yF_{\textrm{E}} \ .
+\end{equation*}
+
+The time derivative of momentum is given:
+\begin{equation*}
+  \frac{\di\yP}{\dt} = [4, -1,3]\,\unit{N} \ ,
+\end{equation*}
+as well as the momentum supply from gravity:
+\begin{equation*}
+  \yG = [0,0,0]\,\unit{N} \ .
+\end{equation*}
+
+Substituting everything in the balance of momentum we find
+\begin{equation*}
+  \begin{aligned}
+    &&
+      \frac{\di\yP}{\dt} &= \yF + \yG
+      \\
+      &\implies&
+      \frac{\di\yP}{\dt} &= 
+    \yF_{\textrm{A}}
+    + \yF_{\textrm{B}}
+    - \yF_{\textrm{C}}
+    + \yF_{\textrm{D}}
+    + \yF_{\textrm{E}}
+    + \yG
+    \\
+      &\implies&
+      [4, -1,3]\,\unit{N}&=
+      [3, 2, -7]\,\unit{N}
+ +[-5, 0, 0]\,\unit{N}
+ -[4, 4, 4]\,\unit{N}
+ +[0, 0, 1]\,\unit{N}
+ + \yF_{\textrm{E}}
+ + [0,0,0]\,\unit{N}
+     \\[2ex]
+     &\implies&
+     \yF_{\textrm{E}} &= [10, 1, 13]\,\unit{N} \ .
+  \end{aligned}
+\end{equation*}
+
 
 
 \sollabel{sec:graniteblocks2}
