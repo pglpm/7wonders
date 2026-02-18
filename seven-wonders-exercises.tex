@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-18T14:19:49+0100
+%% Last-Updated: 2026-02-18T19:13:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -121,7 +121,7 @@ british%
 \setlist[enumerate,2]{label=(\roman*)}
 \setlist[enumerate]{label=(\alph*),leftmargin=26.44pt}
 \setlist[itemize]{leftmargin=26.44pt}% parindent is 17.62482pt
-\setlist[description]{leftmargin=26.44pt}
+\setlist[description]{leftmargin=26.44pt,itemindent=0pt}
 % old alternative:
 % \setlist[enumerate,2]{label=\alph*.}
 % \setlist[enumerate]{leftmargin=\parindent}
@@ -4152,12 +4152,12 @@ Three blocks of granite are statically arranged as shown in the margin figure. T
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/car_uphill.jpg}%
 }
 %
-At a particular time $\ytf$ a car is moving uphill with an instantaneous velocity ${\yv(\ytf) = [\num{11.4}, \num{6.6}]\,\unit{m/s}}$ in the coordinate system $(x, z)$, as in the margin figure. Note that this is the car's velocity at that specific instant; we don't know the velocity at any earlier or later instant. The car (including driver) has mass \qty{1400}{kg}. Assume that air is negligible.
+At a particular time $\ytf$ a car is moving uphill with an instantaneous velocity ${\yv(\ytf) = [\num{11.4}, \num{6.6}]\,\unit{m/s}}$ in the coordinate system $(x, z)$, as illustrated in the margin figure. Note that this is the car's velocity at that specific time instant: we don't know the velocity at any earlier or later time instant. The car (including driver and everything inside) has mass \qty{1400}{kg}. Assume that air is negligible.
 
 \begin{enumerate}[exerc]
 \item Given the above information, can you calculate how much is the surface force (momentum flux) from the road to the car at time $\ytf$?
 
-\item You're given the additional information that the car has, at time $\ytf$, an instantaneous acceleration of magnitude \qty{0.95}{m/s^{2}}, in the same direction as the velocity. Also in this case we don't know the acceleration at any earlier or later instant. Can you calculate how much is the surface force from the road to the car at time $\ytf$?
+\item You're given the additional information that the car has, at time $\ytf$, an instantaneous acceleration of magnitude \qty{0.95}{m/s^{2}}, in the same direction as the velocity. Also in this case we don't know the acceleration at any earlier or later time instant. Can you calculate how much is the surface force from the road to the car at time $\ytf$?
 \end{enumerate}
 
 
@@ -4167,7 +4167,7 @@ At a particular time $\ytf$ a car is moving uphill with an instantaneous velocit
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building.jpg}%
 \\\flushleftright\color{mpcolor}%
-The building is seen from the front}
+View from the front of the building}
 %
 A strong wind is hitting a building from one side, as illustrated in the margin figure; the wind is represented by the \textcolor{cyan}{light-blue dotted arrows}. The wind's air is deflected upwards, by the building and the ground, as it approaches the building's side. The area of the building's side is \qty{450}{m^{2}}.
 
@@ -4180,11 +4180,11 @@ There is a constitutive relation for the surface force $F$ when matter is flowin
   F = A\, \yrho\, v^{2} + \mathcal{F}
 \end{equation*}
 where:
-\begin{itemize}
-\item[] $A$ is the area of the surface;
-\item[] $\yrho$ is the mass density of the matter flowing through the surface;
-\item[] $\mathcal{F}$, called pressure vector or stress vector, is the force that there would be on the surface if matter weren't flowing through it.
-\end{itemize}
+\begin{description}[font=\normalfont]
+\item[$A$] is the area of the surface;
+\item[$\yrho$] is the mass density of the matter flowing through the surface;
+\item[$\mathcal{F}$] (called pressure vector or stress vector) is the force that there would be on the surface if matter weren't flowing through it.
+\end{description}
 The force $F$ has the same direction as the velocity.
 
 \medskip
@@ -4531,7 +4531,7 @@ The total \emph{in}flux $\yF$ is given, by the principle of extensivity, by the 
 \begin{equation*}
   \yF =  \yF_{\textrm{A}}
   + \yF_{\textrm{B}}
-  - \yF_{\textrm{C}}
+  - \underbracket[0.5pt]{\yF_{\textrm{C}}}_{\mathclap{\color{midgrey}\text{efflux}}}
   + \yF_{\textrm{D}}
   + \yF_{\textrm{E}} \ .
 \end{equation*}
@@ -4615,7 +4615,7 @@ Substituting everything in the balance of momentum we find
   \item No forces on the surfaces in contact with air; so we can simply disregard these.
   \end{itemize}
 
-  If we denote with $\yP_{\textrm{R}}$ the momentum of the right block and with $\yF_{\textrm{R}}$ the \emph{total} surface force on it, we can write all the law and information above as follows:
+  If we call $\yP_{\textrm{R}}$ the momentum of the right block, and $\yF_{\textrm{R}}$ the \emph{total} surface force on it, we can write all the laws and information above as follows:
   \begin{equation*}
     \begin{aligned}
       &\frac{\di\yP_{\textrm{R}}}{\dt} = \yF_{\textrm{R}} + \yG_{\textrm{R}}
@@ -4900,7 +4900,7 @@ In this approach we obtain this system:
     \end{aligned}
   \end{equation*}
 
-  Since the car's mass is constant, we can then find the time derivative of the car's momentum by using Newton's relation between momentum and velocity:
+  Since the car's mass is constant, we can then find the time derivative of the car's momentum, at time $\ytf$, by using Newton's relation between momentum and velocity:
 \begin{equation*}
   \begin{aligned}
     \frac{\di\yP(\ytf)}{\dt} =
@@ -4911,6 +4911,7 @@ In this approach we obtain this system:
     = [\num{1151}, \num{666.5}]\,\unit{N} \ .
   \end{aligned}
 \end{equation*}
+Note that it doesn't matter that we don't know the acceleration before or after time $\ytf$: all we need is the acceleration at that time instant only.
 
 From the car's mass we can also find the gravitational force, using the appropriate constitutive relation:
 \begin{equation*}
@@ -4928,6 +4929,7 @@ Finally, using the balance of momentum at time $\ytf$ we obtain
   \end{aligned}
 \end{equation*}
 \end{enumerate}
+This is the force exerted from the road to the car at time $\ytf$. It could of course be different at an earlier or later time.
 
 
 \sollabel{sec:wind_building}
@@ -4946,7 +4948,8 @@ We focus on the $x$-component only:
 \frac{\di P_{x}}{\dt} = F_{\textrm{tot},x} + G_{x} \ .
 \end{equation*}
 
-\marginpar{\vspace{2\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building_solution.jpg}%
+\needspace{7\baselineskip}
+\marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building_solution.jpg}%
 %\\\flushleftright\color{mpcolor}%
 }
 %
@@ -5033,9 +5036,10 @@ and adding
     \verb|c = 299792458| & (Python)
   \end{tabular}\\[1ex]
   in the \texttt{Constants} block. Example script:
-  \begin{itemize}[nosep]
-  \item[] Octave \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_relativity.m}{\texttt{tennisball\_rP\_relativity.m}},\item[] Python \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_relativity.py}{\texttt{tennisball\_rP\_relativity.py}}.
-  \end{itemize}
+  \begin{description}[nosep,font=\normalfont]
+  \item[Octave] \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_relativity.m}{\texttt{tennisball\_rP\_relativity.m}},
+  \item[Python] \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP_relativity.py}{\texttt{tennisball\_rP\_relativity.py}}.
+  \end{description}
 
   The plots from this modified script are these:
   \begin{center}
