@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-19T07:07:54+0100
+%% Last-Updated: 2026-02-19T07:57:23+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4207,6 +4207,25 @@ Find the force that the wind exerts on the building's side; proceed as follows:
 
 
 \section{}
+\label{sec:football_integral}
+
+In a coordinate system $(x,y,z)$, at time $\yti = \qty{0}{s}$, a football of \masse\ \qty{0.42}{kg} has instantaneous velocity $[0,0]\,\unit{m/s}$. The ball is hit at that time, and experiences a horizontal surface force (momentum influx) until time $\ytf = \qty{0.3}{s}$. The force changes with time as follows
+\begin{equation*}
+  \yF(t) =
+  \begin{bmatrix}
+    (\qty{190}{N/s})\cdot t\\\qty{0}{N}
+  \end{bmatrix}\ .
+\end{equation*}
+During the same time interval, the ball experiences the vertical gravitational force (momentum supply).
+\begin{enumerate}[exerc]
+\item Verify that the dimensions and units in the expression of the surface force are correct.
+\item What is the football's momentum at time $\ytf$? Do you have to use any constitutive relations to find it?
+\item What is the football's velocity at time $\ytf$? Which constitutive relations must you use to find it?
+\end{enumerate}
+
+
+
+\section{}
 \label{sec:tennisball_RT}
 
 \emph{Preferably together with one or more colleagues:}
@@ -5014,6 +5033,103 @@ The force we want to find is the one from the wind's air to the building, that i
 \end{equation*}
 The second term is the usual atmospheric pressure. It's the first term, approximately \qty{490000}{N}, which may be worrying: is the building's structure able to withstand such an extra force from one side?
 
+
+\sollabel{sec:football_integral}
+
+\begin{enumerate}[exerc]
+\item The dimensions and units are indeed correct: the quantity \qty{190}{N/s} has dimension \textdim{force}/\textdim{time}, and is multiplied by $t$, which has dimension \text{time}, so we're left with dimension \textdim{force}.
+
+\item To find the momentum at $\ytf$ we must use the integral expression of the balance of momentum:
+  \begin{equation*}
+      \yP(\ytf) = \yP(\yti)
+      + \int_{\yti}^{\ytf} \yF(t)\dt
+      + \int_{\yti}^{\ytf}\yG \dt \ .
+  \end{equation*}
+  From the problem it seems that we can obtain all three terms on the right side.
+
+  For the initial momentum we can use Newton's relation between momentum and velocity:
+  \begin{equation*}
+    \yP(\yti) = \ym\,\yv(\yti)
+    = \qty{0.42}{kg} \cdot [0,0]\,\unit{m/s}
+    = [0,0]\,\unit{N\,s} \ .
+  \end{equation*}
+
+  For the time-integrated momentum influx, we calculate the integral; let's denote ${a \defd \qty{190}{N/s}}$:
+  \begin{equation*}
+    \int_{\yti}^{\ytf}\!\! \yF(t)\dt =
+    \int_{\yti}^{\ytf}\begin{bmatrix}
+      a\,t
+      \\[1ex]
+      \qty{0}{N}
+    \end{bmatrix}\dt
+    \equiv
+    \begin{bmatrix}
+      \int_{\yti}^{\ytf} a\,t\dt
+      \\[1ex]
+      \int_{\yti}^{\ytf} (\qty{0}{N}) \dt
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \frac{1}{2} a\,{\ytf}^{2} - \frac{1}{2} a\,{\yti}^{2}
+      \\[1ex]
+      \qty{0}{N\,s}
+    \end{bmatrix}
+    =
+    \begin{bmatrix} \num{8.55} \\ 0 \end{bmatrix}\,\unit{N\,s} \ .
+  \end{equation*}
+
+The time-integrated momentum supply is also obtained by integration:
+  \begin{equation*}
+    \int_{\yti}^{\ytf}\!\! \yG\dt =
+    - \int_{\yti}^{\ytf}\ym\,g\,
+    \begin{bmatrix}0\\1\end{bmatrix}\dt
+    \equiv
+    - \ym\,g\,
+    \begin{bmatrix}
+      \int_{\yti}^{\ytf} 0\dt
+      \\[1ex]
+      \int_{\yti}^{\ytf} 1\dt
+    \end{bmatrix}
+    =
+    - \ym\,g\,
+    \begin{bmatrix}
+      \qty{0}{s}
+      \\[1ex]
+      \ytf - \yti
+    \end{bmatrix}
+    =
+    \begin{bmatrix} 0 \\ -\num{1.235} \end{bmatrix}\,\unit{N\,s} \ .
+  \end{equation*}
+
+  Substituting the three terms in the balance of momentum above, we finally find
+    \begin{equation*}
+    \begin{aligned}
+      \yP(\ytf) &= \yP(\yti)
+      + \int_{\yti}^{\ytf} \yF(t)\dt
+      + \int_{\yti}^{\ytf}\yG \dt
+      \\
+      &=
+      \begin{bmatrix}0\\0\end{bmatrix}\,\unit{N\,s}
+      + \begin{bmatrix} \num{8.55} \\ 0 \end{bmatrix}\,\unit{N\,s}
+      + \begin{bmatrix} 0 \\ -\num{1.235} \end{bmatrix}\,\unit{N\,s}
+      \approx
+      \begin{bmatrix} \num{8.6} \\ -\num{1.2} \end{bmatrix}\,\unit{N\,s}
+      \ .
+    \end{aligned}
+  \end{equation*}
+
+To find this result we had to use Newton's constitutive relation between momentum and velocity, needed to find the initial momentum; and the constitutive relation for the gravitational force.
+
+\item We use again Newton's relation to find the final velocity from the final momentum:
+  \begin{equation*}
+    \yv(\ytf) = \yP(\ytf)/\ym =
+    \begin{bmatrix} \num{8.55} \\ -\num{1.235} \end{bmatrix}\,\unit{N\,s}
+    / \qty{0.42}{kg}
+    \approx
+    \begin{bmatrix} \num{20} \\ -\num{2.9} \end{bmatrix}\,\unit{m/s}
+    \ .
+  \end{equation*}
+\end{enumerate}
 
 \sollabel{sec:tennisball_RT}
 
