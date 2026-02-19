@@ -4,24 +4,24 @@ from numpy import array as vector ; import matplotlib.pyplot as plt
 ## Coordinates (t, x, z)
 
 ## Constants
-m = 0.06   # kg: tennis ball's mass-energy
-m2 = 0.06  # kg: 2nd tennis ball's mass-energy
+ma = 0.06  # kg: mass-energy tennis ball a
+mb = 0.06  # kg: mass-energy tennis ball b
 g = 9.8    # N/kg: gravitational acceleration
 
 ## Initial conditions
 t = 0                 # s: initial time
-r = vector([0, 5])    # m: initial position
-v = vector([3, 7])    # m/s: initial velocity
-P = m * v             # N s: initial momentum
-r2 = vector([5, 5])   # m: initial position 2nd ball
-v2 = vector([-2, 7])  # m/s: initial velocity 2nd ball
-P2 = m2 * v2          # N s: initial momentum 2nd ball
+ra = vector([0, 5])   # m: initial position tennis ball a
+va = vector([3, 7])   # m/s: initial velocity ball a
+Pa = ma * va          # N s: initial momentum ball a
+rb = vector([5, 5])   # m: initial position ball b
+vb = vector([-2, 7])  # m/s: initial velocity ball b
+Pb = mb * vb          # N s: initial momentum ball b
 
 ## Boundary conditions
-F = vector([0, 0])             # N: momentum influx
-G = -m * g * vector([0, 1])    # N: momentum supply
-F2 = vector([0, 0])            # N: momentum influx 2nd ball
-G2 = -m2 * g * vector([0, 1])  # N: momentum supply 2nd ball
+Fa = vector([0, 0])            # N: momentum influx ball a
+Ga = -ma * g * vector([0, 1])  # N: momentum supply ball a
+Fb = vector([0, 0])            # N: momentum influx ball b
+Gb = -mb * g * vector([0, 1])  # N: momentum supply ball b
 
 ## Time-iteration parameters
 t1 = 2       # s: final time
@@ -31,8 +31,8 @@ dt = 0.0001  # s: time step
 dtplot = t1/360  # time interval between plots
 tplot = dtplot   # time for next plot
 clf
-plot(r[0], r[1], 'o', color='#4477AA')
-plot(r2[0], r2[1], 's', color='#EE6677')
+plot(ra[0], ra[1], 'o', color='#4477AA')
+plot(rb[0], rb[1], 's', color='#EE6677')
 xlabel('${\it x}$/m'); ylabel('${\it z}$/m')
 axis('tight'); gca().set_aspect("equal", adjustable="box"); grid(True);
 
@@ -40,20 +40,20 @@ axis('tight'); gca().set_aspect("equal", adjustable="box"); grid(True);
 while t < t1:
 
   ## constitutive relations
-  v = P / m
-  v2 = P2 / m2
+  va = Pa / ma
+  vb = Pb / mb
 
   ## step forward in time with balance laws
   t = t + dt
-  P = P + (F + G) * dt
-  r = r + v * dt
-  P2 = P2 + (F2 + G2) * dt
-  r2 = r2 + v2 * dt
+  Pa = Pa + (Fa + Ga) * dt
+  ra = ra + va * dt
+  Pb = Pb + (Fb + Gb) * dt
+  rb = rb + vb * dt
 
   ## plot
   if t > tplot:
-    plot(r[0], r[1], 'o', color='#4477AA')
-    plot(r2[0], r2[1], 's', color='#EE6677')
+    plot(ra[0], ra[1], 'o', color='#4477AA')
+    plot(rb[0], rb[1], 's', color='#EE6677')
     xlabel('${\it x}$/m'); ylabel('${\it z}$/m')
     axis('tight'); gca().set_aspect("equal", adjustable="box"); grid(True);
     pause(0.0001) # comment for matplotlib.online

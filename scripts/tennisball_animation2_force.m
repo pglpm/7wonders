@@ -2,23 +2,23 @@
 %% Coordinates (t, x, z)
 
 %% Constants
-m = 0.06;   % kg: tennis ball's mass-energy
-m2 = 0.06;  % kg: 2nd tennis ball's mass-energy
+ma = 0.06;  % kg: mass-energy tennis ball a
+mb = 0.06;  % kg: mass-energy tennis ball b
 g = 9.8;    % N/kg: gravitational acceleration
 k = 5;      % N/m: elastic constant
 
 %% Initial conditions
 t = 0;         % s: initial time
-r = [0, 5];    % m: initial position
-v = [3, 7];    % m/s: initial velocity
-P = m * v;     % N s: initial momentum
-r2 = [5, 5];   % m: initial position 2nd ball
-v2 = [-2, 7];  % m/s: initial velocity 2nd ball
-P2 = m2 * v2;  % N s: initial momentum 2nd ball
+ra = [0, 5];   % m: initial position tennis ball a
+va = [3, 7];   % m/s: initial velocity ball a
+Pa = ma * va;  % N s: initial momentum ball a
+rb = [5, 5];   % m: initial position ball b
+vb = [-2, 7];  % m/s: initial velocity ball b
+Pb = mb * vb;  % N s: initial momentum ball b
 
 %% Boundary conditions
-G = -m * g * [0, 1];    % N: momentum supply
-G2 = -m2 * g * [0, 1];  % N: momentum supply 2nd ball
+Ga = -ma * g * [0, 1];  % N: momentum supply ball a
+Gb = -mb * g * [0, 1];  % N: momentum supply ball b
 
 %% Time-iteration parameters
 t1 = 2;       % s: final time
@@ -28,8 +28,8 @@ dt = 0.0001;  % s: time step
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;   % time for next plot
 clf
-plot(r(1), r(2), 'o', 'color', '#4477AA')
-hold on; plot(r2(1), r2(2), 's', 'color', '#EE6677')
+plot(ra(1), ra(2), 'o', 'color', '#4477AA')
+hold on; plot(rb(1), rb(2), 's', 'color', '#EE6677')
 xlabel('{\it x}/m'); ylabel('{\it z}/m')
 axis('tight'); axis('equal'); grid on; hold on
 
@@ -37,22 +37,22 @@ axis('tight'); axis('equal'); grid on; hold on
 while t < t1
 
   %% constitutive relations
-  v = P / m;
-  v2 = P2 / m2;
-  F = - k * (r - r2);  % Hooke's law
-  F2 = -F;             % symmetry of flux
+  va = Pa / ma;
+  vb = Pb / mb;
+  Fa = - k * (ra - rb);  % Hooke's law
+  Fb = -Fa;
 
   %% step forward in time with balance laws
   t = t + dt;
-  P = P + (F + G) * dt;
-  r = r + v * dt;
-  P2 = P2 + (F2 + G2) * dt;
-  r2 = r2 + v2 * dt;
+  Pa = Pa + (Fa + Ga) * dt;
+  ra = ra + va * dt;
+  Pb = Pb + (Fb + Gb) * dt;
+  rb = rb + vb * dt;
 
   %% plot
   if t > tplot
-    plot(r(1), r(2), 'o', 'color', '#4477AA')
-    hold on; plot(r2(1), r2(2), 's', 'color', '#EE6677')
+    plot(ra(1), ra(2), 'o', 'color', '#4477AA')
+    hold on; plot(rb(1), rb(2), 's', 'color', '#EE6677')
     xlabel('{\it x}/m'); ylabel('{\it z}/m')
     axis('tight'); axis('equal'); grid on; hold on
     pause(0)
