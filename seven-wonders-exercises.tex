@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-19T07:57:23+0100
+%% Last-Updated: 2026-02-19T11:06:20+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4209,19 +4209,36 @@ Find the force that the wind exerts on the building's side; proceed as follows:
 \section{}
 \label{sec:football_integral}
 
-In a coordinate system $(x,y,z)$, at time $\yti = \qty{0}{s}$, a football of \masse\ \qty{0.42}{kg} has instantaneous velocity $[0,0]\,\unit{m/s}$. The ball is hit at that time, and experiences a horizontal surface force (momentum influx) until time $\ytf = \qty{0.3}{s}$. The force changes with time as follows
+In a coordinate system $(x,z)$, at time $\yti = \qty{0}{s}$, a football of \masse\ \qty{0.42}{kg} has instantaneous velocity $[0,0]\,\unit{m/s}$. The ball is hit at that time, and experiences a horizontal surface force (momentum influx) until time $\ytf = \qty{0.3}{s}$. The force changes with time as follows
 \begin{equation*}
   \yF(t) =
   \begin{bmatrix}
     (\qty{190}{N/s})\cdot t\\\qty{0}{N}
   \end{bmatrix}\ .
 \end{equation*}
-During the same time interval, the ball experiences the vertical gravitational force (momentum supply).
+During the same time interval, the ball experiences the usual vertical gravitational force (momentum supply).
 \begin{enumerate}[exerc]
 \item Verify that the dimensions and units in the expression of the surface force are correct.
 \item What is the football's momentum at time $\ytf$? Do you have to use any constitutive relations to find it?
 \item What is the football's velocity at time $\ytf$? Which constitutive relations must you use to find it?
 \end{enumerate}
+
+
+\needspace{12\baselineskip}
+\section{}
+\label{sec:bullet_block}
+
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/bullet_block.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+At a time instant $\yti$ a bullet is in contact with a wooden block, as illustrated in the top margin figure. The bullet has mass \qty{0.0080}{kg} and horizontal velocity $v_{\textrm{bul}} = \qty{370}{m/s}$ to the right. The wooden block has mass \qty{0.2}{kg} and is at rest.
+
+At a later time instant $\ytf$ the bullet has entered the wooden block and got stuck in it, as illustrated in the bottom margin figure. Now bullet and block are moving together with the same common horizontal velocity $v_{\textrm{f}}$.
+
+Find their common final velocity $v_{\textrm{f}}$.
+
+There are no surface forces (flux of momentum) exerted on bullet \amp\ block, and gravity can be neglected. Use just one coordinate $x$.
 
 
 
@@ -5042,8 +5059,8 @@ The second term is the usual atmospheric pressure. It's the first term, approxim
 \item To find the momentum at $\ytf$ we must use the integral expression of the balance of momentum:
   \begin{equation*}
       \yP(\ytf) = \yP(\yti)
-      + \int_{\yti}^{\ytf} \yF(t)\dt
-      + \int_{\yti}^{\ytf}\yG \dt \ .
+      + \int_{\yti}^{\ytf}\!\yF(t)\dt
+      + \int_{\yti}^{\ytf}\!\yG \dt \ .
   \end{equation*}
   From the problem it seems that we can obtain all three terms on the right side.
 
@@ -5130,6 +5147,69 @@ To find this result we had to use Newton's constitutive relation between momentu
     \ .
   \end{equation*}
 \end{enumerate}
+
+
+\sollabel{sec:bullet_block}
+
+Finding the final velocity of bullet \amp\ block is straightforward if we consider them as a single (deformable) object, or more precisely as a single control volume.
+
+Denote by $P$ momentum in this control volume, by $F$ the total surface force (momentum influx) on it, and by $G$ the total volume force. All these quantities are meant as $x$-components.
+
+The integral expression of the balance of momentum can be applied to this single control volume:
+\begin{equation*}
+  P(\ytf) = P(\yti)
+  + \int_{\yti}^{\ytf}\!F(t)\dt
+  + \int_{\yti}^{\ytf}\!G(t) \dt \ .
+\end{equation*}
+
+At the final time $\ytf$ all matter (bullet \amp\ block) in the control volume is moving with the same velocity $v_{\textrm{f}}$, so we can apply Newton's constitutive relation for momentum:
+\begin{equation*}
+  P(\ytf) = \ym\, v_{\textrm{f}}
+  = (\ym_{\textrm{bul}} + \ym_{\textrm{blo}})\, v_{\textrm{f}}
+  = (\qty{0.208}{kg})\cdot v_{\textrm{f}}
+\end{equation*}
+where $\ym$ is, by the principle of extensivity of \masse, the sum of the mass $\ym_{\textrm{bul}}$ of bullet and the mass $\ym_{\textrm{blo}}$ of the block.
+
+Let's see if we can calculate the three terms on the right side of the momentum balance.
+
+For the initial momentum $P(\yti)$ we cannot apply Newton's relation directly, because the matter in the control volume doesn't have a common velocity: the bullet is moving, but the block is at rest. But we can use the principle of extensivity, considering the bullet and the block as two sub-volumes, and find the total momentum by summing their momenta. These momenta can be found with Newton's relation because the matter velocity is the same in each:
+\begin{equation*}
+  \begin{gathered}
+    P_{\textrm{bul}}(\yti) = \ym_{\textrm{bul}}\, v_{\textrm{bul}}
+    = \qty{2.96}{N\,s}
+    \ ,
+    \qquad
+    P_{\textrm{blo}}(\yti) = \ym_{\textrm{blo}}\cdot \qty{0}{m/s} = \qty{0}{N\,s} \ ,
+    \\[2ex]
+    P(\yti) = P_{\textrm{bul}}(\yti) + P_{\textrm{blo}}(\yti) = \qty{2.96}{N\,s} \ .
+  \end{gathered}
+\end{equation*}
+
+Between times $\yti$ and $\ytf$ the bullet and block are exerting surface forces on each other; but considered as a single, there are no external surface forces exerted on their single control volume. Also the gravitational force is zero. Therefore the time-integrated terms are
+\begin{equation*}
+  \int_{\yti}^{\ytf}\!F(t)\dt = \int_{\yti}^{\ytf}\!(\qty{0}{N})\dt = \qty{0}{N\,s}
+  \ ,
+\qquad
+  \int_{\yti}^{\ytf}\!G(t)\dt = \int_{\yti}^{\ytf}\!(\qty{0}{N})\dt = \qty{0}{N\,s}
+  \ .
+\end{equation*}
+
+Substituting all expressions above in the balance of momentum we finally find
+\begin{equation*}
+  \begin{aligned}
+    &&
+      P(\ytf) &= P(\yti)
+      + \int_{\yti}^{\ytf}\!F(t)\dt + \int_{\yti}^{\ytf}\!G(t) \dt
+      \\
+      &\implies&
+      (\qty{0.208}{kg})\cdot v_{\textrm{f}} &=
+      \qty{2.96}{N\,s} + \qty{0}{N\,s} + \qty{0}{N\,s}
+      \\[2ex]
+      &\implies&
+      v_{\textrm{f}} &\approx \qty{14}{m/s} \ .
+  \end{aligned}
+\end{equation*}
+
 
 \sollabel{sec:tennisball_RT}
 
