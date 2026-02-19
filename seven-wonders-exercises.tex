@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-19T14:24:41+0100
+%% Last-Updated: 2026-02-19T19:05:15+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5151,64 +5151,112 @@ To find this result we had to use Newton's constitutive relation between momentu
 
 \sollabel{sec:bullet_block}
 
-Finding the final velocity of bullet \amp\ block is straightforward if we consider them as a single (deformable) object, or more precisely as a single control volume.
+To solve this problem we must decide how many control volumes to use for analysing the situation. Let's see the solution with two possible choices:
+\begin{itemize}[nosep]
+\item one control volume: bullet \amp\ block considered together as a single (deformable) object;
+\item two control volumes: one corresponding to the bullet, and one to the block.
+\end{itemize}
+Both choices lead to the solution, but the first is much more straightforward.
 
-Denote by $P$ momentum in this control volume, by $F$ the total surface force (momentum influx) on it, and by $G$ the total volume force. All these quantities are meant as $x$-components.
 
-The integral expression of the balance of momentum can be applied to this single control volume:
+\paragraph{One control volume: bullet \amp\ block as a single object.}
+
+We consider the bullet and the block together, as a single, deformable object; that's our control volume. Since we have one control volume, we only need one copy of the balance of momentum. The problem mentions two distinct time instants, therefore the integral expression of the balance law seems most convenient.
+
+Denote by $P$ the momentum of this control volume, by $F$ the total surface force (momentum influx) on it, and by $G$ the total volume force on it. All these quantities are meant as $x$-components. The integral expression of the balance of momentum is therefore
 \begin{equation*}
   P(\ytf) = P(\yti)
   + \int_{\yti}^{\ytf}\!F(t)\dt
   + \int_{\yti}^{\ytf}\!G(t) \dt \ .
 \end{equation*}
 
-At the final time $\ytf$ all matter (bullet \amp\ block) in the control volume is moving with the same velocity $v_{\textrm{f}}$, so we can apply Newton's constitutive relation for momentum:
+Which constitutive relations can we use? Newton's relation between momentum and velocity seems an appropriate choice. We must consider the momentum at time $\yti$ and that at time $\yti$:
+\begin{itemize}
+\item$P(\yti)$: At the initial time $\yti$ we cannot use Newton's relation directly, because the matter in the control volume doesn't have a unique velocity at this time: the bullet is moving, but the block is at rest. But we can solve this issue thanks to the principle of extensivity: considering the bullet and the block as two sub-volumes, we can find the total momentum by summing their momenta. And these momenta can be found with Newton's relation because the matter velocity is the same in each sub-volume. So we have
+\begin{equation*}
+  \begin{aligned}
+    &P_{\textrm{bul}}(\yti) = \ym_{\textrm{bul}}\, v_{\textrm{bul}}
+    = \qty{2.96}{N\,s} \ ,
+\\
+&P_{\textrm{blo}}(\yti) = \ym_{\textrm{blo}}\cdot \qty{0}{m/s}
+= \qty{0}{N\,s} \ ,
+    \\[1ex]
+    &P(\yti) = P_{\textrm{bul}}(\yti) + P_{\textrm{blo}}(\yti)
+    = \qty{2.96}{N\,s} \ .
+  \end{aligned}
+\end{equation*}
+
+\item$P(\ytf)$: At the final time $\ytf$ all matter -- bullet \amp\ block -- in the control volume is moving with the same velocity $v_{\textrm{f}}$, so we can directly apply Newton's constitutive relation for momentum. Note that we must still use extensivity for the mass:
 \begin{equation*}
   P(\ytf) = \ym\, v_{\textrm{f}}
   = (\ym_{\textrm{bul}} + \ym_{\textrm{blo}})\, v_{\textrm{f}}
   = (\qty{0.208}{kg})\cdot v_{\textrm{f}}
 \end{equation*}
-where $\ym$ is, by the principle of extensivity of \masse, the sum of the mass $\ym_{\textrm{bul}}$ of bullet and the mass $\ym_{\textrm{blo}}$ of the block.
+where $\ym$ is the sum of the mass $\ym_{\textrm{bul}}$ of bullet and the mass $\ym_{\textrm{blo}}$ of the block.
+\end{itemize}
 
-Let's see if we can calculate the three terms on the right side of the momentum balance.
+It seems that we don't need any other constitutive relations.
 
-For the initial momentum $P(\yti)$ we cannot apply Newton's relation directly, because the matter in the control volume doesn't have a common velocity: the bullet is moving, but the block is at rest. But we can use the principle of extensivity, considering the bullet and the block as two sub-volumes, and find the total momentum by summing their momenta. These momenta can be found with Newton's relation because the matter velocity is the same in each:
+Let's examine the other information provided by the text.
+
+Between times $\yti$ and $\ytf$ the bullet and block are exerting surface forces on each other. But considered together, there are no external surface forces exerted on their single control volume:
 \begin{equation*}
-  \begin{gathered}
-    P_{\textrm{bul}}(\yti) = \ym_{\textrm{bul}}\, v_{\textrm{bul}}
-    = \qty{2.96}{N\,s}
-    \ ,
-    \qquad
-    P_{\textrm{blo}}(\yti) = \ym_{\textrm{blo}}\cdot \qty{0}{m/s} = \qty{0}{N\,s} \ ,
-    \\[2ex]
-    P(\yti) = P_{\textrm{bul}}(\yti) + P_{\textrm{blo}}(\yti) = \qty{2.96}{N\,s} \ .
-  \end{gathered}
+  F(t) \equiv \qty{0}{N}\quad\text{between $\yti$ and $\ytf$}
+  \qquad\implies\qquad
+  \int_{\yti}^{\ytf}\!F(t)\dt = \qty{0}{N\,s}
+  \ .
 \end{equation*}
-
-Between times $\yti$ and $\ytf$ the bullet and block are exerting surface forces on each other; but considered as a single, there are no external surface forces exerted on their single control volume. Also the gravitational force is zero. Therefore the time-integrated terms are
+Similarly, there is no gravitational volume force:
 \begin{equation*}
-  \int_{\yti}^{\ytf}\!F(t)\dt = \int_{\yti}^{\ytf}\!(\qty{0}{N})\dt = \qty{0}{N\,s}
-  \ ,
-\qquad
-  \int_{\yti}^{\ytf}\!G(t)\dt = \int_{\yti}^{\ytf}\!(\qty{0}{N})\dt = \qty{0}{N\,s}
+  G(t) \equiv \qty{0}{N}\quad\text{between $\yti$ and $\ytf$}
+  \qquad\implies\qquad
+  \int_{\yti}^{\ytf}\!G(t)\dt = \qty{0}{N\,s}
   \ .
 \end{equation*}
 
-Substituting all expressions above in the balance of momentum we finally find
+\medskip
+
+Putting together physical laws and information:
 \begin{equation*}
   \begin{aligned}
-    &&
-      P(\ytf) &= P(\yti)
-      + \int_{\yti}^{\ytf}\!F(t)\dt + \int_{\yti}^{\ytf}\!G(t) \dt
-      \\
-      &\implies&
-      (\qty{0.208}{kg})\cdot v_{\textrm{f}} &=
-      \qty{2.96}{N\,s} + \qty{0}{N\,s} + \qty{0}{N\,s}
-      \\[2ex]
-      &\implies&
-      v_{\textrm{f}} &\approx \qty{14}{m/s} \ .
+    &P(\ytf) = P(\yti)
+    + \int_{\yti}^{\ytf}\!F(t)\dt
+    + \int_{\yti}^{\ytf}\!G(t) \dt
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance}}
+    \\[1ex]
+    &P_{\textrm{bul}}(\yti) = \ym_{\textrm{bul}}\, v_{\textrm{bul}}
+    = \qty{2.96}{N\,s}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation}}
+    \\
+    &P_{\textrm{blo}}(\yti) = \ym_{\textrm{blo}}\cdot \qty{0}{m/s}
+    = \qty{0}{N\,s} \ ,
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation}}
+    \\
+    &P(\yti) = P_{\textrm{bul}}(\yti) + P_{\textrm{blo}}(\yti)
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}extensivity, initial momentum}}
+    \\[1ex]
+    &P(\ytf) = (\ym_{\textrm{bul}} + \ym_{\textrm{blo}})\, v_{\textrm{f}}
+    = (\qty{0.208}{kg})\cdot v_{\textrm{f}}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}final momentum}}
+    \\[1ex]
+    &\int_{\yti}^{\ytf}\!F(t)\dt = \qty{0}{N\,s}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    &\int_{\yti}^{\ytf}\!G(t)\dt = \qty{0}{N\,s}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
   \end{aligned}
 \end{equation*}
+
+This is a system of equations which can be solved, say by substitution, for the unknown $v_{\textrm{f}}$. We find
+\begin{equation*}
+      (\qty{0.208}{kg})\cdot v_{\textrm{f}} =
+      \qty{2.96}{N\,s} + \qty{0}{N\,s} + \qty{0}{N\,s}
+      \qquad\implies\qquad
+      v_{\textrm{f}} \approx \qty{14}{m/s} \ .
+\end{equation*}
+
+
+\paragraph{Two control volumes}
 
 
 \sollabel{sec:tennisball_RT}
