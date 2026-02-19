@@ -15,8 +15,8 @@ v = [1, 0];       % m/s: initial velocity of object
 G = -m * g * [0, 1]; % N: gravity supply on object
 
 %% Parameters for time loop
-t1 = 10;        % s: final time
-dt = 0.000001;  % s: time step %@
+t1 = 20;        % s: final time
+dt = 0.0001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots
