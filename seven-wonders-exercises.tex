@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-19T19:05:15+0100
+%% Last-Updated: 2026-02-20T06:28:53+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5161,7 +5161,9 @@ Both choices lead to the solution, but the first is much more straightforward.
 
 \paragraph{One control volume: bullet \amp\ block as a single object.}
 
-We consider the bullet and the block together, as a single, deformable object; that's our control volume. Since we have one control volume, we only need one copy of the balance of momentum. The problem mentions two distinct time instants, therefore the integral expression of the balance law seems most convenient.
+We consider the bullet and the block together, as a single, deformable and possibly disconnected object; that's our control volume. Before time $\yti$ this control volume is made of two disconnected pieces; at time $\yti$ the two pieces get into contact with each other and start to merge; after time $\yti$ the control volume consists in one piece only.
+
+Since we have one control volume, we only need one copy of the balance of momentum. The problem mentions two distinct time instants, therefore the integral expression of the balance law seems most convenient.
 
 Denote by $P$ the momentum of this control volume, by $F$ the total surface force (momentum influx) on it, and by $G$ the total volume force on it. All these quantities are meant as $x$-components. The integral expression of the balance of momentum is therefore
 \begin{equation*}
@@ -5255,8 +5257,115 @@ This is a system of equations which can be solved, say by substitution, for the 
       v_{\textrm{f}} \approx \qty{14}{m/s} \ .
 \end{equation*}
 
+\medskip
 
-\paragraph{Two control volumes}
+\paragraph{Two control volumes} In this approach we consider the bullet as one control volume, and the block as another. Note that after time $\yti$ the control volume of the block has a hole, in which the control volume of the bullet resides.
+
+The analysis is similar to the previous one, but since we have two control volumes we need to consider the balance of momentum for each one. Let's use the suffixes \enquote*{\,${}_{\textrm{bul}}$\,} and \enquote*{\,${}_{\textrm{blo}}$\,}:
+\begin{equation*}
+  \begin{aligned}
+    &P_{\textrm{bul}}(\ytf) = P_{\textrm{bul}}(\yti)
+    + \int_{\yti}^{\ytf}\!F_{\textrm{bul}}(t)\dt
+    + \int_{\yti}^{\ytf}\!G_{\textrm{bul}}(t) \dt \ ,
+    \\
+    &P_{\textrm{blo}}(\ytf) = P_{\textrm{blo}}(\yti)
+    + \int_{\yti}^{\ytf}\!F_{\textrm{blo}}(t)\dt
+    + \int_{\yti}^{\ytf}\!G_{\textrm{blo}}(t) \dt \ .
+\end{aligned}
+\end{equation*}
+We now have four different momentum contents: for two different control volumes and two different times. For each we can use Newton's relation between momentum and velocity:
+\begin{equation*}
+  \begin{aligned}
+    &P_{\textrm{bul}}(\yti) = \ym_{\textrm{bul}}\, v_{\textrm{bul}}
+    = \qty{2.96}{N\,s} \ ,
+    \\
+    &P_{\textrm{blo}}(\yti) = \ym_{\textrm{blo}}\cdot \qty{0}{m/s}
+    = \qty{0}{N\,s} \ ,
+    \\
+    &P_{\textrm{bul}}(\ytf) = \ym_{\textrm{bul}}\, v_{\textrm{f}} \ ,
+    \\
+    &P_{\textrm{blo}}(\ytf) = \ym_{\textrm{blo}}\, v_{\textrm{f}} \ .
+  \end{aligned}
+\end{equation*}
+
+The text says that there's no gravity, therefore
+\begin{equation*}
+  \begin{aligned}
+    &G_{\textrm{bul}}(t) \equiv \qty{0}{N}\quad\text{between $\yti$ and $\ytf$}
+    \qquad\implies\qquad
+    \int_{\yti}^{\ytf}\!G_{\textrm{bul}}(t)\dt = \qty{0}{N\,s} \ ,
+    \\
+    &G_{\textrm{blo}}(t) \equiv \qty{0}{N}\quad\text{between $\yti$ and $\ytf$}
+    \qquad\implies\qquad
+    \int_{\yti}^{\ytf}\!G_{\textrm{blo}}(t)\dt = \qty{0}{N\,s} \ .
+  \end{aligned}
+\end{equation*}
+
+Finally, since we have two control volumes, there's the possibility that there is a flux of momentum (surface force) between them, so we have to consider the principle of symmetry of flux. This is the case indeed: the bullet exert a strong force on the block, which produces a hole. This means that an opposite momentum is also flowing from the block to the bullet. So we have
+\begin{equation*}
+  F_{\textrm{blo}}(t) = -F_{\textrm{bul}}(t)
+  \quad\text{between $\yti$ and $\ytf$}
+    \quad\implies\quad
+    \int_{\yti}^{\ytf}\!F_{\textrm{blo}}(t)\dt
+    =
+    -\int_{\yti}^{\ytf}\!F_{\textrm{bul}}(t)\dt  \ .
+\end{equation*}
+
+We can finally put together all equations above into this system:
+\begin{equation*}
+  \begin{aligned}
+    &P_{\textrm{bul}}(\ytf) = P_{\textrm{bul}}(\yti)
+    + \int_{\yti}^{\ytf}\!F_{\textrm{bul}}(t)\dt
+    + \int_{\yti}^{\ytf}\!G_{\textrm{bul}}(t) \dt
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance bullet}}
+    \\
+    &P_{\textrm{blo}}(\ytf) = P_{\textrm{blo}}(\yti)
+    + \int_{\yti}^{\ytf}\!F_{\textrm{blo}}(t)\dt
+    + \int_{\yti}^{\ytf}\!G_{\textrm{blo}}(t) \dt
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}momentum balance block}}
+    \\[1ex]
+    &P_{\textrm{bul}}(\yti) = \qty{2.96}{N\,s}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation}}
+    \\
+    &P_{\textrm{blo}}(\yti) = \qty{0}{N\,s}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation}}
+    \\
+    &P_{\textrm{bul}}(\ytf) = \ym_{\textrm{bul}}\, v_{\textrm{f}}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation}}
+    \\
+    &P_{\textrm{blo}}(\ytf) = \ym_{\textrm{blo}}\, v_{\textrm{f}}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation}}
+    \\[1ex]
+    &\int_{\yti}^{\ytf}\!F_{\textrm{blo}}(t)\dt
+    =
+    -\int_{\yti}^{\ytf}\!F_{\textrm{bul}}(t)\dt
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}flux symmetry}}
+    \\[1ex]
+    &\int_{\yti}^{\ytf}\!G_{\textrm{bul}}(t)\dt = \qty{0}{N\,s}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    &\int_{\yti}^{\ytf}\!G_{\textrm{blo}}(t)\dt = \qty{0}{N\,s}
+    &\qquad&\mathrlap{\text{\footnotesize\color{midgrey}info}}
+  \end{aligned}
+\end{equation*}
+and the velocity $v_{\textrm{f}}$ can be found. For example, with several substitutions and rearrangements the first two equations become
+\begin{equation*}
+  \begin{aligned}
+    \int_{\yti}^{\ytf}\!F_{\textrm{bul}}(t)\dt
+    &=
+    \ym_{\textrm{bul}}\, v_{\textrm{f}} - \qty{2.96}{N\,s}
+    \\
+    \ym_{\textrm{blo}}\, v_{\textrm{f}}
+    &=
+    - \int_{\yti}^{\ytf}\!F_{\textrm{bul}}(t)\dt
+  \end{aligned}
+\end{equation*}
+and finally substituting the first in the second we arrive at $v_{\textrm{f}} \approx \qty{14}{m/s}$, as before.
+
+\medskip
+
+You notice that this approach was a little more roundabout than the previous one. We had the added difficulty of not knowing the forces $F_{\textrm{bul}}(t)$ and $F_{\textrm{blo}}(t)$, whose time dependence must be quite complicated. But the principle of symmetry of flux saved us, effectively eliminating the need to compute them explicitly. The previous approach bypassed this difficulty, because in that approach these were forces \emph{internal} to the control volume, and therefore they did not enter into its balance of momentum.
+
 
 
 \sollabel{sec:tennisball_RT}
