@@ -52,14 +52,14 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    clf() # comment for matplotlib.online
+if not "pyodide" in sys.modules: clf()
     plot(0, 0, 'x', color='#000000')
     xlim([-1, 1]); ylim([-1, 1])
     grid(True); gca().set_aspect("equal", adjustable="box")
     plot([0, r[0]], [0, r[1]], '-', color='#4477AA')
     plot(r[0], r[1], 'o', color='#EE6677')
     xlabel('${\it y}$/m'); ylabel('${\it z}$/m')
-    pause(0.0001) # comment for matplotlib.online
+if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

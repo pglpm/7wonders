@@ -57,7 +57,7 @@ while t < t1:
   if t > tplot:
     plot(t, N_NO2, 'v', color = '#EE6677')
     plot(t, N_N2O4, 'x', color = '#CCBB44')
-    # pause(0.0001) # comment for matplotlib.online
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

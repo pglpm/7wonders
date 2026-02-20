@@ -71,7 +71,7 @@ while t < t1 && N > 0:
   if t > tplot:
     subplot(2, 1, 1); plot(t, z, '.b')
     subplot(2, 1, 2); plot(t, T, '.r')
-    # pause(0.0001) # comment for matplotlib.online
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

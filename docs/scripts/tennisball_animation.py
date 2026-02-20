@@ -45,10 +45,10 @@ while t < t1:
 
   ## plot
   if t > tplot:
-    ## clf() # comment for matplotlib.online
+    if not "pyodide" in sys.modules: clf()
     plot(ra[0], ra[1], 'o', color='#4477AA')
     xlabel('${\it x}$/m'); ylabel('${\it z}$/m')
     axis('tight'); gca().set_aspect("equal", adjustable="box"); grid(True);
-    pause(0.0001) # comment for matplotlib.online
+if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 plt.show()

@@ -62,7 +62,7 @@ while t < t1 and Nb > 0:
   if t > tplot:
     subplot(2, 1, 1); plot(t, z, 'o', color='#4477AA')
     subplot(2, 1, 2); plot(t, v, '^', color='#EE6677')
-    # pause(0.0001) # comment for matplotlib.online
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

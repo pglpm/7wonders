@@ -39,7 +39,7 @@ while t < t1:
   ## plot
   if t > tplot:
     plot(t, N, 'o', color = '#4477AA')
-    # pause(0.0001) # comment for matplotlib.online
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

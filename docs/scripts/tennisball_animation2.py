@@ -56,6 +56,6 @@ while t < t1:
     plot(rb[0], rb[1], 's', color='#EE6677')
     xlabel('${\it x}$/m'); ylabel('${\it z}$/m')
     axis('tight'); gca().set_aspect("equal", adjustable="box"); grid(True);
-    pause(0.0001) # comment for matplotlib.online
+if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 plt.show()
