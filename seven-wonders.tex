@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-19T06:47:11+0100
+%% Last-Updated: 2026-02-20T10:57:08+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11451,7 +11451,7 @@ This peculiar behaviour of gases gives us an idea of what kind of momentum fluxe
 \includegraphics[width=0.45\linewidth]{images/gasbox_exercise.jpg}%
 }
 \begin{exercise}
-  Before continuing to read, try to figure out by yourself how the momentum fluxes in a gas should be; formulate some hypotheses at least. Remember that you must first choose control surfaces. For instance, think of what kind of momentum flux there could be through control surfaces like the \textcolor{purple}{dashed red lines} in the side figure:
+  Before continuing to read, try to figure out by yourself how the momentum fluxes in a gas should be; at least formulate some hypotheses. Remember that you must first choose control surfaces. For instance, think of what kind of momentum flux there could be through control surfaces like the \textcolor{purple}{dashed red lines} in the side figure:
   \begin{enumerate*}[label=(\alph*)]
   \item at the opened side;
   \item in between the opened side and the middle of the box, parallel to the opened side.
@@ -11469,42 +11469,71 @@ Let us try to infer what are the momentum fluxes through the two horizontal cont
 \hfill\makebox[0.45\linewidth]{box closed}%
 }
 \begin{itemize}
-\item The portion of gas between the two control surfaces gets out as soon as we open the upper side of the box. This portion of gas must therefore be receiving outward-oriented momentum. This momentum cannot come from the gravitational momentum supply, because the latter is oriented downward. It must therefore be the result of a momentum flux. This flux cannot be through the control surface separating the gas from the vacuum, and it seems implausible that it is a flux through the lateral contact surface with the box. Intuitively we understand that it is a flux coming from the gas on the other side of the lower control surface further within the box (side figure, left).
-\item As long as the upper side of the box is closed, however, the portion of gas between the two control surfaces stays at rest. The flux of outward-oriented momentum coming from the gas on the other side of the lower control surface must therefore be compensated by a flux of inward-oriented momentum that comes from the closed side of the box (side figure, right).
+\item The portion of gas between the two control surfaces gets out as soon as we open the top side of the box. This portion of gas must therefore be receiving upward-oriented momentum. This momentum cannot come from the gravitational momentum supply, because the latter is oriented downward. It must therefore be the result of a momentum flux. This flux cannot be through the control surface separating the gas from the vacuum, and it seems implausible that it is a flux through the lateral contact surface with the box. Intuitively we understand that it is a momentum flux coming from the gas beneath the lower control surface; see margin figure on the left.
+
+\item As long as the top side of the box is closed, however, the portion of gas between the two control surfaces stays at rest. The flux of upward-oriented momentum coming from the gas beneath the lower control surface must therefore be compensated by a flux of downward-oriented momentum that comes from the top side of the box; see margin figure on the right.
 \end{itemize}
 
 \needspace{7\baselineskip}
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gas_fluxes.jpg}%
 }%
-Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small portion of control surface that delimits some gas \emph{at rest}, there is an influx of inward-oriented momentum. The total momentum within the control volume doesn't change because the influxes from opposite parts of the whole closed control surface cancel each other.
+Repeating this kind of reasoning with horizontal control surfaces further within the box, and then with vertical control surfaces, we arrive at the following conclusion: through any small portion of a closed control surface that delimits some gas \emph{at rest}, there is an influx of inward-oriented momentum, as illustrated in the margin figure. The total momentum within the control volume doesn't change because the influxes from opposite parts of the closed control surface cancel each other.
 
-\begin{definition}{Internal pressure}\label{def:internal_pressure}
-  The compressive momentum flux that occurs through any control surface that we may choose within a gas is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is the momentum flux divided by the area through which it occurs.
+\begin{definition}{{Internal pressure, pressure vector, stress vector}}\label{def:internal_pressure}
+  The compressive momentum flux that occurs through any control surface that we choose within a gas, is called the \textbf{internal pressure} of the gas. More precisely, the internal pressure is this momentum flux divided by the area through which it occurs:
+
+  \medskip
+
+    For a control surface of area $A$ where the momentum flux $\yF$ is uniform throughout, and through which \emph{there is no matter flux}, we call \textbf{pressure vector} or \textbf{stress vector} $\ypv$ the momentum flux divided by the area: $\ypv \defd \yF/A$.
+
+  \medskip
+
+If the momentum flux $\yF$, and therefore the pressure vector, are orthogonal to the surface and point \emph{away from the surface}, then we call \textbf{pressure} the magnitude of the pressure vector, and usually denote it $\ypr$:
+\begin{equation}
+  \label{eq:pressure_def}
+  \ypr \defd \abs{\ypv} \equiv \frac{\abs{\yF}}{A}
+\end{equation}
+The name \emph{tension} is used instead of \emph{pressure} if the momentum flux points towards the surface. Compare our discussion about \autoref{sec:pressure_tension_shear}{compressive and tensile momentum fluxes}.
+
+\medskip
+
+Pressure has physical dimensions of force per area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
 \end{definition}
-In \chap~\ref{cha:bal_energy} we shall discuss a constitutive relation for the internal pressure of particular kinds of gas.
 
-%
+\begin{warning}[\enquote*{Pressure} has many different meanings]
+  Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the pressure vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
+
+  \smallskip
+
+  So when you read a text that uses or discusses \enquote*{pressure}, make sure to get correctly in which sense the text is using this word.
+
+  \smallskip
+
+  In these notes we shall sometimes use \enquote*{pressure} in a slightly different or more general meaning, which should be clear from the context.
+\end{warning}
+
+% 
 \needspace{8\baselineskip}
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[vshift=6pt,width=0.45\linewidth]{images/gas_upfluxes.jpg}%
 \hfill\includegraphics[width=0.45\linewidth]{images/gas_downfluxes.jpg}%
 %\\\color{mpcolor}Equivalent depictions of vertical momentum fluxes%
 }
-If we consider a collection of parallel control surfaces within a gas, we see that there is a flux of momentum across all of them; this momentum has the same orientation as the chosen crossing direction. In the side figures, for instance, if we cross the horizontal control surfaces (\textcolor{purple}{dashed red lines}) from bottom to top, we'll measure a flux of upward momentum (left figure). By flux symmetry, if we choose the opposite crossing direction, from top to bottom, then we'll measure a flux of downward momentum (right figure).
+If we consider a collection of parallel control surfaces within a gas, we see that there is a flux of momentum -- pressure -- across all of them. This momentum has the same orientation as the chosen crossing direction. In the margin figures, for instance, if we cross the horizontal control surfaces (\textcolor{purple}{dashed red lines}) from bottom to top, we'll measure a flux of upward momentum, as in the left figure. By flux symmetry, if we choose the opposite crossing direction, from top to bottom, then we'll measure a flux of downward momentum, as in the right figure. These are just two different aspects of the same situation.
 
-From a molecular point of view, this momentum flux mainly comes from the momentum transported by the molecules that make up the gas. Some molecules are moving with an upward velocity, and therefore each of them has an upward momentum; this upward momentum travels upward, transported by the molecule. Other molecules are moving with a downward velocity, and therefore each of them has a downward momentum, which is also transported downward.
+From a molecular point of view, this pressure momentum flux mainly comes from the \autoref{sec:momentumflux_matterflux}{momentum transported} by the molecules that make up the gas. Some molecules are moving with an upward velocity, and therefore each of them has an upward momentum; this upward momentum travels upward, transported by the molecule. Other molecules are moving with a downward velocity, and therefore each of them has a downward momentum, which is also transported downward.
 
 \medskip
 
-At the surface where the gas is in contact with its containing box, the momentum gets transferred to the box. An interesting question then arises. When the box is also at rest, the momentum contained in each portion of it is zero and remains zero. Where does the momentum received from the gas go?
+At the surface where the gas is in contact with its containing box, the momentum gets transferred to the box: we say that the gas presses against its container. An interesting question then arises. If the box is also at rest, the momentum contained in each part of it must be zero and remain zero. Where does the momentum received from the gas go?
 
 \needspace{13\baselineskip}%
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/gasbox_fluxes.jpg}%
 }%
-The answer is that an opposite and slightly more complex circulation of momentum takes places through the walls of the box. The momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore partially tensile and partially shearing.
-The side picture gives a \emph{qualitative} illustration of the momentum fluxes (\textcolor{cyan}{light-blue arrows}) that occur through various control surfaces (\textcolor{blue}{dashed blue lines}) at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs because of transport, not by molecules, but by the electromagnetic field that exists with the box's molecules.
+The answer is that an opposite and slightly more complex circulation of momentum takes place through walls of the box. The momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore partially \autoref{sec:tension}{tensile} and partially \autoref{sec:shear}{shearing}.
+The margin picture gives a \emph{qualitative} illustration of the momentum fluxes (\textcolor{cyan}{light-blue arrows}) that occur through various control surfaces (\textcolor{blue}{dashed dark-blue lines}) at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs because of transport, not by molecules, but by the electromagnetic field that coexists with the box's molecules.
 
 
 
@@ -12599,7 +12628,7 @@ Consider two bodies of matter in contact with each other. For one researcher A, 
 \subsection{Examples of heat and mechanical-power fluxes}
 \label{sec:energy_constitutive_flux_examples}
 
-Let us see some examples in which total-energy flux appears as heat flux, flux of mechanical-power, or both. In all these examples we choose a coordinate system at rest with the ground.
+Let us see some examples in which total-energy flux appears as heat flux, flux of mechanical-power, or both. \emph{In all these examples we choose a coordinate system at rest with the ground.}
 
 \paragraph{Holding a cup of hot tea.}
 When we hold a cup of hot tea or coffee, we can feel a flux of energy from the cup to our hands. How much of it is heat flux, and how much is mechanical power?
@@ -12651,11 +12680,11 @@ What about the flux of energy across the imaginary control surface that separate
 So far we have discussed two general constitutive relations: one for energy content $\yE$, formula~\eqref{eq:thermodynamic_energy}; and one for energy flux $\yH$, formula~\eqref{eq:heat_power}. We also said that our definition of total energy \autoref{item:energy_no_supply}{approximately satisfies a conservation law}, so the energy supply $\yA$ is zero. Let us rewrite here these constitutive relations, explicitly indicating their time dependence:
 \begin{equation*}
   \begin{aligned}
-    \yE(t) &=  \yU(t) + \tfrac{1}{2}\ym \yv(t)^{2} + \ym g z(t)
+    \yE(t) &=  \yU(t) + \tfrac{1}{2}\ym \yv(t)^{2} + \ym g\, z(t)
     \\
     \yH(t) &= \yQ(t) + \yF(t)\cdot\yv(t)
     \\
-    \yA(t) &= 0
+    \yA(t) &= \qty{0}{J/s}
   \end{aligned}
 \end{equation*}
 Let us recall the conditions under which they are valid:
@@ -13067,30 +13096,30 @@ We previously discussed the peculiar fluxes of momentum that take place in a gas
 \end{itemize}
 
 This constitutive relation is more easily expressed in terms of the momentum flux through a surface, \emph{divided by the area} of the surface:
-\begin{definition}{{Pressure vector, stress vector, pressure}}
-  For a control surface of area $A$ where the momentum flux $\yF$ is uniform throughout, and through which \emph{there is no matter flux}, we call \textbf{pressure vector} or \textbf{stress vector} $\ypv$ the momentum flux divided by the area: $\ypv \defd \yF/A$.
-
-  \medskip
-
-If the momentum flux $\yF$, and therefore the pressure vector, are orthogonal to the surface and point \emph{away from the surface}, then we call \textbf{pressure} the magnitude of the pressure vector, and usually denote it $\ypr$:
-\begin{equation}
-  \label{eq:pressure_def}
-  \ypr \defd \abs{\ypv} \equiv \frac{\abs{\yF}}{A}
-\end{equation}
-The name \emph{tension} is used instead of \emph{pressure} if the momentum flux points towards the surface. Compare our discussion about \autoref{sec:pressure_tension_shear}{compressive and tensile momentum fluxes}.
-
-\medskip
-
-Pressure has physical dimensions of force per area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
-\end{definition}
-
-\begin{warning}[\enquote*{Pressure} has many different meanings]
-  Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the pressure vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
-
-  So when you read a text that uses or discusses \enquote*{pressure}, make sure to get correctly in which sense the text is using this word.
-
-  In these notes we shall sometimes use \enquote*{pressure} in a slightly different or more general meaning, which should be clear from the context.
-\end{warning}
+% \begin{definition}{{Pressure vector, stress vector, pressure}}
+%   For a control surface of area $A$ where the momentum flux $\yF$ is uniform throughout, and through which \emph{there is no matter flux}, we call \textbf{pressure vector} or \textbf{stress vector} $\ypv$ the momentum flux divided by the area: $\ypv \defd \yF/A$.
+% 
+%   \medskip
+% 
+% If the momentum flux $\yF$, and therefore the pressure vector, are orthogonal to the surface and point \emph{away from the surface}, then we call \textbf{pressure} the magnitude of the pressure vector, and usually denote it $\ypr$:
+% \begin{equation}
+%   \label{eq:pressure_def}
+%   \ypr \defd \abs{\ypv} \equiv \frac{\abs{\yF}}{A}
+% \end{equation}
+% The name \emph{tension} is used instead of \emph{pressure} if the momentum flux points towards the surface. Compare our discussion about \autoref{sec:pressure_tension_shear}{compressive and tensile momentum fluxes}.
+% 
+% \medskip
+% 
+% Pressure has physical dimensions of force per area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
+% \end{definition}
+% 
+% \begin{warning}[\enquote*{Pressure} has many different meanings]
+%   Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the pressure vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
+% 
+%   So when you read a text that uses or discusses \enquote*{pressure}, make sure to get correctly in which sense the text is using this word.
+% 
+%   In these notes we shall sometimes use \enquote*{pressure} in a slightly different or more general meaning, which should be clear from the context.
+% \end{warning}
 
 
 Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
