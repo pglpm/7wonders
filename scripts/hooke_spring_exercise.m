@@ -1,37 +1,36 @@
 %%% Simulation of two bodies connected by Hookean material in 2D
-%% Coordinates (t, x, z)
+%% Coordinates (t, z)
 
 %% Constants
-ma = 2;	  % kg: mass object a
+ma = 5;	  % kg: mass object a
 g = 9.8;  % N/kg: gravitational acceleration
-k = 5;	  % N/m: spring constant
+k = 25;	  % N/m: spring constant
 
 %% Initial conditions
-t = 0;	       % s: initial time
-ra = 0;  % m: initial position object a
-va = 10;  % m/s: initial velocity object a
+t = 0;	    % s: initial time
+ra = -1.8;  % m: initial position object a
+va = 0;     % m/s: initial velocity object a
 
 %% Boundary conditions
 Ga = -ma * g;  % N: gravity supply object a
-rb = 0; % m: point of attachment
 
 %% Parameters for time loop
-t1 = 10;	      % s: final time
+t1 = 10;      % s: final time
 dt = 0.0001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;	  % time for next plot
-figure
-plot(t, ra, 's', 'color', '#4477AA')
-hold on; grid on
-xlabel('{\it t}/s'); ylabel('{\it z}/m') %@
+clf
+plot(t, ra, 'o', 'color', '#4477AA')
+xlabel('{\it t}/s'); ylabel('{\it r_a}/m')
+hold on; axis('tight'); xlim([0, t1]); grid on %@
 
 %% Numerical time integration
 while t < t1
   %% constitutive relations
   Pa = ma * va;
-  Fa = -k * (ra - rb);
+  Fa = -k * ra;
 
   %% balance laws
   t = t + dt;
@@ -43,7 +42,7 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(t, ra, 's', 'color', '#4477AA')
+    plot(t, ra, 'o', 'color', '#4477AA')
     pause(0)
     tplot = tplot + dtplot;
   end %@

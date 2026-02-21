@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-21T11:28:51+0100
+%% Last-Updated: 2026-02-21T13:32:38+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11407,9 +11407,51 @@ But notwithstanding these important differences, the forces are both given by a 
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Start from the simulation script for the spring \amp\ bodies system in table~\ref{tab:script_strategy}, analysed in \sect\ref{sec:strategy_simulation}, and modify it as follows:
-  \item Eliminate one spatial dimension, keeping only the $z$-coordinate.
-  \item Eliminate object $a$, and consider the $a$-end of the spring to be attached to the origin $z = 0$. What are the state variables of this simplified system?
-  \end{enumerate}
+    \begin{itemize}
+    \item Eliminate one spatial dimension, keeping only the $z$-coordinate.
+    \item Eliminate object $b$, and consider the $b$-end of the spring to be attached to the origin $z = 0$. What are the state variables of this simplified system?
+    \item Use the following constants, initial conditions, and time-integration parameters:
+      \begin{equation*}
+        \begin{aligned}
+          \text{\footnotesize constants:}&&
+          &\ym = \qty{5}{kg} &&k = \qty{25}{N/m}
+          \\
+          \text{\footnotesize initial conditions:}&&
+          &r_{a} = -\qty{1.8}{m} &&v_{a} = \qty{0}{m/s}
+          \\
+          \text{\footnotesize time-integration parameters:}&&
+          &\ytf = \qty{10}{s}  &&\Dt = \qty{0.0001}{s}
+        \end{aligned}
+      \end{equation*}
+    \item Plot the position of object $a$ versus time.
+  \item Simulate and verify that you obtain a plot like the one in the margin figure.
+  \end{itemize}
+\end{enumerate}
+
+    {\footnotesize\emph{(If you had difficulties modifying the script, for the following exercise you can download and use
+\furl{https://pglpm.github.io/7wonders/scripts/hooke_spring_exercise.m}{\texttt{hooke\_spring\_exercise.m} (Octave)} or \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring_exercise.py}{\texttt{hooke\_spring\_exercise.py} (Python)} as a starting point.)}\par}
+
+\smallskip
+
+Now, in a manner of speaking, you want to replace the Hookean material that connects object $a$ to the origin, with an \enquote{ideal-gas material}. This new material provides a surface force described by the constitutive relation~\eqref{eq:force_piston}, but let's say without the $\yvis$-term:
+\begin{enumerate}[resume*]
+\item Which physical laws would need to be changed in the script? Where in the \texttt{while}-loop should the modification occur?
+\item Modify the previous script accordingly.
+\item Use the following constants and initial conditions:
+      \begin{equation*}
+        \begin{aligned}
+          \text{\footnotesize constants:}&&
+          &R = \qty{8.314}{J/(K\,mol)}
+          &&\yN = \qty{0.04}{mol}
+          &&\yT = \qty{296}{K}
+          \\
+          \text{\footnotesize initial conditions:}&&
+          &r_{a} = +\qty{1.8}{m} &&v_{a} = \qty{0}{m/s}&&
+        \end{aligned}
+      \end{equation*}
+    \item Plot the position of object $a$ versus time.
+  \item Simulate and verify that you obtain a plot like the one in the margin figure.
+\end{enumerate}
 \end{exercise}
 
 
