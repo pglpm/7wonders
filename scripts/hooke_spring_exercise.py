@@ -12,9 +12,9 @@ g = 9.8  # N/kg: gravitational acceleration
 k = 25	 # N/m: spring constant
 
 ## Initial conditions
-t = 0	   # s: initial time
-ra = -1.8  # m: initial position object a
-va = 0     # m/s: initial velocity object a
+t = 0	   # s: time
+ra = -1.8  # m: position object a
+va = 0     # m/s: velocity object a
 
 ## Boundary conditions
 Ga = -ma * g  # N: gravity supply object a

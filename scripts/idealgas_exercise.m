@@ -1,20 +1,20 @@
-%%% Simulation of two bodies connected by Hookean material in 2D
-%% Coordinates (t, x, z)
+%%% Simulation of ideal gas & piston
+%% Coordinates (t, z)
 
 %% Constants
-ma = 5;             % kg: mass object a
+ma = 5;             % kg: mass piston
 g = 9.8;            % N/kg: gravitational acceleration
-R = 8.31446261815;  % J/(K*mol): molar gas constant
+R = 8.31446261815;  % N m/(K*mol): molar gas constant
 N = 0.04;           % mol: amount of ideal gas
-T = 273.15 + 23;    % K: temperature of gas
+T = 296;            % K: temperature of ideal gas
 
 %% Initial conditions
-t = 0;	   % s: initial time
-ra = 1.8;  % m: initial position object a
-va = 0;    % m/s: initial velocity object a
+t = 0;	   % s: time
+ra = 1.8;  % m: position piston
+va = 0;    % m/s: velocity piston
 
 %% Boundary conditions
-Ga = -ma * g;  % N: gravity supply object a
+Ga = -ma * g;  % N: gravity supply piston
 
 %% Parameters for time loop
 t1 = 10;      % s: final time

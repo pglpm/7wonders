@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-21T13:32:38+0100
+%% Last-Updated: 2026-02-21T18:42:20+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11342,7 +11342,7 @@ This constitutive relation can be used for many gases especially when they are r
   \end{equation}
   where $\frac{\di V}{\dt}$ is the rate of change of volume; $\yvis$ is called the \textbf{viscosity} coefficient, which is always positive, has physical dimension \textdim{force}/\textdim{area}, and may also depend on temperature; and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
   \begin{equation*}
-    R = \qty{8.31446261815324}{J/(mol\cdot K)}\quad\text{(exactly)}
+    R = \qty{8.31446261815324}{N\,m/(mol\cdot K)}\quad\text{(exactly)}
   \end{equation*}
 The equation above is called the \textbf{ideal-gas law with viscosity}.
 
@@ -11372,7 +11372,7 @@ Let us return to our simple setup with a gas in a container with a movable pisto
 \begin{equation}
   \label{eq:force_piston}
   F = A\, \ypr = A\, \frac{R \yN \yT}{V}  - A\,\yvis \frac{1}{V}\frac{\di V}{\dt}
-  = \frac{R \yN \yT}{z}  - \yvis \frac{1}{z}\frac{\di V}{\dt} \ .
+  = \frac{R \yN \yT}{z}  - \yvis \frac{A}{z}\,v_{z} \ .
 \end{equation}
 
 Suppose that the temperature $\yT$ is constant and the viscosity term is negligible, $\yvis \approx \qty{0}{N/m^{2}}$. Compare the constitutive relation for the force, that is, momentum efflux, by a Hookean spring and that by an ideal gas:
@@ -11423,8 +11423,10 @@ But notwithstanding these important differences, the forces are both given by a 
           &\ytf = \qty{10}{s}  &&\Dt = \qty{0.0001}{s}
         \end{aligned}
       \end{equation*}
-    \item Plot the position of object $a$ versus time.
-  \item Simulate and verify that you obtain a plot like the one in the margin figure.
+    \item Simulate and plot the position of object $a$ versus time. Verify that you obtain a plot like the one in the margin.
+\sidepar{\vspace{-5\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\includegraphics[width=\linewidth]{images/hooke_spring_exercise.pdf}%
+}%
   \end{itemize}
 \end{enumerate}
 
@@ -11433,15 +11435,15 @@ But notwithstanding these important differences, the forces are both given by a 
 
 \smallskip
 
-Now, in a manner of speaking, you want to replace the Hookean material that connects object $a$ to the origin, with an \enquote{ideal-gas material}. This new material provides a surface force described by the constitutive relation~\eqref{eq:force_piston}, but let's say without the $\yvis$-term:
+Now, in a manner of speaking, we want to replace the Hookean material that connects object $a$ to the origin, with an \enquote{ideal-gas material} (and no air outside of the ideal gas's container). This new material provides a surface force described by the constitutive relation~\eqref{eq:force_piston}, but let's say without the $\yvis$-term:
 \begin{enumerate}[resume*]
-\item Which physical laws would need to be changed in the script? Where in the \texttt{while}-loop should the modification occur?
+\item Which physical laws need to be changed in the script? Where in the \texttt{while}-loop should the modification occur?
 \item Modify the previous script accordingly.
 \item Use the following constants and initial conditions:
       \begin{equation*}
         \begin{aligned}
           \text{\footnotesize constants:}&&
-          &R = \qty{8.314}{J/(K\,mol)}
+          &R = \qty{8.314}{N\,m/(K\,mol)}
           &&\yN = \qty{0.04}{mol}
           &&\yT = \qty{296}{K}
           \\
@@ -11449,11 +11451,42 @@ Now, in a manner of speaking, you want to replace the Hookean material that conn
           &r_{a} = +\qty{1.8}{m} &&v_{a} = \qty{0}{m/s}&&
         \end{aligned}
       \end{equation*}
-    \item Plot the position of object $a$ versus time.
-  \item Simulate and verify that you obtain a plot like the one in the margin figure.
+    \item Before starting the simulation: what kind of behaviour do you expect to observe for the piston's position $\yra$? For instance, will the piston be pushed upward indefinitely? Or maybe it will stop at some position?
+    \item Simulate and plot the position of object $a$ versus time. Were your expectations correct?
 \end{enumerate}
 \end{exercise}
 
+
+An example script for the simulation of the ideal gas \amp\ piston according to the previous exercise is shown in table~\ref{tab:rocket_simplified} on page~\pageref{tab:rocket_simplified}, with the resulting plot at the margin.
+
+In \sect~\ref{sec:hooke_oscillator} we were able to find an analytic expression for the motion $\yra(t)$ of an object under the force of a Hookean material: the result is a harmonic function, that is, a sine or cosine function with some specific frequency and phase. In the case of the motion of a piston under the force of an ideal gas, \emph{no explicit analytic expression exists}. So our only way to find this motion is by numerical time integration, as done in the script above.
+
+In \chap~\ref{cha:bal_energy} we shall consider what happens if the temperature is not constant but changes with time.
+
+\begin{table}[p]
+  \vspace{-3ex}
+  \caption{Script for ideal gas \amp\ piston}\label{tab:idealgas}
+  \vspace{-4ex}
+\sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+    Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_exercise.m}{\texttt{idealgas\_exercise.m}}%
+    \\[2ex]
+    Download Python version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_exercise.py}{\texttt{idealgas\_exercise.py}}%
+}%
+\lstinputlisting[style=mycode]{scripts/idealgas_exercise.m}
+\sidepar{\vspace{-8\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\includegraphics[width=\linewidth]{images/idealgas_exercise.pdf}%
+}%
+% \vspace{-1em}
+% \begin{center}\label{fig:idealgas_zT}
+% \includegraphics[height=19em]{images/idealgas_zT.pdf}%
+% \end{center}
+\end{table}
+\FloatBlock
+
+\section{Chemical reaction with variable volume}
+\label{sec:chemreaction_volumechange}
+
+\mynotew{to be written}
 
 % % -----------------------------------------------------
 % \section{Choice of control surfaces and volumes}
@@ -12145,7 +12178,7 @@ In order to choose somewhat realistic values for the constants and the initial a
 
 \medskip
 
-The script implementing our simulation is shown in table~\ref{tab:rocket_simplified}.
+The script implementing our simulation is shown in table~\ref{tab:rocket_simplified} on page~\pageref{tab:rocket_simplified}
 
 \mynotew{To be continued}
 
