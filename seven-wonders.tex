@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-21T18:42:20+0100
+%% Last-Updated: 2026-02-21T20:48:03+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11385,7 +11385,7 @@ Suppose that the temperature $\yT$ is constant and the viscosity term is negligi
     & F &= \dfrac{\text{\footnotesize constant}}{z}
   \end{aligned}
 \end{equation*}
-We notice several interesting differences between the two:
+There are several interesting differences between the two:
 \begin{itemize}
 \item The force from Hooke's law can be positive (compressive), when ${z < \ylo}$, or negative (tensile), when ${z > \ylo}$.
 \item[\textopenbullet] The force from the ideal-gas law can only be compressive.
@@ -11435,7 +11435,7 @@ But notwithstanding these important differences, the forces are both given by a 
 
 \smallskip
 
-Now, in a manner of speaking, we want to replace the Hookean material that connects object $a$ to the origin, with an \enquote{ideal-gas material} (and no air outside of the ideal gas's container). This new material provides a surface force described by the constitutive relation~\eqref{eq:force_piston}, but let's say without the $\yvis$-term:
+Now we want to replace the Hookean material that connects object $a$ to the origin, with an \enquote{ideal-gas material} (and no air outside of the ideal gas's container). This new material provides a surface force described by the constitutive relation~\eqref{eq:force_piston}, but let's say without the $\yvis$-term:
 \begin{enumerate}[resume*]
 \item Which physical laws need to be changed in the script? Where in the \texttt{while}-loop should the modification occur?
 \item Modify the previous script accordingly.
@@ -11473,13 +11473,11 @@ In \chap~\ref{cha:bal_energy} we shall consider what happens if the temperature 
     Download Python version \furl{https://pglpm.github.io/7wonders/scripts/idealgas_exercise.py}{\texttt{idealgas\_exercise.py}}%
 }%
 \lstinputlisting[style=mycode]{scripts/idealgas_exercise.m}
-\sidepar{\vspace{-8\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\sidepar{\vspace{-12\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/idealgas_exercise.pdf}%
+\\\flushleftright\color{mpcolor}%
+Under the force of the ideal gas, the piston has an oscillatory motion. This is not a sine or cosine curve, unlike the case of the Hookean spring.%
 }%
-% \vspace{-1em}
-% \begin{center}\label{fig:idealgas_zT}
-% \includegraphics[height=19em]{images/idealgas_zT.pdf}%
-% \end{center}
 \end{table}
 \FloatBlock
 
@@ -13264,95 +13262,30 @@ This fact explain why we were able to solve many problems of motion in the previ
 \section{Constitutive relations for ideal gases}
 \label{sec:int_energy_idealgas}
 
-There is a set of simple constitutive relations which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per volume $\yN/V$ is low. We say that these constitutive relations apply to \textbf{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation using these relations.
+There is a set of simple constitutive relations for energy, momentum flux, and mechanical power, which can be used as approximations for many gases, especially when they are rarefied, that is, when their amount of matter per volume $\yN/V$ is low. We say that these constitutive relations apply to \textbf{ideal gases}. When we say that some material can be modelled as an ideal gas -- or simply say \enquote{it's an ideal gas}, we mean that we can model it with good enough approximation using these relations.
 
-The constitutive relations for ideal gases involve constants and a couple of functions that can be different depending on the kind of gas. So there isn't just one ideal gas, but a family of them. Some texts speak of \emph{the} ideal gas, as if there was only one; but they do so because they discuss properties that are common to all ideal gases.
+The constitutive relations for ideal gases involve constants and a couple of functions that can be different depending on the kind of gas. So there isn't just one ideal gas, but a family of them. Some texts speak of \enquote{the} ideal gas because they discuss properties that are common to all ideal gases.
 
 \medskip
 
-In discussing the constitutive relations below, we consider a closed control surface that encloses an amount of some ideal gas. We assume that there is no flux of the gas through the enclosing surface, and more generally that the conditions listed in the previous \autoref{sec:summary_newton_energy}{summary} are satisfied. These conditions are approximately true for many practical cases, like air under compression or expansion in a bike pump.
+In discussing the constitutive relations below, we consider a closed control surface that encloses an amount of some ideal gas. We assume that there is no flux of the gas through the enclosing surface, and more generally that the conditions listed in the \autoref{sec:summary_newton_energy}{previous summary} are satisfied. These conditions are approximately true for many practical cases, like air under compression or expansion in a bike pump.
 
-If we want to model a body of gas accurately, however, we generally need to use a large number of such control volumes, each one enough small that the conditions above are approximately satisfied within it. This way we can try to simulate many interesting physical behaviours that ideal gases can have, such as turbulence.
+If we want to model a body of gas accurately, however, we need to use a large number of such control volumes, each one enough small that the conditions above are approximately satisfied within it. This way we can try to simulate many interesting physical behaviours that ideal gases can have, such as turbulence or shock waves.
 
 % The constitutive relations that we now discuss apply, strictly speaking, to small control volumes, where all quantities within may be considered to have just one value everywhere. Later on we shall nevertheless apply them, as approximations, to larger volumes. It also goes without saying that these constitutive relations are only valid in Newtonian approximation: for small velocities and weak gravitation.
 
 \subsection{Pressure (momentum flux) of an ideal gas}
 \label{sec:pressure_ideal_gas}
 
-We previously discussed the peculiar fluxes of momentum that take place in a gas, which we generally call the \autoref{def:internal_pressure}{internal pressure} of the gas. Now we discuss a constitutive relation that connects:
-\begin{itemize}[nosep]
-\item the flux of momentum $\yF$ through the closed control surface containing an ideal gas
-\item the amount of ideal gas within
-\item the temperature within
-\item the volume enclosed by the control surface
-\end{itemize}
+In \chap~\ref{cha:bal_momentum} we discussed the notion of \autoref{sec:momentumflux_gas}{internal pressure} and the \autoref{def:idealgas_law}{ideal-gas law with viscosity}: the constitutive relation that connects pressure, amount, temperature, volume, and rate of change of volume of an ideal gas, rewritten here:
+\begin{equation*}
+\label{eq:ideal_gas_p_bis}
+  \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\dt}
+\end{equation*}
+where $R$ is the molar gas constant.
 
-This constitutive relation is more easily expressed in terms of the momentum flux through a surface, \emph{divided by the area} of the surface:
-% \begin{definition}{{Pressure vector, stress vector, pressure}}
-%   For a control surface of area $A$ where the momentum flux $\yF$ is uniform throughout, and through which \emph{there is no matter flux}, we call \textbf{pressure vector} or \textbf{stress vector} $\ypv$ the momentum flux divided by the area: $\ypv \defd \yF/A$.
-% 
-%   \medskip
-% 
-% If the momentum flux $\yF$, and therefore the pressure vector, are orthogonal to the surface and point \emph{away from the surface}, then we call \textbf{pressure} the magnitude of the pressure vector, and usually denote it $\ypr$:
-% \begin{equation}
-%   \label{eq:pressure_def}
-%   \ypr \defd \abs{\ypv} \equiv \frac{\abs{\yF}}{A}
-% \end{equation}
-% The name \emph{tension} is used instead of \emph{pressure} if the momentum flux points towards the surface. Compare our discussion about \autoref{sec:pressure_tension_shear}{compressive and tensile momentum fluxes}.
-% 
-% \medskip
-% 
-% Pressure has physical dimensions of force per area, with units $\unit{N/m^{2}}$; this unit also called \emph{pascal} (\unit{Pa}).
-% \end{definition}
-% 
-% \begin{warning}[\enquote*{Pressure} has many different meanings]
-%   Be aware that the term \enquote*{pressure} is used in many different and sometimes even opposite ways in the physics literature. Some texts use \enquote*{pressure} to indicate not just the magnitude of $\yF/A$, but the full vector; so for them \enquote*{pressure} is not just a number, but a set of three vector components. Some texts use \enquote*{pressure} to denote the pressure vector; so for them a pressure need not be orthogonal to a control surface. Some texts use \enquote*{pressure} also to indicate \enquote*{tension}, or vice versa.
-% 
-%   So when you read a text that uses or discusses \enquote*{pressure}, make sure to get correctly in which sense the text is using this word.
-% 
-%   In these notes we shall sometimes use \enquote*{pressure} in a slightly different or more general meaning, which should be clear from the context.
-% \end{warning}
+If the surface through which this momentum flux occurs has area $A$, the magnitude of the force is therefore ${\abs{\yF} = A\,\ypr}$.
 
-
-Now that the notion of pressure is introduced, we can formulate a particular constitutive relation for the momentum flux:
-\begin{definition}{Ideal-gas law with viscosity}\label{def:idealgas_law}
-  If a closed control surface encloses a volume $V$ with an amount $\yN$ of an ideal gas, at uniform temperature $\yT$, and the momentum flux is orthogonal to the surface and uniform throughout, and there is no matter flux through the surface, then the pressure $\ypr$ is given by
-  \begin{equation}
-    \label{eq:ideal_gas_p}
-    \ypr = \frac{R \yN \yT}{V}  - \yvis \frac{1}{V}\frac{\di V}{\dt}
-  \end{equation}
-  where $\frac{\di V}{\dt}$ is the rate of change of volume, $\yvis$ is a \textbf{viscosity} coefficient, and $R$ is the \furl{https://doi.org/10.1351/goldbook.G02579}{\textbf{molar gas constant}}, having universal value
-  \begin{equation*}
-    R = \qty{8.31446261815324}{J/(mol\cdot K)}\quad\text{(exactly)}
-  \end{equation*}
-The equation above is called the \textbf{ideal-gas law with viscosity}.
-
-  \smallskip
-
-  If the surface has area $A$, the magnitude of the momentum flux is therefore $\abs{\yF} = \ypr A$.
-
-  % \medskip
-  %
-  % If only one dimension of the volume is changing, then the coefficient $\yvis$ is given by
-  % \begin{equation}
-  %   \label{eq:viscosity_gen}
-  %   \yvis = \frac{4}{3}\eta + \zeta
-  % \end{equation}
-  % where $\eta$ and $\zeta$ are called the \emph{shear} and \emph{bulk} \furl{https://www.britannica.com/science/fluid-mechanics/Viscosity}{viscosity coefficients}. These coefficients are always positive, and usually depend on the temperature.
-\end{definition}
-Note that the formula above for pressure and momentum flux is only valid for surfaces through which no matter flux occurs.
-
-%
-\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/idealgas_mug.jpg}%
-% \\[\jot]\flushleftright{\color{mpcolor}%
-% The famous \enquote{$pV=NRT$} formula}%
-}%
-In the expression above for the pressure you may recognize the famous \enquote{$pV=NRT$} formula, called the \textbf{ideal-gas law}. This famous formula is strictly speaking only valid when the ideal gas is at rest, which means that its volume is not changing, so that $\frac{\di V}{\dt} = 0$.
-
-If the ideal gas is in motion, for instance expanding or contracting and its volume $V$ changes with time, then additional terms must be added to the famous \enquote{$pV=NRT$} formula. This is what we see in the relation~\eqref{eq:ideal_gas_p} above. In many cases these additional terms are extremely small and therefore neglected.
-
-The fact that the viscosity coefficients must be positive is a consequence of the \emph{balance of entropy} -- the second law of thermodynamics -- which we shall discuss later.
 
 
 \subsection{Internal energy of an ideal gas}
@@ -13370,11 +13303,11 @@ Next we discuss a constitutive relation that connects the amount of internal ene
 \end{definition}
 This formula is very important: for an ideal gas, the absolute temperature is a direct measure of the internal energy, so it can often be used as a proxy for the latter. For air, when it can be modelled as an ideal gas, the value of the molar heat capacity is approximately $C_{\text{air}} \approx \qty{20}{J/(mol\,K)}$.
 
-\begin{warning}[Validity of the internal-energy formula]
+\begin{warning}[Warnings about the internal-energy formula]
   \begin{itemize}
   \item The particular constitutive relation~\eqref{eq:int_energy_idealgas} is valid \emph{only for an ideal gas}. The internal energy of a generic material is related to other quantities besides amount of matter and temperature.
 
-  \item The constant $C$ is also called \enquote*{molar heat capacity at constant volume}, but despite this name the constitutive relation above \emph{is also valid when the volume of the gas is changing}!
+  \item The constant $C$ is also called \enquote*{molar heat capacity at constant volume}, but despite this name \emph{the constitutive relation above is also valid when the volume of the gas is changing}!
 
   \item Some books express the formula above saying \enquote{the internal energy of an ideal gas depends only on temperature}. This statement is somewhat vague and easy to misunderstand. First, the internal energy clearly \enquote{depends} also on the amount of matter $\yN$. Second, if in some application we express the amount of matter or the temperature as functions of other quantities, such as volume, then the internal energy also becomes a function of those quantities. The formula above can be simply expressed as follow: if we know the amount (and kind) of matter in a volume, and the temperature in that volume, then we also know the amount of internal energy therein.
   \end{itemize}
