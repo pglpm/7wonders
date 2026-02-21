@@ -21,7 +21,7 @@ Gb = -mb * g * [0, 0];  % N: gravity supply object b
 
 %% Parameters for time loop
 t1 = 10;     % s: final time
-dt = 0.001;  % s: time step %@
+dt = 0.0001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots

@@ -11,7 +11,7 @@ m = 7.9e5    # kg: rocket mass without fuel
 rho = 0.22   # kg/mol: fuel molar mass
 delta = 0.5  # mol/m**3: fuel molar density
 A = 50       # m**2: nozzle area
-g = 9.8      # kg: free-fall acceleration
+g = 9.8      # N/kg: free-fall acceleration
 
 ## Initial conditions. State: (z, v, Nb)
 t = 0       # s: initial time
@@ -24,7 +24,7 @@ J = -6e4          # mol/s: matter influx at nozzle
 patm = 1e5        # N/m**2: atmospheric pressure
 p = 5e4           # N/m**2: pressure at nozzle
 Fatm = -A * patm  # N: force on rocket surface
-Sigma = A * p     # N: stress tensor at nozzle
+Fstress = A * p     # N: stress tensor at nozzle
 
 ## Time-iteration parameters
 t1 = 150     # s: final time
@@ -46,7 +46,7 @@ while t < t1 and Nb > 0:
   ## constitutive relations
   P = (m + rho * Nb) * v
   vb = v + J / (A * delta) # needed to calculate F
-  F = Fatm + Sigma + J * rho * vb
+  F = Fatm + Fstress + J * rho * vb
   G = -(m + rho * Nb) * g
 
   ## step forward in time with balance laws
