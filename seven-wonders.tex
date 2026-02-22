@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-22T06:21:23+0100
+%% Last-Updated: 2026-02-22T06:58:36+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11300,16 +11300,18 @@ At the surface where the gas is in contact with its containing box, the momentum
 The answer is that an opposite and slightly more complex circulation of momentum takes place through walls of the box. The momentum that one side of the box receives from the gas is transported to the opposite side, where it is given back to the gas. By the symmetry of flux, this circulation can also be visualized in the opposite direction. The flux of momentum along the walls of the box is therefore partially \autoref{sec:tension}{tensile} and partially \autoref{sec:shear}{shearing}.
 The margin picture gives a \emph{qualitative} illustration of the momentum fluxes (\textcolor{cyan}{light-blue arrows}) that occur through various control surfaces (\textcolor{blue}{dashed dark-blue lines}) at the corner of a box that contains an amount of gas and is surrounded by a vacuum. From a molecular point of view, the flux of momentum through the box occurs because of transport, not by molecules, but by the electromagnetic field that coexists with the box's molecules.
 
+\needspace{7\baselineskip}
 \section{Constitutive relation for momentum flux of an ideal gas}
 \label{sec:idealgas_pressure}
 
+\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
+\includegraphics[height=14\baselineskip]{images/idealgas_piston_setup.jpg}%
+\\\flushleftright\color{grey}%
+The chamber walls should be imagined indefinitely high: the piston never gets out.%
+}%
 The \autoref{sec:springs_consequences_balances}{simplifying assumptions} that we made to study pieces of material like rubber bands, small springs, or strings, can also be made in circumstances involving gaseous substances.
 
-\needspace{4\baselineskip}
-\marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
-\includegraphics[height=14\baselineskip]{images/idealgas_piston_setup}%
-}%
-Consider for instance the setup illustrated in the margin figure. A container is filled with a gaseous substance (represented by the light-bluish filling). One end of the container is movable; for instance it could be a freely movable piston (represented by the \textcolor{yellow}{yellow rectangle}). The container has a main relevant length $z(t)$, possibly variable with time. There are two main fluxes of momentum (\textcolor{cyan}{blue arrows}): to the movable piston, and to the bottom of the container. If the section of the container has area $A$, then the container has variable volume ${V(t) = A\,z(t)}$.
+Consider for instance the setup illustrated in the margin figure. A chamber is filled with a gaseous substance, represented by the light-bluish filling. One end of the chamber is movable; for instance it could be a freely movable piston, represented by the \textcolor{yellow}{yellow rectangle}. Note that we imagine the chamber walls to be indefinitely long, so that the piston never gets out. The chamber has one main relevant length $z(t)$, possibly variable with time. There is a flux of momentum (surface force) from the gas, and we focus on the fluxes  (\textcolor{cyan}{blue arrows}) through two main surfaces: to the movable piston, and to the bottom of the container. If the section of the container has area $A$, then the container has variable volume ${V(t) = A\,z(t)}$.
 
 If the piston has mass $\ym$, the mass of the gas in the container may be negligible compared to it. This condition is especially true if the gas is very rarefied, that is, if the ratio $\yN/V$ of the gas amount $\yN$ divided by the volume is very small.
 
@@ -11400,11 +11402,6 @@ There are several interesting differences between the two:
 These differences have important consequences for the motion of an object on which such a force is exerted. As we saw in our previous \autoref{sec:hooke_oscillator}{analytic} and \autoref{sec:strategy_simulation}{numeric} analyses, the Hookean force gives rise to oscillatory motion around a position of equilibrium; if the object is initially at this position with zero velocity, it stays there. The ideal-gas force instead will indefinitely keep on pushing the object, unless some other force counteracts it; it does not have an equilibrium position.
 
 But notwithstanding these important differences, the forces are both given by a function of the distance $z$. It is therefore very easy to adapt our previous simulations of a Hookean mass-and-spring system to the simulation of a piston-and-ideal-gas system. We shall do this now; but first try on your own:
-% \sidepar{\vspace{1\baselineskip}\footnotesize\flushleft\color{mpcolor}%
-%     Download Octave version \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring_simple.m}{\texttt{hooke\_spring\_simple.m}}%
-%     \\[2ex]
-%     Download Python version \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring_simple.py}{\texttt{hooke\_spring\_simple.py}}%
-% }%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item Start from the simulation script for the spring \amp\ bodies system in table~\ref{tab:script_strategy}, analysed in \sect\ref{sec:strategy_simulation}, and modify it as follows:
@@ -11424,8 +11421,10 @@ But notwithstanding these important differences, the forces are both given by a 
           &\ytf = \qty{10}{s}  &&\Dt = \qty{0.0001}{s}
         \end{aligned}
       \end{equation*}
+
+      \needspace{5\baselineskip}
     \item Simulate and plot the position of object $a$ versus time. Verify that you obtain a plot like the one in the margin.
-\sidepar{\vspace{-5\baselineskip}\footnotesize\flushleft\color{mpcolor}%
+\sidepar{\vspace{-2\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/hooke_spring_exercise.pdf}%
 }%
   \end{itemize}
@@ -12200,10 +12199,6 @@ The script implementing our simulation is shown in table~\ref{tab:rocket_simplif
     Download Python version \furl{https://pglpm.github.io/7wonders/scripts/rocket_simplified.py}{\texttt{rocket\_simplified.py}}%
 }%
 \lstinputlisting[style=mycode]{scripts/rocket_simplified.m}
-% \vspace{-1em}
-% \begin{center}\label{fig:idealgas_piston_zT}
-% \includegraphics[height=19em]{images/idealgas_piston_zT.pdf}%
-% \end{center}
 \clearpage
 
 
@@ -13440,25 +13435,22 @@ The masslessness assumption is of course inadequate in some conditions like extr
   \end{itemize}
 \end{exercise}%1.2e-3
 
-\needspace{15\baselineskip}
-\section{Example: ideal gas and piston}
+\needspace{13\baselineskip}
+\section{Simulation: ideal gas \amp\ piston with variable temperature}
 \label{sec:idealgas_ex}
 
-\subsection{Setup}
-\label{sec:idealgas_ex_setup}
+% \subsection{Setup}
+% \label{sec:idealgas_ex_setup}
 
-%
-\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[height=13\baselineskip]{images/idealgas_piston.jpg}%
+\\\flushleftright\color{grey}%
+The chamber walls should be imagined indefinitely high: the piston never gets out.%
 }%
-We previously discussed and simulated the motion of a {movable piston under the pressure of an ideal gas}.
-One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
-To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\ym$ and constant surface area $A$.
-The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upward.
+We previously discussed and simulated the motion of a \autoref{sec:idealgas_piston_momentum}{movable piston in contact with an ideal gas}. The setup is shown again in the margin figure. In our previous discussion we considered the thermodynamic temperature of the gas to be constant in time. Since also the amount of gas is constant in time, the pressure and therefore the force on the piston could change only with the length $z$ of the chamber.
 
-Since the piston has mass $\ym$, it also has momentum $\yPpi=\ym\,v$, according to the Newtonian constitutive relation for momentum, and it may have a vertical gravity momentum supply $\yGpi = -\ym\,g$.
+The constitutive equation~\eqref{eq:int_energy_idealgas} for the \autoref{def:internalenergy_gas}{internal energy of an ideal gas} says that if its temperature changes then also its internal energy changes. If we want to consider the possibility of a variable temperature, we must therefore take care of the balance of energy. Let's modify our initial setup and simulation so that it allows for changes in time of energy and temperature.
 
-You may wonder why we need to consider a piston having mass. There are two main reasons. First, in a real situation a piston does have a mass that is non-negligible, compared with the mass of the gas. Second, the assumption that the gas has no mass makes \autoref{sec:further_idealgas}{the balance of momentum become singular}, as discussed in the previous section, and any description and prediction of motion becomes therefore impossible -- unless we add mass somewhere else. The piston is effectively also a proxy for the mass of the gas. We encountered an analogous situation with the spring-and-bodies system.
 
 \subsection{Control volumes \amp\ surfaces}
 \label{sec:idealgas_ex_control}
