@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-21T20:48:03+0100
+%% Last-Updated: 2026-02-22T06:21:23+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11366,7 +11366,8 @@ In the expression above for the pressure you may recognize the famous \enquote{\
   The famous formula \enquote{\,${pV = NRT}$\,} is strictly speaking valid only when the ideal gas is fully at rest, that is, when its volume is not changing with time: ${\di V/\dt = \qty{0}{m^{3}/s}}$. If the ideal gas is expanding or contracting, then additional terms enter that formula, as the constitutive relation~\eqref{eq:ideal_gas_p} above shows. In many cases, however, these additional terms are extremely small and may therefore be neglected.
 \end{warning}
 
-\subsection{Ideal-gas law in the simple container \amp\ piston setup}
+\section{Simulation of an ideal gas \amp\ piston}
+\label{sec:idealgas_piston_momentum}
 
 Let us return to our simple setup with a gas in a container with a movable piston. Let's assume that the gas behaves like an ideal gas. The volume is connected to the length $z$ and section area $A$ of the container by ${V = A\,z}$. From the ideal-gas law~\eqref{eq:ideal_gas_p}, the magnitude of the surface force $F$ on the piston is
 \begin{equation}
@@ -13369,6 +13370,12 @@ If the mass $\ym$ of a volume of ideal gas is assumed to be zero, then four othe
 \item the gravitational potential energy $\ym g z$
 \end{itemize}
 
+\needspace{6\baselineskip}
+\marginpar{\vspace{-3\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.45\linewidth]{images/idealgas_mominflux.pdf}%
+% \\[\jot]\flushleftright\color{mpcolor}%
+% NB: if $\yTb >\yTa$, then $\yQ<0$%
+}%
 This assumption has an important consequence for the balance of momentum of a control volume containing an ideal gas: we have
 \begin{equation*}
   \underbracket[0pt]{\frac{\di\yP(t)}{\dt}}_{\mathcolor{midgrey}{{}=0}} =
@@ -13377,22 +13384,13 @@ This assumption has an important consequence for the balance of momentum of a co
 \qquad\Longrightarrow\qquad
 \yF(t) = 0
 \end{equation*}
-that is, the \emph{total} momentum influx is always zero. But note that \emph{this does not mean that the momentum influx is zero everywhere} across the closed control surface;
-%
-\marginpar{\vspace{-10\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.45\linewidth]{images/idealgas_mominflux.pdf}%
-% \\[\jot]\flushleftright\color{mpcolor}%
-% NB: if $\yTb >\yTa$, then $\yQ<0$%
-}%
-it only means that the momentum influxes of opposite parts of the surface cancel out perfectly, as schematized in the side figure.
+that is, the \emph{total} momentum influx is always zero. This means that the momentum influxes of opposite parts of the surface cancel out perfectly, as schematized in the margin figure.
 
-Remember that when we use the ideal-gas law~\eqref{eq:ideal_gas_p}, we are assuming that \textbf{any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude}
-\begin{equation*}
-  F_{A} = A\,\ypr = A\,\frac{R \yN \yT}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\dt}
-\end{equation*}
-\textbf{and directed \emph{inwards}}, according to the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
-
-\medskip
+% Remember that when we use the ideal-gas law~\eqref{eq:ideal_gas_p}, we are assuming that \textbf{any small surface of area $A$ of the control volume has a momentum influx $\yF_{A}$ of magnitude}
+% \begin{equation*}
+%   F_{A} = A\,\ypr = A\,\frac{R \yN \yT}{V} - A\,\yvis \frac{1}{V}\frac{\di V}{\dt}
+% \end{equation*}
+% \textbf{and directed \emph{inwards}}, according to the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
 
 Another important consequence of assuming that a volume of ideal gas has zero mass is that \textbf{its total energy is purely internal energy}:
 \begin{equation*}
@@ -13435,9 +13433,9 @@ The masslessness assumption is of course inadequate in some conditions like extr
 \begin{exercise}
   Calculate the mass of a litre, that is \qty{e-3}{m^3}, of air. Use the following information:
   \begin{itemize}[nosep]
-  \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\ym\approx\yrho\yN$
-  \item the pressure $\ypr$ of air is around \qty{e5}{N/m^2}
-  \item take a thermodynamic temperature of air $\yT=\qty{300}{K}$ (around \qty{27}{\degreeCelsius})
+  \item the \autoref{def:molarmass}{molar mass} $\yrho$ of air is around \qty{0.03}{kg/mol}; this means that an amount $\yN$ of air has mass $\ym = \yrho\yN$;
+  \item the pressure $\ypr$ of air is around \qty{e5}{N/m^2};
+  \item take a thermodynamic temperature of air $\yT=\qty{300}{K}$ (around \qty{27}{\degreeCelsius});
   \item pressure, volume, temperature, and amount of air are related by the \autoref{def:idealgas_law}{ideal-gas law}~\eqref{eq:ideal_gas_p}.
   \end{itemize}
 \end{exercise}%1.2e-3
@@ -13453,6 +13451,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.8\linewidth]{images/idealgas_piston.pdf}%
 }%
+We previously discussed and simulated the motion of a {movable piston under the pressure of an ideal gas}.
 One of the simplest system involving an ideal gas consists of a chamber of variable volume, wherein an amount of ideal gas is enclosed, as illustrated in the side picture.
 To be more specific we consider a vertical tubular chamber containing an amount $\yN$ of an ideal gas. The \textcolor{midgrey}{dark grey walls} are rigid, the \textcolor{yellow}{yellow piston} can move vertically and has constant mass $\ym$ and constant surface area $A$.
 The base of the piston is at a height $z(t)$ from the bottom of the chamber. The height and therefore the volume $V(t) = A\,z(t)$ of the chamber can vary with time. We choose a one-dimensional coordinate system $z$; vectors are positive when directed upward.
