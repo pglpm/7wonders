@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-22T06:58:36+0100
+%% Last-Updated: 2026-02-22T07:36:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1916,7 +1916,7 @@ Keep in mind that we are not saying that Octave is the best programming language
 
 You can find many introductions to Octave online. Check out its own \furl{https://docs.octave.org/latest/}{documentation} for example.
 
-% Keep in mind that in Octave a trailing semicolon \textcolor{codecolour}{\texttt{;}} prevents the result of an operation to be printed to the console or to output.
+% Keep in mind that in Octave a trailing semicolon \texttt{\color{codecolour};} prevents the result of an operation to be printed to the console or to output.
 
 
 \subsection{Code colours}
@@ -10090,7 +10090,7 @@ Let's examine the structure of this script, starting from the bottom, and omitti
   Modify and play around with the script for the tennis ball of table~\ref{tab:tennisball_rP} on page~\pageref{tab:tennisball_rP}, changing the various parameters in the script and changing the physical situation a little. For example you can try the following:
   \begin{itemize}
   \item Change the mass $\ym$, so that the script describes not a tennis ball, but a golf ball or a bowling ball. How does this modify the time behaviour of the vertical position and of the vertical momentum?
-  \item Change the initial momentum $\yP$. What happens if the object initially has a downward momentum? What if there is a horizontal component of momentum? Note that you can plot the $x$-component of momentum or position by changing \enquote*{\,\textcolor{codecolour}{\texttt{P(3)}}\,} into \enquote*{\,\textcolor{codecolour}{\texttt{P(1)}}\,} and \enquote*{\,\textcolor{codecolour}{\texttt{r(3)}}\,} into \enquote*{\,\textcolor{codecolour}{\texttt{r(1)}}\,}.
+  \item Change the initial momentum $\yP$. What happens if the object initially has a downward momentum? What if there is a horizontal component of momentum? Note that you can plot the $x$-component of momentum or position by changing \enquote*{\,\texttt{\color{codecolour}P(3)}\,} into \enquote*{\,\texttt{\color{codecolour}P(1)}\,} and \enquote*{\,\texttt{\color{codecolour}r(3)}\,} into \enquote*{\,\texttt{\color{codecolour}r(1)}\,}.
   \item Change the boundary condition for the momentum influx. You can approximately represent the effect of wind by using a horizontal influx of momentum, constant in time; for instance
     \begin{equation*}
       \yF(t) = [2, 0, 0]\,\unit{N} \,.
@@ -10106,7 +10106,7 @@ Let's examine the structure of this script, starting from the bottom, and omitti
     \\[2ex]
     Download Python version \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}%
     \\[5ex]
-    \flushleftright\color{black}\emph{Note:} In Octave, vectors are simply represented by square brackets, as in \textcolor{codecolour}{lines 10--11}, similar to the maths notation. The 1st component of a vector \textcolor{codecolour}{\texttt{P}} is retrieved by means of round brackets: \enquote*{\,\textcolor{codecolour}{\texttt{P(1)}}\,}.
+    \flushleftright\color{black}\emph{Note:} In Octave, vectors are simply represented by square brackets, as in \textcolor{codecolour}{lines 10--11}, similar to the maths notation. The 1st component of a vector \texttt{\color{codecolour}P} is retrieved by means of round brackets: \enquote*{\,\texttt{\color{codecolour}P(1)}\,}.
   }%
   \lstinputlisting[style=mycode]{scripts/tennisball_rP.m}
 \end{table}
@@ -10334,7 +10334,7 @@ The elastic constant $k$ can \emph{never be negative}. This is a consequence of 
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item Verify that the elastic constant $k$ has physical dimension \texttt{force}/\texttt{length}.
+  \item Verify that the elastic constant $k$ has physical dimension \textdim{force}/\textdim{length}.
 
   \item What if the elastic constant $k$ where negative? Examine Hooke's law~\eqref{eq:hooke}, and try to deduce what would happen if you stretched out such a bizarre kind of material starting from its natural length.
 
@@ -11406,8 +11406,9 @@ But notwithstanding these important differences, the forces are both given by a 
   \begin{enumerate}[exerc]
   \item Start from the simulation script for the spring \amp\ bodies system in table~\ref{tab:script_strategy}, analysed in \sect\ref{sec:strategy_simulation}, and modify it as follows:
     \begin{itemize}
-    \item Eliminate one spatial dimension, keeping only the $z$-coordinate.
-    \item Eliminate object $b$, and consider the $b$-end of the spring to be attached to the origin $z = 0$. What are the state variables of this simplified system?
+    \item Eliminate one spatial dimension, keeping only the $z$-coordinate. Feel free to rename the position \enquote*{\,$\yr$\,} to just \enquote*{\,$z$\,}.
+    \item Eliminate object $b$. Feel free to eliminate all \enquote*{\,$a$\,} subscripts (so \enquote*{\,\texttt{\color{codecolour}Pa}\,} becomes just \enquote*{\,\texttt{\color{codecolour}P}\,}, and so on).
+    \item Consider the $b$-end of the spring to be attached to the origin $z = 0$. What are the state variables of this simplified system?
     \item Use the following constants, initial conditions, and time-integration parameters:
       \begin{equation*}
         \begin{aligned}
@@ -11415,7 +11416,7 @@ But notwithstanding these important differences, the forces are both given by a 
           &\ym = \qty{5}{kg} &&k = \qty{25}{N/m}
           \\
           \text{\footnotesize initial conditions:}&&
-          &r_{a} = -\qty{1.8}{m} &&v_{a} = \qty{0}{m/s}
+          &z = -\qty{1.8}{m} &&v = \qty{0}{m/s}
           \\
           \text{\footnotesize time-integration parameters:}&&
           &\ytf = \qty{10}{s}  &&\Dt = \qty{0.0001}{s}
@@ -11445,21 +11446,21 @@ Now we want to replace the Hookean material that connects object $a$ to the orig
           \text{\footnotesize constants:}&&
           &R = \qty{8.314}{N\,m/(K\,mol)}
           &&\yN = \qty{0.04}{mol}
-          &&\yT = \qty{296}{K}
+          &&\yT = \qty{298.15}{K}
           \\
           \text{\footnotesize initial conditions:}&&
-          &r_{a} = +\qty{1.8}{m} &&v_{a} = \qty{0}{m/s}&&
+          &z = +\qty{1.8}{m} &&v = \qty{0}{m/s}&&
         \end{aligned}
       \end{equation*}
-    \item Before starting the simulation: what kind of behaviour do you expect to observe for the piston's position $\yra$? For instance, will the piston be pushed upward indefinitely? Or maybe it will stop at some position?
-    \item Simulate and plot the position of object $a$ versus time. Were your expectations correct?
+    \item Before starting the simulation: what kind of behaviour do you expect to observe for the piston's position $z$? For instance, will the piston be pushed upward indefinitely? Or maybe it will stop at some position?
+    \item Simulate and plot the piston's position $z$ versus time. Were your expectations correct?
 \end{enumerate}
 \end{exercise}
 
 
 An example script for the simulation of the ideal gas \amp\ piston according to the previous exercise is shown in table~\ref{tab:rocket_simplified} on page~\pageref{tab:rocket_simplified}, with the resulting plot at the margin.
 
-In \sect~\ref{sec:hooke_oscillator} we were able to find an analytic expression for the motion $\yra(t)$ of an object under the force of a Hookean material: the result is a harmonic function, that is, a sine or cosine function with some specific frequency and phase. In the case of the motion of a piston under the force of an ideal gas, \emph{no explicit analytic expression exists}. So our only way to find this motion is by numerical time integration, as done in the script above.
+In \sect~\ref{sec:hooke_oscillator} we were able to find an analytic expression for the motion of an object under the force of a Hookean material: the result is a harmonic function, that is, a sine or cosine function with some specific frequency and phase. In the case of the motion of a piston under the force of an ideal gas, \emph{no explicit analytic expression exists}. So our only way to find this motion is by numerical time integration, as done in the script above.
 
 In \chap~\ref{cha:bal_energy} we shall consider what happens if the temperature is not constant but changes with time.
 
@@ -11734,14 +11735,14 @@ In our second experience, with the object in motion, we noticed that the kinetic
 Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$, need not have the same value; in many cases the coefficient of kinetic friction is smaller than the other.
 
 
-%
-\marginpar{\vspace{5\baselineskip}\footnotesize\centering%
-\includegraphics[width=\linewidth]{images/carpush.jpg}%
-}%
 \begin{exercise}
   \begin{enumerate}[exerc]
   \item The normal force has physical dimensions of force, SI units \unit{N}. From formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction} find the physical dimensions and units of the coefficients of static and kinetic friction.
 
+%
+\sidepar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/carpush.jpg}%
+}%
   \item Two persons are pushing a parked car. The car rests on a thin layer of ice that formed on the tarmac. Each person is exerting a horizontal force of \qty{600}{N}. The car has mass \qty{1200}{kg}, and the acceleration of gravity is \qty{9.8}{N/kg}. The coefficient of static friction between the wheel's rubber and ice is $\yfris=0.1$.
 
     Will the two persons manage to move the car?
@@ -11753,7 +11754,7 @@ Check that this function correctly covers and represents both formulae~\eqref{eq
 \end{exercise}\noprelistbreak
 %
 \sidepar{\vspace{-10\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-\texttt{\color{blue}sign()} is defined as
+\texttt{\color{codecolour}sign()} is defined as
     \begin{equation*}
       \texttt{sign}(x)   \defd   \begin{cases}
         +1 &\text{if } x>0\\
@@ -11773,7 +11774,7 @@ Check that this function correctly covers and represents both formulae~\eqref{eq
 
 In the previous sections we have studied different constitutive relations and applications for momentum flux through a control surface under a particular condition: there was \emph{no flux of matter} through the surface. This condition can often be satisfied in applications involving solid materials or in static situations.
 
-%
+\needspace{5\baselineskip}
 \marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/coffee_milk_teaspoon.jpg}%
 % \\[\jot]\flushleftright\color{mpcolor}%
@@ -13437,7 +13438,7 @@ The masslessness assumption is of course inadequate in some conditions like extr
 
 \needspace{13\baselineskip}
 \section{Simulation: ideal gas \amp\ piston with variable temperature}
-\label{sec:idealgas_ex}
+\label{sec:idealgas_piston_momentum_temp}
 
 % \subsection{Setup}
 % \label{sec:idealgas_ex_setup}
@@ -13449,7 +13450,7 @@ The chamber walls should be imagined indefinitely high: the piston never gets ou
 }%
 We previously discussed and simulated the motion of a \autoref{sec:idealgas_piston_momentum}{movable piston in contact with an ideal gas}. The setup is shown again in the margin figure. In our previous discussion we considered the thermodynamic temperature of the gas to be constant in time. Since also the amount of gas is constant in time, the pressure and therefore the force on the piston could change only with the length $z$ of the chamber.
 
-The constitutive equation~\eqref{eq:int_energy_idealgas} for the \autoref{def:internalenergy_gas}{internal energy of an ideal gas} says that if its temperature changes then also its internal energy changes. If we want to consider the possibility of a variable temperature, we must therefore take care of the balance of energy. Let's modify our initial setup and simulation so that it allows for changes in time of energy and temperature.
+The constitutive equation~\eqref{eq:int_energy_idealgas} for the \autoref{def:internalenergy_gas}{internal energy of an ideal gas} says that if its temperature changes then also its internal energy changes. If we want to consider the possibility of a variable temperature, we must therefore take care of the balance of energy. Let's modify our initial setup and simulation so that it allows for changes in time of energy and temperature. We do this step by step, reconsidering all control volumes, balance laws, and constitutive relations involved.
 
 
 \subsection{Control volumes \amp\ surfaces}

@@ -3,13 +3,13 @@
 %% length unit is 10^9 m
 
 %% Constants
-ma = 2e30;            % kg: mass-energy tennis Sun
-mb = 6e24;            % kg: mass-energy tennis Earth
-kappa = 6.67408e-38;  % 10^27 N m^2/kg^2 : gravitational constant
+ma = 2e30;            % kg: mass-energy Sun
+mb = 6e24;            % kg: mass-energy Earth
+kappa = 6.67408e-38;  % 10^27 N m^2/kg^2: gravitational constant
 
 %% Initial conditions
 t = 0;                    % s: initial time
-ra = [-0.35, 0.10];       % 10^9 m: initial position tennis Sun
+ra = [-0.35, 0.10];       % 10^9 m: initial position Sun
 va = [-6.2e-12, 9.3e-9];  % 10^9 m/s: initial velocity Sun
 Pa = ma * va;             % 10^9 N s: initial momentum Sun
 rb = [150, 0];            % 10^9 m: initial position Earth
@@ -28,7 +28,7 @@ dt = 3600;      % s: time step (1 h)
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;   % time for next plot
 clf
-plot(ra(1), ra(2), 's', 'color', '#CCBB44')
+plot(ra(1), ra(2), '*', 'color', '#CCBB44')
 hold on; plot(rb(1), rb(2), 'o', 'color', '#4477AA')
 xlabel('{\it x}/m'); ylabel('{\it z}/m')
 axis('tight'); axis('equal'); grid on; hold on
@@ -51,7 +51,7 @@ while t < t1
 
   %% plot
   if t > tplot
-    plot(ra(1), ra(2), 's', 'color', '#CCBB44')
+    plot(ra(1), ra(2), '*', 'color', '#CCBB44')
     hold on; plot(rb(1), rb(2), 'o', 'color', '#4477AA')
     xlabel('{\it x}/m'); ylabel('{\it z}/m')
     axis('tight'); axis('equal'); grid on; hold on
