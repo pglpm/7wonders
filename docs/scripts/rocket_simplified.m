@@ -19,7 +19,7 @@ J = -6e4;          % mol/s: matter influx at nozzle
 patm = 1e5;        % N/m^2: atmospheric pressure
 p = 5e4;           % N/m^2: pressure at nozzle
 Fatm = -A * patm;  % N: force on rocket surface
-Fstress = A * p;     % N: stress tensor at nozzle
+Fstress = A * p;   % N: stress vector at nozzle
 
 %% Time-iteration parameters
 t1 = 150;     % s: final time
@@ -28,7 +28,7 @@ dt = 0.0001;  % s: time step %@
 %% Plotting
 dtplot = t1/360;  % time interval between plots
 tplot = dtplot;   % time for next plot
-figure
+clf
 subplot(2, 1, 1); plot(t, z, 'o', 'color', '#4477AA')
 xlabel('time {\it t}/s'); ylabel('{\it z}/m')
 axis('tight'); xlim([0, t1]); grid on; hold on
@@ -50,7 +50,7 @@ while t < t1 && Nb > 0 % '&&' means 'and'
   P = P + (F + G) * dt;
   z = z + v * dt;
 
-  %% constitutive relations: calculate state
+  %% constitutive relations: calculate new state
   v = P / (m + rho * Nb); %@
 
   %% plot
