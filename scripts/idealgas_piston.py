@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 ## Coordinates (t, z)
 
 ## Constants
-R = 8.31446261815  # J/(K*mol): molar gas constant
+R = 8.31446261815  # N m/(K*mol): molar gas constant
 g = 9.8            # N/kg: gravitational acceleration
-C = 20             # J/(K*mol): molar heat capacity
-mu = 4e-5          # N*s/m**2: gas viscosity
-h = 8e3            # J/(K*m**2): heat-transfer coefficient
+C = 20             # J/(K mol): molar heat capacity
+mu = 4e-5          # N s/m**2: gas viscosity
+h = 8e3            # J/(K m**2): heat-transfer coefficient
 N = 0.04           # mol: amount of ideal gas
 A = 0.03**2        # m**2: area of piston
 m = 1              # kg: mass of piston

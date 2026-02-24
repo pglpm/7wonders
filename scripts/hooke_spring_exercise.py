@@ -7,21 +7,21 @@ import matplotlib.pyplot as plt
 ## Coordinates (t, z)
 
 ## Constants
-m = 5	 # kg: mass object a
+m = 20	 # kg: mass object a
 g = 9.8  # N/kg: gravitational acceleration
-k = 25	 # N/m: spring constant
+k = 200	 # N/m: spring constant
 
 ## Initial conditions
-t = 0	   # s: time
-z = -1.8  # m: position object a
+t = 0	  # s: time
+z = -0.1  # m: position object a
 v = 0     # m/s: velocity object a
 
 ## Boundary conditions
 G = -m * g  # N: gravity supply object a
 
 ## Parameters for time loop
-t1 = 10	     # s: final time
-dt = 0.0001  # s: time step #@
+t1 = 5        # s: final time
+dt = 0.00001  # s: time step #@
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
