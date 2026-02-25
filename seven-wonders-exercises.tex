@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-23T19:22:31+0100
+%% Last-Updated: 2026-02-25T22:43:50+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4241,6 +4241,26 @@ During the same time interval, the ball experiences the usual vertical gravitati
 \item What is the football's velocity at time $\ytf$? Which constitutive relations must you use to find it?
 \end{enumerate}
 
+\needspace{4\baselineskip}
+\section{}
+\label{sec:tennisballs_collision}
+
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/tennisballs_collision.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+In a coordinate system $(t, x)$, at a particular time two tennis balls are at some distance from each other, and moving towards each other with opposite velocities of magnitude \qty{25}{m/s}. Each ball has mass \qty{0.060}{kg}. There is no gravity, no electromagnetic fields, no air.
+
+\begin{enumerate}[exerc]
+\item Consider a control volume consisting of both tennis balls. Which physical laws and physical principles do you need to use in order to calculate the total momentum content in this volume? Do not reason intuitively or heuristically: try to be methodical and exhaustive.
+\end{enumerate}
+
+After some time the tennis balls have collided and are moving away from each other, in directions opposite to those they came from.
+
+\begin{enumerate}[exerc,resume*]
+\item How much is the total momentum content in the control volume, after the collision? Explain which balance laws and other information you use to find the result.
+\item Using only the balance of momentum, is it possible to find the magnitude of the velocity of each ball after the collision?using only
+\end{enumerate}
 
 \needspace{12\baselineskip}
 \section{}
@@ -5181,6 +5201,68 @@ To find this result we had to use Newton's constitutive relation between momentu
 \end{enumerate}
 
 
+\sollabel{sec:tennisballs_collision}
+
+\begin{enumerate}[exerc]
+\item Given the information and the particular physical conditions, for instance the speeds involved are much lower than the speed of light, it seems that \textbf{Newton's constitutive relation for the momentum of matter}, \enquote*{\,${\yP = \ym\yv}$\,}, can be used here. But there is a hitch: this constitutive relation can be used only for a control volume within which matter has the same velocity $\yv$ everywhere. So we cannot apply the formula directly to our control volume, because some of the matter in it has a velocity, and some another. In fact, which velocity should we use in the formula,\enskip${v = +\qty{25}{m/s}}$\enskip or\enskip ${v = -\qty{25}{m/s}}$\,?
+
+  In order to use Newton's relation for momentum we can use the \textbf{principle of extensivity} or \textbf{additivity}: the momentum in a control volume is equal to the sum of the momenta in any sub-volumes in which we decide to divide the original volume. In this case we can divide our control volume into two parts, in each of which the velocity of matter is uniform: the two sub-volumes consisting of each tennis ball separately. For each sub-volume we have the \masse\ content and the velocity.
+
+  Let's denote the two sub-volumes with~L and~R. We apply Newton's relation to each, and then the principle of extensivity to find the total momentum $P$:
+  \begin{equation*}
+    \begin{aligned}
+      &P_{\textrm{L}} = \ym_{\textrm{L}}\, v_{\textrm{L}} = \qty{1.5}{N\,s}
+      &&\qquad\text{\footnotesize Newton's relation, sub-volume~L}
+      \\
+      &P_{\textrm{R}} = \ym_{\textrm{R}}\, v_{\textrm{R}} = \qty{1.5}{N\,s}
+      &&\qquad\text{\footnotesize Newton's relation, sub-volume~R}
+      \\
+      &P = P_{\textrm{L}} + P_{\textrm{R}} = \qty{3.0}{N\,s}
+      &&\qquad\text{\footnotesize extensivity principle}
+    \end{aligned}
+  \end{equation*}
+
+\item In order to find the total momentum at a later time $\ytf$ we can apply the integral expression of the balance of momentum:
+  \begin{equation*}
+    P(\ytf) = P(\yti)
+    + \int_{\yti}^{\ytf}\!F(t)\dt + \int_{\yti}^{\ytf}\!G(t) \dt \ ,
+  \end{equation*}
+  where $F$ is the total surface force (momentum flux) on the boundary of the control volume, and $G$ the total volume force (momentum supply).
+
+  The text says that the two tennis balls are in vacuum, so there seems to be nothing which can give a momentum flux $F$ to the two balls as a whole. The text also says that there is no gravity, so the momentum supply $G$ is zero as well. Therefore we find
+  \begin{equation*}
+    P(\ytf) = P(\yti)
+    + \int_{\yti}^{\ytf}\!(\qty{0}{N})\dt + \int_{\yti}^{\ytf}\!(\qty{0}{N}) \dt
+    = \qty{3.0}{N\,s} \ .
+  \end{equation*}
+
+\item No, using only the balance of momentum we cannot find the magnitude of each individual tennis ball. The balance only gives us the \emph{total} momentum.
+
+  Newton's relation and the principle of extensivity are of no help either: applying them we know that
+  \begin{equation*}
+    \ym_{\textrm{L}}\, v_{\textrm{L}}(\ytf)
++ \ym_{\textrm{R}}\, v_{\textrm{R}}(\ytf) = P(\ytf) = \qty{3.0}{N\,s} \ ,
+\end{equation*}
+but this is one equation with two unknowns -- or more! In fact, the tennis balls could have exchanged some mass, so we could now even have different masses $\ym_{\textrm{L}}(\ytf)$ and $\ym_{\textrm{R}}(\ytf)$.
+
+What about finding the individual momenta of the tennis balls, by considering them as two control volumes, applying the balance of momentum to each? It's a good thought; but in order to find the final momenta we'd need to know the surface force between the balls during the collision:
+\begin{equation*}
+  \begin{aligned}
+    P_{\textrm{L}}(\ytf) &= P_{\textrm{L}}(\yti)
+    + \int_{\yti}^{\ytf}\!F_{\textrm{R}\rightsquigarrow\textrm{L}}(t)\dt
+    \\
+    P_{\textrm{R}}(\ytf) &= P_{\textrm{R}}(\yti)
+    + \int_{\yti}^{\ytf}\!F_{\textrm{L}\rightsquigarrow\textrm{R}}(t)\dt
+    \\
+    F_{\textrm{R}\rightsquigarrow\textrm{L}}(t) &=
+    -F_{\textrm{L}\rightsquigarrow\textrm{R}}(t)
+  \end{aligned}
+\end{equation*}
+but we have no information about the time dependence of these surface forces.
+\end{enumerate}
+
+
+
 \sollabel{sec:bullet_block}
 
 To solve this problem we must decide how many control volumes to use for analysing the situation. Let's see the solution with two possible choices:
@@ -5550,8 +5632,117 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 \section{}
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
+
+\needspace{5\baselineskip}
+\section{}
+\label{sec:skydiver}
+
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/skydive2.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+A skydiver of mass \qty{70}{kg} jumps with zero initial velocity at an altitude of \qty{3000}{m}. At \qty{1000}{m} the skydiver has a fully vertical velocity of \qty{55}{m/s} (around \qty{200}{km/h}), ready to deploy the parachute. Assume that the internal energy of the skydiver is the same at \qty{1000}{m} as at \qty{3000}{m}.
+\begin{enumerate}[exerc]
+\item How much is the time-integrated energy influx to the skydiver from the surrounding air?
+\item Can you tell how much are the time-integrated heat flux and the mechanical work, separately, given the information in this problem?
+\end{enumerate}
+
+
+
 \clearpage
 \addsec{Example solutions}
+
+\sollabel{sec:skydiver}
+
+\begin{enumerate}[exerc]
+\item We can consider the skydiver as a control volume, and use the integral expression of the balance of energy: the integral expression seems more convenient because the problem involves two different times. Call $\yti$ when the skydiver jumps, and $\ytf$ when the skydiver reaches \qty{1000}{m} altitude:
+  \begin{equation*}
+    \yE(\ytf) = \yE(\yti)
+    + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf} \!\!\yA(t)\dt \ ,
+  \end{equation*}
+where $z$ is the upward vertical coordinate, and we use a one-dimensional coordinate system at rest with the ground.
+
+We can also use the constitutive relations for the energy content and energy supply of matter:
+\begin{equation*}
+  \yE = \yU + \frac{1}{2}\,\ym\, \yv^{2} + \ym\, g\, z \ ,
+  \qquad
+  \yA = \qty{0}{J/s} \ .
+\end{equation*}
+All conditions under which these relations are valid seem to be satisfied in this problem. These constitutive relations must each be used at the initial and at the final time.
+
+Do we need the constitutive relation for the energy flux in matter (that is $\yH = \yQ + \yF\cdot \yv$)? The problem asks for the \emph{energy influx}, and not for the heat influx or the mechanical power separately; so maybe we manage to do without this constitutive relation. Let's see.
+
+Collecting the equations above and the information given in the problem, we obtain this system of equations, where $g = \qty{9.8}{J/(kg\,m)}$:
+\begin{equation*}
+  \begin{aligned}
+    & \yE(\ytf) = \yE(\yti)
+    + \int_{\yti}^{\ytf}\!\!\yH(t)\dt + \int_{\yti}^{\ytf} \!\!\yA(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy balance}}
+    \\[1ex]
+    & \yE(\yti) =
+    \yU(\yti) + \frac{1}{2}\,\ym\, v_{z}(\yti)^{2} + \ym\, g\, z(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, initial time}}
+    \\
+    & \yE(\ytf) =
+    \yU(\ytf) + \frac{1}{2}\,\ym\, v_{z}(\ytf)^{2} + \ym\, g\, z(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, final time}}
+    % \\[1ex]
+    %  & \yH(\yti) = \yQ(\yti) + \yF(\yti)\cdot v_{z}(\yti)
+    % &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy flux for matter, initial time}}
+    % \\
+    %  & \yH(\ytf) = \yQ(\ytf) + \yF(\ytf)\cdot v_{z}(\ytf)
+    % &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy flux for matter, final time}}
+    \\[1ex]
+     & \yA = \qty{0}{J/s}
+     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}no energy supply in inertial system}}
+     \\[1ex]
+     & \ym = \qty{70}{kg}
+     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+     \\
+     & z(\yti) = \qty{3000}{m}
+     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+     \\
+     & v_{z}(\yti) = \qty{0}{m/s}
+     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+     \\
+     & z(\ytf) = \qty{1000}{m}
+     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+     \\
+     & v_{z}(\ytf) = -\qty{55}{m/s}
+     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+     \\
+     & \yU(\yti) = \yU(\ytf)
+     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+  \end{aligned}
+\end{equation*}
+The system has ten equations in eleven unknowns:
+\begin{equation*}\textstyle
+  \yE(\ytf), \yE(\yti),
+  \int_{\yti}^{\ytf}\!\!\yH(t)\dt,
+  \int_{\yti}^{\ytf}\!\!\yA(t)\dt,
+  \yU(\yti), \yU(\ytf),
+  v_{z}(\yti), v_{z}(\ytf),
+  z(\yti), z(\ytf),
+  \ym
+\end{equation*}
+but maybe we still manage to find the unknown of interest, which is the time-integrated influx of energy:\enspace$\int_{\yti}^{\ytf}\!\!\yH(t)\dt$\,.
+
+Indeed replacing into the first equation all the remaining ones, and then rearranging and simplifying, we find
+\begin{equation*}
+  \begin{aligned}
+    \int_{\yti}^{\ytf}\!\!\yH(t)\dt &=
+    \frac{1}{2}\,\ym\, v_{z}(\ytf)^{2} + \ym\, g\, z(\ytf)
+    - \frac{1}{2}\,\ym\, v_{z}(\yti)^{2} - \ym\, g\, z(\yti)
+    \\
+    &= \qty{105875}{J} + \qty{686000}{J}
+    - \qty{0}{J} - \qty{2058000}{J}
+    \approx -\qty{1300000}{J} \ .
+  \end{aligned}
+\end{equation*}
+This is a negative influx, which means that a net amount of positive energy flows from the skydiver to the surrounding air. This is the effect of friction, which does \emph{negative} work on the skydiver, and heats both skydiver and air.
+
+\item No, we cannot find the time-integrated heat flux and the mechanical work separately. In order to find them we would need to know either the constitutive relation for the surface force (momentum flux) between the skydiver and the air, or the heat flux.
+\end{enumerate}
 
 
 % \section{Formulation and generalities}
