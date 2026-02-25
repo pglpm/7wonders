@@ -13,7 +13,7 @@ R = 8.31446261815  # N m/(K*mol): molar gas constant
 N = 0.02           # mol: amount of ideal gas
 T = 298.15         # K: temperature of ideal gas
 
-## Initial conditions
+## Initial conditions, state: (z, v)
 t = 0	 # s: time
 z = 0.1  # m: position piston
 v = 0    # m/s: velocity piston

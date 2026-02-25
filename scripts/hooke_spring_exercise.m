@@ -1,4 +1,4 @@
-%%% Simulation of two bodies connected by Hookean material in 2D
+%%% Simulation of body and Hookean spring
 %% Coordinates (t, z)
 
 %% Constants
@@ -6,7 +6,7 @@ m = 20;	  % kg: mass object a
 g = 9.8;  % N/kg: gravitational acceleration
 k = 200;  % N/m: spring constant
 
-%% Initial conditions
+%% Initial conditions, state: (z, v)
 t = 0;	   % s: time
 z = -0.1;  % m: position object a
 v = 0;     % m/s: velocity object a
