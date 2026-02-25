@@ -9,12 +9,12 @@ import matplotlib.pyplot as plt
 ## Constants
 m = 20             # kg: mass piston
 g = 9.8            # N/kg: gravitational acceleration
-R = 8.31446261815  # N m/(K*mol): molar gas constant
+R = 8.31446261815  # N m/(K mol): molar gas constant
 N = 0.02           # mol: amount of ideal gas
 T = 298.15         # K: temperature of ideal gas
 
-## Initial conditions, state: (z, v)
-t = 0	 # s: time
+## Initial conditions, state: (z, v, T)
+t = 0    # s: time
 z = 0.1  # m: position piston
 v = 0    # m/s: velocity piston
 
@@ -23,7 +23,7 @@ G = -m * g  # N: gravity supply piston
 
 ## Parameters for time loop
 t1 = 5        # s: final time
-dt = 0.00001  # s: time step #@
+dt = 0.00001  # s: time step
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
@@ -31,7 +31,7 @@ tplot = dtplot	 # time for next plot
 clf
 plot(t, z, 's', color='#CCBB44')
 xlabel('${\it t}$/s'); ylabel('${\it z}$/m')
-xlim([0, t1]); grid(True) #@
+xlim([0, t1]); grid(True)
 
 ## Numerical time integration
 while t < t1:
@@ -45,7 +45,7 @@ while t < t1:
   z = z + v * dt
 
   ## constitutive relations
-  v = P / m #@
+  v = P / m
 
   ## plot
   if t > tplot:

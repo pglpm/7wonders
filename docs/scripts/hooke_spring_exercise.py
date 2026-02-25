@@ -3,7 +3,7 @@ from numpy import *
 from numpy.linalg import norm
 from numpy import array as vector
 import matplotlib.pyplot as plt
-### Simulation of two bodies connected by Hookean material in 2D
+### Simulation of body and Hookean spring
 ## Coordinates (t, z)
 
 ## Constants
@@ -11,7 +11,7 @@ m = 20	 # kg: mass object a
 g = 9.8  # N/kg: gravitational acceleration
 k = 200	 # N/m: spring constant
 
-## Initial conditions
+## Initial conditions, state: (z, v)
 t = 0	  # s: time
 z = -0.1  # m: position object a
 v = 0     # m/s: velocity object a
@@ -21,7 +21,7 @@ G = -m * g  # N: gravity supply object a
 
 ## Parameters for time loop
 t1 = 5        # s: final time
-dt = 0.00001  # s: time step #@
+dt = 0.00001  # s: time step
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
@@ -29,7 +29,7 @@ tplot = dtplot	  # time for next plot
 clf
 plot(t, z, 'o', color='#4477AA')
 xlabel('${\it t}$/s'); ylabel('${\it z}$/m')
-xlim([0, t1]); grid(True) #@
+xlim([0, t1]); grid(True)
 
 ## Numerical time integration
 while t < t1:
@@ -43,7 +43,7 @@ while t < t1:
   z = z + v * dt
 
   ## constitutive relations
-  v = P / m #@
+  v = P / m
 
   ## plot
   if t > tplot:

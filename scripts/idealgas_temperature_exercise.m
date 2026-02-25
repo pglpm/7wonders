@@ -1,20 +1,20 @@
-%%% Simulation of ideal gas & piston
+%%% Simulation of ideal gas & piston, temperature
 %% Coordinates (t, z)
 
 %% Constants
 m = 20;             % kg: mass piston
 g = 9.8;            % N/kg: gravitational acceleration
-R = 8.31446261815;  % N m/(K*mol): molar gas constant
+R = 8.31446261815;  % N m/(K mol): molar gas constant
 N = 0.02;           % mol: amount of ideal gas
 C = 20;             % J/(K mol): molar heat capacity
 
-%% Initial conditions
+%% Initial conditions, state: (z, v, T)
 t = 0;	  % s: time
 z = 0.1;  % m: position piston
 v = 0;    % m/s: velocity piston
 T = 298.15;  % K: temperature of ideal gas
 
-%% Boundary conditions, state: (z, v)
+%% Boundary conditions
 G = -m * g;  % N: gravity supply piston
 Q = 0;       % J/s: heat flux
 
@@ -47,7 +47,7 @@ while t < t1
   z = z + v * dt;
   E = E + Phi * dt;
 
-  %% constitutive relations: find new state
+  %% constitutive relations: new state variables
   v = P / m;
   T = E / (C * N); %@
 

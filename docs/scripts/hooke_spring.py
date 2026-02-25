@@ -62,6 +62,7 @@ while t < t1:
   if t > tplot:
     plot(ra[0], ra[1], 'o', color='#4477AA')
     plot(rb[0], rb[1], 's', color='#EE6677')
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

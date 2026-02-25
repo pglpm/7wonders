@@ -4,12 +4,12 @@
 %% Constants
 m = 20;             % kg: mass piston
 g = 9.8;            % N/kg: gravitational acceleration
-R = 8.31446261815;  % N m/(K*mol): molar gas constant
+R = 8.31446261815;  % N m/(K mol): molar gas constant
 N = 0.02;           % mol: amount of ideal gas
 T = 298.15;         % K: temperature of ideal gas
 
-%% Initial conditions
-t = 0;	  % s: time
+%% Initial conditions, state: (z, v)
+t = 0;    % s: time
 z = 0.1;  % m: position piston
 v = 0;    % m/s: velocity piston
 
@@ -39,7 +39,7 @@ while t < t1
   P = P + (F + G) * dt;
   z = z + v * dt;
 
-  %% constitutive relations
+  %% constitutive relations: new state variables
   v = P / m; %@
 
   %% plot
