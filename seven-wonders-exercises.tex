@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-02-26T15:14:19+0100
+%% Last-Updated: 2026-02-26T22:15:55+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4241,6 +4241,7 @@ During the same time interval, the ball experiences the usual vertical gravitati
 \item What is the football's velocity at time $\ytf$? Which constitutive relations must you use to find it?
 \end{enumerate}
 
+
 \needspace{4\baselineskip}
 \section{}
 \label{sec:tennisballs_collision}
@@ -4262,6 +4263,7 @@ After some time the tennis balls have collided and are moving away from each oth
 \item Using only the balance of momentum, is it possible to find the magnitude of the velocity of each ball after the collision?using only
 \end{enumerate}
 
+
 \needspace{12\baselineskip}
 \section{}
 \label{sec:bullet_block}
@@ -4277,6 +4279,16 @@ At a later time instant $\ytf$ the bullet has entered the wooden block and got s
 Find their common final velocity $v_{\textrm{f}}$.
 
 There are no surface forces (flux of momentum) exerted on bullet \amp\ block, and gravity can be neglected. Use just one coordinate $x$.
+
+
+
+\needspace{12\baselineskip}
+\section{}
+\label{sec:tennisball_fall}
+
+At some time instant a tennis ball is at a height of \qty{10}{m} above ground, with a downward velocity of \qty{1.0}{m/s}. At a later instant of time the ball is at a height of \qty{8.0}{m} above ground. The tennis ball's mass is \qty{0.060}{kg}, its motion is purely vertical, there are no obstacles in its course, and air can be neglected.
+
+How much is the velocity of the ball at the later instant of time, when it is \qty{8.0}{m} above ground?
 
 
 
@@ -5201,6 +5213,7 @@ To find this result we had to use Newton's constitutive relation between momentu
 \end{enumerate}
 
 
+
 \sollabel{sec:tennisballs_collision}
 
 \begin{enumerate}[exerc]
@@ -5482,6 +5495,160 @@ You notice that this approach was a little more roundabout than the previous one
 
 
 
+\sollabel{sec:tennisball_fall}
+
+The solution of this problem turns out to require the solution of a system of \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order ordinary differential equations}: it isn't enough to solve a system of linear or maybe quadratic equations. For this reason the problem could alternatively be approached with a simulation script.
+
+First let's see why an ordinary system of equations isn't enough; then we discuss the working solution.
+
+
+\subsection{An inconclusive approach}
+
+Imagine to intuitively proceed as we did in other problems involving two different time instants.
+
+We consider a control volume consisting of the tennis ball. The balance of momentum applies to this control volume. Since the problem involves two different time instants, the integral expression of the balance seems more convenient. We consider a coordinate system fixed with the ground with only one vertical coordinate $z$.
+
+We can also use Newton's constitutive relation for momentum; it has to be used for the initial and for the final times. The constitutive relation for the gravitational force (momentum supply) also applies. From the problem we can deduce that there are no surface forces acting on the tennis ball.
+
+Our system of equations is therefore, with $g = \qty{9.8}{N/kg}$:
+\begin{equation*}
+  \begin{aligned}
+    & P_{z}(\ytf) = P_{z}(\yti)
+    + \int_{\yti}^{\ytf}\!\!F_{z}(t)\dt + \int_{\yti}^{\ytf} \!\!G_{z}(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}momentum balance}}
+    \\
+    & P_{z}(\ytf) = \ym\,v_{z}(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation for momentum}}
+    \\
+    & P_{z}(\yti) = \ym\,v_{z}(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}Newton's constit. relation for momentum}}
+    \\
+    & G_{z}(t) \equiv -\ym\,g
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}constit. relation for gravitational force}}
+    \\
+    & v_{z}(\yti) = -\qty{1.0}{m/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & z(\yti) = \qty{10}{m}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & z(\ytf) = \qty{8.0}{m}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & F_{z}(t) = \qty{0}{N}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & \ym = \qty{0.060}{kg}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+  \end{aligned}
+\end{equation*}
+
+This is not quite a system of linear equations, because the quantity $G_{z}(t)$ is really a function of time, related by integration to the quantity $\int_{\yti}^{\ytf} \!\!G_{z}(t)\dt$. The same is true of $F_{z}(t)$. It is easy, however, to perform the integrations, because $G_{z}(t)$ is constant in time and $F_{z}(t)$ is constant and zero.
+
+Doing the integrations and substituting we arrive at
+\begin{equation*}
+  \begin{aligned}
+    & P_{z}(\ytf) = P_{z}(\yti) - \ym\,g\,(\ytf - \yti)
+    \\
+    & P_{z}(\ytf) = \ym\,v_{z}(\ytf)
+    \\
+    & P_{z}(\yti) = \ym\,v_{z}(\yti)
+    \\
+    & v_{z}(\yti) = -\qty{1.0}{m/s}
+    \\
+    & z(\yti) = \qty{10}{m}
+    \\
+    & z(\ytf) = \qty{8.0}{m}
+    \\
+    & \ym = \qty{0.060}{kg}
+  \end{aligned}
+\end{equation*}
+where the unknown of interest to us is $v_{z}(\ytf)$, the ball's velocity at the later time instant.
+
+Substituting into the first equation all remaining ones, and simplifying a common mass term $\ym$, we arrive at this equation:
+\begin{equation*}
+  v_{z}(\ytf) = v_{z}(\yti) - g\,(\ytf - \yti)
+\end{equation*}
+but we cannot really use it to find $v_{z}(\ytf)$, because the two time instants $\yti$ and $\ytf$, or at least their difference, are unknown.
+
+Looking back at the initial system of equations it seems that there's no way to find these times. So either the problem is unsolvable, or we're missing some equation.
+
+In fact there is an equation that relates position and velocity: the kinematic equation
+\begin{equation*}
+  z(\ytf) = z(\ytf) + \int_{\yti}^{\ytf} \!\!v_{z}(t)\dt
+\end{equation*}
+which relates the initial and final positions and times, and the velocity. But to use this equation \emph{we need to know the velocity $v_{z}(t)$ at all times between $\yti$ and $\ytf$}. This knowledge is required in order to perform the integration.
+
+Let's therefore abandon this road and think more generally.
+
+
+\subsection{Approach via differential equations}
+
+The fact that we need to know the velocity at all times between the two instants means that we really need to time-integrate the system. That is, we must try to find the time dependence of $z(t)$, $v_{z}(t)$, $P_{z}(t)$, expressed by the system of differential equations
+\begin{equation*}
+  \begin{aligned}
+    &\frac{\di P_{z}(t)}{\dt} = F_{z}(t) + G_{z}(t)
+    \\
+    &\frac{\di z(t)}{\dt} = v_{z}(t)
+    \\
+    &P_{z}(t) = \ym\,v_{z}(t)
+    \\
+    &F_{z}(t) = \qty{0}{N}
+    \\
+    &G_{z}(t) = -\ym\,g
+  \end{aligned}
+\end{equation*}
+which may or may not have an analytical solution (in this case you probably already know that it does).
+
+One way to proceed is by substituting Newton's relation into the first equation, and to take the time derivative of the second equation; we also substitute $F_{z}$ and $G_{z}$. We arrive at the two differential equations
+\begin{equation*}
+    \ym\frac{\di v_{z}(t)}{\dt} = -\ym\,g \ ,
+    \qquad
+ \frac{\di^{2} z(t)}{\dt^{2}} = \frac{\di v_{z}(t)}{\dt} \ .
+\end{equation*}
+The mass $\ym$ in the first disappears, and we can substitute the resulting expression for $\di v_{z}/\dt$ in the second:
+\begin{equation*}
+ \frac{\di^{2} z(t)}{\dt^{2}} = -g \ .
+\end{equation*}
+This differential equation asks: what's the function that, derived twice, gives a constant? We know it must be a function like this:
+\begin{equation*}
+  z(t) = A + B\,t + C\,t^{2}
+\end{equation*}
+where $A$, $B$, $C$ are constants. In fact deriving it once we get
+\begin{equation*}
+  \frac{\di z(t)}{\dt} \equiv v_{z}(t) = B + 2C\,t \ ,
+\end{equation*}
+which is the velocity $v_{z}(t)$; and deriving once more we arrive at the constant $2C$, which must be equal to $-g$:
+\begin{equation*}
+  \frac{\di^{2} z(t)}{\dt^{2}} = 2C = -g
+  \qquad\implies\qquad
+  C = -\tfrac12 g \ .
+\end{equation*}
+
+We have thus solved the system of differential equations! In order to find as many of the constants $A$, $B$, $C$ as possible, as well as the final velocity $v_{z}(\ytf)$, we use the information given in the problem, substituting the relevant values of the time $t$:
+\begin{equation*}
+  \begin{aligned}
+    z(\yti):&\quad & A + B\,\yti - \tfrac12 g\,{\yti}^{2} &= \qty{10}{m}
+    \\
+    z(\ytf):&\quad & A + B\,\ytf - \tfrac12 g\,{\ytf}^{2} &= \qty{8.0}{m}
+    \\
+    v_{z}(\yti):&\quad & B - g\,\yti &= -\qty{1.0}{m/s}
+    \\
+    &&  B - g\,\ytf &= v_{z}(\ytf)
+  \end{aligned}
+\end{equation*}
+
+In order to find $v_{z}(\ytf)$ we need to solve the first three equations for $B$ and $\ytf$, then substitute in the last. The equation you obtain for $\ytf$ is quadratic, and you must choose the root for which $\ytf > \yti$. The final result is
+\begin{equation*}
+  v_{z}(\ytf) = -\sqrt{v_{z}(\yti)^{2} - 2\,g\,[z(\ytf) - z(\yti)]}
+  \approx -\qty{6.3}{m/s} \ .
+\end{equation*}
+
+\medskip
+
+In exercise~\ref{sec:tennisball_fall_energy} we'll see a way to solve this problem by means of the balance of energy: it will allow us to avoid facing differential equations.
+
+
 \sollabel{sec:tennisball_RT}
 
 \begin{enumerate}[exerc]
@@ -5647,6 +5814,10 @@ A skydiver of mass \qty{70}{kg} jumps with zero initial velocity at an altitude 
 \item Can you tell how much are the time-integrated heat flux and the mechanical work, separately, given the information in this problem?
 \end{enumerate}
 
+
+
+\section{}
+\label{sec:tennisball_fall_energy}
 
 
 \clearpage
