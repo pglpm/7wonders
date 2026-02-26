@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 ## Coordinates (t, z)
 
 ## Constants
-m = 20	 # kg: mass object a
+m = 20   # kg: mass object a
 g = 9.8  # N/kg: gravitational acceleration
-k = 200	 # N/m: spring constant
+k = 200  # N/m: spring constant
 
 ## Initial conditions, state: (z, v)
-t = 0	  # s: time
+t = 0     # s: time
 z = -0.1  # m: position object a
 v = 0     # m/s: velocity object a
 
@@ -24,7 +24,7 @@ dt = 0.00001  # s: time step
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
-tplot = dtplot	  # time for next plot
+tplot = dtplot   # time for next plot
 clf
 plot(t, z, 'o', color='#4477AA')
 xlabel('${\it t}$/s'); ylabel('${\it z}$/m')
@@ -41,7 +41,7 @@ while t < t1:
   P = P + (F + G) * dt
   z = z + v * dt
 
-  ## constitutive relations
+  ## constitutive relations: find new state variables
   v = P / m
 
   ## plot

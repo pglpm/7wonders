@@ -16,10 +16,10 @@ Fatm = -100000 * A;  % N: force on piston by atmosphere
 k = 100;             % N/m: elastic constant of spring
 
 %% Initial conditions. State: (z, v, T)
-t = 0;            % s: initial time
-z = 0.15;         % m: initial position of piston
-v = 0;            % m/s: initial velocity of piston
-T = 273.15 + 23;  % K: initial temperature of gas
+t = 0;            % s: time
+z = 0.15;         % m: position of piston
+v = 0;            % m/s: velocity of piston
+T = 273.15 + 23;  % K: temperature of gas
 
 %% Boundary conditions
 G = -m * g;  % N: gravity supply of momentum to piston
@@ -56,7 +56,7 @@ while t < t1 && N > 0
   P = P + (F + G) * dt;
   z = z + v * dt;
 
-  %% constitutive relations: calculate state
+  %% constitutive relations: find new state variables
   T = E / (C * N);
   v = P / m;  %@
 

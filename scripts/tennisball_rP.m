@@ -6,9 +6,9 @@ m = 0.06;  % kg: tennis ball's mass-energy
 g = 9.8;   % N/kg: gravitational acceleration
 
 %% Initial conditions
-t = 0;             % s: initial time
-r = [0, 0, 5];     % m: initial position vector
-P = [0, 0, 0.42];  % N s: initial momentum vector
+t = 0;             % s: time
+r = [0, 0, 5];     % m: position vector
+P = [0, 0, 0.42];  % N s: momentum vector
 
 %% Boundary conditions
 F = [0, 0, 0];           % N: momentum influx

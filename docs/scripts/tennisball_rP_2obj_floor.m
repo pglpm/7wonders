@@ -9,11 +9,11 @@ k = 10;      % elastic constant
 d = 0.07;    % m: distance between centres of objects
 
 %% Initial conditions
-t = 0;           % s: initial time
-ra = [0, 0, 5];  % m: initial position vector a
-rb = [0, 0, 0];  % m: initial position vector b
-Pa = [0, 0, 0];  % N s: initial momentum vector a
-Pb = [0, 0, 0];  % N s: initial momentum vector b
+t = 0;           % s: time
+ra = [0, 0, 5];  % m: position vector a
+rb = [0, 0, 0];  % m: position vector b
+Pa = [0, 0, 0];  % N s: momentum vector a
+Pb = [0, 0, 0];  % N s: momentum vector b
 
 %% Boundary conditions
 Ga = -ma * g * [0, 0, 1];  % N: momentum supply object a

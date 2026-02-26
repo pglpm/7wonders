@@ -9,7 +9,7 @@ k = 1e5;   % N/m: elastic coefficient
 
 
 %% Initial conditions
-t = 0;                  % s: initial time
+t = 0;                  % s: time
 rc = [R, 0, 0];         % m: centre of mass-energy
 vc = [0, 0, 0];         % m/s: velocity of mass-energy centre
 omega = [20*pi, 0, 0];  % rad/s angular velocity of object
@@ -67,7 +67,7 @@ while t < t1
   r1 = r1 + v1 * dt;
   r2 = r2 + v2 * dt;
 
-  %% constitutive relations
+  %% constitutive relations: find new state variables
   vc = P / m;
   omega = (L - cross(rc, P)) * inv(Ic)'; %@
 

@@ -6,10 +6,10 @@ ma = 0.06;  % kg: mass-energy tennis ball a
 g = 9.8;    % N/kg: gravitational acceleration
 
 %% Initial conditions
-t = 0;         % s: initial time
-ra = [0, 5];   % m: initial position tennis ball a
-va = [3, 7];   % m/s: initial velocity ball a
-Pa = ma * va;  % N s: initial momentum ball a
+t = 0;         % s: time
+ra = [0, 5];   % m: position tennis ball a
+va = [3, 7];   % m/s: velocity ball a
+Pa = ma * va;  % N s: momentum ball a
 
 %% Boundary conditions
 Fa = [0, 0];            % N: momentum influx ball a

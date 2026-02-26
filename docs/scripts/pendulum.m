@@ -7,15 +7,15 @@ g = 9.8;  % N/kg: gravitational acceleration
 k = 50;   % N/m: spring constant
 
 %% Initial conditions
-t = 0;            % s: initial time
-r = [0, -0.5];  % m: initial position of object
-v = [1, 0];       % m/s: initial velocity of object
+t = 0;          % s: time
+r = [0, -0.5];  % m: position of object
+v = [1, 0];     % m/s: velocity of object
 
 %% Boundary conditions
 G = -m * g * [0, 1]; % N: gravity supply on object
 
 %% Parameters for time loop
-t1 = 20;        % s: final time
+t1 = 20;      % s: final time
 dt = 0.0001;  % s: time step %@
 
 %% Plotting
@@ -42,7 +42,7 @@ while t < t1
   P = P + (F + G) * dt;
   r = r + v * dt;
 
-  %% constitutive relations
+  %% constitutive relations: find new state variables
   v = P / m; %@
 
   %% plot

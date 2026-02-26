@@ -6,11 +6,11 @@ from numpy import array as vector
 import matplotlib.pyplot as plt
 
 ## Constants
-ma = 2	 # kg: mass object a
-mb = 3	 # kg: mass object b
+ma = 2  # kg: mass object a
+mb = 3  # kg: mass object b
 g = 9.8  # N/kg: gravitational acceleration
-ln = 1	 # m: natural length
-k = 5	 # N/m: spring constant
+ln = 1  # m: natural length
+k = 5  # N/m: spring constant
 
 ## Initial conditions
 t = 0                 # s: initial time
@@ -24,12 +24,12 @@ Ga = -ma * g * vector([0, 1])  # N: gravity supply object a
 Gb = -mb * g * vector([0, 1])  # N: gravity supply object b
 
 ## Parameters for time loop
-t1 = 5	     # s: final time
+t1 = 5      # s: final time
 dt = 0.0001  # s: time step #@
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
-tplot = dtplot	 # time for next plot
+tplot = dtplot  # time for next plot
 figure
 plot(ra[0], ra[1], 'o', color='#4477AA')
 grid(True)

@@ -8,8 +8,8 @@ delta = 0.5;  % mol/m^3: fuel molar density
 A = 50;       % m^2: nozzle area
 g = 9.8;      % N/kg: free-fall acceleration
 
-%% Initial conditions. State: (z, v, Nb)
-t = 0;       % s: initial time
+%% conditions. State: (z, v, Nb)
+t = 0;       % s: time
 z = 0;       % m: altitude of control volume
 v = 0;       % m/s: velocity of control volume
 Nb = 9.8e6;  % mol: amount of fuel
@@ -50,7 +50,7 @@ while t < t1 && Nb > 0 % '&&' means 'and'
   P = P + (F + G) * dt;
   z = z + v * dt;
 
-  %% constitutive relations: calculate new state
+  %% constitutive relations: find new state variables
   v = P / (m + rho * Nb); %@
 
   %% plot

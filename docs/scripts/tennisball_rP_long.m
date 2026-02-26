@@ -7,9 +7,9 @@ g = 9.8;        % N/kg: gravitational acceleration
 c = 299792458;  % m/s: speed of light
 
 %% Initial conditions
-t = 0;              % s: initial time
-r = [0, 0, 0];      % m: initial position vector
-P = [0, 0, 1.8e6];  % N s: initial momentum vector
+t = 0;              % s: time
+r = [0, 0, 0];      % m: position vector
+P = [0, 0, 1.8e6];  % N s: momentum vector
 
 %% Boundary conditions
 F = [0, 0, 0];           % N: momentum influx

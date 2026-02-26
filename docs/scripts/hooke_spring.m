@@ -2,30 +2,30 @@
 %% Coordinates (t, x, z)
 
 %% Constants
-ma = 2;	  % kg: mass object a
-mb = 3;	  % kg: mass object b
+ma = 2;   % kg: mass object a
+mb = 3;   % kg: mass object b
 g = 9.8;  % N/kg: gravitational acceleration
-ln = 1;	  % m: natural length
-k = 5;	  % N/m: spring constant
+ln = 1;   % m: natural length
+k = 5;    % N/m: spring constant
 
 %% Initial conditions
-t = 0;	       % s: initial time
-ra = [-3, 0];  % m: initial position object a
-rb = [3, 0];   % m: initial position object b
-va = [0, 10];  % m/s: initial velocity object a
-vb = [0, 0];   % m/s: initial velocity object b
+t = 0;         % s: time
+ra = [-3, 0];  % m: position object a
+rb = [3, 0];   % m: position object b
+va = [0, 10];  % m/s: velocity object a
+vb = [0, 0];   % m/s: velocity object b
 
 %% Boundary conditions
 Ga = -ma * g * [0, 1];  % N: gravity supply object a
 Gb = -mb * g * [0, 1];  % N: gravity supply object b
 
 %% Parameters for time loop
-t1 = 5;	      % s: final time
+t1 = 5;       % s: final time
 dt = 0.0001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots
-tplot = dtplot;	  % time for next plot
+tplot = dtplot;   % time for next plot
 figure
 plot(ra(1), ra(2), 'o', 'color', '#4477AA')
 hold on; grid on
@@ -49,7 +49,7 @@ while t < t1
   ra = ra + va * dt;
   rb = rb + vb * dt;
 
-  %% constitutive relations
+  %% constitutive relations: find new state variables
   va = Pa / ma;
   vb = Pb / mb; %@
 

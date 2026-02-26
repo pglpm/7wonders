@@ -19,7 +19,7 @@ Ga = -ma * g * [0, 1];  % N: gravity supply in object a
 Gb = -mb * g * [0, 1];  % N: gravity supply in object b
 
 %% 6. Parameters for time integration
-t1 = 5;      % s: final time
+t1 = 5;       % s: final time
 dt = 0.0001;  % s: time step
 
 %% Numerical time integration

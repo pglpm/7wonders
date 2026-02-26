@@ -9,9 +9,8 @@ A = 50;       % m^2: nozzle area
 g = 9.8;      % kg: free-fall acceleration
 C = 13;       % N/(m/s)^2: total drag coeff.
 
-
 %% Initial conditions. State: (z, v, Nb)
-t = 0;       % s: initial time
+t = 0;       % s: time
 z = 0;       % m: altitude of control volume
 v = 0;       % m/s: velocity of control volume
 Nb = 9.8e6;  % mol: amount of fuel
@@ -24,7 +23,7 @@ Fatm = -A * patm;  % N: force on rocket surface
 Sigma = A * p;     % N: stress tensor at nozzle
 
 %% Time-iteration parameters
-t1 = 1;     % s: final time
+t1 = 1;       % s: final time
 dt = 0.0001;  % s: time step %@
 
 %% Plotting
@@ -56,7 +55,7 @@ while t < t1 && Nb > 0 % '&&' means 'and'
   P = P + (F + G) * dt;
   z = z + v * dt;
 
-  %% constitutive relations: calculate state
+  %% constitutive relations: find new state variables
   v = P / (m + rho * Nb); %@
 
   %% plot

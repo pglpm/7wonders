@@ -12,13 +12,13 @@ mb = 6e24            # kg: mass-energy Earth
 kappa = 6.67408e-38  # 10**27 N m**2/kg**2: gravitational constant
 
 ## Initial conditions
-t = 0                            # s: initial time
-ra = vector([-0.35, 0.10])       # 10**9 m: initial position Sun
-va = vector([-6.2e-12, 9.3e-9])  # 10**9 m/s: initial velocity Sun
-Pa = ma * va                     # 10**9 N s: initial momentum Sun
-rb = vector([150, 0])            # 10**9 m: initial position Earth
-vb = vector([0, -3e-5])          # 10**9 m/s: initial velocity Earth
-Pb = mb * vb                     # 10**9 N s: initial momentum Earth
+t = 0                            # s: time
+ra = vector([-0.35, 0.10])       # 10**9 m: position Sun
+va = vector([-6.2e-12, 9.3e-9])  # 10**9 m/s: velocity Sun
+Pa = ma * va                     # 10**9 N s: momentum Sun
+rb = vector([150, 0])            # 10**9 m: position Earth
+vb = vector([0, -3e-5])          # 10**9 m/s: velocity Earth
+Pb = mb * vb                     # 10**9 N s: momentum Earth
 
 ## Boundary conditions
 Fa = vector([0, 0])  # N: surface force Sun

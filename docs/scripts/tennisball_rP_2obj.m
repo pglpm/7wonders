@@ -7,11 +7,11 @@ mb = 0.06;  % kg: mass-energy object b
 g = 9.8;    % N/kg: gravitational acceleration
 
 %% Initial conditions
-t = 0;              % s: initial time
-ra = [0, 0, 10];    % m: initial position vector a
-rb = [0, 0, 5];     % m: initial position vector b
-Pa = [0, 0, -0.5];  % N s: initial momentum vector a
-Pb = [0, 0, 0.5];   % N s: initial momentum vector b
+t = 0;              % s: time
+ra = [0, 0, 10];    % m: position vector a
+rb = [0, 0, 5];     % m: position vector b
+Pa = [0, 0, -0.5];  % N s: momentum vector a
+Pb = [0, 0, 0.5];   % N s: momentum vector b
 
 %% Boundary conditions
 Fa = [0, 0, 0];            % N: momentum influx object a

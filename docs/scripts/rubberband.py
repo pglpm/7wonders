@@ -10,7 +10,7 @@ ma = 0.1  # kg: mass object a
 mb = 0.1  # kg: mass object b
 g = 9.8   # N/kg: gravitational acceleration
 ln = 0.5  # m: natural length
-k = 0.5	  # N/m: spring constant
+k = 0.5   # N/m: spring constant
 
 ## Initial conditions
 t = 0                     # s: initial time
@@ -24,12 +24,12 @@ Ga = -ma * g * vector([0, 0])  # N: gravity supply object a
 Gb = -mb * g * vector([0, 0])  # N: gravity supply object b
 
 ## Parameters for time loop
-t1 = 10	     # s: final time
+t1 = 10      # s: final time
 dt = 0.001  # s: time step #@
 
 ## Plotting
 dtplot = t1/360  # time interval between plots
-tplot = dtplot	 # time for next plot
+tplot = dtplot  # time for next plot
 figure
 plot(ra[0], ra[1], 'o', color='#4477AA')
 grid(True)

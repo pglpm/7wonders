@@ -8,9 +8,9 @@ l0 = 1;      % m: natural length
 k = 100000;  % N/m: spring constant
 
 %% Initial conditions
-t = 0;              % s: initial time
-ra = [-0.1, -0.9];  % m: initial position of object a
-va = [0, 0];        % m/s: initial velocity of object a
+t = 0;              % s: time
+ra = [-0.1, -0.9];  % m: position of object a
+va = [0, 0];        % m/s: velocity of object a
 
 %% Boundary conditions
 Ga = -ma * g * [0, 1];  % N: gravity supply on object a
@@ -21,7 +21,7 @@ dt = 0.000001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots
-tplot = dtplot;	  % time for next plot
+tplot = dtplot;   % time for next plot
 figure
 plot(ra(1), ra(2), 'o', 'color', '#4477AA')
 hold on; grid on
@@ -46,7 +46,7 @@ while t < t1
   Pa = Pa + (Fa + Ga) * dt;
   ra = ra + va * dt;
 
-  %% constitutive relations
+  %% constitutive relations: find new state variables
   va = Pa / ma; %@
 
   %% plot

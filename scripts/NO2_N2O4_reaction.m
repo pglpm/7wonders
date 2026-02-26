@@ -25,7 +25,7 @@ dt = 1e-8;  % s: time step
 
 %% Plotting
 dtplot = t1/60;  % time interval between plots
-tplot = dtplot;   % time for next plot
+tplot = dtplot;  % time for next plot
 figure; plot(t, N_NO2, 'v', 'color', '#EE6677')
 hold on; plot(t, N_N2O4, 'x', 'color', '#CCBB44')
 legend('NO_2', 'N_2O_4')

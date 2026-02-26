@@ -8,13 +8,13 @@ g = 9.8;    % N/kg: gravitational acceleration
 k = 5;      % N/m: elastic constant
 
 %% Initial conditions
-t = 0;         % s: initial time
-ra = [0, 5];   % m: initial position tennis ball a
-va = [3, 7];   % m/s: initial velocity ball a
-Pa = ma * va;  % N s: initial momentum ball a
-rb = [5, 5];   % m: initial position ball b
-vb = [-2, 7];  % m/s: initial velocity ball b
-Pb = mb * vb;  % N s: initial momentum ball b
+t = 0;         % s: time
+ra = [0, 5];   % m: position tennis ball a
+va = [3, 7];   % m/s: velocity ball a
+Pa = ma * va;  % N s: momentum ball a
+rb = [5, 5];   % m: position ball b
+vb = [-2, 7];  % m/s: velocity ball b
+Pb = mb * vb;  % N s: momentum ball b
 
 %% Boundary conditions
 Ga = -ma * g * [0, 1];  % N: momentum supply ball a

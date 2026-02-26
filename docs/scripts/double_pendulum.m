@@ -9,13 +9,13 @@ ln = 1;      % m: natural length
 k = 100000;  % N/m: spring constant
 
 %% Initial conditions
-t = 0;                                       % s: initial time
-anglea = pi/2;                               % rad: initial angle from vertical a
-ra = ln * [sin(anglea), -cos(anglea)];       % m: initial position of object a
-angleb = 0;                                  % rad: initial angle from vertical b
-rb = ra + ln * [sin(angleb), -cos(angleb)];  % m: initial position of object b
-va = [0, 0];                                 % m/s: initial velocity of object a
-vb = [0, 0];                                 % m/s: initial velocity of object b
+t = 0;                                       % s: time
+anglea = pi/2;                               % rad: angle from vertical a
+ra = ln * [sin(anglea), -cos(anglea)];       % m: position of object a
+angleb = 0;                                  % rad: angle from vertical b
+rb = ra + ln * [sin(angleb), -cos(angleb)];  % m: position of object b
+va = [0, 0];                                 % m/s: velocity of object a
+vb = [0, 0];                                 % m/s: velocity of object b
 
 %% Boundary conditions
 Ga = -ma * g * [0, 1];  % N: gravity supply on object a
@@ -58,7 +58,7 @@ while t < t1
   ra = ra + va * dt;
   rb = rb + vb * dt;
 
-  %% constitutive relations
+  %% constitutive relations: find new state variables
   va = Pa / ma;
   vb = Pb / mb; %@
 

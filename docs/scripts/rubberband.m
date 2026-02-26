@@ -9,23 +9,23 @@ ln = 0.5;  % m: natural length
 k = 0.5;   % N/m: spring constant
 
 %% Initial conditions
-t = 0;             % s: initial time
-ra = [-0.3, 0.3];  % m: initial position object a
-rb = [0, 0];       % m: initial position object b
-va = [1, 5];       % m/s: initial velocity object a
-vb = [0, 5];       % m/s: initial velocity object b
+t = 0;             % s: time
+ra = [-0.3, 0.3];  % m: position object a
+rb = [0, 0];       % m: position object b
+va = [1, 5];       % m/s: velocity object a
+vb = [0, 5];       % m/s: velocity object b
 
 %% Boundary conditions
-Ga = -ma * g * [0, 0];	% N: gravity supply object a
+Ga = -ma * g * [0, 0];  % N: gravity supply object a
 Gb = -mb * g * [0, 0];  % N: gravity supply object b
 
 %% Parameters for time loop
-t1 = 10;     % s: final time
+t1 = 10;      % s: final time
 dt = 0.0001;  % s: time step %@
 
 %% Plotting
 dtplot = t1/360;  % time interval between plots
-tplot = dtplot;	  % time for next plot
+tplot = dtplot;   % time for next plot
 figure
 plot(ra(1), ra(2), 'o', 'color', '#4477AA')
 hold on; grid on
@@ -53,7 +53,7 @@ while t < t1
   ra = ra + va * dt;
   rb = rb + vb * dt;
 
-  %% constitutive relations
+  %% constitutive relations: find new state variables
   va = Pa / ma;
   vb = Pb / mb; %@
 
