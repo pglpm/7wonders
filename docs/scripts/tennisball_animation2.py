@@ -1,4 +1,4 @@
-from matplotlib.pyplot import * ; from numpy import * ; from numpy.linalg import norm
+from matplotlib.pyplot import * ; from numpy import *
 from numpy import array as vector ; import matplotlib.pyplot as plt
 ### Numerical simulation of object motion with gravity
 ## Coordinates (t, x, z)
