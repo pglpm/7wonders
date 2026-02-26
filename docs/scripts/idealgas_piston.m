@@ -12,10 +12,10 @@ A = 0.03^2;         % m^2: area of piston
 m = 1;              % kg: mass of piston
 
 %% Initial conditions. State: (z, v, T)
-t = 0;            % s: initial time
-z = 1;            % m: initial position of piston
-v = 0;            % m/s: initial velocity of piston
-T = 273.15 + 23;  % K: initial temperature of gas
+t = 0;       % s: time
+z = 1;       % m: position of piston
+v = 0;       % m/s: velocity of piston
+T = 296.15;  % K: temperature of gas
 
 %% Boundary conditions
 Gpis = -m * g;       % N: gravity supply of momentum to piston
@@ -55,7 +55,7 @@ while t < t1
   z = z + v * dt;
   E = E + Phi * dt;
 
-  %% constitutive relations: calculate state
+  %% constitutive relations: find new state variables
   T = E / (C * N);
   v = Ppis / m; %@
 

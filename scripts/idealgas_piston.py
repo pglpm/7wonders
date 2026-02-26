@@ -61,7 +61,7 @@ while t < t1:
   z = z + v * dt
   E = E + Phi * dt
 
-  ## constitutive relations: calculate state
+  ## constitutive relations: find new state variables
   T = E / (C * N)
   v = Ppis / m  #@
 

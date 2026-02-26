@@ -80,7 +80,7 @@ while t < t1
   z = z + v * dt;
   E = E + Phi * dt;
 
-  %% constitutive relations: calculate state
+  %% constitutive relations: find new state variables
   T = E / (Cno2 * Nno2 + Cn2o4 * Nn2o4);
   v = Ppis / m; %@
 

@@ -64,7 +64,7 @@ while t < t1 && N > 0:
   N = N + J * dt
   z = z + v * dt
 
-  ## constitutive relations: calculate state
+  ## constitutive relations: find new state variables
   T = E / (C * N)
   v = P / m  #@
 

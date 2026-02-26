@@ -37,7 +37,7 @@ while t < t1
   P = P + (F + G) * dt;
   z = z + v * dt;
 
-  %% constitutive relations: new state variables
+  %% constitutive relations: find new state variables
   v = P / m; %@
 
   %% plot
