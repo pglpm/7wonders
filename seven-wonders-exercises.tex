@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-02T21:15:29+0100
+%% Last-Updated: 2026-03-02T21:23:18+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1161,15 +1161,15 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand*{\yEp}{\yE_{\text{p}}}
 \newcommand*{\yHfl}{\yH_{\textrm{floor}}}
 \newcommand*{\yHc}{\yH_{\textrm{crate}}}
-\newcommand*{\yQ}{Q}% Q really for time-integral
+\newcommand*{\yQ}{\dot{Q}}% Q really for time-integral
 \newcommand*{\yQb}{Q_{\textrm{bot}}}%
 \newcommand*{\yQp}{\yQ^{+}}%
 \newcommand*{\yQm}{\yQ^{-}}%
 \newcommand*{\yQc}{\yQ_{\textrm{crate}}}
 \newcommand*{\yQfl}{\yQ_{\textrm{floor}}}
-\newcommand*{\yhe}{\incr H}% integrated heat flux
-\newcommand*{\yhep}{\incr H^{+}}%
-\newcommand*{\yhem}{\incr H^{-}}%
+\newcommand*{\yhe}{\incr Q}% integrated heat flux
+\newcommand*{\yhep}{\incr Q^{+}}%
+\newcommand*{\yhem}{\incr Q^{-}}%
 \newcommand*{\yW}{\incr W}% work
 \newcommand*{\yA}{\mathcal{A}}% for energy source
 
@@ -1876,9 +1876,7 @@ For \emph{pressure}, it depends on the context. In some applications it is consi
 \label{cha:time_space}
 \setcounter{section}{-1}
 
-\emph{Make sure you're familiar with the \enquote*{dot-notation} explained in \sect2.8 of the main text.}
-
-
+% \emph{Make sure you're familiar with the \enquote*{dot-notation} explained in \sect2.8 of the main text.}
 
 \section{}
 (Do the \textcolor{yellow}{exercises} in the main text.)
@@ -1991,24 +1989,26 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 
 \exercise{}{sec:3Dmotion_simple}
 We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates have each dimension \textdim{length}. A small object S has position $\yr_{\text{S}}(t)$ given by
-\begin{multline*}
-  \yr_{\text{S}}(t) =
-  \begin{bmatrix}
- a t + b
-    \\
-    L \sin(\omega t) + b
-    \\
-    0
-  \end{bmatrix}
-  \\\text{with}\quad
-  L = \qty{2}{m} \,,\
-  \omega = \frac{\pu}{3}\,\unit{s^{-1}} \,,\
-  a = \qty{-3}{m/s} \,,\ 
-  b = \qty{7}{m/s}  \ .
-\end{multline*}
+\begin{equation*}
+  \begin{gathered}
+    \yr_{\text{S}}(t) =
+    \begin{bmatrix}
+      a t + b
+      \\
+      L \sin(\omega t) + b
+      \\
+      0
+    \end{bmatrix}
+    \\\text{with}\quad
+    L = \qty{2}{m} \,,\
+    \omega = \frac{\pu}{3}\,\unit{s^{-1}} \,,\
+    a = \qty{-3}{m/s} \,,\ 
+    b = \qty{7}{m/s}  \ .
+  \end{gathered}
+\end{equation*}
 \begin{enumerate}[exerc]
 \item Verify that the equation above is dimensionally consistent.
-\item Calculate the expressions for velocity $\dot{\yr}_{\text{S}}(t)$ and acceleration $\ddot{\yr}_{\text{S}}(t)$.
+\item Calculate the expressions for velocity $\yv_{\text{S}}(t)$ and acceleration $\bm{a}_{\text{S}}(t)$.
 \item Plot the three components of the velocity as functions of time for $t \in \clcl{-4, 4}\,\unit{s}$.
 \end{enumerate}
 
