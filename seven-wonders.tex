@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-01T13:54:33+0100
+%% Last-Updated: 2026-03-02T08:44:48+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -14229,24 +14229,25 @@ It is because of these complications with three-dimensional integration that the
   \begin{enumerate}[exerc]
   \item Consider a GPS satellite as a point that has, at a given instant, the following position and momentum content in a geocentric coordinate system $(t,x,y,z)$:
     \begin{equation*}
-      \begin{split}
-        \yr &=\bigl[ \num{1.4e7},\, \num{1.6e7},\, 0\bigr]\,\unit{m}
-        \\[\jot]
-        \yP &=\bigl[ \num{-3.1e6},\, \num{3.4e6},\, 0\bigr]\,\unit{N\,s} \,.
-      \end{split}
+        \yr =\bigl[ \num{1.4}, \num{1.6}, 0\bigr]\,\qty{e7}{m} \ ,
+        \quad
+        \yP =\bigl[ \num{-4.0},\, \num{3.5},\, 0\bigr]\,\qty{e6}{N\,s} \ .
     \end{equation*}
     Calculate the satellite's angular momentum $\yL$ with respect to the origin of the coordinate system (remember that you should obtain a vector with three components).
+    %1.1e14
 
   \item Assume that the GPS satellite has the following time-dependent position vector and momentum:
     \begin{equation*}
       \begin{aligned}
-        \yr(t) &= \bigl[ \cos(\omega t),\, \sin(\omega t),\, 0]\cdot\qty{2.1e7}{m}
+        \yr(t) &= \bigl[ \cos(\omega t), \sin(\omega t), 0]\cdot\qty{2.1e7}{m}
         \\[\jot]
-        \yP(t) &= \bigl[ -\sin(\omega t),\, \cos(\omega t),\, 0]\cdot\qty{1.2e3}{N\,s}
+        \yP(t) &= \bigl[ -\sin(\omega t), \cos(\omega t), 0]\cdot\qty{5.4e6}{N\,s}
+        \\[\jot]
+      \text{with}\enskip\omega&=\qty{1.5e-4}{s^{-1}} \ .
       \end{aligned}
-      \quad\text{with}\enskip\omega=\qty{3.64}{s^{-1}} \,.
     \end{equation*}
     Calculate the time dependence of the satellite's angular momentum $\yL(t)$ with respect to the origin of the coordinate system. Try to explain the peculiar result you obtain.
+    %1.1e14
 
   \item A flying tennis ball, considered as a point, has the following time-dependent position vector in a coordinate system $(t,x,y,z)$:
     \begin{equation*}
@@ -14291,12 +14292,19 @@ The centre of \masse\ can be defined for any control volume having a non-zero \e
     \bigr] \,.
   \end{equation}
 \end{definition}
-In the definition of the centre of \masse, \emph{all} \masse\ is to be counted: not only the rest \masse, but also internal energy, kinetic energy, and so on. For a control volume containing matter, counting only the rest \masse\ is an extremely good approximation; but for a control volume containing electromagnetic fields, all the electromagnetic energy must be considered.
-
-%
+\needspace{9\baselineskip}%
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=1\linewidth]{images/parketal_mass.jpg}
+\\\flushleftright\color{mpcolor}Expression for the \masse\ of a Solar System object, used to compute the centre of \masse\ of the Solar System \autocites{parketal2021}. In the second term of the sum you may recognize the kinetic energy divided by $\yc^{2}$; the third term is the gravitational potential energy.%
+}%
+In the definition of the centre of \masse, \emph{all} \masse\ is to be counted: not only the rest \masse, but also internal energy, kinetic energy, and so on.
+
+For a control volume containing matter in most everyday situations, counting only the rest \masse\ is an extremely good approximation. In calculating the centre of \masse\ of bodies in the Solar System, however, the kinetic and gravitational potential energies of the bodies are also included \autocites{parketal2021,folkneretal2014}. For a control volume containing electromagnetic fields, all the electromagnetic energy must be considered.
+
+\needspace{6\baselineskip}%%
+\marginpar{\vspace{1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/penbalance.jpg}
-\\\flushleftright\color{mpcolor}The pen's centre of \masse\ is right above the balancing finger.
+%\\\flushleftright\color{mpcolor}The pen's centre of \masse\ is right above the balancing finger.
 }%
 We have an intuitive understanding of the centre of \masse\ of objects in everyday life. When we try to balance an object on our hands or fingers, we're trying to keep the object's centre of \masse\ directly on the vertical above the balancing point. For control volumes of particular shapes, the centre of \masse\ \emph{may lie outside the control volume itself}; think for example about the centre of \masse\ of a horseshoe.
 
@@ -14311,12 +14319,12 @@ The centre of \masse\ of a body in \autoref{sec:rigid_bodies}{rigid motion}, how
     \yr_{\textrm{E}}(t) =
     \begin{bmatrix}
       \num{-2.759}\\ \num{13.20} \\ \num{5.727}
-    \end{bmatrix}\cdot\qty{e10}{m} \,,
+    \end{bmatrix}\cdot\qty{e10}{m} \ ,
     \qquad
     \yr_{\textrm{M}}(t) =
     \begin{bmatrix}
       \num{-2.744}\\ \num{13.17} \\ \num{5.710}
-    \end{bmatrix}\cdot\qty{e10}{m} \,.
+    \end{bmatrix}\cdot\qty{e10}{m} \ .
   \end{equation*}
   Earth's \masse\ is \qty{5.972e24}{kg} and Moon's is \qty{7.346e22}{kg}.
 
@@ -14389,7 +14397,7 @@ If we consider the position vectors $\yr_{1}(t), \yr_{2}(t), \yr_{3}(t), \dotsc$
 
 
 \begin{exercise}
-    A point with time-dependent position $\yr(t)$ is rotating around the fixed point $\yro = [2, -3, 0]$. The trajectory of $\yr(t)$ is parallel to the $zx$ plane. The rotation is clockwise if we look at $\yr(t)$ from some point far away on the positive-$y$ axis. The point $\yr(t)$ does two complete rotations every second.
+    A point with time-dependent position $\yr(t)$ is rotating around the fixed point $\yro = [2, -3, 0]\,\unit{m}$. The trajectory of $\yr(t)$ is parallel to the $zx$ plane. The rotation is clockwise if we look at $\yr(t)$ from some point far away on the positive-$y$ axis. The point $\yr(t)$ does two complete rotations every second.
   \begin{enumerate}[exerc]
   \item Write the angular-velocity vector corresponding to this rotation.
   \item Write the corresponding angular-velocity matrix.
@@ -14619,7 +14627,7 @@ at a time instant $\yTo$, and we also have appropriate constitutive relations fo
   \end{enumerate}
 \end{exercise}
 
-\section{Constitutive relations for forces and torques in a rigid body}
+\section{Constitutive relations for forces and torques on a rigid body}
 \label{sec:force_torque_rigidbody}
 
 We managed to find constitutive relations for the contents of momentum, angular momentum, and total energy in a rigid body.
