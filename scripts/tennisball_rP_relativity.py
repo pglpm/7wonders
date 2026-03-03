@@ -1,7 +1,7 @@
 ### Numerical simulation of relativistic motion with gravity
 ## Coordinates (t, x, y, z)
 from matplotlib.pyplot import *
-from numpy import *
+from numpy import * ; from numpy.linalg import norm
 from numpy import array as vector
 import matplotlib.pyplot as plt
 
@@ -51,6 +51,7 @@ while t < t1:
   if t > tplot:
     subplot(2, 1, 1); plot(t, P[2], '^', color='#4477AA')
     subplot(2, 1, 2); plot(t, r[2], 'o', color='#EE6677')
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

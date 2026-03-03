@@ -1,7 +1,7 @@
 ### Simulation of two bodies connected by Hookean material in 2D
 ## Coordinates (t, x, z)
 from matplotlib.pyplot import *
-from numpy import *
+from numpy import * ; from numpy.linalg import norm
 from numpy import array as vector
 import matplotlib.pyplot as plt
 

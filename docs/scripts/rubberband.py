@@ -1,7 +1,7 @@
 ### Simulation of two bodies connected by non-Hookean material in 2D
 ## Coordinates (t, y, z)
 from matplotlib.pyplot import *
-from numpy import *
+from numpy import * ; from numpy.linalg import norm
 from numpy import array as vector
 import matplotlib.pyplot as plt
 
@@ -64,6 +64,7 @@ while t < t1:
   if t > tplot:
     plot(ra[0], ra[1], 'o', color='#4477AA')
     plot(rb[0], rb[1], 's', color='#EE6677')
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()

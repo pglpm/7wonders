@@ -1,7 +1,7 @@
 ### Numerical simulation of object motion with gravity
 ## Coordinates (t, x, y, z)
 from matplotlib.pyplot import *
-from numpy import *
+from numpy import * ; from numpy.linalg import norm
 from numpy import array as vector
 import matplotlib.pyplot as plt
 
@@ -62,6 +62,7 @@ while t < t1:
   if t > tplot:
     plot(t, ra[2], 'o', color='#4477AA')
     plot(t, rb[2], 's', color='#EE6677')
+    if not "pyodide" in sys.modules: pause(0.0001)
     tplot = tplot + dtplot
 
 plt.show()
