@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-02T21:23:18+0100
+%% Last-Updated: 2026-03-04T22:16:08+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -22,7 +22,9 @@ british%
 ]{memoir}
 \newcommand*{\firstdraft}{15 January 2025}
 \newcommand*{\version}{0.1}
-\newcommand*{\updated}{\ifarxiv***\else\today\enskip\DTMsetstyle{iso}\DTMcurrenttime\fi}
+\newcommand*{\updated}{\ifarxiv***\else\today%
+%\enskip\DTMsetstyle{iso}\DTMcurrenttime
+\fi}
 \newcommand*{\propertitle}{The Seven Wonders of the World%\\[\jot]\Large Notes on 21st-century physics
 \\[3\jot]\LARGE\itshape Exercises}
 %\newcommand*{\propertitle}{The Seven Wonders of the World\\[\jot]\Large Lecture notes for ING\,175}
@@ -36,7 +38,7 @@ british%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \usepackage{pifont}
-
+\iffalse\usepackage{exerciselabels}\fi
 %\usepackage{fontawesome}
 \PassOptionsToPackage{obeyspaces}{url}
 \usepackage[T1]{fontenc}
@@ -694,7 +696,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
 % \newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
 %
-\newcommand{\exercise}[2]{\section{#1}\label{#2}\marginpar{\vspace{-1.5\baselineskip}\hspace{-8em}\footnotesize Solution p.~\pageref{#2_sol}}}
+\newcommand{\exercise}[2]{\section{#2}\label{#1}\marginpar{\vspace{-1.5\baselineskip}\hspace{-8em}\footnotesize Solution p.~\pageref{#1_sol}}}
 
 \newcommand{\solution}[1]{\subsection*{\makebox[0pt][r]{\faIcon[regular]{lightbulb}\enskip}\ref{#1}}%
 \addcontentsline{toc}{subsection}{\ref{#1}}%
@@ -1571,7 +1573,7 @@ Argue with the LLM and see where the discussion goes.
 
 
 
-\exercise{}{sec:time_vel_primitive}
+\exercise{sec:time_vel_primitive}{}
 
 Take \emph{time} and \emph{velocity} as primitive quantities.
 \begin{enumerate}[exerc]
@@ -1580,7 +1582,7 @@ Take \emph{time} and \emph{velocity} as primitive quantities.
 \item Try to define \emph{acceleration} as a derived quantity.
 \end{enumerate}
 
-\exercise{}{sec:scalar_vect_quants}
+\exercise{sec:scalar_vect_quants}{}
 
 Which of the following quantities are \emph{scalars}, and which are \emph{vectors}?
 \begin{itemize}[noitemsep]
@@ -1605,7 +1607,7 @@ Which of the following quantities are \emph{scalars}, and which are \emph{vector
 \end{itemize}
 
 
-\exercise{}{sec:correct_units}
+\exercise{sec:correct_units}{}
 
 Find the correct units for the following quantities:
 \begin{itemize}[noitemsep]
@@ -1642,7 +1644,7 @@ Find the correct units for the following quantities:
 \item If you have some large-language-model service (such as ChatGPT or DeepSeek), ask it to explain the difference between primitive and derived quantity, and between scalar and vector quantity. Find out weak or unsure points in its answer, given what you've learned so far.
 \end{enumerate}
 
-\exercise{}{sec:units_functions}
+\exercise{sec:units_functions}{}
 
 Find which of the following mathematical expressions and equalities are dimensionally incorrect, and explain why they are incorrect:
 \begin{itemize}[label=\textbullet\enskip,itemsep=1ex]
@@ -1939,7 +1941,7 @@ Answer the following questions:
 \end{enumerate}
 
 
-\exercise{}{sec:vel_accel}
+\exercise{sec:vel_accel}{}
 
 \begin{enumerate}[exerc]
 \item You're told that the position $\yr(t)$ of an object is constant in time $t$. How much is the velocity $\yv(t)$?
@@ -1948,7 +1950,7 @@ Answer the following questions:
 \end{enumerate}
 
 
-\exercise{}{sec:1D_motion}
+\exercise{sec:1D_motion}{}
 
 We have a coordinate system $(t,x)$ with one spatial dimension only. A small object S has position $\cx{S}(t)$ which changes with the coordinate time $t$. The time dependence of the position is given by
 \begin{equation*}
@@ -1968,7 +1970,7 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \item Calculate the time dependence of the coordinate acceleration of S.
 \end{enumerate}
 
-\exercise{}{sec:1D_motion_b}
+\exercise{sec:1D_motion_b}{}
 
 We have a coordinate system $(t,x)$ with one spatial dimension only. A small object S has position $\cx{S}(t)$ given by
 \begin{equation*}
@@ -1987,7 +1989,7 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \end{enumerate}
 
 
-\exercise{}{sec:3Dmotion_simple}
+\exercise{sec:3Dmotion_simple}{}
 We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates have each dimension \textdim{length}. A small object S has position $\yr_{\text{S}}(t)$ given by
 \begin{equation*}
   \begin{gathered}
@@ -2013,7 +2015,7 @@ We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates hav
 \end{enumerate}
 
 
-\exercise{}{sec:1Dintegration}
+\exercise{sec:1Dintegration}{}
 
 We have a coordinate system $(t,z)$ with one spatial dimension only. The coordinate velocity $v_{z}(t)$ of a small pulse of light travelling in a particular material is given by
 \begin{equation*}
@@ -2177,7 +2179,7 @@ which is not what we want. Trying next $\omega \ytf = \pu$, which means $\ytf = 
 
 
 
-\exercise{}{sec:extensive_vs_meas}
+\exercise{sec:extensive_vs_meas}{}
 
 We have seen that six of the seven main physical quantities have two important properties:
 \begin{itemize}[nosep]
@@ -2191,7 +2193,7 @@ We have seen that six of the seven main physical quantities have two important p
 \item Vice versa, can you think of some physical quantity for which we can speak of content, flux, supply, but which doesn't have the property of extensivity?
 \end{enumerate}
 
-\exercise{}{sec:energy_meas_mass}
+\exercise{sec:energy_meas_mass}{}
 
 Do a little research, and find out whether there are any physics disciplines in which \emph{mass} is usually measured in units of \emph{energy}.
 
@@ -2230,7 +2232,7 @@ How would you reply to this person?
 
 
 
-\exercise{}{sec:net_amount}
+\exercise{sec:net_amount}{}
 
 Let's say you use a coordinate system $(x,y,z)$. In a given 3D region of space you measure a net amount (content) of momentum $\yP = [2, -3, 0]\,\unit{N\,s}$. Which of the following statements are true? which false? Explain why.
 \begin{enumerate}[exerc]
@@ -2328,7 +2330,7 @@ One example is \furl{https://cms.cern/content/glossary\#E}{particle physics}, wh
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
 
-\exercise{}{sec:contents}
+\exercise{sec:contents}{}
 
 In the following figures, \textcolor{blue}{region A is indicated in blue and a solid contour}, and \textcolor{red}{region B is indicated in red and a dashed contour} (they are 2D simplified representations of 3D regions). For each figure determine, if possible, the net volume content of the corresponding quantities in the region comprising A and B. If not possible, explain why.
 
@@ -2340,7 +2342,7 @@ In the following figures, \textcolor{blue}{region A is indicated in blue and a s
 \end{enumerate}
 
 
-\exercise{}{sec:Pcontents}
+\exercise{sec:Pcontents}{}
 
 In the following figures, \textcolor{blue}{region A is indicated in blue and a solid contour}, and \textcolor{red}{region B is indicated in red and a dashed contour} (they are 2D simplified representations of 3D regions). Use a coordinate system $(x,y,z)$ where $x$ is horizontal to the right, $y$ is vertical upwards on the page, and $z$ comes out of the page towards you. For each figure:
 \begin{itemize}[nosep]
@@ -2357,7 +2359,7 @@ In the following figures, \textcolor{blue}{region A is indicated in blue and a s
 \end{enumerate}
 
 
-\exercise{}{sec:P_ball_light}
+\exercise{sec:P_ball_light}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/ex_AB_light_ball.jpg}%
 }%
@@ -2368,7 +2370,7 @@ In a given coordinate system, the momentum content of volume A is $\yP_{\text{A}
 Does it really make sense to speak of the momentum in volume B (remember there's no air there)? If it does make sense, how much is the net momentum content of volumes A and B considered together?
 
 
-\exercise{}{sec:flux_sense}
+\exercise{sec:flux_sense}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[height=7em]{images/Jflux_main.jpg}%
 }%
@@ -2390,13 +2392,13 @@ Take a look at the energy flux through a surface represented in the side figure.
 \end{tabularx}
 
 
-\exercise{}{sec:battery_wire}
+\exercise{sec:battery_wire}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[height=7\baselineskip]{images/battery_wire_CS.jpg}%
 }%
 An ordinary battery is attached to wires and is powering some device. This means that there is a flow of electromagnetic energy from the battery to the device. Imagine a control surface around the battery, as illustrated in the side figure. Can you guess across which parts of the control surface is the flux of energy? Is it across the whole surface? or only across the parts where the wire is? Do a little research to find out.
 
-\exercise{}{sec:sum_fluxes}
+\exercise{sec:sum_fluxes}{}
 
 A cuboid region is delimited by a closed control surface that can be divided into six parts; call them \enquote*{up}, \enquote*{down}, \enquote*{front}, \enquote*{back}, \enquote*{left}, \enquote*{right}. They are all have an inward crossing direction, except for \enquote*{back} which has an outward crossing direction.
 
@@ -2466,7 +2468,7 @@ Here are the fluxes of various quantities through the six surfaces in the given 
 
 
 
-\exercise{}{sec:fluxes_scalar}
+\exercise{sec:fluxes_scalar}{}
 
 \renewcommand{\tabularxcolumn}[1]{>{\bfseries}w{c}{0.3\linewidth}}
 Which of the following graphical representations of fluxes do make sense? Which don't? Explain why.\noprelistbreak
@@ -2493,7 +2495,7 @@ Which of the following graphical representations of fluxes do make sense? Which 
 
 \medskip
 
-\exercise{}{sec:surface_moves_if_flux}
+\exercise{sec:surface_moves_if_flux}{}
 
 \begin{enumerate}[exerc]
 \item A control volume contains $[2,-3,1]\,\unit{N\,s}$ of momentum. Momentum is a quantity related to movement. Does this mean that the control volume is moving?
@@ -2503,7 +2505,7 @@ Which of the following graphical representations of fluxes do make sense? Which 
 \item Can there be a flux of temperature through a control surface?
 \end{enumerate}
 
-\exercise{}{sec:fluxes_vector}
+\exercise{sec:fluxes_vector}{}
 
 Which of the following graphical representations of fluxes do make sense? Which don't? Explain why.\noprelistbreak
 
@@ -2530,7 +2532,7 @@ height=6em,width=0.25\linewidth,keepaspectratio]{images/flux_vector_3.jpg}
 \end{tabularx}
 
 
-\exercise{}{sec:moebius}
+\exercise{sec:moebius}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/moebius_band.jpg}%
 }%
@@ -2539,7 +2541,7 @@ The \furl{https://mathworld.wolfram.com/MoebiusStrip.html}{Möbius band} is a su
 Do you manage to choose a definite crossing direction on this surface? Do you think it could be chosen as a control surface?
 
 
-\exercise{}{sec:netflux}
+\exercise{sec:netflux}{}
 
 For each figure, calculate and draw, or describe precisely, the net total flux through the composite control surface. (The different parts are differentiated by different colours and thicknesses.) Don't forget to specify the crossing direction when you speak about a flux.\noprelistbreak
 
@@ -2563,7 +2565,7 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sumC.jpg}
 \end{tabularx}
 
 
-\exercise{}{sec:integrated_flux}
+\exercise{sec:integrated_flux}{}
 
 \begin{enumerate}[exerc]
 \item Through a particular closed control surface there's a continuous influx of electric charge $\yI(t)$ with the following time dependence:
@@ -2943,7 +2945,7 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 % \label{sec:conservation_onlyalways}
 % %% Observed conserved only in an instance: does it obey conservation law?
 
-\exercise{}{sec:calc_from_bal}
+\exercise{sec:calc_from_bal}{}
 
 For each question:
 \begin{itemize}[nosep,label=\faIcon{hand-point-right}]
@@ -3028,7 +3030,7 @@ with a new constant $b$, then you can perfectly describe and predict all present
 You must decide whether to continue experiments and development using the modifications proposed by engineers~\ref{item:team_A}, or those proposed by engineers~\ref{item:team_B} (you can't pursue both). \textbf{Which do you choose, and why?}
 
 
-\exercise{}{sec:ideal_gas_const}
+\exercise{sec:ideal_gas_const}{}
 Consider a small control volume completely occupied by a particular kind of gas, which we shall call \emph{ideal gas}. Focus also on a small part of the closed control surface associated with this control volume.
 
 Two constitutive relations are known to be valid for such a control volume:
@@ -3053,7 +3055,7 @@ Find a constitutive relation that directly connects the volume content of \energ
 %% show const rel determine full time dependence of quantity. Is it universal?
 
 
-\exercise{}{sec:constants_previous}
+\exercise{sec:constants_previous}{}
 
 Find the physical dimensions and units of the constants $a$, $b$, $d$ in Exercise~\ref{sec:change_bal_or_const} and $R$, $\yU_{0}$, $C$ in Exercise~\ref{sec:ideal_gas_const}.
 
@@ -3287,12 +3289,12 @@ An analogous procedure shows:
   \end{itemize}
   In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.}
 
-\exercise{}{sec:calc_from_bal2-watertank}
+\exercise{sec:calc_from_bal2-watertank}{}
 
 Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
 
 \needspace{10\baselineskip}%
-\exercise{}{sec:calc_from_bal2-capacitors}
+\exercise{sec:calc_from_bal2-capacitors}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=0.55\linewidth]{images/capacitors.jpg}%
   \\\flushleftright\color{mpcolor}%
@@ -3307,7 +3309,7 @@ The bottom capacitor is \emph{delivering} an electric current of \qty{1}{C/s} to
 Electric charge satisfies a conservation law. \textbf{How fast is the electric-charge content in the bottom capacitor increasing or decreasing?}
 
 
-\exercise{}{sec:calc_from_bal2-capacitors-carbreak}
+\exercise{sec:calc_from_bal2-capacitors-carbreak}{}
 
 A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
 
@@ -3340,7 +3342,7 @@ $.
 
 Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
 
-\exercise{}{sec:calc_from_bal2-capacitors-nuclearplant}
+\exercise{sec:calc_from_bal2-capacitors-nuclearplant}{}
 \marginpar{\vspace{1.5\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
   We're measuring amounts in \enquote*{particles} rather than \enquote*{moles}.%
 }%
@@ -3376,7 +3378,7 @@ Here are some possibilities:
 \item Introduce a third substance.
 \end{itemize}
 
-\exercise{}{sec:NO2_reaction_later}
+\exercise{sec:NO2_reaction_later}{}
 
 \emph{Feel free to do this with colleagues:}
 
@@ -3421,7 +3423,7 @@ Simulate it with the following initial conditions, boundary conditions, and time
 \item After running the script: does it seem to oscillate? Can you try to explain why it does or doesn't?
 \end{enumerate}
 
-\exercise{}{sec:calc_from_bal2-scripts}
+\exercise{sec:calc_from_bal2-scripts}{}
 
 Write scripts to solve Exercises~\ref{sec:calc_from_bal2-watertank}--\ref{sec:calc_from_bal2-capacitors-nuclearplant} numerically.
 
@@ -3863,7 +3865,7 @@ See \sects7.10--7.11 in the main text.
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
 
-\exercise{}{sec:mol_kg}
+\exercise{sec:mol_kg}{}
 
 \begin{enumerate}[exerc]
 \item A piece of material of unknown composition (but looking ordinary otherwise) has \masse\ \qty{3.6}{kg}. Approximately how many moles of baryons does it contain? (Neglect leptons, that is, electrons.)
@@ -3872,7 +3874,7 @@ See \sects7.10--7.11 in the main text.
 \item A volume \qty{0.001}{m^3} (that is, one litre) of a neutron star may contain \qty{4e17}{mol} of neutrons (which are baryons). Approximately how much is the \masse\ of such a one-litre volume?
 \end{enumerate}
 
-\exercise{}{sec:kinds_matter_select}
+\exercise{sec:kinds_matter_select}{}
 
 When we study or simulate a physical phenomenon, it's often important to categorize \enquote*{matter} into different kinds, and to keep track of each kind. This categorization, though, depends on the specify system and also on the goals of the study. Consider these categorizations:
 \begin{enumerate}[label=(\Alph*)]
@@ -3993,7 +3995,7 @@ For each of the situations below, try to decide which of the categorizations abo
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
 
-\exercise{}{sec:OPM_boros}
+\exercise{sec:OPM_boros}{}
 % https://onepunchman.fandom.com
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/saitama.jpg}%
@@ -4037,7 +4039,7 @@ In everyday situations we often quantify force in \enquote*{kilograms}, or bette
 Express your estimate of the force of Saitama's punch in kilogram-force unit.
 
 \needspace{9\baselineskip}
-\exercise{}{sec:hexagon_fluxes}
+\exercise{sec:hexagon_fluxes}{}
 
 \marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/hexagon_fluxes.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -4058,7 +4060,7 @@ Find the momentum influx at surface E at time $t$.
 
 
 \needspace{9\baselineskip}
-\exercise{}{sec:tensile_spring}
+\exercise{sec:tensile_spring}{}
 
 \marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/material_piece_compr.jpg}%
@@ -4073,7 +4075,7 @@ The margin figure shows a piece of material with momentum \textbf{ef}fluxes $\yF
 
 
 \needspace{15\baselineskip}
-\exercise{}{sec:graniteblocks2}
+\exercise{sec:graniteblocks2}{}
 
 \marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks2.jpg}%
 \\\flushleftright\color{mpcolor}%
@@ -4095,7 +4097,7 @@ Answer the following questions:
 
 
 \needspace{11\baselineskip}
-\exercise{}{sec:graniteblocks3}
+\exercise{sec:graniteblocks3}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks3.jpg}%
 \\\flushleftright\color{mpcolor}%
@@ -4119,7 +4121,7 @@ Three blocks of granite are statically arranged as shown in the margin figure. T
 
 
 \needspace{7\baselineskip}
-\exercise{}{sec:car_uphill}
+\exercise{sec:car_uphill}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/car_uphill.jpg}%
 }
@@ -4134,7 +4136,7 @@ At a particular time $\ytf$ a car is moving uphill with an instantaneous velocit
 
 
 \needspace{7\baselineskip}
-\exercise{}{sec:wind_building}
+\exercise{sec:wind_building}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building.jpg}%
 \\\flushleftright\color{mpcolor}%
@@ -4177,7 +4179,7 @@ Find the force that the wind exerts on the building's side; proceed as follows:
 \end{enumerate}
 
 
-\exercise{}{sec:football_integral}
+\exercise{sec:football_integral}{}
 
 In a coordinate system $(x,z)$, at time $\yti = \qty{0}{s}$, a football of \masse\ \qty{0.42}{kg} has instantaneous velocity $[0,0]\,\unit{m/s}$. The ball is hit at that time, and experiences a horizontal surface force (momentum influx) until time $\ytf = \qty{0.3}{s}$. The force changes with time as follows
 \begin{equation*}
@@ -4195,7 +4197,7 @@ During the same time interval, the ball experiences the usual vertical gravitati
 
 
 \needspace{4\baselineskip}
-\exercise{}{sec:tennisballs_collision}
+\exercise{sec:tennisballs_collision}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/tennisballs_collision.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -4216,7 +4218,7 @@ After some time the tennis balls have collided and are moving away from each oth
 
 
 \needspace{12\baselineskip}
-\exercise{}{sec:bullet_block}
+\exercise{sec:bullet_block}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/bullet_block.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -4232,8 +4234,7 @@ There are no surface forces (flux of momentum) exerted on bullet \amp\ block, an
 
 
 
-\needspace{12\baselineskip}
-\exercise{}{sec:tennisball_fall}
+\exercise{sec:tennisball_fall}{}
 
 At some time instant a tennis ball is at a height of \qty{10}{m} above ground, with a downward velocity of \qty{1.0}{m/s}. At a later instant of time the ball is at a height of \qty{8.0}{m} above ground. The tennis ball's mass is \qty{0.060}{kg}, its motion is purely vertical, there are no obstacles in its course, and air can be neglected.
 
@@ -4241,7 +4242,7 @@ How much is the velocity of the ball at the later instant of time, when it is \q
 
 
 
-\exercise{}{sec:tennisball_RT}
+\exercise{sec:tennisball_RT}{}
 
 \emph{Preferably together with one or more colleagues:}
 
@@ -4286,7 +4287,7 @@ Now explore more extreme physical situations.
 \end{enumerate}
 
 
-\exercise{}{sec:tennisball_double}
+\exercise{sec:tennisball_double}{}
 
 
 \emph{Preferably together with one or more colleagues:}
@@ -4312,7 +4313,7 @@ Suppose that you want to describe the physical behaviour of not one, but \emph{t
 \end{enumerate}
 
 
-\exercise{}{sec:tennisball_collision_theory}
+\exercise{sec:tennisball_collision_theory}{}
 
 This is a continuation of Exercise~\ref{sec:tennisball_double}:
 
@@ -4344,7 +4345,7 @@ where $k$ is a positive constant, and $d$ is the diameter of one tennis ball, or
 \end{enumerate}
 
 
-\exercise{}{sec:tennisball_collision_script}
+\exercise{sec:tennisball_collision_script}{}
 
 This is a continuation of Exercise~\ref{sec:tennisball_collision_theory}.
 
@@ -4433,7 +4434,7 @@ If you have access to a large-language-model service, try feeding it one of our 
 
 It's possible that the large language model might offer you to \enquote{optimize} the script. Keep in mind that we're writing the scripts in order to understand the physics, rather than to be numerically efficient.
 
-\exercise{}{sec:spring_scripts}
+\exercise{sec:spring_scripts}{}
 
 For this exercise, start from the script for the simulation of two objects connected by a spring obeying Hooke's law (Octave: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py}}).
 
@@ -4464,7 +4465,7 @@ From a physical point of view, what does this line do? Is it a constitutive rela
 Which plot corresponds to the simulation with the largest elastic constant, and which with the lowest? Why?
 \end{enumerate}
 
-\exercise{}{sec:state_scripts}
+\exercise{sec:state_scripts}{}
 
 Start from the script for the simulation of a flying tennis ball
 (Octave: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}).
@@ -4478,7 +4479,7 @@ Start from the script for the simulation of a flying tennis ball
 \end{enumerate}
 
 
-\exercise{}{sec:state_scripts_hooke}
+\exercise{sec:state_scripts_hooke}{}
 
 Start from the script for the simulation of two objects connected by a spring obeying Hooke's law (Octave: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py}}).
 
@@ -5231,7 +5232,7 @@ Both choices lead to the solution, but the first is much more straightforward.
 
 We consider the bullet and the block together, as a single, deformable and possibly disconnected object; that's our control volume. Before time $\yti$ this control volume is made of two disconnected pieces; at time $\yti$ the two pieces get into contact with each other and start to merge; after time $\yti$ the control volume consists in one piece only.
 
-Since we have one control volume, we only need one copy of the balance of momentum. The problem mentions two distinct time instants, therefore the integral expression of the balance law seems most convenient.
+Since we have one control volume, we only need one instance of the balance of momentum. The problem mentions two distinct time instants, therefore the integral expression of the balance law seems most convenient.
 
 Denote by $P$ the momentum of this control volume, by $F$ the total surface force (momentum influx) on it, and by $G$ the total volume force on it. All these quantities are meant as $x$-components. The integral expression of the balance of momentum is therefore
 \begin{equation*}
@@ -5440,7 +5441,7 @@ You notice that this approach was a little more roundabout than the previous one
 
 The solution of this problem turns out to require the solution of a system of \furl{https://mathworld.wolfram.com/First-OrderOrdinaryDifferentialEquation.html}{first-order ordinary differential equations}: it isn't enough to solve a system of linear or maybe quadratic equations. For this reason the problem could alternatively be approached with a simulation script.
 
-First let's see why an ordinary system of equations isn't enough; then we discuss the working solution.
+First let's see why an ordinary system of equations isn't enough; then we discuss the proper solution.
 
 
 \subsubsection{An inconclusive approach}
@@ -5742,7 +5743,7 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 
 
 \needspace{5\baselineskip}
-\exercise{}{sec:skydiver}
+\exercise{sec:skydiver}{}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/skydive2.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -5755,8 +5756,34 @@ A skydiver of mass \qty{70}{kg} jumps with zero initial velocity at an altitude 
 \end{enumerate}
 
 
+\needspace{12\baselineskip}
+\exercise{sec:bullet_block_energy}{}
 
-\exercise{}{sec:tennisball_fall_energy}
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/bullet_block.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+Consider again exercise~\ref{sec:bullet_block}:
+
+At a time instant $\yti$ a bullet is in contact with a wooden block, as illustrated in the top margin figure. The bullet has mass \qty{0.0080}{kg} and horizontal velocity $v_{\textrm{bul}} = \qty{370}{m/s}$ to the right. The wooden block has mass \qty{0.2}{kg} and is at rest.
+
+At a later time instant $\ytf$ the bullet has entered the wooden block and got stuck in it, as illustrated in the bottom margin figure. Now bullet and block are moving together with the same common horizontal velocity $v_{\textrm{f}}$.
+
+There are no surface forces (flux of momentum) exerted on bullet \amp\ block, and gravity can be neglected. Use just one coordinate $x$.
+
+\begin{enumerate}[exerc]
+\item Do you have enough information for finding the common final velocity $v_{\textrm{f}}$ of bullet \amp\ block by means of the balance of energy? If so, find it.
+
+\item If you don't have enough information for using the balance of energy, then try to use the result ${v_{\textrm{f}} = \pm \qty{14}{m/s}}$ from solution~\ref{sec:bullet_block_sol} to make hypotheses about the missing information about energy.
+\end{enumerate}
+
+\exercise{sec:tennisball_fall_energy}{}
+
+Consider again exercise~\ref{sec:tennisball_fall}:
+
+At some time instant a tennis ball is at a height of \qty{10}{m} above ground, with a downward velocity of \qty{1.0}{m/s}. At a later instant of time the ball is at a height of \qty{8.0}{m} above ground. The tennis ball's mass is \qty{0.060}{kg}, its motion is purely vertical, there are no obstacles in its course, and air can be neglected.
+
+The original exercise asks how much is the velocity of the ball at the later instant of time, when it is \qty{8.0}{m} above ground. Can you find this velocity using only the balance of energy? if so, find it.
 
 
 \clearpage
@@ -5857,7 +5884,219 @@ In the system of equations above, ten equations in eleven unknowns, there must b
 \end{enumerate}
 
 
+\solution{sec:bullet_block_energy}
+
+\needspace{2\baselineskip}
+\begin{enumerate}[exerc]
+\item 
+\end{enumerate}
+Let's see if this problem, previously solved in~\ref{sec:tennisball_fall_sol} using the balance of momentum, can be solved using the balance of energy. In the previous solution we explored two approaches: first considering bullet \amp\ block as one control volume (a single object), and then as two control volumes. Let's explore only the first here.
+
+We consider the bullet and the block together, as a single, deformable and possibly disconnected object; that's our control volume.
+
+With one control volume, we need only one instance of the balance of energy. Its integral expressions seems most convenient. We omit the zero supply since the problem seems to be using inertial coordinates.
+
+Regarding constitutive relations, we can use those for the content and flux of energy of matter because bullet \amp\ block are a bunch of matter. These constitutive relations must be used at the initial and at the final times. Also, since the bullet and block have initially different velocity and may have initially different internal energies, we need to use the principle of extensivity to find the initial total energy.
+
+The text says that gravity can be neglected, so the gravitational potential energy is always zero. Note that if the problem had been two-dimensional and with gravity, then we could \emph{not} have used the formula $\ym g z$ for the potential energy of the block and for that of block and bullet together, because these are vertically extended objects without a single $z$ coordinate.
+
+The text gives information about velocities and masses, which can be useful for the kinetic energy. The text also says that there are no surface forces, besides those between bullet and block. This means that there is no flux of mechanical power to the bullet \amp\ block as a whole. Note that if there had been external surface forces, we could \emph{not} have used the formula $\yF\cdot\yv$ for mechanical power directly, because bullet and block have different velocities, and the material within the block might have a yet different velocity during the perforation by the bullet.
+
+The text does not give information about heat fluxes and internal energies.
+
+Putting all physical laws and text information together we arrive at this system of equations:
+Together with the information given in the text, we then have the following set of equations, where $g = \qty{9.8}{J/(kg\,m)}$:
+\begin{equation*}
+  \begin{aligned}
+    & \yE(\ytf) = \yE(\yti)
+    + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy balance}}
+    \\[1ex]
+    & \yE_{\textrm{bul}}(\yti) =
+    \yU_{\textrm{bul}}(\yti)
+    + \tfrac{1}{2}\,\ym_{\textrm{bul}}\, v_{\textrm{bul}}^{2}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for bullet, initial time}}
+    \\[1ex]
+    & \yE_{\textrm{blo}}(\yti) =
+    \yU_{\textrm{blo}}(\yti)
+    + \tfrac{1}{2}\,\ym_{\textrm{blo}}\, v_{\textrm{blo}}^{2}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for block, initial time}}
+    \\
+    &E(\yti) = E_{\textrm{bul}}(\yti) + E_{\textrm{blo}}(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}extensivity, initial energy}}
+    \\
+    & \yE(\ytf) =
+    \yU(\ytf)
+    + \tfrac{1}{2}\,(\ym_{\textrm{bul}} + \ym_{\textrm{blo}})\, v_{\textrm{f}}^{2}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, final time}}
+    \\[1ex]
+     & \yH(t) = \yQ(t) + \underbracket[0.5pt]{\text{\footnotesize mechanical power}}_{\qty{0}{J/s}}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy flux for matter}}
+     \\[1ex]
+    & v_{\textrm{bul}} = \qty{370}{m/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & v_{\textrm{blo}} = \qty{0}{m/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & \ym_{\textrm{bul}} = \qty{0.0080}{kg}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & \ym_{\textrm{blo}} = \qty{0.2}{kg}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+  \end{aligned}
+\end{equation*}
+
+Substituting all equations into the balance of energy and rearranging, we arrive at the following expression for the final velocity of bullet \amp\ block:
+\begin{equation*}
+  \begin{aligned}
+    \tfrac12\,(\ym_{\textrm{bul}} + \ym_{\textrm{blo}})\, v_{\textrm{f}}^{2}
+    &= \yU_{\textrm{blo}}(\yti) + \yU_{\textrm{bul}}(\yti) - \yU(\ytf)
+    + \tfrac{1}{2}\,\ym_{\textrm{bul}}\, v_{\textrm{bul}}^{2}
+    + \tfrac{1}{2}\,\ym_{\textrm{blo}}\, v_{\textrm{blo}}^{2}
+    + \yhe
+    \\[1ex]
+    \implies\quad
+    (\qty{0.104}{kg})\cdot v_{\textrm{f}}^{2}
+    &= \yU_{\textrm{blo}}(\yti) + \yU_{\textrm{bul}}(\yti) - \yU(\ytf)
+    +\yhe
+    + \qty{547.6}{J}
+  \end{aligned}
+\end{equation*}
+where the time-integrated heat flux is denoted by $\yhe$.
+
+Clearly we don't have enough information to solve the problem using the balance of energy. Additional information would be needed.
+
+Now suppose that we had assumed, maybe from a wrong intuition, that the total internal energy does not change, so that $\yU_{\textrm{blo}}(\yti) + \yU_{\textrm{bul}}(\yti) - \yU(\ytf) = \qty{0}{J}$, and also that the heat flux is zero: $\yhe = \qty{0}{J}$. Then  we would have arrived at the result ${v_{\textrm{f}} = \pm \qty{73}{m/s}}$. But the result obtained from the balance of momentum in the solution~\ref{sec:bullet_block_sol} was ${v_{\textrm{f}} = \pm \qty{14}{m/s}}$, and it was obtained without making any intuitive assumptions, so it's the correct result. This means that there actually is an increase in internal energy, or that some heat has been released.
+
+\needspace{2\baselineskip}
+\begin{enumerate}[exerc,resume]
+\item 
+\end{enumerate}
+According to the solution obtained with the balance of momentum, the final kinetic energy of bullet \amp\ block is
+\begin{equation*}
+  \tfrac12\,(\ym_{\textrm{bul}} + \ym_{\textrm{blo}})\, v_{\textrm{f}}^{2}
+  \approx \qty{20.384}{J} \ .
+\end{equation*}
+Substituting this in the final equation obtained in our previous analysis we find
+\begin{equation*}
+  \yU_{\textrm{blo}}(\yti) + \yU_{\textrm{bul}}(\yti) - \yU(\ytf)
+  + \yhe
+  = \qty{20.384}{J} - \qty{547.6}{J}
+  \approx -\qty{530}{J} \ .
+\end{equation*}
+
+So possible hypotheses are:
+\begin{itemize}
+\item There was no heat flux, and the total internal energy increased by \qty{530}{J}:
+  \begin{equation*}
+    \yU(\ytf) = [\yU_{\textrm{blo}}(\yti) + \yU_{\textrm{bul}}(\yti)]
+    +\qty{530}{J} \ .
+  \end{equation*}
+  This scenario seems plausible; we expect the temperatures of both bullet and block to increased during the perforation.
+\item There was no change in internal energy, and an amount \qty{530}{J} of heat was \emph{released} (negative heat influx because of the minus sign):
+  \begin{equation*}
+    \yhe = -\qty{530}{J} \ .
+  \end{equation*}
+This scenario also has some plausibility. If there is air, heat could have been released to it.
+\item There could also have been a partial increase in internal energy, and partial release of heat, for a total of \qty{530}{J}.
+\end{itemize}
+
+
 \solution{sec:tennisball_fall_energy}
+
+In the previous solution~\ref{sec:tennisball_fall_sol} of this exercise we used the balance of momentum together with the kinetic relationship between position and velocity, effectively solving a differential equation. Let's see if the balance of energy can lead us to the solution, and if it can do so more easily.
+
+We consider the tennis ball as our control volume. It makes sense to use the integral expression of the balance of energy, because we have two distinct times. In the balance let's directly omit the energy supply $\yA$, which is zero in an inertial coordinate system. A tennisball is a bunch of matter, so we can use the constitutive relations for the content and energy of matter; we need to use them at time $\yti$ as well as at time $\ytf$.
+
+What kind of information about energy does the text give us? Besides velocities and heights, which can be used for kinetic energy and gravitational potential energy, the text says that there are no obstacles and air can be neglected. Therefore the total surface force $\yF$ is zero, and also the mechanical power $\yF\cdot\yv$ is zero. Since the tennis ball is falling in a vacuum, let's assume that there's no heat flux $\yQ$ to or from the ball either; this assumption is not completely guaranteed, because the ball could emit electromagnetic radiation into a vacuum; but it seems reasonable.
+
+Together with the information given in the text, we then have the following set of equations, where $g = \qty{9.8}{J/(kg\,m)}$:
+\begin{equation*}
+  \begin{aligned}
+    & \yE(\ytf) = \yE(\yti)
+    + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy balance}}
+    \\[1ex]
+    & \yE(\yti) =
+    \yU(\yti) + \frac{1}{2}\,\ym\, v_{z}(\yti)^{2} + \ym\, g\, z(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, initial time}}
+    \\
+    & \yE(\ytf) =
+    \yU(\ytf) + \frac{1}{2}\,\ym\, v_{z}(\ytf)^{2} + \ym\, g\, z(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, final time}}
+    \\
+     & \yH(t) = \yQ(t) + F_{z}(t)\cdot v_{z}(t)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy flux for matter}}
+     \\[1ex]
+    & F_{z}(t) = \qty{0}{N}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on momentum flux}}
+    \\
+    & \yQ(t) = \qty{0}{J/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on heat flux}}
+    \\
+    & v_{z}(\yti) = -\qty{1.0}{m/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & z(\yti) = \qty{10}{m}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & z(\ytf) = \qty{8.0}{m}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & \ym = \qty{0.060}{kg}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+  \end{aligned}
+\end{equation*}
+
+This system can be solved by substitution: combining the equations for the energy flux, heat flux, momentum flux into the balance of energy we arrive at
+\begin{equation*}
+  \begin{aligned}
+    & \yE(\ytf) = \yE(\yti)
+    \\
+    & \yE(\yti) =
+    \yU(\yti) + \frac{1}{2}\,\ym\, v_{z}(\yti)^{2} + \ym\, g\, z(\yti)
+    \\
+    & \yE(\ytf) =
+    \yU(\ytf) + \frac{1}{2}\,\ym\, v_{z}(\ytf)^{2} + \ym\, g\, z(\ytf)
+    \\
+    & v_{z}(\yti) = -\qty{1.0}{m/s}
+    \\
+    & z(\yti) = \qty{10}{m}
+    \\
+    & z(\ytf) = \qty{8.0}{m}
+    \\
+    & \ym = \qty{0.060}{kg}
+  \end{aligned}
+\end{equation*}
+Substituting again and rearranging the terms we finally get
+\begin{equation*}
+  \begin{aligned}
+    \frac{1}{2}\,\ym\, v_{z}(\ytf)^{2}
+    &= \yU(\yti) -\yU(\ytf)
+    + \ym\, g\, z(\yti) - \ym\, g\, z(\ytf)
+    + \frac{1}{2}\,\ym\, v_{z}(\yti)^{2}
+    \\
+    \implies\quad
+    (\qty{0.030}{kg})\cdot v_{z}(\ytf)^{2}
+    &= \yU(\yti) -\yU(\ytf)
+    + \qty{1.176}{J}
+    + \qty{0.03}{J}
+  \end{aligned}
+\end{equation*}
+
+This could be solved for the final velocity $v_{z}(\ytf)$ if we knew the difference between the initial and final internal energies of the tennis ball. \emph{Intuitively} we expect this difference to be zero, so that
+\begin{equation*}
+  v_{z}(\ytf) \approx \pm\qty{6.3}{m/s}
+  \quad\text{(if the internal energy is the same at the two times).}
+\end{equation*}
+
+We see that the balance of energy led us to \emph{part} of the solution without the need to solve differential equations. But pay attention to these uncertain elements of this solution:
+\begin{itemize}[nosep]
+\item The balance of energy does not tell us the \emph{sign} of the final velocity: it could be downward or upward. The latter case would indeed be possible if the ball had bounced on the floor between the initial and final time. \emph{Intuitively} we choose the negative sign (downward velocity) -- and we do that because in our mind we're actually applying the \emph{balance of momentum}, imagining the motion between the two times.
+\item Strictly speaking the text does not tell us anything about the internal energy of the ball. Some process could take place -- think of the ball exploding -- that decreases the internal energy and leads to a higher kinetic energy and velocity. From the text this doesn't seem to be the case, but in a real-life physics inference we might be less certain.
+\end{itemize}
+
 
 % \section{Formulation and generalities}
 % \label{sec:bal_energy_formulation}
@@ -5896,7 +6135,7 @@ In the system of equations above, ten equations in eleven unknowns, there must b
 \section{}
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
-\exercise{}{sec:horiz_bar}
+\exercise{sec:horiz_bar}{}
 
 \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize%
 \includegraphics[width=\linewidth]{images/horiz_bar.jpg}%
