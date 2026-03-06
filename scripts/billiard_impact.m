@@ -1,4 +1,4 @@
-%%% Simulation of billiard balls, with slip
+%%% Simulation of billiard balls, with impact friction
 %% Coordinates (t, x, y)
 
 %% Constants
@@ -7,7 +7,7 @@ R = 0.057/2; % m: radius of each ball
 Ic = 2 * m * R^2 / 5; % kg m^2: inertia tensor of each ball
 Dmin = 2 * R; % m: minimum distance for impact force
 k = 1000; % N/m: elastic constant impact force
-mu = 10; % friction constant impact force
+mu = 1000; % friction constant impact force
 scoeff = -Ic / (m * R^2 + Ic); % rolling-friction coeff.
 
 %% Initial conditions, state: (r1, v1, o1, r2, v2, o2)
