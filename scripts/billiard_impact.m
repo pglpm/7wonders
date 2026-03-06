@@ -53,7 +53,7 @@ plot(t, Ek, 'ok'); hold on
 xlabel('{\it t}/s'); ylabel('{\it E_k}/J')
 xlim([0, t1]); axis('tight'); grid on;
 pause(0) %@
-return
+%return
 %% Numerical time integration
 while t < t1
   %% constitutive relations
