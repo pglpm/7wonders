@@ -1,4 +1,4 @@
-%%% Simulation of billiard balls, no slip
+%%% Simulation of billiard balls, with slip
 %% Coordinates (t, x, y)
 
 %% Constants
