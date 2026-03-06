@@ -8,7 +8,7 @@ Ic = 2 * m * R^2 / 5; % kg m^2: inertia tensor of each ball
 Dmin = 2 * R; % m: minimum distance for impact force
 k = 1000; % N/m: elastic constant impact force
 mu = 1000; % friction constant impact force
-scoeff = -Ic / (m * R^2 + Ic); % rolling-friction coeff.
+rcoeff = -Ic / (m * R^2 + Ic); % rolling-friction coeff.
 
 %% Initial conditions, state: (r1, v1, o1, r2, v2, o2)
 t = 0;
@@ -58,7 +58,7 @@ while t < t1
     F1in = [0, 0]; % normal impact force
     F1it = [0, 0]; % tangent impact force
     F1i = [0, 0]; % impact force
-    F1r = scoeff * F1i; % rolling friction
+    F1r = rcoeff * F1i; % rolling friction
     M1i = [0, 0, 0]; % impact torque
     M1r = [0, 0, 0]; % rolling torque
   else % contact
@@ -76,7 +76,7 @@ while t < t1
       F1it = [0, 0];
     end
     F1i = F1in + F1it;
-    F1r = scoeff * F1i;
+    F1r = rcoeff * F1i;
     M1i = cross([(r1 + r2) / 2, 0], [F1i, 0]);
     M1r = cross([r1, -R], [F1r, 0]);
   end
