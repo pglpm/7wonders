@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-07T09:55:58+0100
+%% Last-Updated: 2026-03-07T20:47:45+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5800,7 +5800,7 @@ The original exercise asks how much is the velocity of the ball at the later ins
 %
 Two ice skaters are holding each other, completely still, at some time $\yti$. Then they push each other and at a later time $\ytf$ they're moving in opposite directions. Together they have burned \qty{76}{J} of internal energy in total.
 
-Assume there's no friction or heat flux between ice and the skaters, air is negligible, and that the gravitational potential energy of each skater is constant. The skater on the left has \masse\ \qty{70}{kg}, the one on the right \qty{60}{kg}. Each skater can be considered as a point, with zero vertical momentum.
+Assume there's no friction or heat flux between ice and the skaters, air is negligible, and the gravitational potential energy of each skater is constant. The skater on the left has \masse\ \qty{70}{kg}, the one on the right \qty{60}{kg}. Each skater can be considered as a point, with zero vertical momentum.
 
 What are the velocities of the skaters at time $\ytf$?
 
@@ -6171,27 +6171,33 @@ The information given by the text can be summarized as follows:
 \item Skaters' masses.
 \end{itemize}
 
-The full set of equations describing this physical situation is therefore the following, denoting one skater $a$ and the other $b$, and with $g=\qty{9.8}{m/s}$:
+The full set of equations describing this physical situation can be written as follows, denoting one skater $a$ and the other $b$, and with $g=\qty{9.8}{m/s}$, $\yma = \qty{70}{kg}$, $\ymb = \qty{60}{kg}$:
 \begin{equation*}
   \begin{aligned}
     & P_{x}(\ytf) = P_{x}(\yti)
     + \int_{\yti}^{\ytf}\!\!F_{x}(t)\dt
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum balance}}
-    \\
-    & P_{z}(\ytf) = P_{z}(\yti)
-    + \int_{\yti}^{\ytf}\!\!F_{z}(t)\dt
-    + \int_{\yti}^{\ytf}\!\!G_{z}(t)\dt
-    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$z$-momentum balance}}
+    % \\
+    % & P_{z}(\ytf) = P_{z}(\yti)
+    % + \int_{\yti}^{\ytf}\!\!F_{z}(t)\dt
+    % + \int_{\yti}^{\ytf}\!\!G_{z}(t)\dt
+    % &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$z$-momentum balance}}
     \\
     & \yE(\ytf) = \yE(\yti)
     + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy balance}}
     \\[1ex]
+    & P_{x,a}(\yti) = \yma\, v_{x,a}(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum $a$, initial time}}
+    \\
+    & P_{x,b}(\yti) = \ymb\, v_{x,b}(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum $b$, initial time}}
+    \\
+    & P_{x}(\yti) = P_{x,a}(\yti) + P_{x,b}(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}extensivity for momentum, initial time}}
+    \\[1ex]
     & \yE(\yti) = \yU(\yti) + \yEk(\yti) + \yEp(\yti)
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, initial time}}
-    \\
-    & \yE(\ytf) = \yU(\ytf) + \yEk(\ytf) + \yEp(\ytf)
-    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, final time}}
     \\
     & \yEka(\yti) = \tfrac12 \yma \yva(\yti)^{2}
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}kinetic energy $a$, initial time}}
@@ -6201,6 +6207,18 @@ The full set of equations describing this physical situation is therefore the fo
     \\
     & \yEk(\yti) = \yEka(\yti) + \yEkb(\yti)
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}extensivity for kinetic energy, initial time}}
+    \\[1ex]
+    & P_{x,a}(\ytf) = \yma\, v_{x,a}(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum $a$, final time}}
+    \\
+    & P_{x,b}(\ytf) = \ymb\, v_{x,b}(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum $b$, final time}}
+    \\
+    & P_{x}(\ytf) = P_{x,a}(\ytf) + P_{x,b}(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}extensivity for momentum, final time}}
+    \\[1ex]
+    & \yE(\ytf) = \yU(\ytf) + \yEk(\ytf) + \yEp(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, final time}}
     \\
     & \yEka(\ytf) = \tfrac12 \yma \yva(\ytf)^{2}
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}kinetic energy $a$, final time}}
@@ -6210,28 +6228,114 @@ The full set of equations describing this physical situation is therefore the fo
     \\
     & \yEk(\ytf) = \yEka(\ytf) + \yEkb(\ytf)
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}extensivity for kinetic energy, final time}}
-    \\
+    \\[1ex]
      & \yH(t) = \yQ(t) + F_{z}(t)\cdot v_{z}(t)
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy flux for matter}}
      \\[1ex]
-    & F_{z}(t) = \qty{0}{N}
-    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on momentum flux}}
+     & P_{z}(t) = \qty{0}{N\,s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on $z$-momentum}}
+    \\
+     & F_{x}(t) = \qty{0}{N}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on $x$-momentum flux}}
+    \\
+    & v_{a,z}(\yti) = \qty{0}{m/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & v_{b,z}(\yti) = \qty{0}{m/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & \yU(\ytf) = \yU(\yti) - \qty{76}{J}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on internal energy}}
+    \\
+    & \yEp(\ytf) = \yEp(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on grav. potential energy}}
     \\
     & \yQ(t) = \qty{0}{J/s}
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on heat flux}}
-    \\
-    & v_{z}(\yti) = -\qty{1.0}{m/s}
-    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
-    \\
-    & z(\yti) = \qty{10}{m}
-    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
-    \\
-    & z(\ytf) = \qty{8.0}{m}
-    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
-    \\
-    & \ym = \qty{0.060}{kg}
-    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
   \end{aligned}
+\end{equation*}
+This is just \emph{one example} of how we could write the physical laws and information about this physical system. When we write a set of equations like this, we decide how detailed or how summarizing we want to be. In the system above we could have been even more detailed, for instance adding the balance of $z$-momentum and additional information on the surface \amp\ volume forces in the $z$-direction. Or we could have combined several equations beforehand instead.
+
+The system can be solved by substitution. Combining all equations into the first two we get
+\begin{equation*}
+  \begin{gathered}
+    \overbracket[0.5pt]{
+      \yma\,v_{a,z}(\ytf) + \ymb\,v_{b,z}(\ytf)
+    }^{P_{x}(\ytf)}
+    {}={}
+    \overbracket[0.5pt]{
+      \yma\cdot(\qty{0}{m/s}) + \ymb\cdot(\qty{0}{m/s})
+    }^{P_{x}(\yti)}
+    {}+{}
+    {\overbracket[0.5pt]{
+      \qty{0}{N\,s}
+    }^{\int_{\yti}^{\ytf}\!\!F_{x}(t)\dt}}
+    \\[2ex]
+    \begin{multlined}[][\linewidth]
+      \overbracket[0.5pt]{
+        \underbracket[0.5pt]{\yU(\yti) - \qty{76}{J}}_{\yU(\ytf)}
+        + \tfrac12\yma\,v_{a,z}(\ytf)^{2}
+        + \tfrac12\ymb\,v_{b,z}(\ytf)^{2}
+        +{} \underbracket[0.5pt]{\yEp(\yti)}_{\yEp(\ytf)}
+      }^{\yE(\ytf)}
+      {}={}
+      \\
+      \overbracket[0.5pt]{
+        \yU(\yti)
+        + \tfrac12\yma\cdot(\qty{0}{m/s})^{2}
+        + \tfrac12\ymb\cdot(\qty{0}{m/s})^{2}
+        + \yEp(\yti)
+      }^{\yE(\yti)}
+      {}+{}
+      \overbracket[0.5pt]{
+        \qty{0}{J\,s}
+      }^{\int_{\yti}^{\ytf}\!\!\yH(t)\dt}
+    \end{multlined}
+  \end{gathered}
+\end{equation*}
+which simplifies to this:
+\begin{equation*}
+  \begin{aligned}
+    &\left\{\begin{aligned}
+      &\yma\,v_{a,z}(\ytf) + \ymb\,v_{b,z}(\ytf)
+      = \qty{0}{N\,s}
+      \\[1ex]
+      &\yma\,v_{a,z}(\ytf)^{2}
+      + \ymb\,v_{b,z}(\ytf)^{2}
+      = \qty{76}{J}
+    \end{aligned}\right.
+    \\[2ex]
+    \implies\qquad
+    &\left\{\begin{aligned}
+      &v_{a,z}(\ytf) = - \frac{\ymb}{\yma}v_{b,z}(\ytf)
+      \\[1ex]
+      &\yma \biggl[
+      - \frac{\ymb}{\yma}v_{b,z}(\ytf)
+      \biggr]^{2}
+      + \ymb\,v_{b,z}(\ytf)^{2}
+      = \qty{76}{J}
+    \end{aligned}\right.
+    \\[2ex]
+    \implies\qquad
+    &\left\{\begin{aligned}
+        &v_{a,z}(\ytf) = - \frac{\ymb}{\yma}v_{b,z}(\ytf)
+        \approx \mp \qty{0.708}{m/s}
+      \\[1ex]
+      &v_{b,z}(\ytf) =
+      \pm\sqrt{
+        \frac{\qty{76}{J}}{
+          \ymb + \ymb^{2}/\yma
+        }
+        } \approx \pm \qty{0.826}{m/s}
+    \end{aligned}\right.
+ \end{aligned}
+\end{equation*}
+
+The text says that skater $a$ (mass \qty{70}{kg}) is on the left. From this we can decide which sign to take, and finally arrive at
+\begin{equation*}
+  v_{a,z}(\ytf) \approx \qty{0.71}{m/s} \ ,
+  \qquad
+  v_{b,z}(\ytf) \approx \qty{0.83}{m/s} \ .
 \end{equation*}
 
 
