@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-05T09:47:36+0100
+%% Last-Updated: 2026-03-07T09:55:58+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1202,6 +1202,10 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yG}{\bm{G}}
 \newcommand*{\yGa}{\yG_{a}}
 \newcommand*{\yGb}{\yG_{b}}
+\newcommand*{\yEka}{\yE_{\textrm{k},a}}
+\newcommand*{\yEkb}{\yE_{\textrm{k},b}}
+\newcommand*{\yEpa}{\yE_{\textrm{p},a}}
+\newcommand*{\yEpb}{\yE_{\textrm{p},b}}
 
 %% rigid motion
 \newcommand*{\yOm}{\bm{\varOmega}}
@@ -5796,7 +5800,7 @@ The original exercise asks how much is the velocity of the ball at the later ins
 %
 Two ice skaters are holding each other, completely still, at some time $\yti$. Then they push each other and at a later time $\ytf$ they're moving in opposite directions. Together they have burned \qty{76}{J} of internal energy in total.
 
-Assume there's no friction between ice and the skaters, and that the gravitational potential energy of each skater is constant. The skater on the left has \masse\ \qty{70}{kg}, the one on the right \qty{60}{kg}. Each skater can be considered as a point, and the problem can be taken as one-dimensional.
+Assume there's no friction or heat flux between ice and the skaters, air is negligible, and that the gravitational potential energy of each skater is constant. The skater on the left has \masse\ \qty{70}{kg}, the one on the right \qty{60}{kg}. Each skater can be considered as a point, with zero vertical momentum.
 
 What are the velocities of the skaters at time $\ytf$?
 
@@ -6134,8 +6138,101 @@ We see that the balance of energy led us to \emph{part} of the solution without 
 
 \solution{sec:skaters_away}
 
-\mynotew{To be written}
-% Let's decide first how many control volumes to consider. Between the initial and final times there is obviously a flux and exchange of momentum, and possibly also of heat and of mechanical work, between the skaters. If we consider the skaters as two separate control volumes, then when we write the balance of momentum or that of energy we would have to explicitly write such fluxes of momentum and of energy. The text, however, does not give any information about these fluxes. Therefore let's try to solve the problem considering the skaters as a single control volume: this way the fluxes of momentum and energy between them are internal and don't appear in the balances of momentum and energy.
+Let's decide first how many control volumes to consider.
+
+If we consider the skaters as two separate control volumes, then we need to use one balance of momentum and one energy for each. Between the initial and final times there is obviously a flux and exchange of momentum, and possibly also of heat and of mechanical work, between the skaters. Therefore when we write the balances for each skater we need to explicitly take such fluxes of momentum and of energy into account. The text, however, does not give any information about these fluxes.
+
+Therefore let's try first to solve the problem considering the skaters as a \emph{single control volume}, with one balance of momentum and one balance of energy. In this approach, the fluxes of momentum and energy between the skaters are \emph{internal} to the control volume, and therefore they don't appear in the balances of momentum and energy.
+
+From the statement of the problem, the integral expression of the balances seems most convenient.
+
+The constitutive relations are the usual ones, since we're dealing with matter, there are no matter fluxes through the volume boundaries, and there are no electromagnetic fields:
+\begin{itemize}
+\item Newton's relation for momentum $\yP = \ym \yv$, to be written for initial and final times. This relation may need to be used together with the principle of \emph{extensivity}, because the skaters may not have the same velocity; that is, the velocity of matter is not the same throughout the control volume.
+\item Energy for matter $\yE = \yU + \yEk + \yEp$, to be written for initial and final times.
+\item Kinetic energy of matter $\yEk = \frac12 \ym \yv^{2}$, to be applied to each skater separately. Since the skaters may have different velocities, this relation may need to be used with the principle of extensivity of energy: we add up the kinetic energies of the two skaters.
+\item Energy flux for matter $\yH = \yQ + \yF\cdot \yv$, which should be applied at all times between $\yti$ and $\ytf$.
+\end{itemize}
+
+The information given by the text can be summarized as follows:
+\begin{itemize}
+\item \enquote{together they have burned \qty{76}{J} of internal energy in total}: this refers to the \emph{difference} between the initial and final total energy: the final one is lower than the initial one by \qty{76}{J}. The total internal energy is, by extensivity, the sum of those of each skater.
+
+\item No ice friction and negligible air means the total horizontal force $F_{x}$ on the two skaters -- viewed as one control volume -- is zero.
+
+  Since the velocity of the skaters is purely horizontal, perpendicular to the normal force $\yFn$ on each skater, no friction also means that the total mechanical power $\yF\cdot \yv \equiv \yFn \cdot \yv$ on the each skaters is zero at all times.
+
+\item No heat flux with the ice and negligible air means that the total heat flux $\yQ$ is also zero at all times.
+
+\item Skaters have zero initial velocities.
+
+\item Potential energy of each skater, and therefore of the whole, is constant.
+
+\item Skaters' masses.
+\end{itemize}
+
+The full set of equations describing this physical situation is therefore the following, denoting one skater $a$ and the other $b$, and with $g=\qty{9.8}{m/s}$:
+\begin{equation*}
+  \begin{aligned}
+    & P_{x}(\ytf) = P_{x}(\yti)
+    + \int_{\yti}^{\ytf}\!\!F_{x}(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum balance}}
+    \\
+    & P_{z}(\ytf) = P_{z}(\yti)
+    + \int_{\yti}^{\ytf}\!\!F_{z}(t)\dt
+    + \int_{\yti}^{\ytf}\!\!G_{z}(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$z$-momentum balance}}
+    \\
+    & \yE(\ytf) = \yE(\yti)
+    + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy balance}}
+    \\[1ex]
+    & \yE(\yti) = \yU(\yti) + \yEk(\yti) + \yEp(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, initial time}}
+    \\
+    & \yE(\ytf) = \yU(\ytf) + \yEk(\ytf) + \yEp(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy content for matter, final time}}
+    \\
+    & \yEka(\yti) = \tfrac12 \yma \yva(\yti)^{2}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}kinetic energy $a$, initial time}}
+    \\
+    & \yEkb(\yti) = \tfrac12 \ymb \yvb(\yti)^{2}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}kinetic energy $b$, initial time}}
+    \\
+    & \yEk(\yti) = \yEka(\yti) + \yEkb(\yti)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}extensivity for kinetic energy, initial time}}
+    \\
+    & \yEka(\ytf) = \tfrac12 \yma \yva(\ytf)^{2}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}kinetic energy $a$, final time}}
+    \\
+    & \yEkb(\ytf) = \tfrac12 \ymb \yvb(\ytf)^{2}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}kinetic energy $b$, final time}}
+    \\
+    & \yEk(\ytf) = \yEka(\ytf) + \yEkb(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}extensivity for kinetic energy, final time}}
+    \\
+     & \yH(t) = \yQ(t) + F_{z}(t)\cdot v_{z}(t)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy flux for matter}}
+     \\[1ex]
+    & F_{z}(t) = \qty{0}{N}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on momentum flux}}
+    \\
+    & \yQ(t) = \qty{0}{J/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on heat flux}}
+    \\
+    & v_{z}(\yti) = -\qty{1.0}{m/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & z(\yti) = \qty{10}{m}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & z(\ytf) = \qty{8.0}{m}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+    \\
+    & \ym = \qty{0.060}{kg}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info}}
+  \end{aligned}
+\end{equation*}
 
 
 \solution{sec:imagine_momentum_energy}
