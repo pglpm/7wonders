@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-09T18:42:59+0100
+%% Last-Updated: 2026-03-09T19:28:00+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5827,13 +5827,13 @@ Is it possible for the ideal gas to have a non-zero kinetic energy?
 \needspace{6\baselineskip}
 \exercise{sec:ramp_cart}{}
 
-\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=1\linewidth]{images/ramp_cart_wheels.jpg}%
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=1\linewidth]{images/ramp_cart_ice.jpg}%
 %\\\flushleftright\color{mpcolor}%
 }
 %
-A ramp of mass \qty{20}{kg} and height \qty{1}{m}, equipped with small wheels, is at rest on the ground. At the top of the ramp there's a small cart of mass \qty{1}{kg}, also equipped with small wheels and also at rest. The cart is released, and at a later time $\ytf$ it is almost at the bottom of the ramp.
+A rigid ramp of mass \qty{20}{kg} and height \qty{1}{m} is at rest on a static layer of ice. At the top of the ramp there's a small cart of mass \qty{1}{kg}, equipped with small wheels and also at rest. The cart is released, and at a later time $\ytf$ it is at the bottom of the ramp, moving in a horizontal direction.
 
-Assume that there are no heat fluxes. Air is negligible. The internal energies of ramp and cart are constant. The ramp is rigid. All wheels are small and their motion and dimensions can be neglected. Consider the cart as a small object identified simply by its position $\yr$. The wheels on the cart roll without sliding, therefore the velocity at their point of contact is zero with respect to the ground.
+There is no friction between the ramp and the layer of ice. Assume that there are no heat fluxes, air is negligible, and the internal energies of ramp and cart are constant. Consider the cart as a small object identified simply by its position $\yr$.
 
 What are the horizontal velocities (complete with correct sign) of cart and of ramp at time $\ytf$?
 
@@ -6392,18 +6392,77 @@ The problem involves two different time instants, so the integral expression of 
 \end{equation*}
 We directly omit the momentum supply $\yG$ because its $x$-component is zero.
 
-The balance of energy requires the total energy  content in the control volume at the initial and final times. Cart and ramp have different velocities and positions, therefore we must use the principle of extensivity to find the total. The total will comprise internal, kinetic, and gravitational potential energies, as is usual for situations involving matter and no electromagnetic fields.
+\smallskip
+
+The balance of energy requires the total energy  content in the control volume at the initial and final times. Cart and ramp have different velocities and positions, therefore we must use the principle of extensivity to find the total. The total will comprise internal, kinetic, and gravitational potential energies, as is usual for situations involving matter and no electromagnetic fields. The text says that the internal energy of cart \amp\ ramp is constant, so let's call it just $\yU$.
+
+For the potential energy of the cart we can use the constitutive relation $\ym\,g\,z$, since the cart is viewed as a point. We cannot use this constitutive relation for the ramp, because the ramp has a large vertical extension. However, the ramp is only moving horizontally, not vertically, so its gravitational potential energy must be constant; let's call it $\yE_{\text{p,r}}$.
 
 Similar reasoning applies to the total $x$-momentum content. Also in this case we have to use extensivity, together with Newton's formula for the momentum of matter.
 
+\smallskip
+
 What about the energy flux $\yH(t)$ and the $x$-momentum flux $F_{x}(t)$? First let's see on which boundary surfaces of the control volume there are such fluxes.
 
-For the surfaces in contact with the air, no fluxes occur, because the text says that air is negligible. Fluxes can therefore only occur where the ramp's wheels touch the ground.
+For the surfaces in contact with the air, no fluxes occur, because the text says that air is negligible. Fluxes can therefore only occur between the ramp and the ice.
 
-The momentum flux, or surface force, at the wheels surely has an upward $z$-component: the gravitational force pushes cart \amp\ ramp to the ground, so there must be a surface force from the ground to the cart that prevents the cart from sinking into the ground. The force from the ground might also have an $x$-component.
+The momentum flux, or surface force, from ice to ramp must have a $z$-component: the gravitational force pushes cart \amp\ ramp downward, so there must be a surface force from the ice to the cart that prevents the cart from sinking into the ice. The absence of friction between ice and ramp means that the surface force between them has no horizontal, $x$-component.
 
-The energy flux, when matter is involved, comprises a heat flux $\yQ(t)$ and mechanical power $\yF(t)\cdot\yv(t)$. The text says that the heat flux is zero. For the mechanical power we must consider the force $\yF$ from ground to the ramp's wheels, and the velocity $\yv$ \emph{of the ramp's wheels at the point of contact}. The latter is always zero: $\yv = \zerov\,\unit{m/s}$. Therefore the mechanical power is also always zero: $\yF(t)\cdot\yv(t) = \qty{0}{J/s}$.
+The energy flux, when matter is involved, comprises a heat flux $\yQ(t)$ and mechanical power $\yF(t)\cdot\yv(t)$. The text says that the heat flux is zero. For the mechanical power between ice and ramp we must consider that the force from the ice to the ramp is purely vertical, and the velocity of the ramp purely horizontal; therefore their dot-product is always zero: $\yF(t)\cdot\yv(t) = \qty{0}{J/s}$.
 
+We therefore find that there are actually no energy or $x$-momentum fluxes into our control volume.
+
+The analysis above can therefore be summarized in the equations
+\begin{equation*}
+  \begin{aligned}
+    & \yE(\ytf) = \yE(\yti)
+    + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy balance}}
+    \\
+    & P_{x}(\ytf) = P_{x}(\yti)
+    + \int_{\yti}^{\ytf}\!\!F_{x}(t)\dt
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum balance}}
+    \\[1ex]
+    & E(\yti) = \yU
+    +{} \underbracket[0.5pt]{\yEk(\yti)}_{\qty{0}{J}} {}
+    + \ym_{\text{c}}\,g\,z_{\text{c}}(\yti) + \yE_{\text{p,r}}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}initial total energy from extensivity}}
+    \\
+    & E(\ytf) = \yU
+    + \tfrac12 \ym_{\text{c}}\,v_{\text{c},x}(\ytf)^{2}
+    + \tfrac12 \ym_{\text{r}}\,v_{\text{r},x}(\ytf)^{2}
+    + \ym_{\text{c}}\,g\,z_{\text{c}}(\ytf) + \yE_{\text{p,r}}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}final total energy from extensivity}}
+    \\
+    & P_{x}(\yti) = \qty{0}{N\,s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}initial $x$-momentum from extensivity}}
+    \\
+    & P_{x}(\ytf) =
+    \ym_{\text{c}}\,v_{\text{c},x}(\ytf)
+    +\ym_{\text{r}}\,v_{\text{r},x}(\ytf)
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}final $x$-momentum from extensivity}}
+    \\
+    &F_{x}(t) = \qty{0}{N}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}$x$-momentum flux}}
+    \\
+    &\yH(t) = \qty{0}{J/s}
+    &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}energy flux}}
+  \end{aligned}
+\end{equation*}
+
+Replacing into the balances the remaining equations, and simplifying all terms that appear on the left and on the right, we get
+\begin{equation*}
+  \begin{gathered}
+    \ym_{\text{c}}\,g\,z_{\text{c}}(\yti)
+    =
+    \tfrac12 \ym_{\text{c}}\,v_{\text{c},x}(\ytf)^{2}
+    + \tfrac12 \ym_{\text{r}}\,v_{\text{r},x}(\ytf)^{2}
+    + \ym_{\text{c}}\,g\,z_{\text{c}}(\ytf)
+    \\[1ex]
+    \qty{0}{N\,s} = \ym_{\text{c}}\,v_{\text{c},x}(\ytf)
+    +\ym_{\text{r}}\,v_{\text{r},x}(\ytf)
+  \end{gathered}
+\end{equation*}
 
 
 
