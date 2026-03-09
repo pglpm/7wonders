@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-08T12:21:14+0100
+%% Last-Updated: 2026-03-09T18:42:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5833,7 +5833,7 @@ Is it possible for the ideal gas to have a non-zero kinetic energy?
 %
 A ramp of mass \qty{20}{kg} and height \qty{1}{m}, equipped with small wheels, is at rest on the ground. At the top of the ramp there's a small cart of mass \qty{1}{kg}, also equipped with small wheels and also at rest. The cart is released, and at a later time $\ytf$ it is almost at the bottom of the ramp.
 
-Assume that there is no friction and no heat fluxes. Air is negligible. The internal energies of ramp and cart are constant. The ramp is rigid. All wheels are small and their motion and dimensions can be neglected. Consider the cart as a small object identified simply by its position $\yr$.
+Assume that there are no heat fluxes. Air is negligible. The internal energies of ramp and cart are constant. The ramp is rigid. All wheels are small and their motion and dimensions can be neglected. Consider the cart as a small object identified simply by its position $\yr$. The wheels on the cart roll without sliding, therefore the velocity at their point of contact is zero with respect to the ground.
 
 What are the horizontal velocities (complete with correct sign) of cart and of ramp at time $\ytf$?
 
@@ -6380,7 +6380,30 @@ Another, simpler example: two astronauts in empty space initially holding each o
 
 \solution{sec:ramp_cart}
 
-\mynotew{To be written}
+Intuitively we expect there to be a momentum flux (surface force) between the cart and the ramp, possibly together with an energy flux; and probably these fluxes change with time. If we consider cart \amp\ ramp as a single object -- single control volume -- then these complicated fluxes are internal and we don't need to keep them into account. Therefore let us try to analyse the problem using a single control volume.
+
+The problem involves two different time instants, so the integral expression of the balance laws seem most convenient. But which balance laws may be necessary to solve this problem? is the balance of momentum, or of energy, enough by itself? The problem asks for two numeric quantities: the $x$-velocities of cart and of ramp. The balance of energy provides one equation, so it maybe isn't enough by itself. Using the balance of $x$-momentum, which provides one more equation, related to the $x$-direction, so intuitively it may be necessary as well. This is just a heuristic reasoning: as we solve the problem we may realize that a different set of balances is needed.
+\begin{equation*}
+  \yE(\ytf) = \yE(\yti)
+  + \int_{\yti}^{\ytf}\!\!\yH(t)\dt
+  \ ,\qquad
+  P_{x}(\ytf) = P_{x}(\yti)
+  + \int_{\yti}^{\ytf}\!\!F_{x}(t)\dt \ .
+\end{equation*}
+We directly omit the momentum supply $\yG$ because its $x$-component is zero.
+
+The balance of energy requires the total energy  content in the control volume at the initial and final times. Cart and ramp have different velocities and positions, therefore we must use the principle of extensivity to find the total. The total will comprise internal, kinetic, and gravitational potential energies, as is usual for situations involving matter and no electromagnetic fields.
+
+Similar reasoning applies to the total $x$-momentum content. Also in this case we have to use extensivity, together with Newton's formula for the momentum of matter.
+
+What about the energy flux $\yH(t)$ and the $x$-momentum flux $F_{x}(t)$? First let's see on which boundary surfaces of the control volume there are such fluxes.
+
+For the surfaces in contact with the air, no fluxes occur, because the text says that air is negligible. Fluxes can therefore only occur where the ramp's wheels touch the ground.
+
+The momentum flux, or surface force, at the wheels surely has an upward $z$-component: the gravitational force pushes cart \amp\ ramp to the ground, so there must be a surface force from the ground to the cart that prevents the cart from sinking into the ground. The force from the ground might also have an $x$-component.
+
+The energy flux, when matter is involved, comprises a heat flux $\yQ(t)$ and mechanical power $\yF(t)\cdot\yv(t)$. The text says that the heat flux is zero. For the mechanical power we must consider the force $\yF$ from ground to the ramp's wheels, and the velocity $\yv$ \emph{of the ramp's wheels at the point of contact}. The latter is always zero: $\yv = \zerov\,\unit{m/s}$. Therefore the mechanical power is also always zero: $\yF(t)\cdot\yv(t) = \qty{0}{J/s}$.
+
 
 
 
