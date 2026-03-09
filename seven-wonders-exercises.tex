@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-09T19:28:00+0100
+%% Last-Updated: 2026-03-09T22:08:34+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6396,7 +6396,7 @@ We directly omit the momentum supply $\yG$ because its $x$-component is zero.
 
 The balance of energy requires the total energy  content in the control volume at the initial and final times. Cart and ramp have different velocities and positions, therefore we must use the principle of extensivity to find the total. The total will comprise internal, kinetic, and gravitational potential energies, as is usual for situations involving matter and no electromagnetic fields. The text says that the internal energy of cart \amp\ ramp is constant, so let's call it just $\yU$.
 
-For the potential energy of the cart we can use the constitutive relation $\ym\,g\,z$, since the cart is viewed as a point. We cannot use this constitutive relation for the ramp, because the ramp has a large vertical extension. However, the ramp is only moving horizontally, not vertically, so its gravitational potential energy must be constant; let's call it $\yE_{\text{p,r}}$.
+For the potential energy of the cart we can use the constitutive relation $\ym\,g\,z$, since the cart is viewed as a point; also at the final time this potential energy is zero because the $z$-coordinate of the cart is zero. We cannot use this constitutive relation for the ramp though, because the ramp has a large vertical extension. However, the ramp is only moving horizontally, not vertically, so its gravitational potential energy must be constant; let's call it $\yE_{\text{p,r}}$.
 
 Similar reasoning applies to the total $x$-momentum content. Also in this case we have to use extensivity, together with Newton's formula for the momentum of matter.
 
@@ -6411,6 +6411,8 @@ The momentum flux, or surface force, from ice to ramp must have a $z$-component:
 The energy flux, when matter is involved, comprises a heat flux $\yQ(t)$ and mechanical power $\yF(t)\cdot\yv(t)$. The text says that the heat flux is zero. For the mechanical power between ice and ramp we must consider that the force from the ice to the ramp is purely vertical, and the velocity of the ramp purely horizontal; therefore their dot-product is always zero: $\yF(t)\cdot\yv(t) = \qty{0}{J/s}$.
 
 We therefore find that there are actually no energy or $x$-momentum fluxes into our control volume.
+
+\medskip
 
 The analysis above can therefore be summarized in the equations
 \begin{equation*}
@@ -6431,7 +6433,7 @@ The analysis above can therefore be summarized in the equations
     & E(\ytf) = \yU
     + \tfrac12 \ym_{\text{c}}\,v_{\text{c},x}(\ytf)^{2}
     + \tfrac12 \ym_{\text{r}}\,v_{\text{r},x}(\ytf)^{2}
-    + \ym_{\text{c}}\,g\,z_{\text{c}}(\ytf) + \yE_{\text{p,r}}
+    + {}\underbracket[0.5pt]{\ym_{\text{c}}\,g\,z_{\text{c}}(\ytf)}_{\qty{0}{J}} + \yE_{\text{p,r}}
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}final total energy from extensivity}}
     \\
     & P_{x}(\yti) = \qty{0}{N\,s}
@@ -6452,18 +6454,57 @@ The analysis above can therefore be summarized in the equations
 
 Replacing into the balances the remaining equations, and simplifying all terms that appear on the left and on the right, we get
 \begin{equation*}
-  \begin{gathered}
-    \ym_{\text{c}}\,g\,z_{\text{c}}(\yti)
+  \begin{aligned}
+    &\ym_{\text{c}}\,g\,z_{\text{c}}(\yti)
     =
     \tfrac12 \ym_{\text{c}}\,v_{\text{c},x}(\ytf)^{2}
     + \tfrac12 \ym_{\text{r}}\,v_{\text{r},x}(\ytf)^{2}
-    + \ym_{\text{c}}\,g\,z_{\text{c}}(\ytf)
     \\[1ex]
-    \qty{0}{N\,s} = \ym_{\text{c}}\,v_{\text{c},x}(\ytf)
+    &\qty{0}{N\,s} = \ym_{\text{c}}\,v_{\text{c},x}(\ytf)
     +\ym_{\text{r}}\,v_{\text{r},x}(\ytf)
-  \end{gathered}
+  \end{aligned}
+\end{equation*}
+where the unknowns are the final $x$-velocities $v_{\text{c},x}(\ytf)$, $v_{\text{r},x}(\ytf)$. This system can be solved with substitution, for instance writing $v_{\text{r},x}(\ytf)$ in terms of $v_{\text{c},x}(\ytf)$ in the second equation, then replacing it in the first:
+\begin{equation*}
+  \begin{aligned}
+    &\left\{\begin{aligned}
+      &\tfrac12 \ym_{\text{c}}\,v_{\text{c},x}(\ytf)^{2}
+      + \tfrac12 \ym_{\text{r}}\,
+      \biggl[
+      -\frac{\ym_{\text{c}}}{\ym_{\text{r}}}\,v_{\text{c},x}(\ytf)
+      \biggr]^{2}
+      = \ym_{\text{c}}\,g\,z_{\text{c}}(\yti)
+      \\[1ex]
+      &v_{\text{r},x}(\ytf) =
+      -\frac{\ym_{\text{c}}}{\ym_{\text{r}}}\,v_{\text{c},x}(\ytf)
+    \end{aligned}\right.
+      \\
+      \implies\quad
+    &\left\{\begin{aligned}
+    & v_{\text{c},x}(\ytf) =
+    \pm \sqrt{\frac{
+        \ym_{\text{c}}\,g\,z_{\text{c}}(\yti)
+      }{
+        \tfrac12 \ym_{\text{c}} + \tfrac12 \ym_{\text{c}}^{2} / \ym_{\text{r}}
+      }}
+    = \pm \qty{4.320}{m/s}
+      \\[1ex]
+      &v_{\text{r},x}(\ytf) =
+      -\frac{\ym_{\text{c}}}{\ym_{\text{r}}}\,v_{\text{c},x}(\ytf)
+      = \mp \qty{0.2160}{m/s}
+    \end{aligned}\right.
+  \end{aligned}
+\end{equation*}
+From the problem we know that the cart is moving to the left, therefore
+\begin{equation*}
+  v_{\text{c},x}(\ytf) \approx -\qty{4.3}{m/s} \ ,
+  \qquad
+  v_{\text{r},x}(\ytf) \approx +\qty{0.22}{m/s} \ .
 \end{equation*}
 
+\medskip
+
+Note that in this problem we have been lucky not to need the balance of $z$-momentum.
 
 
 % \section{Formulation and generalities}
