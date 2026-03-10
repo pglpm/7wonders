@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-10T12:14:21+0100
+%% Last-Updated: 2026-03-10T15:19:19+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1110,7 +1110,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 %% transport
 \newcommand*{\yvs}{\bm{v}_{\textrm{s}}}
-\newcommand*{\yns}{\bm{n}_{\textrm{s}}}
+\newcommand*{\yns}{\ye_{\textrm{n}}} % unit normal vector
 \newcommand*{\yAs}{A}%_{\textrm{s}}}
 % \newcommand*{\yVs}{V_{\textrm{s}}}
 % \newcommand*{\yNs}{\yN_{\textrm{s}}}
@@ -1184,13 +1184,13 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFa}{\yF_{a}}
 \newcommand*{\yFb}{\yF_{b}}
 \newcommand*{\yFc}{\yF_{\textrm{c}}}
-\newcommand*{\yFn}{F_{\textrm{n}}}
+\newcommand*{\yFn}{\yF_{\textrm{n}}}
+\newcommand*{\yFp}{\yF_{\textrm{t}}}
 \newcommand*{\yFs}{F_{\textrm{s}}}
 \newcommand*{\yFk}{\yF_{\textrm{k}}}
 \newcommand*{\yFr}{\yF_{\textrm{other}}}
 \newcommand*{\yFrx}{F_{\textrm{other},x}}
 \newcommand*{\yFrz}{F_{\textrm{other},z}}
-\newcommand*{\yFp}{\yF_{\textrm{p}}}
 \newcommand*{\yFf}{\yF_{\textrm{f}}}
 \newcommand*{\yFo}{\yF_{\textrm{r}}}
 \newcommand*{\ypr}{p} % pressure
@@ -11628,6 +11628,37 @@ In any physical analysis it's very important to recognize which of the two uses 
 \section{Normal and tangential surface forces}
 \label{sec:normal_tangential_force}
 
+In studying the flux of momentum, that is the surface force, at the surface of contact between two bodies of matter, it is often useful to imagine this flux as the sum of two fluxes.
+
+\needspace{11\baselineskip}
+\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
+\includegraphics[width=0.67\linewidth]{images/Fnt.jpg}%
+\\[\jot]\color{mpcolor}%
+(normal $\yns$ not depicted)%
+}%
+\begin{definition}{Normal- and tangential-momentum flux (surface force)}
+  Consider a control surface that is either flat or enough small that a unique normal vector\enskip$\yns$\enskip to it is well-defined. In the margin figure such a control surface is represented by the \textcolor{midgrey}{solid grey line}; a crossing direction is also shown by the \textcolor{grey}{wiggly arrows}.
+
+  \smallskip
+
+  Suppose there is a momentum flux $\yF$ through this control surface, in the given crossing direction (\textcolor{blue}{solid blue arrow}, representing a \autoref{sec:pressure}{compressive} flux). We can decompose this momentum flux as follows:
+  \begin{itemize}
+  \item a flux of momentum $\yFn$ which is \emph{normal}, that is, orthogonal to the surface (\textcolor{purple}{long-dashed purple arrow}). This flux of normal momentum is given by
+    \begin{equation}
+      \label{eq:normal_flux}
+      \yFn \defd (\yF \cdot \yns)\, \yns \ .
+    \end{equation}
+  \item A flux of momentum $\yFp$ which is \emph{tangential}, that is, parallel to the surface (\textcolor{red}{short-dashed red arrow}). This flux of tangential momentum is given by
+    \begin{equation}
+      \label{eq:tangential_flux}
+      \yFp \defd \yF - (\yF \cdot \yns)\, \yns \ .
+    \end{equation}
+  \end{itemize}
+
+  \smallskip
+
+  Clearly\enskip$\yF = \yFn + \yFp$\,.
+\end{definition}
 
 
 \section{Friction and normal forces}
