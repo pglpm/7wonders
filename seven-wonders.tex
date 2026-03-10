@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-02T21:34:49+0100
+%% Last-Updated: 2026-03-10T10:20:33+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11572,6 +11572,58 @@ Snapshot of a molecular-dynamics simulation from \furl{https://physics.weber.edu
 We can obviously consider more than two objects connected by a number of springs or other pairwise forces. The analytical description of such a system becomes quickly intractable. For numerical time integration, however, we only need to add additional lines of code to compute the additional momentum fluxes and timestep the momentum for the individual bodies; this can be done by appropriate \texttt{for}-loops for the pairwise forces and for the momenta.
 
 This way we can numerically simulate complex physical phenomena like a planetary system, or a collection of molecules -- thus entering the field of \furl{https://doi.org/10.1351/goldbook.MT06969}{molecular-dynamics simulation}. You can see an example of the latter kind of simulation, using the Lennard-Jones pairwise force of formula~\eqref{eq:LennardJones}, at the \furl{https://physics.weber.edu/schroeder/md/}{\emph{Interactive Molecular Dynamics} webpage}.
+
+\section{Contact and impact forces}
+\label{sec:contact_impact_forces}
+
+\mynotew{To be written}
+
+\section{Motion from forces? or forces from motion?}
+\label{sec:constraint_forces}
+
+For the discussion in the next sections it's useful to quickly review two main ways in which we have used the balance of momentum so far.
+
+\medskip
+
+Consider the general differential expression of the balance of momentum
+\begin{equation*}
+  \frac{\di\yP(t)}{\dt} = \yFb(t) + \yG(t)
+\end{equation*}
+and to simplify the discussion assume that the momentum supply $\yG$ is known; for instance it's the gravitational supply \enquote*{\,$\ym\yg$\,}.
+This balance therefore connects the rate of change of momentum $\di\yP/\dt$ in a control volume, and the total momentum flux or surface force $\yF$ through the boundary of the control volume.
+
+One simple use of this balance law -- and of any other balance law, as we discussed in \chap~\ref{cha:laws} -- can therefore be to find
+the force, given the rate of change of momentum:
+\begin{equation*}
+  \left.
+    \begin{gathered}
+      \text{balance of momentum}
+      \\
+      \text{rate of change of momentum } \frac{\di\yP}{\dt}
+    \end{gathered}\right\}
+  \quad\longrightarrow\quad
+  \text{momentum flux } \yF
+\end{equation*}
+If we take a panoramic look back at the initial sections of the present chapter, where we discussed statics problems, we see that this is indeed the way we used the balance of momentum there: the motion, including the special case of no motion, was known; and from it we calculated the values of some unknown forces.
+
+Another simple use of the balance law is the reverse: to find
+the rate of change of momentum, given the surface force:
+\begin{equation*}
+  \left.
+    \begin{gathered}
+      \text{balance of momentum}
+      \\
+      \text{momentum flux } \yF
+    \end{gathered}\right\}
+  \quad\longrightarrow\quad
+      \text{rate of change of momentum } \frac{\di\yP}{\dt}
+\end{equation*}
+Another panoramic look back at the subsequent sections of the present chapter, where we discussed constitutive relations for the momentum flux in several materials like elastic springs or ideal gases, shows that this is the way we used the balance of momentum there: the forces were known or calculated thanks to constitutive equations; and from the forces we were able to find how the momentum should change. This is also the way the momentum balance is used in simulations.
+
+\medskip
+
+In any physical analysis it's very important to recognize which of the two uses above of the balance of momentum is the necessary one, or the one adopted in the analysis. Otherwise we may end up trying to find the change in momentum by using formulae for forces that require that we \emph{already} know the change in momentum!
+
 
 
 

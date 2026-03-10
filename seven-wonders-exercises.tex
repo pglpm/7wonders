@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-09T22:08:34+0100
+%% Last-Updated: 2026-03-10T09:36:21+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5798,9 +5798,9 @@ The original exercise asks how much is the velocity of the ball at the later ins
 %\\\flushleftright\color{mpcolor}%
 }
 %
-Two ice skaters are holding each other, completely still, at some time $\yti$. Then they push each other and at a later time $\ytf$ they're moving in opposite directions. Together they have burned \qty{76}{J} of internal energy in total.
+Two ice skaters are holding each other, completely still, at some time $\yti$. Then they push each other and at a later time $\ytf$ they're moving in opposite directions with purely horizontal velocities. Together they have burned \qty{76}{J} of internal energy in total.
 
-Assume there's no friction or heat flux between ice and the skaters, air is negligible, and the gravitational potential energy of each skater is constant. The skater on the left has \masse\ \qty{70}{kg}, the one on the right \qty{60}{kg}. Each skater can be considered as a point, with zero vertical momentum.
+Assume there's no friction or heat flux between ice and the skaters, air is negligible, and the gravitational potential energy of each skater is constant. The skater on the left has \masse\ \qty{70}{kg}, the one on the right \qty{60}{kg}.
 
 What are the velocities of the skaters at time $\ytf$?
 
@@ -6158,19 +6158,33 @@ We see that the balance of energy led us to \emph{part} of the solution without 
 
 Let's decide first how many control volumes to consider.
 
-If we consider the skaters as two separate control volumes, then we need to use one balance of momentum and one energy for each. Between the initial and final times there is obviously a flux and exchange of momentum, and possibly also of heat and of mechanical work, between the skaters. Therefore when we write the balances for each skater we need to explicitly take such fluxes of momentum and of energy into account. The text, however, does not give any information about these fluxes.
+If we consider the skaters as two separate control volumes, then we need to use one balance of momentum for each and one balance of energy for each. Between the initial and final times there is obviously a flux of momentum, and possibly also of heat and of mechanical power, between the skaters. Therefore when we write the balances for each skater we need to explicitly take such fluxes of momentum and of energy into account. The text, however, does not give any information about these fluxes.
 
-Therefore let's try first to solve the problem considering the skaters as a \emph{single control volume}, with one balance of momentum and one balance of energy. In this approach, the fluxes of momentum and energy between the skaters are \emph{internal} to the control volume, and therefore they don't appear in the balances of momentum and energy.
+Therefore let's first try to solve the problem considering the skaters as a \emph{single control volume}, with one balance of momentum and one balance of energy. In this approach, the fluxes of momentum and energy between the skaters are \emph{internal} to the control volume, and therefore they don't appear in the balances of momentum and energy.
 
-From the statement of the problem, the integral expression of the balances seems most convenient.
+\smallskip
 
-The constitutive relations are the usual ones, since we're dealing with matter, there are no matter fluxes through the volume boundaries, and there are no electromagnetic fields:
+The next question is which balances we need to consider in order to solve the problem. Remember, however, that \emph{all} balances apply and need to be satisfied for our control volume; in principle we could write all of them. Our question is not \enquote{which balances apply?} (answer: all of them!). Our question is \enquote{can we restrict our attention to one or few balances only, in order to find the information required in this specific problem?}.
+
+A heuristic reasoning is this: the problem asks for \emph{two} numerical quantities: the horizontal velocity of each skater. We may therefore expect that \emph{two} balances might be enough. This is not guaranteed, maybe more are necessary; but it's a starting point. Intuitive options to consider are:
+\begin{itemize}[nosep]
+\item balances of $x$- and $z$-momentum;
+\item balances of $x$--momentum and energy;
+\item balances of $z$--momentum and energy.
+\end{itemize}
+Fix a spatially two-dimensional coordinate system $(t, x, z)$, with $z$ vertical. The text seems to focus on horizontal motion only; there is no vertical motion. Therefore the balance of $z$-momentum might be unnecessary to solve our problem. Let's therefore try to use the balance of $x$-momentum and that of energy.
+
+\smallskip
+
+Next let's focus on the constitutive relations needed to solve the problem. They are the usual ones because we're dealing with matter, there are no matter fluxes through the volume boundaries, and there are no electromagnetic fields:
 \begin{itemize}
 \item Newton's relation for momentum $\yP = \ym \yv$, to be written for initial and final times. This relation may need to be used together with the principle of \emph{extensivity}, because the skaters may not have the same velocity; that is, the velocity of matter is not the same throughout the control volume.
 \item Energy for matter $\yE = \yU + \yEk + \yEp$, to be written for initial and final times.
 \item Kinetic energy of matter $\yEk = \frac12 \ym \yv^{2}$, to be applied to each skater separately. Since the skaters may have different velocities, this relation may need to be used with the principle of extensivity of energy: we add up the kinetic energies of the two skaters.
 \item Energy flux for matter $\yH = \yQ + \yF\cdot \yv$, which should be applied at all times between $\yti$ and $\ytf$.
 \end{itemize}
+
+\smallskip
 
 The information given by the text can be summarized as follows:
 \begin{itemize}
@@ -6272,7 +6286,12 @@ The full set of equations describing this physical situation can be written as f
     &&\qquad\mathrlap{\text{\footnotesize\color{midgrey}info on heat flux}}
   \end{aligned}
 \end{equation*}
-This is just \emph{one example} of how we could write the physical laws and information about this physical system. When we write a set of equations like this, we decide how detailed or how summarizing we want to be. In the system above we could have been even more detailed, for instance adding the balance of $z$-momentum and additional information on the surface \amp\ volume forces in the $z$-direction. Or we could have combined several equations beforehand instead.
+
+\medskip
+
+This is just \emph{one example} of how we could write the physical laws and information about this physical system. When we write a set of equations like the one above, we must decide how detailed or how summarizing we want to be. In the system above we could have been even more detailed, for instance adding the balance of $z$-momentum and additional information on the surface \amp\ volume forces in the $z$-direction. Or we could have combined several equations beforehand instead.
+
+\smallskip
 
 The system can be solved by substitution. Combining all equations into the first two we get
 \begin{equation*}
