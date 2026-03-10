@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-10T15:19:19+0100
+%% Last-Updated: 2026-03-10T21:17:27+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1087,7 +1087,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yva}{\yv_{a}}
 \newcommand*{\yvb}{\yv_{b}}
 \newcommand*{\yvc}{\yv_{\textrm{crate}}}
-\newcommand*{\yFt}{\bm{\mathcal{F}}}
+\newcommand*{\yFo}{\bm{\mathcal{F}}}
 \newcommand*{\yst}{\bm{\sigma}}
 \newcommand*{\ylo}{l_{\textrm{n}}}
 \newcommand*{\yle}{l}
@@ -1185,14 +1185,13 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFb}{\yF_{b}}
 \newcommand*{\yFc}{\yF_{\textrm{c}}}
 \newcommand*{\yFn}{\yF_{\textrm{n}}}
-\newcommand*{\yFp}{\yF_{\textrm{t}}}
+\newcommand*{\yFt}{\yF_{\textrm{t}}}
 \newcommand*{\yFs}{F_{\textrm{s}}}
 \newcommand*{\yFk}{\yF_{\textrm{k}}}
 \newcommand*{\yFr}{\yF_{\textrm{other}}}
 \newcommand*{\yFrx}{F_{\textrm{other},x}}
 \newcommand*{\yFrz}{F_{\textrm{other},z}}
 \newcommand*{\yFf}{\yF_{\textrm{f}}}
-\newcommand*{\yFo}{\yF_{\textrm{r}}}
 \newcommand*{\ypr}{p} % pressure
 \newcommand*{\ypv}{\bm{\ypr}} % pressure vector
 \newcommand*{\yG}{\bm{G}}
@@ -2012,7 +2011,7 @@ The most common symbols used in the present notes are listed in table~\ref{tab:s
     \\
     $\yF$ &  & momentum flux (surface force)
     \\
-    $\yFt$ & {\scriptsize(script capital f)} & stress vector, traction.
+    $\yFo$ & {\scriptsize(script capital f)} & stress vector, traction.
     \\
     $\yG$ &  & momentum supply (volume force)
     \\
@@ -3809,7 +3808,7 @@ The same is true for flux of \energym. What we call \enquote*{heat} on one obser
 \label{sec:intro_momentum}
 
 \marginpar{\vspace{2\baselineskip}\footnotesize\centering\includegraphics[width=\linewidth]{images/walking.jpg}%
-\\\flushleftright\color{mpcolor}A walking person has, with respect to the ground, an amount of horizontal momentum of around \qty{70}{N\,s} (\furl{https://www.flickr.com/photos/33486695@N06/13566555795}{image: Antonio Romei}).%
+\\\flushleftright\color{mpcolor}A walking person has, with respect to the ground, an amount of horizontal momentum of around \qty{70}{N\,s} (image: \furl{https://www.flickr.com/photos/33486695@N06/13566555795}{Antonio Romei}).%
 \par\bigskip\centering\normalsize\includegraphics[width=0.75\linewidth]{images/flashlight.jpg}%
 \\\footnotesize\flushleftright\color{mpcolor}A \qty{10}{cm} beam of light from a \qty{60}{W} torch has an amount of momentum around \qty{e-16}{N\,s}.%
 }%
@@ -9681,7 +9680,7 @@ The reason is that the glass surface is so smooth that effectively there's no sp
 \includegraphics[width=0.75\linewidth]{images/sucker.jpg}%
 }%
 The same phenomenon occurs, in a more useful way, with a suction cup:
-the atmospheric pressure on its two sides is very different, and therefore the cup receives a net influx of momentum pointing towards the wall. This, in turn, leads to an influx of upward momentum owing to \autoref{sec:friction_normal_force}{friction}, which compensates for the momentum supply from gravity. Thus the cup can stay in place without falling, and it can even support some object.
+the atmospheric pressure on its two sides is very different, and therefore the cup receives a net influx of momentum pointing towards the wall. This, in turn, leads to an influx of upward momentum owing to \autoref{sec:friction}{friction}, which compensates for the momentum supply from gravity. Thus the cup can stay in place without falling, and it can even support some object.
 
 \medskip
 
@@ -11578,6 +11577,12 @@ This way we can numerically simulate complex physical phenomena like a planetary
 
 \mynotew{To be written}
 
+% Many physical phenomena involve contact between two  bulks of matter that move parallel to each other with different velocities, possibly one of them being zero. Think of a wooden crate pushed across the floor, or a drill boring a hole in a wall, or a child going down a slide. The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces}, or \textbf{impact forces} when they occur for very short times, as in the case of the football. Forces of this kind often obey quite complex constitutive relations, and are therefore mathematically difficult to describe and to use for making predictions.
+%
+% The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces}, or \textbf{impact forces} when they occur for very short times, as in the case of the football. Forces of this kind often obey quite complex constitutive relations, and are therefore mathematically difficult to describe and to use for making predictions.
+
+
+
 \section{Motion from forces? or forces from motion?}
 \label{sec:constraint_forces}
 
@@ -11631,74 +11636,71 @@ In any physical analysis it's very important to recognize which of the two uses 
 In studying the flux of momentum, that is the surface force, at the surface of contact between two bodies of matter, it is often useful to imagine this flux as the sum of two fluxes.
 
 \needspace{11\baselineskip}
-\marginpar{\vspace{3\baselineskip}\footnotesize\centering%
-\includegraphics[width=0.67\linewidth]{images/Fnt.jpg}%
+\marginpar{\vspace{4\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/Fnt_compression.jpg}%
 \\[\jot]\color{mpcolor}%
 (normal $\yns$ not depicted)%
 }%
 \begin{definition}{Normal- and tangential-momentum flux (surface force)}
-  Consider a control surface that is either flat or enough small that a unique normal vector\enskip$\yns$\enskip to it is well-defined. In the margin figure such a control surface is represented by the \textcolor{midgrey}{solid grey line}; a crossing direction is also shown by the \textcolor{grey}{wiggly arrows}.
+  Consider a control surface that is either flat or enough small that a unique unit normal vector\enskip$\yns$\enskip to it is well-defined. In the margin figure such a control surface is represented by the \textcolor{midgrey}{solid grey line}; a crossing direction is also shown by the \textcolor{grey}{wiggly arrows}.
 
   \smallskip
 
-  Suppose there is a momentum flux $\yF$ through this control surface, in the given crossing direction (\textcolor{blue}{solid blue arrow}, representing a \autoref{sec:pressure}{compressive} flux). We can decompose this momentum flux as follows:
+  Suppose there is a momentum flux $\yF$ through this control surface, in the given crossing direction (\textcolor{blue}{solid blue arrow} in the figure, representing a compressive flux). We can decompose this momentum flux as a sum
+  \begin{equation*}
+    \yF = \yFn + \yFt
+  \end{equation*}
+  of:
   \begin{itemize}
-  \item a flux of momentum $\yFn$ which is \emph{normal}, that is, orthogonal to the surface (\textcolor{purple}{long-dashed purple arrow}). This flux of normal momentum is given by
+  \item a flux of momentum $\yFn$ which is \emph{orthogonal} to the surface (\textcolor{purple}{long-dashed purple arrow}). It is called the \textbf{normal component} of the force and is given by
     \begin{equation}
       \label{eq:normal_flux}
       \yFn \defd (\yF \cdot \yns)\, \yns \ .
     \end{equation}
-  \item A flux of momentum $\yFp$ which is \emph{tangential}, that is, parallel to the surface (\textcolor{red}{short-dashed red arrow}). This flux of tangential momentum is given by
+  \item A flux of momentum $\yFt$ which is \emph{tangential} or, said otherwise, parallel to the surface (\textcolor{red}{short-dashed red arrow}). It is called the \textbf{tangential component} of the force and is given by
     \begin{equation}
       \label{eq:tangential_flux}
-      \yFp \defd \yF - (\yF \cdot \yns)\, \yns \ .
+      \yFt \defd \yF - (\yF \cdot \yns)\, \yns \ .
     \end{equation}
   \end{itemize}
-
-  \smallskip
-
-  Clearly\enskip$\yF = \yFn + \yFp$\,.
 \end{definition}
 
+\needspace{8\baselineskip}
+\marginpar{\vspace{-\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/Fnt_tension.jpg}%
+\\[\jot]\color{mpcolor}%
+decomposition for tensile $\mathcolor{blue}{\yF}$
+}%
+The margin figure above shows the decomposition for a surface force of a \autoref{sec:pressure}{compressive} kind (the flowing momentum points in the same direction as the flow). The figure on the margin here shows instead a similar decomposition for a surface force of a \autoref{sec:tension}{tensile} kind (the flowing momentum points in a direction opposite to the flow).
 
-\section{Friction and normal forces}
-\label{sec:friction_normal_force}
 
-Many physical phenomena involve contact between two or more bulks of matter of different kinds or in different states of motion. Think of a book resting on a table, or a wooden crate pushed across the floor, a layer of vegetable oil floating above water, or a football being hit by a foot. The fluxes of momentum that occur through contact surfaces of this kind are called \textbf{contact forces}, or \textbf{impact forces} when they occur for very short times, as in the case of the football. Forces of this kind often obey quite complex constitutive relations, and are therefore mathematically difficult to describe and to use for making predictions.
+\subsection{Different approaches for normal components of force}
+\label{sec:approaches_normal_forces}
 
-In some situations we can find the value of contact forces if we \emph{already know} the motion, or more precisely the change in momentum; for instance because we observe that the situation is static. In such cases we can use the balance of momentum to find the force from the change in momentum and the remaining forces:
-\begin{equation*}
-  {\underbracket[0.5pt]{\frac{\di\yP}{\di t}}_{\text{known}}}
-    =
-  {\underbracket[0.5pt]{\yF_{\text{contact}}}_{\text{\color{red}unknown}}}
-+  {\underbracket[0.5pt]{\yF_{\text{other}}}_{\text{known}}}
- + {\underbracket[0.5pt]{\yG}_{\text{known}}}
-\end{equation*}
+In some applications the normal component of a surface force is modelled in ways like those described in \sect\ref{sec:contact_impact_forces}. This means that in such applications the normal component is calculated by means of a constitutive relation, and can thereafter be used to calculate how momentum changes.
 
-We here discuss some methods to find contact forces between rigid bodies, with the following simplifications:
-\begin{itemize}[noitemsep]
-\item one of the bodies is \emph{at rest} in the chosen coordinate system; typically this \enquote*{body} is the ground, floor, or the surface of a table; this means that we know that $\di\yP/\dt = \zerov\,\unit{N}$ for this body;
-\item the contact surface is horizontal, orthogonal to the force of gravity.
-\end{itemize}
+In other applications the motion of matter -- and therefore the change in momentum -- in a direction normal to a surface is known beforehand, and the normal component of a surface force is calculated as a consequence of this.
 
-In this kind of situations, a contact force typically has both a component orthogonal to the surface (vertical component), and a component parallel to the surface (horizontal component), so its direction is oblique with respect to the surface. The surface-orthogonal component of a contact force is called \textbf{normal force}, and the surface-parallel component is often called \textbf{friction}.
+As discussed in the previous section, be careful and aware of whether one or the other approach is used.
 
-If we simplify the problem to two dimensions with coordinates $(x,z)$, with $x$ is horizontal and $z$ is vertical, upward, then the $z$-component of the contact force is the normal force, and the $x$-component is the friction. Informally we can write
-\begin{equation*}
-  \textbf{\footnotesize contact force}
-  =
-  \begin{bmatrix}
-    \text{\footnotesize contact force}_{x}
-    \\
-    \text{\footnotesize contact force}_{z}
-  \end{bmatrix}
-  =
-  \begin{bmatrix}
-    \text{\footnotesize friction}
-    \\
-    \text{\footnotesize normal force}
-  \end{bmatrix}
-\end{equation*}
+
+
+\needspace{10\baselineskip}
+\section{Friction}
+\label{sec:friction}
+
+\marginpar{\vspace{0\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/stone_stella3.jpg}%
+\\\color{mpcolor}%
+\furl{https://www.metmuseum.org/art/collection/search/339776}{\emph{Five men pushing a stone} by Jacques Stella}%
+% \\[2ex]
+% \includegraphics[width=0.75\linewidth]{images/drill_wall.jpg}%
+% \\%\flushleftright\color{mpcolor}%
+% (image: \furl{https://www.flickr.com/photos/48718829@N00/3692407910}{Bludgeoner86})%
+}%
+Many physical phenomena involve contact between two bulks of matter that move \textbf{in contact with each other but with different velocities}, possibly one of the velocities being zero. Think of a wooden crate or stone pushed across the floor, or a drill boring a hole in a wall, or a child going down a slide, or air flowing past an aeroplane wing. The contact forces involved in such phenomena usually have both a normal component and a tangential component. The tangential component is generically called \textbf{friction}, or \textbf{drag} when the surface separates solid and fluid matter.
+
+There are several constitutive relations that involve friction forces. These constitutive relations are peculiar because they do not relate a whole momentum flux with other quantities such as length (think of Hooke's law) or volume (think of the ideal-gas law), but the \emph{tangential} and \emph{normal} components of a momentum flux. In other words, these constitutive relations allow us to calculate one component from the other. Obviously one of the two components must therefore be found by other means.
 
 In many cases it is known that the components of a contact force $\yFc$ satisfy a relation of this type:
 \begin{equation}\label{eq:contact_force_2D}
@@ -11885,11 +11887,11 @@ Then the flux of momentum or contact force $\yF$ through the surface can be writ
 \begin{subequations}\label{eq:convective_momflux_general}
   \begin{equation}
     \label{eq:convective_momflux}
-    \yF = \yFt + \yJ\,\frac{\yP_{\textrm{m}}}{\yN_{\textrm{m}}}
+    \yF = \yFo + \yJ\,\frac{\yP_{\textrm{m}}}{\yN_{\textrm{m}}}
   \end{equation}
   % Unfortunately these two terms have different names in different engineering fields, with no standard terminology.
 
-  The term\enskip$\yFt$\enskip is called \textbf{stress vector} or \textbf{traction} or \textbf{molecular momentum flux}, among other names. It can be present even if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$\,,\enskip through the surface. It obeys further constitutive relations that depend on the kind and state of matter, like those we studied in the previous sections.
+  The term\enskip$\yFo$\enskip is called \textbf{stress vector} or \textbf{traction} or \textbf{molecular momentum flux}, among other names. It can be present even if there is no matter flux,\enskip$\yJ = \qty{0}{mol/s}$\,,\enskip through the surface. It obeys further constitutive relations that depend on the kind and state of matter, like those we studied in the previous sections.
 
   \smallskip
 
@@ -11905,14 +11907,14 @@ Then the flux of momentum or contact force $\yF$ through the surface can be writ
   The constitutive formula for momentum flux can then be rewritten
   \begin{equation}
     \label{eq:convective_momflux_velocity}
-    \yF = \yFt +
+    \yF = \yFo +
     \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yvs)\,
     \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}}
   \end{equation}
 \end{subequations}
 \end{definition}
 
-In the applications of momentum flux studied in the previous sections, there was never a matter flux through the control surfaces of interest. All forces considered there had therefore only the stress vector contribution $\yFt$. The constitutive relations that we explored were, effectively, constitutive relations for the stress vector $\yFt$. The contact forces that we experience on our skin -- for example when we pull or push an object with our hands, or the pressure and friction from the ground on the soles of our feet -- consist only of a stress vector, because no matter flows through the control surface that is our skin.
+In the applications of momentum flux studied in the previous sections, there was never a matter flux through the control surfaces of interest. All forces considered there had therefore only the stress vector contribution $\yFo$. The constitutive relations that we explored were, effectively, constitutive relations for the stress vector $\yFo$. The contact forces that we experience on our skin -- for example when we pull or push an object with our hands, or the pressure and friction from the ground on the soles of our feet -- consist only of a stress vector, because no matter flows through the control surface that is our skin.
 
 In the next section we shall explore situations where matter flux occurs. The convective momentum flux will therefore appear and be quite relevant. There are also hybrid situations, where some control surfaces enclosing a control volume do not have a matter flux, whereas other do.
 
@@ -11940,7 +11942,7 @@ In the next section we shall explore situations where matter flux occurs. The co
 The flight mechanisms discussed in \sect\ref{sec:bal_momentum_flight} rely on the presence of air or some kind of atmosphere around the object, with which a momentum exchange through a surface can occur. This is not possible in outer space; and  even if air is surrounding an object, that kind of momentum flux may not be enough to lift it anyway.
 
 Another way of producing an influx of upward momentum is to release matter having downward momentum, creating a \emph{convective momentum flux}. This is the momentum-flux mechanism employed by rocket engines, for which the convective momentum flux should have a large magnitude. The constitutive relation~\eqref{eq:convective_momflux_velocity}, rewritten here:
-\begin{equation*} \yF = \yFt + \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yvs)\, \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}}
+\begin{equation*} \yF = \yFo + \yAs\,\yns \cdot (\yv_{\textrm{m}} - \yvs)\, \frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}\,\yv_{\textrm{m}}
   \ ,
 \end{equation*}
 is called the \furl{https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/rocket-thrust/}{\emph{rocket thrust equation}} in applications with rockets and jet engines. We see that the flux can be increased by increasing the area $\yAs$ of the surface, or the matter velocity $\yv$, or the mass-to-volume ratio $\frac{\ym_{\textrm{m}}}{V_{\textrm{m}}}$ around the surface. Typically the focus is on the first two factors. Rockets that must achieve high velocities, for instance in order to leave Earth, typically have \furl{https://www.grc.nasa.gov/WWW/k-12/airplane/nozzled.html}{nozzles} with large outlet areas. The released matter consists of gases produced by combustion, which produces large pressure and velocity; and this velocity is increased even more by means of a specific nozzle design.
@@ -12035,16 +12037,16 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
 
   For the momentum flux $\yF_{\text{noz}}$ at the nozzle we must use the general constitutive relation~\eqref{eq:convective_momflux_general}, or rocket thrust equation:
   \begin{equation*}
-    \yF_{\text{noz}}(t) = \yFt +
+    \yF_{\text{noz}}(t) = \yFo +
     \yAs\,\yns \cdot \bigl[\yvb(t) - \yv(t)\bigr]\,
     \frac{\ym_{b,\text{noz}}}{V_{b,\text{noz}}}\,
     \yvb(t) \ ,
   \end{equation*}
   where $\ym_{b,\text{noz}}$ is the mass of the matter $\yN_{b,\text{noz}}$ in the thin control volume around the nozzle.
 
-  The stress vector $\yFt$ expresses the \autoref{def:internal_pressure}{internal pressure} $p$ of the exhaust gases, exerted on the nozzle area $\yAs$; it is a positive influx of momentum having magnitude
+  The stress vector $\yFo$ expresses the \autoref{def:internal_pressure}{internal pressure} $p$ of the exhaust gases, exerted on the nozzle area $\yAs$; it is a positive influx of momentum having magnitude
   \begin{equation*}
-    \abs{\yFt} = \yAs\, p \ .
+    \abs{\yFo} = \yAs\, p \ .
   \end{equation*}
   The pressure $p$ generally depends on their temperature and density, and possibly on other quantities, as we'll discuss in \chap~\ref{cha:bal_energy}. For the present case let's assume that this pressure is constant; it is therefore given in the boundary conditions.
 
@@ -12080,7 +12082,7 @@ If the surface area of the nozzle control surface is $A$, and its normal, direct
   \begin{aligned}
     \yF(t) &= \yF_{\text{atm}} + \yF_{\text{noz}}
     \\
-    &= \yF_{\text{atm}} + \yFt + \yJ\, \yrho\, \yvb(t) \ .
+    &= \yF_{\text{atm}} + \yFo + \yJ\, \yrho\, \yvb(t) \ .
   \end{aligned}
 \end{equation*}
 
@@ -12107,7 +12109,7 @@ Let's collect the balance laws and constitutive relations just discussed for the
     \quad
     \yg \equiv -g\ ,
     \quad
-    \yFt \equiv \yAs\,p \ ,
+    \yFo \equiv \yAs\,p \ ,
     \quad
     \yns \cdot \yv = 1 \cdot v = v \ .
   \end{aligned}
@@ -13067,7 +13069,11 @@ From \eqns~\eqref{eq:transport_equations}, prove that when $\yns\cdot(\yv-\yvs)=
       \text{momentum flux:}&\quad \yFo + \frac{1}{\yc^2}\yQ\, \yv + \dotsb
     \end{aligned}
   \end{equation*}
-  where $\yFo$, called \emph{rest force}, is the momentum flux measured in a coordinate system where the matter is at rest -- just like the heating $\yQ$ is the energy flux measured in that same coordinate system. These more precise formulae show that parts of energy flux contribute to momentum flux, just like parts of momentum flux contribute to energy flux. The contribution of heat to momentum flux, however, is negligible in many situations, as clear from the very small factor $1/\yc^{2}$ containing the speed of light $\yc$. This is why this contribution is neglected in the Newtonian approximation. But there are situations in which the heat contribution to momentum flux becomes important; for instance with spacecrafts on very long journeys in the solar system and constantly receiving heat from the Sun.
+  where $\yFo$ is the \autoref{sec:momentumflux_matterflux}{\emph{stress vector} or \emph{traction}} previously discussed. The tension $\yFo$ and heat flux $\yQ$ represents fluxes of momentum and of energy measured in a coordinate system where matter is at rest.
+
+\smallskip
+
+  The more precise formulae above show that parts of energy flux contribute to momentum flux, just like parts of momentum flux contribute to energy flux. The contribution of heat to momentum flux, however, is negligible in many situations, as clear from the very small factor $1/\yc^{2}$ containing the speed of light $\yc$. This is why this contribution is neglected in the Newtonian approximation. But there are situations in which the heat contribution to momentum flux becomes important; for instance with spacecrafts on very long journeys in the solar system and constantly receiving heat from the Sun.
 
   \smallskip
 
@@ -13108,7 +13114,7 @@ In these coordinates the ground is always at rest. The car is at rest at time $\
 
 \subsubsection{Balance of momentum}
 
-The car has zero momentum at time $\yti$, and momentum with positive-$x$ direction at time $\ytf$. There is an influx of horizontal momentum $\yF(t)$ with positive-$x$ component, \autoref{sec:friction_normal_force}{friction}, from the ground to the car. This influx from the ground makes the car acquire a net positive-$x$ momentum. The momentum influx from the ground also has a positive-$z$ component, which cancels the negative-$z$ gravitational momentum supply. Thus the vertical momentum of the car stays zero.
+The car has zero momentum at time $\yti$, and momentum with positive-$x$ direction at time $\ytf$. There is an influx of horizontal momentum $\yF(t)$ with positive-$x$ component, \autoref{sec:friction}{friction}, from the ground to the car. This influx from the ground makes the car acquire a net positive-$x$ momentum. The momentum influx from the ground also has a positive-$z$ component, which cancels the negative-$z$ gravitational momentum supply. Thus the vertical momentum of the car stays zero.
 
 \begin{equation*}
   \underbracket[1pt]{\yP(\ytf)}_{\rightarrow} {}={} \underbracket[1pt]{\yP(\yti)}_{\text{zero}}
@@ -13599,7 +13605,7 @@ and calculate the total influx as the sum of the influxes through partial surfac
 
 We must consider three partial surfaces:
 \begin{description}
-\item[Side:] There usually are \autoref{sec:friction_normal_force}{friction forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero. This is a boundary condition.
+\item[Side:] There usually are \autoref{sec:friction}{friction forces} between the side of the piston and the walls of the chamber, but they are sometimes made negligible, for instance by the use of lubricants. Here we assume that such forces are zero. This is a boundary condition.
 
 \item[Top:] If there's atmosphere above the piston, it exerts a downward force $\yFatm$. % The force exerted by the atmospherepproximately constant and equal to
   % \begin{equation}
@@ -13965,9 +13971,9 @@ The plot shows that the piston's position and the temperature of the gas oscilla
 \section{Surfaces of discontinuity}
 \label{sec:jumps}
 
-From our discussion about \autoref{sec:friction_normal_force}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFp$ to the crate, but the floor is also providing horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person is equal and opposite to the friction: $\yFp=-\yFf$. Then, according to Newton's constitutive equation for momentum $\yP = \ym\yv$, the crate moves with constant horizontal velocity $\yvc$, because its time-rate change of horizontal momentum is zero:
+From our discussion about \autoref{sec:friction}{friction}, we know what happens from the point of view of momentum when a person is pushing a heavy object, say a crate, on the floor. The person is providing a constant influx of horizontal momentum $\yFt$ to the crate, but the floor is also providing horizontal-momentum influx $\yFf$, kinetic friction, having opposite orientation. Suppose that the influx by the person is equal and opposite to the friction: $\yFt=-\yFf$. Then, according to Newton's constitutive equation for momentum $\yP = \ym\yv$, the crate moves with constant horizontal velocity $\yvc$, because its time-rate change of horizontal momentum is zero:
 \begin{equation*}
-  \frac{\di\yP}{\dt} = \yFp + \yFf = -\yFf + \yFp = \qty{0}{N} \ .
+  \frac{\di\yP}{\dt} = \yFt + \yFf = -\yFf + \yFt = \qty{0}{N} \ .
 \end{equation*}
 %
 \marginpar{\vspace{-6\baselineskip}\footnotesize\centering%
@@ -13975,11 +13981,11 @@ From our discussion about \autoref{sec:friction_normal_force}{friction}, we know
 }%
 
 
-Let us consider what happens from the point of view of energy. Through the part of control surface where the person pushes the crate there's an influx of mechanical power $\yFp\cdot\yvc$. Let's say that there's no heat flux there. The total-energy influx through that part of surface is then
+Let us consider what happens from the point of view of energy. Through the part of control surface where the person pushes the crate there's an influx of mechanical power $\yFt\cdot\yvc$. Let's say that there's no heat flux there. The total-energy influx through that part of surface is then
 \begin{equation*}
-  \yH_{\textrm{p}} = \yFp\cdot \yvc > 0 \ .
+  \yH_{\textrm{p}} = \yFt\cdot \yvc > 0 \ .
 \end{equation*}
-This energy influx is positive because the force $\yFp$ exerted by the person and the velocity $\yvc$ have the same orientation.
+This energy influx is positive because the force $\yFt$ exerted by the person and the velocity $\yvc$ have the same orientation.
 
 What about the contact surface of crate and floor? There should be an energy flux through there too. In fact, the motion of the crate is \autoref{sec:rigid_bodies}{rigid}; therefore the positive mechanical power coming from the person should increase the kinetic or the gravitational potential energy of the crate. But these two energies are constant; this means that there must be a negative influx of mechanical power somewhere else. Obviously it must occur through the surface between crate and floor. What kind of energy flux occurs there? is it only mechanical power? is it also heating?
 
