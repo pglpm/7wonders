@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-11T11:25:01+0100
+%% Last-Updated: 2026-03-11T13:55:45+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -11726,7 +11726,7 @@ Let's put this mathematically. Denote these momentum components parallel to the 
 \end{equation*}
 Therefore the tangential component of the force from the ground must be equal and opposite to the one coming from us.
 
-There is one peculiarity: we can increase or decrease our force $\yF_{\text{us}}$ a little -- which means that it is changing with time -- and the object still does not move. This means that the tangential component for the force from the ground is \enquote{adapting}, so to speak, to our force.
+There is one peculiarity: we can increase or decrease our force $\yF_{\text{us}}$ a little -- it's changing with time -- and the object still does not move. This means that the tangential component for the force from the ground continually \enquote{adapts}, so to speak, to our force.
 
 All this occurs only as long as the force $\yF_{\text{us}}$ from us does not exceed a certain threshold; then the object starts to move. This threshold force is higher, the heavier the object is, and obviously depends on the kind of matter on the two sides of the contact surface: it may be easier to set the object into motion if it rests on ice than if it rests on concrete.
 
@@ -11746,13 +11746,23 @@ These observations can be condensed into
 
   \smallskip
 
+  Static friction is often denoted with the symbol $\yFs$.
+
+  \smallskip
+
   The static-friction coefficient depends on the kind and condition of matter on the two sides of the control surface.
 \end{definition}
+
+Amontons's law for static friction can be considered as a constitutive relation in some cases, but not in others. Consider a body of matter as a control volume. If static friction occurs only on one part of the surface of this control volume, then it might be possible to apply Amontons's law by first calculating the total of the tangential forces on the other partial surfaces -- by means of  constitutive equations -- and then setting static friction equal to minus this total. But if static friction occurs on several separate contact surfaces, call them \enquote*{1}, \enquote*{2}, \enquote*{3}, and so on, then it may become impossible to find all these static-friction forces by means of Amontons's law: the problem becomes indeterminate. We would have to find several unknowns $\yF_{1,\text{t}}$, $\yF_{2,\text{t}}$, $\yF_{3,\text{t}}$ from only one equation
+\begin{equation*}
+  \yF_{1,\text{t}} + \yF_{2,\text{t}} + \yF_{3,\text{t}} + \dotsb
+  = -\yFr \ .
+\end{equation*}
 
 
 \subsection{Kinetic friction}
 
-It's also a common experience that once we manage to set the object into motion, we need to keep applying some horizontal force if we want it to move with a constant velocity. The force we need to apply is larger, the heavier the object is. But sometimes this force can be smaller than the force we initially needed to apply to set the object into motion. We can also increase the velocity if we apply a larger force for a short time.
+Continuing with the previous example, it's also a common experience that once we manage to set the object into motion, we need to keep applying some horizontal force if we want it to move with a constant velocity. The force we need to apply is larger, the heavier the object is. But sometimes this force can be smaller than the force we initially needed to apply to set the object into motion. We can also increase the velocity if we apply a larger force for a short time.
 
 These observations indicate that also in this case the force from the ground to the object must have a tangential component, with the following characteristics:
 \begin{itemize}[nosep]
@@ -11763,12 +11773,12 @@ These observations indicate that also in this case the force from the ground to 
 \end{itemize}
 
 These observations can be condensed into
-\begin{definition}{Amontons's law for kinetic friction}\label{def:staticfriction}
+\begin{definition}{Amontons's law for kinetic friction}\label{def:kineticfriction}
 Consider a contact surface between two bodies of matter, the one on side $a$ having velocity $\yva$, parallel to the surface, and the one on side $b$ having a \emph{different} velocity $\yvb$, parallel to the surface: ${\yva \ne \yvb}$.
 
 \smallskip
 
-  In some situations, the tangential component $\yFt$ of the contact force on matter on the $a$ side is given by
+In some situations of this kind the tangential component $\yFt$ of the contact force on matter on the $a$ side is then given by
   \begin{equation}\label{eq:kineticfriction}
     \yFt = -\yfrik\, \frac{\yv}{\abs{\yv}}\, \abs{\yFn}
   \end{equation}
@@ -11780,15 +11790,35 @@ Consider a contact surface between two bodies of matter, the one on side $a$ hav
 
   \smallskip
 
+  Kinetic friction is often denoted with the symbol $\yFk$.
+
+  \smallskip
+
   The kinetic-friction coefficient depends on the kind and condition of matter on the two sides of the control surface.
 \end{definition}
 
-The static- and kinetic-friction coefficients $\yfris$ and $\yfrik$ need not have the same value; in many cases the kinetic-friction coefficient is smaller than the static-friction one.
+The static- and kinetic-friction coefficients $\yfris$ and $\yfrik$ need not have the same value; in many cases the kinetic-friction coefficient is smaller than the static-friction coefficient.
+
+\begin{warning}[Dependence of kinetic friction on the area of the contact surface]
+  You notice that the area $A$ of the contact surface does \emph{not} appear in \eqn~\eqref{eq:kineticfriction} for kinetic friction. One says that kinetic friction is independent of the size of the contact surface. This statement may appear as counter-intuitive, and is in fact somewhat imprecise.
+
+  \smallskip
+
+  If we divide the normal force $\yFn$ on the contact surface by the surface's area $A$, we obtain the normal pressure on the surface, ${p_{\text{n}} \defd \yFn / A}$. Then Amontons's law for kinetic friction can be rewritten as follows:
+  \begin{equation*}
+    \yFt = -\yfrik\, \frac{\yv}{\abs{\yv}}\, A\,\abs{p_{\text{n}}} \ .
+  \end{equation*}
+  Written this way we can actually say that kinetic friction is proportional to the area of the contact surface and to the normal pressure on it.
+
+  \smallskip
+
+  An analogous comment can be made for the law~\eqref{eq:staticfriction} for static friction.
+\end{warning}
 
 
 \begin{exercise}
   \begin{enumerate}[exerc]
-  \item The normal force has physical dimensions of force, SI units \unit{N}. From formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction} find the physical dimensions and units of the coefficients of static and kinetic friction.
+  \item Find the physical dimensions and units of the coefficients of static and kinetic friction from formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
 
 %
 \sidepar{\vspace{0\baselineskip}\footnotesize\centering%
@@ -11798,21 +11828,14 @@ The static- and kinetic-friction coefficients $\yfris$ and $\yfrik$ need not hav
 
     Will the two persons manage to move the car?
 
-  \item Consider the following Octave/MATLAB function to calculate the friction in a numerical simulation in two dimensions with coordinates $(x,z)$:
+  \item Consider the following Octave/MATLAB function to calculate the friction in a numerical simulation:
     \lstinputlisting[style=mycode]{scripts/friction.m}
 Check that this function correctly covers and represents both formulae~\eqref{eq:staticfriction} and \eqref{eq:kineticfriction}.
   \end{enumerate}
 \end{exercise}\noprelistbreak
 %
-\sidepar{\vspace{-10\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
-\texttt{\color{codecolour}sign()} is defined as
-    \begin{equation*}
-      \texttt{sign}(x)   \defd   \begin{cases}
-        +1 &\text{if } x>0\\
-        0 &\text{if } x=0\\
-        -1 &\text{if } x<0
-      \end{cases}
-    \end{equation*}
+\sidepar{\vspace{-16\baselineskip}\footnotesize\flushleftright\color{mpcolor}%
+\texttt{\color{codecolour}norm(x)} is $\abs{\bm{x}}$
 }%
 
 % You may wonder: why are we going to speak about a new kind of momentum flux now, in a separate section, rather than in the previous section on \autoref{sec:momentum_constitutive}{constitutive relations for momentum fluxes}? It's because contact forces are often not given by constitutive relations, used in predicting how the system will behave. Instead, their expression is in some cases calculated as a consequence of particular \autoref{sec:boundary_conds}{boundary conditions}; and in other cases is a mixture of constitutive relations and boundary conditions. Here is an example of this complex state of affairs.

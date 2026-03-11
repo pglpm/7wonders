@@ -1,12 +1,14 @@
-function F_fr = friction(Fother_x, Fother_z, v_x, mu_s, mu_k)
-  if v_x == 0                          % static friction
-    threshold = mu_s * abs(Fother_z);  % max magnitude
-    if abs(Fother_x) <= threshold
-      F_fr = -Fother_x;
+function Ft = friction(Fothert, Fn, v, mu_s, mu_k)
+  if norm(v) == 0  % relative velocity is zero: static friction
+
+    if norm(Fothert) < mu_s * norm(Fn)
+      Ft = -Fothert;
     else
-      F_fr = -sign(Fother_x) * threshold;
+      Ft = 0;
     end
-  else                                 % kinetic friction
-    F_fr = -sign(v_x) * mu_k * abs(Fother_z);
+
+  else  % relative velocity is zero: kinetic friction
+    Ft = -mu_k * norm(Fn) * v / norm(v);
   end
+
 end
