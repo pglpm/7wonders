@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-10T21:17:27+0100
+%% Last-Updated: 2026-03-11T11:22:49+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1172,6 +1172,8 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yPa}{\yP_{a}}
 \newcommand*{\yPb}{\yP_{b}}
 \newcommand*{\yp}{\bm{p}}
+\newcommand*{\yPn}{\yP_{\textrm{n}}}
+\newcommand*{\yPt}{\yP_{\textrm{t}}}
 \newcommand*{\yF}{\bm{F}}
 \newcommand*{\yFab}{\yF_{a}}
 \newcommand*{\yFba}{\yF_{b}}
@@ -1188,7 +1190,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFt}{\yF_{\textrm{t}}}
 \newcommand*{\yFs}{F_{\textrm{s}}}
 \newcommand*{\yFk}{\yF_{\textrm{k}}}
-\newcommand*{\yFr}{\yF_{\textrm{other}}}
+\newcommand*{\yFr}{\yF_{\textrm{other,t}}}
 \newcommand*{\yFrx}{F_{\textrm{other},x}}
 \newcommand*{\yFrz}{F_{\textrm{other},z}}
 \newcommand*{\yFf}{\yF_{\textrm{f}}}
@@ -11685,140 +11687,104 @@ As discussed in the previous section, be careful and aware of whether one or the
 
 
 
-\needspace{10\baselineskip}
+\needspace{9\baselineskip}
 \section{Friction}
 \label{sec:friction}
 
 \marginpar{\vspace{0\baselineskip}\footnotesize\centering%
 \includegraphics[width=\linewidth]{images/stone_stella3.jpg}%
 \\\color{mpcolor}%
-\furl{https://www.metmuseum.org/art/collection/search/339776}{\emph{Five men pushing a stone} by Jacques Stella}%
+\furl{https://www.metmuseum.org/art/collection/search/339776}{\emph{Five men pushing a stone}} by Jacques Stella%
 % \\[2ex]
 % \includegraphics[width=0.75\linewidth]{images/drill_wall.jpg}%
 % \\%\flushleftright\color{mpcolor}%
 % (image: \furl{https://www.flickr.com/photos/48718829@N00/3692407910}{Bludgeoner86})%
 }%
-Many physical phenomena involve contact between two bulks of matter that move \textbf{in contact with each other but with different velocities}, possibly one of the velocities being zero. Think of a wooden crate or stone pushed across the floor, or a drill boring a hole in a wall, or a child going down a slide, or air flowing past an aeroplane wing. The contact forces involved in such phenomena usually have both a normal component and a tangential component. The tangential component is generically called \textbf{friction}, or \textbf{drag} when the surface separates solid and fluid matter.
+Many physical phenomena involve contact between two bulks of matter that move \textbf{in contact with each other but often with different velocities}, possibly one or both of the velocities being zero. Think of a wooden crate or stone pushed across the floor, or a drill boring a hole in a wall, or a child going down a slide, or air flowing past an aeroplane wing. The contact forces involved in such phenomena usually have both a normal component and a tangential component. The tangential component is generically called \textbf{friction}, or \textbf{drag} when the surface separates solid and fluid matter.
 
-There are several constitutive relations that involve friction forces. These constitutive relations are peculiar because they do not relate a whole momentum flux with other quantities such as length (think of Hooke's law) or volume (think of the ideal-gas law), but the \emph{tangential} and \emph{normal} components of a momentum flux. In other words, these constitutive relations allow us to calculate one component from the other. Obviously one of the two components must therefore be found by other means.
+There are many constitutive relations for friction forces. These relations are peculiar because they do not relate a whole momentum flux with other quantities such as some length (think of Hooke's law) or volume (think of the ideal-gas law) of a control volume: instead they relate the \emph{tangential} and \emph{normal} components of a momentum flux. In other words, these constitutive relations allow us to calculate one component from the other. Obviously one of the two components must therefore be found by other means.
 
-In many cases it is known that the components of a contact force $\yFc$ satisfy a relation of this type:
-\begin{equation}\label{eq:contact_force_2D}
-  \yFc =
-  \begin{bmatrix}
-    \pm\yfri\, \yFn \\
-    \yFn
-  \end{bmatrix}
-\end{equation}
-where $\yFn$ is the normal force and $\yfri$ is called \textbf{friction coefficient} and is approximately constant. Constitutive relations for the normal force $\yFn$ are often very complicated. Let's see how this force can be found if we already know the motion instead.
+We discuss here two constitutive relations of this kind which are common, although there are many applications in which they cannot be used. They pertain to friction under two different circumstances:
+\begin{description}[nosep]
+\item[static friction:] when matter on the two sides of the surface is not in relative motion, that it, it has the same velocity -- usually zero in the coordinate system used;
+\item[kinetic \textnormal{or} dynamic friction:] when matter on the two sides has different velocities.
+\end{description}
 
-\subsection{Normal force}
-\label{sec:normal_force}
-
-Consider an object such as a book lying on a table, possibly pushed along the table. We \emph{observe} that the vertical position of the book does not change: the book doesn't suddenly sink into the table, nor does it suddenly levitate upward. Its vertical velocity component is therefore always zero:\enskip$v_{z} = \qty{0}{m/s}$\,.\enskip Using Newton's constitutive relation for momentum $\yP=\ym\yv$, where $\ym$ is the mass of the book, we see that the vertical momentum component is also always zero:\enskip$P_{z}=\ym v_{z} = \qty{0}{N\,s}$\,.\enskip Its time derivative is therefore also zero.
-
-Now consider the sum of all momentum fluxes through the whole surface of the book \emph{except the contact surface}: top surface, side surfaces; call this sum $\yFr$. Consider also the gravitational supply of momentum $\yG=-\ym\,g\,[0,1]$. Taking the vertical, $z$-component of the balance of momentum we have
-\begin{equation*}
-  \qty{0}{N} =
-  \frac{\di P_{z}}{\dt}
-  = \yFn + \yFrz + G_{z}
-\qquad  \Longrightarrow\qquad
-  \yFn = - \yFrz - G_{z}
-\end{equation*}
-That is, the normal force must be equal to \emph{minus} the sum of all $z$-components of the other momentum fluxes and of the momentum supply. More generally in static situations we must have
-% \begin{definition}{Normal force (horizontal case)}\label{def:normalforce}
-%   In many situations of horizontal contact between two solid bodies, the \textbf{normal force} $\yFn$ is given by
-  \begin{equation*}
-    \yFn = -\Bigl(\parbox{0.8\linewidth}{\footnotesize sum of $z$-components of momentum fluxes through all other surfaces and of momentum supply}\Bigr) \ .
-  \end{equation*}
-  But let's emphasize again:
-% \end{definition}
-  \begin{warning}[Normal force for prediction or simulation]
-    The mathematical formula above can only be used if we know \emph{beforehand} that the momentum is constant in time. The formula is therefore \textbf{not} a constitutive relation: it does not relate the force to volume contents, fluxes, or supplies at the same coordinate time. It is only an application of the balance of momentum, when the change in momentum is known.
-
-    \smallskip
-
-    If we need to \emph{predict} the change in momentum, then we need a proper constitutive relation for the normal force.
-  \end{warning}
-
-
-\subsection{Friction}
-
-If the normal force is calculated, then we can determine the \emph{horizontal component} of the contact force: the friction, using formula~\eqref{eq:contact_force_2D}.
-
-When we want to push or drag an object such as a table or large box across the floor, it's a common experience that exerting a small force (say, pushing with a finger) won't move the object. We need to exert a minimal amount of force to set it into motion; and usually this minimal force is the larger, the heavier is the object. It's also a common experience that once we manage to set the object into motion, the force we need to exert to keep it moving with a constant speed can be smaller than the force initially needed to set it into motion.
-
-In both these experiences the total momentum content of the object is not changing (and it is zero in the first experience). In particular, the fact that the \emph{horizontal} component of momentum is not changing, even if we are providing a horizontal momentum flux, means that there is a horizontal momentum flux coming from somewhere else. Obviously it is the horizontal component of the contact force exerted on the object by the floor: the \emph{friction} between object and floor.
-
-Our two experiences illustrate that this friction may be different depending on whether the object is at rest or in motion with respect to the floor. We call it \textbf{static friction} when the object's velocity is zero, and \textbf{kinetic} or \textbf{sliding friction} when the object's velocity is non-zero. Let's see their mathematical expressions.
 
 \subsection{Static friction}
 
-In our first experience, with the object at rest on the floor, we noticed that the (zero) horizontal momentum does not change if we exert any amount of force smaller than a particular threshold. Reasoning as we did for the normal force, consider again the sum $\yFr$ of all momentum fluxes through the whole surface of the object except the contact surface. Even if not necessary in this specific case, consider also the gravitational supply of momentum $\yG=-\ym\,g\,[0,-1]$. Finally, call $\yFs$ the static friction. Taking the horizontal, $x$-component of the balance of momentum we find
-\begin{equation*}
-  \qty{0}{N} =
-  \frac{\di P_{x}}{\dt}
-  = \yFs + \yFrx + G_{x}
-\qquad  \Longrightarrow\qquad
-  \yFs = - \yFrx - G_{x}
-\end{equation*}
-Note how it is the balance of momentum that determines the amount of static friction, rather than vice versa, just like it happened for the normal force.
+When we want to push or drag an object such as a table or large box across the floor, it's a common experience that exerting a small horizontal force, for instance pushing with a finger, does not move the object. We need to exert a minimal amount of force to set it into motion; and usually this minimal horizontal force is the larger, the heavier is the object.
 
-We also said that this friction occurs only as long as the total horizontal force is less that a particular threshold. This threshold turns out to be, approximately:
-\begin{itemize}[nosep]
-\item independent of the area of the contact surface
-\item dependent on the nature of the two materials in contact
-\item proportional to the normal force exerted on the object
-\end{itemize}
-We can express this threshold with the equation
-\begin{equation*}
-  (\yFs)_{\text{threshold}} = \yfris\, \abs{\yFn} \ .
-\end{equation*}
+Since the object does not move as we apply a small horizontal force, it means that its momentum components parallel to the ground are not changing. From the balance of momentum, this means that the total force parallel to the ground must be zero. Neglecting air pressure, this total horizontal force is the sum of two surface forces: the horizontal one coming from us, and the \emph{tangential component} of the force coming from the ground to the object.
 
-\begin{definition}{Static friction (horizontal case)}\label{def:staticfriction}
-  In many situations of horizontal contact between two solid bodies, the \textbf{static friction} $\yFs$ is given by
+Let's put this mathematically. Denote these momentum components parallel to the ground with $\yPt$, the horizontal force coming from us with $\yF_{\text{us}}$, and the tangential component of the force coming from the ground by $\yFt$. We observe that ${\di\yPt/\dt = \qty{0}{N}}$. From the balance of momentum, this means that
+\begin{equation*}
+  \qty{0}{N} = \frac{\di\yPt}{\dt}
+  = \yF_{\text{us}} + \yFt
+  \qquad\implies\qquad
+  \yFt = -\yF_{\text{us}} \ .
+\end{equation*}
+Therefore the tangential component of the force from the ground must be equal and opposite to the one coming from us.
+
+There is one peculiarity: we can increase or decrease our force $\yF_{\text{us}}$ a little -- which means that it is changing with time -- and the object still does not move. This means that the tangential component for the force from the ground is \enquote{adapting}, so to speak, to our force.
+
+All this occurs only as long as the force $\yF_{\text{us}}$ from us does not exceed a certain threshold; then the object starts to move. This threshold force is higher, the heavier the object is, and obviously depends on the kind of matter on the two sides of the contact surface: it may be easier to set the object into motion if it rests on ice than if it rests on concrete.
+
+These observations can be condensed into
+\begin{definition}{Amontons's law for static friction}\label{def:staticfriction}
+  In some situations, the tangential component $\yFt$ of the contact force between matter on two sides of a control surface, when the matter is not in relative motion,  is given by
   \begin{equation}\label{eq:staticfriction}
-    \yFs =
-    \begin{dcases}
-      -\yFr
-      &\text{if } \abs{\yFr} \le \yfris\, \abs{\yFn}
-      \\
-      -\ye_{\yFr}\,\yfris\,\abs{\yFn}
-      &\text{if } \abs{\yFr} \ge \yfris\, \abs{\yFn}
-    \end{dcases}
+    \yFt = -\yFr
+    \quad\text{as long as}\quad
+    \abs{\yFr} \le \yfris\, \abs{\yFn}
   \end{equation}
   where
   \begin{equation*}
-    \yFr \defd \Bigl(\parbox{0.6\linewidth}{\footnotesize sum of horizontal components of momentum fluxes through all other surfaces}\Bigr) \ ,
+    \yFr \defd \Bigl(\parbox{0.6\linewidth}{\footnotesize sum of tangential components of momentum fluxes through all other surfaces}\Bigr) \ ,
   \end{equation*}
-  $\yFn$ is the normal force, $\yfris$ is called the \textbf{coefficient of static friction}, and $\ye_{\yFr}$ is a \emph{unit vector} having the same direction as $\yFr$.
-\end{definition}
-
-\subsection{Kinetic friction}
-
-In our second experience, with the object in motion, we noticed that the kinetic friction $\yFk$ exerted by the floor on the object is, approximately:
-\begin{itemize}[nosep]
-\item constant
-\item independent of the area of the contact surface
-\item dependent on the nature of the two materials in contact
-\item proportional to the normal force exerted on the object
-\item opposite to the velocity $\yv$ of the object
-\end{itemize}
-
-
-\begin{definition}{Kinetic friction (horizontal case)}\label{def:kineticfriction}
-  In many situations of horizontal contact between two solid bodies, the \textbf{kinetic friction} $\yFk$ is given by
-  \begin{equation}\label{eq:kineticfriction}
-\yFk = -\ye_{\yv}\,\yfrik\,\abs{\yFn}
-  \end{equation}
-  where $\yfrik$ is the \textbf{coefficient of kinetic friction}, and $\ye_{\yv}$ is a \emph{unit vector} having the same direction as the velocity $\yv$; the minus sign indicates that the kinetic friction $\yFk$ has opposite direction.
+  $\yFn$ is the normal component of the force, and $\yfris$ is the \textbf{static-friction coefficient}.
 
   \smallskip
 
-  The formula above is valid only as long as the velocity of the object is not zero.
+  The static-friction coefficient depends on the kind and condition of matter on the two sides of the control surface.
 \end{definition}
 
-Note that the coefficients of static and kinetic friction, $\yfris$ and $\yfrik$, need not have the same value; in many cases the coefficient of kinetic friction is smaller than the other.
+
+\subsection{Kinetic friction}
+
+It's also a common experience that once we manage to set the object into motion, we need to keep applying some horizontal force if we want it to move with a constant velocity. The force we need to apply is larger, the heavier the object is. But sometimes this force can be smaller than the force we initially needed to apply to set the object into motion. We can also increase the velocity if we apply a larger force for a short time.
+
+These observations indicate that also in this case the force from the ground to the object must have a tangential component, with the following characteristics:
+\begin{itemize}[nosep]
+\item it points in a direction opposite to the relative velocity between the object and the ground;
+\item it has a constant magnitude, independent on the force we apply;
+\item it is larger if the object exerts a larger normal force on the ground;
+\item it depends on the kind and condition of matter on the two sides.
+\end{itemize}
+
+These observations can be condensed into
+\begin{definition}{Amontons's law for kinetic friction}\label{def:staticfriction}
+Consider a contact surface between two bodies of matter, the one on side $a$ having velocity $\yva$, parallel to the surface, and the one on side $b$ having a \emph{different} velocity $\yvb$, parallel to the surface: ${\yva \ne \yvb}$.
+
+\smallskip
+
+  In some situations, the tangential component $\yFt$ of the contact force on matter on the $a$ side is given by
+  \begin{equation}\label{eq:kineticfriction}
+    \yFt = -\yfrik\, \ye_{\yv}\, \abs{\yFn}
+  \end{equation}
+  where
+  \begin{equation*}
+    \ye_{\yv} \equiv \frac{\yva - \yvb}{\abs{\yva - \yvb}}
+  \end{equation*}
+  is a unit vector that points in the direction of the \emph{relative velocity} ${\yv \defd \yva - \yva}$ of matter $a$ with respect to matter $b$;
+  $\yFn$ is the normal component of the force; and $\yfris$ is the \textbf{kinetic-friction coefficient}.
+
+  \smallskip
+
+  The kinetic-friction coefficient depends on the kind and condition of matter on the two sides of the control surface.
+\end{definition}
+
+The static- and kinetic-friction coefficients $\yfris$ and $\yfrik$ need not have the same value; in many cases the kinetic-friction coefficient is smaller than the static-friction one.
 
 
 \begin{exercise}
