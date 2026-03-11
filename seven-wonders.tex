@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-11T13:55:45+0100
+%% Last-Updated: 2026-03-11T20:09:58+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4442,7 +4442,7 @@ What's surprising and extremely useful is that \textbf{the choice of volume} for
 
 Since they are under our control, and since they allow us to keep under control how the amounts of our main quantities change, we call them \emph{control volumes} and \emph{control surfaces}:
 
-\begin{definition}{Control volume}
+\begin{definition}{Control volume}\label{def:control_volume}
   A \textbf{control volume} or (3D) \textbf{domain} is an arbitrary three-dimensional region of space. This region can have any position, shape, and size, and these can change smoothly in time.
 
   \smallskip
@@ -4450,8 +4450,8 @@ Since they are under our control, and since they allow us to keep under control 
   A control volume can also consist of several disconnected three-dimensional regions, and it can be completely imaginary.
 \end{definition}
 
-\begin{definition}{Control surface}
-  A \textbf{control surface} or \textbf{2D domain} is an arbitrary two-dimensional surface. This surface can have any position, shape, and size, and these can change smoothly in time.
+\begin{definition}{Control surface}\label{def:control_surface}
+  A \textbf{control surface} or \textbf{2D domain} is an arbitrary two-dimensional surface through which we can choose a crossing direction. This surface can otherwise have any position, shape, and size, and these can change smoothly in time.
 
   \smallskip
 
@@ -11631,6 +11631,43 @@ Another panoramic look back at the subsequent sections of the present chapter, w
 
 In any physical analysis it's very important to recognize which of the two uses above of the balance of momentum is the necessary one, or the one adopted in the analysis. Otherwise we may end up trying to find the change in momentum by using formulae for forces that require that we \emph{already} know the change in momentum!
 
+\section{Normal to a flat control surface}
+\label{sec:normal_surface}
+
+Recall that a \autoref{def:control_surface}{control surface} can have arbitrary shape and dimension, as long as we can choose a crossing direction through it.
+
+\needspace{5\baselineskip}
+\marginpar{\vspace{4\baselineskip}\footnotesize\centering%
+\includegraphics[width=\linewidth]{images/surface_normal.jpg}%
+%\\[\jot]\color{mpcolor}%
+}
+When we have a \emph{flat} control surface, we can also define a special vector to it:
+\begin{definition}{Unit normal to a flat control surface}\label{def:surface_unit_normal}
+  The \textbf{unit normal} vector to a \emph{flat} control surface, usually denoted
+  \begin{equation*}
+    \yns =
+    \begin{bmatrix}
+      e_{\textrm{n},x}\\
+      e_{\textrm{n},y}\\
+      e_{\textrm{n},z}
+    \end{bmatrix} \ ,
+  \end{equation*}
+  is a \emph{unique} vector that is perpendicular to the surface and has unit (dimensionless) magnitude:
+  \begin{equation*}
+    \abs{\yns} = \sqrt{
+      e_{\textrm{n},x}^{2} + e_{\textrm{n},y}^{2} + e_{\textrm{n},z}^{2}
+      \,} = 1 \ .
+  \end{equation*}
+  This vector not have any specific \enquote{application point}.
+
+  \smallskip
+
+  A unit normal defines a crossing direction through the control surface, and vice versa.
+\end{definition}
+
+Note the difference between a crossing direction and a unit normal. Any control surface, even a curved one, can be assigned a crossing direction. But only a \emph{flat} surface can be assigned a unit normal. Take a sphere for example: it can be given the crossing direction \enquote*{from outside to inside}; but which vector could be its normal? in which direction would such a unique vector point?
+
+The best we can do with a spherical surface is to divide it into extremely small sub-surfaces, so small that each can be considered practically flat. To each such sub-surface we can then assign a unique unit normal vector. But the unit normal vectors of different sub-surfaces will point in different directions.
 
 \section{Normal and tangential surface forces}
 \label{sec:normal_tangential_force}
@@ -11685,9 +11722,7 @@ In other applications the motion of matter -- and therefore the change in moment
 
 As discussed in the previous section, be careful and aware of whether one or the other approach is used.
 
-
-
-\needspace{9\baselineskip}
+\needspace{8\baselineskip}
 \section{Friction}
 \label{sec:friction}
 
