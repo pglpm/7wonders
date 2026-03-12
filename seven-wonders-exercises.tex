@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-12T07:59:14+0100
+%% Last-Updated: 2026-03-12T21:48:34+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -696,13 +696,20 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % \newcommand{\addpara}[1]{\paragraph*{#1.}\addcontentsline{toc}{subsubsection}{#1}}
 % \newcommand{\addparap}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
 %
-\newcommand{\exercise}[2]{\section{#2}\label{#1}\marginpar{\vspace{-1.5\baselineskip}\hspace{-8em}\footnotesize Solution p.~\pageref{#1_sol}}}
+% \newcommand{\exercise}[2]{\section{#2}\label{#1}\addcontentsline{toc}{section}{#2}\marginpar{\vspace{-1.5\baselineskip}\hspace{-8em}\footnotesize Solution p.~\pageref{#1_sol}}}
+\newcommand{\elabel}[1]{\label{#1}\marginpar{\vspace{-1.3\baselineskip}\hspace{-8em}\footnotesize Solution p.~\pageref{#1_sol}}}
 
 \newcommand{\solution}[1]{\subsection*{\makebox[0pt][r]{\faIcon[regular]{lightbulb}\enskip}\ref{#1}}%
 \addcontentsline{toc}{subsection}{\ref{#1}}%
 \label{#1_sol}%
-\marginpar{\vspace{-1\baselineskip}\hspace{-8em}\footnotesize Exercise p.~\pageref{#1}}% 
-}% \newcommand{\sollabel}[1]{\addsubsec{\faIcon[regular]{lightbulb}\enskip\ref{#1}}}
+\marginpar{\vspace{-1\baselineskip}\hspace{-8em}\footnotesize Exercise p.~\pageref{#1}}
+}% 
+% \newcommand{\slabel}[1]{\ref{#1}%
+% \addcontentsline{toc}{subsection}{\ref{#1}}%
+% \label{#1_sol}%
+% \marginpar{\vspace{-1\baselineskip}\hspace{-8em}\footnotesize Exercise p.~\pageref{#1}}%
+% }% 
+% \newcommand{\sollabel}[1]{\addsubsec{\faIcon[regular]{lightbulb}\enskip\ref{#1}}}
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect #1}}
 
 % \newcommand{\exsubsec}[1]{\subsection*{\color{green}\faIcon{puzzle-piece}\ Exercise for \sect #1}}
@@ -1124,7 +1131,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 
 %% transport
 \newcommand*{\yvs}{\bm{v}_{\textrm{s}}}
-\newcommand*{\yns}{\bm{n}_{\textrm{s}}}
+\newcommand*{\yns}{\ye_{\textrm{n}}} % unit normal vector
 \newcommand*{\yAs}{A}%_{\textrm{s}}}
 \newcommand*{\yVs}{V_{\textrm{s}}}
 \newcommand*{\yNs}{\yN_{\textrm{s}}}
@@ -1574,8 +1581,7 @@ Discuss the answer you get, based on what you have learned so far. (Note: if the
 Argue with the LLM and see where the discussion goes.
 
 
-
-\exercise{sec:time_vel_primitive}{}
+\section{}\elabel{sec:time_vel_primitive}
 
 Take \emph{time} and \emph{velocity} as primitive quantities.
 \begin{enumerate}[exerc]
@@ -1584,7 +1590,7 @@ Take \emph{time} and \emph{velocity} as primitive quantities.
 \item Try to define \emph{acceleration} as a derived quantity.
 \end{enumerate}
 
-\exercise{sec:scalar_vect_quants}{}
+\section{}\elabel{sec:scalar_vect_quants}
 
 Which of the following quantities are \emph{scalars}, and which are \emph{vectors}?
 \begin{itemize}[noitemsep]
@@ -1609,7 +1615,7 @@ Which of the following quantities are \emph{scalars}, and which are \emph{vector
 \end{itemize}
 
 
-\exercise{sec:correct_units}{}
+\section{}\elabel{sec:correct_units}
 
 Find the correct units for the following quantities:
 \begin{itemize}[noitemsep]
@@ -1646,7 +1652,7 @@ Find the correct units for the following quantities:
 \item If you have some large-language-model service (such as ChatGPT or DeepSeek), ask it to explain the difference between primitive and derived quantity, and between scalar and vector quantity. Find out weak or unsure points in its answer, given what you've learned so far.
 \end{enumerate}
 
-\exercise{sec:units_functions}{}
+\section{}\elabel{sec:units_functions}
 
 Find which of the following mathematical expressions and equalities are dimensionally incorrect, and explain why they are incorrect:
 \begin{itemize}[label=\textbullet\enskip,itemsep=1ex]
@@ -1943,7 +1949,7 @@ Answer the following questions:
 \end{enumerate}
 
 
-\exercise{sec:vel_accel}{}
+\section{}\elabel{sec:vel_accel}
 
 \begin{enumerate}[exerc]
 \item You're told that the position $\yr(t)$ of an object is constant in time $t$. How much is the velocity $\yv(t)$?
@@ -1952,7 +1958,7 @@ Answer the following questions:
 \end{enumerate}
 
 
-\exercise{sec:1D_motion}{}
+\section{}\elabel{sec:1D_motion}
 
 We have a coordinate system $(t,x)$ with one spatial dimension only. A small object S has position $\cx{S}(t)$ which changes with the coordinate time $t$. The time dependence of the position is given by
 \begin{equation*}
@@ -1972,7 +1978,7 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \item Calculate the time dependence of the coordinate acceleration of S.
 \end{enumerate}
 
-\exercise{sec:1D_motion_b}{}
+\section{}\elabel{sec:1D_motion_b}
 
 We have a coordinate system $(t,x)$ with one spatial dimension only. A small object S has position $\cx{S}(t)$ given by
 \begin{equation*}
@@ -1991,7 +1997,7 @@ We have a coordinate system $(t,x)$ with one spatial dimension only. A small obj
 \end{enumerate}
 
 
-\exercise{sec:3Dmotion_simple}{}
+\section{}\elabel{sec:3Dmotion_simple}
 We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates have each dimension \textdim{length}. A small object S has position $\yr_{\text{S}}(t)$ given by
 \begin{equation*}
   \begin{gathered}
@@ -2017,7 +2023,7 @@ We have a coordinate system $(t,x,y,z)$, where the three spatial coordinates hav
 \end{enumerate}
 
 
-\exercise{sec:1Dintegration}{}
+\section{}\elabel{sec:1Dintegration}
 
 We have a coordinate system $(t,z)$ with one spatial dimension only. The coordinate velocity $v_{z}(t)$ of a small pulse of light travelling in a particular material is given by
 \begin{equation*}
@@ -2181,7 +2187,7 @@ which is not what we want. Trying next $\omega \ytf = \pu$, which means $\ytf = 
 
 
 
-\exercise{sec:extensive_vs_meas}{}
+\section{}\elabel{sec:extensive_vs_meas}
 
 We have seen that six of the seven main physical quantities have two important properties:
 \begin{itemize}[nosep]
@@ -2195,7 +2201,7 @@ We have seen that six of the seven main physical quantities have two important p
 \item Vice versa, can you think of some physical quantity for which we can speak of content, flux, supply, but which doesn't have the property of extensivity?
 \end{enumerate}
 
-\exercise{sec:energy_meas_mass}{}
+\section{}\elabel{sec:energy_meas_mass}
 
 Do a little research, and find out whether there are any physics disciplines in which \emph{mass} is usually measured in units of \emph{energy}.
 
@@ -2234,7 +2240,7 @@ How would you reply to this person?
 
 
 
-\exercise{sec:net_amount}{}
+\section{}\elabel{sec:net_amount}
 
 Let's say you use a coordinate system $(x,y,z)$. In a given 3D region of space you measure a net amount (content) of momentum $\yP = [2, -3, 0]\,\unit{N\,s}$. Which of the following statements are true? which false? Explain why.
 \begin{enumerate}[exerc]
@@ -2332,7 +2338,7 @@ One example is \furl{https://cms.cern/content/glossary\#E}{particle physics}, wh
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
 
-\exercise{sec:contents}{}
+\section{}\elabel{sec:contents}
 
 In the following figures, \textcolor{blue}{region A is indicated in blue and a solid contour}, and \textcolor{red}{region B is indicated in red and a dashed contour} (they are 2D simplified representations of 3D regions). For each figure determine, if possible, the net volume content of the corresponding quantities in the region comprising A and B. If not possible, explain why.
 
@@ -2344,7 +2350,7 @@ In the following figures, \textcolor{blue}{region A is indicated in blue and a s
 \end{enumerate}
 
 
-\exercise{sec:Pcontents}{}
+\section{}\elabel{sec:Pcontents}
 
 In the following figures, \textcolor{blue}{region A is indicated in blue and a solid contour}, and \textcolor{red}{region B is indicated in red and a dashed contour} (they are 2D simplified representations of 3D regions). Use a coordinate system $(x,y,z)$ where $x$ is horizontal to the right, $y$ is vertical upwards on the page, and $z$ comes out of the page towards you. For each figure:
 \begin{itemize}[nosep]
@@ -2361,7 +2367,7 @@ In the following figures, \textcolor{blue}{region A is indicated in blue and a s
 \end{enumerate}
 
 
-\exercise{sec:P_ball_light}{}
+\section{}\elabel{sec:P_ball_light}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/ex_AB_light_ball.jpg}%
 }%
@@ -2372,7 +2378,7 @@ In a given coordinate system, the momentum content of volume A is $\yP_{\text{A}
 Does it really make sense to speak of the momentum in volume B (remember there's no air there)? If it does make sense, how much is the net momentum content of volumes A and B considered together?
 
 
-\exercise{sec:flux_sense}{}
+\section{}\elabel{sec:flux_sense}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[height=7em]{images/Jflux_main.jpg}%
 }%
@@ -2394,13 +2400,13 @@ Take a look at the energy flux through a surface represented in the side figure.
 \end{tabularx}
 
 
-\exercise{sec:battery_wire}{}
+\section{}\elabel{sec:battery_wire}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[height=7\baselineskip]{images/battery_wire_CS.jpg}%
 }%
 An ordinary battery is attached to wires and is powering some device. This means that there is a flow of electromagnetic energy from the battery to the device. Imagine a control surface around the battery, as illustrated in the side figure. Can you guess across which parts of the control surface is the flux of energy? Is it across the whole surface? or only across the parts where the wire is? Do a little research to find out.
 
-\exercise{sec:sum_fluxes}{}
+\section{}\elabel{sec:sum_fluxes}
 
 A cuboid region is delimited by a closed control surface that can be divided into six parts; call them \enquote*{up}, \enquote*{down}, \enquote*{front}, \enquote*{back}, \enquote*{left}, \enquote*{right}. They are all have an inward crossing direction, except for \enquote*{back} which has an outward crossing direction.
 
@@ -2470,7 +2476,7 @@ Here are the fluxes of various quantities through the six surfaces in the given 
 
 
 
-\exercise{sec:fluxes_scalar}{}
+\section{}\elabel{sec:fluxes_scalar}
 
 \renewcommand{\tabularxcolumn}[1]{>{\bfseries}w{c}{0.3\linewidth}}
 Which of the following graphical representations of fluxes do make sense? Which don't? Explain why.\noprelistbreak
@@ -2497,7 +2503,7 @@ Which of the following graphical representations of fluxes do make sense? Which 
 
 \medskip
 
-\exercise{sec:surface_moves_if_flux}{}
+\section{}\elabel{sec:surface_moves_if_flux}
 
 \begin{enumerate}[exerc]
 \item A control volume contains $[2,-3,1]\,\unit{N\,s}$ of momentum. Momentum is a quantity related to movement. Does this mean that the control volume is moving?
@@ -2507,7 +2513,7 @@ Which of the following graphical representations of fluxes do make sense? Which 
 \item Can there be a flux of temperature through a control surface?
 \end{enumerate}
 
-\exercise{sec:fluxes_vector}{}
+\section{}\elabel{sec:fluxes_vector}
 
 Which of the following graphical representations of fluxes do make sense? Which don't? Explain why.\noprelistbreak
 
@@ -2534,7 +2540,7 @@ height=6em,width=0.25\linewidth,keepaspectratio]{images/flux_vector_3.jpg}
 \end{tabularx}
 
 
-\exercise{sec:moebius}{}
+\section{}\elabel{sec:moebius}
 
 \marginpar{\vspace{0\baselineskip}\centering\includegraphics[width=\linewidth]{images/moebius_band.jpg}%
 }%
@@ -2543,7 +2549,7 @@ The \furl{https://mathworld.wolfram.com/MoebiusStrip.html}{Möbius band} is a su
 Do you manage to choose a definite crossing direction on this surface? Do you think it could be chosen as a control surface?
 
 
-\exercise{sec:netflux}{}
+\section{}\elabel{sec:netflux}
 
 For each figure, calculate and draw, or describe precisely, the net total flux through the composite control surface. (The different parts are differentiated by different colours and thicknesses.) Don't forget to specify the crossing direction when you speak about a flux.\noprelistbreak
 
@@ -2567,7 +2573,7 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sumC.jpg}
 \end{tabularx}
 
 
-\exercise{sec:integrated_flux}{}
+\section{}\elabel{sec:integrated_flux}
 
 \begin{enumerate}[exerc]
 \item Through a particular closed control surface there's a continuous influx of electric charge $\yI(t)$ with the following time dependence:
@@ -2947,7 +2953,7 @@ height=9em,width=0.4\linewidth,keepaspectratio]{images/sol_sumC.jpg}
 % \label{sec:conservation_onlyalways}
 % %% Observed conserved only in an instance: does it obey conservation law?
 
-\exercise{sec:calc_from_bal}{}
+\section{}\elabel{sec:calc_from_bal}
 
 For each question:
 \begin{itemize}[nosep,label=\faIcon{hand-point-right}]
@@ -3032,7 +3038,7 @@ with a new constant $b$, then you can perfectly describe and predict all present
 You must decide whether to continue experiments and development using the modifications proposed by engineers~\ref{item:team_A}, or those proposed by engineers~\ref{item:team_B} (you can't pursue both). \textbf{Which do you choose, and why?}
 
 
-\exercise{sec:ideal_gas_const}{}
+\section{}\elabel{sec:ideal_gas_const}
 Consider a small control volume completely occupied by a particular kind of gas, which we shall call \emph{ideal gas}. Focus also on a small part of the closed control surface associated with this control volume.
 
 Two constitutive relations are known to be valid for such a control volume:
@@ -3057,7 +3063,7 @@ Find a constitutive relation that directly connects the volume content of \energ
 %% show const rel determine full time dependence of quantity. Is it universal?
 
 
-\exercise{sec:constants_previous}{}
+\section{}\elabel{sec:constants_previous}
 
 Find the physical dimensions and units of the constants $a$, $b$, $d$ in Exercise~\ref{sec:change_bal_or_const} and $R$, $\yU_{0}$, $C$ in Exercise~\ref{sec:ideal_gas_const}.
 
@@ -3291,12 +3297,12 @@ An analogous procedure shows:
   \end{itemize}
   In your solution, explain which control surfaces and volumes you're using, and show all mathematical and logical steps. If it isn't possible to find the requested quantity, explain why.}
 
-\exercise{sec:calc_from_bal2-watertank}{}
+\section{}\elabel{sec:calc_from_bal2-watertank}
 
 Water is produced in a tank at a rate (supply) of \qty{2.0}{mol/s}, constant in time. The tank has a hole, from which water is leaking out at a rate of \qty{0.1}{mol/s}, constant in time. Water satisfies a balance law. If initially there's no water in the tank, how much water is there after \qty{10}{s}?
 
 \needspace{10\baselineskip}%
-\exercise{sec:calc_from_bal2-capacitors}{}
+\section{}\elabel{sec:calc_from_bal2-capacitors}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=0.55\linewidth]{images/capacitors.jpg}%
   \\\flushleftright\color{mpcolor}%
@@ -3311,7 +3317,7 @@ The bottom capacitor is \emph{delivering} an electric current of \qty{1}{C/s} to
 Electric charge satisfies a conservation law. \textbf{How fast is the electric-charge content in the bottom capacitor increasing or decreasing?}
 
 
-\exercise{sec:calc_from_bal2-capacitors-carbreak}{}
+\section{}\elabel{sec:calc_from_bal2-capacitors-carbreak}
 
 A car is travelling on the road. Take a coordinate system $(t,x,y,z)$ with horizontal $x$ and $y$, upward $z$, and with respect to which the road is at rest.
 
@@ -3344,7 +3350,7 @@ $.
 
 Momentum obeys a balance law. \textbf{How much was the car's momentum at time \qty{0}{s}, when the driver started breaking?}  \emph{In the solution of this question, translate the description in terms of force into a description in terms of momentum flux and supply.}
 
-\exercise{sec:calc_from_bal2-capacitors-nuclearplant}{}
+\section{}\elabel{sec:calc_from_bal2-capacitors-nuclearplant}
 \marginpar{\vspace{1.5\baselineskip}\flushleftright\footnotesize\color{mpcolor}%
   We're measuring amounts in \enquote*{particles} rather than \enquote*{moles}.%
 }%
@@ -3380,7 +3386,7 @@ Here are some possibilities:
 \item Introduce a third substance.
 \end{itemize}
 
-\exercise{sec:NO2_reaction_later}{}
+\section{}\elabel{sec:NO2_reaction_later}
 
 \emph{Feel free to do this with colleagues:}
 
@@ -3425,7 +3431,7 @@ Simulate it with the following initial conditions, boundary conditions, and time
 \item After running the script: does it seem to oscillate? Can you try to explain why it does or doesn't?
 \end{enumerate}
 
-\exercise{sec:calc_from_bal2-scripts}{}
+\section{}\elabel{sec:calc_from_bal2-scripts}
 
 Write scripts to solve Exercises~\ref{sec:calc_from_bal2-watertank}--\ref{sec:calc_from_bal2-capacitors-nuclearplant} numerically.
 
@@ -3867,7 +3873,7 @@ See \sects7.10--7.11 in the main text.
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
 
-\exercise{sec:mol_kg}{}
+\section{}\elabel{sec:mol_kg}
 
 \begin{enumerate}[exerc]
 \item A piece of material of unknown composition (but looking ordinary otherwise) has \masse\ \qty{3.6}{kg}. Approximately how many moles of baryons does it contain? (Neglect leptons, that is, electrons.)
@@ -3876,7 +3882,7 @@ See \sects7.10--7.11 in the main text.
 \item A volume \qty{0.001}{m^3} (that is, one litre) of a neutron star may contain \qty{4e17}{mol} of neutrons (which are baryons). Approximately how much is the \masse\ of such a one-litre volume?
 \end{enumerate}
 
-\exercise{sec:kinds_matter_select}{}
+\section{}\elabel{sec:kinds_matter_select}
 
 When we study or simulate a physical phenomenon, it's often important to categorize \enquote*{matter} into different kinds, and to keep track of each kind. This categorization, though, depends on the specify system and also on the goals of the study. Consider these categorizations:
 \begin{enumerate}[label=(\Alph*)]
@@ -3997,7 +4003,8 @@ For each of the situations below, try to decide which of the categorizations abo
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
 
-\exercise{sec:OPM_boros}{}
+\section{}
+\elabel{sec:OPM_boros}
 % https://onepunchman.fandom.com
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/saitama.jpg}%
@@ -4041,7 +4048,7 @@ In everyday situations we often quantify force in \enquote*{kilograms}, or bette
 Express your estimate of the force of Saitama's punch in kilogram-force unit.
 
 \needspace{9\baselineskip}
-\exercise{sec:hexagon_fluxes}{}
+\section{}\elabel{sec:hexagon_fluxes}
 
 \marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/hexagon_fluxes.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -4062,7 +4069,7 @@ Find the momentum influx at surface E at time $t$.
 
 
 \needspace{9\baselineskip}
-\exercise{sec:tensile_spring}{}
+\section{}\elabel{sec:tensile_spring}
 
 \marginpar{\vspace{-1\baselineskip}\footnotesize\centering%
 \includegraphics[width=0.75\linewidth]{images/material_piece_compr.jpg}%
@@ -4077,7 +4084,7 @@ The margin figure shows a piece of material with momentum \textbf{ef}fluxes $\yF
 
 
 \needspace{15\baselineskip}
-\exercise{sec:graniteblocks2}{}
+\section{}\elabel{sec:graniteblocks2}
 
 \marginpar{\vspace{\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks2.jpg}%
 \\\flushleftright\color{mpcolor}%
@@ -4099,7 +4106,7 @@ Answer the following questions:
 
 
 \needspace{11\baselineskip}
-\exercise{sec:graniteblocks3}{}
+\section{}\elabel{sec:graniteblocks3}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/graniteblocks3.jpg}%
 \\\flushleftright\color{mpcolor}%
@@ -4123,7 +4130,7 @@ Three blocks of granite are statically arranged as shown in the margin figure. T
 
 
 \needspace{7\baselineskip}
-\exercise{sec:car_uphill}{}
+\section{}\elabel{sec:car_uphill}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/car_uphill.jpg}%
 }
@@ -4138,7 +4145,7 @@ At a particular time $\ytf$ a car is moving uphill with an instantaneous velocit
 
 
 \needspace{7\baselineskip}
-\exercise{sec:wind_building}{}
+\section{}\elabel{sec:wind_building}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/wind_building.jpg}%
 \\\flushleftright\color{mpcolor}%
@@ -4181,7 +4188,7 @@ Find the force that the wind exerts on the building's side; proceed as follows:
 \end{enumerate}
 
 
-\exercise{sec:football_integral}{}
+\section{}\elabel{sec:football_integral}
 
 In a coordinate system $(x,z)$, at time $\yti = \qty{0}{s}$, a football of \masse\ \qty{0.42}{kg} has instantaneous velocity $[0,0]\,\unit{m/s}$. The ball is hit at that time, and experiences a horizontal surface force (momentum influx) until time $\ytf = \qty{0.3}{s}$. The force changes with time as follows
 \begin{equation*}
@@ -4199,7 +4206,7 @@ During the same time interval, the ball experiences the usual vertical gravitati
 
 
 \needspace{4\baselineskip}
-\exercise{sec:tennisballs_collision}{}
+\section{}\elabel{sec:tennisballs_collision}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/tennisballs_collision.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -4220,7 +4227,7 @@ After some time the tennis balls have collided and are moving away from each oth
 
 
 \needspace{12\baselineskip}
-\exercise{sec:bullet_block}{}
+\section{}\elabel{sec:bullet_block}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/bullet_block.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -4236,15 +4243,26 @@ There are no surface forces (flux of momentum) exerted on bullet \amp\ block, an
 
 
 
-\exercise{sec:tennisball_fall}{}
+\section{}\elabel{sec:tennisball_fall}
 
 At some time instant a tennis ball is at a height of \qty{10}{m} above ground, with a downward velocity of \qty{1.0}{m/s}. At a later instant of time the ball is at a height of \qty{8.0}{m} above ground. The tennis ball's mass is \qty{0.060}{kg}, its motion is purely vertical, there are no obstacles in its course, and air can be neglected.
 
 How much is the velocity of the ball at the later instant of time, when it is \qty{8.0}{m} above ground?
 
 
+\needspace{7\baselineskip}
+\section{}\elabel{sec:sfriction_block}
 
-\exercise{sec:tennisball_RT}{}
+\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/static_2people_noforces.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+Two people are trying to move a crate of \masse\ \qty{110}{kg}, as illustrated in the margin figure. The person on the left exerts a diagonal surface force $[350, 200]\,\unit{N}$; the one on the right, a horizontal surface force $[250, 0]\,\unit{N}$. The static-friction factor between the floor and the crate is $0.62$, and the gravitational acceleration is $g = \qty{9.8}{N/kg}$.
+
+Using Amontons's law for static friction, determine if the two people manage to set the crate into motion.
+
+
+\section{}\elabel{sec:tennisball_RT}
 
 \emph{Preferably together with one or more colleagues:}
 
@@ -4289,7 +4307,7 @@ Now explore more extreme physical situations.
 \end{enumerate}
 
 
-\exercise{sec:tennisball_double}{}
+\section{}\elabel{sec:tennisball_double}
 
 
 \emph{Preferably together with one or more colleagues:}
@@ -4315,7 +4333,7 @@ Suppose that you want to describe the physical behaviour of not one, but \emph{t
 \end{enumerate}
 
 
-\exercise{sec:tennisball_collision_theory}{}
+\section{}\elabel{sec:tennisball_collision_theory}
 
 This is a continuation of Exercise~\ref{sec:tennisball_double}:
 
@@ -4347,7 +4365,7 @@ where $k$ is a positive constant, and $d$ is the diameter of one tennis ball, or
 \end{enumerate}
 
 
-\exercise{sec:tennisball_collision_script}{}
+\section{}\elabel{sec:tennisball_collision_script}
 
 This is a continuation of Exercise~\ref{sec:tennisball_collision_theory}.
 
@@ -4436,7 +4454,7 @@ If you have access to a large-language-model service, try feeding it one of our 
 
 It's possible that the large language model might offer you to \enquote{optimize} the script. Keep in mind that we're writing the scripts in order to understand the physics, rather than to be numerically efficient.
 
-\exercise{sec:spring_scripts}{}
+\section{}\elabel{sec:spring_scripts}
 
 For this exercise, start from the script for the simulation of two objects connected by a spring obeying Hooke's law (Octave: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py}}).
 
@@ -4467,7 +4485,7 @@ From a physical point of view, what does this line do? Is it a constitutive rela
 Which plot corresponds to the simulation with the largest elastic constant, and which with the lowest? Why?
 \end{enumerate}
 
-\exercise{sec:state_scripts}{}
+\section{}\elabel{sec:state_scripts}
 
 Start from the script for the simulation of a flying tennis ball
 (Octave: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.m}{\texttt{tennisball\_rP.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/tennisball_rP.py}{\texttt{tennisball\_rP.py}}).
@@ -4481,7 +4499,7 @@ Start from the script for the simulation of a flying tennis ball
 \end{enumerate}
 
 
-\exercise{sec:state_scripts_hooke}{}
+\section{}\elabel{sec:state_scripts_hooke}
 
 Start from the script for the simulation of two objects connected by a spring obeying Hooke's law (Octave: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.m}{\texttt{hooke\_spring.m}}, Python: \furl{https://pglpm.github.io/7wonders/scripts/hooke_spring.py}{\texttt{hooke\_spring.py}}).
 
@@ -4499,7 +4517,6 @@ Start from the script for the simulation of two objects connected by a spring ob
 
 \clearpage
 \addsec{Example solutions}
-
 
 \solution{sec:OPM_boros}
 
@@ -5593,6 +5610,115 @@ In order to find $v_{z}(\ytf)$ we need to solve the first three equations for $B
 In exercise~\ref{sec:tennisball_fall_energy} we'll see a way to solve this problem by means of the balance of energy: it will allow us to avoid facing differential equations.
 
 
+\solution{sec:sfriction_block}
+
+First let's find the unit normal to the contact surface between ground and crate, since it isn't given by the problem and it's necessary for defining what we mean by \enquote*{normal} and \enquote*{tangential} components. Given the geometry of the problem, the unit normal is
+\begin{equation*}
+  \yns = [0, 1] \ .
+\end{equation*}
+
+Then let's proceed by steps:
+
+\paragraph{Step~1.}
+We reckon all forces that appear in the problem; we assume air to be negligible as usual:
+\begin{itemize}
+\item The force from the person on the left; call it $\yFa = [350, 200]\,\unit{N}$.
+\item The force from the person on the right; call it $\yFb = [250, 0]\,\unit{N}$.
+\item The gravitational force, given by the usual constitutive relation:
+  \begin{equation*}
+    \yG = -\ym g [0, 1] = -[0, \num{1078}]\,\unit{N} \ .
+  \end{equation*}
+\item The contact force from ground to crate, which we write as the sum $\yFn + \yFs$ of a normal component and a tangential static-friction component.
+\end{itemize}
+
+\paragraph{Step~2.}
+Amontons's law for static friction relates
+\begin{enumerate*}[label=(\arabic*)]
+\item the maximum magnitude that the tangential static-friction force $\yFs$ can have, and
+\item the magnitude of the normal force $\yFn$ at the contact surface.
+\end{enumerate*}
+The next step in the problem is understanding which of these two forces we're trying to find, and which is given. In the present case it's the maximum tangential static friction $\yFs$ that we're trying to find. So we must find the normal force $\yFn$ in some other way.
+
+The normal force can be found by observing that the crate does not move in the normal direction, which is the $z$-direction. So its $z$-momentum is constant in time: ${\di P_{z}/\dt = \qty{0}{N}}$. By the balance of $z$-momentum, the sum of the $z$-components of all surface and volume forces on the crate must therefore be zero:
+\begin{equation*}
+  F_{a,z} + F_{b,z} + G_{z} + F_{\textrm{n}} = \qty{0}{N}
+  \qquad\implies\qquad
+  F_{\textrm{n}} = -F_{a,z} - F_{b,z} - G_{z} = +\qty{878}{N} \ .
+\end{equation*}
+
+We did this calculation easily, noticing that the \enquote*{normal} direction is simply the $z$-direction. Let's do the same calculation in a more strict manner, which would work even if the normal direction were, say, diagonal to the coordinates. The reasoning is that the momentum in the direction of the unit normal does not change; therefore the normal component of the sum of all forces -- or equivalently the sum of the normal components of all forces -- must be zero. Remember that the normal component of any force $\yF$ is given by
+\begin{equation*}
+  (\yF \cdot \yns)\,\yns \ .
+\end{equation*}
+\needspace{5\baselineskip}
+So in this case we want
+\marginpar{\vspace{1\baselineskip}\centering\scriptsize%
+\color{mpcolor}%
+\begin{multline*}(\yFa\cdot\yns)\yns
+={}\\ \bigl(
+\begin{bsmallmatrix}350\\200\end{bsmallmatrix}
+\cdot
+\begin{bsmallmatrix}0\\1\end{bsmallmatrix}
+\bigr)
+\begin{bsmallmatrix}0\\1\end{bsmallmatrix}
+\,\unit{N}
+={}\\
+200
+\begin{bsmallmatrix}0\\1\end{bsmallmatrix}
+\,\unit{N}
+\end{multline*}
+and so on for the others.
+}
+\begin{equation*}
+  \begin{split}
+    &\yF_{a,\textrm{n}} + \yF_{b,\textrm{n}} + \yG_{\textrm{n}} + \yFn = \zerov\,\unit{N}
+    \\
+  \implies\quad&
+  \yFn = -\yF_{a,\textrm{n}} - \yF_{b,\textrm{n}} - \yG_{\textrm{n}}
+  \\
+  \implies\quad&
+  \yFn = -(\yFa \cdot \yns)\,\yns
+  -(\yFb \cdot \yns)\,\yns - (\yG \cdot \yns)\,\yns
+  \\
+  \implies\quad&
+  \yFn = -[0, 200]\,\unit{N} - [0,0]\,\unit{N} - [0, -1078]\,\unit{N}
+  \\
+  \implies\quad&
+  \yFn = [0, 878]\,\unit{N} \ .
+  \end{split}
+\end{equation*}
+Essentially the same result as before, but this calculation would have also worked for an oblique surface and unit normal.
+
+\paragraph{Step~3.}
+Now that we have the normal component of the contact force from ground to crate, we can calculate the maximum value that static friction can have:
+\begin{equation*}
+  \abs{\yF_{\text{s,max}}} = \yfris \,\abs{\yFn}
+  = 0.62 \cdot \qty{878}{N}
+  = \qty{544}{N} \ .
+\end{equation*}
+
+\paragraph{Step~4.}
+Finally let's find the tangential component of the sum of all other forces, and compare its magnitude with the maximum value above.
+
+We already found the sum of all other forces:
+\begin{equation*}
+  \yF_{\text{other}} = \yFa + \yFb + \yG =
+  [600, -878]\,\unit{N} \ .
+\end{equation*}
+The tangential component is therefore
+\begin{equation*}
+  \yFr = \yF_{\text{other}} - \yF_{\text{other,n}}
+  = [600, -878]\,\unit{N} -  [0, -878]\,\unit{N}
+  = [600, 0]\,\unit{N}
+\end{equation*}
+and its magnitude is \qty{600}{N}, which is larger than \qty{544}{N}:
+\begin{equation*}
+  \qty{600}{N} = \abs{\yFr} >
+  \yfris\, \abs{\yFn} = \qty{544}{N} \ .
+\end{equation*}
+Which means that the two people do manage to set the crate into motion.
+
+
 \solution{sec:tennisball_RT}
 
 \begin{enumerate}[exerc]
@@ -5745,7 +5871,7 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 
 
 \needspace{5\baselineskip}
-\exercise{sec:skydiver}{}
+\section{}\elabel{sec:skydiver}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/skydive2.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -5759,7 +5885,7 @@ A skydiver of mass \qty{70}{kg} jumps with zero initial velocity at an altitude 
 
 
 \needspace{12\baselineskip}
-\exercise{sec:bullet_block_energy}{}
+\section{}\elabel{sec:bullet_block_energy}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/bullet_block.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -5779,7 +5905,7 @@ There are no surface forces (flux of momentum) exerted on bullet \amp\ block, an
 \item If you don't have enough information for using the balance of energy, then try to use the result ${v_{\textrm{f}} = \pm \qty{14}{m/s}}$ from solution~\ref{sec:bullet_block_sol} to make hypotheses about the missing information about energy.
 \end{enumerate}
 
-\exercise{sec:tennisball_fall_energy}{}
+\section{}\elabel{sec:tennisball_fall_energy}
 
 Consider again exercise~\ref{sec:tennisball_fall}:
 
@@ -5790,7 +5916,7 @@ The original exercise asks how much is the velocity of the ball at the later ins
 
 
 \needspace{9\baselineskip}
-\exercise{sec:skaters_away}{}
+\section{}\elabel{sec:skaters_away}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/skaters_away.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -5803,7 +5929,7 @@ Assume there's no friction or heat flux between ice and the skaters, air is negl
 What are the velocities of the skaters at time $\ytf$?
 
 
-\exercise{sec:imagine_momentum_energy}{}
+\section{}\elabel{sec:imagine_momentum_energy}
 
 Give one or more examples of a phenomenon (identified by a control volume) that satisfies the following five conditions:
 \begin{enumerate}[noitemsep]
@@ -5815,7 +5941,7 @@ Give one or more examples of a phenomenon (identified by a control volume) that 
 \end{enumerate}
 
 
-\exercise{sec:idealgas_kineticenergy}{}
+\section{}\elabel{sec:idealgas_kineticenergy}
 
 A container is filled with an ideal gas. The ideal gas fills the whole container, leaving no empty space. The walls of the container are at rest.
 
@@ -5823,7 +5949,7 @@ Is it possible for the ideal gas to have a non-zero kinetic energy?
 
 
 \needspace{6\baselineskip}
-\exercise{sec:ramp_cart}{}
+\section{}\elabel{sec:ramp_cart}
 
 \marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=1\linewidth]{images/ramp_cart_ice.jpg}%
 %\\\flushleftright\color{mpcolor}%
@@ -6561,7 +6687,7 @@ Note that in this problem we have been lucky not to need the balance of $z$-mome
 \section{}
 (Do the \textcolor{yellow}{exercises} in the main text.)
 
-\exercise{sec:horiz_bar}{}
+\section{}\elabel{sec:horiz_bar}
 
 \marginpar{\vspace{0.5\baselineskip}\centering\footnotesize%
 \includegraphics[width=\linewidth]{images/horiz_bar.jpg}%
