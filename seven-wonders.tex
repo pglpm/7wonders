@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-11T20:09:58+0100
+%% Last-Updated: 2026-03-12T08:09:32+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1312,7 +1312,7 @@ retain-explicit-plus,%
 % fontupper=\small, fonttitle=\bfseries\small,
 fonttitle=\bfseries,
 after={\smallskip},
-title=\color{red}\makebox[0pt][r]{\faIcon{exclamation-circle}\hspace{1.5em}}#1}
+title=\color{red}\makebox[0pt][r]{\faIcon{exclamation-triangle}\hspace{1.5em}}#1}
 
 % \newtcolorbox{critique}[1][Critique]{enhanced, no shadow,parbox=false,center,
 % width=0.9\linewidth, colback=blue!5!white, colframe=blue, boxrule=1pt, breakable, fontupper=\small, fonttitle=\bfseries\small, after={\smallskip}, title=\hspace{-2ex}\faIcon{microscope}\enskip#1}
@@ -11770,22 +11770,24 @@ These observations can be condensed into
   In some situations, the tangential component $\yFt$ of the contact force between matter on two sides of a control surface, when the matter is not in relative motion,  is given by
   \begin{equation}\label{eq:staticfriction}
     \yFt = -\yFr
-    \quad\text{as long as}\quad
+    \quad\text{\footnotesize as long as}\quad
     \abs{\yFr} \le \yfris\, \abs{\yFn}
   \end{equation}
   where
   \begin{equation*}
-    \yFr \defd \Bigl(\parbox{0.6\linewidth}{\footnotesize sum of tangential components of momentum fluxes through all other surfaces}\Bigr) \ ,
+    \yFr \defd \Bigl(
+    \parbox{0.6\linewidth}{\footnotesize sum of \emph{tangential} components of momentum fluxes through all other surfaces}
+    \Bigr) \ ,
   \end{equation*}
-  $\yFn$ is the normal component of the force, and $\yfris$ is the \textbf{static-friction coefficient}.
+  $\yFn$ is the normal component of the force, and $\yfris$ is called \textbf{static-friction coefficient} or, better, \textbf{static-friction factor}
 
   \smallskip
 
-  Static friction is often denoted with the symbol $\yFs$.
+  The tangential, frictional component is often denoted $\yFs$.
 
   \smallskip
 
-  The static-friction coefficient depends on the kind and condition of matter on the two sides of the control surface.
+  The static-friction factor depends on the kind (wood, metal, concrete, \etc) and condition (dry, wet, smooth, \etc) of matter on the two sides of the control surface.
 \end{definition}
 
 Amontons's law for static friction can be considered as a constitutive relation in some cases, but not in others. Consider a body of matter as a control volume. If static friction occurs only on one part of the surface of this control volume, then it might be possible to apply Amontons's law by first calculating the total of the tangential forces on the other partial surfaces -- by means of  constitutive equations -- and then setting static friction equal to minus this total. But if static friction occurs on several separate contact surfaces, call them \enquote*{1}, \enquote*{2}, \enquote*{3}, and so on, then it may become impossible to find all these static-friction forces by means of Amontons's law: the problem becomes indeterminate. We would have to find several unknowns $\yF_{1,\text{t}}$, $\yF_{2,\text{t}}$, $\yF_{3,\text{t}}$ from only one equation
@@ -11817,7 +11819,7 @@ In some situations of this kind the tangential component $\yFt$ of the contact f
   \begin{equation}\label{eq:kineticfriction}
     \yFt = -\yfrik\, \frac{\yv}{\abs{\yv}}\, \abs{\yFn}
   \end{equation}
-  where $\yFn$ is the normal component of the force, $\yfris$ is the \textbf{kinetic-friction coefficient}, and
+  where $\yFn$ is the normal component of the force, $\yfris$ is the \textbf{kinetic-friction coefficient} or, better, \textbf{kinetic-friction factor}, and
   \begin{equation*}
     \yv \defd \yva - \yvb
   \end{equation*}
@@ -11825,11 +11827,11 @@ In some situations of this kind the tangential component $\yFt$ of the contact f
 
   \smallskip
 
-  Kinetic friction is often denoted with the symbol $\yFk$.
+  The tangential, frictional component is often denoted $\yFk$.
 
   \smallskip
 
-  The kinetic-friction coefficient depends on the kind and condition of matter on the two sides of the control surface.
+  The kinetic-friction factor depends on the kind and condition of matter on the two sides of the control surface.
 \end{definition}
 
 The static- and kinetic-friction coefficients $\yfris$ and $\yfrik$ need not have the same value; in many cases the kinetic-friction coefficient is smaller than the static-friction coefficient.
@@ -11849,7 +11851,13 @@ The static- and kinetic-friction coefficients $\yfris$ and $\yfrik$ need not hav
 
   An analogous comment can be made for the law~\eqref{eq:staticfriction} for static friction.
 \end{warning}
+\begin{warning}[There is only one force]
+  Keep in mind that at the contact surface \emph{there is only one flux of momentum, only one force}. Amontons's laws say that the \emph{magnitude} and \emph{inclination} of this force with respect to the surface change, depending on the conditions of the surface, the state of motion on its two sides, and the presence of forces on other surfaces of the bodies in contact.
 
+  \smallskip
+
+  The division into \enquote*{normal} and \enquote*{tangential} components is only imaginary: we make it in order to simplify our analysis of contact forces.
+\end{warning}
 
 \begin{exercise}
   \begin{enumerate}[exerc]
