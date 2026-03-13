@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-13T07:20:22+0100
+%% Last-Updated: 2026-03-13T11:07:02+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -1196,7 +1196,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \newcommand*{\yFc}{\yF_{\textrm{c}}}
 \newcommand*{\yFn}{\yF_{\textrm{n}}}
 \newcommand*{\yFt}{\yF_{\textrm{t}}}
-\newcommand*{\yFs}{F_{\textrm{s}}}
+\newcommand*{\yFs}{\yF_{\textrm{s}}}
 \newcommand*{\yFk}{\yF_{\textrm{k}}}
 \newcommand*{\yFr}{\yF_{\textrm{other,t}}}
 \newcommand*{\yFrx}{F_{\textrm{other},x}}
@@ -4257,13 +4257,32 @@ How much is the velocity of the ball at the later instant of time, when it is \q
 %\\\flushleftright\color{mpcolor}%
 }
 %
-Two people are handling a crate of \masse\ \qty{110}{kg}, as illustrated in the margin figure. The person on the left exerts a diagonal surface force $[350, 200]\,\unit{N}$; the one on the right, a horizontal surface force $[250, 0]\,\unit{N}$. The static-friction factor between the floor and the crate is $0.62$, whereas the kinetic-friction  factor is $0.45$. The gravitational acceleration is $g = \qty{9.8}{N/kg}$.
+Two people are handling a crate of \masse\ \qty{110}{kg}, as illustrated in the margin figure. The person on the left exerts a diagonal surface force $[350, 200]\,\unit{N}$; the one on the right, a horizontal surface force $[250, 0]\,\unit{N}$. The static-friction factor between the floor and the crate is $0.62$, whereas the kinetic-friction  factor is \num{0.45}. The gravitational acceleration is $g = \qty{9.8}{N/kg}$.
 Assume that Amontons's laws of friction apply.
 
 \begin{enumerate}[exerc]
 \item If the crate is at rest, do the two people manage to set it into motion?
 \item If the crate is moving, at some time $t$, with an instantaneous velocity of \qty{0.05}{m/s} in the positive-$x$ direction, how much is its horizontal acceleration?
 \end{enumerate}
+
+
+\needspace{10\baselineskip}
+\section{}\elabel{sec:sfriction_gripper}
+
+\marginpar{\vspace{-1\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/gripper_block.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+A robot-arm gripper must vertically lift a block of metal having \masse\ \qty{6.0}{kg}. The block must stay firmly between the gripper's fingers while they move vertically. The static-friction factor of the contact between block and fingers is \num{0.86}.
+
+Assume that Amontons's laws of friction apply, and that the two fingers always apply forces of equal magnitude. The problem can be treated as spatially two-dimensional with coordinates $(t, x, z)$ as in the margin figure.
+
+\begin{enumerate}[exerc]
+\item The metal block is lifted with a constant upward velocity of \qty{0.10}{m/s}. What is the minimum magnitude of the normal, horizontal force that each gripper finger must exert in order to achieve this?
+
+\item The metal block is then lifted with a constant upward acceleration of \qty{5.0}{m/s^2}. What is the minimum magnitude of the normal, horizontal force that each gripper finger must exert in order to achieve this?
+\end{enumerate}
+
 
 \section{}\elabel{sec:tennisball_RT}
 
@@ -5781,6 +5800,125 @@ Let's have a final overview of all physical laws and information we needed to so
     & \yFk = -\yfrik\,\frac{\yv}{\abs{\yv}}\,\abs{\yFn}
   \end{aligned}
 \end{equation*}
+
+
+\solution{sec:sfriction_gripper}
+
+This physical situation has \emph{two} contact surfaces of interest, which have \emph{different} unit normal vectors. There is some symmetry though: the forces from the gripper's fingers have equal magnitude, as stated in the text, and intuitively opposite directions; and the static-friction factor is the same for both surfaces. Because of this the problem could be solved by imagining to have just one contact surface, and then dividing the magnitudes of the contact forces by two.
+
+But let's try a more rigorous approach treating the two surfaces as distinct and explicitly writing the symmetries mathematically.
+
+Let's denote the contact surface on the left with $a$ and the one on the right with $b$. Their unit normal vectors, denoted $\ye_{a}$ and $\ye_{b}$, are obviously
+\begin{equation*}
+  \ye_{a} = [1, 0] \ , \qquad \ye_{b} = -[1, 0] \ .
+\end{equation*}
+
+\needspace{10\baselineskip}
+\subsubsection{1.}
+
+\marginpar{\vspace{-1\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/gripper_block_forces.jpg}%
+\\\color{mpcolor}%
+(Force $\yG$ not depicted)%
+}
+%
+Let's first reckon the momentum fluxes and supply involved in the problem:
+\begin{itemize}
+\item Momentum supply from gravity to the block, obeying the usual constitutive relation:
+  \begin{equation*}
+    \yG = -\ym g [0,1] = -[0, 58.8]\,\unit{N} \ .
+  \end{equation*}
+
+\item Normal component of force exerted by the left finger; denote it $\yF_{a,\textrm{n}}$. It is purely horizontal.
+
+\item Tangential, static-friction component of force exerted by the left finger; denote it $\yF_{a,\textrm{s}}$. It is purely vertical.
+
+\item Normal component of force exerted by the right finger; denote it $\yF_{b,\textrm{n}}$. It is purely horizontal.
+
+\item Tangential, static-friction component of force exerted by the right finger; denote it $\yF_{b,\textrm{s}}$. It is purely vertical.
+\end{itemize}
+
+Owing to of the symmetry of the problem we know that
+\begin{equation*}
+  \yF_{a,\textrm{n}} = -\yF_{b,\textrm{n}}
+  \ ,\qquad
+  \yF_{a,\textrm{s}} = \yF_{b,\textrm{s}} \ .
+\end{equation*}
+
+\medskip
+
+Amontons's law let us find the maximal value of $\yF_{a,\textrm{s}}$ from $\yF_{a,\textrm{n}}$ or vice versa; and similarly for surface $b$. Which of these component do we need to find by other means? In this case the problem asks us to find the maximal magnitudes of $\yF_{a,\textrm{n}}$ and $\yF_{b,\textrm{n}}$, which we can find from Amontons's law provided that we first find $\yF_{a,\textrm{s}}$ and $\yF_{b,\textrm{s}}$ by other means.
+
+In the present task we know that gripper and block are moving together with a \emph{constant} upward velocity ${v_{z} = \qty{0.10}{m/s}}$. By Newton's formula $P_{z} = \ym\,v_{z}$ this means that the \emph{rate of change} of $z$-momentum is zero: ${\di P_{z}/\dt = \qty{0}{N}}$. We can use this fact together with the balance of $z$-momentum and with the condition of symmetry about the contact forces:
+\begin{equation*}
+  \begin{gathered}
+    \qty{0}{N} = \frac{\di P_{z}}{\dt} =
+    F_{a,\textrm{s},z} + F_{b,\textrm{s},z} + G_{z}
+    \ ,\qquad
+    F_{a,\textrm{s},z} = F_{b,\textrm{s},z}
+    \\[1ex]
+    \implies\quad
+    F_{a,\textrm{s},z} = F_{b,\textrm{s},z}
+    = -G_{z} / 2 = +\qty{29.4}{N}
+  \end{gathered}
+\end{equation*}
+In the balance of momentum we directly omitted the normal forces $\yF_{a,\textrm{n}}$, $\yF_{b,\textrm{n}}$ because their $z$-components are zero. So we have found that
+\begin{equation*}
+  \yF_{a,\textrm{s}} = \yF_{b,\textrm{s}} = [0, 29.4]\,\unit{N}
+\end{equation*}
+they're directed upwards as expected.
+
+\medskip
+
+Now that we have $\yF_{a,\textrm{s}}$  we can find the maximal values of $\yF_{a,\textrm{n}}$ by means of Amontons's law:
+\begin{equation*}
+  \abs{\yF_{a,\textrm{s}}} < \yfris\,\abs{\yF_{a,\textrm{n}}}
+  \quad\implies\quad
+  \abs{\yF_{a,\textrm{n}}} > \frac{\abs{\yF_{a,\textrm{s}}}}{\yfris}
+  =  \frac{\qty{29.4}{N}}{0.86} \approx
+  \qty{34}{N} \ .
+\end{equation*}
+Obviously the same is true for $\yF_{b,\textrm{n}}$ since it has the same magnitude:
+\begin{equation*}
+  \abs{\yF_{a,\textrm{n}}} > \qty{34}{N} \ ,
+  \qquad
+  \abs{\yF_{b,\textrm{n}}} > \qty{34}{N} \ .
+\end{equation*}
+
+
+\subsubsection{2.}
+
+How is this case different from the previous one? The gripper and block are \emph{accelerating} upwards, and this means that the \emph{rate of change} of $z$-momentum is \emph{non-zero}. We have instead
+\begin{equation*}
+  \frac{\di P_{z}}{\dt} = \ym\frac{\di v_{z}}{\dt}
+  = \qty{0.6}{kg} \cdot \qty{5.0}{m/s^{2}} = \qty{30}{N} \ ,
+\end{equation*}
+constant in time.
+
+The reasoning and physical laws to find the gripper's normal forces $\yF_{a,\textrm{n}}$ and $\yF_{b,\textrm{n}}$ is exactly the same as before: first find the tangential, static-friction components from the balance of $z$-momentum, then find the minimum magnitudes of the normal components from Amontons's law. But in this case, when we use the balance of $z$-momentum, we must keep account for the non-zero $\di P_{z}/\dt$.
+
+So we have
+\begin{equation*}
+  \begin{gathered}
+    \frac{\di P_{z}}{\dt} =
+    F_{a,\textrm{s},z} + F_{b,\textrm{s},z} + G_{z}
+    \ ,\qquad
+    F_{a,\textrm{s},z} = F_{b,\textrm{s},z}
+    \\[1ex]
+    \implies\quad
+    F_{a,\textrm{s},z} = F_{b,\textrm{s},z}
+    = \frac12 \biggl(\frac{\di P_{z}}{\dt} - G_{z}\biggr)
+    = \frac12 (\num{30} + \num{58.8})\,\unit{N}
+    = \qty{44.4}{N} \ .
+  \end{gathered}
+\end{equation*}
+
+From Amontons's law we therefore have, in the present case,
+\begin{equation*}
+  \abs{\yF_{a,\textrm{n}}} > \frac{\abs{\yF_{a,\textrm{s}}}}{\yfris}
+  =  \frac{\qty{44.4}{N}}{0.86} \approx
+  \qty{52}{N} \ .
+\end{equation*}
+And analogously for side $b$.
 
 
 \solution{sec:tennisball_RT}
