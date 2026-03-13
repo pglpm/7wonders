@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-12T21:48:34+0100
+%% Last-Updated: 2026-03-13T07:18:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4257,10 +4257,13 @@ How much is the velocity of the ball at the later instant of time, when it is \q
 %\\\flushleftright\color{mpcolor}%
 }
 %
-Two people are trying to move a crate of \masse\ \qty{110}{kg}, as illustrated in the margin figure. The person on the left exerts a diagonal surface force $[350, 200]\,\unit{N}$; the one on the right, a horizontal surface force $[250, 0]\,\unit{N}$. The static-friction factor between the floor and the crate is $0.62$, and the gravitational acceleration is $g = \qty{9.8}{N/kg}$.
+Two people are handling a crate of \masse\ \qty{110}{kg}, as illustrated in the margin figure. The person on the left exerts a diagonal surface force $[350, 200]\,\unit{N}$; the one on the right, a horizontal surface force $[250, 0]\,\unit{N}$. The static-friction factor between the floor and the crate is $0.62$, whereas the kinetic-friction  factor is $0.45$. The gravitational acceleration is $g = \qty{9.8}{N/kg}$.
+Assume that Amontons's laws of friction apply.
 
-Using Amontons's law for static friction, determine if the two people manage to set the crate into motion.
-
+\begin{enumerate}[exerc]
+\item If the crate is at rest, do the two people manage to set it into motion?
+\item If the crate is moving, at some time $t$, with an instantaneous velocity of \qty{0.05}{m/s} in the positive-$x$ direction, how much is its horizontal acceleration?
+\end{enumerate}
 
 \section{}\elabel{sec:tennisball_RT}
 
@@ -5612,12 +5615,13 @@ In exercise~\ref{sec:tennisball_fall_energy} we'll see a way to solve this probl
 
 \solution{sec:sfriction_block}
 
-First let's find the unit normal to the contact surface between ground and crate, since it isn't given by the problem and it's necessary for defining what we mean by \enquote*{normal} and \enquote*{tangential} components. Given the geometry of the problem, the unit normal is
+First let's find the unit normal to the contact surface between floor and crate, since it isn't given by the problem and it's necessary for defining what we mean by \enquote*{normal} and \enquote*{tangential} components. Given the geometry of the problem, the unit normal is
 \begin{equation*}
   \yns = [0, 1] \ .
 \end{equation*}
 
-Then let's proceed by steps:
+\subsubsection{1.}
+Let's proceed by steps:
 
 \paragraph{Step~1.}
 We reckon all forces that appear in the problem; we assume air to be negligible as usual:
@@ -5628,7 +5632,7 @@ We reckon all forces that appear in the problem; we assume air to be negligible 
   \begin{equation*}
     \yG = -\ym g [0, 1] = -[0, \num{1078}]\,\unit{N} \ .
   \end{equation*}
-\item The contact force from ground to crate, which we write as the sum $\yFn + \yFs$ of a normal component and a tangential static-friction component.
+\item The contact force from floor to crate, which we write as the sum $\yFn + \yFs$ of a normal component and a tangential static-friction component.
 \end{itemize}
 
 \paragraph{Step~2.}
@@ -5642,7 +5646,7 @@ The next step in the problem is understanding which of these two forces we're tr
 The normal force can be found by observing that the crate does not move in the normal direction, which is the $z$-direction. So its $z$-momentum is constant in time: ${\di P_{z}/\dt = \qty{0}{N}}$. By the balance of $z$-momentum, the sum of the $z$-components of all surface and volume forces on the crate must therefore be zero:
 \begin{equation*}
   F_{a,z} + F_{b,z} + G_{z} + F_{\textrm{n}} = \qty{0}{N}
-  \qquad\implies\qquad
+  \quad\implies\quad
   F_{\textrm{n}} = -F_{a,z} - F_{b,z} - G_{z} = +\qty{878}{N} \ .
 \end{equation*}
 
@@ -5670,27 +5674,26 @@ So in this case we want
 and so on for the others.
 }
 \begin{equation*}
-  \begin{split}
-    &\yF_{a,\textrm{n}} + \yF_{b,\textrm{n}} + \yG_{\textrm{n}} + \yFn = \zerov\,\unit{N}
+  \begin{gathered}
+    \yF_{a,\textrm{n}} + \yF_{b,\textrm{n}} + \yG_{\textrm{n}} + \yFn = \zerov\,\unit{N}
+    \\[1ex]
+  \implies\quad
+  \begin{aligned}[t]
+    \yFn &= -\yF_{a,\textrm{n}} - \yF_{b,\textrm{n}} - \yG_{\textrm{n}}
     \\
-  \implies\quad&
-  \yFn = -\yF_{a,\textrm{n}} - \yF_{b,\textrm{n}} - \yG_{\textrm{n}}
-  \\
-  \implies\quad&
-  \yFn = -(\yFa \cdot \yns)\,\yns
-  -(\yFb \cdot \yns)\,\yns - (\yG \cdot \yns)\,\yns
-  \\
-  \implies\quad&
-  \yFn = -[0, 200]\,\unit{N} - [0,0]\,\unit{N} - [0, -1078]\,\unit{N}
-  \\
-  \implies\quad&
-  \yFn = [0, 878]\,\unit{N} \ .
-  \end{split}
+    &= -(\yFa \cdot \yns)\,\yns
+    -(\yFb \cdot \yns)\,\yns - (\yG \cdot \yns)\,\yns
+    \\
+    &= -[0, 200]\,\unit{N} - [0,0]\,\unit{N} - [0, -1078]\,\unit{N}
+    \\
+    &= [0, 878]\,\unit{N} \ .
+  \end{aligned}
+\end{gathered}
 \end{equation*}
 Essentially the same result as before, but this calculation would have also worked for an oblique surface and unit normal.
 
 \paragraph{Step~3.}
-Now that we have the normal component of the contact force from ground to crate, we can calculate the maximum value that static friction can have:
+Now that we have the normal component of the contact force from floor to crate, we can calculate the maximum value that static friction can have:
 \begin{equation*}
   \abs{\yF_{\text{s,max}}} = \yfris \,\abs{\yFn}
   = 0.62 \cdot \qty{878}{N}
@@ -5714,9 +5717,68 @@ The tangential component is therefore
 and its magnitude is \qty{600}{N}, which is larger than \qty{544}{N}:
 \begin{equation*}
   \qty{600}{N} = \abs{\yFr} >
-  \yfris\, \abs{\yFn} = \qty{544}{N} \ .
+  \yfris\, \abs{\yFn} \approx \qty{544}{N} \ .
 \end{equation*}
-Which means that the two people do manage to set the crate into motion.
+Which means that the two people do manage to set the crate into motion, if it is at rest.
+
+
+\subsubsection{2.}
+
+To determine the crate's horizontal acceleration $\di v_{x}/\dt$ we can use the balance of $x$-momentum, together with Newton's constitutive relation between momentum and velocity $P_{x} = \ym\,v_{x}$. Since the crate's mass is constant, we have
+\begin{equation*}
+  \frac{\di P_{x}}{\dt} = \frac{\di\ym\,v_{x}}{\dt}
+  = \ym\frac{\di v_{x}}{\dt} \ .
+\end{equation*}
+
+The momentum fluxes and supply on the crate's control volume are $\yFa$, $\yFb$, $\yG$, together with the force at the contact surface with the floor, which we decompose into a normal component $\yFn$ and a tangential kinetic-friction component $\yFk$.
+
+Amontons's law for kinetic friction relates $\yFk$ and $\yFn$. The normal component can be found, as in the previous part of this exercise, by consideration of the $z$-balance of momentum, which leads to
+\begin{equation*}
+  \yFn = [0, 878]\,\unit{N}
+\end{equation*}
+since all quantities are exactly the same as before. Then Amontons's law gives
+\begin{equation*}
+  \begin{split}
+    \yFk &= -\yfrik\,\frac{\yv}{\abs{\yv}}\,\abs{\yFn}
+    \\[1ex]
+    &= -0.45\cdot
+    \frac{[0.05, 0]\,\unit{m/s}}{\qty{0.05}{m/s}}\cdot
+    \qty{878}{N}
+    \\
+    & = -[395, 0]\,\unit{N} \ .
+  \end{split}
+\end{equation*}
+
+Now we have all forces. Collect all their $x$-components in the balance of $x$-momentum; since $\yG$ and $\yFn$ are purely vertical, with zero $x$-component, let's directly omit them. We can then find the $x$-acceleration:
+\begin{equation*}
+  \begin{aligned}
+    &\ym\frac{\di v_{x}}{\dt} =
+    \frac{\di P_{x}}{\dt} =
+    F_{a,x} + F_{b,x} + F_{\textrm{k},x}
+    \\
+    \implies\quad&
+    \qty{110}{kg}\cdot \frac{\di v_{x}}{\dt} =
+    \qty{350}{N} + \qty{250}{N} - \qty{395}{N}
+    \\
+    \implies\quad&
+    \frac{\di v_{x}}{\dt} \approx \qty{1.9}{m/s^{2}} \ .
+  \end{aligned}
+\end{equation*}
+
+Let's have a final overview of all physical laws and information we needed to solve this problem; note that even if the $x$-acceleration was found from the balance of $x$-momentum, we still needed the balance of $z$-momentum to find the normal force $\yFn$:
+\begin{equation*}
+  \begin{aligned}
+    & \frac{\di P_{z}}{\dt} = F_{a,z} + F_{b,z} + F_{\textrm{k},x} + F_{\textrm{n},z} + G_{z}
+    \\
+    & \frac{\di P_{z}}{\dt} = \qty{0}{N} \ ,\quad v_{z} = \qty{0}{m/s}
+    \\
+    & \frac{\di P_{x}}{\dt} = F_{a,x} + F_{b,x} + F_{\textrm{k},x} + F_{\textrm{n},x} + G_{x}
+    \\
+    & P_{x} = \ym\,v_{x}
+    \\
+    & \yFk = -\yfrik\,\frac{\yv}{\abs{\yv}}\,\abs{\yFn}
+  \end{aligned}
+\end{equation*}
 
 
 \solution{sec:tennisball_RT}
