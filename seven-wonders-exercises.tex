@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-13T11:35:32+0100
+%% Last-Updated: 2026-03-17T06:46:41+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -4536,6 +4536,115 @@ Start from the script for the simulation of two objects connected by a spring ob
 \end{enumerate}
 
 
+\needspace{8\baselineskip}
+\section{}\elabel{sec:sfriction_gripper}
+
+\marginpar{\vspace{2\baselineskip}\centering\footnotesize\includegraphics[width=\linewidth]{images/object_inclinedplane.jpg}%
+%\\\flushleftright\color{mpcolor}%
+}
+%
+The following prompt was given to ChatGPT (version~5.1):
+\begin{framed}\footnotesize
+    Use a coordinate system $(x, z)$ fixed with the ground, with $z$ upwards. The gravitational acceleration is \qty{9.8}{N/kg}. We have the following information below about a given time instant $t$:
+
+    A small solid object of constant mass \qty{1}{kg} is in contact with an inclined plane at this time instant. The plane forms an angle of $\pu/4\,\unit{rad}$ with the ground, inclined from bottom-right to top-left. There cannot be friction between the object and the inclined plane.
+
+    Given the information and assumptions above, is it possible to calculate the acceleration of the object (both components) at this time instant?
+\end{framed}
+ChatGPT's output is displayed in table~\ref{tab:chatgpt_output_inclinedplane} on the next page.
+
+\medskip
+
+Determine whether ChatGPT's output and \enquote{analysis} are correct; be careful analysing all steps and claims in the output.
+\begin{table}[p]
+  \caption{ChatGPT's output}
+  \label{tab:chatgpt_output_inclinedplane}
+%  \vspace{-\baselineskip}
+\begin{framed}\footnotesize
+  Yes, it is possible to determine the acceleration components at that instant, under the usual assumption that the only forces are gravity and the normal reaction of the plane (no friction, no air resistance).
+
+\medskip
+
+\noindent\textbf{1. Forces and constraint}
+
+\begin{itemize}[nosep]
+\item Mass: $\ym = \qty{1}{kg}$
+\item Gravitational acceleration (downwards): $\yg = [0, -g]$ with $g = \qty{9.8}{m/s^2}$
+\item Plane: inclined at angle $\theta = \pu/4$ above the horizontal, rising from right to left.
+\item No friction: only gravity and a normal force $\yFn$ from the plane.
+\end{itemize}
+
+Because the object is constrained to remain in contact with the plane and there is no friction, its acceleration is entirely along the plane (tangent direction). The normal component of the acceleration is zero.
+
+\medskip
+
+\noindent\textbf{2. Direction along the plane}
+
+Let the plane's \textbf{up-slope} unit vector be
+\begin{equation*}
+  \bm{s}_{\text{up}}
+  = [\text{horizontal}, \text{vertical}]
+  = [-\cos\theta, \sin\theta] \ ,
+\end{equation*}
+since it goes up to the left.
+
+The \textbf{down-slope} direction is the opposite:
+\begin{equation*}
+  \bm{s}_{\text{down}} 
+  = -\bm{s}_{\text{up}}
+  = [\cos\theta, -\sin\theta] \ .
+\end{equation*}
+
+On a frictionless incline, the component of gravity along the plane is
+\begin{equation*}
+  \bm{a} = g\,\sin\theta\, \bm{s}_{\text{down}} \ ,
+\end{equation*}
+because $\ym = \qty{1}{kg}$ so $\bm{a} = \yF/\ym$ and the tangential component of weight is $\ym\,g\,\sin\theta$ along the plane.
+
+\medskip
+
+\noindent\textbf{3. Components in $(x,z)$ coordinates}
+
+Using
+\begin{equation*}
+  \bm{s}_{\text{down}} = [\cos\theta, -\sin\theta]
+\end{equation*}
+we have
+\begin{equation*}
+\bm{a}
+= g\,\sin\theta\, [\cos\theta, -\sin\theta]
+= [g\,\sin\theta\,\cos\theta, -g\,(\sin\theta)^{2}] \ .
+\end{equation*}
+For $\theta = \pu/4$:
+\begin{equation*}
+\sin\theta = \cos\theta = \sqrt{2}/2 \ ,
+\quad
+\sin\theta\, \cos\theta = 1/2 \ ,
+\quad
+(\sin\theta)^{2} = 1/2.
+\end{equation*}
+Thus
+\begin{equation*}
+a_{x} = g/2 \ ,
+\qquad
+a_{z} = -g/2 \ .
+\end{equation*}
+With $g = \qty{9.8}{m/s^2}$:
+\begin{equation*}
+a_x = +\qty{4.9}{m/s^2} \quad\text{(to the right)},
+\qquad
+a_z = -\qty{4.9}{m/s^2} \quad\text{(downwards)}.
+\end{equation*}
+
+So the acceleration vector at that instant is
+\begin{equation*}
+\bm{a} = [4.9, -4.9]\,\unit{m/s^2} \ .
+\end{equation*}
+\end{framed}
+\end{table}
+\FloatBlock
+
+
 
 \clearpage
 \addsec{Example solutions}
@@ -6036,6 +6145,9 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 
 \solution{sec:state_scripts_hooke}
 \mynotew{Coming soon}
+
+
+\solution{sec:sfriction_gripper}
 
 
 
