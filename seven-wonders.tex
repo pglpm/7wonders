@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-17T14:16:13+0100
+%% Last-Updated: 2026-03-17T15:18:59+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -5511,7 +5511,7 @@ As real examples, the \autoref{sec:bal_momentum_formulation}{\emph{balance of mo
 \begin{equation*}
   \frac{\di \yP(t)}{\dt} = \yF(t) + \yG(t)
 \end{equation*}
-is a universal physical law: it applies -- exactly as written -- to any control volume, small as an atom or large as a group of galaxies; to all objects and to electromagnetic fields; to General Relativity and to Newtonian mechanics, and with some reinterpretation of the symbols also to Quantum Theory. Instead the \autoref{sec:bal_momentum_Newton}{\emph{Newtonian relation between momentum content and matter flux}}
+is a universal physical law: it applies -- exactly as written -- to any control volume, small as an atom or large as a group of galaxies; to all objects and to electromagnetic fields; to General Relativity and to Newtonian mechanics, and with some reinterpretation of the symbols also to Quantum Theory. Instead the \autoref{sec:Newton_relation_momentum}{\emph{Newtonian relation between momentum content and matter flux}}
 \begin{equation*}
   \yP = \ym \yv
   % \yP(t) = \ym(t)\, \yv(t)
@@ -8993,7 +8993,7 @@ In the rest of this chapter we shall explore several common constitutive relatio
 
 
 \section{Newton's approximate relation between momentum and matter}
-\label{sec:bal_momentum_Newton}
+\label{sec:Newton_relation_momentum}
 
 One of the most important constitutive relations is the one connecting momentum with the flux of matter, briefly mentioned in \sect\ref{sec:intro_momentum}.
 
@@ -10383,7 +10383,7 @@ In terms of control surfaces, we have three of them: one tightly enveloping body
 
   By construction, \autoref{sec:cons_matter_particle}{conservation of matter automatically holds} for this control volume. It remains, hidden, in the relation between the position and velocity: $\yva(t) = \di\yra(t)/\dt$.
 
-  For the amount of momentum in this control volume, use the \autoref{sec:bal_momentum_Newton}{Newtonian constitutive equation for momentum} $\yPa = \yma\,\yva$.
+  For the amount of momentum in this control volume, use the \autoref{sec:Newton_relation_momentum}{Newtonian constitutive equation for momentum} $\yPa = \yma\,\yva$.
 
   Assume that the only momentum flux across the closed control surface occurs on the small portion of surface in common with the control volume of the Hookean material; this portion is represented by the \textcolor{purple}{thick red lines} in the side picture below. Across that small surface there is an \textbf{in}flux $\yFab$. We are using this notation for the fluxes: \enquote*{$\yFab$} is the influx in body $a$ coming from the Hookean material, the \enquote{spring}; analogously for $\yFba$ and body $b$.
 
@@ -14439,8 +14439,65 @@ We also claimed that the simplifying assumptions above have two important conseq
   \end{equation*}
 \end{enumerate}
 
-Let us see how these consequences come very simply from the balance of momentum, the balance of angular momentum, and the almost universal constitutive relations for \autoref{def:angmom_flux}{angular-momentum flux}, \eqn~\eqref{eq:ang_momentum_flux}, and for \autoref{def:angmom_supply}{angular-momentum supply}, \eqn~\eqref{eq:ang_momentum_supply}.
+Let us see how these consequences come about, very simply, from the balance of momentum, the balance of angular momentum, \autoref{sec:Newton_relation_momentum}{Newton's constitutive relation} for the momentum flux of matter, and the almost universal constitutive relations for \autoref{def:angmom_flux}{angular-momentum flux}, \eqn~\eqref{eq:ang_momentum_flux}, and for \autoref{def:angmom_supply}{angular-momentum supply}, \eqn~\eqref{eq:ang_momentum_supply}.
 
+The balances of momentum and of angular momentum for the piece of material are
+\begin{equation*}
+    \frac{\di\yP}{\dt} = \yF + \yG \ ,
+    \qquad
+    \frac{\di\yL}{\dt} = \yM + \yTo \ .
+\end{equation*}
+By Newton's constitutive relation for the momentum flux of matter, if the mass content $\ym$ of the control volume is always zero, then also the momentum content and its rate of change are always zero:
+\begin{equation*}
+  \yP = \ym\yv\enskip\text{and}\enskip\ym \equiv \qty{0}{kg}
+  \quad\implies\quad
+  \yP \equiv \qty{0}{N\,s}
+  \quad\implies\quad
+  \frac{\di\yP}{\dt} \equiv \qty{0}{N} \ .
+\end{equation*}
+But by the constitutive relation for angular-momentum content, in every small sub-volume at position $\yr$ the angular momentum is also zero:
+\begin{equation*}
+  \yL = \yr \times \yP\enskip\text{and}\enskip\yP \equiv \qty{0}{N\,s}
+  \quad\implies\quad
+  \yL \equiv \qty{0}{N\,m\,s}
+  \quad\implies\quad
+  \frac{\di\yL}{\dt} \equiv \qty{0}{N\,m}
+\end{equation*}
+everywhere. Similar reasoning with the supplies for momentum and for angular momentum:
+\begin{equation*}
+  \ym = \qty{0}{kg}
+  \quad\implies\quad
+  \yG = \zerov\,\unit{N} \ ,
+\quad
+  \yTo = \zerov\,\unit{N\,m} \ .
+\end{equation*}
+
+This means that the balances of momentum and of angular momentum for our piece of material are
+\begin{equation*}
+  \yF = \qty{0}{N} \ ,
+  \qquad
+  \yM = \qty{0}{N\,m} \ ,
+\end{equation*}
+where $\yF$ and $\yM$ are the total fluxes of momentum and angular momentum into the material. But these occur only at the surfaces at positions $\yra$ and $\yrb$:
+\begin{equation*}
+  \zerov\,\unit{N} = \yF = -\yFa - \yFb \ ,
+  \qquad
+  \zerov\,\unit{N\,m} = \yM = -\yra \times \yFa - \yrb \times \yFb \ .
+\end{equation*}
+From the first equation we obtain
+\begin{equation*}
+  \yFa = -\yFb \ ,
+\end{equation*}
+which is consequence~\ref{item:C1flux_bis} above. Replacing $\yFb$ with $-\yFa$ in the second equation we find
+\begin{equation*}
+  \yra \times \yFa - \yrb \times \yFa = \zerov\,\unit{N\,m}
+  \qquad\implies\qquad
+  (\yra - \yrb) \times \yFa = \zerov\,\unit{N\,m} \ .
+\end{equation*}
+Now recall: when is the cross-product between two vectors equal to zero? When the two vectors are \emph{aligned}, that is, parallel or anti-parallel. Therefore the equation above says that $\yra - \yrb$ and $\yFa$ are parallel. Then we have found consequence~\ref{item:C2flux_bis}:
+\begin{equation*}
+  \yFa \ ,\enskip \yFb\ ,\enskip \yra-\yrb \quad\text{are parallel} \ .
+\end{equation*}
 
 \section{Centre of \masse}
 \label{sec:centre_mass}
