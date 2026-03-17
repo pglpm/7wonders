@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-17T13:52:22+0100
+%% Last-Updated: 2026-03-17T20:11:17+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7164,7 +7164,7 @@ An engineer has measured the surface forces applied on a block of a very light m
   \quad\text{and}\quad
   \yrb = [-0.1, 0, -0.2]\,\unit{m} \ ,
 \end{equation*}
-and found that these forces are equal to
+and found that these (tensile) forces are equal to
 \begin{equation*}
   \yFa = [0, 0, 3]\,\unit{N}
   \quad\text{and}\quad
@@ -7175,7 +7175,7 @@ The engineer needs to simulate the motion of the block, using therefore the bala
 
 \medskip
 
-Is the engineer's decision reasonable? \emph{(Hint: review the discussion about the consequences of assuming zero mass for a piece of material in \chaps~10 and~12 of our lecture notes.)}
+Is the engineer's decision reasonable? \emph{(Hint: review the consequences of assuming zero mass for a piece of material, discussed in \chaps~10 and~12 of our lecture notes.)}
 
 
 
@@ -7341,25 +7341,27 @@ We finally arrive at
   \end{bmatrix}\,\unit{N\,m} \,.
 \end{equation*}
 This corresponds to three equations. The first ($x$-component) and last ($z$-component) are identities $0=0$. The second ($y$-component) can be used together with the equation we found from the momentum balance:
-\begin{multline*}
-  \begin{aligned}
-    &\qty{0.2}{m}\, F_{1,z} -\qty{0.2}{m}\, F_{2,z} = \qty{0}{N\,m}
-    \\
-    &F_{1,z} + F_{2,z} = \ym g \approx \qty{20}{N}
-  \end{aligned}
-  \qquad\implies\qquad
-  \begin{aligned}
-    & F_{1,z} = F_{2,z}
-    \\
-    & F_{1,z} + F_{2,z} \approx \qty{20}{N}
-  \end{aligned}
-  \\[\jot]\implies\qquad
-  \begin{aligned}
-    & F_{1,z} \approx \qty{10}{N}
-    \\
-    & F_{2,z} \approx \qty{10}{N}
-  \end{aligned}
-\end{multline*}
+\begin{equation*}
+  \begin{gathered}
+    \begin{aligned}
+      &\qty{0.2}{m}\, F_{1,z} -\qty{0.2}{m}\, F_{2,z} = \qty{0}{N\,m}
+      \\
+      &F_{1,z} + F_{2,z} = \ym g \approx \qty{20}{N}
+    \end{aligned}
+    \qquad\implies\qquad
+    \begin{aligned}
+      & F_{1,z} = F_{2,z}
+      \\
+      & F_{1,z} + F_{2,z} \approx \qty{20}{N}
+    \end{aligned}
+    \\[\jot]\implies\qquad
+    \begin{aligned}
+      & F_{1,z} \approx \qty{10}{N}
+      \\
+      & F_{2,z} \approx \qty{10}{N}
+    \end{aligned}
+  \end{gathered}
+\end{equation*}
 
 Our intuition that $\yF_{1}$ and $\yF_{2}$ should be equal is therefore a consequence of the balance of angular momentum.
 
@@ -7367,8 +7369,71 @@ Our intuition that $\yF_{1}$ and $\yF_{2}$ should be equal is therefore a conseq
 
 \solution{sec:forces_block_massless}
 
+As we discussed in \chaps~10 and~12 of the lecture notes, assuming that an object has zero mass has important consequences for its momentum, angular momentum, and for the forces and torques applied to it. If two surface forces $\yFa$ and $\yFb$ are applied to it at points $\yra$ and $\yrb$, then there are two important consequences:
+\begin{enumerate}[label=C\arabic*]
+\item\label{item:C1flux_bis} The surface forces $\yFa$ and $\yFb$ must have equal magnitudes and directions, and opposite orientations, that is,
+  \begin{equation*}
+    \yFa = - \yFb \ .
+  \end{equation*}
 
+\item\label{item:C2flux_bis} The surface forces $\yFa$ and $\yFb$ must each have the same direction as the line connecting their surfaces of application:
+  \begin{equation*}
+    \yFa \ ,\enskip \yFb\ ,\enskip \yra-\yrb \quad \text{are parallel}
+  \end{equation*}
+\end{enumerate}
 
+We see from the engineer's measurements, illustrated in the figure at the margin of the problem, that condition~\ref{item:C2flux_bis} is \emph{not} satisfied in this case. Therefore, assuming zero mass would break the balance of angular momentum.
+
+Let's see this explicitly with the values measured by the engineer.
+
+The total torque on the light object is
+\begin{equation*}
+  \begin{aligned}
+    \yM &= \yra \times \yFa + \yrb \times \yFb
+    \\ &=
+    \begin{bmatrix}
+      0.1\\0\\0.2
+    \end{bmatrix}\,\unit{m} \times
+    \begin{bmatrix}
+      0\\0\\3
+    \end{bmatrix}\,\unit{N}
+    +
+      \begin{bmatrix}
+      -0.1\\0\\-0.2
+    \end{bmatrix}\,\unit{m} \times
+    \begin{bmatrix}
+      0\\0\\-3
+    \end{bmatrix}\,\unit{N}
+    \\ &=
+    \begin{bmatrix}
+      0\\-0.3\\0
+    \end{bmatrix}\,\unit{N\,m}
+    +
+    \begin{bmatrix}
+      0\\-0.3\\0
+    \end{bmatrix}\,\unit{N\,m}
+    \\ &=
+    \begin{bmatrix}
+      0\\-0.6\\0
+    \end{bmatrix}\,\unit{N\,m} \ .
+\end{aligned}
+\end{equation*}
+
+But if the object has no mass, its momentum $\yP$ and angular momentum $\yL$ are always zero; and their time derivatives are also always zero. The volume forces $\yG$ and torques $\yTo$ are zero as well. So the balance of angular momentum would become
+\begin{equation*}
+  \begin{bmatrix}
+    0\\0\\0
+  \end{bmatrix}\,\unit{N\,m}
+  =
+  \frac{\di\yL}{\dt}
+  =
+  \yM + \yTo
+  =
+  \begin{bmatrix}
+    0\\-0.6\\0
+  \end{bmatrix}\,\unit{N\,m} \ ,
+\end{equation*}
+a contradiction!
 
 % \section{Formulation and generalities}
 % \label{sec:bal_angmomentum_formulation}
