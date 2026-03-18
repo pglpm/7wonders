@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-17T20:11:17+0100
+%% Last-Updated: 2026-03-18T08:01:43+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6152,26 +6152,22 @@ If the dependence of $z(t)$ on time is linear, that is, of the form $z(t) = A t 
 
 Let's analyse the problem, and then compare our analysis with the LLM's output.
 
-The solid object is our control volume. Given that the question involves accelerations and probably forces, the balance of momentum, for the $x$- and $z$-components, seems relevant. The question explicitly mentions one specific time instant $t$, therefore the differential expression is most convenient:
+The solid object is our control volume. Given that the question involves accelerations and probably forces, then the balance of momentum for the $x$- and $z$-components seems relevant. The question explicitly mentions one specific time instant $t$, therefore the differential expression is most convenient:
 \begin{equation*}
-  \begin{aligned}
-    \frac{\di P_{x}}{\dt} &= F_{x} + G_{x} \ ,
-    \\
-    \frac{\di P_{z}}{\dt} &= F_{z} + G_{z} \ .
-  \end{aligned}
+    \frac{\di P_{x}}{\dt} = F_{x} + G_{x} \ ,
+    \qquad
+    \frac{\di P_{z}}{\dt} = F_{z} + G_{z} \ .
 \end{equation*}
 
 We need to connect momentum and its rate of change to velocity and acceleration. Newton's relation momentum and velocity can be used for this, since we have a solid object made of matter. We can also take the derivative of this relation, to obtain an acceleration:
 \begin{equation*}
-  \begin{aligned}
-    P_{x} &= \ym\,v_{x}
-    &&\implies&
-    \frac{\di P_{x}}{\dt} &= \ym \frac{\di v_{x}}{\dt} \ ,
-    \\[1ex]
-    P_{z} &= \ym\,v_{z}
-    &&\implies&
-    \frac{\di P_{z}}{\dt} &= \ym \frac{\di v_{z}}{\dt} \ .
-  \end{aligned}
+    P_{x} = \ym\,v_{x}
+    \enskip\implies\enskip
+    \frac{\di P_{x}}{\dt} = \ym \frac{\di v_{x}}{\dt} \ ,
+    \qquad
+    P_{z} = \ym\,v_{z}
+    \enskip\implies\enskip
+    \frac{\di P_{z}}{\dt} = \ym \frac{\di v_{z}}{\dt} \ .
 \end{equation*}
 
 We also have the usual expression for the momentum supply:
@@ -6278,9 +6274,9 @@ One statement in particular is \emph{false} in the present context:
 \begin{quote}\footnotesize
   Because the object is constrained to remain in contact with the plane\textellipsis
 \end{quote}
-But nowhere in the prompt it was stated that the objects is constrained to remain in contact with the plane. The prompt stated that the object is in contact with the plane at time $t$: \enquote*{\textellipsis is in contact with an inclined plane at this time instant}. So \enquote*{because\textellipsis} in the LLM's output sounds even funny. Subsequent statements in the output are likewise false, for instance \enquote*{The normal component of the acceleration is zero}.
+nowhere in the prompt it was stated that the object is constrained to remain in contact with the plane. The prompt only stated that the object \enquote{is in contact with an inclined plane at this time instant}. So the \enquote{because\textellipsis} in the LLM's output sounds even funny. Subsequent statements in the output are likewise false, for instance \enquote{The normal component of the acceleration is zero}.
 
-The rest of the output is more or less self-consistent and consistent with the \emph{false} statement above; it is therefore all false. The large language model probably extracted highly correlated text from a corpus of physics exercises similar to the present one. Many of those texts likely made the additional assumption of \enquote*{constrained to remain in contact}, and therefore this also entered the LLM's output by correlation.
+The rest of the output is more or less self-consistent and consistent with the \emph{false} statement above; it is therefore all false. The large language model probably extracted highly correlated text from a corpus of physics exercises similar to the present one. Many of those texts likely made the additional assumption of \enquote{constrained to remain in contact}, and therefore this also entered the LLM's output by correlation.
 
 
 % \section{Formulation and generalities}
