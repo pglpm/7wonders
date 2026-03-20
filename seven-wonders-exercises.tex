@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-20T10:40:49+0100
+%% Last-Updated: 2026-03-20T11:40:50+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7546,14 +7546,16 @@ Let's collect together all equations from the previous physical analysis, rememb
     &&\qquad\text{\footnotesize $x$-momentum balance}
     \\
     & P_{z}(\ytf) = P_{z}(\yti) + \qty{0}{N\,s}
-    -\int_{\yti}^{\ytf}\!\!(\ym g + \ym g) \dt
+    -{}\underbracket[0.5pt]{\int_{\yti}^{\ytf}\!\!(\ym g + \ym g) \dt}_{
+      {}=2\ym g (\ytf-\yti) = \qty{0.49}{N\,s}
+    }
     &&\qquad\text{\footnotesize $z$-momentum balance}
     \\
     & \yE(\ytf) = \yE(\yti) + \qty{0}{J}
     &&\qquad\text{\footnotesize total-energy balance}
     \\[1ex]
     &P_{x}(\yti) =
-    \ym\, v_{a,x}(\yti) + \ym\, v_{b,x}(\yti)
+    \ym\, v_{a,x}(\yti) + {}\underbracket[0.5pt]{\ym\, v_{b,x}(\yti)}_{\qty{-0.10}{N\,s}}
     &&\qquad\text{\footnotesize $x$-momentum content, extensivity}
     \\
     &P_{x}(\ytf) =
@@ -7561,7 +7563,7 @@ Let's collect together all equations from the previous physical analysis, rememb
     &&\qquad\text{\footnotesize $x$-momentum content, extensivity}
     \\[1ex]
     &P_{z}(\yti) =
-    \ym\, v_{a,z}(\yti) + \ym\, v_{b,z}(\yti)
+    \ym\, v_{a,z}(\yti) + {}\underbracket[0.5pt]{\ym\, v_{b,z}(\yti)}_{\qty{+0.10}{N\,s}}
     &&\qquad\text{\footnotesize $z$-momentum content, extensivity}
     \\
     &P_{z}(\ytf) =
@@ -7574,10 +7576,10 @@ Let's collect together all equations from the previous physical analysis, rememb
       &\quad\yU_{a}(\yti) +
       \tfrac12\ym \bigl[v_{a,x}(\yti)^{2} + v_{a,z}(\yti)^{2}\bigr] +
       {}\underbracket[0.5pt]{\ym g z_{a}(\yti)}_{\qty{0}{J}}{} +
-      \tfrac12 \yIc \yo_{a}(\yti)^{2}
+      \tfrac12 \underbracket[0.5pt]{\yIc \yo_{a}(\yti)^{2}}_{\qty{0}{J}} {}
       +{}\\
       &\quad\yU_{b}(\yti) +
-      \tfrac12\ym \bigl[v_{b,x}(\yti)^{2} + v_{b,z}(\yti)^{2}\bigr] +
+      \tfrac12\ym \bigl[\underbracket[0.5pt]{v_{b,x}(\yti)^{2} + v_{b,z}(\yti)^{2}}_{\qty{2}{m^{2}/s^{2}}}\bigr] +
       {}\underbracket[0.5pt]{\ym g z_{b}(\yti)}_{\qty{0}{J}}{} +
       \tfrac12 \yIc \yo_{b}(\yti)^{2}
     \end{aligned}
@@ -7600,6 +7602,18 @@ Let's collect together all equations from the previous physical analysis, rememb
   \end{aligned}
 \end{equation*}
 where $\ym$, $g$, $\yIc$ are known.
+
+Substituting the last equations into the first three, we get
+\begin{equation*}
+  \begin{aligned}
+    &\qty{0}{N\,s} = \ym\, v_{a,x}(\yti) - \qty{0.10}{N\,s}
+    \\
+    &\qty{0}{N\,s} = \ym\, v_{a,z}(\yti) + \qty{0.10}{m/s}
+    - \qty{0.49}{N\,s}
+    \\
+    &\yU_{a}(\ytf)
+  \end{aligned}
+\end{equation*}
 
 
 \mynotew{to be continued}
