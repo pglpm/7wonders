@@ -1,4 +1,4 @@
-# The Seven Wonders of the World
+# The Seven Wonders of the World: Lecture notes on 21st-century multiphysics
 
 <img src="images/7wonders_cover.jpg" alt="Seven fundamental balance laws" width="100%"/>
 
