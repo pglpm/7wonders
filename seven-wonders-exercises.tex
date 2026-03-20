@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-20T11:40:50+0100
+%% Last-Updated: 2026-03-20T14:03:01+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -7466,13 +7466,13 @@ Given:
 \item Mass each disk: $\ym = \qty{0.10}{kg}$.
 \item Moment of inertia each disk: $\yIc = \qty{0.0020}{kg\,m^{2}}$.
 \item Initial mass-centre velocity disk~$b$: $\yvb(\yti) = [-1,1]\,\unit{m/s}$.
-\item Initial angular velocity disk~$a$: $\yo_{a}(\yti) = \qty{0.0}{rad/s}$.
+\item Initial angular velocity disk~$a$: $\omega_{a}(\yti) = \qty{0.0}{rad/s}$.
 \item Initial mass-centre $z$-coord. disk~$a$: $z_{a} = \qty{0.0}{m}$.
 \item Initial mass-centre $z$-coord. disk~$b$: $z_{b} = \qty{0.0}{m}$.
 \item Final mass-centre velocity disk~$a$: $\yva(\ytf) = [0,0]\,\unit{m/s}$.
 \item Final mass-centre velocity disk~$b$: $\yvb(\ytf) = [0,0]\,\unit{m/s}$.
-\item Final angular velocity disk~$a$: $\yo_{a}(\ytf) = \qty{0}{rad/s}$.
-\item Final angular velocity disk~$b$: $\yo_{a}(\ytf) = \qty{0}{rad/s}$.
+\item Final angular velocity disk~$a$: $\omega_{a}(\ytf) = \qty{0}{rad/s}$.
+\item Final angular velocity disk~$b$: $\omega_{a}(\ytf) = \qty{0}{rad/s}$.
 \item Final mass-centre $z$-coord. disk~$a$: $z_{a} = \qty{1.0}{m}$.
 \item Final mass-centre $z$-coord. disk~$b$: $z_{b} = \qty{1.0}{m}$.
 \item Difference final-initial internal energy disk~$a$: $\yU_{a}(\ytf) - \yU_{a}(\yti) = \qty{2.0}{J}$.
@@ -7480,7 +7480,7 @@ Given:
 \item No momentum or heat fluxes from environment to disks.
 \end{itemize}
 
-Required: $v_{a,x}(\yti)$, $v_{a,z}(\yti)$, $\yo_{b}(\yti)$.
+Required: $v_{a,x}(\yti)$, $v_{a,z}(\yti)$, $\omega_{b}(\yti)$.
 
 
 \paragraph{Choice of control volumes.}
@@ -7520,7 +7520,7 @@ The problem involves matter and rigid bodies in everyday conditions, and no elec
 \begin{itemize}[nosep]
 \item Newton's relation for momentum content: $\yP = \ym\yvcm$. It has to be used for each disk at the initial and final time instants.
 \item Gravitational momentum supply near Earth's surface: $\yG = -\ym g [0,1]$. It has to be used at the initial and final time instants.
-\item Constitutive relation for the total energy of a rigid body: $\yE = \yU + \tfrac12\ym\yvcm^{2} + \ym g \yzcm + \tfrac12 \yIc \yo^{2}$. It has to be used for each disk at the initial and final time instants.
+\item Constitutive relation for the total energy of a rigid body: $\yE = \yU + \tfrac12\ym\yvcm^{2} + \ym g \yzcm + \tfrac12 \yIc \omega^{2}$. It has to be used for each disk at the initial and final time instants.
 \item Constitutive relation for total-energy flux: it says that the total-energy flux consists of heat flux and mechanical power, and both are zero according to the text. So the energy flux into the one control volume is zero.
 \end{itemize}
 
@@ -7542,16 +7542,28 @@ Some of the constitutive relations above cannot be used directly on the whole co
 Let's collect together all equations from the previous physical analysis, remembering that constitutive equations usually have to be used for each time instant. Let's directly use the principle of extensivity for the totals:
 \begin{equation*}
     \begin{aligned}
-    & P_{x}(\ytf) = P_{x}(\yti) + \qty{0}{N\,s} + \qty{0}{N\,s}
+      & P_{x}(\ytf) = P_{x}(\yti) +
+      {}\underbracket[0.5pt]{\int_{\yti}^{\ytf}\!\! F_{x} \dt}_{
+        \qty{0}{N\,s}
+      } {} +
+      {}\underbracket[0.5pt]{\int_{\yti}^{\ytf}\!\! G_{x} \dt}_{
+        \qty{0}{N\,s}
+      }
     &&\qquad\text{\footnotesize $x$-momentum balance}
     \\
-    & P_{z}(\ytf) = P_{z}(\yti) + \qty{0}{N\,s}
+    & P_{z}(\ytf) = P_{z}(\yti) +
+      {}\underbracket[0.5pt]{\int_{\yti}^{\ytf}\!\! F_{z} \dt}_{
+        \qty{0}{N\,s}
+      } {} 
     -{}\underbracket[0.5pt]{\int_{\yti}^{\ytf}\!\!(\ym g + \ym g) \dt}_{
       {}=2\ym g (\ytf-\yti) = \qty{0.49}{N\,s}
     }
     &&\qquad\text{\footnotesize $z$-momentum balance}
     \\
-    & \yE(\ytf) = \yE(\yti) + \qty{0}{J}
+    & \yE(\ytf) = \yE(\yti) +
+      {}\underbracket[0.5pt]{\int_{\yti}^{\ytf}\!\! \yH\dt}_{
+        \qty{0}{J}
+      }
     &&\qquad\text{\footnotesize total-energy balance}
     \\[1ex]
     &P_{x}(\yti) =
@@ -7576,12 +7588,12 @@ Let's collect together all equations from the previous physical analysis, rememb
       &\quad\yU_{a}(\yti) +
       \tfrac12\ym \bigl[v_{a,x}(\yti)^{2} + v_{a,z}(\yti)^{2}\bigr] +
       {}\underbracket[0.5pt]{\ym g z_{a}(\yti)}_{\qty{0}{J}}{} +
-      \tfrac12 \underbracket[0.5pt]{\yIc \yo_{a}(\yti)^{2}}_{\qty{0}{J}} {}
+      \tfrac12 \underbracket[0.5pt]{\yIc \omega_{a}(\yti)^{2}}_{\qty{0}{J}} {}
       +{}\\
       &\quad\yU_{b}(\yti) +
       \tfrac12\ym \bigl[\underbracket[0.5pt]{v_{b,x}(\yti)^{2} + v_{b,z}(\yti)^{2}}_{\qty{2}{m^{2}/s^{2}}}\bigr] +
       {}\underbracket[0.5pt]{\ym g z_{b}(\yti)}_{\qty{0}{J}}{} +
-      \tfrac12 \yIc \yo_{b}(\yti)^{2}
+      \tfrac12 \yIc \omega_{b}(\yti)^{2}
     \end{aligned}
     &&\qquad\text{\footnotesize energy content, extensivity}
     \\[1ex]
@@ -7590,13 +7602,19 @@ Let's collect together all equations from the previous physical analysis, rememb
       &E(\ytf) = {}\\
       &\quad\yU_{a}(\ytf) +
       \tfrac12\underbracket[0.5pt]{\ym \bigl[v_{a,x}(\ytf)^{2} + v_{a,z}(\ytf)^{2}\bigr]}_{\qty{0}{J}} +
-      \ym g z_{a}(\ytf) +
-      \tfrac12 \underbracket[0.5pt]{\yIc \yo_{a}(\ytf)^{2}}_{\qty{0}{J}}{}
+      {}\underbracket[0.5pt]{\ym g z_{a}(\ytf)}_{
+        %=\num{0.10}\cdot\num{9.8}\cdot\num{1.0}\ \unit{J}
+       \qty{0.98}{J}
+        } {} +
+      \tfrac12 \underbracket[0.5pt]{\yIc \omega_{a}(\ytf)^{2}}_{\qty{0}{J}}{}
       +{}\\
       &\quad\yU_{b}(\ytf) +
       \tfrac12\underbracket[0.5pt]{\ym \bigl[v_{b,x}(\ytf)^{2} + v_{b,z}(\ytf)^{2}\bigr]}_{\qty{0}{J}} +
-      \ym g z_{b}(\ytf) +
-      \tfrac12 \underbracket[0.5pt]{\yIc \yo_{b}(\ytf)^{2}}_{\qty{0}{J}}{}
+      {}\underbracket[0.5pt]{\ym g z_{b}(\ytf)}_{
+        %=\num{0.10}\cdot\num{9.8}\cdot\num{1.0}\ \unit{J}
+        \qty{0.98}{J}
+        } {} +
+      \tfrac12 \underbracket[0.5pt]{\yIc \omega_{b}(\ytf)^{2}}_{\qty{0}{J}}{}
     \end{aligned}
     &&\qquad\text{\footnotesize energy content, extensivity}
   \end{aligned}
@@ -7611,12 +7629,29 @@ Substituting the last equations into the first three, we get
     &\qty{0}{N\,s} = \ym\, v_{a,z}(\yti) + \qty{0.10}{m/s}
     - \qty{0.49}{N\,s}
     \\
-    &\yU_{a}(\ytf)
+    &
+    \begin{aligned}
+      &\yU_{a}(\ytf) +\qty{0.98}{J} +
+      \yU_{b}(\ytf) +\qty{0.98}{J}
+      ={}
+      \\&\quad
+      \yU_{a}(\yti) +
+      \tfrac12\ym \bigl[v_{a,x}(\yti)^{2} + v_{a,z}(\yti)^{2}\bigr] +
+      \yU_{b}(\yti) + \qty{0.10}{J} +
+      \tfrac12 \yIc \omega_{b}(\yti)^{2}
+    \end{aligned}
   \end{aligned}
 \end{equation*}
+where\enskip$\ym = \qty{0.10}{kg}$\,,\enskip$\yIc=\qty{0.0020}{kg\,m^{2}}$\,,\enskip and\enskip$\yU_{a}(\ytf) + \yU_{b}(\ytf) - \yU_{a}(\yti) - \yU_{b}(\yti) = \qty{3}{J}$\enskip have known values. The solution is
+\begin{equation*}
+  v_{a,x}(\yti) \approx \qty{1.0}{m/s} \ ,
+  \quad
+  v_{a,z}(\yti) \approx \qty{8.8}{m/s} \ ,
+  \quad
+  \omega_{b}(\yti) \approx \pm\qty{31}{rad/s} \ ;
+\end{equation*}
+note the information in the problem doesn't allow us to determine whether disk~$b$ was initially spinning clockwise or anti-clockwise.
 
-
-\mynotew{to be continued}
 
 % \section{Formulation and generalities}
 % \label{sec:bal_angmomentum_formulation}
