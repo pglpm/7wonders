@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-18T08:06:07+0100
+%% Last-Updated: 2026-03-20T08:16:41+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -6404,9 +6404,6 @@ There is no friction between the ramp and the layer of ice. Assume that there ar
 What are the horizontal velocities (complete with correct sign) of cart and of ramp at time $\ytf$?
 
 
-
-
-
 \clearpage
 \addsec{Example solutions}
 
@@ -7092,6 +7089,7 @@ From the problem we know that the cart is moving to the left, therefore
 Note that in this problem we have been lucky not to need the balance of $z$-momentum.
 
 
+
 % \section{Formulation and generalities}
 % \label{sec:bal_energy_formulation}
 
@@ -7150,7 +7148,7 @@ Considering the bar as a control volume, there are two influxes of momentum, or 
 \needspace{7\baselineskip}
 \section{}\elabel{sec:forces_block_massless}
 
-\marginpar{\vspace{0\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/forces_block_2.jpg}%
+\marginpar{\vspace{-1\baselineskip}\centering\footnotesize\includegraphics[width=0.75\linewidth]{images/forces_block_2.jpg}%
 %\\\flushleftright\color{mpcolor}%
 }
 %
@@ -7173,6 +7171,27 @@ The engineer needs to simulate the motion of the block, using therefore the bala
 
 Is the engineer's decision reasonable? \emph{(Hint: review the consequences of assuming zero mass for a piece of material, discussed in \chaps~10 and~12 of our lecture notes.)}
 
+
+
+\needspace{10\baselineskip}
+\section{}\elabel{sec:colliding_disks}
+
+\marginpar{\vspace{-2\baselineskip}\centering\footnotesize\includegraphics[width=1\linewidth]{images/colliding_disks.jpg}%
+\\\flushleftright\color{mpcolor}%
+In this figure, the relative radii and horizontal positions of the disks, as well as the velocity of disk~$a$ and the angular velocity of disk~$b$, are purely hypothetical. Gravitational momentum supplies are not shown.%
+}
+%
+At some instant in time, two rigid disks denoted $a$ and $b$ of mass \qty{0.10}{kg} each, and constant moment of inertia $\yIc = \qty{0.0020}{kg\,m^{2}}$ each, are in motion in a gravitational field with gravitational acceleration \qty{9.8}{N/kg}. The mass-centres of both disks have $z$-coordinate \qty{0.0}{m}. Disk~$b$ has mass-centre velocity $[-1.0, 1.0]\,\unit{m/s}$. Disk~$a$ is not spinning (that is, its angular velocity is \qty{0}{rad/s}). Coordinates are $(t, x, z)$; angular velocities represent rotations around the $y$-direction and can be treated as scalars; also the moment of inertia can be treated as a scalar.
+
+Half a second later, both disks have mass-centres at $z$-coordinate \qty{1.0}{m} and zero velocities, and neither disk is spinning (that is, both angular velocities are \qty{0}{rad/s}). The internal energy of disk~$a$ has increased by \qty{2}{J}, and that of disk~$b$ by \qty{1}{J}.
+
+There is no air and no momentum or heat fluxes from external agencies to the disks. We don't know the initial positions of the disks, nor their dimensions, nor whether the disks collided between the two time instants.
+
+\begin{enumerate}[exerc]
+\item Suppose we want to find the initial mass-centre velocity (both components) of disk~$a$, and the initial angular velocity of disk~$b$. Write down your reasoning about the control volumes, balance laws, constitutive relations, and physical principles that you need to use to solve this problem. Motivate shortly why they are needed. (\textbf{The important part is the reasoning and explanation; the final values are irrelevant.})
+
+\item Find the numerical values of the initial mass-centre velocity of disk~$a$ and the initial angular velocity of disk~$b$.
+\end{enumerate}
 
 
 
@@ -7430,6 +7449,46 @@ But if the object has no mass, its momentum $\yP$ and angular momentum $\yL$ are
   \end{bmatrix}\,\unit{N\,m} \ ,
 \end{equation*}
 a contradiction!
+
+
+\solution{sec:colliding_disks}
+
+Let's reason about what kind of choices of control volumes and balance laws seem most convenient.
+
+\paragraph{Choice of control volumes.}
+
+Two possible choices seem obvious at first sight: either consider each disk as a separate control volume, or consider both disks together as one control volume.
+
+With the first choice -- two control volumes -- when we write the balance laws we would need to explicitly take into account any fluxes of momentum (surface forces), of energy, and of angular momentum (surface torques) between the two control volumes. The text of the problem, however, gives no information whatsoever about them. It might be possible to deal with them using the principle of symmetry of fluxes; but this would effectively correspond to viewing the two disks as one control volume only. Compare the solution on~\pageref{sec:tennisballs_collision_sol} to exercise~\ref{sec:tennisballs_collision}, where we had similar choices of control volumes and we tried both of them.
+
+With the second choice -- a single control volume -- when we write the balance laws we don't need to explicitly take into account the fluxes of momentum, energy, angular momentum between the disks, because such fluxes are \emph{internal} to this control volume. Given that the text does not ask about these fluxes, it's convenient to treat them as internal. Let's therefore proceed by considering both disks together as one control volume.
+
+\medskip
+
+\emph{Short motivation:} We consider both disks together as one control volume, so that the interactions between the disks become internal and can be avoided.
+
+\paragraph{Choice of balance laws.} The text asks to find three real-valued quantities: the two components of the initial mass-centre velocity of disk~$a$, and the initial angular velocity of disk~$b$. Heuristically we therefore expect \emph{three} balance laws to be necessary for finding the information required by the problem (although, of course, \emph{all} balance laws apply to the physics of this problem). The obvious list to choose from, in this 2D problem, is:
+\begin{itemize}[nosep]
+\item balance of $x$-momentum,
+\item balance of $z$-momentum,
+\item balance of energy,
+\item balance of $y$-angular-momentum, which represents rotations in the $zx$ plane.
+\end{itemize}
+There is no mention of electromagnetism, and with our choice of control volume the amount of matter in it is constant, so the balances of magnetic flux, charge, matter seem unnecessary.
+
+The text gives information about internal energies; therefore the balance of energy seems relevant. In fact the energy of matter involves velocities (kinetic energy) and angular velocities (rotational kinetic energy), so it can give us information about these kind of quantities.
+
+Velocities are also involved in the momentum (Newton's relation) and angular momentum (velocity of mass-centre) of matter, so the remaining two balances to use might be some combination of their balances. Which? The angular momentum of matter typically requires the \emph{position} of the mass-centre -- think of the constitutive relation $\yL = \yrcm \times \ym\yvcm + \yIc\,\yo$ for a rigid body -- and the \emph{position} of the surfaces where forces occur -- think of the constitutive relation $\yM = \yr \times \yF$. But the problem does not give information about any positions. Therefore using the balance of angular momentum might lead to difficulties. So let's try using the balances of $x$- and $z$-momentum instead.
+
+These balances are conveniently expressed in their integral form, since two time instants are involved.
+
+\medskip
+
+\emph{Short motivation:} The problem has three unknowns, so three balances seem necessary. The problem involves internal energies, thus the balance of energy seems relevant. The problem involves velocities but does \emph{not} give explicit \emph{positions}, thus two balances of momentum seem also appropriate.
+
+\paragraph{Constitutive relations}
+
+\mynotew{to be continued}
 
 % \section{Formulation and generalities}
 % \label{sec:bal_angmomentum_formulation}

@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-03-17T19:54:37+0100
+%% Last-Updated: 2026-03-20T08:02:13+0100
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifanon
 \anonfalse
@@ -2021,7 +2021,7 @@ The most common symbols used in the present notes are listed in table~\ref{tab:s
     \\
     $\yhea$ &  & surface coefficient of heat transfer
     \\
-    $\yIc$ &  & tensor of inertia (with respect to centre of \masse)
+    $\yIc$ &  & moment of inertia (with respect to centre of \masse)
     \\
     $\yI$ & {\scriptsize(script capital i)} & electric current
     \\
@@ -14579,7 +14579,7 @@ The centre of \masse\ of a body in \autoref{sec:rigid_bodies}{rigid motion}, how
 
 The constitutive relations~\eqref{eq:ang_momentum_content}, \eqref{eq:ang_momentum_flux}, \eqref{eq:ang_momentum_supply} cover almost all physical phenomena, even those involving electromagnetic fields. But the use of these constitutive relations typically requires the division of any extended control volume into very small parts -- a three-dimensional spatial integration -- and then the monitoring of each of these parts through time. This procedure can be computationally expensive in simulations.
 
-In the case of matter undergoing a \autoref{sec:rigid_bodies}{rigid motion}, the constitutive relations for angular momentum can sometimes be applied without the need of a three-dimensional spatial integration. We shall now discuss these simplified forms of constitutive relations. In order to do so we need to use the \emph{centre of \masse}, introduced earlier, and two new concepts: the \emph{angular velocity} and the \emph{tensor of inertia}.
+In the case of matter undergoing a \autoref{sec:rigid_bodies}{rigid motion}, the constitutive relations for angular momentum can sometimes be applied without the need of a three-dimensional spatial integration. We shall now discuss these simplified forms of constitutive relations. In order to do so we need to use the \emph{centre of \masse}, introduced earlier, and two new concepts: the \emph{angular velocity} and the \emph{moment of inertia}.
 
 \section{Angular velocity}
 \label{sec:angvel}
@@ -14692,13 +14692,13 @@ The equation above tells us that if we want to track how the position $\yr(t)$ o
 \end{equation*}
 
 
-\section{Tensor of inertia}
-\label{sec:tensor_inertia}
+\section{Moment of inertia}
+\label{sec:moment_inertia}
 
-The \emph{tensor of inertia} is a mathematical object that encodes some information about the distribution of \masse\ within a control volume. This mathematical object is represented by a \emph{matrix}. It is defined with respect to a coordinate system and a reference point, which for our purpose we'll choose as the centre of \masse.
+The \emph{moment of inertia} or \emph{tensor of inertia} is a mathematical object that encodes some information about the distribution of \masse\ within a control volume. This mathematical object is represented by a \emph{matrix}. It is defined with respect to a coordinate system and a reference point, which for our purpose we'll choose as the centre of \masse.
 
-\begin{definition}{Tensor of inertia}
-  In a coordinate system $(t,x,y,z)$, the \textbf{tensor of inertia} or \emph{moment of inertia}  $\yIc(t)$ at time $t$ of a set of points \emph{with respect to their centre of \masse} is given by a matrix:
+\begin{definition}{Moment of inertia}
+  In a coordinate system $(t,x,y,z)$, the \textbf{moment of inertia} or \textbf{tensor of inertia}  $\yIc(t)$ at time $t$ of a set of points \emph{with respect to their centre of \masse} is given by a matrix:
   \begin{equation}
     \label{eq:inertia_tensor}
     \yIc(t) \equiv
@@ -14712,22 +14712,22 @@ The \emph{tensor of inertia} is a mathematical object that encodes some informat
 
   \smallskip
 
-  If all coordinates have physical dimension \textdim{length}, then the components of the tensor of inertia have dimension $\textdim{mass}\cdot\textdim{length}^{2}$ and unit \unit{kg\,m^2}.
+  If all coordinates have physical dimension \textdim{length}, then the components of the moment of inertia have dimension $\textdim{mass}\cdot\textdim{length}^{2}$ and unit \unit{kg\,m^2}.
 \end{definition}
 
-The tensor of inertia is \furl{https://scienceworld.wolfram.com/physics/MomentofInertia.html}{calculated} from the distribution of the \masse\ in the rigid body in the chosen coordinate system. It therefore also depends on the shape of the body. For instance, the tensor of inertia for a solid ball of radius $R$ and total \masse\ $\ym$, uniformly distributed, is
+The moment of inertia is \furl{https://scienceworld.wolfram.com/physics/MomentofInertia.html}{calculated} from the distribution of the \masse\ in the rigid body in the chosen coordinate system. It therefore also depends on the shape of the body. For instance, the moment of inertia for a solid ball of radius $R$ and total \masse\ $\ym$, uniformly distributed, is
 \begin{equation*}
   \yIc{}_{\text{,ball}} =
   \frac{2}{5} \ym R^{2}\,
   \begin{bmatrix} 1&0&0\\0&1&0\\0&0&1  \end{bmatrix} \,,
 \end{equation*}
-the centre of the ball being also its centre of \masse. In this particular case the tensor of inertia does not depend on time.
+the centre of the ball being also its centre of \masse. In this particular case the moment of inertia does not depend on time.
 
 \medskip
 
-Given its relation with \masse\ and possibly with matter, we suspect that the tensor of inertia must be somehow related to their balances as well. Indeed its time derivative is given by a special equation:
-\begin{definition}{Time derivative of tensor of inertia}
-  The time derivative of the tensor of inertia, defined with respect to the coordinate system $(t,x,y,z)$ and the centre of \masse, is given by:
+Given its relation with \masse\ and possibly with matter, we suspect that the moment of inertia must be somehow related to their balances as well. Indeed its time derivative is given by a special equation:
+\begin{definition}{Time derivative of moment of inertia}
+  The time derivative of the moment of inertia, defined with respect to the coordinate system $(t,x,y,z)$ and the centre of \masse, is given by:
   \begin{equation}
     \label{eq:dt_inertia_tensor}
     \frac{\di}{\dt}\yIc(t) =
@@ -14740,7 +14740,7 @@ Given its relation with \masse\ and possibly with matter, we suspect that the te
 \section{Constitutive relations for a rigid body}
 \label{sec:angmom_rigidbody}
 
-Equipped with the concepts of centre of \masse, angular velocity, and tensor of inertia, we can state the constitutive relation for the momentum content, energy content, and angular-momentum content of a rigid body.
+Equipped with the concepts of centre of \masse, angular velocity, and moment of inertia, we can state the constitutive relation for the momentum content, energy content, and angular-momentum content of a rigid body.
 
 \begin{definition}{Momentum of a rigid body}
   Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$, then the momentum $\yP(t)$ in the control volume is given by
@@ -14758,7 +14758,7 @@ The momentum for a rigid body is therefore the same as if the control volume wer
 The constitutive relation for the angular momentum is more complicated:
 
 \begin{definition}{Angular momentum of a rigid body}
-  Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$ and angular velocity $\yo(t)$, and if their tensor of inertia is $\yIc(t)$, then the angular momentum $\yL(t)$ in the control volume is given by
+  Take a coordinate system $(t,x,y,z)$, and a control volume with total \masse\ $ym$. If the masses in the control volume are undergoing a rigid motion with centre of \masse\ $\yrcm(t)$ and angular velocity $\yo(t)$, and if their moment of inertia is $\yIc(t)$, then the angular momentum $\yL(t)$ in the control volume is given by
   \begin{equation}
     \label{eq:angmom_rigidbody}
     \yL(t) = \yrcm(t) \times \ym\yvcm(t) + \yIc(t)\,\yo(t) \,,
@@ -14809,7 +14809,7 @@ The constitutive relations and balances that we have discussed are summarized be
     &\qquad&{\text{\footnotesize\color{midgrey}update of \masse\ centre}}
     \\[\jot]
     \yIc(t+\Dt) &\approx \yIc(t) + [\yOm(t)\,\yIc(t) - \yIc(t)\,\yOm(t)]\,\Dt
-    &\qquad&{\text{\footnotesize\color{midgrey}update of inertia tensor}}
+    &\qquad&{\text{\footnotesize\color{midgrey}update of moment of inertia}}
   \end{aligned}
 \end{equation*}
 keep in mind that the angular-velocity vector $\yo$ and matrix $\yOm$ have the \autoref{sec:angvel}{same numerical components}, so if we know the one we also know the other.
