@@ -7,3 +7,5 @@ Lecture notes on mechanics, thermodynamics, electromagnetism, at an undergraduat
 Current working draft at [https://pglpm.github.io/7wonders/](https://pglpm.github.io/7wonders/)
 
 [![DOI](https://zenodo.org/badge/162194718.svg)](https://doi.org/10.5281/zenodo.17073619)
+
+*No Large Language Models were used in the preparation of these lecture notes and of their accompanying material, except in exercises that specifically target LLMs.*
