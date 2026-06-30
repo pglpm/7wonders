@@ -2,7 +2,7 @@
 \pdfinclusioncopyfonts=1 % to preserve fonts in figs
 %% Author: PGL  Porta Mana
 %% Created: 2015-05-01T20:53:34+0200
-%% Last-Updated: 2026-06-29T13:05:52+0200
+%% Last-Updated: 2026-06-29T18:43:08+0200
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifarxiv
 \arxivfalse
@@ -29,7 +29,7 @@ british%
 \newcommand*{\firstdraft}{18 November 2025}
 \newcommand*{\firstpublished}{\firstdraft}
 \newcommand*{\updated}{\ifarxiv***\else\today\ [draft]\fi}
-\newcommand*{\propertitle}{The dependence of energy and momentum\\ on fiducial 4-vector fields%
+\newcommand*{\propertitle}{The definition of energy (and momentum)\\ depends on a fiducial vector field%
 }% title uses LARGE; set Large for smaller
 \newcommand*{\pdftitle}{\propertitle}
 \newcommand*{\headtitle}{Fiducial 4-vector fields}
@@ -346,10 +346,16 @@ british%
 
 % 0.95: capitals same height
 % 0.85: lowercase approx same height
+% 0.84: lowercase x same height
 % geom. mean: 0.89861
-\usepackage[scaled=0.8911739502999143]{DejaVuSansMono}% typewriter text
-\usepackage[scaled=0.8911739502999143]{DejaVuSansCondensed}% sans-serif font
-% \renewcommand\sfdefault{URWClassico-TLF}
+% Palatino has height 4.68pt
+% DejaVu Serif has height 5.2515pt
+% \usepackage[scaled=0.89861]{DejaVuSansMono}% typewriter text
+% \usepackage[scaled=0.89861]{DejaVuSansCondensed}% sans-serif font
+% \usepackage[scaled=0.8911739502999143]{DejaVuSansMono}% typewriter text
+% \usepackage[scaled=0.8911739502999143]{DejaVuSansCondensed}% sans-serif font
+\usepackage[scaled=0.84]{DejaVuSansMono}% typewriter text
+\usepackage[scaled=0.84]{DejaVuSansCondensed}% sans-serif font
 \DeclareMathAlphabet{\mathsf}  {T1}{\sfdefault}{m}{sl}
 \SetMathAlphabet{\mathsf}{bold}{T1}{\sfdefault}{b}{sl}
 %\newcommand*{\mathte}[1]{\bm{\mathsf{#1}}}
@@ -357,25 +363,6 @@ british%
 % \DeclareMathAlphabet{\mathsu}  {T1}{\sfdefault}{m}{n}
 % \SetMathAlphabet{\mathsu}{bold}{T1}{\sfdefault}{b}{n}
 \usepackage{upquote}
-
-%
-% \newlength{\hxn}
-% \newlength{\hxs}
-% \newlength{\hxt}
-% \setlength{\hxn}{\heightof{x}}
-% \setlength{\hxs}{\heightof{\textsf{x}}}
-% \setlength{\hxt}{\heightof{\texttt{x}}}
-% \typeout{normal is \the\hxn}
-% \typeout{sf is \the\hxs}
-% \typeout{tt is \the\hxt}
-% normal x is 5.616pt
-% sf x is 6.64198pt
-% tt x is 6.70619pt
-%
-% geom. mean scale: 0.841473
-% arith. mean scale: 0.841464
-% ind. scales: 0.845531 0.837435
-
 
 \usepackage{mathdots}
 
@@ -551,8 +538,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 % The length of the normalsize alphabet is 191.60612pt - 14pt = 35.8634pc
 \ifafour\settypeblocksize{*}{32pc}{1.618} % A4
 %\setulmargins{*}{*}{1.667}%gives 5/3 margins % 2 or 1.667
-%\else\settypeblocksize{*}{27.431}{1.618}% nearer to a 66-line newpx and preserves GR
-\else\settypeblocksize{*}{26.1408pc}{1.618}% quadratic interpolation, 66-line newpx and preserves GR
+\else\settypeblocksize{*}{26.1408pc}{1.618}% nearer to a 66-line newpx and preserves GR
 \fi
 \setulmargins{*}{*}{1}%gives equal margins
 \setlrmargins{*}{*}{*}
@@ -647,7 +633,7 @@ citebordercolor=blue,citecolor=blue,linkbordercolor=blue,linkcolor=blue,urlborde
 \providecommand{\email}[2]{\href{mailto:#1ZZ@#2 ((remove ZZ))}{#1\protect\atf#2}}
 %\providecommand{\email}[2]{\href{mailto:#1@#2}{#1@#2}}
 
-\preauthor{\vspace{0pt}\begin{center}
+\preauthor{\vspace{-0.5\baselineskip}\begin{center}
 \normalsize\sffamily%
 \lineskip  0.5em}
 \postauthor{\par\end{center}}
@@ -976,30 +962,35 @@ Western Norway University of Applied Sciences%
 %
 % % Check also
 % ~/Eureka/pglpm241222-notes_energy_momentum.tex
+% szabados2004_r2009 % \chap~2
 % penroseetal1965
 % ehlersetal1965
+% waldetal2000
 
 % Given an energy-momentum tensor $\yTT$ we can construct an associated four-current as follows.\autocites{gotayetal1992}[\sect~3.2 p.~62]{hawkingetal1973_r1994}[\sect~II.7.III p.~87]{choquetbruhatetal1989_r2000}[cf also][\sect~2.5]{malament2012}[and the discussion in][part~4 \sect~1]{vandantzig1934b}
 
 
 
 % \setcounter{section}{-1} % to start numbering at 0
-\section{Momentum in \enquote{static} electromagnetic configurations}
+\section{Questions about energy}
 \label{sec:intro}
 
-\begin{enumerate}
-\item Why is internal energy invariant under a change of Newtonian reference frame, even non-inertial, whereas kinetic energy is not?
+The present note discusses two sets of questions that at first sight might not appear to be connected, also because one set is typical of Newtonian mechanics and appears already at an undergraduate level, while the other appears very naturally in general relativity. But it will be shown that the questions of the two sets are instead deeply connected and their answers can be traced to a common idea.
 
-\item Consider a car accelerating on a street, say in the positive-$x$ direction. In the frame of reference where the street is at rest, there is a flow of positive $x$-momentum -- that is, force -- from the street to the car, or equivalently a flow of negative $x$-momentum from the car to the street. In the frame of reference where the car is at rest, the \emph{flow} of momentum is the same.
-
-  Not so with energy flow. In the frame of reference where the street is at rest, there is no flow of energy between street and car: the contact forces involved act on matter that has momentarily zero velocity, so their work is zero. In the reference frame where the car is at rest, there is a flow of positive energy from the car to the street: the contact forces do work on the latter.
-
-  Why do the flows of momentum and of energy behave differently under this change of frame?
-
-\item In fluid mechanics, and more generally in continuum mechanics, the balance of energy can be expressed in very different forms. In one, only the time derivative of the internal energy appears, and kinetic energy is mysteriously absent; this expression of energy balance is moreover invariant with respect changes of frames, even non-inertial. In another, kinetic energy does appear; this expression is not invariant with respect to changes of frame.
-
-  Why do we have this kind of flexibility and possible invariance with the balance of energy, but not with the balance of momentum?
+\begin{enumerate}[label=A\arabic*.,ref=A\arabic*]
+\item\label{item:def_total_energy} What is the total energy of an extended body? Should it include internal, kinetic, gravitational potential energy? or only some of these?
+\item\label{item:frame_indifference_energy} Why is internal energy the same in all frames, whereas kinetic energy is frame-dependent?
+\item\label{item:virtual_work} Why is it possible to derive physical laws about energy by consider \enquote{virtual displacements}?
 \end{enumerate}
+
+\begin{enumerate}[label=A\arabic*.,ref=A\arabic*,start=4]
+\item\label{item:bernoulli_theorem}Is Bernoulli's theorem a consequence of the balance of energy? or of the balance of momentum?
+\end{enumerate}
+
+\begin{enumerate}[label=B\arabic*.,ref=B\arabic*]
+\item\label{item:integrate_energy} How can we associate a total energy to a region of spacetime?
+\end{enumerate}
+
 
 
 %% diverse transf. properties
@@ -1075,6 +1066,23 @@ Western Norway University of Applied Sciences%
 % \centering
 % \hspace*{\fill}{ILLUSTRATION 1} \hfill {ILLUSTRATION 2}\hspace*{\fill}
 % \end{figure}
+
+%%%% SNIPPETS %%%%
+
+\begin{enumerate}
+\item Why is internal energy invariant under a change of Newtonian reference frame, even non-inertial, whereas kinetic energy is not?
+
+\item Consider a car accelerating on a street, say in the positive-$x$ direction. In the frame of reference where the street is at rest, there is a flow of positive $x$-momentum -- that is, force -- from the street to the car, or equivalently a flow of negative $x$-momentum from the car to the street. In the frame of reference where the car is at rest, the \emph{flow} of momentum is the same.
+
+  Not so with energy flow. In the frame of reference where the street is at rest, there is no flow of energy between street and car: the contact forces involved act on matter that has momentarily zero velocity, so their work is zero. In the reference frame where the car is at rest, there is a flow of positive energy from the car to the street: the contact forces do work on the latter.
+
+  Why do the flows of momentum and of energy behave differently under this change of frame?
+
+\item In fluid mechanics, and more generally in continuum mechanics, the balance of energy can be expressed in very different forms. In one, only the time derivative of the internal energy appears, and kinetic energy is mysteriously absent; this expression of energy balance is moreover invariant with respect changes of frames, even non-inertial. In another, kinetic energy does appear; this expression is not invariant with respect to changes of frame.
+
+  Why do we have this kind of flexibility and possible invariance with the balance of energy, but not with the balance of momentum?
+\end{enumerate}
+
 
 %%% Local Variables:
 %%% mode: LaTeX
